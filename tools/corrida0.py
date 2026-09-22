@@ -3638,8 +3638,8 @@ def _lee_oferta(verifica: bool, verifica_ids: set | None = None) -> list[dict]:
     # las specs -- antes no se puede saber si el padre es envuelto -- y
     # re-resuelve `cuenta_gen2` de quien se vuelva envuelto por cadena. La
     # firma de mesa en `decisiones.tsv` sigue mandando sobre ambos.
-    _propaga_envuelto(oferta)
     decisiones = _lee_decisiones()
+    _propaga_envuelto(oferta, decisiones)
     for o in oferta:
         if o["envuelto_legacy"] == "SI" and o.get("_via_cadena"):
             if not decisiones.get(o["calc_id"], "").startswith("cuenta_gen2="):
@@ -3885,13 +3885,34 @@ def _inputs_legacy_de(spec: dict) -> list[str]:
     return malos
 
 
-def _propaga_envuelto(oferta: list[dict]) -> None:
+def _origen_numerico_decisiones(calc_id: str, rid: str, decisiones: dict) -> dict | None:
+    """Override de mesa sobre `origen_numerico`, por RESULT (ACTO
+    GEN2-MARGINALES-ADOPCION-1, 22/sep/2026, FP-...-c45c-01: «se acredita
+    caso por caso en decisiones.tsv, tras leer la spec, sin editar ningún
+    CALC — precedente FP ed7d-01»). Mismo patrón que
+    `_validacion_independiente_resuelta`: objeto `origen:<calc_id>:<rid>`
+    (prefijo propio -- `<calc_id>:<rid>` ya es el objeto de
+    `validacion_independiente=`, no se comparte namespace), valor
+    `origen_numerico=<NUEVO|HEREDADO|MIXTO|INDETERMINADO>`. `None` si mesa
+    no se pronunció -- la resolución mecánica de siempre sigue mandando."""
+    decision = decisiones.get(f"origen:{calc_id}:{rid}", "")
+    if not decision.startswith("origen_numerico="):
+        return None
+    valor = decision.split("=", 1)[1].split("·")[0].strip().upper()
+    if valor not in {ORIGEN_NUEVO, ORIGEN_HEREDADO, ORIGEN_MIXTO, ORIGEN_INDETERMINADO}:
+        return None
+    return {"origen": valor, "herencia": valor in {ORIGEN_HEREDADO, ORIGEN_MIXTO},
+            "camino": f"{calc_id}/{rid} -> DECISION-DE-MESA(decisiones.tsv): {_limpia(decision)}"}
+
+
+def _propaga_envuelto(oferta: list[dict], decisiones: dict | None = None) -> None:
     """Resuelve origen por RESULT y conserva ``envuelto_legacy`` compatible.
 
     La recursión sólo une las specs ya presentes en ``oferta`` y las
     referencias numéricas de intermediarios declarados. Ciclos, padres
     ausentes y rutas irresolubles producen INDETERMINADO, nunca limpio.
     """
+    decisiones = decisiones or {}
     por_id = {o["calc_id"]: o for o in oferta}
     memo: dict[tuple[str, str], dict] = {}
     memo_calc: dict[str, dict] = {}
@@ -3984,6 +4005,10 @@ def _propaga_envuelto(oferta: list[dict]) -> None:
             ciclo = " -> ".join((*pila[pila.index(calc_id):], calc_id))
             return {"origen": ORIGEN_INDETERMINADO, "herencia": False,
                     "camino": f"CICLO:{ciclo}"}
+        override = _origen_numerico_decisiones(calc_id, rid, decisiones)
+        if override is not None:
+            memo[clave] = override
+            return override
         o = por_id[calc_id]
         spec = o["spec"]
         if str(o.get("generacion")) == GENERACION_LEGADO:
@@ -4503,8 +4528,11 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "uso_solicitado": USO_MEDICION_GEN2,
             "origen_numerico": destino["origen_numerico"],
             "aptitud_uso": aptitud,
-            "motivo_aptitud": (f"{motivo} · adopcion:piso-C2-20-celdas "
-                               "(firma de mesa 17/sep/2026)"),
+            "motivo_aptitud": (
+                f"{motivo} · adopcion:piso-t1-marginales-por-instrumento "
+                "(firma de mesa 22/sep/2026)" if cid.startswith("MARG::")
+                else f"{motivo} · adopcion:piso-C2-20-celdas "
+                     "(firma de mesa 17/sep/2026)"),
             "camino_linaje": (f"marcador:{cid} -> {marca['resultado_id']} -> "
                               f"{destino['camino_linaje']}"),
             "valor_materializado": marca.get("punto", NO_DECLARADO),
@@ -4530,6 +4558,16 @@ def _estimadores_segmento_para_status(indice_resultados: dict) -> dict:
         return {}
     out = {}
     for cid, marca in (crudo.get("celdas") or {}).items():
+        rid = marca.get("resultado_id")
+        if rid and rid in indice_resultados:
+            out[cid] = marca
+    # ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026): las marginales que la
+    # firma `adopcion:piso-t1-marginales-por-instrumento` adopta (ENVIPE
+    # 2025) se proyectan igual que las celdas de cruce -- DIFERIDA/VETADA
+    # nunca entran aquí, sólo ADOPTADO-POR-FIRMA.
+    for cid, marca in (crudo.get("marginales") or {}).items():
+        if marca.get("estado") != "ADOPTADO-POR-FIRMA":
+            continue
         rid = marca.get("resultado_id")
         if rid and rid in indice_resultados:
             out[cid] = marca
