@@ -45,3 +45,12 @@ Propio: los dos CALC del duelo (sus `ejecucion.json`, `resultados.json`, sellos;
 No adopta, no corre L, no toca la celda-D ni el marcador (sucesor: su dueño consume el veredicto). Auditoría: la spec ya la trae (afirma sobre México); la nota la contesta de nuevo sobre el resultado. Cierre por /acto.
 
 
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «"Hecho" = … ninguna lectura de `envipe2026_csv` en el historial antes del commit de COMMIT-3 (`git log -p -S envipe2026 -- data/corrida0/CALC-DUELO-ENVIPE2026-EMISIONES-0001` vacío)» y PARO a) | `PARO-PREMISA` — la spec sellada §9 carga 2026 en las emisiones con `reservada=True` (F7); mesa respondió «Correr según la spec (Recom.)» (`FP-260922-GEN2-DUELO-ENVIPE2026-EJECUCION-1-c2b4-02`). La ceguera se prueba por `G-RESERVA-GUARDIA-PROBADA` y `tests/test_duelo_envipe2026_ejecucion.py`; el `git log -S` no puede salir vacío (el `spec.yaml` congelado ya contiene la cadena). `NC-260922-GEN2-DUELO-ENVIPE2026-EJECUCION-1-c2b4-01` (CERRADA). | Ninguno sobre la medición. | mesa -- ratifica la lectura del PARO a) al fusionar |
+| «+2 corridas selladas y registradas» (filas en `corridas.tsv`/`resultados.tsv`/`usos.tsv`) | `DECISIÓN-DE-MESA-PENDIENTE` — los derivados no viajan en PR (guarda `derivados_protegidos.py --toca`, firma P4) y el job de push excluye `registro` a propósito. Selladas en disco, no registradas; replay asentado. `NC-…-c2b4-02`. | `corridas.tsv` no cuenta las 2 corridas hasta el registro. | mesa -- quién corre `corrida0 registro --verifica --escribe --lote` tras el merge |
+| «celda-D/marcador **no** (su dueño; se le deja el veredicto por id)» | `DIFERIDO-A:`dueño de celda-D/marcador — veredicto por id (`RESULT-DUELO26-ADJ-G-SXD/EXD-VEREDICTO-PRIMARIO`, `-G-NAC-EN/ND-B-BIS-LECTURA-MECANICA`). `NC-…-c2b4-03`. | `celdas_validadas`/marcador no se mueven por este acto. | mesa -- asigna el consumo del veredicto |
+| «Test que asierta desde el historial …» (en CI) | `NO-VERIFICABLE-AQUÍ` — CI clona shallow: los 4 tests de orden se saltan (NC-0273); los 2 de guardia corren. Censado; `--ejecuta-huerfanos` OK. `NC-…-c2b4-04`. | El orden sólo se re-prueba con historia completa. | mesa -- FP-398 (a) o clon completo en CI |
