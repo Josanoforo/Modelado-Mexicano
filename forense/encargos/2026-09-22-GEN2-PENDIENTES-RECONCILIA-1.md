@@ -55,3 +55,17 @@ No hace: no decide por mesa, no adopta, no registra corridas, no abre payloads, 
 Sucesores: `GEN2-PENDIENTES-CAJA-1` (consume la lista `DE-CAJA`); `GEN2-TRAMITE-FIRMAS-6` (dirección, con la lista `DE-MESA` contestada por mesa).
 Auditoría de rigor extremo: no aplica (afirma sobre el tablero, no sobre México).
 Cierre: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` los añade /acto al final del archivo archivado; adendas de mesa como archivo propio `<este-encargo>-ADENDA-N.md`.
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué**: P3(b) — revisión individual de las 41 filas de §2.9 del inventario (razón en prosa sin token A.14, "revisar primero" según el propio inventario) para decidir, una por una, si la prosa es en realidad una autorización ya dada.
+  **Por qué**: `NO-VERIFICABLE-AQUÍ` — la clasificación cubrió el universo completo de NC por otras vías (139 filas heredadas de `GEN2-SENAL-1`, el resto por token A.14 ya presente en `razon`), pero no repitió, fila por fila, el ejercicio específico de §2.9 sobre las 41 filas en prosa; solo una fila nueva fuera de ese universo se revisó a mano (`NC-260922-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3-95ec-01`, quedó VIGENTE, sin autorización encontrada).
+  **Impacto**: las 41 filas de §2.9 quedan `VIGENTE`/`DE-MESA` según su clasificación por objeto general, sin el veredicto específico `MAL-ROTULADO` verificado caso por caso; ningún contador se mueve por esto (0 `MAL-ROTULADO` reportado es sobre el universo cubierto, no sobre las 41 verificadas una a una).
+  **Sucesor**: `SIN-ASIGNAR` — un acto que retome específicamente §2.9, o dirección misma al revisar la lista `DE-MESA`/`clasificacion.tsv`.
+
+- **Qué**: §6 del encargo — pregunta a mesa sobre si una fila `DECISION-DE-MESA-PENDIENTE` cuyo objeto ya decidió otra firma posterior (ej. F6/FP-374) cierra por superación o queda `DE-MESA`.
+  **Por qué**: `DECISIÓN-DE-MESA-PENDIENTE` — no se identificó, en el universo clasificado, ninguna fila con ese patrón exacto (objeto ya resuelto por firma posterior con otro rótulo) que ameritara la pregunta; se declara sin resolver porque el acto no verificó explícitamente su ausencia contra las 62 filas `DE-MESA` una por una para descartarlo con certeza.
+  **Impacto**: ninguno detectado; si tal fila existe entre las 62 `DE-MESA`, sigue clasificada como tal en vez de cerrada por superación.
+  **Sucesor**: `SIN-ASIGNAR` — quien procese la lista `DE-MESA` (dirección o `GEN2-TRAMITE-FIRMAS-6`) revisa si alguna de las 62 calza el patrón.
+
+## CONSUMIDO
