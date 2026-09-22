@@ -99,3 +99,14 @@ sus actos / `GEN2-PENDIENTES-CAJA-1`).
   censa como huérfano con dependencia pendiente (misma clase que sus hermanos).
 
 Auditoría de rigor: no aplica (calibra el aparato; las cifras sobre México ya estaban selladas).
+
+## 8 · Enmienda de cierre (CI de #1009, mismo día)
+
+El commit de registro (`7fc4e115`) llevó `data/corrida0/corridas.tsv` y `resultados.tsv` al PR.
+CI lo rechazó: `enrutamiento-pr` («Ningún PR toca un archivo DERIVADO — NO EDITAR», firma de
+mesa 21/sep §2(2): los derivados los re-deriva y commitea el job del push a `main`) y, por
+arrastre, `guardas-res` G5 (las filas ENIGH2016/2018/2020 ajenas que la re-derivación proyectó
+citan RES sin fila en la tabla de citas). Corrección: las dos vistas se restauran a
+`origin/main`; el asiento de replay (`forense/replay-evidencia.tsv`) sí viaja. Lo de §6 queda
+como medición de lo que el job de `main` proyectará, no como cambio de este PR;
+`NC-…-2868-04` se cierra por eso.
