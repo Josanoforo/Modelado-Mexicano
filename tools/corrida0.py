@@ -3905,13 +3905,14 @@ def _origen_numerico_decisiones(calc_id: str, rid: str, decisiones: dict) -> dic
             "camino": f"{calc_id}/{rid} -> DECISION-DE-MESA(decisiones.tsv): {_limpia(decision)}"}
 
 
-def _propaga_envuelto(oferta: list[dict], decisiones: dict) -> None:
+def _propaga_envuelto(oferta: list[dict], decisiones: dict | None = None) -> None:
     """Resuelve origen por RESULT y conserva ``envuelto_legacy`` compatible.
 
     La recursión sólo une las specs ya presentes en ``oferta`` y las
     referencias numéricas de intermediarios declarados. Ciclos, padres
     ausentes y rutas irresolubles producen INDETERMINADO, nunca limpio.
     """
+    decisiones = decisiones or {}
     por_id = {o["calc_id"]: o for o in oferta}
     memo: dict[tuple[str, str], dict] = {}
     memo_calc: dict[str, dict] = {}
