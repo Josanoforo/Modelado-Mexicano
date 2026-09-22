@@ -1,0 +1,42 @@
+# ENIGH2020-REMESAS-CONTEXTO · especificación humana, generalización por ola v1.0
+
+Generalización, parametrizada por ola, de `CALC-ENIGH2022-REMESAS-CONTEXTO-0001`
+(`spec.md` sellado, sha256 `12e8312359ccde2185c3d80244bdecea41cdda556e3bcf526952ba7fea69b8ff`), congelada en
+`ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1`, P1. Fecha de congelamiento: 21/sep/2026.
+
+## 1. Qué cambia y qué no cambia frente a 2022
+
+Contrato estadístico idéntico a `CALC-ENIGH2022-REMESAS-CONTEXTO-0001` — ver
+ese `spec.md`. Verificado por comando: el medidor generalizado, corrido sobre
+2022, reproduce exacta (JSON canónica idéntica) la tabla por perfil y los
+contrastes sellados de `CALC-ENIGH2022-REMESAS-CONTEXTO-0001/resultados.json`
+— test de regresión en `tests/test_enigh_serie_oro.py`.
+
+**Único cambio declarado:** `controles_nacionales.prevalencia` ya no es el
+valor 2022 (`0.04569409956405095`), sino el valor YA SELLADO de la ola 2020
+en `CALC-B-0001/resultados.json` (`RESULT-B-ENIGH-2020-P = 0.04377543852935772`). Las
+categorías `tam_loc`/`est_socio` y sus contrastes (`tam_loc=4 menos
+tam_loc=1`; `est_socio=1 menos est_socio=4`) se heredan de 2022 con la misma
+limitación de codebook declarada en
+`CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001/spec.md §1`.
+
+## 2. Corte de serie
+
+Ver `CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001/spec.md §2`.
+
+## 3. Fuentes documentales
+
+- `enigh2020_nc_csv`, 93,711,908 bytes, SHA-256 `47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4`.
+- `CALC-B-0001/resultados.json`, SHA-256 `87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d` (control nacional,
+  ola 2020).
+
+## 4. RESULT
+
+Mismos 11 RESULT de `CALC-ENIGH2022-REMESAS-CONTEXTO-0001`, prefijo
+`RESULT-ENIGH20-REMCTX-` en vez de `RESULT-ENIGH22-REMCTX-`.
+
+## 5. Interpretación y reservas
+
+Igual que el sellado 2022: incidencia en hogares y monto/intensidad contable
+condicional entre receptores; transversal, descriptivo y no causal.
+`cuenta_gen2` queda `PENDIENTE-DE-MESA`.

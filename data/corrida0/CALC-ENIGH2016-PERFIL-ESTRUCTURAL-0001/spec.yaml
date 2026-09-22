@@ -1,0 +1,96 @@
+calc_id: CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001
+repite_de: CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003
+spec_md: spec.md
+spec_md_sha256: 2ee96c71162ab0a658866705c9230d601e58dac1b844b5490347dc1836dd929d
+script: data/corrida0/CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: ESTIMACION-DESCRIPTIVA-PERFIL-ESTRUCTURAL-PERSONA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: PENDIENTE-DE-EJECUCION
+  estado_adopcion: NO-ADOPTADO
+  uso_motor: NINGUNO
+  version_spec: "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003 v1.2 -- oro=reproduccion byte-exacta de las 3 tablas de 2022, verificada en tests/test_enigh_serie_oro.py"
+  contaminacion_declarada: "Se conocia la serie remesas>0 sellada 2016-2022 (CALC-B-0001) y los 3 RESULT sellados 2022 de PERFIL-ESTRUCTURAL/INTENSIDAD-REMESAS/REMESAS-CONTEXTO; no se conocia ningun marginal ni conjunta de personas de ENIGH 2016 al congelar."
+
+inputs:
+  - {id: enigh2016_nc_csv, origen: manifiesto}
+  - {id: IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC, origen: repo, ruta: data/corrida0/CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003/spec.md, sha256: c820e67a6d7740765ffdc606c550574a4a77d0e86d4ababaf7d99bf852eb625e}
+
+variables:
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: folioviv, rol: llave persona y hogar como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: foliohog, rol: llave persona y hogar como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: numren, rol: llave persona como texto}
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: parentesco, rol: pertenencia oficial al hogar por prefijo 1/2/3/5/6}
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: edad, rol: edad cumplida y cuatro tramos 18-96}
+  - {archivo: conjunto_de_datos_poblacion_enigh_2016_ns.csv, variable: segsoc, rol: contribución alguna vez a seguridad social 1/2}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: folioviv, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: foliohog, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: tam_loc, rol: categoría nativa heredada del hogar}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: est_socio, rol: categoría nativa heredada del hogar}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: factor, rol: ponderador de hogar finito y positivo -- fuente del ponderador de persona en esta ola (poblacion.csv no lo trae; ver spec.md)}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: est_dis, rol: estrato de diseño como texto opaco -- fuente del diseño de persona en esta ola}
+  - {archivo: conjunto_de_datos_concentradohogar_enigh_2016_ns.csv, variable: upm, rol: UPM como texto opaco -- fuente del diseño de persona en esta ola}
+  - {archivo: conjunto_de_datos_hogares_enigh_2016_ns.csv, variable: folioviv, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_hogares_enigh_2016_ns.csv, variable: foliohog, rol: llave hogar m:1}
+  - {archivo: conjunto_de_datos_hogares_enigh_2016_ns.csv, variable: celular, rol: tenencia de celular en el hogar 1/2}
+  - {archivo: conjunto_de_datos_hogares_enigh_2016_ns.csv, variable: conex_inte, rol: conexión a internet en el hogar 1/2}
+
+universo: "Personas pertenecientes al hogar según parentesco con prefijo 1/2/3/5/6, edad entera 18-96 y factor persona finito positivo (tomado de concentradohogar en esta ola); marco de cobertura parte de todas las filas de población."
+filtros: "Exclusiones separadas: sin diseño en el hogar (join a concentradohogar sin match), trabajador doméstico/familia (prefijo 4), huésped/familia (7), parentesco restante/no especificado, edad inválida, edad <18, edad >96 y peso inválido. No se imputa."
+ponderador: "factor de persona; en esta ola, tomado de concentradohogar.factor por (folioviv,foliohog) porque poblacion.csv no trae columna factor -- verificado equivalente byte a byte contra 2022 (ver spec.md)"
+transformacion: "Marginales nativas; edad 18-29/30-44/45-59/60-96; producto cartesiano 2x4x4x4; proporciones sobre cobertura válida declarada."
+estimando: "Composición estructural descriptiva de personas; no π, no calibración, no corte migratorio, no causalidad."
+precision: "Bootstrap compartido de UPM con reemplazo dentro de est_dis sobre marco completo mediante indicadores de dominio; UPM única se remuestrea a sí misma."
+dependencias_materiales: [numpy]
+
+parametros:
+  bootstrap_replicas: 1000
+  metodo_ic: bootstrap UPM dentro de est_dis; percentiles 2.5/97.5 y EE de réplicas
+  tratamiento_upm_unica: remuestreo a sí misma; variación cero; conteo publicado
+  edad_min: 18
+  edad_max: 96
+  parentesco_prefijos_integrante: ["1", "2", "3", "5", "6"]
+  p3_estado: NO-ESTIMABLE-POR-DEFINICION-NO-ACREDITADA
+  p3_no_abrir_columna: residencia
+  fuente_diseno_persona: concentradohogar (factor/est_dis/upm no existen en poblacion.csv de esta ola; join por folioviv+foliohog, ver spec.md)
+  output_dir: forense/analisis/enigh2016-perfil-estructural-serie-1
+  demanda_relacionada: CORR-0076 / RES-0165..RES-0170; aporte descriptivo sin relevo directo
+
+seed: {aplica: true, valor: 20260919, rng: numpy.PCG64}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: JSON canónica y bootstrap con semilla/orden fijados}
+
+resultados:
+  - {id: RESULT-ENIGH16-PERFIL-P1-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH16-PERFIL-P2-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH16-PERFIL-P3-ESTADO, tipo: texto, unidad: estado}
+  - {id: RESULT-ENIGH16-PERFIL-P3-EVIDENCIA, tipo: texto, unidad: referencia documental}
+  - {id: RESULT-ENIGH16-PERFIL-EMBUDO-JSON, tipo: texto, unidad: JSON canónico}
+  - {id: RESULT-ENIGH16-PERFIL-EMBUDO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH16-PERFIL-UNIVERSO-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH16-PERFIL-UNIVERSO-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH16-PERFIL-JOIN-SIN-MATCH-CONCENTRADO-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH16-PERFIL-JOIN-SIN-MATCH-HOGARES-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH16-PERFIL-DISENO-FALTANTE-N, tipo: entero, unidad: personas}
+  - {id: RESULT-ENIGH16-PERFIL-DISENO-N-ESTRATOS, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH16-PERFIL-DISENO-N-UPM, tipo: entero, unidad: UPM}
+  - {id: RESULT-ENIGH16-PERFIL-DISENO-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: estratos}
+  - {id: RESULT-ENIGH16-PERFIL-METODO-IC, tipo: texto, unidad: método}
+  - {id: RESULT-ENIGH16-PERFIL-BOOTSTRAP-REPLICAS, tipo: entero, unidad: réplicas}
+  - {id: RESULT-ENIGH16-PERFIL-P1-MARGINALES-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH16-PERFIL-P1-MARGINALES-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH16-PERFIL-P1-N-FILAS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIGH16-PERFIL-P2-CONJUNTA-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH16-PERFIL-P2-CONJUNTA-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH16-PERFIL-P2-N-CELDAS, tipo: entero, unidad: celdas}
+  - {id: RESULT-ENIGH16-PERFIL-P2-COMPLETOS-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH16-PERFIL-P2-COMPLETOS-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH16-PERFIL-P2-PERDIDA-N, tipo: entero, unidad: personas muestra}
+  - {id: RESULT-ENIGH16-PERFIL-P2-PERDIDA-MASA, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH16-PERFIL-P2-MARGINALES-COMPLETOS-JSON, tipo: texto, unidad: tabla JSON canónica}
+  - {id: RESULT-ENIGH16-PERFIL-P2-MARGINALES-COMPLETOS-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGH16-PERFIL-P2-N-MARGINALES-COMPLETOS, tipo: entero, unidad: filas}
+  - {id: RESULT-ENIGH16-PERFIL-CONTROL-MAX-DELTA-PUNTOS, tipo: flotante, unidad: personas expandidas}
+  - {id: RESULT-ENIGH16-PERFIL-CONTROL-MAX-DELTA-MARGINALIZACION, tipo: flotante, unidad: máxima diferencia n/masa/proporción}
+  - {id: RESULT-ENIGH16-PERFIL-USO, tipo: texto, unidad: limitación de uso}
