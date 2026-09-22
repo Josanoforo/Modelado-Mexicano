@@ -83,6 +83,7 @@ los consumidores que el registro deriva hoy.
 from __future__ import annotations
 
 import csv
+import json
 import re
 from pathlib import Path
 
@@ -313,9 +314,41 @@ def _calcs_ingeridos(spec: dict) -> tuple[set[str], list[str]]:
     return calcs, ajenos
 
 
+def _enumera_capturas_con_sha(ruta_relativa: str) -> bool:
+    """True si `ruta_relativa` es un JSON que ENUMERA capturas, cada una con
+    al menos un campo `sha256*` propio -- un manifiesto o plan de capturas
+    selladas, leido por regla (precision de direccion, TANDA-7, 22/sep/2026:
+    "la guarda lo reconoce leyendo el archivo -- que enumere capturas con
+    sha -- y no por nombre"). Un `origen: repo` que no abre, no es JSON, o no
+    trae ninguna coleccion de registros con su propio sha256 no cuenta: eso
+    es exactamente lo que la guarda (b) existe para rechazar."""
+    ruta = RAIZ / ruta_relativa
+    try:
+        contenido = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return False
+    if not isinstance(contenido, dict):
+        return False
+    for valor in contenido.values():
+        registros = list(valor.values()) if isinstance(valor, dict) else valor
+        if not isinstance(registros, list) or not registros:
+            continue
+        if all(
+            isinstance(r, dict)
+            and any(
+                "sha256" in str(k) and str(v or "").strip()
+                for k, v in r.items()
+            )
+            for r in registros
+        ):
+            return True
+    return False
+
+
 def _tiene_crudo(spec: dict) -> bool:
-    """Un insumo CRUDO con hash: microdato del manifiesto, o un manifiesto de
-    capturas selladas. `origen: repo` a secas no lo es."""
+    """Un insumo CRUDO con hash: microdato del manifiesto, o un manifiesto o
+    plan de capturas selladas con hash por captura. `origen: repo` a secas,
+    sin esos hashes, no lo es."""
     for entrada in (spec.get("inputs") or []):
         if not isinstance(entrada, dict):
             continue
@@ -324,6 +357,9 @@ def _tiene_crudo(spec: dict) -> bool:
         ruta = str(entrada.get("ruta") or "")
         if "manifiesto-capturas" in ruta.rsplit("/", 1)[-1]:
             return True
+        if str(entrada.get("origen") or "") == "repo" and ruta.endswith(".json"):
+            if _enumera_capturas_con_sha(ruta):
+                return True
     return False
 
 
