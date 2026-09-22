@@ -7,8 +7,8 @@ etiquetas:
   generacion: GEN2
   tipo: ADJUDICACION-GUARDADA-RESERVA
   dominio: credito
-  cuenta_gen2: SI
-  cuenta_gen2_firma: "SI cuenta -- CONTADOR de la cabecera de ACTO GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3 (22/sep/2026): 'sella dos corridas; cuenta_gen2 = SI; no adopta'. Corrido de verdad (commit_2), REPRODUCE/IDENTICO."
+  cuenta_gen2: NO
+  cuenta_gen2_firma: "NO cuenta -- este CALC no tiene ejecucion.json/resultados.json en este acto (F3: quien congela no ejecuta el COMMIT-2/3); cuenta_gen2 se decide cuando corra de verdad"
   adopta: NO
   exposicion_historica: CIEGO-A-2024-CREDITO
   medidor_ejecutado_al_congelar: "SI -- SOLO sobre un ZIP sintetico fabricado por tests/test_din_credito_prediccion_2024_adjudicacion.py (1200 filas, default_rng(11), 120 replicas), con la forma exacta de columnas de TMODULO 2024 verificada contra el descriptor real. NUNCA sobre data/raw/enif2024_csv.zip. Este CALC NO CORRE en este acto (COMMIT-1 unicamente); su primer resultado real es COMMIT-2, en otra sesion (F3)."
