@@ -1,0 +1,919 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001
+spec_md: ../../../forense/prereg-caja/DIN-CREDITO-PREDICCION-2024-ADJUDICACION-spec-v1_0.md
+spec_md_sha256: 01a384aa16985328d3b8e310108209730bafe6ce52d11d48d27dcfa6b577ec78
+script: data/corrida0/CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: ADJUDICACION-GUARDADA-RESERVA
+  dominio: credito
+  cuenta_gen2: NO
+  cuenta_gen2_firma: "NO cuenta -- este CALC no tiene ejecucion.json/resultados.json en este acto (F3: quien congela no ejecuta el COMMIT-2/3); cuenta_gen2 se decide cuando corra de verdad"
+  adopta: NO
+  exposicion_historica: CIEGO-A-2024-CREDITO
+  medidor_ejecutado_al_congelar: "SI -- SOLO sobre un ZIP sintetico fabricado por tests/test_din_credito_prediccion_2024_adjudicacion.py (1200 filas, default_rng(11), 120 replicas), con la forma exacta de columnas de TMODULO 2024 verificada contra el descriptor real. NUNCA sobre data/raw/enif2024_csv.zip. Este CALC NO CORRE en este acto (COMMIT-1 unicamente); su primer resultado real es COMMIT-2, en otra sesion (F3)."
+inputs:
+  - {id: enif2024_csv, origen: manifiesto, nota: "presente y hasheado en el corpus (bajar y hashear no es abrir, E.6) -- la guardia de codigo (abre_conducta_2024), no un input pendiente, es lo que impide que ESTE acto lo lea; commit_3a (spec.md §4) es cuando una sesion sucesora de verdad invoca medir()"}
+  - {id: MEDIDOR-EJES-0003, origen: repo, funcion: CODIGO, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/medidor.py, sha256: d069f38bd75c47fd5550015b179c7b2e61f1ab20ce6b22c630c66392afea06a3}
+variables: []
+universo: "Persona elegida 18-70 (mismo recorte que P0-a) en las 9 conductas de la lista blanca CONDUCTAS_AUTORIZADAS -- ninguna otra columna de TMODULO 2024 es alcanzable desde este codigo."
+filtros: "abre_conducta_2024 exige conducta_id in CONDUCTAS_AUTORIZADAS (str exacto, nunca lista ni comodin) antes de leer el ZIP; EDAD (edad_v) filtrada a [18,70] igual que -RECORTE1870-0001."
+ponderador: fac_per
+transformacion: "Columnas 2024 traducidas a columnas 2021 por COLUMNA_2024 (spec.md §1, nemonicos desplazados documentados campo por campo); misma dicotomizacion por conducta que #943; celdas y bootstrap importados por bytes de CALC-PISOS-ENIF2021-EJES-0003 (10000 replicas PCG64(42))."
+estimando: "Marginal real ENIF 2024 (18-70) de las 9 conductas de credito que el encargo declara entrando, por 16 celdas de eje -- CONGELADO SIN CORRER en este acto; el valor real solo existe cuando otra sesion invoque medir() en COMMIT-2 (F3)."
+parametros:
+  bootstrap_replicas: 10000
+  metodo_ic: "bootstrap UPM estratificado; percentiles 2.5/97.5 -- identico al marco de CALC-PISOS-ENIF2021-EJES-0003, para que el marginal 2024 sea conmensurable con la serie 2012-2021 sin funcion de enlace"
+  n_soporte: NO-APLICA
+  tolerancia_coherencia: NO-APLICA
+dependencias_materiales: [numpy, pandas]
+secuencia_commits:
+  commit_1: "Este commit: guardia + mapa de columnas + medir() congelados; probado solo sobre sintetico; sin ejecucion.json"
+  commit_2: "Otra sesion (F3): corrida0 run sobre este CALC, extrae el marginal real 2024 de las 9 conductas; sella ejecucion.json/resultados.json/sello.json"
+  commit_3a: "Misma sesion del COMMIT-2, commit aparte, ANTES de derivar cualquier R: decide y escribe en este spec.yaml la regla de adjudicacion (spec.md §0/§4) contra las emisiones ya selladas de CALC-DIN-CREDITO-PREDICCION-2024-EMISIONES-0001 (resultados.json sha256 aa0db17c79581516fc326a4728f1b6969c75e8e837e350168771614db3a008cd, ya conocido y citable desde hoy porque esa pieza esta sellada en este mismo acto); preflight VERDE antes de seguir"
+  commit_3: "Adjudica -- veredicto por (conducta, celda) con la regla fijada en 3a"
+resultados:
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K1-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-AUTOMOTRIZ-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-DEPARTAMENTAL-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K2-NOMINA-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K3-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4A-AUTOEXCLUSION-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K4B-OFERTA-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K5-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-18-29-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-30-44-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-45-59-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-EDAD-60-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FILAS-18-70, tipo: entero, unidad: "filas del marco tras el recorte de edad, antes de excluir por desenlace indefinido"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-N-UNIVERSO, tipo: entero, unidad: "filas con desenlace definido y diseño válido para esa conducta"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-NACIONAL-TODOS-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-1-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-SEXO-2-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-B-VALIDAS, tipo: entero, unidad: "réplicas bootstrap válidas (de 10000 en la corrida real)"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-DEN-W, tipo: flotante, unidad: "denominador ponderado de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-IC-HI, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-IC-LO, tipo: proporcion, unidad: "límite del IC95 bootstrap del marginal 2024, [0,1]", permite_no_estimable: true}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-N, tipo: entero, unidad: "n sin ponderar de la celda"}
+  - {id: RESULT-DIN-CREDITO-PREDICCION-2024-ADJ-K6-P-TENEDORES-UNIVERSO-UNIVERSO-TRABAJA-P, tipo: proporcion, unidad: "marginal ponderado ENIF 2024 (universo 18-70), [0,1]", permite_no_estimable: true}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
