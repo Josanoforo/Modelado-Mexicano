@@ -1,0 +1,65 @@
+calc_id: CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001
+spec_md: spec.md
+spec_md_sha256: acafc4dcb7ff62da781209daed2cff5d69f6e83b82f0e6865148b28251a1faa0
+script: data/corrida0/CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: VALIDACION-RETROSPECTIVA-ORIGEN-MOVIL
+  cuenta_gen2: PENDIENTE-DE-MESA
+  validacion_independiente: PENDIENTE-DE-EJECUCION
+  estado_adopcion: NO-ADOPTADO
+  version_spec: "v1.0 (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P4); molde CALC-DUELO-ORIGEN-MOVIL-0001 de ENVIPE, codigo propio (tools/duelo/ ajeno al perimetro)"
+  contaminacion_declarada: "Se conocia la serie completa de remesas>0 (CALC-B-0001, sellado antes de este acto, no ciego -- E.6/ADR-46 heredado, ver DISENO-duelo-prospectivo-ENIGH2024-v1_0.md §8); no se conocia ningun resultado de esta validacion retrospectiva ni de ENIGH 2024 al congelar. Cero microdato de ENIGH 2024."
+
+inputs:
+  - {id: IN-CALC-B-0001-RESULTADOS, origen: repo, ruta: data/corrida0/CALC-B-0001/resultados.json, sha256: 87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d}
+
+variables:
+  - {archivo: CALC-B-0001/resultados.json, variable: "RESULT-B-ENIGH-{ola}-P", rol: proporcion de hogares con remesas>0, ya sellada, por ola}
+  - {archivo: CALC-B-0001/resultados.json, variable: "RESULT-B-ENIGH-{ola}-IC-LO/IC-HI", rol: IC95 ya sellado del punto, por ola}
+
+universo: "Las cuatro olas de la ventana de serie de este acto (2016, 2018, 2020, 2022), ya selladas por CALC-B-0001; 2012/2014 fuera por corte de serie (ver CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001/spec.md §2)."
+filtros: "Ninguno: los cuatro puntos entran completos. NO-CONSTRUIBLE por contendiente/ola se declara, no se filtra en silencio."
+ponderador: NO-APLICA
+transformacion: "Regresion OLS en logit (C-T2/C-T3/C-TS), media en logit (C-MEDIA) o persistencia (C-PISO); origen movil: cada ola predicha solo con anteriores de la misma serie sellada."
+estimando: "Error retrospectivo (MAE, sesgo, cobertura) de cinco contendientes prediciendo cada ola de la serie con las anteriores; NO es el duelo real de 2024, que necesita el punto de 2024 (COMMIT-3, fuera de este acto)."
+precision: "Delta method desde el EE en proporcion de cada punto sellado, propagado a traves de los pesos de la prediccion OLS/media; ver tools/enigh_duelo_nacional.py docstring."
+dependencias_materiales: [numpy]
+
+parametros:
+  olas_ventana: [2016, 2018, 2020, 2022]
+  modulo_generico: tools/enigh_duelo_nacional.py
+  razon_no_tools_duelo: "tools/duelo/ esta declarado ajeno al perimetro de este acto en la cabecera del encargo; codigo propio con el mismo diseno matematico, sha256 emitido como RESULT (mismo patron que CALC-DUELO-ORIGEN-MOVIL-0001 de ENVIPE)"
+
+seed: {aplica: false}
+tolerancia: {tipo: determinista, exacto_por_seed: true, abs: 0.0, razon: "regresion OLS cerrada, sin muestreo aleatorio"}
+
+resultados:
+  - {id: RESULT-ENIGHDM-CMEDIA-COBERTURA-R-EN-IC-CAND, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CMEDIA-MAE-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CMEDIA-N-OLAS, tipo: entero, unidad: olas}
+  - {id: RESULT-ENIGHDM-CMEDIA-SESGO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-COINCIDENCIAS-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-ENIGHDM-CPISO-COBERTURA-R-EN-IC-CAND, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CPISO-MAE-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CPISO-N-OLAS, tipo: entero, unidad: olas}
+  - {id: RESULT-ENIGHDM-CPISO-SESGO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT2-COBERTURA-R-EN-IC-CAND, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT2-MAE-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT2-N-OLAS, tipo: entero, unidad: olas}
+  - {id: RESULT-ENIGHDM-CT2-SESGO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT3-COBERTURA-R-EN-IC-CAND, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT3-MAE-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CT3-N-OLAS, tipo: entero, unidad: olas}
+  - {id: RESULT-ENIGHDM-CT3-SESGO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CTS-COBERTURA-R-EN-IC-CAND, tipo: flotante, unidad: fraccion, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CTS-MAE-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-CTS-N-OLAS, tipo: entero, unidad: olas}
+  - {id: RESULT-ENIGHDM-CTS-SESGO-PP, tipo: flotante, unidad: puntos porcentuales, permite_no_estimable: true}
+  - {id: RESULT-ENIGHDM-MODULO-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHDM-POR-OLA-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-ENIGHDM-RESUMEN-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-ENIGHDM-RESUMEN-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-ENIGHDM-SERIE-OLAS-JSON, tipo: texto, unidad: JSON canonico}
+  - {id: RESULT-ENIGHDM-VENTANA-COMUN-JSON, tipo: texto, unidad: JSON canonico}

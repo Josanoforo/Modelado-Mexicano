@@ -1,0 +1,150 @@
+{
+ "corrida_id": "CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001--268b0658db7c",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocia la serie remesas>0 sellada 2016-2022 (CALC-B-0001) y los 3 RESULT sellados 2022 de PERFIL-ESTRUCTURAL/INTENSIDAD-REMESAS/REMESAS-CONTEXTO; no se conocia ningun marginal ni conjunta de personas de ENIGH 2016 al congelar.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "estado_adopcion": "NO-ADOPTADO",
+  "generacion": "GEN2",
+  "tipo": "ESTIMACION-DESCRIPTIVA-PERFIL-ESTRUCTURAL-PERSONA",
+  "uso_motor": "NINGUNO",
+  "validacion_independiente": "PENDIENTE-DE-EJECUCION",
+  "version_spec": "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003 v1.2 -- oro=reproduccion byte-exacta de las 3 tablas de 2022, verificada en tests/test_enigh_serie_oro.py"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:53:09Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "268b0658db7ccba43bac05f23ad32674013f68de",
+  "git_rama": "acto/gen2-enigh2024-serie-y-commit-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "268b0658db7ccba43bac05f23ad32674013f68de",
+ "input_ids": [
+  "enigh2016_nc_csv",
+  "IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC"
+ ],
+ "input_sha256": {
+  "IN-CALC-ENIGH2022-PERFIL-ESTRUCTURAL-0003-SPEC": "c820e67a6d7740765ffdc606c550574a4a77d0e86d4ababaf7d99bf852eb625e",
+  "enigh2016_nc_csv": "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1"
+ },
+ "parametros": {
+  "bootstrap_replicas": 1000,
+  "demanda_relacionada": "RES-0165..RES-0170; aporte descriptivo sin relevo directo (CORR ya no es citable, D-r2, 21/sep/2026)",
+  "edad_max": 96,
+  "edad_min": 18,
+  "fuente_diseno_persona": "concentradohogar (factor/est_dis/upm no existen en poblacion.csv de esta ola; join por folioviv+foliohog, ver spec.md)",
+  "metodo_ic": "bootstrap UPM dentro de est_dis; percentiles 2.5/97.5 y EE de réplicas",
+  "output_dir": "forense/analisis/enigh2016-perfil-estructural-serie-1",
+  "p3_estado": "NO-ESTIMABLE-POR-DEFINICION-NO-ACREDITADA",
+  "p3_no_abrir_columna": "residencia",
+  "parentesco_prefijos_integrante": [
+   "1",
+   "2",
+   "3",
+   "5",
+   "6"
+  ],
+  "tratamiento_upm_unica": "remuestreo a sí misma; variación cero; conteo publicado"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGH16-PERFIL-BOOTSTRAP-REPLICAS",
+  "RESULT-ENIGH16-PERFIL-CONTROL-MAX-DELTA-MARGINALIZACION",
+  "RESULT-ENIGH16-PERFIL-CONTROL-MAX-DELTA-PUNTOS",
+  "RESULT-ENIGH16-PERFIL-DISENO-FALTANTE-N",
+  "RESULT-ENIGH16-PERFIL-DISENO-N-ESTRATOS",
+  "RESULT-ENIGH16-PERFIL-DISENO-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIGH16-PERFIL-DISENO-N-UPM",
+  "RESULT-ENIGH16-PERFIL-EMBUDO-JSON",
+  "RESULT-ENIGH16-PERFIL-EMBUDO-SHA256",
+  "RESULT-ENIGH16-PERFIL-JOIN-SIN-MATCH-CONCENTRADO-N",
+  "RESULT-ENIGH16-PERFIL-JOIN-SIN-MATCH-HOGARES-N",
+  "RESULT-ENIGH16-PERFIL-METODO-IC",
+  "RESULT-ENIGH16-PERFIL-P1-ESTADO",
+  "RESULT-ENIGH16-PERFIL-P1-MARGINALES-JSON",
+  "RESULT-ENIGH16-PERFIL-P1-MARGINALES-SHA256",
+  "RESULT-ENIGH16-PERFIL-P1-N-FILAS",
+  "RESULT-ENIGH16-PERFIL-P2-COMPLETOS-MASA",
+  "RESULT-ENIGH16-PERFIL-P2-COMPLETOS-N",
+  "RESULT-ENIGH16-PERFIL-P2-CONJUNTA-JSON",
+  "RESULT-ENIGH16-PERFIL-P2-CONJUNTA-SHA256",
+  "RESULT-ENIGH16-PERFIL-P2-ESTADO",
+  "RESULT-ENIGH16-PERFIL-P2-MARGINALES-COMPLETOS-JSON",
+  "RESULT-ENIGH16-PERFIL-P2-MARGINALES-COMPLETOS-SHA256",
+  "RESULT-ENIGH16-PERFIL-P2-N-CELDAS",
+  "RESULT-ENIGH16-PERFIL-P2-N-MARGINALES-COMPLETOS",
+  "RESULT-ENIGH16-PERFIL-P2-PERDIDA-MASA",
+  "RESULT-ENIGH16-PERFIL-P2-PERDIDA-N",
+  "RESULT-ENIGH16-PERFIL-P3-ESTADO",
+  "RESULT-ENIGH16-PERFIL-P3-EVIDENCIA",
+  "RESULT-ENIGH16-PERFIL-UNIVERSO-MASA",
+  "RESULT-ENIGH16-PERFIL-UNIVERSO-N",
+  "RESULT-ENIGH16-PERFIL-USO"
+ ],
+ "script_blob_sha256": "16874a3c3570fa95c62f98e0bf4ec1496bdd059356a8616576a8730a92a89a8b",
+ "script_path": "data/corrida0/CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260919
+ },
+ "spec_id": "CALC-ENIGH2016-PERFIL-ESTRUCTURAL-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "2ee96c71162ab0a658866705c9230d601e58dac1b844b5490347dc1836dd929d",
+ "spec_yaml_sha256": "751be2e7a2e3b4f0e23554a958c5565bd4fb2891873db83a1238564425125860",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "razon": "JSON canónica y bootstrap con semilla/orden fijados",
+  "tipo": "determinista"
+ }
+}

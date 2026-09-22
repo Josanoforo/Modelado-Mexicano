@@ -1,0 +1,131 @@
+{
+ "corrida_id": "CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001--8cf894b01d4b",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocia la serie completa de remesas>0 (CALC-B-0001, sellado antes de este acto, no ciego -- E.6/ADR-46 heredado, ver DISENO-duelo-prospectivo-ENIGH2024-v1_0.md §8); no se conocia ningun resultado de esta validacion retrospectiva ni de ENIGH 2024 al congelar. Cero microdato de ENIGH 2024.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "estado_adopcion": "NO-ADOPTADO",
+  "generacion": "GEN2",
+  "tipo": "VALIDACION-RETROSPECTIVA-ORIGEN-MOVIL",
+  "validacion_independiente": "PENDIENTE-DE-EJECUCION",
+  "version_spec": "v1.0 (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P4); molde CALC-DUELO-ORIGEN-MOVIL-0001 de ENVIPE, codigo propio (tools/duelo/ ajeno al perimetro)"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T03:28:19Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "8cf894b01d4b9456cc7848dd2c8b2b72c0142b9c",
+  "git_rama": "acto/gen2-enigh2024-serie-y-commit-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "8cf894b01d4b9456cc7848dd2c8b2b72c0142b9c",
+ "input_ids": [
+  "IN-CALC-B-0001-RESULTADOS"
+ ],
+ "input_sha256": {
+  "IN-CALC-B-0001-RESULTADOS": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d"
+ },
+ "parametros": {
+  "modulo_generico": "tools/enigh_duelo_nacional.py",
+  "olas_ventana": [
+   2016,
+   2018,
+   2020,
+   2022
+  ],
+  "razon_no_tools_duelo": "tools/duelo/ esta declarado ajeno al perimetro de este acto en la cabecera del encargo; codigo propio con el mismo diseno matematico, sha256 emitido como RESULT (mismo patron que CALC-DUELO-ORIGEN-MOVIL-0001 de ENVIPE)"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGHDM-CMEDIA-COBERTURA-R-EN-IC-CAND",
+  "RESULT-ENIGHDM-CMEDIA-MAE-PP",
+  "RESULT-ENIGHDM-CMEDIA-N-OLAS",
+  "RESULT-ENIGHDM-CMEDIA-SESGO-PP",
+  "RESULT-ENIGHDM-COINCIDENCIAS-JSON",
+  "RESULT-ENIGHDM-CPISO-COBERTURA-R-EN-IC-CAND",
+  "RESULT-ENIGHDM-CPISO-MAE-PP",
+  "RESULT-ENIGHDM-CPISO-N-OLAS",
+  "RESULT-ENIGHDM-CPISO-SESGO-PP",
+  "RESULT-ENIGHDM-CT2-COBERTURA-R-EN-IC-CAND",
+  "RESULT-ENIGHDM-CT2-MAE-PP",
+  "RESULT-ENIGHDM-CT2-N-OLAS",
+  "RESULT-ENIGHDM-CT2-SESGO-PP",
+  "RESULT-ENIGHDM-CT3-COBERTURA-R-EN-IC-CAND",
+  "RESULT-ENIGHDM-CT3-MAE-PP",
+  "RESULT-ENIGHDM-CT3-N-OLAS",
+  "RESULT-ENIGHDM-CT3-SESGO-PP",
+  "RESULT-ENIGHDM-CTS-COBERTURA-R-EN-IC-CAND",
+  "RESULT-ENIGHDM-CTS-MAE-PP",
+  "RESULT-ENIGHDM-CTS-N-OLAS",
+  "RESULT-ENIGHDM-CTS-SESGO-PP",
+  "RESULT-ENIGHDM-MODULO-SHA256",
+  "RESULT-ENIGHDM-POR-OLA-JSON",
+  "RESULT-ENIGHDM-RESUMEN-JSON",
+  "RESULT-ENIGHDM-RESUMEN-SHA256",
+  "RESULT-ENIGHDM-SERIE-OLAS-JSON",
+  "RESULT-ENIGHDM-VENTANA-COMUN-JSON"
+ ],
+ "script_blob_sha256": "365964ffe48217e7b67f84a62385206f1ce13e369a49e68cb2916acbd0f42f65",
+ "script_path": "data/corrida0/CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "acafc4dcb7ff62da781209daed2cff5d69f6e83b82f0e6865148b28251a1faa0",
+ "spec_yaml_sha256": "6b03007dcf4ea75c93aeac20e3d036c0f11da97ed835858399e6de8c5ad11077",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "razon": "regresion OLS cerrada, sin muestreo aleatorio",
+  "tipo": "determinista"
+ }
+}

@@ -1,0 +1,157 @@
+{
+ "corrida_id": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001--d41b466457b6",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "contaminacion_declarada": "Se conocia la prevalencia ponderada padre de esta ola (0.04377543852935772, CALC-B-0001) y los 45 RESULT sellados 2022 de este mismo medidor; no se conocian los montos ni cocientes reales de 2020 al congelar. No es estudio ciego ni confirmatorio.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "estado_adopcion": "NO-ADOPTADO",
+  "generacion": "GEN2",
+  "tipo": "ESTIMACION-DESCRIPTIVA-INTENSIDAD-CONTABLE",
+  "validacion_independiente": "PENDIENTE-DE-EJECUCION",
+  "version_spec": "v1.0 serie (ACTO GEN2-ENIGH2024-SERIE-Y-COMMIT-1, P1); generalizacion parametrizada por ola de CALC-ENIGH2022-INTENSIDAD-REMESAS-0001 -- oro=reproduccion exacta de 2022 verificada en tests/test_enigh_serie_oro.py"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-22T02:58:09Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "d41b466457b6f863b7b76ce77b2c2fb9e8db0ec6",
+  "git_rama": "acto/gen2-enigh2024-serie-y-commit-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "d41b466457b6f863b7b76ce77b2c2fb9e8db0ec6",
+ "input_ids": [
+  "enigh2020_nc_csv",
+  "IN-CALC-B-0001-RESULTADOS",
+  "IN-CALC-ENIGH2022-INTENSIDAD-REMESAS-0001-SPEC"
+ ],
+ "input_sha256": {
+  "IN-CALC-B-0001-RESULTADOS": "87e20e5aa2923fcc4b206734fa13ec321d3b036d61edd48eb0efd5bd369f263d",
+  "IN-CALC-ENIGH2022-INTENSIDAD-REMESAS-0001-SPEC": "e3e845dbc94b6834594f4aeeb4ea1e3d475ecf15ef3d47e8e3228d27a7e7195c",
+  "enigh2020_nc_csv": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+ },
+ "parametros": {
+  "anualizacion": false,
+  "bootstrap_replicas": 2000,
+  "cuantila_ponderada": "menor valor con CDF ponderada acumulada >=0.5; sin interpolacion",
+  "deflacion_propia": false,
+  "metodo_ic": "bootstrap de upm con reemplazo dentro de est_dis sobre marco completo; contribuciones cero fuera del dominio; tres cocientes completos por replica; percentiles 2.5/97.5",
+  "miembro_estadistico": "conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv",
+  "prevalencia_padre": 0.04377543852935772,
+  "tolerancia_componente_pesos": 0.01,
+  "tolerancia_prevalencia": 1e-10,
+  "tratamiento_upm_unica": "se remuestrea a si misma, aporta variacion cero y se reporta; no se afirma cota inferior garantizada",
+  "unidad_monetaria": "pesos de 2020 por trimestre normalizado"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENIGH20-REMINT-DISENO-N-ESTRATOS",
+  "RESULT-ENIGH20-REMINT-DISENO-N-ESTRATOS-UPM-UNICA",
+  "RESULT-ENIGH20-REMINT-DISENO-N-FILAS-MARCO",
+  "RESULT-ENIGH20-REMINT-DISENO-N-SIN-DISENO",
+  "RESULT-ENIGH20-REMINT-DISENO-N-UPM",
+  "RESULT-ENIGH20-REMINT-ESTADO",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-AUSENTE-NOFINITA-MASA",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-AUSENTE-NOFINITA-N",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-CERO-MASA",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-CERO-N",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-NEGATIVO-MASA",
+  "RESULT-ENIGH20-REMINT-EXCL-INGCOR-NEGATIVO-N",
+  "RESULT-ENIGH20-REMINT-IC-N-REPLICAS-NOEST-AGREGADA",
+  "RESULT-ENIGH20-REMINT-IC-N-REPLICAS-NOEST-GE50",
+  "RESULT-ENIGH20-REMINT-IC-N-REPLICAS-NOEST-MEDIA",
+  "RESULT-ENIGH20-REMINT-LLAVE-HOGAR-UNICA",
+  "RESULT-ENIGH20-REMINT-METODO-IC",
+  "RESULT-ENIGH20-REMINT-N-COLUMNAS",
+  "RESULT-ENIGH20-REMINT-N-FILAS",
+  "RESULT-ENIGH20-REMINT-N-PESO-INVALIDO",
+  "RESULT-ENIGH20-REMINT-N-REMESAS-AUSENTE-NOFINITA",
+  "RESULT-ENIGH20-REMINT-N-REMESAS-NEGATIVA",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-AGREGADA",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-AGREGADA-IC-HI",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-AGREGADA-IC-LO",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50-IC-HI",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50-IC-LO",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-MASA",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-MEDIA-HOGAR",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-MEDIA-HOGAR-IC-HI",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-MEDIA-HOGAR-IC-LO",
+  "RESULT-ENIGH20-REMINT-PARTICIPACION-N",
+  "RESULT-ENIGH20-REMINT-PREVALENCIA",
+  "RESULT-ENIGH20-REMINT-PREVALENCIA-CONTROL-PADRE",
+  "RESULT-ENIGH20-REMINT-PREVALENCIA-DELTA-PADRE",
+  "RESULT-ENIGH20-REMINT-R-MAYOR-Y-MASA",
+  "RESULT-ENIGH20-REMINT-R-MAYOR-Y-MAX-EXCESO",
+  "RESULT-ENIGH20-REMINT-R-MAYOR-Y-N",
+  "RESULT-ENIGH20-REMINT-RECEPTORES-MASA",
+  "RESULT-ENIGH20-REMINT-RECEPTORES-N",
+  "RESULT-ENIGH20-REMINT-REMESAS-MEDIA",
+  "RESULT-ENIGH20-REMINT-REMESAS-MEDIANA",
+  "RESULT-ENIGH20-REMINT-UNIVERSO-VALIDO-MASA",
+  "RESULT-ENIGH20-REMINT-UNIVERSO-VALIDO-N"
+ ],
+ "script_blob_sha256": "ec312d17739ba374a3b226ebd835c52b5e1edc2d3a21520f18516f4b7f6c1a6d",
+ "script_path": "data/corrida0/CALC-ENIGH2020-INTENSIDAD-REMESAS-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260916
+ },
+ "spec_id": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "340f59bd91a973ad3ac42b036bc2dcb7c49fdedf2b6b1b6af8263776370d777f",
+ "spec_yaml_sha256": "65ae9bdb9aa0a0dbef6179f0d63885fb0d2293b52d50980be085974c240a6d2a",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto_por_seed": true,
+  "tipo": "determinista"
+ }
+}
