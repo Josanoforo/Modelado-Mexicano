@@ -40,4 +40,13 @@ Propio: los 28 archivos de `forense/encargos/` (solo apéndice) · `data/corrida
 ## 10 · NO HACE · SUCESORES · CIERRE
 No relanza, no reescribe, no borra. Sucesor: dirección reescribe los `VIGENTE-RELANZABLE` en v2.1 si los hay. Auditoría: no aplica. Cierre por /acto.
 
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| 14 archivos de `forense/encargos/cola/` sin `## CONSUMIDO` que no aparecen en la tabla `PENDIENTES-PROGRAMA` §4.1 (`MAESTRA34-N3-AGREGA-2`, `GEN2-E1-LIMPIEZA-C1`, `GEN2-E2-C0-A-DEMANDA`, `GEN2-E4-LIMPIEZA-C2-PODA`, `GEN2-E5-0-SPECS-EJECUTABLES`, `GEN2-E5-CALC-0001-0003`, `POST-685/01-04`, `POST-693/09,13`, `POST-701/17`, `POST-707/20`) | FUERA-DE-PERÍMETRO: el objetivo del encargo (§1) es exactamente el rótulo «28» que declara §4.1, no todo `cola/` sin consumir | El inventario §4.1, re-derivado, sigue mostrando estos 14 archivos sin `## CONSUMIDO` — no eran parte del universo declarado por §1 | un acto nuevo si mesa quiere cerrarlos, o el próximo inventario de 004 los incluye en su propia tabla §4.1 |
+
+## CONSUMIDO — 28/28 SUPERADO-POR · PR (pendiente de número)
+
+Los 28 encargos de `forense/encargos/cola/` listados en `PENDIENTES-PROGRAMA` §4.1 recibieron apéndice `## CONSUMIDO — SUPERADO-POR` (los 28; cero `VENCIDO`, cero `VIGENTE-RELANZABLE`). P3 (enmienda «18 de 20») asentada en `decisiones.tsv`, `NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-01` y `hallazgos.md`. Tabla completa, búsqueda y cita por archivo: `forense/notas/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1-nota.md`. ADR: `ADR-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-01` (`canon/gobernanza-v1_15.md`, `canon/L0/`).
 
