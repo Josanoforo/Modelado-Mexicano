@@ -1,0 +1,180 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001
+spec_md: ../../../forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md
+spec_md_sha256: e87d3d32419f2aa176b4fcf801498d70464ddd9f8f85ddfd538717bb14af4788
+script: data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001/medidor.py
+script_sha256_congelado: 8f961450a0e7b5d60fd7d2856a1f54b3c2938074086f1747cdeedde721d7206a
+etiquetas:
+  generacion: GEN2
+  tipo: DUELO-PROSPECTIVO-EMISIONES-CIEGAS
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-DUELO-ENVIPE2026-MARGINALES-2, CABECERA (22/sep/2026): «CONTADOR:
+    +2 corridas selladas (emisiones, adjudicación), cuenta_gen2 = SI, no adopta; celdas_validadas sube
+    por cada celda con veredicto PROSPECTIVA (derivado)». El merge de mesa la perfecciona.'
+  rotulo: PROSPECTIVA
+  exposicion_historica: DERIVADO-DE-SELLADOS -- ningún microdato de ENVIPE 2026 se abre en este CALC
+  procedimiento_congelado_en: COMMIT-1 (0-bis b05c9f4b; este spec.yaml y medidor.py se congelan en el
+    mismo commit)
+  dependencia_congelada: 'tools/duelo/tendencia_serie.py sha256 7de0a988861bda7fb4be79129270350f25a1919607b116f6c7f2c2f3dd41c38f
+    -- el medidor verifica este hash en tiempo de ejecución y PARA si no coincide (E.5: el sello cubre
+    el código que mide, la dependencia se congela junto con él, no como shim sin pin).'
+inputs:
+- id: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  sha256: 732567d2c201f029c1e979c6f45f0b641081eb2d220da4f36cf9b580e5960694
+  sello_sha256: 48a122149a28dd94990541267b5d5087f752a83c4f32b82503efb84396aa2725
+- id: CALC-PISOS-ENVIPE2024-EJES-0002
+  origen: repo
+  ruta: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  sha256: a898a3cccfb3b63cc2055cc3c12f8edf4863a9f116466f74d5235a0d8c5e217f
+  sello_sha256: 393c418420d52363e5a659d568f00689e7d36271034f64dcefdc91b772f6fd66
+variables:
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-N
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  variable: RESULT-ARBITRO-ENVIPE2025-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-N
+  rol: piso t-1 (2025), verbatim
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-LO
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-IC-HI
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-LO
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+- archivo: CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json
+  variable: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-IC-HI
+  rol: ola t-2 (2024), insumo de TENDENCIA-SERIE junto con 2025
+universo: 'Dos celdas construibles de civico.denuncia.con_seguro x cobertura_seguro (asegurado, no asegurado)
+  -- spec-v1_0.md §0, verificado contra el árbol: nacional, x sexo, x edad y las demás reglas ENVIPE-SERIE-*
+  son NO-CONSTRUIBLE/Ninguna y se declaran, no se miden.'
+filtros: NO-APLICA -- aritmética entre RESULT ya sellados, ningún filtro de fila.
+ponderador: NO-APLICA
+transformacion: 'logit; ee_i = (logit(hi)-logit(lo))/(2·1.959964); TENDENCIA-SERIE = mínimos cuadrados
+  en logit sobre las 2 olas (2024, 2025) extrapolado a 2026, tools/duelo/tendencia_serie.py::tendencia_serie
+  (spec-v1_0.md §2). El piso se cita verbatim, no se recalcula.'
+estimando: 'Por celda: piso (P/IC95/N, verbatim 2025) y retador TENDENCIA-SERIE (P/IC95 extrapolado a
+  2026). Ningún RESULT de este CALC es la adjudicación (eso es COMMIT-3): aquí sólo se emiten piso y
+  retador, ciegos a R.'
+dependencias_materiales: []
+seed:
+  aplica: false
+  motivo: 'determinista: aritmética entre sellados, sin bootstrap en esta etapa (spec-v1_0.md §2 -- el
+    IC del retador es delta-method, igual que encig_origen_movil.py)'
+parametros:
+  celdas:
+  - ASEGURADO
+  - NO-ASEGURADO
+  anio_piso_t1: 2025
+  anio_piso_t2: 2024
+  anio_objetivo: 2026
+resultados:
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-PISO-P
+  tipo: proporcion
+  unidad: piso 2025 (verbatim del árbitro), civico.denuncia.con_seguro x asegurado
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-PISO-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior del piso, verbatim
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-PISO-IC-HI
+  tipo: flotante
+  unidad: IC95 superior del piso, verbatim
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-PISO-N
+  tipo: entero
+  unidad: n del árbitro 2025, verbatim
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-P
+  tipo: proporcion
+  unidad: TENDENCIA-SERIE extrapolado a 2026 (2024+2025)
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior del retador, método delta
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-IC-HI
+  tipo: flotante
+  unidad: IC95 superior del retador, método delta
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-CONSTRUIBLE
+  tipo: texto
+  unidad: SI | NO
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-P
+  tipo: proporcion
+  unidad: piso 2025 (verbatim del árbitro), civico.denuncia.con_seguro x no_asegurado
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior del piso, verbatim
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-IC-HI
+  tipo: flotante
+  unidad: IC95 superior del piso, verbatim
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-N
+  tipo: entero
+  unidad: n del árbitro 2025, verbatim
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-P
+  tipo: proporcion
+  unidad: TENDENCIA-SERIE extrapolado a 2026 (2024+2025)
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior del retador, método delta
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-IC-HI
+  tipo: flotante
+  unidad: IC95 superior del retador, método delta
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-CONSTRUIBLE
+  tipo: texto
+  unidad: SI | NO
+- id: RESULT-DUELO-MARGINALES-NACIONAL-RETADOR-CONSTRUIBLE
+  tipo: texto
+  unidad: SI | NO -- NO declarado (spec-v1_0.md §0.3)
+- id: RESULT-DUELO-MARGINALES-NACIONAL-MOTIVO
+  tipo: texto
+  unidad: razón declarada de NO-CONSTRUIBLE nacional
+- id: RESULT-DUELO-MARGINALES-SEXO-CONSTRUIBLE
+  tipo: texto
+  unidad: SI | NO -- NO declarado (spec-v1_0.md §0.1)
+- id: RESULT-DUELO-MARGINALES-SEXO-MOTIVO
+  tipo: texto
+  unidad: razón declarada de NO-CONSTRUIBLE por sexo
+- id: RESULT-DUELO-MARGINALES-EDAD-CONSTRUIBLE
+  tipo: texto
+  unidad: SI | NO -- NO declarado (spec-v1_0.md §0.1)
+- id: RESULT-DUELO-MARGINALES-EDAD-MOTIVO
+  tipo: texto
+  unidad: razón declarada de NO-CONSTRUIBLE por edad
+- id: RESULT-DUELO-MARGINALES-DEMAS-REGLAS-ENVIPE-SERIE-N
+  tipo: entero
+  unidad: reglas adicionales con serie sellada además de con_seguro -- 0 (spec-v1_0.md §0.2)
+- id: RESULT-DUELO-MARGINALES-DEMAS-REGLAS-ENVIPE-SERIE-MOTIVO
+  tipo: texto
+  unidad: razón declarada del universo vacío
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-9
+  razon: aritmética determinista sobre sellados, sin bootstrap; misma tolerancia de forma que CALC-ENCIG-ORIGEN-MOVIL-0001.
