@@ -1,0 +1,409 @@
+════════════════════════════════════════════════════════════════════════
+  VERIFICACIÓN DEL CORPUS
+════════════════════════════════════════════════════════════════════════
+  [ ok ]  T01 fuente única de verdad
+  [tiempo] T01 fuente única de verdad: 0.000 s
+  [ ok ]  T02 duplicados nombre/contenido
+  [tiempo] T02 duplicados nombre/contenido: 1.292 s
+  [warn]  T03 referencias colgantes  (272 warn)
+  [tiempo] T03 referencias colgantes: 1.039 s
+  [ ok ]  T04 ADR-33 diagonal en ENTONCES
+  [tiempo] T04 ADR-33 diagonal en ENTONCES: 0.001 s
+  [ ok ]  T05 ADR-32.c constructos en glosario
+  [tiempo] T05 ADR-32.c constructos en glosario: 0.000 s
+  [FAIL]  T06 consistencia numérica  (2 fail)
+  [tiempo] T06 consistencia numérica: 0.014 s
+  [ ok ]  T07 vocabulario de tiers
+  [tiempo] T07 vocabulario de tiers: 0.007 s
+  [FAIL]  T08 mapa de evidencia por report  (1 fail)
+  [tiempo] T08 mapa de evidencia por report: 0.003 s
+  [ ok ]  T09 marco (c) usado como causa
+  [tiempo] T09 marco (c) usado como causa: 0.017 s
+  [warn]  T10 diáspora (b) sin marcar  (65 warn)
+  [tiempo] T10 diáspora (b) sin marcar: 0.034 s
+  [ ok ]  T11 afirmaciones de estado absolutas
+  [tiempo] T11 afirmaciones de estado absolutas: 0.704 s
+       motor: 49 reglas · 20 [FUERTE] · 20`[FUERTE]` · 19`[MEDIA]` · 5`[MEDIA-FUERTE]` · 2`[HIPÓTESIS]` · 1`[FUERTE como correlación]` · 1`[FUERTE / MEDIA]` · 1`[MEDIA / HIPÓTESIS]`
+  [ ok ]  T12 conteos del motor
+  [tiempo] T12 conteos del motor: 0.058 s
+  [warn]  T13 cabecera de versión ADR-36  (3 warn)
+  [tiempo] T13 cabecera de versión ADR-36: 0.005 s
+  [ ok ]  T14 T-INVENTARIO
+  [tiempo] T14 T-INVENTARIO: 0.002 s
+  [ ok ]  T15 T-ADR-COUNT
+  [tiempo] T15 T-ADR-COUNT: 0.150 s
+  [ ok ]  T17 T-FICHAS-COUNT
+  [tiempo] T17 T-FICHAS-COUNT: 0.004 s
+  [ ok ]  T18 T-PASO2-EJECUCION
+  [tiempo] T18 T-PASO2-EJECUCION: 0.002 s
+  [ ok ]  T19a cabecera cruzada estado→modelo
+  [tiempo] T19a cabecera cruzada estado→modelo: 0.001 s
+  [ ok ]  T19b contador 14 cruzado (modelo)
+  [tiempo] T19b contador 14 cruzado (modelo): 0.001 s
+  [ ok ]  T19c portada derivada (README)
+  [tiempo] T19c portada derivada (README): 0.002 s
+  [ ok ]  T20 T-CASCADA-MARCADA
+  [tiempo] T20 T-CASCADA-MARCADA: 0.011 s
+  [ ok ]  T21 T-CAPA2-CAPA3
+  [tiempo] T21 T-CAPA2-CAPA3: 0.000 s
+  [warn]  T22 T-FIRMAS  (100 warn)
+  [tiempo] T22 T-FIRMAS: 0.168 s
+  [ ok ]  T23 T-CABLEADO
+  [tiempo] T23 T-CABLEADO: 0.006 s
+  [ ok ]  T24 T-LLAVES-EJERCIDAS
+  [tiempo] T24 T-LLAVES-EJERCIDAS: 0.002 s
+  [ ok ]  T25 T-ROTULOS
+  [tiempo] T25 T-ROTULOS: 0.217 s
+  [ ok ]  T26 T-VISTA-COLA-ADQUISICION
+  [tiempo] T26 T-VISTA-COLA-ADQUISICION: 0.004 s
+  [ ok ]  T26-bis T-TSV-CRUDO-ROUND-TRIP
+  [tiempo] T26-bis T-TSV-CRUDO-ROUND-TRIP: 0.003 s
+  [ ok ]  T27 T-INFRA
+  [tiempo] T27 T-INFRA: 1.275 s
+  [ ok ]  T28 T-A3
+  [tiempo] T28 T-A3: 0.002 s
+  [ ok ]  T29 T-FIRMAS-2
+  [tiempo] T29 T-FIRMAS-2: 0.002 s
+  [ ok ]  T30 T-YAMEDIDO
+  [tiempo] T30 T-YAMEDIDO: 0.005 s
+  [ ok ]  T30b T-YAMEDIDO-HUSO
+  [tiempo] T30b T-YAMEDIDO-HUSO: 0.000 s
+  [warn]  T31 T-CRON  (1 warn)
+  [tiempo] T31 T-CRON: 0.034 s
+  [ ok ]  T32 T-CORRIDA0
+  [tiempo] T32 T-CORRIDA0: 59.987 s
+  [ ok ]  T32-bis T-PISOS-REJILLA
+  [tiempo] T32-bis T-PISOS-REJILLA: 0.074 s
+  [ ok ]  T32-ter T-C2-COMPUESTO
+  [tiempo] T32-ter T-C2-COMPUESTO: 1.886 s
+  [ ok ]  T32-quater T-PINES-MESA
+  [tiempo] T32-quater T-PINES-MESA: 77.609 s
+  [ ok ]  T36 T-CORREDORES-GEN2
+  [tiempo] T36 T-CORREDORES-GEN2: 2.617 s
+  [ ok ]  T39 T-DIGESTO-NC
+  [tiempo] T39 T-DIGESTO-NC: 1.785 s
+  [ ok ]  T40 T-RUTINAS
+  [tiempo] T40 T-RUTINAS: 0.004 s
+  [ ok ]  T37 T-COLA-SINCRONIZADA
+  [tiempo] T37 T-COLA-SINCRONIZADA: 0.002 s
+ALTA_RELACION relacion_id=REL-0c3b2f5a9bce27364e75beb9 dry_run=False applied=True
+{
+  "applied": true,
+  "changed": [
+    "baseline.json",
+    "evidencias.tsv",
+    "relaciones.tsv",
+    "utilidad-modelo.tsv"
+  ],
+  "dry_run": false,
+  "journal_path": "/tmp/tmpe_nbf2hi/alta-relacion-journal-REL-0c3b2f5a9bce27364e75beb9.json",
+  "ok": true,
+  "relacion_id": "REL-0c3b2f5a9bce27364e75beb9",
+  "validacion_candidata": {
+    "conteos": {
+      "artefactos_rechazados": 0,
+      "candidatas": 2,
+      "confirmadas": 0,
+      "decisiones_pendientes": 0,
+      "familias_alias": 1,
+      "fusiones_declaradas": 0,
+      "negativas": 0,
+      "no_accesibles": 0,
+      "procedencias_aceptadas": 2,
+      "relaciones_activas": 2
+    },
+    "errores": [],
+    "ok": true
+  }
+}
+ALTA_RELACION relacion_id=REL-0c3b2f5a9bce27364e75beb9 dry_run=True applied=False
+{
+  "applied": false,
+  "candidato": {
+    "evidencia": {
+      "accion_normalizacion": "SIN_CAMBIO",
+      "clasificacion_relacion": "CANDIDATA",
+      "codificacion": "NO_DETERMINADO",
+      "evidencia_localizador": "NO_DETERMINADO",
+      "evidencia_ref": "MAIN:test/alta.md",
+      "fuente_canonica_normalizada": "FUENTE_NUEVA",
+      "incertidumbre": "NO_DETERMINADO",
+      "necesidad_id": "N1",
+      "objeto_evidencia_id_canonico": "OE-500753e39b4da269993bfebe",
+      "objeto_modelo_origen": "NO_DETERMINADO",
+      "objeto_modelo_origen_ref": "NO_DETERMINADO",
+      "parte_necesidad_cubierta": "NO_DETERMINADO",
+      "parte_necesidad_no_cubierta": "NO_DETERMINADO",
+      "periodo": "NO_DETERMINADO",
+      "procedencia_fuente": "FUENTE_NUEVA",
+      "procedencia_id": "PROV-53db5ad79f887ccf3100028e",
+      "procedencia_necesidad_id": "N1",
+      "procedencia_objeto_evidencia_id": "OE-500753e39b4da269993bfebe",
+      "relacion_id": "REL-0c3b2f5a9bce27364e75beb9",
+      "siguiente_accion": "NO_DETERMINADO",
+      "texto_evidencia": "texto de prueba de evidencia",
+      "tipo_evidencia": "NO_DETERMINADO",
+      "transformacion_requerida": "NO_DETERMINADO",
+      "unidad_observacion": "NO_DETERMINADO",
+      "universo_muestra": "NO_DETERMINADO",
+      "uso_potencial_modelo": "NO_DETERMINADO",
+      "variable_reactivo_tabla": "NO_DETERMINADO"
+    },
+    "relacion": {
+      "capa1_universo_indexado": "NO_DETERMINADO",
+      "capa2_manifiesto": "NO_REFERENCIADO",
+      "capa3_disco_real": "NO_REFERENCIADO",
+      "capa4_apertura_mapeo": "",
+      "clasificacion_relacion": "CANDIDATA",
+      "confianza": "MEDIA",
+      "conflicto_material": "NO",
+      "evidencia_ref": "MAIN:test/alta.md",
+      "evidencia_textual_breve": "texto de prueba",
+      "fuente_canonica_normalizada": "FUENTE_NUEVA",
+      "fuente_nombre": "Fuente Nueva de Prueba",
+      "id_manifiesto": "manifiesto_id_test",
+      "necesidad_id": "N1",
+      "nota": "fila de alta creada por test",
+      "objeto_evidencia_id_canonico": "OE-500753e39b4da269993bfebe",
+      "reason_code": "ALTA_TEST",
+      "relacion_id": "REL-0c3b2f5a9bce27364e75beb9",
+      "sha256_fuente": "NO_DETERMINADO",
+      "tipo_fuente": "FUENTE_DATOS"
+    },
+    "utilidad": {
+      "clasificacion_relacion": "CANDIDATA",
+      "decision_id": "NO_APLICA",
+      "estado_productivo": "PENDIENTE_EVIDENCIA",
+      "evidencia_disponible": "NO_DETERMINADO",
+      "evidencia_ref": "MAIN:test/alta.md",
+      "fuente_canonica_normalizada": "FUENTE_NUEVA",
+      "necesidad_id": "N1",
+      "objeto_evidencia_id_canonico": "OE-500753e39b4da269993bfebe",
+      "relacion_id": "REL-0c3b2f5a9bce27364e75beb9",
+      "requiere_decision": "NO",
+      "reserva": "NO_DETERMINADO",
+      "siguiente_accion": "NO_DETERMINADO",
+      "uso_actual": "NO_DETERMINADO",
+      "verificacion_requerida": "NO_DETERMINADO"
+    }
+  },
+  "dry_run": true,
+  "ok": true,
+  "relacion_id": "REL-0c3b2f5a9bce27364e75beb9",
+  "validacion_candidata": {
+    "conteos": {
+      "artefactos_rechazados": 0,
+      "candidatas": 2,
+      "confirmadas": 0,
+      "decisiones_pendientes": 0,
+      "familias_alias": 1,
+      "fusiones_declaradas": 0,
+      "negativas": 0,
+      "no_accesibles": 0,
+      "procedencias_aceptadas": 2,
+      "relaciones_activas": 2
+    },
+    "errores": [],
+    "ok": true
+  }
+}
+  [ ok ]  T38 T-ALTA-RELACION
+  [tiempo] T38 T-ALTA-RELACION: 0.160 s
+  [warn]  T34 T-NO-CORRIDO  (246 warn)
+  [tiempo] T34 T-NO-CORRIDO: 0.040 s
+  [warn]  T35 T-REPRO  (61712 warn)
+  [tiempo] T35 T-REPRO: 16.224 s
+  [ ok ]  T41 T-DIGESTO-MESA
+  [tiempo] T41 T-DIGESTO-MESA: 0.244 s
+  [ ok ]  T42 T-CANDIDATAS
+  [tiempo] T42 T-CANDIDATAS: 0.011 s
+  [warn]  T43 T-SUCESOR-EXISTE  (12 warn)
+  [tiempo] T43 T-SUCESOR-EXISTE: 0.012 s
+  [ ok ]  T44 T-ENADID-PRECISION
+  [tiempo] T44 T-ENADID-PRECISION: 0.000 s
+  [ ok ]  T45 T-LEGACY-DESGLOSE-SUMA
+  [tiempo] T45 T-LEGACY-DESGLOSE-SUMA: 16.501 s
+  [ ok ]  T46 T-UNION-NEWLINE
+  [tiempo] T46 T-UNION-NEWLINE: 0.001 s
+  [ ok ]  T47 T-IDS-UNICOS
+  [tiempo] T47 T-IDS-UNICOS: 0.005 s
+  [ ok ]  T48 T-CANON-LINEA-1MB
+  [tiempo] T48 T-CANON-LINEA-1MB: 0.006 s
+  [ ok ]  T49 T-L0-HISTORICO-FIJADO
+  [tiempo] T49 T-L0-HISTORICO-FIJADO: 0.000 s
+  [ ok ]  T50 T-UNION-LINEAS-REPETIDAS
+  [tiempo] T50 T-UNION-LINEAS-REPETIDAS: 0.031 s
+  [ ok ]  T51 T-ROTULOS-PAR-UNICO
+  [tiempo] T51 T-ROTULOS-PAR-UNICO: 0.003 s
+  [ ok ]  T52 T-ESTADO-PROGRAMA-SIN-APENDICE
+  [tiempo] T52 T-ESTADO-PROGRAMA-SIN-APENDICE: 0.003 s
+
+────────────────────────────────────────────────────────────────────────
+  WARN (62411)
+────────────────────────────────────────────────────────────────────────
+  · T-REPRO: 61712
+      SELLADA-SIN-ADOPTAR: 61711 · más vieja: 15 días
+      SELLADA-SIN-ADOPTAR RESULT-C1-POSEL-AMENAZA-DELTA: activo GEN2 y sin consumidor -- antigüedad 15 días
+      SELLADA-SIN-ADOPTAR RESULT-C1-POSEL-AMENAZA-DESENLACE: activo GEN2 y sin consumidor -- antigüedad 15 días
+      … y 61709 más
+  · T03: 272
+      propuesta-motor-adaptativo-celda-v0_1.md:14 cita `catalogo-fuentes-v1_0.md`, que no existe
+      propuesta-motor-adaptativo-celda-v0_1.md:14 cita `cruce-catalogo-fichas-2026-07-30.md`, que no existe
+      propuesta-motor-adaptativo-celda-v0_1.md:14 cita `v2_0.md`, que no existe
+      … y 269 más
+  · T-NO-CORRIDO: 246
+      NC-0012 ABIERTA desde 2026-09-08 (15 día(s)) -- sucesor GEN2-E4
+      NC-0026 ABIERTA desde 2026-09-08 (15 día(s)) -- sucesor ACTO C0-D (marcador GEN2), que consume las dos funciones ya especificadas y probadas aqui
+      NC-0029 ABIERTA desde 2026-09-08 (15 día(s)) -- sucesor E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E03 (cobertura vía ENCARGO GEN2-F5-COMPLETA) y E04 (cobertura vía ENCARGO GEN2-MOTOR-USOS-Y-COMPLEMENTOS) ya corrieron y se fusionaron: `grep -n "CONSUMIDO" forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md` -> "Estado: CONSUMIDO en PR #687" (CALC-TRIADA-0002 sellado, 224/224, REPRODUCE/IDENTICO -- pieza L resuelta); `tail -20 forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md` -> "## CONSUMIDO ... PR #689" (ADR-458 -- pieza motor resuelta). El corredor R también cerró por otra vía: NC-0018 = CERRADA (verificado hoy con `python3 -c` sobre `forense/no-corrido.tsv`). Lo que NO corrió y sigue sin producto: "ensamble E" -- `git grep -in "ensamble" -- '*.md' '*.py'` fuera de esta misma fila no encuentra ningún CALC/RESULT/acto que lo entregue. Y "adopción de parámetros" sigue con residuales propios y ABIERTOS hoy: NC-0085, NC-0107, NC-0111, NC-0153 (verificado con `python3 -c` sobre `forense/no-corrido.tsv`, 16/sep/2026). Esto coincide con la medición ya hecha por `forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P1-tabla.md:38`, vigente sin cambios desde entonces. Sucesor propuesto: `ensamble E` (sin dueño -- abrir acto o declarar explícitamente fuera de alcance) + `NC-0085`/`NC-0107`/`NC-0111`/`NC-0153` (adopciones concretas pendientes). NC-0018/NC-0019 (corredores R/L) ya no son sucesor de esta fila -- están CERRADA.
+      … y 243 más
+  · T22: 100
+      FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 ABIERTA desde 2026-09-21 (2 días): Destino del respaldo del corpus (P3 del encargo, §2): disco externo que mesa conecte (recomendada) ·
+      FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01 ABIERTA desde 2026-09-23 (0 días): Aplicar en GitHub, en main: status check obligatorio `suite` (Verificación del corpus, check.py --ba
+      FP-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-02 ABIERTA desde 2026-09-23 (0 días): PREGUNTA DE CONTRATO (no adopta nada): el contrato v0.6 de celda-D exige que el campeon cite punto e
+      … y 97 más
+  · T10: 65
+      Autoridad_y_jerarquía_en_el_Mé:83 muestra de diáspora sin (b): El sistema mexicano de *respeto* no es sumisión psicológica; es una **tecnología social de
+      Autoridad_y_jerarquía_en_el_Mé:91 muestra de diáspora sin (b): En el ámbito familiar, la obediencia tiende a estar más internalizada, especialmente en cl
+      Autoridad_y_jerarquía_en_el_Mé:257 muestra de diáspora sin (b): **Realidad**: González-López argumenta que "el marianismo ha dañado nuestra comprensión de
+      … y 62 más
+  · T-SUCESOR-EXISTE: 12
+      forense/no-corrido.tsv:76 NC-0075: sucesor cita `ACTO C0-C`, sin archivo en forense/encargos/**/*.md terminado en '-C0-C.md'
+      forense/no-corrido.tsv:76 NC-0075: sucesor cita `ACTO GEN2-C0-C`, sin archivo en forense/encargos/**/*.md terminado en '-GEN2-C0-C.md'
+      forense/no-corrido.tsv:76 NC-0075: sucesor cita `ACTO C0-C`, sin archivo en forense/encargos/**/*.md terminado en '-C0-C.md'
+      … y 9 más
+  · T13: 3
+      canon/APERTURA-FASE-CALCULO-v1_2.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
+      canon/PLAN-CALCULO-TOTAL-v1_1.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
+      canon/integrador-psicologia-mexicano.md sin bloque de cabecera ARCHIVO/NOMBRE ESTABLE (ADR-36)
+  · T-CRON: 1
+      RESULTADO-INVALIDO -- censo del 2026-09-23: ningún resultado estructurado fue aceptado; origen=conflicto causa=candidatos_validos_divergentes exit=67 [08:06 run_id=2026-09-23T072436-138649 disparador=windows-task-scheduler] -- ver forense/cron/REGISTRO-CRON-v1_0.md §5
+
+────────────────────────────────────────────────────────────────────────
+  FAIL (3)
+────────────────────────────────────────────────────────────────────────
+  · T06: 2
+      7 valores distintos de **Gini** en el corpus: 0.39 (1x, Confianza_y_Desconfianza_en_:165(s/f)) · 0.391 (4x, El_Clasemediero_Mexicano__Id:182(2024)) · 0.449 (1x, El_Clasemediero_Mexicano__Id:37(2016)) · 0.45 (2x, Psicología_del_Consumidor_Me:28(s/f)) · 0.56 (1x, Psicología__Conducta_y_Socie:113(s/f)) · 0.59 (1x, Confianza_y_Desconfianza_en_:165(s/f)) · 43.5 (1x, Psicología__Conducta_y_Socie:231(2023))
+      12 valores distintos de **confianza interpersonal** en el corpus: 12 (4x, Confianza_y_Desconfianza_en_:221(2009)) · 15 (4x, Psicología__Conducta_y_Socie:3(2025)) · 16 (1x, Report_26__The_Contemporary_:161(s/f)) · 20 (1x, El_Mexicano_y_el_Tiempo__Est:137(2024)) · 22 (5x, Confianza_y_Desconfianza_en_:9(2018)) · 28 (1x, Behavioral_Finance_Mexicano_:17(s/f)) · 33 (2x, Confianza_y_Desconfianza_en_:295(2018)) · 34 (1x, La_arquitectura_invisible_de:43(1990)) · 5 (1x, Confianza_y_Desconfianza_en_:219(2017)) · 50 (1x, La_familia_mexicana_como_sis:109(s/f)) · 66 (1x, Confianza_y_Desconfianza_en_:205(2022)) · 70 (1x, Sanción_Social_Horizontal_en:231(s/f))
+  · T08: 1
+      7 reports sin mapa de evidencia — todo constructo suyo es DERIVADO, no LEÍDO: Humor_in_Mexican_Psychological_Life__2023-2026 · La_arquitectura_invisible_de_la_interacción_so · Mexican_Population_Genomics__2025-2026_Scienti · Mérito__Movilidad_Social_y_Desigualdad_en_Méxi · Non-Family_Social_Capital_in_Mexico__Cooperati · Psicología__Conducta_y_Sociedad_en_el_México_C · Psicología_del_Trabajo_en_México__Un_Mapa_Basa
+
+════════════════════════════════════════════════════════════════════════
+  3 FAIL · 62411 WARN
+════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+  LÍNEA BASE: VERDE — sin FAIL nuevos frente a tests/baseline.json (HEAD congelado 7100cd0317132b1f4513b2efdc04058fd7ae89a2)
+  WARN NUEVOS (estado, no adjudican): 111
+  · T03: canon/L0/ADR-260922-GEN2-PENDIENTES-RECONCILIA-1-38c3-01.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+  · T03: canon/L0/ADR-260923-GEN2-TRAMITE-FIRMAS-9-97dc-02.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+  · T03: canon/estado-programa-v1_15.md: cita `BRIEF-ASTRA-01-PISOS-REJILLA-2026-09-19.md`, que no existe
+  · T03: canon/estado-programa-v1_15.md: cita `estado-programa-v1_14.md`, que no existe
+  · T03: canon/estado-programa-v1_15.md: cita `v2_13.md`, que no existe
+  · T03: canon/estado-programa-v1_15.md: cita `v2_14.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `-ADENDA-1.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `BRIEF-DEEP-SEARCH-competencia-Mexico-2026-09-23.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `HOJA-DE-DECISIONES-2026-09-23.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `INFORME-COMPETENCIA-2026-09-23.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `MISION-ASTRA-4-ADENDA-1.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `acto.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+  · T03: canon/gobernanza-v1_15.md: cita `v2_13.md`, que no existe
+  · T03: data/INFRAESTRUCTURA-v1_0.md: cita `-enmienda-v1_1.md`, que no existe
+  · T03: forense/analisis/astra-encig/encargo-astra-encig-emision.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que
+  · T03: forense/analisis/astra-encig/encargo-astra-encig-emision.md: cita `MISION-ASTRA-1-vence-al-piso-2026-09-22.md`
+  · T03: forense/analisis/astra-encig/nota.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que no existe
+  · T03: forense/analisis/astra-envipe/01-ASTRA-ENVIPE-EMISION-PROSPECTIVA-1.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA
+  · T03: forense/analisis/astra-envipe/nota-envipe.md: cita `00-ARRANQUE-Y-COORDINACION-ASTRA-1.md`, que no existe
+  · T03: forense/analisis/astra-envipe/recibo-claude-envipe.md: cita `03-INPUT-CAJA-PILOTOS-4-Y-5.md`, que no existe
+  · T03: forense/analisis/ci-medicion-1/INFORME-ci-medicion-1-v1_0.md: cita `acto.md`, que no existe
+  · T03: forense/analisis/din-oferta-exclusion/input-u1-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.md`, que no
+  · T03: forense/analisis/encig-persistencia-ic-calibrado/01-input-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.
+  · T03: forense/analisis/persistencia-error-formalidad/input-verbatim.md: cita `MISION-ASTRA-3-mide-lo-que-falta.md`,
+  · T03: forense/encargos/2026-09-19-GEN2-RECIBO-CODEX-3.md: cita `estado-programa-v1_14.md`, que no existe
+  · T03: forense/encargos/2026-09-19-GEN2-V214-instrucciones-v2_14.md: cita `instrucciones-proyecto-v2_14.md`, que no e
+  · T03: forense/encargos/2026-09-20-GEN2-RECIBO-CODEX-6.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no exist
+  · T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `ACTO-MD-bloque-ejecucion-v2_15.md`, que no
+  · T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `instrucciones-proyecto-v2_14.md`, que no e
+  · T03: forense/encargos/2026-09-20-GEN2-V215-instrucciones-v2_15.md: cita `instrucciones-proyecto-v2_15-OPERATIVA.md`
+  · T03: forense/encargos/2026-09-21-ENCARGO-GEN2-V216-instrucciones-v2_16.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-5.md: cita `-4.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-ADENDA-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-RAPIDO-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `01-VEREDICTO.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `02-ENCARGO-verbatim.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+  · T03: forense/encargos/2026-09-21-GEN2-TUBERIA-SUCESOR-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-FP374-RESELLO-1.md: cita `PLAN-ACELERACION-seis-palancas-2026-09-20.md`, que
+  · T03: forense/encargos/2026-09-22-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1.md: cita `informe-programa-v1_3.md`, que no exis
+  · T03: forense/encargos/2026-09-22-GEN2-PENDIENTES-CAJA-1.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-PENDIENTES-RECONCILIA-1.md: cita `PENDIENTES-PROGRAMA.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-RECIBO-ASTRA-1.md: cita `-6.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md: cita `-ADENDA-1.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9.md: cita `-ADENDA-1.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TUBERIA-EFICIENCIA-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `-4.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `-enmienda-v1_1.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `01-VEREDICTO.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `02-ENCARGO-verbatim.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `ACTO-MD-bloque-ejecucion-v2_15.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no exist
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `acto.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `enmienda-v1_1.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `estado-programa-v1_13.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `instrucciones-proyecto-v2_15-OPERATIVA.md`, que no e
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `settings.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_12.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_13.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v1_14.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v2_13.md`, que no existe
+  · T03: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md: cita `v2_14.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1.md: cita `-COMMIT-1.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-10.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-11.md: cita `HOJA-DE-DECISIONES-2026-09-23.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md: cita `BRIEF-DEEP-SEARCH-competencia-Mexico-2026-09-23.m
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md: cita `HOJA-DE-DECISIONES-2026-09-23.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md: cita `INFORME-COMPETENCIA-2026-09-23.md`, que no existe
+  · T03: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md: cita `MISION-ASTRA-4-ADENDA-1.md`, que no existe
+  · T03: forense/encargos/fuentes/MISION-ASTRA-4-producto.md: cita `-COMMIT-1.md`, que no existe
+  · T03: forense/encargos/fuentes/MISION-ASTRA-4-producto.md: cita `HOJA-FAMILIAS-2027-para-mesa.md`, que no existe
+  · T03: forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-TRAMITE-5-2026-09-17.md: cita `estado
+  · T03: forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md: cita `estado-programa-v1.14.md`
+  · T03: forense/hallazgos.md: cita `03-hallazgos-de-este-acto.md`, que no existe
+  · T03: forense/hallazgos.md: cita `EVALUACION-CARRIL-CODEX-2026-09-20.md`, que no existe
+  · T03: forense/hallazgos.md: cita `PENDIENTES-PROGRAMA-v3.md`, que no existe
+  · T03: forense/hallazgos.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+  · T03: forense/hallazgos.md: cita `instrucciones-proyecto-v2_14.md`, que no existe
+  · T03: forense/hallazgos.md: cita `v2_13.md`, que no existe
+  · T03: forense/notas/2026-09-19-GEN2-PISOS-ENIF2021-FORMALIDAD-1-cierre.md: cita `instrucciones-proyecto-v2_14.md`, q
+  · T03: forense/notas/2026-09-19-GEN2-PISOS-ENUT2019-EJES-1-cierre.md: cita `estado-programa-v1_14.md`, que no existe
+  · T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `instrucciones-proyecto-v2_13.md`, que
+  · T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `v1_13.md`, que no existe
+  · T03: forense/notas/2026-09-20-GEN2-LIMPIEZA-RAMAS-LOCALES-3-cierre.md: cita `v1_14.md`, que no existe
+  · T03: forense/notas/2026-09-21-gen2-v216-cierre.md: cita `acto.md`, que no existe
+  · T03: forense/notas/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1-nota.md: cita `PENDIENTES-PROGRAMA__1_.md`, que no existe
+  · T03: forense/notas/2026-09-22-gen2-tuberia-eficiencia-1-cierre.md: cita `acto.md`, que no existe
+  · T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-12-cierre.md: cita `BRIEF-DEEP-SEARCH-competencia-Mexico-2026-09-
+  · T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-12-cierre.md: cita `HOJA-DE-DECISIONES-2026-09-23.md`, que no exi
+  · T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-12-cierre.md: cita `INFORME-COMPETENCIA-2026-09-23.md`, que no ex
+  · T03: forense/notas/2026-09-23-GEN2-TRAMITE-FIRMAS-12-cierre.md: cita `MISION-ASTRA-4-ADENDA-1.md`, que no existe
+  · T03: forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md: cita `acto.md`, que no existe
+  · T03: forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md: cita `estado-programa-v1_13.md`, que
+  · T03: forense/notas/nota-2026-09-21-gen2-tuberia-cierre-sin-choque-2-cierre.md: cita `v1_12.md`, que no existe
+  · T03: forense/notas/nota-arnes-sesion-claude-md.md: cita `instrucciones-proyecto-v2_13.md`, que no existe
+  · T03: forense/notas/nota-arnes-sesion-claude-md.md: cita `settings.md`, que no existe
+  · T03: forense/prereg-caja/DISENO-duelo-prospectivo-ENIGH2024-v1_0.md: cita `enmienda-v1_1.md`, que no existe
+  (10 fail + 2 warn de la línea base ya no aparecen — mejora, no bloquea, no baja la cifra congelada sin --freeze explícito)
+────────────────────────────────────────────────────────────────────────

@@ -1,0 +1,64 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENOE-PERSISTENCIA-0001
+spec_md: ../../../forense/prereg-caja/ENOE-PERSISTENCIA-spec-v1_0.md
+spec_md_sha256: 868fd2d3fe37471a57c2b159b500535ddc99a9fc5fe19f5c7dfa8090421d42f9
+script: data/corrida0/CALC-ENOE-PERSISTENCIA-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PERSISTENCIA-TRIMESTRAL-RETROSPECTIVA
+  cuenta_gen2: SI
+  firma_de_contador: 'Encargo ASTRA5-U1-TRABAJO-ENOE: serie y calibración de persistencia; sin adopción.'
+  adopta: 'NO'
+  origen_numerico: DERIVADO-DE-GEN2
+  origen_numerico_detalle: Consume únicamente RESULT-ENOE-PISOS-TABLA sellado; human spec y módulo de persistencia
+    commiteados a436e3f0 antes de leer sus valores. YAML fija hash tras sello, solo cableado.
+  contaminacion_declarada: Al cerrar YAML ya se conocían tres puntos U0 y conteo global del CALC PISOS; método de
+    origen móvil, exclusión de ingreso nominal y no emisión de IC predictivo estaban fijados en a436e3f0 antes de
+    abrir RESULT.
+inputs:
+- id: IN-ENOE-PISOS-RESULT
+  origen: repo
+  ruta: data/corrida0/CALC-ENOE-PISOS-0003/resultados.json
+  sha256: 243c7ea54033afd760d97b22d031e5aaa0009b6d3f25dec3b10a00a2fa772c86
+- id: IN-ENOE-PERSISTENCIA-MODULO
+  origen: repo
+  ruta: tools/dominios/enoe/persistencia.py
+  sha256: a0af6ae11a84056e97988b75d47d4928234b76b574b506e99e46f7192b3aeb99
+- id: IN-ENOE-PERSISTENCIA-SPEC
+  origen: repo
+  ruta: forense/prereg-caja/ENOE-PERSISTENCIA-spec-v1_0.md
+  sha256: 868fd2d3fe37471a57c2b159b500535ddc99a9fc5fe19f5c7dfa8090421d42f9
+variables:
+- archivo: data/corrida0/CALC-ENOE-PISOS-0003/resultados.json
+  variable: RESULT-ENOE-PISOS-TABLA
+  rol: puntos e IC de diseño por ola/celda
+universo: Celdas agregadas selladas de 12 conductas comparables dentro de era, pares de olas trimestrales adyacentes;
+  ingreso nominal excluido.
+filtros: Sin puntos nulos; sin salto de era ni hueco 2020T2; no interpola; no cruza ENOEN y post2023.
+ponderador: Puntos ya ponderados por FAC/FAC_TRI en CALC-ENOE-PISOS-0003; ninguna nueva ponderación de personas.
+transformacion: 'Origen móvil: piso t-1, error destino menos piso; tendencia 2*piso-anterior si 3 olas adyacentes,
+  recorte [0,1] para proporción. Cobertura descriptiva del IC de diseño del piso. IC predictivo nulo.'
+estimando: Error retrospectivo de persistencia por trimestre/celda; no es transición individual ni cambio inferencial
+  ni calibración predictiva.
+parametros:
+  horizonte_trimestres: 1
+  separar_eras: true
+  excluir_conducta: ingreso_ocupado_nominal
+  calibracion: SIN-COVARIANZA-LONGITUDINAL-PARA-CALIBRAR
+seed:
+  aplica: false
+dependencias_materiales:
+- Python 3.14.4 (stdlib json)
+resultados:
+- id: RESULT-ENOE-PERSISTENCIA-TABLA
+  tipo: texto
+  unidad: JSON de pares agregados por celda y era
+- id: RESULT-ENOE-PERSISTENCIA-PARES
+  tipo: entero
+  unidad: pares trimestrales elegibles
+- id: RESULT-ENOE-PERSISTENCIA-SIN-IC-PREDICTIVO
+  tipo: entero
+  unidad: pares sin IC predictivo calibrado
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
