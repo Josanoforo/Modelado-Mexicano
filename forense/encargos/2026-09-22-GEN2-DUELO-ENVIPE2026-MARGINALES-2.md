@@ -17,6 +17,26 @@ Que las celdas de ENVIPE 2026 que siguen RESERVADAS —`civico.denuncia.con_segu
 - `[SUPUESTO]` Los reactivos de `denuncia.con_seguro` y de las series no cambiaron de texto en el FD 2026. Verificación **por texto** en COMMIT-1 (el FD 2026 sí se puede abrir: no es microdato); celda con texto distinto → `NO-CONSTRUIBLE`, declarada.
 - ADJUNTOS: ninguno.
 
+**Apéndice A.8 (T-YAMEDIDO, mecánico, añadido al archivar — no es texto de dirección):** `python3 tools/ya_medido.py civico.denuncia.con_seguro`
+```
+=== ya_medido: civico.denuncia.con_seguro ===
+  resuelto por canon: civico.denuncia.con_seguro -> R7.2 (canon/modelo-decision-v4_0.md §3, registro congelado + tag **id:**)
+  términos de búsqueda (match exacto): civico.denuncia.con_seguro, R7.2
+
+-- milpa/tramite.yaml --
+  milpa/tramite.yaml:987  situacion=sufre_delito_asegurable tier=FUERTE p=0.790900  [TASA-EJECUTADA]
+      id: civico.denuncia.con_seguro
+
+-- milpa/tramite-ola5-propuesta-v0.yaml --
+  (sin apariciones)
+
+-- data/corrida0 (RESULT + ejecución + sello) --
+  (sin apariciones)
+
+MEDIDA-EN: tramite.yaml
+```
+No contradice §3: `civico.denuncia.con_seguro` nacional (P3_13 base) ya tiene tasa ejecutada en `tramite.yaml`; lo que este encargo busca adjudicar es la celda **marginal por eje** (`civico.denuncia.con_seguro_ejes_envipe2025`, sexo/edad/cobertura_seguro) y los nacionales de `CALC-ENVIPE-SERIE-*`, que siguen sin RESULT en `data/corrida0` (confirmado arriba: sin apariciones) — la premisa de RESERVADA del encargo se sostiene.
+
 ## 4 · YA HECHO / YA DECIDIDO
 `ls -d data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES*` → 0; `grep -c "MARGINALES-2" forense/encargos/*` → 0. Ramas vivas: ninguna al redactar; **no correr a la vez que E14** (derivados).
 
