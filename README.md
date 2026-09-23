@@ -1,105 +1,65 @@
-# Psicología del Mexicano Contemporáneo
+# Benchmark del Mexicano
 
-Corpus de evidencia, modelo de decisión segmentado y aparato de falsación.
+**Modelado Mexicano · Psicología del Mexicano Contemporáneo.** Benchmark auditable de predicciones y estimaciones segmentadas con encuestas oficiales de México. [Informe vigente](canon/informe-programa-v1_2.md) · [Aviso de alcance](AVISO-DE-ALCANCE.md).
 
-> **No es un almacén de documentos.** Es un modelo que hace afirmaciones
-> falsables sobre conducta, con la maquinaria para refutarlas. La regla que
-> lo gobierna todo: *si escribes un principio y no le das un artefacto que
-> falte visiblemente cuando no se cumple, no obliga a nada.*
+## Qué es y qué no es
 
-```bash
-python3 tests/check.py            # verificación completa
-python3 tests/check.py --strict   # los WARN también fallan
-```
+El repositorio reúne [reports](corpus/reports/), modelo, especificaciones previas a la lectura del desenlace, código, RESULT y sellos. Usa microdatos oficiales citados por cada cálculo. Sus unidades incluyen personas, hogares, delitos y trámites; no se promedian como si fueran iguales. El corpus temático es más amplio que las mediciones disponibles. No responde preguntas ausentes de la encuesta, no mide compras observadas ni marcas, no ofrece gemelos digitales y no promete detectar cambios entre olas.
 
----
+## La prueba
 
-## Estructura
+Estas son **evaluaciones**, no dominios independientes ni una lista de predicciones anteriores a la publicación oficial. En el vocabulario del repositorio, «prospectiva» significa que la emisión quedó sellada antes de abrir el árbitro R de la evaluación; eso por sí solo no prueba que antecediera a la publicación de INEGI.
 
-| Carpeta | Qué contiene | Regla |
-|---|---|---|
-| `corpus/reports/` | **31 reports temáticos** | Evidencia primaria. **Append-only** |
-| `corpus/forense/` | **5 validaciones forenses** | ADR-29.b: mismo rango que los reports. **Append-only** |
-| `canon/` | `modelo` · `glosario` · `gobernanza` · `estado` · `integrador` | Versionado, una sola versión viva de cada uno |
-| `milpa/` | whitepaper · spec · plan + 3 YAML | Simulador. **Fase 1 ya NO pospuesta — arquitectura objetivo del programa (ADR-50/51), calibrada por AJUSTE** |
-| `forense/` | Auditorías, barridos, pre-registros | **Fechados, append-only** |
-| `tests/` | La suite | Un ADR sin test aquí es decorativo |
+| Evaluación | Ola y unidad | Dictamen | Cierre |
+|---|---|---|---|
+| Piloto ahorro, localidad × edad; 8 celdas <!-- deriva: rg -F '8/8 celdas' forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md --> | ENIF 2024, persona | `SIN-CANDIDATO-SUPERIOR` | [Nota](forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) |
+| Piloto evasión, escolaridad × dominio; 12 celdas <!-- deriva: rg -F '12/12 celdas' forense/notas/2026-09-17-GEN2-CELDA-D-PILOTO-2-cierre.md --> | ENVIPE 2025, delito | `SIN-CANDIDATO-SUPERIOR` | [Nota](forense/notas/2026-09-17-GEN2-CELDA-D-PILOTO-2-cierre.md) |
+| Piloto gobierno digital, edad × escolaridad; 15 celdas <!-- deriva: rg -F '3/15' forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md --> | ENCIG 2025, trámite | `FALSADOR-DEBIL` | [Nota](forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md) |
+| Lote de interacción; 44 celdas puntuadas <!-- deriva: rg -F '44 celdas puntuadas' canon/informe-programa-v1_2.md --> | ENIF 2024, persona | `PROPUESTA-CON-RESERVA`: mejora puntual sin despejar umbral | [Nota](forense/notas/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3-cierre.md) |
+| Duelo de ola nueva, sexo × dominio y edad × dominio; 12 por cruce <!-- deriva: rg -F '12 celdas puntuadas por par' forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md --> | ENVIPE 2026, delito | `NADIE-VENCE` en ambos | [Nota](forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md) |
+| Duelo de candidatos, edad × sexo y escolaridad × sexo; ver celdas en cierre | ENCIG 2025, trámite | Agregado `FALSADOR-DEBIL` | [Nota](forense/notas/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1-cierre.md) |
 
-**Orden de lectura en frío:** `canon/estado-programa` → `canon/gobernanza`.
+Los retadores evaluados no superaron los **criterios de superioridad fijados en esas comparaciones**. Esto no declara equivalencia ni se extiende a modelos no evaluados. El [informe](canon/informe-programa-v1_2.md) documenta la subcobertura del piso en el lote y en marginales. Los intervalos calibrados corresponden a evaluaciones concretas, no a todos los RESULT del repositorio.
 
----
+## Estado derivado
+
+Cada contador tiene su propio universo. `status` es una vista derivada del corte disponible al ejecutar el comando, no el estado vivo de otras ramas.
+
+| Objeto | Valor en este corte | Clave |
+|---|---:|---|
+| Corridas selladas | 209 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
+| RESULT GEN2 sellados | 65 549 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
+| RESULT GEN2 adoptados activos | 72 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
+| Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
+| Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
+| Celdas retrospectivas de esa vista | 59 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
+| RESULT GEN2 pendientes de adopción | 10 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_pendientes_adopcion=' --> `N_resultados_gen2_pendientes_adopcion` |
+
+El [estado](canon/estado-programa-v1_15.md) y la [actualización del contador](canon/L0/ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01.md) explican el alcance de las celdas. El total incorpora conductas agregadas de crédito y cruces ENCIG que antes no contaba; los campos prospectiva y retrospectiva de `status` no cubren todas las formas incorporadas al total. **Validada** significa emisión comparada con R, no adopción por mesa.
 
 ## Estado del modelo
 
-**49 reglas · 20 `[FUERTE]`.** <!-- 49: python3 tests/validador_registro_ids.py · 20 [FUERTE]: T12 en tests/check.py (motor_rules()+rule_tier() sobre §3.B) -->
+Este bloque describe el **modelo heredado** y conserva la comprobación T19c
+de la suite. No sustituye los contadores GEN2 de arriba.
 
-- **26 de 27** corridas del Hito D con veredicto archivado — **14D·4B·4A·2E·2C** <!-- T20:HITO-D pob=reglas --> <!-- bloque "## Registro de veredictos archivados" de forense/hitoD-preregistro-v2_0.md, parser _VEREDICTO_CANONICO (tests/check.py:684, T18); +R1.3→E, ADR-63; +R8.1→D, ADR-138; +R7.1→A, ADR-145; +R7.3→C, ADR-155; +R7.4→D, +R7.5→D, ADR-158; +R8.3→A, ADR-186; +R1.4→D, ADR-187; +R10.2→D, ADR-196; +R8.2→B, +R2.2→D, ADR-199; +R3.4→B, ADR-201; +R10.1→C, ADR-205; +R2.1→D, ADR-208 -->
-- **Condicionales medidas 12 de 15** <!-- numerador vigente: grep -c 'clase: "MEDIDO·PARCIAL' + grep -c 'clase: "MEDIDO·NACIONAL' milpa/procedencia.yaml (10+2, séptima clase sellada 13/ago/2026 por PROC-10-bis/ADR-79(a), entra norma_de_género; segunda entrada 13/ago/2026 por ACTO PROD-P638, entra obligación_medida, reproducida por el motor formal; décima entrada MEDIDO·PARCIAL 18/ago/2026 por ACTO COND-ATRIB/ADR-104, entra confianza_institucional_generico_servidores_publicos) · denominador: modelo §1.1.F, pasos 1-6 (14→15 el 13/ago/2026, ACTO PROC-11 / ADR-75(b)) -->
-- **Coeficientes en escala del modelo 0 de 15** — tres asociaciones marginales (β̂) existen para tres de los quince, pero ADR-57(a) las rotula asociaciones, no coeficientes: ninguna sobrevive condicionar y no cuentan aquí <!-- modelo §2.2 ("Los quince coeficientes son ASIGNADO. Ninguno es medido"); milpa/procedencia.yaml: asignados_coeficiente / coeficientes_generador_medidos -->
-- **[MESA-M4] `4 de 144`** congelado 31/jul/2026, no se recalcula <!-- forense/hallazgos.md, 2026-07-31: "Congelamiento de `4 de 144`" — decisión de mesa, no ADR -->
+- **26 de 27** corridas del Hito D con veredicto archivado — **14D·4B·4A·2E·2C**. <!-- deriva: python3 tests/check.py --baseline | rg 'T19c' ; fuente: forense/hitoD-preregistro-v2_0.md -->
+- Condicionales medidas 12 de 15. <!-- deriva: rg -c 'clase: "MEDIDO·PARCIAL|clase: "MEDIDO·NACIONAL' milpa/procedencia.yaml ; T19c -->
+- Coeficientes en escala del modelo 0 de 15. <!-- deriva: rg 'magnitud: medid' milpa/procedencia.yaml ; T19c -->
 
-**Es una síntesis rigurosa de literatura con tiers leídos, no un artefacto
-validado.** Un tier derivado de lectura disciplinada es evidencia legítima —
-pero la diferencia importa cuando alguien lo use para decidir algo caro.
+## Verifica en cinco minutos: ruta de lectura
 
-- **223 payloads propios con `sha256`** <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios sobre ENVIPE, ENCIG, ENCUCI, ENIF y ENIGH — estimador (`tests/svystat.py`) respaldado contra tres casos de referencia (Encargo E-3, PR #97) y validado contra cifras publicadas de INEGI en al menos dos actos (Encargo K sobre ENVIPE, Encargo P sobre ENIGH). No es "cero dato primario propio" — y sigue sin ser instrumento validado
-- Los 42 disparadores de contexto **no** cuentan como números: son booleanos
+Para inspeccionar estructura, referencias y sellos no hace falta `data/raw`. Clona el repo, lee una [nota de cierre](forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) y compara su `spec.yaml`, `resultados.json` y `sello.json` en [corrida0](data/corrida0/). `python3 tools/corrida0.py status` reproduce la tabla. `python3 tests/check.py --baseline` verifica la línea base del repo, sin garantía de duración. La [guía](docs/verificar.md) explica el control de hashes sin abrir raw y separa la reproducción numérica: `python3 tools/corrida0.py verify <CALC-ID>` puede necesitar corpus, dependencias y más tiempo. La [receta de sello externo](docs/sello-externo.md) explica su testigo de tiempo y sus límites.
 
----
+## Cobertura
 
-## Primera corrida de la suite · 28/jul/2026
+El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> Son documentos de evidencia, no dominios mutuamente excluyentes; [lista completa](docs/catalogo.md). El mapa U0 aún no está consolidado en este corte. Hay mediciones **selladas** sobre dinero (ENIF), trámites (ENCIG), seguridad (ENVIPE), tiempo (ENUT), ingreso (ENIGH), trabajo (ENOE) y tecnología (ENDUTIH, MOCIBA), trazables por [CALC y RESULT](data/corrida0/) y [estado](canon/estado-programa-v1_15.md). La [medición ENOE](forense/notas/2026-09-23-ASTRA5-U1-TRABAJO-ENOE-cierre.md) ofrece pisos trimestrales y persistencia descriptiva retrospectiva; adopta NO y no acredita transición individual ni cobertura predictiva calibrada. Los [pisos de tecnología](forense/analisis/dominios/tecnologia/cierre-comun.md) describen ENDUTIH 2023–2025 y MOCIBA 2015–2017 en universos distintos; son retrospectivos, sin adopción ni IC predictivo calibrado, y no acreditan cambios futuros. El [eje regional v1.0](canon/eje-regional-v1_0.md) publica filas retrospectivas de ENIF, ENCIG y ENVIPE con supresión por tamaño muestral; es propuesta sin adopción y no cubre todas las conductas ni olas. Sellado, validado y adoptado son estados distintos. ENDIREH e INE/ENCUP siguen pendientes de medición consolidada; no se presentan como medición publicada. U0 fijará la cobertura temática y su propietario, pero no bloquea la publicación de los productos ya fusionados. Una duda pendiente no se clasifica `NO-MEDIBLE-POR-DISEÑO`.
 
-**18 FAIL · 110 WARN.** Y la mitad de los FAIL son hallazgos **nuevos**: una
-auditoría manual de los cuatro pivotes, hecha ese mismo día, los subcontó.
+## Uso, límites y contribuciones
 
-| Test | Auditoría manual | La suite | |
-|---|---|---|---|
-| `T06` valores de **Gini** | 4 | **7** | leyó 36 archivos, no 4 |
-| `T06` valores de **confianza interpersonal** | 4 | **12** | |
-| `T07` vocabularios de tier ajenos | 4 | **7** (`SÓLIDO`×44 · `MEDIO`×29 · `HIPÓTESIS RAZONABLE`×22) | |
-| `T08` reports sin mapa de evidencia | 7 | **7** ✅ | el glosario declaraba 5 |
-| `T09` marco **(c)** usado como causa | en 4 pivotes | **8**, en todo el corpus | |
-| `T11` afirmación de estado absoluta | 1 | **1** ✅ | atrapada automáticamente |
+Empieza por el [informe principal v1.2](canon/informe-programa-v1_2.md), su [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [estado v1.15](canon/estado-programa-v1_15.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
-**`T11` es el que justifica el repo entero.** Un parche del 28/jul declaraba
-tres ediciones como *"las únicas que el report requería"* y dejaba **diez**
-líneas sin marcar. Se descubrió leyendo a mano, un turno después. La suite lo
-tumba en tres segundos, y no lo dejaría entrar por PR.
+## Licencia, cita y contacto
 
-**`T05` es el segundo.** De los cinco constructos que el motor usa sin entrada
-en el glosario, **dos los introdujo quien escribió el check** — porque la lista
-de términos se construyó desde los constructos que ya se sabía que faltaban.
-Un validador cuyo alcance fija quien introduce las reglas no valida nada.
+El [LICENSE](LICENSE) vigente concede MIT al código de su sección 1 y CC BY-NC-SA 4.0 al corpus y documentación de su sección 2. Para uso comercial del corpus fuera de las excepciones expresas, escribe a **jonieqsa@gmail.com**. La propuesta de mesa de cambiar términos para todo el producto necesita una modificación autorizada de LICENSE; esta página no la sustituye. Cita según [CITATION.cff](CITATION.cff); no hay DOI asignado. Ver [autoría](AUTHORSHIP.md).
 
-### Falsos positivos conocidos *(corrida del 30/jul/2026)*
-
-- **`T03` (21)** — en su mayoría, cabeceras que citan `…-v3.2.md` cuando la
-  plataforma renombró a `…-v3_2.md`. Real, pero cosmético.
-- **`T10` (65)** — la lista de palabras clave de diáspora es laxa y pesca
-  líneas sin fuente **(b)**. Hay que afinarla antes de subirla a FAIL.
-
----
-
-## Deudas abiertas
-
-**S1** · Sí hay dato primario propio: 223 payloads con `sha256` <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> y estimandos propios sobre ENVIPE/ENCIG/ENCUCI/ENIF/ENIGH, estimador respaldado contra tres casos de referencia y validado contra INEGI publicado (Encargo E-3/PR #97; Encargo K; Encargo P) · **PD-01**: 14 descartes irrecuperables, *no reconstruir*
-
-**S2** · Los **90 parámetros de dispersión** de ADR-28.d no existen en archivo — el check de varianza no puede correr · Los **30 componentes** de `confianza_institucional` por perfil, declarados y sin poblar · **7 de 8 refutaciones sin objeto ya tienen variable declarada** (19/ago/2026, ADR-117), incluida `ref.A.02`, sin calibrar · El motor **sigue sin entidad prestamista** (frontera de ADR-35; enmienda redactada, no ejecutada, `FP-61`) — `ref.A.04` sigue sin objeto
-
-**S3** · 15 coeficientes sin validar · 36 de 49 reglas sin falsación pre-registrada corrida <!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only, T18) = 36; +R1.3→E, ADR-63 --> · 74 números asignados · **3 de 5 forenses sin tabla de descartes**
-
-**S5** · `conf.02` · `conf.05` · **`conf.06`** — resuelto 28/jul: eran **tres reactivos distintos** de la misma escala (62.1% conocidos · 32.1% vecinos · 21.8% la mayoría), leídos como una sola cifra
-
----
-
-## Cómo se contribuye
-
-Ver **`CONTRIBUTING.md`**. Lo esencial:
-
-1. Corre la suite **antes** de tocar nada — declara de qué estado partes
-2. `corpus/` y `forense/` son **append-only**: se corrigen con nota fechada, nunca en silencio
-3. Los tiers **se leen**, no se reconstruyen
-4. La marca de procedencia **(a)/(b)/(c) viaja** con el constructo
-5. **Prohibido el cuantificador absoluto** en afirmaciones de estado
-6. Las consultas de búsqueda **se pre-registran**, con una **adversaria** obligatoria
-7. Todo principio nuevo **nace con su test**
+Este README deriva sus cifras; si una no coincide con `status`, el README está mal, no el contador.
