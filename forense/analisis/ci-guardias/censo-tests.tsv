@@ -189,3 +189,5 @@ tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 con -m tes
 tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
 tests/test_encig_duelo_2025.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_piloto4_v1_0.py); el oro (b) necesita corpus y se omite sin él
 tests/test_astra4_region.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest,pandas,numpy)	Pruebas sintéticas U5 ejecutadas localmente; CI carece de dependencias numéricas declaradas y se omite sin fingir ejecución
+tests/test_endutih_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_mociba_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
