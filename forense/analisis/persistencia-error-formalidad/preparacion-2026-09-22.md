@@ -41,5 +41,6 @@ de cálculo bajo B.
 
 ## CONSUMIDO
 
-Ningún PR todavía. La mesa consumirá este diagnóstico para decidir el encargo
-ampliado y, separadamente, el cierre de las deudas originales.
+PR borrador #1040 (`codex/astra3-enif-formalidad-error-1`). La mesa consumirá
+este diagnóstico para decidir un encargo ampliado y, separadamente, el cierre
+de las deudas originales.
