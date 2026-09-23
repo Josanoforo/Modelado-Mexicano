@@ -113,7 +113,10 @@ estructura sobre estructura.
 piso T no se compara contra ningún estimador previo para reemplazarlo —
 sucesor de firma si algún par vence). `celdas_validadas` sube en 28 (celda-D
 con veredicto sellado, PROSPECTIVA). El veredicto primario del lote y la
-frase de las 44 celdas no se mueven (§4). `N_resultados_gen2_adoptados_activos`
+frase de las 44 celdas no se mueven (§4). **Sellada en disco, no registrada**
+en la vista publicada (`corridas.tsv`/`resultados.tsv` son derivados
+protegidos, no viajan en el PR — ver §8); `corrida0 status` la cuenta por
+proyección en memoria. `N_resultados_gen2_adoptados_activos`
 intocado.
 
 ## 7 · Latitud ejercida (§6 del encargo)
@@ -124,8 +127,22 @@ corrida — se emite, con su ΔMAE y veredicto reales, sin ajuste.
 
 ## 8 · NO-CORRIDO / RESERVAS
 
-Ninguno. Las cinco piezas (COMMIT-1, COMMIT-2, registro, esta nota, cierre)
-corrieron en esta sesión.
+`NC-260922-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1-65c3-01` (`DIFERIDO-A:TUBERIA`):
+`registro --escribe --lote` publicó la fila de este CALC en
+`data/corrida0/{corridas,resultados}.tsv` dentro del worktree (medido:
+`resultado_replay=REPRODUCE`, sin pisadas ajenas nuevas fuera de las ya
+diagnosticadas), pero esos dos archivos son `# DERIVADO — NO EDITAR` desde
+la firma P4 de `GEN2-TUBERIA-EFICIENCIA-1` (21/sep): ningún PR puede
+tocarlos (`tools/derivados_protegidos.py --toca`, bloqueante en el job
+`enrutamiento-pr`) y el job de push a `main` no corre `registro` (exige
+`--lote`, juicio de mesa). Se revirtieron a la versión de `origin/main`
+antes de empujar. El asiento de E.7 que sí viaja en el PR es
+`forense/replay-evidencia.tsv` (no es derivado): `resultado_replay=REPRODUCE`,
+`contexto_replay=IDENTICO`, ya asentado. **CONTADOR corregido: la corrida
+queda «sellada en disco, no registrada»** — `corrida0 status` la cuenta por
+proyección en memoria; la vista publicada (`corridas.tsv`) no trae su fila
+hasta que mesa corra `registro --verifica --escribe --lote` sobre `main`, o
+hasta que el canal de `TUBERÍA` (FP `…-c09b-02`) lo automatice.
 
 ## 9 · CONSUMIDO
 
