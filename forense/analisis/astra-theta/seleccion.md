@@ -184,9 +184,10 @@ no existe `CALC` ni `RESULT` sellado, ni contador GEN2 que sumar. La
 imposibilidad es de **este estimando en el único microdato público de
 réplica localizado**, no de toda la salud mexicana: los cuestionarios sí
 incluyen las preguntas, pero la tabla de análisis pública las omite.
-La fila nueva de `solicitud-adquisicion.tsv` identifica exactamente las
-tablas fuente, llaves y custodia que mesa necesita conseguir. Alternativa
-de mesa si no consigue las tablas: autorizar explícitamente un **nuevo
-estimando reducido** para un desenlace que sí aparece en `ALL.tab` (p. ej.
-uso ambulatorio total), con preregistro nuevo antes de leer sus valores;
-ese efecto no mediría elección de farmacia ni cargaría `RES-0087`.
+La fila nueva de `solicitud-adquisicion.tsv` identifica las tablas fuente,
+llaves y custodia que mesa necesita conseguir. La localización dirigida
+posterior se documenta en `localizacion-visitas-seguro.md`. Sin esas tablas,
+la siguiente ruta es `AT-25` / `RES-0091`: adquirir calendario efectivo
+de ventanillas por servicio y entidad para un posible DiD sobre mordida.
+Su consumidor exacto es `asignados_probabilidad[9]`, sujeto todavía a
+identificación y enlace de escala; no sustituye la medición `RES-0087`.

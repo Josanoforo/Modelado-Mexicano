@@ -20,8 +20,9 @@
   replay ni sello; `cuenta_gen2: NO`, `adopta: NO`. Estado del diseño:
   **NO-ESTIMABLE**; sin propuesta de `ARGUMENTO_EXPLICITO` ni cambio de E1.
 - Decisión concreta: obtener tablas originales de visitas e individuo,
-  llaves y términos de uso enumerados en `solicitud-adquisicion.tsv`; o
-  autorizar nuevo estimando reducido de uso ambulatorio total, sin
-  cargarlo en `RES-0087`. Mesa debe firmar cualquier nuevo enlace θ.
+  llaves y términos de uso enumerados en `solicitud-adquisicion.tsv` y
+  `localizacion-visitas-seguro.md`. Si faltan, continuar con `AT-25` /
+  `RES-0091` y su calendario de ventanillas; el consumidor potencial es
+  `asignados_probabilidad[9]`. Mesa debe firmar cualquier nuevo enlace θ.
 
 No se fusiona ni se instala un valor por este recibo.

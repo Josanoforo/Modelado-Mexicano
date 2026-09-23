@@ -64,17 +64,18 @@ visitas basal y seguimiento (el código nombra
 individuo, diccionario de cambio `P11D*` ↔ `P10E*`, y llaves
 `id_hogar`, `id_pers`, `conglome`, `matchnum` con términos de uso claros.
 Registrar cada objeto en `codex/adq-*` con id/hash/tamaño antes de
-reabrir el medidor. Criterio de éxito: las preguntas de motivo y lugar
+reabrir el medidor. La búsqueda dirigida y sus fuentes primarias quedan
+en `localizacion-visitas-seguro.md`. Criterio de éxito: las preguntas de motivo y lugar
 aparecen en ambas olas, la elegibilidad sin IMSS corresponde al individuo,
 y enlazan sin duplicados a los pares sorteados. La petición está en
 `solicitud-adquisicion.tsv`.
 
-Si esos microdatos no pueden obtenerse, la alternativa concreta es que
-Jonás autorice cambiar el producto a un ITT de **uso ambulatorio total**
-en `ALL.tab` mediante preregistro nuevo. Se reportaría solo como efecto
-reducido del programa; no cuantifica la elección de farmacia ni el vector
-de `RES-0087`. Cambiar el significado o enlace de θ requiere firma de
-mesa. No se inventa un coeficiente sustituto.
+Si esos microdatos no pueden obtenerse, la siguiente ruta del mapa es
+`AT-25` / `RES-0091`, oferta de trámite registrable y mordida, con
+consumidor `asignados_probabilidad[9]` (`tramite.mordida.con_registro`).
+Requiere calendario verificable de disponibilidad por entidad, servicio y
+fecha, además de separar los servicios del código ENCIG `05` antes de
+congelar un DiD. No se inventa un coeficiente sustituto para `RES-0087`.
 
 ## Alcance del argumento
 

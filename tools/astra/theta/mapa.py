@@ -177,7 +177,7 @@ def main() -> None:
                 row["amenaza_principal"] = "Intervención compuesta y desenlace conjunto: no identifica probabilidad condicional θ ni consultorio anexo"
                 row["falsador"] = "Balance basal del mismo evento y de IMSS; atrición por brazo; integridad de 50 pares"
                 row["viabilidad"] = "ASIGNACION-ALEATORIA; NO-ESTIMABLE-EN-REPLICA-PUBLICA-PARA-EFECTO-REDUCIDO; NO-THETA-DIRECTO"
-                row["proximo_paso"] = "Mesa: obtener tbl_seccion11_vis.dta basal y homóloga final, seguro individual y llaves; o aprobar nuevo estimando reducido antes de abrir desenlaces"
+                row["proximo_paso"] = "Obtener tabla de visitas basal y homóloga final, seguro individual y llaves; auditar 74 pares iniciales frente a 50 observados antes de estimar"
         elif key == "civico.denuncia.con_seguro":
             row["datos_id_ola_geografia_llave"] = "ENVIPE 2025; sin usar cruces reservados ASTRA-1 ni ENVIPE 2026"
             row["amenaza_principal"] = "Aseguramiento seleccionado por ingreso, vehículo, delito y zona"
