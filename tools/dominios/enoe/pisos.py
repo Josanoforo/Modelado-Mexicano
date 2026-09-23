@@ -19,7 +19,7 @@ VARIABLES = {
     "r_def", "c_res", "eda", "sex", "fac", "fac_tri", "est_d",
     "est_d_tri", "upm", "ent", "t_loc", "niv_ins", "clase1", "clase2",
     "emp_ppal", "tue_ppal", "sub_o", "busqueda", "pnea_est", "hrsocup",
-    "ingocup", "t_tra",
+    "ingocup", "t_tra", "tip_con", "remune2c",
 }
 
 # (conducta, denominador, numerador/valor, unidad). Los códigos vienen de
@@ -27,10 +27,12 @@ VARIABLES = {
 # humana declara la cobertura y los saltos. Un blanco no es una respuesta 0.
 CONDUCTAS = (
     ("empleo_informal", "ocupados_emp", "emp_ppal=1", "proporcion"),
-    ("sector_informal", "ocupados_tue", "tue_ppal=1", "proporcion"),
+    ("sector_informal", "ocupados", "tue_ppal=1", "proporcion"),
     ("subocupacion", "ocupados", "sub_o=1", "proporcion"),
     ("busca_otro_trabajo", "ocupados_busqueda", "busqueda=1", "proporcion"),
     ("pluriempleo", "ocupados_ttra", "t_tra=2", "proporcion"),
+    ("sin_contrato_escrito", "subordinados_contrato", "tip_con=5", "proporcion"),
+    ("jornada_mas_50_horas", "ocupados_horas", "hrsocup>50", "proporcion"),
     ("desocupacion", "pea", "clase2=2", "proporcion"),
     ("desaliento_desistio", "pnea", "pnea_est=1", "proporcion"),
     ("desaliento_sin_posibilidades", "pnea", "pnea_est=2", "proporcion"),
@@ -38,6 +40,16 @@ CONDUCTAS = (
     ("horas_ocupado", "ocupados_horas", "hrsocup", "horas_por_semana"),
     ("ingreso_ocupado_nominal", "ocupados_ingreso", "ingocup", "pesos_por_mes"),
 )
+
+COLUMNA_CONDUCTA = {
+    "empleo_informal": "emp_ppal", "sector_informal": "tue_ppal",
+    "subocupacion": "sub_o", "busca_otro_trabajo": "busqueda",
+    "pluriempleo": "t_tra", "desocupacion": "clase2",
+    "sin_contrato_escrito": "tip_con", "jornada_mas_50_horas": "hrsocup",
+    "desaliento_desistio": "pnea_est", "desaliento_sin_posibilidades": "pnea_est",
+    "no_participacion_obligaciones": "pnea_est", "horas_ocupado": "hrsocup",
+    "ingreso_ocupado_nominal": "ingocup",
+}
 
 
 def _col(frame, name):
@@ -140,17 +152,20 @@ def medir_ola(ruta, ola, era, replicas=200, semilla=42):
     clase1, clase2 = _numero(f, "clase1"), _numero(f, "clase2")
     emp, tue, ttra = _numero(f, "emp_ppal"), _numero(f, "tue_ppal"), _numero(f, "t_tra")
     bus = _numero(f, "busqueda")
+    pnea_est = _numero(f, "pnea_est")
+    tip_con = _numero(f, "tip_con")
+    remune2c = _numero(f, "remune2c")
     hrs, ing = _numero(f, "hrsocup"), _numero(f, "ingocup")
     denominadores = {
         "ocupados": base & clase2.eq(1),
         "ocupados_emp": base & clase2.eq(1) & emp.isin([1, 2]),
-        "ocupados_tue": base & clase2.eq(1) & tue.isin([1, 2]),
         "ocupados_busqueda": base & clase2.eq(1) & bus.isin([1, 2]),
         "ocupados_ttra": base & clase2.eq(1) & ttra.isin([1, 2]),
+        "subordinados_contrato": base & clase2.eq(1) & remune2c.isin([1, 2]) & tip_con.isin([1, 2, 3, 4, 5]),
         "ocupados_horas": base & clase2.eq(1) & hrs.between(1, 168),
         "ocupados_ingreso": base & clase2.eq(1) & ing.between(1, 999998),
         "pea": base & clase1.eq(1),
-        "pnea": base & clase1.eq(2),
+        "pnea": base & clase1.eq(2) & pnea_est.isin([1, 2, 3, 4, 5, 6]),
     }
     def flag(serie, codigo):
         return serie.eq(codigo).fillna(False).astype(float)
@@ -158,15 +173,23 @@ def medir_ola(ruta, ola, era, replicas=200, semilla=42):
     valores = {"emp_ppal=1": flag(emp, 1), "tue_ppal=1": flag(tue, 1),
                "sub_o=1": flag(_numero(f, "sub_o"), 1),
                "busqueda=1": flag(bus, 1), "t_tra=2": flag(ttra, 2),
+               "tip_con=5": flag(tip_con, 5), "hrsocup>50": hrs.gt(50).fillna(False).astype(float),
                "clase2=2": flag(clase2, 2),
-               "pnea_est=1": flag(_numero(f, "pnea_est"), 1),
-               "pnea_est=2": flag(_numero(f, "pnea_est"), 2),
-               "pnea_est=4": flag(_numero(f, "pnea_est"), 4),
+               "pnea_est=1": flag(pnea_est, 1),
+               "pnea_est=2": flag(pnea_est, 2),
+               "pnea_est=4": flag(pnea_est, 4),
                "hrsocup": hrs, "ingocup": ing}
     rng = np.random.default_rng(semilla)
     segmentos = _segmentos(f)
     filas = []
     for conducta, den, v, unidad in CONDUCTAS:
+        if COLUMNA_CONDUCTA[conducta] not in f:
+            filas.append({"ola": ola, "era": era, "conducta": conducta,
+                          "eje": "nacional", "segmento": "NAC", "unidad": unidad,
+                          "punto": None, "ic95_lo": None, "ic95_hi": None, "n": 0,
+                          "n_efectivo_kish": 0.0, "upm": 0,
+                          "calidad": "NO-ESTIMABLE-COLUMNA-AUSENTE"})
+            continue
         for eje, seg in segmentos.items():
             for categoria, punto, lo, hi, n, neff, psu, calidad in _estadistico(
                     f, denominadores[den], valores[v], seg, replicas, rng):

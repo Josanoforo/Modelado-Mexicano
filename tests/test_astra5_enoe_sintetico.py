@@ -15,7 +15,7 @@ class EnosSintetico(unittest.TestCase):
             campos = ["r_def", "c_res", "eda", "sex", "fac", "est_d", "upm",
                       "ent", "t_loc", "niv_ins", "clase1", "clase2", "emp_ppal",
                       "tue_ppal", "sub_o", "busqueda", "pnea_est", "hrsocup",
-                      "ingocup", "t_tra"]
+                      "ingocup", "t_tra", "tip_con", "remune2c"]
             import io
             buf = io.StringIO()
             w = csv.DictWriter(buf, fieldnames=campos)
@@ -34,7 +34,9 @@ class EnosSintetico(unittest.TestCase):
                             "pnea_est": "1" if not ocupado and i < 250 else ("4" if not ocupado else ""),
                             "hrsocup": "40" if ocupado else "",
                             "ingocup": "1000" if ocupado else "",
-                            "t_tra": "2" if ocupado and i < 10 else ("1" if ocupado else "")})
+                            "t_tra": "2" if ocupado and i < 10 else ("1" if ocupado else ""),
+                            "remune2c": "1" if ocupado else "",
+                            "tip_con": "5" if ocupado and i < 80 else ("1" if ocupado else "")})
             with zipfile.ZipFile(ruta, "w") as z:
                 z.writestr("SDEMT123.csv", buf.getvalue().encode("latin-1"))
             filas, base, leidas = medir_ola(ruta, "2019T1", "clasica", 60, 42)
@@ -44,6 +46,8 @@ class EnosSintetico(unittest.TestCase):
             self.assertAlmostEqual(por["sector_informal"]["punto"], .25)
             self.assertAlmostEqual(por["subocupacion"]["punto"], .2)
             self.assertAlmostEqual(por["desaliento_desistio"]["punto"], .25)
+            self.assertAlmostEqual(por["sin_contrato_escrito"]["punto"], .4)
+            self.assertAlmostEqual(por["jornada_mas_50_horas"]["punto"], 0)
             self.assertAlmostEqual(por["no_participacion_obligaciones"]["punto"], .75)
             self.assertEqual(por["horas_ocupado"]["punto"], 40)
             self.assertEqual(por["ingreso_ocupado_nominal"]["punto"], 1000)
