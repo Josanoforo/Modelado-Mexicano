@@ -56,7 +56,8 @@ def test_cortes_documentales_conservan_componentes_y_fuentes():
         assert len(rows) == 1
         row = rows[0]
         assert row["estado_verificacion"] == "CERRADA"
-        assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+        expected = "MEDIBLE-EN-CORPUS" if name == "corte-politica-v1_0.tsv" else "MEDIBLE-CON-ADQUISICIÓN"
+        assert row["dictamen"] == expected
         assert row["componente_contrastable"] and row["limite_inferencial"]
         assert "NO ABIERTO" in row["datos_id_estado"] or "no recalculado" in row["datos_id_estado"]
         assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
