@@ -22,7 +22,7 @@ El historial de esta sesión: solo documentos, marcador, marginales públicos, 2
 
 Diagnóstico histórico del lector: 2023 35,135 delitos, 18,106 Y=1, 604 estratos, 10,183 UPM, 0 huérfanos, escolaridad fuera 104, edad fuera 143, BP1_23 vacío entre no denunciados 148. 2024 37,614 delitos, 19,532 Y=1, 601 estratos, 10,096 UPM, 0 huérfanos, escolaridad fuera 149, edad fuera 200, BP1_23 vacío entre no denunciados 125. Ambos universos BP1_20 tienen cero filas fuera. Los vacíos se conservan como Y=0 dentro del universo, como especifica el estimando.
 
-El intervalo es **predictivo**, condicionado a los marginales 2025 como puntos públicos. Incluye muestreo histórico compartido, variación de hiperparámetros y deriva anual; no es IC de R. C-ENCOGIDA mantiene su λ de piloto 3; no se tocó. No se hizo validación contra 2025, cálculo de victoria ni IC de ΔMAE.
+El intervalo es **predictivo aproximado**, condicionado a los marginales 2025 como puntos públicos. Incluye muestreo histórico compartido, variación de hiperparámetros y deriva anual; no es IC de R. Esos sorteos no acreditan cobertura empírica del 95% ni calibración frente a la ola objetivo. Según la spec humana congelada del piloto 4 (`445531a31`, §2.1), C-ENCOGIDA conserva la **regla** del piloto 3 y deriva una λ propia por cruce con sus deltas históricos; no hereda el valor de λ del piloto 3. No se tocó ese candidato. No se hizo validación contra 2025, cálculo de victoria ni IC de ΔMAE.
 
 ## Emisiones
 
@@ -70,3 +70,5 @@ El intervalo es **predictivo**, condicionado a los marginales 2025 como puntos p
 ## Límites y pendiente
 
 Los 38 puntos tienen intervalo; ninguna celda fue excluida por no estimabilidad histórica. El hiperparámetro tau² de edad × escolaridad resultó cero por la regla congelada; en ese cruce el punto coincide con C2 y el intervalo conserva incertidumbre predictiva. Esto no se ajustó tras verlo. Se condicionó la incertidumbre de los marginales públicos 2025 y no se afirma cobertura de R. No se abrió R, no se adjudicó PROSPECTIVA y no se ejecutó `registro --escribe`. Falta que el PR se fusione antes de COMMIT-2; no se ha declarado EN-MAIN.
+
+`admisibilidad.tsv` ofrece el contrato por clave de eje y celda para los 38 RESULT. El cotejo favorable es documental frente a `445531a31` y no equivale a aceptación del candidato: caja debe confirmar las claves finales, el soporte `n₂₀₂₅`, la elegibilidad temporal y la inferencia de ΔMAE/B-bis antes de abrir R. No se generaron ni emparejaron sorteos ASTRA con réplicas del árbitro.
