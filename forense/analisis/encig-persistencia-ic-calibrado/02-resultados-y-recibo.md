@@ -44,4 +44,4 @@ El ancho evaluado tiene mediana **14.53 pp** y rango **12.11–17.37 pp**. El fi
 
 ## CONSUMIDO
 
-PR de esta rama: pendiente de crear tras commit y push del recibo.
+PR [#1041](https://github.com/Josanoforo/Modelado-Mexicano/pull/1041), rama `codex/astra3-encig-persistencia-1`. Mesa recibe el CALC sellado y la propuesta de diferir adopción; fusión y adopción quedan a su cargo.
