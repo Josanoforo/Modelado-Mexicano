@@ -103,6 +103,12 @@ El canal de vistas globales queda pendiente de publicación por su mecanismo
 vigente; rótulo de estos CALC: **sellada en disco, no registrada** hasta que
 el canal derive su vista. No se modifica catálogo U1 ni se adopta.
 
+**Pruebas:** cuatro pruebas sintéticas ENOE pasan. `python3 tests/check.py
+--baseline` terminó con código 0 y **LÍNEA BASE: VERDE, sin FAIL nuevos**;
+persisten tres FAIL heredados (T06 dos, T08 uno). T02 y T27, que marcaron
+tres FAIL propios en el primer pase, quedaron corregidos y pasan en el
+segundo. `git diff --check` limpio. No se congela una línea base nueva.
+
 ## Paquete de consumo y rigor
 
 Para catálogo/report Trabajo, Mérito/Movilidad y Juventud: consumir
@@ -125,5 +131,5 @@ Acto preparado y ejecutado en la rama indicada; no fusionado. Productos
 revisables: specs congeladas, dos CALC sellados y reproducidos, dos TSV de
 consumo, reservas y límites exactos, FP por instrumento, fragmento L0 y
 registro de rótulo. Mesa decide merge/adopción; la reserva 2026T1 sigue
-vigente después del merge. `python3 tests/check.py --baseline` y PR se
-consignan en el cierre de la rama.
+vigente después del merge. El identificador de PR se publica en el recibo
+de entrega de la rama, después del push.
