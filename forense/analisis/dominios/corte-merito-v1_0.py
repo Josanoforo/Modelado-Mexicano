@@ -61,11 +61,33 @@ ENCIG = dict(
     prioridad="2",
 )
 
+CPI = dict(
+    report=REPORT,
+    report_sha256=REPORT_SHA,
+    localizador="L26; repetición L5,L48-L49",
+    tier_report="sin rótulo explícito",
+    clase="índice compuesto publicado",
+    limite_inferencial="El IPC agrega percepciones de expertos y empresarios sobre corrupción del sector público. No mide experiencia de víctimas ENCIG, corrupción comprobada ni causalidad de mérito, y el rango depende de los países incluidos.",
+    conducta_unidad_universo="México como país, comparado con 182 países y territorios; no muestra individual de mexicanos.",
+    instrumento_ola="Transparency International, Índice de Percepción de la Corrupción 2025, publicado 10-feb-2026",
+    documento_id_hash_pagina="SIN-ID:transparency_cpi2025_mexico.html|988f7f990613934e5344a1468544cfa6f8af21ffe2d1a16aca66ac6864434977|ficha México, captura física 23-sep-2026; sin registro en main;https://www.transparency.org/en/countries/mexico; metodología https://www.transparency.org/en/news/how-cpi-scores-are-calculated",
+    pregunta_textual_codigo_respuestas="No hay reactivo único de ciudadano. IPC: combinación estandarizada de al menos tres fuentes entre trece encuestas/evaluaciones de expertos y empresarios; escala 0 alta corrupción percibida a 100 muy baja.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Ficha primaria México cotejada y captura física con SHA; falta id documental en main. La página es mutable; año 2025 verificado en serie de la ficha. No hay RESULT propio de U0 ni microdato abierto.",
+    datos_id_estado="Fuente agregada TI en web; tabla completa no descargada ni registrada; sin microdato U0.",
+    reserva="TI permite usar resultados IPC con atribución bajo CC BY-ND 4.0, sin alterar el contenido; conservar enlace y año. Captura local no redistribuida.",
+    gen2_existente="Sin RESULT propio; 27/100 y rango 141/182 publicados directamente por TI para México 2025.",
+    propietario="ASTRA5-MESA-DOCUMENTAL / ASTRA5-U3",
+    prioridad="2",
+)
+
 ROWS = [
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-004", texto_vigente="El Gini del ingreso corriente por hogar con transferencias fue 0.391 en ENIGH 2024.", componente_contrastable="Gini publicado con transferencias recibidas incluidas: 0.391; 0.402 en 2022 y 0.449 en 2016 se conservan como comparadores, sin dictamen de serie.", siguiente_operacion="Registrar publicación en main, reproducir fórmula del Gini en CAJA y tratar la serie 2016/2022 con su propio contrato de comparabilidad."),
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-005", texto_vigente="Sin considerar transferencias, el Gini contable ENIGH 2024 habría sido 0.450.", componente_contrastable="Gini simulado sin transferencias recibidas: 0.450 frente a 0.391 con ellas, misma fuente y año.", siguiente_operacion="Registrar publicación en main y verificar qué rubros se restan en la simulación; no atribuir 0.059 a un programa o salario mínimo causalmente."),
     ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-006", texto_vigente="En ENCIG 2025, 84.1% de la población consideró frecuentes los actos de corrupción.", componente_contrastable="P3_2=1 Muy frecuentes o 2 Frecuentes; proporción publicada 84.1% del dominio urbano alto 18+.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";SIN-ID:encig2025_boletin.pdf|6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4|p.3; registro pendiente", pregunta_textual_codigo_respuestas="P3.2: 'Por lo que usted sabe, en (ESTADO) estas prácticas son:' P3_2 1 Muy frecuentes, 2 Frecuentes, 3 Poco frecuentes, 4 Nunca se dan, 9 No sabe/no responde. FAC_P18; verificar tratamiento publicado de 9.", siguiente_operacion="U3 coteja P3_2=1/2 con FAC_P18 y diseño; no confundir percepción con victimización 15.6% ni generalizar fuera de ciudades 100 mil+."),
     ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-007", texto_vigente="La confianza en gobierno federal fue 46.5% en ENCIG 2025; el report la compara con 59.1% en 2023.", componente_contrastable="P11_1_04=1 Mucha o 2 Algo de confianza en Presidencia de la República y Secretarías de Estado; presentación 2025 p.50 publica 46.5%.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";SIN-ID:encig2025_principales_resultados.pdf|476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548|p.50; registro pendiente", pregunta_textual_codigo_respuestas="P11.1 item 04 'Presidencia de la República y Secretarías de Estado': P11_1_04 1 Mucha confianza, 2 Algo, 3 Algo de desconfianza, 4 Mucha desconfianza, 5 No aplica, 9 No sabe/no responde. FAC_P18; cotejar denominador publicado.", siguiente_operacion="U3 reproduce 46.5% con P11_1_04 y diseño; localizar/registrar presentación ENCIG 2023 y verificar mismo reactivo/universo antes de contratar 59.1% o caída de 12.6 puntos."),
+    CPI | dict(id_afirmacion="ASTRA5-U0-MER-008", texto_vigente="México obtuvo 27/100 y rango 141/182 en el IPC 2025.", componente_contrastable="Ficha primaria TI México: puntuación 27/100, cambio +1 respecto de 2024 y posición 141/182 en 2025.", siguiente_operacion="MESA-DOCUMENTAL registra referencia, licencia y SHA de captura sin modificar manifiesto desde U0; U3 conserva 27/100 separado de ENCIG 84.1%, 15.6% y de la tesis causal de palancas."),
 ]
 
 
