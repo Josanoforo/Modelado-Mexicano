@@ -16,6 +16,7 @@ El catálogo público de momentos está **en construcción, sin fecha anunciada*
 | Catálogo de estimandos y segmentos | Pendiente de fusión a `main` |
 | Eje regional v1.0 | [Disponible](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/eje-regional-v1_0.md): propuesta retrospectiva sin adopción; ENIF usa seis regiones oficiales y ENCIG/ENVIPE entidades de residencia; cobertura parcial de conductas y olas |
 | Trabajo ENOE | [Pisos y persistencia descriptiva disponibles](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-23-ASTRA5-U1-TRABAJO-ENOE-cierre.md): CALC sellados, retrospectivos, sin adopción ni IC predictivo calibrado |
+| Tecnología ENDUTIH y MOCIBA | [Pisos disponibles](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/analisis/dominios/tecnologia/cierre-comun.md): ENDUTIH 2023–2025 y MOCIBA 2015–2017, retrospectivos, sin adopción ni IC predictivo calibrado; universos distintos |
 
 Una propuesta con CALC sellados aún puede tener adopción pendiente. La tabla de
 cobertura se actualizará desde `main` cuando esas piezas se fusionen.
