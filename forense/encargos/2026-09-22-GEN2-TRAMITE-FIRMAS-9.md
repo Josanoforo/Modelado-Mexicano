@@ -45,3 +45,11 @@ Archivos que OTRO ACTO EN VUELO está tocando: piloto 4 (caja) hace append en `f
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no firma, no relanza AUTOMERGE-1, no toca el piloto 4 ni a Astra. Sucesores: `GEN2-TUBERIA-RUTINAS-AUTOMERGE-1` relanzado cuando mesa firme la FP de P3; `GEN2-MARCADOR-CONSUMO-Y-ADOPCION-3` si P2 cae en (ii) grande; `GEN2-CELDA-D-PILOTO-5-ENCOGIDA-ENCIG-1` lee el marcador ya consistente. Auditoría de rigor extremo: no carga (papeleo). Cierre por /acto: `## NO-CORRIDO / RESERVAS` y `## CONSUMIDO` al pie; adendas como `<este-encargo>-ADENDA-N.md`.
+
+## NO-CORRIDO / RESERVAS
+
+- Ninguno.
+
+## CONSUMIDO
+
+Ejecutado por PR [#1032](https://github.com/Josanoforo/Modelado-Mexicano/pull/1032), ACTO GEN2-TRAMITE-FIRMAS-9, 23/sep/2026.
