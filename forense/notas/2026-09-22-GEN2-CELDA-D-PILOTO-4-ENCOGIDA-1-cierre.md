@@ -68,10 +68,14 @@ validador de celdas-D: 3/3. Cuatro celdas-D nuevas registran los cruces
 y su `champion_actual: NINGUNO`. La vista del marcador se consultó en
 modo lectura; no adopta ni levanta reserva automáticamente.
 
-`corrida0 registro --escribe --lote` **paró sin escribir** por
-`REPLAY-PISADO` (NC-0094): habría cambiado 26 campos de replay de 13
-corridas ajenas al lote. Los dos asientos propios sí quedaron en
-`forense/replay-evidencia.tsv`; las vistas derivadas `corridas.tsv` y
-`resultados.tsv` quedan pendientes de una proyección que incluya y
-justifique esas 13 transiciones. No se editan manualmente ni se fuerza
-el registro para cerrar este piloto.
+La primera ejecución de `corrida0 registro --escribe --lote` **paró sin
+escribir** por `REPLAY-PISADO` (NC-0094): habría cambiado 26 campos de
+replay de 13 corridas ajenas. Tras integrar `origin/main`, su nueva
+función `_acota_vistas_al_lote` conserva byte a byte las filas ajenas
+ya publicadas. El mismo comando escribió las vistas con los dos CALC
+propios (`1 130 + 685` RESULT, replay `REPRODUCE/IDENTICO`). Se comprobó
+que **0 filas de corridas o resultados previamente publicadas cambiaron**.
+La proyección añadió también 25 885 RESULT nuevos de otros CALC que
+ya estaban sellados en el árbol, por diseño del generador; cinco filas
+`SPEC-FIJADA` ajenas pasaron a corridas efectivas. No se alteró ningún
+RESULT ni sello científico ajeno.
