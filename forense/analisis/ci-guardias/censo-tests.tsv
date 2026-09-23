@@ -16,6 +16,10 @@ tests/test_arnes_sesion.py	script	NO	(ninguna)	NO	1.4	CORRE-EN-CI	exit 0 sin cor
 tests/test_astra3_encig_ic_calibrado.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_astra3_encig_ic_calibrado (invocacion de script fallaba)
 tests/test_astra3_enif_oferta.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_astra3_formalidad_error.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_enoe_persistencia.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_astra5_enoe_persistencia; 1 prueba real
+tests/test_astra5_enoe_sintetico.py	modulo	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	CI Python 3.12 sin numpy/pandas; import transitivo de tools.dominios.enoe.pisos; pasa en CAJA
+tests/test_astra5_enoe_v1_1.py	modulo	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	CI Python 3.12 sin numpy/pandas; import transitivo de tools.dominios.enoe.pisos; pasa en CAJA
+tests/test_astra5_enoe_v1_2.py	modulo	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	CI Python 3.12 sin numpy/pandas; import transitivo de tools.dominios.enoe.pisos; pasa en CAJA
 tests/test_baseline_temporal.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_c2_compuesto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_c2_ic_enif2024_guardia.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
