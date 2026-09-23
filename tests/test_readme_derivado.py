@@ -47,13 +47,13 @@ class ReadmeDerivado(unittest.TestCase):
         }
         for cantidad, (frase, ruta) in fuentes.items():
             # Sólo estas fuentes conocidas: jamás evalúa comandos tomados del Markdown.
-            salida = subprocess.check_output(["rg", "-F", frase, ruta], cwd=ROOT, text=True)
-            self.assertIn(frase, salida)
+            fuente = (ROOT / ruta).read_text(encoding="utf-8")
+            self.assertIn(frase, fuente)
             impreso = f"{cantidad} celdas puntuadas" if cantidad == 44 else f"{cantidad} celdas"
             self.assertIn(f"{impreso} <!-- deriva: rg -F '{frase}' {ruta} -->", README)
         frase = "12 celdas puntuadas por par"
         ruta = "forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md"
-        self.assertIn(frase, subprocess.check_output(["rg", "-F", frase, ruta], cwd=ROOT, text=True))
+        self.assertIn(frase, (ROOT / ruta).read_text(encoding="utf-8"))
         self.assertIn(f"12 por cruce <!-- deriva: rg -F '{frase}' {ruta} -->", README)
 
 
