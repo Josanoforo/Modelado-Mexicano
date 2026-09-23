@@ -1,0 +1,29 @@
+{
+  "alternativa_requerida": true,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "Reactivar cuando mesa resuelva NC-0237 o se asigne el acto consumidor MEDICION-DEMANDA/F6; proponer retirar esta fila de LISTA_SONDA.",
+  "estado": "barrera",
+  "evidencias": [
+    "forense/notas/2026-09-23-GEN2-38-investigacion-adq.md",
+    "forense/notas/2026-09-22-GEN2-PENDIENTES-CAJA-1-verificacion.tsv"
+  ],
+  "frontera_no_examinada": "Ninguna ruta pública adicional puede ejecutar el consumo ni resolver la equivalencia MOCIBA; falta decisión/acto interno.",
+  "necesidad_id": "NC-0246",
+  "proxima_revision": "evento: resolución de NC-0237 o asignación del acto consumidor F6",
+  "suficiencia": {
+    "conceptual": "PARCIAL",
+    "diseno": "PARCIAL",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "PARCIAL",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "PARCIAL",
+    "temporalidad": "ACREDITADA",
+    "unidad": "PARCIAL",
+    "uso_habilitado": "APTA_ALCANCE_MENOR"
+  },
+  "ultima_exploracion": "2026-09-23",
+  "version_pregunta": "AUTO-NC-v1-90c5468401ca"
+}
