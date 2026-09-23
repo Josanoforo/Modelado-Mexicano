@@ -50,3 +50,7 @@ No cambia la cascada ni CI; no firma por mesa. Sucesores: `GEN2-TUBERIA-SELLO-EX
   **sucesor**: `GEN2-TUBERIA-SELLO-EXTERNO-2` (correr `ots upgrade`/reintentar desde un entorno con egress cuando exista, o cuando mesa firme el tag GPG).
 
 Fila registrada: `NC-260923-GEN2-TUBERIA-SELLO-EXTERNO-1-cfce-01` en `forense/no-corrido.tsv`.
+
+## CONSUMIDO
+
+Ejecutado por PR #1069 (`acto/gen2-tuberia-sello-externo-1`).
