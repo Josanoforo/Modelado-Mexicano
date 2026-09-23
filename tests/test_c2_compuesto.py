@@ -142,12 +142,18 @@ class DictamenDeEmisibilidad(unittest.TestCase):
     def setUpClass(cls):
         cls.d = C2.dictamen()
 
-    def test_examina_los_22_pares_reservados(self):
+    def test_examina_los_19_pares_reservados(self):
+        # 22 -> 19 (ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026): las tres
+        # celdas-D de GOB.gobierno_digital.encig2025.* (edad_x_escolaridad,
+        # edad_x_sexo, escolaridad_x_sexo) se adoptaron por firma
+        # (decisiones.tsv: adopcion:piso-C2-20-celdas) y dejaron de estar
+        # RESERVADA en el marcador re-derivado; no queda ninguna reservada
+        # de ENCIG en el TSV.
         pares = {f["celda_id_marcador"] for f in self.d}
-        self.assertEqual(len(pares), 22,
-                         "A.13: el dictamen debe cubrir los 22 `RESERVADA` "
+        self.assertEqual(len(pares), 19,
+                         "A.13: el dictamen debe cubrir los 19 `RESERVADA` "
                          "del marcador, ni uno menos")
-        self.assertEqual(len(C2.pares_reservados()), 22)
+        self.assertEqual(len(C2.pares_reservados()), 19)
 
     def test_ningun_veredicto_queda_sin_causa(self):
         for f in self.d:
@@ -201,7 +207,14 @@ class DictamenDeEmisibilidad(unittest.TestCase):
         """
         encig = [f for f in self.d if "encig" in f["regla"]]
         envipe = [f for f in self.d if "envipe" in f["regla"]]
-        self.assertTrue(encig and envipe)
+        # ACTO GEN2-CONTADORES-CONSUMO-2 (23/sep/2026): las tres celdas-D de
+        # GOB.gobierno_digital.encig2025.* eran el único caso ENCIG de este
+        # dictamen; al adoptarse por firma salen de RESERVADA y `encig`
+        # queda vacío aquí (no es que el caso se borre: si un ENCIG vuelve a
+        # aparecer entre los RESERVADA, este bloque sigue vigilando su
+        # unidad; hoy no hay ninguno que vigilar). ENVIPE sigue presente y
+        # se exige como antes.
+        self.assertTrue(envipe, "ENVIPE debe seguir presente en RESERVADAS")
         for f in encig:
             self.assertIn("TRÁMITE", f["unidad_dato_arbitro"])
         for f in envipe:
@@ -247,7 +260,9 @@ class EmitirNoConsumeNiAdopta(unittest.TestCase):
 
     def test_los_cruces_siguen_RESERVADA_en_el_marcador(self):
         """Emitir no consume: el marcador no se toca en P1/P2."""
-        self.assertEqual(len(C2.pares_reservados()), 22)
+        # 22 -> 19, mismo motivo que test_examina_los_19_pares_reservados
+        # (ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026).
+        self.assertEqual(len(C2.pares_reservados()), 19)
 
     def test_ninguna_emision_trae_R_del_cruce(self):
         """Este acto no deriva ni mira `R` de ningún cruce (spec §8)."""
@@ -296,8 +311,13 @@ class GuardiaD14(unittest.TestCase):
 
     def test_hay_algo_que_guardar(self):
         """A.13: una guardia sobre cero celdas no prueba nada."""
-        self.assertEqual(len(self.emitidas), 206)
-        self.assertEqual(len(self.adoptadas), 20)
+        # 206/20 -> 174/52 (ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026): las
+        # 32 celdas de GOB.gobierno_digital.encig2025.* (16 edad_x_escolaridad
+        # + 8 edad_x_sexo + 8 escolaridad_x_sexo) pasan de EMITIDA-SIN-EVALUAR
+        # a ADOPTADO-POR-FIRMA al re-derivar el marcador tras la adopción por
+        # firma de 17/sep/2026 (adopcion:piso-C2-20-celdas).
+        self.assertEqual(len(self.emitidas), 174)
+        self.assertEqual(len(self.adoptadas), 52)
 
     def test_ninguna_emitida_sale_por_la_via_por_defecto(self):
         fugas = [cid for cid in self.emitidas
@@ -381,15 +401,17 @@ class GuardiaD14(unittest.TestCase):
 
     def test_emitir_no_consume_la_reserva(self):
         """Las dos cosas a la vez, en columnas distintas."""
+        # 16/22 -> 13/19, mismo motivo que test_examina_los_19_pares_reservados
+        # (ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026).
         filas = _filas_marcador()
         emitidos = [f for f in filas if f.get("emision") == "EMITIDA-SIN-EVALUAR"]
-        self.assertEqual(len(emitidos), 16,
-                         "16 de los 22 pares RESERVADA son emitibles")
+        self.assertEqual(len(emitidos), 13,
+                         "13 de los 19 pares RESERVADA son emitibles")
         for f in emitidos:
             self.assertEqual(f["estado"], "RESERVADA", f["celda_id"])
         self.assertEqual(
-            sum(1 for f in filas if f["estado"] == "RESERVADA"), 22,
-            "emitir no consume: los 22 cruces siguen RESERVADA")
+            sum(1 for f in filas if f["estado"] == "RESERVADA"), 19,
+            "emitir no consume: los 19 cruces siguen RESERVADA")
 
 
 def _yaml_estimadores() -> dict:
