@@ -37,3 +37,14 @@ Propio: la enmienda (archivo nuevo) · `data/corrida0/CALC-DIN-LOTE-ENIF2024-ADJ
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No cambia el veredicto primario, no adopta. Sucesor: adopción del estrato T por firma si algún par tiene ganador. Auditoría: la spec del lote ya la trae; la nota la contesta para el estrato T (universo restringido: quien trabaja — sesgo de clase declarado). Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué:** `registro --escribe --lote` publicar la fila de `CALC-DIN-LOTE-ENIF2024-ADJUDICACION-T-0001` en `data/corrida0/corridas.tsv`/`resultados.tsv` (vista).
+  **Por qué:** `DIFERIDO-A:TUBERIA`. `registro --escribe --lote` sí publicó la fila dentro del worktree del acto (medido: `resultado_replay=REPRODUCE`, sin pisadas ajenas nuevas fuera de las ya diagnosticadas), pero `corridas.tsv`/`resultados.tsv` son `# DERIVADO — NO EDITAR` desde la firma P4 de `GEN2-TUBERIA-EFICIENCIA-1` (21/sep): ningún PR puede tocarlos (`tools/derivados_protegidos.py --toca`, bloqueante en el job `enrutamiento-pr`) y el job de push a `main` no corre `registro` (exige `--lote`, juicio de mesa). Se revirtieron a la versión de `origin/main` antes de empujar. El asiento de E.7 que sí viaja en el PR es `forense/replay-evidencia.tsv` (no es derivado): `resultado_replay=REPRODUCE`, `contexto_replay=IDENTICO`, ya asentado.
+  **Impacto:** `N_corridas_selladas` no sube en la vista publicada por este PR; `corrida0 status` sí la cuenta (proyección en memoria). CONTADOR: la corrida queda «sellada en disco, no registrada».
+  **Sucesor:** `NC-260922-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1-65c3-01` — mesa corre `registro --verifica --escribe --lote CALC-DIN-LOTE-ENIF2024-ADJUDICACION-T-0001` sobre `main`, o el job de TUBERÍA cuando corra `--lote` derivado del diff de `replay-evidencia.tsv`.
+
+## CONSUMIDO
+
+Ejecutado por PR [#1026](https://github.com/Josanoforo/Modelado-Mexicano/pull/1026), ACTO GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1, 22/sep/2026. `FP-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01`: pasa de `PENDIENTE` a `EJECUTADA` por este acto (opción A consumida). `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-02` (desenlace secundario `informal_cualquiera`) sigue fuera, sin tocar. Este append lo hace `GEN2-TRAMITE-FIRMAS-9` (P1) — el acto original (#1026) se fusionó sin dejar estas dos secciones en el encargo archivado.
