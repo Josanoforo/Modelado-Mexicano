@@ -127,9 +127,11 @@ incertidumbre transversal por ola; no autoriza contrastes temporales.
 
 ## Recibo Codex → Claude
 
-Acto preparado y ejecutado en la rama indicada; no fusionado. Productos
+Acto preparado y ejecutado en la rama indicada; PR **#1087**, abierta y
+fusionable al cierre, sin fusionar. Productos
 revisables: specs congeladas, dos CALC sellados y reproducidos, dos TSV de
 consumo, reservas y límites exactos, FP por instrumento, fragmento L0 y
 registro de rótulo. Mesa decide merge/adopción; la reserva 2026T1 sigue
-vigente después del merge. El identificador de PR se publica en el recibo
-de entrega de la rama, después del push.
+vigente después del merge. La rama integró `origin/main` mediante merge,
+sin reescribir los commits de COMMIT-1/COMMIT-2; la línea base volvió a
+dar VERDE después de la integración.

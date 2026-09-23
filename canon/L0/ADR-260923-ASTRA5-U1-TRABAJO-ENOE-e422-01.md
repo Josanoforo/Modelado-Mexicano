@@ -5,6 +5,7 @@
 **Raíz D-24:** `e422`, commit del encargo archivado. **Compuerta:**
 ninguna de merge; el encargo autoriza push y PR, pero mesa fusiona y decide
 adopción. Base al abrir `origin/main=8e41f72fa8b00a20e83f28c92f6b2964e66b0081`.
+PR de revisión **#1087**, fusionable; sin merge ni adopción por este acto.
 
 Se reciben tres afirmaciones U0 de `8f7e8de0` y se registra el diseño ENOE
 N. Se congeló la matriz de 13 conductas por 43 olas elegibles y la spec de
