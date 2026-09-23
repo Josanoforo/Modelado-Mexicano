@@ -17,26 +17,6 @@ Que las celdas de ENVIPE 2026 que siguen RESERVADAS —`civico.denuncia.con_segu
 - `[SUPUESTO]` Los reactivos de `denuncia.con_seguro` y de las series no cambiaron de texto en el FD 2026. Verificación **por texto** en COMMIT-1 (el FD 2026 sí se puede abrir: no es microdato); celda con texto distinto → `NO-CONSTRUIBLE`, declarada.
 - ADJUNTOS: ninguno.
 
-**Apéndice A.8 (T-YAMEDIDO, mecánico, añadido al archivar — no es texto de dirección):** `python3 tools/ya_medido.py civico.denuncia.con_seguro`
-```
-=== ya_medido: civico.denuncia.con_seguro ===
-  resuelto por canon: civico.denuncia.con_seguro -> R7.2 (canon/modelo-decision-v4_0.md §3, registro congelado + tag **id:**)
-  términos de búsqueda (match exacto): civico.denuncia.con_seguro, R7.2
-
--- milpa/tramite.yaml --
-  milpa/tramite.yaml:987  situacion=sufre_delito_asegurable tier=FUERTE p=0.790900  [TASA-EJECUTADA]
-      id: civico.denuncia.con_seguro
-
--- milpa/tramite-ola5-propuesta-v0.yaml --
-  (sin apariciones)
-
--- data/corrida0 (RESULT + ejecución + sello) --
-  (sin apariciones)
-
-MEDIDA-EN: tramite.yaml
-```
-No contradice §3: `civico.denuncia.con_seguro` nacional (P3_13 base) ya tiene tasa ejecutada en `tramite.yaml`; lo que este encargo busca adjudicar es la celda **marginal por eje** (`civico.denuncia.con_seguro_ejes_envipe2025`, sexo/edad/cobertura_seguro) y los nacionales de `CALC-ENVIPE-SERIE-*`, que siguen sin RESULT en `data/corrida0` (confirmado arriba: sin apariciones) — la premisa de RESERVADA del encargo se sostiene.
-
 ## 4 · YA HECHO / YA DECIDIDO
 `ls -d data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES*` → 0; `grep -c "MARGINALES-2" forense/encargos/*` → 0. Ramas vivas: ninguna al redactar; **no correr a la vez que E14** (derivados).
 
@@ -60,5 +40,20 @@ Propio: `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` (+ sideca
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No adopta, no toca cruces (no hay marginales de cruce aquí), no abre lo que no emite. Sucesor: el marcador consume las coberturas PROSPECTIVA; MARGINALES-ADOPCION-3 (ENVIPE 2026) por firma. Auditoría: la spec la trae; la nota la contesta sobre el resultado. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+Verificación de premisas (v2.16 §2) encontró un universo real mucho más chico que el que este encargo suponía — detalle completo en `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` §0 y en `forense/notas/2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md`. Lo que no se corrió, con fila NC:
+
+- **qué** — `civico.denuncia.con_seguro` nacional (adjudicación PROSPECTIVA pedida en §1). **por qué** — `PARO-PREMISA`: el retador es `NO-CONSTRUIBLE` (`CALC-PISOS-ENVIPE2024-EJES-0002` nunca computó el total nacional de esta regla; con un solo punto sellado, 2025, `TENDENCIA-SERIE` exige ≥2 olas). **impacto** — `celdas_validadas` no sube por esta celda. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01`.
+- **qué** — `civico.denuncia.con_seguro × sexo` (§1). **por qué** — `PARO-PREMISA`: ningún `RESULT` sellado con eje sexo existe para `con_seguro` en el árbol; la celda misma no está construida, no sólo el retador. **impacto** — `celdas_validadas` no sube. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02`.
+- **qué** — `civico.denuncia.con_seguro × edad` (§1). **por qué** — `PARO-PREMISA`, mismo motivo que arriba, eje edad. **impacto** — `celdas_validadas` no sube. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03`.
+- **qué** — consumo del marcador/celda-D de las dos coberturas `PROSPECTIVA` emitidas (asegurado `NO-VENCE`, no_asegurado `C-PISO-ADOPTADO`). **por qué** — `FUERA-DE-PERÍMETRO`: §9 declara el marcador ajeno («su dueño consume»); §10 nombra el sucesor verbatim. **impacto** — el marcador no refleja aún estas 2 celdas. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-04` (`DIFERIDO-A:MARGINALES-ADOPCION-3`).
+
+Lo demás («las demás reglas ENVIPE con serie sellada» resuelve a 0; `civico.denuncia.con_seguro × cobertura_seguro`, sexo=cobertura_seguro asegurado y no_asegurado) **sí se corrió**: tres commits, `verify REPRODUCE` en los dos CALC, veredicto por celda.
+
+## CONSUMIDO
+
+Ejecutado por `PR #1021` (rama `acto/gen2-duelo-envipe2026-marginales-2`, ADR raíz `ADR-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01`). Tres commits en orden, probados desde el historial (`tests/test_duelo_envipe2026_marginales_historial.py`): COMMIT-1 (spec + EMISIONES-0001 congelados) → COMMIT-2 (EMISIONES-0001 corrido, sellado, `verify REPRODUCE`/`IDENTICO`) → COMMIT-3a (ADJUDICACION-0001 congelado con el sha de EMISIONES) → COMMIT-3 (ADJUDICACION-0001 corrido, única lectura de la reserva restante de ENVIPE 2026, autorizada por `FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01` FIRMADA, `verify REPRODUCE`/`IDENTICO`). Resultado: `civico.denuncia.con_seguro×asegurado` → `NO-VENCE`; `×no_asegurado` → `C-PISO-ADOPTADO`; ningún IC despeja el umbral de 0.5pp. Universo real (2 de las ~9 celdas propuestas) verificado contra el árbol y declarado en `## NO-CORRIDO / RESERVAS` arriba, con NC propias. Detalle: `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` y `forense/notas/2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md`. **Mesa fusiona; este acto no se autofusiona.**
 
 
