@@ -1,0 +1,128 @@
+{
+ "corrida_id": "CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001--b6b3a7a38371",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo GEN2-DUELO-ENVIPE2026-MARGINALES-2, CABECERA (22/sep/2026): «CONTADOR: +2 corridas selladas (emisiones, adjudicación), cuenta_gen2 = SI, no adopta; celdas_validadas sube por cada celda con veredicto PROSPECTIVA (derivado)». El merge de mesa la perfecciona.",
+  "dependencia_congelada": "tools/duelo/tendencia_serie.py sha256 7de0a988861bda7fb4be79129270350f25a1919607b116f6c7f2c2f3dd41c38f -- el medidor verifica este hash en tiempo de ejecución y PARA si no coincide (E.5: el sello cubre el código que mide, la dependencia se congela junto con él, no como shim sin pin).",
+  "exposicion_historica": "DERIVADO-DE-SELLADOS -- ningún microdato de ENVIPE 2026 se abre en este CALC",
+  "generacion": "GEN2",
+  "procedimiento_congelado_en": "COMMIT-1 (0-bis b05c9f4b; este spec.yaml y medidor.py se congelan en el mismo commit)",
+  "rotulo": "PROSPECTIVA",
+  "tipo": "DUELO-PROSPECTIVO-EMISIONES-CIEGAS"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T00:11:11Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b6b3a7a3837115be9049d202868ef894b8c004a5",
+  "git_rama": "acto/gen2-duelo-envipe2026-marginales-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b6b3a7a3837115be9049d202868ef894b8c004a5",
+ "input_ids": [
+  "CALC-ARBITRO-MARGINALES-ENVIPE2025-0001",
+  "CALC-PISOS-ENVIPE2024-EJES-0002"
+ ],
+ "input_sha256": {
+  "CALC-ARBITRO-MARGINALES-ENVIPE2025-0001": "732567d2c201f029c1e979c6f45f0b641081eb2d220da4f36cf9b580e5960694",
+  "CALC-PISOS-ENVIPE2024-EJES-0002": "a898a3cccfb3b63cc2055cc3c12f8edf4863a9f116466f74d5235a0d8c5e217f"
+ },
+ "parametros": {
+  "anio_objetivo": 2026,
+  "anio_piso_t1": 2025,
+  "anio_piso_t2": 2024,
+  "celdas": [
+   "ASEGURADO",
+   "NO-ASEGURADO"
+  ]
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-DUELO-MARGINALES-ASEGURADO-PISO-IC-HI",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-PISO-IC-LO",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-PISO-N",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-PISO-P",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-CONSTRUIBLE",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-IC-HI",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-IC-LO",
+  "RESULT-DUELO-MARGINALES-ASEGURADO-RETADOR-P",
+  "RESULT-DUELO-MARGINALES-DEMAS-REGLAS-ENVIPE-SERIE-MOTIVO",
+  "RESULT-DUELO-MARGINALES-DEMAS-REGLAS-ENVIPE-SERIE-N",
+  "RESULT-DUELO-MARGINALES-EDAD-CONSTRUIBLE",
+  "RESULT-DUELO-MARGINALES-EDAD-MOTIVO",
+  "RESULT-DUELO-MARGINALES-NACIONAL-MOTIVO",
+  "RESULT-DUELO-MARGINALES-NACIONAL-RETADOR-CONSTRUIBLE",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-IC-HI",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-IC-LO",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-N",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-PISO-P",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-CONSTRUIBLE",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-IC-HI",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-IC-LO",
+  "RESULT-DUELO-MARGINALES-NO-ASEGURADO-RETADOR-P",
+  "RESULT-DUELO-MARGINALES-SEXO-CONSTRUIBLE",
+  "RESULT-DUELO-MARGINALES-SEXO-MOTIVO"
+ ],
+ "script_blob_sha256": "8f961450a0e7b5d60fd7d2856a1f54b3c2938074086f1747cdeedde721d7206a",
+ "script_path": "data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "motivo": "determinista: aritmética entre sellados, sin bootstrap en esta etapa (spec-v1_0.md §2 -- el IC del retador es delta-method, igual que encig_origen_movil.py)"
+ },
+ "spec_id": "CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "e87d3d32419f2aa176b4fcf801498d70464ddd9f8f85ddfd538717bb14af4788",
+ "spec_yaml_sha256": "1284a555537cd1b7b405c75ece505f6eceb244a83ea543135b5b78f11e4fb2d9",
+ "tolerancia": {
+  "abs": 1e-09,
+  "razon": "aritmética determinista sobre sellados, sin bootstrap; misma tolerancia de forma que CALC-ENCIG-ORIGEN-MOVIL-0001.",
+  "tipo": "flotante"
+ }
+}

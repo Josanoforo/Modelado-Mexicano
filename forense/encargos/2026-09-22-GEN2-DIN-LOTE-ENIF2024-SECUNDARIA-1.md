@@ -37,5 +37,3 @@ Propio: la enmienda (archivo nuevo) · `data/corrida0/CALC-DIN-LOTE-ENIF2024-ADJ
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No cambia el veredicto primario, no adopta. Sucesor: adopción del estrato T por firma si algún par tiene ganador. Auditoría: la spec del lote ya la trae; la nota la contesta para el estrato T (universo restringido: quien trabaja — sesgo de clase declarado). Cierre por /acto.
-
-

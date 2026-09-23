@@ -13,6 +13,7 @@ tests/test_agrega_l_v1_0.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin co
 tests/test_ahorro_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_arbitro_marginales.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_arnes_sesion.py	script	NO	(ninguna)	NO	1.3	CORRE-EN-CI	exit 0 sin corpus
+tests/test_arnes_sesion.py	script	NO	(ninguna)	NO	1.5	CORRE-EN-CI	exit 0 sin corpus
 tests/test_baseline_temporal.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_c2_compuesto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_c2_ic_enif2024_guardia.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
@@ -48,6 +49,13 @@ tests/test_derivados_protegidos.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cablea
 tests/test_descarga_manifiesto.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_digesto_candidatas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_digesto_fecha.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_delta_comparacion.py	script	NO	(ninguna)	NO	0.7	CORRE-EN-CI	exit 0 sin corpus
+tests/test_deriva_correctivo.py	script	NO	(ninguna)	NO	1.7	CORRE-EN-CI	exit 0 sin corpus
+tests/test_derivados_protegidos.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_descarga_manifiesto.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_digesto_candidatas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_digesto_fecha.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_digesto_ids_raiz.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_digesto_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_digesto_nc.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_din_credito_escolaridad_2.py	script	NO	numpy,pandas	SI	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
@@ -60,12 +68,18 @@ tests/test_din_credito_prediccion_2024_adjudicacion.py	script	NO	numpy	SI	0.0	NE
 tests/test_din_credito_prediccion_2024_emisiones.py	script	NO	(ninguna)	NO	2.9	CORRE-EN-CI	exit 0 sin corpus
 tests/test_duelo_envipe2026_ejecucion.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_duelo_prospectivo.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_din_credito_prediccion_2024_emisiones.py	script	NO	(ninguna)	NO	3.4	CORRE-EN-CI	exit 0 sin corpus
+tests/test_duelo_envipe2026_ejecucion.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_duelo_envipe2026_marginales_adjudicacion.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_duelo_envipe2026_marginales_emisiones.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
+tests/test_duelo_envipe2026_marginales_historial.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_duelo_prospectivo.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_emisor_fidelidad.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_emisor_m2.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_emisor_m2 (invocacion de script fallaba)
 tests/test_emite_m_calibracion.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_enadid2023_union_sexo_edad.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_enadid_union_actual.py	pytest	NO	pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
-tests/test_encig2023_agregado_condicional.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_encig2023_agregado_condicional.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_encig2023_flujo.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_encig_canal_comparabilidad_texto.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_encig_cruces_historicos.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
@@ -79,14 +93,16 @@ tests/test_enfih2019_saldos_afore_concentracion.py	script	NO	numpy	NO	0.0	NECESI
 tests/test_enif_fintech_serie.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_enif_persistencia_ic_calibrado.py	script	NO	numpy	SI	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enif_poblacion.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
-tests/test_enigh2022_intensidad_remesas.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_enigh2022_intensidad_remesas.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh2022_perfil_estructural.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh2022_remesas_contexto.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh_comparabilidad_texto.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_enigh_duelo_guardian.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_enigh_comparabilidad_texto.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_enigh_duelo_guardian.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enigh_serie_oro.py	script	NO	(ninguna)	SI	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_ensafi_diseno.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
-tests/test_ensafi_estrategias_conjuntas.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
+tests/test_ensafi_estrategias_conjuntas.py	script	NO	(ninguna)	NO	0.0	NECESITA-DEPENDENCIA(scipy)	ModuleNotFoundError: No module named 'scipy'
 tests/test_enut2024_distribucion_horas.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enut2024_participacion_intensidad.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enut_comparabilidad_texto.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
@@ -110,6 +126,7 @@ tests/test_join_folioviv.py	script	NO	(ninguna)	SI	0.0	CORRE-EN-CI	exit 0 sin co
 tests/test_linaje_superado.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_lote_desde_asientos.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_lote_enif2024.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_lote_enif2024_adjudicacion_t.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_manifiesto_alcance.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_clon.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_seguro.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
@@ -119,10 +136,14 @@ tests/test_marco_m_en_seco.py	script	NO	(ninguna)	NO	40.0	FALLA-DE-VERDAD	TIMEOU
 tests/test_marginales_una_variable.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_matriz_sellados.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_mociba_flujo_documental.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_mociba_flujo_documental (invocacion de script fallaba)
+tests/test_marginales_una_variable.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_matriz_sellados.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_mociba_flujo_documental.py	modulo	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 con -m tests.test_mociba_flujo_documental (invocacion de script fallaba)
 tests/test_motor_clases.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_determinismo.py	script	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_ejecutable.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_motor_gen2_explicito.py	modulo	NO	(ninguna)	NO	22.6	FALLA-DE-VERDAD	AssertionError: {'schema_version': '1.2', 'sucesion': {'ree[90933 chars]''}}} != {'baseline_historico_identificado': {'consu[41410 chars]l'}}}
+tests/test_motor_gen2_explicito.py	modulo	NO	(ninguna)	NO	25.3	FALLA-DE-VERDAD	AssertionError: {'schema_version': '1.2', 'sucesion': {'ree[90933 chars]''}}} != {'baseline_historico_identificado': {'consu[41410 chars]l'}}}
 tests/test_motor_holdout.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_motor_matriz.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_motor_procedencia.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
@@ -137,6 +158,8 @@ tests/test_piloto3_v13_conducto.py	pytest	NO	numpy,pytest,test_piloto3_v11	NO	0.
 tests/test_pines_mesa.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	11.3	CORRE-EN-CI	exit 0 sin corpus
+tests/test_pisos_enif2021_formalidad.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
+tests/test_pisos_enut2019.py	script	NO	(ninguna)	NO	13.5	CORRE-EN-CI	exit 0 sin corpus
 tests/test_pisos_rejilla.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_pisos_rejilla_datos.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_preflight_calc_tocados.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -149,6 +172,13 @@ tests/test_registro_repite_de_abanico.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	
 tests/test_relevo_candidatos_delta.py	script	NO	(ninguna)	NO	14.9	CORRE-EN-CI	exit 0 sin corpus
 tests/test_relevo_encuci_f2.py	script	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEOUT>40s
 tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	15.4	FALLA-DE-VERDAD	AssertionError
+tests/test_reactivos_ciegos_fd.py	modulo	NO	(ninguna)	NO	7.1	CORRE-EN-CI	exit 0 con -m tests.test_reactivos_ciegos_fd (invocacion de script fallaba)
+tests/test_reactivos_contexto.py	script	NO	openpyxl	NO	0.0	NECESITA-DEPENDENCIA(openpyxl)	ModuleNotFoundError: No module named 'openpyxl'
+tests/test_recupera_reactivos_fd.py	modulo	NO	(ninguna)	NO	1.2	CORRE-EN-CI	exit 0 con -m tests.test_recupera_reactivos_fd (invocacion de script fallaba)
+tests/test_registro_repite_de_abanico.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_relevo_candidatos_delta.py	script	NO	(ninguna)	NO	17.6	CORRE-EN-CI	exit 0 sin corpus
+tests/test_relevo_encuci_f2.py	script	NO	(ninguna)	NO	40.0	FALLA-DE-VERDAD	TIMEOUT>40s
+tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	17.4	FALLA-DE-VERDAD	AssertionError
 tests/test_runner_l_completa.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutas_sin_candidato.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutinas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -160,6 +190,7 @@ tests/test_suite_warn_estado.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado 
 tests/test_svystat.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_t_cron.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_tablero_programa.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_tendencia_serie.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_theta_esquema_e1.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_tuberia_ids_union.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_union_estimando.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
@@ -167,6 +198,7 @@ tests/test_validacion_independiente_lote.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-
 tests/test_validacion_independiente_pilotos.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_verifica_aislada.py	modulo	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con -m tests.test_verifica_aislada (invocacion de script fallaba)
 tests/test_verifica_head_remoto.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_verifica_head_remoto.py	script	NO	(ninguna)	NO	1.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_verifica_sidecars.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
