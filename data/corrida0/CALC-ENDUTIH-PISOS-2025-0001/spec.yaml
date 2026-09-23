@@ -1,0 +1,63 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENDUTIH-PISOS-2025-0001
+spec_md: ../../../forense/prereg-caja/ENDUTIH-PISOS-spec-v1_0.md
+spec_md_sha256: 13c73a6fff4c564aee56ae5198212b111ab6f7327d5a06deb4f8eee01222153a
+script: data/corrida0/CALC-ENDUTIH-PISOS-2025-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-DESCRIPTIVO-TECNOLOGIA
+  dominio: tecnologia
+  ola: '2025'
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO-ORIGINAL
+  temporalidad: RETROSPECTIVA
+  calibracion: SIN-HISTORIA-PARA-CALIBRAR
+inputs:
+  - {id: endutih_2025_fd_endutih2025, origen: manifiesto}
+  - {id: endutih_2025_endutih2025_bd_dbf, origen: manifiesto}
+  - id: ENDUTIH-PISOS-MEDIDOR
+    origen: repo
+    funcion: CODIGO
+    ruta: tools/dominios/endutih/pisos.py
+    sha256: 0b25cd1036508eb636ba18a9bfbe6de5eb3f797dc1c2be4c083c7a596c02e622
+  - id: ENDUTIH-DBFMINI
+    origen: repo
+    funcion: CODIGO
+    ruta: tests/dbfmini.py
+    sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+variables:
+  - {archivo: 'ti25usu.dbf', variable: P7_1, rol: uso-internet}
+  - {archivo: 'ti25usu.dbf', variable: P7_2, rol: razon-no-uso-internet}
+  - {archivo: 'ti25usu.dbf', variable: P7_10_2, rol: actividad-empleo}
+  - {archivo: 'ti25usu.dbf', variable: P7_12_3, rol: actividad-mensajes}
+  - {archivo: 'ti25usu.dbf', variable: P7_35_4, rol: actividad-tramite}
+  - {archivo: 'ti25usu2.dbf', variable: P8_1, rol: dispone-celular}
+  - {archivo: 'ti25usu2.dbf', variable: P8_2, rol: razon-no-celular}
+  - {archivo: 'ti25usu.dbf', variable: FAC_PER, rol: ponderador}
+  - {archivo: 'ti25usu.dbf', variable: EST_DIS, rol: estrato}
+  - {archivo: 'ti25usu.dbf', variable: UPM_DIS, rol: conglomerado}
+  - {archivo: 'ti25usu.dbf', variable: SEXO, rol: eje}
+  - {archivo: 'ti25usu.dbf', variable: EDAD, rol: eje}
+  - {archivo: 'ti25usu.dbf', variable: NIVEL, rol: eje}
+  - {archivo: 'ti25usu.dbf', variable: TLOC, rol: eje}
+  - {archivo: 'ti25usu.dbf', variable: CVE_ENT, rol: eje-entidad}
+universo: Personas elegidas de 6 años o más de ENDUTIH 2025; actividad condicionada a P7_1=1; motivos a P7_1=2 o P8_1=2.
+filtros: EDAD>=6, FAC_PER>0 finito, EST_DIS y UPM_DIS presentes; denominador SI+NO; salto, NR y NS separados.
+ponderador: FAC_PER
+transformacion: Razón de sumas ponderadas por dominio univariado; SIN imputación.
+estimando: Proporciones descriptivas de uso, actividad o motivos en su universo rotulado.
+seed: {aplica: true, valor: 20260923, rng: numpy.PCG64}
+parametros:
+  ola: '2025'
+  bd_miembros: ['ti25usu.dbf', 'ti25usu2.dbf']
+  entidad: CVE_ENT
+  n_minimo: 100
+  replicas: 399
+  metodo_ic: percentiles_2_5_97_5_bootstrap_UPM_estratificado
+  sintesis: una-tabla-JSON-con-replicas-aggregadas-total
+dependencias_materiales: [numpy]
+resultados:
+  - {id: RESULT-ENDUTIH-PISOS-2025-TABLA, tipo: texto, unidad: 'JSON de proporciones 0..1, IC95, estados, n y réplicas agregadas por ola'}
+tolerancia: {tipo: texto, exacta: true}
+

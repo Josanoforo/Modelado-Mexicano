@@ -1,0 +1,25 @@
+# Cobertura conocida de conductas U5 · RETROSPECTIVA
+
+Esta lista coteja conductas expresas de `milpa/tramite.yaml` y la matriz de consumo de U1 (`origin/codex/astra4-catalogo-1`, commit de entrega `3d8e82fb`) con el canon regional. El [censo de celdas](cobertura-celdas-v1_0.md) genera los denominadores de la última ola medida. U1 sigue en rama separada: el dictamen cierra el **snapshot fijado**, no un catálogo futuro o no observado.
+
+El [snapshot de alcance U1](alcance-u1-v1_0.tsv) se deriva por `python3 tools/astra/region/alcance_u1.py` del commit fijado: identifica 37 identidades activas/adoptables de ENVIPE, ENCIG y ENIF, con RESULT consumidor y dictamen. Doce identidades son conductas simples con estimación regional (una, seguro, íntegramente suprimida); cuatro reglas de ejes tienen su conducta base medida sin reproducir sus cruces sociodemográficos por región; 21 son identidades de celda/interacción y quedan fuera del producto región×conducta. **37 no es el denominador de conductas independientes.** El piso ENIF `informal_cualquiera` 18+ cubre el consumidor general; la serie histórica 18–70 permanece diferenciada.
+
+| Instrumento | Conducta / consumidor | Dominio R1 esperado | Estado U5 | Motivo de no medición cuando aplica |
+|---|---|---|---|---|
+| ENVIPE | `evade_norma_envipe2025` | 32 entidades de residencia | Medida, 2023–25 | — |
+| ENVIPE | `cumple_norma_envipe2025` | 32 entidades | Medida, 2023–25 | Complemento determinista con RESULT sellado propio; mismo denominador. |
+| ENVIPE | `denuncia_con_miedo_o_desconfianza`, `denuncia_por_otra_razon` | 32 entidades de residencia | Medidas, 2025 | Unidad persona U4, mismo recorte; 31/32 publicables en cada conducta, entidad 18 suprimida por n=187. «Otra razón» es complemento del recorte, no del cuestionario completo. |
+| ENVIPE | `civico.denuncia.con_seguro_ejes_envipe2025` | 32 entidades de residencia | Medida, totalmente suprimida R2 | Cuatro tasas delito, 128/128 SUPRIMIDA-N; máximo n estatal 54 con seguro y 46 sin seguro. Sin punto regional publicable. |
+| ENCIG | canal digital de luz / `adopta_encig2025_luz` | 32 entidades, marco urbano 100 mil+ | Medida, 2017–25 | Misma codificación y denominador documentados; nombre consumidor 2025 distinto. |
+| ENCIG | `paga_mordida_encig2025`, variante primaria | 32 entidades, marco urbano 100 mil+ | Medida, 2021/23/25 | Primer inciso de **solicitud**, no pago; 32/32 publicables en las dos olas históricas. Serie anterior a 2021 no dictaminada como comparable. |
+| ENCIG | variantes presencial/digital `_r2` de mordida | 32 entidades, marco urbano 100 mil+ | Medidas, 2025 | Unidad registro sin deduplicar; R2 suprime celdas pequeñas. |
+| ENIF | `tiene_ahorros_enif2024` | seis regiones oficiales | Medida, 2024, 18+ | — |
+| ENIF | `no_tiene_ahorros_enif2024` | seis regiones oficiales | Medida, 2024, 18+ | RESULT propio del portafolio. |
+| ENIF | `informal_cualquiera` | seis regiones oficiales | Medida, 2024, 18+; serie 2018/21/24, 18–70 | Dominios separados en el canon. |
+| ENIF | `ahorra_solo_informal`, `ahorra_solo_formal`, `ahorra_ambas_vias`, `formal_cualquiera`, `no_ahorra` | seis regiones oficiales | Medidas, 2024, 18+ | RESULT por conducta/región. |
+| ENIF | `horizonte_corto`, `horizonte_no_corto` por seguridad social | seis regiones oficiales | Medidas, 2024 | Cuatro tasas condicionales por seguridad social y el dominio adicional sin trabajo; 30/30 publicables. No se crea tasa general mezclando los dominios. |
+| ENIF | `desconfianza_o_mal_servicio_como_razon_principal_*` | seis regiones oficiales | Medidas con supresión R2, 2024 | Conoce protección: 0/6 publicables; no conoce: 5/6. Las siete filas restantes conservan n y cifra nula. |
+
+La fracción **medida dentro de cada serie corrida** se deriva del canon: todas las filas esperadas de sus pisos, olas históricas y bloques de consumidores/derivación están presentes, incluidas las que R2 suprime. En el lote actual, `python3 tools/astra/region/publica.py` declara 914 filas: 812 de diseño o derivación y 102 de IC predictivo; 757 PUBLICABLE y 157 SUPRIMIDA-N. El censo de **última ola por conducta medida** contiene 512 celdas, 355 publicables y 157 suprimidas, con lista completa en TSV. Esta fracción no es cobertura de todas las interacciones del catálogo general. El complemento ENVIPE no añade un evento independiente al mapa de estabilidad: su comparación dentro/fuera del IC se invierte algebraicamente y da la misma categoría.
+
+El efecto urbano documentado es un **límite del universo ENCIG**: sus resultados no incluyen localidades rurales ni ciudades menores del marco. ENIF tiene regiones de diseño sin entidad. ENVIPE usa residencia, no lugar de ocurrencia. Estas exclusiones no miden por sí solas sesgo de selección ni permiten atribuir una cifra a población indígena o clase popular. El mapa temporal tampoco convierte la diferencia entre dos olas en cambio sostenido.

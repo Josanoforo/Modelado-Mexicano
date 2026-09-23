@@ -2798,6 +2798,7 @@
 
 - id: enoe_2026_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR
   url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2026/conjunto_de_datos_enoe_2026_1t_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: no determinado -- el archivo ya estaba en data_raw al empezar esta sesión,
@@ -2909,6 +2910,20 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enoe_n_diseno_muestral_pdf
+  usado_para: ASTRA5-U1-TRABAJO-ENOE -- diseño estratificado/UPM de ENOEN y edición posterior
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_trim3_2020-trim4_2022.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: extracción documental de paquete ya registrado, ASTRA5-U1, 23/sep/2026
+  archivo: enoe_n_diseno_muestral.pdf
+  sha256: 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
+  tamano_bytes: 1192674
+  formato: PDF documental; miembro 3. Metodología/Metodologías/enoe_n_diseno_muestral.pdf
+    del id enoen_trim3_2020_trim4_2022_documentacion_zip
+  licencia: Términos de Libre Uso de la Información del INEGI
+  nota: Hash del ZIP padre recalculado 2a25ab364e282cf1caff5a45b29ba104a26a38d7fda88fe1720b89ae299f7ed1;
+    hash del miembro recalculado antes de extraer. No es microdato ni ola adicional.
 
 - id: enoe_cuestionario_ampliado_v5_pdf
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
@@ -15356,6 +15371,7 @@
 - id: enoe_2026_1t_microdatos
   usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
     (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR
   url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2026_trim1_csv.zip
   fecha_descarga: '2026-08-24'
   descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
@@ -30875,3 +30891,114 @@
     de usar'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: DOI 10.7910/DVN/P6NC0M; documentación/código de asignación
+
+- id: enoe_n_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 ENOE 2024 T3, diseño muestral; PR #1079, filas ENOE-001..003'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_diseno_muestral.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: documento ya presente en corpus compartido; ASTRA5-U0 verificó hash físico
+  archivo: enoe_n_diseno_muestral.pdf
+  sha256: 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
+  tamano_bytes: 1192674
+  formato: PDF, diseño muestral ENOE Nueva Edición
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
+    crédito a INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endutih2024_cuestionario_pdf
+  usado_para: 'ASTRA5-U0 ENDUTIH 2024, PR #1079 fila TEC-001'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endutih/2024/doc/CENDUTIH2024.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: Codex ASTRA5-U0, documentación pública; copiado del corte verificado al
+    corpus compartido
+  archivo: endutih2024/CENDUTIH2024.pdf
+  sha256: 95514c5fe0a000bfaf29062a9cf9225ec64674dbb83df6a44a3dceda13187800
+  tamano_bytes: 1385429
+  formato: PDF, cuestionario ENDUTIH 2024
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
+    crédito a INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endutih2024_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 ENDUTIH 2024, PR #1079 fila TEC-001'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1102/download/34413
+  fecha_descarga: '2026-09-23'
+  descargado_por: Codex ASTRA5-U0, documentación pública; copiado del corte verificado al
+    corpus compartido
+  archivo: endutih2024/endutih2024_diseno_muestral.pdf
+  sha256: 97ee8088cd12d3112e1d0f3bf4bafb1bb11a9175b93b3dfb9bab61e08833b612
+  tamano_bytes: 934747
+  formato: PDF, diseño muestral ENDUTIH 2024
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
+    crédito a INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endireh2021_cuestionario_a_pdf
+  usado_para: 'ASTRA5-U0 ENDIREH 2021, PR #1079 fila GEN-001'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_a.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: Codex ASTRA5-U0, documentación pública; copiado del corte verificado al
+    corpus compartido
+  archivo: endireh2021/endireh2021_cuestionario_a.pdf
+  sha256: d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1
+  tamano_bytes: 2195532
+  formato: PDF, cuestionario A mujer casada o unida ENDIREH 2021
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
+    crédito a INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endireh2021_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 ENDIREH 2021, PR #1079 fila GEN-001'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463907183.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: Codex ASTRA5-U0, documentación pública; copiado del corte verificado al
+    corpus compartido
+  archivo: endireh2021/889463907183.pdf
+  sha256: 16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692
+  tamano_bytes: 2242874
+  formato: PDF, diseño muestral ENDIREH 2021
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
+    crédito a INEGI
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enif2024_diseno_muestral_pdf
+  usado_para: documentación muestral ENIF 2024 para contratos de ahorro, tanda, afore y seguro
+    ASTRA5-U0
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2024/doc/889463921127.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: agente, INEGI fuente primaria
+  archivo: enif2024/889463921127.pdf
+  sha256: bc59f5f58c32831d3831a1a92ee6707e57e68caf68df1d573b8eb754e2259b76
+  tamano_bytes: 1548004
+  formato: PDF (diseño muestral ENIF 2024)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enut2024_cuestionario_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: ENUT 2024 horas semanales de trabajo no remunerado por
+    sexo y tamaño de localidad; texto primario sección VI'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/enut_2024_cuestionario.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/enut_2024_cuestionario.pdf
+  sha256: 949752e35fbc54fbe513466eb7caab32cef5010f046cb7777aa8490832769a62
+  tamano_bytes: 1694184
+  formato: PDF, cuestionario ENUT 2024, 74 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Sección VI actividades cotidianas, preguntas 6.3-6.17
+    de trabajo no remunerado.
+
+- id: enut2024_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: diseño y estimación de horas semanales ENUT 2024 por sexo/localidad'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/889463926528.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/889463926528.pdf
+  sha256: 441a0cc229d62ce7b4829e847738b2b3b631ef05b44958e85b47148ecedbd2a2
+  tamano_bytes: 1887070
+  formato: PDF, diseño muestral ENUT 2024, 24 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
+    factores por persona y varianza.

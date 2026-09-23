@@ -1,0 +1,157 @@
+{
+ "corrida_id": "CALC-REGION-HIST-ENIF-2021-0001--8b22942c370a",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA4-U5-EJE-REGIONAL",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "rotulo": "RETROSPECTIVA",
+  "tipo": "REGION-HIST-RETROSPECTIVA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T16:29:01Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 438,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "8b22942c370aab22f8a6beede49bce1e1f3e490a",
+  "git_rama": "codex/astra4-region-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "8b22942c370aab22f8a6beede49bce1e1f3e490a",
+ "input_ids": [
+  "enif2021_csv",
+  "REGION-HISTORIA-CODIGO",
+  "REGION-BASE-CODIGO",
+  "REGION-ESTADISTICA",
+  "REPLICAS-COMPARTIDAS"
+ ],
+ "input_sha256": {
+  "REGION-BASE-CODIGO": "d049cfb96c84f36b32667cc71c55c3591233ab538e7b53abf7c9d71098d0a4f4",
+  "REGION-ESTADISTICA": "b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65",
+  "REGION-HISTORIA-CODIGO": "ef8259a087f3f82b74690cad5c66d51105a6bf38e8fbeb81d938c6f0b5a705b2",
+  "REPLICAS-COMPARTIDAS": "4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6",
+  "enif2021_csv": "0f314fa3733b4b5519486ed4015fca1c9e0864840bcd5944aa7de27796fe5cd9"
+ },
+ "parametros": {
+  "bootstrap_replicas": 1000,
+  "geografias": [
+   "1",
+   "2",
+   "3",
+   "4",
+   "5",
+   "6"
+  ],
+  "input_id": "enif2021_csv",
+  "instrumento": "ENIF",
+  "n_min": 200,
+  "nivel_geografico": "REGION",
+  "ola": 2021
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-REGION-HIST-ENIF-2021-1-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-1-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-1-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-1-N",
+  "RESULT-REGION-HIST-ENIF-2021-1-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-1-P",
+  "RESULT-REGION-HIST-ENIF-2021-2-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-2-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-2-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-2-N",
+  "RESULT-REGION-HIST-ENIF-2021-2-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-2-P",
+  "RESULT-REGION-HIST-ENIF-2021-3-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-3-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-3-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-3-N",
+  "RESULT-REGION-HIST-ENIF-2021-3-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-3-P",
+  "RESULT-REGION-HIST-ENIF-2021-4-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-4-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-4-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-4-N",
+  "RESULT-REGION-HIST-ENIF-2021-4-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-4-P",
+  "RESULT-REGION-HIST-ENIF-2021-5-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-5-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-5-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-5-N",
+  "RESULT-REGION-HIST-ENIF-2021-5-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-5-P",
+  "RESULT-REGION-HIST-ENIF-2021-6-ESTADO",
+  "RESULT-REGION-HIST-ENIF-2021-6-IC-HI",
+  "RESULT-REGION-HIST-ENIF-2021-6-IC-LO",
+  "RESULT-REGION-HIST-ENIF-2021-6-N",
+  "RESULT-REGION-HIST-ENIF-2021-6-N-EFECTIVO-KISH",
+  "RESULT-REGION-HIST-ENIF-2021-6-P",
+  "RESULT-REGION-HIST-ENIF-2021-JSON"
+ ],
+ "script_blob_sha256": "ef8259a087f3f82b74690cad5c66d51105a6bf38e8fbeb81d938c6f0b5a705b2",
+ "script_path": "data/corrida0/CALC-REGION-HIST-ENIF-2021-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260923
+ },
+ "spec_id": "CALC-REGION-HIST-ENIF-2021-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "d3589fd1cec54fe0ee22c33bf2a6e0c9eff553115da0f44af0464c14b1ceed60",
+ "spec_yaml_sha256": "69c7372069766ce6bdb140ee15c47ec290175f3e9557d69ea7a215d8704310ec",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "mismo payload, orden, código y semilla",
+  "tipo": "flotante"
+ }
+}

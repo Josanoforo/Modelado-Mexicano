@@ -1,0 +1,19 @@
+# CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0001 · preregistro
+
+El primer resultado que produzca este procedimiento es el que se reporta, incluso si no es estimable. GEN2 descriptivo retrospectivo. No reproduce ni acredita el 70.1% agregado GEN-001. No se usan cifras GEN1. No se modificará esta spec tras leer el microdato.
+
+## Estimando y matriz congelada
+
+Unidad: mujer de 15 años o más entrevistada con cuestionario A1 (pareja residente) o A2 (pareja ausente temporal). Ámbito: pareja actual, agresor esposo o pareja. Fuente INEGI ENDIREH 2021, `TB_SEC_XIV.csv`, mujer identificada por `ID_PER`, demografía de `TSDem.csv`. Factor `FAC_MUJ` de la mujer, no `FAC_VIV`. Estrato `EST_DIS`, conglomerado `UPM_DIS`. Diseño: remuestreo con reemplazo de UPM dentro de estrato, 500 réplicas, semilla 20260923; estrato de un solo conglomerado se autorremuestrea y aporta varianza cero. IC percentil 2.5/97.5. No IC predictivo ni interpretación causal.
+
+Los nueve actos físicos de 14.1, «Desde que inició la relación con su esposo o pareja», son: `P14_1_1` la ha empujado o le ha jalado el cabello; `_2` la ha abofeteado o cacheteado; `_3` la ha amarrado; `_4` la ha pateado; `_5` le ha aventado algún objeto; `_6` la ha golpeado con el puño o con algún objeto; `_7` la ha tratado de ahorcar o asfixiar; `_8` la ha agredido con cuchillo o navaja; `_9` le ha disparado con un arma de fuego. La ventana reciente usa esos mismos nueve actos, `P14_3_1`…`P14_3_9`, con texto de ventana «De octubre de 2020 a la fecha». Esta ventana termina en la entrevista de 2021; no se equipara a una ventana anual fija de otra ola.
+
+Para cada reactivo, 1=muchas veces, 2=pocas veces, 3=una vez, 4=no ocurrió, 9=no especificado y blanco/salto=no observado. La unión vale 1 si algún reactivo es 1–3; vale 0 solo si los nueve son 4; en otro caso es desconocida. En la ventana reciente, un acto con 14.1=4 se codifica 4 por el salto documentado; los demás usan 14.3. Si la unión de 14.1 es desconocida, la ventana reciente queda desconocida. Se excluye del denominador de cada ventana a las mujeres con unión desconocida, que se cuentan separadamente. No se suma la prevalencia de actos.
+
+Ejes univariados: nacional; edad 15–29, 30–44, 45–59, 60+; escolaridad `NIV` de TSDem (00 ninguna; 01–03/05–06 básica; 04/07–08 media superior o técnica; 09–11 superior); localidad `DOMINIO` U/C/R; condición de pareja A1/A2; entidad `CVE_ENT` 01–32. El corte de escolaridad es proxy por nivel, no años aprobados. No hay cruces multivariados ni municipio. `TSDem` se une por `ID_PER`; edad válida 15–120. Cada celda exige al menos 100 observaciones de respuesta conocida, cinco UPM distintas, ancho de IC ≤0.20 y CV de la estimación ≤0.30 si p>0. Una celda que falle se suprime sin valor ni réplicas. Los cortes que pasen conservan las réplicas agregadas de proporción para incertidumbre posterior, sin identificadores individuales o de UPM.
+
+La población expuesta y el numerador son mujeres elegibles con respuesta conocida. Se reportan n, UPM, masa ponderada, punto, error estándar, IC y réplicas por celda publicable. No se infiere riesgo individual ni se atribuye el valor de una entidad a todas sus habitantes.
+
+## Dependencias y contraste
+
+Manifesto `endireh2021_bd_csv_zip`, SHA recalculado `e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e`; FD `endireh2021_fd_pdf`, SHA `5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180`; cuestionario A `endireh2021_cuestionario_a_pdf`, SHA `d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1`. Código efectivo en este CALC, SHA fijado en YAML. Si el formato del ZIP o las columnas no coinciden, el primer resultado será NO-EJECUTABLE, sin parche retrospectivo.

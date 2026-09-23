@@ -1,0 +1,17 @@
+# ENDUTIH · búsqueda de empleo por internet, sucesor de P7_10_2
+
+**Primer resultado.** El primer resultado real que produzca este procedimiento es el que se reporta, incluso si no es estimable. No se reescriben `CALC-ENDUTIH-PISOS-2023/2024/2025-0001` ni sus RESULT: aquí se corrige el universo de `actividad_empleo`.
+
+## Fuente, filtro y estimando congelados
+
+Se usa el FD y ZIP DBF ENDUTIH de cada ola ya registrados en `data/manifiesto.yaml`. El cuestionario 2024 `endutih2024_cuestionario_pdf`, incorporado por PR #1082 y verificado SHA256 `95514c5fe0a000bfaf29062a9cf9225ec64674dbb83df6a44a3dceda13187800`, trae en 7.10.02 «empleos, bolsas de trabajo» **solo para elegido de 15 años o más**. Los cuestionarios oficiales 2023 (`https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf`, p. 8) y 2025 (`https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf`, p. 9) repiten el filtro. FD `tic_2023_usuarios` fila 167, `tic_2024_usuarios` fila 167 y `tic_2025_usuarios` fila 201 corroboran texto, variable `P7_10_2`, códigos 1 Sí / 2 No. El filtro previo `P7_1=1` selecciona usuarios de internet en los tres meses anteriores; `P7_1=2` salta la sección de actividades.
+
+**Unidad:** persona elegida, edad conocida 6–97 en el archivo; 98/99 edad no especificada fuera de base. **Denominador del estimando:** personas de **15+ usuarias de internet en los últimos tres meses** con respuesta 1 o 2 a `P7_10_2`. **Numerador:** respuesta 1. **Ventana:** tres meses. **Escala:** proporción 0–1. `FAC_PER` pondera; `EST_DIS` estratifica y `UPM_DIS` identifica conglomerado. No se imputa un blanco ni se infiere empleo efectivo.
+
+En el estado del reactivo, 6–14 es `SALTO` aunque use internet; `P7_1=2` a edad 15+ también `SALTO`; edad 15+ con `P7_1=1` y `P7_10_2` vacío es `NR`; 1 es `SI` y 2 es `NO`. Se cuentan aparte blancos estructurales 6–14 y blancos elegibles 15+. La respuesta de uso de internet ausente es `NR`, nunca `NO`. El estado `NS` se conserva como categoría posible de salida, sin código explícito en FD. Las personas 98/99 no se convierten en 15+.
+
+Dominios univariados originales: total, sexo 1/2, edad 6–11/12–17/18–29/30–59/60+, TLOC 1–4, NIVEL 00–02/03–05/06–11, entidad 01–32 (2023 `ENT`; 2024/2025 `CVE_ENT`). El dominio 6–11 se retiene como celda suprimida sin punto por filtro estructural; 12–17 sólo comprende respuestas elegibles de 15–17. Umbral mínimo `n=100` respuestas válidas por celda antes de publicar punto o IC.
+
+IC95 por 399 réplicas UPM con reemplazo dentro de `EST_DIS`, semilla `20260923` (`numpy.PCG64`), singleton como certeza; misma matriz de réplicas en dominios de una ola, percentiles 2.5/97.5, mínimo 380 réplicas con denominador positivo. Réplicas agregadas del total quedan en el RESULT. No salen registros individuales. El código importa funciones congeladas de `tools/dominios/endutih/pisos.py`; ambos archivos y `tests/dbfmini.py` deben constar como inputs de código con hash en cada YAML.
+
+**Calibración:** tres olas dan dos transiciones; formalmente puede destinarse la primera al ajuste y la segunda a la evaluación temporal. Una sola transición de ajuste no identifica ni estabiliza la distribución de errores o un cuantil extremo para un IC predictivo, y una sola de evaluación no permite estimar cobertura con precisión. Además las composiciones muestrales cambian entre olas. Estado `SIN-HISTORIA-PARA-CALIBRAR`; sólo se reportan puntos e IC de diseño, sin detección de cambios ni piso predictivo.

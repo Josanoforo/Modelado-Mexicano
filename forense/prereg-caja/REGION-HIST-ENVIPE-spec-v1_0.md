@@ -1,0 +1,11 @@
+# REGION-HIST · ENVIPE 2023, 2025 · spec humana v1.0
+
+El primer resultado que produzca este procedimiento es el que se reporta. R1/R2 de mesa del 23/sep/2026 aplican: entidades admitidas y n≥200, varianza estimable y requisito oficial más estricto. Junto con `CALC-REGION-ENVIPE-2024-0001`, esta pieza forma una serie 2023–2025 de `evade_norma_envipe2025`, unidad delito, bajo el mismo estimando de `ENVIPE-EVASION-NORMA-spec-v1_0.md`. Son tres olas independientes, no un panel.
+
+Por ola: `tmod_vic` con `BP1_20∈{1,2}`; Y=1 si `BP1_20=2` y `BP1_23∈{04,05,06,08}`. Factor `FAC_DEL`, diseño `EST_DIS×UPM_DIS`. Geografía de residencia `CVE_ENT` de `tsdem`, enlace por `ID_PER` única; nunca se sustituye por lugar de ocurrencia. 32 entidades, códigos 01–32. Ambas olas vienen de los ids `envipe2023_csv` y `envipe2025_csv` del manifiesto, ya usadas en mediciones no reservadas. La serie retiene la misma definición de delito y denominador; una incompatibilidad documental posterior se rotula SIN-COMPARABILIDAD y excluye la transición, sin reescribir estos sellos.
+
+Punto: razón de masas ponderadas. Réplicas: 1 000 UPM estratificadas, PCG64(20260923), una secuencia compartida para todos los dominios de cada ola en el marco completo; módulo `replicas_compartidas` SHA256 `4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6`. Adaptador de clave de fila sintética para la guarda, sin cambiar el significado de factor/estrato/UPM. IC95 percentil. `SUPRIMIDA-N` si n<200; `VARIANZA-NO-ESTIMABLE` si denominador de alguna réplica cero, <2 UPM de dominio o dispersión nula. Se conserva toda fila con n y estado. `n_efectivo_kish` diagnóstico. El `-JSON` conserva réplicas emparejadas sin identificadores ni pesos individuales. No hay calibración en este CALC. Todo es RETROSPECTIVA; adopta NO.
+
+## Auditoría de rigor extremo
+
+Residencia no mide lugar del delito. Un hogar/persona puede aportar delitos repetidos; la unidad publicada es delito y la UPM preserva dependencia primaria. Una tasa de no denuncia por causa puede responder a instituciones y costos, no prueba rasgo cultural. Estado no mide clase, localidad concreta ni identidad indígena. Comparaciones entre olas ya vistas no prometen detectar cambios futuros.

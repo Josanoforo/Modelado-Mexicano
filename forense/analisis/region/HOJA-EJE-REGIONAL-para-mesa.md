@@ -1,0 +1,48 @@
+# Hoja U5 · eje regional · para revisión de mesa
+
+**Estado:** propuesta en PR; `adopta: NO`. La firma operativa es el merge del PR. Este documento no autoriza fusionar ni altera reservas de datos. Todos los resultados y contrastes históricos se rotulan **RETROSPECTIVA**.
+
+## Decisiones ya asentadas antes del microdato
+
+| Decisión | Resolución de mesa del 23/sep/2026 | Aplicación |
+|---|---|---|
+| R1, geografía | Entidades donde diseño y estimando lo admiten; regiones oficiales de cada instrumento; ninguna macroregión nueva. | ENVIPE y ENCIG: 32 códigos de entidad de residencia, sin convertirlos en lugar del delito o del trámite. ENIF: seis regiones de diseño `REGION=1..6`; no se fuerzan entidades. |
+| R2, publicación | Punto e IC solo con denominador no ponderado ≥200, varianza estimable y regla oficial más estricta. | Los estados SUPRIMIDA-N, NO-REPRESENTATIVA y VARIANZA-NO-ESTIMABLE conservan fila y punto/IC nulos. El corte es operativo, no garantía de precisión. |
+
+Las specs humanas [ENVIPE](../../prereg-caja/REGION-ENVIPE-spec-v1_0.md), [denuncia U4 ENVIPE](../../prereg-caja/REGION-ENVIPE2025-DENUNCIA-U4-spec-v1_0.md), [seguro ENVIPE](../../prereg-caja/REGION-ENVIPE2025-SEGURO-spec-v1_0.md), [ENCIG](../../prereg-caja/REGION-ENCIG-spec-v1_0.md), [ENIF](../../prereg-caja/REGION-ENIF-spec-v1_0.md), [portafolio ENIF](../../prereg-caja/REGION-ENIF-PORTAFOLIO-spec-v1_0.md), [condicionales ENIF](../../prereg-caja/REGION-ENIF-CONDICIONALES-spec-v1_0.md), [no trabaja ENIF](../../prereg-caja/REGION-ENIF-NO-TRABAJA-spec-v1_0.md), [complemento ENVIPE](../../prereg-caja/REGION-ENVIPE-COMPLEMENTO-spec-v1_0.md) y [consumidores ENCIG 2025](../../prereg-caja/REGION-ENCIG2025-CONSUMIDORES-spec-v1_0.md), [serie SOL1 2021/23](../../prereg-caja/REGION-ENCIG-SOL1-HIST-spec-v1_0.md) y [su IC predictivo](../../prereg-caja/REGION-ENCIG-SOL1-IC-PRED-spec-v1_0.md), con sidecars, fijaron esas decisiones antes de sus corridas. Las specs históricas REGION-HIST fijaron las olas y el mismo protocolo antes de abrir cada una. La unidad ENVIPE es **delito** para evasión de denuncia y su complemento, y **persona** para razones U4 de no denuncia; ENCIG usa **persona** para solicitud general, **trámite de luz** para adopción digital y **registro de trámite sin deduplicar** para brazos `_r2`; ENIF usa **persona elegida** para tenencia/ahorro. No se promedian unidades distintas. El diseño usa UPM dentro de estrato, réplicas compartidas por ola y dominios sobre el marco completo. Los `RESULT-*-JSON` preservan las réplicas conjuntas sin identificadores ni pesos individuales.
+
+## Decisiones que siguen a revisión por merge
+
+| Decisión | Propuesta de U5 | Reserva material |
+|---|---|---|
+| 3, entrada de región al marcador | **No incorporar aún** como eje adoptado. Usar el [canon](../../../canon/eje-regional-v1_0.md) para consulta retrospectiva de conductas medidas. | El snapshot U1 está dictaminado para región×conducta, pero 157/512 celdas de última ola están suprimidas, la cobertura por conglomerado no es inferible con una sola transición evaluada por serie y los cruces de ejes U1 no se extienden a región. |
+| 4, unidad de cada conducta | Mantener delito, persona, trámite y registro sin deduplicar según tabla anterior; complemento solo con el mismo denominador y RESULT propio. | Una extensión de los cruces sociodemográficos o de interacciones requiere estimando y spec independientes. |
+
+La recomendación por instrumento es consultar entidades ENVIPE y ENCIG únicamente para sus universos declarados, y regiones ENIF únicamente para población elegida. ENCIG representa el marco urbano 100 mil+; no debe extrapolarse a rural. ENIF no da aquí estimación estatal. Celdas regionales medidas y precisiones son trazables al TSV y veintidós CALC sellados, cada uno con `verify: REPRODUCE` y asiento en `forense/replay-evidencia.tsv`. En los brazos ENCIG por canal, 20 entidades quedan SUPRIMIDA-N según R2 y conservan cifra nula. Las razones U4 ENVIPE agregan dos supresiones en entidad 18 (n=187). Las cuatro tasas de denuncia por seguro ENVIPE están medidas, pero sus 128 filas quedan SUPRIMIDA-N; el máximo n estatal es 54 con seguro y 46 sin seguro, así que este consumidor no ofrece punto regional publicable bajo R2. Las tasas condicionales ENIF agregan siete supresiones: las seis regiones del grupo que conoce protección y una del grupo que no conoce. El complemento `cumple_norma` de ENVIPE es una transformación heredada de las mismas réplicas, no una conducta independiente para contar dos veces en el mapa.
+
+## ADENDA-1 · factibilidad AMAI, sin NSE
+
+Se consumió la matriz U1 `forense/analisis/catalogo/matriz-amai-2024.md` por el commit de entrega `3d8e82fb` de `origin/codex/astra4-catalogo-1` (rama no fusionada al corte). AMAI 2024 requiere seis componentes exactos para hogar. **Cero de los cinco cuestionarios cotejados acredita la regla completa; el disparador de dos instrumentos no se cumple.** Por tanto no hay quinta decisión de clase en esta hoja, ni NSE calculado, ni cruces región×clase.
+
+| Instrumento | Componente que impide la regla exacta según U1 |
+|---|---|
+| ENIF 2024 | Personas ocupadas de 14+ bajo la definición completa; pregunta de trabajo remunerado es aproximación. |
+| ENVIPE 2025 | Dormitorios, número de baños completos e internet fijo ausentes; ocupación 18+ y vehículos del año previo son aproximaciones. |
+| ENCIG 2023 | Dormitorios, baños completos, autos e internet fijo ausentes; actividad solo 18+ es aproximación. |
+| ENIGH 2024 | Internet del hogar no distingue expresamente servicio fijo de móvil; equivalencia AMAI no acreditada. |
+| ENUT 2024 | Número de baños completos ausente; auto e internet son aproximaciones sin cantidad/tipo fijo. |
+
+Este cotejo textual no prueba imposibilidad de toda construcción externa y no sustituye una homologación oficial posterior. La adenda solo autoriza evaluar factibilidad y proponer entrada si dos reglas exactas fueran calculables.
+
+## Resultado y dictamen de alcance
+
+El canon se genera por `python3 tools/astra/region/publica.py`; el [mapa muestral](mapa-estabilidad-v1_0.md) y el [mapa predictivo](mapa-predictivo-v1_0.md) por `python3 tools/astra/region/mapa.py`. Tres series predictivas usan `CALC-REGION-IC-PREDICTIVO-0001`, con ajuste anterior a la evaluación: punto posterior dentro en 32/32 entidades ENVIPE, 29/32 ENCIG digital y 6/6 regiones ENIF. La serie ENCIG SOL1 de solicitud usa `CALC-REGION-ENCIG-SOL1-IC-PRED-0001`: 32/32 puntos posteriores dentro, tras ajuste 2021→2023. Son comparaciones **RETROSPECTIVA** con intervalos potencialmente anchos, no pruebas de estabilidad. El Wilson binomial del mapa muestral declara su supuesto de independencia y no se presenta como IC de diseño ni por conglomerado. No hay IC válido de cobertura por conglomerado para una transición evaluada por serie; no se promete detectar cambios futuros. La serie ENIF comparable recorta 18–70 años; el piso de tenencia 2024 original cubre 18+ y no se encadena a esa serie.
+
+El [snapshot U1](alcance-u1-v1_0.tsv) dictamina sus 37 identidades pertinentes al producto: 11 conductas simples medidas, una identidad de seguro medida pero totalmente suprimida, cuatro reglas de eje con conducta base medida y cruces no extendidos, y 21 identidades de celda/interacción fuera del denominador de conductas independientes. El [censo de última ola](cobertura-celdas-v1_0.md) muestra 29 categorías de conducta regional medidas, 512 celdas esperadas, 355 publicables y 157 SUPRIMIDA-N. Son categorías de producto, incluidas particiones y complementos; no son 29 desenlaces independientes ni cobertura de todos los cruces del catálogo. Las [lecturas por conducta](lecturas-regionales-v1_0.md) documentan consulta, transición, fuente, tier y falsador; donde falta historia comparable consignan **SIN-HISTORIA-PARA-CALIBRAR**. El dominio ENIF sin trabajo está medido y la serie ENIF 18–70 se distingue del portafolio 18+.
+
+## Auditoría de rigor extremo
+
+- **Foco territorial:** ENVIPE y ENCIG muestran códigos de entidad de residencia, no lugares del delito, del trámite ni nombres de ciudades. ENCIG cubre el marco urbano de 100 mil+; no hay resultado rural para ENCIG. ENIF tiene seis regiones oficiales, sin inferencia estatal en este producto. Por ello el foco rural, indígena o popular no se traduce en una lista propia de entidades ni en una cifra de brecha con estas variables.
+- **Precisión y cobertura:** n≥200 es un piso operativo, no asegura precisión; 157 celdas de última ola conservan n y cifra nula. Los cuatro dominios ENVIPE por seguro tienen 128/128 celdas suprimidas. El mapa muestral tiene 268 comparaciones descriptivas y el predictivo 102; sus conteos no prueban cambio sostenido ni equivalencia. Una transición evaluada por serie impide un IC válido de cobertura por conglomerado; el Wilson indicado en el mapa supone independencia y no reemplaza el diseño.
+- **Trazabilidad y refutación:** cada fila publicable enlaza RESULT, CALC y hash; cada CALC tiene sello y replay `REPRODUCE`. Un cambio en codificación, dominio, factor, UPM, estrato, geografía o reproducción del RESULT invalida la lectura afectada. Las réplicas conjuntas se conservan en RESULT sin identificadores individuales. El ajuste predictivo precede a la ola evaluada.
+- **Alcance:** el snapshot U1 fijado cierra el dictamen de región×conducta conocido en este PR, pero no añade cruces región×eje, región×clase ni un catálogo futuro. Toda comparación es **RETROSPECTIVA**. No se promete detección futura de cambios. `adopta: NO`; ninguna reserva de datos cambia y la firma de mesa sigue siendo el merge, que este PR no ejecuta.
