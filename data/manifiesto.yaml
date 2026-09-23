@@ -30957,3 +30957,32 @@
   formato: PDF (diseño muestral ENIF 2024)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enut2024_cuestionario_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: ENUT 2024 horas semanales de trabajo no remunerado por
+    sexo y tamaño de localidad; texto primario sección VI'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/enut_2024_cuestionario.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/enut_2024_cuestionario.pdf
+  sha256: 949752e35fbc54fbe513466eb7caab32cef5010f046cb7777aa8490832769a62
+  tamano_bytes: 1694184
+  formato: PDF, cuestionario ENUT 2024, 74 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Sección VI actividades cotidianas, preguntas 6.3-6.17
+    de trabajo no remunerado.
+
+- id: enut2024_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: diseño y estimación de horas semanales ENUT 2024 por sexo/localidad'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/889463926528.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/889463926528.pdf
+  sha256: 441a0cc229d62ce7b4829e847738b2b3b631ef05b44958e85b47148ecedbd2a2
+  tamano_bytes: 1887070
+  formato: PDF, diseño muestral ENUT 2024, 24 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
+    factores por persona y varianza.
