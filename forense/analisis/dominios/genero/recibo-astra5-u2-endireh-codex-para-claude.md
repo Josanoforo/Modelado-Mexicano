@@ -19,3 +19,7 @@ Manifiesto, cuestionario A/FD/diseño 2021 de #1082, cuestionarios B/C 2021 adqu
 - No hay calibración temporal, adopción, ni contraste directo del 70.1%. No se atribuye violencia a una persona ni cultura. Las reservas siguen vigentes; no se abrió una ola reservada.
 
 El siguiente turno debe continuar las piezas independientes, completar las mediciones y solo entonces preparar nota de cierre, FP/NC, ADR raíz y estado de publicación. PR #1093 permanece borrador hasta ello.
+
+## Sincronización posterior a #1071
+
+El PR #1071 se fusionó en `b053c9ded0b7a0a6fd05a81d55637ac80fe624a3` el 23/sep/2026. Tras comprobar el merge, se hizo `git fetch origin` y rebase limpio de esta rama sobre ese `origin/main`. El CI previo de #1093 fallaba en `guardias` por 14 pruebas ENDIREH sin fila en el censo. Cada una se ejecutó con el invocador que declara `tools/ci_guardias.py` y se añadieron exactamente 14 filas al censo; el diff no altera filas previas. La guardia completa terminó con **98 ejecutadas, 71 saltadas, 0 fallidas**. El test `test_readme_derivado.py` pidió actualizar dos contadores generados por `corrida0.py status` tras incorporar los CALC: corridas selladas 209→219 y RESULT GEN2 sellados 65 549→65 567. Solo esas dos celdas de README cambiaron. `python3 tests/check.py --baseline` sobre el nuevo main: **VERDE**, 0 FAIL nuevos (3 heredados). Ningún CALC, RESULT o sello se modificó por la sincronización.

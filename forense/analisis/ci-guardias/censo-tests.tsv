@@ -198,3 +198,17 @@ tests/test_endutih_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en v
 tests/test_mociba_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_enlaces_archivo.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	Valida enlaces locales del frente y archivo sin corpus
 tests/test_readme_derivado.py	script	NO	(ninguna)	NO	11.0	CORRE-EN-CI	Compara cifras publicadas con status derivado sin corpus
+tests/test_astra5_endireh_ayuda.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_comunitaria.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_decisiones.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_escolar.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_familiar.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_laboral.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_2016.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_2016_v2.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_bc.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v2.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v3.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v4.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_sucesion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
