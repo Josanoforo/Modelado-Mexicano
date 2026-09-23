@@ -5211,6 +5211,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md",
     "forense/notas/2026-09-22-GEN2-TRAMITE-FIRMAS-6-cierre.md",
     "canon/L0/ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-7 (22/sep/2026). El encargo §9 (Perímetro)
+    # cita "E11 (`.gitattributes`, `verify.yml`)" como el rótulo corto del
+    # acto hermano en vuelo (canal E11 de PENDIENTES-CAJA-1, sin archivo en
+    # común con este acto) -- concurrencia entre actos, no un rótulo del
+    # espacio `E` (fases MOTOR-3) que este acto acuñe. El rótulo propio,
+    # `GEN2-TRAMITE-FIRMAS-7`, no matchea `E\d{1,2}` pelado y queda censado
+    # en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md",
     # ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2, 22/sep/2026. El encargo archivado
     # verbatim (A.3) dice en §2 «si mesa la ratifica en E5»: es la ranura de
     # mesa ya censada (`E5` en canon/registro-rotulos.tsv), no un rótulo que
