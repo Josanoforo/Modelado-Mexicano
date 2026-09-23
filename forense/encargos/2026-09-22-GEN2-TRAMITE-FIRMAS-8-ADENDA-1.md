@@ -4,6 +4,10 @@
 >
 > **Lo que el trámite hace con esto:** la fila de `decisiones.tsv` para e889-01 lleva `sustituye = FP-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01 (parcial: auto-merge de rutinas)`; la fila 9a2c-01 recibe enmienda fechada «auto-merge: sustituido por e889-01 el 22/sep; taxonomía y enrutamiento vigentes»; ninguna de las dos se edita en su texto. Sin este cruce, el aparato tendría dos firmas de mesa contradictorias sobre el mismo objeto, y el relanzamiento de AUTOMERGE-1 volvería a parar con razón.
 
+## NO-CORRIDO / RESERVAS
+
+Ninguno.
+
 ## CONSUMIDO
 
 PR #1029 (ACTO GEN2-TRAMITE-FIRMAS-8-ADENDA-1, ADR-260923-GEN2-TRAMITE-FIRMAS-8-ADENDA-1-7e4f-01).
