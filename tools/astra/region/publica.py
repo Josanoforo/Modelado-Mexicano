@@ -94,6 +94,30 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
                 sha(resultados_path), sha(carpeta / "sello.json"),
             ))))
+    calc = "CALC-REGION-ENVIPE-COMPLEMENTO-0001"
+    carpeta = ROOT / "data/corrida0" / calc
+    resultados_path = carpeta / "resultados.json"
+    datos = json.loads(resultados_path.read_text(encoding="utf-8"))["resultados"]
+    for ola in (2023, 2024, 2025):
+        pref = f"RESULT-REGION-ENVIPE-CUMPLE-{ola}"
+        bruto = json.loads(datos[pref + "-JSON"])
+        for fila in bruto["filas"]:
+            base = pref + "-" + fila["geografia"]
+            ids = [base + suf for suf in ("-P", "-IC-LO", "-IC-HI")]
+            punto, lo, hi = (datos[i] for i in ids)
+            if fila["estado"] == "PUBLICABLE" and not (0 <= lo <= punto <= hi <= 1):
+                raise ValueError(f"IC o punto incoherente: {base}")
+            if fila["estado"] != "PUBLICABLE" and any(v is not None for v in (punto, lo, hi)):
+                raise ValueError(f"fila suprimida con cifra: {base}")
+            filas.append(dict(zip(CAMPOS, (
+                "ENVIPE", "cumple_norma_envipe2025", "ENTIDAD", fila["geografia"],
+                str(ola), "IC-DE-DISEÑO-DERIVADO", punto, lo, hi, "delito",
+                "proporción [0,1]", "delitos con BP1_20 válido; complemento de evasión",
+                datos[base + "-N"], datos[base + "-N-EFECTIVO-KISH"],
+                "R2 heredada del piso sellado" if fila["estado"] == "PUBLICABLE" else fila["estado"],
+                "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
+                sha(resultados_path), sha(carpeta / "sello.json"),
+            ))))
     destino = ROOT / "canon/eje-regional-v1_0.tsv"
     with destino.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CAMPOS, delimiter="\t", lineterminator="\n")
@@ -106,7 +130,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee doce CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee trece CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"

@@ -17,6 +17,7 @@ U1_PATH = "forense/analisis/catalogo/inventario-consumo-gen2.tsv"
 OUT = ROOT / "forense/analisis/region/alcance-u1-v1_0.tsv"
 MEASURED = {
     ("ENVIPE", "evade_norma_envipe2025"),
+    ("ENVIPE", "cumple_norma_envipe2025"),
     ("ENIF", "tiene_ahorros_enif2024"),
     *(("ENIF", c) for c in (
         "no_tiene_ahorros_enif2024", "informal_cualquiera", "formal_cualquiera",
