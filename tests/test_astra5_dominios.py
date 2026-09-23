@@ -113,10 +113,14 @@ def test_lectura_tiempo_traza_los_15_hallazgos_sin_cierre_falso():
 def test_lectura_tecnologia_traza_15_hallazgos_y_separa_unidades():
     rows = read("lectura-tecnologia-v1_0.tsv")
     index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
-    assert len(rows) == 15
-    assert {row["id_lectura"] for row in rows} == {f"LECTURA-d47463c2-{n:02d}" for n in range(1, 16)}
-    for row in rows:
+    assert len(rows) == 18
+    assert {row["id_lectura"] for row in rows[:15]} == {f"LECTURA-d47463c2-{n:02d}" for n in range(1, 16)}
+    for row in rows[:15]:
         assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+    source = (ROOT / "corpus/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md").read_text(encoding="utf-8").splitlines()
+    for row in rows[15:]:
+        assert source[int(row["archivo_fuente_linea"].rsplit(":L", 1)[1]) - 1]
+    for row in rows:
         assert row["pregunta_documental_pendiente"]
         assert row["archivo_pieza_exacta"]
         assert row["propietario"].startswith("ASTRA5-")
@@ -304,3 +308,25 @@ def test_cotejo_endutih_usa_ola_reactivo_y_universo_del_result():
     assert cells["TOTAL", "no_internet_acceso"]["n"] == 10840
     assert ("TOTAL", "no_internet_habilidad") not in cells
     assert rows[-1]["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-9_5"
+
+
+def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
+    contracts = {r["id_afirmacion"]: r for r in read("mapa-parcial-v0_1.tsv")}
+    assert len(contracts) == 39
+    assert all(f"ASTRA5-U0-TEC-{n:03d}" in contracts for n in range(1, 11))
+    for n in (2, 5, 6, 7):
+        row = contracts[f"ASTRA5-U0-TEC-{n:03d}"]
+        assert "todas las personas" in row["componente_contrastable"] or "sobre todas las personas" in row["componente_contrastable"]
+        assert "P7_1=2" in row["componente_contrastable"]
+        assert row["dictamen"] == "MEDIBLE-EN-CORPUS"
+    assert "9.5/16.9" in contracts["ASTRA5-U0-TEC-002"]["componente_contrastable"]
+    assert "SIN RESULT" in contracts["ASTRA5-U0-TEC-003"]["gen2_existente"]
+    assert "P4_4" in contracts["ASTRA5-U0-TEC-004"]["pregunta_textual_codigo_respuestas"]
+    assert "EDAD" in contracts["ASTRA5-U0-TEC-008"]["pregunta_textual_codigo_respuestas"]
+    assert "SEXO" in contracts["ASTRA5-U0-TEC-009"]["pregunta_textual_codigo_respuestas"]
+    assert contracts["ASTRA5-U0-TEC-010"]["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+    assert "P3_12" in contracts["ASTRA5-U0-TEC-010"]["pregunta_textual_codigo_respuestas"]
+    assert "P3_23" in contracts["ASTRA5-U0-TEC-010"]["pregunta_textual_codigo_respuestas"]
+    cotejo = read("cotejo-result-endutih-v1_0.tsv")
+    assert cotejo[-1]["id_afirmacion"] == "ASTRA5-U0-TEC-002"
+    assert all(r["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-86_9-68_5" for r in cotejo[1:3])
