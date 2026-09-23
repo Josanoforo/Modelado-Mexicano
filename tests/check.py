@@ -5234,6 +5234,29 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1`, queda censado.
     "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md",
     "forense/notas/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-cierre.md",
+    # Encargos de TANDA-5-ENCARGOS-C (22/sep/2026, dirección), archivados
+    # verbatim (A.3, PR #1016) sin ejecutar: la propia tanda numera sus
+    # cinco piezas E11..E15 (TUBERIA=E11, TRAMITE-FIRMAS-7=E12,
+    # DUELO-ENVIPE2026-MARGINALES-2=E13, DIN-LOTE-ENIF2024-SECUNDARIA-1=E14,
+    # ADQ-F6-DIRIGIDA-1=E15) y cada encargo hermano se refiere a los demás
+    # por esa numeración de tanda, no por el rótulo del espacio `E`
+    # (fases MOTOR-3) que ninguno de estos actos acuña -- mismo patrón que
+    # GEN2-TRAMITE-FIRMAS-6 (E1-E4) y GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1
+    # (E1/E2) arriba. Ninguno de los textos se edita para complacer el test
+    # (A.3, cuerpo de dirección). GEN2-TRAMITE-FIRMAS-7.md (E12, §4/§6 "…
+    # E11 (canal)…"/"…por E11)") ya se ejecutó (PR #1015, ADR
+    # 260922-…-369b-01) y queda censado arriba con su propia entrada; no se
+    # duplica aquí.
+    # - TUBERIA-CANAL-PUBLICACION-1 §9: «Otro acto en vuelo: E12–E15» --
+    #   cita a los cuatro hermanos de esta misma tanda por su numeración.
+    "forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md",
+    # - DIN-LOTE-ENIF2024-SECUNDARIA-1 §3/§8: «…sin fila en vista hasta
+    #   E11» / «Orden sugerido: después de E11» -- cita a
+    #   TUBERIA-CANAL-PUBLICACION-1 (E11).
+    "forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md",
+    # - DUELO-ENVIPE2026-MARGINALES-2 §4: «no correr a la vez que E14» --
+    #   cita a DIN-LOTE-ENIF2024-SECUNDARIA-1 (E14).
+    "forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md",
 }
 
 
