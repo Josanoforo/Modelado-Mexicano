@@ -54,6 +54,8 @@ Uso:
 """
 import argparse
 import glob
+import importlib
+import json
 import os
 import re
 import subprocess
@@ -162,6 +164,84 @@ def inspeccion_adr(ramas_presentes, raiz=RAIZ):
         "candidato_en_rama": por_rama,
         "commit_0bis": commit_0bis,
         "candidato_raiz": candidato_raiz,
+    }
+
+
+def inspeccion_celdas_validadas(commit_0bis, ruta_encargo, raiz=RAIZ):
+    """P3 de ACTO GEN2-TUBERIA-METRICA-RECTORA-1: `Δceldas_validadas` =
+    derivación en el commit final (árbol de trabajo actual) − derivación en
+    el commit de 0-bis. Se escribe en la cabecera del ADR de cada acto
+    (`celdas_validadas: X → Y (ΔZ) @ <sha>`) y aquí se DERIVA, no se teclea.
+
+    Si un acto con `cuenta_gen2 = SI` (declarado en el propio encargo) cierra
+    con Δ = 0 y su cabecera `CONTADOR` no lo dice explícitamente (no trae
+    `Δ0` ni `celdas_validadas`), este tool se niega a cerrar -- la
+    comprobación queda acotada al cierre de ese mismo acto, sin WARN y sin
+    tocar la suite (firma de mesa 21/sep/2026, punto 5)."""
+    sys.path.insert(0, os.path.join(raiz, "tools"))
+    try:
+        import celdas_validadas as _cv_mod
+        importlib.reload(_cv_mod)
+        actual = _cv_mod._celdas_validadas().get("total_celdas_validadas")
+    except Exception as exc:  # noqa: BLE001
+        actual = None
+        actual_error = f"{type(exc).__name__}: {exc}"
+    else:
+        actual_error = None
+
+    antes = None
+    if commit_0bis:
+        # Worktree desechable sobre el commit de 0-bis (0-bis nunca toca
+        # código sustantivo, así que el 0-bis de ESTE acto refleja el código
+        # de ANTES de que este acto empezara). Mismo patrón que el guardia
+        # de monotonía: no se puede `import` un módulo de otro árbol.
+        with tempfile.TemporaryDirectory(prefix="cierre-acto-cv-0bis-") as tmp:
+            wt = os.path.join(tmp, "0bis")
+            rc, _, _ = _corre(["git", "worktree", "add", "--detach", "--force",
+                                wt, commit_0bis], raiz)
+            if rc == 0:
+                try:
+                    rc, out, _ = _corre(
+                        ["python3", "tools/celdas_validadas.py", "--json"], wt)
+                    if rc == 0 and out.strip():
+                        antes = json.loads(out).get("total_celdas_validadas")
+                    else:
+                        rc, out, _ = _corre([
+                            "python3", "-c",
+                            "import sys; sys.path.insert(0,'tools'); "
+                            "import json, tablero_programa as T; "
+                            "print(json.dumps(T._celdas_validadas()))"], wt)
+                        if rc == 0 and out.strip():
+                            antes = json.loads(out).get("total_celdas_validadas")
+                except (ValueError, OSError):
+                    antes = None
+                finally:
+                    _corre(["git", "worktree", "remove", "--force", wt], raiz)
+
+    delta = (actual - antes) if (actual is not None and antes is not None) else None
+
+    cuenta_gen2_si = False
+    contador_declara_delta = True
+    if ruta_encargo and os.path.exists(ruta_encargo):
+        texto_encargo = _leer(ruta_encargo)
+        # Sólo la CABECERA del encargo (antes del primer `---`) declara el
+        # `cuenta_gen2` de ESTE acto -- el cuerpo puede citar `cuenta_gen2 =
+        # SI` en prosa (p. ej. describiendo la propia regla de P3) sin que
+        # eso sea una declaración del acto. Buscar en todo el archivo
+        # confundiría la descripción de la regla con su aplicación.
+        cabecera_txt = texto_encargo.split("\n---\n", 1)[0]
+        cuenta_gen2_si = bool(re.search(r"cuenta_gen2\s*[:=]\s*SI\b",
+                                         cabecera_txt, re.I))
+        if cuenta_gen2_si and delta == 0:
+            contador_declara_delta = bool(re.search(
+                r"CONTADOR[^\n]*(celdas_validadas|Δ0|delta\s*0)", cabecera_txt, re.I))
+
+    niega_cierre = cuenta_gen2_si and delta == 0 and not contador_declara_delta
+    return {
+        "antes": antes, "actual": actual, "delta": delta,
+        "actual_error": actual_error,
+        "cuenta_gen2_si": cuenta_gen2_si,
+        "niega_cierre": niega_cierre,
     }
 
 
@@ -322,6 +402,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     git = inspeccion_git(raiz)
     adr = inspeccion_adr(git["ramas_presentes"], raiz)
     fp = inspeccion_fp(raiz)
+    cv = inspeccion_celdas_validadas(adr["commit_0bis"], ruta_encargo, raiz)
     gob = inspeccion_gobernanza(adr["real"], raiz)
     rotulo = inspeccion_rotulo(raiz)
     consumido = inspeccion_consumido(ruta_encargo)
@@ -358,6 +439,22 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     print("FP")
     print(f"  Máximo: {fp['max']}")
     print(f"  Filas ABIERTA ({len(fp['abiertas'])}): {', '.join(fp['abiertas']) or '(ninguna)'}")
+    print()
+    print("CELDAS_VALIDADAS (P3 de ACTO GEN2-TUBERIA-METRICA-RECTORA-1)")
+    if cv["actual"] is None:
+        print(f"  NO-DERIVABLE: {cv['actual_error']}")
+    elif cv["antes"] is None:
+        print(f"  actual={cv['actual']} @ HEAD · 0-bis NO-DERIVABLE "
+              "(sin commit de 0-bis, o el árbol de ese commit no permite derivar)")
+    else:
+        cabecera_txt = f"celdas_validadas: {cv['antes']} → {cv['actual']} (Δ{cv['delta']}) @ {git['head'][:8]}"
+        print(f"  {cabecera_txt}")
+        print("  -> pega esta línea en la cabecera del ADR de este acto (D-16, con SHA)")
+    if cv["niega_cierre"]:
+        print("  PARO — cuenta_gen2 = SI, Δ = 0, y la cabecera CONTADOR del "
+              "encargo no lo declara. Escribe en el CONTADOR del encargo "
+              "algo como «celdas_validadas: Δ0 (declarado)» o corrige el "
+              "encargo, y vuelve a correr `cierre_acto.py` antes de empujar.")
     print()
     print("GOBERNANZA (conteos)")
     print(f"  ADR reales: {gob['adr_real']}")
@@ -436,7 +533,8 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     print("  - Decisiones de mesa sobre pendientes")
     print("  - Un T25 nuevo en la suite (rótulo pelado): decidir prefijo o censarlo")
     print("  - Fusionar/aprobar el PR")
-    return {"git": git, "adr": adr, "fp": fp, "gobernanza": gob, "rotulo": rotulo,
+    return {"git": git, "adr": adr, "fp": fp, "celdas_validadas": cv,
+            "gobernanza": gob, "rotulo": rotulo,
             "consumido": consumido, "no_corrido": no_corrido, "suite": suite}
 
 
@@ -730,8 +828,10 @@ def main():
 
     if a.aplica:
         return fase_b_aplica()
-    fase_a(ruta_encargo=a.encargo, corre_suite=not a.sin_suite,
-           baseline_timeout=a.tope_suite)
+    resultado = fase_a(ruta_encargo=a.encargo, corre_suite=not a.sin_suite,
+                        baseline_timeout=a.tope_suite)
+    if resultado["celdas_validadas"]["niega_cierre"]:
+        return 1
     return 0
 
 
