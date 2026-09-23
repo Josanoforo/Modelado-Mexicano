@@ -50,3 +50,30 @@ En vuelo: piloto 4 (rama, por fusionar: append en `firmas-pendientes.tsv`), tres
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No relanza AUTOMERGE (es -2), no registra celdas-D, no adjudica, no repara el canal si excede 10 líneas. Sucesores: `GEN2-TUBERIA-CANAL-REPARACION-1` (si P4 lo pide), `GEN2-MOTOR-LOADER-Y-RESELLO-1` (D7, lo escribe dirección con las líneas de …e8fa-01), `GEN2-CORPUS-RESPALDO-EJECUCION-1` (D5, caja, vence 27/sep).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** adjunto `HOJA-DE-DECISIONES-2026-09-23.md` (sha256 `0fc5b52b57e6b365…`, §3 del encargo), archivo verbatim en `forense/encargos/fuentes/`.
+  **por qué:** `NO-VERIFICABLE-AQUÍ` — el adjunto no llegó a esta sesión (verificado: ausente del directorio de uploads de la sesión). Logística, no premisa de qué se mide: las siete firmas ya están verbatim en el cuerpo del propio encargo §2, así que P1 procedió sobre esa fuente sin bloquearse.
+  **impacto:** `forense/encargos/fuentes/HOJA-DE-DECISIONES-2026-09-23.md` no existe en el repo; nadie puede auditar el documento fuente completo de mesa, solo las siete firmas ya extraídas.
+  **sucesor:** SIN-ASIGNAR — quien tenga el adjunto (dirección) lo archiva en un acto posterior o adenda.
+
+- **qué:** P2 — cierre de las once NC del canal de publicación (`c09b-01`, `c2b4-02`, `7d98-01`, `7d98-04`, `0af9-01`, `009f-01`, `ef6f-01`, `9428-01`, `aa3f-01`, `ff56-01`, `ff56-03`, `7492-01`) con sustituto `GEN2-TUBERIA-LOTE-ESTRICTO-1`.
+  **por qué:** `PARO-PREMISA` — la condición del encargo («solo si P4 confirma que el canal funciona») no se cumplió: P4 midió que el canal sigue caído por `GH013` en todo push desde `#1028`.
+  **impacto:** las 27+ corridas selladas sin fila y `adoptados_activos` (72→87 medido por FIRMAS-10) siguen sin publicarse en la vista.
+  **sucesor:** `GEN2-TUBERIA-CANAL-REPARACION-1` (NC-260923-GEN2-TRAMITE-FIRMAS-11-05da-01).
+
+- **qué:** GEN2-DIN-CREDITO-SERIE-LECTURA-1 (sucesor citado por `ff56-01`/`-03`).
+  **por qué:** `FUERA-DE-PERÍMETRO` — es acto propio con su propia cabecera y ejecución; este encargo solo lo cita al verificar `ff56-01`/`-03`, no lo ejecuta ni lo cierra.
+  **impacto:** ninguno sobre este acto; se reporta que sigue EN COLA (archivado, sin `## NO-CORRIDO` ni `## CONSUMIDO`).
+  **sucesor:** GEN2-DIN-CREDITO-SERIE-LECTURA-1 mismo, cuando alguien lo ejecute.
+
+- **qué:** P4 — reparación del canal de publicación (opciones (ii)/(iii), ≤10 líneas de yml).
+  **por qué:** `DIFERIDO-A:GEN2-TUBERIA-CANAL-REPARACION-1` — la causa real (regla de rama `GH013` en Settings → Rules del repositorio) no es un cambio de `.github/workflows/verify.yml`: excede el margen que P4 autoriza tocar sin PARO.
+  **impacto:** el canal sigue sin publicar ninguna fila desde `#1028`.
+  **sucesor:** `GEN2-TUBERIA-CANAL-REPARACION-1` (NC-260923-GEN2-TRAMITE-FIRMAS-11-05da-01).
+
+- **qué:** todo lo demás del encargo (P1, P3, y la parte de P2 que sí verificó por objeto — `NC-0394`).
+  **por qué:** ejecutado — no aplica.
+  **impacto:** ninguno.
+  **sucesor:** N/A.
