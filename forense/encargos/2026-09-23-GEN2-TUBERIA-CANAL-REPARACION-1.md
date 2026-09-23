@@ -68,4 +68,4 @@ No activa la cola, no fusiona nada solo, no cambia qué publica el canal. Suceso
 
 ## CONSUMIDO
 
-Ejecutado por `/acto` sobre `forense/encargos/2026-09-23-GEN2-TUBERIA-CANAL-REPARACION-1.md`, rama `acto/gen2-tuberia-canal-reparacion-1`, PR pendiente de número (se cita en el siguiente commit). ADR raíz: `ADR-260923-GEN2-TUBERIA-CANAL-REPARACION-1-95ec-01`. Suite `--rapido` VERDE (0 FAIL) en cada commit de esta rama. No se fusiona en este acto: mesa fusiona.
+Ejecutado por `/acto` sobre `forense/encargos/2026-09-23-GEN2-TUBERIA-CANAL-REPARACION-1.md`, rama `acto/gen2-tuberia-canal-reparacion-1`, PR [#1062](https://github.com/Josanoforo/Modelado-Mexicano/pull/1062). ADR raíz: `ADR-260923-GEN2-TUBERIA-CANAL-REPARACION-1-95ec-01`. Suite `--rapido` VERDE (0 FAIL) en cada commit de esta rama. No se fusiona en este acto: mesa fusiona.
