@@ -1,5 +1,30 @@
 # ASTRA4-U2 · estado operativo y decisión solicitada
 
+## Sucesor tras #1073 y #1091 · 23/sep/2026
+
+`codex/astra4-relevo-sucesor-1` nace de `origin/main` 579462b3, que contiene
+ambos merges. El worktree de `codex/astra4-relevo-1` estaba limpio en
+04cd80a6; ese trabajo ya está integrado por #1091 y la rama antigua se
+conserva. `cotejo-documental-catalogo.md` resuelve por llave la búsqueda
+documental de M01–M23: M01/M02 no admiten P8_3 como pago; M03/M04 tienen
+serie de adopción sin identificación del mecanismo; M08 tiene CALC por delito
+que no equivale al registro PERSONA general; M09–M22 tienen instrumento,
+falsador o ausencia demostrada en fichas archivadas; M05/M23 conservan CALC
+y reservas consumidas. El plan y la reconciliación se regeneraron desde
+`audita_consumo.py` y `reconcilia_146.py` sin editar el catálogo sellado.
+
+**Saldo del sucesor:** `corrida0.py status` rederiva 146 lecturas legacy
+activas (34 motor, 6 celdas-D, 23 catálogo, 40 procedencia, 43 marco).
+El cotejo documental cambia cero lecturas efectivas y cero pines. El único
+escritor fusionado de este relevo continúa limitado a RES-0028; para las
+demás aplicaciones faltan firmas y/o escritores específicos según
+`contratos-otros-consumidores.md`. Las cifras de CALC citadas en lotes previos
+son evidencia sellada, no adopción automática. La decisión de mesa exigida
+para M08 es acotar el catálogo a unidad delito BPCOD=01 y aceptar la
+discrepancia `NO-REPRODUCE-GEN1`, o mantener PERSONA y elegir otro
+instrumento; para M01/M02, escoger pregunta de pago y registro observados.
+HOLDOUT no se reabre ni se inventa piloto.
+
 Fecha de corte: 23/sep/2026. Rama `codex/astra4-relevo-1`. Este documento
 no adopta ninguna cifra ni altera el consumo del motor.
 
