@@ -137,3 +137,21 @@ def test_lectura_finanzas_traza_13_hallazgos_y_conserva_contratos():
         assert row["siguiente_operacion"]
     assert "ASTRA5-U0-FIN-004" in rows[9]["contrato_existente"]
     assert "ASTRA5-U0-FIN-006" in rows[9]["contrato_existente"]
+
+
+def test_forense_credito_conserva_complemento_y_no_recuenta_casos():
+    rows = read("lectura-credito-popular-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 9
+    assert {row["id_lectura"] for row in rows} == (
+        {f"LECTURA-ed13e951-{n:02d}" for n in range(1, 5)}
+        | {f"LECTURA-ea74603e-{n:02d}" for n in range(1, 6)}
+    )
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"]
+        assert row["archivo_pieza_exacta"]
+        assert row["propietario"] == "ASTRA5-MESA-DINERO"
+        assert row["siguiente_operacion"]
+    assert all(row["rol_fuente"] == "complemento_forense_credito_popular" for row in rows[4:])
+    assert rows[2]["concepto_deduplicado"] == rows[8]["concepto_deduplicado"] == "CRPOP-COLAPSOS"
