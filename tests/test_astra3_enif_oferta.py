@@ -2,7 +2,7 @@ import importlib.util
 from pathlib import Path
 import pandas as pd
 
-path = Path(__file__).resolve().parents[1] / "tools/astra/enif/oferta/medidor.py"
+path = Path(__file__).resolve().parents[1] / "tools/astra/enif/oferta/exclusion_oferta_enif.py"
 spec = importlib.util.spec_from_file_location("oferta", path)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -25,3 +25,8 @@ def test_denominador_vacio_y_opcion_ausente():
     assert mod.CFG["2018"]["CUENTA"][2] == 9
     assert mod.CFG["2021"]["CUENTA"][2] == 10
     assert not (pd.Series([False]) & pd.Series([True])).any()
+
+
+if __name__ == "__main__":
+    test_principal_y_multiples_y_pase()
+    test_denominador_vacio_y_opcion_ausente()

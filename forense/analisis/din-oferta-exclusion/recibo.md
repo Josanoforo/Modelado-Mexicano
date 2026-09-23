@@ -18,7 +18,7 @@ Los cuestionarios y FD de las cuatro olas fijaron preguntas, pases y
 opciones antes del dato. Se leyeron specs y RESULT sellados de los pisos de
 crédito para enlazar por identidad; no se reestimaron. Hashes de fuentes,
 payloads, specs, scripts y sellos están en `originales/fuentes.sha256`,
-`nota.md`, `spec.yaml` y `ejecucion.json` de cada CALC.
+`nota-oferta-enif.md`, `spec.yaml` y `ejecucion.json` de cada CALC.
 
 ## REPORTADO
 
@@ -33,7 +33,7 @@ pertinentes: 413 enlaces contextuales por ola, población y eje, y 829
 motivos de no enlace. Cuenta formal se reporta por separado en los cuatro
 CALC, sin equipararla a ahorro activo. La lectura y todas las cifras
 nacionales por producto, N sin ponderar, denominador ponderado e IC están
-en `nota.md`.
+en `nota-oferta-enif.md`.
 
 ## NO-CORRIDO / RESERVAS
 

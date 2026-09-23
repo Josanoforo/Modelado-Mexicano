@@ -1,3 +1,4 @@
+<!-- Copia íntegra de MISION-ASTRA-3-mide-lo-que-falta.md; texto original a continuación. -->
 # MISION-ASTRA-3 · Tercer carril: lo que el programa ya sabe que le falta y nadie ha medido
 **Dirección (Claude Fable), 23/sep/2026 · main `619748f5` al redactar (re-deriva al abrir) · para Jonás (mesa) y Astra (ChatGPT, decide); Codex ejecuta hasta cerrar, en CAJA cuando toque microdato · independiente de MISION-ASTRA-1 (`949a0f1a9c0054a9`, vencer al piso) y MISION-ASTRA-2 (`df2bbebf2312b720`, identificar un θ): no comparte celdas de evaluación, ni olas reservadas, ni candidatos con ellas.**
 
