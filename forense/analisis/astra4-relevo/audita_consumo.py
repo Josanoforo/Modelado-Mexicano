@@ -94,8 +94,12 @@ def catalogo_rows():
             dependencia = f"ficha {m.objeto_modelo} sin instrumento/universo declarado en catálogo; muro HOLDOUT E0"
             operacion = f"localizar ficha {m.objeto_modelo} de forense/hitoD-preregistro-v2_0.md; fijar instrumento, universo, umbral y reserva en acto prospectivo; CALC solo tras apertura autorizada"
         else:
-            dependencia = "universo de búsqueda POR DECLARAR; identidad instrumento-regla y reserva sin acreditar"
-            operacion = f"cotejar reactivo y FD del instrumento para {m.objeto_modelo}; fijar universo/denominador y reserva; congelar CALC-RELEVO antes del dato"
+            dependencia = (f"catálogo declara {m.universo_instrumento}, pero instrumentos candidatos "
+                           "POR DECLARAR; universo de búsqueda POR DECLARAR; identidad de reactivo, "
+                           "denominador y reserva sin acreditar")
+            operacion = (f"cotejar si ENIGH 2022 realmente contiene {m.objeto_modelo} a nivel "
+                         "persona mediante cuestionario y FD; si no, identificar instrumento alterno "
+                         "y registrar NO-EQUIVALENTE; fijar denominador y reserva antes de congelar CALC")
         rows.append(dict(slot=row["slot"], momento=mid, objeto=m.objeto_modelo,
                          rol=m.rol_calibracion, estatus=m.estatus_disponibilidad,
                          plan_fechado="2026-09-23: decisión de secuencia, sin fecha ficticia de entrega",
