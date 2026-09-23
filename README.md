@@ -27,8 +27,8 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 
 | Objeto | Valor en este corte | Clave |
 |---|---:|---|
-| Corridas selladas | 179 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
-| RESULT GEN2 sellados | 61 199 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
+| Corridas selladas | 200 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
+| RESULT GEN2 sellados | 65 540 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
 | RESULT GEN2 adoptados activos | 72 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
 | Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
@@ -52,11 +52,11 @@ Para inspeccionar estructura, referencias y sellos no hace falta `data/raw`. Clo
 
 ## Cobertura
 
-El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> Son documentos de evidencia, no dominios mutuamente excluyentes; [lista completa](docs/catalogo.md). El mapa U0 aún no está consolidado en este corte. Hay mediciones **selladas** sobre dinero (ENIF), trámites (ENCIG), seguridad (ENVIPE), tiempo (ENUT) e ingreso (ENIGH), trazables por [CALC y RESULT](data/corrida0/) y [estado](canon/estado-programa-v1_15.md). Sellado, validado y adoptado son estados distintos. ENOE, ENDIREH, INE/ENCUP y MOCIBA tienen líneas de trabajo pendientes de consolidación; hasta que publiquen RESULT y dictamen, no se presentan como medición publicada. U0 fijará la cobertura temática y su propietario, pero no bloquea la publicación de los productos ya fusionados. Una duda pendiente no se clasifica `NO-MEDIBLE-POR-DISEÑO`.
+El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> Son documentos de evidencia, no dominios mutuamente excluyentes; [lista completa](docs/catalogo.md). El mapa U0 aún no está consolidado en este corte. Hay mediciones **selladas** sobre dinero (ENIF), trámites (ENCIG), seguridad (ENVIPE), tiempo (ENUT), ingreso (ENIGH) y trabajo (ENOE), trazables por [CALC y RESULT](data/corrida0/) y [estado](canon/estado-programa-v1_15.md). La [medición ENOE](forense/notas/2026-09-23-ASTRA5-U1-TRABAJO-ENOE-cierre.md) ofrece pisos trimestrales y persistencia descriptiva retrospectiva; adopta NO y no acredita transición individual ni cobertura predictiva calibrada. El [eje regional v1.0](canon/eje-regional-v1_0.md) publica filas retrospectivas de ENIF, ENCIG y ENVIPE con supresión por tamaño muestral; es propuesta sin adopción y no cubre todas las conductas ni olas. Sellado, validado y adoptado son estados distintos. ENDIREH, INE/ENCUP y MOCIBA siguen pendientes de medición consolidada; no se presentan como medición publicada. U0 fijará la cobertura temática y su propietario, pero no bloquea la publicación de los productos ya fusionados. Una duda pendiente no se clasifica `NO-MEDIBLE-POR-DISEÑO`.
 
 ## Uso, límites y contribuciones
 
-Empieza por el [informe v1.2](canon/informe-programa-v1_2.md), el [estado v1.15](canon/estado-programa-v1_15.md) y el [aviso](AVISO-DE-ALCANCE.md). El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
+Empieza por el [informe principal v1.2](canon/informe-programa-v1_2.md), su [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [estado v1.15](canon/estado-programa-v1_15.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licencia, cita y contacto
 

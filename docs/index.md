@@ -14,3 +14,5 @@ Los retadores evaluados no superaron los criterios de superioridad fijados en su
 - [Licencia y contacto]({{ '/contacto.html' | relative_url }})
 
 El [README completo](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md) deriva los contadores del corte actual. La [advertencia de alcance](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/AVISO-DE-ALCANCE.md) explica unidades, incertidumbre y límites.
+
+El [informe principal v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/informe-programa-v1_2.md) tiene un [anexo de evidencia v1.3](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/informe-programa-v1_3-ANEXO.md). El [eje regional v1.0](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/eje-regional-v1_0.md) es una propuesta retrospectiva de cobertura parcial, sin adopción.

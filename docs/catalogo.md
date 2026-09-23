@@ -8,13 +8,14 @@ title: Catálogo
 
 El [directorio de reports](https://github.com/Josanoforo/Modelado-Mexicano/tree/main/corpus/reports) lista los documentos de evidencia. Cada report puede tocar varios temas; su cantidad no mide la cantidad de dominios con RESULT.
 
-El catálogo público de momentos está **en construcción, sin fecha anunciada**. El mapa U0 de dominios fijará cobertura y propietario de los instrumentos pendientes. Hasta entonces, `MEDIDO` requiere un RESULT sellado y `EN-MEDICIÓN` un acto y propietario identificables; las dudas no se rotulan `NO-MEDIBLE-POR-DISEÑO`.
+El catálogo público de momentos está **en construcción, sin fecha anunciada**. El mapa U0 de dominios fijará cobertura y propietario de los instrumentos pendientes. Mientras tanto, los productos ya publicados pueden consultarse por sus RESULT y notas. `MEDIDO` requiere un RESULT sellado y `EN-MEDICIÓN` un acto y propietario identificables; las dudas no se rotulan `NO-MEDIBLE-POR-DISEÑO`.
 
 | Pieza | Estado de publicación en este corte |
 |---|---|
 | Reports del corpus | Disponibles en el repositorio |
 | Catálogo de estimandos y segmentos | Pendiente de fusión a `main` |
-| Eje regional | Pendiente de fusión a `main`; no se presenta como cobertura regional completa |
+| Eje regional v1.0 | [Disponible](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/eje-regional-v1_0.md): propuesta retrospectiva sin adopción; ENIF usa seis regiones oficiales y ENCIG/ENVIPE entidades de residencia; cobertura parcial de conductas y olas |
+| Trabajo ENOE | [Pisos y persistencia descriptiva disponibles](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-23-ASTRA5-U1-TRABAJO-ENOE-cierre.md): CALC sellados, retrospectivos, sin adopción ni IC predictivo calibrado |
 
 Una propuesta con CALC sellados aún puede tener adopción pendiente. La tabla de
 cobertura se actualizará desde `main` cuando esas piezas se fusionen.
