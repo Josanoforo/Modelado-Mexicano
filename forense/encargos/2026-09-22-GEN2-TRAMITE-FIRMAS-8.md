@@ -40,3 +40,12 @@ Propio: `data/corrida0/decisiones.tsv` · `forense/firmas-pendientes.tsv` · `fo
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No implementa la bandera, no relanza el automerge (lo hace mesa), no adquiere nada. Sucesores: `GEN2-TUBERIA-LOTE-ESTRICTO-1`; relanzamiento de `GEN2-TUBERIA-RUTINAS-AUTOMERGE-1`. Auditoría: no aplica. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+| id | qué | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| `NC-260923-GEN2-TRAMITE-FIRMAS-8-aa3f-01` | P5 — implementar la bandera de lote ESTRICTO en `corrida0.py registro` (opción (a) que mesa firmó para `FP-...-7d98-01`) | `DIFERIDO-A:GEN2-TUBERIA-LOTE-ESTRICTO-1` — `tools/corrida0.py` es AJENO al perímetro de este acto (§9) | el primer push real del canal de publicación sigue sin correr; las 22+ corridas selladas siguen sin fila publicada | `GEN2-TUBERIA-LOTE-ESTRICTO-1` |
+| `NC-260923-GEN2-TRAMITE-FIRMAS-8-aa3f-02` | P1/P2/P3 de `GEN2-TUBERIA-RUTINAS-AUTOMERGE-1` (tabla de clases, workflow de auto-merge, huella) — ahora que `FP-...-e889-01` está FIRMADA | `DIFERIDO-A:GEN2-TUBERIA-RUTINAS-AUTOMERGE-1` — el encargo declara explícitamente «no relanza el automerge, lo hace mesa» (§10) | el contador «PR de rutina por día que esperan a mesa: 4 → 0» sigue sin moverse | relanzamiento de `GEN2-TUBERIA-RUTINAS-AUTOMERGE-1` con la firma pegada; ese relanzamiento cita también a `FP-...-9a2c-01` (hallazgo de paso) |
+| `NC-260923-GEN2-TRAMITE-FIRMAS-8-aa3f-03` | P2 — cierre con cita de `NC-260922-GEN2-ADQ-F6-DIRIGIDA-1-e7be-03` (la fila que `FP-...-e7be-01` gatea) | `DIFERIDO-A:PR-1014` — esa fila vive solo en la rama `claude/new-session-ceszds` (PR #1014), sin fusionar a `origin/main` al ejecutar este acto | la decisión de mesa (R02/R08 fuera de F6) ya está citada en `decisiones.tsv` y en la enmienda de `NC-0161`/`NC-0162`; solo la fila propia de `e7be-03` queda sin marcar CERRADA | PR #1014 (al fusionar, cerrar `e7be-03` citando este acto) |
+| `NC-260923-GEN2-TRAMITE-FIRMAS-8-aa3f-04` | Objetivo del encargo: `NC-...-8e53-04` CERRADA si mesa rellena las tres líneas (protección de `main` / merge queue / quién fusiona) | `DECISIÓN-DE-MESA-PENDIENTE` — el encargo trae las tres líneas en blanco otra vez, verbatim | el auto-merge (ya FIRMADO) se puede instalar apagado mientras tanto | mesa — una línea de respuesta; `NC-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-04` (misma fila, segunda pregunta idéntica) |
