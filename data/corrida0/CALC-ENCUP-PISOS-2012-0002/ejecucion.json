@@ -1,0 +1,95 @@
+{
+ "corrida_id": "CALC-ENCUP-PISOS-2012-0002--329a66b2a01f",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "openpyxl": "3.1.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA",
+  "adopta": false,
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3 23/sep/2026; no adopta",
+  "generacion": "GEN2",
+  "tipo": "PISO-DESCRIPTIVO-MUESTRA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T16:44:34Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 438,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "329a66b2a01f6d06902cb4954619355012e7d317",
+  "git_rama": "codex/astra5-politica-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "329a66b2a01f6d06902cb4954619355012e7d317",
+ "input_ids": [
+  "encup_2012_base_datos_xlsx"
+ ],
+ "input_sha256": {
+  "encup_2012_base_datos_xlsx": "50341d97a3e305e6ed3348757632e5b23ab2e87b2052304961905619d85612e4"
+ },
+ "parametros": {
+  "hash_medidor_sha256": "0a6adb5ca31d6dee690f6e856c4c0e1b153819cb03b5c0c2e180d380184bae8d",
+  "hash_payload_sha256": "50341d97a3e305e6ed3348757632e5b23ab2e87b2052304961905619d85612e4",
+  "n_minimo": 30,
+  "umbral_confianza_alta": 8
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENCUP-PISOS-2012-FILAS",
+  "RESULT-ENCUP-PISOS-2012-TABLA"
+ ],
+ "script_blob_sha256": "0a6adb5ca31d6dee690f6e856c4c0e1b153819cb03b5c0c2e180d380184bae8d",
+ "script_path": "data/corrida0/CALC-ENCUP-PISOS-2012-0002/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-ENCUP-PISOS-2012-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "dc1ac26d60fe5a2ecb4dbe8c1334480076b3e6607a2a76e020db213fc21df6bc",
+ "spec_yaml_sha256": "18cbc9e28f293b66016abc290c8d9ed44a58e20bd5edae6e6c5a05e2a45f8e2c",
+ "tolerancia": {
+  "razon": "conteos y JSON deterministas",
+  "tipo": "exacta"
+ }
+}
