@@ -1,0 +1,422 @@
+{
+ "corrida_id": "CALC-ENOE-PISOS-0003--a436e3f08d98",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "PyYAML==6.0.3": "AUSENTE",
+  "numpy==2.3.5": "AUSENTE",
+  "pandas==2.3.3": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "contaminacion_declarada": "Antes del freeze v1.2: v1.0 falló en 2022T2 por BOM; v1.1 falló en 2025T3 por cambio ent→cve_ent; se leyeron encabezados de 43 olas para equivalencia estructural. Ningún RESULT ni valor agregado consultado; conductas y umbrales intactos.",
+  "cuenta_gen2": "SI",
+  "firma_de_contador": "Encargo ASTRA5-U1-TRABAJO-ENOE, mandato de medir conductas y contador por conducta; no adopta.",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "tipo": "PISOS-TRIMESTRALES-ENOE"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T17:19:23Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 439,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "a436e3f08d985208c89d0da86196bdf8429808d5",
+  "git_rama": "codex/astra5-trabajo-enoe-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "a436e3f08d985208c89d0da86196bdf8429808d5",
+ "input_ids": [
+  "enoe_2005_1t_csv_microdatos",
+  "enoe_2008_1t_csv_microdatos",
+  "enoe_2012_1t_csv_microdatos",
+  "enoe_2014_1t_csv_microdatos",
+  "enoe_2016_1t_csv_microdatos",
+  "enoe_2016_2t_csv_microdatos",
+  "enoe_2016_3t_csv_microdatos",
+  "enoe_2016_4t_csv_microdatos",
+  "enoe_2017_1t_csv_microdatos",
+  "enoe_2017_2t_csv_microdatos",
+  "enoe_2017_3t_csv_microdatos",
+  "enoe_2017_4t_csv_microdatos",
+  "enoe_2018_1t_csv_microdatos",
+  "enoe_2018_2t_csv_microdatos",
+  "enoe_2018_3t_csv_microdatos",
+  "enoe_2018_4t_csv_microdatos",
+  "enoe_2019_1t_microdatos",
+  "enoe_2019_2t_microdatos",
+  "enoe_2019_3t_microdatos",
+  "enoe_2019_4t_microdatos",
+  "enoe_2020_1t_microdatos",
+  "enoe_n_2020_3t_microdatos",
+  "enoe_n_2020_4t_microdatos",
+  "enoe_n_2021_1t_microdatos",
+  "enoe_n_2021_2t_microdatos",
+  "enoe_n_2021_3t_microdatos",
+  "enoe_n_2021_4t_microdatos",
+  "enoe_n_2022_1t_microdatos",
+  "enoe_n_2022_2t_microdatos",
+  "enoe_n_2022_3t_microdatos",
+  "enoe_n_2022_4t_microdatos",
+  "enoe_2023_1t_microdatos",
+  "enoe_2023_2t_microdatos",
+  "enoe_2023_3t_microdatos",
+  "enoe_2023_4t_microdatos",
+  "enoe_2024_1t_microdatos",
+  "enoe_2024_2t_microdatos",
+  "enoe_2024_3t_microdatos",
+  "enoe_2024_4t_microdatos",
+  "enoe_2025_1t_microdatos",
+  "enoe_2025_2t_microdatos",
+  "enoe_2025_3t_microdatos",
+  "enoe_2025_4t_microdatos",
+  "IN-ENOE-MEDIDOR",
+  "IN-ENOE-MATRIZ",
+  "IN-ENOE-U0",
+  "IN-ENOE-OLAS",
+  "enoe_n_diseno_muestral_pdf"
+ ],
+ "input_sha256": {
+  "IN-ENOE-MATRIZ": "735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463",
+  "IN-ENOE-MEDIDOR": "ccbce2b7a3422f4b5e71188dcf98ce560fb736f1e0e049b136fe10bdc2cfe063",
+  "IN-ENOE-OLAS": "bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b",
+  "IN-ENOE-U0": "fb7a0385b70278cff5c84ecaf3abb6b44fdc4a0e21ae1fdb832f4f03e81a79ac",
+  "enoe_2005_1t_csv_microdatos": "a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33",
+  "enoe_2008_1t_csv_microdatos": "a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94",
+  "enoe_2012_1t_csv_microdatos": "fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5",
+  "enoe_2014_1t_csv_microdatos": "fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2",
+  "enoe_2016_1t_csv_microdatos": "8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d",
+  "enoe_2016_2t_csv_microdatos": "4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f",
+  "enoe_2016_3t_csv_microdatos": "9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28",
+  "enoe_2016_4t_csv_microdatos": "f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500",
+  "enoe_2017_1t_csv_microdatos": "945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8",
+  "enoe_2017_2t_csv_microdatos": "bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066",
+  "enoe_2017_3t_csv_microdatos": "1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973",
+  "enoe_2017_4t_csv_microdatos": "af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4",
+  "enoe_2018_1t_csv_microdatos": "e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33",
+  "enoe_2018_2t_csv_microdatos": "2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f",
+  "enoe_2018_3t_csv_microdatos": "7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7",
+  "enoe_2018_4t_csv_microdatos": "9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774",
+  "enoe_2019_1t_microdatos": "9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89",
+  "enoe_2019_2t_microdatos": "721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36",
+  "enoe_2019_3t_microdatos": "6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b",
+  "enoe_2019_4t_microdatos": "d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58",
+  "enoe_2020_1t_microdatos": "8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b",
+  "enoe_2023_1t_microdatos": "ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c",
+  "enoe_2023_2t_microdatos": "e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5",
+  "enoe_2023_3t_microdatos": "cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752",
+  "enoe_2023_4t_microdatos": "24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e",
+  "enoe_2024_1t_microdatos": "5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b",
+  "enoe_2024_2t_microdatos": "13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285",
+  "enoe_2024_3t_microdatos": "6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3",
+  "enoe_2024_4t_microdatos": "817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305",
+  "enoe_2025_1t_microdatos": "dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e",
+  "enoe_2025_2t_microdatos": "291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722",
+  "enoe_2025_3t_microdatos": "d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022",
+  "enoe_2025_4t_microdatos": "e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d",
+  "enoe_n_2020_3t_microdatos": "924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3",
+  "enoe_n_2020_4t_microdatos": "5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3",
+  "enoe_n_2021_1t_microdatos": "208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52",
+  "enoe_n_2021_2t_microdatos": "a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b",
+  "enoe_n_2021_3t_microdatos": "853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d",
+  "enoe_n_2021_4t_microdatos": "1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b",
+  "enoe_n_2022_1t_microdatos": "5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6",
+  "enoe_n_2022_2t_microdatos": "19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a",
+  "enoe_n_2022_3t_microdatos": "fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5",
+  "enoe_n_2022_4t_microdatos": "1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d",
+  "enoe_n_diseno_muestral_pdf": "42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09"
+ },
+ "parametros": {
+  "calibracion": "SIN-COVARIANZA-LONGITUDINAL-PARA-CALIBRAR",
+  "ejes": [
+   "nacional",
+   "sexo",
+   "edad",
+   "escolaridad",
+   "localidad",
+   "entidad"
+  ],
+  "min_n": 100,
+  "min_n_kish": 100,
+  "min_upm": 2,
+  "olas": [
+   {
+    "era": "clasica",
+    "id": "enoe_2005_1t_csv_microdatos",
+    "ola": "2005T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2008_1t_csv_microdatos",
+    "ola": "2008T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2012_1t_csv_microdatos",
+    "ola": "2012T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2014_1t_csv_microdatos",
+    "ola": "2014T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2016_1t_csv_microdatos",
+    "ola": "2016T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2016_2t_csv_microdatos",
+    "ola": "2016T2"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2016_3t_csv_microdatos",
+    "ola": "2016T3"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2016_4t_csv_microdatos",
+    "ola": "2016T4"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2017_1t_csv_microdatos",
+    "ola": "2017T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2017_2t_csv_microdatos",
+    "ola": "2017T2"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2017_3t_csv_microdatos",
+    "ola": "2017T3"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2017_4t_csv_microdatos",
+    "ola": "2017T4"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2018_1t_csv_microdatos",
+    "ola": "2018T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2018_2t_csv_microdatos",
+    "ola": "2018T2"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2018_3t_csv_microdatos",
+    "ola": "2018T3"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2018_4t_csv_microdatos",
+    "ola": "2018T4"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2019_1t_microdatos",
+    "ola": "2019T1"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2019_2t_microdatos",
+    "ola": "2019T2"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2019_3t_microdatos",
+    "ola": "2019T3"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2019_4t_microdatos",
+    "ola": "2019T4"
+   },
+   {
+    "era": "clasica",
+    "id": "enoe_2020_1t_microdatos",
+    "ola": "2020T1"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2020_3t_microdatos",
+    "ola": "2020T3"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2020_4t_microdatos",
+    "ola": "2020T4"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2021_1t_microdatos",
+    "ola": "2021T1"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2021_2t_microdatos",
+    "ola": "2021T2"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2021_3t_microdatos",
+    "ola": "2021T3"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2021_4t_microdatos",
+    "ola": "2021T4"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2022_1t_microdatos",
+    "ola": "2022T1"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2022_2t_microdatos",
+    "ola": "2022T2"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2022_3t_microdatos",
+    "ola": "2022T3"
+   },
+   {
+    "era": "enoen",
+    "id": "enoe_n_2022_4t_microdatos",
+    "ola": "2022T4"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2023_1t_microdatos",
+    "ola": "2023T1"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2023_2t_microdatos",
+    "ola": "2023T2"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2023_3t_microdatos",
+    "ola": "2023T3"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2023_4t_microdatos",
+    "ola": "2023T4"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2024_1t_microdatos",
+    "ola": "2024T1"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2024_2t_microdatos",
+    "ola": "2024T2"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2024_3t_microdatos",
+    "ola": "2024T3"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2024_4t_microdatos",
+    "ola": "2024T4"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2025_1t_microdatos",
+    "ola": "2025T1"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2025_2t_microdatos",
+    "ola": "2025T2"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2025_3t_microdatos",
+    "ola": "2025T3"
+   },
+   {
+    "era": "pos2023",
+    "id": "enoe_2025_4t_microdatos",
+    "ola": "2025T4"
+   }
+  ],
+  "replicas": 200
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENOE-PISOS-CELDAS",
+  "RESULT-ENOE-PISOS-FILAS-LEIDAS",
+  "RESULT-ENOE-PISOS-OLAS",
+  "RESULT-ENOE-PISOS-PERSONAS-BASE",
+  "RESULT-ENOE-PISOS-TABLA"
+ ],
+ "script_blob_sha256": "2010dcc39a56701c8df1ec0fa4035ccfed047fa8dede541b0012e2d2a39dd8f4",
+ "script_path": "data/corrida0/CALC-ENOE-PISOS-0003/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-ENOE-PISOS-0003",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "00d4cea867363f72c95555e7c2a89788bddd26862dc68d63d0ae36f383dd617a",
+ "spec_yaml_sha256": "0ca8e82381f3d1f8c33d42f52499101ad0e99d5d94df77df6e9561d48599dc19",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}

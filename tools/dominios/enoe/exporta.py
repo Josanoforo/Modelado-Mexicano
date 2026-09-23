@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import csv
-import hashlib
 import json
 from pathlib import Path
 
@@ -19,7 +18,7 @@ def main():
     sello = d / "sello.sha256"
     if not sello.exists():
         raise SystemExit("CALC sin sello")
-    sello_hash = hashlib.sha256(sello.read_bytes()).hexdigest()
+    sello_hash = sello.read_text().split()[0]
     data = json.loads((d / "resultados.json").read_text())
     filas = json.loads(data["resultados"][RESULT])
     out = RAIZ / "forense" / "analisis" / "dominios" / "enoe" / "pisos-v1_0.tsv"
