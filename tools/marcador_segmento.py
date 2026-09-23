@@ -1114,8 +1114,10 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
             # `CRUCE-GRUPO::…::edadxescolaridad` seguía RESERVADA por esta
             # omisión, no por falta de adjudicación (cierra NC-0410/NC-0454/
             # NC-…3619-01/NC-…0d1b-02: la reserva del PAR de marcador).
+            # GEN2-DUELO-ENCIG2025-CIERRE-1 (firma de mesa 23/sep): una celda-D GOB por par; el par sale de su id.
+            a, b = cid.rsplit(".", 1)[1].split("_x_")
             pares_piloteados.add(("tramite.gobierno_digital.util_sin_coercion_ejes_encig2025",
-                                  frozenset({"edad", "escolaridad"})))
+                                  frozenset({a, b})))
     filas = []
     total_reservadas = 0
     total_consumidas = 0

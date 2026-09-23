@@ -1,0 +1,151 @@
+name: Auto-merge de rutinas
+
+# Instala D4-A (firma de mesa 23/sep/2026, ACTO GEN2-TUBERIA-RUTINAS-AUTOMERGE-2):
+# fusiona sin botón de mesa UN PR cuando las cuatro condiciones se cumplen a la vez:
+#   1. la rama empieza por `claude/encola-` o `acto/gen2-tramite-`, o el último
+#      commit del PR empieza por `[deriva]`;
+#   2. el workflow "Verificación del corpus" (job `suite`, check.py --baseline)
+#      terminó en éxito sobre ese mismo SHA;
+#   3. el diff del PR no toca `data/corrida0/CALC-*` ni `forense/prereg-caja/`
+#      (guardia por diff: un prefijo de rama correcto no basta si el contenido
+#      no lo es — lo que mide lo fusiona mesa, nunca esta rutina);
+#   4. el PR sigue abierto y mergeable en el momento de fusionar.
+# Cualquier PR que no cumpla las cuatro sigue exigiendo merge humano. Sin
+# actions de marketplace (mismo criterio que verify.yml): solo curl+jq contra
+# la API de GitHub con el GITHUB_TOKEN del job.
+
+on:
+  workflow_run:
+    workflows: ["Verificación del corpus"]
+    types: [completed]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: automerge-rutinas-${{ github.event.workflow_run.head_sha }}
+  cancel-in-progress: false
+
+jobs:
+  fusiona-si-rutina:
+    if: github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPO: ${{ github.repository }}
+      SHA: ${{ github.event.workflow_run.head_sha }}
+    steps:
+      - name: Checkout sin marketplace (repo público — cero descargas de action)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${REPO}.git"
+          git fetch -q --depth=1 origin "${SHA}"
+          git checkout -q FETCH_HEAD
+
+      - name: Ubica el PR asociado a este SHA (API, no evento — workflow_run.pull_requests es poco fiable en push a rama propia)
+        id: pr
+        run: |
+          set -euo pipefail
+          resp="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/search/issues?q=repo:${REPO}+type:pr+state:open+sha:${SHA}")"
+          numero="$(echo "$resp" | jq -r '.items[0].number // empty')"
+          if [ -z "$numero" ]; then
+            echo "sin PR abierto para este SHA — nada que fusionar"
+            echo "numero=" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "numero=$numero" >> "$GITHUB_OUTPUT"
+
+      - name: Condición 1 — rama o commit de rutina (D4, lista cerrada de prefijos, verbatim)
+        id: clase
+        if: steps.pr.outputs.numero != ''
+        run: |
+          set -euo pipefail
+          pr="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${{ steps.pr.outputs.numero }}")"
+          rama="$(echo "$pr" | jq -r '.head.ref')"
+          echo "rama=$rama" >> "$GITHUB_OUTPUT"
+          msg_commit="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/commits/${SHA}" | jq -r '.commit.message' | head -1)"
+          es_rutina="no"
+          case "$rama" in
+            claude/encola-*|acto/gen2-tramite-*) es_rutina="si" ;;
+          esac
+          case "$msg_commit" in
+            "[deriva]"*) es_rutina="si" ;;
+          esac
+          echo "es_rutina=$es_rutina" >> "$GITHUB_OUTPUT"
+          echo "clase: rama=$rama commit=[$msg_commit] es_rutina=$es_rutina"
+
+      - name: Condición 3 — guardia por diff (nunca CALC-* ni prereg-caja/, aunque el prefijo diga rutina)
+        id: guardia
+        if: steps.pr.outputs.numero != '' && steps.clase.outputs.es_rutina == 'si'
+        run: |
+          set -euo pipefail
+          archivos="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            --paginate 2>/dev/null || true)"
+          # sin --paginate real en curl: pagina a mano, máx 10 páginas (300 archivos)
+          todos=""
+          for p in 1 2 3 4 5 6 7 8 9 10; do
+            pagina="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+              "https://api.github.com/repos/${REPO}/pulls/${{ steps.pr.outputs.numero }}/files?per_page=100&page=${p}")"
+            n="$(echo "$pagina" | jq 'length')"
+            todos="$todos
+$(echo "$pagina" | jq -r '.[].filename')"
+            [ "$n" -lt 100 ] && break
+          done
+          toca_vedado="no"
+          while IFS= read -r f; do
+            [ -z "$f" ] && continue
+            case "$f" in
+              data/corrida0/CALC-*|forense/prereg-caja/*) toca_vedado="si" ;;
+            esac
+          done <<< "$todos"
+          echo "toca_vedado=$toca_vedado" >> "$GITHUB_OUTPUT"
+          echo "guardia: toca_vedado=$toca_vedado"
+
+      - name: Condición 4 + fusiona (squash) si las cuatro se cumplen
+        id: fusiona
+        if: steps.pr.outputs.numero != '' && steps.clase.outputs.es_rutina == 'si' && steps.guardia.outputs.toca_vedado == 'no'
+        run: |
+          set -euo pipefail
+          pr="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${{ steps.pr.outputs.numero }}")"
+          estado="$(echo "$pr" | jq -r '.state')"
+          mergeable="$(echo "$pr" | jq -r '.mergeable')"
+          if [ "$estado" != "open" ]; then
+            echo "PR ya no está abierto ($estado) — no fusiona"
+            exit 0
+          fi
+          if [ "$mergeable" = "false" ]; then
+            echo "PR no mergeable (conflicto) — no fusiona"
+            exit 0
+          fi
+          resp="$(curl -sS -X PUT -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pulls/${{ steps.pr.outputs.numero }}/merge" \
+            -d "{\"merge_method\":\"squash\",\"sha\":\"${SHA}\"}")"
+          merged="$(echo "$resp" | jq -r '.merged // false')"
+          echo "merged=$merged" >> "$GITHUB_OUTPUT"
+          sha_merge="$(echo "$resp" | jq -r '.sha // empty')"
+          echo "sha_merge=$sha_merge" >> "$GITHUB_OUTPUT"
+          echo "fusión: merged=$merged sha_merge=$sha_merge"
+
+      - name: Registra la fusión automática (append en main, API de contenidos — union en .gitattributes)
+        if: steps.fusiona.outputs.merged == 'true'
+        run: |
+          set -euo pipefail
+          actual="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/contents/forense/fusiones-automaticas.tsv?ref=main")"
+          sha_actual="$(echo "$actual" | jq -r '.sha')"
+          contenido="$(echo "$actual" | jq -r '.content' | base64 -d)"
+          fila="$(date -u +%FT%TZ)	${{ steps.pr.outputs.numero }}	${{ steps.clase.outputs.rama }}	${{ steps.fusiona.outputs.sha_merge }}	D4-A	${{ github.event.workflow_run.id }}"
+          nuevo="${contenido}
+${fila}"
+          b64="$(printf '%s' "$nuevo" | base64 -w0)"
+          curl -sS -X PUT -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/contents/forense/fusiones-automaticas.tsv" \
+            -d "{\"message\":\"[deriva] registra fusion automatica PR #${{ steps.pr.outputs.numero }} (D4-A)\",\"content\":\"${b64}\",\"sha\":\"${sha_actual}\",\"branch\":\"main\"}" \
+            > /dev/null
