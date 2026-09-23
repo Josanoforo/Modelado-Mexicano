@@ -48,3 +48,13 @@ Archivos que OTRO ACTO EN VUELO está tocando ahora: piloto 4 en CAJA escribe `f
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no fusiona, no edita a Astra, no lanza el piloto 5. Sucesores: mesa fusiona o devuelve #1030/#1031 con la fila FP; el piloto 4 copia por id lo que ENTRA si su COMMIT-1 aún no existe; `GEN2-CELDA-D-PILOTO-5-ENCOGIDA-ENCIG-1` copia por id lo que ENTRA de ENCIG; `GEN2-RECIBO-ASTRA-2` para lo que Astra empuje después del SHA fijado aquí. Auditoría de rigor extremo: no carga (el recibo no afirma sobre México; los CALC de Astra la traerán cuando un piloto los adjudique). Cierre por /acto: `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio si aplica) y `## CONSUMIDO` los añade /acto al pie; adendas de mesa como `<este-encargo>-ADENDA-N.md`.
+
+## NO-CORRIDO / RESERVAS
+
+- **P2 (ENVIPE), cruce de `MARGINALES-PUBLICOS` contra `data/manifiesto.yaml` por sha.** `NO-VERIFICABLE-AQUÍ` — acto NUBE, sin corpus montado para confirmar el sha declarado en el `ejecucion.json` de los cuatro CALC-ASTRA-ENVIPE-*. Impacto: no cambia el veredicto NO-ENTRA (ya decidido por ventana cerrada en (b)). Sucesor: `NC-260923-GEN2-RECIBO-ASTRA-1-4e74-01`, `GEN2-RECIBO-ASTRA-2`.
+- **P3 (ENVIPE), cotejo celda-por-celda contra `TRA-evade-norma-cruces-encogida-spec-v1_0.md`.** `DIFERIDO-A:GEN2-RECIBO-ASTRA-2` — moot bajo el veredicto (b) ya cerrado; sin efecto en el resultado de este acto. Sucesor: `NC-260923-GEN2-RECIBO-ASTRA-1-4e74-02`, `GEN2-RECIBO-ASTRA-2`.
+- **P2 (ENCIG), orden por historial `git log -p -S <sha256>`.** `NO-VERIFICABLE-AQUÍ` — se verificó por otra vía (lectura directa de `exposicion_historica: CIEGO-A-ENCIG2025-CRUCE-NO-ABIERTO` y de `inputs: origen: repo`, sin microdato), pero el criterio (b) de la ADENDA-1 pide historial explícito. Impacto: riesgo bajo, no cambia el veredicto condicional. Sucesor: `NC-260923-GEN2-RECIBO-ASTRA-1-4e74-03`, `GEN2-RECIBO-ASTRA-2`.
+
+## CONSUMIDO
+
+Ejecutado por PR #1033.
