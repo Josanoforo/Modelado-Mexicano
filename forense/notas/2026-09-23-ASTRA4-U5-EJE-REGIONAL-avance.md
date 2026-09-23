@@ -1,6 +1,6 @@
 # ASTRA4-U5 · Región · recibo Codex para Claude
 
-**Contadores antes/después:** CALC regionales sellados `0 → 22`; filas del canon regional `0 → 914`; comparaciones retrospectivas muestrales `0 → 268` y predictivas `0 → 102`. Comandos: `python3 tools/astra/region/publica.py` y `python3 tools/astra/region/mapa.py` sobre el HEAD del PR [#1072](https://github.com/Josanoforo/Modelado-Mexicano/pull/1072). Es un **avance con reservas materiales**, no cierre integral ni adopción.
+**Contadores antes/después:** CALC regionales sellados `0 → 22`; filas del canon regional `0 → 914`; comparaciones retrospectivas muestrales `0 → 268` y predictivas `0 → 102`. Comandos: `python3 tools/astra/region/publica.py` y `python3 tools/astra/region/mapa.py` sobre el HEAD del PR [#1072](https://github.com/Josanoforo/Modelado-Mexicano/pull/1072). El producto región×conducta del snapshot U1 está dictaminado, con reservas materiales explícitas y `adopta: NO`.
 
 ## EJECUTADO
 
@@ -14,7 +14,8 @@
 - Control ENVIPE seguro: las cuatro razones nacionales recomputadas con el código regional coinciden exactamente con `RESULT-ENVIPE-SEG-CON/SIN-P-DENUNCIA/NO-DENUNCIA` de `CALC-ENVIPE-DENUNCIA-SEGURO-0001` (diferencia 0 en las cuatro). Esto confirma códigos y denominadores; no levanta la supresión regional R2.
 - ADENDA-1: consumida matriz U1 del commit `3d8e82fb`; 0 de 5 cuestionarios cotejados acredita regla AMAI exacta. No se activó quinta decisión, no hay NSE ni cruces región×clase. La hoja de mesa enumera los componentes ausentes.
 - `python3 tools/sella_sha256.py --verifica --cuerpo` devolvió `SELLO_COINCIDE` para el encargo original y ADENDA-1 archivados.
-- Se congeló snapshot U1 de 37 identidades consumidoras pertinentes, con RESULT y estado; códigos de interacción todavía requieren desdoblar el estimando. El universo general de conductas **no está cerrado** por ese número.
+- Se congeló snapshot U1 de 37 identidades consumidoras pertinentes, con RESULT y estado: 11 conductas simples medidas, una identidad de seguro medida pero 128/128 suprimida, cuatro reglas compuestas con base regional medida y cruces no extendidos, y 21 identidades de celda/interacción excluidas del denominador región×conducta. Este dictamen cierra el snapshot fijado, no un catálogo futuro.
+- El censo de última ola enumera 29 categorías regionales, 512 celdas medidas, 355 publicables y 157 suprimidas; son categorías del producto, con particiones y complementos, no desenlaces independientes. Las lecturas por conducta registran consulta, transición retrospectiva, tier, fuente y falsador. Donde falta historia comparable se rotula SIN-HISTORIA-PARA-CALIBRAR.
 - Tests: `python3 -m pytest -q tests/test_astra4_region.py` → 14 passed; `python3 tools/ci_guardias.py --ejecuta-huerfanos` → 79 ejecutados, 67 saltados, 0 fallidos en el lote anterior; `python3 tests/check.py --baseline` → exit 0 con fallos T06/T08 de línea base en el lote anterior. El aviso T13 propio se corrigió. `python3 tests/check.py --rapido` → 0 FAIL en el lote anterior. CI remoto del HEAD de PR pendiente al redactar.
 
 ## LEÍDO
@@ -26,6 +27,6 @@
 ## REPORTADO / RESERVAS
 
 - PR [#1072](https://github.com/Josanoforo/Modelado-Mexicano/pull/1072) en borrador, fusionable al último cotejo, para revisión de mesa. `adopta: NO`; este mandato no autoriza fusionar ni levantar reservas.
-- Falta medir y dictaminar todas las conductas adoptadas/adoptables conocidas; `forense/analisis/region/cobertura-conocida-v1_0.md` y `alcance-u1-v1_0.tsv` muestran el faltante. Las tasas ENIF de horizonte por seguridad social y sin trabajo están medidas. El portafolio ENIF 18+ cubre su consumidor general y la serie informal 18–70 conserva un universo histórico distinto.
+- Las conductas base adoptadas/adoptables del snapshot U1 pertinente a región×conducta están medidas o tienen supresión R2 explícita; `forense/analisis/region/cobertura-conocida-v1_0.md` y `alcance-u1-v1_0.tsv` delimitan los cruces de ejes e interacciones no extendidos. Las tasas ENIF de horizonte por seguridad social y sin trabajo están medidas. El portafolio ENIF 18+ cubre su consumidor general y la serie informal 18–70 conserva un universo histórico distinto.
 - El IC predictivo sin fuga de las tres series disponibles se produjo; una sola transición de evaluación por serie y escasas transiciones de ajuste ENVIPE/ENIF limitan la inferencia. No hay cobertura por conglomerado válida. Las comparaciones del mapa no se nombran estabilidad inferencial ni detección futura.
 - Las corridas están **selladas en disco, no registradas** en vistas derivadas `data/corrida0/corridas.tsv`/`resultados.tsv` hasta el carril de publicación posterior al merge. No se editaron derivados para simular registro.
