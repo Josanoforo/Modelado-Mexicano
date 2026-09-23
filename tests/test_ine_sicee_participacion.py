@@ -1,11 +1,11 @@
-"""Contrato sintético de CALC-INE-PISOS-SICEE-0001."""
+"""Contrato sintético de CALC-INE-PISOS-SICEE-0002 (sucesor de 0001, falló antes del sello)."""
 import importlib.util
 import json
 from pathlib import Path
 
 import pytest
 
-MODULE = Path(__file__).resolve().parents[1] / "data/corrida0/CALC-INE-PISOS-SICEE-0001/medidor.py"
+MODULE = Path(__file__).resolve().parents[1] / "data/corrida0/CALC-INE-PISOS-SICEE-0002/medidor.py"
 spec = importlib.util.spec_from_file_location("ine_sicee", MODULE)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)
@@ -52,6 +52,16 @@ def test_conducto_acepta_salida_con_no_estimable(tmp_path):
     s0.loader.exec_module(c0)
     s = yaml.safe_load((MODULE.parent / "spec.yaml").read_text(encoding="utf-8"))
     p = tmp_path / "s.json"
-    p.write_text(json.dumps([_r("PRE", 2018, 1, "63", 100, "63"), _r("CONS_POP", 2021, 2, "1", 0, "0")]), encoding="utf-8")
+    p.write_text(json.dumps([_r("PRE", 2018, 1, "63", 100, "63"), _r("CONS_POP", 2021, 2, "1", 0, "0"),
+                             _r("DIP_RP", 2024, 1, None, None, "sinregistro")]), encoding="utf-8")
     out = mod.medir({mod.PID: {"ruta_absoluta": str(p)}}, c0.contrato_ejecutable(s))
     assert c0._valida_outputs(s, out) == []
+
+
+def test_null_publicado_y_sinregistro():
+    filas, _ = mod.filas_medidas([_r("DIP_RP", 2024, 1, None, None, "sinregistro"),
+                                  _r("PRE", 2024, 1, "50", 100, None)], CARGOS | {"DIP_RP"})
+    assert filas[0]["estado"] == "SIN-DATO-PUBLICADO" and filas[0]["tasa"] is None
+    assert filas[1]["estado"] == "ESTIMADA" and filas[1]["tasa"] == 0.5 and filas[1]["dif_pp"] is None
+    with pytest.raises(ValueError):
+        mod.filas_medidas([_r("PRE", 2024, 1, "50", 100, "n/d")], CARGOS)

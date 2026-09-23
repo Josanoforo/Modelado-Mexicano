@@ -1,4 +1,8 @@
-"""Contratos sintéticos de CALC-LAPOP-PISOS-{2004,2006,2019-0002,2021,2023}."""
+"""Contratos sintéticos de CALC-LAPOP-PISOS-{2004-0002,2006,2019-0002,2021,2023}.
+
+2004-0001 falló antes del sello (diagnóstico wt NaN); su medidor sigue congelado
+e idéntico a los otros cuatro de la v1_0; 2004-0002 es el sucesor activo.
+"""
 import hashlib
 import importlib.util
 import json
@@ -10,6 +14,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CALCS = ["2004-0001", "2006-0001", "2019-0002", "2021-0001", "2023-0001"]
+ACTIVOS = ["2004-0002", "2006-0001", "2019-0002", "2021-0001", "2023-0001"]
 MODULE = ROOT / "data/corrida0/CALC-LAPOP-PISOS-2023-0001/medidor.py"
 spec = importlib.util.spec_from_file_location("lapop_pisos_olas", MODULE)
 mod = importlib.util.module_from_spec(spec)
@@ -92,7 +97,7 @@ def _corrida0():
 def test_conducto_acepta_las_tres_ramas_terminales_por_calc(tmp_path):
     """D-22(2): la salida de cada rama terminal pasa `_valida_outputs` con la spec real."""
     c0 = _corrida0()
-    for c in CALCS:
+    for c in ACTIVOS:
         d = ROOT / f"data/corrida0/CALC-LAPOP-PISOS-{c}"
         s = yaml.safe_load((d / "spec.yaml").read_text(encoding="utf-8"))
         par = s["parametros"]
@@ -124,3 +129,24 @@ def test_conducto_acepta_las_tres_ramas_terminales_por_calc(tmp_path):
             estados |= {v["estado"] for k, v in json.loads(out[rid]).items() if not k.startswith("_")}
         esperados = {"ESTIMADA", "NO-ESTIMABLE", "ESCALA-DISCREPANTE"} if len(par["items"]) >= 3 else {"ESTIMADA", "NO-ESTIMABLE"}
         assert estados == esperados, (c, estados)
+
+
+def test_sucesor_2004_diagnostico_de_peso_vacio_es_null(tmp_path):
+    d = ROOT / "data/corrida0/CALC-LAPOP-PISOS-2004-0002"
+    med = importlib.util.spec_from_file_location("m2004b", d / "medidor.py")
+    m = importlib.util.module_from_spec(med)
+    med.loader.exec_module(m)
+    df = _datos().fillna(888888)
+    df["wt_diag"] = float("nan")
+    ruta = tmp_path / "w.dta"
+    pyreadstat.write_dta(df, str(ruta))
+    it = {"clave": "par", "variable": "b21", "validos": list(range(1, 8)), "evento": [6, 7],
+          "faltantes": [888888], "semilla_desplazamiento": 0}
+    contrato = {"seed": {"valor": 42}, "parametros": {
+        "payload_id": "x", "diseno": {"estrato": "estratopri", "upm": ["upm"], "peso": None,
+                                      "peso_diagnostico": "wt_diag"},
+        "items": [it], "bootstrap_replicas": 5, "n_minimo": 30,
+        "result_filas": "F", "result_tablas": {"T": ["par"]}}}
+    out = m.medir({"x": {"ruta_absoluta": str(ruta)}}, contrato)
+    diag = json.loads(out["T"])["_diagnostico_peso"]
+    assert diag["min"] is None and diag["max"] is None and diag["n_vacios"] == 34
