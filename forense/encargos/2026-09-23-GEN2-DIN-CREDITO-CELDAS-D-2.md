@@ -41,3 +41,16 @@ Propio: `data/curacion-registro/celdas-d/DIN.*.yaml`, test propio, `no-corrido.t
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No re-mide, no adopta. Sucesor: `GEN2-DIN-CREDITO-SERIE-LECTURA-1` (en cola) cita estas celdas-D; el informe v1.3 cita K1 como «propuesta con reserva», no como victoria.
+
+## NO-CORRIDO / RESERVAS
+
+- **Qué:** P3 — decidir si `tools/celdas_validadas.py` se extiende con una
+  cuarta clase para admitir la unidad "conducta agregada" (crédito).
+  **Por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — `tools/celdas_validadas.py`
+  es ajeno al perímetro de este acto (§9); extenderlo es trabajo de
+  TUBERÍA. **Impacto:** `celdas_validadas` no sube por las 9 celdas-D de
+  crédito (92 antes y después; quedan en `clase_1_celdas_d_sin_contar`
+  con motivo declarado). **Sucesor:** `GEN2-TUBERIA-CELDAS-D-CONDUCTA-1`
+  (diferido, `SIN-ASIGNAR` hasta que mesa decida) — fila
+  `NC-260923-GEN2-DIN-CREDITO-CELDAS-D-2-f6a3-02`, `forense/no-corrido.tsv`.
+
