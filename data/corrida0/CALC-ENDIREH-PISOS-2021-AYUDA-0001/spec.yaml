@@ -1,0 +1,266 @@
+calc_id: CALC-ENDIREH-PISOS-2021-AYUDA-0001
+spec_md: spec.md
+spec_md_sha256: 791b77391cf6357adcc221f0291c26e1384b2e6d15315f82e520ecc2e5db9370
+script: data/corrida0/CALC-ENDIREH-PISOS-2021-AYUDA-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2021 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh2021_bd_csv_zip
+  origen: manifiesto
+variables:
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_1
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_2
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_3
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_4
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_5
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_6
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_7
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_8
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_9
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_10
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_11
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_12
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_13
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_14
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_15
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_16
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_17
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_18
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_19
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_20
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_21
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_22
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_23AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_24AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_25
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_26
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_27
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_28
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_29
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_30
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_31
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_32
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_33
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_34
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_35AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_36AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_37AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_1_38AB
+  rol: union de actos de pareja
+- archivo: TB_SEC_XIV.csv
+  variable: P14_7_1
+  rol: ayuda o denuncia
+- archivo: TB_SEC_XIV.csv
+  variable: P14_7_2
+  rol: ayuda o denuncia
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_1
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_2
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_3
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_4
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_5
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_6
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_7
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_8
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_9
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV.csv
+  variable: P14_8_10
+  rol: tipo de institución de ayuda
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_1
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_2
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_3
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_4
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_5
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_6
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_7
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_8
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_9
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_10
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_11
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_12
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_13
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_14
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV_2.csv
+  variable: P14_22_15
+  rol: razón múltiple sin ayuda ni denuncia
+- archivo: TB_SEC_XIV.csv
+  variable: ID_PER
+  rol: diseño, elegibilidad o llave
+- archivo: TB_SEC_XIV.csv
+  variable: T_INSTRUM
+  rol: diseño, elegibilidad o llave
+- archivo: TB_SEC_XIV.csv
+  variable: FAC_MUJ
+  rol: diseño, elegibilidad o llave
+- archivo: TB_SEC_XIV.csv
+  variable: EST_DIS
+  rol: diseño, elegibilidad o llave
+- archivo: TB_SEC_XIV.csv
+  variable: UPM_DIS
+  rol: diseño, elegibilidad o llave
+- archivo: TSDem.csv
+  variable: EDAD
+  rol: corte
+- archivo: TSDem.csv
+  variable: NIV
+  rol: corte
+universo: Mujeres 15+ A1/A2 con al menos un acto de pareja desde inicio; filtros condicionales para ayuda, instituciones y
+  razones.
+filtros: Unión 38 actos 1-3; 4 todos=no; 9/blanco=desconocido. Ayuda/denuncia 1/2; razones solo ambas=2.
+ponderador: FAC_MUJ sin normalizar
+transformacion: Unión, indicadores separados de ayuda y denuncia; razones múltiples 0/1 solo en universo condicionado.
+estimando: Proporciones descriptivas condicionadas; sin inferir libertad irrestricta ni causalidad.
+dependencias_materiales:
+- numpy
+parametros:
+  bootstrap_replicas: 500
+  metodo_ic: bootstrap de UPM A1/A2 completas dentro de EST_DIS, dominios cero
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: a6b4d56f5ae349c51b92ed8baca5ee1352163784ab52a4ab7929748f87b134c7
+  hash_prueba_sha256: 735777fb4b498452f18b1f8a8e49aeb053ce0b7020036202aa1b32b9dde65229
+  hash_descriptor_sha256: 5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180
+  hash_cuestionario_sha256: d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1
+  hash_payload_sha256: e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2021-AYU-N-ELEGIBLES
+  tipo: entero
+  unidad: mujeres 15+ A1/A2 con factor válido
+- id: RESULT-ENDIREH2021-AYU-TABLA
+  tipo: texto
+  unidad: tabla de proporciones y réplicas agregadas
