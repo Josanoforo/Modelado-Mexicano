@@ -94,6 +94,10 @@ def main() -> None:
         row for row in tsv("usos.tsv")
         if row["activo"] == "SI" and row["generacion_leida"] == "GEN2"
     ]
+    marker_by_result = {
+        row["resultado_id"]: row for row in tsv("marcador-segmento.tsv")
+        if row["resultado_id"]
+    }
     by_calc: dict[str, tuple[dict, str, str, dict]] = {}
     rows: dict[str, dict[str, str]] = {}
     for use in uses:
@@ -129,6 +133,13 @@ def main() -> None:
             r"\b(?:ENIF|ENCIG|ENVIPE|ENCUCI|ENIGH|ENFIH|ENUT|ENSANUT|EDER)\s*20\d{2}",
             universe + " " + str(spec.get("estimando", "")), re.IGNORECASE,
         )))
+        instrument = surveys[0] if surveys else "VER-SPEC-UNIVERSO"
+        if rid == "RESULT-B-ENIGH-2022-P":
+            instrument = "ENIGH 2022"
+        elif calc == "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001" and "-C2-" in rid:
+            instrument = "ENIF 2024 (piso; desarrollo ENIF 2021)"
+        elif calc.startswith("CALC-ENCUCI-"):
+            instrument = "ENCUCI 2020"
         rule = use["reglas_impacto"]
         domain = rule.split(".")[0] if rule else "SIN-REGLA"
         domain = {"DIN": "dinero", "TRA": "tramite", "CIV": "civico", "FAM": "familia"}.get(
@@ -139,7 +150,7 @@ def main() -> None:
                 "llave": rid,
                 "dominio": domain,
                 "conducta": use["consumidor"].split(":")[-1],
-                "instrumento_ola": ";".join(surveys) or "VER-SPEC-UNIVERSO",
+                "instrumento_ola": instrument,
                 "segmento": rule or "VER-ESTIMANDO",
                 "universo_denominador": (
                     f"{data[denom_key]} [RESULT:{denom_key}]" if denom_key else universe
@@ -160,7 +171,9 @@ def main() -> None:
                 "firma": str(spec.get("etiquetas", {}).get(
                     "cuenta_gen2_firma", "VER-DECISION-DE-ADOPCION"
                 )),
-                "temporalidad": "REVISAR-ORDEN-DE-SELLOS",
+                "temporalidad": marker_by_result.get(rid, {}).get(
+                    "prospectividad", "REVISAR-ORDEN-DE-SELLOS"
+                ),
                 "result_punto": rid,
                 "result_inf": lower,
                 "result_sup": upper,
@@ -395,6 +408,101 @@ def main() -> None:
                 "oferta_valor_ic": "",
                 "reserva": "Describe hogares receptores e ingreso; no mide gasto general ni efecto causal.",
             }
+    adoption_sheet = tsv(
+        "../../forense/notas/2026-09-22-GEN2-TRAMITE-PENDIENTES-1-hoja-adopcion.tsv"
+    )
+    for decision in adoption_sheet:
+        rid = decision["result_id"]
+        if rid in rows:
+            continue
+        calc = decision["calc_id"]
+        if calc not in by_calc:
+            data, result_hash, seal_hash = verified(calc)
+            spec = yaml.safe_load((CORRIDA / calc / "spec.yaml").read_text())
+            by_calc[calc] = data, result_hash, seal_hash, spec
+        data, result_hash, seal_hash, spec = by_calc[calc]
+        if rid not in data:
+            raise ValueError(f"hoja de adopción sin RESULT: {rid}")
+        lower = related(data, rid, "INF")
+        upper = related(data, rid, "SUP")
+        if bool(lower) != bool(upper):
+            raise ValueError(f"IC incompleto en hoja de adopción: {rid}")
+        name = rid.split("-")[1]
+        domain = {"BANXICO": "dinero", "CTX": "civico", "MOTRAL15": "trabajo", "EDER": "familia"}.get(name, "OTRO")
+        adopted = decision["recomendacion_ejecutor"].startswith("ADOPTAR")
+        instrument = (
+            "Banxico 2024" if name == "BANXICO" else
+            "LAPOP " + rid.split("-")[2] if name == "CTX" else
+            "MOTRAL 2015" if name == "MOTRAL15" else "EDER"
+        )
+        rows[rid] = {
+            "llave": rid,
+            "dominio": domain,
+            "conducta": decision["consumidor_regla"],
+            "instrumento_ola": instrument,
+            "segmento": rid,
+            "universo_denominador": decision["universo_unidad_escala"],
+            "unidad_escala": results[rid]["unidad"] if rid in results else "VER-SPEC",
+            "punto": str(data[rid]) if isinstance(data[rid], (int, float)) else "",
+            "ic95_inf": str(data[lower]) if lower else "",
+            "ic95_sup": str(data[upper]) if upper else "",
+            "naturaleza_ic": "IC-DE-SPEC-SIN-CALIBRACION-ACREDITADA" if lower else "SIN-IC-IDENTIFICADO",
+            "estado_adopcion": (
+                "FIRMA-ADOPTAR; CONSUMO-PENDIENTE" if adopted else "VETADO-POR-MESA"
+            ),
+            "firma": "data/corrida0/decisiones.tsv:FP-260922-GEN2-TRAMITE-PENDIENTES-1-18fa-01",
+            "temporalidad": "RETROSPECTIVA",
+            "result_punto": rid,
+            "result_inf": lower,
+            "result_sup": upper,
+            "calc": calc,
+            "sha256_resultados": result_hash,
+            "sha256_sello": seal_hash,
+            "uso": decision["consumidor_regla"],
+            "oferta_compatible": (
+                "SIN-MEDIDA-DE-OFERTA-COMPATIBLE-VERIFICADA" if domain == "dinero" else "NO-APLICA"
+            ),
+            "oferta_valor_ic": "",
+            "reserva": decision["recomendacion_ejecutor"],
+        }
+    calc = "CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002"
+    data, result_hash, seal_hash = verified(calc)
+    spec = yaml.safe_load((CORRIDA / calc / "spec.yaml").read_text())
+    by_calc[calc] = data, result_hash, seal_hash, spec
+    for rid, value in data.items():
+        if not rid.endswith("-P") or rid in rows:
+            continue
+        lower = related(data, rid, "INF")
+        upper = related(data, rid, "SUP")
+        if bool(lower) != bool(upper):
+            raise ValueError(f"IC K2 incompleto: {rid}")
+        year = re.search(r"HISTORIA-(20\d\d)-", rid)
+        rows[rid] = {
+            "llave": rid,
+            "dominio": "dinero",
+            "conducta": "tenencia de crédito bancario; ver denominador",
+            "instrumento_ola": "ENIF " + year.group(1) if year else "ENIF · VER-SPEC",
+            "segmento": "NACIONAL",
+            "universo_denominador": str(spec.get("universo", "VER-SPEC-UNIVERSO")),
+            "unidad_escala": results[rid]["unidad"] if rid in results else "VER-SPEC",
+            "punto": str(value),
+            "ic95_inf": str(data[lower]) if lower else "",
+            "ic95_sup": str(data[upper]) if upper else "",
+            "naturaleza_ic": "IC-DE-SPEC-SIN-CALIBRACION-ACREDITADA" if lower else "SIN-IC-IDENTIFICADO",
+            "estado_adopcion": "SELLADO-CONTEXTO; NO-ADOPCION-POR-CATALOGO",
+            "firma": "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-SERIE-LECTURA-1.md",
+            "temporalidad": "RETROSPECTIVA",
+            "result_punto": rid,
+            "result_inf": lower,
+            "result_sup": upper,
+            "calc": calc,
+            "sha256_resultados": result_hash,
+            "sha256_sello": seal_hash,
+            "uso": "K2-BANCARIA-HISTORIA-LECTURA",
+            "oferta_compatible": "SIN-MEDIDA-DE-OFERTA-COMPATIBLE-VERIFICADA",
+            "oferta_valor_ic": "",
+            "reserva": "Entre tenedores y población nacional tienen denominadores distintos; no comparar como una misma serie.",
+        }
     OUT.parent.mkdir(parents=True, exist_ok=True)
     with OUT.open("w", newline="") as stream:
         writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t", lineterminator="\n")
