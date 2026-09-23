@@ -102,6 +102,11 @@ lectura discutible del material: es su inversión.
 
 ## Si vas a usarlo de todos modos
 
+Cotejar modelos de terceros contra el benchmark, con el mismo universo,
+unidad, ola y criterio de victoria declarados antes de observar el desenlace,
+es un uso previsto. No convierte una falta de superioridad en equivalencia.
+Las licencias por componente son las del archivo `LICENSE` vigente.
+
 Cita con `CITATION.cff`. Trae el tier y la marca de procedencia junto a cualquier
 cifra. Lee `AVISO-DE-ALCANCE.md`. Y si tu uso cae en la zona gris, abre un issue y
 pregunta — es más barato para todos que el resultado.

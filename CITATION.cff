@@ -1,10 +1,11 @@
 cff-version: 1.2.0
-title: "Psicología del Mexicano Contemporáneo: corpus de evidencia, modelo de decisión segmentado y aparato de falsación"
+title: "Benchmark del Mexicano: Modelado Mexicano y Psicología del Mexicano Contemporáneo"
 message: >-
   Si usas este material, cítalo como se indica aquí. Lee AVISO-DE-ALCANCE.md
-  y USO-ACEPTABLE.md antes de citar cualquier cifra: la mayoría de los
-  parámetros del modelo están asignados por juicio, no medidos.
-type: dataset
+  y USO-ACEPTABLE.md antes de citar cualquier cifra. Cada estimación tiene
+  unidad, universo, fuente y sello propios; el modelo heredado conserva
+  parámetros asignados por juicio.
+type: software
 authors:
   - family-names: "Guadarrama García"
     given-names: "Jonatan Jahzeel"
@@ -13,15 +14,12 @@ authors:
     orcid: "https://orcid.org/0009-0006-2155-8734"
 repository-code: "https://github.com/Josanoforo/Modelado-Mexicano"
 abstract: >-
-  Corpus de 31 reports temáticos sobre conducta, psicología y estructura
-  social en México, construido bajo un reglamento anti-esencialista que
-  separa psicología individual, guiones culturales, adaptación racional al
-  entorno y estructura económica. Incluye un modelo de decisión segmentado
-  de 49 reglas SI-ENTONCES, cinco validaciones forenses de supuestos contra
-  desenlaces reales, y una suite de verificación automática que documenta
-  los defectos conocidos del propio corpus. Producido con asistencia
-  intensiva de modelos de lenguaje (ver AUTHORSHIP.md). Sin revisión por
-  pares. Sin datos primarios propios: es síntesis de literatura publicada.
+  Benchmark auditable con código de evaluación, especificaciones, RESULT,
+  sellos y un corpus documental de evidencia sobre México. Las comparaciones
+  se limitan a sus instrumentos, unidades y criterios declarados. Incluye
+  modelo de decisión segmentado y suite de verificación. Producido con
+  asistencia intensiva de modelos de lenguaje (ver AUTHORSHIP.md). El
+  conjunto no tiene revisión por pares.
 keywords:
   - México
   - psicología cultural
@@ -29,7 +27,8 @@ keywords:
   - estructura social
   - anti-esencialismo
   - falsación
-license: CC-BY-NC-SA-4.0
-license-url: "https://creativecommons.org/licenses/by-nc-sa/4.0/"
-date-released: 2026-07-29
-version: "HEAD"
+license: MIT
+# version y date-released omitidos: este acto prepara la portada, no publica una versión.
+# DOI omitido: Zenodo pendiente de activación por mesa.
+# LICENSE: código MIT; corpus y documentación CC BY-NC-SA 4.0.
+# El componente corpus conserva licencia propia; CFF cita este paquete de software.
