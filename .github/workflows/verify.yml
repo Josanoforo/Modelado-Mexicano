@@ -101,7 +101,7 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt numpy pytest
+        run: python3 -m pip install -r requirements.txt
 
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
@@ -389,7 +389,7 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt numpy pytest
 
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
