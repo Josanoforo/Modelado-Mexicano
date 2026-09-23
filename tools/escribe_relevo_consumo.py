@@ -108,7 +108,7 @@ def transform(source: str, rendered: str) -> str:
     old_status = "PROPUESTA-NO-ADOPTADA-NC-0085: "
     if updated.count(old_status) != 1:
         raise ValueError("estado editorial previo cambió")
-    lines[i] = updated.replace(old_status, "GEN2-RELEVADO-POR-PIN: ")
+    lines[i] = updated.replace(old_status, "GEN2-RELEVADO-POR-PIN (antecedente NC-0085): ")
     return "".join(lines)
 
 
