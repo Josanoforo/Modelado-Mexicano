@@ -39,3 +39,10 @@ Propio: `.github/workflows/automerge-rutinas.yml` (nuevo) · `forense/rutinas-cl
 No fusiona actos, no toca Codex, no cambia la política de cero ramas. Sucesor: P5 completo (clases para recibos Codex) si mesa lo quiere. Auditoría: no aplica. Cierre por /acto.
 
 
+
+## NO-CORRIDO / RESERVAS
+- **P1 · Clases** (`forense/rutinas-clases-v1_0.tsv`) — `DECISION-DE-MESA-PENDIENTE`. Impacto: el contador «PR de rutina por día que esperan a mesa: 4 → 0» no se mueve. Sucesor: `FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-01` (si mesa firma). Fila `NC-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-01`.
+- **P2 · Job** (`.github/workflows/automerge-rutinas.yml` + prueba con PR sintético) — `DECISION-DE-MESA-PENDIENTE`. Impacto: los cuatro PR de rutina diarios siguen exigiendo merge humano. Sucesor: `FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-01`. Fila `NC-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-02`.
+- **P3 · Huella y regla** (línea `PARA-v2.17` en `hallazgos.md` + nota de clases) — `DECISION-DE-MESA-PENDIENTE`. Impacto: sin huella sustantiva de P1/P2 (esta nota de cierre documenta por qué el acto se detuvo, no la tabla de clases). Sucesor: `FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-01`. Fila `NC-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1-e889-03`.
+
+Razón común de las tres: §2 de este mismo encargo somete su propuesta a «mesa sella o borra … sin texto → PARA (nada que instalar)», y el cuerpo archivado no trae firma de mesa debajo de la propuesta. Agravante citado en el cierre: `FP-260921-GEN2-TUBERIA-ENRUTAMIENTO-PR-1-9a2c-01` (FIRMADA, 20/sep/2026) ya fijó el auto-merge como NO instrumentado, reevaluable solo si la fracción de merges de rutina crece — este encargo no midió esa fracción.
