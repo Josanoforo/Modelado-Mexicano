@@ -22,3 +22,11 @@ jsonschema
 # ~1.3s (ACTO GEN2-CI-GUARDIAS-VIVAS-1, censo-tests.tsv): barata, destraba
 # un huérfano.
 openpyxl==3.1.5
+
+# ASTRA5-U3-POLITICA: pruebas sinteticas de los medidores INE/ENCUP/LAPOP
+# ejecutadas con pytest en CI. Los medidores ENCUP/LAPOP importan pandas,
+# numpy y pyreadstat al cargar el modulo.
+numpy
+pandas
+pyreadstat
+pytest
