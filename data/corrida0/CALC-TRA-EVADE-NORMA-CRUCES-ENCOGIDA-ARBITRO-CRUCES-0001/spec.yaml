@@ -94,6 +94,10 @@ variables:
 universo: 'DELITO con BP1_20 in {1,2} en tmod_vic ENVIPE 2025 (n=40280); cruzado por los cuatro pares
   de ejes. Es la ola RESERVADA: se abre aqui, en COMMIT-3.'
 ponderador: FAC_DEL
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
 estimando: R(a,b) por celda de los cuatro cruces (unico codigo autorizado a agrupar 2025 por dos variables);
   soporte definitivo (PUNTUADA si n>=200 en 2023,2024,2025; FUERA-DE-SOPORTE global si fallan >= round(k/3)
   del cruce); veredicto de C7/C-ENCOGIDA contra C1/C2 con las dos condiciones INDECIDIBLE verbatim; DeltaMAE

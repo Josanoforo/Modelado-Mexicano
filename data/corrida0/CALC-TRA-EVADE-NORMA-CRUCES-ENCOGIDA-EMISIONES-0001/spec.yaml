@@ -157,7 +157,7 @@ transformacion: 'evade_norma = (BP1_20==2) AND (BP1_23 in {04,05,06,08}); cuatro
   x sexo, edad x escolaridad_proxy, edad x sexo, escolaridad_proxy x sexo.'
 seed:
   aplica: true
-  valor: 20260922
+  valor: 42
   rng: numpy.PCG64
 estimando: C1, C2, C7, C-ENCOGIDA por celda de cada uno de los cuatro cruces (38 celdas), con IC. lambda_cruce
   (metodo de momentos EB) por cruce, derivada de I23/I24. NO agrupa 2025 por dos variables; NO emite R.
