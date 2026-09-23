@@ -30944,3 +30944,16 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
     crédito a INEGI
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enif2024_diseno_muestral_pdf
+  usado_para: documentación muestral ENIF 2024 para contratos de ahorro, tanda, afore y seguro
+    ASTRA5-U0
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enif/2024/doc/889463921127.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: agente, INEGI fuente primaria
+  archivo: enif2024/889463921127.pdf
+  sha256: bc59f5f58c32831d3831a1a92ee6707e57e68caf68df1d573b8eb754e2259b76
+  tamano_bytes: 1548004
+  formato: PDF (diseño muestral ENIF 2024)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
