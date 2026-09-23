@@ -81,3 +81,5 @@ Este archivo es autocontenido. Su fuente de autoridad es la instrucción de mesa
 Cada fase termina con resultado o bloqueo preciso y prueba. Cierre completo: autorización → resultado/cambio → evidencia → consumidor, si aplica → FP/NC → vistas/cola → PR y merge. Una decisión firmada no cierra una ejecución pendiente. Registrar fecha real, cita y universo; nada se borra ni se rejuvenece por traslado. Si falta una pieza, usar el vocabulario vigente y sucesor concreto.
 
 **Formato final del ejecutor:** resultado útil en cinco líneas; fases realizadas/pendientes; PR y SHA; pruebas; tabla `obligación | evidencia | cerrada/residual | siguiente acción`. No parar en un inventario cuando el entorno permite ejecutar. No continuar por inercia después de satisfacer el resultado.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · banner propio del archivo: EJECUTADO en PR #704, ADR-467, por forense/encargos/2026-09-10-GEN2-SONDA-CRON-PRODUCCION-POST693.md

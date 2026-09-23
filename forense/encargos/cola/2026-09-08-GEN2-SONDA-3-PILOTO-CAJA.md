@@ -135,3 +135,5 @@ La fila elegida en `data/curacion-registro/cola-adquisicion-registro.tsv` +
 si hay `OBTENIDO` + nota de cierre del piloto + cascada estándar. Prohibido:
 tocar otras filas de la cola, adoptar ningún resultado en `milpa/**`, abrir
 una segunda cola.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · NC-0060 (CERRADA, 2026-09-09): ACTO GEN2-ADQ-VERIFICACION-CAJA P2 corrió el piloto de verdad

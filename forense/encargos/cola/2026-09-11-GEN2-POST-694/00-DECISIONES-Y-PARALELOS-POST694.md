@@ -57,3 +57,5 @@ No sumar ahora un acto de `delta`: requiere emparejamientos de consumidor y comp
 Se reconsultó main, PR abiertos y ramas; se inspeccionaron las obligaciones abiertas/firmas parciales y sus sucesoras pertinentes. Dos ejecuciones reales de `ya_medido` siguen devolviendo NUNCA-MEDIDA para `tramite.mordida.con_registro` y `dinero.ahorro.horizonte_no_corto_con_seguridad_social`. No se ejecutó suite general, no se abrieron microdatos ni se interrumpieron tareas locales. No se alteró el repositorio remoto ni se enviaron solicitudes.
 
 Resultado: tres decisiones listas para mesa (una basada en PR #695 todavía abierto), tres frentes adicionales delimitados y una adenda al trabajo en curso. La prioridad es mejorar mediciones y su interpretación, sin abrir otra ronda de control general.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-10-GEN2-YA-MEDIDO-SIN-FALSOS-NEGATIVOS-cierre.md, -ENIF-FINTECH-SERIE-DESCRIPTIVA-cierre.md, -S6-DISENO-Y-ALCANCE-INFERENCIAL-cierre.md
