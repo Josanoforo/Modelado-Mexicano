@@ -39,19 +39,21 @@ se registra por separado de la trazabilidad.
 
 ## Continuación concreta
 
-La siguiente medición debe seleccionar hasta cuatro slots del mismo
+La siguiente medición nueva debe seleccionar hasta cuatro slots del mismo
 instrumento, cotejar su estimando con cuestionario y FD, comprobar reserva,
 congelar spec humana, YAML y medidor en COMMIT-1 y después ejecutar el
-primer resultado en COMMIT-2. Los siete listados no son adopciones; los
-cuatro conflictos ENCIG necesitan una correspondencia RESULT exacta. Las
+primer resultado en COMMIT-2. Los siete listados no son adopciones. Los
+cuatro conflictos ENCIG ya tienen correspondencia exacta y dictamen
+`NO-EQUIVALENTE-PAGO`; no son cuatro relevos pendientes de elegir. Las
 83 filas históricas requieren propuesta individual de
 `HISTÓRICO-SIN-RELEVO` o medición nueva si siguen siendo consumo efectivo.
 Las 23 de catálogo requieren CALC o plan fechado condicionado a la
 dependencia externa. El primer lote `CALC-RELEVO-ENCIG23-P83-0001-v1_1`
 ya se congeló, midió y verificó. Los cuatro conflictos
 `RES-0001/0002/0007/0008` quedaron como `NO-EQUIVALENTE-PAGO`: P8_3
-registra solicitud y no sustituye pago ni normalidad. Quedan los demás
-lotes y las 146 lecturas por reconciliar.
+registra solicitud y no sustituye pago ni normalidad. La reconciliación
+individual de 146 lecturas está en la tabla inferior; aún faltan sus
+decisiones y aplicaciones autorizadas.
 
 **Estado:** incumplimiento material explícito del objetivo cero; no se
 solicita fusionar ni se declara U2 cerrada. Las fuentes originales de
@@ -78,3 +80,11 @@ ENIF 2024 de flujo para `RES-0031/0032` no los sustituye. Los cuatro pagos
 ENCIG conservan `NO-EQUIVALENTE-PAGO`. Los 146 siguen pendientes de consumo
 efectivo o dictamen firmado; `RES-0028` está fuera de ese contador por un
 pin de trazabilidad; su cita de consumo ya está en `main` por #1080.
+
+Otros dos lotes afines quedan cotejados con corridas ya selladas:
+`lote-envipe25-seguro.md` asigna `RES-0039/0040/0041/0042` a cuatro
+RESULT de ENVIPE 2025, con `NO-REPRODUCE-GEN1` a tolerancia predeclarada;
+`lote-l8-conversion.md` asigna `RES-0050/0051/0052` a los tres `A-P-*`,
+con reproducción exacta y límite ecológico. Ambos conservan
+`cuenta_gen2=PENDIENTE-DE-MESA`, sin escritor aplicado. La tabla de 146
+registra estos siete resultados sin confundirlos con consumo efectivo.

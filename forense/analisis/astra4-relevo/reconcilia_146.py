@@ -53,6 +53,14 @@ for item in inv:
             outcome = "LEGACY-HISTORICA-ENNViH; NO-EQUIVALENTE-ENIF2024"
             pending = "firma de mesa de historia o CALC misma fuente/ola/acervo; ENIF 2024 mide flujo distinto"
             evidence = "forense/prereg-caja/ENIF-TIENE-AHORROS-spec-v1_0.md"
+        elif slot in {"RES-0039", "RES-0040", "RES-0041", "RES-0042"}:
+            outcome = "MEDIDO; NO-REPRODUCE-GEN1; LEGACY-ACTIVA"
+            pending = "mesa decide discrepancia mayor a 1e-6; después escritor propio de trámite con guardas"
+            evidence = "lote-envipe25-seguro.md"
+        elif slot in {"RES-0050", "RES-0051", "RES-0052"}:
+            outcome = "DERIVACION-MEDIDA; REPRODUCE-GEN1; LEGACY-ACTIVA"
+            pending = "mesa decide cuenta/adopción; después escritor propio de trámite con guardas"
+            evidence = "lote-l8-conversion.md"
     rows.append(dict(slot=slot, grupo=group, consumidor=item["consumidor"],
                      generacion_censada=item["generacion_actual"], valor_legacy=item["valor_actual"],
                      estado_efectivo=outcome, trazabilidad="PIN-NO-ACREDITA-CONSUMO",
