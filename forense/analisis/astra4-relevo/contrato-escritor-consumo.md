@@ -1,6 +1,6 @@
 # Contrato para escritor autorizado del consumo GEN2
 
-**Estado:** propuesta a mesa; no implementada ni aplicada. `tools/relevo_usos.py` deriva candidaturas; `tools/pines_mesa.py` valida `data/corrida0/pines-de-mesa.tsv`; `tools/corrida0.py` proyecta pines en la vista. Ninguno sustituye el literal `p` o inserta `corrida0_resultado_id`/`corrida0_generacion` en `milpa/`. Una reducción de `dependencias_numericas_legacy_activas` por pin es **trazabilidad relevada**; el consumo efectivo debe comprobarse en el archivo e interfaz que usan motor y celda-D.
+**Estado:** el acto separado #1080 implementó el escritor exclusivo de `RES-0028` y fue fusionado en `main` (`f16dd3d7`). Este contrato rige los demás consumidores; no autoriza aplicarles ese escritor. `tools/relevo_usos.py` deriva candidaturas; `tools/pines_mesa.py` valida `data/corrida0/pines-de-mesa.tsv`; `tools/corrida0.py` proyecta pines en la vista. Una reducción de `dependencias_numericas_legacy_activas` por pin es **trazabilidad relevada**; el consumo efectivo se comprueba en el archivo e interfaz que usan motor y celda-D.
 
 ## Entrada y precondiciones
 

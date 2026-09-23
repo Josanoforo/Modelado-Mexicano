@@ -27,15 +27,15 @@ clasificación de trabajo, no una afirmación de identidad de estimandos.
 
 ## Consumo efectivo
 
-No hay en el árbol un comando autorizado que reescriba el consumidor
-`milpa/`. `tools/relevo_usos.py` calcula oferta y `tools/pines_mesa.py`
-valida pines; `data/corrida0/pines-de-mesa.tsv` puede bajar el contador de
-trazabilidad sin reemplazar el literal que lee el motor. El contrato
-`contrato-escritor-consumo.md` contiene entrada, guardas, destinos,
-ejemplo de diff y prueba negativa. La decisión de mesa necesaria es
-**autorizar y nombrar un escritor por consumidor** bajo ese contrato,
-incluido un adaptador propio para celdas-D. Hasta entonces, las 40 lecturas
-de motor y celdas-D siguen activas; informar cero sería incorrecto.
+El acto separado #1080 implementa y prueba un escritor autorizado **solo**
+para `RES-0028` en `milpa/tramite.yaml`. Su diff de consumo conserva el valor
+`p=0.705687`, añade la cita GEN2 y registra `uso_motor`; no releva ninguna
+otra fila. #1080 fue fusionado en `main` (`f16dd3d7`) y esta rama se
+sincroniza con ese commit. `tools/relevo_usos.py` calcula oferta y `tools/pines_mesa.py` valida
+pines; bajar el contador de trazabilidad por un pin no cambia por sí solo
+el literal que lee el motor. Los demás consumidores necesitan sus propios
+escritores, guardas y acto de aplicación. La comprobación de uso efectivo
+se registra por separado de la trazabilidad.
 
 ## Continuación concreta
 
@@ -47,10 +47,33 @@ cuatro conflictos ENCIG necesitan una correspondencia RESULT exacta. Las
 83 filas históricas requieren propuesta individual de
 `HISTÓRICO-SIN-RELEVO` o medición nueva si siguen siendo consumo efectivo.
 Las 23 de catálogo requieren CALC o plan fechado condicionado a la
-dependencia externa. Ninguna de esas operaciones está ejecutada en este
-corte.
+dependencia externa. El primer lote `CALC-RELEVO-ENCIG23-P83-0001-v1_1`
+ya se congeló, midió y verificó. Los cuatro conflictos
+`RES-0001/0002/0007/0008` quedaron como `NO-EQUIVALENTE-PAGO`: P8_3
+registra solicitud y no sustituye pago ni normalidad. Quedan los demás
+lotes y las 146 lecturas por reconciliar.
 
 **Estado:** incumplimiento material explícito del objetivo cero; no se
 solicita fusionar ni se declara U2 cerrada. Las fuentes originales de
 misión y transfer están archivadas separadamente con SHA-256 en
 `forense/encargos/fuentes/`.
+
+## Reconciliación por fila, 23/sep/2026
+
+`reconciliacion-146.tsv` cubre sin duplicados 34 motor, 6 celdas-D, 23
+catálogo, 40 procedencia y 43 marco. `uso-efectivo-procedencia.tsv` verifica
+por llave las 40: siete valores sellados y ocho fallbacks cargan en `B`
+(uno sin magnitud); trece listas se cargan sin lectura numérica del motor;
+doce condicionales son entradas consumibles pero `Theta.valor()` lanza.
+`motor.correr()` da 21 veredictos de estado y ninguna magnitud calibrada.
+Las 43 celdas del marco conservan propuesta histórica sin firma. Las 23 de
+catálogo tienen dependencia y operación fechadas en `plan-catalogo-23.tsv`;
+M05 y M23 conservan CALC previos y reserva consumida, sin nueva adopción.
+
+`contratos-otros-consumidores.md` da correspondencia, guardas, diffs secos y
+pruebas negativas para procedencia, catálogo y celdas-D. Los pares
+`RES-0029/0030` pertenecen a la serie histórica ENNViH de acervo: el CALC
+ENIF 2024 de flujo para `RES-0031/0032` no los sustituye. Los cuatro pagos
+ENCIG conservan `NO-EQUIVALENTE-PAGO`. Los 146 siguen pendientes de consumo
+efectivo o dictamen firmado; `RES-0028` está fuera de ese contador por un
+pin de trazabilidad; su cita de consumo ya está en `main` por #1080.
