@@ -34,12 +34,41 @@ ROW = dict(
     prioridad="3",
 )
 
+POBREZA_ESTATAL = dict(
+    report=REPORT,
+    report_sha256=ROW["report_sha256"],
+    localizador="L63; repetición L134",
+    tier_report="sin rótulo explícito",
+    clase="prevalencia estatal publicada y mecanismo hipotético",
+    limite_inferencial="La proporción estatal de pobreza multidimensional no mide horizonte individual de planeación ni demuestra un efecto de escasez. Estados y personas son unidades diferentes; no inferir conducta personal por agregados.",
+    conducta_unidad_universo="Personas residentes en la entidad indicada, ENIGH 2024 y metodología INEGI/CONEVAL de pobreza multidimensional, no hogares ni ocupados.",
+    instrumento_ola="INEGI Pobreza Multidimensional 2024, reporte 27/25 de 13-ago-2025",
+    documento_id_hash_pagina="SIN-ID:pm2024_reporte_resultados.pdf|4da28fe9a3d74633d0275e4c5567576caade48b57aa12b81fecfd9db6781a4f9|p.10, gráficas 6-7; copia física local, sin registro en main; misma fuente de MER-010..012",
+    pregunta_textual_codigo_respuestas="Indicador derivado de ingreso corriente per cápita y carencias conforme a metodología CONEVAL retomada por INEGI; no reactivo de planeación temporal.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Porcentaje y unidad publicados en reporte oficial con SHA físico cotejado; falta id documental y RESULT por entidad. Solo se cierra el agregado, no mecanismo psicológico.",
+    datos_id_estado="enigh2024_nc_csv|7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d|main, microdato NO ABIERTO",
+    reserva="Términos de Libre Uso INEGI; registro por MESA-DOCUMENTAL y apertura solo en CAJA autorizada.",
+    gen2_existente="Sin RESULT propio de pobreza multidimensional estatal 2024 identificado en main.",
+    propietario="ASTRA5-MESA-MOVILIDAD / ASTRA5-U1",
+    siguiente_operacion="MESA-DOCUMENTAL registra reporte; U1 no transfiere prevalencia estatal a conducta individual y busca estudio de mecanismo de planeación por separado.",
+    prioridad="3",
+)
+
+ROWS = [
+    ROW,
+    POBREZA_ESTATAL | dict(id_afirmacion="ASTRA5-U0-TIME-003", texto_vigente="La pobreza multidimensional en Chiapas fue 66.0% en 2024.", componente_contrastable="INEGI reporte 27/25 p.10, gráficas 6-7: Chiapas 66.0% de personas."),
+    POBREZA_ESTATAL | dict(id_afirmacion="ASTRA5-U0-TIME-004", texto_vigente="La pobreza multidimensional en Guerrero fue 58.1% en 2024.", componente_contrastable="INEGI reporte 27/25 p.10, gráficas 6-7: Guerrero 58.1% de personas."),
+    POBREZA_ESTATAL | dict(id_afirmacion="ASTRA5-U0-TIME-005", texto_vigente="La pobreza multidimensional en Oaxaca fue 51.6% en 2024.", componente_contrastable="INEGI reporte 27/25 p.10, gráficas 6-7: Oaxaca 51.6% de personas."),
+]
+
 
 def main() -> None:
     with OUT.open("w", encoding="utf-8", newline="") as stream:
         writer = csv.DictWriter(stream, FIELDS, delimiter="\t", lineterminator="\n")
         writer.writeheader()
-        writer.writerow(ROW)
+        writer.writerows(ROWS)
 
 
 if __name__ == "__main__":
