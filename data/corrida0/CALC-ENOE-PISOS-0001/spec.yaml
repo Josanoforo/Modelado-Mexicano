@@ -1,0 +1,311 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENOE-PISOS-0001
+spec_md: ../../../forense/prereg-caja/ENOE-PISOS-spec-v1_0.md
+spec_md_sha256: e0893882130b932de1bed6bf2d073bdde712483a5ac6fa6b7d09a6de2893cbc7
+script: data/corrida0/CALC-ENOE-PISOS-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISOS-TRIMESTRALES-ENOE
+  cuenta_gen2: SI
+  firma_de_contador: Encargo ASTRA5-U1-TRABAJO-ENOE, mandato de medir conductas y contador por conducta; no adopta.
+  adopta: 'NO'
+  origen_numerico: NUEVO
+  contaminacion_declarada: 'Antes del freeze: solo documentación, FD, U0, barridos, selección de manifiesto y prueba
+    sintética; ningún registro de microdato ENOE abierto por esta sesión.'
+inputs:
+- id: enoe_2005_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2008_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2012_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2014_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2016_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2016_2t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2016_3t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2016_4t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2017_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2017_2t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2017_3t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2017_4t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2018_1t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2018_2t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2018_3t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2018_4t_csv_microdatos
+  origen: manifiesto
+- id: enoe_2019_1t_microdatos
+  origen: manifiesto
+- id: enoe_2019_2t_microdatos
+  origen: manifiesto
+- id: enoe_2019_3t_microdatos
+  origen: manifiesto
+- id: enoe_2019_4t_microdatos
+  origen: manifiesto
+- id: enoe_2020_1t_microdatos
+  origen: manifiesto
+- id: enoe_n_2020_3t_microdatos
+  origen: manifiesto
+- id: enoe_n_2020_4t_microdatos
+  origen: manifiesto
+- id: enoe_n_2021_1t_microdatos
+  origen: manifiesto
+- id: enoe_n_2021_2t_microdatos
+  origen: manifiesto
+- id: enoe_n_2021_3t_microdatos
+  origen: manifiesto
+- id: enoe_n_2021_4t_microdatos
+  origen: manifiesto
+- id: enoe_n_2022_1t_microdatos
+  origen: manifiesto
+- id: enoe_n_2022_2t_microdatos
+  origen: manifiesto
+- id: enoe_n_2022_3t_microdatos
+  origen: manifiesto
+- id: enoe_n_2022_4t_microdatos
+  origen: manifiesto
+- id: enoe_2023_1t_microdatos
+  origen: manifiesto
+- id: enoe_2023_2t_microdatos
+  origen: manifiesto
+- id: enoe_2023_3t_microdatos
+  origen: manifiesto
+- id: enoe_2023_4t_microdatos
+  origen: manifiesto
+- id: enoe_2024_1t_microdatos
+  origen: manifiesto
+- id: enoe_2024_2t_microdatos
+  origen: manifiesto
+- id: enoe_2024_3t_microdatos
+  origen: manifiesto
+- id: enoe_2024_4t_microdatos
+  origen: manifiesto
+- id: enoe_2025_1t_microdatos
+  origen: manifiesto
+- id: enoe_2025_2t_microdatos
+  origen: manifiesto
+- id: enoe_2025_3t_microdatos
+  origen: manifiesto
+- id: enoe_2025_4t_microdatos
+  origen: manifiesto
+- id: IN-ENOE-MEDIDOR
+  origen: repo
+  ruta: tools/dominios/enoe/pisos.py
+  sha256: e8c1083d2f02e817b8036c81077e1e02eab0df7bc4bfc9b2c0e411461d73b5f4
+- id: IN-ENOE-MATRIZ
+  origen: repo
+  ruta: data/enoe-reactivos-olas-v1_0.tsv
+  sha256: 735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463
+- id: IN-ENOE-U0
+  origen: repo
+  ruta: forense/analisis/dominios/enoe/U0-corte-consumido.tsv
+  sha256: fb7a0385b70278cff5c84ecaf3abb6b44fdc4a0e21ae1fdb832f4f03e81a79ac
+- id: IN-ENOE-OLAS
+  origen: repo
+  ruta: data/enoe-olas-elegibles-preparacion-v1_0.tsv
+  sha256: bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b
+- id: enoe_n_diseno_muestral_pdf
+  origen: manifiesto
+variables:
+- archivo: SDEM CSV de cada ola
+  variable: R_DEF,C_RES,EDA
+  rol: universo persona 15-98
+- archivo: SDEM CSV de cada ola
+  variable: FAC/FAC_TRI,EST_D/EST_D_TRI,UPM
+  rol: ponderación y diseño
+- archivo: SDEM CSV de cada ola
+  variable: CLASE1,CLASE2,EMP_PPAL,TUE_PPAL,SUB_O,BUSQUEDA,T_TRA,TIP_CON,REMUNE2C,PNEA_EST,HRSOCUP,INGOCUP
+  rol: conductas
+- archivo: SDEM CSV de cada ola
+  variable: SEX,NIV_INS,T_LOC,ENT
+  rol: ejes univariados
+universo: SDEM persona 15-98, R_DEF=00, C_RES=1/3, peso positivo, estrato y UPM presentes; denominador por conducta
+  en spec humana.
+filtros: Blancos fuera del denominador cuando clasificación específica exige código válido; SUB_O=1 contra ocupados;
+  hrsocup 1-168; ingocup nominal mensual positivo 1-999998; sin imputación.
+ponderador: FAC/EST_D/UPM clásica, FAC_TRI/EST_D_TRI/UPM ENOEN y post2023; UPM remuestreada dentro de estrato.
+transformacion: Media ponderada o proporción por ola y un eje; 200 réplicas percentiles 2.5/97.5, mismo plan por
+  ola; n y n efectivo Kish; supresión n<100 o Kish<100 o UPM<2.
+estimando: Pisos descriptivos trimestrales por conducta y eje, RETROSPECTIVA; sin transición ni IC predictivo calibrado;
+  ingreso nominal solo intraola.
+parametros:
+  olas:
+  - ola: 2005T1
+    era: clasica
+    id: enoe_2005_1t_csv_microdatos
+  - ola: 2008T1
+    era: clasica
+    id: enoe_2008_1t_csv_microdatos
+  - ola: 2012T1
+    era: clasica
+    id: enoe_2012_1t_csv_microdatos
+  - ola: 2014T1
+    era: clasica
+    id: enoe_2014_1t_csv_microdatos
+  - ola: 2016T1
+    era: clasica
+    id: enoe_2016_1t_csv_microdatos
+  - ola: 2016T2
+    era: clasica
+    id: enoe_2016_2t_csv_microdatos
+  - ola: 2016T3
+    era: clasica
+    id: enoe_2016_3t_csv_microdatos
+  - ola: 2016T4
+    era: clasica
+    id: enoe_2016_4t_csv_microdatos
+  - ola: 2017T1
+    era: clasica
+    id: enoe_2017_1t_csv_microdatos
+  - ola: 2017T2
+    era: clasica
+    id: enoe_2017_2t_csv_microdatos
+  - ola: 2017T3
+    era: clasica
+    id: enoe_2017_3t_csv_microdatos
+  - ola: 2017T4
+    era: clasica
+    id: enoe_2017_4t_csv_microdatos
+  - ola: 2018T1
+    era: clasica
+    id: enoe_2018_1t_csv_microdatos
+  - ola: 2018T2
+    era: clasica
+    id: enoe_2018_2t_csv_microdatos
+  - ola: 2018T3
+    era: clasica
+    id: enoe_2018_3t_csv_microdatos
+  - ola: 2018T4
+    era: clasica
+    id: enoe_2018_4t_csv_microdatos
+  - ola: 2019T1
+    era: clasica
+    id: enoe_2019_1t_microdatos
+  - ola: 2019T2
+    era: clasica
+    id: enoe_2019_2t_microdatos
+  - ola: 2019T3
+    era: clasica
+    id: enoe_2019_3t_microdatos
+  - ola: 2019T4
+    era: clasica
+    id: enoe_2019_4t_microdatos
+  - ola: 2020T1
+    era: clasica
+    id: enoe_2020_1t_microdatos
+  - ola: 2020T3
+    era: enoen
+    id: enoe_n_2020_3t_microdatos
+  - ola: 2020T4
+    era: enoen
+    id: enoe_n_2020_4t_microdatos
+  - ola: 2021T1
+    era: enoen
+    id: enoe_n_2021_1t_microdatos
+  - ola: 2021T2
+    era: enoen
+    id: enoe_n_2021_2t_microdatos
+  - ola: 2021T3
+    era: enoen
+    id: enoe_n_2021_3t_microdatos
+  - ola: 2021T4
+    era: enoen
+    id: enoe_n_2021_4t_microdatos
+  - ola: 2022T1
+    era: enoen
+    id: enoe_n_2022_1t_microdatos
+  - ola: 2022T2
+    era: enoen
+    id: enoe_n_2022_2t_microdatos
+  - ola: 2022T3
+    era: enoen
+    id: enoe_n_2022_3t_microdatos
+  - ola: 2022T4
+    era: enoen
+    id: enoe_n_2022_4t_microdatos
+  - ola: 2023T1
+    era: pos2023
+    id: enoe_2023_1t_microdatos
+  - ola: 2023T2
+    era: pos2023
+    id: enoe_2023_2t_microdatos
+  - ola: 2023T3
+    era: pos2023
+    id: enoe_2023_3t_microdatos
+  - ola: 2023T4
+    era: pos2023
+    id: enoe_2023_4t_microdatos
+  - ola: 2024T1
+    era: pos2023
+    id: enoe_2024_1t_microdatos
+  - ola: 2024T2
+    era: pos2023
+    id: enoe_2024_2t_microdatos
+  - ola: 2024T3
+    era: pos2023
+    id: enoe_2024_3t_microdatos
+  - ola: 2024T4
+    era: pos2023
+    id: enoe_2024_4t_microdatos
+  - ola: 2025T1
+    era: pos2023
+    id: enoe_2025_1t_microdatos
+  - ola: 2025T2
+    era: pos2023
+    id: enoe_2025_2t_microdatos
+  - ola: 2025T3
+    era: pos2023
+    id: enoe_2025_3t_microdatos
+  - ola: 2025T4
+    era: pos2023
+    id: enoe_2025_4t_microdatos
+  replicas: 200
+  min_n: 100
+  min_n_kish: 100
+  min_upm: 2
+  ejes:
+  - nacional
+  - sexo
+  - edad
+  - escolaridad
+  - localidad
+  - entidad
+  calibracion: SIN-COVARIANZA-LONGITUDINAL-PARA-CALIBRAR
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy==2.3.5
+- pandas==2.3.3
+- PyYAML==6.0.3
+resultados:
+- id: RESULT-ENOE-PISOS-TABLA
+  tipo: texto
+  unidad: JSON de celdas agregadas por ola/conducta/eje/segmento
+- id: RESULT-ENOE-PISOS-OLAS
+  tipo: entero
+  unidad: paquetes trimestre únicos
+- id: RESULT-ENOE-PISOS-FILAS-LEIDAS
+  tipo: entero
+  unidad: registros SDEM leídos
+- id: RESULT-ENOE-PISOS-PERSONAS-BASE
+  tipo: entero
+  unidad: personas de universo con diseño válido
+- id: RESULT-ENOE-PISOS-CELDAS
+  tipo: entero
+  unidad: celdas agregadas en JSON
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10

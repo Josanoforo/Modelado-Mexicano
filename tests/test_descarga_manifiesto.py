@@ -199,10 +199,21 @@ def main():
         check("5 · ninguno termina literalmente en '.do' (premisa corregida)",
               len(terminan_en_do) == 0, f"{len(terminan_en_do)} de {len(sie)}")
 
-        # 6-bis · las cuatro entradas reservadas reales
+        # 6-bis · reservas reales, incluidas ambas rutas de ENOE 2026T1
         reservadas = [e["id"] for e in reales if e.get("estado_reserva")]
         check("6 · universo de entradas con estado_reserva (A.13)",
-              len(reservadas) == 4, f"{sorted(reservadas)}")
+              set(reservadas) == {
+                  "enco_2025_junio_dbf_reservado",
+                  "enco_2026_junio_dbf_reservado",
+                  "enco_fd_v5_reservado",
+                  "enco_manual_procedimientos_reservado",
+                  "enoe_2026_1t_csv",
+                  "enoe_2026_1t_microdatos",
+              }, f"{sorted(reservadas)}")
+        check("6 · ambas rutas ENOE 2026T1 siguen cerradas",
+              all(by[i].get("estado_reserva") ==
+                  "RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR"
+                  for i in ("enoe_2026_1t_csv", "enoe_2026_1t_microdatos")))
 
         # 7 · el piloto NO es rechazado por la guardia (firma 4)
         piloto = by.get("enif_2024_enif_2024_bd_csv")

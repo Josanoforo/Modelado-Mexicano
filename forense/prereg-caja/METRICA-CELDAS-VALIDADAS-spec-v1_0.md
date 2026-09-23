@@ -44,6 +44,44 @@ misma sesión que reporta el número (§2 de las instrucciones del proyecto).
   aparte — no entra al total de la clase 1+2 porque es un dominio distinto
   (unidad y universo propios).
 
+### 3.1 · Clase 1, dos formas de reportar el error (ACTO GEN2-CONTADORES-CONSUMO-1)
+
+La clase 1 tiene dos formas de emitir el error, según si el CALC construye
+un grid de cruce o no. Las dos cuentan por CELDA PUNTUADA (nunca 1 por
+celda-D) — es la MISMA regla, no una excepción:
+
+- **Por celda de cruce** (la forma original, §3 arriba): el CALC emite un
+  RESULT por cada celda del cruce (`-C2-D-PP` sufijo, `-ARB-D-C2-`
+  prefijo). `n_celdas` es el número de celdas puntuadas.
+- **Por conducta agregada** (crédito, NC-260923-GEN2-DIN-CREDITO-CELDAS-D-2-f6a3-02):
+  el CALC no tiene un grid de dos ejes — mide una conducta completa contra
+  16 celdas marginales y sólo publica el AGREGADO del candidato
+  `champion_actual`: `...-{CHAMPION}-MAE-PP` (que debe casar, factor 1 o
+  100, contra `margen_material` — misma derivación que el resto de la
+  clase 1) y su gemela `...-{CHAMPION}-N-CELDAS-PUNTUADAS`. `n_celdas` es
+  ese N; no hay mediana/máximo por celda porque el CALC no los publica, así
+  que `error_mediano_pp = error_max_pp = MAE_PP` (el único número que hay).
+  Sin per-cell breakdown, se declara con `escala_cruda:
+  AGREGADO-POR-CONDUCTA`.
+- **Sufijo `-D-C2` de ENCIG 2025** (NC-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-03):
+  `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001` emite el error por celda como
+  `...-D-C2` (sin "ARB" ni "PP"). Es un archivo COMPARTIDO por varias
+  celdas-D de ENCIG 2025 a la vez (edad_x_sexo Y escolaridad_x_sexo en el
+  mismo `resultados.json`): el sufijo se localiza por celda leyendo
+  `adjudicacion_por_celda` del propio YAML (nunca por posición ni por
+  nombre adivinado), quitando el sufijo `-{id_candidato}-P` de cada
+  `resultado_puntual` para obtener el prefijo de esa celda. **Este sufijo
+  se reconoce sólo para celdas-D cuyo id empieza con
+  `GOB.gobierno_digital.encig2025.`** (lo que este acto tiene autorizado,
+  #1060): el mismo sufijo `-D-C2` aparece también en
+  `CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001`
+  (`TRA.evade_norma.envipe2025.dominio_x_sexo` y sus tres hermanas, con
+  `champion_actual: NINGUNO` — verificado por comando: su promedio del
+  sufijo también casa exacto con su `margen_material`), pero mesa no ha
+  revisado si una celda sin champion adjudicado debe contar; generalizar
+  el sufijo a esas 4 celdas TRA es HALLAZGO NUEVO para un acto sucesor, no
+  algo que este acto decida.
+
 `total_celdas_validadas = n(clase 1) + n(clase 2)`. La clase 3 se reporta
 por separado y nunca se suma al total.
 
