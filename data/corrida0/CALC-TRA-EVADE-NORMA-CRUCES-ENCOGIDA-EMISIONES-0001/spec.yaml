@@ -1,0 +1,4373 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001
+spec_md: ../../../forense/prereg-caja/TRA-evade-norma-cruces-encogida-spec-v1_0.md
+spec_md_sha256: 342aa0d19b17f26c6559104b5198c38b599d73bef2ae1aa21eb13c05a8693157
+script: data/corrida0/CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo (nace PENDIENTE-DE-MESA); no adopta
+  fuente_acto: GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1
+  celda_d: TRA.evasion_norma.envipe2025.cuatro_cruces (SPEC-CONGELADA)
+  firmas: FP-260922-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-a5a0-01 FIRMADA (§2, lista de cruces) · FP-260922-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-a5a0-02
+    FIRMADA (§6, regla de lambda por cruce)
+  medidor_ejecutado_al_congelar: SI -- sobre fixture sintetico (tests/test_piloto4_v1_0.py); NUNCA sobre
+    datos reales de 2025 mas alla de marginales sellados/reproduccion de control
+  orden_de_commits: COMMIT-1 (este acto, spec+codigo+D22) -> COMMIT-2 emisiones -> COMMIT-3 R y adjudicacion
+  tipo: EMISIONES-DE-CANDIDATOS-CELDA-D
+  commit: COMMIT-2
+inputs:
+- id: envipe2023_csv
+  origen: manifiesto
+  sha256: 0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404
+  nota: ENVIPE 2023 completa -- NO reservada, insumo de C7/C-ENCOGIDA
+- id: envipe2024_csv
+  origen: manifiesto
+  sha256: 90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2
+  nota: ENVIPE 2024 completa -- NO reservada, C1 (persistencia)
+- id: envipe2025_csv
+  origen: manifiesto
+  sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+  nota: RESERVADA -- se abre SOLO para marginales de un eje (reservada=True); el cruce esta prohibido
+    por tools/celda_d/marginales_reproduccion.py y se prueba en cada corrida
+- id: marginales_2025_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  sha256: 732567d2c201f029c1e979c6f45f0b641081eb2d220da4f36cf9b580e5960694
+  nota: 13 marginales de 2025 YA SELLADOS (control de reproduccion de esta corrida, no fuente exclusiva
+    de las replicas)
+- id: firmas_pendientes_tsv
+  origen: repo
+  ruta: data/corrida0/CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001/firmas-firmadas-445531a3.tsv
+  sha256: 9c0606de9f56f54d02f8fc835d385cdaf715ae0c348e7e23e025e12868146a52
+  nota: 'guardia de firmas: copia INMUTABLE de forense/firmas-pendientes.tsv al commit 445531a3 (el que
+    asento FP a5a0-01/-02 FIRMADA); el libro vivo cambia de huella con cada acto y no se sella contra
+    el'
+variables:
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_20
+  rol: desenlace-parte1 (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_23
+  rol: desenlace-parte2 (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: FAC_DEL
+  rol: ponderador (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EST_DIS
+  rol: estrato (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: UPM_DIS
+  rol: upm (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: DOMINIO
+  rol: eje-dominio_urbano_rural (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: SEXO
+  rol: eje-sexo (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EDAD
+  rol: eje-edad (2023)
+- archivo: tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: ID_PER
+  rol: llave-join-m:1 (2023)
+- archivo: tsdem_envipe2023/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2023.csv
+  variable: ID_PER
+  rol: llave-join (2023)
+- archivo: tsdem_envipe2023/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2023.csv
+  variable: NIV
+  rol: eje-escolaridad_proxy (2023)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_20
+  rol: desenlace-parte1 (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_23
+  rol: desenlace-parte2 (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: FAC_DEL
+  rol: ponderador (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EST_DIS
+  rol: estrato (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: UPM_DIS
+  rol: upm (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: DOMINIO
+  rol: eje-dominio_urbano_rural (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: SEXO
+  rol: eje-sexo (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EDAD
+  rol: eje-edad (2024)
+- archivo: tmod_vic_envipe2024/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: ID_PER
+  rol: llave-join-m:1 (2024)
+- archivo: tsdem_envipe2024/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2024.csv
+  variable: ID_PER
+  rol: llave-join (2024)
+- archivo: tsdem_envipe2024/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2024.csv
+  variable: NIV
+  rol: eje-escolaridad_proxy (2024)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_20
+  rol: desenlace-parte1 (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_23
+  rol: desenlace-parte2 (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: FAC_DEL
+  rol: ponderador (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EST_DIS
+  rol: estrato (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: UPM_DIS
+  rol: upm (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: DOMINIO
+  rol: eje-dominio_urbano_rural (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: SEXO
+  rol: eje-sexo (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EDAD
+  rol: eje-edad (2025)
+- archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: ID_PER
+  rol: llave-join-m:1 (2025)
+- archivo: tsdem_envipe2025/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2025.csv
+  variable: ID_PER
+  rol: llave-join (2025)
+- archivo: tsdem_envipe2025/conjunto_de_datos/conjunto_de_datos_tsdem_envipe2025.csv
+  variable: NIV
+  rol: eje-escolaridad_proxy (2025)
+universo: DELITO con BP1_20 in {1,2} en tmod_vic (heredado verbatim de ENVIPE-EVASION-NORMA-spec-v1_0.md);
+  FAC_DEL > 0; EST_DIS y UPM_DIS no vacios; join sec tmod_vic <- tsdem por ID_PER (m:1, validado).
+filtros: escolaridad_proxy fuera de {00..09} de NIV, dominio fuera de {U,C,R}, sexo fuera de {1,2}, edad
+  fuera de 18-96 -> (fuera), contado en meta.
+ponderador: FAC_DEL
+transformacion: 'evade_norma = (BP1_20==2) AND (BP1_23 in {04,05,06,08}); cuatro cruces: dominio_urbano_rural
+  x sexo, edad x escolaridad_proxy, edad x sexo, escolaridad_proxy x sexo.'
+seed:
+  aplica: true
+  valor: 20260922
+  rng: numpy.PCG64
+estimando: C1, C2, C7, C-ENCOGIDA por celda de cada uno de los cuatro cruces (38 celdas), con IC. lambda_cruce
+  (metodo de momentos EB) por cruce, derivada de I23/I24. NO agrupa 2025 por dos variables; NO emite R.
+parametros:
+  ola_reservada: 2025
+  bootstrap_replicas: 10000
+  n_minimo_celda: 200
+  control_arbitro_tol_p: 1.0e-06
+  control_arbitro_tol_ic: 1.0e-06
+  c_astra_estado: NO-ENTRA -- ningun CALC-ASTRA-* sellado al abrir este COMMIT (verificado 22/sep/2026,
+    ADENDA-1)
+guardia:
+  allowlist_payloads:
+  - envipe2023_csv
+  - envipe2024_csv
+  - envipe2025_csv
+  agrupacion_maxima: UNA variable por eje en 2025 (E.6); el cruce vive solo en CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001
+  firmas_exigidas:
+  - FP-260922-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-a5a0-01
+  - FP-260922-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-a5a0-02
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, transformacion y sumas float64; bootstrap determinista por semilla
+resultados:
+- id: RESULT-TRA-ENCOGIDA-G-INPUT-ENVIPE2023-CSV-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-TRA-ENCOGIDA-G-INPUT-ENVIPE2024-CSV-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-TRA-ENCOGIDA-G-INPUT-ENVIPE2025-CSV-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-TRA-ENCOGIDA-G-INPUT-MARGINALES-2025-SELLADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-TRA-ENCOGIDA-G-W24-N-UNIVERSO
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-G-W24-P-NACIONAL
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-G-W23-N-UNIVERSO
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-G-W23-P-NACIONAL
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-G-M25-N-UNIVERSO
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-G-RESERVA-CRUCE-2025-DERIVADO
+  tipo: texto
+  unidad: categoría (SI/NO)
+- id: RESULT-TRA-ENCOGIDA-G-RESERVA-GUARDIA-PROBADA
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-G-CTRL-ARBITRO-DELTA-P-MAX
+  tipo: flotante
+  unidad: diferencia de proporción
+- id: RESULT-TRA-ENCOGIDA-G-CTRL-ARBITRO-DELTA-IC-MAX
+  tipo: flotante
+  unidad: diferencia de proporción
+- id: RESULT-TRA-ENCOGIDA-G-CTRL-ARBITRO-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-G-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-G-DESENLACE-ID
+  tipo: texto
+  unidad: identificador
+- id: RESULT-TRA-ENCOGIDA-G-INCERTIDUMBRE
+  tipo: texto
+  unidad: descripción del método
+- id: RESULT-TRA-ENCOGIDA-G-L-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-COBERTURA-CRUCE-2024
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-COBERTURA-CRUCE-2023
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA
+  tipo: flotante
+  unidad: adimensional [0,1]
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA-TAU2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA-SIGMA-BAR2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA-K
+  tipo: entero
+  unidad: celdas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-LAMBDA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-FORMA-C1
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-FORMA-C2
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-FORMA-C7
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-G-FORMA-C-ENCOGIDA
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D1xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D2xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-DOMxSEX-D3xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-COBERTURA-CRUCE-2024
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-COBERTURA-CRUCE-2023
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA
+  tipo: flotante
+  unidad: adimensional [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA-TAU2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA-SIGMA-BAR2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA-K
+  tipo: entero
+  unidad: celdas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-LAMBDA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-FORMA-C1
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-FORMA-C2
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-FORMA-C7
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-G-FORMA-C-ENCOGIDA
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP3-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A1xEP4-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP3-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A2xEP4-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP3-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A3xEP4-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP3-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxESC-A4xEP4-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-COBERTURA-CRUCE-2024
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-COBERTURA-CRUCE-2023
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA
+  tipo: flotante
+  unidad: adimensional [0,1]
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA-TAU2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA-SIGMA-BAR2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA-K
+  tipo: entero
+  unidad: celdas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-LAMBDA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-FORMA-C1
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-FORMA-C2
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-FORMA-C7
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-G-FORMA-C-ENCOGIDA
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A1xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A2xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A3xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-EDADxSEX-A4xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-COBERTURA-CRUCE-2024
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-COBERTURA-CRUCE-2023
+  tipo: proporcion
+  unidad: proporción [0,1]
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA
+  tipo: flotante
+  unidad: adimensional [0,1]
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA-TAU2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA-SIGMA-BAR2
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA-VAR-ENTRE
+  tipo: flotante
+  unidad: varianza en escala logit al cuadrado
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA-K
+  tipo: entero
+  unidad: celdas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-LAMBDA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-FORMA-C1
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-FORMA-C2
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-FORMA-C7
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-G-FORMA-C-ENCOGIDA
+  tipo: texto
+  unidad: fórmula (texto)
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP1xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP2xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP3xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX1-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C1-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C1-SOPORTE-2024
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C1-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C1-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-W23-N
+  tipo: entero
+  unidad: delitos
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-W23-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I24
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I23
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I24-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I24-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I24-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I23-IC-LO
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I23-IC-HI
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-I23-EE
+  tipo: flotante
+  unidad: error estándar en escala logit
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C2-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C2-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C7-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C7-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C7-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C7-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C-ENCOGIDA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C-ASTRA-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-TRA-ENCOGIDA-ESCxSEX-EP4xX2-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
