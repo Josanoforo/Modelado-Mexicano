@@ -108,3 +108,5 @@ No cambia el valor, no redefine la métrica, no adopta, no suma sub-cifras que l
 - **`forense/tablero/TABLERO-PROGRAMA.md` no se regeneró en este acto** — razón: `FUERA-DE-PERÍMETRO` (lo regenera `/deriva`, no está en la lista de PERÍMETRO §9). Impacto: ninguno sobre la cifra (la compuerta §8 probó que el valor no cambia); el archivo derivado se re-emite en la próxima corrida de `/deriva`. Sucesor: `SUSTITUIDO-POR:/deriva` (corrida diaria ya existente, ningún acto nuevo necesario).
 
 ## CONSUMIDO
+
+Ejecutado por `PR #1020` (`ADR-260922-GEN2-TUBERIA-METRICA-RECTORA-1-9512-01`). El PR no se fusiona en este acto: mesa central fusiona.
