@@ -42,4 +42,17 @@ Propio: `.github/workflows/verify.yml` (un paso) · `tools/lote_desde_asientos.p
 ## 10 · NO HACE · SUCESORES · CIERRE
 No registra a mano, no adopta, no cambia E.7 (la cumple). Sucesor: P5 del plan (clases de auto-merge) ahora que el canal existe. Auditoría: no aplica. Cierre por /acto.
 
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P4 · primer push real que registre el backlog (22 CALC selladas sin fila al redactar, más las de las NC enmendadas abajo) | DECISIÓN-DE-MESA-PENDIENTE: el mecanismo (P1+P2) existe y está PROBADO con push sintético en rama (camino feliz + camino de guardia), pero el estado real de `main` hoy tiene drift preexistente (13 corridas ajenas cuyo veredicto en `replay-evidencia.tsv` ya no coincide con lo publicado) que dispara `REPLAY-PISADO` sobre cualquier lote pequeño. Este PR no toca `corridas.tsv`/`resultados.tsv`/`usos.tsv` (firma de mesa 21/sep §2(2)), así que no puede ejecutar el catch-up desde aquí. | `corridas.tsv` sigue sin las 22+ corridas selladas «en disco, no registradas»; `corrida0 status` las proyecta, la vista publicada no. | `FP-260922-GEN2-TUBERIA-CANAL-PUBLICACION-1-7d98-01` (pregunta a mesa: ¿lote estricto en `corrida0.py`, o catch-up explícito primero?) |
+| §6 LATITUD · bandera de lote estricto en `tools/corrida0.py` | DECISIÓN-DE-MESA-PENDIENTE: el encargo la deja explícitamente como pregunta a mesa, no como LATITUD del ejecutor. | El primer push real probablemente PARA por `REPLAY-PISADO` hasta que mesa decida esta bifurcación o autorice un catch-up. | `FP-260922-GEN2-TUBERIA-CANAL-PUBLICACION-1-7d98-01` |
+| Cierre de `NC-0257`/`NC-0284`/`NC-0329` citadas en P4 | SUSTITUIDO-POR:ya CERRADAS por otra vía antes de este acto (re-verificado, `estado=CERRADA` en `forense/no-corrido.tsv`) — premisa de logística del encargo, no un hallazgo de este acto. | Ninguno: ya estaban resueltas. | Ninguno — ya cerradas |
+| Cierre de las cuatro NC `DIFERIDO-A: acto TUBERIA` (#1008/#1012/#1005/#1003) | NO-VERIFICABLE-AQUÍ: el encargo pedía "sucesor cumplido → cierra", pero cerrar exigiría que la fila esté PUBLICADA en `corridas.tsv`, y sigue sin estarlo (el mecanismo existe, no se ha ejecutado en `main`). Se ENMENDARON con fecha (mecanismo entregado y probado), no se cerraron — cerrarlas ahora sería falso. | Las cuatro corridas correspondientes siguen "selladas en disco, no registradas". | El propio primer push real (fila de arriba) |
+
+## CONSUMIDO
+
+Ejecutado por PR [#1018](https://github.com/Josanoforo/Modelado-Mexicano/pull/1018), rama `claude/jolly-shannon-6yq4kv`, 22/sep/2026 — `ADR-260922-GEN2-TUBERIA-CANAL-PUBLICACION-1-7d98-01`. Nota: `forense/notas/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1-cierre.md`. Queda propuesto; mesa fusiona.
+
 

@@ -168,3 +168,4 @@ tests/test_registro_repite_de_abanico.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	
 tests/test_din_credito_escolaridad_2.py	script	NO	numpy	NO	0.3	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy' (mismo patron que test_din_credito_prediccion_2024_adjudicacion.py, hermano mas parecido; corre en CAJA: PASA, 8 falsadores)
 tests/test_c2_restringido_enif2024_guardia.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enif_persistencia_ic_calibrado.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_lote_desde_asientos.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
