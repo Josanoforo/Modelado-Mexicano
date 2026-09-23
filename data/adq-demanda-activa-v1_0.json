@@ -1,14 +1,14 @@
 {
   "advertencia_suficiencia": "cero tareas elegibles sólo describe el selector; nunca acredita suficiencia general ni cierra necesidades",
   "contrato_cientifico_completo": 5,
-  "contrato_cientifico_incompleto": 237,
+  "contrato_cientifico_incompleto": 241,
   "contrato_completo": 5,
-  "contrato_incompleto": 237,
-  "contrato_minimo_derivado": 237,
+  "contrato_incompleto": 241,
+  "contrato_minimo_derivado": 241,
   "contrato_operativo_explicito_no_cientifico": 1,
   "contrato_operativo_no_cientifico": 9,
   "corte": "2026-09-23",
-  "descripcion_minima_derivada": 237,
+  "descripcion_minima_derivada": 241,
   "elementos_con_alcance_menor_disponible": 3,
   "elementos_con_brecha_abierta": 20,
   "elementos_gen2": [
@@ -18364,7 +18364,7 @@
     "data/corrida0/usos.tsv": "ea3513e3459fc9a96be0f407a9910bdc87e8dc93de155ff0879526047ae45eeb",
     "data/curacion-registro/necesidad-objeto-modelo.tsv": "09062d3c7878651870ee429ce6cf6c86f73579b61916976718c8544209b20981",
     "data/curacion-registro/utilidad-modelo.tsv": "ed9b4055bdbe6d7963570df7a1e57c4ba8ab05319ab96a30cd972cf291003de2",
-    "forense/no-corrido.tsv": "85bbdf0b8e17f4e56128564b5f0acfdd8cd4659ec8dbd76d944db003b445b27e",
+    "forense/no-corrido.tsv": "d8e3fd99fd6c688675d64c7446c8652d04cc4728bf8cb59ef95cfe80791e60fa",
     "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
     "forense/prereg-duelo-v2/universo-triada-v1_4.tsv": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
   },
@@ -25929,6 +25929,142 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
+      "brecha": "2026T1 última ola del corpus, ambas rutas ZIP",
+      "condicion_reapertura": null,
+      "consumidor": "ASTRA5-U1-TRABAJO-ENOE/2026T1 última ola del corpus, ambas rutas ZIP",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "sin punto de la ola reservada; último elegible 2025T4",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01"
+      ],
+      "frontera": "sin punto de la ola reservada; último elegible 2025T4",
+      "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01",
+      "investigacion_previa": "FUERA-DE-PERÍMETRO:RESERVA-EXPLÍCITA",
+      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "2026T1 última ola del corpus, ambas rutas ZIP",
+      "prioridad": 60,
+      "responsable": "acto que levante reserva + CALC nuevo",
+      "siguiente_accion": "acto que levante reserva + CALC nuevo",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "2026T1 última ola del corpus, ambas rutas ZIP",
+      "version_pregunta": "AUTO-NC-v1-93cbbf606320"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "transición individual formal/informal",
+      "condicion_reapertura": null,
+      "consumidor": "ASTRA5-U1-TRABAJO-ENOE/transición individual formal/informal",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "VALIDACION",
+      "evidencia_disponible": "solo prevalencias transversales; no flujo de personas",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-02"
+      ],
+      "frontera": "solo prevalencias transversales; no flujo de personas",
+      "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-02",
+      "investigacion_previa": "NO-VERIFICABLE-AQUÍ",
+      "motivo_ruteo": "etapa vigente VALIDACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "transición individual formal/informal",
+      "prioridad": 60,
+      "responsable": "contrato longitudinal con llave, elegibilidad y peso validados",
+      "siguiente_accion": "contrato longitudinal con llave, elegibilidad y peso validados",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "transición individual formal/informal",
+      "version_pregunta": "AUTO-NC-v1-e23f8a3a77c9"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "cuidados específicos e ingreso real",
+      "condicion_reapertura": null,
+      "consumidor": "ASTRA5-U1-TRABAJO-ENOE/cuidados específicos e ingreso real",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "PREPARACION",
+      "evidencia_disponible": "PNEA_EST=4 mezcla obligaciones; ingreso solo nominal positivo",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-03"
+      ],
+      "frontera": "PNEA_EST=4 mezcla obligaciones; ingreso solo nominal positivo",
+      "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-03",
+      "investigacion_previa": "NO-VERIFICABLE-AQUÍ",
+      "motivo_ruteo": "etapa vigente PREPARACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "cuidados específicos e ingreso real",
+      "prioridad": 60,
+      "responsable": "COE P2G2 por era y deflactor oficial hash-fijado en CALC nuevo",
+      "siguiente_accion": "COE P2G2 por era y deflactor oficial hash-fijado en CALC nuevo",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "cuidados específicos e ingreso real",
+      "version_pregunta": "AUTO-NC-v1-c72ee08d0b3f"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "IC predictivo calibrado y prueba de cambio entre olas",
+      "condicion_reapertura": null,
+      "consumidor": "ASTRA5-U1-TRABAJO-ENOE/IC predictivo calibrado y prueba de cambio entre olas",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "VALIDACION",
+      "evidencia_disponible": "persistencia descriptiva sin calibración ni inferencia de cambio",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04"
+      ],
+      "frontera": "persistencia descriptiva sin calibración ni inferencia de cambio",
+      "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04",
+      "investigacion_previa": "NO-VERIFICABLE-AQUÍ",
+      "motivo_ruteo": "etapa vigente VALIDACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "IC predictivo calibrado y prueba de cambio entre olas",
+      "prioridad": 60,
+      "responsable": "réplica conjunta de panel y covarianza acreditada en CALC nuevo",
+      "siguiente_accion": "réplica conjunta de panel y covarianza acreditada en CALC nuevo",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "IC predictivo calibrado y prueba de cambio entre olas",
+      "version_pregunta": "AUTO-NC-v1-399708a183ec"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
       "brecha": "Microdato y RESULT de MOCIBA 2019",
       "condicion_reapertura": null,
       "consumidor": "ASTRA5-U4-TECNOLOGIA-1/MOCIBA 2019",
@@ -27067,10 +27203,10 @@
   ],
   "seleccion_siguiente": {
     "corte": "2026-09-23",
-    "demanda_activa_total": 250,
-    "demanda_con_contrato_operativo": 251,
+    "demanda_activa_total": 254,
+    "demanda_con_contrato_operativo": 255,
     "demanda_configurada": 7,
-    "demanda_vigente_total": 251,
+    "demanda_vigente_total": 255,
     "demandas_independientes_vigentes": 1,
     "elegidos": [
       {
@@ -28130,6 +28266,22 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-MOTOR-DEUDA-LOTE-2 -- junto con e270-02, re-censar el universo GEN2 vigente y, con esa cifra corregida, decidir por RESULT citado que ejemplos re-sellar; siguiente=GEN2-MOTOR-DEUDA-LOTE-2 -- junto con e270-02, re-censar el universo GEN2 vigente y, con esa cifra corregida, decidir por RESULT citado que ejemplos re-sellar"
       },
       {
+        "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01",
+        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=acto que levante reserva + CALC nuevo; siguiente=acto que levante reserva + CALC nuevo"
+      },
+      {
+        "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-02",
+        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=contrato longitudinal con llave, elegibilidad y peso validados; siguiente=contrato longitudinal con llave, elegibilidad y peso validados"
+      },
+      {
+        "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-03",
+        "razon": "ruteo=NO_SONDA: etapa vigente PREPARACION; no corresponde investigación externa; responsable=COE P2G2 por era y deflactor oficial hash-fijado en CALC nuevo; siguiente=COE P2G2 por era y deflactor oficial hash-fijado en CALC nuevo"
+      },
+      {
+        "id": "NC-260923-ASTRA5-U1-TRABAJO-ENOE-e422-04",
+        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=réplica conjunta de panel y covarianza acreditada en CALC nuevo; siguiente=réplica conjunta de panel y covarianza acreditada en CALC nuevo"
+      },
+      {
         "id": "NC-260923-GEN2-TUBERIA-SELLO-EXTERNO-1-cfce-01",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-TUBERIA-SELLO-EXTERNO-2; siguiente=GEN2-TUBERIA-SELLO-EXTERNO-2"
       },
@@ -28185,8 +28337,8 @@
     "maximo": 3,
     "version": "GEN2-ADQ-INVESTIGACION-V1"
   },
-  "sha256_fuente": "85bbdf0b8e17f4e56128564b5f0acfdd8cd4659ec8dbd76d944db003b445b27e",
-  "sha256_insumos_demanda": "0850b037cb7b93e395f80df5f4b2178a6f181b919a4d83045fb0fe1dcafb1346",
+  "sha256_fuente": "d8e3fd99fd6c688675d64c7446c8652d04cc4728bf8cb59ef95cfe80791e60fa",
+  "sha256_insumos_demanda": "ba8a804607042880537c97338ffe7305d623d0c7a2d17f8ee1409a3c977a1bf4",
   "situaciones_elementos": {
     "CUBIERTA": 9,
     "EVALUACION_GEN2_DISPONIBLE": 70,
@@ -28198,8 +28350,8 @@
     "PENDIENTE_PREPARACION": 54,
     "PENDIENTE_VALIDACION": 39
   },
-  "total_activas": 251,
+  "total_activas": 255,
   "total_demandas_independientes": 1,
-  "total_nc_abiertas": 250,
+  "total_nc_abiertas": 254,
   "version": "GEN2-ADQ-INVESTIGACION-V1"
 }
