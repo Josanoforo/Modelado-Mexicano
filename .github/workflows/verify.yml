@@ -347,10 +347,26 @@ jobs:
       contents: write
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
+        # Hallazgo de CI, 23/sep/2026: las dos `git push origin HEAD:main`
+        # de este job (re-derivación y canal de publicación, más abajo)
+        # fallaban siempre con `fatal: could not read Username for
+        # 'https://github.com'` -- el remoto se agregaba sin credenciales
+        # (sin `actions/checkout`, D-23, no hay token inyectado por
+        # default) y `contents: write` (arriba) nunca se tradujo en una
+        # credencial git real. Cero commits `[deriva]` en todo el
+        # historial lo confirman: el paso nunca había tenido un diff que
+        # disparar hasta ahora. Se configura el extraheader de
+        # autorización con `GITHUB_TOKEN` (mismo mecanismo que usa
+        # `actions/checkout` internamente) una sola vez aquí; fetch y push
+        # del resto del job lo heredan del `.git/config` local sin tocar
+        # la URL del remoto.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           git init -q .
           git remote add origin "https://github.com/${{ github.repository }}.git"
+          git config "http.https://github.com/.extraheader" "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)"
           if [ -n "${{ github.event.pull_request.number }}" ]; then
             REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
           else
