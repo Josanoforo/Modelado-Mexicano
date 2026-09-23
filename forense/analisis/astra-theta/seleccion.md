@@ -159,3 +159,33 @@ tiene panel ENNViH y CAL-G3 existente, pero no shock exógeno; `RES-0087`
 tiene sorteo documentado y dos olas, pero su microdato de réplica requiere
 registro por `codex/adq-*` y el efecto es parcial. La solicitud específica
 se añadió en `solicitud-adquisicion.tsv`.
+
+## Guardia del primer diseño, posterior al freeze
+
+Preregistro `ASTRA-THETA-SALUD-OFERTA-spec-v1_0.md` congelado en
+`codex/astra-theta-1@c529cdf0` antes de abrir el encabezado de `ALL.tab`.
+Adquisición #1037 `codex/adq-astra-theta-salud-1@37cfd059`: seis archivos
+del DOI registrados y verificados con hash/tamaño en la raíz compartida.
+El diagnóstico `diagnostico-salud-oferta.json` lee **solo encabezados y
+hashes**, ninguna fila de desenlace. En `ALL.tab` (647 columnas) faltan
+`P11D0401`, `P11D0501`, `P10E0401_T2`, `P10E0501_T2` y los dos códigos
+de seguro basal fijados. El código original `Eval/utilization.formerge.R`
+lee `tbl_seccion11_vis.dta` y renombra `P11D0501` a `vis.loc`, pero ni esa
+tabla ni `vis.loc` están en los seis objetos del depósito. La columna
+`P10D04` de `ALL.tab` es mamografía en el codebook basal, no razón de
+consulta. `Eval/Insurance.formerge.R` muestra que `healthins_obl` procede
+de `P01D1301`, una codificación distinta de la asumida por el codebook;
+reemplazarla sin armonización sería cambiar la spec.
+
+**Resultado de la guardia: NO-ESTIMABLE**, no cero numérico. No se ejecuta
+`preflight → run → verify` con un desenlace que el archivo no contiene;
+no existe `CALC` ni `RESULT` sellado, ni contador GEN2 que sumar. La
+imposibilidad es de **este estimando en el único microdato público de
+réplica localizado**, no de toda la salud mexicana: los cuestionarios sí
+incluyen las preguntas, pero la tabla de análisis pública las omite.
+La fila nueva de `solicitud-adquisicion.tsv` identifica exactamente las
+tablas fuente, llaves y custodia que mesa necesita conseguir. Alternativa
+de mesa si no consigue las tablas: autorizar explícitamente un **nuevo
+estimando reducido** para un desenlace que sí aparece en `ALL.tab` (p. ej.
+uso ambulatorio total), con preregistro nuevo antes de leer sus valores;
+ese efecto no mediría elección de farmacia ni cargaría `RES-0087`.
