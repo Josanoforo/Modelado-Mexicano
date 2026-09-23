@@ -204,3 +204,15 @@ def test_lectura_confianza_y_cotejo_enoe_no_funden_universos():
     assert {row["dictamen_contraste"] for row in cotejo} == {
         "CONFIRMA-MAYORIA-TRIMESTRAL", "SIN-CONTRASTE-DIRECTO", "MATIZA-COMPONENTE-SEMANAL"
     }
+
+
+def test_lectura_trabajo_traza_secciones_y_limita_mezclas():
+    rows = read("lectura-trabajo-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 14
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"]
+        assert row["propietario"] == "ASTRA5-U1" and row["siguiente_operacion"]
+    assert "ASTRA5-U0-ENOE-003" == rows[4]["contrato_existente"]
+    assert "ASTRA5-U0-TIME-002" == rows[7]["contrato_existente"]
