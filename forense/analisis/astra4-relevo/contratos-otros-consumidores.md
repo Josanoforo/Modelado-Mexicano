@@ -61,6 +61,28 @@ Prueba negativa: falta de reserva, `NO-EJECUTABLE` o diferencia de universo
 deja diff vacío. Antes/después: consulta real debe resolver la sucesora,
 RESULT, CALC, generación y valor. Hoy esas seis lecturas permanecen legacy.
 
+| Slot | YAML sellado | Candidato cotejable y dependencia de escritor |
+|---|---|---|
+| `RES-0171` | `DIN.ahorro_solo_informal.enif2024.localidad_x_edad` | `CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001` y `-EMISIONES-0001`; HOLDOUT ya consumido, champion ninguno: falta sucesora adjudicada y reserva nueva. |
+| `RES-0172` | `G5.familismo_obligacion.actitud` | Sin CALC de relevo declarado en la fila; fijar instrumento, eje de actitud y reserva antes de una sucesora. |
+| `RES-0173` | `G5.obligacion_medida.conducta` | Sin CALC de relevo declarado en la fila; no sustituir conducta con actitud; fijar cuestionario, eje y reserva. |
+| `RES-0174` | `G5.radio_confianza.encuci_vs_enbiare` | Sin CALC de relevo declarado en la fila; se necesitan comparabilidad ENCUI/ENBIARE, eje y reserva. |
+| `RES-0175` | `TRA.evade_norma.envipe2025.escolaridad_x_dominio` | `CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001` y `-EMISIONES-0001`; reserva de cruce consumida, champion ninguno. |
+| `RES-0211` | `GOB.gobierno_digital.encig2025.edad_x_escolaridad` | `CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001` y `-EMISIONES-0002` requieren cotejo de eje y reserva; no se presume sucesora por el nombre. |
+
+Diff revisable por slot, antes de cualquier aplicación:
+
+```diff
+ data/curacion-registro/celdas-d/<slot>.yaml  <sha sellado, intacto>
++data/curacion-registro/celdas-d/<slot>-sucesora.yaml  <nuevo sha; RESULT/CALC/eje/reserva/dictamen>
++forense/analisis/astra4-relevo/enlaces-celdas-d.tsv  <slot; sha previo; sha sucesor; firma mesa>
+```
+
+El acto del escritor debe probar seis fallos independientes: llave equivocada,
+eje invertido, reserva gastada, resultado sin sello, valor previo discordante
+y ausencia de firma. Ninguno puede crear la sucesora ni cambiar la referencia
+activa de `milpa/src/celdas.py`.
+
 ## Separación de contadores
 
 `corrida0.py status` arroja 146 lecturas legacy activas **según pines**:
