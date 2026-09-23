@@ -7,10 +7,11 @@ Estado: **un subcomponente sellado**, programa ENDIREH aún abierto. Este archiv
 - `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0001`, COMMIT-1 `b1983de2`: primer intento `NO-EJECUTABLE`, `UnicodeDecodeError` al abrir CSV como UTF-8; no sellado. Congelación intacta.
 - `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0002`, COMMIT-1 `b66a134c`: primer intento produjo 92 celdas dentro del medidor, pero `run` rechazó el valor `list` declarado como `texto`; no sellado. Congelación intacta. Ninguna cifra de ese intento se usa en producto.
 - `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0003`, COMMIT-1 `e0f94f3b`: mismo estimando y reglas, decodificación Latin-1 y tabla serializada como JSON texto. `preflight` VERDE; `run` selló; `verify` **REPRODUCE**, 2/2 RESULT. Sello SHA256 `ba6c9fbf1872feae42a388542e4a7e23d065c74dc3558602902a96bf56f06fef`, `resultados.json` SHA256 `72bd7015a31173d120009deba8b75713641cb439b03185d5fbec7ec6206b6e9d`.
+- `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004`, COMMIT-1 `700ad2b8`: corrige el remuestreo de dominios incorporando UPM de contribución cero. V3 sigue sellada; sus IC de cortes quedan superados. V4 selló y `verify` devolvió **REPRODUCE**, 2/2 RESULT. Sello SHA256 `4de09138c1316c4d6e13a6f95db2dbf6154dd192b6e35a369893603220d53da7`; `resultados.json` SHA256 `2924630885c0577d76bb039a02d6ce039f09ecdd19c9a679aaae0d97df06c067`.
 
 ## Tabla utilizable
 
-[endireh2021-pareja-fisica-tabla.tsv](endireh2021-pareja-fisica-tabla.tsv) contiene 92 celdas univariadas (92 publicables bajo umbrales congelados) con RESULT/CALC/hash, punto, IC de diseño, soporte y ventana. Las 500 réplicas agregadas por celda viven en `RESULT-ENDIREH2021-PF-TABLA` del CALC sellado; no incluyen personas ni identificadores de UPM.
+[endireh2021-pareja-fisica-tabla.tsv](endireh2021-pareja-fisica-tabla.tsv) contiene 92 celdas univariadas V4 (92 publicables bajo umbrales congelados) con RESULT/CALC/hash, punto, IC de diseño, soporte y ventana. Las 500 réplicas agregadas por celda viven en `RESULT-ENDIREH2021-PF-TABLA` del CALC V4 sellado; no incluyen personas ni identificadores de UPM.
 
 | Ventana | Universo conocido | Prevalencia unión de nueve actos | IC95 de diseño |
 |---|---:|---:|---:|
