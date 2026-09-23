@@ -64,6 +64,17 @@ def _dentro(p, ic):
     return p is not None and ic is not None and ic[0] <= p <= ic[1]
 
 
+def _estado_gana(ic_delta_vs_c2, umbral_pp):
+    """Spec humana §3: el IC primario decide; el conteo de celdas es descriptivo."""
+    if ic_delta_vs_c2 is None or ic_delta_vs_c2[0] is None:
+        return "NO"
+    if ic_delta_vs_c2[0] > umbral_pp:
+        return "SI"
+    if ic_delta_vs_c2[0] > 0:
+        return "PROPUESTA-CON-RESERVA"
+    return "NO"
+
+
 def _lee_json(bytes_):
     raw = json.loads(bytes_.decode("utf-8"))
     resultados = raw.get("resultados", raw) if isinstance(raw, dict) else raw
@@ -87,7 +98,6 @@ def _guardia_sello(inputs):
 def medir(inputs, contrato):
     par = contrato["parametros"]
     umbral = int(par["n_minimo_celda"])
-    fraccion_gana = float(par["umbral_celdas_gana_fraccion"])
     delta_mae_umbral = float(par["delta_mae_umbral_pp"])
     out: dict = {}
     emis = _guardia_sello(inputs)
@@ -196,7 +206,6 @@ def medir(inputs, contrato):
         for k in CANDIDATOS:
             out[f"{pre_out}-G-MAE-{k}"] = mae[k]
 
-        umbral_gana_n = int(np.ceil(fraccion_gana * puntuadas)) if puntuadas else 0
         ganadores_pp = {}
         for j in RETADORES:
             for piso in PISOS:
@@ -243,10 +252,8 @@ def medir(inputs, contrato):
         for j in RETADORES:
             out[f"{pre_out}-G-{j}-VENCE-A-AMBOS-EN-CELDAS"] = int(gana_ambos[j])
             out[f"{pre_out}-G-{j}-INDECIDIBLES"] = int(indecid[j])
-            gana_umbral_celdas = gana_ambos[j] >= umbral_gana_n and puntuadas > 0
             ic_c2 = ganadores_pp.get((j, "C2"))
-            vence_ic = ic_c2 is not None and ic_c2[0] is not None and ic_c2[0] > 0
-            out[f"{pre_out}-G-{j}-GANA"] = "SI" if (vence_ic or gana_umbral_celdas) else "NO"
+            out[f"{pre_out}-G-{j}-GANA"] = _estado_gana(ic_c2, delta_mae_umbral)
 
         # ── B-bis del cruce ────────────────────────────────────────────────
         if puntuadas == 0 or out[f"{pre_out}-G-CELDAS-FUERA-DE-SOPORTE-2025"] >= int(

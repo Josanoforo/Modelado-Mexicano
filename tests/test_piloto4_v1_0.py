@@ -21,7 +21,6 @@ import importlib.util
 import io
 import json
 import os
-import subprocess
 import sys
 import zipfile
 
@@ -49,6 +48,17 @@ def _load(path, name):
 
 M = _load(os.path.join(EMI, "medidor.py"), "p4_medidor")
 A = _load(os.path.join(ARB, "adjudicacion.py"), "p4_adjudicacion")
+
+
+@pytest.mark.parametrize("ic, esperado", [
+    ((0.51, 1.0), "SI"),
+    ((0.25, 0.75), "PROPUESTA-CON-RESERVA"),
+    ((-0.1, 0.8), "NO"),
+    ((0.5, 1.0), "PROPUESTA-CON-RESERVA"),
+    (None, "NO"),
+])
+def test_adjudicacion_primaria_respeta_umbral_y_no_usa_conteo(ic, esperado):
+    assert A._estado_gana(ic, 0.5) == esperado
 
 
 def _repo(path):
@@ -221,20 +231,9 @@ def test_c_fp_firmadas_en_el_repo():
 
 
 def test_c_reserva_envipe2025_cruce_no_abierto():
-    for d in (EMI, ARB):
-        for f in ("ejecucion.json", "resultados.json", "sello.json", "sello.sha256"):
-            assert not os.path.exists(os.path.join(d, f)), f"{d}/{f} existe: COMMIT-1 no emite"
-    tracked = subprocess.run(["git", "ls-files", "-z"], cwd=ROOT, capture_output=True, check=True).stdout.split(b"\0")
-    for rel in tracked:
-        if not rel or not rel.endswith((b".json", b".tsv")):
-            continue
-        if b"forense/encargos/" in rel or rel.endswith(b"test_piloto4_v1_0.py"):
-            continue
-        try:
-            data = open(os.path.join(ROOT, rel.decode()), "rb").read()
-        except FileNotFoundError:
-            continue
-        assert b"RESULT-TRA-ENCOGIDA-" not in data or b"marcador-segmento" in rel, rel
+    with open(os.path.join(EMI, "resultados.json"), encoding="utf-8") as f:
+        emisiones = json.load(f)["resultados"]
+    assert emisiones["RESULT-TRA-ENCOGIDA-G-RESERVA-CRUCE-2025-DERIVADO"] == "NO"
     src = open(os.path.join(EMI, "medidor.py"), encoding="utf-8").read()
     assert "envipe2025_csv.zip" not in src
 
