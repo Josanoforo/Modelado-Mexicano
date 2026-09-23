@@ -1,0 +1,255 @@
+calc_id: CALC-ASTRA-ENVIPE-EDADXSEXO-0001
+spec_md: spec.md
+spec_md_sha256: d590451d8d3da0700eea1d6461654408bdecb5de51a9ccb4e428ae6a7a07230b
+script: data/corrida0/CALC-ASTRA-ENVIPE-EDADXSEXO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  exposicion_historica: CIEGO-A-ENVIPE2025-CRUCE-NO-ABIERTO
+  tipo_incertidumbre: PREDICTIVA-CONDICIONAL-MARGINALES-2025
+inputs:
+- id: envipe2023_csv
+  origen: manifiesto
+- id: envipe2024_csv
+  origen: manifiesto
+- id: MARGINALES-PUBLICOS
+  origen: repo
+  ruta: milpa/tramite-ola5-propuesta-v0.yaml
+  sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_20
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_23
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: FAC_DEL
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EST_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: UPM_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: SEXO
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EDAD
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: DOMINIO
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: NIV
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_20
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_23
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: FAC_DEL
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EST_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: UPM_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: SEXO
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EDAD
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: DOMINIO
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: NIV
+  rol: historico
+universo: DELITO BP1_20 in {1,2}; conjunta BP1_20=2 y BP1_23 in {04,05,06,08}
+filtros: FAC_DEL>0; EST_DIS/UPM_DIS completos; ID_PER único en tsdem; códigos fuera excluidos solo del eje
+ponderador: FAC_DEL
+transformacion: C2 + interacción normal EB dinámica v1.0; ver spec.md
+estimando: Probabilidad predicha ENVIPE 2025 por celda edad × sexo
+parametros:
+  pair: EDADXSEXO
+  modelo_sha256: 47ded83d3e8a9283a2972289240d8fa6b90c440cefb238bca04255e044a11212
+  replicas_upm: 256
+  sorteos_predictivos: 2048
+  seed: 20260922
+  celdas:
+  - a: 18-29
+    b: 1 Hombre
+  - a: 18-29
+    b: 2 Mujer
+  - a: 30-44
+    b: 1 Hombre
+  - a: 30-44
+    b: 2 Mujer
+  - a: 45-59
+    b: 1 Hombre
+  - a: 45-59
+    b: 2 Mujer
+  - a: 60+
+    b: 1 Hombre
+  - a: 60+
+    b: 2 Mujer
+seed:
+  aplica: true
+  valor: 20260922
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+- PyYAML
+resultados:
+- id: RESULT-ASTRA-EDADXSEXO-01-P
+  tipo: proporcion
+  unidad: '18-29 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-01-LO
+  tipo: proporcion
+  unidad: '18-29 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-01-HI
+  tipo: proporcion
+  unidad: '18-29 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-01-ESTADO
+  tipo: texto
+  unidad: '18-29 × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-02-P
+  tipo: proporcion
+  unidad: '18-29 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-02-LO
+  tipo: proporcion
+  unidad: '18-29 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-02-HI
+  tipo: proporcion
+  unidad: '18-29 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-02-ESTADO
+  tipo: texto
+  unidad: '18-29 × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-03-P
+  tipo: proporcion
+  unidad: '30-44 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-03-LO
+  tipo: proporcion
+  unidad: '30-44 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-03-HI
+  tipo: proporcion
+  unidad: '30-44 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-03-ESTADO
+  tipo: texto
+  unidad: '30-44 × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-04-P
+  tipo: proporcion
+  unidad: '30-44 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-04-LO
+  tipo: proporcion
+  unidad: '30-44 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-04-HI
+  tipo: proporcion
+  unidad: '30-44 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-04-ESTADO
+  tipo: texto
+  unidad: '30-44 × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-05-P
+  tipo: proporcion
+  unidad: '45-59 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-05-LO
+  tipo: proporcion
+  unidad: '45-59 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-05-HI
+  tipo: proporcion
+  unidad: '45-59 × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-05-ESTADO
+  tipo: texto
+  unidad: '45-59 × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-06-P
+  tipo: proporcion
+  unidad: '45-59 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-06-LO
+  tipo: proporcion
+  unidad: '45-59 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-06-HI
+  tipo: proporcion
+  unidad: '45-59 × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-06-ESTADO
+  tipo: texto
+  unidad: '45-59 × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-07-P
+  tipo: proporcion
+  unidad: '60+ × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-07-LO
+  tipo: proporcion
+  unidad: '60+ × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-07-HI
+  tipo: proporcion
+  unidad: '60+ × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-07-ESTADO
+  tipo: texto
+  unidad: '60+ × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-08-P
+  tipo: proporcion
+  unidad: '60+ × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-08-LO
+  tipo: proporcion
+  unidad: '60+ × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-08-HI
+  tipo: proporcion
+  unidad: '60+ × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-08-ESTADO
+  tipo: texto
+  unidad: '60+ × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-EDADXSEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit
+  permite_no_estimable: true
+- id: RESULT-ASTRA-EDADXSEXO-Q
+  tipo: flotante
+  unidad: varianza logit
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10

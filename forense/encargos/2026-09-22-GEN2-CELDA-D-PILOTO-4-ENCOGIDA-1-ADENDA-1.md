@@ -1,0 +1,4 @@
+# ADENDA-1 · GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1 · candidato externo C-ASTRA (dirección, 22/sep/2026; archivo propio, A.3)
+
+
+> **Candidato externo.** Se admite un candidato adicional `C-ASTRA` en COMMIT-1 si al abrir el acto existe en `origin/main` un CALC `CALC-ASTRA-<DOMINIO>-<CRUCE>-0001` sellado y con asiento cuyo `spec.yaml` (a) cite las mismas celdas que la spec del piloto, (b) esté congelado antes de cualquier lectura de la ola de evaluación (verificable por historial: `git log -p -S <payload>`), y (c) declare punto, IC y tipo de incertidumbre por celda. El piloto **copia** esos RESULT por id en su CALC de emisiones (no los recalcula), los somete al mismo criterio que a los demás candidatos, y los rotula PROSPECTIVA solo si (b) se verifica. Un CALC externo que no cumpla (a)–(c) no entra y se dice en la nota. Nada más cambia en el encargo.

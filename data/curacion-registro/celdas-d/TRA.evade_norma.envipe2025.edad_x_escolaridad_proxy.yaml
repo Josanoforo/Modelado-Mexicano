@@ -1,0 +1,91 @@
+# Piloto 4: adjudicacion por cruce. No adopta.
+celda_d:
+  id: TRA.evade_norma.envipe2025.edad_x_escolaridad_proxy
+  estimando: P(evade_norma | edad_x_escolaridad_proxy) en delitos ENVIPE 2025
+  tipo_adjudicacion: COMPARACION
+  dominio: TRA
+  poblacion_objetivo: 16 celdas del cruce edad_x_escolaridad_proxy en DELITOS BP1_20 en {1,2} de ENVIPE 2025
+  unidad_objetivo: persona
+  universo_candidatos: 'Cuatro candidatos primarios preemitidos: C1, C2, C7, C-ENCOGIDA. C-ASTRA NO-ENTRA: #1031 no estaba en main antes de COMMIT-2; la comparación secundaria no se ejecuta.'
+  candidatos:
+  - id_candidato: C1
+    rol: PISO
+    fuentes:
+    - ENVIPE
+    edicion_periodo: '2024'
+    universo_instrumento: DELITOS BP1_20 en {1,2}; FAC_DEL; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: persistencia
+    regla_composicion: p_2024(a,b) transportado como punto a 2025
+    production_spec_refs:
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001
+    resultado: EJECUTADO; MAE vs R=4.151261 pp
+  - id_candidato: C2
+    rol: PISO
+    fuentes:
+    - ENVIPE
+    edicion_periodo: 2025 marginales
+    universo_instrumento: DELITOS BP1_20 en {1,2}; FAC_DEL; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: expit(logit p25(a)+logit p25(b)-logit p25(nacional))
+    production_spec_refs:
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001
+    resultado: EJECUTADO; MAE vs R=2.693222 pp
+  - id_candidato: C7
+    rol: CHALLENGER
+    fuentes:
+    - ENVIPE
+    edicion_periodo: 2023-2024 y marginales 2025
+    universo_instrumento: DELITOS BP1_20 en {1,2}; FAC_DEL; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: expit(logit C2+(I23+I24)/2)
+    production_spec_refs:
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001
+    resultado: EJECUTADO; MAE vs R=2.274634 pp; GANA=NO
+  - id_candidato: C-ENCOGIDA
+    rol: CHALLENGER
+    fuentes:
+    - ENVIPE
+    edicion_periodo: 2023-2024 y marginales 2025
+    universo_instrumento: DELITOS BP1_20 en {1,2}; FAC_DEL; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: expit(logit C2+lambda_cruce*(I23+I24)/2); lambda congelada por regla del piloto 3
+    production_spec_refs:
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001
+    - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001
+    resultado: EJECUTADO; MAE vs R=2.342679 pp; GANA=NO
+  criterio_adjudicacion:
+    texto: 'Spec piloto 4 §3: ΔMAE=MAE(piso)-MAE(retador) en PUNTUADA; IC por réplicas comunes de R con emisiones fijas. Victoria solo si límite inferior del IC frente a C2 >0.5 pp; >0 y <=0.5 propuesta con reserva. Conteo >=3/4 descriptivo; B-bis §3.1 sobre C7 y C-ENCOGIDA.'
+    escala: puntos porcentuales
+  estado_decidibilidad: PUNTUADA
+  margen_material: 2.693222
+  momentos_holdout_refs:
+  - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001--c2eb888c593a
+  - CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001--3f066b330204
+  veredicto: FALSADOR-DEBIL
+  champion_actual: NINGUNO
+  output_nativo:
+    tipo: proporcion
+    escala: '[0,1] ponderada FAC_DEL; unidad DELITO'
+    valor_ref: 'CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001: RESULT-TRA-ENCOGIDA-ARB-EDADxESC-*-R-P'
+  incertidumbre:
+    tipo: 'IC95 de R: bootstrap UPM en estrato, 2000 réplicas; IC de ΔMAE condicional a puntos emitidos'
+    ref: CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001/resultados.json
+  supuesto_transporte: Interacción histórica 2023-2024 transportada a marginales 2025; no identifica causa.
+  fuerza_coeficiente: NO-APLICA
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO
+  calibrado: false
+  estado_operativo: PENDIENTE
+  vocabulario_version: 0.5
+  requiere_decision_mesa: false
+  fecha_declaracion: '2026-09-22'
+  commit_declaracion: 445531a3
+  fecha_adjudicacion: '2026-09-22'
+  commit_adjudicacion: de93beef
+  relacion_complemento: Ninguna; C-ASTRA excluido por plazo, sin adjudicación.

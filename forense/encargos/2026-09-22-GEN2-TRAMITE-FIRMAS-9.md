@@ -52,4 +52,4 @@ No mide, no adopta, no firma, no relanza AUTOMERGE-1, no toca el piloto 4 ni a A
 
 ## CONSUMIDO
 
-Ejecutado por PR [#1032](https://github.com/Josanoforo/Modelado-Mexicano/pull/1032), ACTO GEN2-TRAMITE-FIRMAS-9, 23/sep/2026.
+Ejecutado por PR [#1032](https://github.com/Josanoforo/Modelado-Mexicano/pull/1032), ACTO GEN2-TRAMITE-FIRMAS-9, 23/sep/2026. `ADENDA-1` (P4/P5, `forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md`) recibida con el acto ya cerrado; ejecutada sobre el mismo PR #1032, `ADR-260923-GEN2-TRAMITE-FIRMAS-9-97dc-02`.
