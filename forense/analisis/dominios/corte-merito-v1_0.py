@@ -1,4 +1,4 @@
-"""Contratos de agregados publicados ENOE 2026T1 y ENIGH 2024; sin microdatos."""
+"""Contratos documentales de ENIGH 2024 y ENCIG 2025; sin microdatos ni ola ENOE 2026T1 reservada."""
 
 import csv
 import hashlib
@@ -16,33 +16,13 @@ FIELDS = [
     "propietario", "siguiente_operacion", "prioridad",
 ]
 
-ENOE_DOC = "enoe2026_t1_comunicado_pdf|edde714757e5967d0a312aa8f53afb8d80f6671adf70d9af0bc2f32e44e4ace0|boletín 301/26 pp.1,7-9; registro solo en rama #1079"
-ENIGH_DOC = "enigh2024_reporte_resultados_pdf|6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d|reporte 23/25 p.11, gráfica 2; registro solo en rama #1079"
+ENIGH_DOC = "SIN-ID:enigh2024_reporte_resultados.pdf|6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d|reporte 23/25 p.11, gráfica 2; sin registro en main ni rama; copia física local"
 
-ENOE = dict(
-    report=REPORT,
-    report_sha256=hashlib.sha256((ROOT / REPORT).read_bytes()).hexdigest(),
-    localizador="L22; repetición L6,L47-L49",
-    tier_report="sin rótulo explícito",
-    clase="cifra publicada",
-    limite_inferencial="El agregado trimestral no prueba concentración de los empleos nuevos en informalidad, causa cultural ni efecto del salario mínimo. ENOE 2024T3 es otra ola y no reproduce estos valores.",
-    conducta_unidad_universo="Personas ocupadas de 15 años o más en México, ENOE primer trimestre 2026; comparación anual con primer trimestre 2025.",
-    instrumento_ola="ENOE 2026T1, boletín 301/26 de 26-may-2026",
-    documento_id_hash_pagina=ENOE_DOC,
-    pregunta_textual_codigo_respuestas="Indicador compuesto TIL1: empleo informal en todas sus modalidades / población ocupada; no es reactivo único. Boletín tabla 3 y tabla 4; cambio anual de conteo, no puntos porcentuales.",
-    estado_verificacion="CERRADA",
-    dictamen="MEDIBLE-CON-ADQUISICIÓN",
-    dictamen_razon="Valor y universo publicados por INEGI; PDF físico verificado y registrado solo en rama #1079. Microdato 2026T1 reservado, sin id pertinente en main; no adjudicar MEDIBLE-EN-CORPUS ni RESULT.",
-    datos_id_estado="ENOE 2026T1 microdato: reserva U1, sin id/RESULT pertinente en main; U0 no abrió ni descargó microdato.",
-    reserva="U1 conserva la ola ENOE 2026T1; U0 consume solo boletín público. Copia documental local bajo Términos de Libre Uso INEGI.",
-    gen2_existente="#1087 main 76b0e56b RESULT-ENOE-PISOS-TABLA usa ENOE 2024T3; NO corresponde a 2026T1.",
-    propietario="ASTRA5-U1",
-    prioridad="2",
-)
+REPORT_SHA = hashlib.sha256((ROOT / REPORT).read_bytes()).hexdigest()
 
 ENIGH = dict(
     report=REPORT,
-    report_sha256=ENOE["report_sha256"],
+    report_sha256=REPORT_SHA,
     localizador="L18; repetición L4,L47-L48,L55",
     tier_report="sin rótulo explícito",
     clase="cifra publicada y comparación contrafactual contable",
@@ -53,7 +33,7 @@ ENIGH = dict(
     pregunta_textual_codigo_respuestas="Indicador derivado de ingreso corriente trimestral por hogar; no existe reactivo único Gini. La gráfica 2 distingue explícitamente 'Con transferencias' y 'Sin transferencias'.",
     estado_verificacion="CERRADA",
     dictamen="MEDIBLE-CON-ADQUISICIÓN",
-    dictamen_razon="El reporte público fija cifra, unidad y método contable; PDF físico verificado y registrado solo en rama #1079. Dato y diseño ENIGH 2024 están en main, pero reporte de cifra no; falta reproducción/RESULT compatible.",
+    dictamen_razon="El reporte público fija cifra, unidad y método contable; PDF físico verificado y sin registrar en manifiesto. Dato y diseño ENIGH 2024 están en main, pero reporte de cifra no; falta reproducción/RESULT compatible.",
     datos_id_estado="enigh2024_nc_csv|7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d|main, microdato NO ABIERTO",
     reserva="Permiso y apertura en CAJA; U0 no abrió microdato. La atribución causal queda fuera del contrato descriptivo.",
     gen2_existente="ENIGH 2024 en main como corpus; ningún RESULT de Gini 2024 con/sin transferencias identificado al corte.",
@@ -63,17 +43,17 @@ ENIGH = dict(
 
 ENCIG = dict(
     report=REPORT,
-    report_sha256=ENOE["report_sha256"],
+    report_sha256=REPORT_SHA,
     localizador="L26; repetición L5,L48-L49",
     tier_report="sin rótulo explícito",
     clase="cifra publicada y tesis interpretativa",
     limite_inferencial="Percepción de frecuencia y confianza declarada no miden corrupción objetiva ni demuestran que las palancas determinen el éxito. El 15.6% de victimización usa solo personas con trámite/pago/servicio/contacto y requiere derivación separada.",
     conducta_unidad_universo="Persona seleccionada de 18+ en vivienda particular de ciudades de 100 mil habitantes o más; ENCIG 2025, dominio nacional urbano alto, no toda la población de México.",
     instrumento_ola="ENCIG 2025, captación 31-oct a 16-dic-2025",
-    documento_id_hash_pagina="encig25_cuestionario_pdf|807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33|main;encig25_estructura_base_datos_pdf|09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2|main;encig2025_diseno_muestral_pdf|de74a89623696e54e2d409a5cb5ae2b41dcd54a73c9deef1102b5793d875175e|registro solo en rama #1079",
+    documento_id_hash_pagina="encig25_cuestionario_pdf|807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33|main;encig25_estructura_base_datos_pdf|09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2|main;SIN-ID:encig2025_diseno_muestral.pdf|de74a89623696e54e2d409a5cb5ae2b41dcd54a73c9deef1102b5793d875175e|sin registro en main ni rama; copia física local",
     estado_verificacion="CERRADA",
     dictamen="MEDIBLE-CON-ADQUISICIÓN",
-    dictamen_razon="Cuestionario, descriptor y dato ENCIG 2025 en main con SHA físico coincidente; diseño y tabulado oficial con SHA físico registrado solo en rama #1079. Hasta integrar documentos en main y cotejar denominador, no es MEDIBLE-EN-CORPUS ni RESULT propio.",
+    dictamen_razon="Cuestionario, descriptor y dato ENCIG 2025 en main con SHA físico coincidente; diseño y tabulado oficial con SHA físico sin registrar en manifiesto. Hasta integrar documentos en main y cotejar denominador, no es MEDIBLE-EN-CORPUS ni RESULT propio.",
     datos_id_estado="encig_2025_encig25_base_datos_dbf|fa92a6ea4119ff1b64986a10b7939ccc1ef02b2af3c127a38c93bed830d6fe59|main, físico COINCIDE SHA, microdato NO ABIERTO",
     reserva="Términos de Libre Uso INEGI; verificar autorización de apertura en CAJA. U0 no abrió ni descargó microdato.",
     gen2_existente="Sin RESULT ENCIG 2025 para P3_2/P11_1_04 identificado en main al corte; no usar ENCIG 2023 ni ENVIPE como misma pregunta.",
@@ -82,13 +62,10 @@ ENCIG = dict(
 )
 
 ROWS = [
-    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-001", texto_vigente="La informalidad laboral TIL1 fue 54.8% de la población ocupada en 2026T1 (54.3% en 2025T1).", componente_contrastable="TIL1 2026T1 = 54.8%; TIL1 2025T1 = 54.3%, diferencia de 0.5 puntos porcentuales.", siguiente_operacion="U1 coteja TIL1 en su ola reservada, con diseño y definición; mantener separado del RESULT 2024T3."),
-    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-002", texto_vigente="En 2026T1 hubo 32.6 millones de personas en todas las modalidades de empleo informal.", componente_contrastable="Conteo expandido de ocupados informales 2026T1, 32.6 millones; no tasa.", siguiente_operacion="U1 reproduce conteo expandido solo en CAJA autorizada; no usar 32.6 millones como total de ocupados."),
-    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-003", texto_vigente="El número de personas en empleo informal aumentó 583 mil entre 2025T1 y 2026T1.", componente_contrastable="Diferencia anual de conteos expandidos de informalidad: +583 mil personas.", siguiente_operacion="U1 coteja ambos trimestres con definición homogénea; no leer +583 mil como nuevos empleos informales causados por una política."),
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-004", texto_vigente="El Gini del ingreso corriente por hogar con transferencias fue 0.391 en ENIGH 2024.", componente_contrastable="Gini publicado con transferencias recibidas incluidas: 0.391; 0.402 en 2022 y 0.449 en 2016 se conservan como comparadores, sin dictamen de serie.", siguiente_operacion="Registrar publicación en main, reproducir fórmula del Gini en CAJA y tratar la serie 2016/2022 con su propio contrato de comparabilidad."),
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-005", texto_vigente="Sin considerar transferencias, el Gini contable ENIGH 2024 habría sido 0.450.", componente_contrastable="Gini simulado sin transferencias recibidas: 0.450 frente a 0.391 con ellas, misma fuente y año.", siguiente_operacion="Registrar publicación en main y verificar qué rubros se restan en la simulación; no atribuir 0.059 a un programa o salario mínimo causalmente."),
-    ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-006", texto_vigente="En ENCIG 2025, 84.1% de la población consideró frecuentes los actos de corrupción.", componente_contrastable="P3_2=1 Muy frecuentes o 2 Frecuentes; proporción publicada 84.1% del dominio urbano alto 18+.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";encig2025_boletin_pdf|6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4|p.3, rama #1079", pregunta_textual_codigo_respuestas="P3.2: 'Por lo que usted sabe, en (ESTADO) estas prácticas son:' P3_2 1 Muy frecuentes, 2 Frecuentes, 3 Poco frecuentes, 4 Nunca se dan, 9 No sabe/no responde. FAC_P18; verificar tratamiento publicado de 9.", siguiente_operacion="U3 coteja P3_2=1/2 con FAC_P18 y diseño; no confundir percepción con victimización 15.6% ni generalizar fuera de ciudades 100 mil+."),
-    ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-007", texto_vigente="La confianza en gobierno federal fue 46.5% en ENCIG 2025; el report la compara con 59.1% en 2023.", componente_contrastable="P11_1_04=1 Mucha o 2 Algo de confianza en Presidencia de la República y Secretarías de Estado; presentación 2025 p.50 publica 46.5%.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";encig2025_principales_resultados_pdf|476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548|p.50, rama #1079", pregunta_textual_codigo_respuestas="P11.1 item 04 'Presidencia de la República y Secretarías de Estado': P11_1_04 1 Mucha confianza, 2 Algo, 3 Algo de desconfianza, 4 Mucha desconfianza, 5 No aplica, 9 No sabe/no responde. FAC_P18; cotejar denominador publicado.", siguiente_operacion="U3 reproduce 46.5% con P11_1_04 y diseño; localizar/registrar presentación ENCIG 2023 y verificar mismo reactivo/universo antes de contratar 59.1% o caída de 12.6 puntos."),
+    ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-006", texto_vigente="En ENCIG 2025, 84.1% de la población consideró frecuentes los actos de corrupción.", componente_contrastable="P3_2=1 Muy frecuentes o 2 Frecuentes; proporción publicada 84.1% del dominio urbano alto 18+.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";SIN-ID:encig2025_boletin.pdf|6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4|p.3; registro pendiente", pregunta_textual_codigo_respuestas="P3.2: 'Por lo que usted sabe, en (ESTADO) estas prácticas son:' P3_2 1 Muy frecuentes, 2 Frecuentes, 3 Poco frecuentes, 4 Nunca se dan, 9 No sabe/no responde. FAC_P18; verificar tratamiento publicado de 9.", siguiente_operacion="U3 coteja P3_2=1/2 con FAC_P18 y diseño; no confundir percepción con victimización 15.6% ni generalizar fuera de ciudades 100 mil+."),
+    ENCIG | dict(id_afirmacion="ASTRA5-U0-MER-007", texto_vigente="La confianza en gobierno federal fue 46.5% en ENCIG 2025; el report la compara con 59.1% en 2023.", componente_contrastable="P11_1_04=1 Mucha o 2 Algo de confianza en Presidencia de la República y Secretarías de Estado; presentación 2025 p.50 publica 46.5%.", documento_id_hash_pagina=ENCIG["documento_id_hash_pagina"] + ";SIN-ID:encig2025_principales_resultados.pdf|476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548|p.50; registro pendiente", pregunta_textual_codigo_respuestas="P11.1 item 04 'Presidencia de la República y Secretarías de Estado': P11_1_04 1 Mucha confianza, 2 Algo, 3 Algo de desconfianza, 4 Mucha desconfianza, 5 No aplica, 9 No sabe/no responde. FAC_P18; cotejar denominador publicado.", siguiente_operacion="U3 reproduce 46.5% con P11_1_04 y diseño; localizar/registrar presentación ENCIG 2023 y verificar mismo reactivo/universo antes de contratar 59.1% o caída de 12.6 puntos."),
 ]
 
 
