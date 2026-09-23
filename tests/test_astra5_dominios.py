@@ -312,6 +312,25 @@ def test_cotejo_endutih_usa_ola_reactivo_y_universo_del_result():
     assert rows[-1]["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-9_5"
 
 
+def test_cotejo_politica_mantiene_olas_y_universos_separados():
+    rows = read("cotejo-result-politica-v1_0.tsv")
+    assert len(rows) == 7
+    locations = {
+        "RESULT-INE-PISOS-2024-TABLA": "CALC-INE-PISOS-2024-0001",
+        "RESULT-ENCUP-PISOS-2012-TABLA": "CALC-ENCUP-PISOS-2012-0003",
+        "RESULT-LAPOP-PISOS-2019-TABLA": "CALC-LAPOP-PISOS-2019-0001",
+    }
+    for result_id, calc_id in locations.items():
+        group = [row for row in rows if row["result_id"] == result_id]
+        path = ROOT / f"data/corrida0/{calc_id}/resultados.json"
+        assert group and all(row["calc_id"] == calc_id for row in group)
+        assert all(row["resultados_sha256"] == hashlib.sha256(path.read_bytes()).hexdigest() for row in group)
+        assert all("ARCHIVO_MAIN_72595501" in row["estado_main"] for row in group)
+    lapop = [row for row in rows if row["result_id"] == "RESULT-LAPOP-PISOS-2019-TABLA"]
+    assert all("2018-19" in row["instrumento_ola"] for row in lapop)
+    assert lapop[-1]["dictamen_contraste"] == "OTRA-OLA-NO-RESUELVE-CONTRATO"
+
+
 def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     contracts = {r["id_afirmacion"]: r for r in read("mapa-parcial-v0_1.tsv")}
     assert len(contracts) == 48
