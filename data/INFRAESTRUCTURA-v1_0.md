@@ -109,6 +109,15 @@
 
 ## Dominio 4 · Producir una estimación (especificación → expediente → producción)
 
+**Adición ENOE, 23/sep/2026 (ASTRA5-U1-TRABAJO-ENOE):**
+`data/enoe-olas-elegibles-preparacion-v1_0.tsv` es la selección previa de
+paquetes únicos por trimestre, con id y hash declarado del manifiesto; la
+escribe el acto de preparación y la leen la spec y el medidor de
+`CALC-ENOE-PISOS-0003`. `data/enoe-reactivos-olas-v1_0.tsv` es la matriz
+congelada reactivo/conducta↔ola (559 filas), escrita en COMMIT-1 y leída por
+ese mismo CALC; no es una vista derivada global. Las dos tablas son insumos
+de estimación del Dominio 4 y sus hashes están fijados en `spec.yaml`.
+
 Ámbito: `data/curacion-registro/{especificaciones-produccion.json, expedientes-produccion/, produccion-modelo.tsv, necesidad-objeto-modelo.tsv, utilidad-modelo.tsv, trabajo-semantico.tsv, reglas-clasificacion-trabajo.json, ejecucion-semantica/}`.
 
 **Secuencia de escritura (orden real, inferido de las firmas CLI):**
