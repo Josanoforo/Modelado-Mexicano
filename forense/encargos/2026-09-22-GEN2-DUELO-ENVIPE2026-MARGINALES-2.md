@@ -41,4 +41,15 @@ Propio: `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` (+ sideca
 ## 10 · NO HACE · SUCESORES · CIERRE
 No adopta, no toca cruces (no hay marginales de cruce aquí), no abre lo que no emite. Sucesor: el marcador consume las coberturas PROSPECTIVA; MARGINALES-ADOPCION-3 (ENVIPE 2026) por firma. Auditoría: la spec la trae; la nota la contesta sobre el resultado. Cierre por /acto.
 
+## NO-CORRIDO / RESERVAS
+
+Verificación de premisas (v2.16 §2) encontró un universo real mucho más chico que el que este encargo suponía — detalle completo en `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` §0 y en `forense/notas/2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md`. Lo que no se corrió, con fila NC:
+
+- **qué** — `civico.denuncia.con_seguro` nacional (adjudicación PROSPECTIVA pedida en §1). **por qué** — `PARO-PREMISA`: el retador es `NO-CONSTRUIBLE` (`CALC-PISOS-ENVIPE2024-EJES-0002` nunca computó el total nacional de esta regla; con un solo punto sellado, 2025, `TENDENCIA-SERIE` exige ≥2 olas). **impacto** — `celdas_validadas` no sube por esta celda. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01`.
+- **qué** — `civico.denuncia.con_seguro × sexo` (§1). **por qué** — `PARO-PREMISA`: ningún `RESULT` sellado con eje sexo existe para `con_seguro` en el árbol; la celda misma no está construida, no sólo el retador. **impacto** — `celdas_validadas` no sube. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-02`.
+- **qué** — `civico.denuncia.con_seguro × edad` (§1). **por qué** — `PARO-PREMISA`, mismo motivo que arriba, eje edad. **impacto** — `celdas_validadas` no sube. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-03`.
+- **qué** — consumo del marcador/celda-D de las dos coberturas `PROSPECTIVA` emitidas (asegurado `NO-VENCE`, no_asegurado `C-PISO-ADOPTADO`). **por qué** — `FUERA-DE-PERÍMETRO`: §9 declara el marcador ajeno («su dueño consume»); §10 nombra el sucesor verbatim. **impacto** — el marcador no refleja aún estas 2 celdas. **sucesor** — `NC-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-04` (`DIFERIDO-A:MARGINALES-ADOPCION-3`).
+
+Lo demás («las demás reglas ENVIPE con serie sellada» resuelve a 0; `civico.denuncia.con_seguro × cobertura_seguro`, sexo=cobertura_seguro asegurado y no_asegurado) **sí se corrió**: tres commits, `verify REPRODUCE` en los dos CALC, veredicto por celda.
+
 
