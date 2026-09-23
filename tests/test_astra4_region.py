@@ -175,3 +175,20 @@ def test_encig2025_unidades_y_join_sin_deduplicar(tmp_path):
     assert list(d["adopta_encig2025_luz"][3]) == [True, True, False, False]
     assert list(d["paga_mordida_encig2025_digital_r2"][3]) == [True, True, False, True]
     assert list(d["paga_mordida_encig2025_presencial_r2"][2]) == [False, False, True, False]
+
+
+def test_ic_predictivo_usa_solo_ajuste_anterior_y_extremos():
+    from tools.astra.region.ic_calibrado import _interval, _tau
+    def fila(p, estado="PUBLICABLE"):
+        return {"punto": p, "ic_inf": p - .05 if p is not None else None,
+                "ic_sup": p + .05 if p is not None else None, "estado": estado}
+    a = {"01": fila(.3), "02": fila(.4)}
+    b = {"01": fila(.4), "02": fila(.5)}
+    tau, counts = _tau([a, b])
+    assert counts == [2] and tau > 0
+    lo, hi = _interval(b["01"], tau)
+    assert lo < .4 < hi and hi - lo > .1
+    assert _interval(fila(0), tau) is None
+    assert _interval(fila(.4, "SUPRIMIDA-N"), tau) is None
+    # Una evaluación futura no se pasa a _tau; cambiarla no cambia el intervalo.
+    assert _tau([a, b])[0] == tau
