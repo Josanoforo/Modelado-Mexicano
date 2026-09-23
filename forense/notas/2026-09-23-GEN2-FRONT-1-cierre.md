@@ -80,4 +80,4 @@ no el HTML completo de Pages ni el esquema CFF con `cffconvert`.
 
 ## CONSUMIDO
 
-`forense/encargos/2026-09-23-GEN2-FRONT-1.md`, lado de corrección SOL6 y original verbatim; SHA del 0-bis en su sidecar.
+`forense/encargos/2026-09-23-GEN2-FRONT-1.md`, lado de corrección SOL6 y original verbatim; SHA del 0-bis en su sidecar. PR de revisión: **#1083**. Pages, Zenodo y la fusión corresponden a mesa.
