@@ -27,7 +27,6 @@ import hashlib
 import importlib.util
 import json
 import sys
-import zipfile
 from pathlib import Path
 
 import numpy as np
@@ -202,12 +201,7 @@ def adjudica_celda(universo: pd.DataFrame, celda: str, piso: dict, retador: dict
 def medir(inputs: dict, contrato: dict) -> dict:
     emisiones = json.loads(inputs["CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001"]["bytes"].decode("utf-8"))
     em = emisiones.get("resultados", emisiones)
-    zip_bytes = inputs["envipe2026_csv"]["bytes"]
-    import tempfile
-    with tempfile.NamedTemporaryFile(suffix=".zip") as tmp:
-        tmp.write(zip_bytes)
-        tmp.flush()
-        universo, meta_carga = carga_universo_con_seguro(tmp.name, 2026)
+    universo, meta_carga = carga_universo_con_seguro(inputs["envipe2026_csv"]["ruta_absoluta"], 2026)
 
     out = {}
     for celda in CELDAS:
