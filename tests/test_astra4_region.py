@@ -7,6 +7,7 @@ import pandas as pd
 from tools.astra.region.estadistica import estima_dominios
 from tools.astra.region.historia import carga_enif, carga_envipe
 from tools.astra.region.historia_v2 import carga_encig
+from tools.astra.region.historia_v3 import carga_enif as carga_enif_v3
 
 
 def marco():
@@ -92,6 +93,16 @@ def test_adaptadores_conservan_geografia_y_unidad(tmp_path):
     d, geo, den, y, fac, dominios = carga_enif(enif, 2021)
     assert list(geo) == ["1", "2"] and list(den) == [True, False]
     assert list(y) == [True, False] and fac == "FAC_ELE" and len(dominios) == 6
+
+    enif18 = tmp_path / "enif18.zip"
+    cols18 = {f"p5_1_{i}": ["2", "2"] for i in range(1, 7)}
+    cols18["p5_1_1"] = ["1", "1"]
+    _zip_csv(enif18, {"conjunto_de_datos/tmodulo.csv": pd.DataFrame({
+        "region": ["1", "2"], "edad": ["70", "71"], "fac_per": ["2", "3"],
+        "est_dis": ["1", "1"], "upm_dis": ["1", "2"], **cols18})})
+    d, geo, den, y, fac, dominios = carga_enif_v3(enif18, 2018)
+    assert list(geo) == ["1", "2"] and list(den) == [True, False]
+    assert list(y) == [True, False] and fac == "FAC_PER" and len(dominios) == 6
 
     envipe = tmp_path / "envipe.zip"
     _zip_csv(envipe, {

@@ -47,7 +47,13 @@ def carga_enif(ruta, ola):
     fac = "FAC_ELE" if ola == 2021 else "FAC_PER"
     edad_col = "EDAD_V" if ola == 2024 else "EDAD"
     inf = [f"P5_1_{i}" for i in range(1, 7)]
-    d = _csv_zip(ruta, miembro, ["REGION", edad_col, fac, "EST_DIS", "UPM_DIS"] + inf)
+    campos = ["REGION", edad_col, fac, "EST_DIS", "UPM_DIS"] + inf
+    if ola == 2018:
+        # La entrega CSV 2018 usa encabezados minúsculos, a diferencia de 2021/24.
+        d = _csv_zip(ruta, miembro, [c.lower() for c in campos])
+        d.columns = campos
+    else:
+        d = _csv_zip(ruta, miembro, campos)
     respuestas = d[inf]
     edad = pd.to_numeric(d[edad_col], errors="coerce")
     den = respuestas.isin(["1", "2"]).any(axis=1) & edad.between(18, 70)

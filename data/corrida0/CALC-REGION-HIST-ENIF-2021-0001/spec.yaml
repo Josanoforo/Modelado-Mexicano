@@ -16,8 +16,8 @@ inputs:
 - id: REGION-HISTORIA-CODIGO
   origen: repo
   funcion: CODIGO
-  ruta: tools/astra/region/historia_v2.py
-  sha256: 1073685acd44a5309eeed119835bc3a9762771324ffe44c9d266489f8e20fc74
+  ruta: tools/astra/region/historia_v3.py
+  sha256: ef8259a087f3f82b74690cad5c66d51105a6bf38e8fbeb81d938c6f0b5a705b2
 - id: REGION-BASE-CODIGO
   origen: repo
   funcion: CODIGO
