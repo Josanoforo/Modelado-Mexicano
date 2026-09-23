@@ -1,5 +1,14 @@
 # Benchmark auditable del comportamiento del mexicano · anexo de evidencia del informe v1.3
 
+### `informe-programa-anexo` · **v1.3** · ANEXO DE EVIDENCIA
+
+> | | |
+> |---|---|
+> | **ARCHIVO** | `informe-programa-v1_3-ANEXO.md` |
+> | **REEMPLAZA A** | `informe-programa-v1_0-ANEXO.md`, que queda archivado |
+> | **VERIFICAS ASÍ** | `python3 forense/analisis/informe-v1_3/genera.py` verifica sellos y regenera las comparaciones primarias |
+> | **NOMBRE ESTABLE** | **`informe-programa-anexo`** — cítalo así, nunca por nombre de archivo |
+
 **Corte:** 23/sep/2026. **Estado:** anexo de lectura de RESULT sellados; no es una nueva adjudicación. Las comparaciones primarias numéricas se extraen con `python3 forense/analisis/informe-v1_3/genera.py` a `comparaciones-primarias.tsv`. El script comprueba el SHA-256 de cada `sello.json` contra su sidecar y resuelve las tres llaves RESULT (punto e IC) por fila. Ninguna cifra procede de microdato abierto aquí. La dirección del signo en toda la tabla es **ΔMAE = MAE(piso) − MAE(candidato)**, en puntos porcentuales: positivo favorece al candidato. No se promedian unidades diferentes.
 
 ## Censo y lectura de las evaluaciones
