@@ -45,3 +45,7 @@ El ancho evaluado tiene mediana **14.53 pp** y rango **12.11–17.37 pp**. El fi
 ## CONSUMIDO
 
 PR [#1041](https://github.com/Josanoforo/Modelado-Mexicano/pull/1041), rama `codex/astra3-encig-persistencia-1`. Mesa recibe el CALC sellado y la propuesta de diferir adopción; fusión y adopción quedan a su cargo.
+
+## Seguimiento CI tras #1039
+
+**EJECUTADO 23/sep/2026.** #1039 ya estaba fusionado (`74289983`); se hizo `git fetch origin` y se integró `origin/main` (`f28d1038`). El merge `d631d354` conserva alcanzables los commits originales `ca4475f0`/`c8788ffc` del freeze y la primera emisión `e6241bba`; el CALC original sigue `verify = REPRODUCE`, contexto IDENTICO. El CI previo de #1041 fallaba por dos cambios propios: T02 trataba el basename genérico `medidor.py` de `tools/astra/` como documento duplicado, y `guardias` no tenía la fila del test nuevo en su censo. Se indexa la identidad de módulos Astra por ruta para T02, sin eximirlos del chequeo de contenido; se añadió sólo la fila clasificada por `tools/ci_guardias.py::clasifica` al censo, y el test tiene invocador de módulo ejecutable sin pytest. T02 dirigido: cero FAIL; `ci_guardias.py --ejecuta-huerfanos`: 91 ejecutados, 70 saltados por causas del censo, cero fallidos; test propio: 4/4. Los tres FAIL restantes de la suite (T06×2, T08×1) están en la línea base del corpus y no proceden de U2.

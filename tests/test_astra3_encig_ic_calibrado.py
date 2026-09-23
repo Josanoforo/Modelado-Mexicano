@@ -71,3 +71,11 @@ def test_salida_completa_coincide_con_spec():
     spec = yaml.safe_load(Path("data/corrida0/CALC-ENCIG-PERSISTENCIA-IC-CALIBRADO-0001/spec.yaml").read_text())
     assert set(actual) == {r["id"] for r in spec["resultados"]}
     assert actual[m.PREF + "-N-ELEGIBLES"] == 10
+
+
+if __name__ == "__main__":
+    test_train_no_usa_2023_y_final_si()
+    test_frontera_es_no_calibrable()
+    test_media_transiciones_igual_peso_con_celdas_faltantes()
+    test_salida_completa_coincide_con_spec()
+    print("4 tests ASTRA-3 ENCIG IC: OK")
