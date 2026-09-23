@@ -35,3 +35,11 @@ Propio: `forense/no-corrido.tsv` (solo `sucesor` y `estado` con cita) · nota ·
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No decide, no cierra sin cita, no lanza nada. Sucesor: el inventario de 004 lee los sucesores nuevos. Auditoría: no aplica. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno.
+
+## CONSUMIDO
+
+Ejecutado por ACTO GEN2-TRAMITE-SIN-ASIGNAR-1, 23/sep/2026, `canon/gobernanza-v1_15.md` `ADR-260923-GEN2-TRAMITE-SIN-ASIGNAR-1-6eb3-01`. PR: pendiente de número real al abrirse (se cita al empujar). Verificación de «hecho»: `awk -F'\t' '$estado ~ /ABIERTA/ && $sucesor ~ /SIN-ASIGNAR/' forense/no-corrido.tsv | wc -l` → `0`. Tabla NC · objeto · regla aplicada · sucesor y lista de mesa: `forense/notas/nota-2026-09-23-gen2-tramite-sin-asignar-1.md`.
