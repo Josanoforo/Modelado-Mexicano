@@ -37,4 +37,4 @@ No reprocesa D3/D8 de la hoja si quedaron sin fila propia en `FIRMAS-11` — eso
 Ninguno.
 
 ## CONSUMIDO
-PR #1070 (`acto/gen2-tramite-firmas-13` → `main`), 23/sep/2026. `ADR-260923-GEN2-TRAMITE-FIRMAS-13-b3ff-01`. No fusionado por este acto: mesa fusiona.
+PR #1081 (`acto/gen2-tramite-firmas-13-v2` → `main`), 23/sep/2026. `ADR-260923-GEN2-TRAMITE-FIRMAS-13-b3ff-01`. Reemplaza a PR #1070 (cerrado sin fusionar: `/revisa` encontró duplicado de fila en `no-corrido.tsv` por base vieja, `NO-FUSIONAR`); este PR corrige la base. No fusionado por este acto: mesa fusiona.
