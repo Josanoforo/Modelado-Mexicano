@@ -5,6 +5,7 @@
 | Ola | Módulo / relación | Pregunta y códigos medidos | Elegibilidad y ventana | Factor / diseño | Resultado |
 |---|---|---|---|---|---|
 | 2021 | Pareja actual A1/A2, física | `P14_1_1` a `P14_1_9`, unión 1–3 frente a 4; frecuencia reciente `P14_3_1` a `P14_3_9`, 1–3 frente a 4. | Pareja actual; desde inicio de relación y desde octubre 2020. | `FAC_MUJ`, `EST_DIS`, `UPM_DIS` | `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004`; V3 conserva sello anterior. |
+| 2021 | Pareja B1/B2 y C1, física | Los mismos nueve actos `P14_1_1`…`_9` y pares recientes `P14_3_1`…`_9`; redacción B sobre ex y C sobre novio/pareja o ex. | B: desde relación y después de separación; C1: relación actual o última; reciente desde octubre 2020. C2 fuera por no tener relación. | Mismo diseño, grupos separados | `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001` |
 | 2021 | Pareja actual A1/A2, ayuda y denuncia | Unión de 38 `P14_1`; ayuda `P14_7_1`, denuncia `P14_7_2`; diez instituciones `P14_8`, quince razones múltiples `P14_22`. | Afectadas por algún acto desde relación actual; razones entre quienes no buscaron ayuda ni denunciaron. | Mismo diseño. | `CALC-ENDIREH-PISOS-2021-AYUDA-0001` |
 | 2021 | Hogar y economía A1/A2 | `P4_11` disposición libre de dinero; `P15_1AB_3` decisión sobre su dinero; `P15_1AB_7` gastos y ahorros. Cada ítem se informa separado. | Pareja actual; estado al entrevistar, sin ventana de violencia. | Mismo diseño. | `CALC-ENDIREH-PISOS-2021-DECISIONES-0001` |
 | 2021 | Comunitario, agresor del ámbito | 16 `P9_1`, unión 1 sí/2 no; 16 `P9_3`, frecuencia 1–3/4. | Todas entrevistadas A/B/C; vida y desde octubre 2020. | Mismo diseño. | `CALC-ENDIREH-PISOS-2021-COMUNITARIA-0001` |
@@ -18,7 +19,7 @@ La matriz usa las variables y códigos efectivos de cada `spec.md` y `spec.yaml`
 
 ## Piezas aún necesarias
 
-1. **2021 pareja B/C y violencia de pareja no física:** congelar matrices separadas por A, B y C según cuestionarios específicos antes de abrir microdato de esos módulos. El contrato U0 GEN-001 de violencia física A1/A2 no cubre el agregado 70.1%.
+1. **2021 violencia de pareja no física y ayuda B/C:** los nueve actos físicos B1/B2/C1 ya están medidos por grupo. Faltan los demás actos y la ayuda/denuncia B/C según cuestionarios específicos. El contrato U0 GEN-001 de violencia física A1/A2 no cubre el agregado 70.1%.
 2. **2021 discriminación laboral 8.3:** `P8_2` fija trabajo de octubre 2016 a entrevista; `P8_3_1_1`/`_2` preguntan prueba de embarazo y `P8_3_2_1`/`_2`/`_3` despido, no renovación y reducción salarial/prestaciones por embarazo, con código 3 “no estuvo embarazada”. No mezclar con actos interpersonales 8.9 ni codificar 3 como ausencia de discriminación de una embarazada. Requiere estimandos separados por elegibilidad.
 3. **2016 otros ámbitos, ayuda, denuncia, decisiones y control económico:** FD 2016 y `BD_MUJERES_ENDIREH2016_SitioINEGI` disponibles. Congelar por módulo real. No trasladar códigos de 2021.
 4. **2011 y 2006:** el manifiesto contiene FD XLS y ZIP CSV distintos. FD 2011 tiene `TUnidas1/2/3`, `TDunida1/2/3`, `TSolter1/2`, TSDem; FD 2006 tiene `Endireh06_MC1/2/3`, `MD1/2/3`, `MS`, además de vivienda y sociodemográfico. Son olas, no formatos duplicados. Requieren cuestionarios y matrices por estado conyugal antes de medir.
