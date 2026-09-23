@@ -1,0 +1,148 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG-PERSISTENCIA-IC-CALIBRADO-0001
+spec_md: ../../../forense/prereg-caja/ENCIG-PERSISTENCIA-IC-CALIBRADO-spec-v1_0.md
+spec_md_sha256: d507c9b5c952d18759edfd49d79cf51903bf8d7bf3b66094cd56df18617ed164
+script: data/corrida0/CALC-ENCIG-PERSISTENCIA-IC-CALIBRADO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: IC-PERSISTENCIA-ENCIG-RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: NUEVO
+  origen_numerico_detalle: calculo sobre RESULT sellados estimados de microdato ENCIG 2017/2019/2021/2023
+  exposicion_historica: SIN-VALORES-PRE-FREEZE; evaluacion retrospectiva historica
+inputs:
+  - {id: MEDIDOR-ENCIGPIC, origen: repo, funcion: CODIGO, ruta: tools/astra/encig/ic_calibrado/medidor.py, sha256: c564c688fce14e4dd236905ee0a56ab73576466eeba607f081f06f7ae15357e2}
+  - {id: RESULT-ENCIG-2017, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2017/resultados.json, sha256: 9bbe13c04dc7273d0253a23a63db8e07c1f28022483af9332a357a4a1ebcc340}
+  - {id: RESULT-ENCIG-2019, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2019/resultados.json, sha256: 3e4d5bda11dcfba16013a16a42edb3ebc8149d022e98abb00c9d19f916db9bf0}
+  - {id: RESULT-ENCIG-2021, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENCIG-SERIE-CANAL-2021/resultados.json, sha256: 0db4eda8ad7754e7432a8f23e9e41f5d7c575bcf8fed203e1da69357173f4b53}
+  - {id: RESULT-ENCIG-2023-PISO, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENCIG2023-EJES-0002/resultados.json, sha256: bd13a97b01f2d1251c54ddd3ff8c2d1ab5d16f68bc77f2b4041c1b617ee78568}
+  - {id: PISOS-REJILLA-METADATOS, origen: repo, funcion: METADATO, ruta: forense/prereg-caja/PISOS-REJILLA-arbitro-metadatos-v1_0.tsv, sha256: 1715da9303957dac11146bd14e5498d11c554671edcdfb9c6ea7230845433a95}
+  - {id: ENCIG-COMPARABILIDAD-TEXTO, origen: repo, funcion: METADATO, ruta: data/encig-canal-comparabilidad-texto-v1_0.tsv, sha256: 0f8a718050f42d09c6694baa2deecba58d03e5f298f50f280d2e6542aac965aa}
+variables: []
+universo: "Diez celdas DIGITAL de ENCIG, unidad TRAMITE; N_TRA=01, P7_3 en 1/2/4/5/6; persona elegida 18+ en ciudades de 100 mil o mas."
+filtros: "p e IC estrictamente dentro de (0,1); faltantes y fronteras SIN-DEFINIR; pares documentales 2017-2019, 2019-2021, 2021-2023."
+ponderador: "FAC_TRA en los CALC origen; esta corrida consume sus RESULT"
+transformacion: "tau2 = media entre transiciones de la media dentro de transicion de delta_logit^2; train 2017-2019 y 2019-2021; final agrega 2021-2023; IC expit(logit(p) +/- 1.959964 sqrt(ee_logit^2+tau2))."
+estimando: "Segundo momento empirico del cambio observado por desenlace x eje, con ruido muestral, y cobertura retrospectiva 2021 a 2023."
+seed: {aplica: false, nota: "sin remuestreo nuevo; insumos usan bootstrap UPM estratificado PCG64(42), 10000 replicas comunes por ola"}
+dependencias_materiales: []
+resultados:
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-TAU2-TRAIN, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-TAU2-FINAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-N-DELTA-TRAIN, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-N-DELTA-FINAL, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-N-ELEGIBLES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-N-CUBIERTAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-COBERTURA, tipo: proporcion, unidad: "proporcion de celdas cubierta", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-TAU2-TRAIN, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-TAU2-FINAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-N-DELTA-TRAIN, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-N-DELTA-FINAL, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-N-ELEGIBLES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-N-CUBIERTAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-COBERTURA, tipo: proporcion, unidad: "proporcion de celdas cubierta", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-TAU2-TRAIN, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-TAU2-FINAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-N-DELTA-TRAIN, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-N-DELTA-FINAL, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-N-ELEGIBLES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-N-CUBIERTAS, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-COBERTURA, tipo: proporcion, unidad: "proporcion de celdas cubierta", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-1-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-2-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-18-29-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-30-44-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-45-59-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-EDAD-60-MAS-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SECUNDARIA-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-EVAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-EVAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-FINAL-IC-LO, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-FINAL-IC-HI, tipo: proporcion, unidad: "limite IC95 [0,1]", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-EVAL-CUBIERTA, tipo: entero, unidad: "indicador 0/1", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-EVAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-EVAL-ANCHO-MIN-SIM-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-DIGITAL-ESCOLARIDAD-SUPERIOR-FINAL-ANCHO-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-N-ELEGIBLES, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ENCIGPIC-N-CUBIERTAS, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ENCIGPIC-N-NO-CALIBRABLES, tipo: entero, unidad: "celdas"}
+  - {id: RESULT-ENCIGPIC-COBERTURA, tipo: proporcion, unidad: "proporcion de celdas; Wilson de referencia", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-WILSON-LO, tipo: proporcion, unidad: "proporcion de celdas; Wilson de referencia", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-WILSON-HI, tipo: proporcion, unidad: "proporcion de celdas; Wilson de referencia", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-EVAL-ANCHO-MEDIANA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-EVAL-ANCHO-MIN-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-EVAL-ANCHO-MAX-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-FINAL-ANCHO-MEDIANA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-FINAL-ANCHO-MIN-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-FINAL-ANCHO-MAX-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-MIN-SIM-ANCHO-MEDIANA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-MIN-SIM-ANCHO-MIN-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-MIN-SIM-ANCHO-MAX-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-ENCIGPIC-ROTULO, tipo: texto, unidad: "rotulo de evaluacion"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
