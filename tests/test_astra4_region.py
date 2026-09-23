@@ -1,12 +1,12 @@
 """Casos sintéticos que protegen el estimador regional antes del microdato."""
 import math
-import io
 import zipfile
 
 import pandas as pd
 
 from tools.astra.region.estadistica import estima_dominios
-from tools.astra.region.historia import carga_encig, carga_enif, carga_envipe
+from tools.astra.region.historia import carga_enif, carga_envipe
+from tools.astra.region.historia_v2 import carga_encig
 
 
 def marco():
@@ -76,7 +76,7 @@ def _zip_csv(path, miembros):
 
 def test_adaptadores_conservan_geografia_y_unidad(tmp_path):
     encig = tmp_path / "encig.zip"
-    _zip_csv(encig, {"encig2017_04_sec_7.csv": pd.DataFrame({
+    _zip_csv(encig, {"encig2017_04_sec_7/conjunto_de_datos/encig2017_04_sec_7.csv": pd.DataFrame({
         "ENT": ["01", "02"], "N_TRA": ["01", "02"], "P7_3": ["4", "5"],
         "FAC_TRA": ["2", "3"], "EST_DIS": ["1", "1"], "UPM_DIS": ["1", "2"]})})
     d, geo, den, y, fac, dominios = carga_encig(encig, 2017)

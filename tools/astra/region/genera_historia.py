@@ -9,6 +9,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[3]
 CODIGO = ROOT / "tools/astra/region/historia.py"
+CODIGO_V2 = ROOT / "tools/astra/region/historia_v2.py"
 BASE = ROOT / "tools/astra/region/medidor.py"
 ESTADISTICA = ROOT / "tools/astra/region/estadistica.py"
 COMPARTIDAS = ROOT / "tools/celda_d/marginales_reproduccion.py"
@@ -28,12 +29,15 @@ def sha(p):
 
 def genera():
     for inst, olas in CONFIG.items():
+        if inst == "ENVIPE":
+            continue  # sus dos CALC ya sellados conservan el adaptador original
+        codigo = CODIGO_V2
         md = ROOT / "forense/prereg-caja" / f"REGION-HIST-{inst}-spec-v1_0.md"
         for ola, payload in olas.items():
             calc = f"CALC-REGION-HIST-{inst}-{ola}-0001"
             carpeta = ROOT / "data/corrida0" / calc
             carpeta.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(CODIGO, carpeta / "medidor.py")
+            shutil.copyfile(codigo, carpeta / "medidor.py")
             geos = [str(i) for i in range(1, 7)] if inst == "ENIF" else [f"{i:02d}" for i in range(1, 33)]
             pref = f"RESULT-REGION-HIST-{inst}-{ola}"
             unidad = "persona" if inst == "ENIF" else "delito" if inst == "ENVIPE" else "trámite"
@@ -64,7 +68,7 @@ def genera():
                 "inputs": [
                     {"id": payload, "origen": "manifiesto"},
                     {"id": "REGION-HISTORIA-CODIGO", "origen": "repo", "funcion": "CODIGO",
-                     "ruta": "tools/astra/region/historia.py", "sha256": sha(CODIGO)},
+                     "ruta": "tools/astra/region/historia_v2.py", "sha256": sha(codigo)},
                     {"id": "REGION-BASE-CODIGO", "origen": "repo", "funcion": "CODIGO",
                      "ruta": "tools/astra/region/medidor.py", "sha256": sha(BASE)},
                     {"id": "REGION-ESTADISTICA", "origen": "repo", "funcion": "CODIGO",

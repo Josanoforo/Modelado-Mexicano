@@ -30,7 +30,9 @@ def carga_envipe(ruta, ola):
 
 def carga_encig(ruta, ola):
     clave = "CVE_ENT" if ola == 2023 else "ENT"
-    d = _csv_zip(ruta, f"encig{ola}_04_sec_7.csv",
+    miembro = (f"/conjunto_de_datos/encig{ola}_04_sec_7.csv" if ola == 2017
+               else f"/conjunto_de_datos/conjunto_de_datos_encig{ola}_04_sec_7.csv")
+    d = _csv_zip(ruta, miembro,
                  [clave, "N_TRA", "P7_3", "FAC_TRA", "EST_DIS", "UPM_DIS"])
     canal = _codigos(d["P7_3"])
     den = _codigos(d["N_TRA"]).str.zfill(2).eq("01") & canal.isin(["1", "2", "4", "5", "6"])
