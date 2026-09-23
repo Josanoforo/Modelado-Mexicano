@@ -104,6 +104,46 @@ def genera():
               "como hallazgo simultáneo. El mapa completo incluye SIN-COMPARABILIDAD si una "
               "de las dos olas tiene publicación suprimida.", ""]
     (out / "mapa-estabilidad-v1_0.md").write_text("\n".join(lines), encoding="utf-8")
+    calc_pred = "CALC-REGION-IC-PREDICTIVO-0001"
+    pred = json.loads((ROOT / "data/corrida0" / calc_pred / "resultados.json").read_text(encoding="utf-8"))["resultados"]
+    campos_pred = ("instrumento", "geografia_codigo", "ola_piso", "ola_observada", "piso_punto",
+                   "ic_predictivo_inf", "ic_predictivo_sup", "observado_punto", "categoria",
+                   "calc", "result_ic_inf", "result_ic_sup", "temporalidad")
+    filas_pred = []
+    resumen_pred = []
+    for inst in ("ENVIPE", "ENCIG", "ENIF"):
+        bruto = json.loads(pred[f"RESULT-REGION-ICP-{inst}-JSON"])
+        comparable = cubierta = 0
+        for row in bruto["filas"]:
+            base = f"RESULT-REGION-ICP-{inst}-{row['geografia']}"
+            flag = row["cubierta"]
+            categoria = ("SIN-COMPARABILIDAD" if flag is None else
+                         "DENTRO-IC-PREDICTIVO" if flag else "FUERA-IC-PREDICTIVO")
+            comparable += flag is not None
+            cubierta += flag or 0
+            filas_pred.append(dict(zip(campos_pred, (inst, row["geografia"], row["ola_piso"],
+                row["ola_observada"], row["piso_punto"], row["ic_predictivo_inf"],
+                row["ic_predictivo_sup"], row["observado_punto"], categoria, calc_pred,
+                base + "-IC-LO", base + "-IC-HI", "RETROSPECTIVA"))))
+        resumen_pred.append((inst, bruto["transiciones_ajuste"], cubierta, comparable))
+    with (out / "mapa-predictivo-v1_0.tsv").open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=campos_pred, delimiter="\t", lineterminator="\n")
+        writer.writeheader(); writer.writerows(filas_pred)
+    p_lines = ["# Mapa predictivo regional · RETROSPECTIVA", "",
+        "Derivado de `CALC-REGION-IC-PREDICTIVO-0001`, sellado y reproducido. "
+        "La regla se ajustó con transiciones anteriores y sus intervalos se congelaron antes "
+        "de leer la ola evaluada. El mapa compara puntos observados con intervalos predictivos; "
+        "no demuestra persistencia ni cambio sostenido.", "",
+        "| Serie | Transiciones de ajuste | Punto posterior dentro / comparables |",
+        "|---|---|---:|"]
+    for inst, train, covered, eligible in resumen_pred:
+        p_lines.append(f"| {inst} | {', '.join(f'{a}→{b}' for a,b in train)} | {covered}/{eligible} |")
+    p_lines += ["", "El TSV conserva cada geografía y los RESULT de sus límites. "
+                "La cobertura por geografía es un conteo descriptivo: las entidades y regiones "
+                "comparten diseño y solo hay una transición de evaluación por serie. No se calcula "
+                "un IC por conglomerado sin unidades de remuestreo independientes suficientes. "
+                "No se corrige por multiplicidad ni se promete detección futura.", ""]
+    (out / "mapa-predictivo-v1_0.md").write_text("\n".join(p_lines), encoding="utf-8")
     print(len(rows), dict(Counter(r["categoria"] for r in rows)))
 
 

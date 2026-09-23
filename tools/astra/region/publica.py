@@ -144,6 +144,32 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
                 sha(resultados_path), sha(carpeta / "sello.json"),
             ))))
+    calc_pred = "CALC-REGION-IC-PREDICTIVO-0001"
+    pred_path = ROOT / "data/corrida0" / calc_pred / "resultados.json"
+    pred = json.loads(pred_path.read_text(encoding="utf-8"))["resultados"]
+    pisos = {("ENVIPE", "2024"): "evade_norma_envipe2025",
+             ("ENCIG", "2023"): "canal_digital_luz",
+             ("ENIF", "2021"): "informal_cualquiera_18a70"}
+    originales = {(f["instrumento"], f["ola"], f["conducta"], f["geografia_codigo"]): f
+                  for f in filas if f["naturaleza_estimacion"] == "IC-DE-DISEÑO"}
+    for inst, year in (("ENVIPE", "2024"), ("ENCIG", "2023"), ("ENIF", "2021")):
+        payload = json.loads(pred[f"RESULT-REGION-ICP-{inst}-JSON"])
+        for row in payload["filas"]:
+            original = originales[(inst, year, pisos[(inst, year)], row["geografia"])]
+            base = f"RESULT-REGION-ICP-{inst}-{row['geografia']}"
+            loid, hiid = base + "-IC-LO", base + "-IC-HI"
+            clone = dict(original)
+            clone.update(naturaleza_estimacion="IC-PREDICTIVO-CALIBRADO",
+                         ic95_inf=pred[loid], ic95_sup=pred[hiid],
+                         calidad="intervalo predictivo retrospectivo; ajuste anterior a evaluación",
+                         result_inf=loid, result_sup=hiid,
+                         calc=original["calc"] + ";" + calc_pred,
+                         sha256_resultados=original["sha256_resultados"] + ";" + sha(pred_path),
+                         sha256_sello=original["sha256_sello"] + ";" +
+                         sha(ROOT / "data/corrida0" / calc_pred / "sello.json"))
+            if clone["estado_publicacion"] != "PUBLICABLE" or pred[loid] is None or pred[hiid] is None:
+                raise ValueError(f"piso predictivo inválido: {base}")
+            filas.append(clone)
     destino = ROOT / "canon/eje-regional-v1_0.tsv"
     with destino.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CAMPOS, delimiter="\t", lineterminator="\n")
@@ -156,7 +182,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee catorce CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee quince CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"
@@ -164,8 +190,8 @@ def genera():
         "oficiales. R2: punto e IC solo con n≥200, varianza estimable y cualquier requisito oficial "
         "más estricto. ENVIPE y ENCIG son entidades de residencia, no ubicación del delito o trámite.\n\n"
         f"## Filas medidas ({len(filas)})\n\n" + resumen + "\n\n"
-        "Las filas tienen nivel geográfico explícito y un RESULT por punto y límite. Los IC son "
-        "de diseño; no se etiquetan como calibrados. Todas las cifras y comparaciones son "
+        "Las filas tienen nivel geográfico explícito y un RESULT por punto y límite. Los IC de "
+        "diseño y predictivos calibrados ocupan filas distintas; estos últimos citan dos CALC. Todas las cifras son "
         "RETROSPECTIVA. La repetición conjunta de réplicas por ola se conserva dentro del RESULT "
         "`-JSON` de cada CALC sin identificadores ni pesos individuales.\n\n"
         "## Auditoría de rigor extremo\n\n"
