@@ -192,3 +192,20 @@ def test_ic_predictivo_usa_solo_ajuste_anterior_y_extremos():
     assert _interval(fila(.4, "SUPRIMIDA-N"), tau) is None
     # Una evaluación futura no se pasa a _tau; cambiarla no cambia el intervalo.
     assert _tau([a, b])[0] == tau
+
+
+def test_enif_condicionales_separan_denominadores_y_guardias():
+    from tools.astra.region.enif_condicionales import dominios_condicionales
+    cols = {f"P5_4_{i}": ["2"] * 4 for i in range(1, 10)}
+    d = pd.DataFrame({"EDAD_V": ["30"] * 4, "P4_10": ["1", "3", "2", "5"],
+                      "P3_13": ["7", "7", "1", "1"],
+                      "P5_20": ["03", "10", "03", "02"],
+                      "P5_23": ["1", "1", "2", "2"], **cols})
+    found = dominios_condicionales(d)
+    assert list(found["horizonte_corto_sin_ss"][0]) == [True, True, False, False]
+    assert list(found["horizonte_corto_sin_ss"][1]) == [True, False, True, False]
+    assert list(found["desconfia_conoce_proteccion"][0]) == [True, True, False, False]
+    assert list(found["desconfia_conoce_proteccion"][1]) == [True, False, True, False]
+    d.loc[0, "P5_23"] = "b"
+    with pytest.raises(RuntimeError, match="G-C1"):
+        dominios_condicionales(d)

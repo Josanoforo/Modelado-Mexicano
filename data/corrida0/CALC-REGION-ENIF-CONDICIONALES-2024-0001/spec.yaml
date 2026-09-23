@@ -1,0 +1,914 @@
+calc_id: CALC-REGION-ENIF-CONDICIONALES-2024-0001
+spec_md: ../../../forense/prereg-caja/REGION-ENIF-CONDICIONALES-spec-v1_0.md
+spec_md_sha256: 9cf67bc79fb19f65a58c1a9658ebbf547951a8ac3c4afa8ca680a5aa7a06743f
+script: data/corrida0/CALC-REGION-ENIF-CONDICIONALES-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-ENIF-CONDICIONALES
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: NUEVO
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: REGION-ENIF-CONDICIONALES-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_condicionales.py
+  sha256: 6a9a52bc5a9530db861785648b1ff2f820a970a80e795f74e3c280f19830b7d7
+- id: REGION-BASE-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/medidor.py
+  sha256: d049cfb96c84f36b32667cc71c55c3591233ab538e7b53abf7c9d71098d0a4f4
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+variables:
+- archivo: TMODULO.csv
+  variable: REGION
+  rol: geografía
+- archivo: TMODULO.csv
+  variable: EDAD_V
+  rol: edad 18+
+- archivo: TMODULO.csv
+  variable: FAC_PER
+  rol: factor
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: UPM
+- archivo: TMODULO.csv
+  variable: P4_10
+  rol: horizonte
+- archivo: TMODULO.csv
+  variable: P3_13
+  rol: seguridad social
+- archivo: TMODULO.csv
+  variable: P5_20
+  rol: razón principal
+- archivo: TMODULO.csv
+  variable: P5_23
+  rol: conocimiento
+- archivo: TMODULO.csv
+  variable: P5_4_1..9
+  rol: guardia de cuenta
+universo: personas elegidas ENIF 2024 18+ en seis dominios condicionales separados
+filtros: P4_10 válido y P3_13 por seguridad social; P5_20 válido y P5_23 por conocimiento;
+  guardias G-C1/G-C2
+ponderador: FAC_PER
+transformacion: razón ponderada por dominio y región oficial, IC bootstrap compartido
+  y R2
+estimando: tasas regionales condicionales de horizonte y desconfianza
+parametros:
+  input_id: enif_2024_enif_2024_bd_csv
+  bootstrap_replicas: 1000
+  n_min: 200
+  nivel_geografico: REGION
+  geografias:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  conductas:
+  - horizonte_corto_sin_ss
+  - horizonte_no_corto_sin_ss
+  - horizonte_corto_con_ss
+  - horizonte_no_corto_con_ss
+  - desconfia_conoce_proteccion
+  - desconfia_no_conoce_proteccion
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, orden, código y semilla
+resultados:
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_sin_ss-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_sin_ss-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_corto_con_ss-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-horizonte_no_corto_con_ss-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_conoce_proteccion-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-COND-2024-desconfia_no_conoce_proteccion-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
