@@ -31,6 +31,7 @@ Corre sola:
 
     python3 tests/test_adq_demanda_vigente.py
 """
+import csv
 import json
 import os
 import shutil
@@ -192,12 +193,12 @@ def _cierra_una_nc(no_corrido: Path) -> str:
 
 
 def _cuenta_abiertas(no_corrido: Path) -> int:
-    total = 0
-    for linea in no_corrido.read_text(encoding="utf-8").splitlines()[1:]:
-        campos = linea.split("\t")
-        if len(campos) >= 10 and campos[9] == "ABIERTA":
-            total += 1
-    return total
+    # El productor `necesidades_canonicas` indexa por id y conserva la
+    # última fila de cada id. El fixture debe comparar la misma cantidad
+    # lógica, incluso si el TSV de entrada trae un id repetido.
+    with no_corrido.open(encoding="utf-8", newline="") as f:
+        canonicas = {fila["id"]: fila for fila in csv.DictReader(f, delimiter="\t")}
+    return sum(fila["estado"] == "ABIERTA" for fila in canonicas.values())
 
 
 def _corre_bash(cuerpo, cwd, timeout=90):

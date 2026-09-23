@@ -103,6 +103,9 @@ jobs:
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
         run: python3 -m pip install -r requirements.txt
 
+      - name: ASTRA5-U3 Política — contratos sintéticos INE, ENCUP y LAPOP (bloqueante)
+        run: python3 -m pytest -q tests/test_ine_pisos.py tests/test_encup_pisos.py tests/test_encup_pisos_etiquetas.py tests/test_lapop_pisos.py
+
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
 

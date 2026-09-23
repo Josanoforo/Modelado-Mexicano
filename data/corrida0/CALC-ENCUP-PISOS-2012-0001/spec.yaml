@@ -1,0 +1,31 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCUP-PISOS-2012-0001
+spec_md: ../../../forense/prereg-caja/ENCUP-PISOS-2012-spec-v1_0.md
+spec_md_sha256: 93247df38faf950dec2539e98cda0c14b08ddb8cc2366ccbea8148934f254946
+script: data/corrida0/CALC-ENCUP-PISOS-2012-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-DESCRIPTIVO-MUESTRA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "Mandato ASTRA5-U3 23/sep/2026; no adopta"
+  adopta: NO
+  acto: ASTRA5-U3-POLITICA
+inputs:
+  - {id: encup_2012_base_datos_xlsx, origen: manifiesto}
+variables:
+  - {archivo: encup_2012_base_datos_xlsx.xlsx, variable: P37, rol: "interés político; 1 mucho, 2 poco, 3 nada"}
+  - {archivo: encup_2012_base_datos_xlsx.xlsx, variable: P51_2, rol: "influencia ciudadana en gobierno; 1 mucho, 2 poco, 3 nada"}
+  - {archivo: encup_2012_base_datos_xlsx.xlsx, variable: P30_15, rol: "confianza en IFE 0-10"}
+  - {archivo: encup_2012_base_datos_xlsx.xlsx, variable: P30_10, rol: "confianza en vecinos 0-10"}
+universo: "filas de la hoja BaseDatos_ENCUP_2012_Final; sólo edición 2012"
+filtros: "validez P37/P51_2=1..3, P30_10/P30_15=0..10; 98/99/no numérico fuera de denominador; n mínimo 30"
+ponderador: "NO-VERIFICADO: conteos muestrales sin expansión ni IC de diseño"
+transformacion: "distribuciones ordinales por reactivo; proporción código 1 o escala 8..10 según pregunta"
+estimando: "fracciones descriptivas de entrevistados con respuesta sustantiva, no estimación poblacional"
+dependencias_materiales: [pandas, openpyxl]
+parametros: {n_minimo: 30, umbral_confianza_alta: 8, hash_medidor_sha256: 40b5b723c00d7fc014cbedf823386c5627aa2ae5ebeac08b80fe092029f72713, hash_payload_sha256: 50341d97a3e305e6ed3348757632e5b23ab2e87b2052304961905619d85612e4}
+seed: {aplica: false}
+tolerancia: {tipo: exacta, razon: "conteos y JSON deterministas"}
+resultados:
+  - {id: RESULT-ENCUP-PISOS-2012-FILAS, tipo: entero, unidad: "entrevistas en hoja"}
+  - {id: RESULT-ENCUP-PISOS-2012-TABLA, tipo: texto, unidad: "JSON de distribuciones de 4 reactivos"}
