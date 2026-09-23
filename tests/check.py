@@ -2930,6 +2930,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: el `E0` pelado del
+    # encargo (§2) sale de la cita verbatim "una ley E0 vencida" -- ejemplo
+    # de premisa dentro de la lista cerrada de A.10, no un rótulo acuñado.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md",
+    # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: la nota P1 cita, por
+    # objeto, los nombres de archivo de 14 encargos de `cola/` fuera de
+    # perímetro de este acto ("GEN2-E1-LIMPIEZA-C1", "...E5-0-SPECS...",
+    # etc.) y el objeto del encargo 18 ("Índice/plan maestro E0-E7") --
+    # rótulos de otros actos citados en prosa, no acuñados por éste.
+    "forense/notas/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1-nota.md",
     # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
     # VERBATIM (`PENDIENTES-PROGRAMA.md`). El `E03` pelado que el regex ve
     # sale de una cita verbatim de la fila NC-0029 §1.3 ("E03 para L y E04

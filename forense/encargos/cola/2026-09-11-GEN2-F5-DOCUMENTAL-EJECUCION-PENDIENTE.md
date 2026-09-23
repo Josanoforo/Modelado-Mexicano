@@ -53,3 +53,5 @@ coste real por tarifa congelada; cobertura por brazo; traza documental por
 punto; veredicto por celda; registro de reintentos; actualización de FP-373 y
 NC-0160/NC-0152 sólo según firma y resultado. Mantener TRIADA-0002,
 CALC-F5-REANALISIS-0001, FP-374 y NC-0161/0162 intactos.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · NC-0160/NC-0152 (CERRADAS): ACTO GEN2-F5-DOCUMENTAL-RUN-2 (2026-09-14), PR #764 -- 32/32 posiciones, ambas celdas EXITO

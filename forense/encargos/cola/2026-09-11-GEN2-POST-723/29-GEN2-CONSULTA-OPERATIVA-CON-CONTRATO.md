@@ -95,3 +95,5 @@ No modifiques criterios científicos para lograr que todas las consultas emitan.
 Requiere #720 fusionado. Puede avanzar con 27/28/30. El encargo 30 es dueño del overlay nuevo de validación; este comando lo consume por la interfaz vigente, sin fijar totales ni exigir que todo esté PASA.
 
 No esperes a 30 para entregar una consulta que declare honestamente el estado de validación actual. Al integrarlo, sólo vuelve a comprobar la lectura del overlay; no repitas los cálculos independientes.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · tools/consulta_gen2.py existe en el repo (nombre exacto pedido por el encargo)

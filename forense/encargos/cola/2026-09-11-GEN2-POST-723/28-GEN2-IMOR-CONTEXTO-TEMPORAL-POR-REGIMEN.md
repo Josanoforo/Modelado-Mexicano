@@ -82,3 +82,5 @@ Entrega script, tablas, gráficos, ficha contextual, nota y PR. NC-0163 permanec
 ## Dependencias y convivencia
 
 Requiere #723 fusionado. Compatible con 27, 29 y 30. Lee las tablas de #723 sin reescribirlas; usa una carpeta de salida propia. No modifica cron, motor, microdatos ENSAFI ni diseño F5.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-IMOR-CONTEXTO-TEMPORAL-POR-REGIMEN-cierre.md (nombre identico al encargo)
