@@ -229,13 +229,13 @@ def test_lectura_trabajo_traza_secciones_y_limita_mezclas():
 def test_forense_aspiracional_casos_no_son_contrafactuales():
     rows = read("lectura-aspiracional-v1_0.tsv")
     index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
-    assert len(rows) == 13
+    assert len(rows) == 17
     for row in rows[:4]:
         assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
     source = (ROOT / "corpus/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md").read_text(encoding="utf-8").splitlines()
     for row in rows[4:]:
         line = int(row["archivo_fuente_linea"].rsplit(":L", 1)[1])
-        assert source[line - 1].startswith(("#### Caso ", "### Par 1:"))
+        assert source[line - 1].startswith(("#### Caso ", "### Par 1:", "### Regla "))
     assert all(row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"] and row["siguiente_operacion"] for row in rows)
     assert all(row["propietario"] == "ASTRA5-MESA-DINERO" for row in rows)
     assert rows[10]["estado_lectura"] == "CORRECCION-TEST-CAUSAL"
