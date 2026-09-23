@@ -1,0 +1,159 @@
+conducta	ola	pase	pregunta_eje	variable	opcion	texto_completo	clase	submotivo	estado	cita
+CUENTA	2012	N	5.4	P5_4_1	1	No le alcanza, sus ingresos son insuficientes o variables	OTRO/NS	INGRESO-INSUFICIENTE	CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_2	2	No le interesa o no la necesita	PREFERENCIA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_3	3	Los intereses son bajos	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_4	4	Las comisiones son altas	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_5	5	No confía en los bancos	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_6	6	Piden requisitos que no tiene	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_7	7	Prefiere otras formas de ahorro (tanda, guardar en su casa, etc.)	PREFERENCIA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_8	8	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	N	5.4	P5_4_9	9	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 5.4; FD 2012
+CUENTA	2012	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2012	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2012	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2012	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2012	EJE	formalidad			formalidad			NO-CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2012	N	6.5	P6_5_1	1	No le interesa, no lo necesita o no lo ha solicitado	PREFERENCIA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_2	2	Los intereses o las comisiones son altos	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_3	3	No confía en los bancos o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_4	4	No cumple con los requisitos (no tiene trabajo, ingresos insuficientes)	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_5	5	No le gusta endeudarse	PREFERENCIA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_6	6	Cree que lo van a rechazar	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_7	7	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	N	6.5	P6_5_8	8	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2012_cuestionario.pdf, pregunta 6.5; FD 2012
+CREDITO	2012	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2012	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2012	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2012	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2012	EJE	formalidad			formalidad			NO-CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2015	N	5.6	P5_6	1	No le interesa	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	2	No le alcanza, sus ingresos son insuficientes o variables	OTRO/NS	INGRESO-INSUFICIENTE	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	3	Los intereses son bajos o las comisiones son altas	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	4	Piden requisitos que no tiene	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	5	Prefiere otras formas de ahorro (tanda, guardar en su casa, etc.)	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	6	No la necesita	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	7	No confía en instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	8	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	N	5.6	P5_6	9	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.6; FD 2015
+CUENTA	2015	E	5.8	P5_8_1	1	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_2	2	No la utilizaba	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_3	3	No cumplía con el saldo mínimo	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_4	4	Dejó de trabajar y ya no la usaba para que le pagaran su salario	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_5	5	Cerró la institución financiera o la sucursal	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_6	6	Los intereses que le pagaban eran muy bajos	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	E	5.8	P5_8_7	7	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 5.8; FD 2015
+CUENTA	2015	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2015	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2015	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2015	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2015	EJE	formalidad			formalidad			NO-CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2015	N	6.6	P6_6_1	1	No cumple con los requisitos (no tiene trabajo, ingresos insuficientes)	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_2	2	Los intereses o comisiones son altas	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_3	3	No confía en las instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_4	4	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_5	5	Cree que lo van a rechazar	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_6	6	No le gusta endeudarse	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_7	7	No le interesa o no lo necesita	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	N	6.6	P6_6_8	8	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.6; FD 2015
+CREDITO	2015	E	6.7	P6_7_1	1	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_2	2	Le cobraban intereses muy altos	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_3	3	Ya no lo necesita (terminó de pagar su crédito, etc.)	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_4	4	Ya no cumple con los requisitos	OFERTA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_5	5	No se quiere volver a endeudar	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_6	6	Prefiere otro tipo de préstamo (familiares o amigos)	PREFERENCIA		CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	E	6.7	P6_7_7	7	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2015_cuestionario.pdf, pregunta 6.7; FD 2015
+CREDITO	2015	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2015	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2015	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2015	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2015	EJE	formalidad			formalidad			NO-CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2018	N	5.7	P5_7	1	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	2	Los intereses son bajos o las comisiones son altas	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	3	No confía en instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	4	Piden requisitos que no tiene	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	5	Prefiere otras formas de ahorro (tanda, guardar en su casa, etcétera)	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	6	No la necesita	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	7	No le alcanza, sus ingresos son insuficientes o variables	OTRO/NS	INGRESO-INSUFICIENTE	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	8	No sabe qué es o cómo usarla	OTRO/NS	DESCONOCIMIENTO	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	N	5.7	P5_7	9	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.7; FD 2018
+CUENTA	2018	E	5.8	P5_8	1	Dejó de trabajar y ya no la usaba para que le pagaran su salario	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	2	Dejó de recibir apoyo gubernamental	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	3	No la utilizaba	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	4	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	5	No cumplía con el saldo mínimo o por cobro de comisiones	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	6	Los intereses que le pagaban eran muy bajos	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	7	Cerró la institución financiera o la sucursal	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	8	Fue víctima de un fraude	OTRO/NS	FRAUDE	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	E	5.8	P5_8	9	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 5.8; FD 2018
+CUENTA	2018	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2018	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2018	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2018	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2018	EJE	formalidad			formalidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2018	N	6.6	P6_6	1	No cumple con los requisitos (no tiene trabajo, ingresos insuficientes)	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	2	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	3	Cree que lo van a rechazar	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	4	No confía en las instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	5	Los intereses o comisiones son altas	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	6	No le interesa o no lo necesita	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	7	No le gusta endeudarse	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	N	6.6	P6_6	8	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.6; FD 2018
+CREDITO	2018	E	6.7	P6_7	1	Le cobraban intereses muy altos	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	2	No se quiere volver a endeudar	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	3	Ya no lo necesita (terminó de pagar su crédito, etcétera)	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	4	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	5	Ya no cumple con los requisitos	OFERTA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	6	Prefiere otro tipo de préstamo (familiares o amigos)	PREFERENCIA		CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	E	6.7	P6_7	7	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2018_cuestionario.pdf, pregunta 6.7; FD 2018
+CREDITO	2018	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2018	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2018	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2018	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2018	EJE	formalidad			formalidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2021	N	5.21	P5_21	1	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	2	Los intereses son bajos o las comisiones son altas	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	3	No confía en instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	4	Piden requisitos que no tiene	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	5	Prefiere otras formas de ahorro (tanda, guardar en su casa, etcétera)	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	6	No la necesita	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	7	No le alcanza, sus ingresos son insuficientes o variables	OTRO/NS	INGRESO-INSUFICIENTE	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	8	No sabe qué es o cómo usarla	OTRO/NS	DESCONOCIMIENTO	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	9	No quiere que le cobren impuestos	OTRO/NS	IMPUESTOS	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	N	5.21	P5_21	10	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.21; FD 2021
+CUENTA	2021	E	5.22	P5_22	1	Dejó de trabajar y ya no la usaba para que le pagaran su salario	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	2	Dejó de recibir apoyo gubernamental	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	3	No la utilizaba	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	4	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	5	No cumplía con el saldo mínimo o por cobro de comisiones	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	6	Los intereses que le pagaban eran muy bajos	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	7	Cerró la institución financiera o la sucursal	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	8	Fue víctima de un fraude	OTRO/NS	FRAUDE	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	9	No quería que le cobraran impuesto	OTRO/NS	IMPUESTOS	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	E	5.22	P5_22	10	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 5.22; FD 2021
+CUENTA	2021	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2021	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2021	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2021	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CUENTA	2021	EJE	formalidad			formalidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2021	N	6.15	P6_15	1	No cumple con los requisitos (no tiene trabajo, ingresos insuficientes)	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	2	La sucursal le queda lejos o no hay	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	3	Cree que la (lo) van a rechazar	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	4	No confía en las instituciones financieras o le dan mal servicio	OTRO/NS	DESCONFIANZA-O-SERVICIO	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	5	Los intereses o comisiones son altas	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	6	No le interesa o no lo necesita	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	7	No le gusta endeudarse	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	8	No quiere que le cobren impuestos	OTRO/NS	IMPUESTOS	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	N	6.15	P6_15	9	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.15; FD 2021
+CREDITO	2021	E	6.16	P6_16	1	Le cobraban intereses muy altos	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	2	No se quiere volver a endeudar	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	3	Ya no lo necesita (terminó de pagar su crédito, etcétera)	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	4	Tuvo una mala experiencia con la institución financiera	OTRO/NS	MALA-EXPERIENCIA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	5	Ya no cumple con los requisitos	OFERTA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	6	Prefiere otro tipo de préstamo (familiares o amistades)	PREFERENCIA		CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	7	No quería que le cobraran impuestos	OTRO/NS	IMPUESTOS	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	E	6.16	P6_16	8	Otro	OTRO/NS	OTRA	CONSTRUIBLE	enif_2021_cuestionario.pdf, pregunta 6.16; FD 2021
+CREDITO	2021	EJE	sexo			sexo			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2021	EJE	edad			edad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2021	EJE	escolaridad			escolaridad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2021	EJE	localidad			localidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
+CREDITO	2021	EJE	formalidad			formalidad			CONSTRUIBLE	DIN-CREDITO-PISOS-HISTORIA-mapa-v1_1.tsv; PISOS-ENIF2021-formalidad-spec-v1_0.md
