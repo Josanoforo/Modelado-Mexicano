@@ -7,7 +7,7 @@ import json
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[3]
-CALC = "CALC-ENOE-PISOS-0002"
+CALC = "CALC-ENOE-PISOS-0003"
 RESULT = "RESULT-ENOE-PISOS-TABLA"
 CAMPOS = ("ola", "era", "conducta", "eje", "segmento", "unidad", "punto",
           "ic95_lo", "ic95_hi", "n", "n_efectivo_kish", "upm", "calidad",
