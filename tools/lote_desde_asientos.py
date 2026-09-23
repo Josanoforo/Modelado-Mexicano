@@ -37,6 +37,7 @@ Uso:
 from __future__ import annotations
 
 import argparse
+import csv
 import json
 import subprocess
 import sys
@@ -132,16 +133,57 @@ def lote_desde_diff(antes: str, despues: str, cwd: Path | None = None,
             "examinados": len(candidatos)}
 
 
+def lote_pendiente(cwd: Path | None = None,
+                   corridas_dir: Path | None = None) -> dict:
+    """Asientos sellados todavía ausentes de la vista publicada.
+
+    Recupera un push cuyo job de publicación falló, sin autorizar cambios
+    de replay en corridas ya publicadas. El asiento sigue siendo la fuente.
+    """
+    cwd = cwd or RAIZ
+    corridas_dir = corridas_dir or CORRIDAS
+    csv.field_size_limit(10_000_000)
+    with (corridas_dir / "corridas.tsv").open(encoding="utf-8", newline="") as f:
+        publicadas = {fila["spec_id"] for fila in csv.DictReader(
+            (linea for linea in f if not linea.startswith("#")), delimiter="\t")}
+    with (cwd / REPLAY_EVIDENCIA_REL).open(encoding="utf-8", newline="") as f:
+        asientos = csv.DictReader(f, delimiter="\t")
+        candidatos = list(dict.fromkeys(fila["calc_id"] for fila in asientos
+                                       if fila["calc_id"] not in publicadas))
+    lote, descartados = [], []
+    for calc_id in candidatos:
+        if _tiene_sello(calc_id, corridas_dir):
+            lote.append(calc_id)
+        else:
+            descartados.append({"calc_id": calc_id,
+                                "razon": "SIN-SELLO: pendiente sin sello válido"})
+    return {"calc_ids": lote, "descartados": descartados,
+            "examinados": len(candidatos)}
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n", 1)[0])
-    ap.add_argument("antes", help="ref/commit ANTES del push")
-    ap.add_argument("despues", help="ref/commit DESPUÉS del push")
+    ap.add_argument("antes", nargs="?", help="ref/commit ANTES del push")
+    ap.add_argument("despues", nargs="?", help="ref/commit DESPUÉS del push")
+    ap.add_argument("--incluir-pendientes", action="store_true",
+                    help="recupera asientos sellados aún ausentes de corridas.tsv")
     ap.add_argument("--csv", action="store_true",
                     help="una línea, separada por comas -- lista para --lote")
     ap.add_argument("--json", action="store_true")
     args = ap.parse_args(argv)
 
-    salida = lote_desde_diff(args.antes, args.despues)
+    if bool(args.antes) != bool(args.despues):
+        ap.error("indica ambos refs o ninguno")
+    if not args.antes and not args.incluir_pendientes:
+        ap.error("indica dos refs o --incluir-pendientes")
+    salida = lote_desde_diff(args.antes, args.despues) if args.antes else {
+        "calc_ids": [], "descartados": [], "examinados": 0}
+    if args.incluir_pendientes:
+        pendientes = lote_pendiente()
+        salida["calc_ids"] = list(dict.fromkeys(
+            salida["calc_ids"] + pendientes["calc_ids"]))
+        salida["descartados"] += pendientes["descartados"]
+        salida["examinados"] += pendientes["examinados"]
 
     if args.json:
         print(json.dumps(salida, ensure_ascii=False, indent=2))
