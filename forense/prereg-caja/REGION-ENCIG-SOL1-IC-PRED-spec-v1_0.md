@@ -1,0 +1,7 @@
+# REGION-ENCIG-SOL1-IC-PRED · spec humana v1.0
+
+El primer resultado que produzca este procedimiento es el que se reporta. Derivación de RESULT sellados de `CALC-REGION-ENCIG-SOL1-2021-0001`, `...-2023-0001` y `CALC-REGION-ENCIG-CONSUMIDORES-2025-0001`, sin abrir microdato. Conducta `paga_mordida_encig2025` entendida estrictamente como **primer inciso de intento de solicitud** `P8_3_1`, unidad persona, 32 entidades de residencia del marco urbano 100 mil+. `adopta: NO`, **RETROSPECTIVA**.
+
+R1/R2 de mesa se heredan. Ajuste exclusivo `2021→2023`; piso 2023; evaluación 2025. Para cada geografía publicable en ambas olas de ajuste, `Δ=logit(p2023)−logit(p2021)`. `τ²` es la media de `Δ²` de las geografías aptas, sin centrar. Solo puntos e IC estrictamente interiores a (0,1). `ee_m=(logit(IC_sup2023)−logit(IC_inf2023))/(2·1.959964)`; `IC_pred=expit(logit(p2023)±1.959964·sqrt(ee_m²+τ²))`. Código y método idénticos en fórmula a `REGION-IC-PREDICTIVO-spec-v1_0.md` y a los CALC heredados ENIF/ENCIG. Congelar `τ²` y los 32 intervalos **antes de leer** 2025. Comparar luego el punto 2025 y conservar `SIN-COMPARABILIDAD` con límites nulos si alguna fuente está suprimida o en extremo.
+
+La serie tiene una sola transición de ajuste y una de evaluación; el intervalo es frágil y la cobertura por entidades es un **conteo descriptivo**, sin IC por conglomerado defendible. No se llama validación prospectiva, cambio sostenido ni capacidad de detectar cambios futuros. No se aplica significación simultánea. `cuenta_gen2: NO`, `origen_numerico: HEREDADO`.

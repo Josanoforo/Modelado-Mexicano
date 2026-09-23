@@ -1,0 +1,102 @@
+"""Congela el inventario mínimo de consumidores U1 pertinentes a U5.
+
+El insumo es un commit explícito de la rama de U1, aún sin fusionar.
+No lee microdatos ni copia cifras de sus estimadores al producto regional.
+"""
+from __future__ import annotations
+
+import csv
+import io
+import subprocess
+from collections import defaultdict
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+U1_COMMIT = "3d8e82fb"
+U1_PATH = "forense/analisis/catalogo/inventario-consumo-gen2.tsv"
+OUT = ROOT / "forense/analisis/region/alcance-u1-v1_0.tsv"
+MEASURED = {
+    ("ENVIPE", "evade_norma_envipe2025"),
+    ("ENVIPE", "cumple_norma_envipe2025"),
+    ("ENVIPE", "denuncia_con_miedo_o_desconfianza"),
+    *(("ENCIG", c) for c in (
+        "adopta_encig2025_luz", "paga_mordida_encig2025",
+        "paga_mordida_encig2025_presencial_r2", "paga_mordida_encig2025_digital_r2")),
+    ("ENIF", "tiene_ahorros_enif2024"),
+    *(("ENIF", c) for c in (
+        "no_tiene_ahorros_enif2024", "informal_cualquiera", "formal_cualquiera",
+        "ahorra_solo_informal", "ahorra_solo_formal", "ahorra_ambas_vias", "no_ahorra")),
+    ("ENIF", "horizonte_no_corto"),
+    ("ENIF", "horizonte_corto"),
+    ("ENIF", "desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024"),
+    ("ENIF", "desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024"),
+}
+COMPOSITE_BASE = {
+    ("ENCIG", "tramite.gobierno_digital.util_sin_coercion_ejes_encig2025"):
+        "canal_digital_luz / adopta_encig2025_luz",
+    ("ENIF", "dinero.ahorro.horizonte_corto_ejes_enif2024"):
+        "horizonte_corto por seguridad social y sin trabajo",
+    ("ENIF", "dinero.ahorro.via_informal_ejes_enif2024"):
+        "informal_cualquiera y portafolio de ahorro",
+    ("ENVIPE", "tramite.evasion_norma_ejes_envipe2025"):
+        "evade_norma_envipe2025",
+}
+FIELDS = ("instrumento", "conducta_u1", "estados_u1", "result_consumidor_u1",
+          "estado_regional_u5", "nota")
+
+
+def genera():
+    p = subprocess.run(["git", "show", f"{U1_COMMIT}:{U1_PATH}"], cwd=ROOT,
+                       capture_output=True, check=True, text=True)
+    inventario = csv.DictReader(io.StringIO(p.stdout), delimiter="\t")
+    grupos = defaultdict(lambda: {"estados": set(), "results": set()})
+    for r in inventario:
+        inst = r["instrumento_ola"].split()[0]
+        if inst not in ("ENVIPE", "ENCIG", "ENIF"):
+            continue
+        estado = r["estado_adopcion"]
+        if estado.startswith(("PISO-HISTORICO", "SELLADO-CONTEXTO")):
+            continue
+        k = (inst, r["conducta"])
+        grupos[k]["estados"].add(estado)
+        if r["result_punto"]:
+            grupos[k]["results"].add(r["result_punto"])
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    with OUT.open("w", newline="", encoding="utf-8") as f:
+        w = csv.DictWriter(f, fieldnames=FIELDS, delimiter="\t", lineterminator="\n")
+        w.writeheader()
+        for (inst, conducta), v in sorted(grupos.items()):
+            pseudo = conducta == "R" or (len(conducta) == 5 and conducta[2] == "x")
+            state = "MEDIDO-REGION" if (inst, conducta) in MEASURED else "PENDIENTE-DICTAMEN-REGIONAL"
+            if pseudo:
+                state = "FUERA-REGION-X-CONDUCTA;CELDA-INTERACCION"
+            if (inst, conducta) in COMPOSITE_BASE:
+                state = "BASE-REGIONAL-MEDIDA;CRUCES-EJES-NO-EXTENDIDOS"
+            if (inst, conducta) == ("ENVIPE", "civico.denuncia.con_seguro_ejes_envipe2025"):
+                state = "MEDIDO-REGION;128-DE-128-SUPRIMIDAS-R2"
+            nota = ("Identidad de celda/interacción, no desenlace independiente; una extensión "
+                    "región×eje requiere spec propia y no integra el producto región×conducta."
+                    if pseudo else "El piso ENIF 18+ se distingue de la serie histórica 18–70."
+                    if inst == "ENIF" and state == "MEDIDO-REGION" and conducta in
+                    {"informal_cualquiera", "formal_cualquiera"} else
+                    "Los tres dominios (con/sin seguridad social y no trabaja) se miden por separado."
+                    if inst == "ENIF" and conducta == "horizonte_corto" else
+                    "Seis regiones medidas; la regla R2 suprime celdas con n<200."
+                    if inst == "ENIF" and "desconfianza_o_mal_servicio" in conducta else
+                    "Cuatro tasas por seguro, 32 entidades cada una: todas suprimidas por n<200."
+                    if state.startswith("MEDIDO-REGION;128") else
+                    "Primer inciso de solicitud medido 2021/23/25; no es pago efectivo."
+                    if (inst, conducta) == ("ENCIG", "paga_mordida_encig2025") else
+                    "Conducta base regional: " + COMPOSITE_BASE[(inst, conducta)] +
+                    "; los cruces sociodemográficos del consumidor no se extendieron a región."
+                    if (inst, conducta) in COMPOSITE_BASE else
+                    "Estimación regional de última ola presente en canon; verificar unidad y supresiones por fila."
+                    if state == "MEDIDO-REGION" else
+                    "Sin dictamen regional de esta identidad.")
+            w.writerow(dict(zip(FIELDS, (inst, conducta, ";".join(sorted(v["estados"])),
+                                      ";".join(sorted(v["results"])), state, nota))))
+    print(f"{len(grupos)} identidades U1, fuente {U1_COMMIT}:{U1_PATH}")
+
+
+if __name__ == "__main__":
+    genera()

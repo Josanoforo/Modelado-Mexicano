@@ -3533,6 +3533,42 @@ def _cita_fuente_replay(fuente: dict | None) -> str:
     return clase
 
 
+def _sucesion_externa(d: Path, spec: dict, ejec: dict | None) -> str:
+    """Lee una sucesión declarada fuera de una spec ya sellada.
+
+    El vínculo solo es válido para la identidad exacta de spec y sello. No
+    cambia ninguno de los cuatro archivos cubiertos por el sello ni acepta
+    una declaración que contradiga la propia spec.
+    """
+    ruta = d / "sucesion.json"
+    if not ruta.exists():
+        return ""
+    try:
+        meta = json.loads(ruta.read_text(encoding="utf-8"))
+    except (OSError, ValueError) as exc:
+        raise ParoRegistro(f"SUCESION-ILEGIBLE: {_rel(ruta)}: {exc}")
+    campos = {"calc_id", "repite_de", "spec_yaml_sha256", "sello_sha256"}
+    if not isinstance(meta, dict) or set(meta) != campos:
+        raise ParoRegistro(f"SUCESION-INVALIDA: {_rel(ruta)} campos no validos")
+    def hash_actual(nombre: str) -> str:
+        archivo = d / nombre
+        if not archivo.is_file():
+            return ""
+        return hashlib.sha256(archivo.read_bytes()).hexdigest()
+    if (meta["calc_id"] != d.name or not isinstance(meta["repite_de"], str)
+            or not meta["repite_de"] or meta["repite_de"] == d.name
+            or meta["spec_yaml_sha256"] != hash_actual("spec.yaml")
+            or meta["sello_sha256"] != hash_actual("sello.json")
+            or meta["spec_yaml_sha256"] != (ejec or {}).get("spec_yaml_sha256")):
+        raise ParoRegistro(f"SUCESION-IDENTIDAD: {_rel(ruta)} no coincide con spec/sello")
+    declarada = (spec.get("repite_de") or spec.get("sucesor_de")
+                 or _etiqueta(spec, "repite_de", "")
+                 or _etiqueta(spec, "sucesor_de", ""))
+    if declarada and declarada != meta["repite_de"]:
+        raise ParoRegistro(f"SUCESION-CONFLICTO: {_rel(ruta)} contradice spec")
+    return meta["repite_de"]
+
+
 def _lee_oferta(verifica: bool, verifica_ids: set | None = None) -> list[dict]:
     """Un registro por carpeta `CALC-*/`. Levanta `ParoRegistro` en las
     validaciones que el plan declara bloqueantes."""
@@ -3609,6 +3645,7 @@ def _lee_oferta(verifica: bool, verifica_ids: set | None = None) -> list[dict]:
             replay, contexto, fuente_replay, avisos_replay = _proyecta_replay(
                 calc_id, ejec or {}, fresco, evidencia)
 
+        sucesion_externa = _sucesion_externa(d, spec, ejec)
         oferta.append({
             "calc_id": calc_id, "spec": spec, "ejec": ejec or {},
             "valores": valores, "sello": sello, "estado": estado,
@@ -3632,6 +3669,7 @@ def _lee_oferta(verifica: bool, verifica_ids: set | None = None) -> list[dict]:
                 spec.get("repite_de") or spec.get("sucesor_de")
                 or _etiqueta(spec, "repite_de", "")
                 or _etiqueta(spec, "sucesor_de", "")
+                or sucesion_externa
             ),
         })
 

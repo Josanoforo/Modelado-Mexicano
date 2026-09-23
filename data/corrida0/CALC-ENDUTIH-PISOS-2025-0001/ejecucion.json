@@ -1,0 +1,110 @@
+{
+ "corrida_id": "CALC-ENDUTIH-PISOS-2025-0001--744d946b6281",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "calibracion": "SIN-HISTORIA-PARA-CALIBRAR",
+  "cuenta_gen2": "SI",
+  "dominio": "tecnologia",
+  "generacion": "GEN2",
+  "ola": "2025",
+  "origen_numerico": "MICRODATO-ORIGINAL",
+  "temporalidad": "RETROSPECTIVA",
+  "tipo": "PISO-DESCRIPTIVO-TECNOLOGIA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T16:46:41Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 438,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "744d946b6281296fca609569d367876e08071d67",
+  "git_rama": "codex/astra5-tecnologia-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "744d946b6281296fca609569d367876e08071d67",
+ "input_ids": [
+  "endutih_2025_fd_endutih2025",
+  "endutih_2025_endutih2025_bd_dbf",
+  "ENDUTIH-PISOS-MEDIDOR",
+  "ENDUTIH-DBFMINI"
+ ],
+ "input_sha256": {
+  "ENDUTIH-DBFMINI": "a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b",
+  "ENDUTIH-PISOS-MEDIDOR": "0b25cd1036508eb636ba18a9bfbe6de5eb3f797dc1c2be4c083c7a596c02e622",
+  "endutih_2025_endutih2025_bd_dbf": "a927528779c56b4565aae8b83bfaf119f50178bb4c7e7df4eaceee992f86ee1c",
+  "endutih_2025_fd_endutih2025": "d02caecea044fa5f5089760586e4f1fa6d91341a0462fe19fdc70caefab1a9ce"
+ },
+ "parametros": {
+  "bd_miembros": [
+   "ti25usu.dbf",
+   "ti25usu2.dbf"
+  ],
+  "entidad": "CVE_ENT",
+  "metodo_ic": "percentiles_2_5_97_5_bootstrap_UPM_estratificado",
+  "n_minimo": 100,
+  "ola": "2025",
+  "replicas": 399,
+  "sintesis": "una-tabla-JSON-con-replicas-aggregadas-total"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENDUTIH-PISOS-2025-TABLA"
+ ],
+ "script_blob_sha256": "1fd00fb25e3527f4f02e3076d74b43b8f6d8811a6f33f374860411463801b9af",
+ "script_path": "data/corrida0/CALC-ENDUTIH-PISOS-2025-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260923
+ },
+ "spec_id": "CALC-ENDUTIH-PISOS-2025-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "13c73a6fff4c564aee56ae5198212b111ab6f7327d5a06deb4f8eee01222153a",
+ "spec_yaml_sha256": "006684cc5ffa51e169bb1e538b9db6774bd6b11702a62ee4d13d677c1cea7c13",
+ "tolerancia": {
+  "exacta": true,
+  "tipo": "texto"
+ }
+}
