@@ -1,0 +1,32 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-LAPOP-PISOS-2019-0001
+spec_md: ../../../forense/prereg-caja/LAPOP-PISOS-2019-spec-v1_0.md
+spec_md_sha256: 26dc143ef404205a468cdb2fb84fa94b0744d0b016599eca2f3e7808b494cda5
+script: data/corrida0/CALC-LAPOP-PISOS-2019-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-ENCUESTA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "Mandato ASTRA5-U3 23/sep/2026; no adopta"
+  adopta: NO
+  acto: ASTRA5-U3-POLITICA
+inputs:
+  - {id: mexico_lapop_americasbarometer_2019_v1_0_w, origen: manifiesto}
+variables:
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: clien1na, rol: "oferta de favor/regalo/beneficio por voto; 1 sí, 2 no"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: b18, rol: "confianza Policía Nacional 1-7"}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: wt, rol: ponderador}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: estratopri, rol: estrato}
+  - {archivo: "Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta", variable: upm, rol: conglomerado}
+universo: "LAPOP México 2018-19 nacional, personas con código sustantivo y diseño completo por reactivo"
+filtros: "clien1na en 1/2; b18 en 1..7; wt>0, estratopri/upm presentes; n mínimo 30"
+ponderador: "wt del microdato"
+transformacion: "oferta sí=clien1na 1; confianza alta=b18 6/7; proporción ponderada e IC bootstrap UPM dentro de estrato"
+estimando: "dos proporciones marginales de entrevistados, sin efecto causal ni unión con INE"
+dependencias_materiales: [numpy, pandas, pyreadstat]
+parametros: {bootstrap_replicas: 2000, n_minimo: 30, confianza_alta: [6, 7], hash_medidor_sha256: 976a186634c0f16fd18e4eb91b8a58f5db7fe4b5185f8cf6b22bc9a77457c10c, hash_payload_sha256: c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57}
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia: {tipo: exacta, razon: "misma semilla y orden de UPM"}
+resultados:
+  - {id: RESULT-LAPOP-PISOS-2019-FILAS, tipo: entero, unidad: "entrevistas en microdato"}
+  - {id: RESULT-LAPOP-PISOS-2019-TABLA, tipo: texto, unidad: "JSON de dos marginales e IC de diseño"}
