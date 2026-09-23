@@ -18,6 +18,7 @@ OUT = ROOT / "forense/analisis/region/alcance-u1-v1_0.tsv"
 MEASURED = {
     ("ENVIPE", "evade_norma_envipe2025"),
     ("ENVIPE", "cumple_norma_envipe2025"),
+    ("ENVIPE", "denuncia_con_miedo_o_desconfianza"),
     *(("ENCIG", c) for c in (
         "adopta_encig2025_luz", "paga_mordida_encig2025",
         "paga_mordida_encig2025_presencial_r2", "paga_mordida_encig2025_digital_r2")),
