@@ -23,22 +23,31 @@ no representan los motivos de un hogar. No se suman como partición completa.
 La actividad de trámites usa ventana de 12 meses pero el universo condicional
 `P7_1=1` usa tres: el estimando está rotulado así y no mide coerción.
 
-La pregunta de búsqueda de empleo tiene 5,886/6,019/6,017 blancos dentro de
-usuarios de internet en 2023/2024/2025. El primer resultado los conserva
-como `NR` y los excluye de SI+NO; **la secuencia de filtro previa a P7_10_2
-no quedó acreditada para interpretar esa celda**, así que sus puntos
-condicionales de 25.88/25.33/23.51% no se usan en contraste de reports.
-Ninguno de esos blancos se convirtió en cero. Una nueva lectura del
-cuestionario y, si procede, CALC sucesor son la operación concreta.
+**Enmienda de `actividad_empleo` en el mismo PR.** La lectura de cuestionarios
+2023/2024/2025 y FD acreditó que `P7_10_2` se aplica únicamente a elegidos
+de 15 años o más. Los 5,886/6,019/6,017 blancos observados entre usuarios
+de internet son íntegramente de 6–14 años: `SALTO` estructural, no `NR` ni
+`NO`; entre usuarios elegibles 15+ no hay blancos. Tres CALC sucesores
+`CALC-ENDUTIH-EMPLEO-15MAS-YYYY-0001` corrigen el universo y apartan edades
+98/99 no especificadas. `tabla-principal.tsv` enlaza sus RESULT; la nota
+`ENDUTIH-EMPLEO-15MAS-cierre.md` deja el cotejo de primeros resultados,
+hashes y conteos. Los RESULT originales siguen sellados como evidencia y
+sus celdas de empleo dejan de ser producto utilizable.
 
-Cobertura: 11 medidas × 47 dominios × 3 olas = **1,551 celdas**; 1,548
-`ESTIMABLE`, 3 `SUPRIMIDA-N-MENOR-100`. `n_tabla`: 58,922 / 58,080 / 57,810.
+Cobertura utilizable: 10 medidas originales × 47 dominios × 3 olas = 1,410
+celdas, más 1 medida sucesora × 47 × 3 = 141; **1,551 celdas** en total,
+1,548 `ESTIMABLE`, 3 `SUPRIMIDA-N-MENOR-100`. Las 141 celdas originales de
+empleo no se cuentan dos veces. `n_tabla`: 58,922 / 58,080 / 57,810.
 La salida conserva estados SI/NO/SALTO/NR/NS por celda y 399 réplicas
 agregadas por medida total, sin registros individuales. Los tres `verify`
 devuelven `REPRODUCE`, `CONTEXTO=IDENTICO`; asiento en
 `forense/replay-evidencia.tsv`. Estado de calibración
-`SIN-HISTORIA-PARA-CALIBRAR`: dos transiciones no permiten ajuste y
-evaluación temporal separados. No se anuncia detección de cambios.
+`SIN-HISTORIA-PARA-CALIBRAR`: dos transiciones **sí permiten** separar una
+para ajuste y otra para evaluación temporal, pero una sola transición de
+ajuste no estabiliza una distribución de errores ni un cuantil extremo para
+IC predictivo, y una sola de evaluación no estima cobertura con precisión.
+No se anuncia detección de cambios. La formulación contraria del spec
+original queda como antecedente sellado; la errata está en el spec sucesor.
 
 Enlace conceptual: ENCIG mide experiencias de trámites con otra unidad y
 muestra; ENIF mide productos y fricciones financieras. No se unen como panel
