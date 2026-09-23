@@ -47,3 +47,9 @@ Propio: el disco destino, `data/RESPALDO-VERIFICACION-*.tsv`, `data/manifiesto.y
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No descarga, no re-verifica el origen (ya está), no cambia reservas. Sucesor: ninguno; un cron de re-verificación del respaldo es de TUBERÍA si mesa lo pide.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1-P4 · «Los cuatro comandos de `INSTRUCCION-RESPALDO.md` con `--destino`» · «`sha256sum` del destino contra el manifiesto» · «Aplicar las cuatro propuestas … en commit propio» · «FP `…3d56-01` → FIRMADA» | `PARO-PREMISA`: el propio encargo (§7-f) declara que el disco externo no montado al abrir no es PARO sino EN-ESPERA con fecha. Verificado (fuera de sandbox): `ls -la /mnt/` sólo muestra `c`, `d`, `e` — los tres discos internos de Windows ya conocidos, ninguno recién formateado (`df -h`: 931G/3.7T/931G en uso). Ningún disco externo nuevo montado. Consistente con la firma de mesa D5 (§2, verbatim, 23/sep): «Ya tengo un disco duro, necesito reformatearlo … no ahora, esta semana sí; vence el domingo». La FP `FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01`, re-verificada contra `origin/main` fresco, sigue `ABIERTA` con el mismo texto del 21/sep. | El corpus sigue en una sola máquina física; la FP `…3d56-01` sigue `ABIERTA`; el manifiesto no gana las cuatro propuestas de raíz/PDF de `…3d56-02`. | `SIN-ASIGNAR` — acto que repita `INSTRUCCION-RESPALDO.md` con `--destino` cuando mesa reporte «montado en `<ruta>`» (vence 27/sep/2026, firma D5). Dato de contexto para ese acto, no usado por este: ya existe una copia staging verificada de 19.8 GB en `/home/pc0/mm-respaldo-corpus/2026-09-21/` (mismo disco que el corpus, no cuenta como respaldo). |
