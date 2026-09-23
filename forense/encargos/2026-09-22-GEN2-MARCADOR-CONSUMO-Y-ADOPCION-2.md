@@ -13,7 +13,7 @@ Ya selladas, se citan: FP-383 (marcador sobre el catálogo); firma 17/sep (piso 
 ## 3 · LO QUE DIRECCIÓN SABE
 - `[EJECUTADO]` `data/corrida0/marcador-segmento.tsv`: 16 `EMITIDA-SIN-R` (9 de `via_informal` ENIF 2024, 3 de `gobierno_digital` ENCIG 2025, 4 de `evasion_norma` ENVIPE 2025); decenas de `RESERVADA` en `via_informal`. `[LEÍDO]` NC `…PILOTO-3-COMMIT-2-3-v1_3-3619-01`: «`edadxescolaridad` sigue RESERVADA tras `--escribe` (sin diff): la herramienta solo levanta…» — la herramienta no consume adjudicaciones. `[EJECUTADO]` `milpa/estimadores-por-segmento.yaml`: 20 cruces + las 15 ENVIPE de #1002; 0 de ENIF; `n_emitidas_sin_evaluar: 206`.
 - `[SUPUESTO]` El lote ENIF 2024 derivó R para sus 14 cruces en COMMIT-3, y el piloto 3 para `edadxescolaridad` ENCIG: esas filas son `EVALUADA`, no `EMITIDA-SIN-R`. El acto lo lee de los CALC por id; lo que no encuentre sellado sigue `RESERVADA`.
-- `[SUPUESTO]` `ADOPTADO_ACTIVO` no se moverá por P2 hasta que el canal (E11) publique la vista; se dice, no se fuerza.
+- `[SUPUESTO]` `ADOPTADO_ACTIVO` no se moverá por P2 hasta que el canal (`GEN2-TUBERIA-CANAL-PUBLICACION-1`) publique la vista; se dice, no se fuerza.
 - ADJUNTOS: ninguno.
 
 ## 4 · YA HECHO / YA DECIDIDO
@@ -23,7 +23,7 @@ Ya selladas, se citan: FP-383 (marcador sobre el catálogo); firma 17/sep (piso 
 - **P1 · Consumo.** El tool lee las tres fuentes de adjudicación por id, deriva el rótulo por orden de sellos (v2.16 §4: emisión sellada antes de R = PROSPECTIVA), escribe estado y `adjudicado_id`; un test con un CALC de fixture por fuente. Los cruces cuyo R existe pero cuya emisión se selló **después** (si los hay) → `EVALUADA-RETROSPECTIVA`, dicho.
 - **P2 · ENIF con reserva de ancho.** Las 32 marginales entran al yaml con `champion = PERSISTENCIA(t−1)`, punto de `CALC-PISOS-ENIF2021-EJES-0001`, IC de `CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001`, `tipo_incertidumbre` rotulado; `decision_ref` = fila F2.
 - **P3 · ENUT.** Fila `reparto_hogar` → `SOLO-PISO` con `piso_fuente = CALC-ENUT2019-NUCLEO-EJES-0001`, R = `RAZON-NUCLEO-NACIONAL`; las 10 `sexo_edad` → `NO-CONSTRUIBLE-POR-CRUCE` citando la guardia de `tools/enut_nucleo.py`.
-- **P4 · Cierres y nota.** NC 3619-01 CERRADA; la lista real de `RESERVADA` (lo que de verdad nadie ha visto) pegada en la nota: **es el insumo del piloto 4 (E17)**.
+- **P4 · Cierres y nota.** NC 3619-01 CERRADA; la lista real de `RESERVADA` (lo que de verdad nadie ha visto) pegada en la nota: **es el insumo del piloto 4 (`GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1`)**.
 
 ## 6 · LATITUD
 DECIDES TÚ: estructura del consumo, orden. PREGUNTAS A MESA: un cruce con R derivado en un CALC **no** de adjudicación (p. ej. un descriptivo Codex) — ¿`CONSUMIDA-SIN-PILOTO` (recomendado: se vio, no se adjudicó) o se ignora? NO DECIDES: §7.
@@ -38,6 +38,6 @@ Ninguna que proteja las cuatro cosas. Orden sugerido: después de #1015 (F2 en m
 Propio: `tools/marcador_segmento.py` + test · `data/corrida0/marcador-segmento.tsv` (por tool) · `milpa/estimadores-por-segmento.yaml` (por tool) · `forense/no-corrido.tsv` · nota · `canon/L0/<raíz>.md`. Ajeno: CALC, celdas-D (lectura), `tramite.yaml`. «Si te encuentras escribiendo fuera de esta lista, PARA.»
 
 ## 10 · NO HACE · SUCESORES · CIERRE
-No mide, no deriva R, no adopta fuera de firma. Sucesor: E17 lee la lista real de reservadas. Auditoría: no aplica. Cierre por /acto.
+No mide, no deriva R, no adopta fuera de firma. Sucesor: `GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1` lee la lista real de reservadas. Auditoría: no aplica. Cierre por /acto.
 
 

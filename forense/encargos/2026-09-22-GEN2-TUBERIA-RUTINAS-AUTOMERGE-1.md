@@ -16,7 +16,7 @@ Que los PR de las rutinas diarias (`derivados/*`, `censo/*`, `adq/*`, `claude/tr
 - ADJUNTOS: ninguno.
 
 ## 4 · YA HECHO / YA DECIDIDO
-`grep -n "auto-merge\|automerge" .github/workflows/*.yml` → 0; NC `TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-04` (protección de rama) ABIERTA. Ramas vivas: E11 y METRICA-RECTORA pueden tocar `verify.yml` — este acto añade un workflow **propio** (`automerge-rutinas.yml`), no edita `verify.yml`.
+`grep -n "auto-merge\|automerge" .github/workflows/*.yml` → 0; NC `TUBERIA-CIERRE-SIN-CHOQUE-2-8e53-04` (protección de rama) ABIERTA. Ramas vivas: `GEN2-TUBERIA-CANAL-PUBLICACION-1` y METRICA-RECTORA pueden tocar `verify.yml` — este acto añade un workflow **propio** (`automerge-rutinas.yml`), no edita `verify.yml`.
 
 ## 5 · PIEZAS
 - **P1 · Clases.** `forense/rutinas-clases-v1_0.tsv`: rutina · patrón de rama · archivos permitidos (glob) · qué NO puede tocar (sellos, tablero, `milpa/`, `tools/`). Derivado de los diffs reales de los últimos 10 PR de cada rutina, no de memoria.

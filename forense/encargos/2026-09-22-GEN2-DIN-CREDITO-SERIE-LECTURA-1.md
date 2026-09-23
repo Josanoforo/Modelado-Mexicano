@@ -11,7 +11,7 @@ Que exista, leída **solo** de RESULT sellados, la serie conmensurada de los pis
 Ya selladas, se citan: FP-404 (2) (frontera del descriptivo), firma ff56-01 (a) (recorte 18-70), F1 de FIRMAS-7 (K2 `-0002` réplica). Ninguna nueva.
 
 ## 3 · LO QUE DIRECCIÓN SABE
-- `[EXISTE]` los cinco CALC citados, sellados con asiento (dos sin fila en la vista hasta E11). `[LEÍDO]` v2.16 §3: «todo marginal de conducta de mercado (crédito, ahorro, canal) se publica con la medida de exclusión por oferta al lado». No sé si la exclusión por oferta está sellada por ola: **el acto lo busca por objeto**; si no está, cada fila lo declara.
+- `[EXISTE]` los cinco CALC citados, sellados con asiento (dos sin fila en la vista hasta `GEN2-TUBERIA-CANAL-PUBLICACION-1`). `[LEÍDO]` v2.16 §3: «todo marginal de conducta de mercado (crédito, ahorro, canal) se publica con la medida de exclusión por oferta al lado». No sé si la exclusión por oferta está sellada por ola: **el acto lo busca por objeto**; si no está, cada fila lo declara.
 - `[SUPUESTO]` Las definiciones K1–K6 son idénticas por texto en las cuatro olas (los actos de pisos lo verificaron por archivo). Si un K difiere en una ola, la serie lo marca `NO-COMPARABLE` con la diferencia.
 - ADJUNTOS: ninguno.
 
