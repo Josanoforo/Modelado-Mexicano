@@ -99,3 +99,5 @@ D03 autoriza diseñar el uso y separar elementos cuando el motor lo necesite; no
 Cobertura de antecedentes: E02/E03→01; E04→02; E05→03; E06/E07→04; E08→05; E09→06; E10→07; E11→02/06. E01 no se repite. Los residuales NC-0141/0148/0104 tienen dueño 08, con comprobantes aportados por los lotes de cálculo.
 
 Al terminar cada tarea, el siguiente paso sale de su resultado, no de reconstruir el historial. Ningún encargo transforma falta de respuesta en rechazo de mesa ni una firma en ejecución ficticia.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · banner propio del archivo: lotes 01-06 CONSUMIDOS en PR #687/#689/#691/#688/#692/#693; lote 07 ejecutado por PR #704 (ver fila hermana)

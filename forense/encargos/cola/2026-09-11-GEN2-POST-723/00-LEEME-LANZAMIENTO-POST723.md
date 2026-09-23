@@ -48,3 +48,5 @@ Una tarea por worktree/rama/PR. Mantener el corpus compartido como fuente; salid
 29 consume el overlay existente aunque todavía diga NO-HECHA. Al fusionar 30 se comprueba la lectura de la evidencia nueva, sin repetir el cálculo independiente. 27/28 no entran automáticamente al perímetro congelado de validación de 30.
 
 Los MD son autónomos y no dependen de esta guía para su contrato. Este paquete no ejecutó cálculos, llamadas ni modificaciones en el repositorio: prepara el despacho a partir de los resultados y estados consultados.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · hijos 27/28/29/30/31 con evidencia de ejecucion (ver filas hermanas)

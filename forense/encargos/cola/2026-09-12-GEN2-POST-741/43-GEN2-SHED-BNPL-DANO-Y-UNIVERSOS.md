@@ -78,3 +78,5 @@ Aceptación: cinco mediciones reales o residual específico por la afectada, fil
 ## Prompt de lanzamiento
 
 > Ejecuta completo el encargo 43 en CAJA y worktree propio. Autorizo abrir/congelar la spec descriptiva SHED 2025, obtener el apéndice oficial que falte, calcular las cinco salidas con sus universos y entregar CALC/RESULT, informe y PR. Resuelve BNPL1A desde BNPL1 y BK2_f; no uses todos los usuarios como denominador ni conviertas faltantes en no. Todo resultado conserva Estados Unidos y uso no causal. 41 posee Banxico y 40 demanda/motor/NC global; tu propiedad es SHED y su relación. El merge queda conmigo.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-SHED-BNPL-DANO-UNIVERSOS-cierre.md; CALC-SHED2025-BNPL-DANO-0001 en data/corrida0/resultados.tsv
