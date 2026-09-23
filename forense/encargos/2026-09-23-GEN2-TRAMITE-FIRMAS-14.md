@@ -57,4 +57,4 @@ No ejecuta ninguna decisión. Sucesores: los actos nombrados en cada fila; FIRMA
 
 ## CONSUMIDO
 
-PR #1095 (ACTO GEN2-TRAMITE-FIRMAS-14, ADR-260923-GEN2-TRAMITE-FIRMAS-14-9556-01). Adenda citada: `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-1.md` (dirección, corrige el punto I; sin firma de mesa).
+PR #1095 (ACTO GEN2-TRAMITE-FIRMAS-14, ADR-260923-GEN2-TRAMITE-FIRMAS-14-9556-01). Adendas citadas: `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-1.md` (dirección, corrige el punto I; sin firma de mesa); `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md` (dirección, 23/sep/2026, llegó tras este `## CONSUMIDO` -- reporta ventana 26-27/sep para tres acciones manuales de mesa, sin cita verbatim ni adjuntos recibidos; no se adopta como firma ni reabre ninguna decisión de este acto; enmienda en `canon/gobernanza-v1_15.md`).

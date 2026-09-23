@@ -35,3 +35,16 @@ No se ejecutó ninguna de las once decisiones (§10 del encargo: «No ejecuta ni
 ## Suite
 
 `python3 tests/check.py --rapido` → VERDE, 0 FAIL.
+
+
+## Enmienda (ADENDA-2, post-cierre, 23/sep/2026)
+
+Llegó `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md` (dirección) después de que este acto ya había escrito su `## CONSUMIDO`. Reporta una ventana del 26-27/sep/2026 para tres acciones manuales de mesa (G: `.ots` de sello externo; H: Pages/Zenodo; J: disco de respaldo, sin cambio -- ya cubierto por `GEN2-CORPUS-RESPALDO-EJECUCION-1` #1052 EN-ESPERA).
+
+**No se adopta como firma.** El texto no cita a mesa verbatim (todas las firmas reales en `firmas-pendientes.tsv` van entre «») y los dos adjuntos que declara (`MANUAL-opentimestamps-2026-09-23.md`, `MANUAL-pages-y-zenodo-2026-09-23.md`) no llegaron con esta sesión -- verificado: `ls /root/.claude/uploads/<sesión>/` sólo trae el encargo y sus dos adendas, ningún `MANUAL-*`. Se trata como reporte de otra parte de la cadena (tipo (3), §2 de las instrucciones: «se formula como pregunta a verificar, nunca como hecho»), no como hecho sellado.
+
+**Qué se anotó.** Nota de contexto (append, sin tocar `estado`) en las filas G (`cfce-01`) y H (`4296-01`) de `firmas-pendientes.tsv`, y en el campo `impacto` de `NC-260923-GEN2-TRAMITE-FIRMAS-14-9556-05` (H) en `no-corrido.tsv`. Enmienda fechada en el ADR de `canon/gobernanza-v1_15.md` y en el fragmento L0. Cita añadida en el `## CONSUMIDO` del encargo archivado (nunca en su cuerpo sellado -- verificado con `tools/verifica_sidecars.py` que el sello sigue `CASA`).
+
+**Qué NO cambió.** Ningún `estado` de FP, ninguna fila NC pasa a `CERRADA`, `celdas_validadas` sin cambio (219). Rama sincronizada con `origin/main` (merge limpio, `e792419`) antes de este commit.
+
+**Suite:** `python3 tests/check.py --rapido` → VERDE, 0 FAIL.
