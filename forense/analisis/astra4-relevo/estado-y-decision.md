@@ -68,7 +68,8 @@ doce condicionales son entradas consumibles pero `Theta.valor()` lanza.
 `motor.correr()` da 21 veredictos de estado y ninguna magnitud calibrada.
 Las 43 celdas del marco conservan propuesta histórica sin firma. Las 23 de
 catálogo tienen dependencia y operación fechadas en `plan-catalogo-23.tsv`;
-M05 y M23 conservan CALC previos y reserva consumida, sin nueva adopción.
+Los momentos de evasión y ahorro informal conservan CALC previos y reserva
+consumida, sin nueva adopción.
 
 `contratos-otros-consumidores.md` da correspondencia, guardas, diffs secos y
 pruebas negativas para procedencia, catálogo y celdas-D. Los pares
