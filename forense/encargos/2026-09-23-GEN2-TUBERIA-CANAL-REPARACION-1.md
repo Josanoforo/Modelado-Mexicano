@@ -43,3 +43,29 @@ Propio: `.github/workflows/verify.yml` (bloques de autorización/push l.350-369,
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No activa la cola, no fusiona nada solo, no cambia qué publica el canal. Sucesores: mesa activa «Require merge queue»; `GEN2-TUBERIA-RUTINAS-AUTOMERGE-2` se relanza (P1 y P3 pendientes) o -3 si hace falta.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P1 · Push por SSH con la deploy key `canal-deriva`.
+  **por qué:** `SUSTITUIDO-POR:fc14cd8` — commit directo a `main` («Publica vistas de corrida mediante PR verificado», 23/sep/2026, `jonieqsa@gmail.com`), fusionado a `main` **después** de redactarse este encargo (SHA de redacción `ae19a710`) pero **antes** de que esta sesión llegara a tocar `verify.yml`. Ese commit reemplazó los dos `git push origin HEAD:main` del job `guardias` por un mecanismo distinto: el job abre un PR automático (`derivados/auto-<run_id>`) contra `main` con el `GITHUB_TOKEN` normal, y nunca empuja a `main` directo — la regla protegida deja de rechazarlo por `GH013` porque ya no hay push directo que rechazar, no porque una llave lo exente. Verificado al arrancar la sesión de cierre: `grep -n "push origin HEAD:main" .github/workflows/verify.yml` → 0 resultados (solo queda `git push origin "HEAD:refs/heads/$BRANCH"`, a una rama nueva). Implementar P1 tal como el encargo lo pedía habría reintroducido el push directo a `main` que ese mismo commit quitó el mismo día.
+  **impacto:** ninguno sobre el objetivo del encargo (evitar que el canal muera con `GH013`) — ya está resuelto por otra vía. La deploy key `canal-deriva` / secreto `CANAL_DERIVA_SSH_KEY` del `MANUAL-canal-deploy-key-2026-09-23.md` (adjunto, archivado en `forense/encargos/fuentes/`) queda sin uso para este objetivo; mesa indicó en el chat de dirección (23/sep) que no lo ejecutaría ahora («No se ejecutará ahorita ... se resuelve a final de esta semana, domingo»), y con P1 superado ya no es necesario ejecutarlo para este acto.
+  **sucesor:** N/A — resuelto por `fc14cd8`, no por este acto ni por un sucesor.
+
+- **qué:** P3 · Prueba real del push firmado con la deploy key.
+  **por qué:** `SUSTITUIDO-POR:fc14cd8` — no hay push por SSH que probar (P1 no corrió, ver arriba). La prueba real del mecanismo VIGENTE (PR automático) ya existe de forma independiente: hay dos PR abiertos por ese mecanismo, `#1057` y `#1059` («`[deriva] vistas generadas tras ...`»), pendientes de que mesa los fusione.
+  **impacto:** `N_resultados_gen2_adoptados_activos` sigue en 72 (medido con `python3 tools/corrida0.py status` en esta sesión, commit `84a3aa8`), no en 87, hasta que mesa fusione `#1057`/`#1059` — no por falla del canal, sino porque nadie los ha fusionado todavía. `celdas_validadas` en 92 (Δ0 sobre lo medido al abrir).
+  **sucesor:** mesa (fusionar `#1057` y `#1059` cuando lo decida — no es de este acto tocarlos, están fuera de su perímetro §9).
+
+- **qué:** P4 · Cierre de deuda (`…FIRMAS-11-05da-01` y las once NC del canal).
+  **por qué:** `DECISIÓN-DE-MESA-PENDIENTE` — el encargo condicionaba el cierre a «P3 verde», y P3 (en su forma original, prueba del push por SSH) no aplica; la forma vigente de «verde» —`#1057`/`#1059` fusionados y publicando la vista— tampoco ocurrió en esta sesión (mesa no los fusionó). Cerrar estas NC sin esa verificación sería exactamente el riesgo que el propio encargo nombró en §7-f para el mecanismo viejo: adoptar sobre una premisa no confirmada.
+  **impacto:** las 27+ corridas selladas sin fila y `adoptados_activos` (72→87 medido por FIRMAS-10) siguen sin publicarse en la vista; las once NC (`c09b-01`, `c2b4-02`, `7d98-01`, `7d98-04`, `0af9-01`, `009f-01`, `ef6f-01`, `9428-01`, `aa3f-01`, `ff56-01`, `ff56-03`, `7492-01`) siguen `ABIERTA`.
+  **sucesor:** quien cierre `#1057`/`#1059` (mesa) — o un acto de tramite/cierre posterior que verifique la vista ya publicada y entonces cierre estas NC por objeto (A.17).
+
+- **qué:** el resto del encargo (P2 — `merge_group`).
+  **por qué:** ejecutado — no aplica.
+  **impacto:** ninguno.
+  **sucesor:** N/A.
+
+## CONSUMIDO
+
+Ejecutado por `/acto` sobre `forense/encargos/2026-09-23-GEN2-TUBERIA-CANAL-REPARACION-1.md`, rama `acto/gen2-tuberia-canal-reparacion-1`, PR pendiente de número (se cita en el siguiente commit). ADR raíz: `ADR-260923-GEN2-TUBERIA-CANAL-REPARACION-1-95ec-01`. Suite `--rapido` VERDE (0 FAIL) en cada commit de esta rama. No se fusiona en este acto: mesa fusiona.
