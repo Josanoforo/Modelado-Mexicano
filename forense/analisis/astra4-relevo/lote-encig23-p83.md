@@ -27,6 +27,8 @@ Los dos CALC anteriores permanecen sellados, con `sello.sha256` presentes. La co
 
 **Contador y lectura.** Esta medida nueva no reduce por sí misma las 146 lecturas legacy activas rederivadas al arranque de U2. El escritor autorizado de RES-0028 está en la PR separada #1080; un pin de mesa puede reducir trazabilidad sin que cambie un consumidor. Aquí no se alteró ninguno.
 
+El baseline inicial señaló T22 por el anexo `TRANSFER-ASTRA-2026-09-23.md`, archivado verbatim: su mención de una reserva y una adjudicación de cuatro emisiones ENVIPE remite a `FP-260923-GEN2-TRAMITE-FIRMAS-11-05da-01`; no abre una ranura U2. Se añadió la ruta del anexo a `dónde` de esa fila existente, sin alterar su firma ni decisión. `check.py --rapido` posterior: T22 sin FAIL, 0 FAIL total. El anexo original permanece intacto.
+
 ## NO-CORRIDO / RESERVAS
 
 No se midió pago consumado de `P8_6`, no se estimó IC, no se autorizó `cuenta_gen2=SI`, no se firmó adopción, no se tocó `milpa/`, celdas-D ni motor.py. Quedan otros lotes de U2. El primer intento fallido de nombre de miembro está documentado arriba.
