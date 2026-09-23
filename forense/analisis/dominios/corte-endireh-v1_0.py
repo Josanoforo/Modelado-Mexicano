@@ -33,9 +33,9 @@ ROW = dict(
     dictamen_razon="Dato, FD, cuestionario A y diseño 2021 registrados en manifiesto; hashes físicos documentales coinciden. Solo se contrasta subcomponente de violencia física de pareja actual.",
     datos_id_estado="endireh2021_bd_csv_zip|e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e|físico COINCIDE SHA, microdato NO ABIERTO",
     reserva="Verificar reservas específicas de ENDIREH 2021 antes de abrir en CAJA; ninguna apertura aquí.",
-    gen2_existente="Consumir cualquier RESULT ENDIREH sellado por id si lo hay; cero resultados nuevos aquí.",
+    gen2_existente="PR #1093 fusionado a main 8721d658: RESULT-ENDIREH2021-PF-TABLA, CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004, resultados SHA256 2924630885c0577d76bb039a02d6ce039f09ecdd19c9a679aaae0d97df06c067; nacional vida A1/A2 15.5953% (IC95 15.2003-15.9944), pareja actual física. Sellada en disco y archivo en main, no registrada en canal de publicación; cotejo U0 sin contraste directo de 34.7%/70.1% globales.",
     propietario="ASTRA5-U2",
-    siguiente_operacion="ASTRA5-U2 preregistra subcomponente físico; para contrastar el 70.1% global necesita cuestionarios General, B y C y contrato de universos separado.",
+    siguiente_operacion="U2 continúa actos no físicos y ámbitos por universo A/B/C/General; U0 conserva resultado físico de pareja actual como subcomponente, sin promover 34.7%/70.1% globales ni marcar MEDIDO el report completo.",
     prioridad="3",
 )
 

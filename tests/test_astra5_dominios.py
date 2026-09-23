@@ -77,11 +77,12 @@ def test_corte_finanzas_usa_documento_ya_integrado_y_universos():
 
 def test_corte_seguridad_no_convierte_cifra_negra_en_motivo():
     row, = read("corte-seguridad-v1_0.tsv")
-    assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+    assert row["dictamen"] == "MEDIBLE-EN-CORPUS"
     assert "BP1_20" in row["pregunta_textual_codigo_respuestas"]
     assert "no identifica tolerancia" in row["limite_inferencial"]
     assert "envipe2025_diseno_muestral_pdf" in row["documento_id_hash_pagina"]
-    assert "#1089 RAMA, ausente de main" in row["documento_id_hash_pagina"]
+    assert "main e792419c" in row["documento_id_hash_pagina"]
+    assert "no tiene RESULT adjudicado" in row["dictamen_razon"]
 
 
 def test_enut_documentos_en_main_y_limite_de_planeacion():
