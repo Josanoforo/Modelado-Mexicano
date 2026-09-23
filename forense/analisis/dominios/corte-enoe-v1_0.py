@@ -22,9 +22,9 @@ COMMON = dict(
     documento_id_hash_pagina=f"{DOC_Q};{DOC_FD};{DESIGN}",
     datos_id_estado=f"{DATA};físico COINCIDE SHA, microdato NO ABIERTO",
     reserva="ENOE ola más reciente reservada; 2024 T3 solo hash de envoltura comprobado, no leído",
-    gen2_existente="#1087 RAMA, ausente de main: RESULT-ENOE-PISOS-TABLA / CALC-ENOE-PISOS-0003 / sello 3b916aacd14b5bc2c027485dae82dae5d1d68408c3a754b5aa39c99bc9398b8c; no confundir punto 2024T3 con cifra anual",
+    gen2_existente="#1087 MAIN 76b0e56bb626f3448dbaa3c84226d8111a3b18fa: RESULT-ENOE-PISOS-TABLA / CALC-ENOE-PISOS-0003 / sello 3b916aacd14b5bc2c027485dae82dae5d1d68408c3a754b5aa39c99bc9398b8c; cotejar estimando y no confundir punto 2024T3 con cifra anual",
     propietario="ASTRA5-U1",
-    siguiente_operacion="Consumir los RESULT de #1087 solo con estado rama hasta merge; verificar contrato por estimando y reserva de ola antes de uso en CAJA.",
+    siguiente_operacion="Cotejar RESULT integrado por estimando, universo, denominador y reserva de ola antes de usarlo como contraste de cada afirmación.",
     prioridad="1",
 )
 
