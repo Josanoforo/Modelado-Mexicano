@@ -8,11 +8,13 @@ Generado por `python3 tools/astra/region/mapa.py` desde los `resultados.json` se
 | ENCIG canal_digital_luz | 2019→2021 | 13/32 | [0.255, 0.577] |
 | ENCIG canal_digital_luz | 2021→2023 | 14/32 | [0.282, 0.607] |
 | ENCIG canal_digital_luz | 2023→2025 | 9/32 | [0.156, 0.454] |
+| ENCIG paga_mordida_encig2025 | 2021→2023 | 17/32 | [0.364, 0.691] |
+| ENCIG paga_mordida_encig2025 | 2023→2025 | 19/32 | [0.423, 0.745] |
 | ENIF informal_cualquiera_18a70 | 2018→2021 | 0/6 | [0.000, 0.390] |
 | ENIF informal_cualquiera_18a70 | 2021→2024 | 4/6 | [0.300, 0.903] |
 | ENVIPE evade_norma_envipe2025 | 2023→2024 | 18/32 | [0.393, 0.718] |
 | ENVIPE evade_norma_envipe2025 | 2024→2025 | 20/32 | [0.453, 0.771] |
 
-Wilson supone eventos Bernoulli independientes entre geografías. El diseño compartido, las regiones ENIF y la repetición de entidades entre transiciones pueden violar ese supuesto; por ello el intervalo es solo una descripción binomial condicional, no un IC de diseño ni una cobertura por conglomerado válida. No se dispone aquí de evaluación temporal calibrada libre de fuga ni de un número de transiciones independientes suficiente para inferir persistencia regional. Los 32 estados no se reinterpretan como UPM; las seis regiones ENIF tampoco.
+Wilson supone eventos Bernoulli independientes entre geografías. El diseño compartido, las regiones ENIF y la repetición de entidades entre transiciones pueden violar ese supuesto; por ello el intervalo es solo una descripción binomial condicional, no un IC de diseño ni una cobertura por conglomerado válida. La evaluación predictiva calibrada se presenta en un mapa separado, con ajuste anterior a la ola evaluada. El número de transiciones independientes sigue siendo insuficiente para inferir persistencia regional. Los 32 estados no se reinterpretan como UPM; las seis regiones ENIF tampoco.
 
 No se aplica corrección de multiplicidad: ninguna categoría individual se presenta como hallazgo simultáneo. El mapa completo incluye SIN-COMPARABILIDAD si una de las dos olas tiene publicación suprimida.

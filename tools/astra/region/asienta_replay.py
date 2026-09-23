@@ -13,6 +13,8 @@ CALCS = ("CALC-REGION-ENIF-2024-0001", "CALC-REGION-ENIF-PORTAFOLIO-2024-0001",
          "CALC-REGION-ENIF-NO-TRABAJA-2024-0001",
          "CALC-REGION-ENVIPE-DENUNCIA-U4-2025-0001",
          "CALC-REGION-ENVIPE-SEGURO-2025-0001",
+         "CALC-REGION-ENCIG-SOL1-2021-0001", "CALC-REGION-ENCIG-SOL1-2023-0001",
+         "CALC-REGION-ENCIG-SOL1-IC-PRED-0001",
          *(f"CALC-REGION-HIST-{inst}-{ola}-0001" for inst, olas in
            (("ENVIPE", (2023, 2025)), ("ENCIG", (2017, 2019, 2021)),
             ("ENIF", (2018, 2021, 2024))) for ola in olas))
@@ -42,7 +44,8 @@ def main():
                 "entorno": "CAJA; corpus montado",
                 "procedencia": "VERIFY-EJECUTADO · ASTRA4-U5-EJE-REGIONAL",
                 "alcance": ("IC predictivo regional retrospectivo, derivado; no adopta"
-                            if calc == "CALC-REGION-IC-PREDICTIVO-0001" else
+                            if calc in ("CALC-REGION-IC-PREDICTIVO-0001",
+                                        "CALC-REGION-ENCIG-SOL1-IC-PRED-0001") else
                             "piso regional retrospectivo de una conducta; no adopta"),
                 "nota": "forense/analisis/region/HOJA-EJE-REGIONAL-para-mesa.md",
             }

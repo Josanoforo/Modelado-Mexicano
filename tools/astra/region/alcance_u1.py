@@ -73,6 +73,8 @@ def genera():
                     if inst == "ENIF" and "desconfianza_o_mal_servicio" in conducta else
                     "Cuatro tasas por seguro, 32 entidades cada una: todas suprimidas por n<200."
                     if state.startswith("MEDIDO-REGION;128") else
+                    "Primer inciso de solicitud medido 2021/23/25; no es pago efectivo."
+                    if (inst, conducta) == ("ENCIG", "paga_mordida_encig2025") else
                     "Última ola o serie regional no medida, salvo estado MEDIDO-REGION.")
             w.writerow(dict(zip(FIELDS, (inst, conducta, ";".join(sorted(v["estados"])),
                                       ";".join(sorted(v["results"])), state, nota))))

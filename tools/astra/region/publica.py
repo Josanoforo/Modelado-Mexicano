@@ -234,6 +234,28 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc_seg,
                 sha(seg_path), sha(ROOT / "data/corrida0" / calc_seg / "sello.json"),
             ))))
+    for year in (2021, 2023):
+        calc_sol = f"CALC-REGION-ENCIG-SOL1-{year}-0001"
+        sol_path = ROOT / "data/corrida0" / calc_sol / "resultados.json"
+        sol = json.loads(sol_path.read_text(encoding="utf-8"))["resultados"]
+        pref = f"RESULT-REGION-ENCIG-SOL1-{year}"
+        for fila in json.loads(sol[pref + "-JSON"])["filas"]:
+            base = pref + "-" + fila["geografia"]
+            ids = [base + suf for suf in ("-P", "-IC-LO", "-IC-HI")]
+            punto, lo, hi = (sol[i] for i in ids)
+            if fila["estado"] == "PUBLICABLE" and not (0 <= lo <= punto <= hi <= 1):
+                raise ValueError(f"IC o punto incoherente: {base}")
+            if fila["estado"] != "PUBLICABLE" and any(v is not None for v in (punto, lo, hi)):
+                raise ValueError(f"fila suprimida con cifra: {base}")
+            filas.append(dict(zip(CAMPOS, (
+                "ENCIG", "paga_mordida_encig2025", "ENTIDAD", fila["geografia"], str(year),
+                "IC-DE-DISEÑO", punto, lo, hi, "persona", "proporción [0,1]",
+                "personas urbanas 18+ con P8_3_1=1/2; solicitud, no pago",
+                sol[base + "-N"], sol[base + "-N-EFECTIVO-KISH"],
+                "n≥200 y varianza bootstrap estimable" if fila["estado"] == "PUBLICABLE" else fila["estado"],
+                "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc_sol,
+                sha(sol_path), sha(ROOT / "data/corrida0" / calc_sol / "sello.json"),
+            ))))
     calc_pred = "CALC-REGION-IC-PREDICTIVO-0001"
     pred_path = ROOT / "data/corrida0" / calc_pred / "resultados.json"
     pred = json.loads(pred_path.read_text(encoding="utf-8"))["resultados"]
@@ -260,6 +282,25 @@ def genera():
             if clone["estado_publicacion"] != "PUBLICABLE" or pred[loid] is None or pred[hiid] is None:
                 raise ValueError(f"piso predictivo inválido: {base}")
             filas.append(clone)
+    calc_solpred = "CALC-REGION-ENCIG-SOL1-IC-PRED-0001"
+    solpred_path = ROOT / "data/corrida0" / calc_solpred / "resultados.json"
+    solpred = json.loads(solpred_path.read_text(encoding="utf-8"))["resultados"]
+    for row in json.loads(solpred["RESULT-REGION-ENCIG-SOL1-ICP-JSON"])["filas"]:
+        original = originales[("ENCIG", "2023", "paga_mordida_encig2025", row["geografia"])]
+        base = f"RESULT-REGION-ENCIG-SOL1-ICP-{row['geografia']}"
+        loid, hiid = base + "-IC-LO", base + "-IC-HI"
+        clone = dict(original)
+        clone.update(naturaleza_estimacion="IC-PREDICTIVO-CALIBRADO",
+                     ic95_inf=solpred[loid], ic95_sup=solpred[hiid],
+                     calidad="intervalo predictivo retrospectivo; ajuste 2021→2023",
+                     result_inf=loid, result_sup=hiid,
+                     calc=original["calc"] + ";" + calc_solpred,
+                     sha256_resultados=original["sha256_resultados"] + ";" + sha(solpred_path),
+                     sha256_sello=original["sha256_sello"] + ";" +
+                     sha(ROOT / "data/corrida0" / calc_solpred / "sello.json"))
+        if clone["estado_publicacion"] != "PUBLICABLE" or solpred[loid] is None or solpred[hiid] is None:
+            raise ValueError(f"piso predictivo SOL1 inválido: {base}")
+        filas.append(clone)
     destino = ROOT / "canon/eje-regional-v1_0.tsv"
     with destino.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CAMPOS, delimiter="\t", lineterminator="\n")
@@ -272,7 +313,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee diecinueve CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee veintidós CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"
