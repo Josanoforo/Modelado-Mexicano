@@ -2322,7 +2322,51 @@ def seccion_h(raiz, fecha, cuenta=None, base_nc_ref=None, tope_filas=25, tope_te
 # `EC.es_abierta`, nunca se escriben de vuelta.
 # ───────────────────────────────────────────────────────────────
 
-RE_FP_ID = re.compile(r"\bFP-\d+\b")
+# ─────────────────────────────────────────────────────────────────────
+# Gramática de id `FP`, DOS ÉPOCAS (D-24, `instrucciones-proyecto-v2_16.md`;
+# firma de mesa D-2/D-3 del 21/sep/2026, `ACTO GEN2-TUBERIA-SUCESOR-1` §2).
+#
+#   vieja  `FP-###`                             — espacio CERRADO, no se migra.
+#   nueva  `FP-<AAMMDD>-<RÓTULO>-<hhhh>-<NN>`   — raíz de acto.
+#
+# DEFECTO QUE ATRAPA (medido en este árbol, `ACTO GEN2-TUBERIA-PARSER-FP-1`,
+# 23/sep/2026): con `\bFP-\d+\b` a secas,
+#   findall("FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01") -> ['FP-260921']
+# — el parser se queda con el PREFIJO DE FECHA, que no es id de nadie. En
+# `_nc_a_fila_mesa` esa cita fantasma no resuelve contra `fp_por_id`, así
+# que las 36 filas de `forense/no-corrido.tsv` cuyo `sucesor` cita una FP
+# de raíz de acto (censadas el 23/sep/2026, universo = 613 filas) perdían
+# las dos lecturas que el bloque hace con la FP sucesora: el plazo heredado
+# (`vence:`) y el residual «la sucesora ya está cerrada y la NC no». La
+# vista no revienta: devuelve menos, en silencio, y las presenta como
+# «Sucesor sin FP visible … por aclarar».
+#
+# ORDEN DE LA ALTERNANCIA, no cosmético: la época NUEVA va primero. Un id
+# nuevo empieza por `FP-260921…`; si la rama vieja tomara el primer turno
+# partiría el id y produciría la cita fantasma que este regex existe para
+# cerrar. El `(?![\d\-A-Za-z_])` final es el segundo cinturón: un id sólo
+# casa cuando de verdad termina ahí (`FP-2609`, `FP-26092` y
+# `FP-…-6e60-012` quedan fuera).
+#
+# ANCHO `{1,3}` de la rama vieja: NO está tecleado. Es el ancho real del
+# espacio ya cerrado, re-derivado sobre este árbol el 23/sep/2026 con un
+# lector de CSV (§2: un conteo sobre un TSV con campos citados no se hace
+# por línea física) — 394 ids numéricos, ancho máximo 3, máximo `FP-409`.
+#
+# MÁS ANCHO QUE `nc_por_clase.RE_FP`, a propósito y medido. Aquel exige
+# `GEN2-` al inicio del rótulo y rótulo en mayúsculas; el tablero real
+# tiene dos ids que D-24 admite y esa gramática rechaza
+# (`FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01`, sin `GEN2`;
+# `FP-260921-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2-a6f5-01`, con `v1_2`
+# en minúscula), y con ellos 6 pares (NC, FP) que quedarían sin resolver.
+# D-24 no pide `GEN2` ni mayúsculas, así que aquí se lee D-24 y no su
+# subconjunto. Alinear `tools/nc_por_clase.py` es de otro acto: queda como
+# `NC-260923-GEN2-TUBERIA-PARSER-FP-1-9641-01` (fuera de perímetro §9).
+# ─────────────────────────────────────────────────────────────────────
+_RE_FP_NUEVA = r"FP-\d{6}-[A-Za-z0-9_]+(?:-[A-Za-z0-9_]+)*-[0-9a-f]{4}-\d{2}"
+_RE_FP_VIEJA = r"FP-\d{1,3}"
+RE_FP_ID = re.compile(
+    rf"\b(?:{_RE_FP_NUEVA}|{_RE_FP_VIEJA})(?![\d\-A-Za-z_])")
 
 
 def _lee_no_corrido(raiz):

@@ -5260,11 +5260,20 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md",
     # - DIN-LOTE-ENIF2024-SECUNDARIA-1 §3/§8: «…sin fila en vista hasta
     #   E11» / «Orden sugerido: después de E11» -- cita a
-    #   TUBERIA-CANAL-PUBLICACION-1 (E11).
+    #   TUBERIA-CANAL-PUBLICACION-1 (E11). CORRECCIÓN (este acto, tras el
+    #   merge de TANDA-5): el propio acto había verificado por ARRANQUE que
+    #   E11/E13 no tenían artefacto censado en el árbol -- cierto en ese
+    #   momento (TANDA-5/PR #1016 aún no fusionaba), falso una vez fusionada;
+    #   ver corrección declarada en la nota de cierre.
     "forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md",
     # - DUELO-ENVIPE2026-MARGINALES-2 §4: «no correr a la vez que E14» --
     #   cita a DIN-LOTE-ENIF2024-SECUNDARIA-1 (E14).
     "forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md",
+    # La nota de cierre de DIN-LOTE-ENIF2024-SECUNDARIA-1 (§10, corrección
+    # declarada) explica por qué E11/E13 son reales citando la propia
+    # numeración de TANDA-5 -- el `E11` pelado que el regex ve ahí es la
+    # misma cita, no un rótulo que esta nota acuñe.
+    "forense/notas/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1-cierre.md",
 }
 
 
