@@ -59,3 +59,15 @@ conserva esos dos inputs. Ambos CALC, specs, `resultados.json` y sellos
 permanecen íntegros. Siguen vigentes las reservas y límites del cierre:
 2026T1 cerrada, sin transición individual de panel, sin ingreso real ni
 cuidados específicos identificados, y sin IC predictivo calibrado.
+
+## Guarda adicional detectada por CI
+
+El job `adicionales` de #1087 expuso un error independiente del replay: el
+sidecar `.cuerpo.sha256` del encargo archivado citaba la **ruta completa**
+del `.md`, mientras el contrato de `sella_sha256 --cuerpo` exige su
+**basename**. Su hash de contenido `bf42d6b5...` era y sigue siendo el hash
+correcto del archivo entero normalizado. Se corrigió solo el campo de nombre
+del sidecar, sin modificar el encargo ni recalcular su hash. Las pruebas
+`python3 tools/sella_sha256.py --cuerpo --verifica ...` dan
+`SELLO_COINCIDE`, y `python3 tests/test_verifica_sidecars.py` termina
+`11 casos OK`. Esta corrección tampoco toca ningún sello de CALC.

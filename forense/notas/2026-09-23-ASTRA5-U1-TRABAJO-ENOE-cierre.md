@@ -144,3 +144,6 @@ por archivo. El replay de ambos CALC desde checkout limpio dio
 alterar specs/resultados/sellos. Causa, comandos, hashes y evidencia compacta:
 `forense/analisis/dominios/enoe/03-correccion-bytes-checkout-limpio.md`.
 2026T1 y todos los límites inferenciales anteriores siguen vigentes.
+El job `adicionales` de CI descubrió además que el sidecar del encargo
+citaba una ruta en vez del basename exigido; se corrigió solo ese campo,
+sin cambiar el hash del cuerpo. La verificación de sidecars da 11/11 OK.
