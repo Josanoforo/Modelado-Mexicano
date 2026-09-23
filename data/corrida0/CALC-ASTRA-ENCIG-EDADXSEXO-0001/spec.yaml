@@ -1,0 +1,182 @@
+calc_id: CALC-ASTRA-ENCIG-EDADXSEXO-0001
+spec_md: ../../../forense/prereg-caja/ASTRA-ENCIG-EDADXSEXO-spec-v1_0.md
+spec_md_sha256: 6086b46b82c34c996c5d71535e8ed0bdb14b857a359becc00620caa21db10ea0
+script: tools/astra/encig/emitir.py
+script_sha256_congelado: 62069f8945c1ae9a2d3600f28f5b8ca6561d2119244c7c788e5c978c75ab6f52
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  exposicion_historica: CIEGO-A-ENCIG2025-CRUCE-NO-ABIERTO
+  tipo: EMISION-PROSPECTIVA-CONDICIONAL
+inputs:
+- id: historico_2021
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2021-CRUCES-HISTORICOS-0003/resultados.json
+  sha256: 285eeb552c0ab99cb9cc9cab1d0622209d3ddda837baa29193d98670fefbe9f5
+  sello_sha256: 6c6b594d76f3a7ef79f10b391aa3296ed2f297ec025623003e9f5216124d2e4a
+- id: historico_2023
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2023-CRUCES-HISTORICOS-0002/resultados.json
+  sha256: b7d3dfe9aae42276961c5bf5676f0aa5f3de7e9a2218e44a58a613ef5cb7773e
+  sello_sha256: b0476ca5a461ee38fe545b69bf82b9ec8225103b283f6a9d4a48204932cb3772
+- id: marginales_publicos_2025
+  origen: repo
+  ruta: milpa/tramite-ola5-propuesta-v0.yaml
+  sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+variables:
+- archivo: CALC-ENCIG2021/2023-CRUCES-HISTORICOS
+  variable: DELTA, DELTA-EE, B-VALIDAS, CAUSA
+  rol: historia sellada
+- archivo: milpa/tramite-ola5-propuesta-v0.yaml
+  variable: p nacional, sexo y edad
+  rol: marginales 2025 públicos
+universo: Trámites N_TRA=01, P7_3 en 01/02/04/05/06, FAC_TRA positivo; evento 04/05; dimensiones completas por cruce
+filtros: Historia sólo CALC 2021/2023 sellados; marginales 2025 sólo bloque público de milpa; ninguna apertura del cruce 2025
+ponderador: FAC_TRA aplicado en CALC históricos y marginales públicos sellados
+transformacion: C2 en logit más media posterior de interacción; IC predictivo condicional en logit y expit
+estimando: Proporción de trámites de pago ordinario de luz con canal internet o cajero/kiosco inteligente
+parametros:
+  cruce: EDADXSEXO
+  tau: 0.15
+  omega: 0.1
+  nivel: 0.95
+  z: 1.959963984540054
+  olas:
+  - 2021
+  - 2023
+seed:
+  aplica: false
+dependencias_materiales: []
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: cálculo cerrado determinista sobre bytes sellados
+resultados:
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-1-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-1-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-1-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-1-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-1-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-1-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-1-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-1-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-1-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-1-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-1-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-1-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-2-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-2-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-18-29-2-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-2-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-2-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-30-44-2-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-2-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-2-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-45-59-2-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-2-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior 95%
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-2-NIVEL
+  tipo: proporcion
+  unidad: nivel
+- id: RESULT-ASTRA-ENCIG-EDADXSEXO-60-96-2-TIPO
+  tipo: texto
+  unidad: tipo de intervalo
+guardia:
+  allowlist_inputs:
+  - historico_2021
+  - historico_2023
+  - marginales_publicos_2025
+  sin_microdato_2025: true

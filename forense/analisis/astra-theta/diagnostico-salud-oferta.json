@@ -1,0 +1,23 @@
+{
+  "calc_id": "CALC-ASTRA-THETA-SALUD-OFERTA-0001",
+  "preregistro_commit": "c529cdf0",
+  "adquisicion_commit": "37cfd059",
+  "modo": "solo encabezado y hashes; cero filas de desenlace leidas",
+  "hashes_validos": true,
+  "hashes_observados": {
+    "ALL.tab": "79697720d54aa497156d49ad8f7ff86e10dc466abcbb4fc6866dfe41c3755788",
+    "clustmatchlist.tab": "b995d5f4ef15722e2bb66f112a94c9ea44e9752ef79b97de84e28334745bcd9e"
+  },
+  "columnas_all": 647,
+  "columnas_pares": 18,
+  "faltan_variables_preregistradas": [
+    "P01D1401",
+    "P01D1601",
+    "P11D0401",
+    "P11D0501",
+    "P10E0401_T2",
+    "P10E0501_T2"
+  ],
+  "estado": "NO-ESTIMABLE",
+  "causa": "La tabla de réplica omite reactivos de motivo y lugar de consulta requeridos por el desenlace; P10D04/P10D05 son otras preguntas del basal según codebook."
+}

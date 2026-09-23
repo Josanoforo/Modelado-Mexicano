@@ -2930,6 +2930,10 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
+    # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
+    "forense/analisis/astra-theta/seleccion.md",
+    "forense/prereg-caja/ASTRA-THETA-SALUD-OFERTA-spec-v1_0.md",
     # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: el `E0` pelado del
     # encargo (§2) sale de la cita verbatim "una ley E0 vencida" -- ejemplo
     # de premisa dentro de la lista cerrada de A.10, no un rótulo acuñado.
