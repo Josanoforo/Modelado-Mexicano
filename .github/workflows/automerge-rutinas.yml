@@ -93,8 +93,7 @@ jobs:
             pagina="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
               "https://api.github.com/repos/${REPO}/pulls/${{ steps.pr.outputs.numero }}/files?per_page=100&page=${p}")"
             n="$(echo "$pagina" | jq 'length')"
-            todos="$todos
-$(echo "$pagina" | jq -r '.[].filename')"
+            todos="$todos"$'\n'"$(echo "$pagina" | jq -r '.[].filename')"
             [ "$n" -lt 100 ] && break
           done
           toca_vedado="no"
@@ -142,8 +141,7 @@ $(echo "$pagina" | jq -r '.[].filename')"
           sha_actual="$(echo "$actual" | jq -r '.sha')"
           contenido="$(echo "$actual" | jq -r '.content' | base64 -d)"
           fila="$(date -u +%FT%TZ)	${{ steps.pr.outputs.numero }}	${{ steps.clase.outputs.rama }}	${{ steps.fusiona.outputs.sha_merge }}	D4-A	${{ github.event.workflow_run.id }}"
-          nuevo="${contenido}
-${fila}"
+          nuevo="${contenido}"$'\n'"${fila}"
           b64="$(printf '%s' "$nuevo" | base64 -w0)"
           curl -sS -X PUT -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/contents/forense/fusiones-automaticas.tsv" \
