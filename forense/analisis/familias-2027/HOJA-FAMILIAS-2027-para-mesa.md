@@ -42,13 +42,13 @@ FP-374 y NC-0161/0162/0234 permanecen como referencias históricas de otra caden
 
 ## EJECUTADO / LEÍDO / PROPUESTO
 
-- **EJECUTADO:** seis specs humanas v1.2 aditivas con sidecar; RESULT/CALC/hash cotejados; casos sintéticos del dictamen comprobados; v1.0 y v1.1 preservadas. `tests/check.py --rapido` y `--baseline` se ejecutaron: ambos señalan T22 por un marcador externo nuevo en `forense/encargos/fuentes/TRANSFER-ASTRA-2026-09-23.md` sin fila en firmas pendientes; `--baseline` muestra además T06 (2) y T08 (1). No se alteraron esos archivos ajenos.
+- **EJECUTADO:** seis specs humanas v1.2 aditivas con sidecar; RESULT/CALC/hash cotejados; casos sintéticos del dictamen comprobados; v1.0 y v1.1 preservadas. Tras sincronizar `origin/main` de #1093 (`8721d658`), T02 detectó la colisión de nombre `genera.py`; el generador se renombró a `genera_familias_prospectivas.py`. Reejecutado `tests/check.py --baseline --parallel`: línea base **VERDE, cero fallos nuevos**; quedan 3 fallos preexistentes (T06=2, T08=1) y 66,808 avisos. Pasan `tests/test_check_parallel.py` (5) y `tests/test_suite_warn_estado.py` (3). No se modificaron los documentos ajenos que originan T06/T08.
 - **LEÍDO:** specs y CALC sellados ENIF, HVD, ENCIG, ENVIPE denuncia-U4 y evasión-norma; `calendario-y-exclusiones.md`; encargo original; `/acto` (`.claude/commands/acto.md` de `origin/main`, porque no existe el alias local). Sin nueva lectura de microdato ni replay de los CALC históricos.
 - **PROPUESTO:** tolerancia ±2 pp con fronteras exactas, soporte por familia, numerador/denominador y faltantes cotejados al contrato histórico, comparabilidad y activación verificable. Potencia/efecto mínimo detectable NO-CALCULABLES hasta obtener los artefactos listados.
 
 ## NO-CORRIDO / RESERVAS
 
-En esta continuación no se consultó calendario adicional. No se abrieron microdatos, olas reservadas ni ENVIPE 2026; no se corrieron CALC ni replay. Precisión/potencia del contraste no calculables: faltan vectores históricos de réplicas, covarianza HVD y soporte estratificado/UPM específico U4. `--rapido` informa 348 WARN; el detalle de T22 está fuera del cambio, según arriba. `git diff --check`, hashes laterales y casos sintéticos pasan. Pendientes: fechas oficiales, equivalencia del cuestionario futuro, aperturas y asiento de reservas de adquisición. No se fusiona.
+En esta continuación no se consultó calendario adicional. No se abrieron microdatos, olas reservadas ni ENVIPE 2026; no se corrieron CALC ni replay. Precisión/potencia del contraste no calculables: faltan vectores históricos de réplicas, covarianza HVD y soporte estratificado/UPM específico U4. `git diff --check`, sidecars y casos sintéticos pasan. Pendientes: fechas oficiales, equivalencia del cuestionario futuro, aperturas y asiento de reservas de adquisición. No se fusiona.
 
 ## CONSUMIDO
 
