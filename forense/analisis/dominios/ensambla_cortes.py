@@ -12,6 +12,7 @@ FILES = [
     "corte-politica-v1_0.tsv",
     "corte-finanzas-v1_0.tsv",
     "corte-seguridad-v1_0.tsv",
+    "corte-tiempo-v1_0.tsv",
 ]
 
 

@@ -81,3 +81,13 @@ def test_corte_seguridad_no_convierte_cifra_negra_en_motivo():
     assert "no identifica tolerancia" in row["limite_inferencial"]
     assert "envipe2025_diseno_muestral_pdf" in row["documento_id_hash_pagina"]
     assert "#1089 RAMA, ausente de main" in row["documento_id_hash_pagina"]
+
+
+def test_enut_documentos_en_rama_y_limite_de_planeacion():
+    row, = read("corte-tiempo-v1_0.tsv")
+    assert row["estado_verificacion"] == "CERRADA"
+    assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+    assert "#1090" in row["documento_id_hash_pagina"]
+    assert "TRAB_NO_REM_VOL" in row["pregunta_textual_codigo_respuestas"]
+    assert "no miden directamente planeación" in row["limite_inferencial"]
+    assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
