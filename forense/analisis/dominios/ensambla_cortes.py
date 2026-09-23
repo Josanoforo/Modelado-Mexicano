@@ -11,6 +11,7 @@ FILES = [
     "corte-endireh-v1_0.tsv",
     "corte-politica-v1_0.tsv",
     "corte-finanzas-v1_0.tsv",
+    "corte-seguridad-v1_0.tsv",
 ]
 
 

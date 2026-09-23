@@ -64,11 +64,19 @@ def test_cortes_documentales_conservan_componentes_y_fuentes():
 
 def test_corte_finanzas_distingue_documento_en_rama_y_universos():
     rows = read("corte-finanzas-v1_0.tsv")
-    assert len(rows) == 5
-    assert len({row["id_afirmacion"] for row in rows}) == 5
+    assert len(rows) == 10
+    assert len({row["id_afirmacion"] for row in rows}) == 10
     for row in rows:
         assert row["estado_verificacion"] == "CERRADA"
         assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
         assert "#1088 RAMA, ausente de main" in row["documento_id_hash_pagina"]
         assert "P" in row["pregunta_textual_codigo_respuestas"]
         assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
+
+
+def test_corte_seguridad_no_convierte_cifra_negra_en_motivo():
+    row, = read("corte-seguridad-v1_0.tsv")
+    assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+    assert "BP1_20" in row["pregunta_textual_codigo_respuestas"]
+    assert "no identifica tolerancia" in row["limite_inferencial"]
+    assert "889463926689.pdf" in row["documento_id_hash_pagina"]
