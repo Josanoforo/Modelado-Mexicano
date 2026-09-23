@@ -1,0 +1,215 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001
+spec_md: ../../../forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md
+spec_md_sha256: e87d3d32419f2aa176b4fcf801498d70464ddd9f8f85ddfd538717bb14af4788
+script: data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001/medidor.py
+script_sha256_congelado: 70016e7922818b3f1c46300cb59d202b3dd11c0f35d1418151f56d0e55435abc
+etiquetas:
+  generacion: GEN2
+  tipo: DUELO-PROSPECTIVO-ADJUDICACION
+  cuenta_gen2: SI
+  cuenta_gen2_firma: 'Encargo GEN2-DUELO-ENVIPE2026-MARGINALES-2, CABECERA (22/sep/2026): «CONTADOR:
+    +2 corridas selladas (emisiones, adjudicación), cuenta_gen2 = SI, no adopta; celdas_validadas sube
+    por cada celda con veredicto PROSPECTIVA (derivado)». El merge de mesa la perfecciona.'
+  rotulo: PROSPECTIVA
+  exposicion_historica: 'ÚNICA APERTURA de este acto sobre la reserva restante de ENVIPE 2026 (reserva:envipe2026,
+    data/corrida0/decisiones.tsv), autorizada por FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01.'
+  autorizacion_mesa: 'FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01, FIRMADA 22/sep/2026, verbatim:
+    «Se autoriza el COMMIT-3 de este duelo —única lectura de la reserva restante de ENVIPE 2026— exclusivamente
+    por CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001 congelado, con el sha de emisiones escrito
+    en COMMIT-3a; lo que no emita este CALC sigue RESERVADA.» forense/firmas-pendientes.tsv (FIRMADA).'
+  procedimiento_congelado_en: 'COMMIT-3a (este spec.yaml y medidor.py, con el sha de EMISIONES-0001 ya
+    escrito abajo); corrido en COMMIT-3.'
+  dependencia_congelada: 'tools/celda_d/marginales_reproduccion.py sha256 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+    (solo se usa su utilidad genérica _lee_miembro, no su universo de evasión_norma) y tools/duelo/cruces_familia.py
+    sha256 a41bdb07d1d975fe84a0b5653232f8532d38c56952c1eafeffd29bae89f9ee3b (adjudica(), genérica, no
+    reimplementada) -- el medidor verifica ambos hashes en tiempo de ejecución y PARA si no coinciden.'
+  cableado_nota: 'La spec humana §3 citaba tools/celda_d/marginales_reproduccion.py::carga_ola() como
+    el guardián a heredar; esa función está hard-codeada al universo BP1_20-evasión_norma (no lee BPCOD
+    ni BP2_1), así que no sirve para con_seguro. Corrección de cableado (D-18, ≤10 líneas de defecto adyacente,
+    no toca estimando/umbral/candidatos/B-bis): este CALC trae su propia carga_universo_con_seguro(), que
+    reutiliza la utilidad genérica _lee_miembro (misma tolerancia de encoding utf-8/latin-1 y normalización
+    de \r) sin editar el archivo ajeno ni su guardia.'
+inputs:
+- id: CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001
+  origen: repo
+  ruta: data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001/resultados.json
+  sha256: 9b5afa24962b28e6707fe77f87d6e5f958fc2b0ba2eab0c006d17e69f2edb079
+  sello_sha256: 8e3410415814d68f653a04f0b228af8d391eb27dc82af7916a16f3246c26f3ac
+- id: envipe2026_csv
+  origen: manifiesto
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BPCOD
+  rol: 'tipo de delito; universo restringido a ''01'' (robo total de vehículo), único donde BP2_1 tiene
+    masa (spec-v1_0.md §1)'
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BP1_20
+  rol: caso -- denuncia = BP1_20=1; universo BP1_20∈{1,2}
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: BP2_1
+  rol: eje -- cobertura de seguro, universo BP2_1∈{1,2} (1 asegurado, 2 no asegurado)
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: FAC_DEL
+  rol: ponderador de la unidad (delito)
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: EST_DIS
+  rol: estrato de diseño muestral -- llave opaca de texto
+- archivo: conjunto_de_datos_tmod_vic_envipe2026.csv
+  variable: UPM_DIS
+  rol: unidad primaria de muestreo -- llave opaca de texto
+universo: 'ENVIPE 2026, tmod_vic, BPCOD=''01'' ∧ BP1_20∈{1,2} ∧ BP2_1∈{1,2} ∧ FAC_DEL válido -- idéntico
+  al universo de CALC-ARBITRO-MARGINALES-ENVIPE2025-0001, verificado por texto contra el FD 2026 (spec-v1_0.md
+  §2). Dos celdas: asegurado (BP2_1=1), no_asegurado (BP2_1=2).'
+filtros: 'Fuera del universo, contado en G-FILAS-ARCHIVO/G-FILAS-UNIVERSO: BPCOD != ''01''; BP1_20 fuera
+  de {1,2}; BP2_1 fuera de {1,2}; FAC_DEL no finito o <= 0.'
+ponderador: FAC_DEL, unidad DELITO
+transformacion: 'R = proporción ponderada de BP1_20=''1'' dentro de cada celda BP2_1. Bootstrap de UPM
+  con reemplazo dentro de EST_DIS (misma receta que wprop_ic_conglomerado, expuesta completa). Piso y
+  retador (COMMIT-2) se combinan réplica a réplica vía tools/duelo/cruces_familia.py::adjudica -- candidatos
+  como normal en logit con su EE (delta method), sorteo independiente; R con réplicas reales del bootstrap.
+  ΔMAE = MAE(piso) − MAE(retador), IC95 percentiles 2.5/97.5. Vocabulario mapeado (spec-v1_0.md §3):
+  VENCE-RETADOR→VENCE-AL-PISO, PROPUESTA-CON-RESERVA→(igual), NADIE-VENCE→NO-VENCE si ΔMAE>0 en punto
+  o C-PISO-ADOPTADO si ΔMAE<=0, NO-ADJUDICABLE→INDECIDIBLE.'
+estimando: 'Por celda (asegurado, no_asegurado): R real 2026 con su IC95; error con signo de piso y de
+  retador contra R; cobertura cruzada (candidato dentro de IC de R, R dentro de IC de candidato); ΔMAE
+  con IC95 por réplica; veredicto del vocabulario cerrado.'
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+  n_replicas: 10000
+  nota: 'Una réplica independiente de generador por celda (Generator(PCG64(42)) fresco); dentro de una
+    celda, un solo stream: primero el bootstrap de R, luego el sorteo normal-en-logit de piso, luego el
+    de retador, en ese orden -- reproducible desde el seed, sin covarianza forzada entre R/piso/retador
+    más allá de compartir el índice de réplica k en la comparación (spec-v1_0.md §3).'
+dependencias_materiales:
+- numpy
+- pandas
+parametros:
+  celdas:
+  - ASEGURADO
+  - NO-ASEGURADO
+  bp2_1_codigo:
+    ASEGURADO: '1'
+    NO-ASEGURADO: '2'
+  umbral_vence_pp: 0.5
+  umbral_reserva_pp: 0.0
+  umbral_cita: 'default de tools/duelo/cruces_familia.py::adjudica -- mismo umbral que el lote ENIF/duelo-1
+    (forense/prereg-caja/DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md:67), heredado no inventado (spec-v1_0.md
+    §3).'
+resultados:
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-P
+  tipo: proporcion
+  unidad: R real 2026, proporción ponderada de denuncia dentro de asegurado
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior de R, bootstrap de UPM en estrato
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-IC-HI
+  tipo: flotante
+  unidad: IC95 superior de R
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-N
+  tipo: entero
+  unidad: n no ponderado de la celda en el universo 2026
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-ERROR-PISO-PP
+  tipo: flotante
+  unidad: 100*(piso - R), con signo
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-ERROR-RETADOR-PP
+  tipo: flotante
+  unidad: 100*(retador - R), con signo
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-PISO-DENTRO-IC-R
+  tipo: texto
+  unidad: SI | NO -- el punto del piso dentro del IC95 de R
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-RETADOR-DENTRO-IC-R
+  tipo: texto
+  unidad: SI | NO -- el punto del retador dentro del IC95 de R
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-DENTRO-IC-PISO
+  tipo: texto
+  unidad: SI | NO -- R dentro del IC95 sellado del piso
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-DENTRO-IC-RETADOR
+  tipo: texto
+  unidad: SI | NO -- R dentro del IC95 delta-method del retador
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(piso) - MAE(retador), pp -- positivo favorece al retador
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior de la diferencia de error medio, percentil por réplica
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-IC-HI
+  tipo: flotante
+  unidad: IC95 superior de la diferencia de error medio
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-VEREDICTO
+  tipo: texto
+  unidad: VENCE-AL-PISO | PROPUESTA-CON-RESERVA | NO-VENCE | C-PISO-ADOPTADO | INDECIDIBLE
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-P
+  tipo: proporcion
+  unidad: R real 2026, proporción ponderada de denuncia dentro de no_asegurado
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior de R, bootstrap de UPM en estrato
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-IC-HI
+  tipo: flotante
+  unidad: IC95 superior de R
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-N
+  tipo: entero
+  unidad: n no ponderado de la celda en el universo 2026
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-ERROR-PISO-PP
+  tipo: flotante
+  unidad: 100*(piso - R), con signo
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-ERROR-RETADOR-PP
+  tipo: flotante
+  unidad: 100*(retador - R), con signo
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-PISO-DENTRO-IC-R
+  tipo: texto
+  unidad: SI | NO -- el punto del piso dentro del IC95 de R
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-RETADOR-DENTRO-IC-R
+  tipo: texto
+  unidad: SI | NO -- el punto del retador dentro del IC95 de R
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-DENTRO-IC-PISO
+  tipo: texto
+  unidad: SI | NO -- R dentro del IC95 sellado del piso
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-DENTRO-IC-RETADOR
+  tipo: texto
+  unidad: SI | NO -- R dentro del IC95 delta-method del retador
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(piso) - MAE(retador), pp -- positivo favorece al retador
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-IC-LO
+  tipo: flotante
+  unidad: IC95 inferior de la diferencia de error medio, percentil por réplica
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-IC-HI
+  tipo: flotante
+  unidad: IC95 superior de la diferencia de error medio
+  permite_no_estimable: true
+- id: RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-VEREDICTO
+  tipo: texto
+  unidad: VENCE-AL-PISO | PROPUESTA-CON-RESERVA | NO-VENCE | C-PISO-ADOPTADO | INDECIDIBLE
+- id: RESULT-DUELO-MARGINALES-ADJ-G-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas activas de conjunto_de_datos_tmod_vic_envipe2026.csv, antes de todo filtro (A.13)
+- id: RESULT-DUELO-MARGINALES-ADJ-G-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas del universo combinado (las dos celdas), después de BPCOD/BP1_20/BP2_1/FAC_DEL (A.13)
+- id: RESULT-DUELO-MARGINALES-ADJ-G-MIEMBRO
+  tipo: texto
+  unidad: nombre exacto del miembro del zip leído (A.13, procedencia)
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-9
+  razon: 'Punto y bootstrap deterministas por seed/rng declarados (numpy.PCG64(42), 10000 réplicas);
+    verify compara exacto salvo esa tolerancia de punto flotante.'
