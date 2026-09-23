@@ -57,4 +57,8 @@ No mide, no deriva R, no adopta fuera de firma. Sucesor: `GEN2-CELDA-D-PILOTO-4-
   **Impacto:** la suite completa (`tests/check.py`, no `--rapido`) reporta 16 FAIL nuevos en `T35 T-REPRO(g)` hasta que un acto de aparato acredite el origen numérico de esas 16 filas.
   **Sucesor:** `NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03` — acto de aparato sobre el registro de `aptitud_uso`/`origen_numerico` de `tests/check.py::T35`.
 
+## CONSUMIDO
+
+Ejecutado por PR [#1025](https://github.com/Josanoforo/Modelado-Mexicano/pull/1025), ACTO GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2, 23/sep/2026.
+
 
