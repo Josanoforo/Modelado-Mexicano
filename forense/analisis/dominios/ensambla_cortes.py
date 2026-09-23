@@ -10,6 +10,7 @@ FILES = [
     "corte-tecnologia-v1_0.tsv",
     "corte-endireh-v1_0.tsv",
     "corte-politica-v1_0.tsv",
+    "corte-confianza-v1_0.tsv",
     "corte-finanzas-v1_0.tsv",
     "corte-seguridad-v1_0.tsv",
     "corte-tiempo-v1_0.tsv",
