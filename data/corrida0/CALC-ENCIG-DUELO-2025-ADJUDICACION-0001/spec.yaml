@@ -55,18 +55,22 @@ inputs:
 - id: emisiones_edadxsexo_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENCIG-DUELO-2025-EDADXSEXO-EMISIONES-0001/resultados.json
+  sha256: 509a501b919474e9bae31d1a4e3e739197e51f85e971fcbabdcf6b5a0acff50c
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
 - id: emisiones_edadxsexo_sello
   origen: repo
   ruta: data/corrida0/CALC-ENCIG-DUELO-2025-EDADXSEXO-EMISIONES-0001/sello.json
+  sha256: f56b0201c31d28a34ae87429fd8d7fc660c988c95c3cac77d7737ea519fd8c63
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
 - id: emisiones_escolaridadxsexo_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ESCOLARIDADXSEXO-EMISIONES-0001/resultados.json
+  sha256: 889b7def1b36dee7a87bb1cfcb4e8a32c7a2827372d7856149f72225380b5ec7
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
 - id: emisiones_escolaridadxsexo_sello
   origen: repo
   ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ESCOLARIDADXSEXO-EMISIONES-0001/sello.json
+  sha256: e3d84557e5170fbd67f0202d346c515455f1f91eb12a9be5526e21c3077ac3e2
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
 variables:
 - archivo: encig2025_04_sec_7.csv
