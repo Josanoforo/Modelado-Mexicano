@@ -1,4 +1,4 @@
-"""Asienta únicamente los tres verify ya ejecutados de U5, sin repetir filas."""
+"""Asienta los verify ya ejecutados de U5, sin repetir filas."""
 import csv
 import json
 from datetime import datetime, timezone
@@ -7,7 +7,10 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 REG = ROOT / "forense/replay-evidencia.tsv"
 CALCS = ("CALC-REGION-ENIF-2024-0001", "CALC-REGION-ENCIG-2023-0001",
-         "CALC-REGION-ENVIPE-2024-0001")
+         "CALC-REGION-ENVIPE-2024-0001",
+         *(f"CALC-REGION-HIST-{inst}-{ola}-0001" for inst, olas in
+           (("ENVIPE", (2023, 2025)), ("ENCIG", (2017, 2019, 2021)),
+            ("ENIF", (2018, 2021, 2024))) for ola in olas))
 
 
 def main():
@@ -16,7 +19,7 @@ def main():
         fields = reader.fieldnames
         existentes = {r["calc_id"] for r in reader}
     with REG.open("a", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=fields, delimiter="\t")
+        writer = csv.DictWriter(f, fieldnames=fields, delimiter="\t", lineterminator="\n")
         for calc in CALCS:
             if calc in existentes:
                 continue

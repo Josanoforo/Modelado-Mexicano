@@ -18,6 +18,14 @@ CALCS = {
              "personas elegidas 18+ con batería de ahorro válida",
              "CALC-REGION-ENIF-2024-0001"),
 }
+HISTORIA = {
+    "ENVIPE": ([2023, 2025], "evade_norma_envipe2025", "ENTIDAD", "delito",
+               "delitos con BP1_20 válido"),
+    "ENCIG": ([2017, 2019, 2021], "canal_digital_luz", "ENTIDAD", "trámite",
+              "trámites ordinarios de luz con canal válido; marco urbano 100 mil+"),
+    "ENIF": ([2018, 2021, 2024], "informal_cualquiera_18a70", "REGION", "persona",
+             "personas elegidas 18–70 con batería P5_1 válida"),
+}
 CAMPOS = ("instrumento", "conducta", "nivel_geografico", "geografia_codigo",
           "ola", "naturaleza_estimacion", "punto", "ic95_inf", "ic95_sup",
           "unidad", "escala", "universo", "n", "n_efectivo_kish", "calidad",
@@ -31,11 +39,17 @@ def sha(path):
 
 def genera():
     filas = []
-    for instrumento, (ola, conducta, nivel, unidad, universo, calc) in CALCS.items():
+    fuentes = [(instrumento, ola, conducta, nivel, unidad, universo, calc, False)
+               for instrumento, (ola, conducta, nivel, unidad, universo, calc) in CALCS.items()]
+    for instrumento, (olas, conducta, nivel, unidad, universo) in HISTORIA.items():
+        for ola in olas:
+            fuentes.append((instrumento, str(ola), conducta, nivel, unidad, universo,
+                            f"CALC-REGION-HIST-{instrumento}-{ola}-0001", True))
+    for instrumento, ola, conducta, nivel, unidad, universo, calc, historico in fuentes:
         carpeta = ROOT / "data/corrida0" / calc
         resultados_path = carpeta / "resultados.json"
         datos = json.loads(resultados_path.read_text(encoding="utf-8"))["resultados"]
-        pref = f"RESULT-REGION-{instrumento}-{ola}"
+        pref = f"RESULT-REGION-{'HIST-' if historico else ''}{instrumento}-{ola}"
         bruto = json.loads(datos[pref + "-JSON"])
         for fila in bruto["filas"]:
             base = pref + "-" + fila["geografia"]
@@ -62,14 +76,14 @@ def genera():
     resumen = "\n".join(f"- {k}: {v}" for k, v in sorted(c.items()))
     (ROOT / "canon/eje-regional-v1_0.md").write_text(
         "# Eje regional v1.0 · avance medido\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee tres CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee once CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"
         "R1: entidades solo donde el diseño y el estimando lo admiten; ENIF 2024 usa sus seis regiones "
         "oficiales. R2: punto e IC solo con n≥200, varianza estimable y cualquier requisito oficial "
         "más estricto. ENVIPE y ENCIG son entidades de residencia, no ubicación del delito o trámite.\n\n"
-        "## Filas del lote inicial\n\n" + resumen + "\n\n"
+        f"## Filas medidas ({len(filas)})\n\n" + resumen + "\n\n"
         "Las filas tienen nivel geográfico explícito y un RESULT por punto y límite. Los IC son "
         "de diseño; no se etiquetan como calibrados. Todas las cifras y comparaciones son "
         "RETROSPECTIVA. La repetición conjunta de réplicas por ola se conserva dentro del RESULT "
@@ -80,7 +94,11 @@ def genera():
         "de cada estado. Los niveles reflejan también oferta, recursos e instituciones; no prueban "
         "preferencias culturales. No hay medida de clase o pertenencia indígena en estas filas. "
         "Una variación regional requeriría una comparación histórica con unidades, geografía e IC "
-        "comparables; esta tabla no promete detectar cambios futuros.\n",
+        "comparables; esta tabla no promete detectar cambios futuros.\n\n"
+        "La [cobertura conocida](../forense/analisis/region/cobertura-conocida-v1_0.md) "
+        "explicita conductas aún pendientes. El [mapa descriptivo](../forense/analisis/region/mapa-estabilidad-v1_0.md) "
+        "y la [hoja de mesa](../forense/analisis/region/HOJA-EJE-REGIONAL-para-mesa.md) "
+        "mantienen esas reservas; adopta: NO.\n",
         encoding="utf-8")
     print(len(filas), dict(c))
 
