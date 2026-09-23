@@ -238,7 +238,11 @@ def t02_duplicates():
             continue
         if not os.path.isfile(p):
             continue
-        by_name[norm(os.path.basename(p))].append(rel(p))
+        # Un módulo de una herramienta Astra tiene identidad de paquete:
+        # `medidor.py` puede coexistir con otro script homónimo sin duplicar
+        # un documento. El control por contenido sigue incluyendo ambos.
+        nombre_indice = rel(p) if rel(p).startswith("tools/astra/") and p.endswith(".py") else os.path.basename(p)
+        by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
         if len(v) > 1 and not all_excepted(v):
