@@ -103,6 +103,7 @@ tests/test_enut_nucleo_conducto.py	script	NO	enut_nucleo,pandas	NO	0.1	NECESITA-
 tests/test_enut_persistencia_serie.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_envipe_res0028_u4_derivado.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_envipe_u4_2013_2015.py	script	NO	(ninguna)	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_escribe_relevo_consumo.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 con python3 tests/test_escribe_relevo_consumo.py (3 pruebas sin corpus)
 tests/test_estado_comun.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_estimadores_segmento.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_f5_completa.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
