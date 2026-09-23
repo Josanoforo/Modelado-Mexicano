@@ -209,3 +209,15 @@ def test_enif_condicionales_separan_denominadores_y_guardias():
     d.loc[0, "P5_23"] = "b"
     with pytest.raises(RuntimeError, match="G-C1"):
         dominios_condicionales(d)
+
+
+def test_enif_no_trabaja_aplica_particion_y_corte():
+    from tools.astra.region.enif_no_trabaja import dominio
+    d = pd.DataFrame({"P3_8": ["8", "8", "1"], "P3_9": ["7", "7", "1"],
+                      "P4_10": ["1", "3", "2"]})
+    den, y = dominio(d)
+    assert list(den) == [True, True, False]
+    assert list(y) == [True, False, False]
+    d.loc[0, "P3_8"] = "1"
+    with pytest.raises(RuntimeError, match="no particionan"):
+        dominio(d)
