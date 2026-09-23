@@ -8,6 +8,7 @@ from tools.astra.region.estadistica import estima_dominios
 from tools.astra.region.historia import carga_enif, carga_envipe
 from tools.astra.region.historia_v2 import carga_encig
 from tools.astra.region.historia_v3 import carga_enif as carga_enif_v3
+from tools.astra.region.enif_portafolio import desenlaces
 
 
 def marco():
@@ -115,3 +116,21 @@ def test_adaptadores_conservan_geografia_y_unidad(tmp_path):
     d, geo, den, y, fac, dominios = carga_envipe(envipe, 2023)
     assert list(geo) == ["01", "02"] and list(den) == [True, True]
     assert list(y) == [True, False] and fac == "FAC_DEL" and len(dominios) == 32
+
+
+def test_portafolio_enif_particion_y_complemento():
+    cols = {f"P5_1_{i}": ["2"] * 5 for i in range(1, 7)}
+    cols.update({f"P5_6_{i}": ["2"] * 5 for i in range(1, 10)})
+    cols["P5_1_1"] = ["1", "2", "1", "2", ""]
+    cols["P5_6_1"] = ["2", "1", "1", "2", ""]
+    for k in cols:
+        cols[k][-1] = ""
+    den, y = desenlaces(pd.DataFrame(cols))
+    assert list(den) == [True, True, True, True, False]
+    assert list(y["ahorra_solo_informal"]) == [True, False, False, False, False]
+    assert list(y["ahorra_solo_formal"]) == [False, True, False, False, False]
+    assert list(y["ahorra_ambas_vias"]) == [False, False, True, False, False]
+    assert list(y["no_ahorra"]) == [False, False, False, True, False]
+    assert y["no_tiene_ahorros_enif2024"].equals(y["no_ahorra"])
+    assert (y["ahorra_solo_informal"] | y["ahorra_solo_formal"] |
+            y["ahorra_ambas_vias"] | y["no_ahorra"]).equals(den)
