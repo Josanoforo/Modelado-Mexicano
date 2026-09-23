@@ -2,6 +2,8 @@
 
 Esta lista coteja conductas expresas de `milpa/tramite.yaml` y la matriz de consumo de U1 (`origin/codex/astra4-catalogo-1`, commit de entrega `3d8e82fb`) con el canon regional. **Es un mínimo conocido, no un denominador exhaustivo del catálogo adoptado/adoptable.** U1 sigue en rama separada; no se infiere cierre de universo por la ausencia de una fila aquí.
 
+El [snapshot de alcance U1](alcance-u1-v1_0.tsv) se deriva por `python3 tools/astra/region/alcance_u1.py` del commit fijado: identifica 37 identidades activas/adoptables de ENVIPE, ENCIG y ENIF, con RESULT consumidor y estado regional. Algunas son códigos de celda/interacción y requieren desdoblar el estimando antes de contar una expectativa geográfica; por eso **37 no es el denominador de cobertura de conductas**. La serie U5 `informal_cualquiera` es 18–70 y no sustituye el consumidor U1 18+.
+
 | Instrumento | Conducta / consumidor | Dominio R1 esperado | Estado U5 | Motivo de no medición cuando aplica |
 |---|---|---|---|---|
 | ENVIPE | `evade_norma_envipe2025` | 32 entidades de residencia | Medida, 2023–25 | — |
