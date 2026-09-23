@@ -71,3 +71,12 @@ del sidecar, sin modificar el encargo ni recalcular su hash. Las pruebas
 `python3 tools/sella_sha256.py --cuerpo --verifica ...` dan
 `SELLO_COINCIDE`, y `python3 tests/test_verifica_sidecars.py` termina
 `11 casos OK`. Esta corrección tampoco toca ningún sello de CALC.
+
+El job `guardias` reveló cuatro tests ENOE propios sin fila en su censo.
+Se asentaron únicamente esas cuatro filas en
+`forense/analisis/ci-guardias/censo-tests.tsv`; `ci_guardias.lee_censo()`
+ya encuentra cero tests sin fila. El test de persistencia corre realmente
+como módulo (1 prueba). Los tres tests de pisos requieren `numpy/pandas`,
+ausentes en el entorno Python 3.12 de ese job y se clasifican
+`NECESITA-DEPENDENCIA(numpy)` allí; las cuatro pruebas pasaron en CAJA con
+esas dependencias instaladas. No se cambió el ejecutor ni el workflow CI.
