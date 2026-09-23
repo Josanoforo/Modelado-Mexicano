@@ -2960,6 +2960,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # no se edita para complacer el test. Censado en registro-rotulos.tsv
     # en la fila del acto.
     "forense/prereg-caja/DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md",
+    # ACTO GEN2-DUELO-ENVIPE2026-MARGINALES-2, 22/sep/2026. El encargo §4
+    # ("YA HECHO / YA DECIDIDO") dice "no correr a la vez que E14
+    # (derivados)" -- cita de dirección a otro acto en vuelo sobre
+    # derivados (mismo patrón que las advertencias de no-choque del 21/sep
+    # que la HISTORIA de v2.16 ya documenta), no un rótulo que este acto
+    # acuñe. Archivo sellado por A.3 (`.cuerpo.sha256`, D-a1/D-a2): no se
+    # edita para complacer el test.
+    "forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md",
     # ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1, 21/sep/2026. `canon/L0/
     # HISTORICO.md` es el contenido histórico congelado de la línea `L0`
     # (P-A) -- prosa verbatim de decenas de actos anteriores, sellada tal
