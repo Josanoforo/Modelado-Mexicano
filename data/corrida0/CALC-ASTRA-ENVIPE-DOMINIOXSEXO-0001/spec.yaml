@@ -1,0 +1,221 @@
+calc_id: CALC-ASTRA-ENVIPE-DOMINIOXSEXO-0001
+spec_md: spec.md
+spec_md_sha256: 4a8c343620ca4f6bc87e645a8fca0cc175be5f1c34e2f6413c0c38cdaf0d5bf5
+script: data/corrida0/CALC-ASTRA-ENVIPE-DOMINIOXSEXO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  exposicion_historica: CIEGO-A-ENVIPE2025-CRUCE-NO-ABIERTO
+  tipo_incertidumbre: PREDICTIVA-CONDICIONAL-MARGINALES-2025
+inputs:
+- id: envipe2023_csv
+  origen: manifiesto
+- id: envipe2024_csv
+  origen: manifiesto
+- id: MARGINALES-PUBLICOS
+  origen: repo
+  ruta: milpa/tramite-ola5-propuesta-v0.yaml
+  sha256: 93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_20
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: BP1_23
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: FAC_DEL
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EST_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: UPM_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: SEXO
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: EDAD
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2023.csv
+  variable: DOMINIO
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2023.csv
+  variable: NIV
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_20
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: BP1_23
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: FAC_DEL
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EST_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: UPM_DIS
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: SEXO
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: EDAD
+  rol: historico
+- archivo: conjunto_de_datos_tmod_vic_envipe2024.csv
+  variable: DOMINIO
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: ID_PER
+  rol: historico
+- archivo: conjunto_de_datos_tsdem_envipe2024.csv
+  variable: NIV
+  rol: historico
+universo: DELITO BP1_20 in {1,2}; conjunta BP1_20=2 y BP1_23 in {04,05,06,08}
+filtros: FAC_DEL>0; EST_DIS/UPM_DIS completos; ID_PER único en tsdem; códigos fuera excluidos solo del eje
+ponderador: FAC_DEL
+transformacion: C2 + interacción normal EB dinámica v1.0; ver spec.md
+estimando: Probabilidad predicha ENVIPE 2025 por celda dominio_urbano_rural × sexo
+parametros:
+  pair: DOMINIOXSEXO
+  modelo_sha256: 47ded83d3e8a9283a2972289240d8fa6b90c440cefb238bca04255e044a11212
+  replicas_upm: 256
+  sorteos_predictivos: 2048
+  seed: 20260922
+  celdas:
+  - a: Rural
+    b: 1 Hombre
+  - a: Rural
+    b: 2 Mujer
+  - a: Complemento urbano
+    b: 1 Hombre
+  - a: Complemento urbano
+    b: 2 Mujer
+  - a: Urbano
+    b: 1 Hombre
+  - a: Urbano
+    b: 2 Mujer
+seed:
+  aplica: true
+  valor: 20260922
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+- PyYAML
+resultados:
+- id: RESULT-ASTRA-DOMINIOXSEXO-01-P
+  tipo: proporcion
+  unidad: 'Rural × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-01-LO
+  tipo: proporcion
+  unidad: 'Rural × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-01-HI
+  tipo: proporcion
+  unidad: 'Rural × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-01-ESTADO
+  tipo: texto
+  unidad: 'Rural × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-02-P
+  tipo: proporcion
+  unidad: 'Rural × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-02-LO
+  tipo: proporcion
+  unidad: 'Rural × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-02-HI
+  tipo: proporcion
+  unidad: 'Rural × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-02-ESTADO
+  tipo: texto
+  unidad: 'Rural × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-03-P
+  tipo: proporcion
+  unidad: 'Complemento urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-03-LO
+  tipo: proporcion
+  unidad: 'Complemento urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-03-HI
+  tipo: proporcion
+  unidad: 'Complemento urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-03-ESTADO
+  tipo: texto
+  unidad: 'Complemento urbano × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-04-P
+  tipo: proporcion
+  unidad: 'Complemento urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-04-LO
+  tipo: proporcion
+  unidad: 'Complemento urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-04-HI
+  tipo: proporcion
+  unidad: 'Complemento urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-04-ESTADO
+  tipo: texto
+  unidad: 'Complemento urbano × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-05-P
+  tipo: proporcion
+  unidad: 'Urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-05-LO
+  tipo: proporcion
+  unidad: 'Urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-05-HI
+  tipo: proporcion
+  unidad: 'Urbano × 1 Hombre: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-05-ESTADO
+  tipo: texto
+  unidad: 'Urbano × 1 Hombre: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-06-P
+  tipo: proporcion
+  unidad: 'Urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-06-LO
+  tipo: proporcion
+  unidad: 'Urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-06-HI
+  tipo: proporcion
+  unidad: 'Urbano × 2 Mujer: predicción'
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-06-ESTADO
+  tipo: texto
+  unidad: 'Urbano × 2 Mujer: estado y causa'
+- id: RESULT-ASTRA-DOMINIOXSEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit
+  permite_no_estimable: true
+- id: RESULT-ASTRA-DOMINIOXSEXO-Q
+  tipo: flotante
+  unidad: varianza logit
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
