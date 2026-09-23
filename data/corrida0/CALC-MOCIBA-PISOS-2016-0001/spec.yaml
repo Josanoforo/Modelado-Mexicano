@@ -1,0 +1,61 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MOCIBA-PISOS-2016-0001
+spec_md: ../../../forense/prereg-caja/MOCIBA-PISOS-spec-v1_0.md
+spec_md_sha256: 2058c5f866da1923bc28f0525cf0345ed3fd167f63a7f87038771acfa3b4ad5a
+script: data/corrida0/CALC-MOCIBA-PISOS-2016-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-DESCRIPTIVO-CIBERACOSO
+  dominio: tecnologia
+  ola: '2016'
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO-ORIGINAL
+  temporalidad: RETROSPECTIVA
+  calibracion: SIN-HISTORIA-PARA-CALIBRAR
+inputs:
+  - {id: mociba_2016_mociba2016_fd, origen: manifiesto}
+  - {id: mociba_2016_mociba2016_bd_dbf, origen: manifiesto}
+  - id: MOCIBA-PISOS-MEDIDOR
+    origen: repo
+    funcion: CODIGO
+    ruta: tools/dominios/mociba/pisos.py
+    sha256: 223ba89222d49cb4cb3079fc839f80e58ea7ff1d3ce95f276b67810ddfc52a36
+  - id: ENDUTIH-PISOS-FUNCIONES
+    origen: repo
+    funcion: CODIGO
+    ruta: tools/dominios/endutih/pisos.py
+    sha256: 0b25cd1036508eb636ba18a9bfbe6de5eb3f797dc1c2be4c083c7a596c02e622
+  - id: MOCIBA-DBFMINI
+    origen: repo
+    funcion: CODIGO
+    ruta: tests/dbfmini.py
+    sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+variables:
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'P1_1..P1_10', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'P7_1_1..P7_10_1', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'P7_1_6A..P7_10_6A', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'FAC_MOCIBA', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'EST_DIS', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'UPM_DIS', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'ENT', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'SEXO', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'EDAD', rol: 'medida-o-diseno-segun-spec-humana'}
+  - {archivo: 'MOD_2016_CIBERACOSO.DBF', variable: 'NIVEL', rol: 'medida-o-diseno-segun-spec-humana'}
+universo: 'Informante elegido 12+ usuario de internet o celular; respuestas válidas por batería, como spec humana.'
+filtros: 'Edad y FAC_MOCIBA válidos; diseño presente cuando publicado; salto, NR, NS y NO separados.'
+ponderador: FAC_MOCIBA
+transformacion: 'Cualquier situación=1; respuesta por situación aplicable o P10; razón ponderada sólo si diseño publicable.'
+estimando: 'Prevalencia de acoso entre informantes elegidos y respuestas observadas entre víctimas.'
+seed: {aplica: true, valor: 20260923, rng: numpy.PCG64}
+parametros:
+  ola: '2016'
+  miembro_dbf: 'MOD_2016_CIBERACOSO.DBF'
+  n_minimo: 100
+  replicas: 399
+  intervalo: percentil_bootstrap_UPM_estratificado
+dependencias_materiales: [numpy]
+resultados:
+  - {id: RESULT-MOCIBA-PISOS-2016-TABLA, tipo: texto, unidad: 'JSON descriptivo con estados y réplicas agregadas cuando estimable'}
+tolerancia: {tipo: texto, exacta: true}
+

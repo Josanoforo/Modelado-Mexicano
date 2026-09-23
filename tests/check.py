@@ -221,7 +221,9 @@ def t02_duplicates():
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
-        if ".git" in p or "/tests/" in p or "/data/raw" in p or "/forense/rescate/" in p:
+        if (".git" in p or "/tests/" in p or "/data/raw" in p
+                or "/forense/rescate/" in p or "/__pycache__/" in p
+                or p.endswith(".pyc")):
             # data/raw: INEGI empaqueta conjunto_de_datos.csv/diccionario_datos.csv
             # en casi todos sus zips de microdato — by_name colisiona por diseño
             # de nomenclatura del portal, no por defecto del corpus. by_hash ya
@@ -247,10 +249,10 @@ def t02_duplicates():
             continue
         if not os.path.isfile(p):
             continue
-        # Un módulo de una herramienta Astra tiene identidad de paquete:
-        # `medidor.py` puede coexistir con otro script homónimo sin duplicar
-        # un documento. El control por contenido sigue incluyendo ambos.
-        nombre_indice = rel(p) if rel(p).startswith("tools/astra/") and p.endswith(".py") else os.path.basename(p)
+        # Los módulos de herramientas con paquete tienen identidad por ruta:
+        # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
+        # El control por contenido sigue incluyendo todos los módulos.
+        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():

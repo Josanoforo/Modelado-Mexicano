@@ -394,6 +394,21 @@ jobs:
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
 
+      - name: ASTRA5 U4 — guardias sintéticas ENDUTIH y MOCIBA
+        run: |
+          python3 -m pip install numpy
+          python3 - <<'PY'
+          import runpy
+          total = 0
+          for ruta in ("tests/test_endutih_pisos.py", "tests/test_mociba_pisos.py"):
+              casos = runpy.run_path(ruta)
+              for nombre, prueba in sorted(casos.items()):
+                  if nombre.startswith("test_") and callable(prueba):
+                      prueba()
+                      total += 1
+          print(f"ASTRA5 U4: {total} pruebas sintéticas verdes")
+          PY
+
       # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
       # El registro escribe las vistas de corridas y resultados pedidas
       # para el piloto 4; la tabla de citas selladas acompaña esos resultados
