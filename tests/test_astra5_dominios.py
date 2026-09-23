@@ -122,3 +122,18 @@ def test_lectura_tecnologia_traza_15_hallazgos_y_separa_unidades():
         assert row["siguiente_operacion"]
     assert "registros distintos" in rows[4]["componente_dictaminado_o_residual"]
     assert "COLA-MESA-SALUD" == rows[11]["estado_lectura"]
+
+
+def test_lectura_finanzas_traza_13_hallazgos_y_conserva_contratos():
+    rows = read("lectura-finanzas-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 13
+    assert {row["id_lectura"] for row in rows} == {f"LECTURA-d6710e19-{n:02d}" for n in range(1, 14)}
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"]
+        assert row["archivo_pieza_exacta"]
+        assert row["propietario"] == "ASTRA5-MESA-DINERO"
+        assert row["siguiente_operacion"]
+    assert "ASTRA5-U0-FIN-004" in rows[9]["contrato_existente"]
+    assert "ASTRA5-U0-FIN-006" in rows[9]["contrato_existente"]
