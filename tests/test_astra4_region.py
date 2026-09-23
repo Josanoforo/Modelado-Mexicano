@@ -1,8 +1,8 @@
 """Casos sintéticos que protegen el estimador regional antes del microdato."""
-import math
 import zipfile
 
 import pandas as pd
+import pytest
 
 from tools.astra.region.estadistica import estima_dominios
 from tools.astra.region.historia import carga_enif, carga_envipe
@@ -29,8 +29,8 @@ def test_razon_ponderada_y_plan_compartido():
                                   representativos={"X", "Y"}, semilla=42,
                                   replicas=256, n_min=1)
     assert meta["upm_marco"] == 4
-    assert math.isclose(filas[0]["punto"], 2 / 6)
-    assert math.isclose(filas[1]["punto"], 8 / 10)
+    assert filas[0]["punto"] == pytest.approx(2 / 6)
+    assert filas[1]["punto"] == pytest.approx(8 / 10)
     assert all(f["estado"] == "PUBLICABLE" for f in filas)
     assert all(f["ic_inf"] <= f["punto"] <= f["ic_sup"] for f in filas)
 
