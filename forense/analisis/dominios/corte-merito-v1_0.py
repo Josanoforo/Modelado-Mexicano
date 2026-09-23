@@ -1,0 +1,81 @@
+"""Contratos de agregados publicados ENOE 2026T1 y ENIGH 2024; sin microdatos."""
+
+import csv
+import hashlib
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+OUT = Path(__file__).with_suffix(".tsv")
+REPORT = "corpus/reports/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md"
+FIELDS = [
+    "id_afirmacion", "report", "report_sha256", "localizador", "texto_vigente",
+    "tier_report", "clase", "componente_contrastable", "limite_inferencial",
+    "conducta_unidad_universo", "instrumento_ola", "documento_id_hash_pagina",
+    "pregunta_textual_codigo_respuestas", "estado_verificacion", "dictamen",
+    "dictamen_razon", "datos_id_estado", "reserva", "gen2_existente",
+    "propietario", "siguiente_operacion", "prioridad",
+]
+
+ENOE_DOC = "enoe2026_t1_comunicado_pdf|edde714757e5967d0a312aa8f53afb8d80f6671adf70d9af0bc2f32e44e4ace0|boletín 301/26 pp.1,7-9; registro solo en rama #1079"
+ENIGH_DOC = "enigh2024_reporte_resultados_pdf|6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d|reporte 23/25 p.11, gráfica 2; registro solo en rama #1079"
+
+ENOE = dict(
+    report=REPORT,
+    report_sha256=hashlib.sha256((ROOT / REPORT).read_bytes()).hexdigest(),
+    localizador="L22; repetición L6,L47-L49",
+    tier_report="sin rótulo explícito",
+    clase="cifra publicada",
+    limite_inferencial="El agregado trimestral no prueba concentración de los empleos nuevos en informalidad, causa cultural ni efecto del salario mínimo. ENOE 2024T3 es otra ola y no reproduce estos valores.",
+    conducta_unidad_universo="Personas ocupadas de 15 años o más en México, ENOE primer trimestre 2026; comparación anual con primer trimestre 2025.",
+    instrumento_ola="ENOE 2026T1, boletín 301/26 de 26-may-2026",
+    documento_id_hash_pagina=ENOE_DOC,
+    pregunta_textual_codigo_respuestas="Indicador compuesto TIL1: empleo informal en todas sus modalidades / población ocupada; no es reactivo único. Boletín tabla 3 y tabla 4; cambio anual de conteo, no puntos porcentuales.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Valor y universo publicados por INEGI; PDF físico verificado y registrado solo en rama #1079. Microdato 2026T1 reservado, sin id pertinente en main; no adjudicar MEDIBLE-EN-CORPUS ni RESULT.",
+    datos_id_estado="ENOE 2026T1 microdato: reserva U1, sin id/RESULT pertinente en main; U0 no abrió ni descargó microdato.",
+    reserva="U1 conserva la ola ENOE 2026T1; U0 consume solo boletín público. Copia documental local bajo Términos de Libre Uso INEGI.",
+    gen2_existente="#1087 main 76b0e56b RESULT-ENOE-PISOS-TABLA usa ENOE 2024T3; NO corresponde a 2026T1.",
+    propietario="ASTRA5-U1",
+    prioridad="2",
+)
+
+ENIGH = dict(
+    report=REPORT,
+    report_sha256=ENOE["report_sha256"],
+    localizador="L18; repetición L4,L47-L48,L55",
+    tier_report="sin rótulo explícito",
+    clase="cifra publicada y comparación contrafactual contable",
+    limite_inferencial="La diferencia descriptiva con/sin transferencias no identifica el efecto causal de programas sociales, pensiones o salario mínimo. La serie 2016/2022 requiere comparabilidad de cuestionario y precios separada.",
+    conducta_unidad_universo="Distribución por deciles de hogares del ingreso corriente promedio trimestral; México, ENIGH nueva serie 2024.",
+    instrumento_ola="ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025",
+    documento_id_hash_pagina=ENIGH_DOC + ";enigh2024_diseno_muestral_pdf|2d2a5c0fd47a92d7c2d044300b47cf15330f9902c8b50975dd1e4eab35395229|main",
+    pregunta_textual_codigo_respuestas="Indicador derivado de ingreso corriente trimestral por hogar; no existe reactivo único Gini. La gráfica 2 distingue explícitamente 'Con transferencias' y 'Sin transferencias'.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="El reporte público fija cifra, unidad y método contable; PDF físico verificado y registrado solo en rama #1079. Dato y diseño ENIGH 2024 están en main, pero reporte de cifra no; falta reproducción/RESULT compatible.",
+    datos_id_estado="enigh2024_nc_csv|7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d|main, microdato NO ABIERTO",
+    reserva="Permiso y apertura en CAJA; U0 no abrió microdato. La atribución causal queda fuera del contrato descriptivo.",
+    gen2_existente="ENIGH 2024 en main como corpus; ningún RESULT de Gini 2024 con/sin transferencias identificado al corte.",
+    propietario="ASTRA5-MESA-MOVILIDAD",
+    prioridad="2",
+)
+
+ROWS = [
+    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-001", texto_vigente="La informalidad laboral TIL1 fue 54.8% de la población ocupada en 2026T1 (54.3% en 2025T1).", componente_contrastable="TIL1 2026T1 = 54.8%; TIL1 2025T1 = 54.3%, diferencia de 0.5 puntos porcentuales.", siguiente_operacion="U1 coteja TIL1 en su ola reservada, con diseño y definición; mantener separado del RESULT 2024T3."),
+    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-002", texto_vigente="En 2026T1 hubo 32.6 millones de personas en todas las modalidades de empleo informal.", componente_contrastable="Conteo expandido de ocupados informales 2026T1, 32.6 millones; no tasa.", siguiente_operacion="U1 reproduce conteo expandido solo en CAJA autorizada; no usar 32.6 millones como total de ocupados."),
+    ENOE | dict(id_afirmacion="ASTRA5-U0-MER-003", texto_vigente="El número de personas en empleo informal aumentó 583 mil entre 2025T1 y 2026T1.", componente_contrastable="Diferencia anual de conteos expandidos de informalidad: +583 mil personas.", siguiente_operacion="U1 coteja ambos trimestres con definición homogénea; no leer +583 mil como nuevos empleos informales causados por una política."),
+    ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-004", texto_vigente="El Gini del ingreso corriente por hogar con transferencias fue 0.391 en ENIGH 2024.", componente_contrastable="Gini publicado con transferencias recibidas incluidas: 0.391; 0.402 en 2022 y 0.449 en 2016 se conservan como comparadores, sin dictamen de serie.", siguiente_operacion="Registrar publicación en main, reproducir fórmula del Gini en CAJA y tratar la serie 2016/2022 con su propio contrato de comparabilidad."),
+    ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-005", texto_vigente="Sin considerar transferencias, el Gini contable ENIGH 2024 habría sido 0.450.", componente_contrastable="Gini simulado sin transferencias recibidas: 0.450 frente a 0.391 con ellas, misma fuente y año.", siguiente_operacion="Registrar publicación en main y verificar qué rubros se restan en la simulación; no atribuir 0.059 a un programa o salario mínimo causalmente."),
+]
+
+
+def main():
+    with OUT.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, FIELDS, delimiter="\t", lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(ROWS)
+
+
+if __name__ == "__main__":
+    main()

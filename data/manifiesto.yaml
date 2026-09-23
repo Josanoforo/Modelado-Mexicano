@@ -31002,3 +31002,27 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
     factores por persona y varianza.
+
+- id: enoe2026_t1_comunicado_pdf
+  usado_para: 'ASTRA5-U0 MER-001..003: agregados publicados TIL1, ocupación informal y diferencia anual ENOE 2026T1; solo documento, sin apertura de ola reservada'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/enoe/enoe2026_05.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enoe2026_t1_comunicado.pdf
+  sha256: edde714757e5967d0a312aa8f53afb8d80f6671adf70d9af0bc2f32e44e4ace0
+  tamano_bytes: 528030
+  formato: PDF, boletín de indicador 301/26, 16 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Copia documental en mm-corpus/raw. ENOE 2026T1 es ola distinta del RESULT 2024T3; microdato no adquirido ni abierto por U0.
+
+- id: enigh2024_reporte_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-004..005: Gini ENIGH 2024 con/sin transferencias publicado, no inferencia causal'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enigh/ENIGH2024_RR.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enigh2024_reporte_resultados.pdf
+  sha256: 6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d
+  tamano_bytes: 1150732
+  formato: PDF, reporte de resultados 23/25, 27 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Copia documental en mm-corpus/raw. La gráfica 2 p.11 separa Gini 0.391 con y 0.450 sin transferencias; no microdato.

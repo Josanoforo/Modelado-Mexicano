@@ -8,6 +8,7 @@ OUT = ROOT / "mapa-parcial-v0_1.tsv"
 FILES = [
     "corte-enoe-v1_0.tsv",
     "corte-tecnologia-v1_0.tsv",
+    "corte-tecnologia-adicional-v1_0.tsv",
     "corte-endireh-v1_0.tsv",
     "corte-politica-v1_0.tsv",
     "corte-confianza-v1_0.tsv",
@@ -16,6 +17,7 @@ FILES = [
     "corte-finanzas-v1_0.tsv",
     "corte-seguridad-v1_0.tsv",
     "corte-tiempo-v1_0.tsv",
+    "corte-merito-v1_0.tsv",
 ]
 
 
