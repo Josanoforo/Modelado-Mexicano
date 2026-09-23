@@ -95,9 +95,20 @@ def prueba_toca_detecta_diff_en_derivado():
         try:
             DP.RAIZ = tmp
             rc_si = DP.main(["--toca", base, cambia_derivado])
+            rc_solo = DP.main(["--solo-derivados", base, cambia_derivado])
+            with open(os.path.join(tmp, "normal.txt"), "a") as fh:
+                fh.write("b\n")
+            git("add", "-A")
+            git("commit", "-q", "-m", "toca normal")
+            cambia_normal = subprocess.run(
+                ["git", "rev-parse", "HEAD"], cwd=tmp,
+                capture_output=True, text=True, check=True).stdout.strip()
+            rc_ajeno = DP.main(["--solo-derivados", base, cambia_normal])
         finally:
             DP.RAIZ = vieja_raiz
     afirma(rc_si == 1, "tocar el archivo con cabecera DERIVADO debe salir 1")
+    afirma(rc_solo == 0, "PR automático con sólo derivados debe pasar")
+    afirma(rc_ajeno == 1, "PR automático con archivo ajeno debe fallar")
 
 
 def main():

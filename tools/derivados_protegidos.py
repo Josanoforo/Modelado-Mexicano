@@ -19,6 +19,9 @@ Uso:
         # 1 si algún archivo derivado cambió entre dos refs de git
         # (`git diff --name-only refA refB`), 0 si ninguno -- lo que
         # `verify.yml` usa para el guardia de PR.
+    python3 tools/derivados_protegidos.py --solo-derivados <base> <cabeza>
+        # 0 sólo si hay cambios y TODOS tienen cabecera DERIVADO; habilita
+        # el PR automático del publicador sin abrir el guardia a otros PR.
 """
 from __future__ import annotations
 
@@ -77,6 +80,23 @@ def lista_derivados() -> list[str]:
 def main(argv=None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
     rutas, examinados = lista_derivados()
+    if argv[:1] == ["--solo-derivados"]:
+        if len(argv) != 3:
+            print("uso: --solo-derivados <base> <cabeza>", file=sys.stderr)
+            return 2
+        cambiados = set(subprocess.run(
+            ["git", "-C", RAIZ, "diff", "--name-only",
+             f"{argv[1]}...{argv[2]}"],
+            capture_output=True, text=True, check=True,
+        ).stdout.splitlines())
+        ajenos = sorted(cambiados - set(rutas))
+        if not cambiados or ajenos:
+            print("PR automático de derivados inválido: "
+                  + (", ".join(ajenos) if ajenos else "sin cambios"),
+                  file=sys.stderr)
+            return 1
+        print(f"PR automático: {len(cambiados)} archivos DERIVADO")
+        return 0
     if argv[:1] == ["--toca"]:
         if len(argv) != 3:
             print("uso: --toca <refA> <refB>", file=sys.stderr)
