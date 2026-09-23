@@ -49,3 +49,7 @@ No calibra θ, no toca la matriz. Sucesores: ASTRA-2 sigue sobre el motor limpio
 - **P4 · NC-0446 (4 fallas de `tests/test_consulta_gen2.py`)** — `PARO-PREMISA`. Misma familia de causa que P3 (universo GEN2 nuevo para `test_01`/`test_01b`) más las respuestas de ejemplo congeladas de `forense/ejemplos/GEN2-*`; NC-0446 exigía re-sellar solo si cada diferencia se explica por un RESULT sellado posterior citado, y verificarlo para 2 respuestas completas excede lo resoluble de pasada en este acto. Impacto: `tests/test_consulta_gen2.py` sigue con 4 FAIL. Sucesor: `GEN2-MOTOR-DEUDA-LOTE-2`. Fila: `NC-260923-GEN2-MOTOR-DEUDA-LOTE-1-e270-03`.
 
 Lo demás del lote — P2 (`commit_declaracion` de ADR-68) — sí corrió: ver `## CONSUMIDO`.
+
+## CONSUMIDO
+
+Ejecutado por PR #1054 (`acto/gen2-motor-deuda-lote-1`). P2 resuelto (dictamen `NO-PROCEDE-HISTÓRICO`, `NC-...-e8fa-02` CERRADA); P1/P3/P4 en `## NO-CORRIDO / RESERVAS` arriba. Detalle: `canon/gobernanza-v1_15.md` `ADR-260923-GEN2-MOTOR-DEUDA-LOTE-1-e270-01`, `forense/notas/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1-cierre.md`.
