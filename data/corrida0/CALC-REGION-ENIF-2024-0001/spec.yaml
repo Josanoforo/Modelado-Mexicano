@@ -1,0 +1,201 @@
+calc_id: CALC-REGION-ENIF-2024-0001
+spec_md: ../../../forense/prereg-caja/REGION-ENIF-spec-v1_0.md
+spec_md_sha256: cfc0d62d45fd2ead79cc1930c9e3acdb7ccf606b196fd73316d0ba590766d987
+script: data/corrida0/CALC-REGION-ENIF-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-RETROSPECTIVA
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: NUEVO
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+variables:
+- archivo: microdato de la spec humana
+  variable: FAC_PER
+  rol: factor de expansión
+- archivo: microdato de la spec humana
+  variable: EST_DIS
+  rol: estrato de diseño
+- archivo: microdato de la spec humana
+  variable: UPM_DIS
+  rol: UPM de diseño
+universo: persona; tiene_ahorros_enif2024; región oficial de diseño; ola 2024
+filtros: Códigos y denominador de la spec humana; no filtrar marco antes de réplicas
+ponderador: FAC_PER
+transformacion: razón de masas ponderadas por geografía; IC percentil de UPM estratificadas
+  compartidas; supresión R2
+estimando: proporción regional de tiene_ahorros_enif2024, persona, ola 2024
+parametros:
+  instrumento: ENIF
+  input_id: enif_2024_enif_2024_bd_csv
+  bootstrap_replicas: 1000
+  n_min: 200
+  geografias:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  nivel_geografico: REGION
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, mismo orden de filas y semilla
+resultados:
+- id: RESULT-REGION-ENIF-2024-JSON
+  tipo: texto
+  unidad: JSON regional sin identificadores individuales
+- id: RESULT-REGION-ENIF-2024-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-1-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-2-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-3-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-4-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-5-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-2024-6-N
+  tipo: entero
+  unidad: personas del denominador, no ponderado
+- id: RESULT-REGION-ENIF-2024-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-2024-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
