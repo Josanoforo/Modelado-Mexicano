@@ -22,4 +22,4 @@ La adquisición documental dirigida quedó registrada en el commit `0e671c1a` de
 
 ## NO-CORRIDO / RESERVAS
 
-U0 no abrió ni descargó microdato. No se consultó la ola ENOE más reciente. No se leyó cuestionario de ola reservada MOCIBA 2024/2025. La verificación física de la raíz LAPOP 2023 en CAJA sigue pendiente. Los resultados de #1084 y #1085 siguen en ramas propuestas; #1087 ENOE se integró en `main` por `76b0e56b`, sujeto a cotejo por estimando antes de atribuir contraste.
+U0 no abrió ni descargó microdato. No se consultó la ola ENOE más reciente. No se leyó cuestionario de ola reservada MOCIBA 2024/2025. La verificación física de la raíz LAPOP 2023 en CAJA sigue pendiente. #1084 sigue en rama; #1087 ENOE se integró en `main` por `76b0e56b` y #1085 ENDUTIH por `579462b3`, ambos con cotejo U0 por estimando. ENDUTIH P7_2=2 («no sabe usarlo») no fue estimado por el RESULT #1085.

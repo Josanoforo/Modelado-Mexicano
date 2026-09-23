@@ -2,6 +2,7 @@
 
 import csv
 import hashlib
+import json
 from pathlib import Path
 
 
@@ -269,3 +270,18 @@ def test_forense_apuestas_conserva_contradicciones_y_casos():
     assert all(row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"] and row["siguiente_operacion"] for row in rows)
     assert rows[3]["estado_lectura"] == "CONTRADICCION-FORENSES"
     assert rows[10]["concepto_deduplicado"] == "ASP-REGLAS-CONSUMO"
+
+
+def test_cotejo_endutih_usa_ola_reactivo_y_universo_del_result():
+    rows = read("cotejo-result-endutih-v1_0.tsv")
+    assert len(rows) == 7
+    path = ROOT / "data/corrida0/CALC-ENDUTIH-PISOS-2024-0001/resultados.json"
+    assert hashlib.sha256(path.read_bytes()).hexdigest() == rows[0]["resultados_sha256"]
+    result = json.loads(json.loads(path.read_text(encoding="utf-8"))["resultados"]["RESULT-ENDUTIH-PISOS-2024-TABLA"])
+    cells = {(cell["dominio"], cell["medida"]): cell for cell in result["celdas"]}
+    for row in rows:
+        assert row["estado_main"].startswith("INTEGRADO_MAIN_579462b3")
+    assert abs(cells["TOTAL", "internet"]["punto"] - 0.8312233799456584) < 1e-12
+    assert cells["TOTAL", "no_internet_acceso"]["n"] == 10840
+    assert ("TOTAL", "no_internet_habilidad") not in cells
+    assert rows[-1]["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-9_5"
