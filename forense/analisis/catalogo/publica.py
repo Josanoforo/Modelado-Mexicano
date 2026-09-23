@@ -129,9 +129,12 @@ def main() -> None:
         "| **Total** | **1 537** | Suma de capas, no número de adopciones |",
         "", "El bloque histórico de crédito 2012–2021 se incluye como contexto "
         "sellado, separado de la adopción GEN2. Las nueve celdas-D de crédito "
-        "del PR #1058 ya están en main, pero no suman a `celdas_validadas` "
-        "(92 antes y después) porque su unidad es conducta agregada; la "
-        "decisión P3 de tubería sigue pendiente. El bloque "
+        "del PR #1058 ya están en main. El PR #1086 cerró la decisión "
+        "P3 de tubería: sus siete celdas-D PUNTUADA aportan 111 celdas "
+        "al contador `celdas_validadas`; k4a y k4b siguen SKIP. "
+        "El contador global pasó de 92 a 219 e incluye además 16 celdas "
+        "de ENCIG 2025. Contar validación no firma adopción ni acredita "
+        "consumo de los RESULT en un modelo. El bloque "
         "Banxico/LAPOP/MOTRAL firmado para adoptar conserva el rótulo de "
         "consumo pendiente hasta que exista asiento mecánico en consumidor.",
         "", "## Ejemplos trazables", "",
