@@ -22,6 +22,6 @@ MOCIBA 2019/2020/2025: reserva confirmatoria F5 (`NC-260923-ASTRA5-U4-TECNOLOGIA
 
 ## CONSUMIDO Y TRANSFERENCIA
 
-Se consumió la documentación válida de `forense/produccion/mociba-flujo-documental-1/` y la reserva de `forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv`; no se duplicó su medición predictiva pendiente. El antecedente `data/l6-gobierno-digital-endutih-v1_0.json` orientó la búsqueda, no alimentó los RESULT nuevos. El PR de este acto será el recibo de transferencia; cualquier apertura de reserva, corrección del filtro de empleo o adopción exige un acto sucesor específico.
+Se consumió la documentación válida de `forense/produccion/mociba-flujo-documental-1/` y la reserva de `forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv`; no se duplicó su medición predictiva pendiente. El antecedente `data/l6-gobierno-digital-endutih-v1_0.json` orientó la búsqueda, no alimentó los RESULT nuevos. **CONSUMIDO en PR #1085** (`https://github.com/Josanoforo/Modelado-Mexicano/pull/1085`), recibo `recibo-codex-para-claude.md`. Cualquier apertura de reserva, corrección del filtro de empleo o adopción exige un acto sucesor específico. El PR permanece sin fusionar; mesa decide.
 
 **Auditoría de rigor extremo.** Las tasas de 6+, 12+ y 12–59 no se comparan como la misma población. Exposición MOCIBA no prueba chisme, envidia ni aceptación cultural; uso de trámites ENDUTIH no prueba coerción. Los motivos declarados de no uso no identifican la oferta ni una preferencia causal. Ninguna inferencia genética o psicológica de grupo se deriva de estas tablas.

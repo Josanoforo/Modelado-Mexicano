@@ -1,6 +1,6 @@
 # Recibo Codex → Claude · ASTRA5-U4-TECNOLOGIA-1
 
-23/sep/2026. Rama `codex/astra5-tecnologia-1`; base de preparación `8e41f72fa8b00a20e83f28c92f6b2964e66b0081`. Encargo original en `forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md`, SHA256 `f3c212c13b6ac79f133dfefad995cccb2f72c8f7bc8c20f05d855b93967b904d`, 0-bis `1f30b918`. ADR raíz `ADR-260923-ASTRA5-U4-TECNOLOGIA-1f30-01`.
+23/sep/2026. Rama `codex/astra5-tecnologia-1`; PR #1085: `https://github.com/Josanoforo/Modelado-Mexicano/pull/1085`. Base de preparación `8e41f72fa8b00a20e83f28c92f6b2964e66b0081`. Encargo original en `forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md`, SHA256 `f3c212c13b6ac79f133dfefad995cccb2f72c8f7bc8c20f05d855b93967b904d`, 0-bis `1f30b918`. ADR raíz `ADR-260923-ASTRA5-U4-TECNOLOGIA-1f30-01`.
 
 **Entrega comprobable:** seis CALC sellados, specs y medidores congelados antes del primer run, seis replays `REPRODUCE/IDENTICO`, asientos en `forense/replay-evidencia.tsv`, 5 pruebas sintéticas verdes. `tabla-principal.tsv` contiene 42 filas enlazables con hashes. ENDUTIH 2023–2025: 1,551 celdas de uso, actividades y no uso; MOCIBA 2015–2017: 279 celdas de exposición y respuesta. MOCIBA 2015 es no estimable por faltar estrato de diseño, con primer RESULT preservado. Dos notas por instrumento y contraste U0 cubren el producto.
 
