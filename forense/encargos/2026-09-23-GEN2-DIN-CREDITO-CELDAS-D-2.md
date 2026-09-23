@@ -54,3 +54,11 @@ No re-mide, no adopta. Sucesor: `GEN2-DIN-CREDITO-SERIE-LECTURA-1` (en cola) cit
   (diferido, `SIN-ASIGNAR` hasta que mesa decida) — fila
   `NC-260923-GEN2-DIN-CREDITO-CELDAS-D-2-f6a3-02`, `forense/no-corrido.tsv`.
 
+## CONSUMIDO
+
+Ejecutado por `/acto` sobre este encargo, 23/sep/2026, rama
+`acto/gen2-din-credito-celdas-d-2`, PR #1058.
+`ADR-260923-GEN2-DIN-CREDITO-CELDAS-D-2-f6a3-01`
+(`canon/gobernanza-v1_15.md`, `canon/L0/ADR-260923-GEN2-DIN-CREDITO-CELDAS-D-2-f6a3-01.md`).
+Cierra por `DECISIÓN-DADA` `NC-260923-GEN2-DIN-CREDITO-CELDAS-D-1-e6b2-01`
+y `NC-260922-GEN2-DIN-CREDITO-ESCOLARIDAD-2-0af9-02`.
