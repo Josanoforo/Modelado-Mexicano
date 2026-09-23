@@ -58,6 +58,117 @@ _PATRONES_ERROR_C2 = (
     ("-ARB-D-C2-", "prefijo"),   # pilotos 1 y 2 (DIN, TRA)
 )
 
+#: Sufijo adicional de ENCIG 2025 (ACTO GEN2-CONTADORES-CONSUMO-1, NC
+#: ...-657c-03): `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001` emite el error
+#: por celda del piso C2 como `...-D-C2` (sin "ARB" ni "PP"). El MISMO
+#: sufijo aparece también en `CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-
+#: CRUCES-0001` (las 4 cruces `TRA.evade_norma.envipe2025.*` con
+#: `champion_actual: NINGUNO` -- verificado por comando: su promedio de
+#: `-D-C2` también casa exacto con su `margen_material`). Generalizar el
+#: sufijo a toda la clase 1 haría contar esas 4 celdas TRA sin que mesa lo
+#: haya pedido ni revisado (nadie adjudicó un champion ahí). Este acto sólo
+#: tiene autorizado ENCIG 2025 (#1060): el sufijo se reconoce nada más para
+#: celdas-D cuyo id empieza con este prefijo; la generalización a TRA queda
+#: declarada como hallazgo nuevo, no aplicada.
+_PATRON_D_C2_ENCIG2025 = ("-D-C2", "sufijo")
+_PREFIJO_ENCIG2025_GOB = "GOB.gobierno_digital.encig2025."
+
+
+def _errores_d_c2_encig2025(d: dict, res: dict) -> dict:
+    """Error por celda del sufijo `-D-C2`, SCOPEADO a esta celda-D vía
+    `adjudicacion_por_celda` (declarado en el propio YAML, no adivinado).
+    NECESARIO porque `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001` es un único
+    archivo compartido por varias celdas-D de ENCIG 2025 (edad_x_sexo Y
+    escolaridad_x_sexo): un `k.endswith('-D-C2')` a ciegas mezcla las 8
+    celdas de una con las 8 de la otra y la escala nunca deriva. Se toma
+    `resultado_puntual` de cada entrada de `adjudicacion_por_celda` (p.ej.
+    `RESULT-...-EDADXSEXO-18-29-X-1-C2-P`), se le quita el sufijo
+    `-{id_candidato}-P` para obtener el prefijo de ESA celda, y se lee
+    `{prefijo}-D-C2` -- la misma convención verificada contra
+    `margen_material` para `edad_x_escolaridad`."""
+    hit = {}
+    for etiqueta, ref in (d.get("adjudicacion_por_celda") or {}).items():
+        if not isinstance(ref, dict):
+            continue
+        punto = ref.get("resultado_puntual")
+        candidato = ref.get("id_candidato")
+        if not (isinstance(punto, str) and isinstance(candidato, str)):
+            continue
+        sufijo_punto = f"-{candidato}-P"
+        if not punto.endswith(sufijo_punto):
+            continue
+        clave = f"{punto[:-len(sufijo_punto)]}-D-C2"
+        v = res.get(clave)
+        if isinstance(v, (int, float)):
+            hit[etiqueta] = v
+    return hit
+
+
+def _agregado_por_conducta(d: dict, rel: str) -> dict | None:
+    """CLASE «CELDA-D POR CONDUCTA» (crédito, ACTO GEN2-CONTADORES-CONSUMO-1,
+    NC-...-f6a3-02: `celdas_validadas.py` no reconocía esta forma). El CALC
+    no reporta un error por celda de un cruce de dos ejes -- reporta, para
+    la conducta completa, el AGREGADO (MAE_PP + N celdas puntuadas) del
+    candidato `champion_actual`. Se identifica por VALOR, no por nombre de
+    columna (§2, "ninguna cifra esperada se teclea"): se busca la clave que
+    termina en `-{CHAMPION}-MAE-PP` cuyo valor casa (factor 1 o 100, igual
+    que el resto de la clase 1) contra `margen_material`, y se toma su
+    gemela `-{CHAMPION}-N-CELDAS-PUNTUADAS` con el mismo prefijo.
+
+    CUENTA POR CELDA PUNTUADA, igual que el resto de la clase 1 (piloto 4):
+    una celda-D de crédito con 16 celdas puntuadas por el champion aporta
+    16, no 1 -- verificado contra el código (`_celdas_d_adjudicadas` suma
+    `n_celdas` = celdas puntuadas, no cruces); la regla de conteo es una
+    sola para toda la clase (P-B de GEN2-CONTADORES-CONSUMO-1)."""
+    champion = str(d.get("champion_actual") or "").strip().upper()
+    if not champion or champion == "NINGUNO":
+        return None
+    margen = d.get("margen_material")
+    if not isinstance(margen, (int, float)):
+        return None
+    sufijo_mae = f"-{champion}-MAE-PP"
+    for ref in (d.get("momentos_holdout_refs") or []):
+        if not isinstance(ref, str) or not ref.startswith("CALC-"):
+            continue
+        calc_id = ref.split("--", 1)[0]
+        p = os.path.join(RAIZ, "data", "corrida0", calc_id, "resultados.json")
+        if not os.path.exists(p):
+            continue
+        try:
+            with open(p, encoding="utf-8") as fh:
+                res = json.load(fh).get("resultados", {})
+        except (OSError, ValueError):
+            continue
+        for k, v in res.items():
+            if not (k.endswith(sufijo_mae) and isinstance(v, (int, float))):
+                continue
+            factor = None
+            for f in (1.0, 100.0):
+                if abs(v * f - margen) <= 1e-3:
+                    factor = f
+                    break
+            if factor is None:
+                continue
+            n = res.get(f"{k[:-len(sufijo_mae)]}-{champion}-N-CELDAS-PUNTUADAS")
+            if not isinstance(n, int) or n <= 0:
+                continue
+            mae = round(v * factor, 3)
+            return {
+                "n_celdas": n,
+                "cuenta": True,
+                "MAE_pp": mae,
+                "error_mediano_pp": mae,
+                "error_max_pp": mae,
+                "escala_cruda": ("AGREGADO-POR-CONDUCTA (sin grid de cruce; "
+                                 "MAE_PP y N-CELDAS-PUNTUADAS del champion, "
+                                 "no error por celda)"),
+                "escala_verificada_contra": (
+                    f"margen_material={margen} (sellado en {rel}) == {k}*{factor}"),
+                "fuera_de_soporte": 0,
+                "fuente": f"data/corrida0/{calc_id}/resultados.json",
+            }
+    return None
+
 
 def _celdas_d_adjudicadas() -> list[dict]:
     """Las celdas-D con VEREDICTO SELLADO, con su n de celdas y su error.
@@ -121,8 +232,13 @@ def _celdas_d_adjudicadas() -> list[dict]:
                     res = json.load(fh).get("resultados", {})
             except (OSError, ValueError):
                 continue
-            for patron, modo in _PATRONES_ERROR_C2:
-                if modo == "sufijo":
+            patrones = _PATRONES_ERROR_C2
+            if cid.startswith(_PREFIJO_ENCIG2025_GOB):
+                patrones = _PATRONES_ERROR_C2 + (_PATRON_D_C2_ENCIG2025,)
+            for patron, modo in patrones:
+                if patron == _PATRON_D_C2_ENCIG2025[0]:
+                    hit = _errores_d_c2_encig2025(d, res)
+                elif modo == "sufijo":
                     hit = {k[:-len(patron)]: v for k, v in res.items()
                            if k.endswith(patron) and isinstance(v, (int, float))}
                 else:
@@ -137,13 +253,26 @@ def _celdas_d_adjudicadas() -> list[dict]:
                 break
 
         if not errores:
+            agregado = _agregado_por_conducta(d, rel)
+            if agregado is not None:
+                salida.append({
+                    "celda_d": cid,
+                    "veredicto": veredicto,
+                    "champion_actual": d.get("champion_actual"),
+                    "dominio": d.get("dominio"),
+                    "unidad_objetivo": d.get("unidad_objetivo"),
+                    "brecha_anios": 0,
+                    **agregado,
+                })
+                continue
             salida.append({
                 "celda_d": cid, "n_celdas": 0, "cuenta": False,
                 "veredicto": veredicto,
                 "motivo": ("veredicto sellado pero ningún RESULT de error por "
                            "celda localizado en sus momentos_holdout_refs "
                            f"({_PATRONES_ERROR_C2[0][0]} / "
-                           f"{_PATRONES_ERROR_C2[1][0]})"),
+                           f"{_PATRONES_ERROR_C2[1][0]} / forma agregada "
+                           "por conducta)"),
                 "fuente": rel,
             })
             continue
