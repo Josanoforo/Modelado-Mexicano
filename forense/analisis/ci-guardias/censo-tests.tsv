@@ -195,3 +195,5 @@ tests/test_encig_duelo_2025.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEP
 tests/test_astra4_region.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest,pandas,numpy)	Pruebas sintéticas U5 ejecutadas localmente; CI carece de dependencias numéricas declaradas y se omite sin fingir ejecución
 tests/test_endutih_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_mociba_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_enlaces_archivo.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	Valida enlaces locales del frente y archivo sin corpus
+tests/test_readme_derivado.py	script	NO	(ninguna)	NO	11.0	CORRE-EN-CI	Compara cifras publicadas con status derivado sin corpus
