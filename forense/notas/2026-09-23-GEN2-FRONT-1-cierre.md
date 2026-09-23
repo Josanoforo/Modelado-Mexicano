@@ -12,6 +12,11 @@ P1 README GEN2 con cifras de `status` y seis casos enlazados; P2 aviso, uso acep
 que los campos prospectiva/retrospectiva no agotan ese total. Catálogo U1 y
 eje regional U5 siguen en PR abiertos al momento de esta actualización;
 se enlazarán desde esta misma rama cuando entren a `origin/main`.
+Al rebasar sobre #1081, el registro `no-corrido.tsv` quedó con dos copias
+abiertas de las NC `c3fa-01/02` que `main` ya había cerrado. Se retiraron
+únicamente esas copias, conservando las filas cerradas de `main`. El test
+dirigido `tests/test_digesto_mesa.py` volvió a 10/10 y la llave de cada NC
+quedó única; este ajuste no cambia ninguna medición.
 
 `PLAN-VISIBILIZACION-2026-09-23.md`: **NO-RECIBIDO**. Se buscó en el repositorio y en `/mnt/c/Users/PC0/Downloads/`; sólo estaba el input FRONT-1. El mapa U0 tampoco estaba en `origin/main` al abrir. No se asignó `NO-MEDIBLE-POR-DISEÑO` sin él.
 
