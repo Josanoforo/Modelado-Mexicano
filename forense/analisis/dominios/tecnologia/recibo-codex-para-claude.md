@@ -1,0 +1,11 @@
+# Recibo Codex → Claude · ASTRA5-U4-TECNOLOGIA-1
+
+23/sep/2026. Rama `codex/astra5-tecnologia-1`; base de preparación `8e41f72fa8b00a20e83f28c92f6b2964e66b0081`. Encargo original en `forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md`, SHA256 `f3c212c13b6ac79f133dfefad995cccb2f72c8f7bc8c20f05d855b93967b904d`, 0-bis `1f30b918`. ADR raíz `ADR-260923-ASTRA5-U4-TECNOLOGIA-1f30-01`.
+
+**Entrega comprobable:** seis CALC sellados, specs y medidores congelados antes del primer run, seis replays `REPRODUCE/IDENTICO`, asientos en `forense/replay-evidencia.tsv`, 5 pruebas sintéticas verdes. `tabla-principal.tsv` contiene 42 filas enlazables con hashes. ENDUTIH 2023–2025: 1,551 celdas de uso, actividades y no uso; MOCIBA 2015–2017: 279 celdas de exposición y respuesta. MOCIBA 2015 es no estimable por faltar estrato de diseño, con primer RESULT preservado. Dos notas por instrumento y contraste U0 cubren el producto.
+
+**Límites y transferencia:** siete olas MOCIBA no abiertas, en `forense/no-corrido.tsv` `NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-01/07`; dos firmas por instrumento abiertas en `forense/firmas-pendientes.tsv` `FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01/02`. `ENDUTIH-PISOS-cierre.md` documenta blanco no resuelto de búsqueda de empleo: su resultado no se usa en el contraste. No se construyó pronóstico ni se atribuyó causalidad cultural.
+
+**Publicación:** `corrida0 registro` en seco deriva 332 corridas frente a 326 publicadas y muestra cambios ajenos; no se tocaron vistas globales. Etiqueta vigente para estas seis: **sellada en disco, no registrada**. El publicador de `.github/workflows/verify.yml` es la dependencia exacta posterior a la fusión. El PR se presenta a mesa; Codex no fusiona ni adjudica.
+
+**Conteo:** al abrir 326 corridas, 65,287 RESULT, 231 usos; 179 selladas GEN2, 61,199 RESULT GEN2 sellados, 72 adoptados activos, 246 NC abiertas y 92 celdas validadas. Al cierre, `status` derivado del disco: 332 corridas, 65,293 RESULT, 231 usos; 185 selladas, 61,205 RESULT GEN2 sellados, 72 adoptados activos, 253 NC abiertas y 92 celdas validadas. Las seis corridas nuevas contienen 1,830 filas de celda, no 1,830 RESULT distintos. Vistas TSV globales pendientes del canal. `cierre-comun.md` contiene el detalle y los enlaces de fuente.

@@ -1,0 +1,25 @@
+# ASTRA5-U4-TECNOLOGIA-1 · cierre común · 23/sep/2026
+
+**Acto y base.** Encargo archivado verbatim en `forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md`, SHA256 de cuerpo `f3c212c13b6ac79f133dfefad995cccb2f72c8f7bc8c20f05d855b93967b904d`, 0-bis `1f30b918`. CAJA, Sol 6, base `origin/main=8e41f72fa8b00a20e83f28c92f6b2964e66b0081`; rama `codex/astra5-tecnologia-1`. COMPUERTA: mesa firma por merge. El PR prepara resultados; no adopta ni fusiona.
+
+## EJECUTADO / LEÍDO / REPORTADO
+
+**EJECUTADO:** seis CALC GEN2 descriptivos retrospectivos. ENDUTIH 2023/2024/2025, COMMIT-1 `8a127ce7`, sellos `d2037378`, `744d946b`, `1442c4a5`; MOCIBA 2015/2016/2017, COMMIT-1 `a151d834`, sellos `dba60a83`, `8186508a`, `e9e94caf`. En cada CALC el primer run quedó sellado tras preflight verde y `verify REPRODUCE, CONTEXTO=IDENTICO`; seis asientos en `forense/replay-evidencia.tsv`. Specs en `forense/prereg-caja/`, medidores en `tools/dominios/`, 5 pruebas sintéticas dirigidas verdes. No se usó una medición GEN1 como input. `tabla-principal.tsv` enlaza 42 filas de totales y segmentos a RESULT, CALC y hash de salida.
+
+**LEÍDO:** `AGENTS.md`, instrucciones de proyecto v2.16, mandato de este acto, manifiesto e ids con alias, FD/cuestionarios oficiales, documentación de flujo MOCIBA 2021/2022, reservas F5, reports U0 Tecnología/Juventud/Sanción Social, antecedente ENDUTIH de gobierno digital. Corpus crudo montado (438 entradas), sin añadir raw a Git. Las diferencias de filtro, universo y texto de pregunta se fijaron por ola en las specs. El clasificador documental compartido no se modificó.
+
+**REPORTADO:** `ENDUTIH-PISOS-cierre.md`, `MOCIBA-PISOS-cierre.md`, `contrastes-reports-U0.md` y `tabla-principal.tsv`. ENDUTIH: 3 olas, 11 medidas, 1,551 celdas (1,548 estimables, 3 suprimidas), 47 dominios por ola. MOCIBA: 3 olas, 3 medidas, 279 celdas (249 estimables, 30 no estimables por falta de estrato en 2015). Son **dos contadores separados** de conductas digitales y ciberacoso; no se suman prevalencias. Estado `SIN-HISTORIA-PARA-CALIBRAR`; sólo IC de diseño, sin IC predictivo ni detección de cambios. `adopta: NO` hasta firma de mesa, FP `-1f30-01/02` abiertas.
+
+## CONTADOR
+
+Al abrir, `corrida0.py status`: 326 corridas, 65,287 RESULT, 231 usos; 179 corridas GEN2 selladas, 61,199 RESULT GEN2 sellados, 72 adoptados activos, 246 NC abiertas y `celdas_validadas=92`. Este acto añade en disco **6 corridas selladas y 6 RESULT de tabla**; sus 1,830 filas de celda son contenido de esos seis RESULT, no 1,830 RESULT distintos. Al cierre, `status` rederivado del disco: 332 corridas, 65,293 RESULT, 231 usos; 185 corridas selladas, 61,205 RESULT GEN2 sellados, 72 adoptados activos, 253 NC abiertas y `celdas_validadas=92`. Son contadores **derivados del disco**; las vistas TSV globales del registro se publican por el canal actual y estas seis siguen **«sellada en disco, no registrada»** hasta esa publicación. Adopciones nuevas 0; `celdas_validadas` Δ0. Siete NC nuevas por reservas MOCIBA.
+
+## NO-CORRIDO / RESERVAS
+
+MOCIBA 2019/2020/2025: reserva confirmatoria F5 (`NC-260923-ASTRA5-U4-TECNOLOGIA-1f30-01/02/07`). MOCIBA 2021/2022: sólo flujo P12 documental acreditado; BD y enlace predictivo reservados (`-03/04`). MOCIBA 2023/2024: celdas TIC-10/TIC-11 ya expuestas en marco piloto; sin autorización de nueva apertura en este acto; 2024 tiene además prohibición explícita de FD antes de fase confirmatoria (`-05/06`). 2018 no figura como ola en el universo F5. Cada fila NC nombra la siguiente operación: autorización específica de apertura, delimitación frente al piloto y COMMIT-1 propio. La ausencia de estas olas no habilita extrapolación temporal. En ENDUTIH la actividad de búsqueda de empleo presenta blancos cuyo filtro no se acreditó: su RESULT permanece, sin contraste reportable, y el sucesor requiere lectura de cuestionario y CALC nuevo si corresponde.
+
+## CONSUMIDO Y TRANSFERENCIA
+
+Se consumió la documentación válida de `forense/produccion/mociba-flujo-documental-1/` y la reserva de `forense/prereg-duelo-v2/F5-panel-candidatos-v1_3.tsv`; no se duplicó su medición predictiva pendiente. El antecedente `data/l6-gobierno-digital-endutih-v1_0.json` orientó la búsqueda, no alimentó los RESULT nuevos. El PR de este acto será el recibo de transferencia; cualquier apertura de reserva, corrección del filtro de empleo o adopción exige un acto sucesor específico.
+
+**Auditoría de rigor extremo.** Las tasas de 6+, 12+ y 12–59 no se comparan como la misma población. Exposición MOCIBA no prueba chisme, envidia ni aceptación cultural; uso de trámites ENDUTIH no prueba coerción. Los motivos declarados de no uso no identifican la oferta ni una preferencia causal. Ninguna inferencia genética o psicológica de grupo se deriva de estas tablas.
