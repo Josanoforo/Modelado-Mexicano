@@ -4,16 +4,16 @@
 **NOMBRE ESTABLE**: eje regional v1.0  
 **ESTADO**: propuesta; adopta NO; RETROSPECTIVA.
 
-Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee quince CALC sellados. La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.
+Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee dieciséis CALC sellados. La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.
 
 ## Decisiones de geografía y publicación
 
 R1: entidades solo donde el diseño y el estimando lo admiten; ENIF 2024 usa sus seis regiones oficiales. R2: punto e IC solo con n≥200, varianza estimable y cualquier requisito oficial más estricto. ENVIPE y ENCIG son entidades de residencia, no ubicación del delito o trámite.
 
-## Filas medidas (584)
+## Filas medidas (620)
 
-- PUBLICABLE: 564
-- SUPRIMIDA-N: 20
+- PUBLICABLE: 593
+- SUPRIMIDA-N: 27
 
 Las filas tienen nivel geográfico explícito y un RESULT por punto y límite. Los IC de diseño y predictivos calibrados ocupan filas distintas; estos últimos citan dos CALC. Todas las cifras son RETROSPECTIVA. La repetición conjunta de réplicas por ola se conserva dentro del RESULT `-JSON` de cada CALC sin identificadores ni pesos individuales.
 

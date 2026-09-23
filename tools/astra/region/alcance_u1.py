@@ -25,6 +25,9 @@ MEASURED = {
     *(("ENIF", c) for c in (
         "no_tiene_ahorros_enif2024", "informal_cualquiera", "formal_cualquiera",
         "ahorra_solo_informal", "ahorra_solo_formal", "ahorra_ambas_vias", "no_ahorra")),
+    ("ENIF", "horizonte_no_corto"),
+    ("ENIF", "desconfianza_o_mal_servicio_como_razon_principal_conoce_proteccion_enif2024"),
+    ("ENIF", "desconfianza_o_mal_servicio_como_razon_principal_no_conoce_enif2024"),
 }
 FIELDS = ("instrumento", "conducta_u1", "estados_u1", "result_consumidor_u1",
           "estado_regional_u5", "nota")
@@ -55,10 +58,17 @@ def genera():
             state = "MEDIDO-REGION" if (inst, conducta) in MEASURED else "PENDIENTE-DICTAMEN-REGIONAL"
             if pseudo:
                 state = "IDENTIDAD-CONSUMIDOR-POR-DESDOBLAR"
+            if (inst, conducta) == ("ENIF", "horizonte_corto"):
+                state = "PARCIAL-DOMINIOS-SS;NO-TRABAJA-PENDIENTE"
             nota = ("El código U1 es una identidad de celda/interacción, no una conducta simple; "
                     "requiere vincular su estimando antes de declarar expectativa geográfica."
                     if pseudo else "El piso ENIF 18+ se distingue de la serie histórica 18–70."
-                    if inst == "ENIF" and state == "MEDIDO-REGION" else
+                    if inst == "ENIF" and state == "MEDIDO-REGION" and conducta in
+                    {"informal_cualquiera", "formal_cualquiera"} else
+                    "Las tasas por seguridad social están medidas; falta el dominio no trabaja."
+                    if state.startswith("PARCIAL-DOMINIOS") else
+                    "Seis regiones medidas; la regla R2 suprime celdas con n<200."
+                    if inst == "ENIF" and "desconfianza_o_mal_servicio" in conducta else
                     "Última ola o serie regional no medida, salvo estado MEDIDO-REGION.")
             w.writerow(dict(zip(FIELDS, (inst, conducta, ";".join(sorted(v["estados"])),
                                       ";".join(sorted(v["results"])), state, nota))))
