@@ -125,6 +125,28 @@ CEEY = dict(
     prioridad="2",
 )
 
+CEEY_FIN = dict(
+    report=REPORT,
+    report_sha256=REPORT_SHA,
+    localizador="L13; repetición L10-L12",
+    tier_report="sin rótulo explícito",
+    clase="asociación publicada entre inclusión financiera parental y destino económico",
+    limite_inferencial="Son probabilidades descriptivas condicionadas simultáneamente por origen en grupos 1+2 y tenencia financiera parental. No equivalen a la celda Q1→Q5 del informe general, ni demuestran efecto causal de producto financiero sobre movilidad.",
+    conducta_unidad_universo="Adultos 25–64 ESRU-EMOVI 2023 cuyo hogar de origen estaba en grupos 1 o 2 (40% inferior) del índice de recursos económicos; Figura 11 usa 16 205 observaciones analíticas del cuestionario básico, no toda la muestra.",
+    instrumento_ola="CEEY ESRU-EMOVI 2023, Informe de movilidad social en México 2025: la ruta hacia la inclusión financiera",
+    documento_id_hash_pagina="SIN-ID:ceey_inclusion_financiera2025.pdf|9421e24efded34ee752d89c1a80133ab35330d8ebe5961e47f005d7a5ccb4125|p.36 Figura 11 y notas; PDF local de enlace oficial https://ceey.org.mx/informe-movilidad-social-en-mexico-2025-inclusion-financiera/ sin registro en main",
+    pregunta_textual_codigo_respuestas="Inclusión parental: al menos cuenta de ahorro, tarjeta de crédito, cuenta/tarjeta de nómina o cuenta de cheques según nota Figura 11; destino grupo 5 del índice de recursos económicos. Reactivo, códigos, construcción y factor exactos por cotejar.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="El segundo informe CEEY publica cifra, grupo de origen, condición parental, población y n analítica con PDF físico/hash; microdato, instrumento y RESULT no cotejados por U0. Se cierra el agregado, no causalidad ni reproducción.",
+    datos_id_estado="ESRU-EMOVI 2023 cuestionario básico disponible por CEEY, SIN-ID de manifiesto U0; microdato NO DESCARGADO NI ABIERTO.",
+    reserva="Informe D.R. © CEEY 2025 sin licencia de redistribución explícita; copia local solamente. Apertura de microdato requiere carril autorizado.",
+    gen2_existente="Sin RESULT ESRU-EMOVI 2023 compatible identificado en main.",
+    propietario="ASTRA5-MESA-MOVILIDAD / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="MESA-DOCUMENTAL registra referencia, condiciones y SHA; MESA-MOVILIDAD coteja pregunta parental, grupo 1+2 y ponderación antes de reproducir en CAJA autorizada.",
+    prioridad="2",
+)
+
 ROWS = [
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-004", texto_vigente="El Gini del ingreso corriente por hogar con transferencias fue 0.391 en ENIGH 2024.", componente_contrastable="Gini publicado con transferencias recibidas incluidas: 0.391; 0.402 en 2022 y 0.449 en 2016 se conservan como comparadores, sin dictamen de serie.", siguiente_operacion="Registrar publicación en main, reproducir fórmula del Gini en CAJA y tratar la serie 2016/2022 con su propio contrato de comparabilidad."),
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-005", texto_vigente="Sin considerar transferencias, el Gini contable ENIGH 2024 habría sido 0.450.", componente_contrastable="Gini simulado sin transferencias recibidas: 0.450 frente a 0.391 con ellas, misma fuente y año.", siguiente_operacion="Registrar publicación en main y verificar qué rubros se restan en la simulación; no atribuir 0.059 a un programa o salario mínimo causalmente."),
@@ -139,6 +161,8 @@ ROWS = [
     CEEY | dict(id_afirmacion="ASTRA5-U0-MER-014", texto_vigente="De quienes nacieron en el quintil inferior de recursos económicos, 2% alcanzó el quintil superior en la adultez.", componente_contrastable="Informe CEEY 2025 Figura 3 p.20: P(quintil actual 5 | quintil origen 1)=2% entre adultos 25–64 de la base analítica ESRU-EMOVI 2023.", pregunta_textual_codigo_respuestas="Matriz origen/destino del índice de recursos económicos del hogar, cinco grupos de 20%; fila origen grupo 1, columna destino grupo 5. n analítica total 14 924, n de fila/ponderador por cotejar."),
     CEEY | dict(id_afirmacion="ASTRA5-U0-MER-015", texto_vigente="El 9% de adultos cuyos padres estudiaron hasta primaria o menos alcanzó educación profesional.", clase="transición educativa publicada", componente_contrastable="Informe CEEY 2025 Figura 4 p.21: P(educación profesional | máximo de padres primaria o menos)=9%; no es exactamente 10% aunque el report redondea a 1 de cada 10.", pregunta_textual_codigo_respuestas="Máximo nivel educativo de padres ≤primaria frente a nivel profesional alcanzado por persona entrevistada 25–64; categorías/códigos exactos por cotejar."),
     CEEY | dict(id_afirmacion="ASTRA5-U0-MER-016", texto_vigente="El 63% de adultos con padres de educación profesional alcanzó educación profesional, alrededor de siete veces la probabilidad del grupo con padres hasta primaria.", clase="transición educativa publicada", componente_contrastable="Informe CEEY 2025 Figura 4 p.21: P(profesional | padres profesionales)=63% frente a 9% si padres ≤primaria; cociente descriptivo 7, sin interpretación causal.", pregunta_textual_codigo_respuestas="Máximo nivel educativo de padres profesional frente a nivel profesional alcanzado por persona entrevistada 25–64; categorías/códigos exactos por cotejar."),
+    CEEY_FIN | dict(id_afirmacion="ASTRA5-U0-MER-017", texto_vigente="Entre adultos con origen en grupos 1+2 y padres con inclusión financiera, 13% alcanzó el grupo 5 de recursos económicos.", componente_contrastable="CEEY inclusión financiera Figura 11 p.36: P(destino grupo 5 | origen grupos 1+2, padres con producto financiero)=13%; n analítica total 16 205.", siguiente_operacion="Registrar segundo informe; U3/MESA-MOVILIDAD fija pregunta parental y denominador condicionado antes de reproducir. No atribuir 13% a todos los adultos."),
+    CEEY_FIN | dict(id_afirmacion="ASTRA5-U0-MER-018", texto_vigente="Entre adultos con origen en grupos 1+2 y padres sin inclusión financiera, 4% alcanzó el grupo 5 de recursos económicos.", componente_contrastable="CEEY inclusión financiera Figura 11 p.36: P(destino grupo 5 | origen grupos 1+2, padres sin producto financiero)=4%; CEEY resume la diferencia como 3.3 veces; 13% y 4% son cifras redondeadas.", siguiente_operacion="Registrar segundo informe; U3/MESA-MOVILIDAD coteja grupo de comparación, reactivo y ponderación; no leer razón 3.3 como efecto causal ni deduplicar con Q1→Q5 2%."),
 ]
 
 
