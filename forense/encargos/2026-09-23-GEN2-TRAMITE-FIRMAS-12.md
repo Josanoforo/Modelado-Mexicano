@@ -50,3 +50,5 @@ No corre el deep search 2, no escribe el informe v1.3. Sucesores: FIRMAS-13 arch
 
 ## CONSUMIDO
 PR #1067 (`acto/gen2-tramite-firmas-12` → `main`), 23/sep/2026. `ADR-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-01`. No fusionado por este acto: mesa fusiona.
+
+**ADENDA-1** (`2026-09-23-GEN2-TRAMITE-FIRMAS-12-ADENDA-1.md`, sha256 `1037079f5d56c8d8…`, verificado contra `ORDEN-DE-LANZAMIENTO-2026-09-23.md`): aprobación en bloque de mesa, 23/sep/2026 (tarde), doce firmas de alcance/orden/forma para `MISION-ASTRA-5`, `GEN2-FRONT-1`, `ASTRA-4 U5` y `ASTRA-4` ADENDA-1/2. Recibida y sellada 23/sep/2026; amplía P1 de 5 a 17 filas en `firmas-pendientes.tsv` (criterio de «Hecho» de P1 pasa de ≥4 a ≥16, per ADENDA-1 §0). `ADR-260923-GEN2-TRAMITE-FIRMAS-12-9087-01`. No fusionada por este acto: mesa fusiona.
