@@ -1,0 +1,93 @@
+# METRICA-CELDAS-VALIDADAS -- cara mecanica de
+# forense/prereg-caja/METRICA-CELDAS-VALIDADAS-spec-v1_0.md (D-15: NO-APLICA
+# es un valor -- esta spec no es un CALC de microdato, es la métrica
+# rectora derivada de sellos ya congelados; los campos de un CALC de datos
+# que no aplican aquí se declaran NO-APLICA, nunca se omiten).
+metrica_id: METRICA-CELDAS-VALIDADAS
+spec_md: METRICA-CELDAS-VALIDADAS-spec-v1_0.md
+
+script: tools/celdas_validadas.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: METRICA-RECTORA-DERIVADA
+  cuenta_gen2: NO
+  cuenta_gen2_nota: >-
+    Esta métrica no adopta ningún RESULT nuevo: agrega sellos ya sellados
+    por sus propios CALC (que sí cuentan gen2 cada uno en su spec). El
+    conteo de `celdas_validadas` es una vista, no una medición nueva.
+  validacion_independiente: NO-APLICA
+  spec_sellada: forense/prereg-caja/METRICA-CELDAS-VALIDADAS-spec-v1_0.md
+  demanda_que_releva: NO-APLICA
+  reglas_bajo_prueba: NINGUNA -- este script no toca milpa/, no mueve tier, no adopta.
+  contaminacion_declarada: NO-APLICA -- no hay control positivo GEN1 de una vista.
+  medidor_ejecutado_al_congelar: NO-APLICA
+  medidor_identico_a: NO-APLICA
+
+inputs:
+  - id: IN-MARCADOR-SEGMENTO
+    origen: repo
+    ruta: data/corrida0/marcador-segmento.tsv
+  - id: IN-CELDAS-D
+    origen: repo
+    ruta: "data/curacion-registro/celdas-d/*.yaml"
+  - id: IN-CALC-TRIADA-0002
+    origen: repo
+    ruta: data/corrida0/CALC-TRIADA-0002/resultados.json
+  - id: IN-CALC-REFERIDOS-DESDE-CELDAS-D
+    origen: repo
+    ruta: "data/corrida0/CALC-*/resultados.json (referidos por momentos_holdout_refs de cada celda-D)"
+
+variables: NO-APLICA -- no lee microdato; agrega TSV/YAML/JSON ya sellados.
+
+universo: >-
+  Toda fila de data/corrida0/marcador-segmento.tsv (clase 2: persistencia
+  t-1 vs R) más toda celda-D de data/curacion-registro/celdas-d/*.yaml con
+  estado_decidibilidad=PUNTUADA y veredicto sellado (clase 1: cruce vs R),
+  más CALC-TRIADA-0002 (clase 3, reportada aparte). Ver §2-3 de la spec humana.
+
+filtros: >-
+  Clase 1: celda-D sin veredicto sellado, o sin RESULT de error localizable
+  en momentos_holdout_refs, o sin escala derivable contra margen_material ->
+  NO CUENTA, declarada en clase_1_celdas_d_sin_contar con su motivo (A.4).
+  Clase 2: filas del marcador sin error_piso_pp -> fuera de clase 2 (las de
+  formalidad con piso sin error se declaran aparte en NO_CUENTAN). IDENTICO
+  (estado=IDENTICO) nunca cuenta en ninguna clase.
+
+ponderador: NO-APLICA -- no hay ponderador muestral; se agregan conteos y
+  medianas de error ya sellados por celda.
+
+transformacion: >-
+  Ver §3 de la spec humana: escala derivada por factor 1/100 contra
+  margen_material (clase 1); mediana y max de error_piso_pp por instrumento
+  (clase 2); total = n(clase 1) + n(clase 2), clase 3 aparte.
+
+estimando: >-
+  DESCRIPTIVO. total_celdas_validadas y sus dos sub-cifras
+  (prospectiva/retrospectiva), sin sumarlas entre sí (§5 de la spec humana).
+
+dependencias_materiales: [yaml]
+
+parametros:
+  fuente_acto: "ACTO GEN2-TUBERIA-METRICA-RECTORA-1 -- mueve la función desde tablero_programa.py"
+  patrones_error_c2:
+    - {sufijo: "-C2-D-PP", piloto: 3, dominio: GOB}
+    - {prefijo: "-ARB-D-C2-", piloto: "1 y 2", dominio: "DIN, TRA"}
+  tolerancia_escala: 1.0e-5
+
+seed:
+  aplica: false
+
+tolerancia:
+  tipo: NO-APLICA
+  razon: >-
+    Derivación determinista sobre sellos existentes; la compuerta del acto
+    (igualdad de JSON antes/después de mover la función, mismo SHA) es la
+    prueba de identidad -- no una tolerancia numérica.
+
+resultados:
+  - {id: total_celdas_validadas, tipo: entero, unidad: "celdas validadas (clase 1 + clase 2), unidad CELDA"}
+  - {id: prospectividad_del_marcador.PROSPECTIVA, tipo: entero, unidad: "emisiones selladas antes de ver R"}
+  - {id: prospectividad_del_marcador.RETROSPECTIVA, tipo: entero, unidad: "emisiones selladas después de ver R"}
+  - {id: prospectividad_del_marcador.EMITIDA-SIN-R, tipo: entero, unidad: "emisiones que esperan su R -- demanda, no validación"}
+  - {id: clase_3_duelo_tres_nacional, tipo: objeto, unidad: "duelo de tres nacional, reportado aparte del total"}

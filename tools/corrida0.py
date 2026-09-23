@@ -112,6 +112,7 @@ from milpa.src.emisor import cargar_reglas  # noqa: E402
 from milpa.src.clases import EJES as EJES_MODELO  # noqa: E402
 from milpa.src.clases import EJES_HOGAR as EJES_HOGAR_MODELO  # noqa: E402
 import pines_mesa  # noqa: E402
+import celdas_validadas as _CV  # noqa: E402
 from milpa.src.linaje import (  # noqa: E402
     APTA_LINAJE, NO_APTA, ORIGEN_HEREDADO, ORIGEN_INDETERMINADO,
     ORIGEN_MIXTO, ORIGEN_NUEVO, USO_MEDICION_GEN2, aptitud_para_uso, combina_origenes,
@@ -4972,6 +4973,17 @@ def status(imprime: bool = True) -> dict:
             1 for f in corridas
             if f["origen"] == "OFERTA" and f["envuelto_legacy"] == "SI"),
     }
+    # ACTO GEN2-TUBERIA-METRICA-RECTORA-1: `celdas_validadas` deja de vivir
+    # sólo en el tablero -- se deriva aquí desde el mismo módulo importable
+    # (tools/celdas_validadas.py), con sus dos sub-cifras en líneas propias
+    # (PROSPECTIVA y RETROSPECTIVA no se suman, firma de mesa 21/sep/2026) y
+    # `celdas_emitidas_sin_r` como demanda: emisiones que esperan su R.
+    _cv = _CV._celdas_validadas()
+    _prosp, _retro = _CV.prospectividad_sub_cifras(_cv)
+    c["celdas_validadas"] = _cv.get("total_celdas_validadas")
+    c["celdas_validadas_prospectiva"] = _prosp
+    c["celdas_validadas_retrospectiva"] = _retro
+    c["celdas_emitidas_sin_r"] = _CV.emitidas_sin_r(_cv)
     if imprime:
         for clave, valor in c.items():
             print(f"{clave}={valor}")

@@ -51,3 +51,5 @@ Estado respaldado por [`firmas-pendientes.tsv`](https://github.com/Josanoforo/Mo
 ## Resultado esperado de la tanda
 
 Saber qué consumidor puede avanzar y hacerlo avanzar; reconocer lo ya resuelto; alimentar investigación con preguntas verificables; presentar sólo las decisiones que sigan siendo humanas. El éxito se mide por consumidores, mediciones y bloqueos resueltos, no por más archivos descargados o más filas de control.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · 39 cerrado (ver fila hermana); 40 despachado bajo forense/encargos/2026-09-12-GEN2-DEMANDA-CONCILIADA-Y-EJECUCION-NC0165.md

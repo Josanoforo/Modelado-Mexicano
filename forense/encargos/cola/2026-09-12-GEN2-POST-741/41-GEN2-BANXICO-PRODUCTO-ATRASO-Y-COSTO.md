@@ -81,3 +81,5 @@ Aceptación: medición real de todas las celdas viables del contrato, distinció
 ## Prompt de lanzamiento
 
 > Ejecuta completo el encargo 41 en CAJA y worktree propio. Autorizo abrir/congelar la spec descriptiva Banxico, calcular los estimandos definidos con los datos ya adquiridos, verificar los riesgos materiales, registrar y entregar PR. No es otra adquisición ni adopción automática. 40 lleva la demanda/motor y 43 la medición SHED; tu propiedad es Banxico y su relación N34. Continúa hasta medición e informe consumibles. El merge queda conmigo.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO-cierre.md; CALC-BANXICO-PRODUCTO-DANO-0001 en forense/replay-evidencia.tsv

@@ -188,8 +188,18 @@ def ejecuta(path, invocador, timeout=40):
         dt = time.time() - t0
         return r.returncode, (r.stdout + r.stderr), dt, False
     except subprocess.TimeoutExpired as e:
+        # ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1 (22/sep/2026), defecto
+        # adyacente ≤10 líneas (D-21): `TimeoutExpired.stdout/.stderr`
+        # pueden llegar en bytes aunque `run()` pidiera `text=True` -- el
+        # timeout corta antes de que Popen decodifique el buffer parcial
+        # (medido: `test_consulta_gen2` sin corpus en NUBE). Decodifica
+        # perezoso en vez de asumir str.
         dt = time.time() - t0
-        return 124, ((e.stdout or "") + (e.stderr or "")), dt, True
+        def _texto(x):
+            if x is None:
+                return ""
+            return x.decode("utf-8", "replace") if isinstance(x, bytes) else x
+        return 124, (_texto(e.stdout) + _texto(e.stderr)), dt, True
 
 
 def ultimo_error(salida):

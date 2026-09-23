@@ -101,3 +101,5 @@ Contador: cero directo; el tablero pasa a mostrar los contadores GEN2 derivados.
 `C0-B` lotes sobre `demanda-corridas.tsv` de E2 (specs nuevas para lo `SIN-RECETA` activo, empezando por los coeficientes) · `SELLO-4` · `C0-C` · `C0-D` (M → R → L → marcador v2.0, con el paso 3 del marco) · B-6/B-7 al primer caso · B-8 con dos corridas `ci_replayable` · Fase IV (B-5, B-9 con el dato medido: 63 MB del checkout, pack 38 MB, B-10 en cron).
 
 **Contadores movidos por este documento: cero.** Declarado.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · tools/corrida0.py, tools/entorno.py, tools/limpia_arbol.py ya existen; el propio archivo declara ESTADO: INDICE-DE-COLA -- NO SE DESPACHA

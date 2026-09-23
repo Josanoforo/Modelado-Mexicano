@@ -4,6 +4,8 @@
 > **Cabecera de era.** GEN2 · 18–22/sep/2026 · instrucciones vigentes `v2.16` (`ADR-260921-GEN2-V216-d3da-01`) · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · plan de aceleración del 20/sep · **régimen de estimación por celda**: `ADR-531`/`ADR-91` (composición matricial, no estimador por defecto), `FP-383` (emisor fuera del marcador), contrato celda-D `v0.6`.
 >
 > **Enmienda (22/sep/2026, `ADR-260922-GEN2-ESTADO-V15-1-7e23-01`, `ACTO GEN2-ESTADO-v1_15-1`).** instrucciones vigentes v2.16 desde 21/sep/2026 (`ADR-260921-GEN2-V216-d3da-01`); `v1.14` retirada del árbol por T01 — historia recuperable por SHA del acto que la selló.
+>
+> **`celdas_validadas` 92 @ `77553315`** — derivada por `tools/celdas_validadas.py` (ACTO GEN2-TUBERIA-METRICA-RECTORA-1, 22/sep/2026: la métrica deja de vivir sólo en el tablero).
 
 > | | |
 > |---|---|
