@@ -91,3 +91,19 @@ def test_enut_documentos_en_rama_y_limite_de_planeacion():
     assert "TRAB_NO_REM_VOL" in row["pregunta_textual_codigo_respuestas"]
     assert "no miden directamente planeación" in row["limite_inferencial"]
     assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
+
+
+def test_lectura_tiempo_traza_los_15_hallazgos_sin_cierre_falso():
+    rows = read("lectura-tiempo-v1_0.tsv")
+    source = (ROOT / "corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md").read_text(encoding="utf-8").splitlines()
+    assert len(rows) == 15
+    assert {row["id_lectura"] for row in rows} == {f"LECTURA-112051b2-{n:02d}" for n in range(1, 16)}
+    for n, row in enumerate(rows, 1):
+        assert row["archivo_fuente_linea"].endswith(f":L{n + 12}")
+        assert source[n + 11].startswith(f"{n}. ")
+        assert row["pregunta_documental_pendiente"]
+        assert row["archivo_pieza_exacta"]
+        assert row["propietario"].startswith("ASTRA5-")
+        assert row["siguiente_operacion"]
+    assert rows[9]["estado_lectura"] == "NO-AFIRMACION-POSITIVA"
+    assert "no tasa de descuento temporal" in rows[10]["componente_dictaminado_o_residual"]
