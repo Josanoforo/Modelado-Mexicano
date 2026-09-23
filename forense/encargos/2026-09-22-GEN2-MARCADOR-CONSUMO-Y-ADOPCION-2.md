@@ -40,4 +40,21 @@ Propio: `tools/marcador_segmento.py` + test · `data/corrida0/marcador-segmento.
 ## 10 · NO HACE · SUCESORES · CIERRE
 No mide, no deriva R, no adopta fuera de firma. Sucesor: `GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1` lee la lista real de reservadas. Auditoría: no aplica. Cierre por /acto.
 
+## NO-CORRIDO / RESERVAS
+
+- **Qué:** P1 · consumir `CALC-DUELO-ENVIPE2026-ADJUDICACION-0001` y `CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001` (las otras dos fuentes de adjudicación).
+  **Por qué:** `PARO-PREMISA`. Ninguna celda-D en `data/curacion-registro/celdas-d/*.yaml` referencia estos dos CALC (sólo GOB la tiene); el marcador hoy sólo convierte celda-D+`champion_actual` en filas, no un CALC de adjudicación suelto. Además el CALC de DUELO sella 42 `VS-PERSISTENCIA` (3 bloques de 14), no los 24 cruces que cita el §1 — discrepancia de universo sin reconciliar (v2.16 §2: no se adivina el mapeo).
+  **Impacto:** los 24 cruces del duelo ENVIPE 2026 y los 14 del lote no quedan con estado/rótulo en `marcador-segmento.tsv`; el criterio de «hecho» del §1 no se cumple para estas dos fuentes.
+  **Sucesor:** `NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-01` — un acto que primero reconcilie con mesa la cuenta 24-vs-42 del duelo y luego diseñe el lector de CALC de adjudicación suelto.
+
+- **Qué:** P3 · enlazar `reparto_hogar` (`SOLO-PISO`, `CALC-ENUT2019-NUCLEO-EJES-0001`, R=`RAZON-NUCLEO-NACIONAL`) y marcar las 10 `sexo_edad` `NO-CONSTRUIBLE-POR-CRUCE`.
+  **Por qué:** `NO-VERIFICABLE-AQUÍ`. La firma (a)(b′)(c) de `FP-260921-GEN2-ENUT-PISOS-Y-SERIE-1-308c-01` ya basta, pero `forense/prereg-caja/PISOS-ENUT2019-ejes-metadatos-v1_1.tsv` aún no trae el enlace real contra `CALC-ENUT2019-NUCLEO-EJES-0001`, y no se pudo confirmar en esta sesión que 0.2379/0.2255 salen de ese CALC (§2: ninguna cifra se teclea sin verificar) sin diseñar antes el contrato `cell_id`/`resultado_id` que `_piso_de_fila()` exige.
+  **Impacto:** las 11 celdas ENUT (`reparto_hogar` + 10 `sexo_edad`) siguen `SIN-PISO` en vez de `SOLO-PISO`/`NO-CONSTRUIBLE-POR-CRUCE`; el criterio de «hecho» del §1 no se cumple para ENUT.
+  **Sucesor:** `NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-02` = `GEN2-ENUT-ENLACE-MARCADOR-1` (ya nombrado por `ADR-260922-GEN2-ENUT-NUCLEO-CELDAS-1-9f24-01`).
+
+- **Qué:** registro de `aptitud_uso`/`origen_numerico` para las 16 filas `CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::…` que este acto activó en el consumidor `marcador` (efecto colateral de cerrar NC 3619-01).
+  **Por qué:** `FUERA-DE-PERÍMETRO`. `T35 T-REPRO(g)` de `tests/check.py` exige que el consumidor `marcador` tenga `origen_numerico` acreditado para todo RESULT que cite; ese registro vive en otro subsistema (el registro de consumidores/`aptitud_uso`), ajeno al perímetro de este encargo (`tools/marcador_segmento.py` + TSV/yaml/no-corrido/nota, §9).
+  **Impacto:** la suite completa (`tests/check.py`, no `--rapido`) reporta 16 FAIL nuevos en `T35 T-REPRO(g)` hasta que un acto de aparato acredite el origen numérico de esas 16 filas.
+  **Sucesor:** `NC-260923-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2-c6f4-03` — acto de aparato sobre el registro de `aptitud_uso`/`origen_numerico` de `tests/check.py::T35`.
+
 
