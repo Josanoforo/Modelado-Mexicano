@@ -39,3 +39,10 @@ Propio: `tools/corrida0.py` (`cmd_registro`/`--escribe --lote`, ≤ 30 líneas n
 
 ## 10 · NO HACE · SUCESORES · CIERRE
 No registra a mano, no asienta drift (eso es `GEN2-REPLAY-ASIENTOS-2`, caja), no toca el job salvo el test. Sucesor: el primer push real (publica los 22); `GEN2-REPLAY-ASIENTOS-2` (los 13). Auditoría: no aplica. Cierre por /acto.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: §1 OBJETIVO — «primer push real tras fusionar: `status` antes/después y `grep -c` de `corridas.tsv` en la nota (o cita al commit `[deriva]` si fusiona por botón)».
+  **por qué**: DIFERIDO-A:primer push real a main — el mecanismo (P1+P2) está implementado y probado con push sintético en un clon desechable (antes/después del fix, log en la nota), pero el objetivo de §1 exige un push REAL a `main` con el fix ya fusionado, que depende de que mesa fusione este PR y de que un push posterior traiga un asiento nuevo en `replay-evidencia.tsv` que dispare el canal.
+  **impacto**: `corridas.tsv`/`resultados.tsv` de `main` siguen sin las 22+ corridas selladas sin fila (mismo estado que `ADR-260922-GEN2-TUBERIA-CANAL-PUBLICACION-1-7d98-01` dejó); lo que cambia es que el mecanismo que las publicará ya no bloquea con las 13 corridas ajenas.
+  **sucesor**: el primer push real a `main` (mecanismo ya probado en este acto); `GEN2-REPLAY-ASIENTOS-2` para asentar o re-verificar la evidencia de las 13 corridas con drift real. Fila: `NC-260923-GEN2-TUBERIA-LOTE-ESTRICTO-1-9428-01`.
