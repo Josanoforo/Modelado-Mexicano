@@ -41,3 +41,12 @@ Propio: `tools/sello_externo.py`, `forense/sellos/` (nuevo), `docs/sello-externo
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia la cascada ni CI; no firma por mesa. Sucesores: `GEN2-TUBERIA-SELLO-EXTERNO-2` (`ots upgrade` cuando ancle; cableado a `/acto` si mesa firma la FP de P4).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P2(a)/P2(b) — atestación por OpenTimestamps (`.ots`) y por TSA RFC 3161 (`.tsq`/`.tsr`) del manifiesto de sellos.
+  **por qué**: `PARO-ENTORNO` — sin egress desde esta sesión de nube a ningún calendario OTS ni TSA pública (los cuatro endpoints probados dieron `connect_rejected`/`http_connect=403`; confirmado también con el cliente real `ots stamp`, `Failed to create timestamp: need at least 2 attestations but received 0 within timeout`).
+  **impacto**: el manifiesto queda atestiguado solo por (c) — firma GPG del merge + receta de tag GPG de mesa —, más débil que (a)/(b); ningún `.ots`/`.tsr` existe todavía junto al manifiesto.
+  **sucesor**: `GEN2-TUBERIA-SELLO-EXTERNO-2` (correr `ots upgrade`/reintentar desde un entorno con egress cuando exista, o cuando mesa firme el tag GPG).
+
+Fila registrada: `NC-260923-GEN2-TUBERIA-SELLO-EXTERNO-1-cfce-01` en `forense/no-corrido.tsv`.
