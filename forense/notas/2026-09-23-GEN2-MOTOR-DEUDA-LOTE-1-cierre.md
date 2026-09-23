@@ -67,3 +67,14 @@ $ python3 tests/check.py --rapido
 ## Perímetro
 
 Tocado: `tests/test_motor_holdout.py` (P2), `forense/no-corrido.tsv` (3 filas nuevas `e270-01/02/03` + cierre de `e8fa-02`), `canon/gobernanza-v1_15.md`, esta nota, `canon/L0/ADR-260923-GEN2-MOTOR-DEUDA-LOTE-1-e270-01.md`, `canon/registro-rotulos.tsv`, `forense/encargos/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1.md` (cascada de cierre). No tocado: `milpa/src/motor.py`, `matriz.py`, `celdas.py`, `tramite.yaml`, `tests/test_motor_gen2_explicito.py`, `tests/test_consulta_gen2.py`, `forense/ejemplos/GEN2-*`, ningún CALC sellado.
+
+## Enmienda fechada (23/sep, mismo día) — defecto propio de CI corregido
+
+El push de sync reescribió `forense/no-corrido.tsv` con el módulo `csv` de Python (round-trip completo), rompiendo `tests/test_adq_demanda_vigente.py` (0→3 fallos: `total_nc_abiertas publicado (235) vs no-corrido.tsv modificado (243)`). El propio test documenta este defecto en su docstring (`_cierra_una_nc`): el TSV trae campos citados con saltos de línea internos que `csv` puede desfigurar. Reconstruido desde `origin/main` (primeras 638 líneas byte-idénticas, verificado con `diff`) con las 3 filas nuevas añadidas como texto plano. `e8fa-02` queda tal como la cerró `ACTO GEN2-TRAMITE-FIRMAS-11` en `main` (no una segunda edición de este acto).
+
+```
+$ python3 tests/test_adq_demanda_vigente.py
+7 pruebas, 0 fallos
+$ python3 tests/check.py --rapido
+  FAIL: 0 — VERDE
+```
