@@ -76,6 +76,9 @@ def genera():
     resumen = "\n".join(f"- {k}: {v}" for k, v in sorted(c.items()))
     (ROOT / "canon/eje-regional-v1_0.md").write_text(
         "# Eje regional v1.0 · avance medido\n\n"
+        "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
+        "**NOMBRE ESTABLE**: eje regional v1.0  \n"
+        "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
         "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee once CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
