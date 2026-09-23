@@ -118,6 +118,32 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
                 sha(resultados_path), sha(carpeta / "sello.json"),
             ))))
+    calc = "CALC-REGION-ENCIG-CONSUMIDORES-2025-0001"
+    carpeta = ROOT / "data/corrida0" / calc
+    resultados_path = carpeta / "resultados.json"
+    datos = json.loads(resultados_path.read_text(encoding="utf-8"))["resultados"]
+    from tools.astra.region.encig2025_consumidores import CONDUCTAS as ENCIG25_CONDUCTAS
+    for conducta in ENCIG25_CONDUCTAS:
+        pref = f"RESULT-REGION-ENCIG-2025-{conducta}"
+        bruto = json.loads(datos[pref + "-JSON"])
+        unidad = bruto["unidad"]
+        for fila in bruto["filas"]:
+            base = pref + "-" + fila["geografia"]
+            ids = [base + suf for suf in ("-P", "-IC-LO", "-IC-HI")]
+            punto, lo, hi = (datos[i] for i in ids)
+            if fila["estado"] == "PUBLICABLE" and not (0 <= lo <= punto <= hi <= 1):
+                raise ValueError(f"IC o punto incoherente: {base}")
+            if fila["estado"] != "PUBLICABLE" and any(v is not None for v in (punto, lo, hi)):
+                raise ValueError(f"fila suprimida con cifra: {base}")
+            filas.append(dict(zip(CAMPOS, (
+                "ENCIG", conducta, "ENTIDAD", fila["geografia"], "2025", "IC-DE-DISEÑO",
+                punto, lo, hi, unidad, "proporción [0,1]",
+                "población urbana 100 mil+; códigos y denominador en spec de consumidor",
+                datos[base + "-N"], datos[base + "-N-EFECTIVO-KISH"],
+                "n≥200 y varianza bootstrap estimable" if fila["estado"] == "PUBLICABLE" else fila["estado"],
+                "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
+                sha(resultados_path), sha(carpeta / "sello.json"),
+            ))))
     destino = ROOT / "canon/eje-regional-v1_0.tsv"
     with destino.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CAMPOS, delimiter="\t", lineterminator="\n")
@@ -130,7 +156,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee trece CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee catorce CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"

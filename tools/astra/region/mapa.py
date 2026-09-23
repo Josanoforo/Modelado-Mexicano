@@ -15,10 +15,15 @@ SERIES = {
     "ENCIG:canal_digital_luz": [(2017, "CALC-REGION-HIST-ENCIG-2017-0001"),
                                 (2019, "CALC-REGION-HIST-ENCIG-2019-0001"),
                                 (2021, "CALC-REGION-HIST-ENCIG-2021-0001"),
-                                (2023, "CALC-REGION-ENCIG-2023-0001")],
+                                (2023, "CALC-REGION-ENCIG-2023-0001"),
+                                (2025, "CALC-REGION-ENCIG-CONSUMIDORES-2025-0001")],
     "ENIF:informal_cualquiera_18a70": [(2018, "CALC-REGION-HIST-ENIF-2018-0001"),
                                         (2021, "CALC-REGION-HIST-ENIF-2021-0001"),
                                         (2024, "CALC-REGION-HIST-ENIF-2024-0001")],
+}
+PREF_EXPLICITO = {
+    "CALC-REGION-ENCIG-CONSUMIDORES-2025-0001":
+        "RESULT-REGION-ENCIG-2025-adopta_encig2025_luz-JSON",
 }
 FIELDS = ("instrumento", "conducta", "geografia_codigo", "ola_piso", "ola_observada",
           "piso_punto", "piso_ic95_inf", "piso_ic95_sup", "observado_punto",
@@ -28,7 +33,12 @@ FIELDS = ("instrumento", "conducta", "geografia_codigo", "ola_piso", "ola_observ
 def _filas(calc):
     p = ROOT / "data/corrida0" / calc / "resultados.json"
     r = json.loads(p.read_text(encoding="utf-8"))["resultados"]
-    key = next(k for k in r if k.endswith("-JSON"))
+    key = PREF_EXPLICITO.get(calc)
+    if key is None:
+        candidatos = [k for k in r if k.endswith("-JSON")]
+        if len(candidatos) != 1:
+            raise ValueError(f"RESULT JSON ambiguo: {calc}")
+        key = candidatos[0]
     return {f["geografia"]: f for f in json.loads(r[key])["filas"]}
 
 

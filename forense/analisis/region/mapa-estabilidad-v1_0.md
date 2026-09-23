@@ -7,6 +7,7 @@ Generado por `python3 tools/astra/region/mapa.py` desde los `resultados.json` se
 | ENCIG canal_digital_luz | 2017→2019 | 10/32 | [0.180, 0.486] |
 | ENCIG canal_digital_luz | 2019→2021 | 13/32 | [0.255, 0.577] |
 | ENCIG canal_digital_luz | 2021→2023 | 14/32 | [0.282, 0.607] |
+| ENCIG canal_digital_luz | 2023→2025 | 9/32 | [0.156, 0.454] |
 | ENIF informal_cualquiera_18a70 | 2018→2021 | 0/6 | [0.000, 0.390] |
 | ENIF informal_cualquiera_18a70 | 2021→2024 | 4/6 | [0.300, 0.903] |
 | ENVIPE evade_norma_envipe2025 | 2023→2024 | 18/32 | [0.393, 0.718] |

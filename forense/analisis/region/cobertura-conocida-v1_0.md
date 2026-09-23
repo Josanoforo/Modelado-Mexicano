@@ -10,10 +10,9 @@ El [snapshot de alcance U1](alcance-u1-v1_0.tsv) se deriva por `python3 tools/as
 | ENVIPE | `cumple_norma_envipe2025` | 32 entidades | Medida, 2023–25 | Complemento determinista con RESULT sellado propio; mismo denominador. |
 | ENVIPE | `denuncia_con_miedo_o_desconfianza`, `denuncia_por_otra_razon` | 32 entidades | Pendiente | Reactivos, códigos y universos separados por fijar. |
 | ENVIPE | `civico.denuncia.con_seguro_ejes_envipe2025` | 32 entidades | Pendiente | Dominio de robo total de vehículo pequeño; R2 podría suprimir muchas celdas. |
-| ENCIG | `canal_digital_luz` | 32 entidades, marco urbano 100 mil+ | Medida, 2017–23 | — |
-| ENCIG | `paga_mordida_encig2025`, variante primaria | 32 entidades, marco urbano 100 mil+ | Pendiente | Serie 2011–25 y codificación de solicitud/pago requieren spec propia. |
-| ENCIG | `adopta_encig2025_luz` | 32 entidades, marco urbano 100 mil+ | Pendiente | No equivale al canal digital medido. |
-| ENCIG | variantes presencial/digital de mordida | 32 entidades, marco urbano 100 mil+ | Pendiente | Consumidor y reserva de semántica/deduplicación deben respetarse; no se sustituyen con canal. |
+| ENCIG | canal digital de luz / `adopta_encig2025_luz` | 32 entidades, marco urbano 100 mil+ | Medida, 2017–25 | Misma codificación y denominador documentados; nombre consumidor 2025 distinto. |
+| ENCIG | `paga_mordida_encig2025`, variante primaria | 32 entidades, marco urbano 100 mil+ | Medida, 2025 | Primer inciso de **solicitud**, no pago; serie completa 2011–25 pendiente. |
+| ENCIG | variantes presencial/digital `_r2` de mordida | 32 entidades, marco urbano 100 mil+ | Medidas, 2025 | Unidad registro sin deduplicar; R2 suprime celdas pequeñas. |
 | ENIF | `tiene_ahorros_enif2024` | seis regiones oficiales | Medida, 2024, 18+ | — |
 | ENIF | `no_tiene_ahorros_enif2024` | seis regiones oficiales | Medida, 2024, 18+ | RESULT propio del portafolio. |
 | ENIF | `informal_cualquiera` | seis regiones oficiales | Medida, 2024, 18+; serie 2018/21/24, 18–70 | Dominios separados en el canon. |
@@ -21,6 +20,6 @@ El [snapshot de alcance U1](alcance-u1-v1_0.tsv) se deriva por `python3 tools/as
 | ENIF | `horizonte_corto`, `horizonte_no_corto` | seis regiones oficiales | Pendiente | Identidad del estimando y batería pendiente. |
 | ENIF | `desconfianza_o_mal_servicio_como_razon_principal_*` | seis regiones oficiales | Pendiente | Subgrupos de conocimiento de protección; R2 material. |
 
-La fracción **medida dentro de cada serie corrida** se deriva del canon: todas las filas esperadas de sus tres pisos iniciales, ocho olas históricas, bloque de portafolio y complemento ENVIPE están presentes, incluidas las que R2 pudiera suprimir. Esta fracción no es cobertura del catálogo general. En el lote actual, `python3 tools/astra/region/publica.py` declara 386 filas y estados; los denominadores de conductas pendientes no se convierten en ceros. El complemento ENVIPE no añade un evento independiente al mapa de estabilidad: su comparación dentro/fuera del IC se invierte algebraicamente y da la misma categoría.
+La fracción **medida dentro de cada serie corrida** se deriva del canon: todas las filas esperadas de sus tres pisos iniciales, ocho olas históricas y tres bloques de consumidores/derivación están presentes, incluidas las que R2 suprime. Esta fracción no es cobertura del catálogo general. En el lote actual, `python3 tools/astra/region/publica.py` declara 514 filas: 494 PUBLICABLE y 20 SUPRIMIDA-N; los denominadores de conductas pendientes no se convierten en ceros. El complemento ENVIPE no añade un evento independiente al mapa de estabilidad: su comparación dentro/fuera del IC se invierte algebraicamente y da la misma categoría.
 
 El efecto urbano documentado es un **límite del universo ENCIG**: sus resultados no incluyen localidades rurales ni ciudades menores del marco. ENIF tiene regiones de diseño sin entidad. ENVIPE usa residencia, no lugar de ocurrencia. Estas exclusiones no miden por sí solas sesgo de selección ni permiten atribuir una cifra a población indígena o clase popular. El mapa temporal tampoco convierte la diferencia entre dos olas en cambio sostenido.

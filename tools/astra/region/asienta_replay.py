@@ -7,7 +7,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[3]
 REG = ROOT / "forense/replay-evidencia.tsv"
 CALCS = ("CALC-REGION-ENIF-2024-0001", "CALC-REGION-ENIF-PORTAFOLIO-2024-0001",
-         "CALC-REGION-ENCIG-2023-0001",
+         "CALC-REGION-ENCIG-2023-0001", "CALC-REGION-ENCIG-CONSUMIDORES-2025-0001",
          "CALC-REGION-ENVIPE-2024-0001", "CALC-REGION-ENVIPE-COMPLEMENTO-0001",
          *(f"CALC-REGION-HIST-{inst}-{ola}-0001" for inst, olas in
            (("ENVIPE", (2023, 2025)), ("ENCIG", (2017, 2019, 2021)),
