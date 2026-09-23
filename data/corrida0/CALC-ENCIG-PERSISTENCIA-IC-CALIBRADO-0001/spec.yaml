@@ -26,6 +26,13 @@ ponderador: "FAC_TRA en los CALC origen; esta corrida consume sus RESULT"
 transformacion: "tau2 = media entre transiciones de la media dentro de transicion de delta_logit^2; train 2017-2019 y 2019-2021; final agrega 2021-2023; IC expit(logit(p) +/- 1.959964 sqrt(ee_logit^2+tau2))."
 estimando: "Segundo momento empirico del cambio observado por desenlace x eje, con ruido muestral, y cobertura retrospectiva 2021 a 2023."
 seed: {aplica: false, nota: "sin remuestreo nuevo; insumos usan bootstrap UPM estratificado PCG64(42), 10000 replicas comunes por ola"}
+parametros:
+  pares_entrenamiento: ["2017-2019", "2019-2021"]
+  pares_finales: ["2017-2019", "2019-2021", "2021-2023"]
+  z_95: 1.959964
+  tau2: "media entre transiciones de media de delta_logit al cuadrado por celdas elegibles"
+  frontera: "0/1 o nulo = SIN-DEFINIR, sin recorte"
+  lectura: "train y pronostico 2021 antes de abrir punto 2023; final luego"
 dependencias_materiales: []
 resultados:
   - {id: RESULT-ENCIGPIC-DIGITAL-SEXO-TAU2-TRAIN, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
