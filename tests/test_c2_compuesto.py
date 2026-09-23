@@ -142,17 +142,12 @@ class DictamenDeEmisibilidad(unittest.TestCase):
     def setUpClass(cls):
         cls.d = C2.dictamen()
 
-    def test_examina_los_21_pares_reservados(self):
-        # ACTO GEN2-TRAMITE-FIRMAS-9 (23/sep/2026, P2): el par
-        # GOB.gobierno_digital.encig2025.edad_x_escolaridad dejó de estar
-        # RESERVADA al re-derivar marcador-segmento.tsv (consume
-        # champion_actual=C2, ya cableado desde #1025 pero no regenerado);
-        # 22 -> 21 pares RESERVADA, medido con C2.pares_reservados().
+    def test_examina_los_22_pares_reservados(self):
         pares = {f["celda_id_marcador"] for f in self.d}
-        self.assertEqual(len(pares), 21,
-                         "A.13: el dictamen debe cubrir los 21 `RESERVADA` "
+        self.assertEqual(len(pares), 22,
+                         "A.13: el dictamen debe cubrir los 22 `RESERVADA` "
                          "del marcador, ni uno menos")
-        self.assertEqual(len(C2.pares_reservados()), 21)
+        self.assertEqual(len(C2.pares_reservados()), 22)
 
     def test_ningun_veredicto_queda_sin_causa(self):
         for f in self.d:
@@ -252,7 +247,7 @@ class EmitirNoConsumeNiAdopta(unittest.TestCase):
 
     def test_los_cruces_siguen_RESERVADA_en_el_marcador(self):
         """Emitir no consume: el marcador no se toca en P1/P2."""
-        self.assertEqual(len(C2.pares_reservados()), 21)
+        self.assertEqual(len(C2.pares_reservados()), 22)
 
     def test_ninguna_emision_trae_R_del_cruce(self):
         """Este acto no deriva ni mira `R` de ningún cruce (spec §8)."""
@@ -301,12 +296,8 @@ class GuardiaD14(unittest.TestCase):
 
     def test_hay_algo_que_guardar(self):
         """A.13: una guardia sobre cero celdas no prueba nada."""
-        # ACTO GEN2-TRAMITE-FIRMAS-9 (23/sep/2026, P2): las 16 celdas de
-        # GOB.gobierno_digital.encig2025.edad_x_escolaridad pasan de
-        # EMITIDA-SIN-EVALUAR a adoptadas al re-derivar el marcador;
-        # 206 -> 190 emitidas, 20 -> 36 adoptadas.
-        self.assertEqual(len(self.emitidas), 190)
-        self.assertEqual(len(self.adoptadas), 36)
+        self.assertEqual(len(self.emitidas), 206)
+        self.assertEqual(len(self.adoptadas), 20)
 
     def test_ninguna_emitida_sale_por_la_via_por_defecto(self):
         fugas = [cid for cid in self.emitidas
@@ -392,13 +383,13 @@ class GuardiaD14(unittest.TestCase):
         """Las dos cosas a la vez, en columnas distintas."""
         filas = _filas_marcador()
         emitidos = [f for f in filas if f.get("emision") == "EMITIDA-SIN-EVALUAR"]
-        self.assertEqual(len(emitidos), 15,
-                         "15 de los 21 pares RESERVADA son emitibles")
+        self.assertEqual(len(emitidos), 16,
+                         "16 de los 22 pares RESERVADA son emitibles")
         for f in emitidos:
             self.assertEqual(f["estado"], "RESERVADA", f["celda_id"])
         self.assertEqual(
-            sum(1 for f in filas if f["estado"] == "RESERVADA"), 21,
-            "emitir no consume: los 21 cruces siguen RESERVADA")
+            sum(1 for f in filas if f["estado"] == "RESERVADA"), 22,
+            "emitir no consume: los 22 cruces siguen RESERVADA")
 
 
 def _yaml_estimadores() -> dict:
