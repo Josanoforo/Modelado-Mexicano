@@ -105,8 +105,8 @@ Obstáculos reversibles: resolver rutas, entorno y dependencias; seguir con cruc
 
 ## 9. Cierre concreto
 
-`forense/analisis/astra-envipe/nota.md`: comandos con salida relevante y SHA; EJECUTADO/LEÍDO; estimador exacto; punto/intervalo/tipo por celda; exclusiones; diagnóstico solo histórico; qué no corriste y por qué; límites de afirmación. Añade inventario de entradas realmente abiertas y excepción de marginales autorizados, sin datos individuales.
+`forense/analisis/astra-envipe/nota-envipe.md`: comandos con salida relevante y SHA; EJECUTADO/LEÍDO; estimador exacto; punto/intervalo/tipo por celda; exclusiones; diagnóstico solo histórico; qué no corriste y por qué; límites de afirmación. Añade inventario de entradas realmente abiertas y excepción de marginales autorizados, sin datos individuales.
 
-`recibo-claude.md`: por CALC y RESULT, celda exacta, hashes de spec/código/sello/resultado, verificación y replay, commits de freeze/emisión, PR y estado remoto. Adjunta la diferencia de plazo de admisión. No declares EN-MAIN si solo está en rama. No declares PROSPECTIVA adjudicada antes de que el piloto verifique la secuencia.
+`recibo-claude-envipe.md`: por CALC y RESULT, celda exacta, hashes de spec/código/sello/resultado, verificación y replay, commits de freeze/emisión, PR y estado remoto. Adjunta la diferencia de plazo de admisión. No declares EN-MAIN si solo está en rama. No declares PROSPECTIVA adjudicada antes de que el piloto verifique la secuencia.
 
 Deja el PR listo; no lo fusiones. Si COMMIT-2 ya ocurrió, informa «VENTANA PILOTO 4 PERDIDA» con evidencia de metadatos y entrega igualmente el trabajo histórico válido; no leas R, no traslades silenciosamente el modelo a 2026 y no te quedes esperando sin producto. La selección de la siguiente evaluación vuelve a Jonás/dirección.

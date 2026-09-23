@@ -1,3 +1,5 @@
+> Copia de la misión común conservada para el expediente C-ASTRA ENVIPE; el texto original sigue a continuación.
+
 # MISIÓN ASTRA-1 · Vence al piso
 **Dirección → Astra (diseña) + Codex (ejecuta; mismo ChatGPT) · 22/sep/2026 · repo público `Josanoforo/Modelado-Mexicano` @ `c9b67bf8` al redactar; trabajas contra `origin/main` vivo. Sin careo: tu resultado entra por su propio PR y lo adjudica el piloto en el que compites. Lo que decide es el dato, no dirección.**
 
