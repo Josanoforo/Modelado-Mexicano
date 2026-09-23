@@ -1,9 +1,12 @@
 """Casos sintéticos que protegen el estimador regional antes del microdato."""
 import math
+import io
+import zipfile
 
 import pandas as pd
 
 from tools.astra.region.estadistica import estima_dominios
+from tools.astra.region.historia import carga_encig, carga_enif, carga_envipe
 
 
 def marco():
@@ -63,3 +66,41 @@ def test_denominador_vacio_y_varianza_degenerada():
                                replicas=32, n_min=1)
     assert filas[0]["estado"] == "VARIANZA-NO-ESTIMABLE"
     assert filas[0]["punto"] is None
+
+
+def _zip_csv(path, miembros):
+    with zipfile.ZipFile(path, "w") as z:
+        for nombre, df in miembros.items():
+            z.writestr(nombre, df.to_csv(index=False))
+
+
+def test_adaptadores_conservan_geografia_y_unidad(tmp_path):
+    encig = tmp_path / "encig.zip"
+    _zip_csv(encig, {"encig2017_04_sec_7.csv": pd.DataFrame({
+        "ENT": ["01", "02"], "N_TRA": ["01", "02"], "P7_3": ["4", "5"],
+        "FAC_TRA": ["2", "3"], "EST_DIS": ["1", "1"], "UPM_DIS": ["1", "2"]})})
+    d, geo, den, y, fac, dominios = carga_encig(encig, 2017)
+    assert list(geo) == ["01", "02"] and list(den) == [True, False]
+    assert list(y) == [True, False] and fac == "FAC_TRA" and len(dominios) == 32
+
+    enif = tmp_path / "enif.zip"
+    cols = {f"P5_1_{i}": ["2", "2"] for i in range(1, 7)}
+    cols["P5_1_1"] = ["1", "1"]
+    _zip_csv(enif, {"conjunto_de_datos_tmodulo_enif_2021.csv": pd.DataFrame({
+        "REGION": ["1", "2"], "EDAD": ["70", "71"], "FAC_ELE": ["2", "3"],
+        "EST_DIS": ["1", "1"], "UPM_DIS": ["1", "2"], **cols})})
+    d, geo, den, y, fac, dominios = carga_enif(enif, 2021)
+    assert list(geo) == ["1", "2"] and list(den) == [True, False]
+    assert list(y) == [True, False] and fac == "FAC_ELE" and len(dominios) == 6
+
+    envipe = tmp_path / "envipe.zip"
+    _zip_csv(envipe, {
+        "conjunto_de_datos_tmod_vic_envipe2023.csv": pd.DataFrame({
+            "ID_PER": ["a", "b"], "BP1_20": ["2", "1"], "BP1_23": ["04", ""],
+            "FAC_DEL": ["2", "3"], "EST_DIS": ["1", "1"], "UPM_DIS": ["1", "2"]}),
+        "conjunto_de_datos_tsdem_envipe2023.csv": pd.DataFrame({
+            "ID_PER": ["a", "b"], "CVE_ENT": ["01", "02"]}),
+    })
+    d, geo, den, y, fac, dominios = carga_envipe(envipe, 2023)
+    assert list(geo) == ["01", "02"] and list(den) == [True, True]
+    assert list(y) == [True, False] and fac == "FAC_DEL" and len(dominios) == 32
