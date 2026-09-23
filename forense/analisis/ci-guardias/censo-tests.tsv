@@ -114,6 +114,7 @@ tests/test_join_folioviv.py	script	NO	(ninguna)	SI	0.0	CORRE-EN-CI	exit 0 sin co
 tests/test_linaje_superado.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_lote_desde_asientos.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_lote_enif2024.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
+tests/test_lote_enif2024_adjudicacion_t.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_manifiesto_alcance.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_clon.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_seguro.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus

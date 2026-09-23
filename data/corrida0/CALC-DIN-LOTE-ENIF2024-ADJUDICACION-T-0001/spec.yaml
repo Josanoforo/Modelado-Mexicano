@@ -1,0 +1,3869 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-LOTE-ENIF2024-ADJUDICACION-T-0001
+spec_md: ../../../forense/prereg-caja/DIN-lote-enif2024-spec-v1_0-ENMIENDA-1.md
+spec_md_sha256: daa1ca3a285b426eae808abe7aa935d532f5017f0d15bee32426dcf6f244aab5
+script: data/corrida0/CALC-DIN-LOTE-ENIF2024-ADJUDICACION-T-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  fuente_acto: GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1 (22/sep/2026)
+  spec_humana: forense/prereg-caja/DIN-lote-enif2024-spec-v1_0-ENMIENDA-1.md (la v1.0 sigue intacta)
+  firmas: 'FP-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01 opcion A (PR #1003); regimen ARBITRO-2024
+    fijado por la firma real de Q2, FP-260921-GEN2-DIN-LOTE-ENIF2024-COMMIT-1-6c10-03 (el encargo y la
+    propia -4e12-01 citan -6c10-04 por error de etiqueta Q2/Q3, ya corregido)'
+  medidor_ejecutado_al_congelar: sintetico (tests/test_lote_enif2024_adjudicacion_t.py, zips fabricados,
+    cada rama terminal); NUNCA un cruce fuera de los 5 pares autorizados
+  tipo: ADJUDICACION-SECUNDARIA-ESTRATO-T-V0-3
+  commit: 'COMMIT-1-Y-2-EN-UN-CALC (no hay reserva de evaluacion propia: el piso ya esta sellado)'
+  celda_d: DIN.ahorra_solo_informal.enif2024.5-pares-formalidad.estrato-T (SPEC-CONGELADA)
+  condicion: cita el punto C2R sellado de CALC-C2-RESTRINGIDO-IC-ENIF2024-0001; PARA si ese resultados.json
+    no trae alguno de los 28 ids
+inputs:
+- id: enif2021_csv
+  origen: manifiesto
+  nota: ENIF 2021, TMODULO; universo T se deriva aqui, sin recortar el marco antes del bootstrap
+- id: enif2024_csv
+  origen: manifiesto
+  nota: ENIF 2024, TMODULO; regimen ARBITRO-2024, universo T se deriva aqui
+- id: IN-LOTE-SPEC-SELLADA
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-LOTE-ENIF2024-ADJUDICACION-0001/spec.yaml
+  sha256: 08a414549729fcace191b5f9a9114ce748dffdc5074d8815840457194492cdec
+  nota: 'contrato SELLADO del lote primario: columnas, ejes/orden, formalidad_map, escolaridad_catalogo,
+    edad_tramos, localidad_map -- se reusan, no se copian'
+- id: IN-C2R-SELLADO
+  origen: repo
+  ruta: data/corrida0/CALC-C2-RESTRINGIDO-IC-ENIF2024-0001/resultados.json
+  sha256: 22f68d8ea6a88886f4ca3641002fab4f4a4c320d0f3840dcd7d93caa77b8fb01
+  nota: 'piso C2R sellado (28/28 celdas, oro REPRODUCE a 0.0): se cita el punto de cada celda; las replicas
+    se re-derivan con el mismo procedimiento (medidor.py de este CALC, importado por sha256)'
+variables:
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_10
+  rol: eje-universo-T-2021 (formalidad)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P3_13
+  rol: eje-universo-T-2024 (formalidad)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_1
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_2
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_3
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_4
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_5
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_1_6
+  rol: desenlace-informal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_1
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_2
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_3
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_4
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_5
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_6
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_7
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_8
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_7_9
+  rol: desenlace-formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_1
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_2
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_3
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_4
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_5
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_1_6
+  rol: desenlace-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_1
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_2
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_3
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_4
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_5
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_6
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_7
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_8
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_6_9
+  rol: desenlace-formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: SEXO
+  rol: eje-sexo-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EDAD
+  rol: eje-edad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P3_1_1
+  rol: eje-escolaridad-2021 (catalogo)
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: TLOC
+  rol: eje-localidad-2021 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: FAC_ELE
+  rol: ponderador-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: EST_DIS
+  rol: estrato-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: UPM_DIS
+  rol: upm-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_1
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_2
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_3
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_4
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_5
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_6
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_7
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_8
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif_2021.csv
+  variable: P5_4_9
+  rol: eje-cuenta_formal-2021
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: SEXO
+  rol: eje-sexo-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EDAD_V
+  rol: eje-edad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: NIV
+  rol: eje-escolaridad-2024 (catalogo)
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: TLOC
+  rol: eje-localidad-2024 y filtro
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: FAC_PER
+  rol: ponderador-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: EST_DIS
+  rol: estrato-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: UPM_DIS
+  rol: upm-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_1
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_2
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_3
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_4
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_5
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_6
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_7
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_8
+  rol: eje-cuenta_formal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: P5_4_9
+  rol: eje-cuenta_formal-2024
+universo: 'T = personas elegidas 18+ de TMODULO, regimen ARBITRO-2024, con formalidad declarada (no FUERA)
+  en su propia ola: P3_13 en 1..7 (2024), P3_10 en 1..6 (2021). Ninguna fila se quita: fuera de T, cada
+  eje vale FUERA -- el bootstrap sortea sobre el marco entero.'
+filtros: 'ARBITRO-2024 (enif_lote.py::_universo, tipo=ARBITRO-2024): edad >= 18 y peso > 0 verificados,
+  sin filtro de TLOC; ''fuera'' declarado por eje. T se deriva DESPUES, sobre las columnas de eje ya derivadas
+  (formalidad != FUERA), nunca recortando filas.'
+ponderador: ENIF 2021 = FAC_ELE; ENIF 2024 = FAC_PER. Toda proporcion es razon de totales ponderados dentro
+  de T.
+transformacion: Identica a la spec v1.0 (D9, los seis ejes) mas la restriccion a T por la columna 'formalidad'
+  ya derivada. Piso C2 citado de CALC-C2-RESTRINGIDO (punto) + replicas re-derivadas (piso_log_aditivo,
+  importado); P2/R1/R2/R3 con cruces_familia.py y lote_familia.py, importados, sin cambio de formula.
+estimando: p(ahorra_solo_informal | eje_A, eje_B, T) -- proporcion ponderada [0,1] dentro de T, en las
+  28 celdas de los 5 pares con formalidad; error en pp.
+precision: 'Replicas compartidas por ola: n_h UPM con reemplazo por estrato, PCG64(42), estratos y UPM
+  en orden lexicografico sobre el marco ARBITRO-2024 ENTERO (no recortado a T antes de sortear), 10000
+  replicas; IC95 = percentiles 2.5/97.5. C2/P2/R1/R2/R3 combinan replica k con k. No cubre el error de
+  especificacion de ningun candidato.'
+dependencias_materiales:
+- numpy
+- pandas
+- yaml
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas por ola, marco ARBITRO-2024 entero)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: 'seed 42 + mismo regimen ARBITRO-2024 + mismo universo T (formalidad != FUERA) que CALC-C2-RESTRINGIDO:
+    replicas identicas bit a bit'
+parametros:
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  lambda_r2: 0.5
+  umbral_vence_pp: 0.5
+  umbral_reserva_pp: 0.0
+  tol_control_c2r_p: 1.0e-06
+  r3_ipf:
+    tol: 1.0e-12
+    max_iter: 2000
+  pares_t:
+  - - formalidadxsexo
+    - formalidad
+    - sexo
+  - - edadxformalidad
+    - edad
+    - formalidad
+  - - escolaridadxformalidad
+    - escolaridad
+    - formalidad
+  - - formalidadxlocalidad
+    - formalidad
+    - localidad
+  - - cuenta_formalxformalidad
+    - cuenta_formal
+    - formalidad
+  c2r_result_ids:
+    formalidadxsexo:
+      sin seguridad social:
+        1 Hombre: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P
+        2 Mujer: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P
+      con seguridad social:
+        1 Hombre: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P
+        2 Mujer: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P
+    edadxformalidad:
+      18-29:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P
+      30-44:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P
+      45-59:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P
+      60+:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P
+    escolaridadxformalidad:
+      hasta primaria:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P
+      secundaria:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P
+      media superior:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P
+      superior:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P
+    formalidadxlocalidad:
+      sin seguridad social:
+        menor de 15 000: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P
+        15 000 y mas: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P
+      con seguridad social:
+        menor de 15 000: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P
+        15 000 y mas: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P
+    cuenta_formalxformalidad:
+      sin cuenta:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P
+      con cuenta:
+        sin seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P
+        con seguridad social: RESULT-C2R-ENIF2024-AHORRA-SOLO-INFORMAL-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P
+  regla_v0_3: 'v0.3: dMAE = MAE(C2) - MAE(R2) en pp sobre las celdas PUNTUADAS de los 5 pares primarios,
+    IC95 por réplica (misma réplica k en R, C2 y R2); VENCE-RETADOR si IC95inf > 0.5 pp; PROPUESTA-CON-RESERVA
+    si 0 < IC95inf <= 0.5; NADIE-VENCE si incluye 0. Retador primario R2 (lambda = 1/2 fija); P2, R1,
+    R3, L1, L2 y los 9 pares no primarios se adjudican con la misma regla rotulados SECUNDARIA. El conteo
+    de 3/4 se reporta, no adjudica.'
+punto_de_entrada: adjudicacion_t
+prefijo_result: RESULT-DIN-LOTE24-ADJ-T
+resultados:
+- id: RESULT-DIN-LOTE24-ADJ-T-G-INPUT-IN-LOTE-SPEC-SELLADA-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-LOTE-SPEC-SELLADA
+- id: RESULT-DIN-LOTE24-ADJ-T-G-INPUT-IN-C2R-SELLADO-SHA256
+  tipo: texto
+  unidad: sha256 del input IN-C2R-SELLADO
+- id: RESULT-DIN-LOTE24-ADJ-T-G-CODIGO-ENIF-LOTE-SHA256
+  tipo: texto
+  unidad: sha256 del módulo ENIF-LOTE
+- id: RESULT-DIN-LOTE24-ADJ-T-G-CODIGO-C2-RESTRINGIDO-MEDIDOR-SHA256
+  tipo: texto
+  unidad: sha256 del módulo C2-RESTRINGIDO-MEDIDOR
+- id: RESULT-DIN-LOTE24-ADJ-T-G-CODIGO-CRUCES-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo CRUCES-FAMILIA
+- id: RESULT-DIN-LOTE24-ADJ-T-G-CODIGO-LOTE-FAMILIA-SHA256
+  tipo: texto
+  unidad: sha256 del módulo LOTE-FAMILIA
+- id: RESULT-DIN-LOTE24-ADJ-T-G-GUARDIA-AST
+  tipo: texto
+  unidad: PASA si auditoria_ast() no reporta violaciones
+- id: RESULT-DIN-LOTE24-ADJ-T-G-GUARDIA-AST-VIOLACIONES
+  tipo: entero
+  unidad: violaciones reportadas
+- id: RESULT-DIN-LOTE24-ADJ-T-G-REGIMEN-UNIVERSO
+  tipo: texto
+  unidad: régimen de universo de las dos olas
+- id: RESULT-DIN-LOTE24-ADJ-T-G-UNIVERSO
+  tipo: texto
+  unidad: definición del universo T
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas del universo ARBITRO-2024 en 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-FILAS-T
+  tipo: entero
+  unidad: filas en T, 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-FUERA-T
+  tipo: entero
+  unidad: filas fuera de T, 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-COBERTURA-T-PONDERADA
+  tipo: proporcion
+  unidad: masa T / masa universo, 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W21-UPM
+  tipo: entero
+  unidad: UPM distintas, 2021
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas del universo ARBITRO-2024 en 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-FILAS-T
+  tipo: entero
+  unidad: filas en T, 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-FUERA-T
+  tipo: entero
+  unidad: filas fuera de T, 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-COBERTURA-T-PONDERADA
+  tipo: proporcion
+  unidad: masa T / masa universo, 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-ESTRATOS
+  tipo: entero
+  unidad: EST_DIS distintos, 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-W24-UPM
+  tipo: entero
+  unidad: UPM distintas, 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-G-C2R-CONTROL-VEREDICTO
+  tipo: texto
+  unidad: REPRODUCE si las réplicas re-derivadas del piso reproducen el punto C2R sellado
+- id: RESULT-DIN-LOTE24-ADJ-T-G-C2R-CONTROL-DELTA-P-MAX
+  tipo: flotante
+  unidad: peor |delta P| entre replica re-derivada y punto C2R sellado
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-N-PARES
+  tipo: entero
+  unidad: '5'
+- id: RESULT-DIN-LOTE24-ADJ-T-G-N-CELDAS
+  tipo: entero
+  unidad: '28'
+- id: RESULT-DIN-LOTE24-ADJ-T-G-N-CELDAS-PUNTUADAS
+  tipo: entero
+  unidad: celdas con n >= umbral en las dos olas
+- id: RESULT-DIN-LOTE24-ADJ-T-G-EN-DELTA-MAE-PRIMARIO-DEL-LOTE
+  tipo: texto
+  unidad: NO, por construcción (prefijo de RESULT distinto)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-MAE-PP
+  tipo: flotante
+  unidad: MAE de P2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(P2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de P2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-P2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-MAE-PP
+  tipo: flotante
+  unidad: MAE de R1 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R1) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R1 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R1-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-MAE-PP
+  tipo: flotante
+  unidad: MAE de R2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-MAE-PP
+  tipo: flotante
+  unidad: MAE de R3 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R3) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R3 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-R3-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-SIN-SEGURIDAD-SOCIAL-X-2-MUJER-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-1-HOMBRE-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXSEXO-CON-SEGURIDAD-SOCIAL-X-2-MUJER-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-MAE-PP
+  tipo: flotante
+  unidad: MAE de P2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(P2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de P2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-P2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-MAE-PP
+  tipo: flotante
+  unidad: MAE de R1 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R1) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R1 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R1-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-MAE-PP
+  tipo: flotante
+  unidad: MAE de R2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-MAE-PP
+  tipo: flotante
+  unidad: MAE de R3 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R3) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R3 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-R3-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-18-29-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-30-44-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-45-59-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-EDADXFORMALIDAD-60-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-MAE-PP
+  tipo: flotante
+  unidad: MAE de P2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(P2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de P2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-P2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-MAE-PP
+  tipo: flotante
+  unidad: MAE de R1 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R1) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R1 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R1-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-MAE-PP
+  tipo: flotante
+  unidad: MAE de R2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-MAE-PP
+  tipo: flotante
+  unidad: MAE de R3 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R3) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R3 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-R3-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-HASTA-PRIMARIA-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SECUNDARIA-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-MEDIA-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-ESCOLARIDADXFORMALIDAD-SUPERIOR-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-MAE-PP
+  tipo: flotante
+  unidad: MAE de P2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(P2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de P2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-P2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-MAE-PP
+  tipo: flotante
+  unidad: MAE de R1 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R1) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R1 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R1-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-MAE-PP
+  tipo: flotante
+  unidad: MAE de R2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-MAE-PP
+  tipo: flotante
+  unidad: MAE de R3 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R3) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R3 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-R3-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-SIN-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-MENOR-DE-15-000-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-FORMALIDADXLOCALIDAD-CON-SEGURIDAD-SOCIAL-X-15-000-Y-MAS-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-MAE-PP
+  tipo: flotante
+  unidad: MAE de P2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(P2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de P2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-P2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-MAE-PP
+  tipo: flotante
+  unidad: MAE de R1 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R1) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R1 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R1-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-MAE-PP
+  tipo: flotante
+  unidad: MAE de R2 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R2) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R2 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R2-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-MAE-PP
+  tipo: flotante
+  unidad: MAE de R3 en T, agregado sobre las celdas puntuadas de este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-DELTA-MAE-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(R3) en pp, T, agregado sobre este par
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-DELTA-IC95INF
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-DELTA-IC95SUP
+  tipo: flotante
+  unidad: IC95 del delta MAE de este par, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-VEREDICTO
+  tipo: texto
+  unidad: veredicto v0.3 de R3 vs C2 en T, agregado sobre este par (nunca por celda individual)
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-R3-ROL
+  tipo: texto
+  unidad: PRIMARIA o SECUNDARIA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-SIN-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-SIN-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-UNIVERSO
+  tipo: texto
+  unidad: universo T de la celda
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-ROTULO
+  tipo: texto
+  unidad: PROSPECTIVA o RETROSPECTIVA
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-P
+  tipo: proporcion
+  unidad: R observado en T, ENIF 2024 (árbitro)
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-IC95INF
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-IC95SUP
+  tipo: proporcion
+  unidad: IC95 réplica a réplica de R en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R-N
+  tipo: entero
+  unidad: n de la celda en T, ENIF 2024
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-PUNTUADA
+  tipo: texto
+  unidad: 'SI/NO: n >= umbral en las dos olas'
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-P
+  tipo: proporcion
+  unidad: C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de C2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-C2-ERROR-PP
+  tipo: flotante
+  unidad: '|C2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-P
+  tipo: proporcion
+  unidad: P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de P2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-P2-ERROR-PP
+  tipo: flotante
+  unidad: '|P2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-P
+  tipo: proporcion
+  unidad: R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R1 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R1-ERROR-PP
+  tipo: flotante
+  unidad: '|R1 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-P
+  tipo: proporcion
+  unidad: R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R2 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R2-ERROR-PP
+  tipo: flotante
+  unidad: '|R2 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-P
+  tipo: proporcion
+  unidad: R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-IC95INF
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-IC95SUP
+  tipo: proporcion
+  unidad: IC95 de R3 en T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-CUENTA-FORMALXFORMALIDAD-CON-CUENTA-X-CON-SEGURIDAD-SOCIAL-R3-ERROR-PP
+  tipo: flotante
+  unidad: '|R3 - R| en pp, T'
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-P2-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE agregado de las 28 celdas puntuadas, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-P2-DELTA-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(cid) agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-P2-DELTA-IC95-AGREGADO-INF
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-P2-DELTA-IC95-AGREGADO-SUP
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-P2-VEREDICTO-AGREGADO
+  tipo: texto
+  unidad: veredicto v0.3 agregado sobre las 28 celdas, T
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R1-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE agregado de las 28 celdas puntuadas, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R1-DELTA-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(cid) agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R1-DELTA-IC95-AGREGADO-INF
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R1-DELTA-IC95-AGREGADO-SUP
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R1-VEREDICTO-AGREGADO
+  tipo: texto
+  unidad: veredicto v0.3 agregado sobre las 28 celdas, T
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R2-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE agregado de las 28 celdas puntuadas, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R2-DELTA-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(cid) agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R2-DELTA-IC95-AGREGADO-INF
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R2-DELTA-IC95-AGREGADO-SUP
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R2-VEREDICTO-AGREGADO
+  tipo: texto
+  unidad: veredicto v0.3 agregado sobre las 28 celdas, T
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R3-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE agregado de las 28 celdas puntuadas, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R3-DELTA-MAE-AGREGADO-PP
+  tipo: flotante
+  unidad: MAE(C2)-MAE(cid) agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R3-DELTA-IC95-AGREGADO-INF
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R3-DELTA-IC95-AGREGADO-SUP
+  tipo: flotante
+  unidad: IC95 del delta agregado, T
+  permite_no_estimable: true
+- id: RESULT-DIN-LOTE24-ADJ-T-G-R3-VEREDICTO-AGREGADO
+  tipo: texto
+  unidad: veredicto v0.3 agregado sobre las 28 celdas, T
+- id: RESULT-DIN-LOTE24-ADJ-T-G-COMPARACION-POBLACIONAL
+  tipo: texto
+  unidad: 'NINGUNA (A-bis 4): universo T no reconciliable con el poblacional'
+- id: RESULT-DIN-LOTE24-ADJ-T-G-ADOPTA
+  tipo: texto
+  unidad: 'NO'
+- id: RESULT-DIN-LOTE24-ADJ-T-G-CRUCE-DERIVADO
+  tipo: texto
+  unidad: 'SI: cruce_t(), único, sobre los 5 pares autorizados'
