@@ -42,5 +42,5 @@ registro, marcador, tablero, CI, celdas-D, ni adopción.
 
 ## CONSUMIDO
 
-PR de `codex/astra3-enif-oferta-1`: se agrega tras publicarlo. Se consumieron
+PR [#1042](https://github.com/Josanoforo/Modelado-Mexicano/pull/1042) de `codex/astra3-enif-oferta-1`. Se consumieron
 los cinco CALC de piso identificados en `enlace-pisos.tsv`, sólo por lectura.

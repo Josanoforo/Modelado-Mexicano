@@ -46,4 +46,4 @@ ENIF 2024 y las olas reservadas de ENCIG, ENVIPE, ENCO y ENIGH: fuera de U1. No 
 
 ## CONSUMIDO
 
-PR de esta rama: se agrega al publicar. Se consumieron specs y RESULT sellados de los cinco CALC de piso citados en `enlace-pisos.tsv`; los payloads se tomaron del manifiesto y corpus compartido con los hashes anteriores.
+PR [#1042](https://github.com/Josanoforo/Modelado-Mexicano/pull/1042). Se consumieron specs y RESULT sellados de los cinco CALC de piso citados en `enlace-pisos.tsv`; los payloads se tomaron del manifiesto y corpus compartido con los hashes anteriores.
