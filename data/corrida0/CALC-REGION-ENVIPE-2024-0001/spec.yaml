@@ -1,0 +1,799 @@
+calc_id: CALC-REGION-ENVIPE-2024-0001
+spec_md: ../../../forense/prereg-caja/REGION-ENVIPE-spec-v1_0.md
+spec_md_sha256: 13e3abc551ace964e599f490dd432987eb5a26b9eb9ccbf05cf8d0cf8a36fc15
+script: data/corrida0/CALC-REGION-ENVIPE-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-RETROSPECTIVA
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: NUEVO
+inputs:
+- id: envipe2024_csv
+  origen: manifiesto
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+variables:
+- archivo: microdato de la spec humana
+  variable: FAC_DEL
+  rol: factor de expansión
+- archivo: microdato de la spec humana
+  variable: EST_DIS
+  rol: estrato de diseño
+- archivo: microdato de la spec humana
+  variable: UPM_DIS
+  rol: UPM de diseño
+universo: delito; evade_norma_envipe2025; entidad de residencia; ola 2024
+filtros: Códigos y denominador de la spec humana; no filtrar marco antes de réplicas
+ponderador: FAC_DEL
+transformacion: razón de masas ponderadas por geografía; IC percentil de UPM estratificadas
+  compartidas; supresión R2
+estimando: proporción regional de evade_norma_envipe2025, delito, ola 2024
+parametros:
+  instrumento: ENVIPE
+  input_id: envipe2024_csv
+  bootstrap_replicas: 1000
+  n_min: 200
+  geografias:
+  - '01'
+  - '02'
+  - '03'
+  - '04'
+  - '05'
+  - '06'
+  - '07'
+  - 08
+  - 09
+  - '10'
+  - '11'
+  - '12'
+  - '13'
+  - '14'
+  - '15'
+  - '16'
+  - '17'
+  - '18'
+  - '19'
+  - '20'
+  - '21'
+  - '22'
+  - '23'
+  - '24'
+  - '25'
+  - '26'
+  - '27'
+  - '28'
+  - '29'
+  - '30'
+  - '31'
+  - '32'
+  nivel_geografico: ENTIDAD
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, mismo orden de filas y semilla
+resultados:
+- id: RESULT-REGION-ENVIPE-2024-JSON
+  tipo: texto
+  unidad: JSON regional sin identificadores individuales
+- id: RESULT-REGION-ENVIPE-2024-01-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-01-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-01-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-01-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-01-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-01-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-02-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-02-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-02-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-02-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-02-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-02-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-03-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-03-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-03-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-03-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-03-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-03-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-04-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-04-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-04-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-04-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-04-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-04-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-05-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-05-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-05-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-05-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-05-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-05-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-06-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-06-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-06-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-06-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-06-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-06-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-07-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-07-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-07-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-07-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-07-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-07-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-08-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-08-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-08-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-08-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-08-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-08-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-09-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-09-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-09-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-09-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-09-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-09-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-10-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-10-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-10-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-10-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-10-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-10-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-11-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-11-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-11-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-11-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-11-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-11-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-12-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-12-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-12-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-12-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-12-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-12-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-13-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-13-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-13-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-13-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-13-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-13-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-14-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-14-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-14-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-14-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-14-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-14-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-15-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-15-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-15-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-15-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-15-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-15-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-16-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-16-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-16-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-16-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-16-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-16-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-17-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-17-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-17-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-17-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-17-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-17-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-18-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-18-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-18-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-18-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-18-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-18-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-19-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-19-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-19-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-19-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-19-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-19-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-20-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-20-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-20-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-20-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-20-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-20-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-21-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-21-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-21-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-21-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-21-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-21-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-22-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-22-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-22-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-22-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-22-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-22-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-23-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-23-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-23-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-23-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-23-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-23-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-24-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-24-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-24-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-24-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-24-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-24-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-25-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-25-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-25-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-25-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-25-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-25-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-26-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-26-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-26-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-26-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-26-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-26-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-27-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-27-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-27-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-27-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-27-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-27-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-28-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-28-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-28-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-28-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-28-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-28-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-29-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-29-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-29-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-29-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-29-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-29-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-30-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-30-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-30-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-30-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-30-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-30-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-31-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-31-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-31-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-31-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-31-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-31-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-32-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-32-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-32-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENVIPE-2024-32-N
+  tipo: entero
+  unidad: delitos del denominador, no ponderado
+- id: RESULT-REGION-ENVIPE-2024-32-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENVIPE-2024-32-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true

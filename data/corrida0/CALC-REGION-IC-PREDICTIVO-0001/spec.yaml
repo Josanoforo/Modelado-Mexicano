@@ -1,0 +1,986 @@
+calc_id: CALC-REGION-IC-PREDICTIVO-0001
+spec_md: ../../../forense/prereg-caja/REGION-IC-PREDICTIVO-spec-v1_0.md
+spec_md_sha256: fca77149132938090f8ab69c48e4e1fc4e87d52eaaa0d16371f553e3335b7e70
+script: data/corrida0/CALC-REGION-IC-PREDICTIVO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-IC-PREDICTIVO-HEREDADO
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: 'NO'
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: HEREDADO
+inputs:
+- id: FUENTE-ENVIPE-2023
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENVIPE-2023-0001/resultados.json
+  sha256: 76576cd3a4cef50b6cd1c80ea79f3e783acc5a4817ed7c29b7280e137fbccb39
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENVIPE-2024
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENVIPE-2024-0001/resultados.json
+  sha256: 11ded91da5176230efa98e9f3ddad01025adc13fd22b1ab057ffc227af2f68a5
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENVIPE-2025
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENVIPE-2025-0001/resultados.json
+  sha256: 285a69854748e65abddca59ddf0ac7be92fea0e10c713dda3e30c138489a3f47
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENCIG-2017
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENCIG-2017-0001/resultados.json
+  sha256: 4a354ce1c37be258120dcd5b12994d4e5eba4bf6218b18accd75dac26a7ec822
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENCIG-2019
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENCIG-2019-0001/resultados.json
+  sha256: 51dc425ee52402c9af9068d86dd03749ea69cfea683764668e408dccef028238
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENCIG-2021
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENCIG-2021-0001/resultados.json
+  sha256: a8c42541b85a8dd144a557b832b0fe79c12da29c7463871db88a6c2f744db820
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENCIG-2023
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENCIG-2023-0001/resultados.json
+  sha256: 7abed0557ce8ba0fa6ce38439b50193b01286bb691a94bbbfcffc431911f29b2
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENCIG-2025
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENCIG-CONSUMIDORES-2025-0001/resultados.json
+  sha256: 1d5bef68e1763b4ef7ee81025e6b24e15fe84deb5966aa837dcb742162626fcc
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENIF-2018
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENIF-2018-0001/resultados.json
+  sha256: cc1af2e6852cbb1fe2840e17d710eeabed48fe31b33abebea66b5bb5f6f37ec1
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENIF-2021
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENIF-2021-0001/resultados.json
+  sha256: a6d5a1151baa7e11af9cd71d70eb5280f09c066622db183ed0536ee9d6999d26
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-ENIF-2024
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-HIST-ENIF-2024-0001/resultados.json
+  sha256: 5e2c3d8ffff7a78fd16b1f92c250169c21382082fde04adacdb0d3de2e8d1146
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: REGION-ICP-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/ic_calibrado.py
+  sha256: 719873f772cfba987f3db3bdc85cc32529dadcfeb15dc215871700651a5861f4
+variables:
+- archivo: resultados.json
+  variable: punto, ic_inf, ic_sup, estado
+  rol: serie regional sellada
+universo: geografías publicables R1/R2 con serie temporal comparable
+filtros: probabilidad e IC interiores a (0,1); evaluación nunca entra al ajuste
+ponderador: heredado de cada fuente; ninguna reponderación
+transformacion: tau2 logit de transiciones previas; IC predictivo heredado y evaluación
+  posterior
+estimando: intervalo predictivo y cobertura regional retrospectiva
+parametros:
+  series:
+    ENVIPE:
+    - 2023
+    - 2024
+    - 2025
+    ENCIG:
+    - 2017
+    - 2019
+    - 2021
+    - 2023
+    - 2025
+    ENIF:
+    - 2018
+    - 2021
+    - 2024
+seed:
+  aplica: false
+dependencias_materiales: []
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: derivación determinista de RESULT sellados
+resultados:
+- id: RESULT-REGION-ICP-ENVIPE-JSON
+  tipo: texto
+  unidad: intervalos predictivos y cobertura retrospectiva
+- id: RESULT-REGION-ICP-ENVIPE-01-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-01-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-01-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-02-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-02-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-02-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-03-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-03-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-03-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-04-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-04-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-04-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-05-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-05-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-05-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-06-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-06-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-06-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-07-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-07-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-07-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-08-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-08-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-08-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-09-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-09-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-09-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-10-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-10-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-10-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-11-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-11-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-11-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-12-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-12-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-12-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-13-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-13-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-13-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-14-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-14-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-14-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-15-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-15-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-15-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-16-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-16-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-16-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-17-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-17-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-17-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-18-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-18-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-18-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-19-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-19-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-19-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-20-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-20-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-20-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-21-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-21-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-21-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-22-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-22-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-22-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-23-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-23-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-23-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-24-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-24-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-24-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-25-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-25-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-25-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-26-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-26-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-26-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-27-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-27-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-27-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-28-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-28-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-28-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-29-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-29-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-29-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-30-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-30-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-30-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-31-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-31-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-31-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-32-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-32-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-32-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENVIPE-N-COMPARABLE
+  tipo: entero
+  unidad: geografías comparables
+- id: RESULT-REGION-ICP-ENVIPE-N-CUBIERTA
+  tipo: entero
+  unidad: geografías cubiertas
+- id: RESULT-REGION-ICP-ENVIPE-TAU2
+  tipo: flotante
+  unidad: varianza entre olas en escala logit
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-JSON
+  tipo: texto
+  unidad: intervalos predictivos y cobertura retrospectiva
+- id: RESULT-REGION-ICP-ENCIG-01-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-01-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-01-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-02-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-02-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-02-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-03-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-03-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-03-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-04-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-04-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-04-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-05-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-05-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-05-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-06-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-06-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-06-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-07-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-07-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-07-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-08-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-08-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-08-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-09-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-09-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-09-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-10-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-10-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-10-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-11-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-11-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-11-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-12-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-12-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-12-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-13-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-13-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-13-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-14-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-14-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-14-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-15-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-15-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-15-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-16-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-16-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-16-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-17-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-17-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-17-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-18-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-18-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-18-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-19-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-19-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-19-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-20-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-20-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-20-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-21-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-21-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-21-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-22-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-22-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-22-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-23-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-23-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-23-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-24-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-24-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-24-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-25-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-25-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-25-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-26-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-26-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-26-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-27-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-27-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-27-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-28-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-28-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-28-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-29-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-29-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-29-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-30-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-30-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-30-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-31-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-31-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-31-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-32-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-32-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-32-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENCIG-N-COMPARABLE
+  tipo: entero
+  unidad: geografías comparables
+- id: RESULT-REGION-ICP-ENCIG-N-CUBIERTA
+  tipo: entero
+  unidad: geografías cubiertas
+- id: RESULT-REGION-ICP-ENCIG-TAU2
+  tipo: flotante
+  unidad: varianza entre olas en escala logit
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-JSON
+  tipo: texto
+  unidad: intervalos predictivos y cobertura retrospectiva
+- id: RESULT-REGION-ICP-ENIF-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-1-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-2-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-3-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-4-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-5-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior predictivo
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-6-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior, 0 si no
+  permite_no_estimable: true
+- id: RESULT-REGION-ICP-ENIF-N-COMPARABLE
+  tipo: entero
+  unidad: geografías comparables
+- id: RESULT-REGION-ICP-ENIF-N-CUBIERTA
+  tipo: entero
+  unidad: geografías cubiertas
+- id: RESULT-REGION-ICP-ENIF-TAU2
+  tipo: flotante
+  unidad: varianza entre olas en escala logit
+  permite_no_estimable: true
