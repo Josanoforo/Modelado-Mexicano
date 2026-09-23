@@ -5216,6 +5216,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1`, queda censado.
     "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md",
     "forense/notas/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-cierre.md",
+    # ACTO GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1, 22/sep/2026. El encargo
+    # archivado verbatim (A.3; sello de cuerpo `fca18e91…`) dice en §3 «sin
+    # fila en vista hasta E11» y en §4 «no correr a la vez que E13»:
+    # verificado contra el árbol (fork de ARRANQUE) que ninguna de las dos
+    # es un rótulo censado en este repo -- no hay ADR, FP, NC ni acto con
+    # ese nombre en el clúster ENIF2024/C2-RESTRINGIDO; son abreviaturas
+    # informales de la conversación externa que emitió la firma
+    # (PRODUCTO-DINERO), no un rótulo que este acto acuñe. Recortar la cita
+    # de un encargo verbatim para complacer este test está prohibido (A.3).
+    # El rótulo propio, `GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1`, queda censado
+    # en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md",
 }
 
 
