@@ -1,0 +1,169 @@
+{
+ "corrida_id": "CALC-ASTRA-ENVIPE-ESCOLARIDADPROXYXSEXO-0001--50a73d475d90",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "PyYAML": "AUSENTE",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "exposicion_historica": "CIEGO-A-ENVIPE2025-CRUCE-NO-ABIERTO",
+  "generacion": "GEN2",
+  "origen_numerico": "MICRODATO",
+  "tipo_incertidumbre": "PREDICTIVA-CONDICIONAL-MARGINALES-2025"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T02:10:28Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "50a73d475d90549992a74c39db68819167ebc414",
+  "git_rama": "codex/astra-interaccion-dinamica-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "50a73d475d90549992a74c39db68819167ebc414",
+ "input_ids": [
+  "envipe2023_csv",
+  "envipe2024_csv",
+  "MARGINALES-PUBLICOS"
+ ],
+ "input_sha256": {
+  "MARGINALES-PUBLICOS": "93dfa3f9aab250dabf9cbe8c93ccef2012cb763c5367d023f24dbfbd867fbc8f",
+  "envipe2023_csv": "0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404",
+  "envipe2024_csv": "90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2"
+ },
+ "parametros": {
+  "celdas": [
+   {
+    "a": "hasta primaria",
+    "b": "1 Hombre"
+   },
+   {
+    "a": "hasta primaria",
+    "b": "2 Mujer"
+   },
+   {
+    "a": "secundaria",
+    "b": "1 Hombre"
+   },
+   {
+    "a": "secundaria",
+    "b": "2 Mujer"
+   },
+   {
+    "a": "media superior",
+    "b": "1 Hombre"
+   },
+   {
+    "a": "media superior",
+    "b": "2 Mujer"
+   },
+   {
+    "a": "superior",
+    "b": "1 Hombre"
+   },
+   {
+    "a": "superior",
+    "b": "2 Mujer"
+   }
+  ],
+  "modelo_sha256": "47ded83d3e8a9283a2972289240d8fa6b90c440cefb238bca04255e044a11212",
+  "pair": "ESCOLARIDADPROXYXSEXO",
+  "replicas_upm": 256,
+  "seed": 20260922,
+  "sorteos_predictivos": 2048
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-01-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-01-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-01-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-01-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-02-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-02-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-02-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-02-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-03-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-03-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-03-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-03-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-04-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-04-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-04-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-04-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-05-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-05-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-05-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-05-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-06-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-06-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-06-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-06-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-07-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-07-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-07-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-07-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-08-ESTADO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-08-HI",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-08-LO",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-08-P",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-Q",
+  "RESULT-ASTRA-ESCOLARIDADPROXYXSEXO-TAU2"
+ ],
+ "script_blob_sha256": "bbcd6b9c7f5621da57edbeffb271f73c3380a4a7dccdcd1549ef9bc3cfb2d352",
+ "script_path": "data/corrida0/CALC-ASTRA-ENVIPE-ESCOLARIDADPROXYXSEXO-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260922
+ },
+ "spec_id": "CALC-ASTRA-ENVIPE-ESCOLARIDADPROXYXSEXO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "0201b0e637f2db000c72455df3877fc29bfe9e5b9dfbfbccd112357418ca3939",
+ "spec_yaml_sha256": "69473c96d342c0c6f0f894d9b7a8dd513a174164dfde79a1e7c001186e340374",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}
