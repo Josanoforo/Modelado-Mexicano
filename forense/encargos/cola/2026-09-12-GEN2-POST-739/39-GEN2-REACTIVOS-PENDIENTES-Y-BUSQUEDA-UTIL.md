@@ -106,3 +106,5 @@ Para consumo por 40 y por el servicio fusionado en #739, incluye en la nota: SHA
 ## Prompt de lanzamiento
 
 > Ejecuta íntegramente el encargo 39 adjunto en un worktree propio. Autorizo las fases, recuperación de documentación pública pertinente, implementación, ejecución real, commits, push y PR; el merge queda conmigo. #739 ya está fusionado. El encargo 40 lleva en paralelo la conciliación de NC-0165, demanda y ruteo; coordina sólo los registros compartidos. Tu responsabilidad es reducir los puntos ciegos documentales del lote prioritario de #737 y dejar el buscador consumiendo la mejora. Continúa entre fases sin pedir otro encargo; no cierres sólo con diagnóstico, fixtures o ejemplos aislados si puedes completar el resto del lote.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-39-REACTIVOS-RESIDUALES-Y-BUSQUEDA-UTIL-cierre.md; NC-0100 EJECUTADA-PARCIAL-CON-RESIDUAL, 791/823 filas

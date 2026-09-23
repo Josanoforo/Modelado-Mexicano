@@ -43,3 +43,5 @@ Para corrupción, la restricción a un dominio no identifica por sí sola una pr
 Tabla `decisión o límite acreditado | RESULT/fuente | consumidor | uso efectivo | prueba | cierre/residual`. S6 y fintech llegan al lugar donde se usan; el modo Gen2 no sustituye una ausencia por números legacy ni por el árbitro. Pruebas dirigidas de dominio, linaje y ausencia; ningún congelado histórico cambia.
 
 Mantener perímetro y PR de 18, sin duplicar resolver de 17 ni evaluación de 19. Cero llamadas nuevas, cero envíos a terceros y ninguna firma científica inferida. Los encargos 20–22 aportarán fuentes, expedientes y validación; no bloquean terminar estas incorporaciones ya autorizadas.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-MOTOR-Y-HERENCIA-EXPLICITA-cierre.md -- adenda al ejecutor del encargo 18, ya cerrado

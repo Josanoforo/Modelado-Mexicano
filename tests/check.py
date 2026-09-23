@@ -2930,6 +2930,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: el `E0` pelado del
+    # encargo (§2) sale de la cita verbatim "una ley E0 vencida" -- ejemplo
+    # de premisa dentro de la lista cerrada de A.10, no un rótulo acuñado.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md",
+    # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: la nota P1 cita, por
+    # objeto, los nombres de archivo de 14 encargos de `cola/` fuera de
+    # perímetro de este acto ("GEN2-E1-LIMPIEZA-C1", "...E5-0-SPECS...",
+    # etc.) y el objeto del encargo 18 ("Índice/plan maestro E0-E7") --
+    # rótulos de otros actos citados en prosa, no acuñados por éste.
+    "forense/notas/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1-nota.md",
     # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
     # VERBATIM (`PENDIENTES-PROGRAMA.md`). El `E03` pelado que el regex ve
     # sale de una cita verbatim de la fila NC-0029 §1.3 ("E03 para L y E04
@@ -5201,6 +5211,14 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md",
     "forense/notas/2026-09-22-GEN2-TRAMITE-FIRMAS-6-cierre.md",
     "canon/L0/ADR-260922-GEN2-TRAMITE-FIRMAS-6-7c2c-01.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-7 (22/sep/2026). El encargo §9 (Perímetro)
+    # cita "E11 (`.gitattributes`, `verify.yml`)" como el rótulo corto del
+    # acto hermano en vuelo (canal E11 de PENDIENTES-CAJA-1, sin archivo en
+    # común con este acto) -- concurrencia entre actos, no un rótulo del
+    # espacio `E` (fases MOTOR-3) que este acto acuñe. El rótulo propio,
+    # `GEN2-TRAMITE-FIRMAS-7`, no matchea `E\d{1,2}` pelado y queda censado
+    # en `canon/registro-rotulos.tsv`.
+    "forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md",
     # ACTO GEN2-DIN-CREDITO-ESCOLARIDAD-2, 22/sep/2026. El encargo archivado
     # verbatim (A.3) dice en §2 «si mesa la ratifica en E5»: es la ranura de
     # mesa ya censada (`E5` en canon/registro-rotulos.tsv), no un rótulo que
@@ -5216,6 +5234,29 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # `GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1`, queda censado.
     "forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md",
     "forense/notas/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1-cierre.md",
+    # Encargos de TANDA-5-ENCARGOS-C (22/sep/2026, dirección), archivados
+    # verbatim (A.3, PR #1016) sin ejecutar: la propia tanda numera sus
+    # cinco piezas E11..E15 (TUBERIA=E11, TRAMITE-FIRMAS-7=E12,
+    # DUELO-ENVIPE2026-MARGINALES-2=E13, DIN-LOTE-ENIF2024-SECUNDARIA-1=E14,
+    # ADQ-F6-DIRIGIDA-1=E15) y cada encargo hermano se refiere a los demás
+    # por esa numeración de tanda, no por el rótulo del espacio `E`
+    # (fases MOTOR-3) que ninguno de estos actos acuña -- mismo patrón que
+    # GEN2-TRAMITE-FIRMAS-6 (E1-E4) y GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1
+    # (E1/E2) arriba. Ninguno de los textos se edita para complacer el test
+    # (A.3, cuerpo de dirección). GEN2-TRAMITE-FIRMAS-7.md (E12, §4/§6 "…
+    # E11 (canal)…"/"…por E11)") ya se ejecutó (PR #1015, ADR
+    # 260922-…-369b-01) y queda censado arriba con su propia entrada; no se
+    # duplica aquí.
+    # - TUBERIA-CANAL-PUBLICACION-1 §9: «Otro acto en vuelo: E12–E15» --
+    #   cita a los cuatro hermanos de esta misma tanda por su numeración.
+    "forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md",
+    # - DIN-LOTE-ENIF2024-SECUNDARIA-1 §3/§8: «…sin fila en vista hasta
+    #   E11» / «Orden sugerido: después de E11» -- cita a
+    #   TUBERIA-CANAL-PUBLICACION-1 (E11).
+    "forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md",
+    # - DUELO-ENVIPE2026-MARGINALES-2 §4: «no correr a la vez que E14» --
+    #   cita a DIN-LOTE-ENIF2024-SECUNDARIA-1 (E14).
+    "forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md",
 }
 
 

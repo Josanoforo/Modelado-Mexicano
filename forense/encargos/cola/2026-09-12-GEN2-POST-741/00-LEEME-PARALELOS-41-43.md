@@ -75,3 +75,5 @@ No cambiar el scheduler, sus límites ni los selectores para forzar este lote. U
 - `43-GEN2-SHED-BNPL-DANO-Y-UNIVERSOS.md` → tercera sesión si hay capacidad.
 
 Cada archivo lleva su prompt de lanzamiento al final. Estas son tareas preparadas; los cálculos y las nuevas adquisiciones se ejecutarán en sus sesiones de CAJA.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO-cierre.md y 2026-09-11-GEN2-SHED-BNPL-DANO-UNIVERSOS-cierre.md; encargos archivados forense/encargos/2026-09-12-GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO.md y 2026-09-11-GEN2-SHED-BNPL-DANO-UNIVERSOS.md

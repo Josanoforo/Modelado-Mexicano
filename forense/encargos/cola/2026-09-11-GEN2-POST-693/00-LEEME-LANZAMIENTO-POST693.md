@@ -87,3 +87,5 @@ resto y deja la continuación exacta, sin repetir productos ya fusionados.
 Al continuar Cloud→CLI, retomar rama/PR/SHA y fases pendientes, enlazar corpus y preservar congelamientos; no reiniciar la misma tarea desde cero. El uso de Codex no necesita Claude para cinco encargos. 07R mantiene el cliente productivo actual: su disponibilidad sólo condiciona la parte de adquisición real, no el trabajo técnico.
 
 **Resultado de esta revisión:** el proyecto queda listo para publicar tres cálculos que hoy no se ven, verificar la serie temporal, producir mediciones nuevas de corrupción/tandas y dirigir la siguiente mejora con el resultado real de F5.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · hijos 09/10/11/12/13/07R con notas de cierre o PR fusionados (ver filas 3, 4, 5 de la tabla de este acto)
