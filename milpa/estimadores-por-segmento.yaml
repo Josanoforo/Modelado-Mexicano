@@ -3,8 +3,8 @@ _comentario: 'DERIVADO por tools/marcador_segmento.py — NO EDITAR. ACTO GEN2-M
   (19/sep/2026). Fuente: celdas-D con champion_actual=C2 y sus RESULT sellados; cita
   adopcion:piso-C2-20-celdas de decisiones.tsv.'
 decision_ref: adopcion:piso-C2-20-celdas
-n_celdas: 36
-n_emitidas_sin_evaluar: 190
+n_celdas: 20
+n_emitidas_sin_evaluar: 206
 n_emitidas_con_ic_sellado: 174
 emitidas_sin_evaluar:
   CRUCE-EMITIDA::AHORRA-SOLO-INFORMAL-CUENTA-FORMALXEDAD-SIN-CUENTA-X-18-29:
@@ -2591,6 +2591,310 @@ emitidas_sin_evaluar:
     diagnostico_rango_inf: 0.528243871156352
     diagnostico_rango_sup: 0.6123483783980044
     diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 18-29
+    celda_b: hasta primaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-HASTA-PRIMARIA
+    punto: 0.48641624121756727
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.41532224015602415
+    diagnostico_rango_sup: 0.5585566524924295
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SECUNDARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 18-29
+    celda_b: secundaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SECUNDARIA
+    punto: 0.655819404791646
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.5920492509781554
+    diagnostico_rango_sup: 0.7157474659583236
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 18-29
+    celda_b: media superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-MEDIA-SUPERIOR
+    punto: 0.7561901098252976
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.7057449200509032
+    diagnostico_rango_sup: 0.8011914960551983
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 18-29
+    celda_b: superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-18-29-X-SUPERIOR
+    punto: 0.8645940117152578
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.8307370206439924
+    diagnostico_rango_sup: 0.8933447826840003
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 30-44
+    celda_b: hasta primaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-HASTA-PRIMARIA
+    punto: 0.5181408763085343
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.45612043126779545
+    diagnostico_rango_sup: 0.5785964362598276
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SECUNDARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 30-44
+    celda_b: secundaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SECUNDARIA
+    punto: 0.6838804651793168
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.6314584222632648
+    diagnostico_rango_sup: 0.7320742933832236
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 30-44
+    celda_b: media superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-MEDIA-SUPERIOR
+    punto: 0.7788277007275063
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.7390124479898978
+    diagnostico_rango_sup: 0.8138867453444107
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 30-44
+    celda_b: superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-30-44-X-SUPERIOR
+    punto: 0.8787798651213805
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.8528203392309884
+    diagnostico_rango_sup: 0.9008834226170286
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 45-59
+    celda_b: hasta primaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-HASTA-PRIMARIA
+    punto: 0.387391211101558
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.3312640360777322
+    diagnostico_rango_sup: 0.44598218210087476
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SECUNDARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 45-59
+    celda_b: secundaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SECUNDARIA
+    punto: 0.5599048436440844
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.502993956235353
+    diagnostico_rango_sup: 0.6156772416514983
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 45-59
+    celda_b: media superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-MEDIA-SUPERIOR
+    punto: 0.6743576601371379
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.6258231918918542
+    diagnostico_rango_sup: 0.7194093567031237
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 45-59
+    celda_b: superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-45-59-X-SUPERIOR
+    punto: 0.8100044962976979
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.7738872256797728
+    diagnostico_rango_sup: 0.8419949514718157
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 60+
+    celda_b: hasta primaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-HASTA-PRIMARIA
+    punto: 0.22107105471530625
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.18104078794910103
+    diagnostico_rango_sup: 0.26616159889309554
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SECUNDARIA:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 60+
+    celda_b: secundaria
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SECUNDARIA
+    punto: 0.363462244638327
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.3111255728457015
+    diagnostico_rango_sup: 0.4192075784468764
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 60+
+    celda_b: media superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-MEDIA-SUPERIOR
+    punto: 0.4817123547869687
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.42739220256344135
+    diagnostico_rango_sup: 0.5360041660652799
+    diagnostico_rango_es_ic: 'NO'
+  CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SUPERIOR:
+    grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxescolaridad
+    regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
+    desenlace_id: adopta_encig2025_luz
+    par: edadxescolaridad
+    celda_a: 60+
+    celda_b: superior
+    resultado_id: RESULT-C2COMP-ADOPTA-ENCIG2025-LUZ-EDADXESCOLARIDAD-60-X-SUPERIOR
+    punto: 0.656761456303729
+    ic95_inf: ''
+    ic95_sup: ''
+    ic95_fuente: ''
+    unidad_dato: TRÁMITE (quien pagó doce veces contribuye doce veces)
+    tipo_incertidumbre: NO-PROPAGADA-COVARIANZA-NO-SELLADA
+    supuesto: sin-interaccion
+    estado: EMITIDA-SIN-EVALUAR
+    diagnostico_rango_inf: 0.6043333573702933
+    diagnostico_rango_sup: 0.7059676619965694
+    diagnostico_rango_es_ic: 'NO'
   CRUCE-EMITIDA::ADOPTA-ENCIG2025-LUZ-EDADXSEXO-18-29-X-1-HOMBRE:
     grupo_marcador: CRUCE-GRUPO::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edadxsexo
     regla_origen: tramite.gobierno_digital.util_sin_coercion_ejes_encig2025
@@ -3682,134 +3986,6 @@ celdas:
     ic95_sup: 0.2781828364443396
     unidad_dato: persona_elegida_18mas
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-HASTA-PRIMARIA-C2-P
-    punto: 0.48452491444265666
-    ic95_inf: 0.440786307903583
-    ic95_sup: 0.5289531531785042
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-SECUNDARIA-C2-P
-    punto: 0.6568030841330653
-    ic95_inf: 0.6195503021445021
-    ic95_sup: 0.6931977507279221
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-MEDIA-SUPERIOR-C2-P
-    punto: 0.7566313129728077
-    ic95_inf: 0.7263639399900934
-    ic95_sup: 0.7861082773960419
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::18-29xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-18-29-SUPERIOR-C2-P
-    punto: 0.8643775065418697
-    ic95_inf: 0.8437608575070431
-    ic95_sup: 0.8832445294425465
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-HASTA-PRIMARIA-C2-P
-    punto: 0.5162501009076711
-    ic95_inf: 0.47874759756924795
-    ic95_sup: 0.5528963243627989
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-SECUNDARIA-C2-P
-    punto: 0.6848224108313606
-    ic95_inf: 0.6580862183759106
-    ic95_sup: 0.7111609057110774
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-MEDIA-SUPERIOR-C2-P
-    punto: 0.7792398364372125
-    ic95_inf: 0.7581170609275167
-    ic95_sup: 0.7997891049931551
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::30-44xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-30-44-SUPERIOR-C2-P
-    punto: 0.8785828188181685
-    ic95_inf: 0.864418915219044
-    ic95_sup: 0.8918013529437138
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-HASTA-PRIMARIA-C2-P
-    punto: 0.38559588351130086
-    ic95_inf: 0.35137906120007373
-    ic95_sup: 0.4208102641660194
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-SECUNDARIA-C2-P
-    punto: 0.5609791903425925
-    ic95_inf: 0.5286353362193754
-    ic95_sup: 0.5933991319252395
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-MEDIA-SUPERIOR-C2-P
-    punto: 0.6748833231311685
-    ic95_inf: 0.649041427074107
-    ic95_sup: 0.7003414786792362
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::45-59xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-45-59-SUPERIOR-C2-P
-    punto: 0.8097199454837418
-    ic95_inf: 0.7919532773080719
-    ic95_sup: 0.8264773705035735
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xHASTA-PRIMARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-HASTA-PRIMARIA-C2-P
-    punto: 0.2197701594038772
-    ic95_inf: 0.1931095649958357
-    ic95_sup: 0.2492556029174386
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xSECUNDARIA:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-SECUNDARIA-C2-P
-    punto: 0.36447203158605124
-    ic95_inf: 0.33506944210010475
-    ic95_sup: 0.39450658364802593
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xMEDIA-SUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-MEDIA-SUPERIOR-C2-P
-    punto: 0.48231049077684934
-    ic95_inf: 0.45390737442093426
-    ic95_sup: 0.5115889609431381
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-  CRUCE::GOB.gobierno_digital.encig2025.edad_x_escolaridad::60-96xSUPERIOR:
-    regla_origen: GOB.gobierno_digital.encig2025.edad_x_escolaridad
-    resultado_id: RESULT-GOB-EXE15-2025-60-96-SUPERIOR-C2-P
-    punto: 0.6563449744105344
-    ic95_inf: 0.6301430827504048
-    ic95_sup: 0.6822532906884965
-    unidad_dato: NO-MAPEADA-A-REGLA-DE-OLA5
-    tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
   CRUCE::TRA.evade_norma.envipe2025.escolaridad_x_dominio::S1xD1:
     regla_origen: TRA.evade_norma.envipe2025.escolaridad_x_dominio
     resultado_id: RESULT-TRA-SXD12-C2-P-S1xD1
@@ -3906,673 +4082,3 @@ celdas:
     ic95_sup: 0.6368951298852671
     unidad_dato: delito
     tipo_incertidumbre: IC95-BOOTSTRAP-REPLICA-POR-REPLICA-MARGINALES-COMPARTIDOS
-decision_ref_marginales: adopcion:piso-t1-marginales-por-instrumento
-n_celdas_marginales_adoptadas: 47
-n_celdas_marginales_vetadas: 10
-marginales:
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::sexo::1 Hombre:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-1-P
-    punto: 0.35864758613030456
-    ic95_inf: '[0.20790547296900236, 0.5436683431410242]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::sexo::2 Mujer:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-SEXO-2-P
-    punto: 0.3955232998440402
-    ic95_inf: '[0.23506192207616347, 0.5821581304238198]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::edad::18-29:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-18-29-P
-    punto: 0.47397583266507526
-    ic95_inf: '[0.2950474126713264, 0.6598470819590081]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::edad::30-44:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-30-44-P
-    punto: 0.39966123102166035
-    ic95_inf: '[0.23623837186207386, 0.5889582965790694]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::edad::45-59:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-45-59-P
-    punto: 0.3339516559059779
-    ic95_inf: '[0.18881314742093425, 0.5192426172380151]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::edad::60+:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-EDAD-60-MAS-P
-    punto: 0.25978216332077736
-    ic95_inf: '[0.13979339141436783, 0.4311415696909245]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::escolaridad::hasta primaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-HASTA-PRIMARIA-P
-    punto: 0.3474218551587848
-    ic95_inf: '[0.20296837864914077, 0.5267399365394164]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::escolaridad::secundaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SECUNDARIA-P
-    punto: 0.43923641557098714
-    ic95_inf: '[0.2725574706190701, 0.6208511079517344]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::escolaridad::media superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-MEDIA-SUPERIOR-P
-    punto: 0.4098093119222332
-    ic95_inf: '[0.24937935404043374, 0.5920430487689949]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::escolaridad::superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-ESCOLARIDAD-SUPERIOR-P
-    punto: 0.3079254311061226
-    ic95_inf: '[0.17504321166353617, 0.4826634567343308]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::localidad::menor de 15 000:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-MENOR-DE-15-000-P
-    punto: 0.42350079209783514
-    ic95_inf: '[0.26004196508749505, 0.6056141423507434]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::localidad::15 000 y mas:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-LOCALIDAD-15-000-Y-MAS-P
-    punto: 0.35308795215693956
-    ic95_inf: '[0.20714956300232312, 0.5327548259119019]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::formalidad::sin seguridad social:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-FORMALIDAD-D9-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P
-    punto: 0.44102901599679845
-    ic95_inf: '[0.2737202322021792, 0.6228951569107906]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::formalidad::con seguridad social:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-FORMALIDAD-D9-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P
-    punto: 0.345204488893427
-    ic95_inf: '[0.20090564048427031, 0.5250469259880896]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::cuenta_formal::sin cuenta:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-SIN-CUENTA-P
-    punto: 0.4700404206126354
-    ic95_inf: '[0.29824589094599996, 0.6492401083585644]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::ahorra_solo_informal::cuenta_formal::con cuenta:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-D9-CUENTA-CON-CUENTA-P
-    punto: 0.2874266387224037
-    ic95_inf: '[0.16191780739471998, 0.4571545619602984]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::sexo::1 Hombre:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-SEXO-1-P
-    punto: 0.5250405072443105
-    ic95_inf: '[0.34140987995493727, 0.7021400356770405]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::sexo::2 Mujer:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-SEXO-2-P
-    punto: 0.5226275653836449
-    ic95_inf: '[0.33933889196675293, 0.7000185040802672]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::edad::18-29:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-EDAD-18-29-P
-    punto: 0.6667753605345252
-    ic95_inf: '[0.4763792423728493, 0.8148482436404373]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::edad::30-44:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-EDAD-30-44-P
-    punto: 0.573050889394615
-    ic95_inf: '[0.37935122840511576, 0.7466684675611981]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::edad::45-59:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-EDAD-45-59-P
-    punto: 0.448600099392685
-    ic95_inf: '[0.270357424192589, 0.6411026030087237]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::edad::60+:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-EDAD-60-MAS-P
-    punto: 0.3324856778597495
-    ic95_inf: '[0.1846244336260807, 0.5228333647051279]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::escolaridad::hasta primaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-ESCOLARIDAD-HASTA-PRIMARIA-P
-    punto: 0.3848843606813494
-    ic95_inf: '[0.21252455318514502, 0.5919518118422181]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::escolaridad::secundaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-ESCOLARIDAD-SECUNDARIA-P
-    punto: 0.5201442970965906
-    ic95_inf: '[0.3185530754185117, 0.7153824448704571]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::escolaridad::media superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-ESCOLARIDAD-MEDIA-SUPERIOR-P
-    punto: 0.5871865570113051
-    ic95_inf: '[0.3801583335157439, 0.7673789201079528]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::escolaridad::superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-ESCOLARIDAD-SUPERIOR-P
-    punto: 0.6183217403000751
-    ic95_inf: '[0.41080455444957137, 0.7900956828469874]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::localidad::menor de 15 000:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-LOCALIDAD-MENOR-DE-15-000-P
-    punto: 0.5223619528902693
-    ic95_inf: '[0.3368027707465998, 0.7019477074048592]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::localidad::15 000 y mas:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-LOCALIDAD-15-000-Y-MAS-P
-    punto: 0.5245413122147854
-    ic95_inf: '[0.3390180793249501, 0.7035293638888989]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::formalidad::sin seguridad social:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-FORMALIDAD-INFORMAL-CUALQUIERA-FORMALIDAD-SIN-SEGURIDAD-SOCIAL-P
-    punto: 0.5628195290423094
-    ic95_inf: '[0.37855797148506304, 0.7312353516034784]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::formalidad::con seguridad social:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-FORMALIDAD-INFORMAL-CUALQUIERA-FORMALIDAD-CON-SEGURIDAD-SOCIAL-P
-    punto: 0.6207109242063596
-    ic95_inf: '[0.43586417775827324, 0.7761028086904047]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::cuenta_formal::sin cuenta:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-CUENTA-SIN-CUENTA-P
-    punto: 0.4700404206126354
-    ic95_inf: '[0.29002239840324706, 0.6582063236748035]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::dinero.ahorro.via_informal_ejes_enif2024::informal_cualquiera::cuenta_formal::con cuenta:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENIF2021-V2-INFORMAL-CUALQUIERA-CUENTA-CON-CUENTA-P
-    punto: 0.5767690684121143
-    ic95_inf: '[0.3855926331077303, 0.7474248045251944]'
-    instrumento: ENIF 2024 · TMODULO.csv · unidad = PERSONA elegida 18+
-    unidad_dato: persona_elegida_18mas
-    tipo_incertidumbre: 'calibrado: un solo choque 2018→2021, conservador'
-    estado: ADOPTADO-CON-RESERVA-DE-ANCHO
-    cobertura: 'ENIF 2024, cobertura 32/32 = 1.00 [0.89, 1.00] Wilson-celda (FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01:
-      IC calibrado 8.9x el muestral, un solo choque 2018->2021)'
-    regla_origen: dinero.ahorro.via_informal_ejes_enif2024
-    decision_ref: FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::sexo::1 Hombre:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-1-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::sexo::2 Mujer:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-SEXO-2-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edad::18-29:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-18-29-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edad::30-44:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-30-44-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edad::45-59:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-45-59-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::edad::60+:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-EDAD-60-MAS-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::escolaridad::hasta primaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-HASTA-PRIMARIA-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::escolaridad::secundaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SECUNDARIA-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::escolaridad::media superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-MEDIA-SUPERIOR-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.gobierno_digital.util_sin_coercion_ejes_encig2025::escolaridad::superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENCIG2023-V2-DIGITAL-ESCOLARIDAD-SUPERIOR-P
-    instrumento: ENCIG 2025 · encig2025_04_sec_7.csv · unidad = TRÁMITE (quien pagó
-      doce veces contribuye doce veces)
-    estado: VETADA-EN-NIVEL
-    veto: ENCIG 2025, cobertura 0/10 [0.00, 0.28] · piso_de_orden=SI
-  MARG::tramite.evasion_norma_ejes_envipe2025::sexo::1 Hombre:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-1-P
-    punto: 0.5625367389479309
-    ic95_inf: '[0.5469768672511728, 0.5779515287081277]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::sexo::2 Mujer:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-SEXO-2-P
-    punto: 0.5180073675125128
-    ic95_inf: '[0.5005926127250356, 0.5356711965471808]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::edad::18-29:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-18-29-P
-    punto: 0.5160031401162705
-    ic95_inf: '[0.4911713594486456, 0.540828738986535]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::edad::30-44:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-30-44-P
-    punto: 0.5548714537803958
-    ic95_inf: '[0.5350504221149059, 0.574409280676706]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::edad::45-59:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-45-59-P
-    punto: 0.547607691226778
-    ic95_inf: '[0.5271329344910323, 0.568327457141632]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::edad::60+:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-EDAD-60-MAS-P
-    punto: 0.5480025499040757
-    ic95_inf: '[0.5194488528972045, 0.575831400778723]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::escolaridad_proxy::hasta primaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-HASTA-PRIMARIA-P
-    punto: 0.49513695206020103
-    ic95_inf: '[0.46573864397389597, 0.5249852508753865]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::escolaridad_proxy::secundaria:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SECUNDARIA-P
-    punto: 0.5253374206368153
-    ic95_inf: '[0.4990194862004459, 0.5522007166773061]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::escolaridad_proxy::media superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-MEDIA-SUPERIOR-P
-    punto: 0.5394080834777241
-    ic95_inf: '[0.5190311671766437, 0.559761011687884]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::escolaridad_proxy::superior:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-ESCOLARIDAD-SUPERIOR-P
-    punto: 0.5526668883412079
-    ic95_inf: '[0.5334580206903416, 0.572692416858456]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::dominio_urbano_rural::Rural:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-RURAL-P
-    punto: 0.4291004565374159
-    ic95_inf: '[0.39779365554838814, 0.46116913640625923]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::dominio_urbano_rural::Complemento urbano:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-COMPLEMENTO-URBANO-P
-    punto: 0.4723676575449671
-    ic95_inf: '[0.4524310691143336, 0.49206818661120133]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::tramite.evasion_norma_ejes_envipe2025::dominio_urbano_rural::Urbano:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-EVASION-DOMINIO-URBANO-P
-    punto: 0.5693019140936104
-    ic95_inf: '[0.5545169600213642, 0.5837217250956352]'
-    instrumento: ENVIPE 2025 · tmod_vic · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: tramite.evasion_norma_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::civico.denuncia.con_seguro_ejes_envipe2025::cobertura_seguro::no asegurado:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-NO-ASEGURADO-P
-    punto: 0.6335238483178248
-    ic95_inf: '[0.5849432161458518, 0.6817866400934546]'
-    instrumento: ENVIPE 2025 · tmod_vic (conjunto_de_datos) · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: civico.denuncia.con_seguro_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
-  MARG::civico.denuncia.con_seguro_ejes_envipe2025::cobertura_seguro::asegurado:
-    champion: PERSISTENCIA(t-1)
-    resultado_id: RESULT-PISOS-ENVIPE2024-V2-DENUNCIA-COBERTURA-SEGURO-ASEGURADO-P
-    punto: 0.7740559546028694
-    ic95_inf: '[0.7108346601907894, 0.8330591470908341]'
-    instrumento: ENVIPE 2025 · tmod_vic (conjunto_de_datos) · unidad = DELITO
-    unidad_dato: delito
-    tipo_incertidumbre: PERSISTENCIA-T1-BOOTSTRAP-UPM-ESTRATIFICADO
-    estado: ADOPTADO-POR-FIRMA
-    cobertura: ENVIPE 2025, cobertura 8/15 = 0.53 [0.30, 0.75]
-    regla_origen: civico.denuncia.con_seguro_ejes_envipe2025
-    decision_ref: adopcion:piso-t1-marginales-por-instrumento
