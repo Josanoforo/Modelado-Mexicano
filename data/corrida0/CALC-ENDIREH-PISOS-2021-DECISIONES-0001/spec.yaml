@@ -1,0 +1,46 @@
+calc_id: CALC-ENDIREH-PISOS-2021-DECISIONES-0001
+spec_md: spec.md
+spec_md_sha256: 51dcd27ca37ef8201d008c0b5f0cd068041309121deed9db2231962662cff254
+script: data/corrida0/CALC-ENDIREH-PISOS-2021-DECISIONES-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: NO
+  origen_numerico: ENDIREH 2021 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+  - {id: endireh2021_bd_csv_zip, origen: manifiesto}
+variables:
+  - {archivo: TB_SEC_IV.csv, variable: P4_11, rol: dinero que puede utilizar como quiera}
+  - {archivo: TB_SEC_XV.csv, variable: P15_1AB_3, rol: decision sobre dinero propio disponible}
+  - {archivo: TB_SEC_XV.csv, variable: P15_1AB_7, rol: decision sobre gasto o ahorro}
+  - {archivo: TB_SEC_XV.csv, variable: T_INSTRUM, rol: A1/A2 elegibilidad}
+  - {archivo: TB_SEC_XV.csv, variable: FAC_MUJ, rol: factor mujer}
+  - {archivo: TB_SEC_XV.csv, variable: EST_DIS, rol: estrato diseño}
+  - {archivo: TB_SEC_XV.csv, variable: UPM_DIS, rol: UPM diseño}
+  - {archivo: TSDem.csv, variable: EDAD, rol: edad seleccionada}
+  - {archivo: TSDem.csv, variable: NIV, rol: escolaridad seleccionada}
+universo: Mujeres 15+ A1/A2 con pareja actual y respuesta válida por cada ítem.
+filtros: 'A1/A2, edad 15-120, FAC_MUJ>0; 6/7/blanco no se tratan como decisión de él.'
+ponderador: FAC_MUJ, sin normalizar
+transformacion: 'P4_11: 1/2 sí/no. P15_1AB_3/7: 1/4/5 participación de ella al menos igual; 2/3 él solo o más; 6/7/blanco excluidos.'
+estimando: Tres proporciones descriptivas separadas sobre situación y decisiones en 2021; sin inferencia causal.
+dependencias_materiales: [numpy]
+parametros:
+  bootstrap_replicas: 500
+  metodo_ic: bootstrap UPM A1/A2 completas dentro de EST_DIS; dominio sin casos aporta cero
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.20
+  cv_maximo: 0.30
+  hash_medidor_sha256: 8d31dabbfd7d439133e65ecb1720ea7a0f33f6556dc0bf9905f5caa1a57a1619
+  hash_prueba_sha256: 2e9051185681186b0a4d4ecccb3b437ea95414203b4c687d96b004816c0426bc
+  hash_descriptor_sha256: 5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180
+  hash_cuestionario_sha256: d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1
+  hash_payload_sha256: e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e
+seed: {aplica: true, valor: 20260923, rng: numpy.PCG64}
+tolerancia: {tipo: flotante, abs: 1.0e-10, razon: semilla y sumas deterministas}
+resultados:
+  - {id: RESULT-ENDIREH2021-DEC-N-ELEGIBLES, tipo: entero, unidad: mujeres 15+ A1/A2 con factor válido}
+  - {id: RESULT-ENDIREH2021-DEC-TABLA, tipo: texto, unidad: tabla de proporciones y réplicas agregadas}

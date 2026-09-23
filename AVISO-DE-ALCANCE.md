@@ -9,18 +9,25 @@ da por sabido el contexto. Este archivo es para quien llega de fuera.
 
 ## Qué es esto
 
-Una síntesis de literatura sobre conducta, psicología y estructura social en México
-—**31 reports temáticos**<!-- ls corpus/reports/*.md | wc -l -->—, más un modelo de
-decisión que convierte esa síntesis en **49 reglas**<!-- python3
-tests/validador_registro_ids.py --> segmentadas, más un aparato para refutarlas.
+Un benchmark auditable de estimaciones y predicciones segmentadas sobre
+microdatos oficiales, con especificaciones, RESULT y sellos por evaluación.
+Conserva un corpus de reports y el modelo de decisión anterior. El [informe
+v1.2](canon/informe-programa-v1_2.md) distingue los pilotos prospectivos
+respecto de R, las comparaciones retrospectivas y las reservas de alcance.
+Sellar antes de abrir R no equivale a sellar antes de la publicación de una ola.
+
+En julio la portada describía sobre todo síntesis de literatura y un modelo
+asignado por juicio. Las mediciones GEN2 añadieron contrastes sellados desde
+microdato oficial; no borraron esa historia ni validaron por ello todos los
+parámetros del modelo.
 
 ## Qué no es
 
-**No es investigación primaria.** No hay encuestas propias, ni experimentos, ni
-trabajo de campo. Todo se apoya en literatura publicada por terceros.
+**No hay encuesta propia, experimento ni trabajo de campo.** Sí hay estimaciones
+propias sobre microdatos de terceros, con unidad y universo declarados por CALC.
 
-**No tiene revisión por pares.** Ninguna afirmación fue validada por un investigador
-independiente.
+**No tiene revisión por pares del conjunto.** Existen validaciones independientes
+de resultados concretos; no se extienden al resto del repositorio.
 
 **No es un instrumento validado.** De los 144 números del modelo, **4 están
 medidos** <!-- modelo §6.1 (90 params_base + 15 coeficientes + 39 probabilidades =
@@ -94,38 +101,3 @@ verdad, ve a la fuente original que el report cita y verifícala tú.
 
 Y si vas a usarlo para decidir algo que afecte a personas concretas, lee primero
 `USO-ACEPTABLE.md`. La respuesta corta es que no deberías.
-
----
-
----
-
-## Bloque para insertar en `README.md`
-
-*(Va inmediatamente después del título y la línea de descripción, antes de la cita
-en bloque que ya existe. No sustituye a este archivo.)*
-
-```markdown
-> ### ⚠️ Antes de citar nada
->
-> **Síntesis de literatura, sin revisión por pares, escrita en su mayor parte
-> por modelos de lenguaje.** Sí hay dato primario propio: **223 payloads**
-> <!-- grep -cE '^\s*sha256:' data/manifiesto.yaml --> con `sha256` y estimandos
-> propios sobre ENVIPE/ENCIG/ENCUCI/ENIF/ENIGH, con un estimador
-> (`tests/svystat.py`) respaldado contra tres casos de referencia (Encargo E-3,
-> PR #97) y validado contra cifras publicadas de INEGI en al menos dos actos
-> (Encargo K, ENVIPE; Encargo P, ENIGH). El modelo en sí sigue mayormente sin
-> medir: de los 144 números, 4 están medidos (`4 de 144`, **[MESA-M4]**:
-> congelado 31/jul/2026, no se recalcula); de los 15 coeficientes en escala del
-> modelo, ninguno — tres asociaciones marginales existen pero ADR-57(a) las
-> excluye del conteo. Y la mayoría de las 49 reglas sigue descansando en
-> síntesis de literatura, no en dato propio: **36 de 49**
-> <!-- 49 (validador_registro_ids.py) − 13 (fichas del bloque append-only,
-> T18) = 36 --> sin corrida de falsación pre-registrada. El corpus
-> sobre-muestrea al clasemediero urbano formal y deja el sistema
-> indígena-comunal **fuera por diseño**.
->
-> Léelo entero en **[`AVISO-DE-ALCANCE.md`](AVISO-DE-ALCANCE.md)**.
-> Autoría e IA en **[`AUTHORSHIP.md`](AUTHORSHIP.md)**.
-> Si piensas usar el modelo sobre personas concretas:
-> **[`USO-ACEPTABLE.md`](USO-ACEPTABLE.md)** — la respuesta corta es que no.
-```
