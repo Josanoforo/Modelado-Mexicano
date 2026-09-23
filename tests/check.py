@@ -210,6 +210,15 @@ def t02_duplicates():
             "forense/encargos/cola/2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md",
         }),
     )
+    # El piloto 4 selló su recibo con esta ruta antes de que se detectara
+    # la colisión de nombre con otro acto. Son evidencias distintas, con
+    # contenido distinto; la ruta del recibo ya está citada en el cierre.
+    EXCEPTED_NAME_GROUPS = (
+        frozenset({
+            "forense/analisis/gen2-celda-d-piloto-4-encogida-1/evidencia-replay.json",
+            "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-replay.json",
+        }),
+    )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
         if ".git" in p or "/tests/" in p or "/data/raw" in p or "/forense/rescate/" in p:
@@ -238,10 +247,14 @@ def t02_duplicates():
             continue
         if not os.path.isfile(p):
             continue
-        by_name[norm(os.path.basename(p))].append(rel(p))
+        # Un módulo de una herramienta Astra tiene identidad de paquete:
+        # `medidor.py` puede coexistir con otro script homónimo sin duplicar
+        # un documento. El control por contenido sigue incluyendo ambos.
+        nombre_indice = rel(p) if rel(p).startswith("tools/astra/") and p.endswith(".py") else os.path.basename(p)
+        by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
-        if len(v) > 1 and not all_excepted(v):
+        if len(v) > 1 and not all_excepted(v) and frozenset(v) not in EXCEPTED_NAME_GROUPS:
             fail("T02", "nombre normalizado colisiona: " + " · ".join(sorted(v)))
     for k, v in by_hash.items():
         if len(v) > 1 and not all_excepted(v) and frozenset(v) not in EXCEPTED_HASH_GROUPS:
@@ -2930,6 +2943,10 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
+    # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
+    "forense/analisis/astra-theta/seleccion.md",
+    "forense/prereg-caja/ASTRA-THETA-SALUD-OFERTA-spec-v1_0.md",
     # ACTO GEN2-TRAMITE-COLA-VIEJA-1, 22/sep/2026: el `E0` pelado del
     # encargo (§2) sale de la cita verbatim "una ley E0 vencida" -- ejemplo
     # de premisa dentro de la lista cerrada de A.10, no un rótulo acuñado.

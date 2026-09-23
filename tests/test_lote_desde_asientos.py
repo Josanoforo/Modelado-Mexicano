@@ -141,11 +141,44 @@ def caso_B(m, fails):
                      salida["examinados"] == 3, str(salida)))
 
 
+def caso_C(m, fails):
+    print("C · recuperación de asientos sellados ausentes de la vista")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        tmp = Path(tmpdir)
+        (tmp / "forense").mkdir()
+        corridas = tmp / "data" / "corrida0"
+        corridas.mkdir(parents=True)
+        (tmp / "forense" / "replay-evidencia.tsv").write_text(
+            "calc_id\tcorrida_id\n"
+            "CALC-PUBLICADO\tpub--x\n"
+            "CALC-PENDIENTE\tpend--x\n"
+            "CALC-PENDIENTE\tpend--x\n"
+            "CALC-SIN-SELLO\tsin--x\n", encoding="utf-8")
+        (corridas / "corridas.tsv").write_text(
+            "# DERIVADO — NO EDITAR\ncorrida_id\tspec_id\n"
+            "pub--x\tCALC-PUBLICADO\n", encoding="utf-8")
+        sellado = corridas / "CALC-PENDIENTE"
+        sellado.mkdir()
+        (sellado / "sello.json").write_text("{}", encoding="utf-8")
+        sella = subprocess.run(
+            [sys.executable, str(RAIZ / "tools" / "sella_sha256.py"),
+             str(sellado / "sello.json")], capture_output=True, text=True)
+        assert sella.returncode == 0, sella.stderr
+        salida = m.lote_pendiente(cwd=tmp, corridas_dir=corridas)
+    fails.append(ok("C1 sólo el asiento ausente y sellado entra una vez",
+                     salida["calc_ids"] == ["CALC-PENDIENTE"], str(salida)))
+    fails.append(ok("C2 el ausente sin sello queda declarado",
+                     salida["descartados"] == [{"calc_id": "CALC-SIN-SELLO",
+                                                "razon": "SIN-SELLO: pendiente sin sello válido"}],
+                     str(salida)))
+
+
 def corre() -> list[str]:
     m = _carga_modulo()
     fails: list[str] = []
     caso_A(m, fails)
     caso_B(m, fails)
+    caso_C(m, fails)
     return [f for f in fails if f]
 
 

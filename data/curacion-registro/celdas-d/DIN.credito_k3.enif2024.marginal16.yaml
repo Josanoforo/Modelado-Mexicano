@@ -1,0 +1,115 @@
+# Celda-D de conducta (no de cruce), registrada por ACTO GEN2-DIN-CREDITO-CELDAS-D-2 (2026-09-23).
+# Fuente: CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002 (tipo ADJUDICACION-GUARDADA-RESERVA, sucede_eje_de -ADJUDICACION-0001 solo en el eje escolaridad, A.10). Emision = RESULT del -0002, sha256(resultados.json)=9ad5c0864b308ab1e8c57846c087aa33e206d9e795fd75c59d4fb3fa054ccc9e.
+# R (oro) = CALC-DIN-CREDITO-PREDICCION-2024-ADJUDICACION-0001, sha256(resultados.json)=95f027ef0b58d30db29a7d787642d785dc21713094f2e34fca234f39c8864e26.
+# Marcador PROSPECTIVA/RETROSPECTIVA: RETROSPECTIVA-MECANICA -- exposicion_historica del spec.yaml declara 'ENIF-2024-CREDITO-YA-ABIERTA-POR-0001': el -0001 ya abrio y sello ENIF 2024 con estas mismas 9 conductas y columnas; este CALC no abre dato nuevo ni selecciona variante -- solo recorrige por bytes la lectura de 'niv' (2 digitos) en el eje escolaridad. Es una validacion de origen movil sin seleccion de variante (v2.16 §4), no una emision prospectiva nueva.
+# Dictamen verbatim del CALC (spec.yaml regla_adjudicacion, vocabulario_alcanzable): NADIE-VENCE. champion_actual=PERSISTENCIA (piso no vencido; PROPUESTA-CON-RESERVA no adopta al retador, A-bis 6/firma de mesa 17/sep/2026).
+# registrado_por: GEN2-DIN-CREDITO-CELDAS-D-2
+celda_d:
+  id: DIN.credito_k3.enif2024.marginal16
+  estimando: p(informalidad de algún producto de crédito | eje marginal) -- proporcion ponderada [0,1],
+    persona ENIF 2024 TMODULO 18-70, conducta K3
+  tipo_adjudicacion: COMPARACION
+  dominio: FIN
+  poblacion_objetivo: 16 celdas marginales del eje (nacional + 2 sexo + 4 edad + 4 escolaridad [corregida
+    por bytes vs -0001, A.10] + 2 localidad + 2 formalidad) en la conducta K3 de credito, ENIF 2024
+  unidad_objetivo: persona
+  universo_candidatos: 'Piso PERSISTENCIA (heredado de -ADJUDICACION-0001, backtest 2012-2021) y tres
+    retadores TENDENCIA-2/3/SERIE, regla de adjudicacion heredada de -ADJUDICACION-0001 spec.yaml + spec
+    v1_1 §6, ejecutada por bytes (ADJUDICADOR-0001::adjudica_conducta, CRUCES-FAMILIA::adjudica). Unico
+    cambio de este CALC: ESCOLARIDAD_EXCLUIDA=vacio en el bloque ADJ16 (universo actualizado, A.10).'
+  candidatos:
+  - id_candidato: PERSISTENCIA
+    rol: PISO
+    fuentes:
+    - ENIF
+    edicion_periodo: 2012-2021 (backtest histórico) transportado a 2024
+    universo_instrumento: ENIF 2024 TMODULO, persona 18-70, conducta K3 (informalidad de algún producto
+      de crédito); FAC_PER; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: persistencia
+    regla_composicion: p_2021(celda) transportado como punto a 2024, heredada de -ADJUDICACION-0001
+    production_spec_refs:
+    - prereg-caja-DIN-CREDITO-ESCOLARIDAD-2 v1.0
+    - CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002
+    resultado: EJECUTADO -- 16/16 celdas puntuadas del eje (16 con escolaridad corregida); MAE_PP=2.217853
+  - id_candidato: TENDENCIA-2
+    rol: CHALLENGER
+    fuentes:
+    - ENIF
+    edicion_periodo: marginales 2024 (serie/tendencia)
+    universo_instrumento: ENIF 2024 TMODULO, persona 18-70, conducta K3 (informalidad de algún producto
+      de crédito); FAC_PER; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: TENDENCIA-2 -- regla sellada del -0001 (ADJUDICADOR-0001::adjudica_conducta, CRUCES-FAMILIA::adjudica)
+    production_spec_refs:
+    - prereg-caja-DIN-CREDITO-ESCOLARIDAD-2 v1.0
+    - CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002
+    resultado: EJECUTADO -- 13 celdas puntuadas; ΔMAE=-3.832038 pp IC95=[-4.972584,-2.221691]; veredicto=NADIE-VENCE;
+      rol_en_conducta=SECUNDARIA
+  - id_candidato: TENDENCIA-3
+    rol: CHALLENGER
+    fuentes:
+    - ENIF
+    edicion_periodo: marginales 2024 (serie/tendencia)
+    universo_instrumento: ENIF 2024 TMODULO, persona 18-70, conducta K3 (informalidad de algún producto
+      de crédito); FAC_PER; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: TENDENCIA-3 -- regla sellada del -0001 (ADJUDICADOR-0001::adjudica_conducta, CRUCES-FAMILIA::adjudica)
+    production_spec_refs:
+    - prereg-caja-DIN-CREDITO-ESCOLARIDAD-2 v1.0
+    - CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002
+    resultado: EJECUTADO -- 13 celdas puntuadas; ΔMAE=0.558065 pp IC95=[-0.84384,0.973766]; veredicto=NADIE-VENCE;
+      rol_en_conducta=PRIMARIA
+  - id_candidato: TENDENCIA-SERIE
+    rol: CHALLENGER
+    fuentes:
+    - ENIF
+    edicion_periodo: marginales 2024 (serie/tendencia)
+    universo_instrumento: ENIF 2024 TMODULO, persona 18-70, conducta K3 (informalidad de algún producto
+      de crédito); FAC_PER; diseño EST_DIS x UPM_DIS
+    diseno_datos: transversal
+    estrategia: composicion
+    regla_composicion: TENDENCIA-SERIE -- regla sellada del -0001 (ADJUDICADOR-0001::adjudica_conducta,
+      CRUCES-FAMILIA::adjudica)
+    production_spec_refs:
+    - prereg-caja-DIN-CREDITO-ESCOLARIDAD-2 v1.0
+    - CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002
+    resultado: EJECUTADO -- 13 celdas puntuadas; ΔMAE=-4.072147 pp IC95=[-4.713764,-2.879646]; veredicto=NADIE-VENCE;
+      rol_en_conducta=SECUNDARIA
+  criterio_adjudicacion:
+    texto: 'Spec v1.0 (spec.yaml del -0002, l.60-63): comparador de referencia del proyecto (tools/duelo/cruces_familia.py::adjudica)
+      sobre 10000 replicas sinteticas PCG64(20260922) por bloque; umbral_vence_pp=inf (sin umbral de materialidad
+      inventado, heredado de -EMISIONES-0001) -> VENCE-RETADOR INALCANZABLE-POR-DISENO; vocabulario alcanzable:
+      NADIE-VENCE | PROPUESTA-CON-RESERVA | NO-ADJUDICABLE | NO-CONSTRUIBLE-SIN-RETADOR-HABILITADO. Piso=PERSISTENCIA;
+      retador primario = mejor TENDENCIA-X habilitada por MAE puntual.'
+    escala: puntos porcentuales (ADJ16; DELTA-MAE-PP)
+  estado_decidibilidad: PUNTUADA
+  margen_material: 2.217853
+  momentos_holdout_refs:
+  - CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002--04564bb97815
+  veredicto: NADIE-VENCE
+  champion_actual: PERSISTENCIA
+  output_nativo:
+    tipo: proporcion
+    escala: '[0,1] ponderada FAC_PER; unidad persona'
+    valor_ref: 'CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002: RESULT-DIN-CREDITO-PREDICCION-2024-ESC2-ADJ16-K3-*'
+  incertidumbre:
+    tipo: IC95 de las 10000 replicas SINTETICAS PCG64(20260922); DELTA-IC95-LO/HI por candidato
+    ref: data/corrida0/CALC-DIN-CREDITO-PREDICCION-2024-ESCOLARIDAD-0002/resultados.json
+  supuesto_transporte: 'ACOTADO-CON-SUPUESTO: identidad temporal p_2021->2024 para el piso; eje escolaridad
+    recodificado por bytes con NIV_A_ESCOLARIDAD_POR_TEXTO (00-02 hasta_primaria, 03 secundaria, 04-07
+    media_superior, 08-11 superior, 99 sin cubo) -- corrige el defecto heredado de -0001 (A.10)'
+  fuerza_coeficiente: NO-APLICA
+  procedencia_condicional: MEDICION_DIRECTA_MICRODATO
+  calibrado: false
+  estado_operativo: PENDIENTE
+  vocabulario_version: 0.5
+  requiere_decision_mesa: false
+  fecha_declaracion: '2026-09-23'
+  commit_declaracion: 1d9322a1
+  fecha_adjudicacion: '2026-09-23'
+  commit_adjudicacion: 1d9322a1
+  relacion_complemento: Ninguna; oro de las 12 celdas no-escolaridad contra -ADJUDICACION-0001 (sha256
+    "95f027ef0b58d30db29a7d787642d785dc21713094f2e34fca234f39c8864e26"), RESULT-DIN-CREDITO-PREDICCION-2024-ESC2-ORO-VEREDICTO=REPRODUCE-ORO

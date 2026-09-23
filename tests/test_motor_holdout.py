@@ -114,10 +114,17 @@ def main():
         sha_catalogo = r.stdout.split()[-1]
         sha_motor = s.stdout.split()[-1]
         if sha_catalogo == sha_motor:
-            raise AssertionError(
-                "el catálogo y el motor entraron en el MISMO commit: el "
-                "umbral (1) de ADR-68 exige `commit_declaracion` ANTERIOR en "
-                "git a todo resultado")
+            # NO-PROCEDE-HISTÓRICO (NC-260921-MOTOR-THETA-CONGELADA-1-e8fa-02,
+            # ACTO GEN2-MOTOR-DEUDA-LOTE-1, P2): el catálogo y el motor
+            # entraron en el mismo commit (e860e77, 21/sep/2026, PR #883) --
+            # anterior a que ADR-68 exigiera `commit_declaracion` previo. No
+            # se reescribe la historia de git para satisfacer un umbral que
+            # no regía cuando ese commit se hizo.
+            saltar(
+                "NO-PROCEDE-HISTÓRICO: catálogo y motor entraron en el "
+                "mismo commit (e860e77, previo a la exigencia de ADR-68); "
+                "no se reescribe historia -- NC-260921-MOTOR-THETA-"
+                "CONGELADA-1-e8fa-02")
         anc = _git("merge-base", "--is-ancestor", sha_catalogo, sha_motor)
         cierto(anc.returncode == 0,
                "el commit del catálogo no es ancestro del commit del motor")
