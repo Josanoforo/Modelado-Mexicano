@@ -2,7 +2,8 @@
 
 Estado: **NO CONGELADO; NO EJECUTAR CON DATOS**. La mesa eligió **B: persona
 18–70** el 22/sep/2026. Se leyó íntegra la misión Astra 3. Este texto documenta
-solo la preparación autorizada por `03-U3-ENIF-FORMALIDAD-ERROR.md`. Los nuevos
+solo la preparación autorizada por el encargo archivado como
+`input-verbatim.md`. Los nuevos
 inputs 2021/2024 requieren un encargo ampliado de medición antes del freeze.
 
 ## Identidades e insumos

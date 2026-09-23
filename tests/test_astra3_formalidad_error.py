@@ -7,7 +7,7 @@ import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-PATH = ROOT / "tools/astra/enif/formalidad_error/medidor.py"
+PATH = ROOT / "tools/astra/enif/formalidad_error/formalidad_error.py"
 spec = importlib.util.spec_from_file_location("formalidad_error", PATH)
 mod = importlib.util.module_from_spec(spec)
 spec.loader.exec_module(mod)

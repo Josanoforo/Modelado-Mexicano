@@ -5,7 +5,8 @@
 - Worktree `/home/pc0/mm-astra3-enif-formalidad-error-1`, rama
   `codex/astra3-enif-formalidad-error-1`, base `638c6f2fd434f8367d324989790e840eaeefc10c`
   de `origin/main`; `git fetch origin` ejecutado al abrir.
-- Leídos íntegros `input-verbatim.md` y `mision-verbatim.md` (SHA256 de fuente
+- Leídos íntegros `input-verbatim.md` y la misión conservada en
+  `mision-verbatim.md.gz` (`gzip -dc` reproduce los bytes exactos; SHA256 de fuente
   `0402e96a5a9680557fcc9d80132c2b32bf589f24d696add350f99a036d257f7d`
   y `c31917eb549d20b98f15780bc7171cd1f3f2dccca9c10e5ce47e64337d4a7bdc`).
 - Metadato 2021: las seis identidades son tres desenlaces por dos categorías
