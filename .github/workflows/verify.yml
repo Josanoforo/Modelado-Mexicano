@@ -338,24 +338,22 @@ jobs:
   guardias:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # `contents: write` (el resto del workflow se queda en `read`, arriba):
-    # SOLO el paso de re-derivación al final de este job la usa, y SOLO
-    # empuja cuando `github.event_name == 'push' && github.ref ==
-    # 'refs/heads/main'` -- en un PR el permiso está pero el paso no
-    # escribe nada (P4, ver más abajo).
+    # La publicación abre un PR de derivados y despacha su verificación.
+    # Nunca empuja a main: la regla de protección exige el check `check`.
     permissions:
       contents: write
+      pull-requests: write
+      actions: write
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
-        # Hallazgo de CI, 23/sep/2026: las dos `git push origin HEAD:main`
-        # de este job (re-derivación y canal de publicación, más abajo)
-        # fallaban siempre con `fatal: could not read Username for
+        # El remoto sin credenciales rechazaba la publicación. La rama
+        # temporal del PR automático usa el GITHUB_TOKEN del job; main
+        # conserva su protección y nunca recibe un push directo.
+        # Antes fallaba con `fatal: could not read Username for
         # 'https://github.com'` -- el remoto se agregaba sin credenciales
         # (sin `actions/checkout`, D-23, no hay token inyectado por
         # default) y `contents: write` (arriba) nunca se tradujo en una
-        # credencial git real. Cero commits `[deriva]` en todo el
-        # historial lo confirman: el paso nunca había tenido un diff que
-        # disparar hasta ahora. Se configura el extraheader de
+        # credencial git real. Se configura el extraheader de
         # autorización con `GITHUB_TOKEN` (mismo mecanismo que usa
         # `actions/checkout` internamente) una sola vez aquí; fetch y push
         # del resto del job lo heredan del `.git/config` local sin tocar
@@ -395,102 +393,50 @@ jobs:
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
 
       # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
-      # §2(2), mitad push de la misma firma que la guarda de `enrutamiento-pr`
-      # arriba: re-deriva por comando los archivos `# DERIVADO — NO EDITAR`
-      # y commitea `[deriva]` si hubo diff -- nunca si no lo hubo (PARO (e)
-      # del encargo: sin loop). Va en ESTE job por la misma razón que la
-      # guarda: un job nuevo dobla la matriz combinatoria de
-      # `test_check_parallel.py::WorkflowGate` y ese test deja de caber en
-      # el timeout. Solo dos derivadores hoy son deterministas, idempotentes
-      # y corren sin corpus en CI (`tools/marcador_segmento.py --escribe`,
-      # ya usado por `tests/test_marcador_segmento.py`, y
-      # `corrida0.py demanda`, que no toma `--escribe`: siempre escribe);
-      # los demás archivos DERIVADO (`corridas.tsv`/`resultados.tsv`/
-      # `usos.tsv` vía `corrida0.py registro --escribe`) exigen `--lote`
-      # (juicio sobre qué transición de replay puede cambiar) y quedan
-      # fuera de este job a propósito -- D-19: nada en la lista cerrada de
-      # PAROS lo exige, pero automatizar un juicio de mesa sí lo violaría.
-      - name: Re-deriva por comando y commitea [deriva] si hay diff (solo push a main, sin loop)
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
-        run: |
-          set -euo pipefail
-          if git log -1 --format=%s | grep -q '^\[deriva\]'; then
-            echo "el commit que disparó este push ya es [deriva]: no se re-deriva sobre sí mismo (evita loop)"
-            exit 0
-          fi
-          python3 tools/marcador_segmento.py --escribe
-          python3 tools/corrida0.py demanda
-          if git diff --quiet -- $(python3 tools/derivados_protegidos.py); then
-            echo "sin diff -- nada que commitear"
-          else
-            git config user.name "gen2-derivador"
-            git config user.email "gen2-derivador@users.noreply.github.com"
-            git add -- $(python3 tools/derivados_protegidos.py)
-            git commit -q -m "[deriva] re-deriva DERIVADO tras $(git rev-parse --short HEAD)"
-            git push origin HEAD:main
-          fi
-
-      # ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1 (22/sep/2026), P2. Firma de
-      # mesa opción (a) (`…PENDIENTES-CAJA-1-c09b-02`, `…ESCOLARIDAD-2-
-      # 0af9-01`): «el job del push a main corre `registro --escribe --lote
-      # <CALC con asiento nuevo>`, con el lote derivado del diff de
-      # `replay-evidencia.tsv` (sin juicio: solo lo que un acto asentó)».
-      # El lote NUNCA se teclea: `tools/lote_desde_asientos.py` (P1) lo
-      # deriva del diff que ESTE push introdujo en `forense/
-      # replay-evidencia.tsv` -- sólo `calc_id` con asiento NUEVO Y con
-      # `sello.json` válido. `--lote` sólo autoriza CAMBIAR el veredicto de
-      # una corrida YA PUBLICADA (guardia `REPLAY-PISADO`, NC-0094); una
-      # fila nunca antes publicada (como las 22 CALC selladas sin fila al
-      # redactar este acto) no la bloquea ningún lote y entra sola en
-      # cuanto `registro --escribe` corre con CUALQUIER lote no vacío --
-      # `registro()` siempre escribe la vista COMPLETA, el lote sólo abre
-      # la puerta a que un veredicto existente se mueva.
-      #
-      # `github.event.head_commit.message` decide el guard anti-loop (NO
-      # `git log -1` local: el paso de arriba ya pudo commitear `[deriva]`
-      # en este mismo checkout, y `git log -1` vería ESE commit, no el que
-      # disparó el job). `github.event.before` es la base real de este
-      # push -- ajena a cualquier commit que el paso de re-derivación haya
-      # hecho en el checkout local; `replay-evidencia.tsv` no es un
-      # archivo `# DERIVADO — NO EDITAR` (no lo toca `derivados_
-      # protegidos.py`), así que ese paso nunca lo cambia y diferenciar
-      # contra `HEAD` de este mismo checkout es seguro.
-      #
-      # Sin `--force`, sin `--excluye`, sin reescribir vistas a mano (PARO
-      # (b) del encargo): si el guardia para, `registro` devuelve código
-      # distinto de cero, `cmd_registro` imprime la salida cruda a stderr,
-      # y `set -euo pipefail` hace que ESTE PASO Y EL JOB fallen con esa
-      # salida -- nunca se sigue con un veredicto ajeno pisado en silencio.
-      - name: Canal de publicación — registro --escribe --lote <asientos nuevos de este push> (solo push a main, sin loop)
+      # El registro escribe las dos vistas de corridas y resultados pedidas
+      # para el piloto 4. El marcador, la demanda y usos.tsv quedan pendientes:
+      # publicarlos ahora añade 21 FAIL de línea base medidos el 23/sep.
+      # El lote une los asientos
+      # nuevos de este push con los sellados aún ausentes de corridas.tsv:
+      # recupera #1036 tras el GH013 sin autorizar un replay ya publicado.
+      # Un PR creado con GITHUB_TOKEN no dispara pull_request; workflow_dispatch
+      # en su rama produce el check requerido sin fusionarlo automáticamente.
+      - name: Deriva vistas y abre PR automático verificado (solo push a main)
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, '[deriva]') }}
         env:
           ANTES: ${{ github.event.before }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          if [ -z "${ANTES:-}" ] || [ "$ANTES" = "0000000000000000000000000000000000000000" ]; then
-            echo "sin base previa (push inicial de la rama) -- nada que diferenciar, se salta"
-            exit 0
-          fi
-          if ! git cat-file -e "$ANTES" 2>/dev/null; then
-            echo "LOGISTICA: $ANTES (github.event.before) no está en el clon de este job -- el fetch no lo trajo; se salta sin adivinar el lote (no es PARO: el siguiente push con asiento nuevo lo retoma)"
-            exit 0
-          fi
-          LOTE="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --csv)"
-          if [ -z "$LOTE" ]; then
-            echo "sin asientos nuevos con sello en este push -- nada que registrar"
-            exit 0
-          fi
-          echo "lote derivado de este push: $LOTE"
-          python3 tools/corrida0.py registro --verifica --escribe --lote "$LOTE"
-          if git diff --quiet -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv; then
-            echo "registro sin diff -- nada que commitear"
+          if [ -n "${ANTES:-}" ] && git cat-file -e "$ANTES" 2>/dev/null; then
+            LOTE="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --incluir-pendientes --csv)"
           else
-            git config user.name "gen2-derivador"
-            git config user.email "gen2-derivador@users.noreply.github.com"
-            git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv
-            git commit -q -m "[deriva] registro --lote $LOTE"
-            git push origin HEAD:main
+            echo "sin base previa accesible: se recuperan sólo asientos pendientes"
+            LOTE="$(python3 tools/lote_desde_asientos.py --incluir-pendientes --csv)"
           fi
+          if [ -n "$LOTE" ]; then
+            echo "lote derivado: $LOTE"
+            python3 tools/corrida0.py registro --verifica --escribe --lote "$LOTE" 2> /tmp/registro-derivado.err || {
+              tail -n 80 /tmp/registro-derivado.err
+              exit 1
+            }
+          fi
+          git restore -- data/corrida0/usos.tsv
+          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv
+          if git diff --cached --quiet; then
+            echo "sin diff derivado -- nada que publicar"
+            exit 0
+          fi
+          git config user.name "gen2-derivador"
+          git config user.email "gen2-derivador@users.noreply.github.com"
+          BRANCH="derivados/auto-${{ github.run_id }}"
+          git switch -c "$BRANCH"
+          git commit -q -m "[deriva] vistas tras $(git rev-parse --short HEAD)"
+          git push origin "HEAD:refs/heads/$BRANCH"
+          gh pr create --base main --head "$BRANCH" \
+            --title "[deriva] vistas generadas tras ${{ github.sha }}" \
+            --body "Derivado por comandos del job guardias. Lote mecánico: $LOTE. Solo archivos con cabecera DERIVADO. Requiere check y fusión de mesa; ninguna adjudicación cambia."
+          gh workflow run verify.yml --ref "$BRANCH"
 
   # ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 (21/sep/2026). `corrida0 preflight` sobre
   # los CALC SIN SELLO que este cambio añade o toca — y sólo sobre ésos.
@@ -628,23 +574,23 @@ jobs:
             --cabeza refs/remotes/origin/ci \
             --resumen "$GITHUB_STEP_SUMMARY"
 
-      # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
-      # §2(2): «Los archivos derivados no viajan en los PR: un job del push
-      # a main los re-deriva y commitea». Va en ESTE job, no en uno nuevo,
-      # a propósito: `tests/test_check_parallel.py::WorkflowGate` deriva su
-      # matriz de estados como producto cartesiano de TODOS los jobs
-      # (6 ** N combinaciones) -- un job de más aquí pasa de 6**6 a 6**7
-      # combinaciones y ese test, ya bloqueante en el job `suite`, deja de
-      # caber en el timeout de 10 min. La guarda vive donde ya existen los
-      # dos refs (`base` y `ci`) fetcheados, sin checkout propio.
+      # Tras GH013 en #1036, la mesa autorizó un PR automático de vistas.
+      # Sólo el PR del bot o su workflow_dispatch puede tocar derivados;
+      # todo otro PR conserva la prohibición original. La guarda vive aquí
+      # porque ya dispone de las refs base y cabeza.
       - name: Prueba del propio guardián (bloqueante — D-21)
         run: python3 tests/test_derivados_protegidos.py
 
-      - name: Ningún PR toca un archivo DERIVADO — NO EDITAR (bloqueante)
+      - name: Ningún PR ordinario toca un archivo DERIVADO — NO EDITAR
+        if: ${{ !((github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/heads/derivados/auto-')) || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]' && startsWith(github.head_ref, 'derivados/auto-'))) }}
         # En un push directo a `main` (fuera de PR) `base` y `ci` son la
         # misma ref: el diff sale vacío y este paso pasa siempre, así el
         # job derivador (`guardias`, más abajo) nunca choca con esta guarda.
         run: python3 tools/derivados_protegidos.py --toca refs/remotes/origin/base refs/remotes/origin/ci
+
+      - name: PR automático contiene sólo archivos DERIVADO
+        if: ${{ (github.event_name == 'workflow_dispatch' && startsWith(github.ref, 'refs/heads/derivados/auto-')) || (github.event_name == 'pull_request' && github.event.pull_request.user.login == 'github-actions[bot]' && startsWith(github.head_ref, 'derivados/auto-')) }}
+        run: python3 tools/derivados_protegidos.py --solo-derivados refs/remotes/origin/base refs/remotes/origin/ci
 
   # Conserva el nombre requerido por protección. always() es indispensable:
   # un job fallido/omitido/cancelado debe llegar a una compuerta que NO aprueba.
