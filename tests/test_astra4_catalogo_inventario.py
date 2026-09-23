@@ -37,7 +37,15 @@ class CatalogoInventario(unittest.TestCase):
         before = [hashlib.sha256(path.read_bytes()).digest() for path in PRODUCTS]
         subprocess.run([sys.executable, str(PUBLISHER)], cwd=ROOT, check=True)
         self.assertEqual(before, [hashlib.sha256(path.read_bytes()).digest() for path in PRODUCTS])
-        self.assertEqual(TABLE.read_bytes(), PRODUCTS[1].read_bytes())
+        with TABLE.open(newline="") as source, PRODUCTS[1].open(newline="") as product:
+            src_rows = list(csv.DictReader(source, delimiter="\t"))
+            dst_rows = list(csv.DictReader(product, delimiter="\t"))
+        self.assertEqual(len(src_rows), len(dst_rows))
+        self.assertEqual(
+            src_rows,
+            [{k: v for k, v in row.items() if k != "area_consulta"} for row in dst_rows],
+        )
+        self.assertTrue(all(row["area_consulta"] for row in dst_rows))
         cover = PRODUCTS[0].read_text()
         self.assertIn("benchmark auditable", cover.lower())
         self.assertIn("consumo pendiente", cover.lower())

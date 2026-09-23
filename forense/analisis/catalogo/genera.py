@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-"""Regenera el inventario de RESULT GEN2 con consumo activo.
+"""Regenera el inventario de RESULT GEN2, pisos y propuestas.
 
 La unidad de fila es RESULT de punto en su CALC, no extremo de intervalo ni
-aparición documental. Este inventario es una capa comprobable del catálogo;
-las propuestas sin consumo se mantienen fuera hasta contar con revisión
-sustantiva de adoptabilidad.
+aparición documental. Las propuestas sin consumo figuran con ese estado,
+sin convertirse en adopción por estar en la tabla.
 """
 from __future__ import annotations
 
@@ -29,6 +28,20 @@ FIELDS = [
     "result_punto", "result_inf", "result_sup", "calc", "sha256_resultados",
     "sha256_sello", "uso", "oferta_compatible", "oferta_valor_ic", "reserva",
 ]
+
+INSTRUMENT_FALLBACK = {
+    "CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1": "ENIF 2024",
+    "CALC-ENSANUT-0001": "ENSANUT 2024",
+    "CALC-ENVIPE-RES0028-U4-DERIVADO-0001": "ENVIPE 2025",
+    "CALC-EVASION-NORMA-0001-v1_1": "ENVIPE 2025",
+    "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1": "ENIF 2024 (derivado de RESULT)",
+    "CALC-R-DIN-M-01-v4": "ENNViH-1 2002",
+    "CALC-R-FAM-M-01-v3": "ENIF 2018",
+    "CALC-R-TRA-M-02-v3": "ENCUCI 2020",
+    "CALC-R-TRA-M-03-v3": "ENCIG 2013",
+    "CALC-R-TRA-M-07-v3": "ENCIG 2021",
+    "CALC-TIENE-AHORROS-0001-v1_1": "ENIF 2024",
+}
 
 
 def tsv(name: str) -> list[dict[str, str]]:
@@ -133,7 +146,7 @@ def main() -> None:
             r"\b(?:ENIF|ENCIG|ENVIPE|ENCUCI|ENIGH|ENFIH|ENUT|ENSANUT|EDER)\s*20\d{2}",
             universe + " " + str(spec.get("estimando", "")), re.IGNORECASE,
         )))
-        instrument = surveys[0] if surveys else "VER-SPEC-UNIVERSO"
+        instrument = surveys[0] if surveys else INSTRUMENT_FALLBACK.get(calc, "INSTRUMENTO-NO-IDENTIFICADO")
         if rid == "RESULT-B-ENIGH-2022-P":
             instrument = "ENIGH 2022"
         elif calc == "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001" and "-C2-" in rid:
@@ -168,11 +181,15 @@ def main() -> None:
                     "ADOPTADO-POR-FIRMA" if use["tipo_uso"] == "ADOPCION-POR-FIRMA"
                     else "CONSUMO-GEN2-ACTIVO"
                 ),
-                "firma": str(spec.get("etiquetas", {}).get(
-                    "cuenta_gen2_firma", "VER-DECISION-DE-ADOPCION"
-                )),
+                "firma": (
+                    marker_by_result.get(rid, {}).get("decision_ref")
+                    or use["pin_de_mesa"]
+                    or str(spec.get("etiquetas", {}).get(
+                        "cuenta_gen2_firma", "CONSUMO-ACTIVO-SIN-FIRMA-DE-ADOPCION-CITADA"
+                    ))
+                ),
                 "temporalidad": marker_by_result.get(rid, {}).get(
-                    "prospectividad", "REVISAR-ORDEN-DE-SELLOS"
+                    "prospectividad", "ORDEN-DE-SELLOS-NO-ACREDITADO-AQUI"
                 ),
                 "result_punto": rid,
                 "result_inf": lower,
@@ -243,7 +260,7 @@ def main() -> None:
             "ic95_sup": str(data[upper]) if upper else "",
             "naturaleza_ic": "IC-DE-SPEC-SIN-CALIBRACION-ACREDITADA" if lower else "SIN-IC-IDENTIFICADO",
             "estado_adopcion": "PISO-HISTORICO-CONTEXTO; NO-ADOPCION-POR-CATALOGO",
-            "firma": "VER-DECISION-POR-CELDA",
+            "firma": "SIN-FIRMA-DE-ADOPCION; PISO-HISTORICO-CONTEXTUAL",
             "temporalidad": "RETROSPECTIVA-HISTORICA",
             "result_punto": rid,
             "result_inf": lower,

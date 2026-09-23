@@ -29,6 +29,7 @@ EXAMPLES = {
     "Tiempo, cuidado y vínculos": "RESULT-B-ENIGH-2022-P",
     "Ingreso y gasto": "RESULT-ENIGH16-REMINT-PARTICIPACION-AGREGADA",
 }
+RULES = ROOT / "forense/analisis/catalogo/reglas-curadas.md"
 
 
 def main() -> None:
@@ -40,18 +41,43 @@ def main() -> None:
     if any(r["dominio"] not in GROUP for r in rows):
         raise ValueError("dominio sin grupo")
     by_id = {r["llave"]: r for r in rows}
-    TSV.write_bytes(data)
+    with TSV.open("w", newline="") as stream:
+        writer = csv.DictWriter(
+            stream,
+            fieldnames=["area_consulta", *rows[0].keys()],
+            delimiter="\t",
+            lineterminator="\n",
+        )
+        writer.writeheader()
+        for row in rows:
+            writer.writerow({"area_consulta": GROUP[row["dominio"]], **row})
     counts = collections.Counter(GROUP[r["dominio"]] for r in rows)
     states = collections.Counter(r["estado_adopcion"] for r in rows)
+    expected = {
+        "CONSUMO-GEN2-ACTIVO": 52,
+        "ADOPTADO-POR-FIRMA": 20,
+        "PISO-HISTORICO-CONTEXTO; NO-ADOPCION-POR-CATALOGO": 1242,
+        "SELLADO-CONTEXTO; ADOPTABILIDAD-POR-DICTAMINAR": 120,
+        "FIRMA-ADOPTAR; CONSUMO-PENDIENTE": 10,
+        "VETADO-POR-MESA": 2,
+    }
+    if any(states[k] != v for k, v in expected.items()) or len(rows) != 1537:
+        raise ValueError("cambió el inventario: revisar la reconciliación de portada")
     sections = [
         "# Benchmark auditable del comportamiento del mexicano · catálogo v1.0",
+        "",
+        "> | | |",
+        "> |---|---|",
+        "> | **ARCHIVO** | `catalogo-del-mexicano-v1_0.md` |",
+        "> | **NOMBRE ESTABLE** | `catálogo del mexicano` |",
+        "> | **ESTADO** | Producto consultable con reservas expresas de adopción y mecanismo |",
         "",
         f"**{len(rows)} filas de estimando/segmento/ola en cinco áreas de consulta.** "
         "Es un censo de lecturas con estado, no un conteo de adopciones. La tesis de estabilidad "
         "se restringe a estimandos, olas, población y umbrales efectivamente evaluados; "
         "la tabla incluye series históricas y propuestas que no prueban estabilidad.",
         "",
-        "La tabla [TSV](catalogo-del-mexicano-v1_0.tsv) permite buscar por conducta, "
+        "La tabla [TSV](catalogo-del-mexicano-v1_0.tsv) permite buscar por área, conducta, "
         "instrumento, ola, segmento y llave. Cada fila conserva universo/denominador, "
         "escala, punto, límites de IC, naturaleza del IC, estado, firma, temporalidad, "
         "RESULT de punto y límites, CALC, hashes verificados, uso y reserva.",
@@ -90,9 +116,22 @@ def main() -> None:
     for state, n in sorted(states.items()):
         sections.append(f"| {state} | {n} |")
     sections += [
+        "", "### Reconciliación por procedencia", "",
+        "| Capa de lectura | Filas | Condición |",
+        "|---|---:|---|",
+        "| RESULT distintos con uso GEN2 activo | 72 | 85 usos pueden reutilizar un RESULT; no se duplican |",
+        "| Pisos históricos ASTRA-3 crédito 2012–2021 | 1 242 | Contexto por conducta, ola y segmento; no adopción nueva |",
+        "| Pisos adicionales del marcador | 59 | 57 evaluados y 2 no comparables; adopción por verificar |",
+        "| ENUT 2009/2014/2019/2024 | 120 | Sellados; adoptabilidad por dictaminar |",
+        "| ENIGH remesas 2016/2018/2020/2022 | 24 | Contexto sellado |",
+        "| Banxico/LAPOP/MOTRAL/EDER pendientes | 12 | 10 firma adoptar con consumo pendiente y 2 vetos |",
+        "| K2 bancario histórico adicional | 8 | Sellado y separado por denominador |",
+        "| **Total** | **1 537** | Suma de capas, no número de adopciones |",
         "", "El bloque histórico de crédito 2012–2021 se incluye como contexto "
-        "sellado, separado de la adopción GEN2. Nueve celdas-D del PR #1058 "
-        "permanecen propuestas mientras el PR esté abierto. El bloque "
+        "sellado, separado de la adopción GEN2. Las nueve celdas-D de crédito "
+        "del PR #1058 ya están en main, pero no suman a `celdas_validadas` "
+        "(92 antes y después) porque su unidad es conducta agregada; la "
+        "decisión P3 de tubería sigue pendiente. El bloque "
         "Banxico/LAPOP/MOTRAL firmado para adoptar conserva el rótulo de "
         "consumo pendiente hasta que exista asiento mecánico en consumidor.",
         "", "## Ejemplos trazables", "",
@@ -110,6 +149,7 @@ def main() -> None:
             f"{r['unidad_escala'].replace('|', '/')} | {r['estado_adopcion']} | "
             f"`{rid}` / `{r['calc']}` |"
         )
+    sections += ["", RULES.read_text().rstrip(), ""]
     sections += [
         "", "## Interpretación y límites", "",
         "La columna `oferta_compatible` distingue las medidas de oferta asociables "
@@ -124,6 +164,9 @@ def main() -> None:
         "ni cambios futuros. No usa NSE AMAI calculado. La "
         "[matriz de calculabilidad](../forense/analisis/catalogo/matriz-amai-2024.md) "
         "documenta qué componentes ofrecen los cuestionarios.",
+        "", "El [dictamen de marginales y crédito](../forense/analisis/catalogo/dictamen-marginales-y-credito.md) "
+        "expone firmas, reservas de ancho, lectura de la serie y la propuesta "
+        "de FP para ENCIG sin mover el veto.",
         "", "**Auditoría de rigor:** sin promediar escalas heterogéneas; sin "
         "atribuir propuesta a main; sin convertir un IC de muestra en calibración; "
         "sin predicción prospectiva a partir de una lectura retrospectiva.",

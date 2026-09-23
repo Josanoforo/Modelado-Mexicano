@@ -1,6 +1,6 @@
 # Entrega por commit a U5 · matriz AMAI 2024
 
-**Commit de entrega:** `3d8e82fb` en `origin/codex/astra4-catalogo-1`.
+**Commit de entrega:** `0ac21b6c` en `origin/codex/astra4-catalogo-1` (rebasado sobre main que ya contiene #1058).
 
 **Objeto:** `forense/analisis/catalogo/matriz-amai-2024.md`. Revisión textual de seis componentes en cinco cuestionarios oficiales, con URL y número de pregunta. La regla tiene **seis variables en total**, incluida la escolaridad de la jefatura; la fórmula «seis de vivienda + escolaridad» no coincide con la enumeración ni con la figura 9 de la nota metodológica oficial.
 
