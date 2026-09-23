@@ -210,6 +210,15 @@ def t02_duplicates():
             "forense/encargos/cola/2026-09-11-GEN2-POST-693/10-GEN2-ENVIPE-VALIDACION-Y-LECTURA.md",
         }),
     )
+    # El piloto 4 selló su recibo con esta ruta antes de que se detectara
+    # la colisión de nombre con otro acto. Son evidencias distintas, con
+    # contenido distinto; la ruta del recibo ya está citada en el cierre.
+    EXCEPTED_NAME_GROUPS = (
+        frozenset({
+            "forense/analisis/gen2-celda-d-piloto-4-encogida-1/evidencia-replay.json",
+            "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-replay.json",
+        }),
+    )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
         if ".git" in p or "/tests/" in p or "/data/raw" in p or "/forense/rescate/" in p:
@@ -241,7 +250,7 @@ def t02_duplicates():
         by_name[norm(os.path.basename(p))].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
-        if len(v) > 1 and not all_excepted(v):
+        if len(v) > 1 and not all_excepted(v) and frozenset(v) not in EXCEPTED_NAME_GROUPS:
             fail("T02", "nombre normalizado colisiona: " + " · ".join(sorted(v)))
     for k, v in by_hash.items():
         if len(v) > 1 and not all_excepted(v) and frozenset(v) not in EXCEPTED_HASH_GROUPS:
