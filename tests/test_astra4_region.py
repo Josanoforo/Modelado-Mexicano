@@ -233,3 +233,15 @@ def test_envipe_u4_colapsa_delitos_en_personas():
     den, y = universo(mod, per)
     assert list(den) == [True, True, False]
     assert list(y) == [True, False, False]
+
+
+def test_envipe_seguro_separa_estratos_y_complementos_contados():
+    from tools.astra.region.envipe_seguro import dominios
+    d = pd.DataFrame({"BPCOD": ["01", "01", "01", "01", "05"],
+                      "BP2_1": ["1", "1", "2", "2", "1"],
+                      "BP1_20": ["1", "2", "1", "2", "1"]})
+    cells = dominios(d)
+    assert list(cells["denuncia_con_seguro"][0]) == [True, True, False, False, False]
+    assert list(cells["denuncia_con_seguro"][1]) == [True, False, False, False, False]
+    assert list(cells["no_denuncia_con_seguro"][1]) == [False, True, False, False, False]
+    assert list(cells["denuncia_sin_seguro"][1]) == [False, False, True, False, False]
