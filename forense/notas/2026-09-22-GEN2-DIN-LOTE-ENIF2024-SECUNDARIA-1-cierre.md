@@ -129,7 +129,28 @@ corrieron en esta sesión.
 
 ## 9 · CONSUMIDO
 
-`forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md` — este
-PR. `FP-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01`: pasa de `PENDIENTE`
+`forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md` — PR
+#1026. `FP-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-01`: pasa de `PENDIENTE`
 a `EJECUTADA` por este acto (opción A consumida). `NC-260922-GEN2-DIN-LOTE-C2-RESTRINGIDO-1-4e12-02`
 (desenlace secundario `informal_cualquiera`) sigue fuera, sin tocar.
+
+## 10 · Corrección declarada post-ARRANQUE — E11/E13 sí eran rótulos reales
+
+La VERIFICACIÓN A.8 de ARRANQUE (antes de que `TANDA-5-ENCARGOS-C`/PR #1016
+fusionara) concluyó, correctamente para ese momento, que `E11` (§3/§8 del
+encargo) y `E13` (§4) no tenían artefacto censado en el árbol. Tras fusionar
+origin/main a mitad de este acto (PR #1016), quedó claro que sí lo tienen:
+la propia tanda numera sus cinco encargos hermanos `E11..E15`
+(`E11 = GEN2-TUBERIA-CANAL-PUBLICACION-1`, `E12 = GEN2-TRAMITE-FIRMAS-7`,
+`E13 = GEN2-DUELO-ENVIPE2026-MARGINALES-2`, `E14` = este acto,
+`E15 = GEN2-ADQ-F6-DIRIGIDA-1`). Consecuencias verificadas: `E11`
+(TUBERIA-CANAL-PUBLICACION-1) ya fusionó antes de que este acto registrara
+su corrida, así que el «orden sugerido» del encargo (§8) se cumplió sin
+intervención; `E13` (DUELO-ENVIPE2026-MARGINALES-2) corrió en paralelo con
+este acto (confirmado: `#1021`, COMMIT-1/2 sellados durante la misma
+ventana) — sin choque de archivo ni de universo (ENVIPE 2026 vs ENIF 2024,
+CALC y prefijos de RESULT disjuntos), así que la advertencia «no correr a
+la vez» no se materializó en ningún conflicto real. `tests/check.py::_T25_ARCHIVOS_CONOCIDOS`
+y `canon/registro-rotulos.tsv` quedaron corregidos con esta lectura al
+fusionar (commit `9ae48e1a`), citando la fuente real en vez de «abreviatura
+externa sin artefacto».
