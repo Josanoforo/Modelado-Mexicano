@@ -1,0 +1,147 @@
+{
+ "corrida_id": "CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001--a7748ba05f32",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "autorizacion_mesa": "FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01, FIRMADA 22/sep/2026, verbatim: «Se autoriza el COMMIT-3 de este duelo —única lectura de la reserva restante de ENVIPE 2026— exclusivamente por CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001 congelado, con el sha de emisiones escrito en COMMIT-3a; lo que no emita este CALC sigue RESERVADA.» forense/firmas-pendientes.tsv (FIRMADA).",
+  "cableado_nota": "La spec humana §3 citaba tools/celda_d/marginales_reproduccion.py::carga_ola() como el guardián a heredar; esa función está hard-codeada al universo BP1_20-evasión_norma (no lee BPCOD ni BP2_1), así que no sirve para con_seguro. Corrección de cableado (D-18, ≤10 líneas de defecto adyacente, no toca estimando/umbral/candidatos/B-bis): este CALC trae su propia carga_universo_con_seguro(), que reutiliza la utilidad genérica _lee_miembro (misma tolerancia de encoding utf-8/latin-1 y normalización de \\r) sin editar el archivo ajeno ni su guardia.",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_firma": "Encargo GEN2-DUELO-ENVIPE2026-MARGINALES-2, CABECERA (22/sep/2026): «CONTADOR: +2 corridas selladas (emisiones, adjudicación), cuenta_gen2 = SI, no adopta; celdas_validadas sube por cada celda con veredicto PROSPECTIVA (derivado)». El merge de mesa la perfecciona.",
+  "dependencia_congelada": "tools/celda_d/marginales_reproduccion.py sha256 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6 (solo se usa su utilidad genérica _lee_miembro, no su universo de evasión_norma) y tools/duelo/cruces_familia.py sha256 a41bdb07d1d975fe84a0b5653232f8532d38c56952c1eafeffd29bae89f9ee3b (adjudica(), genérica, no reimplementada) -- el medidor verifica ambos hashes en tiempo de ejecución y PARA si no coinciden.",
+  "exposicion_historica": "ÚNICA APERTURA de este acto sobre la reserva restante de ENVIPE 2026 (reserva:envipe2026, data/corrida0/decisiones.tsv), autorizada por FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01.",
+  "generacion": "GEN2",
+  "procedimiento_congelado_en": "COMMIT-3a (este spec.yaml y medidor.py, con el sha de EMISIONES-0001 ya escrito abajo); corrido en COMMIT-3.",
+  "rotulo": "PROSPECTIVA",
+  "tipo": "DUELO-PROSPECTIVO-ADJUDICACION"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T01:01:47Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 436,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "a7748ba05f327080e474666567d33939ab793850",
+  "git_rama": "acto/gen2-duelo-envipe2026-marginales-2",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "a7748ba05f327080e474666567d33939ab793850",
+ "input_ids": [
+  "CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001",
+  "envipe2026_csv"
+ ],
+ "input_sha256": {
+  "CALC-DUELO-ENVIPE2026-MARGINALES-EMISIONES-0001": "9b5afa24962b28e6707fe77f87d6e5f958fc2b0ba2eab0c006d17e69f2edb079",
+  "envipe2026_csv": "dd79f589eb6ed7d3675cc86e21ac9bbdbf269913963091d8698d6e28e0540a17"
+ },
+ "parametros": {
+  "bp2_1_codigo": {
+   "ASEGURADO": "1",
+   "NO-ASEGURADO": "2"
+  },
+  "celdas": [
+   "ASEGURADO",
+   "NO-ASEGURADO"
+  ],
+  "umbral_cita": "default de tools/duelo/cruces_familia.py::adjudica -- mismo umbral que el lote ENIF/duelo-1 (forense/prereg-caja/DUELO-PROSPECTIVO-ENVIPE2026-spec-v1_0.md:67), heredado no inventado (spec-v1_0.md §3).",
+  "umbral_reserva_pp": 0.0,
+  "umbral_vence_pp": 0.5
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-IC-HI",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-IC-LO",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-DELTA-MAE-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-ERROR-PISO-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-ERROR-RETADOR-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-N",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-PISO-DENTRO-IC-R",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-DENTRO-IC-PISO",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-DENTRO-IC-RETADOR",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-IC-HI",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-IC-LO",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-R-P",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-RETADOR-DENTRO-IC-R",
+  "RESULT-DUELO-MARGINALES-ADJ-ASEGURADO-VEREDICTO",
+  "RESULT-DUELO-MARGINALES-ADJ-G-FILAS-ARCHIVO",
+  "RESULT-DUELO-MARGINALES-ADJ-G-FILAS-UNIVERSO",
+  "RESULT-DUELO-MARGINALES-ADJ-G-MIEMBRO",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-IC-HI",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-IC-LO",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-DELTA-MAE-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-ERROR-PISO-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-ERROR-RETADOR-PP",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-N",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-PISO-DENTRO-IC-R",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-DENTRO-IC-PISO",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-DENTRO-IC-RETADOR",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-IC-HI",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-IC-LO",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-R-P",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-RETADOR-DENTRO-IC-R",
+  "RESULT-DUELO-MARGINALES-ADJ-NO-ASEGURADO-VEREDICTO"
+ ],
+ "script_blob_sha256": "8046b829875ef179a879305d7c07fcc118a47f8e4b72b2073a5b4c8b01c3a566",
+ "script_path": "data/corrida0/CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "n_replicas": 10000,
+  "nota": "Una réplica independiente de generador por celda (Generator(PCG64(42)) fresco); dentro de una celda, un solo stream: primero el bootstrap de R, luego el sorteo normal-en-logit de piso, luego el de retador, en ese orden -- reproducible desde el seed, sin covarianza forzada entre R/piso/retador más allá de compartir el índice de réplica k en la comparación (spec-v1_0.md §3).",
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-DUELO-ENVIPE2026-MARGINALES-ADJUDICACION-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "e87d3d32419f2aa176b4fcf801498d70464ddd9f8f85ddfd538717bb14af4788",
+ "spec_yaml_sha256": "8c09ac2bf994147f1841f06aec7ec8d9f2a9834b8d32b16b22e93032c3e2bceb",
+ "tolerancia": {
+  "abs": 1e-09,
+  "razon": "Punto y bootstrap deterministas por seed/rng declarados (numpy.PCG64(42), 10000 réplicas); verify compara exacto salvo esa tolerancia de punto flotante.",
+  "tipo": "flotante"
+ }
+}
