@@ -52,4 +52,8 @@ Verificación de premisas (v2.16 §2) encontró un universo real mucho más chic
 
 Lo demás («las demás reglas ENVIPE con serie sellada» resuelve a 0; `civico.denuncia.con_seguro × cobertura_seguro`, sexo=cobertura_seguro asegurado y no_asegurado) **sí se corrió**: tres commits, `verify REPRODUCE` en los dos CALC, veredicto por celda.
 
+## CONSUMIDO
+
+Ejecutado por `PR #1021` (rama `acto/gen2-duelo-envipe2026-marginales-2`, ADR raíz `ADR-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-0f2c-01`). Tres commits en orden, probados desde el historial (`tests/test_duelo_envipe2026_marginales_historial.py`): COMMIT-1 (spec + EMISIONES-0001 congelados) → COMMIT-2 (EMISIONES-0001 corrido, sellado, `verify REPRODUCE`/`IDENTICO`) → COMMIT-3a (ADJUDICACION-0001 congelado con el sha de EMISIONES) → COMMIT-3 (ADJUDICACION-0001 corrido, única lectura de la reserva restante de ENVIPE 2026, autorizada por `FP-260922-GEN2-DUELO-ENVIPE2026-MARGINALES-2-b05c-01` FIRMADA, `verify REPRODUCE`/`IDENTICO`). Resultado: `civico.denuncia.con_seguro×asegurado` → `NO-VENCE`; `×no_asegurado` → `C-PISO-ADOPTADO`; ningún IC despeja el umbral de 0.5pp. Universo real (2 de las ~9 celdas propuestas) verificado contra el árbol y declarado en `## NO-CORRIDO / RESERVAS` arriba, con NC propias. Detalle: `forense/prereg-caja/DUELO-ENVIPE2026-MARGINALES-spec-v1_0.md` y `forense/notas/2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md`. **Mesa fusiona; este acto no se autofusiona.**
+
 
