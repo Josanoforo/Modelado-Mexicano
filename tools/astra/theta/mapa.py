@@ -150,13 +150,15 @@ def main() -> None:
                 row["exposicion"] = "Oferta de servicio digital útil y sin amenaza coercitiva"
                 row["desenlace"] = "Adopción del servicio digital"
         if family == "tramite":
-            row["datos_id_ola_geografia_llave"] = "ENCIG 2021/2023, estatal urbano alto; id de trámite/persona por cotejar; fuente de asignación estatal ausente"
+            row["datos_id_ola_geografia_llave"] = "ENCIG 2021/2023: encig_2021_encig21_base_datos_csv / encig23_base_datos_csv, estatal urbano alto; ID_TRA+ID_PER, P7_1/P7_2 lugar del trámite, P7_3 canal; calendario de asignación ausente"
+            row["fuentes_decisivas"] += " | forense/analisis/astra-theta-adq/recibo-encig-historica.md@1d99b5f0"
+            row["reserva_disponibilidad"] = "2021/2023 accesibles y hash verificado por apoyo adq; 2017/2019/2025 requieren cotejo de id/hash antes de consumo"
             row["amenaza_principal"] = "Digitalización endógena, mezcla de trámite y selección de usuarios"
             if key in {"tramite.mordida.discrecional", "tramite.mordida.con_registro"}:
                 row["fuentes_decisivas"] += " | " + REPORTS["civico"]
                 row["variacion_candidata"] = "Oferta de renovación vehicular digital por entidad/año; CDMX 2019 y Tabasco 2023 documentados, calendario nacional incompleto"
                 row["diseno_y_fuente_asignacion"] = "DiD entidad×trámite×ola candidato; comunicados ADIP/SEMOVI y Tabasco; fecha efectiva/servicios y controles por verificar"
-                row["datos_id_ola_geografia_llave"] = "ENCIG 2017/2019/2021/2023/2025, ENT×código 05; code 05 mezcla licencia, verificación, refrendo y otros; P8_3 por código de trámite"
+                row["datos_id_ola_geografia_llave"] = "ENCIG 2017/2019/2021/2023/2025, entidad×código 05; 2021/23 IDs verificados encig_2021_encig21_base_datos_csv/encig23_base_datos_csv; ID_TRA+ID_PER, P7_1/P7_2 lugar, P7_3 canal, P8_3 mordida; 05 mezcla servicios"
                 row["viabilidad"] = "FALTA-CALENDARIO-Y-TRATAMIENTO-EXACTO"
                 row["proximo_paso"] = "Adquirir calendario y cobertura efectiva por servicio; cotejar code 05 y soporte antes de congelar"
         elif family == "salud":

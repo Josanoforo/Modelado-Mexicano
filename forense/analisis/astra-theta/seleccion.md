@@ -31,6 +31,13 @@ microdato en esta sesión ni se ha estimado un desenlace.
   `AUSENCIA_DE_FACTO`, 12 `AUSENCIA_DECLARADA`, 7 `ASOCIACION-MEDIDA`, 0
   `ARGUMENTO_EXPLICITO`; difiere del titular histórico de la misión y no
   paraliza la búsqueda.
+- Apoyo de adquisición leído sin fusionar: `forense/analisis/astra-theta-adq/recibo-encig-historica.md`
+  en `codex/adq-astra-theta-1@1d99b5f0a92eeb873ae50e6b1fe986dce5690cb4`
+  (PR #1034). Los ZIP ENCIG 2021/2023 y cuatro documentos ya están en el
+  corpus compartido, con ID/hash/tamaño cotejados y términos de INEGI
+  leídos. Sus descriptores verifican `ID_TRA`, `ID_PER`, `P7_1/P7_2` (lugar
+  del trámite) y `P7_3` (canal). Municipio del trámite no implica
+  representatividad municipal; canal usado no es asignación.
 
 ## Shortlist, antes de medir desenlaces
 
@@ -46,7 +53,9 @@ La unidad de asignación sería entidad×servicio×fecha de operación efectiva;
 la unidad observada ENCIG es persona/trámite en ciudades de 100 mil habitantes
 o más, con entidad pública. La encuesta 2023 incluye un código `05` que
 agrega servicios tratados y no tratados. No hay hoy una tabla verificada de
-fechas, servicios, obligatoriedad, canal y volumen por entidad. Una ley o
+fechas, servicios, obligatoriedad, canal y volumen por entidad. Los ZIP
+históricos 2021/2023 sí son accesibles y sus hashes están verificados por
+el recibo del apoyo; **la falta es el calendario de exposición**. Una ley o
 anuncio no garantiza uso ni una ventanilla registrable. Además, dos estados
 vistos en prensa no son base suficiente para inferencia agrupada estatal;
 hay que censar cohortes y controles. Comparar usuarios digitales contra
