@@ -101,7 +101,7 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt
+        run: python3 -m pip install -r requirements.txt numpy pytest
 
       - name: svystat.py — validación independiente (bloqueante)
         run: python3 tests/test_svystat.py
@@ -396,7 +396,6 @@ jobs:
 
       - name: ASTRA5 U4 — guardias sintéticas ENDUTIH y MOCIBA
         run: |
-          python3 -m pip install numpy
           python3 - <<'PY'
           import runpy
           total = 0
