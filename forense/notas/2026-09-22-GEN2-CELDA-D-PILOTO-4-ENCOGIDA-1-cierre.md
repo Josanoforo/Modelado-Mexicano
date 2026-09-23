@@ -20,7 +20,10 @@ ni por C-ENCOGIDA. Este acto no adopta ni cambia el piso vigente.
   secundaria, sin ampliar las ocho comparaciones primarias de B-bis;
   no se ejecuta aquí ni se incorpora a posteriori. Los 38 puntos ASTRA
   locales coinciden con el hash de sus `resultados.json`, pero su
-  `admisibilidad.tsv` seguía `PENDIENTE-DE-CAJA`.
+  `admisibilidad.tsv` seguía `PENDIENTE-DE-CAJA`. El recibo paralelo
+  `GEN2-RECIBO-ASTRA-1` de main invoca el plazo antiguo COMMIT-1;
+  para este piloto prevalece la instrucción posterior y explícita de
+  Jonás (antes de COMMIT-2). El resultado práctico de exclusión coincide.
 - COMMIT-3a `3f066b33`: SHA256 de los dos insumos de COMMIT-2 fijados;
   `preflight VERDE` antes de abrir R. COMMIT-3 `de93beef`: R y
   adjudicación sellados. `verify` y proceso aislado: `REPRODUCE`,
