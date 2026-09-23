@@ -32,3 +32,9 @@ Propio: `forense/encargos/fuentes/*`, `forense/encargos/MISION-ASTRA-4-ADENDA-1.
 
 ## 7 · LO QUE NO HACE · SUCESORES
 No reprocesa D3/D8 de la hoja si quedaron sin fila propia en `FIRMAS-11` — eso, si aplica, es deuda de `FIRMAS-11`, no de este acto.
+
+## NO-CORRIDO / RESERVAS
+Ninguno.
+
+## CONSUMIDO
+PR #1070 (`acto/gen2-tramite-firmas-13` → `main`), 23/sep/2026. `ADR-260923-GEN2-TRAMITE-FIRMAS-13-b3ff-01`. No fusionado por este acto: mesa fusiona.
