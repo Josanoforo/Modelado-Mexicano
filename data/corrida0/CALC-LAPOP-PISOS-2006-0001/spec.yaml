@@ -1,0 +1,86 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-LAPOP-PISOS-2006-0001
+spec_md: ../../../forense/prereg-caja/LAPOP-PISOS-OLAS-spec-v1_0.md
+spec_md_sha256: 1e64e1ad32738063fa0d69ab72088b39320246fff86211c8f3c9ff57e9078d4d
+script: data/corrida0/CALC-LAPOP-PISOS-2006-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-ENCUESTA, cuenta_gen2: SI, cuenta_gen2_nota: Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta, adopta: 'NO', origen_numerico: NUEVO, acto: ASTRA5-U3-POLITICA-COMPLETAR, calibracion: SIN-HISTORIA-PARA-CALIBRAR}
+inputs:
+- {id: 518939279mexico_lapop_final_2006_data_set_092906, origen: manifiesto}
+variables:
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: POL1, rol: 'interes_politica_mucho_algo: evento [1, 2] entre 1..4; no respuesta [8]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: B18, rol: 'confianza_policia_alta: evento [6, 7] entre 1..7; no respuesta [8]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: B21, rol: 'confianza_partidos_alta: evento [6, 7] entre 1..7; no respuesta [8]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: D1, rol: 'tolerancia_votar_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [88]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: D2, rol: 'tolerancia_manifestarse_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [88]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: D3, rol: 'tolerancia_postularse_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [88]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: D4, rol: 'tolerancia_discurso_tv_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [88]'}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: ESTRATOPRI, rol: estrato primario}
+- {archivo: 518939279mexico_lapop_final 2006 data set 092906.dta, variable: UPM, rol: UPM}
+universo: LAPOP México 2006, estudio nacional; presencial, último mes de campaña presidencial 2006; ficha técnica Unweighted; peso 1; personas con código sustantivo y diseño completo por reactivo
+filtros: código dentro de la escala declarada; no respuesta declarada y faltantes extendidos fuera; otro valor -> ESCALA-DISCREPANTE; peso>0 finito, estrato y UPM presentes; n mínimo 30
+ponderador: 'constante 1 (ficha técnica: Unweighted)'
+transformacion: evento por reactivo según tabla de la spec humana; proporción ponderada; IC95 bootstrap de UPM con reemplazo dentro de estrato
+estimando: proporciones marginales nacionales de entrevistados, retrospectivas, sin serie, sin causalidad ni unión con INE
+dependencias_materiales: [numpy, pandas, pyreadstat]
+parametros:
+  payload_id: 518939279mexico_lapop_final_2006_data_set_092906
+  diseno:
+    estrato: ESTRATOPRI
+    upm: [UPM]
+    peso: null
+  items:
+  - clave: interes_politica_mucho_algo
+    variable: POL1
+    validos: [1, 2, 3, 4]
+    evento: [1, 2]
+    faltantes: [8]
+    semilla_desplazamiento: 0
+  - clave: confianza_policia_alta
+    variable: B18
+    validos: &id001 [1, 2, 3, 4, 5, 6, 7]
+    evento: [6, 7]
+    faltantes: [8]
+    semilla_desplazamiento: 1
+  - clave: confianza_partidos_alta
+    variable: B21
+    validos: *id001
+    evento: [6, 7]
+    faltantes: [8]
+    semilla_desplazamiento: 2
+  - clave: tolerancia_votar_aprueba
+    variable: D1
+    validos: &id002 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    evento: [6, 7, 8, 9, 10]
+    faltantes: [88]
+    semilla_desplazamiento: 3
+  - clave: tolerancia_manifestarse_aprueba
+    variable: D2
+    validos: *id002
+    evento: [6, 7, 8, 9, 10]
+    faltantes: [88]
+    semilla_desplazamiento: 4
+  - clave: tolerancia_postularse_aprueba
+    variable: D3
+    validos: *id002
+    evento: [6, 7, 8, 9, 10]
+    faltantes: [88]
+    semilla_desplazamiento: 5
+  - clave: tolerancia_discurso_tv_aprueba
+    variable: D4
+    validos: *id002
+    evento: [6, 7, 8, 9, 10]
+    faltantes: [88]
+    semilla_desplazamiento: 6
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-LAPOP-PISOS-2006-FILAS
+  result_tablas:
+    RESULT-LAPOP-PISOS-2006-TABLA: [interes_politica_mucho_algo, confianza_policia_alta, confianza_partidos_alta, tolerancia_votar_aprueba, tolerancia_manifestarse_aprueba, tolerancia_postularse_aprueba, tolerancia_discurso_tv_aprueba]
+  hash_medidor_sha256: 9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c
+  hash_payload_sha256: e426210067f9dba8aca87a0df2161bc7389cc5aaf9e5516aa7ebf9cb52f149fa
+  dictamen: forense/analisis/dominios/politica/lapop-dictamen-olas-v1_0.tsv
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia: {tipo: exacta, razon: misma semilla por reactivo y orden determinista de estratos/UPM}
+resultados:
+- {id: RESULT-LAPOP-PISOS-2006-FILAS, tipo: entero, unidad: entrevistas en el microdato de la ola}
+- {id: RESULT-LAPOP-PISOS-2006-TABLA, tipo: texto, unidad: JSON canónico de proporciones e IC de diseño por reactivo, permite_no_estimable: true}
