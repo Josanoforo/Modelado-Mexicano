@@ -4717,6 +4717,43 @@ def _sucesor_de(oferta: list[dict]) -> dict[str, str]:
             if o["repite_de"] and n_hijos[o["repite_de"]] == 1}
 
 
+def _en_lote(fila: dict, lote: set) -> bool:
+    """Mismo criterio que `_para_si_pisa_replay`: una fila la autoriza su
+    propio `corrida_id` o su `spec_id` nombrado en `--lote`."""
+    return fila.get("corrida_id") in lote or fila.get("spec_id") in lote
+
+
+def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
+    """GEN2-TUBERIA-LOTE-ESTRICTO-1 · P2: `--escribe --lote` acota la
+    ESCRITURA, no solo el guardia. Toda fila YA PUBLICADA y ajena al lote
+    se sustituye por su version PUBLICADA byte a byte, nunca por el
+    recomputo fresco -- que puede haber cambiado por vigencia de OTRA
+    corrida y disparar REPLAY-PISADO sin que nadie la nombrara (FP
+    7d98-01). Una fila nunca antes publicada, o en el lote, se escribe
+    fresca."""
+    def _publicadas(ruta: Path, clave) -> dict:
+        return ({clave(f): f for f in _leer_tsv_derivado(ruta)}
+                if ruta.exists() else {})
+
+    pub_corr = _publicadas(VISTA_CORRIDAS, lambda f: f["corrida_id"])
+    pub_res = _publicadas(VISTA_RESULTADOS,
+                          lambda f: (f["corrida_id"], f["resultado_id"]))
+    pub_usos = _publicadas(VISTA_USOS,
+                           lambda f: (f["resultado_id"], f["consumidor"], f["tipo_uso"]))
+    corridas = [pub_corr.get(f["corrida_id"], f) if not _en_lote(f, lote) else f
+                for f in vistas["corridas"]]
+    resultados = [pub_res.get((f["corrida_id"], f["resultado_id"]), f)
+                  if not _en_lote(f, lote) else f for f in vistas["resultados"]]
+    en_lote_res: dict[str, bool] = {}
+    for f in vistas["resultados"]:
+        en_lote_res[f["resultado_id"]] = (en_lote_res.get(f["resultado_id"], False)
+                                          or _en_lote(f, lote))
+    usos = [pub_usos.get((f["resultado_id"], f["consumidor"], f["tipo_uso"]), f)
+            if not en_lote_res.get(f["resultado_id"], False) else f
+            for f in vistas["usos"]]
+    return {**vistas, "corridas": corridas, "resultados": resultados, "usos": usos}
+
+
 def registro(escribe: bool = False, verifica: bool = False,
              imprime: bool = True, lote=None, fuentes: bool = False) -> dict:
     """FP-359: la fotocopiadora se desarma -- `escribe` por defecto es
@@ -4735,6 +4772,11 @@ def registro(escribe: bool = False, verifica: bool = False,
         # P1 (NC-0094): el diff de los dos ejes se calcula ANTES de tocar
         # el primer TSV. Si pisa evidencia ajena, esto levanta y no se
         # escribe nada -- ni la primera de las tres vistas.
+        # P2 (GEN2-TUBERIA-LOTE-ESTRICTO-1): con lote, las filas ajenas ya
+        # publicadas se congelan ANTES del guardia -- no hay nada ajeno
+        # que pisar salvo que el lote mismo lo autorice.
+        if lote_autorizado:
+            vistas = _acota_vistas_al_lote(vistas, lote_autorizado)
         _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
