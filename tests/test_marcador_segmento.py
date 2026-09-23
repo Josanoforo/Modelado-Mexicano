@@ -74,13 +74,15 @@ def t_piso_no_circular():
 def t_veinte_adoptadas():
     # 20 (DIN 8 + TRA 12, ADR-538/ADR-542) + 16 (GOB.gobierno_digital.encig2025.
     # edad_x_escolaridad, piloto 3, A-bis 6, FIRMA DE MESA F3 21/sep/2026,
-    # ACTO GEN2-TRAMITE-FIRMAS-5) = 36.
+    # ACTO GEN2-TRAMITE-FIRMAS-5) = 36; + 16 (GOB.gobierno_digital.encig2025.
+    # edad_x_sexo y .escolaridad_x_sexo, ACTO GEN2-DUELO-ENCIG2025-CIERRE-1,
+    # piso no vencido, firma 17/sep y FP-…-657c-01) = 52.
     v = M.deriva()
     n = sum(1 for f in v["filas"] if f["tipo"] == "CRUCE"
             and f["resultado_id"] and f["estado"] in
             ("ADOPTADO-POR-FIRMA", "PISO-ADMISIBLE-NO-ADOPTADO"))
-    if n != 36:
-        _falla("T-VEINTE-ADOPTADAS", f"se esperaban 36 celdas C2 piloteadas, salieron {n}")
+    if n != 52:
+        _falla("T-VEINTE-ADOPTADAS", f"se esperaban 52 celdas C2 piloteadas, salieron {n}")
 
 
 def t_universo_97_nacional():

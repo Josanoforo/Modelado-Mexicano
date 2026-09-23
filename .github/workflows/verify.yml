@@ -395,8 +395,9 @@ jobs:
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
 
       # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
-      # El registro escribe las dos vistas de corridas y resultados pedidas
-      # para el piloto 4. El marcador, la demanda y usos.tsv quedan pendientes:
+      # El registro escribe las vistas de corridas y resultados pedidas
+      # para el piloto 4; la tabla de citas selladas acompaña esos resultados
+      # para que G5 pueda resolver sus RES. El marcador, la demanda y usos.tsv quedan pendientes:
       # publicarlos ahora añade 21 FAIL de línea base medidos el 23/sep.
       # El lote une los asientos
       # nuevos de este push con los sellados aún ausentes de corridas.tsv:
@@ -423,8 +424,9 @@ jobs:
               exit 1
             }
           fi
+          python3 tools/resuelve_citas.py tabla --escribe
           git restore -- data/corrida0/usos.tsv
-          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv
+          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv
           if git diff --cached --quiet; then
             echo "sin diff derivado -- nada que publicar"
             exit 0
