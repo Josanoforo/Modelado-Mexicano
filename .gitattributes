@@ -90,3 +90,8 @@ data/corrida0/decisiones.tsv merge=union
 # conflicto, sin aviso, inflando el contador que mide el programa entero. Un
 # merge manual que conflictúa es ruidoso; un union que duplica no lo es. Este
 # archivo se sigue fusionando a mano.
+
+# ASTRA5-U1 ENOE: estos dos insumos sellados tienen bytes CRLF. Git debe
+# conservarlos en el blob y al extraer un checkout limpio (PR #1087).
+data/enoe-reactivos-olas-v1_0.tsv -text whitespace=cr-at-eol
+data/enoe-olas-elegibles-preparacion-v1_0.tsv -text whitespace=cr-at-eol
