@@ -47,3 +47,7 @@ Propio: `.github/workflows/automerge-rutinas.yml` (o el nombre que dejó #1022),
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No fusiona nada que mida; no cambia CI. Sucesor: ninguno si las dos pruebas pasan; `GEN2-TUBERIA-RUTINAS-AUTOMERGE-3` si el token exige App.
+
+## NO-CORRIDO / RESERVAS
+- **qué**: P1 — protección de main (status check `suite` obligatorio) + merge queue, aplicadas por API con la credencial de la sesión. **por qué**: `PARO-PREMISA` — el `[SUPUESTO]` §3 de que la sesión podría aplicarlo resultó falso: no hay tool de branch-protection ni `gh` CLI, y la red directa a `api.github.com` está `DENEGADA-POR-POLITICA`. **impacto**: el workflow de auto-merge queda instalado pero inerte; ningún PR se fusiona solo todavía. **sucesor**: `FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01` (receta de un minuto en la nota de cierre §2).
+- **qué**: P3 — las dos pruebas de «Hecho» (PR de rutina fusionado solo; PR no-rutina no fusionado). **por qué**: `PARO-PREMISA` — dependen de P1, no corrido. **impacto**: el criterio de «hecho» del encargo no queda demostrado en este acto. **sucesor**: `NC-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-02`, re-correr tras P1.
