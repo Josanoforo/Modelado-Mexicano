@@ -38,6 +38,8 @@ Opciones presentes sólo en una ola no deben contrastarse como cero: la opción 
 | 2018 | CALC-DIN-OFERTA-EXCLUSION-ENIF2018-0001 | CALC-DIN-OFERTA-EXCLUSION-ENIF2018-0001--f43640111823 | `f43640111823` | `51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5` | `ff3e69da995cd8c900df0b0a0da6f9fa09ba2c36cd3fdbd4b7dee7e62878675e` |
 | 2021 | CALC-DIN-OFERTA-EXCLUSION-ENIF2021-0001 | CALC-DIN-OFERTA-EXCLUSION-ENIF2021-0001--5f9375661527 | `5f9375661527` | `0f314fa3733b4b5519486ed4015fca1c9e0864840bcd5944aa7de27796fe5cd9` | `531d3dda97de11336c19dd361605060a4691f03d13e82ce970226a1c775a80df` |
 
+Diagnóstico posterior al sello, sólo lectura de diseño válido 18–70 con el cargador histórico: estratos/UPM/singleton = 2012 10/847/0; 2015 12/826/0; 2018 182/1908/0; 2021 235/2009/1. El estrato singleton 2021 queda fijo en cada réplica por la regla congelada. En todos los RESULT de las cuatro olas hubo denominador ponderado positivo y 10 000 réplicas válidas; cero celdas con denominador cero o réplicas inválidas. Comando de diagnóstico: cargador histórico `_mapa` + `_carga`, edad 18–70, peso positivo, `EST_DIS`/`UPM_DIS` no vacíos, `drop_duplicates(EST_DIS,UPM_DIS).groupby(EST_DIS).size()`.
+
 Comandos: `python3 tools/corrida0.py preflight CALC-DIN-OFERTA-EXCLUSION-ENIF<ola>-0001`; `python3 tools/corrida0.py run CALC-DIN-OFERTA-EXCLUSION-ENIF<ola>-0001`; `python3 tools/corrida0.py verify CALC-DIN-OFERTA-EXCLUSION-ENIF<ola>-0001`. Semilla 42, 10 000 réplicas PCG64, remuestreo UPM dentro de estrato, plan único por ola. Los cuatro asientos propios están en `forense/replay-evidencia.tsv`.
 
 ## NO-CORRIDO / RESERVAS
