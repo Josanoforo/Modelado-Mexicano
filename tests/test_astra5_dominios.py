@@ -254,3 +254,18 @@ def test_forense_credito_facil_deduplica_enif_y_separa_indicadores():
     assert all(row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"] and row["siguiente_operacion"] for row in rows)
     assert all(row["propietario"] == "ASTRA5-MESA-DINERO" for row in rows)
     assert rows[13]["contrato_o_concepto"] == "ASTRA5-U0-FIN-009"
+
+
+def test_forense_apuestas_conserva_contradicciones_y_casos():
+    rows = read("lectura-apuestas-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 25
+    for row in rows[:6]:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+    source = (ROOT / "corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md").read_text(encoding="utf-8").splitlines()
+    for row in rows[6:]:
+        line = int(row["archivo_fuente_linea"].rsplit(":L", 1)[1])
+        assert source[line - 1].startswith(("**Caso ", "**PAR "))
+    assert all(row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"] and row["siguiente_operacion"] for row in rows)
+    assert rows[3]["estado_lectura"] == "CONTRADICCION-FORENSES"
+    assert rows[10]["concepto_deduplicado"] == "ASP-REGLAS-CONSUMO"
