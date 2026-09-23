@@ -53,6 +53,11 @@ forense/firmas-pendientes.tsv merge=union
 canon/gobernanza-v1_15.md merge=union
 canon/registro-rotulos.tsv merge=union
 
+# ACTO GEN2-TUBERIA-RUTINAS-AUTOMERGE-2 (23/sep/2026), P2: la rutina de
+# auto-merge (.github/workflows/automerge-rutinas.yml) appenda una fila por
+# fusión automática — dos fusiones en la misma ventana no deben pisarse.
+forense/fusiones-automaticas.tsv merge=union
+
 # ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1 (22/sep/2026), P3, firma de mesa
 # opción (a) (`…PENDIENTES-CAJA-1-c09b-02`, `…ESCOLARIDAD-2-0af9-01`). Los
 # tres archivos de append que el canal de publicación (el job del push a
