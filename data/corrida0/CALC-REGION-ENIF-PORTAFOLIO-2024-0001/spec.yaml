@@ -1,0 +1,1039 @@
+calc_id: CALC-REGION-ENIF-PORTAFOLIO-2024-0001
+spec_md: ../../../forense/prereg-caja/REGION-ENIF-PORTAFOLIO-spec-v1_0.md
+spec_md_sha256: a589083c2fc58bb57e16850d4d545fe05491f4a0d15ee9d07655d60c1ee07c98
+script: data/corrida0/CALC-REGION-ENIF-PORTAFOLIO-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-ENIF-PORTAFOLIO
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: NUEVO
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: REGION-ENIF-PORTAFOLIO-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_portafolio.py
+  sha256: a0d8f989b33b899d72cce17c138fec24de7052f8ae07e05ed659167ccf835608
+- id: REGION-BASE-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/medidor.py
+  sha256: d049cfb96c84f36b32667cc71c55c3591233ab538e7b53abf7c9d71098d0a4f4
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+variables:
+- archivo: TMODULO.csv
+  variable: REGION
+  rol: geografía
+- archivo: TMODULO.csv
+  variable: FAC_PER
+  rol: factor
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: UPM
+- archivo: TMODULO.csv
+  variable: P5_1_1..6
+  rol: ahorro informal
+- archivo: TMODULO.csv
+  variable: P5_6_1..9
+  rol: ahorro formal
+universo: personas elegidas ENIF 2024 18+ con respuesta sustantiva en las baterías
+  P5_1/P5_6
+filtros: denominador y desenlaces exactos de spec humana; diseño completo antes del
+  dominio
+ponderador: FAC_PER
+transformacion: razón ponderada por región oficial, IC bootstrap percentil compartido
+  y R2
+estimando: proporción regional de cada categoría del portafolio de ahorro
+parametros:
+  input_id: enif_2024_enif_2024_bd_csv
+  bootstrap_replicas: 1000
+  n_min: 200
+  nivel_geografico: REGION
+  geografias:
+  - '1'
+  - '2'
+  - '3'
+  - '4'
+  - '5'
+  - '6'
+  conductas:
+  - no_tiene_ahorros_enif2024
+  - informal_cualquiera
+  - formal_cualquiera
+  - ahorra_solo_informal
+  - ahorra_solo_formal
+  - ahorra_ambas_vias
+  - no_ahorra
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, orden, código y semilla
+resultados:
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_tiene_ahorros_enif2024-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-informal_cualquiera-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-formal_cualquiera-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_informal-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_solo_formal-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-ahorra_ambas_vias-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-JSON
+  tipo: texto
+  unidad: JSON con réplicas conjuntas, sin filas individuales
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-1-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-2-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-3-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-4-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-5-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-N
+  tipo: entero
+  unidad: personas no ponderadas del denominador
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-ESTADO
+  tipo: texto
+  unidad: estado de publicación
+- id: RESULT-REGION-ENIF-PORT-2024-no_ahorra-6-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: diagnóstico Kish
+  permite_no_estimable: true

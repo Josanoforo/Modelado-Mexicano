@@ -1,0 +1,457 @@
+calc_id: CALC-REGION-ENCIG-SOL1-IC-PRED-0001
+spec_md: ../../../forense/prereg-caja/REGION-ENCIG-SOL1-IC-PRED-spec-v1_0.md
+spec_md_sha256: 472de7ac1047aa6cc61b6b163b2a55e5c361c3f15ab4237dfd75e26342c0b07e
+script: data/corrida0/CALC-REGION-ENCIG-SOL1-IC-PRED-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: REGION-ENCIG-SOL1-IC-PRED
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: 'NO'
+  adopta: 'NO'
+  acto: ASTRA4-U5-EJE-REGIONAL
+  origen_numerico: HEREDADO
+inputs:
+- id: FUENTE-2021
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENCIG-SOL1-2021-0001/resultados.json
+  sha256: a88f0ded65a9009d63b2b4d5810f9a65df1aef107e3bfee2552c9078c73ff034
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-2023
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENCIG-SOL1-2023-0001/resultados.json
+  sha256: c8d71f4dbe636fb3e2108793d280bb0aed386f2c808893acb585dded6660b9c5
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: FUENTE-2025
+  origen: repo
+  ruta: data/corrida0/CALC-REGION-ENCIG-CONSUMIDORES-2025-0001/resultados.json
+  sha256: 1d5bef68e1763b4ef7ee81025e6b24e15fe84deb5966aa837dcb742162626fcc
+  rol: RESULT regional sellado de ajuste/piso/evaluación
+- id: REGION-SOL1-ICP-CODIGO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/encig_sol1_predictivo.py
+  sha256: ded64ef2a2a47a0c94b7f1b92f4906bd89efaec603b8feb2738c1dc9f016a5bc
+- id: REGION-ICP-COMPARTIDO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/ic_calibrado.py
+  sha256: 719873f772cfba987f3db3bdc85cc32529dadcfeb15dc215871700651a5861f4
+variables:
+- archivo: resultados.json
+  variable: punto, ic_inf, ic_sup, estado
+  rol: fuentes regionales selladas
+universo: entidades publicables R1/R2 con P8_3_1 comparable
+filtros: ajuste 2021→2023 antes de leer evaluación 2025
+ponderador: heredado FAC_P18; ninguna reponderación
+transformacion: IC predictivo logit heredado y cobertura retrospectiva
+estimando: IC predictivo regional SOL1 del piso 2023 para evaluación 2025
+parametros:
+  calendario:
+  - 2021
+  - 2023
+  - 2025
+seed:
+  aplica: false
+dependencias_materiales: []
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: derivación determinista
+resultados:
+- id: RESULT-REGION-ENCIG-SOL1-ICP-JSON
+  tipo: texto
+  unidad: intervalos predictivos regionales
+- id: RESULT-REGION-ENCIG-SOL1-ICP-01-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-01-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-01-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-02-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-02-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-02-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-03-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-03-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-03-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-04-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-04-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-04-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-05-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-05-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-05-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-06-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-06-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-06-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-07-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-07-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-07-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-08-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-08-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-08-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-09-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-09-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-09-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-10-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-10-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-10-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-11-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-11-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-11-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-12-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-12-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-12-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-13-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-13-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-13-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-14-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-14-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-14-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-15-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-15-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-15-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-16-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-16-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-16-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-17-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-17-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-17-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-18-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-18-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-18-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-19-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-19-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-19-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-20-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-20-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-20-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-21-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-21-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-21-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-22-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-22-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-22-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-23-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-23-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-23-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-24-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-24-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-24-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-25-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-25-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-25-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-26-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-26-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-26-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-27-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-27-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-27-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-28-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-28-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-28-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-29-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-29-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-29-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-30-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-30-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-30-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-31-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-31-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-31-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-32-IC-LO
+  tipo: proporcion
+  unidad: límite predictivo inferior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-32-IC-HI
+  tipo: proporcion
+  unidad: límite predictivo superior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-32-CUBIERTA
+  tipo: entero
+  unidad: 1 si cubre punto posterior
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-TAU2
+  tipo: flotante
+  unidad: varianza entre olas en logit
+  permite_no_estimable: true
+- id: RESULT-REGION-ENCIG-SOL1-ICP-N-COMPARABLE
+  tipo: entero
+  unidad: entidades comparables
+- id: RESULT-REGION-ENCIG-SOL1-ICP-N-CUBIERTA
+  tipo: entero
+  unidad: entidades cubiertas
