@@ -253,3 +253,27 @@ def test_encig_sol1_no_confunde_solicitud_con_pago():
     assert list(den) == [True, True, False, False, True]
     assert list(y) == [True, False, False, False, True]
     assert ADAPTER[2021][1] == "ENT" and ADAPTER[2023][1] == "CVE_ENT"
+
+
+def test_encig_sol1_predictivo_congela_intervalos_antes_de_2025(monkeypatch):
+    from tools.astra.region import encig_sol1_predictivo as m
+    counts = {"intervalos": 0, "evaluacion": 0}
+    def row(p):
+        return {"estado": "PUBLICABLE", "punto": p, "ic_inf": p-.02, "ic_sup": p+.02}
+    fuentes = {"FUENTE-2021": {f"{i:02}": row(.2) for i in range(1,33)},
+               "FUENTE-2023": {f"{i:02}": row(.3) for i in range(1,33)},
+               "FUENTE-2025": {f"{i:02}": row(.35) for i in range(1,33)}}
+    real_interval = m._interval
+    def interval(*args):
+        counts["intervalos"] += 1
+        return real_interval(*args)
+    def source(_inputs, name, _rid):
+        if name == "FUENTE-2025":
+            assert counts["intervalos"] == 32
+            counts["evaluacion"] += 1
+        return fuentes[name]
+    monkeypatch.setattr(m, "_interval", interval)
+    monkeypatch.setattr(m, "_load", source)
+    out = m.medir({}, {"parametros": {"calendario": [2021,2023,2025]}})
+    assert counts == {"intervalos": 32, "evaluacion": 1}
+    assert out["RESULT-REGION-ENCIG-SOL1-ICP-N-COMPARABLE"] == 32
