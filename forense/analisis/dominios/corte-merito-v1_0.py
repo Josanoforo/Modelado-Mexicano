@@ -147,6 +147,28 @@ CEEY_FIN = dict(
     prioridad="2",
 )
 
+MIJS = dict(
+    report=REPORT,
+    report_sha256=REPORT_SHA,
+    localizador="L28; repetición L6,L38,L50",
+    tier_report="sin rótulo explícito",
+    clase="atribución declarada de causa de riqueza/pobreza; tabla descriptiva de grupo control",
+    limite_inferencial="El panel Lexia de 2017 cubrió población con acceso a internet y se sesgó hacia jóvenes y educación terciaria (47% muestra vs 25% población); la tabla 2 usa solo el grupo control, no los 1600 participantes mexicanos completos. No mide causas reales de riqueza o pobreza, efecto experimental ni opinión de toda la población mexicana en 2025-26.",
+    conducta_unidad_universo="Respondientes mexicanos del grupo control del panel Lexia con acceso a internet, octubre-diciembre 2017; México N=1600 total experimental, n exacta del control no publicada en tabla 2 (N=2537 suma control de tres países).",
+    instrumento_ola="Mijs y Hoy, experimento de encuesta México 2017 publicado en Social Problems 2021, DOI 10.1093/socpro/spaa059",
+    documento_id_hash_pagina="SIN-ID:mijs_hoy2021_social_problems.pdf|0b94e2a89ffae3753970a7113f4c66b97abe7439ea4c83d41041c11d94310ca9|pp.7-10, Tabla 2 p.10 y discusión p.17; https://repub.eur.nl/pub/135369/Mijs-Hoy-2021.-How-Information-about-Inequality-Impacts-Belief-in-Meritocracy.pdf; copia física local, no registrada",
+    pregunta_textual_codigo_respuestas="Antes de asignación experimental: 'in your opinion, which of the following is the most important reason why people in [country] are rich/poor?' Riqueza: talento, esfuerzo, suerte, familia rica, contactos u otro; pobreza: falta talento/esfuerzo, mala suerte, familia pobre, enfermedad/discapacidad u otro. Una respuesta principal por pregunta; porcentajes tabla 2 grupo control.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Artículo final primario cotejado, tabla 2 y métodos leídos, SHA físico verificado. Se cierra solo el porcentaje descriptivo publicado del control; falta instrumento/códigos completos, n mexicana del control, registro documental y RESULT de reproducción.",
+    datos_id_estado="Datos experimentales México 2017 sin id ni apertura U0; PDF documental local SHA verificado. Ningún RESULT propio identificado.",
+    reserva="Artículo final declara CC BY 4.0 p.1; registrar con atribución y procedencia. No abrir microdato del experimento sin autorización específica ni extender a población sin internet.",
+    gen2_existente="Sin RESULT México 2017 compatible en main; no equiparar con WVS/Latinobarómetro o ESRU-EMOVI 2023.",
+    propietario="ASTRA5-MESA-MOVILIDAD / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Mesa documental registra DOI, versión final, licencia y SHA; mesa movilidad localiza n/control e instrumento y decide si reproduce en carril autorizado.",
+    prioridad="2",
+)
+
 ROWS = [
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-004", texto_vigente="El Gini del ingreso corriente por hogar con transferencias fue 0.391 en ENIGH 2024.", componente_contrastable="Gini publicado con transferencias recibidas incluidas: 0.391; 0.402 en 2022 y 0.449 en 2016 se conservan como comparadores, sin dictamen de serie.", siguiente_operacion="Registrar publicación en main, reproducir fórmula del Gini en CAJA y tratar la serie 2016/2022 con su propio contrato de comparabilidad."),
     ENIGH | dict(id_afirmacion="ASTRA5-U0-MER-005", texto_vigente="Sin considerar transferencias, el Gini contable ENIGH 2024 habría sido 0.450.", componente_contrastable="Gini simulado sin transferencias recibidas: 0.450 frente a 0.391 con ellas, misma fuente y año.", siguiente_operacion="Registrar publicación en main y verificar qué rubros se restan en la simulación; no atribuir 0.059 a un programa o salario mínimo causalmente."),
@@ -163,6 +185,10 @@ ROWS = [
     CEEY | dict(id_afirmacion="ASTRA5-U0-MER-016", texto_vigente="El 63% de adultos con padres de educación profesional alcanzó educación profesional, alrededor de siete veces la probabilidad del grupo con padres hasta primaria.", clase="transición educativa publicada", componente_contrastable="Informe CEEY 2025 Figura 4 p.21: P(profesional | padres profesionales)=63% frente a 9% si padres ≤primaria; cociente descriptivo 7, sin interpretación causal.", pregunta_textual_codigo_respuestas="Máximo nivel educativo de padres profesional frente a nivel profesional alcanzado por persona entrevistada 25–64; categorías/códigos exactos por cotejar."),
     CEEY_FIN | dict(id_afirmacion="ASTRA5-U0-MER-017", texto_vigente="Entre adultos con origen en grupos 1+2 y padres con inclusión financiera, 13% alcanzó el grupo 5 de recursos económicos.", componente_contrastable="CEEY inclusión financiera Figura 11 p.36: P(destino grupo 5 | origen grupos 1+2, padres con producto financiero)=13%; n analítica total 16 205.", siguiente_operacion="Registrar segundo informe; U3/MESA-MOVILIDAD fija pregunta parental y denominador condicionado antes de reproducir. No atribuir 13% a todos los adultos."),
     CEEY_FIN | dict(id_afirmacion="ASTRA5-U0-MER-018", texto_vigente="Entre adultos con origen en grupos 1+2 y padres sin inclusión financiera, 4% alcanzó el grupo 5 de recursos económicos.", componente_contrastable="CEEY inclusión financiera Figura 11 p.36: P(destino grupo 5 | origen grupos 1+2, padres sin producto financiero)=4%; CEEY resume la diferencia como 3.3 veces; 13% y 4% son cifras redondeadas.", siguiente_operacion="Registrar segundo informe; U3/MESA-MOVILIDAD coteja grupo de comparación, reactivo y ponderación; no leer razón 3.3 como efecto causal ni deduplicar con Q1→Q5 2%."),
+    MIJS | dict(id_afirmacion="ASTRA5-U0-MER-019", texto_vigente="En el control mexicano de Mijs/Hoy 2017, 12% eligió talento o esfuerzo como explicación principal de la riqueza.", componente_contrastable="Tabla 2 México, riqueza: talento 2% + esfuerzo 10%=12%; respuestas mutuamente excluyentes en el grupo control.", pregunta_textual_codigo_respuestas=MIJS["pregunta_textual_codigo_respuestas"] + " Riqueza, talento 2 y esfuerzo 10; suma publicada 12%."),
+    MIJS | dict(id_afirmacion="ASTRA5-U0-MER-020", texto_vigente="En el control mexicano de Mijs/Hoy 2017, 15% eligió falta de talento o esfuerzo como explicación principal de la pobreza.", componente_contrastable="Tabla 2 México, pobreza: falta talento 4% + falta esfuerzo 11%=15%; no es proporción que vive en pobreza.", pregunta_textual_codigo_respuestas=MIJS["pregunta_textual_codigo_respuestas"] + " Pobreza, falta talento 4 y falta esfuerzo 11; suma publicada 15%."),
+    MIJS | dict(id_afirmacion="ASTRA5-U0-MER-021", texto_vigente="En el control mexicano de Mijs/Hoy 2017, 27% eligió contactos como explicación principal de la riqueza.", componente_contrastable="Tabla 2 México, riqueza: red de contactos 27%; respuesta individual, no resultado de movilidad.", pregunta_textual_codigo_respuestas=MIJS["pregunta_textual_codigo_respuestas"] + " Riqueza, opción red/contactos 27%."),
+    MIJS | dict(id_afirmacion="ASTRA5-U0-MER-022", texto_vigente="En el control mexicano de Mijs/Hoy 2017, 14% eligió riqueza familiar como explicación principal de la riqueza.", componente_contrastable="Tabla 2 México, riqueza: familia adinerada 14%; no es probabilidad de salir de pobreza.", pregunta_textual_codigo_respuestas=MIJS["pregunta_textual_codigo_respuestas"] + " Riqueza, opción familia rica 14%."),
 ]
 
 
