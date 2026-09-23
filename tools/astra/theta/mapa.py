@@ -164,6 +164,20 @@ def main() -> None:
         elif family == "salud":
             row["datos_id_ola_geografia_llave"] = "ENSANUT: ola, geografía y texto de atención por cotejar documentalmente"
             row["amenaza_principal"] = "Necesidad de salud y acceso simultáneos; oferta endógena"
+            if key == "salud.atencion.leve_sin_imss":
+                row["fuentes_decisivas"] += " | King et al. 2009 Seguro Popular DOI:10.7910/DVN/P6NC0M, README y codebooks públicos"
+                row["poblacion_unidad"] = "Adultos sin IMSS al inicio en 100 conglomerados de salud de seis estados; residencia define conglomerado"
+                row["desenlace"] = "Evento conjunto de consulta respiratoria en farmacia en seguimiento, no P(farmacia|necesidad leve) del θ"
+                row["exposicion"] = "Sorteo de oferta Seguro Popular + mejora de instalaciones/medicamentos en 50 pares de conglomerados"
+                row["variacion_candidata"] = "Asignación aleatoria de 50 pares de conglomerados de salud, basal 2005 y seguimiento 2006"
+                row["diseno_y_fuente_asignacion"] = "ITT por pares; fuente primaria Eval/define.treatment.R y Eval/control.matches.R de la réplica DOI:10.7910/DVN/P6NC0M"
+                row["datos_id_ola_geografia_llave"] = "ALL.tab + clustmatchlist.tab; conglome/matchnum; P01D1401, P11D0401/P11D0501 basal, P10E0401/P10E0501 seguimiento; adquisición pendiente"
+                row["reserva_disponibilidad"] = "Dataverse público V6.2; corpus local no contiene la réplica; términos piden contacto; registrar por adq antes de abrir ALL.tab"
+                row["supuesto_critico"] = "Aleatorización por pares intacta; atrición no diferencial; códigos comparables; no condicionar en consulta posterior"
+                row["amenaza_principal"] = "Intervención compuesta y desenlace conjunto: no identifica probabilidad condicional θ ni consultorio anexo"
+                row["falsador"] = "Balance basal del mismo evento y de IMSS; atrición por brazo; integridad de 50 pares"
+                row["viabilidad"] = "DISENO-ALEATORIZADO-PARA-EFECTO-REDUCIDO; NO-THETA-DIRECTO"
+                row["proximo_paso"] = "Registrar réplica por adq, congelar ITT antes de ALL.tab, medir y devolver a mesa enlace propuesto o alternativa"
         elif key == "civico.denuncia.con_seguro":
             row["datos_id_ola_geografia_llave"] = "ENVIPE 2025; sin usar cruces reservados ASTRA-1 ni ENVIPE 2026"
             row["amenaza_principal"] = "Aseguramiento seleccionado por ingreso, vehículo, delito y zona"

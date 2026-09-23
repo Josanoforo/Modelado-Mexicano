@@ -1,6 +1,6 @@
 # ASTRA-2 · selección después del mapa v1.0
 
-Estado: **ningún diseño congelable todavía**. Ruta prioritaria: `RES-0091`,
+Estado de la primera lectura: **ningún diseño congelable todavía**. Ruta inicialmente prioritaria: `RES-0091`,
 `milpa/procedencia.yaml:asignados_probabilidad:tramite.mordida.con_registro`.
 Su contraste causal es la oferta efectiva de un trámite digital registrable
 sobre la solicitud/entrega de mordida entre usuarios elegibles. Eso es un
@@ -100,3 +100,62 @@ No se corrió `preflight → run → verify`: todavía no existe una spec honest
 con población tratada, fuente de asignación y controles fijados. No hay
 `RESULT` ASTRA-THETA, `CALC`, sello, `replay-evidencia.tsv` ni contador GEN2
 que atribuir a este mapa.
+
+## Revisión posterior al recibo ENCIG: elección concreta
+
+El recibo #1034 resolvió acceso, no tratamiento. `P7_3` es el canal que
+eligió una persona, y el código `05` agrupa servicios de cobertura digital
+distinta. Por ello `RES-0091` **no es el primer diseño ejecutable** con los
+objetos adquiridos. La geografía que habría que usar es la **del trámite**
+(`P7_1/P7_2`) porque la ventanilla se asigna donde se presta el servicio,
+no el domicilio (`ENT/MUN` o `CVE_ENT/CVE_MUN`). Su calendario exacto sigue
+solicitado, pero no bloquea la elección de otra ruta.
+
+La ruta mejor identificada es el experimento de **Seguro Popular** de King
+et al. (2009), [publicación y descripción del tratamiento](https://gking.harvard.edu/files/abs/spi-abs.shtml?page=0%2C0%2C0%2C0%2C1),
+[réplica pública DOI 10.7910/DVN/P6NC0M](https://doi.org/10.7910/DVN/P6NC0M).
+Se sortearon 50 pares de conglomerados de salud en seis estados; el
+tratamiento fue promoción de afiliación **junto con** mejora de instalaciones
+y suministro. El código primario de réplica `Eval/define.treatment.R` y
+`Eval/control.matches.R` enumera los conglomerados y 50 pares. La
+asignación corresponde al **conglomerado de residencia/atención**, no a la
+entidad del trámite ENCIG. Los cuestionarios basal y de seguimiento miden
+IMSS al inicio, razón de consulta y establecimiento; el seguimiento codifica
+farmacia `P10E0501=9` y motivo respiratorio `P10E0401=3`. El basal usa
+`P11D0501=9` y `P11D0401=3`. Los codebooks y README se leyeron sin abrir
+`ALL.tab`; el corpus local contiene ENSANUT pero no esta réplica.
+
+**Necesidad exacta:** `RES-0087`,
+`milpa/procedencia.yaml:asignados_probabilidad:salud.atencion.leve_sin_imss`,
+consumidor `asignados_probabilidad[5]` (ver fila AT-21 del mapa), regla
+`R4.1` en canon §3.4. El mecanismo documentado es respuesta del lugar de
+atención al costo, tiempo y trato de la oferta; el report de salud §Patrón D
+registra la prevalencia de farmacia con consultorio en ENSANUT. La
+intervención cambia cobertura y oferta sanitaria para personas sin IMSS,
+pero **no documenta que las tres dimensiones mejoraron** ni separa sus
+efectos. Además, la categoría «farmacia» en 2005–06 no identifica
+consultorio anexo frente a compra/automedicación. El desenlace causal que
+puede congelarse sin seleccionar sobre síntomas posteriores es el **evento
+conjunto por adulto elegible al inicio**: consulta por motivo respiratorio
+codificado 3 en farmacia durante el seguimiento. El contrafactual es la
+oferta usual en los conglomerados control, en 2005–06; el parámetro es ITT
+en puntos porcentuales. No es la probabilidad `P(farmacia | padecimiento
+leve-moderado, sin IMSS)` que usa el vector `[0.66,0.24,0.10]` del motor.
+
+**Dictamen de selección:** congelar y medir ese ITT reducido como prueba
+causal parcial de `R4.1`, sin instalarlo como θ ni cambiar el vector. Para
+convertirlo en magnitud del consumidor, Jonás tendría que **aprobar un
+enlace nuevo** entre evento conjunto y probabilidad condicional, sustentado
+en incidencia de necesidad, no respuesta de reporte al tratamiento, y
+clasificación de consulta en farmacia con consultorio. Alternativa: una
+evaluación asignada de acceso con registro de síntomas **antes** de ofrecer
+atención y lugar efectivo de consulta, entre no derechohabientes IMSS.
+Esta decisión permite un primer efecto reproducible sin fingir que el ITT
+identifica el θ completo.
+
+Comparación de rutas tras revisar disponibilidad: `RES-0091` tiene ENCIG
+adquirida pero no asignación verificable y mezcla de servicios; `RES-0072`
+tiene panel ENNViH y CAL-G3 existente, pero no shock exógeno; `RES-0087`
+tiene sorteo documentado y dos olas, pero su microdato de réplica requiere
+registro por `codex/adq-*` y el efecto es parcial. La solicitud específica
+se añadió en `solicitud-adquisicion.tsv`.
