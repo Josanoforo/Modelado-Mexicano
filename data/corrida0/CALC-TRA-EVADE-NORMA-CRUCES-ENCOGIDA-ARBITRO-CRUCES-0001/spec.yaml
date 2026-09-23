@@ -51,12 +51,12 @@ inputs:
   origen: repo
   ruta: data/corrida0/CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001/resultados.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
-  sha256: null
+  sha256: 3e5cf9eb1a883a0d33d20e8f52317fd677293e4d78ec108703f37c31d162ee27
 - id: emisiones_sello
   origen: repo
   ruta: data/corrida0/CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-EMISIONES-0001/sello.json
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
-  sha256: null
+  sha256: c1f8e61c01220a41a4ab53cc30bd29e652f74649a26098bcb70627ee72582110
 variables:
 - archivo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
   variable: BP1_20
@@ -94,6 +94,10 @@ variables:
 universo: 'DELITO con BP1_20 in {1,2} en tmod_vic ENVIPE 2025 (n=40280); cruzado por los cuatro pares
   de ejes. Es la ola RESERVADA: se abre aqui, en COMMIT-3.'
 ponderador: FAC_DEL
+filtros: BP1_20 en {1,2}; FAC_DEL positivo; EST_DIS y UPM_DIS presentes; ejes sexo,
+  edad (18-96), escolaridad_proxy y dominio_urbano_rural con sus categorias validas.
+transformacion: 'evade_norma = (BP1_20==2) AND (BP1_23 in {04,05,06,08}); R(a,b)
+  es suma(FAC_DEL*evade_norma)/suma(FAC_DEL) en cada celda de los cuatro cruces.'
 seed:
   aplica: true
   valor: 42

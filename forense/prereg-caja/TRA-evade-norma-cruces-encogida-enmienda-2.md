@@ -43,3 +43,9 @@ La spec §3 adjudica victoria solo cuando el límite inferior del IC de
 El conteo de celdas `≥¾` es descriptivo. El código de COMMIT-1 marcaba
 `GANA` con `IC inferior > 0` **o** el conteo de celdas. Se corrige ese
 desfase antes de abrir R, sin cambiar el criterio firmado ni las emisiones.
+
+El `preflight` de COMMIT-3a exigió además `filtros` y `transformacion`,
+campos omitidos del YAML de COMMIT-1 aunque definidos en la spec humana
+§0 y §4. Se completan en el YAML del árbitro junto con los dos SHA256
+de emisiones ya selladas. No se cambia la receta de R ni se abre el
+cruce en COMMIT-3a.
