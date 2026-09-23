@@ -9,6 +9,7 @@ from tools.astra.region.historia import carga_enif, carga_envipe
 from tools.astra.region.historia_v2 import carga_encig
 from tools.astra.region.historia_v3 import carga_enif as carga_enif_v3
 from tools.astra.region.enif_portafolio import desenlaces
+from tools.astra.region.envipe_complemento import complemento
 
 
 def marco():
@@ -134,3 +135,18 @@ def test_portafolio_enif_particion_y_complemento():
     assert y["no_tiene_ahorros_enif2024"].equals(y["no_ahorra"])
     assert (y["ahorra_solo_informal"] | y["ahorra_solo_formal"] |
             y["ahorra_ambas_vias"] | y["no_ahorra"]).equals(den)
+
+
+def test_complemento_envipe_invierte_intervalo_y_replicas():
+    origen = {"geografia": "01", "n": 240, "n_numerador": 90,
+              "punto": .4, "ic_inf": .3, "ic_sup": .5,
+              "replicas_p": [.35, .45], "n_efectivo_kish": 200,
+              "estado": "PUBLICABLE"}
+    fila = complemento(origen)
+    assert fila["punto"] == pytest.approx(.6)
+    assert (fila["ic_inf"], fila["ic_sup"]) == pytest.approx((.5, .7))
+    assert fila["replicas_p"] == pytest.approx([.65, .55])
+    assert fila["n_numerador"] == 150 and fila["n"] == 240
+    suprimida = {**origen, "estado": "SUPRIMIDA-N", "punto": None,
+                 "ic_inf": None, "ic_sup": None, "replicas_p": None}
+    assert complemento(suprimida)["punto"] is None
