@@ -83,7 +83,7 @@ def main() -> None:
         "RESULT de punto y límites, CALC, hashes verificados, uso y reserva.",
         "",
         f"**Integridad:** SHA-256 del inventario fuente `{hashlib.sha256(data).hexdigest()}`; "
-        "`python3 forense/analisis/catalogo/genera.py` valida sellos de CALC y "
+        "`python3 forense/analisis/catalogo/genera_catalogo.py` valida sellos de CALC y "
         "`python3 forense/analisis/catalogo/publica.py` regenera esta portada y el TSV.",
         "",
         "## Cómo leerlo",

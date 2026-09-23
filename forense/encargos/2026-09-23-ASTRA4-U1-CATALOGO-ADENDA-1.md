@@ -8,3 +8,11 @@ Fuente: informe «¿Existe en México un producto como el nuestro?» (deep searc
 3. **U1 gana una tabla: variables AMAI NSE por instrumento.** Para ENIF, ENVIPE, ENCIG, ENIGH y ENUT: cuáles de las seis variables de vivienda + escolaridad del jefe de hogar de la Regla AMAI 2024 existen en el cuestionario (por texto de pregunta, A.15), cuáles no, y si la regla es calculable o solo aproximable. Sin calcular NSE todavía: es insumo para que U5 decida si el eje **clase (AMAI)** entra junto con región. Citar la nota metodológica AMAI 2024 y, como referencia de factibilidad, el pipeline público que calcula NSE AMAI por colonia con INEGI MG/DCAH 2025 (GitHub, tema `denue`; es afirmación de un tercero, no verificado).
 4. **U5 hereda el punto 3.** Si U1 declara la regla calculable en ≥ 2 instrumentos, U5 añade el corte de clase AMAI a su hoja de firma como quinta decisión; si no, lo dictamina NO-CONSTRUIBLE con las preguntas ausentes y sigue.
 5. **Lo que no cambia.** Regla 6 (sin retadores, pilotos ni duelos) intacta; las cifras de competidores (85 M gemelos, 79 M panel, US$2B) se citan solo como [afirma]/[tercero] y nunca como hechos sobre México.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno adicional a las reservas del encargo U1 y su nota de cierre.
+
+## CONSUMIDO
+
+PR #1071 implementa para U1 la tabla AMAI y el posicionamiento. Este cierre se añade después del cuerpo sellado; la adenda original permanece intacta.

@@ -10,7 +10,7 @@
 
 La tabla [TSV](catalogo-del-mexicano-v1_0.tsv) permite buscar por área, conducta, instrumento, ola, segmento y llave. Cada fila conserva universo/denominador, escala, punto, límites de IC, naturaleza del IC, estado, firma, temporalidad, RESULT de punto y límites, CALC, hashes verificados, uso y reserva.
 
-**Integridad:** SHA-256 del inventario fuente `399726f7b9da30f0ebae821079bef9fc554dbdc114facba117f4633356c922e7`; `python3 forense/analisis/catalogo/genera.py` valida sellos de CALC y `python3 forense/analisis/catalogo/publica.py` regenera esta portada y el TSV.
+**Integridad:** SHA-256 del inventario fuente `399726f7b9da30f0ebae821079bef9fc554dbdc114facba117f4633356c922e7`; `python3 forense/analisis/catalogo/genera_catalogo.py` valida sellos de CALC y `python3 forense/analisis/catalogo/publica.py` regenera esta portada y el TSV.
 
 ## Cómo leerlo
 

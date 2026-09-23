@@ -8,7 +8,7 @@ import sys
 import unittest
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "forense/analisis/catalogo/genera.py"
+SCRIPT = ROOT / "forense/analisis/catalogo/genera_catalogo.py"
 TABLE = ROOT / "forense/analisis/catalogo/inventario-consumo-gen2.tsv"
 PUBLISHER = ROOT / "forense/analisis/catalogo/publica.py"
 PRODUCTS = [ROOT / "canon/catalogo-del-mexicano-v1_0.md", ROOT / "canon/catalogo-del-mexicano-v1_0.tsv"]

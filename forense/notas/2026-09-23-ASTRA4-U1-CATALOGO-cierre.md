@@ -1,6 +1,6 @@
 # ASTRA4-U1 · cierre y refresco de #1071
 
-El catálogo publica 1 537 lecturas de estimando/segmento/ola en cinco áreas. `forense/analisis/catalogo/genera.py` releyó 57 CALC y sus sellos: 85 usos GEN2 remiten a 72 RESULT únicos. `publica.py` regeneró portada y TSV sin variar el inventario fuente (`399726f7b9da30f0ebae821079bef9fc554dbdc114facba117f4633356c922e7`).
+El catálogo publica 1 537 lecturas de estimando/segmento/ola en cinco áreas. `forense/analisis/catalogo/genera_catalogo.py` releyó 57 CALC y sus sellos: 85 usos GEN2 remiten a 72 RESULT únicos. `publica.py` regeneró portada y TSV sin variar el inventario fuente (`399726f7b9da30f0ebae821079bef9fc554dbdc114facba117f4633356c922e7`).
 
 Tras la fusión de #1086, `python3 tools/celdas_validadas.py --linea` entrega **219** (antes 92). Siete de las nueve celdas-D de crédito de #1058 están PUNTUADA y aportan 111 celdas; k4a/k4b quedan SKIP. Otras 16 proceden de ENCIG 2025. La NC de P3 de crédito está CERRADA por `ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01`. Es validación contable de celdas, no firma de adopción ni consumo de sus RESULT por el modelo.
 
