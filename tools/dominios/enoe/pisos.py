@@ -89,7 +89,21 @@ def _lee_sdem(ruta):
                                usecols=lambda c: c.lower() in VARIABLES).rename(columns=str.lower)
 
 
-def _estadistico(f, mascara, valor, segmento, replicas, rng):
+def _plan_replicas(f, base, replicas, rng):
+    """Un solo plan por ola; incluye UPM sin personas en cada dominio."""
+    llaves = pd.MultiIndex.from_frame(
+        f.loc[base, ["_estrato", "upm"]].astype(str).drop_duplicates()
+        .sort_values(["_estrato", "upm"])
+    )
+    draws = np.zeros((replicas, len(llaves)), dtype=np.int16)
+    estratos = llaves.get_level_values(0).to_numpy()
+    for e in np.unique(estratos):
+        ix = np.flatnonzero(estratos == e)
+        draws[:, ix] = rng.multinomial(len(ix), [1 / len(ix)] * len(ix), size=replicas)
+    return llaves, draws
+
+
+def _estadistico(f, mascara, valor, segmento, plan):
     """Media de razón, réplicas PSU/estrato; suprime dominios sin soporte."""
     v = pd.to_numeric(valor, errors="coerce")
     idx = mascara & v.notna() & segmento.notna()
@@ -113,20 +127,20 @@ def _estadistico(f, mascara, valor, segmento, replicas, rng):
             out.append((seg, None, None, None, n, n_eff, k, "SUPRIMIDA-N-O-PSU"))
             continue
         punto = float(s.wv.sum() / den)
-        # Plan de multiplicidades por PSU, re-muestreado dentro de cada
-        # estrato. Las UPM de una sola unidad aportan el mismo valor.
-        draws = np.zeros((replicas, k), dtype=np.int16)
-        estratos = psu.index.get_level_values(0).to_numpy()
-        for e in np.unique(estratos):
-            ix = np.flatnonzero(estratos == e)
-            for b in range(replicas):
-                draws[b, ix] = rng.multinomial(len(ix), [1 / len(ix)] * len(ix))
+        # La misma muestra de réplicas se usa en todas las celdas. Las UPM
+        # sin personas del dominio tienen subtotal cero, pero siguen en el
+        # plan de extracción de la muestra completa.
+        llaves, plan_draws = plan
+        ix = llaves.get_indexer(psu.index)
+        if (ix < 0).any():
+            raise ValueError("UPM del dominio fuera del plan de la ola")
+        draws = plan_draws[:, ix]
         a = psu[["w", "wv"]].to_numpy(dtype=float)
         sums = draws @ a
-        rb = np.divide(sums[:, 1], sums[:, 0], out=np.full(replicas, np.nan),
+        rb = np.divide(sums[:, 1], sums[:, 0], out=np.full(len(plan_draws), np.nan),
                        where=sums[:, 0] > 0)
         rb = rb[np.isfinite(rb)]
-        if len(rb) < int(.95 * replicas):
+        if len(rb) < int(.95 * len(plan_draws)):
             out.append((seg, None, None, None, n, n_eff, k, "SUPRIMIDA-REPLICAS"))
             continue
         lo, hi = np.percentile(rb, [2.5, 97.5])
@@ -180,6 +194,7 @@ def medir_ola(ruta, ola, era, replicas=200, semilla=42):
                "pnea_est=4": flag(pnea_est, 4),
                "hrsocup": hrs, "ingocup": ing}
     rng = np.random.default_rng(semilla)
+    plan = _plan_replicas(f, base, replicas, rng)
     segmentos = _segmentos(f)
     filas = []
     for conducta, den, v, unidad in CONDUCTAS:
@@ -192,7 +207,7 @@ def medir_ola(ruta, ola, era, replicas=200, semilla=42):
             continue
         for eje, seg in segmentos.items():
             for categoria, punto, lo, hi, n, neff, psu, calidad in _estadistico(
-                    f, denominadores[den], valores[v], seg, replicas, rng):
+                    f, denominadores[den], valores[v], seg, plan):
                 filas.append({"ola": ola, "era": era, "conducta": conducta,
                               "eje": eje, "segmento": categoria, "unidad": unidad,
                               "punto": punto, "ic95_lo": lo, "ic95_hi": hi,
