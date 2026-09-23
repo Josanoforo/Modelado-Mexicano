@@ -1,0 +1,109 @@
+{
+ "corrida_id": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004--700ad2b86507",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion": false,
+  "cuenta_gen2": "SI",
+  "generacion": "GEN2",
+  "origen_numerico": "ENDIREH 2021 microdato primario, nunca GEN1",
+  "temporalidad": "RETROSPECTIVA",
+  "tipo": "DESCRIPTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T20:31:24Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 441,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "700ad2b86507ac1984e9659103d4680682d822d0",
+  "git_rama": "codex/astra5-genero-endireh-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "700ad2b86507ac1984e9659103d4680682d822d0",
+ "input_ids": [
+  "endireh2021_bd_csv_zip"
+ ],
+ "input_sha256": {
+  "endireh2021_bd_csv_zip": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e"
+ },
+ "parametros": {
+  "ancho_ic_maximo": 0.2,
+  "bootstrap_replicas": 500,
+  "cv_maximo": 0.3,
+  "hash_cuestionario_sha256": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+  "hash_descriptor_sha256": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180",
+  "hash_medidor_sha256": "25cd906485b1b9302d50004329cf69686103ecf6c0b1adedccc7bce9998f1096",
+  "hash_payload_sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+  "hash_prueba_sha256": "07daa088d430ffdb4d755d7203b5e7d4714fc858412bddeec1799c388d1af33e",
+  "metodo_ic": "bootstrap de todas las UPM A1/A2 dentro de EST_DIS; UPM sin casos en dominio aportan cero; percentiles 2.5 y 97.5",
+  "n_minimo": 100,
+  "upm_minimas": 5
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENDIREH2021-PF-N-ELEGIBLES",
+  "RESULT-ENDIREH2021-PF-TABLA"
+ ],
+ "script_blob_sha256": "038782505ca37577e414833c62ace409908fd1af0afab476f5986dba39da0fd6",
+ "script_path": "data/corrida0/CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260923
+ },
+ "spec_id": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "b20c36f441f9680607baf6f5519d13561615c66fa971de0c6538c9635be44c14",
+ "spec_yaml_sha256": "09f606baef07e3ab66daa4d80a782012d4e8c6642e43ef023557868071c9a5bb",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "semilla y sumas deterministas",
+  "tipo": "flotante"
+ }
+}

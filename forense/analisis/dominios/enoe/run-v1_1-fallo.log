@@ -1,0 +1,257 @@
+PRE-FLIGHT CALC-ENOE-PISOS-0002   (data/corrida0/CALC-ENOE-PISOS-0002)
+  [COMMITEADO] forense/prereg-caja/ENOE-PISOS-spec-v1_1.md
+  [COMMITEADO] data/corrida0/CALC-ENOE-PISOS-0002/spec.yaml
+  [NO-EN-MAIN] spec_md_sha256
+              declarado en spec.yaml = 799f214ab51f3b46fbbc3f83da1cc8faf5932e9ecddd602a8548bf422ba43163
+              arbol                  = 799f214ab51f3b46fbbc3f83da1cc8faf5932e9ecddd602a8548bf422ba43163
+              origin/main            = NO-EN-MAIN
+  [UNICOS] ids de resultados: 5 declarados
+  [UNICOS] ids de inputs: 48 declarados
+  [EXISTE] script data/corrida0/CALC-ENOE-PISOS-0002/medidor.py
+              script_blob_sha256 = 42377a482802f3f5ad21f7851d5923da52831082714a5a309bbea02d0e52fefa
+  inputs declarados: 48
+    [COINCIDE] enoe_2005_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2005trim1_csv.zip
+              sha256 esperado = a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33
+              sha256 actual   = a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33
+              tamano          = 33534030
+    [COINCIDE] enoe_2008_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2008trim1_csv.zip
+              sha256 esperado = a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94
+              sha256 actual   = a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94
+              tamano          = 27278375
+    [COINCIDE] enoe_2012_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2012trim1_csv.zip
+              sha256 esperado = fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5
+              sha256 actual   = fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5
+              tamano          = 31269330
+    [COINCIDE] enoe_2014_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2014trim1_csv.zip
+              sha256 esperado = fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2
+              sha256 actual   = fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2
+              tamano          = 25134524
+    [COINCIDE] enoe_2016_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2016trim1_csv.zip
+              sha256 esperado = 8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d
+              sha256 actual   = 8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d
+              tamano          = 29867488
+    [COINCIDE] enoe_2016_2t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2016trim2_csv.zip
+              sha256 esperado = 4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f
+              sha256 actual   = 4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f
+              tamano          = 26779138
+    [COINCIDE] enoe_2016_3t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2016trim3_csv.zip
+              sha256 esperado = 9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28
+              sha256 actual   = 9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28
+              tamano          = 26452611
+    [COINCIDE] enoe_2016_4t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2016trim4_csv.zip
+              sha256 esperado = f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500
+              sha256 actual   = f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500
+              tamano          = 26466686
+    [COINCIDE] enoe_2017_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2017trim1_csv.zip
+              sha256 esperado = 945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8
+              sha256 actual   = 945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8
+              tamano          = 29455399
+    [COINCIDE] enoe_2017_2t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2017trim2_csv.zip
+              sha256 esperado = bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066
+              sha256 actual   = bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066
+              tamano          = 27024159
+    [COINCIDE] enoe_2017_3t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2017trim3_csv.zip
+              sha256 esperado = 1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973
+              sha256 actual   = 1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973
+              tamano          = 26498706
+    [COINCIDE] enoe_2017_4t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2017trim4_csv.zip
+              sha256 esperado = af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4
+              sha256 actual   = af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4
+              tamano          = 26664215
+    [COINCIDE] enoe_2018_1t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2018trim1_csv.zip
+              sha256 esperado = e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33
+              sha256 actual   = e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33
+              tamano          = 29646952
+    [COINCIDE] enoe_2018_2t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2018trim2_csv.zip
+              sha256 esperado = 2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f
+              sha256 actual   = 2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f
+              tamano          = 26835694
+    [COINCIDE] enoe_2018_3t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2018trim3_csv.zip
+              sha256 esperado = 7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7
+              sha256 actual   = 7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7
+              tamano          = 26606485
+    [COINCIDE] enoe_2018_4t_csv_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/2018trim4_csv.zip
+              sha256 esperado = 9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774
+              sha256 actual   = 9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774
+              tamano          = 26724182
+    [COINCIDE] enoe_2019_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/2019trim1_csv.zip
+              sha256 esperado = 9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89
+              sha256 actual   = 9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89
+              tamano          = 31269571
+    [COINCIDE] enoe_2019_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/2019trim2_csv.zip
+              sha256 esperado = 721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36
+              sha256 actual   = 721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36
+              tamano          = 28592043
+    [COINCIDE] enoe_2019_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/2019trim3_csv.zip
+              sha256 esperado = 6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b
+              sha256 actual   = 6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b
+              tamano          = 31116800
+    [COINCIDE] enoe_2019_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/2019trim4_csv.zip
+              sha256 esperado = d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58
+              sha256 actual   = d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58
+              tamano          = 28058037
+    [COINCIDE] enoe_2020_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/2020trim1_csv.zip
+              sha256 esperado = 8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b
+              sha256 actual   = 8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b
+              tamano          = 27350239
+    [COINCIDE] enoe_n_2020_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2020_trim3_csv.zip
+              sha256 esperado = 924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3
+              sha256 actual   = 924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3
+              tamano          = 19827422
+    [COINCIDE] enoe_n_2020_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2020_trim4_csv.zip
+              sha256 esperado = 5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3
+              sha256 actual   = 5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3
+              tamano          = 23007909
+    [COINCIDE] enoe_n_2021_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2021_trim1_csv.zip
+              sha256 esperado = 208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52
+              sha256 actual   = 208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52
+              tamano          = 24586788
+    [COINCIDE] enoe_n_2021_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2021_trim2_csv.zip
+              sha256 esperado = a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b
+              sha256 actual   = a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b
+              tamano          = 23887444
+    [COINCIDE] enoe_n_2021_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2021_trim3_csv.zip
+              sha256 esperado = 853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d
+              sha256 actual   = 853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d
+              tamano          = 32559052
+    [COINCIDE] enoe_n_2021_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2021_trim4_csv.zip
+              sha256 esperado = 1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b
+              sha256 actual   = 1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b
+              tamano          = 27117836
+    [COINCIDE] enoe_n_2022_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2022_trim1_csv.zip
+              sha256 esperado = 5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6
+              sha256 actual   = 5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6
+              tamano          = 27691497
+    [COINCIDE] enoe_n_2022_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2022_trim2_csv.zip
+              sha256 esperado = 19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a
+              sha256 actual   = 19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a
+              tamano          = 30537564
+    [COINCIDE] enoe_n_2022_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2022_trim3_csv.zip
+              sha256 esperado = fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5
+              sha256 actual   = fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5
+              tamano          = 29571337
+    [COINCIDE] enoe_n_2022_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_n_2022_trim4_csv.zip
+              sha256 esperado = 1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d
+              sha256 actual   = 1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d
+              tamano          = 29670618
+    [COINCIDE] enoe_2023_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2023_trim1_csv.zip
+              sha256 esperado = ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c
+              sha256 actual   = ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c
+              tamano          = 37487716
+    [COINCIDE] enoe_2023_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2023_trim2_csv.zip
+              sha256 esperado = e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5
+              sha256 actual   = e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5
+              tamano          = 39500761
+    [COINCIDE] enoe_2023_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2023_trim3_csv.zip
+              sha256 esperado = cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752
+              sha256 actual   = cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752
+              tamano          = 40893331
+    [COINCIDE] enoe_2023_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2023_trim4_csv.zip
+              sha256 esperado = 24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e
+              sha256 actual   = 24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e
+              tamano          = 40681812
+    [COINCIDE] enoe_2024_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2024_trim1_csv.zip
+              sha256 esperado = 5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b
+              sha256 actual   = 5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b
+              tamano          = 37004177
+    [COINCIDE] enoe_2024_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2024_trim2_csv.zip
+              sha256 esperado = 13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285
+              sha256 actual   = 13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285
+              tamano          = 31773308
+    [COINCIDE] enoe_2024_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2024_trim3_csv.zip
+              sha256 esperado = 6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3
+              sha256 actual   = 6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3
+              tamano          = 43272328
+    [COINCIDE] enoe_2024_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip
+              sha256 esperado = 817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305
+              sha256 actual   = 817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305
+              tamano          = 43410469
+    [COINCIDE] enoe_2025_1t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2025_trim1_csv.zip
+              sha256 esperado = dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e
+              sha256 actual   = dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e
+              tamano          = 40919680
+    [COINCIDE] enoe_2025_2t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2025_trim2_csv.zip
+              sha256 esperado = 291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722
+              sha256 actual   = 291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722
+              tamano          = 38752236
+    [COINCIDE] enoe_2025_3t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2025_trim3_csv.zip
+              sha256 esperado = d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022
+              sha256 actual   = d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022
+              tamano          = 40062680
+    [COINCIDE] enoe_2025_4t_microdatos  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_microdatos_post2019/enoe_2025_trim4_csv.zip
+              sha256 esperado = e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d
+              sha256 actual   = e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d
+              tamano          = 43383478
+    [COINCIDE] IN-ENOE-MEDIDOR  origen=repo  ruta=tools/dominios/enoe/pisos_v1_1.py
+              sha256 real     = c0b6b15bccb8997ebfdd04b7fdae4ea2ecc3f89d1d205799538af46dfdb5b143
+              sha256 declarado= c0b6b15bccb8997ebfdd04b7fdae4ea2ecc3f89d1d205799538af46dfdb5b143
+    [COINCIDE] IN-ENOE-MATRIZ  origen=repo  ruta=data/enoe-reactivos-olas-v1_0.tsv
+              sha256 real     = 735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463
+              sha256 declarado= 735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463
+    [COINCIDE] IN-ENOE-U0  origen=repo  ruta=forense/analisis/dominios/enoe/U0-corte-consumido.tsv
+              sha256 real     = fb7a0385b70278cff5c84ecaf3abb6b44fdc4a0e21ae1fdb832f4f03e81a79ac
+              sha256 declarado= fb7a0385b70278cff5c84ecaf3abb6b44fdc4a0e21ae1fdb832f4f03e81a79ac
+    [COINCIDE] IN-ENOE-OLAS  origen=repo  ruta=data/enoe-olas-elegibles-preparacion-v1_0.tsv
+              sha256 real     = bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b
+              sha256 declarado= bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b
+    [COINCIDE] enoe_n_diseno_muestral_pdf  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra5-trabajo-enoe-1/data/raw/enoe_n_diseno_muestral.pdf
+              sha256 esperado = 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
+              sha256 actual   = 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
+              tamano          = 1192674
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"calibracion": "SIN-COVARIANZA-LONGITUDINAL-PARA-CALIBRAR", "ejes": ["nacional", "sexo", "edad", "escolaridad", "localidad", "entidad"], "min_n": 100, "min_n_kish": 100, "min_upm": 2, "olas": [{"era": "clasica", "id": "enoe_2005_1t_csv_microdatos", "ola": "2005T1"}, {"era": "clasica", "id": "enoe_2008_1t_csv_microdatos", "ola": "2008T1"}, {"era": "clasica", "id": "enoe_2012_1t_csv_microdatos", "ola": "2012T1"}, {"era": "clasica", "id": "enoe_2014_1t_csv_microdatos", "ola": "2014T1"}, {"era": "clasica", "id": "enoe_2016_1t_csv_microdatos", "ola": "2016T1"}, {"era": "clasica", "id": "enoe_2016_2t_csv_microdatos", "ola": "2016T2"}, {"era": "clasica", "id": "enoe_2016_3t_csv_microdatos", "ola": "2016T3"}, {"era": "clasica", "id": "enoe_2016_4t_csv_microdatos", "ola": "2016T4"}, {"era": "clasica", "id": "enoe_2017_1t_csv_microdatos", "ola": "2017T1"}, {"era": "clasica", "id": "enoe_2017_2t_csv_microdatos", "ola": "2017T2"}, {"era": "clasica", "id": "enoe_2017_3t_csv_microdatos", "ola": "2017T3"}, {"era": "clasica", "id": "enoe_2017_4t_csv_microdatos", "ola": "2017T4"}, {"era": "clasica", "id": "enoe_2018_1t_csv_microdatos", "ola": "2018T1"}, {"era": "clasica", "id": "enoe_2018_2t_csv_microdatos", "ola": "2018T2"}, {"era": "clasica", "id": "enoe_2018_3t_csv_microdatos", "ola": "2018T3"}, {"era": "clasica", "id": "enoe_2018_4t_csv_microdatos", "ola": "2018T4"}, {"era": "clasica", "id": "enoe_2019_1t_microdatos", "ola": "2019T1"}, {"era": "clasica", "id": "enoe_2019_2t_microdatos", "ola": "2019T2"}, {"era": "clasica", "id": "enoe_2019_3t_microdatos", "ola": "2019T3"}, {"era": "clasica", "id": "enoe_2019_4t_microdatos", "ola": "2019T4"}, {"era": "clasica", "id": "enoe_2020_1t_microdatos", "ola": "2020T1"}, {"era": "enoen", "id": "enoe_n_2020_3t_microdatos", "ola": "2020T3"}, {"era": "enoen", "id": "enoe_n_2020_4t_microdatos", "ola": "2020T4"}, {"era": "enoen", "id": "enoe_n_2021_1t_microdatos", "ola": "2021T1"}, {"era": "enoen", "id": "enoe_n_2021_2t_microdatos", "ola": "2021T2"}, {"era": "enoen", "id": "enoe_n_2021_3t_microdatos", "ola": "2021T3"}, {"era": "enoen", "id": "enoe_n_2021_4t_microdatos", "ola": "2021T4"}, {"era": "enoen", "id": "enoe_n_2022_1t_microdatos", "ola": "2022T1"}, {"era": "enoen", "id": "enoe_n_2022_2t_microdatos", "ola": "2022T2"}, {"era": "enoen", "id": "enoe_n_2022_3t_microdatos", "ola": "2022T3"}, {"era": "enoen", "id": "enoe_n_2022_4t_microdatos", "ola": "2022T4"}, {"era": "pos2023", "id": "enoe_2023_1t_microdatos", "ola": "2023T1"}, {"era": "pos2023", "id": "enoe_2023_2t_microdatos", "ola": "2023T2"}, {"era": "pos2023", "id": "enoe_2023_3t_microdatos", "ola": "2023T3"}, {"era": "pos2023", "id": "enoe_2023_4t_microdatos", "ola": "2023T4"}, {"era": "pos2023", "id": "enoe_2024_1t_microdatos", "ola": "2024T1"}, {"era": "pos2023", "id": "enoe_2024_2t_microdatos", "ola": "2024T2"}, {"era": "pos2023", "id": "enoe_2024_3t_microdatos", "ola": "2024T3"}, {"era": "pos2023", "id": "enoe_2024_4t_microdatos", "ola": "2024T4"}, {"era": "pos2023", "id": "enoe_2025_1t_microdatos", "ola": "2025T1"}, {"era": "pos2023", "id": "enoe_2025_2t_microdatos", "ola": "2025T2"}, {"era": "pos2023", "id": "enoe_2025_3t_microdatos", "ola": "2025T3"}, {"era": "pos2023", "id": "enoe_2025_4t_microdatos", "ola": "2025T4"}], "replicas": 200}
+  [DECLARADO] tolerancia = {"abs": 1e-10, "tipo": "flotante"}
+  [DECLARADO] seed       = {'aplica': True, 'valor': 42, 'rng': 'numpy.PCG64'}
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SIN-SELLO-PREVIO] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-ENOE-PISOS-0002/sello.json]
+  [AVISO] spec_md_no_esta_en_origin_main -- primera corrida de una spec aun no fusionada; se DECLARA, no se da por fusionada
+
+PRE-FLIGHT: VERDE
+
+RUN CALC-ENOE-PISOS-0002
+RUN: FALLO -- nada se sella:
+  medidor_fallo:ValueError: 2025T3: faltan columnas obligatorias ['ent']

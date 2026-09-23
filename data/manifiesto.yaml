@@ -2798,6 +2798,7 @@
 
 - id: enoe_2026_1t_csv
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
+  estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR
   url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/datosabiertos/2026/conjunto_de_datos_enoe_2026_1t_csv.zip
   fecha_descarga: '2026-07-30'
   descargado_por: no determinado -- el archivo ya estaba en data_raw al empezar esta sesión,
@@ -2909,6 +2910,20 @@
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.6.87.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4 · host
     FF-5563
+
+- id: enoe_n_diseno_muestral_pdf
+  usado_para: ASTRA5-U1-TRABAJO-ENOE -- diseño estratificado/UPM de ENOEN y edición posterior
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_trim3_2020-trim4_2022.zip
+  fecha_descarga: '2026-07-30'
+  descargado_por: extracción documental de paquete ya registrado, ASTRA5-U1, 23/sep/2026
+  archivo: enoe_n_diseno_muestral.pdf
+  sha256: 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
+  tamano_bytes: 1192674
+  formato: PDF documental; miembro 3. Metodología/Metodologías/enoe_n_diseno_muestral.pdf
+    del id enoen_trim3_2020_trim4_2022_documentacion_zip
+  licencia: Términos de Libre Uso de la Información del INEGI
+  nota: Hash del ZIP padre recalculado 2a25ab364e282cf1caff5a45b29ba104a26a38d7fda88fe1720b89ae299f7ed1;
+    hash del miembro recalculado antes de extraer. No es microdato ni ola adicional.
 
 - id: enoe_cuestionario_ampliado_v5_pdf
   usado_para: CAL-G3 / horizonte_temporal -- pendiente de pre-registro
@@ -15356,6 +15371,7 @@
 - id: enoe_2026_1t_microdatos
   usado_para: T4 ADQ-DISENO-1 / FP-110-b -- re-adquisicion de ENOE post-2019 via /microdatos/
     (ruta canonica), en paralelo a la entrada preexistente via /datosabiertos/
+  estado_reserva: RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR
   url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2026_trim1_csv.zip
   fecha_descarga: '2026-08-24'
   descargado_por: ACTO ADQ-DISENO-1, 24/ago/2026
@@ -30957,6 +30973,35 @@
   formato: PDF (diseño muestral ENIF 2024)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enut2024_cuestionario_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: ENUT 2024 horas semanales de trabajo no remunerado por
+    sexo y tamaño de localidad; texto primario sección VI'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/enut_2024_cuestionario.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/enut_2024_cuestionario.pdf
+  sha256: 949752e35fbc54fbe513466eb7caab32cef5010f046cb7777aa8490832769a62
+  tamano_bytes: 1694184
+  formato: PDF, cuestionario ENUT 2024, 74 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Sección VI actividades cotidianas, preguntas 6.3-6.17
+    de trabajo no remunerado.
+
+- id: enut2024_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 TIME-002: diseño y estimación de horas semanales ENUT 2024 por sexo/localidad'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enut/2024/doc/889463926528.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: enut2024/889463926528.pdf
+  sha256: 441a0cc229d62ce7b4829e847738b2b3b631ef05b44958e85b47148ecedbd2a2
+  tamano_bytes: 1887070
+  formato: PDF, diseño muestral ENUT 2024, 24 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
+    factores por persona y varianza.
 
 - id: envipe2025_diseno_muestral_pdf
   usado_para: documentación muestral ENVIPE 2025 para contrato ASTRA5-U0-POL-002 de cifra

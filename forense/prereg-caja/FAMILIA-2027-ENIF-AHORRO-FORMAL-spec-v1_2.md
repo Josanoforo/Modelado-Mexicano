@@ -1,0 +1,41 @@
+# FAMILIA-2027-ENIF-AHORRO-FORMAL · spec humana condicional v1.2
+
+**Estado: CONDICIONAL.** “2027” es etiqueta de trabajo. La publicación oficial está NO-CONFIRMADA en el calendario INEGI 2026 consultado el 23/sep/2026; no inferir fecha de levantamiento o publicación por el nombre. No se abre dato futuro.
+
+## Estimando cerrado y piso
+
+- Instrumento/ola objetivo: ENIF 2027; referencia: 2024; fecha oficial de levantamiento y publicación: NO-CONFIRMADAS. Unidad: **persona de 18+**, escala: proporción [0,1]. Estimando único: proporción ponderada de personas 18+ con ahorro formal (denominador compartido B de ENIF AHO; FAC_PER).
+- Piso inmutable: `RESULT-ENIF-AHO-B-P-FORMAL-P` de `CALC-ENIF-0001`, cuyo `sello.json` tiene SHA-256 `0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6`. La identidad del archivo y el valor RESULT se comprueban por separado; la tolerancia de este protocolo no altera la tolerancia numérica del CALC.
+- Si una ola intermedia altera universo, reactivo, códigos o unidad, no se sustituye el piso ni se elige otro estimando después de ver R: se emite `NO-COMPARABLE` o `NO-ESTIMABLE` según la regla de abajo.
+- **Numerador y denominador:** Numerador = suma(FAC_PER) entre U_B personas 18+ con cualquier P5_6_1…P5_6_9='1'. Denominador = suma(FAC_PER) de todas las personas 18+ con FAC_PER finito >0 (U_B), no sólo quienes respondieron sí/no. El contrato histórico sólo declara 1, 2 y blanco 'b'; 'b' significa que no tiene esa cuenta. Si ningún tipo vale 1, la persona aporta 0 y se cuenta en B-N-SIN-NINGUNA-CUENTA. Si la ola futura incorpora NS/NR, mantenerlos contados dentro del denominador bajo la regla literal '1 si alguno es 1; 0 si ninguno', con desglose explícito; si no se puede aplicar sin ambigüedad o cambia el sentido del código, NO-COMPARABLE/NO-ESTIMABLE según falte equivalencia o soporte.
+
+## Propuesta técnica para decisión pre-dato
+
+- **Tolerancia material propuesta:** ±2.0 puntos porcentuales (pp) alrededor del punto fijo: dos unidades por cada cien en la escala del estimando. Se elige como margen absoluto pequeño, redondo, común y fácil de interpretar entre tasas base muy distintas; usar un margen relativo haría variar el error tolerado entre familias. Es una decisión práctica, no una conclusión empírica, ni precisión/potencia acreditada, equivalencia psicológica o la tolerancia numérica del CALC. Reportar siempre error absoluto y signo.
+- **Soporte mínimo propuesto:** n no ponderada ≥ 10,000; ≥150 estratos y ≥1,000 UPM utilizables; cero personas sin peso/diseño; el CALC 2024 tiene n=13,502, 190 estratos, 2,164 UPM y cero sin diseño. Justificación operativa: n=10,000 conserva 74% del n histórico (13,502); 150/190 estratos y 1,000/2,164 UPM son pisos operativos explícitos, no límites calculados de error. Los conteos/estratos/UPM mínimos filtran soporte muy ralo y permiten exigir presencia suficiente de diseño; no certifican precisión, potencia, cobertura nominal ni suficiencia para detectar 2 pp. Además, el IC futuro requiere ≥1,000 réplicas válidas de 2,000 y denominador válido en ≥95% de réplicas. Incumplimiento: `NO-ESTIMABLE`; no relajar tras R.
+- **Faltantes:** No excluir del denominador los blancos de P5_6_j: el contrato CALC-ENIF-0001 especifica que 'b' significa no tiene esa cuenta; con ningún código 1, formal_cualquiera=0 y se cuenta aparte. El contrato sellado no declara NS/NR en P5_6_j. Si la ola futura los incorpora, permanecerán en U_B, se reportarán por código y masa FAC_PER y la regla literal histórica les da 0 sólo cuando ningún componente sea 1; no se hará imputación distinta. Si el instrumento los define como falta que debe excluirse, cambiaría el denominador y sería NO-COMPARABLE; sin conteos/masa para verificar, NO-ESTIMABLE.
+- **Comparabilidad:** Mismo universo persona 18+, reactivo y categorías que definen ahorro formal, FAC_PER y regla de dominio. Recodificación que conserve significado y partición documentable: sensibilidad descriptiva sin cambiar la primaria. Cambio de universo, ponderador o concepto: NO-COMPARABLE.
+
+## Dictamen prospectivo congelado
+
+Antes de abrir la ola, COMMIT-1 congela especificación YAML, código, variables, pesos, universo, soporte, tratamiento de faltantes, regla de comparabilidad y semillas; se reserva una única apertura por instrumento y se reporta el primer resultado generado.
+
+1. Primero resuelve la compuerta: si el estimando/universo/unidad/códigos/pesos no son equivalentes, `NO-COMPARABLE`; si falta soporte, dato para el contraste o un IC válido conforme al diseño, `NO-ESTIMABLE`. Un estrato de una UPM que aporte varianza cero deja el IC como límite inferior de anchura; salvo que antes de abrir se haya fijado un método de varianza válido para ese caso, no sirve para dictaminar y queda `NO-ESTIMABLE`. Sólo con ambas compuertas superadas y un intervalo finito ordenado se asigna exactamente una etiqueta estadística.
+2. Ejecutar bootstrap de UPM dentro de estrato con el diseño oficial. Compartir apertura y réplica entre familias de una misma ola; nunca tratar outcomes del mismo instrumento como oportunidades independientes de observar R. Guardar cada `R_k`, y calcular directamente `d_k = R_k - p0` en cada réplica (p0 es el punto histórico fijo), más error puntual con signo, |d|, y fracción de réplicas con |d_k|≤0.02. Obtener IC95 percentil de los `d_k`; no reconstruir réplicas desde extremos de IC marginales. Si el diseño produce varianza cero por estratos de una UPM, reportarlo como limitación del IC y no afirmar calibración/cobertura.
+3. Para IC95=[L,U] en proporción (equivale a pp tras multiplicar por 100), reglas cerradas: `COMPATIBLE-CON-TOLERANCIA` si **−0.02 ≤ L y U ≤ +0.02** (equivale a todo el IC dentro de [−2,+2] pp, límites incluidos); `DESVÍO-MATERIAL` si **U < −0.02 o L > +0.02** (estrictamente separado de la banda); `INDETERMINADO` en todo otro caso, incluidos intervalos anchos y los que sólo tocan la banda por un extremo. No se exige que el IC contenga cero: un IC estrecho [0.007,0.013] queda compatible. La regla clasifica un contraste local, no calibra un sistema.
+4. Casos de comprobación (pp): [−5,+5]→INDETERMINADO; [+0.7,+1.3]→COMPATIBLE-CON-TOLERANCIA aunque no incluye 0; [+2.1,+3]→DESVÍO-MATERIAL; [−2,+2]→COMPATIBLE-CON-TOLERANCIA; [+2,+2.5] y [−2.5,−2]→INDETERMINADO; [+2.01,+2.5]→DESVÍO-MATERIAL. Con intervalo válido, ordenado y finito estas tres etiquetas son mutuamente excluyentes y exhaustivas.
+5. Una sola comparación dentro de tolerancia permite decir únicamente **compatible con esta tolerancia local** para este estimando, piso y ola. No permite declarar `CALIBRADO`, calibración general, estabilidad entre olas ni cobertura nominal. Sin segundo objeto, ΔMAE y superioridad B-bis son `NO-APLICABLE`.
+
+## Precisión disponible y brecha
+
+El padre guarda IC95 por bootstrap de UPM dentro de estrato: [0.274161, 0.296777], 190 estratos, 2,164 UPM, sin estrato de UPM única; no guarda las réplicas. La media del IC no mide incertidumbre del error prospectivo ni potencia. Hace falta el vector de réplicas futuras emparejadas con el piso fijo y n efectivo para IC del error/potencia.
+
+La banda ±2 pp es una decisión práctica propuesta, no precisión acreditada. Efecto mínimo detectable, potencia y error tipo I **no son calculables** con los artefactos actuales. La condición de apertura exige guardar el vector de diferencias por réplica, soporte efectivo y conteos de UPM/estratos; si faltan, el resultado queda `NO-ESTIMABLE`, nunca se fabrica incertidumbre.
+
+## Condiciones verificables para activación
+
+Fecha oficial de publicación dentro de 23/sep/2026–23/mar/2028; cuestionario público cotejado; ninguna ola intermedia cambia la identidad del estimando; especificación técnica y código congelados antes de abrir esa única ola.
+
+Además, las dos familias del mismo instrumento se evalúan en una sola apertura y un mismo paquete de réplica cuando técnicamente comparten diseño. Son dos estimandos predeclarados con resultados conjuntos, no dos oportunidades independientes de mirar R ni una selección de ganador.
+
+Fuente de selección: catálogo U1, commit `0ac21b6c`. Este artefacto propone protocolo; no autoriza microdatos, olas reservadas, otro piloto, otro retador ni CALC en esta unidad.

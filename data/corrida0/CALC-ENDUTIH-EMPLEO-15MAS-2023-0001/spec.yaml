@@ -1,0 +1,62 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENDUTIH-EMPLEO-15MAS-2023-0001
+spec_md: ../../../forense/prereg-caja/ENDUTIH-EMPLEO-15MAS-spec-v1_0.md
+spec_md_sha256: 8ebf0caa171f2dea02ee3761c549a23b41c69fc2178264d44a7ad29ea0acccaa
+script: data/corrida0/CALC-ENDUTIH-EMPLEO-15MAS-2023-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-DESCRIPTIVO-TECNOLOGIA
+  dominio: tecnologia
+  ola: '2023'
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO-ORIGINAL
+  temporalidad: RETROSPECTIVA
+  calibracion: SIN-HISTORIA-PARA-CALIBRAR
+inputs:
+  - {id: endutih_2023_fd_endutih2023, origen: manifiesto}
+  - {id: endutih_2023_endutih2023_bd_dbf, origen: manifiesto}
+  - id: ENDUTIH-EMPLEO-15MAS-MEDIDOR
+    origen: repo
+    funcion: CODIGO
+    ruta: tools/dominios/endutih/empleo15.py
+    sha256: 3bcb3e3a2c6d184b5308e83bc3f459729ddd7120681827f12f239694c1edc968
+  - id: ENDUTIH-PISOS-FUNCIONES
+    origen: repo
+    funcion: CODIGO
+    ruta: tools/dominios/endutih/pisos.py
+    sha256: 0b25cd1036508eb636ba18a9bfbe6de5eb3f797dc1c2be4c083c7a596c02e622
+  - id: ENDUTIH-DBFMINI
+    origen: repo
+    funcion: CODIGO
+    ruta: tests/dbfmini.py
+    sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+variables:
+  - {archivo: 'tic_2023_usuarios.DBF', variable: P7_1, rol: filtro-internet}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: P7_10_2, rol: busqueda-empleo}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: EDAD, rol: filtro-15-mas}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: FAC_PER, rol: ponderador}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: EST_DIS, rol: estrato}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: UPM_DIS, rol: conglomerado}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: SEXO, rol: eje}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: NIVEL, rol: eje}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: TLOC, rol: eje}
+  - {archivo: 'tic_2023_usuarios.DBF', variable: ENT, rol: eje-entidad}
+universo: Persona elegida 15+ usuaria de internet en tres meses, respuesta 1 o 2 a P7_10_2.
+filtros: Edad conocida 6..97; edad 6..14 y no usuarios 15+ SALTO; blanco elegible NR; n minimo 100.
+ponderador: FAC_PER
+transformacion: Razon de sumas ponderadas por dominio univariado; sin imputacion.
+estimando: Proporcion de usuarios de internet 15+ que buscaron informacion de empleos o bolsas de trabajo en tres meses.
+seed: {aplica: true, valor: 20260923, rng: numpy.PCG64}
+parametros:
+  ola: '2023'
+  bd_miembro: 'tic_2023_usuarios.DBF'
+  entidad: ENT
+  n_minimo: 100
+  replicas: 399
+  metodo_ic: percentiles_2_5_97_5_bootstrap_UPM_estratificado
+dependencias_materiales: [numpy]
+resultados:
+  - {id: RESULT-ENDUTIH-EMPLEO-15MAS-2023-TABLA, tipo: texto, unidad: 'JSON de proporcion 0..1, IC95, estados, n y replicas agregadas'}
+tolerancia: {tipo: texto, exacta: true}
+

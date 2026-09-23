@@ -1,0 +1,130 @@
+calc_id: CALC-ENDIREH-PISOS-2021-FAMILIAR-0001
+spec_md: spec.md
+spec_md_sha256: 9d5a24afade8191ebec69bfdf31376d4aa6fa950183150ab41c6e0918c4329af
+script: data/corrida0/CALC-ENDIREH-PISOS-2021-FAMILIAR-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2021 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh2021_bd_csv_zip
+  origen: manifiesto
+variables:
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_1
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_2
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_3
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_4
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_5
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_6
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_7
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_8
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_9
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_10
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_11
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_12
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_13
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_14
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_15
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_16
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_17
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_18
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_19
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: P11_1_20
+  rol: acto familiar desde octubre 2020
+- archivo: TB_SEC_XI.csv
+  variable: ID_PER
+  rol: diseño o elegibilidad
+- archivo: TB_SEC_XI.csv
+  variable: T_INSTRUM
+  rol: diseño o elegibilidad
+- archivo: TB_SEC_XI.csv
+  variable: FAC_MUJ
+  rol: diseño o elegibilidad
+- archivo: TB_SEC_XI.csv
+  variable: EST_DIS
+  rol: diseño o elegibilidad
+- archivo: TB_SEC_XI.csv
+  variable: UPM_DIS
+  rol: diseño o elegibilidad
+- archivo: TSDem.csv
+  variable: EDAD
+  rol: corte
+- archivo: TSDem.csv
+  variable: NIV
+  rol: corte
+universo: Mujeres 15+ A1/A2/B1/B2/C1/C2 con respuesta conocida a unión familiar.
+filtros: 11.1 unión 1-3/4, otros códigos desconocidos.
+ponderador: FAC_MUJ sin normalizar
+transformacion: Unión de 20 actos, no suma; ventana octubre 2020 a entrevista 2021.
+estimando: Proporción descriptiva de algún acto familiar; sin causalidad.
+dependencias_materiales:
+- numpy
+parametros:
+  bootstrap_replicas: 200
+  metodo_ic: bootstrap UPM completas dentro de EST_DIS, dominios cero
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: a3c9847ec253e12e90f99a6fa016caaa1b7d93978a39e7e8d5649e2625d2aab4
+  hash_prueba_sha256: 70c7d0579a6563562b9360a15f2d683026add9be982ec705ba6df886e841d630
+  hash_descriptor_sha256: 5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180
+  hash_cuestionario_sha256: d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1
+  hash_payload_sha256: e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2021-FAM-N-ELEGIBLES
+  tipo: entero
+  unidad: mujeres 15+ con factor válido
+- id: RESULT-ENDIREH2021-FAM-TABLA
+  tipo: texto
+  unidad: tabla de proporciones y réplicas agregadas

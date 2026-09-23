@@ -1,0 +1,62 @@
+calc_id: CALC-RELEVO-ENCIG23-P83-0001-v1_1
+repite_de: CALC-RELEVO-ENCIG23-P83-0001
+spec_md: spec.md
+spec_md_sha256: 1026541871a215fd63c123c872f81d7b9200da3c7d59f11d8fb12f53d22c3366
+script: data/corrida0/CALC-RELEVO-ENCIG23-P83-0001-v1_1/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: TASA-PERSONA-SOLICITUD-CON-RESERVA-DE-CORRESPONDENCIA
+  cuenta_gen2: PENDIENTE-DE-MESA
+  adopta: NO
+  origen_numerico: MICRODATO-MANIFESTADO
+  validacion_independiente: NO-HECHA
+  contaminacion_declarada: "Conocidos prior 0.62/0.38, análogo 2025 y P8_4 de 2023 antes de congelar; soporte de P8_3 de 2023 desconocido."
+inputs:
+  - {id: encig23_base_datos_csv, origen: manifiesto}
+  - {id: encig23_estructura_base_datos_pdf, origen: manifiesto}
+  - {id: encig23_cuestionario_pdf, origen: manifiesto}
+variables:
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_1, rol: solicitud o intento directo, codigos: "1 sí; 2 no; 9 NS/NR; NA/blanco falta"}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_2, rol: tercero o coyote, codigos: "1 sí; 2 no; 9 NS/NR; NA/blanco falta"}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: P8_3_3, rol: insinuación o condiciones, codigos: "1 sí; 2 no; 9 NS/NR; NA/blanco falta"}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: FAC_P18, rol: ponderador de persona 18+}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: EST_DIS, rol: completitud de estrato}
+  - {archivo: encig2023_01_sec1_A_3_4_5_8_9_10.csv, variable: UPM_DIS, rol: completitud de UPM}
+universo: "Personas informantes elegidas ENCIG 2023; SOLANY: tres incisos válidos {1,2} y FAC_P18 finito positivo; SOL1: inciso 1 válido y mismo criterio de peso."
+filtros: "9, NA, blanco y B excluidos por denominador; peso no positivo/no finito excluido. Se informa soporte completo."
+ponderador: "FAC_P18, de tabla de persona; FAC_TRA no aplica."
+transformacion: "SOLANY=I(cualquier 1 de tres incisos); SOL1=I(P8_3_1=1); complemento SOLANY contado sobre mismo denominador."
+estimando: "Proporción de personas con solicitud/intento/insinuación en trámites de 2023, no pago efectuado."
+dependencias_materiales: []
+parametros:
+  miembro: encig2023_01_sec1_A_3_4_5_8_9_10.csv
+  blanco_literal: ["", B, NA]
+  codigos_validos: ["1", "2"]
+  prior_res0001: 0.62
+  prior_res0002: 0.38
+seed:
+  aplica: false
+tolerancia:
+  tipo: determinista
+  exacto: true
+  abs: 0.0
+resultados:
+  - {id: RESULT-RELEVO-ENCIG23-P83-N-PERSONAS, tipo: entero, unidad: personas}
+  - {id: RESULT-RELEVO-ENCIG23-P83-N-PESO-VALIDO, tipo: entero, unidad: personas}
+  - {id: RESULT-RELEVO-ENCIG23-P83-N-SOLANY, tipo: entero, unidad: personas}
+  - {id: RESULT-RELEVO-ENCIG23-P83-N-SOL1, tipo: entero, unidad: personas}
+  - {id: RESULT-RELEVO-ENCIG23-P83-N-DISENO-FALTANTE, tipo: entero, unidad: personas}
+  - {id: RESULT-RELEVO-ENCIG23-P83-W-SOLANY-DEN, tipo: flotante, unidad: masa FAC_P18}
+  - {id: RESULT-RELEVO-ENCIG23-P83-W-SOLANY-NUM, tipo: flotante, unidad: masa FAC_P18}
+  - {id: RESULT-RELEVO-ENCIG23-P83-W-SOL1-DEN, tipo: flotante, unidad: masa FAC_P18}
+  - {id: RESULT-RELEVO-ENCIG23-P83-W-SOL1-NUM, tipo: flotante, unidad: masa FAC_P18}
+  - {id: RESULT-RELEVO-ENCIG23-P83-P-SOLANY, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-RELEVO-ENCIG23-P83-P-NO-SOLANY, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-RELEVO-ENCIG23-P83-P-SOL1, tipo: proporcion, unidad: proporción}
+  - {id: RESULT-RELEVO-ENCIG23-P83-DELTA-SOLANY-VS-PRIOR-PAGO, tipo: flotante, unidad: puntos de proporción}
+  - {id: RESULT-RELEVO-ENCIG23-P83-DELTA-NO-SOLANY-VS-PRIOR-NORMAL, tipo: flotante, unidad: puntos de proporción}
+  - {id: RESULT-RELEVO-ENCIG23-P83-SOPORTE-1, tipo: texto, unidad: conteos por código}
+  - {id: RESULT-RELEVO-ENCIG23-P83-SOPORTE-2, tipo: texto, unidad: conteos por código}
+  - {id: RESULT-RELEVO-ENCIG23-P83-SOPORTE-3, tipo: texto, unidad: conteos por código}
+  - {id: RESULT-RELEVO-ENCIG23-P83-CORRESPONDENCIA-RES-0001, tipo: texto, unidad: dictamen}
+  - {id: RESULT-RELEVO-ENCIG23-P83-CORRESPONDENCIA-RES-0002, tipo: texto, unidad: dictamen}
