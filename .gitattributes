@@ -53,6 +53,25 @@ forense/firmas-pendientes.tsv merge=union
 canon/gobernanza-v1_15.md merge=union
 canon/registro-rotulos.tsv merge=union
 
+# ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1 (22/sep/2026), P3, firma de mesa
+# opción (a) (`…PENDIENTES-CAJA-1-c09b-02`, `…ESCOLARIDAD-2-0af9-01`). Los
+# tres archivos de append que el canal de publicación (el job del push a
+# `main`) escribe en cada corrida registrada: una fila nueva por objeto,
+# nunca edición en su sitio de la anterior -- exactamente el patrón que la
+# misma mutación de P-D (dos ramas apendican filas DISTINTAS, une sin
+# conflicto) ejercita, ahora contra append+append en vez de edita+apendica
+# (`tests/test_tuberia_ids_union.py`, caso I). Sin `union`, cada tanda de
+# más de dos actos que asientan replay/censo/decisión a la vez cuesta un
+# sync manual por PR (medido: 7 de 9 el 22/sep, misma simulación
+# `git merge-tree` del encargo). La guarda de líneas repetidas (T50, ya
+# genérica sobre TODO archivo `merge=union`) cubre los tres sin tocar
+# `tests/check.py`: una fila de ≥200 caracteres que dos ramas asienten
+# IDÉNTICA (la misma corrida, el mismo veredicto) dispara T50 igual que en
+# los cuatro candidatos de arriba.
+forense/replay-evidencia.tsv merge=union
+forense/analisis/ci-guardias/censo-tests.tsv merge=union
+data/corrida0/decisiones.tsv merge=union
+
 # La guarda de líneas repetidas (T50, tests/check.py): en todo archivo de
 # arriba declarado merge=union, ninguna línea de >= 200 caracteres aparece
 # dos veces o más -- riesgo residual DECLARADO, no instrumentado más allá

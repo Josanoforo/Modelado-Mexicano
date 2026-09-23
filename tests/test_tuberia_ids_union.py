@@ -695,6 +695,102 @@ def caso_G():
            f"sin_fail={sin_fail} con_fail={con_fail}")
 
 
+def _repro_union_apendica_y_apendica(tmp, nombre, base_texto, linea_de_a, linea_de_b):
+    """(ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1, 22/sep/2026, P3) La mutación
+    de los tres archivos NUEVOS: a diferencia de P-D (una rama edita EN SU
+    SITIO), estos tres son append-only de verdad -- ninguna rama los
+    edita, las dos SÓLO apendican. Devuelve `(conflicto, texto_resultante)`
+    tras fusionar main<-A<-B."""
+    _git(tmp, "init", "-q", "-b", "main")
+    _git(tmp, "config", "user.email", "t@t"); _git(tmp, "config", "user.name", "t")
+    open(os.path.join(tmp, ".gitattributes"), "w").write(f"{nombre} merge=union\n")
+    ruta = os.path.join(tmp, nombre)
+    os.makedirs(os.path.dirname(ruta) or tmp, exist_ok=True)
+    open(ruta, "w", encoding="utf-8").write(base_texto)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "base")
+
+    _git(tmp, "checkout", "-q", "-b", "a", "main")
+    with open(ruta, "a", encoding="utf-8") as f:
+        f.write(linea_de_a)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "a apendica")
+
+    _git(tmp, "checkout", "-q", "-b", "b", "main")
+    with open(ruta, "a", encoding="utf-8") as f:
+        f.write(linea_de_b)
+    _git(tmp, "add", "-A"); _git(tmp, "commit", "-qm", "b apendica")
+
+    _git(tmp, "checkout", "-q", "main")
+    conflicto = False
+    for rama in ("a", "b"):
+        r = _git(tmp, "merge", "--no-edit", "-q", rama)
+        if r.returncode != 0:
+            conflicto = True
+            _git(tmp, "merge", "--abort")
+    return conflicto, open(ruta, encoding="utf-8").read()
+
+
+def caso_I():
+    """P3 (ACTO GEN2-TUBERIA-CANAL-PUBLICACION-1, 22/sep/2026): los tres
+    archivos append-only nuevos (`replay-evidencia.tsv`, `censo-tests.tsv`,
+    `decisiones.tsv`) contra la mutación que el encargo pide.
+
+    I1 -- git DE VERDAD: dos ramas apendican filas DISTINTAS -> fusiona sin
+    conflicto, las dos sobreviven (el caso que `union` existe para resolver
+    solo).
+
+    I2 -- MEDIDO, no supuesto: dos ramas que apendican la MISMA fila
+    (texto idéntico, byte a byte) sobre una base que SÍ termina en salto de
+    línea NO duplican -- el merge recursivo de git ya trata una adición
+    idéntica en ambos lados como el mismo cambio, no como dos. Es la razón
+    por la que el riesgo real que `merge=union` abre no es "dos ramas
+    apendican lo mismo" sino la falta de salto final (B3: la última fila
+    COMPARTIDA de la base, no una fila nueva idéntica, es la que se deforma
+    cuando falta el `\\n`) -- ya cubierta por T46 sobre los tres archivos
+    (todos terminan en `\\n`, verificado en el propio `.gitattributes`).
+    I2 lo deja MEDIDO con git real en vez de supuesto.
+
+    I3 -- lo que T50 sí atrapa, con el vocabulario exacto de la guarda: una
+    línea >= 200 caracteres que YA aparece dos veces en el archivo (por
+    cualquier mecanismo -- edición manual, un merge que sí duplicó, un
+    copia-pega) -- mismo patrón que el caso H, ahora contra los tres
+    archivos nuevos por su nombre real."""
+    print("I · P3, los tres archivos nuevos de union")
+    cab = "calc_id\tcorrida_id\tresultado_replay\tcontexto_replay\trazones\n"
+    for nombre in ("forense/replay-evidencia.tsv",
+                   "forense/analisis/ci-guardias/censo-tests.tsv",
+                   "data/corrida0/decisiones.tsv"):
+        fila_a = "CALC-A-0001\tCALC-A-0001--aaa\tREPRODUCE\tIDENTICO\t" + ("razon de A " * 20) + "\n"
+        fila_b = "CALC-B-0001\tCALC-B-0001--bbb\tREPRODUCE\tIDENTICO\t" + ("razon de B " * 20) + "\n"
+        with tempfile.TemporaryDirectory() as tmp:
+            conflicto, resultado = _repro_union_apendica_y_apendica(tmp, nombre, cab, fila_a, fila_b)
+            ok(f"I1 {nombre}: dos filas distintas, append+append -> sin conflicto, "
+               f"las dos sobreviven",
+               not conflicto and fila_a.strip("\n") in resultado and fila_b.strip("\n") in resultado,
+               f"conflicto={conflicto} resultado={resultado!r}")
+
+        fila_dup = "CALC-DUP-0001\tCALC-DUP-0001--ddd\tREPRODUCE\tIDENTICO\t" + ("misma razon " * 20) + "\n"
+        with tempfile.TemporaryDirectory() as tmp:
+            conflicto, resultado = _repro_union_apendica_y_apendica(tmp, nombre, cab, fila_dup, fila_dup)
+            ok(f"I2 {nombre}: la MISMA fila apendicada por las dos ramas, base con "
+               f"salto final -> sin conflicto Y sin duplicar (git ya resuelve la "
+               f"adición idéntica como un solo cambio; el riesgo real es B3, ya "
+               f"cubierto por T46)",
+               not conflicto and resultado.count(fila_dup) == 1,
+               f"conflicto={conflicto} apariciones={resultado.count(fila_dup)} "
+               f"resultado={resultado!r}")
+
+        with tempfile.TemporaryDirectory() as tmp:
+            _arbol_union(tmp, {nombre: cab + fila_dup + fila_dup},
+                        f"{nombre} merge=union\n")
+            m = _carga_check()
+            m.ROOT = tmp
+            m.t50_union_lineas_repetidas()
+            fails = [f for f in m.FAILS if f[0] == "T50"]
+            ok(f"I3 {nombre}: una línea >= 200 caracteres ya repetida en el "
+               f"archivo -> T50 la atrapa (el vocabulario que P3 pide)",
+               any("aparece 2 veces" in x[1] for x in fails), str(fails))
+
+
 def _t50(tmp):
     m = _carga_check()
     m.ROOT = tmp
@@ -778,7 +874,7 @@ def main():
     print("═" * 72)
     print("  GEN2-TUBERIA-SUCESOR-1 · guardas por mutación")
     print("═" * 72)
-    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F(); caso_G(); caso_H()
+    caso_A(); caso_B(); caso_B3(); caso_C(); caso_C4(); caso_C_adr(); caso_D(); caso_E(); caso_F(); caso_G(); caso_H(); caso_I()
     print("─" * 72)
     if FALLAS:
         print(f"  {len(FALLAS)} FALLA(S): " + " · ".join(FALLAS))
