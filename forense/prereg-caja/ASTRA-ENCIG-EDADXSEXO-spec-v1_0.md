@@ -1,0 +1,21 @@
+# C-ASTRA ENCIG 2025 · edad×sexo · spec v1.0
+
+El primer resultado que produzca este procedimiento es el que se reporta.
+
+## Estimando y procedencia
+
+Proporción de **trámites** de pago ordinario de luz (`N_TRA=01`) con `P7_3` válido en {01,02,04,05,06} cuyo canal fue internet o cajero/kiosco inteligente (`P7_3` en {04,05}); `FAC_TRA` positivo. Kiosco se incluye por el código del instrumento, sin equipararlo a toda digitalización. No son personas ni todos los trámites. Cuestionarios y descriptores oficiales 2021/2023, códigos y SHA documentados en `ENCIG-CRUCES-HISTORICOS-spec-v1_0.md`. `SEXO`: 1 hombre, 2 mujer. `EDAD`: 18–29, 30–44, 45–59, 60–96; 97 y 98/99 fuera. El medidor del marginal 2025 usa exactamente 60–96 para la etiqueta pública `60+` (`CALC-ARBITRO-MARGINALES-ENCIG2025-0001/medidor.py`, `_age` de su predecesor). En historia, el enlace `ID_PER` entre residentes y trámites, cardinalidad m:1, `EST_DIS`/`UPM_DIS` y `FAC_TRA` fueron comprobados y sellados por los CALC citados.
+
+Historia congelada: `CALC-ENCIG2021-CRUCES-HISTORICOS-0003` y `CALC-ENCIG2023-CRUCES-HISTORICOS-0002`, derivados de `encig2021_csv` SHA `c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a` y `encig23_base_datos_csv` SHA `af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d`. Sus RESULT/sha están fijados en `spec.yaml`; no se reabre el microdato. Los residuos históricos usaron el universo común por par y bootstrap compartido de 10 000 UPM dentro de estrato, que conserva la dependencia de cruce y marginales **dentro de cada celda**. Se exige `CAUSA=OK` y 10 000 réplicas válidas. No se usan cruces 2025 ni edad×escolaridad 2025.
+
+Marginales objetivo: extracción explícita del bloque `tramite.gobierno_digital.util_sin_coercion_encig2025` (nacional 0.673393) y de `..._ejes_encig2025` (sexo y edad) en `milpa/tramite-ola5-propuesta-v0.yaml`, SHA fijado en `spec.yaml`. Los valores publicados tienen seis decimales. Sexo cubre el universo completo y edad cubre 0.994308; por ello el C2 objetivo mezcla dominios marginales levemente distintos. Esta diferencia no se oculta ni se proclama preservación exacta de marginales. Sin abrir 2025, no existe en la lista autorizada una tasa sexo entre edades válidas. El piloto debe confirmar que su C2 usa estos mismos marginales; si exige dominio común exacto, esta emisión es incompatible y no debe relabelarse.
+
+## Modelo congelado
+
+Por celda `c`, `B25=logit p25(edad)+logit p25(sexo)-logit p25(nacional)` y `d_t=logit p_t(c)-logit p_t(edad)-logit p_t(sexo)+logit p_t(nacional)` para t=2021,2023. Datos históricos son `d_t` y su EE de diseño. Modelo normal de efectos constantes e innovaciones independientes:
+
+`d_t | θ_c ~ N(θ_c, EE_t² + ω²)`, `θ_c ~ N(0, τ²)`, `d_2025 | θ_c ~ N(θ_c, ω²)`, con `τ=0.15` y `ω=0.10` en escala logit. Son priors/escala de cambio de ola **fijos**, no ajustados por el piloto 3 ni por el cruce 2025. Comparten los mismos parámetros entre las 8 celdas y producen encogimiento hacia cero; no hay pooling empírico entre celdas ni selección temporal. Las dos olas no identifican una dinámica más rica. `v=[1/τ²+Σ 1/(EE_t²+ω²)]⁻¹`, `m=v Σ d_t/(EE_t²+ω²)`. Punto: `expit(B25+m)`; límites: `expit(B25+m±1.959963984540054 sqrt(v+ω²))`.
+
+Intervalo central 95% **predictivo condicional aproximado**, con marginales 2025 fijos. Incluye EE histórico en `v`, incertidumbre posterior de `θ` e innovación futura `ω`; omite EE y covarianza de los marginales 2025. Los EE históricos conservan dependencia entre términos de cada `d_t`, pero la aproximación normal ignora dependencia **entre celdas**; no debe usarse para un IC conjunto ni para ΔMAE. No se generan réplicas que pretendan emparejarse con el árbitro. No hay seed ni Monte Carlo en esta emisión.
+
+Probabilidades 0/1, EE no positivo/no finito, residuo no OK, réplica histórica inválida, categoría faltante, entrada ajena a la lista o marginal fuera de (0,1): fallo sin sello; no clipping ni pseudocuentas. El medidor sólo admite los dos `resultados.json` históricos y el YAML público nombrado. `EDAD` 60–96 y `SEXO` 1/2 son las ocho celdas previstas; la spec del piloto 5 todavía no consta en esta base y exige comparación antes de admisión. Esta predicción puede diferir de C-ENCOGIDA/C7; no se afirma diferencia ni identidad de procedimiento sin su spec. Ningún λ ajeno se reestima.
