@@ -10,6 +10,15 @@ El [directorio de reports](https://github.com/Josanoforo/Modelado-Mexicano/tree/
 
 El catálogo público de momentos está **en construcción, sin fecha anunciada**. El mapa U0 de dominios fijará cobertura y propietario de los instrumentos pendientes. Hasta entonces, `MEDIDO` requiere un RESULT sellado y `EN-MEDICIÓN` un acto y propietario identificables; las dudas no se rotulan `NO-MEDIBLE-POR-DISEÑO`.
 
+| Pieza | Estado de publicación en este corte |
+|---|---|
+| Reports del corpus | Disponibles en el repositorio |
+| Catálogo de estimandos y segmentos | Pendiente de fusión a `main` |
+| Eje regional | Pendiente de fusión a `main`; no se presenta como cobertura regional completa |
+
+Una propuesta con CALC sellados aún puede tener adopción pendiente. La tabla de
+cobertura se actualizará desde `main` cuando esas piezas se fusionen.
+
 ## Reports del corpus
 
 - [Adopción y Resistencia Tecnológica en México  La Paradoja de la Baja Confianza Institucional](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/corpus/reports/Adopci%C3%B3n_y_Resistencia_Tecnol%C3%B3gica_en_M%C3%A9xico__La_Paradoja_de_la_Baja_Confianza_Institucional.md)
