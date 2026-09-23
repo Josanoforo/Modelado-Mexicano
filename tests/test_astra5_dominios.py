@@ -98,9 +98,10 @@ def test_enut_documentos_en_main_y_limite_de_planeacion():
 def test_lectura_tiempo_traza_los_15_hallazgos_sin_cierre_falso():
     rows = read("lectura-tiempo-v1_0.tsv")
     source = (ROOT / "corpus/reports/El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md").read_text(encoding="utf-8").splitlines()
-    assert len(rows) == 15
-    assert {row["id_lectura"] for row in rows} == {f"LECTURA-112051b2-{n:02d}" for n in range(1, 16)}
-    for n, row in enumerate(rows, 1):
+    assert len(rows) == 16
+    assert {row["id_lectura"] for row in rows[:15]} == {f"LECTURA-112051b2-{n:02d}" for n in range(1, 16)}
+    assert rows[15]["id_lectura"] == "LECTURA-112051b2-INT-PM"
+    for n, row in enumerate(rows[:15], 1):
         assert row["archivo_fuente_linea"].endswith(f":L{n + 12}")
         assert source[n + 11].startswith(f"{n}. ")
         assert row["pregunta_documental_pendiente"]
@@ -313,7 +314,7 @@ def test_cotejo_endutih_usa_ola_reactivo_y_universo_del_result():
 
 def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     contracts = {r["id_afirmacion"]: r for r in read("mapa-parcial-v0_1.tsv")}
-    assert len(contracts) == 45
+    assert len(contracts) == 48
     assert not {f"ASTRA5-U0-MER-{n:03d}" for n in range(1, 4)} & contracts.keys()
     assert all("enoe2026_t1_comunicado" not in str(row) for row in contracts.values())
     assert all(f"ASTRA5-U0-TEC-{n:03d}" in contracts for n in range(1, 11))
