@@ -6,6 +6,13 @@ Worktree `/home/pc0/mm-gen2-front-1`, rama `acto/gen2-front-1`; base al abrir `8
 
 P1 README GEN2 con cifras de `status` y seis casos enlazados; P2 aviso, uso aceptable y CFF; P4 `docs/` para Pages. P3 queda con excepción por referencias selladas: no se hicieron movimientos de archivos de la raíz. Los límites de `USO-ACEPTABLE.md` se preservaron byte por byte. LICENSE queda intacta: MIT para código, CC BY-NC-SA para corpus y documentación. La propuesta de mesa de otros términos requiere acto legal separado.
 
+**Refresco de cierre de tanda.** Tras fusionarse `GEN2-CONTADORES-CONSUMO-1`
+(PR #1086), `python3 tools/corrida0.py status` cambió
+`celdas_validadas` de 92 a **219**. El README deriva el valor nuevo y explica
+que los campos prospectiva/retrospectiva no agotan ese total. Catálogo U1 y
+eje regional U5 siguen en PR abiertos al momento de esta actualización;
+se enlazarán desde esta misma rama cuando entren a `origin/main`.
+
 `PLAN-VISIBILIZACION-2026-09-23.md`: **NO-RECIBIDO**. Se buscó en el repositorio y en `/mnt/c/Users/PC0/Downloads/`; sólo estaba el input FRONT-1. El mapa U0 tampoco estaba en `origin/main` al abrir. No se asignó `NO-MEDIBLE-POR-DISEÑO` sin él.
 
 ## P3 · inventario de rutas que permanecen

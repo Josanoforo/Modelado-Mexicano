@@ -30,12 +30,12 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 | Corridas selladas | 179 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
 | RESULT GEN2 sellados | 61 199 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
 | RESULT GEN2 adoptados activos | 72 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
-| Celdas validadas (contador rector) | 92 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
+| Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
 | Celdas retrospectivas de esa vista | 59 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
 | RESULT GEN2 pendientes de adopción | 10 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_pendientes_adopcion=' --> `N_resultados_gen2_pendientes_adopcion` |
 
-El [estado](canon/estado-programa-v1_15.md) define el desglose de celdas; las categorías de esa vista no se suman sin revisar sus clases.
+El [estado](canon/estado-programa-v1_15.md) y la [actualización del contador](canon/L0/ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01.md) explican el alcance de las celdas. El total incorpora conductas agregadas de crédito y cruces ENCIG que antes no contaba; los campos prospectiva y retrospectiva de `status` no cubren todas las formas incorporadas al total. **Validada** significa emisión comparada con R, no adopción por mesa.
 
 ## Estado del modelo
 
@@ -52,7 +52,7 @@ Para inspeccionar estructura, referencias y sellos no hace falta `data/raw`. Clo
 
 ## Cobertura
 
-El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> Son documentos de evidencia, no dominios mutuamente excluyentes; [lista completa](docs/catalogo.md). El mapa U0 aún no está consolidado en este corte. Hay mediciones selladas sobre dinero (ENIF), trámites (ENCIG), seguridad (ENVIPE), tiempo (ENUT) e ingreso (ENIGH), trazables por [CALC y RESULT](data/corrida0/) y [estado](canon/estado-programa-v1_15.md). ENOE, ENDIREH, INE/ENCUP y MOCIBA tienen líneas de trabajo; U0 fijará su cobertura y propietario. Una duda pendiente no se clasifica `NO-MEDIBLE-POR-DISEÑO`.
+El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> Son documentos de evidencia, no dominios mutuamente excluyentes; [lista completa](docs/catalogo.md). El mapa U0 aún no está consolidado en este corte. Hay mediciones **selladas** sobre dinero (ENIF), trámites (ENCIG), seguridad (ENVIPE), tiempo (ENUT) e ingreso (ENIGH), trazables por [CALC y RESULT](data/corrida0/) y [estado](canon/estado-programa-v1_15.md). Sellado, validado y adoptado son estados distintos. ENOE, ENDIREH, INE/ENCUP y MOCIBA tienen líneas de trabajo pendientes de consolidación; hasta que publiquen RESULT y dictamen, no se presentan como medición publicada. U0 fijará la cobertura temática y su propietario, pero no bloquea la publicación de los productos ya fusionados. Una duda pendiente no se clasifica `NO-MEDIBLE-POR-DISEÑO`.
 
 ## Uso, límites y contribuciones
 
