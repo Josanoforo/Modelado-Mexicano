@@ -1,0 +1,1223 @@
+calc_id: CALC-ENDIREH-PISOS-2006-MODULOS-0002
+spec_md: spec.md
+spec_md_sha256: 7f93b74b01f2c91eb069013519593ac453ee593b30943c7c5bd2c141cc6bb55e
+script: data/corrida0/CALC-ENDIREH-PISOS-2006-MODULOS-0002/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2006 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh_2006_bd_endireh_2006_csv
+  origen: manifiesto
+variables:
+- archivo: 06_MC1.csv
+  variable: P3_15
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_20
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_21
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_19_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_18_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_22_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_24_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_24_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_24_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_24_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_24_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_23_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_25_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_25_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_25_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_25_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P3_25_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: P5_11_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC1.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_13
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_18
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_19
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_17_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_16_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_20_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_22_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_22_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_22_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_22_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_22_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_21_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_23_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_23_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_23_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_23_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P3_23_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: P5_11_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD1.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P17
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P16_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P15_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P10_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P7_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P7_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P7_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P7_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P7_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P11_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P8_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P8_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P8_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P8_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P8_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P18_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P23
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_1_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_1_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_2_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_2_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_3_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_3_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_4_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_4_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_5_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_5_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_6_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_6_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_7_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_7_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_8_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_8_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_9_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_9_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_10_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_10_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_11_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_11_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_12_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_12_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_13_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_13_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_14_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_14_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_15_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_15_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_16_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: P28_16_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MS.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_13
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_14
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_15
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_16
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_17
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_18
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_19
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_20
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_21
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_22
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_23
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_24
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_25
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_26
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_27
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_28
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_29
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_1_30
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_13
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_14
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_15
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_16
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_17
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_18
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_19
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_20
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_21
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_22
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_23
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_24
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_25
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_26
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_27
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_28
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_29
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_4_30
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_7_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_7_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_7_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_7_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_10_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: P7_12_12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC2.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_13
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_14
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_15
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_16
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_17
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_18
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_19
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_20
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_21
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_22
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_23
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_24
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_25
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_26
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_27
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_28
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_29
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_1_30
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_12
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_13
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_14
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_15
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_16
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_17
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_18
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_19
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_20
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_21
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_22
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_23
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_24
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_25
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_26
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_27
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_28
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_29
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_4_30
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_7_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_7_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_7_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_7_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_10_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_1
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_2
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_4
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_5
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_7
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_8
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_9
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_10
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: P7_12_11
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MD2.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: P8_1_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: P8_1_6
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: P9_3
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: N_CON
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: V_SEL
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: N_REN
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: ZEST
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: ZUPM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_MC3.csv
+  variable: DOM
+  rol: filtro, acto, ayuda o diseno
+- archivo: 06_DS.csv
+  variable: N_CON
+  rol: edad, escolaridad o llave
+- archivo: 06_DS.csv
+  variable: V_SEL
+  rol: edad, escolaridad o llave
+- archivo: 06_DS.csv
+  variable: N_REN
+  rol: edad, escolaridad o llave
+- archivo: 06_DS.csv
+  variable: EDAD
+  rol: edad, escolaridad o llave
+- archivo: 06_DS.csv
+  variable: NIV
+  rol: edad, escolaridad o llave
+universo: Mujeres 15+ por cuestionario MC/MD/MS; pareja MS con P23=1/2, sin pareja P23=3 fuera.
+filtros: Codigos especificos 2006 en spec.md; 1/2 vs 3 para pareja MC/MD, 1/2 en otros actos.
+ponderador: FAC_PER positivo, sin normalizar
+transformacion: Union de actos por modulo; resultados de ayuda y decisiones separados.
+estimando: Prevalencias descriptivas ENDIREH 2006 por cuestionario, sin serie automatica.
+dependencias_materiales:
+- numpy==2.3.5
+parametros:
+  bootstrap_replicas: 200
+  metodo_ic: UPM ZUPM completas dentro de CVE_ENT+ZEST, percentiles 2.5/97.5
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: ed4446699c4f1b1ac5678ec7ba3f5ad8cf4f487b08a8b9a6e1f26240bf2062df
+  hash_prueba_sha256: f565471c877fea7e788c92a7753dc4fd838a9c836acb27fdb921438c95c7f71c
+  hash_payload_sha256: e6529c97b6355e01fa48c15ae0aee398090f4a094dd84b42cfc112e929d938f0
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2006-MOD-TABLA
+  tipo: texto
+  unidad: tabla de prevalencias y replicas agregadas
+- id: RESULT-ENDIREH2006-MOD-SOPORTE
+  tipo: entero
+  unidad: mujeres 15+ con factor valido
