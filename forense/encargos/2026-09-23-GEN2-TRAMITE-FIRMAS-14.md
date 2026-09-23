@@ -54,3 +54,7 @@ No ejecuta ninguna decisión. Sucesores: los actos nombrados en cada fila; FIRMA
 - **qué**: H · `…4296-01` activar GitHub Pages y decidir DOI Zenodo. **por qué**: `NO-VERIFICABLE-AQUÍ` -- es acción de dirección fuera del repo (Settings → Pages de GitHub; cuenta Zenodo), no verificable ni ejecutable por comando de esta sesión. **impacto**: sin URL de landing ni DOI que citar. **sucesor**: `GEN2-TRAMITE-FIRMAS-15` (§10 del encargo, nombrado explícitamente para DOI/Pages).
 - **qué**: I · `…1269-01` decisión de proceso sobre la cola de fusión (`codex/*` con o sin recibo). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- `ADENDA-1` de dirección reescribe la recomendación (opción (i): auto-merge de rutinas + recibo de Codex a la vista para `codex/*` y actos que sellan corridas) pero no es una firma de mesa. **impacto**: la política real de fusión de `codex/*` sigue sin asentarse con texto verbatim. **sucesor**: `GEN2-TRAMITE-FIRMAS-15`.
 - **qué**: K · `…c3fa-05` fecha de la alianza académica (P3 del encargo: «`vence:` en J y K»). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- §6 del encargo pide preguntar la fecha a mesa; sin respuesta, no hay fecha que asentar como `vence:`. **impacto**: `FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05` sigue sin plazo. **sucesor**: `GEN2-TRAMITE-FIRMAS-15`.
+
+## CONSUMIDO
+
+PR #1095 (ACTO GEN2-TRAMITE-FIRMAS-14, ADR-260923-GEN2-TRAMITE-FIRMAS-14-9556-01). Adenda citada: `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-1.md` (dirección, corrige el punto I; sin firma de mesa).
