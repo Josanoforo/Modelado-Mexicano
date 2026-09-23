@@ -4,10 +4,12 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT))
 CALCS = {
     "ENVIPE": ("2024", "evade_norma_envipe2025", "ENTIDAD", "delito",
                "delitos con BP1_20 válido", "CALC-REGION-ENVIPE-2024-0001"),
@@ -67,6 +69,31 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
                 sha(resultados_path), sha(carpeta / "sello.json"),
             ))))
+    calc = "CALC-REGION-ENIF-PORTAFOLIO-2024-0001"
+    carpeta = ROOT / "data/corrida0" / calc
+    resultados_path = carpeta / "resultados.json"
+    datos = json.loads(resultados_path.read_text(encoding="utf-8"))["resultados"]
+    from tools.astra.region.enif_portafolio import CONDUCTAS
+    for conducta in CONDUCTAS:
+        pref = f"RESULT-REGION-ENIF-PORT-2024-{conducta}"
+        bruto = json.loads(datos[pref + "-JSON"])
+        for fila in bruto["filas"]:
+            base = pref + "-" + fila["geografia"]
+            ids = [base + suf for suf in ("-P", "-IC-LO", "-IC-HI")]
+            punto, lo, hi = (datos[i] for i in ids)
+            if fila["estado"] == "PUBLICABLE" and not (0 <= lo <= punto <= hi <= 1):
+                raise ValueError(f"IC o punto incoherente: {base}")
+            if fila["estado"] != "PUBLICABLE" and any(v is not None for v in (punto, lo, hi)):
+                raise ValueError(f"fila suprimida con cifra: {base}")
+            filas.append(dict(zip(CAMPOS, (
+                "ENIF", conducta, "REGION", fila["geografia"], "2024", "IC-DE-DISEÑO",
+                punto, lo, hi, "persona", "proporción [0,1]",
+                "personas elegidas 18+ con batería de ahorro válida",
+                datos[base + "-N"], datos[base + "-N-EFECTIVO-KISH"],
+                "n≥200 y varianza bootstrap estimable" if fila["estado"] == "PUBLICABLE" else fila["estado"],
+                "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc,
+                sha(resultados_path), sha(carpeta / "sello.json"),
+            ))))
     destino = ROOT / "canon/eje-regional-v1_0.tsv"
     with destino.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CAMPOS, delimiter="\t", lineterminator="\n")
@@ -79,7 +106,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee once CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee doce CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"
