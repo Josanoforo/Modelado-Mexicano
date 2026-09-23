@@ -107,3 +107,18 @@ def test_lectura_tiempo_traza_los_15_hallazgos_sin_cierre_falso():
         assert row["siguiente_operacion"]
     assert rows[9]["estado_lectura"] == "NO-AFIRMACION-POSITIVA"
     assert "no tasa de descuento temporal" in rows[10]["componente_dictaminado_o_residual"]
+
+
+def test_lectura_tecnologia_traza_15_hallazgos_y_separa_unidades():
+    rows = read("lectura-tecnologia-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 15
+    assert {row["id_lectura"] for row in rows} == {f"LECTURA-d47463c2-{n:02d}" for n in range(1, 16)}
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"]
+        assert row["archivo_pieza_exacta"]
+        assert row["propietario"].startswith("ASTRA5-")
+        assert row["siguiente_operacion"]
+    assert "registros distintos" in rows[4]["componente_dictaminado_o_residual"]
+    assert "COLA-MESA-SALUD" == rows[11]["estado_lectura"]
