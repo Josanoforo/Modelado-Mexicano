@@ -411,13 +411,17 @@ def t_error_piso_derivado():
 
 
 def t_marginales_adopcion_por_instrumento():
-    """ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026): con la firma
-    `adopcion:piso-t1-marginales-por-instrumento` en decisiones.tsv, las 57
-    marginales EVALUADA se reparten 15 ADOPTADO-POR-FIRMA (ENVIPE) / 42
-    DIFERIDA-o-VETADA-EN-NIVEL (ENIF+ENCIG), y sólo ese estado exacto pasa a
-    `estimadores-por-segmento.yaml::marginales`. Ninguna fila SOLO-PISO o
-    SIN-PISO recibe `adopcion_marginal` -- no hay instrumento contra qué
-    decidir sin R GEN2 sellado."""
+    """ACTO GEN2-MARGINALES-ADOPCION-1 (22/sep/2026) + ACTO
+    GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2 · P2 (22/sep/2026, firma F2 de
+    FIRMAS-7 FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01): con la
+    firma `adopcion:piso-t1-marginales-por-instrumento` en decisiones.tsv,
+    las 57 marginales EVALUADA se reparten 15 ADOPTADO-POR-FIRMA (ENVIPE) +
+    32 ADOPTADO-CON-RESERVA-DE-ANCHO (ENIF, IC calibrado de
+    CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001) / 10 VETADA-EN-NIVEL (ENCIG),
+    y sólo esos dos estados adoptados pasan a
+    `estimadores-por-segmento.yaml::marginales` con punto+IC. Ninguna fila
+    SOLO-PISO o SIN-PISO recibe `adopcion_marginal` -- no hay instrumento
+    contra qué decidir sin R GEN2 sellado."""
     v = M.deriva()
     marginales = [f for f in v["filas"] if f["tipo"] == "MARGINAL"]
     decididas = [f for f in marginales if f.get("adopcion_marginal")]
@@ -431,22 +435,25 @@ def t_marginales_adopcion_por_instrumento():
             _falla("T-MARGINALES-ADOPCION",
                    f"{f['celda_id']} tiene adopcion_marginal con estado "
                    f"base {f['estado']!r}, no EVALUADA")
-    adoptadas = [f for f in decididas if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA"]
-    otras = [f for f in decididas if f["adopcion_marginal"] != "ADOPTADO-POR-FIRMA"]
-    if len(adoptadas) != 15 or len(otras) != 42:
+    _ADOPTADAS = ("ADOPTADO-POR-FIRMA", M.ESTADO_ENIF_RESERVA_ANCHO)
+    adoptadas = [f for f in decididas if f["adopcion_marginal"] in _ADOPTADAS]
+    otras = [f for f in decididas if f["adopcion_marginal"] not in _ADOPTADAS]
+    if len(adoptadas) != 47 or len(otras) != 10:
         _falla("T-MARGINALES-ADOPCION",
-               f"se esperaban 15 adoptadas / 42 diferidas-o-vetadas, salieron "
+               f"se esperaban 47 adoptadas (15 ENVIPE + 32 ENIF) / 10 "
+               f"vetadas-en-nivel (ENCIG), salieron "
                f"{len(adoptadas)} / {len(otras)}")
     for f in adoptadas:
-        if not f["instrumento"].startswith("ENVIPE 2025"):
+        if not (f["instrumento"].startswith("ENVIPE 2025")
+                or f["instrumento"].startswith("ENIF 2024")):
             _falla("T-MARGINALES-ADOPCION",
-                   f"{f['celda_id']} es ADOPTADO-POR-FIRMA con instrumento "
-                   f"{f['instrumento']!r}, no ENVIPE 2025")
+                   f"{f['celda_id']} es {f['adopcion_marginal']!r} con instrumento "
+                   f"{f['instrumento']!r}, ni ENVIPE 2025 ni ENIF 2024")
     for f in otras:
-        if f["instrumento"].startswith("ENVIPE 2025"):
+        if f["instrumento"].startswith("ENVIPE 2025") or f["instrumento"].startswith("ENIF 2024"):
             _falla("T-MARGINALES-ADOPCION",
                    f"{f['celda_id']} es {f['adopcion_marginal']} pero su "
-                   f"instrumento es ENVIPE 2025")
+                   f"instrumento es {f['instrumento']!r}")
     # Escribe a un YAML PROPIO, nunca a M.ESTIMADORES_YAML: ese derivado no
     # viaja committeado en el PR (P4 §2(2), firma de mesa 21/sep/2026 -- el
     # job del push a `main` lo re-deriva), así que leerlo del árbol en CI
@@ -474,10 +481,10 @@ def t_marginales_adopcion_por_instrumento():
                f"{n_champion}/57 celdas de marginales traen champion=PERSISTENCIA(t-1)")
     n_cobertura = sum(1 for x in marg_yaml.values() if "cobertura" in x)
     n_veto = sum(1 for x in marg_yaml.values() if "veto" in x)
-    if n_cobertura != 15 or n_veto != 42:
+    if n_cobertura != 47 or n_veto != 10:
         _falla("T-MARGINALES-ADOPCION",
-               f"cobertura citada en {n_cobertura} (se esperaban 15), "
-               f"veto citado en {n_veto} (se esperaban 42)")
+               f"cobertura citada en {n_cobertura} (se esperaban 47), "
+               f"veto citado en {n_veto} (se esperaban 10)")
 
 
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,

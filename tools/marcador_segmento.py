@@ -198,9 +198,20 @@ ADOPCION_MARGINAL_POR_INSTRUMENTO = {
         "cobertura": "8/15 = 0.53 [0.30, 0.75]",
         "piso_de_orden": False,
     },
+    # ACTO GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2 · P2 (22/sep/2026): la firma F2
+    # de FIRMAS-7 (fila FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01,
+    # FIRMADA) reemplaza la DIFERIDA de GEN2-MARGINALES-ADOPCION-1 (22/sep,
+    # cobertura 6/32=0.19 sobre el R de ENIF 2024): la mesa adopta el piso
+    # PERSISTENCIA(t-1) con el IC calibrado (muestral + choque 2018->2021) de
+    # CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001 en vez del IC muestral estrecho
+    # de CALC-PISOS-ENIF2021-EJES-0003 (sucesor sellado del vetado -EJES-0001),
+    # opción ADOPTAR-CON-RESERVA-DE-ANCHO (no ADOPTAR-CON-IC-CALIBRADO): mismo
+    # punto, IC rotulado "conservador" en vez de presentado sin apellido.
     "ENIF 2024": {
-        "estado": "DIFERIDA",
-        "cobertura": "6/32 = 0.19 [0.09, 0.35]",
+        "estado": "ADOPTADO-CON-RESERVA-DE-ANCHO",
+        "cobertura": "32/32 = 1.00 [0.89, 1.00] Wilson-celda "
+                      "(FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01: "
+                      "IC calibrado 8.9x el muestral, un solo choque 2018->2021)",
         "piso_de_orden": False,
     },
     "ENCIG 2025": {
@@ -210,6 +221,48 @@ ADOPCION_MARGINAL_POR_INSTRUMENTO = {
     },
 }
 DECISION_MARGINALES_POR_INSTRUMENTO = "adopcion:piso-t1-marginales-por-instrumento"
+ESTADO_ENIF_RESERVA_ANCHO = "ADOPTADO-CON-RESERVA-DE-ANCHO"
+FP_ENIF_RESERVA_ANCHO = "FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01"
+CALC_ENIF_PERSISTENCIA_IC = "CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001"
+TIPO_INCERTIDUMBRE_ENIF_CALIBRADO = ("calibrado: un solo choque 2018→2021, "
+                                      "conservador")
+
+
+def _ic_calibrado_enif() -> dict:
+    """`{resultado_id del piso PERSISTENCIA(t-1): (inf, sup) calibrados}`.
+
+    Lee `CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001/resultados.json` (sellado,
+    762 -> 1125 RESULT, F2 en FIRMAS-7) y arma la clave con el MISMO prefijo/
+    sufijo que `CALC-PISOS-ENIF2021-EJES-0003` usa para el `resultado_id` del
+    piso (`RESULT-PISOS-ENIF2021-V2-<celda>-P`), por identidad exacta de
+    sufijo de celda -- nada se empareja por parecido."""
+    rj = CORRIDA0_DIR / CALC_ENIF_PERSISTENCIA_IC / "resultados.json"
+    if not rj.exists():
+        return {}
+    try:
+        res = json.loads(rj.read_text(encoding="utf-8")).get("resultados", {})
+    except (OSError, json.JSONDecodeError):
+        return {}
+    if not isinstance(res, dict):
+        return {}
+    out = {}
+    prefijo, sufijo = "RESULT-ENIFPIC-", "-IC-CALIBRADO-INF"
+    # Dos CALC-PISOS distintos alimentan el piso ENIF2021 por eje: EJES-0003
+    # (la mayoría de los ejes, prefijo …-V2-) y FORMALIDAD-0001 (el eje
+    # `formalidad`, prefijo …-FORMALIDAD-, PR #915). El `resultado_id` de la
+    # fila marginal ya trae el prefijo correcto -- se prueban los dos y se
+    # usa el que exista, nunca se adivina cuál.
+    prefijos_piso = ("RESULT-PISOS-ENIF2021-V2-", "RESULT-PISOS-ENIF2021-FORMALIDAD-")
+    for k in res:
+        if not (k.startswith(prefijo) and k.endswith(sufijo)):
+            continue
+        celda = k[len(prefijo):-len(sufijo)]
+        id_sup = f"{prefijo}{celda}-IC-CALIBRADO-SUP"
+        if id_sup not in res:
+            continue
+        for pfx in prefijos_piso:
+            out[f"{pfx}{celda}-P"] = (res[k], res[id_sup])
+    return out
 
 
 def _yaml(ruta: Path):
@@ -1053,6 +1106,16 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
         elif cid.startswith("TRA."):
             pares_piloteados.add(("tramite.evasion_norma_ejes_envipe2025",
                                   frozenset({"escolaridad_proxy", "dominio_urbano_rural"})))
+        elif cid.startswith("GOB."):
+            # ACTO GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2 · P1 (22/sep/2026):
+            # GOB.gobierno_digital.encig2025.edad_x_escolaridad tiene
+            # champion_actual=C2 desde el COMMIT-3 (PR #961, F3), pero
+            # `pares_piloteados` sólo nombraba DIN./TRA. -- el grupo
+            # `CRUCE-GRUPO::…::edadxescolaridad` seguía RESERVADA por esta
+            # omisión, no por falta de adjudicación (cierra NC-0410/NC-0454/
+            # NC-…3619-01/NC-…0d1b-02: la reserva del PAR de marcador).
+            pares_piloteados.add(("tramite.gobierno_digital.util_sin_coercion_ejes_encig2025",
+                                  frozenset({"edad", "escolaridad"})))
     filas = []
     total_reservadas = 0
     total_consumidas = 0
@@ -1144,6 +1207,7 @@ def _aplica_adopcion_marginales_por_instrumento(marginales: list[dict],
     marginal SOLO-PISO o SIN-PISO no tiene con qué instrumento comparar."""
     if DECISION_MARGINALES_POR_INSTRUMENTO not in decisiones:
         return
+    ic_calibrado_enif = None  # perezoso: solo se lee si hay una fila ENIF
     for f in marginales:
         if f["estado"] != "EVALUADA":
             continue
@@ -1153,7 +1217,24 @@ def _aplica_adopcion_marginales_por_instrumento(marginales: list[dict],
                 f["cobertura_marginal"] = f"{prefijo}, cobertura {regla['cobertura']}"
                 if regla["piso_de_orden"]:
                     f["cobertura_marginal"] += " · piso_de_orden=SI"
-                f["decision_ref"] = DECISION_MARGINALES_POR_INSTRUMENTO
+                if regla["estado"] == ESTADO_ENIF_RESERVA_ANCHO:
+                    # P2: el IC que se adopta es el CALIBRADO, no el muestral
+                    # estrecho que _piso_de_fila ya puso en `piso_ic95` --
+                    # se sustituye aquí, sólo para las filas que sí adoptan.
+                    if ic_calibrado_enif is None:
+                        ic_calibrado_enif = _ic_calibrado_enif()
+                    par = ic_calibrado_enif.get(f["resultado_id"])
+                    if par is not None:
+                        f["piso_ic95"] = f"[{par[0]}, {par[1]}]"
+                        f["tipo_incertidumbre"] = TIPO_INCERTIDUMBRE_ENIF_CALIBRADO
+                    else:
+                        # sin calibrado sellado para esta celda: no se adopta
+                        # con el punto sin su IC -- se declara y se degrada.
+                        f["adopcion_marginal"] = "SIN-IC-CALIBRADO-SELLADO"
+                        f["cobertura_marginal"] += " · CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001 sin esta celda"
+                    f["decision_ref"] = FP_ENIF_RESERVA_ANCHO
+                else:
+                    f["decision_ref"] = DECISION_MARGINALES_POR_INSTRUMENTO
                 break
 
 
@@ -1298,12 +1379,13 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
                              and f.get("adopcion_marginal")]
     if marginales_decididas:
         payload["decision_ref_marginales"] = DECISION_MARGINALES_POR_INSTRUMENTO
+        _ADOPTADAS = ("ADOPTADO-POR-FIRMA", ESTADO_ENIF_RESERVA_ANCHO)
         payload["n_celdas_marginales_adoptadas"] = sum(
             1 for f in marginales_decididas
-            if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA")
+            if f["adopcion_marginal"] in _ADOPTADAS)
         payload["n_celdas_marginales_vetadas"] = sum(
             1 for f in marginales_decididas
-            if f["adopcion_marginal"] != "ADOPTADO-POR-FIRMA")
+            if f["adopcion_marginal"] not in _ADOPTADAS)
         payload["marginales"] = {
             f["celda_id"]: ({
                 "champion": "PERSISTENCIA(t-1)",
@@ -1316,7 +1398,9 @@ def escribe_estimadores_yaml(filas: list[dict]) -> None:
                 "estado": f["adopcion_marginal"],
                 "cobertura": f["cobertura_marginal"],
                 "regla_origen": f["regla_o_eje_origen"],
-            } if f["adopcion_marginal"] == "ADOPTADO-POR-FIRMA" else {
+                "decision_ref": f["decision_ref"],
+            } if f["adopcion_marginal"] in ("ADOPTADO-POR-FIRMA",
+                                            ESTADO_ENIF_RESERVA_ANCHO) else {
                 "champion": "PERSISTENCIA(t-1)",
                 "resultado_id": f["resultado_id"],
                 "instrumento": f["instrumento"],
