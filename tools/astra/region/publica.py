@@ -211,6 +211,29 @@ def genera():
                 "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc_u4,
                 sha(u4_path), sha(ROOT / "data/corrida0" / calc_u4 / "sello.json"),
             ))))
+    calc_seg = "CALC-REGION-ENVIPE-SEGURO-2025-0001"
+    seg_path = ROOT / "data/corrida0" / calc_seg / "resultados.json"
+    seg = json.loads(seg_path.read_text(encoding="utf-8"))["resultados"]
+    from tools.astra.region.envipe_seguro import CONDUCTAS as SEG_CONDUCTAS
+    for conducta in SEG_CONDUCTAS:
+        pref = f"RESULT-REGION-ENVIPE-SEG-2025-{conducta}"
+        for fila in json.loads(seg[pref + "-JSON"])["filas"]:
+            base = pref + "-" + fila["geografia"]
+            ids = [base + suf for suf in ("-P", "-IC-LO", "-IC-HI")]
+            punto, lo, hi = (seg[i] for i in ids)
+            if fila["estado"] == "PUBLICABLE" and not (0 <= lo <= punto <= hi <= 1):
+                raise ValueError(f"IC o punto incoherente: {base}")
+            if fila["estado"] != "PUBLICABLE" and any(v is not None for v in (punto, lo, hi)):
+                raise ValueError(f"fila suprimida con cifra: {base}")
+            filas.append(dict(zip(CAMPOS, (
+                "ENVIPE", conducta, "ENTIDAD", fila["geografia"], "2025", "IC-DE-DISEÑO",
+                punto, lo, hi, "delito", "proporción [0,1]",
+                "robo total de vehículo BPCOD=01 con seguro válido; entidad de residencia",
+                seg[base + "-N"], seg[base + "-N-EFECTIVO-KISH"],
+                "n≥200 y varianza bootstrap estimable" if fila["estado"] == "PUBLICABLE" else fila["estado"],
+                "GEN2", "RETROSPECTIVA", fila["estado"], *ids, calc_seg,
+                sha(seg_path), sha(ROOT / "data/corrida0" / calc_seg / "sello.json"),
+            ))))
     calc_pred = "CALC-REGION-IC-PREDICTIVO-0001"
     pred_path = ROOT / "data/corrida0" / calc_pred / "resultados.json"
     pred = json.loads(pred_path.read_text(encoding="utf-8"))["resultados"]
@@ -249,7 +272,7 @@ def genera():
         "**ARCHIVO**: `canon/eje-regional-v1_0.md`  \n"
         "**NOMBRE ESTABLE**: eje regional v1.0  \n"
         "**ESTADO**: propuesta; adopta NO; RETROSPECTIVA.\n\n"
-        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee dieciocho CALC sellados. "
+        "Fuente única de cifras: `python3 tools/astra/region/publica.py`, que lee diecinueve CALC sellados. "
         "La tabla TSV conserva las filas suprimidas. Esta entrega aún no cubre todas las conductas "
         "adoptadas/adoptables ni todas las olas del mandato U5; por tanto, no acredita cierre integral.\n\n"
         "## Decisiones de geografía y publicación\n\n"

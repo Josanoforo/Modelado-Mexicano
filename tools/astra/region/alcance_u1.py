@@ -60,6 +60,8 @@ def genera():
             state = "MEDIDO-REGION" if (inst, conducta) in MEASURED else "PENDIENTE-DICTAMEN-REGIONAL"
             if pseudo:
                 state = "IDENTIDAD-CONSUMIDOR-POR-DESDOBLAR"
+            if (inst, conducta) == ("ENVIPE", "civico.denuncia.con_seguro_ejes_envipe2025"):
+                state = "MEDIDO-REGION;128-DE-128-SUPRIMIDAS-R2"
             nota = ("El código U1 es una identidad de celda/interacción, no una conducta simple; "
                     "requiere vincular su estimando antes de declarar expectativa geográfica."
                     if pseudo else "El piso ENIF 18+ se distingue de la serie histórica 18–70."
@@ -69,6 +71,8 @@ def genera():
                     if inst == "ENIF" and conducta == "horizonte_corto" else
                     "Seis regiones medidas; la regla R2 suprime celdas con n<200."
                     if inst == "ENIF" and "desconfianza_o_mal_servicio" in conducta else
+                    "Cuatro tasas por seguro, 32 entidades cada una: todas suprimidas por n<200."
+                    if state.startswith("MEDIDO-REGION;128") else
                     "Última ola o serie regional no medida, salvo estado MEDIDO-REGION.")
             w.writerow(dict(zip(FIELDS, (inst, conducta, ";".join(sorted(v["estados"])),
                                       ";".join(sorted(v["results"])), state, nota))))
