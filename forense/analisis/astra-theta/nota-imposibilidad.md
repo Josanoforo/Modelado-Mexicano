@@ -21,6 +21,12 @@ medido ni `ARGUMENTO_EXPLICITO` a `RES-0087`.
    `c529cdf0` un ITT del **evento conjunto** de consulta respiratoria en
    farmacia entre adultos sin IMSS al inicio, en pp, basal 2005 y
    seguimiento 2006. No es la probabilidad condicional del motor.
+   Precisión histórica: el artículo informa **74 pares inicialmente
+   aleatorizados** en siete estados y seguimiento analítico en **50 pares**
+   de seis estados. La spec congelada usa los 50 pares observados y llamó
+   abreviadamente a ese conjunto «asignado»; esa diferencia exigiría
+   auditar selección de pares antes de cualquier inferencia, además del
+   desenlace ausente. No se corrige silenciosamente el freeze.
 3. PR de adquisición #1037, commit `37cfd059`: seis archivos del DOI
    `10.7910/DVN/P6NC0M`, id/hash/tamaño por `tests/manifiesto.py`, todos
    `COINCIDE`. El depósito advierte que no informa condiciones de uso y

@@ -4,9 +4,10 @@
   `milpa/procedencia.yaml:asignados_probabilidad:salud.atencion.leve_sin_imss`
   (`asignados_probabilidad[5]`). Regla R4.1, canon §3.4.
 - Diseño congelado: `forense/prereg-caja/ASTRA-THETA-SALUD-OFERTA-spec-v1_0.md`,
-  commit `c529cdf0`. Sorteo de 50 pares de conglomerados de salud del
-  Seguro Popular, 2005–06; ITT en pp del evento conjunto de consulta
-  respiratoria en farmacia. Esto no es el vector condicional θ.
+  commit `c529cdf0`. Sorteo inicial de 74 pares de conglomerados; 50
+  seguidos en 2005–06, selección de pares a auditar; ITT en pp del evento
+  conjunto de consulta respiratoria en farmacia. Esto no es el vector
+  condicional θ.
 - Fuente adquirida: PR #1037, commit `37cfd059`, Harvard Dataverse
   DOI `10.7910/DVN/P6NC0M`; seis ids `astra_sp_rct_*` verificados por
   `tests/manifiesto.py`. Hash de `ALL.tab`:

@@ -169,7 +169,7 @@ def main() -> None:
                 row["poblacion_unidad"] = "Adultos sin IMSS al inicio en 100 conglomerados de salud de seis estados; residencia define conglomerado"
                 row["desenlace"] = "Evento conjunto de consulta respiratoria en farmacia en seguimiento, no P(farmacia|necesidad leve) del θ"
                 row["exposicion"] = "Sorteo de oferta Seguro Popular + mejora de instalaciones/medicamentos en 50 pares de conglomerados"
-                row["variacion_candidata"] = "Asignación aleatoria de 50 pares de conglomerados de salud, basal 2005 y seguimiento 2006"
+                row["variacion_candidata"] = "Asignación aleatoria inicial de 74 pares; 50 pares en seguimiento analítico 2005-06 (selección de pares a auditar)"
                 row["diseno_y_fuente_asignacion"] = "ITT por pares; fuente primaria Eval/define.treatment.R y Eval/control.matches.R de la réplica DOI:10.7910/DVN/P6NC0M"
                 row["datos_id_ola_geografia_llave"] = "ALL.tab + clustmatchlist.tab adquiridos por #1037; 647 columnas ALL omiten P11D0401/P11D0501 y P10E0401/P10E0501_T2; tablas de visitas originales faltantes"
                 row["reserva_disponibilidad"] = "Dataverse V6.2 registrado por adq@37cfd059; hashes verificados; términos recomiendan contacto; encabezado leído solo tras freeze c529cdf0"

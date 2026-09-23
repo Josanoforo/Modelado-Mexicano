@@ -114,7 +114,8 @@ solicitado, pero no bloquea la elección de otra ruta.
 La ruta mejor identificada es el experimento de **Seguro Popular** de King
 et al. (2009), [publicación y descripción del tratamiento](https://gking.harvard.edu/files/abs/spi-abs.shtml?page=0%2C0%2C0%2C0%2C1),
 [réplica pública DOI 10.7910/DVN/P6NC0M](https://doi.org/10.7910/DVN/P6NC0M).
-Se sortearon 50 pares de conglomerados de salud en seis estados; el
+Se sortearon 74 pares en siete estados y se siguieron 50 pares en seis;
+el análisis disponible se refiere a estos últimos. El
 tratamiento fue promoción de afiliación **junto con** mejora de instalaciones
 y suministro. El código primario de réplica `Eval/define.treatment.R` y
 `Eval/control.matches.R` enumera los conglomerados y 50 pares. La
