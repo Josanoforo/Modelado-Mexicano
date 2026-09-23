@@ -31026,3 +31026,39 @@
   formato: PDF, reporte de resultados 23/25, 27 páginas
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   nota: Copia documental en mm-corpus/raw. La gráfica 2 p.11 separa Gini 0.391 con y 0.450 sin transferencias; no microdato.
+
+- id: encig2025_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 MER-006..007: población objetivo, diseño y expansión ENCIG 2025'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463930778.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: encig2025_diseno_muestral.pdf
+  sha256: de74a89623696e54e2d409a5cb5ae2b41dcd54a73c9deef1102b5793d875175e
+  tamano_bytes: 1343631
+  formato: PDF, diseño muestral ENCIG 2025, 20 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: PDF documental en mm-corpus/raw. Personas 18+ residentes en ciudades de 100 mil habitantes o más; no representa a todo México.
+
+- id: encig2025_boletin_pdf
+  usado_para: 'ASTRA5-U0 MER-006: 84.1% percepción frecuente de corrupción; MER-007 contexto de confianza'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/encig/ENCIG2025_CP.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: encig2025_boletin.pdf
+  sha256: 6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4
+  tamano_bytes: 329663
+  formato: PDF, comunicado ENCIG 2025 de 21-may-2026, 3 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: PDF documental en mm-corpus/raw. 15.6% de corrupción experimentada tiene denominador de personas con trámite/pago/servicio/contacto, no toda la población urbana.
+
+- id: encig2025_principales_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-007: confianza 46.5% en gobierno federal con ENCIG 2025, gráfica p.50'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig2025_principales_resultados.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI
+  archivo: encig2025_principales_resultados.pdf
+  sha256: 476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548
+  tamano_bytes: 970921
+  formato: PDF, presentación de resultados ENCIG 2025, 51 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: PDF documental en mm-corpus/raw. Gráfica p.50 usa suma mucha/algo confianza; comparador 59.1% de 2023 requiere su propio documento/contrato.

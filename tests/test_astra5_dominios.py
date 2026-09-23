@@ -312,7 +312,7 @@ def test_cotejo_endutih_usa_ola_reactivo_y_universo_del_result():
 
 def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     contracts = {r["id_afirmacion"]: r for r in read("mapa-parcial-v0_1.tsv")}
-    assert len(contracts) == 44
+    assert len(contracts) == 46
     assert all(f"ASTRA5-U0-TEC-{n:03d}" in contracts for n in range(1, 11))
     for n in (2, 5, 6, 7):
         row = contracts[f"ASTRA5-U0-TEC-{n:03d}"]
