@@ -99,3 +99,12 @@ Propio: `tools/celdas_validadas.py` (nuevo) · `tools/tablero_programa.py` (impo
 ## 10 · NO HACE · SUCESORES · CIERRE
 
 No cambia el valor, no redefine la métrica, no adopta, no suma sub-cifras que la firma separa, no añade WARN. **Sucesores:** 004 lee el JSON; el informe v1.3 la cita por comando; y, cuando mesa selle la propuesta de `adoptadas` **con su fuente**, una pieza propia la deriva. Auditoría de rigor: no aplica (aparato). Cierre por `/acto`.
+
+## NO-CORRIDO / RESERVAS
+
+- **004 (generador del inventario) no se edita** para leer el nuevo JSON de `tools/celdas_validadas.py` — razón: `FUERA-DE-PERÍMETRO` (el perímetro §9 sólo deja "una nota a 004", no editarlo). Impacto: el inventario de 004 sigue leyendo la ruta vieja hasta que un acto propio lo actualice. Sucesor: `DIFERIDO-A:acto propio de 004, nota dejada en esta cascada (forense/notas/2026-09-22-GEN2-TUBERIA-METRICA-RECTORA-1-cierre.md)`.
+- **La propuesta `adoptadas` (sub-cifra de estimador adoptado por firma) no se deriva** — razón: `DECISION-DE-MESA-PENDIENTE` (§2/§6 del encargo: no existe fuente sellada ni definición). Impacto: `celdas_validadas.py --json` no trae `adoptadas`. Sucesor: `SIN-ASIGNAR` hasta que mesa selle la propuesta con su fuente.
+- **`python3 tools/ci_guardias.py --censo` no corre en verde** — razón: `NO-VERIFICABLE-AQUÍ` (defecto preexistente y ajeno: `tests/test_consulta_gen2` cuelga y `ci_guardias.py:192` tiene un `TypeError: can only concatenate str (not "bytes") to str` al reportar el timeout — ninguno de los dos archivos está en el perímetro §9 de este acto). Impacto: el censo automático de huérfanos no corrió sobre este árbol; los dos tests nuevos se cablearon EXPLÍCITAMENTE en `verify.yml` (más fuerte que quedar huérfanos para que `ci_guardias` los descubra), así que no dependen de ese censo para entrar a CI. Sucesor: `SIN-ASIGNAR` (reparar `ci_guardias.py`/`test_consulta_gen2` es un acto propio, ajeno a la métrica rectora).
+- **`forense/tablero/TABLERO-PROGRAMA.md` no se regeneró en este acto** — razón: `FUERA-DE-PERÍMETRO` (lo regenera `/deriva`, no está en la lista de PERÍMETRO §9). Impacto: ninguno sobre la cifra (la compuerta §8 probó que el valor no cambia); el archivo derivado se re-emite en la próxima corrida de `/deriva`. Sucesor: `SUSTITUIDO-POR:/deriva` (corrida diaria ya existente, ningún acto nuevo necesario).
+
+## CONSUMIDO
