@@ -31002,3 +31002,63 @@
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
     factores por persona y varianza.
+
+- id: enadid2023_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 TEC-010 y ASTRA5-U4: universo, expansión y varianza de ENADID 2023 para P3_12 por P3_23/SEXO'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463916413.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, copia documental primaria previamente disponible en mm-corpus/raw; registro ASTRA5-U5
+  archivo: 889463916413.pdf
+  sha256: 546b6b1b832ff5e7abe8e93b2139ce867d24ed121d0158e4a7bc2f1838b4f883
+  tamano_bytes: 1581078
+  formato: PDF, diseño muestral ENADID 2023
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito a INEGI, conservar metadatos
+  nota: Documento físico leído por U0 en hoja de adquisición de #1079; no microdato ni nueva descarga.
+
+- id: enigh2024_reporte_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-004..005: Gini ENIGH 2024 con/sin transferencias publicado, no inferencia causal'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enigh/ENIGH2024_RR.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: enigh2024_reporte_resultados.pdf
+  sha256: 6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d
+  tamano_bytes: 1150732
+  formato: PDF, reporte de resultados 23/25, 27 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 MER-006..007: población objetivo, diseño y expansión ENCIG 2025'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463930778.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_diseno_muestral.pdf
+  sha256: de74a89623696e54e2d409a5cb5ae2b41dcd54a73c9deef1102b5793d875175e
+  tamano_bytes: 1343631
+  formato: PDF, diseño muestral ENCIG 2025, 20 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_boletin_pdf
+  usado_para: 'ASTRA5-U0 MER-006: percepción frecuente de corrupción ENCIG 2025; MER-007 contexto de confianza'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/encig/ENCIG2025_CP.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_boletin.pdf
+  sha256: 6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4
+  tamano_bytes: 329663
+  formato: PDF, comunicado ENCIG 2025 de 21-may-2026, 3 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_principales_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-007: confianza en gobierno federal con ENCIG 2025, gráfica p.50'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig2025_principales_resultados.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_principales_resultados.pdf
+  sha256: 476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548
+  tamano_bytes: 970921
+  formato: PDF, presentación de resultados ENCIG 2025, 51 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
