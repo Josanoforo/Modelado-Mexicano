@@ -203,9 +203,9 @@ def test_enif_condicionales_separan_denominadores_y_guardias():
                       "P5_23": ["1", "1", "2", "2"], **cols})
     found = dominios_condicionales(d)
     assert list(found["horizonte_corto_sin_ss"][0]) == [True, True, False, False]
-    assert list(found["horizonte_corto_sin_ss"][1]) == [True, False, True, False]
+    assert list(found["horizonte_corto_sin_ss"][1]) == [True, False, False, False]
     assert list(found["desconfia_conoce_proteccion"][0]) == [True, True, False, False]
-    assert list(found["desconfia_conoce_proteccion"][1]) == [True, False, True, False]
+    assert list(found["desconfia_conoce_proteccion"][1]) == [True, False, False, False]
     d.loc[0, "P5_23"] = "b"
     with pytest.raises(RuntimeError, match="G-C1"):
         dominios_condicionales(d)

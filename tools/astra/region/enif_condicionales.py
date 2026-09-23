@@ -38,12 +38,12 @@ def dominios_condicionales(d):
     corto = p410.isin(["1", "2"])
     desc = p520.eq("03")
     return {
-        "horizonte_corto_sin_ss": (sin, corto),
-        "horizonte_no_corto_sin_ss": (sin, ~corto),
-        "horizonte_corto_con_ss": (con, corto),
-        "horizonte_no_corto_con_ss": (con, ~corto),
-        "desconfia_conoce_proteccion": (c, desc),
-        "desconfia_no_conoce_proteccion": (nc, desc),
+        "horizonte_corto_sin_ss": (sin, sin & corto),
+        "horizonte_no_corto_sin_ss": (sin, sin & ~corto),
+        "horizonte_corto_con_ss": (con, con & corto),
+        "horizonte_no_corto_con_ss": (con, con & ~corto),
+        "desconfia_conoce_proteccion": (c, c & desc),
+        "desconfia_no_conoce_proteccion": (nc, nc & desc),
     }
 
 
