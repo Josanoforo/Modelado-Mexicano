@@ -48,7 +48,7 @@ de la suite. No sustituye los contadores GEN2 de arriba.
 
 ## Verifica en cinco minutos: ruta de lectura
 
-Para inspeccionar estructura, referencias y sellos no hace falta `data/raw`. Clona el repo, lee una [nota de cierre](forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) y compara su `spec.yaml`, `resultados.json` y `sello.json` en [corrida0](data/corrida0/). `python3 tools/corrida0.py status` reproduce la tabla. `python3 tests/check.py --baseline` verifica la línea base del repo, sin garantía de duración. La [guía](docs/verificar.md) explica el control de hashes sin abrir raw y separa la reproducción numérica: `python3 tools/corrida0.py verify <CALC-ID>` puede necesitar corpus, dependencias y más tiempo. El enlace al sello externo se incorporará cuando ese acto se fusione.
+Para inspeccionar estructura, referencias y sellos no hace falta `data/raw`. Clona el repo, lee una [nota de cierre](forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) y compara su `spec.yaml`, `resultados.json` y `sello.json` en [corrida0](data/corrida0/). `python3 tools/corrida0.py status` reproduce la tabla. `python3 tests/check.py --baseline` verifica la línea base del repo, sin garantía de duración. La [guía](docs/verificar.md) explica el control de hashes sin abrir raw y separa la reproducción numérica: `python3 tools/corrida0.py verify <CALC-ID>` puede necesitar corpus, dependencias y más tiempo. La [receta de sello externo](docs/sello-externo.md) explica su testigo de tiempo y sus límites.
 
 ## Cobertura
 

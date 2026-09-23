@@ -11,7 +11,7 @@ import unittest
 ROOT = Path(__file__).resolve().parents[1]
 PUBLICOS = [
     "README.md", "AVISO-DE-ALCANCE.md", "USO-ACEPTABLE.md",
-    "docs/index.md", "docs/verificar.md", "docs/informe.md",
+    "docs/index.md", "docs/verificar.md", "docs/guia-lectura-publica.md",
     "docs/catalogo.md", "docs/contacto.md",
 ]
 

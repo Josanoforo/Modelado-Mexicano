@@ -54,9 +54,17 @@ from a branch → `main` / `docs`. La portada queda en
 `https://josanoforo.github.io/Modelado-Mexicano/`; las páginas remiten a
 `canon/` y al resto del repositorio mediante URL del archivo versionado.
 Zenodo y el DOI se asientan en un acto posterior.
+`docs/guia-lectura-publica.md` cumple la pieza de informe: el nombre
+`docs/informe.md` chocaba por nombre normalizado con un informe forense
+y `docs/lectura-resultados.md` con un análisis de datos existente (T02).
+Se eligió un nombre único para conservar la línea base sin editar el validador.
 
 `python3 -m unittest tests.test_readme_derivado tests.test_enlaces_archivo`
 contrasta los comandos permitidos de la portada y sus enlaces locales.
+`python3 tests/check.py --baseline` sobre el árbol actualizado con
+`origin/main` terminó **LÍNEA BASE: VERDE**, sin FAIL nuevos; T02 y T19c
+pasaron. El registro de esa corrida está en
+`/tmp/gen2-front-1-baseline-unique.log` durante esta sesión.
 `CITATION.cff` se leyó como YAML 1.2 y no declara DOI, versión ni fecha
 de release inventadas. El bloque «Límites declarados» de
 `USO-ACEPTABLE.md` se comparó byte por byte con `origin/main`. No hay

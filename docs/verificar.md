@@ -4,7 +4,7 @@ title: Verificar
 
 # Verificar
 
-[Portada]({{ '/' | relative_url }}) · [Informe]({{ '/informe.html' | relative_url }})
+[Portada]({{ '/' | relative_url }}) · [Informe]({{ '/guia-lectura-publica.html' | relative_url }})
 
 ## Lectura rápida, sin microdatos
 
@@ -12,7 +12,7 @@ Requisitos: Git, Python 3 y acceso a los archivos versionados del repo. Clona `h
 
 El control de identidad sobre un CALC versionado puede hacerse con `sha256sum data/corrida0/<CALC-ID>/spec.yaml data/corrida0/<CALC-ID>/resultados.json data/corrida0/<CALC-ID>/sello.json` y cotejando los hashes declarados en la spec y el sello. `sha256sum` sólo abre esos tres artefactos nombrados; no accede a `data/raw`. El `sello.json` registra el contexto y los hashes. Esta inspección no equivale a volver a calcular el estimando.
 
-`python3 tests/check.py --baseline` compara la línea base del repositorio y excluye `data/raw` del barrido general; no se garantiza una duración fija. Si existe [sello externo](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/docs/sello-externo.md) en la versión consultada, úsalo para comprobar el testigo de tiempo.
+`python3 tests/check.py --baseline` compara la línea base del repositorio y excluye `data/raw` del barrido general; no se garantiza una duración fija. La [receta del sello externo](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/docs/sello-externo.md) explica cómo comprobar el testigo de tiempo y qué demuestra.
 
 ## Reproducción numérica
 
