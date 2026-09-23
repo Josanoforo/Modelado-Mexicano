@@ -245,3 +245,11 @@ def test_envipe_seguro_separa_estratos_y_complementos_contados():
     assert list(cells["denuncia_con_seguro"][1]) == [True, False, False, False, False]
     assert list(cells["no_denuncia_con_seguro"][1]) == [False, True, False, False, False]
     assert list(cells["denuncia_sin_seguro"][1]) == [False, False, True, False, False]
+
+
+def test_encig_sol1_no_confunde_solicitud_con_pago():
+    from tools.astra.region.encig_sol1_historia import desenlace, ADAPTER
+    den, y = desenlace(pd.Series(["1", "2", "9", "", " 1 "]))
+    assert list(den) == [True, True, False, False, True]
+    assert list(y) == [True, False, False, False, True]
+    assert ADAPTER[2021][1] == "ENT" and ADAPTER[2023][1] == "CVE_ENT"
