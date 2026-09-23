@@ -27,7 +27,7 @@ por posición 0-based:
 
 **Corrección a df0d-02:** la base **sí** trae dos columnas de peso, `factor`
 y `POND`, igual que ya lo leyeron `forense/hitoD-R8_1-veredicto-v1_0.md:44`
-y la nota E18-P3-L1. En cambio, **no** trae ninguna variable de estrato de
+y la nota MAESTRA33-E18-P3-L1. En cambio, **no** trae ninguna variable de estrato de
 diseño.
 
 ## Documentación buscada
