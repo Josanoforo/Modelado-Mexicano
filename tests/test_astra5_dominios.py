@@ -216,3 +216,11 @@ def test_lectura_trabajo_traza_secciones_y_limita_mezclas():
         assert row["propietario"] == "ASTRA5-U1" and row["siguiente_operacion"]
     assert "ASTRA5-U0-ENOE-003" == rows[4]["contrato_existente"]
     assert "ASTRA5-U0-TIME-002" == rows[7]["contrato_existente"]
+    inner = read("lectura-trabajo-interno-v1_0.tsv")
+    source = (ROOT / "corpus/reports/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md").read_text(encoding="utf-8").splitlines()
+    assert len(inner) == 14
+    for row in inner:
+        line = int(row["archivo_fuente_linea"].rsplit(":L", 1)[1])
+        assert source[line - 1].startswith("**Myth ") or source[line - 1].startswith(("**First**", "**Second**", "**Third**", "**Fourth**", "**Fifth**"))
+        assert row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"]
+        assert row["propietario"] == "ASTRA5-U1" and row["siguiente_operacion"]
