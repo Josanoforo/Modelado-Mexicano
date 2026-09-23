@@ -143,18 +143,25 @@ def test_lectura_finanzas_traza_13_hallazgos_y_conserva_contratos():
 def test_forense_credito_conserva_complemento_y_no_recuenta_casos():
     rows = read("lectura-credito-popular-v1_0.tsv")
     index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
-    assert len(rows) == 9
-    assert {row["id_lectura"] for row in rows} == (
+    assert len(rows) == 24
+    assert {row["id_lectura"] for row in rows[:9]} == (
         {f"LECTURA-ed13e951-{n:02d}" for n in range(1, 5)}
         | {f"LECTURA-ea74603e-{n:02d}" for n in range(1, 6)}
     )
-    for row in rows:
+    for row in rows[:9]:
         assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+    sources = {p.name: p.read_text(encoding="utf-8").splitlines() for p in (ROOT / "corpus/forense").glob("*.md")}
+    for row in rows[9:]:
+        path, line = row["archivo_fuente_linea"].rsplit(":L", 1)
+        assert sources[path.rsplit("/", 1)[-1]][int(line) - 1]
+    for row in rows:
         assert row["pregunta_documental_pendiente"]
         assert row["archivo_pieza_exacta"]
         assert row["propietario"] == "ASTRA5-MESA-DINERO"
         assert row["siguiente_operacion"]
-    assert all(row["rol_fuente"] == "complemento_forense_credito_popular" for row in rows[4:])
+    assert all(row["rol_fuente"] == "complemento_forense_credito_popular" for row in rows[4:9])
+    assert all(row["rol_fuente"] != "forense_base" for row in rows[9:])
+    assert len({row["id_lectura"] for row in rows}) == len(rows)
     assert rows[2]["concepto_deduplicado"] == rows[8]["concepto_deduplicado"] == "CRPOP-COLAPSOS"
 
 
@@ -176,14 +183,17 @@ def test_lectura_politica_traza_14_hallazgos_y_distingue_ine():
 def test_lectura_clientelismo_separa_cuatro_resumenes_y_diez_casos():
     rows = read("lectura-clientelismo-v1_0.tsv")
     index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
-    assert len(rows) == 14
+    assert len(rows) == 23
     assert {row["id_lectura"] for row in rows[:4]} == {f"LECTURA-baa568e2-{n:02d}" for n in range(1, 5)}
     for row in rows[:4]:
         assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
     source = (ROOT / "corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md").read_text(encoding="utf-8").splitlines()
-    for row in rows[4:]:
+    for row in rows[4:14]:
         assert source[int(row["archivo_fuente_linea"].rsplit(":L", 1)[1]) - 1].startswith("**CASO ")
-    assert len({row["id_lectura"] for row in rows}) == 14
+    for row in rows[14:]:
+        first_line = row["archivo_fuente_linea"].rsplit(":L", 1)[1].split("-L", 1)[0]
+        assert source[int(first_line) - 1]
+    assert len({row["id_lectura"] for row in rows}) == len(rows)
     assert all(row["propietario"] == "ASTRA5-U3" and row["siguiente_operacion"] for row in rows)
     assert "no tasa nacional" in rows[10]["componente_y_limite"]
 
