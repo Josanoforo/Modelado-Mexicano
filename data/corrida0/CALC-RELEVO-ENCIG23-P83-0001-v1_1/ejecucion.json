@@ -1,0 +1,128 @@
+{
+ "corrida_id": "CALC-RELEVO-ENCIG23-P83-0001-v1_1--66cfff97600b",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "adopta": false,
+  "contaminacion_declarada": "Conocidos prior 0.62/0.38, análogo 2025 y P8_4 de 2023 antes de congelar; soporte de P8_3 de 2023 desconocido.",
+  "cuenta_gen2": "PENDIENTE-DE-MESA",
+  "generacion": "GEN2",
+  "origen_numerico": "MICRODATO-MANIFESTADO",
+  "tipo": "TASA-PERSONA-SOLICITUD-CON-RESERVA-DE-CORRESPONDENCIA",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T17:01:49Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 439,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "66cfff97600ba7af94d396e2aa256c022f1031e7",
+  "git_rama": "codex/astra4-relevo-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "66cfff97600ba7af94d396e2aa256c022f1031e7",
+ "input_ids": [
+  "encig23_base_datos_csv",
+  "encig23_estructura_base_datos_pdf",
+  "encig23_cuestionario_pdf"
+ ],
+ "input_sha256": {
+  "encig23_base_datos_csv": "af733d867a568cbb0dadef4a5a793b02488a71728d1157860f14501f3d4c393d",
+  "encig23_cuestionario_pdf": "65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e",
+  "encig23_estructura_base_datos_pdf": "eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906"
+ },
+ "parametros": {
+  "blanco_literal": [
+   "",
+   "B",
+   "NA"
+  ],
+  "codigos_validos": [
+   "1",
+   "2"
+  ],
+  "miembro": "encig2023_01_sec1_A_3_4_5_8_9_10.csv",
+  "prior_res0001": 0.62,
+  "prior_res0002": 0.38
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-RELEVO-ENCIG23-P83-CORRESPONDENCIA-RES-0001",
+  "RESULT-RELEVO-ENCIG23-P83-CORRESPONDENCIA-RES-0002",
+  "RESULT-RELEVO-ENCIG23-P83-DELTA-NO-SOLANY-VS-PRIOR-NORMAL",
+  "RESULT-RELEVO-ENCIG23-P83-DELTA-SOLANY-VS-PRIOR-PAGO",
+  "RESULT-RELEVO-ENCIG23-P83-N-DISENO-FALTANTE",
+  "RESULT-RELEVO-ENCIG23-P83-N-PERSONAS",
+  "RESULT-RELEVO-ENCIG23-P83-N-PESO-VALIDO",
+  "RESULT-RELEVO-ENCIG23-P83-N-SOL1",
+  "RESULT-RELEVO-ENCIG23-P83-N-SOLANY",
+  "RESULT-RELEVO-ENCIG23-P83-P-NO-SOLANY",
+  "RESULT-RELEVO-ENCIG23-P83-P-SOL1",
+  "RESULT-RELEVO-ENCIG23-P83-P-SOLANY",
+  "RESULT-RELEVO-ENCIG23-P83-SOPORTE-1",
+  "RESULT-RELEVO-ENCIG23-P83-SOPORTE-2",
+  "RESULT-RELEVO-ENCIG23-P83-SOPORTE-3",
+  "RESULT-RELEVO-ENCIG23-P83-W-SOL1-DEN",
+  "RESULT-RELEVO-ENCIG23-P83-W-SOL1-NUM",
+  "RESULT-RELEVO-ENCIG23-P83-W-SOLANY-DEN",
+  "RESULT-RELEVO-ENCIG23-P83-W-SOLANY-NUM"
+ ],
+ "script_blob_sha256": "cc8310f57b27342652847ed6447cec61e261b8202055c031c933bc7e195d497c",
+ "script_path": "data/corrida0/CALC-RELEVO-ENCIG23-P83-0001-v1_1/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-RELEVO-ENCIG23-P83-0001-v1_1",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "1026541871a215fd63c123c872f81d7b9200da3c7d59f11d8fb12f53d22c3366",
+ "spec_yaml_sha256": "d85899dfbdb0fccbac85fb50eb672827c3c1032fb41bc84b765e3f6309698a9f",
+ "tolerancia": {
+  "abs": 0.0,
+  "exacto": true,
+  "tipo": "determinista"
+ }
+}
