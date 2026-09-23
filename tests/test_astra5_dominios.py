@@ -155,3 +155,33 @@ def test_forense_credito_conserva_complemento_y_no_recuenta_casos():
         assert row["siguiente_operacion"]
     assert all(row["rol_fuente"] == "complemento_forense_credito_popular" for row in rows[4:])
     assert rows[2]["concepto_deduplicado"] == rows[8]["concepto_deduplicado"] == "CRPOP-COLAPSOS"
+
+
+def test_lectura_politica_traza_14_hallazgos_y_distingue_ine():
+    rows = read("lectura-politica-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 14
+    assert {row["id_lectura"] for row in rows} == {f"LECTURA-8d989005-{n:02d}" for n in range(1, 15)}
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"]
+        assert row["archivo_pieza_exacta"]
+        assert row["propietario"] == "ASTRA5-U3"
+        assert row["siguiente_operacion"]
+    assert "61.04%" in rows[2]["componente_dictaminado_o_residual"]
+    assert "12.86%" in rows[2]["componente_dictaminado_o_residual"]
+
+
+def test_lectura_clientelismo_separa_cuatro_resumenes_y_diez_casos():
+    rows = read("lectura-clientelismo-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 14
+    assert {row["id_lectura"] for row in rows[:4]} == {f"LECTURA-baa568e2-{n:02d}" for n in range(1, 5)}
+    for row in rows[:4]:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+    source = (ROOT / "corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md").read_text(encoding="utf-8").splitlines()
+    for row in rows[4:]:
+        assert source[int(row["archivo_fuente_linea"].rsplit(":L", 1)[1]) - 1].startswith("**CASO ")
+    assert len({row["id_lectura"] for row in rows}) == 14
+    assert all(row["propietario"] == "ASTRA5-U3" and row["siguiente_operacion"] for row in rows)
+    assert "no tasa nacional" in rows[10]["componente_y_limite"]
