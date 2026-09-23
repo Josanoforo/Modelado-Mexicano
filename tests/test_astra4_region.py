@@ -10,6 +10,7 @@ from tools.astra.region.historia_v2 import carga_encig
 from tools.astra.region.historia_v3 import carga_enif as carga_enif_v3
 from tools.astra.region.enif_portafolio import desenlaces
 from tools.astra.region.envipe_complemento import complemento
+from tools.astra.region.encig2025_consumidores import fuentes as fuentes_encig25, desenlaces as desenlaces_encig25
 
 
 def marco():
@@ -150,3 +151,27 @@ def test_complemento_envipe_invierte_intervalo_y_replicas():
     suprimida = {**origen, "estado": "SUPRIMIDA-N", "punto": None,
                  "ic_inf": None, "ic_sup": None, "replicas_p": None}
     assert complemento(suprimida)["punto"] is None
+
+
+def test_encig2025_unidades_y_join_sin_deduplicar(tmp_path):
+    z = tmp_path / "encig25.zip"
+    _zip_csv(z, {
+        "encig2025_01_sec1_A_3_4_5_8_9_10.csv": pd.DataFrame({
+            "CVE_ENT": ["1", "2"], "P8_3_1": ["1", "2"], "FAC_P18": ["2", "3"],
+            "EST_DIS": ["1", "1"], "UPM_DIS": ["1", "2"]}),
+        "encig2025_04_sec_7.csv": pd.DataFrame({
+            "ID_TRA": ["a", "a", "b", "c"], "CVE_ENT": ["1", "1", "2", "2"],
+            "N_TRA": ["01", "01", "01", "02"], "P7_3": ["4", "4", "1", "3"],
+            "FAC_TRA": ["2", "2", "3", "4"], "EST_DIS": ["1"]*4,
+            "UPM_DIS": ["1", "1", "2", "2"]}),
+        "encig2025_05_sec_8.csv": pd.DataFrame({
+            "ID_TRA": ["a", "b", "c"], "P8_4": ["1", "0", "1"]}),
+    })
+    per, s7, g = fuentes_encig25(z)
+    d = desenlaces_encig25(per, s7)
+    assert g["sec7_sin_pareja_sec8"] == 0
+    assert list(d["paga_mordida_encig2025"][2]) == [True, True]
+    assert list(d["paga_mordida_encig2025"][3]) == [True, False]
+    assert list(d["adopta_encig2025_luz"][3]) == [True, True, False, False]
+    assert list(d["paga_mordida_encig2025_digital_r2"][3]) == [True, True, False, True]
+    assert list(d["paga_mordida_encig2025_presencial_r2"][2]) == [False, False, True, False]
