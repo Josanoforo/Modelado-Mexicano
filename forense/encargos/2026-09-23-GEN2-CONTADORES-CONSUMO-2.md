@@ -41,3 +41,7 @@ Propio: `milpa/decisiones.tsv` (dos filas), `.github/workflows/verify.yml` (paso
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No adopta estimadores nuevos; no toca `-D-C2` fuera de lo que P4 declara. Sucesor: ninguno si «Hecho»; FIRMAS-14 asienta el nuevo valor.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** Publicación completa del marcador al canal para `GOB.gobierno_digital.encig2025.edad_x_sexo` y `.escolaridad_x_sexo` (16 usos). · **por qué:** PARO-PREMISA — esas 16 celdas tienen como `champion_actual=C2` un RESULT de `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001`, un CALC distinto de los dos que este encargo y `FP-988c-01` autorizan (`CALC-GOB-DIGITAL-EXE-EMISIONES-0002` / `-ADJUDICACION-0001`); FUERA-DE-PERÍMETRO de este acto (§9: CALC es ajeno salvo los dos nombrados). · **impacto:** `adoptados_activos` no sube por estas 16 celdas; `check.py --baseline` no llega a VERDE en este PR (16 FAIL `T-REPRO(g)` persisten); el marcador publica 16/32 celdas del grupo `GOB.gobierno_digital.encig2025.*` al canal, no las 32. · **sucesor:** `DIFERIDO-A:GEN2-CONTADORES-CONSUMO-3` (o quien mesa nombre al firmar `FP-260923-GEN2-CONTADORES-CONSUMO-2-749c-01`); fila `NC-260923-GEN2-CONTADORES-CONSUMO-2-749c-01`.
