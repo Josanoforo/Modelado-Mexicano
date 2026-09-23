@@ -181,6 +181,7 @@ import sys
 import tempfile
 
 import estado_comun as EC
+import celdas_validadas as _CV
 
 RAIZ_POR_DEFECTO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -2761,7 +2762,14 @@ def main(argv=None):
                                         tope_texto=a.tope_texto, tope_lista=a.tope_lista)
         rc_git, sha = corre(["git", "rev-parse", "--short", "HEAD"], raiz, timeout=60)
         sha = sha.strip() if rc_git == 0 else "NO-DERIVABLE"
-        cab = [f"# Vista de mesa · {fecha.isoformat()}", "",
+        # ACTO GEN2-TUBERIA-METRICA-RECTORA-1 · P2: la métrica rectora abre la
+        # vista de mesa, en su propia línea, antes de la cabecera.
+        try:
+            linea_cv = _CV.linea()
+        except Exception as exc:  # noqa: BLE001
+            linea_cv = f"celdas_validadas NO-DERIVABLE ({type(exc).__name__}: {exc})"
+        cab = [linea_cv, "",
+               f"# Vista de mesa · {fecha.isoformat()}", "",
                f"`tools/digesto_tramite.py --mesa` sobre `HEAD` `{sha}`. Solo lectura: "
                "no modifica `firmas-pendientes.tsv`, `no-corrido.tsv` ni el registro "
                "de adquisición.", ""]

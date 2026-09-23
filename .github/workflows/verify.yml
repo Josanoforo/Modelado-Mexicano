@@ -274,6 +274,29 @@ jobs:
         # `guardias` no lo cuente como huérfano.
         run: python3 tests/test_celdas_validadas.py
 
+      - name: celdas_validadas — spec vs módulo (bloqueante)
+        # ACTO GEN2-TUBERIA-METRICA-RECTORA-1 (22/sep/2026), P4. La métrica
+        # rectora deja de vivir sólo en tablero_programa.py: se mueve a
+        # tools/celdas_validadas.py con su spec humana en
+        # forense/prereg-caja/METRICA-CELDAS-VALIDADAS-spec-v1_0.md. Este
+        # test compara, con un caso sintético, la fórmula de la spec contra
+        # lo que el módulo calcula de verdad -- una spec que se desalinea
+        # del código no se nota hasta que alguien intenta recalcular sin
+        # leer el código, y para entonces ya costó una sesión.
+        run: python3 tests/test_celdas_validadas_spec.py
+
+      - name: celdas_validadas — guardia de monotonía (bloqueante)
+        # ACTO GEN2-TUBERIA-METRICA-RECTORA-1, P4. Un merge que borra o
+        # descongela sin querer un veredicto sellado bajaría la métrica
+        # rectora sin que nadie lo note (E.3: un veredicto sellado no se
+        # borra). La única bajada legítima es una fila VENCIDO-EN-ALCANCE de
+        # mesa (A.10), buscada por objeto. Usa `git worktree` sobre los
+        # últimos N merges de primer padre; el checkout de este job es
+        # superficial (--depth=1, arriba), así que con menos de dos merges
+        # visibles el test se declara NO-VERIFICABLE-AQUÍ (skip, no FAIL) en
+        # vez de fallar por falta de historia que no le corresponde traer.
+        run: python3 tests/test_celdas_validadas_monotonia.py
+
       - name: descargador por id de manifiesto — arnés HTTP local (bloqueante)
         # ACTO GEN2-NUBE-PILOTO-1-bis (21/sep/2026), perímetro de cierre
         # permanente (D-21): el COMMIT-1 rescatado de PR #930 congeló el
