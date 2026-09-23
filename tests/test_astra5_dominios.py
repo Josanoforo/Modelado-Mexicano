@@ -185,3 +185,22 @@ def test_lectura_clientelismo_separa_cuatro_resumenes_y_diez_casos():
     assert len({row["id_lectura"] for row in rows}) == 14
     assert all(row["propietario"] == "ASTRA5-U3" and row["siguiente_operacion"] for row in rows)
     assert "no tasa nacional" in rows[10]["componente_y_limite"]
+
+
+def test_lectura_confianza_y_cotejo_enoe_no_funden_universos():
+    rows = read("lectura-confianza-v1_0.tsv")
+    index = {row["id_lectura"]: row for row in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(rows) == 15
+    for row in rows:
+        assert row["archivo_fuente_linea"] == f'{index[row["id_lectura"]]["ruta"]}:L{index[row["id_lectura"]]["linea"]}'
+        assert row["pregunta_documental_pendiente"] and row["archivo_pieza_exacta"]
+        assert row["propietario"].startswith("ASTRA5-") and row["siguiente_operacion"]
+    assert rows[4]["contrato_existente"] == "ASTRA5-U0-POL-002"
+    assert "denuncias" in rows[4]["pregunta_documental_pendiente"]
+    assert "incidentes" in rows[4]["pregunta_documental_pendiente"]
+    cotejo = read("cotejo-result-enoe-v1_0.tsv")
+    assert {row["id_afirmacion"] for row in cotejo} == {f"ASTRA5-U0-ENOE-{n:03d}" for n in range(1, 4)}
+    assert all("INTEGRADO_MAIN_76b0e56b" in row["estado_main"] for row in cotejo)
+    assert {row["dictamen_contraste"] for row in cotejo} == {
+        "CONFIRMA-MAYORIA-TRIMESTRAL", "SIN-CONTRASTE-DIRECTO", "MATIZA-COMPONENTE-SEMANAL"
+    }
