@@ -135,3 +135,12 @@ registro de rótulo. Mesa decide merge/adopción; la reserva 2026T1 sigue
 vigente después del merge. La rama integró `origin/main` mediante merge,
 sin reescribir los commits de COMMIT-1/COMMIT-2; la línea base volvió a
 dar VERDE después de la integración.
+
+**Adenda de revisión de PR #1087 (23/sep):** dos TSV preparatorios estaban
+guardados como LF en Git, aunque sus hashes congelados correspondían a CRLF.
+El commit `42997895` conserva los bytes CRLF en el blob mediante atributos
+por archivo. El replay de ambos CALC desde checkout limpio dio
+`REPRODUCE · CONTEXTO=IDENTICO`, 48/48 y 3/3 inputs respectivamente, sin
+alterar specs/resultados/sellos. Causa, comandos, hashes y evidencia compacta:
+`forense/analisis/dominios/enoe/03-correccion-bytes-checkout-limpio.md`.
+2026T1 y todos los límites inferenciales anteriores siguen vigentes.
