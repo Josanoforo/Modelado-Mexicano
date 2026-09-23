@@ -106,3 +106,5 @@ No se requiere otra firma para investigar y reparar los fallos mecánicos aquí 
 La comprobación final encontró `origin/main=a63fd4ccc40204cf5215d466a593b4e1491bdda6`: **#699 (encolado de 14–16) y #696 (publicación 09) ya están fusionados**. Se cotejó el delta desde el SHA de las pruebas: no cambió corrida0, T35, el calculador F5, las pruebas examinadas ni milpa/src. Los contraejemplos siguen aplicando al código vigente. Las vistas recién publicadas confirman los mismos 191 usos legacy y 16 GEN2. Se conserva el SHA original en el JSON de pruebas para no atribuirle una ejecución distinta.
 
 Por tanto, **no volver a encargar 09** ni esperar su merge: 17 parte de la publicación de #696. Los análisis de #695/#697/#698 se trataron como propuestas; no se presume aquí su integración posterior. 14–16 ya están en cola; no duplicarlos.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · los tres encargos que origina (17/18/19) ya cerraron (ver fila hermana LEEME-LANZAMIENTO-POST701)

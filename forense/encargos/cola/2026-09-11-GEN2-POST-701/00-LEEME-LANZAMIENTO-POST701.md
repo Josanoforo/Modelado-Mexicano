@@ -38,3 +38,5 @@ el linaje, la aptitud para el uso ni la separación de evaluación.
 ```
 
 Al continuar entre sesiones, retomar rama/PR/SHA y fases pendientes; no reiniciar la misma tarea ni usar el resultado JSON como oráculo del comportamiento corregido.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-LINAJE-Y-ADOPCION-cierre.md, -MOTOR-Y-HERENCIA-EXPLICITA-cierre.md, -EVALUACION-SIN-FUGAS-cierre.md

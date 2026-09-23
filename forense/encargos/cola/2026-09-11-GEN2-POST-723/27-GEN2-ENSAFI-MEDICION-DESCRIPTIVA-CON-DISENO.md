@@ -82,3 +82,5 @@ NC-0164 conserva el residual producto exacto/costo/fricción/daño causal. No se
 ## Dependencias y convivencia
 
 Requiere #723 fusionado. Puede correr junto con 28, 29 y 30. Escribe su CALC y evidencia; concilia registros compartidos por identidad. No modifica el extractor financiero general salvo una corrección material indispensable y coordinada. No cambia el motor ni las capturas F5.
+
+## CONSUMIDO — SUPERADO-POR ACTO GEN2-TRAMITE-COLA-VIEJA-1 (verificación por objeto) · forense/notas/2026-09-11-GEN2-ENSAFI-MEDICION-DESCRIPTIVA-CON-DISENO-cierre.md (nombre identico al encargo)
