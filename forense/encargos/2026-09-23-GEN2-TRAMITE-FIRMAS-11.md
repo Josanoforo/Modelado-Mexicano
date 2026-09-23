@@ -77,3 +77,7 @@ No relanza AUTOMERGE (es -2), no registra celdas-D, no adjudica, no repara el ca
   **por qué:** ejecutado — no aplica.
   **impacto:** ninguno.
   **sucesor:** N/A.
+
+## CONSUMIDO
+
+Ejecutado por `/acto` sobre `forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-11.md`, rama `acto/gen2-tramite-firmas-11`, PR [#1049](https://github.com/Josanoforo/Modelado-Mexicano/pull/1049). ADR raíz: `ADR-260923-GEN2-TRAMITE-FIRMAS-11-05da-01`. Suite `--rapido` VERDE (0 FAIL) en cada commit de esta rama. No se fusiona en este acto: mesa fusiona.
