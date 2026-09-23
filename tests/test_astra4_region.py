@@ -221,3 +221,15 @@ def test_enif_no_trabaja_aplica_particion_y_corte():
     d.loc[0, "P3_8"] = "1"
     with pytest.raises(RuntimeError, match="no particionan"):
         dominio(d)
+
+
+def test_envipe_u4_colapsa_delitos_en_personas():
+    from tools.astra.region.envipe_denuncia_persona import universo
+    mod = pd.DataFrame({"ID_PER": ["a", "a", "b", "c"],
+        "BPCOD": ["05", "06", "15", "04"],
+        "BP1_20": ["2", "2", "2", "2"],
+        "BP1_23": ["03", "08", "04", "01"]})
+    per = pd.DataFrame({"ID_PER": ["a", "b", "c"]})
+    den, y = universo(mod, per)
+    assert list(den) == [True, True, False]
+    assert list(y) == [True, False, False]
