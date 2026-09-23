@@ -42,7 +42,7 @@ def test_corte_enoe_no_confunde_medibilidad_y_reserva():
     assert len(rows) == 3
     assert len({row["id_afirmacion"] for row in rows}) == len(rows)
     for row in rows:
-        assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+        assert row["dictamen"] == "MEDIBLE-EN-CORPUS"
         assert row["estado_verificacion"] == "CERRADA"
         assert "diseño muestral" in row["dictamen_razon"]
         assert "NO ABIERTO" in row["datos_id_estado"]
@@ -56,8 +56,19 @@ def test_cortes_documentales_conservan_componentes_y_fuentes():
         assert len(rows) == 1
         row = rows[0]
         assert row["estado_verificacion"] == "CERRADA"
-        expected = "MEDIBLE-EN-CORPUS" if name == "corte-politica-v1_0.tsv" else "MEDIBLE-CON-ADQUISICIÓN"
-        assert row["dictamen"] == expected
+        assert row["dictamen"] == "MEDIBLE-EN-CORPUS"
         assert row["componente_contrastable"] and row["limite_inferencial"]
         assert "NO ABIERTO" in row["datos_id_estado"] or "no recalculado" in row["datos_id_estado"]
+        assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
+
+
+def test_corte_finanzas_distingue_documento_en_rama_y_universos():
+    rows = read("corte-finanzas-v1_0.tsv")
+    assert len(rows) == 5
+    assert len({row["id_afirmacion"] for row in rows}) == 5
+    for row in rows:
+        assert row["estado_verificacion"] == "CERRADA"
+        assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+        assert "#1088 RAMA, ausente de main" in row["documento_id_hash_pagina"]
+        assert "P" in row["pregunta_textual_codigo_respuestas"]
         assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]

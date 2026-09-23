@@ -11,20 +11,20 @@ REPORT_WORK = "corpus/reports/Psicología_del_Trabajo_en_México__Un_Mapa_Basado
 DOC_Q = "enoe_cuestionario_basico_v7_pdf|7ee25f114a493cd4136bb086f7fa3a2f6db1fe7300dc5839ec2a7de9c3efa698"
 DOC_FD = "enoe_123_fd_c_bas_amp_pdf|920a1db58ee30527bae48d0d1f45e47c8f17a9302b2dc743cf296228aa205a61"
 DATA = "enoe_2024_3t_csv|f384a1b8872e051856ed2241289400302b13a8701489b1c596390452c183cd01"
-DESIGN = "enoe_n_diseno_muestral.pdf|42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09"
+DESIGN = "enoe_n_diseno_muestral_pdf|42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09"
 
 COMMON = dict(
     estado_verificacion="CERRADA",
-    dictamen="MEDIBLE-CON-ADQUISICIÓN",
-    dictamen_razon="Datos, cuestionario y FD registrados; falta exclusivamente registrar diseño muestral ENOE N en manifiesto. PDF oficial leído y hash recalculado.",
+    dictamen="MEDIBLE-EN-CORPUS",
+    dictamen_razon="Datos, cuestionario, FD y diseño muestral ENOE N registrados en manifiesto; diseño físico contrastado por SHA. Contrato de medición limitado a 2024 T3.",
     conducta_unidad_universo="Persona de 15 años o más en vivienda particular; denominador específico por variable; ENOE 2024 T3 básico.",
     instrumento_ola="ENOE 2024 T3, cuestionario básico v7",
-    documento_id_hash_pagina=f"{DOC_Q};{DOC_FD};diseño externo:{DESIGN}",
+    documento_id_hash_pagina=f"{DOC_Q};{DOC_FD};{DESIGN}",
     datos_id_estado=f"{DATA};físico COINCIDE SHA, microdato NO ABIERTO",
     reserva="ENOE ola más reciente reservada; 2024 T3 solo hash de envoltura comprobado, no leído",
-    gen2_existente="Reusar contratos ENOE del repo; ningún RESULT nuevo en este acto",
+    gen2_existente="#1087 RAMA, ausente de main: RESULT-ENOE-PISOS-TABLA / CALC-ENOE-PISOS-0003 / sello 3b916aacd14b5bc2c027485dae82dae5d1d68408c3a754b5aa39c99bc9398b8c; no confundir punto 2024T3 con cifra anual",
     propietario="ASTRA5-U1",
-    siguiente_operacion="Registrar exclusivamente el PDF de diseño muestral en manifiesto mediante adquisición documental autorizada; luego preregistrar estimando y abrir ola no reservada en CAJA.",
+    siguiente_operacion="Consumir los RESULT de #1087 solo con estado rama hasta merge; verificar contrato por estimando y reserva de ola antes de uso en CAJA.",
     prioridad="1",
 )
 
