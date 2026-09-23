@@ -80,3 +80,10 @@ como módulo (1 prueba). Los tres tests de pisos requieren `numpy/pandas`,
 ausentes en el entorno Python 3.12 de ese job y se clasifican
 `NECESITA-DEPENDENCIA(numpy)` allí; las cuatro pruebas pasaron en CAJA con
 esas dependencias instaladas. No se cambió el ejecutor ni el workflow CI.
+
+El job `adicionales` encontró luego una expectativa fija de cuatro reservas
+en `tests/test_descarga_manifiesto.py`: el manifiesto vigente contiene seis
+por las dos rutas ENOE 2026T1. La prueba exige ahora exactamente los seis
+IDs y el estado `RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR` en ambas
+rutas. Su arnés HTTP opera solo con payloads sintéticos locales: no descarga
+ni abre ENOE 2026T1. Ejecución dirigida: **27 PASS, 0 FAIL**.
