@@ -1,0 +1,52 @@
+"""Corte documental ENDIREH 2021; componente de violencia, sin estimación."""
+
+import csv
+import hashlib
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+OUT = Path(__file__).with_suffix(".tsv")
+REPORT = "corpus/reports/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md"
+FIELDS = [
+    "id_afirmacion", "report", "report_sha256", "localizador", "texto_vigente",
+    "tier_report", "clase", "componente_contrastable", "limite_inferencial",
+    "conducta_unidad_universo", "instrumento_ola", "documento_id_hash_pagina",
+    "pregunta_textual_codigo_respuestas", "estado_verificacion", "dictamen",
+    "dictamen_razon", "datos_id_estado", "reserva", "gen2_existente",
+    "propietario", "siguiente_operacion", "prioridad",
+]
+ROW = dict(
+    id_afirmacion="ASTRA5-U0-GEN-001",
+    report=REPORT,
+    localizador="L62-67, sección Evidencia FUERTE",
+    texto_vigente="ENDIREH 2021: 70.1% de las mujeres de 15+ han vivido algún tipo de violencia a lo largo de la vida; psicológica 51.6%, sexual 49.7%, física 34.7%.",
+    tier_report="FUERTE (rige bloque desde L62)",
+    clase="cifra publicada; mezcla de tipos y ámbitos",
+    componente_contrastable="Prevalencia de agresión física por esposo/pareja actual desde inicio de relación entre mujeres casadas o unidas; subcomponente, no prevalencia total 70.1%.",
+    limite_inferencial="P14_1_1..9 no cubre toda violencia psicológica/sexual ni todos los ámbitos o situaciones conyugales. No prueba que la causa sea cultura, guion o impunidad. El agregado 70.1% requiere todas las baterías y universos A/B/C más General antes de declararlo contrastado.",
+    conducta_unidad_universo="Mujer de 15+ casada/unida seleccionada en vivienda particular; parejas actuales; ENDIREH 2021.",
+    instrumento_ola="ENDIREH 2021, Cuestionario A",
+    documento_id_hash_pagina="cuestionario A público endireh2021_cuestionario_a.pdf|d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1|p.34;endireh2021_fd_pdf|5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180|p.457;diseño público 889463907183.pdf|16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+    pregunta_textual_codigo_respuestas="14.1 ‘¿Desde que inició la relación con su esposo o pareja... la ha empujado o le ha jalado el cabello; la ha abofeteado; ... la ha golpeado con el puño o con algún objeto?’ P14_1_1..P14_1_9: 1 muchas veces, 2 pocas veces, 3 una vez, 4 no ocurrió; 9 no especificado y blanco no son violencia observada.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Dato y FD 2021 en manifiesto con hash físico coincidente; para este subcomponente faltan exclusivamente entradas de cuestionario A y diseño muestral públicos.",
+    datos_id_estado="endireh2021_bd_csv_zip|e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e|físico COINCIDE SHA, microdato NO ABIERTO",
+    reserva="Verificar reservas específicas de ENDIREH 2021 antes de abrir en CAJA; ninguna apertura aquí.",
+    gen2_existente="Consumir cualquier RESULT ENDIREH sellado por id si lo hay; cero resultados nuevos aquí.",
+    propietario="ASTRA5-U2",
+    siguiente_operacion="Registrar solo Cuestionario A y diseño 2021; preregistrar subcomponente físico y revisar B/C/General por separado para el agregado global.",
+    prioridad="3",
+)
+
+
+def main():
+    row = ROW | {"report_sha256": hashlib.sha256((ROOT / REPORT).read_bytes()).hexdigest()}
+    with OUT.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, FIELDS, delimiter="\t", lineterminator="\n")
+        writer.writeheader()
+        writer.writerow(row)
+
+
+if __name__ == "__main__":
+    main()

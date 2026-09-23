@@ -47,3 +47,16 @@ def test_corte_enoe_no_confunde_medibilidad_y_reserva():
         assert "diseño muestral" in row["dictamen_razon"]
         assert "NO ABIERTO" in row["datos_id_estado"]
         assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
+
+
+def test_cortes_documentales_conservan_componentes_y_fuentes():
+    files = ["corte-tecnologia-v1_0.tsv", "corte-endireh-v1_0.tsv", "corte-politica-v1_0.tsv"]
+    for name in files:
+        rows = read(name)
+        assert len(rows) == 1
+        row = rows[0]
+        assert row["estado_verificacion"] == "CERRADA"
+        assert row["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN"
+        assert row["componente_contrastable"] and row["limite_inferencial"]
+        assert "NO ABIERTO" in row["datos_id_estado"] or "no recalculado" in row["datos_id_estado"]
+        assert hashlib.sha256((ROOT / row["report"]).read_bytes()).hexdigest() == row["report_sha256"]
