@@ -19,7 +19,7 @@ La matriz usa las variables y códigos efectivos de cada `spec.md` y `spec.yaml`
 
 ## Continuación tras #1093 · matriz final
 
-La [matriz por conducta, ola y ámbito](endireh-matriz-conducta-ola-ambito.tsv) tiene **360 dictámenes trazables**: 346 resultados nacionales medidos de los CALC sellados, 13 exclusiones por diseño y una dependencia externa demostrada. Cada fila medida nombra CALC, RESULT y SHA de `resultados.json`; la tabla de su CALC conserva los cortes univariados, IC, soporte, supresión y réplicas agregadas. `MEDIDO` incluye celdas suprimidas cuando la estimación nacional no alcanza los umbrales. La ausencia de una fila nunca se usa como cero.
+La [matriz por conducta, ola y ámbito](endireh-matriz-conducta-ola-ambito.tsv) tiene **365 dictámenes trazables**: 346 resultados nacionales medidos de los CALC sellados, 18 exclusiones por diseño y una dependencia externa demostrada. Cada fila medida nombra CALC, RESULT y SHA de `resultados.json`; la tabla de su CALC conserva los cortes univariados, IC, soporte, supresión y réplicas agregadas. `MEDIDO` incluye celdas suprimidas cuando la estimación nacional no alcanza los umbrales. La ausencia de una fila nunca se usa como cero.
 
 | Ola | Cobertura agregada en la sucesora | CALC y tabla utilizable | Estado |
 |---|---|---|---|

@@ -121,10 +121,15 @@ def main():
         ("discriminacion_laboral_8_3", "2003", "discriminacion_laboral", "cualquiera", "pareja residente", "EXCLUIDO_POR_DISEÑO", "Reactivos 8.3 de 2021 no existen en 2003"),
         ("pareja_denuncia_institucional_C", "2011", "pareja", "vida", "C soltera", "EXCLUIDO_POR_DISEÑO", "C 6.4 pregunta ayuda e informó a familiares; sin resultado separado de denuncia institucional"),
         ("pareja_decisiones_actuales_B", "2011", "economia_decisiones", "entrevista", "B alguna vez unida", "EXCLUIDO_POR_DISEÑO", "B 7.1 mide dinero libre, sin decisiones con pareja actual"),
+        ("externo_ayuda_actos_10_12", "2011", "externo/familiares u otros", "vida", "A/B/C hechos 10–12", "EXCLUIDO_POR_DISEÑO", "2.10/2.12 de ayuda y resultado solo cubren actos 1–9 de 2.6"),
         ("pareja_ayuda_institucional_C", "2006", "pareja", "vida", "MS soltera", "EXCLUIDO_POR_DISEÑO", "MS P28_2 pregunta aviso/denuncia a familiares; sin bloque P7.7"),
         ("pareja_reciente_C", "2006", "pareja", "año", "MS soltera", "EXCLUIDO_POR_DISEÑO", "MS P28_1 no tiene pares de frecuencia anual P7.4"),
         ("pareja_vida_sin_relacion_C2", "2021", "pareja", "vida", "C2", "EXCLUIDO_POR_DISEÑO", "C2 nunca tuvo relación de pareja elegible"),
+        ("pareja_vida_sin_relacion_C2", "2016", "pareja", "vida", "C2", "EXCLUIDO_POR_DISEÑO", "C2 nunca tuvo relación de pareja elegible"),
+        ("familiar_vida", "2021", "familiar", "vida", "A/B/C", "EXCLUIDO_POR_DISEÑO", "Sección XI pregunta hechos desde octubre 2020, sin reactivo de vida"),
+        ("familiar_vida", "2016", "familiar", "vida", "A/B/C", "EXCLUIDO_POR_DISEÑO", "Sección X pregunta hechos desde octubre 2015, sin reactivo de vida"),
         ("embarazo_no_ocurrido_como_no_discriminacion", "2021", "discriminacion_laboral", "2016–entrevista", "no embarazada", "EXCLUIDO_POR_DISEÑO", "Código 3 de 8.3 indica no estuvo embarazada, fuera del denominador entre embarazadas"),
+        ("embarazo_no_ocurrido_como_no_discriminacion", "2016", "discriminacion_laboral", "2011–entrevista", "no embarazada", "EXCLUIDO_POR_DISEÑO", "Código 3 de 7.3 indica no estuvo embarazada, fuera del denominador entre embarazadas"),
     ]
     for name, year, domain, window, instrument, status, evidence in exclusions:
         out.append(dict(conducta=name, ola=year, ambito=domain, ventana=window,
