@@ -1,0 +1,226 @@
+ASTRA5-U0 · Segunda pasada · tanda G (genero) · sesion 2026-09-24
+cwd de trabajo: /home/pc0/mm-astra5-mapa-dominios-1 (repo de solo lectura)
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (herramientas u0busca.py/u0pdf.py/u0mf.py locales a esta sesion; el U de INSTRUCCIONES-LOTE.md apunta a una sesion distinta, no existente en este filesystem)
+
+=== u0busca.py / u0pdf.py / u0mf.py (corpus, sin web) ===
+
+python3 $U/u0busca.py -q "condicion de actividad|sexo" --encuesta enoe --limite 30
+  -> 0 aciertos con texto
+
+python3 $U/u0busca.py -q "TIP_CON|informal" --encuesta enoe --limite 30
+  -> 2 aciertos (fd_ext:4452/4549, enoe_123_fd_c_bas_amp_pdf / enoe_325_fd_c_bas_amp_pdf)
+
+python3 $U/u0busca.py -q "ingreso mensual|ingreso por trabajo" --encuesta enoe --limite 30
+  -> 0 aciertos con texto
+
+python3 $U/u0mf.py --busca enoe --busca 2025 --limite 15
+  -> 9 entradas (conjunto_de_datos_enoe_2025_{1,2,3,4}t_csv, enoe_2025_{1,2,3,4}t_microdatos, enoe_cuestionario_basico_v7_pdf)
+
+python3 $U/u0mf.py --busca enoe --busca 2024 --limite 15
+  -> 9 entradas (conjunto_de_datos_enoe_2024_{1,2,3,4}t_csv, enoe_2024_{1,2,3,4}t_microdatos, enoe_n_diseno_muestral_pdf)
+
+python3 $U/u0busca.py -q "SEXO" --encuesta enoe --limite 15
+  -> 0 aciertos con texto
+
+python3 $U/u0busca.py -q "PEA|poblacion economicamente activa" --encuesta enoe --limite 15
+  -> 2 aciertos (fd_ext:4440/4537, enoe_123_fd_c_bas_amp_pdf / enoe_325_fd_c_bas_amp_pdf; CLASE1/CLASE2/CLASE3)
+
+python3 $U/u0busca.py -q "CLASE1|CLASE2" --encuesta enoe --limite 15
+  -> 2 aciertos (mismos que arriba)
+
+python3 $U/u0busca.py -q "INGOCUP|ingreso ocupacion" --encuesta enoe --limite 15
+  -> 0 aciertos con texto
+
+python3 $U/u0mf.py --id enoe_123_fd_c_bas_amp_pdf
+  -> PDF INEGI ENOE 'Estructura de la base de datos', usado_para ADQ-ENOE-PRE2019/T2, sha 920a1db5...
+
+python3 $U/u0mf.py --id enoe_325_fd_c_bas_amp_pdf
+  -> mismo tipo de documento, sha 589b8e51...
+
+python3 $U/u0pdf.py -q "sexo" --id enoe_123_fd_c_bas_amp_pdf --limite 10
+  -> 2 coincidencias: p.3 (mencion generica), p.17 (variable SEX/SEXO codigo 24: "1 hombre 2 mujer")
+
+python3 $U/u0pdf.py -q "clase1|poblacion economicamente activa" --id enoe_123_fd_c_bas_amp_pdf --limite 10
+  -> 1 coincidencia: p.20 (CLASE1 codigo 55: PEA/PNEA)
+
+python3 $U/u0pdf.py -q "tip_con|informal" --id enoe_123_fd_c_bas_amp_pdf --limite 10
+  -> 13 coincidencias: p.22/23/27/28, incl. EMP_PPAL codigo 107 (empleo informal/formal), TUE_PPAL codigo 108
+     (sector informal), matriz Hussmanns codigos 4-10
+
+python3 $U/u0pdf.py -q "ingocup|ingreso" --id enoe_123_fd_c_bas_amp_pdf --limite 10
+  -> 38 coincidencias: p.20 ("estructura de la base de datos. 2024." -- confirma FD vigente 2024), p.21, p.23,
+     p.26 (INGOCUP codigo 97 ingreso mensual; ING_X_HRS codigo 98 ingreso por hora)
+
+python3 $U/u0mf.py --busca enut --busca 2024 --limite 20
+  -> 8 entradas: enut2024_bd_csv (payload real, sha 25f35626...), enut2024_fd_xlsx (sha 4a7dddf1...),
+     enut2024_cuestionario_pdf, enut2024_diseno_muestral_pdf, enut2024_der_zip,
+     enut2024_diccionario_variables_html, descargamasiva_3072026_105543
+
+python3 $U/u0mf.py --busca ine --busca computo --limite 20
+  -> 20 de 66 mostradas: solo calendarios/acuerdos electorales antiguos (2014-2019) y
+     ine_prep2024_base_datos_20240603_2005_zip (PREP 2024, payload real)
+
+python3 $U/u0mf.py --busca sicee --limite 20
+  -> 20 de 69 mostradas: marco geografico electoral / calendarios; ninguna es resultado nacional por candidatura
+
+python3 $U/u0busca.py -q "marcha|manifestacion|protesta" --encuesta encuci --limite 20
+  -> 3 aciertos con texto: AP4_11 (p.24, conocimiento/habilidades para participar), AP7_3_5 (p.43, "Participado
+     en una protesta"), AP7_4_5 (p.44, "en los ultimos 12 meses... Participado en una protesta"); payload real
+     encuci2020_bd_dbf, fuente encuci2020_fd_pdf
+
+python3 $U/u0pdf.py -q "aborto|abortion" --idsub wvs --limite 20
+  -> 1 coincidencia: p.4 del cuestionario WVS7 Mexico 2018 (f00006635_wvs7_questionnaire_mexico_2018_spanish),
+     item 184 "el aborto" (bateria "el mundo esta mejor o peor a causa de")
+
+python3 $U/u0mf.py --calc CALC-INE-PISOS-SICEE-0002
+  -> 0 corridas con ese id como input (de 326 corridas totales)
+
+python3 $U/u0busca.py -q "TRAB_NO_REM_VOL" --encuesta enut --limite 10
+  -> 2 aciertos: tvar_crea.csv del payload enut2024_bd_csv (fuente enut2024_fd_xlsx, hoja TVAR_CREA fila 35)
+
+python3 $U/u0busca.py -q "sexo" --encuesta enut --limite 10
+  -> 12 aciertos, incl. tvar_crea.csv fila 73 (misma tabla que TRAB_NO_REM_VOL, mismo payload/fuente)
+
+python3 $U/u0mf.py --busca computo --busca distrital --limite 20
+  -> 0 entradas
+
+python3 $U/u0mf.py --busca declaracion --busca validez --limite 20
+  -> 0 entradas
+
+python3 $U/u0busca.py -q "endireh" --encuesta endireh --ola 2021 --limite 5
+  -> 0 aciertos con texto (alias de instrumento no matchea literal "endireh")
+
+python3 $U/u0pdf.py -q "cualquier tipo de violencia|prevalencia" --id endireh2021_fd_pdf --limite 10
+  -> 0 coincidencias
+
+python3 $U/u0mf.py --id endireh2021_fd_pdf
+  -> PDF real, 730pp, "Estructura de la base de datos ENDIREH 2021", sha 5c30a3f7..., sin reserva
+
+python3 $U/u0busca.py -q "prevalencia" --encuesta endireh2021 --limite 10
+  -> 0 aciertos con texto
+
+python3 $U/u0busca.py -q "entidad federativa|CVE_ENT" --encuesta endireh2021 --limite 10
+  -> 0 aciertos con texto
+
+python3 $U/u0busca.py -q "ENT" --encuesta endireh2021 --limite 15
+  -> 9 aciertos, ninguno es variable geografica de entidad (subcadena "ENT" en otras palabras/items)
+
+python3 $U/u0busca.py -q "a lo largo de su vida|alguna vez en su vida" --encuesta endireh2021 --limite 15
+  -> 0 aciertos con texto
+
+python3 $U/u0busca.py -q "justificable|justificado" --encuesta wvs --limite 15
+  -> 0 aciertos con texto
+
+python3 $U/u0mf.py --busca enadis --limite 20
+  -> 4 entradas: conjunto_de_datos_enadis_2022_csv, enadis2022_cuestionario_general,
+     enadis2022_cuestionario_opinion, enadis2022_fd (raiz descargas_mx)
+
+python3 $U/u0pdf.py -q "aborto" --id enadis2022_cuestionario_opinion --limite 15
+  -> 0 coincidencias
+
+python3 $U/u0pdf.py -q "aborto" --id enadis2022_cuestionario_general --limite 15
+  -> 0 coincidencias
+
+python3 $U/u0busca.py -q "aborto" --encuesta wvs --limite 15
+  -> 0 aciertos con texto (recuperado antes via u0pdf sobre el cuestionario, no via tabla de reactivos)
+
+python3 $U/u0busca.py -q "asiste a servicios religiosos|practica religiosa" --encuesta wvs --limite 10
+  -> 0 aciertos con texto
+
+python3 $U/u0mf.py --busca wvs --busca mexico --limite 20
+  -> 11 entradas: cuestionario, methodology report, sample design, información del equipo, y los payloads
+     reales de datos Wave 7 Mexico (spss/stata/csv/excel/exceltxt/csvtext v5.0-5.1)
+
+python3 $U/u0pdf.py -q "el aborto" --id f00006635_wvs7_questionnaire_mexico_2018_spanish --limite 10 --contexto 400
+  -> 1 coincidencia (p.4, mismo item 184, contexto ampliado)
+
+python3 $U/u0mf.py --busca camara --busca diputados --limite 10
+  -> 0 entradas
+
+python3 $U/u0mf.py --busca senado --limite 10
+  -> 0 entradas
+
+python3 $U/u0mf.py --busca gire --limite 10
+  -> 0 entradas
+
+python3 $U/u0mf.py --busca mcci --limite 10
+  -> 1 entrada: mcci_encuesta_corrupcion_impunidad_2019_2024_xlsx (encuesta de corrupcion/impunidad general,
+     NO el estudio de sentencias por feminicidio citado por el report)
+
+python3 $U/u0mf.py --busca causa --limite 10
+  -> 2 entradas: gen2_federal_reserve_shed_2025_public_csv, enigh2024_reporte_resultados_pdf (ninguna es
+     "Causa en Comun", falsos positivos por subcadena)
+
+python3 $U/u0mf.py --busca "world bank" --limite 20
+  -> 3 entradas: wbes_mexico_2023_ddi_xml, es_b_ready_2023_questionnaire, mexico_2023_es_implementation_report
+     (encuestas empresariales, sin relacion con participacion laboral por matrimonio)
+
+python3 $U/u0mf.py --busca argentina --limite 10
+  -> 0 entradas
+
+python3 $U/u0mf.py --id estadistica_concejales_2016_ieepco
+  -> XLSX real, 25 hojas D01-D25, usado_para "ACTO MAESTRA38-A4: estadistica de concejales Oaxaca 2016
+     (regimen de partidos)" -- descartado como proxy de SNI/usos y costumbres
+
+python3 $U/u0mf.py --busca ieepco --limite 20
+  -> 1 entrada (la misma de arriba)
+
+python3 $U/u0mf.py --id encuci2020_fd_pdf
+  -> FD real, sha 6cd6f747..., sin reserva
+
+Lectura local (repo de solo lectura, sin escritura):
+  forense/analisis/dominios/lotes/rural-indigena-filas-v1_0.tsv (49 filas) -- localizadas RURAL-001, RURAL-003,
+  RURAL-004, RURAL-008, RURAL-017 (exclusion de mujeres/avecindados de la ciudadania plena, NO-MEDIBLE-POR-DISEÑO),
+  RURAL-018 relacionadas con usos y costumbres / IEEPCO / SNI.
+
+=== Web (WebFetch; WebSearch no disponible en esta sesion) ===
+
+NOTA: WebSearch devolvio "presupuesto de sesion agotado (200/200)" en el primer intento de esta sesion
+(query Arciniega 2008) y en todos los intentos subsecuentes. No se pudo ejecutar NINGUNA consulta WebSearch
+en esta sesion. Todo lo de abajo es WebFetch sobre URLs conocidas/inferidas sin busqueda previa.
+
+WebFetch https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf
+  prompt: articulo 132 fraccion XXVII Bis, licencia de paternidad, obligatoriedad, dias, quien paga
+  -> PDF real (457 paginas, ~4MB) descargado, texto no extraible (codificacion/compresion)
+
+WebFetch https://doi.org/10.1037/0022-0167.55.1.19  (Arciniega et al. 2008)
+  -> redirige 302 a https://doi.apa.org/doi/10.1037/0022-0167.55.1.19
+
+WebFetch https://doi.apa.org/doi/10.1037/0022-0167.55.1.19
+  -> redirige 301 a https://psycnet.apa.org/doi/10.1037/0022-0167.55.1.19
+
+WebFetch https://psycnet.apa.org/doi/10.1037/0022-0167.55.1.19
+  -> pagina SPA, solo shell de carga, sin texto/metadatos extraibles
+
+WebFetch https://www.gob.mx/stps/articulos/licencia-de-paternidad
+  -> HTTP 404
+
+WebFetch https://doi.org/10.1080/09515071003776036  (Castillo et al. 2010, Marianismo Beliefs Scale)
+  -> redirige 302 a http://www.tandfonline.com/doi/abs/10.1080/09515071003776036
+
+WebFetch https://doi.org/10.1111/j.1741-3737.2010.00744.x  (Wheeler et al. 2010)
+  -> redirige 302 a https://onlinelibrary.wiley.com/doi/10.1111/j.1741-3737.2010.00744.x
+
+WebFetch https://www.gob.mx/imss/es/articulos/licencia-de-paternidad
+  -> HTTP 404
+
+WebFetch https://www.tandfonline.com/doi/abs/10.1080/09515071003776036
+  -> HTTP 403 Forbidden
+
+WebFetch https://onlinelibrary.wiley.com/doi/10.1111/j.1741-3737.2010.00744.x
+  -> HTTP 403 Forbidden
+
+WebFetch https://www.gob.mx/imss/articulos/licencia-de-paternidad
+  -> HTTP 404
+
+WebFetch https://www3.weforum.org/docs/WEF_GGGR_2024.pdf
+  prompt: tabla de rankings por pais, posicion de Mexico en subindice de Participacion Economica
+  -> PDF real (9.4MB) descargado, texto de la tabla de rankings no extraible (codificacion)
+
+=== Resumen de presupuesto ===
+Consultas de corpus (u0busca/u0pdf/u0mf): 40 (todas dentro de cwd /home/pc0/mm-astra5-mapa-dominios-1)
+Consultas web: 13 WebFetch (0 WebSearch por agotamiento de presupuesto de sesion, 200/200, detectado en el
+  primer intento de esta sesion y confirmado en 2 intentos mas antes de abandonar esa via)
+Fecha de todas las consultas de esta sesion: 2026-09-24
+Reservas: no se toco ENOE 2026 (ningun trimestre), ENVIPE 2026 ni ENCO en ninguna consulta; ENOE usado fue
+  2024T3 (enoe_2024_3t_microdatos) y se confirmo disponibilidad de 2025 sin necesidad de abrirlo.
