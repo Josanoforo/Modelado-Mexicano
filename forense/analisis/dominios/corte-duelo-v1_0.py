@@ -158,6 +158,18 @@ ROWS = [
         componente_contrastable="Family Process 2012 pp.456-457,463-467: propuesta clínica argumentada con reflexión y narración; no estudio de eficacia ni demostración de daño universal por buscar cierre.",
         localizador="L10,L31; crítica de closure",
     ),
+    ALMANZA | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-011",
+        texto_vigente="Una madre entrevistada en Ciudad Victoria describió papeleo de autoridades sin resultado de localización al momento de la entrevista.",
+        componente_contrastable="Resultados/Incertidumbre, ruptura y ausencia, Caso 2: testimonio de trámite sin resultado y falta de noticias. Es experiencia de un caso en muestra n5; no estima tasa de omisión, colusión o regla de espera de 72 horas.",
+        localizador="L16,L72-L79; experiencia institucional situada",
+    ),
+    ALMANZA | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-012",
+        texto_vigente="En las entrevistas de Almanza et al. aparecen alejamiento social y estigmatización por sospecha de vínculo de la víctima con el crimen, junto con relatos de solidaridad en algunos casos.",
+        componente_contrastable="Resultados/El alejamiento de los otros: Caso 1 refiere pérdida de amistades y sospecha; Caso 4, juicio por volver al trabajo; autoras señalan apoyo en algunos casos. No frecuencia poblacional ni prueba de que toda narrativa procede del Estado.",
+        localizador="L20,L90-L96; estigma y apoyo situados",
+    ),
 ]
 
 
