@@ -3257,6 +3257,76 @@ def t_validacion_overlay_sucesor_por_resultado_y_hash():
             f"un destino ausente no paró: {p!r}")
 
 
+def _repro_catalogo(fila_relevo: dict) -> str:
+    """ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1. Monta un catalogo temporal con
+    las columnas de relevo (`C.COLUMNAS_RELEVO_CATALOGO`) en `M08`, corre
+    T-REPRO sobre el y devuelve lo que senalo. Nunca escribe el catalogo
+    real (lo escribe el escritor, ADOPCION-4)."""
+    chk = _carga_check()
+    calcs = [{"calc_id": "CALC-FIX-CAT", "valores": {"RESULT-CAT": 0.7909064453831163},
+              "etiquetas": {"cuenta_gen2": "SI", "generacion": "GEN2"}}]
+    previo = C.CATALOGO_MOMENTOS
+    with _arbol_registro(calcs=calcs) as tmp:
+        with open(previo, encoding="utf-8", newline="") as fh:
+            lector = csv.DictReader(fh, delimiter="\t")
+            cols = list(lector.fieldnames) + list(C.COLUMNAS_RELEVO_CATALOGO)
+            filas = [dict(f, **(fila_relevo if f["id_momento"] == "M08" else {}))
+                     for f in lector]
+        C.CATALOGO_MOMENTOS = tmp / "catalogo-momentos-v0_1.tsv"
+        try:
+            with C.CATALOGO_MOMENTOS.open("w", encoding="utf-8", newline="") as fh:
+                w = csv.DictWriter(fh, fieldnames=cols, delimiter="\t",
+                                   lineterminator="\n", restval="")
+                w.writeheader()
+                w.writerows(filas)
+            consumidor = "milpa/catalogo-momentos-v0_1.tsv:M08"
+            C._escribe(C.DEMANDA_RESULTADOS, C.COLS_RESULTADOS,
+                       [_fila_demanda("RES-0008", consumidor, "CORR-0008",
+                                      tipo="momento", valor_legacy=C.NO_DECLARADO)])
+            C._escribe(C.DEMANDA_CORRIDAS, C.COLS_CORRIDAS,
+                       [_fila_corrida("CORR-0008", ["RES-0008"])])
+            chk.WARNS.clear()
+            chk.FAILS.clear()
+            chk.t35_repro(modulo=C)
+        finally:
+            C.CATALOGO_MOMENTOS = previo
+    return " · ".join(m for _, m in chk.FAILS if "catalogo-momentos" in m)
+
+
+_CITA_M08 = {"corrida0_resultado_id": "RESULT-CAT", "corrida0_generacion": "GEN2",
+             "calc_gen2": "CALC-FIX-CAT", "sello_gen2": "0" * 64,
+             "discrepancia_gen1": "NO-REPRODUCE-GEN1: unidad DELITO"}
+
+
+def t_catalogo_m08_valor_y_cita_pasa():
+    """Positivo: M08 con valor GEN2 = RESULT, cita completa y discrepancia
+    GEN1 rotulada -> T-REPRO(c) VERDE (la discrepancia no bloquea)."""
+    senalado = _repro_catalogo(dict(_CITA_M08, valor_gen2="0.7909064453831163"))
+    _afirma(senalado == "", "T-CATALOGO-M08-POSITIVO",
+            f"T-REPRO rechazo valor + cita correctos: {senalado!r}")
+
+
+def t_catalogo_valor_sin_cita_falla():
+    """Negativo 1: valor GEN2 sin RESULT/CALC/sello -> (c) sin cita."""
+    senalado = _repro_catalogo({"valor_gen2": "0.7909064453831163"})
+    _afirma("(c)" in senalado and "sin cita completa" in senalado,
+            "T-CATALOGO-VALOR-SIN-CITA", f"no se rechazo: {senalado!r}")
+    senalado = _repro_catalogo(dict(_CITA_M08, valor_gen2="0.7909064453831163",
+                                    sello_gen2=""))
+    _afirma("(c)" in senalado or "(d)" in senalado,
+            "T-CATALOGO-CITA-SIN-SELLO", f"no se rechazo: {senalado!r}")
+
+
+def t_catalogo_cita_sin_valor_o_valor_distinto_falla():
+    """Negativo 2: cita sin valor, y valor != RESULT -> (c)."""
+    senalado = _repro_catalogo(dict(_CITA_M08))
+    _afirma("(c)" in senalado and "valor materializado" in senalado,
+            "T-CATALOGO-CITA-SIN-VALOR", f"no se rechazo: {senalado!r}")
+    senalado = _repro_catalogo(dict(_CITA_M08, valor_gen2="0.78"))
+    _afirma("(c)" in senalado and "!=" in senalado,
+            "T-CATALOGO-VALOR-DISTINTO", f"no se rechazo: {senalado!r}")
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 
