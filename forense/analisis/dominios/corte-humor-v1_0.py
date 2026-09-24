@@ -37,10 +37,32 @@ BASE = dict(
     siguiente_operacion="MESA-DOCUMENTAL registra edición, apéndices, condiciones y SHA; U3 mantiene evaluación vital separada de humor y de Latinobarómetro.",
     prioridad="3",
 )
+DATAREPORTAL = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L18; repetición L4,L64",
+    tier_report="fuerte",
+    clase="estimación de identidades de redes sociales publicada",
+    limite_inferencial="Las identidades de redes no son personas únicas ni usuarios de humor. El método intenta deduplicar cuentas, pero puede usar solo la plataforma de mayor audiencia; la cifra total coincide con el alcance publicitario Facebook 93.0 millones. No es una encuesta de personas ni mide exposición/producción de memes o mecanismo de afrontamiento.",
+    conducta_unidad_universo="Identidades activas estimadas de redes sociales en México, enero 2025; cociente 70.7% usa población total de México como referente, no representa proporción observada de individuos usuarios.",
+    instrumento_ola="DataReportal Digital 2025: Mexico, corte enero 2025, fuentes de alcance publicitario y análisis Kepios",
+    documento_id_hash_pagina="SIN-ID:datareportal_digital2025_mexico.html|55fe082ca3d90dda7787375b8636d7131be34584220edebb3538e3e644b37070|sección Social media statistics for Mexico in 2025, captura 23-sep-2026;https://datareportal.com/reports/digital-2025-mexico",
+    pregunta_textual_codigo_respuestas="No hay pregunta de encuesta a mexicanos: DataReportal compila señales de plataformas/planificadores publicitarios; cifra 93.0 millones de identidades y razón 70.7% respecto a población total.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Publicación primaria/captura HTML física con SHA y fecha; falta id documental y detalle completo de deduplicación por fuente para reproducción. Se cierra el indicador publicado, no conteo de personas ni resultado propio.",
+    datos_id_estado="Fuentes publicitarias subyacentes sin id/copia U0; solo captura agregada. Sin microdato abierto ni RESULT compatible.",
+    reserva="Página mutable y derechos de reproducción de captura no verificados; referencia/hash únicamente en repo. No proyectar cifras 2023 de plataformas o 45 horas TikTok a esta ola.",
+    gen2_existente="Sin RESULT DataReportal 2025 identificado en main. ENDUTIH 2024 personas 6+ P7_1 mide otra unidad y periodo.",
+    propietario="ASTRA5-U4 / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="MESA-DOCUMENTAL registra URL, fecha, condiciones y SHA de captura; U4 localiza metadata de alcance publicitario/deduplicación y mantiene uso de humor como pregunta separada.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(id_afirmacion="ASTRA5-U0-HUM-001", texto_vigente="WHR 2025 ubicó a México en el puesto 10 de 147 países, con media 6.979/10 de evaluación vital para 2022–2024.", instrumento_ola="World Happiness Report 2025, Gallup World Poll 2022–2024", documento_id_hash_pagina=DOC25, componente_contrastable="Apéndice B Figura 21: México 10, media Cantril 6.979, intervalo 95% de rango 9–17; comparación internacional de 147 países.", limite_inferencial=BASE["limite_inferencial"] + " El intervalo de rango 9–17 advierte incertidumbre; el orden 10 no implica distancia grande frente a Australia 11 (6.974)."),
     BASE | dict(id_afirmacion="ASTRA5-U0-HUM-002", texto_vigente="WHR 2024 ubicó a México en puesto 25, con media 6.678/10 de evaluación vital para 2021–2023.", instrumento_ola="World Happiness Report 2024, Gallup World Poll 2021–2023", documento_id_hash_pagina=DOC24, componente_contrastable="Apéndice estadístico 2024 Figura 65: México 25, media Cantril 6.678, intervalo 95% de rango 17–33; no es edición 2025.", siguiente_operacion="Registrar apéndice WHR 2024 por separado; comparar ventanas con 2025 únicamente como niveles publicados, sin llamar cambio anual a medias trianuales."),
     BASE | dict(id_afirmacion="ASTRA5-U0-HUM-003", texto_vigente="Entre las ediciones WHR 2024 y 2025, México pasó del puesto 25 al 10; las medias trianuales publicadas pasaron de 6.678 a 6.979.", instrumento_ola="WHR 2024 (2021–2023) frente a WHR 2025 (2022–2024)", documento_id_hash_pagina=DOC24 + ";" + DOC25, componente_contrastable="Comparación aritmética de dos ediciones: +0.301 puntos de media y 15 posiciones de rango publicado; ventanas 2021–2023 y 2022–2024 comparten 2022/2023.", limite_inferencial=BASE["limite_inferencial"] + " Las ventanas trianuales se superponen dos años, el conjunto de países cambia y los IC de rango 17–33 (2024) y 9–17 (2025) se tocan; sin covarianza entre estimadores ni diseño no se prueba cambio estadísticamente significativo ni causa familiar.", siguiente_operacion="Registrar ambos apéndices y, si se requiere inferencia de cambio, obtener estimaciones anuales/covarianza bajo permiso Gallup; conservar comparación descriptiva sin RESULT propio."),
+    DATAREPORTAL | dict(id_afirmacion="ASTRA5-U0-HUM-007", texto_vigente="DataReportal reportó 93.0 millones de identidades activas de redes sociales en México en enero 2025, equivalentes a 70.7% de la población total.", componente_contrastable="Estimación publicada de identidades y cociente de referencia, no 93.0 millones de individuos distintos ni 70.7% de personas usuarias."),
 ]
 
 
