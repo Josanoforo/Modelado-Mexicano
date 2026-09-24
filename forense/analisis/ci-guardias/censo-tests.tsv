@@ -100,6 +100,8 @@ tests/test_encig_cruces_historicos.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEP
 tests/test_encig_duelo_2025.py	pytest	NO	numpy,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_encig_serie_canal.py	script	NO	numpy,pandas	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_enco_reserva_prepara.py	pytest	NO	pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
+tests/test_encup_pisos.py	pytest	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_encup_pisos_etiquetas.py	pytest	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_encrige_carga_intensidad.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_encrige_descriptiva.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_endutih_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
@@ -136,10 +138,12 @@ tests/test_f6_factibilidad_prepara.py	modulo	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exi
 tests/test_fuentes_financieras.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_guardas_res.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_imor_contexto_temporal.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_ine_pisos.py	pytest	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_issp2017_consistencia_apoyo_familiar.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_issp2017_redes_apoyo_cotidiano.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_issp_apoyo_monetario.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_join_folioviv.py	script	NO	(ninguna)	SI	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_lapop_pisos.py	pytest	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_linaje_superado.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_lote_desde_asientos.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_lote_enif2024.py	script	NO	numpy	NO	0.1	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'

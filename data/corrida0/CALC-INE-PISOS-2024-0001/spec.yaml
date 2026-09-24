@@ -1,0 +1,35 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-INE-PISOS-2024-0001
+spec_md: ../../../forense/prereg-caja/INE-PISOS-2024-spec-v1_0.md
+spec_md_sha256: 1c2e41d80c575a63081dce3c0def5b7947ab118663470cf1fb9045ecfd2d707b
+script: data/corrida0/CALC-INE-PISOS-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-ADMINISTRATIVO
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "Mandato ASTRA5-U3 23/sep/2026; no adopta"
+  adopta: NO
+  acto: ASTRA5-U3-POLITICA
+inputs:
+  - {id: ine_conteos_censales_participacion_2024, origen: manifiesto}
+variables:
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: AELEC, rol: "elección, código 2024"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: EDOCVE, rol: "clave entidad DERFE"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: SEXO, rol: "0 hombre; 1 mujer; 2 no binario"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: LN, rol: "lista nominal de cuadernillos"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: SV, rol: "registro con marca de voto"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: NV, rol: "registro sin marca de voto"}
+  - {archivo: "DatosAbiertos_DECEyEC_ConteosCensales2024.zip", variable: NS, rol: "participación no especificada"}
+universo: "Elección federal 2024; 32 archivos estatales; cuadernillos capturados; excluye casillas especiales y voto exterior"
+filtros: "AELEC=2024; códigos EDOCVE 01-32 y SEXO 0/1/2; LN/SV/NV/NS enteros no negativos; supresión LN<30"
+ponderador: "NO-APLICA: conteo administrativo"
+transformacion: "sumas LN/SV/NV/NS por entidad y sexo; tasa principal suma(SV)/suma(LN); diagnóstico SV/(SV+NV)"
+estimando: "fracción de registros de lista nominal con marca de voto en los cuadernillos cubiertos"
+dependencias_materiales: [python-stdlib]
+parametros: {eleccion: 2024, n_minimo: 30, hash_medidor_sha256: aa83ad13c409e08338f2a44778a73983be737e40fd31f5bba3a1cd4dcfbd7744, hash_payload_sha256: c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2}
+seed: {aplica: false}
+tolerancia: {tipo: exacta, razon: "sumas enteras y JSON determinista"}
+resultados:
+  - {id: RESULT-INE-PISOS-2024-FILAS, tipo: entero, unidad: "filas 2024 de los CSV"}
+  - {id: RESULT-INE-PISOS-2024-DESCUADRES, tipo: entero, unidad: "filas con LN distinto de SV+NV+NS"}
+  - {id: RESULT-INE-PISOS-2024-TABLA, tipo: texto, unidad: "JSON de tasas y conteos por entidad y sexo"}
