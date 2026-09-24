@@ -435,6 +435,10 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          # Dos pasadas: `emitidas_sin_evaluar` sale de c2_compuesto.emisiones(),
+          # que lee las RESERVADA del TSV ya publicado; con el TSV viejo la
+          # primera da 206 emitidas y la segunda el punto fijo (174).
+          python3 tools/marcador_segmento.py --escribe
           python3 tools/marcador_segmento.py --escribe
           if [ -n "${ANTES:-}" ] && git cat-file -e "$ANTES" 2>/dev/null; then
             LOTE="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --incluir-pendientes --csv)"
