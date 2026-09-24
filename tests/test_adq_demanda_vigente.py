@@ -140,6 +140,11 @@ def _crea_fixture(tmp: Path) -> tuple[Path, Path]:
     (work / "forense" / "censo-raiz").mkdir(parents=True)
     shutil.copy2(RAIZ / "tools" / "adq_investigacion.py", work / "tools" / "adq_investigacion.py")
     shutil.copy2(RAIZ / "tools" / "adq_suficiencia.py", work / "tools" / "adq_suficiencia.py")
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · COMMIT-A: adq_investigacion.py
+    # ahora importa tools/vista.py (join de tolerancia/funciones_dependencia/
+    # fuente_replay reconstruidas desde corridas.tsv) -- el fixture lo copia
+    # tambien, o el import revienta con ModuleNotFoundError.
+    shutil.copy2(RAIZ / "tools" / "vista.py", work / "tools" / "vista.py")
     for rel in _ARCHIVOS_FUENTE:
         origen = RAIZ / rel
         destino = work / rel
