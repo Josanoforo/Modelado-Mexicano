@@ -4,6 +4,16 @@
 V1 admite solo el caso revisado RES-0028. No firma pines ni decide adopción.
 Uso: python3 tools/escribe_relevo_consumo.py [--apply]. Por defecto imprime
 el diff seco. El merge de mesa del PR materializa la adopción.
+
+V2 (ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-4, 24/sep/2026) añade el modo «crear
+regla desde propuesta»: crea en `milpa/tramite.yaml` una regla que hoy solo
+vive en `milpa/tramite-ola5-propuesta-v0.yaml`, copiando VERBATIM (texto,
+no re-serializado) el bloque `entonces:` y los demás campos medidos, y
+rellenando los cuatro campos que la propuesta deja `PENDIENTE-DE-MESA`
+(`situacion`/`si.disparadores`/`porque`/`tier`/`falsable_si`) desde un
+archivo de redacción del ejecutor, rotulados `PROPUESTO-POR-EJECUTOR`.
+Uso: python3 tools/escribe_relevo_consumo.py --crear-desde-propuesta
+[--apply].
 """
 from __future__ import annotations
 
@@ -19,6 +29,12 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+# `tools/` no es paquete: los tests importan `tools.escribe_relevo_consumo`
+# por namespace y ahí el directorio propio no entra solo en sys.path.
+# Mismo patrón que tools/corrida0.py, para que las dos vías de import
+# (dotted y bare) se resuelvan sin importar cómo se invoque este módulo.
+sys.path.insert(0, str(ROOT))
+sys.path.insert(0, str(ROOT / "tools"))
 TARGET = ROOT / "milpa/tramite.yaml"
 EXPECTED_TARGET_SHA = "0bb0ba70dba1c8e77b8dc2676d09be3546327ac526bd0a362d8e62e9359659fe"
 SLOT = "RES-0028"
@@ -27,6 +43,277 @@ KEY = "tramite::civico.denuncia.miedo_desconfianza::denuncia_por_otra_razon"
 CALC = "CALC-ENVIPE-RES0028-U4-DERIVADO-0001"
 RESULT = "RESULT-ENVIPE-RES0028-Q-C2-U4"
 OLD_P = "0.705687"
+
+# ── V2 · modo «crear regla desde propuesta» ─────────────────────────────
+PROPUESTA = ROOT / "milpa/tramite-ola5-propuesta-v0.yaml"
+REDACCION = ROOT / "forense/analisis/adopcion-4/redaccion-reglas-v1_0.yaml"
+
+IDS_CREAR_DESDE_PROPUESTA = (
+    "civico.contexto_institucional_victimas.lapop",
+    "dinero.credito.atraso_y_dano_por_producto_banxico",
+    "trabajo.prestaciones.valoracion_seguridad_social_motral",
+)
+
+ACTO_V2 = "GEN2-ADOPCION-BLOQUE-Y-PINES-4"
+
+# Cita de origen dentro de la propuesta: línea de la propia regla y la
+# firma de mesa que autorizó que existiera ahí como proxy descriptivo
+# (no la firma que autoriza promoverla al motor vivo -- esa es la misma
+# para las tres, ver `_ENCABEZADO_PROMOCION` abajo).
+_CITAS_ORIGEN_PROPUESTA = {
+    "civico.contexto_institucional_victimas.lapop": (
+        "líneas 3985-4025; OBJETO 8 de la HOJA DE FIRMAS DE MESA "
+        "2026-09-15 (NC-0167), firma «Si a todas.», ACTO "
+        "GEN2-FIRMAS-MESA-1, 15/sep/2026"
+    ),
+    "dinero.credito.atraso_y_dano_por_producto_banxico": (
+        "líneas 4041-4067; OBJETO 9 de la HOJA DE FIRMAS DE MESA "
+        "2026-09-15 (NC-0186 + NC-0164), firma «Si a todas.», ACTO "
+        "GEN2-FIRMAS-MESA-1, 15/sep/2026"
+    ),
+    "trabajo.prestaciones.valoracion_seguridad_social_motral": (
+        "líneas 4069-4089; OBJETO 9 de la HOJA DE FIRMAS DE MESA "
+        "2026-09-15 (NC-0186 + NC-0164), firma «Si a todas.», ACTO "
+        "GEN2-FIRMAS-MESA-1, 15/sep/2026"
+    ),
+}
+
+_ENCABEZADO_PROMOCION = (
+    "FIRMAS-7 (…369b-01, 21/sep/2026, bloque de diez RESULT ADOPTADOS) + "
+    "Decisión 2 de ADOPCION-2 (W, 24/sep/2026: INTERPRETACIÓN-DECLARADA -- "
+    "«regla existente» presuponía un hecho falso, la intención se "
+    "preserva creando la regla) + cláusula de autonomía v1.0 (mesa, "
+    "24/sep/2026, forense/encargos/CLAUSULA-AUTONOMIA-v1_0.md §3)"
+)
+
+
+def _yaml_load(ruta: Path):
+    import yaml  # noqa: PLC0415
+    return yaml.safe_load(ruta.read_text(encoding="utf-8"))
+
+
+def _propuesta_reglas() -> dict:
+    doc = _yaml_load(PROPUESTA)
+    return {r["id"]: r for r in doc["reglas_propuestas"]}
+
+
+def _resultados_por_id() -> dict:
+    from tools.vista import leer_resultados_join  # noqa: PLC0415
+    return {f["resultado_id"]: f for f in leer_resultados_join()}
+
+
+def _extraer_bloque_regla(lineas: list[str], rule_id: str) -> list[str]:
+    """Devuelve, como lista de líneas CON su terminador, el bloque
+    verbatim de `rule_id` dentro de un YAML con el esquema de
+    `tramite.yaml`/`tramite-ola5-propuesta-v0.yaml`: desde su propia
+    línea `  - id: <rule_id>` hasta (sin incluir) la siguiente línea
+    `  - id: `, recortando al final las líneas en blanco y los
+    comentarios-separador de nivel de lista (`  # ...`, 2 espacios) que
+    en este archivo documentan la regla SIGUIENTE, no ésta -- los
+    comentarios propios de la regla usan indentación de 4+ espacios."""
+    marca = f"  - id: {rule_id}\n"
+    apariciones = [i for i, l in enumerate(lineas) if l == marca]
+    if len(apariciones) != 1:
+        raise ValueError(
+            f"{rule_id}: se esperaba una aparición única de {marca!r} "
+            f"en {PROPUESTA}, hay {len(apariciones)}")
+    inicio = apariciones[0]
+    fin = len(lineas)
+    for j in range(inicio + 1, len(lineas)):
+        if lineas[j].startswith("  - id: "):
+            fin = j
+            break
+    bloque = lineas[inicio:fin]
+    while bloque and (bloque[-1].strip() == "" or bloque[-1].startswith("  #")):
+        bloque.pop()
+    return bloque
+
+
+def _dividir_bloque(bloque: list[str], rule_id: str) -> tuple[str, str]:
+    """Separa el bloque en (`entonces:` verbatim, cola verbatim desde
+    `fuente:` -- lo que sigue a `falsable_si:` -- hasta el final). Los
+    campos que van entre las dos secciones (`situacion`/`si`/`porque`/
+    `tier`/`falsable_si`) los redacta este acto; no se copian de la
+    propuesta."""
+    i_entonces = next(
+        (i for i, l in enumerate(bloque) if l.strip() == "entonces:"), None)
+    i_falsable = next(
+        (i for i, l in enumerate(bloque) if l.lstrip().startswith("falsable_si:")),
+        None)
+    if i_entonces is None or i_falsable is None:
+        raise ValueError(
+            f"{rule_id}: bloque de propuesta sin entonces:/falsable_si: "
+            "reconocibles -- revisar a mano antes de automatizar")
+    i_porque = next(
+        (i for i in range(i_entonces, len(bloque))
+         if bloque[i].lstrip().startswith("porque:")), None)
+    if i_porque is None or i_porque <= i_entonces:
+        raise ValueError(f"{rule_id}: no se halló porque: después de entonces:")
+    entonces_verbatim = "".join(bloque[i_entonces:i_porque])
+    cola_verbatim = "".join(bloque[i_falsable + 1:])
+    return entonces_verbatim, cola_verbatim
+
+
+def _verifica_entonces(rid: str, regla_propuesta: dict, resultados: dict) -> None:
+    """`p` de la propuesta debe identificar exactamente al RESULT sellado
+    que su propia cita declara -- la misma disciplina de «cambiar un `p`
+    es otra firma» que PINES-3 (§7.c) ya impuso. Una conducta
+    NO-ESTIMABLE (`p: null`) no se verifica contra ningún RESULT: tampoco
+    se vuelve consumidor (mismo criterio que `_consumidores_conductas`
+    de `tools/corrida0.py`, que salta `salida.p is None`)."""
+    for salida in regla_propuesta["entonces"]:
+        p = salida.get("p")
+        conducta = salida["conducta"]
+        if p is None:
+            continue
+        rid_result = salida.get("corrida0_resultado_id")
+        fila = resultados.get(rid_result)
+        if fila is None:
+            raise ValueError(
+                f"{rid}/{conducta}: {rid_result} no está en resultados.tsv")
+        valor = float(fila["valor"])
+        if valor != p:
+            raise ValueError(
+                f"{rid}/{conducta}: p de la propuesta ({p!r}) no identifica "
+                f"al RESULT sellado ({valor!r})")
+        if salida.get("corrida0_generacion") != "GEN2":
+            raise ValueError(
+                f"{rid}/{conducta}: corrida0_generacion != GEN2")
+        if salida.get("rol_uso") != "proxy_descriptivo":
+            raise ValueError(
+                f"{rid}/{conducta}: rol_uso inesperado "
+                f"{salida.get('rol_uso')!r}")
+
+
+def _una_linea(texto: str) -> str:
+    return " ".join(str(texto).split())
+
+
+def _renderiza_regla_nueva(rule_id: str, entonces_verbatim: str,
+                           cola_verbatim: str, redaccion: dict) -> str:
+    campos = redaccion[rule_id]
+    situacion = campos["situacion"]
+    disparadores_estado = _una_linea(campos["disparadores_estado"])
+    tier = campos["tier"]
+    falsable_si = _una_linea(campos["falsable_si"])
+    generador = campos["porque"]["generador"]
+    mecanismo = _una_linea(campos["porque"]["mecanismo"])
+    for etiqueta, valor in (("situacion", situacion),
+                            ("disparadores_estado", disparadores_estado),
+                            ("tier", tier), ("falsable_si", falsable_si),
+                            ("mecanismo", mecanismo)):
+        if '"' in valor:
+            raise ValueError(
+                f"{rule_id}.{etiqueta}: contiene comillas rectas, no se "
+                "puede emitir como escalar YAML entre comillas dobles "
+                "-- usar comillas angulares « » en la redacción")
+    generador_yaml = "[" + ", ".join(generador) + "]"
+    origen = _CITAS_ORIGEN_PROPUESTA[rule_id]
+    encabezado = (
+        "\n"
+        "  # ══════════════════════════════════════════════════════════════════\n"
+        f"  # ACTO {ACTO_V2} · 24/sep/2026 · regla nueva, copiada VERBATIM\n"
+        "  # (texto, no re-serializada) de milpa/tramite-ola5-propuesta-v0.yaml\n"
+        f"  # ({origen}): `entonces:`/`fuente`/el resto de campos medidos,\n"
+        "  # carácter por carácter -- ningún `p` ni cita de RESULT se retoca.\n"
+        f"  # Promoción al motor vivo autorizada por {_ENCABEZADO_PROMOCION}.\n"
+        "  # `situacion`/`si.disparadores_estado`/`porque`/`tier`/\n"
+        "  # `falsable_si` son PROPUESTO-POR-EJECUTOR\n"
+        "  # (forense/analisis/adopcion-4/redaccion-reglas-v1_0.yaml); mesa\n"
+        "  # los adopta o corrige al fusionar este PR (E.2).\n"
+        "  # ══════════════════════════════════════════════════════════════════\n"
+    )
+    cuerpo = (
+        f"  - id: {rule_id}\n"
+        f"    situacion: {situacion}  # PROPUESTO-POR-EJECUTOR\n"
+        "    si:\n"
+        "      disparadores: {}\n"
+        f"      disparadores_estado: \"{disparadores_estado}\"  # PROPUESTO-POR-EJECUTOR\n"
+        f"{entonces_verbatim}"
+        f"    porque: {{generador: {generador_yaml}, mecanismo: \"{mecanismo}\"}}  # PROPUESTO-POR-EJECUTOR\n"
+        f"    tier: {tier}  # PROPUESTO-POR-EJECUTOR\n"
+        f"    falsable_si: \"{falsable_si}\"  # PROPUESTO-POR-EJECUTOR\n"
+        f"{cola_verbatim}"
+    )
+    return encabezado + cuerpo
+
+
+def crear_desde_propuesta(apply_: bool = False) -> None:
+    propuesta_lineas = PROPUESTA.read_text(encoding="utf-8").splitlines(keepends=True)
+    reglas_propuesta = _propuesta_reglas()
+    redaccion = _yaml_load(REDACCION)["reglas"]
+    resultados = _resultados_por_id()
+
+    old = TARGET.read_text(encoding="utf-8")
+    ya_presentes = [rid for rid in IDS_CREAR_DESDE_PROPUESTA
+                    if re.search(rf"^  - id: {re.escape(rid)}$", old, re.M)]
+    if ya_presentes:
+        raise ValueError(
+            f"ya presentes en el consumidor vivo, no se re-crean: {ya_presentes}")
+
+    bloques_nuevos = []
+    for rid in IDS_CREAR_DESDE_PROPUESTA:
+        if rid not in redaccion:
+            raise ValueError(f"{rid}: sin redacción en {REDACCION}")
+        if rid not in reglas_propuesta:
+            raise ValueError(f"{rid}: no existe en {PROPUESTA}")
+        _verifica_entonces(rid, reglas_propuesta[rid], resultados)
+        bloque = _extraer_bloque_regla(propuesta_lineas, rid)
+        entonces_verbatim, cola_verbatim = _dividir_bloque(bloque, rid)
+        bloques_nuevos.append(_renderiza_regla_nueva(
+            rid, entonces_verbatim, cola_verbatim, redaccion))
+
+    nuevo = old.rstrip("\n") + "\n" + "".join(bloques_nuevos)
+
+    # Autoverificación: el archivo resultante debe cargar con el mismo
+    # cargador que usa el motor, y las tres reglas nuevas deben traer el
+    # `p` y el `corrida0_resultado_id` idénticos a la propuesta -- no
+    # solo el texto copiado, también lo que `cargar_reglas` interpreta de
+    # él (atrapa un error de indentación silencioso en el corte de
+    # `_dividir_bloque`).
+    from milpa.src.emisor import cargar_reglas  # noqa: PLC0415
+    with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", suffix=".yaml", delete=False) as fh:
+        fh.write(nuevo)
+        ruta_tmp = Path(fh.name)
+    try:
+        reglas_cargadas = {r.id: r for r in cargar_reglas(ruta_tmp)}
+        for rid in IDS_CREAR_DESDE_PROPUESTA:
+            regla = reglas_cargadas.get(rid)
+            if regla is None:
+                raise ValueError(f"{rid}: no cargó en la simulación de --apply")
+            for salida in regla.entonces:
+                esperado = next(
+                    e for e in reglas_propuesta[rid]["entonces"]
+                    if e["conducta"] == salida.conducta)
+                if salida.p != esperado.get("p"):
+                    raise ValueError(
+                        f"{rid}/{salida.conducta}: p cargado ({salida.p!r}) "
+                        f"no idéntico al de la propuesta ({esperado.get('p')!r})")
+                if salida.resultado_id != esperado.get("corrida0_resultado_id"):
+                    raise ValueError(
+                        f"{rid}/{salida.conducta}: corrida0_resultado_id "
+                        "cargado no idéntico al de la propuesta")
+    finally:
+        ruta_tmp.unlink(missing_ok=True)
+
+    diff = "".join(difflib.unified_diff(
+        old.splitlines(keepends=True), nuevo.splitlines(keepends=True),
+        fromfile="a/milpa/tramite.yaml", tofile="b/milpa/tramite.yaml"))
+    print(diff)
+    if apply_:
+        with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=TARGET.parent,
+                prefix=".relevo-consumo-", delete=False) as handle:
+            temp = Path(handle.name)
+            handle.write(nuevo)
+        try:
+            os.replace(temp, TARGET)
+        finally:
+            temp.unlink(missing_ok=True)
+        print("APLICADO: tres reglas nuevas; p y corrida0_resultado_id "
+              "idénticos a la propuesta, campos pendientes redactados y "
+              "rotulados PROPUESTO-POR-EJECUTOR")
 
 
 def sha(path: Path) -> str:
@@ -115,7 +402,17 @@ def transform(source: str, rendered: str) -> str:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true")
+    parser.add_argument(
+        "--crear-desde-propuesta", action="store_true",
+        help="modo V2: crea en milpa/tramite.yaml las reglas de "
+             "IDS_CREAR_DESDE_PROPUESTA copiando verbatim los campos "
+             "medidos de milpa/tramite-ola5-propuesta-v0.yaml y los "
+             "campos redactados de forense/analisis/adopcion-4/"
+             "redaccion-reglas-v1_0.yaml. Por defecto imprime el diff seco.")
     args = parser.parse_args()
+    if args.crear_desde_propuesta:
+        crear_desde_propuesta(apply_=args.apply)
+        return
     old = TARGET.read_text()
     if transform(old, OLD_P) == old:
         print("SIN-DIFF: ya aplicado")
