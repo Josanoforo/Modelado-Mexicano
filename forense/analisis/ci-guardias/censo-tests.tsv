@@ -217,3 +217,35 @@ tests/test_wbes2023_descriptiva.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(
 tests/test_wbes2023_precision.py	script	NO	pandas	SI	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_wbes2023_precision_interacciones.py	script	NO	pandas	NO	0.0	NECESITA-DEPENDENCIA(pandas)	ModuleNotFoundError: No module named 'pandas'
 tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	0.8	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_ya_medido.py	modulo	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 con -m tests.test_ya_medido (invocacion de script fallaba)
+tests/test_encig_duelo_2025.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_piloto4_v1_0.py); el oro (b) necesita corpus y se omite sin él
+tests/test_astra4_catalogo_inventario.py	script	NO	(ninguna)	NO	4.0	CORRE-EN-CI	Regeneración y trazabilidad RESULT/CALC/hash del catálogo U1; 2 pruebas locales OK
+tests/test_astra4_region.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest,pandas,numpy)	Pruebas sintéticas U5 ejecutadas localmente; CI carece de dependencias numéricas declaradas y se omite sin fingir ejecución
+tests/test_endutih_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_mociba_pisos.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_enlaces_archivo.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	Valida enlaces locales del frente y archivo sin corpus
+tests/test_readme_derivado.py	script	NO	(ninguna)	NO	11.0	CORRE-EN-CI	Compara cifras publicadas con status derivado sin corpus
+tests/test_astra5_endireh_ayuda.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_comunitaria.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_decisiones.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_escolar.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_familiar.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_laboral.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_2016.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_2016_v2.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_bc.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v2.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v3.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_pareja_fisica_v4.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_sucesion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
+tests/test_astra5_endireh_2006_modulos.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	3 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_2006_modulos_v2.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	3 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_2011_modulos.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	3 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_2016_discriminacion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	2 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_2016_restantes.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	3 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_discriminacion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	2 pruebas sintéticas, exit 0 sin corpus
+tests/test_astra5_endireh_nofisica_bc.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	2 pruebas sintéticas, exit 0 sin corpus
+tests/test_lapop_pisos_olas.py	pytest	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 sin corpus
+tests/test_ine_sicee_participacion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus

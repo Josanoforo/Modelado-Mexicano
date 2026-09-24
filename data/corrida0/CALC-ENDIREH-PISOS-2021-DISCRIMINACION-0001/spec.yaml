@@ -1,0 +1,96 @@
+calc_id: CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001
+spec_md: spec.md
+spec_md_sha256: f3921bd3fb3e301acc9105bcf4015904c7061a9fab42f619394621e36cc9a8fb
+script: data/corrida0/CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2021 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh2021_bd_csv_zip
+  origen: manifiesto
+variables:
+- archivo: TB_SEC_VIII.csv
+  variable: P8_2
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: P8_3_1_1
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: P8_3_1_2
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: P8_3_2_1
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: P8_3_2_2
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: P8_3_2_3
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: ID_PER
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: T_INSTRUM
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: FAC_MUJ
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: EST_DIS
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: UPM_DIS
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: DOMINIO
+  rol: empleo 8.3 o diseño
+- archivo: TB_SEC_VIII.csv
+  variable: CVE_ENT
+  rol: empleo 8.3 o diseño
+- archivo: TSDem.csv
+  variable: ID_PER
+  rol: edad o escolaridad
+- archivo: TSDem.csv
+  variable: EDAD
+  rol: edad o escolaridad
+- archivo: TSDem.csv
+  variable: NIV
+  rol: edad o escolaridad
+universo: Mujeres 15+ con P8_2=1; embarazo solo respuesta 1/2 al evento, codigo 3 fuera.
+filtros: P8_2=1; 8.3.1 1/2; 8.3.2 1/2, 3 no estuvo embarazada; desconocidos fuera.
+ponderador: FAC_MUJ positivo, sin normalizar
+transformacion: Uniones de reactivos; ninguna suma de prevalencias. 3 de embarazo nunca negativo.
+estimando: Prevalencias condicionales de prueba de embarazo y consecuencias de embarazo en empleo desde
+  octubre 2016.
+dependencias_materiales:
+- numpy==2.3.5
+parametros:
+  bootstrap_replicas: 200
+  metodo_ic: UPM completas dentro de EST_DIS; percentiles 2.5/97.5
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: 66af57e410afdb25b2986f052096923ec6dfea68ab9a61270a2e54551b060514
+  hash_prueba_sha256: beb525aac5393a46d34d4b44427bd1063fc8cd481255aa9cecba0c886537ea27
+  hash_payload_sha256: e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2021-DIS-TABLA
+  tipo: texto
+  unidad: tabla de proporciones y replicas agregadas
+- id: RESULT-ENDIREH2021-DIS-N-ELEGIBLES
+  tipo: entero
+  unidad: mujeres trabajadoras 15+ con factor valido

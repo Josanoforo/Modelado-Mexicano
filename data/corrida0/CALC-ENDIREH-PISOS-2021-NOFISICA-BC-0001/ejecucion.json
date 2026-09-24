@@ -1,0 +1,102 @@
+{
+ "corrida_id": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001--a404d8f63e4a",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy==2.3.5": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion": "NO",
+  "cuenta_gen2": "SI",
+  "generacion": "GEN2",
+  "origen_numerico": "ENDIREH 2021 microdato primario, nunca GEN1",
+  "temporalidad": "RETROSPECTIVA",
+  "tipo": "DESCRIPTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:13:56Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 453,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "a404d8f63e4a2d82afbd53f3f62ceb09befbc9c3",
+  "git_rama": "codex/astra5-genero-endireh-sucesor-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 2,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "a404d8f63e4a2d82afbd53f3f62ceb09befbc9c3",
+ "input_ids": [
+  "endireh2021_bd_csv_zip"
+ ],
+ "input_sha256": {
+  "endireh2021_bd_csv_zip": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e"
+ },
+ "parametros": {
+  "ancho_ic_maximo": 0.2,
+  "bootstrap_replicas": 200,
+  "cv_maximo": 0.3,
+  "hash_medidor_sha256": "1fc4766dc3df6bcb07c6c1472a19953b67f88809d3df70ea0a9ca0615a02a1d3",
+  "hash_payload_sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+  "hash_prueba_sha256": "96972a8745f0861c658844f72a48015522b8879668e0bf3dd606b41988d793ce",
+  "metodo_ic": "UPM completas dentro de EST_DIS, percentiles 2.5/97.5",
+  "n_minimo": 100,
+  "upm_minimas": 5
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENDIREH2021-NF-BC-N-ELEGIBLES",
+  "RESULT-ENDIREH2021-NF-BC-TABLA"
+ ],
+ "script_blob_sha256": "1fc4766dc3df6bcb07c6c1472a19953b67f88809d3df70ea0a9ca0615a02a1d3",
+ "script_path": "data/corrida0/CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260923
+ },
+ "spec_id": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "ae27d5d972002908ff72eb028e50eda8cde5cdb565ae8475a3a5483fdf5c7f0f",
+ "spec_yaml_sha256": "9a619dd730356ef92638574ef22b16f45ce9c162b1e91ef361402fcf00dc6f9a",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "semilla y sumas deterministas",
+  "tipo": "flotante"
+ }
+}

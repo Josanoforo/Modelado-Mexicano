@@ -1,0 +1,25 @@
+# CALC-ENDIREH-PISOS-2006-MODULOS-0002 · ENDIREH 2006 por situación conyugal
+
+El primer resultado que produzca este procedimiento es el que se reporta. GEN2 descriptivo retrospectivo, adopción NO. Tres cuestionarios distintos: MC casada/unida, MD separada/divorciada/viuda, MS soltera. No usar códigos de 2011/2016/2021: en `P7_1_i` y `P7_4_i` de MC/MD **1 una vez y 2 varias veces son positivos, 3 ninguna vez es negativo**. Blanco es desconocido. En MS 28.i.1 usa 1 sí/2 no y no pregunta ventana anual. MS `P23=1/2` tuvo relación actual/anterior; `P23=3` sin relación excluida del denominador de pareja.
+
+MC/MD: 30 actos de pareja `P7_1_1`–`_30` desde inicio de relación, `P7_4_1`–`_30` en último año, octubre 2005 a entrevista. Grupos: física 1–8, emocional/control 9–21, económica/patrimonial 22–27, sexual 28–30 y unión 1–30. MS: `P28_1_1`–`P28_16_1` en relación actual/anterior; física 1–4, emocional/control 5–9 y 14–16, económica 10, sexual 11–13, unión 1–16. No equiparar número de actos ni ventanas. Entre afectadas MC/MD, `P7_7_1`–`_3` son autoridades consultadas, `_4` ninguna; `P7_10_1` indica denuncia levantada **entre quienes acudieron** con respuesta documentada. `P7_12_i` son razones múltiples entre quienes no acudieron; un blanco solo se interpreta como no marcado si existe al menos una razón válida marcada. En MS `P28_i_2` combina «puso denuncia **o avisó a familiares**» por acto; se informa como combinado y no como denuncia institucional.
+
+Otros ámbitos por cuestionario:
+
+| Ámbito | MC | MD | MS | Ventana y código |
+|---|---|---|---|---|
+| Laboral interpersonal | `P3_19_1`–`_7` | `P3_17_1`–`_7` | `P16_1`–`_7` | Último año, octubre 2005–entrevista; elegibles `P3_15`/`P3_13`/`P12` 1–7 trabajó; 8 no trabajó queda fuera; 1 sí/2 no |
+| Discriminación laboral | `P3_18_1`–`_6` | `P3_16_1`–`_6` | `P15_1`–`_6` | Mismo empleo/ventana, ítems separados y unión; 1 sí/2 no, 3 no aplica fuera, blanco desconocido. La pregunta 2 combina despido/no renovación/baja salarial por embarazo, no se desagrega. |
+| Escolar | `P3_22_1`–`_7` | `P3_20_1`–`_7` | `P10_1`–`_7` | Vida de estudiante; elegibilidad `P3_21`/`P3_19`/`P9=1` asistió; 1 sí/2 no |
+| Comunitario sexual | `P3_24_1`–`_5` | `P3_22_1`–`_5` | `P7_1`–`_5` | A lo largo de la vida en fiesta/calle/otros espacios públicos; 1 sí/2 no; no se equipara al ámbito comunitario más amplio de 2016/2021 |
+| Familiar | `P5_11_1`–`_7` | igual | `P18_1`–`_7` | Último año, familiar distinto de pareja; 1 sí/2 no |
+
+Laboral `P3_20`/`P3_18`/`P17` registra queja/denuncia por cualquiera de las situaciones laborales de discriminación o trato interpersonal, por eso el denominador es su unión, no solo violencia interpersonal. Escolar `P3_23`/`P3_21`/`P11` y comunitario `P3_25`/`P3_23`/`P8` enumeran aviso o denuncia a familiares/autoridades y una casilla explícita de no aviso; se informa combinado. Familiar no ofrece en estos módulos una pregunta separada de ayuda/denuncia: excluida por diseño. Disponibilidad de dinero y decisiones MC, estado al entrevistar: `P9_3` dinero para cosas personales 1 sí/2 no; `P8_1_3` su dinero y `_6` gasto/economía: 1 solo ella o 3 ambos = participación, 2 solo él = no; 4 otras personas, 5 no aplica y blanco fuera. MD/MS no comparten esa pregunta de decisiones; exclusión por diseño, sin imputar desde propiedad o ingresos.
+
+Unión positiva si cualquier acto responde sí, negativa solo con todos los actos elegibles no, desconocida si falta alguno sin positivo. Factor de mujer `FAC_PER` positivo; estrato `CVE_ENT`+`ZEST`, UPM `CVE_ENT`+`ZUPM`; edad/escolaridad de `06_DS.csv` por `N_CON,V_SEL,N_REN`. `NIV` 2006: 00 ninguna, 01–03 básica, 04–06 media superior/técnica, 07–10 superior. Cortes univariados nacional, edad 15–29/30–44/45–59/60+, escolaridad, `DOM` como código de dominio documentado, MC/MD/MS y entidad 01–32. IC percentil 2.5–97.5 con 200 réplicas UPM dentro de estrato, incluidas UPM de contribución cero; semilla 20260923. Publicable n conocido ≥100, ≥5 UPM, ancho IC ≤0.20 y CV ≤0.30 si p>0; si no, solo soporte/cause sin punto ni réplicas. Réplicas agregadas únicamente.
+
+Manifiesto `endireh_2006_bd_endireh_2006_csv`, SHA recalculado `e6529c97b6355e01fa48c15ae0aee398090f4a094dd84b42cfc112e929d938f0`. FD XLS SHA `019b47033407762dc48a849643b35a8d924ee5a6cc391221f8fd2ae79be83e4c`; cuestionarios MC/MD/MS SHA `c81d5a17118ae18764c8ec83a135d04009d5c9f5980a1f4e124da85a62ca2544`, `ab12475e07f532a6517c88387219cb6d9b19cfe80a483a3e368e4ff65fbb7ffc`, `6b3505567f2344c86f0f0e5f771d112b32d4da8fb1f1fa747eb0c59b58ae60cc`. Import efectivo `numpy==2.3.5`; resto biblioteca estándar y medidor autocontenido. No comparar valores con olas posteriores sin matriz literal por conducta y población.
+
+## Sucesión del intento 0001
+
+La primera corrida de 0001 falló con KeyError: decision_gasto al tabular una conducta exclusiva de MC en filas MD/MS. Este procedimiento usa r.get(window) para respetar el subuniverso; conserva la misma definición de conducta y no altera 0001.
