@@ -82,7 +82,7 @@ PUNTO: dict[str, tuple[list[str], str]] = {
         "medidor.py:303 G-ORIGEN: marginales medidos de encig25_base_datos_csv; "
         "marginales_2025/adjudicacion_0001 son control"),
     # --- sucesores de este acto (P2/P3) --------------------------------------
-    "CALC-ENIF2024-PISOS-AHORRO-LXE-0001": (
+    "CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001": (
         ["enif2024_csv"], "piso GEN2-PISOS-GEN2-2: marginales re-medidos de ENIF 2024"),
     "CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002": (
         ["piso_c2_resultados"], "C2 leído por id del piso ENIF 2024 (spec §2 del -0002)"),

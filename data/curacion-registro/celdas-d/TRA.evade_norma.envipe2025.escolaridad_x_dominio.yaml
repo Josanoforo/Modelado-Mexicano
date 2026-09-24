@@ -77,6 +77,13 @@
 #   (tools/marcador_segmento.py:715,753; milpa/src/estimadores_segmento.py:24) y
 #   NO consulta `estado_operativo`. El motor no estaba roto; el archivo se
 #   contradecía. Esta enmienda quita la contradicción sin cambiar una sola emisión.
+#
+#   RE-ADJUDICADA por ACTO GEN2-PISOS-GEN2-2 (24/sep/2026, CAJA; Decision 1 de ADOPCION-2 extendida por el encargo §2).
+#   El punto C2 del -0001 venia de las emisiones, compuesto con parametros.marginales_sellados* (numeros de milpa/,
+#   origen HEREDADO-DE-LEGACY en el censo). CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002 (CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002--9fe8fe6e378e) ejecuta por sha el
+#   medidor del -0001 y cita por id el piso NUEVO de CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001 (marginales de un eje de la misma ola
+#   medidos del manifiesto; C2 RETROSPECTIVA: sellado despues de R). Mismo veredicto; oro del -0001 NO-REPRODUCE ATRIBUIDO: 271/273 ids a 0.0; los 2 discordantes son G-SKILL-C6/C7-VS-C2, funcion de MAE(C2) (defecto de la lista de exclusion del control, nota §5).
+#   `adjudicacion_por_celda` apunta al -0002; el bloque anterior queda como `adjudicacion_por_celda_0001` (historico).
 celda_d:
   id: TRA.evade_norma.envipe2025.escolaridad_x_dominio
   estimando: "p(evade_norma | escolaridad_proxy, dominio_urbano_rural) -- proporcion ponderada [0,1] de DELITOS (ENVIPE tmod_vic, FAC_DEL) del universo BP1_20 in {1,2}; evade_norma = BP1_20==2 AND BP1_23 in {04,05,06,08}, la CONJUNTA (prereg-caja-ENVIPE-EVASION-NORMA §1, verbatim)"
@@ -94,11 +101,24 @@ celda_d:
     - {rol: COMPLEMENTO, fuentes: [emisor, tramite.yaml], edicion_periodo: "2025", universo_instrumento: "p nacional ENVIPE 2025 = arbitro con otro nombre (tramite.yaml:497, 0.562774); solo diagnostico", diseno_datos: transversal, estrategia: composicion, regla_composicion: NO-APLICA, production_spec_refs: ["CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001"], resultado: NO-APLICA}   # el contrato exige NO-APLICA exacto para COMPLEMENTO. Diagnostico C5 emitido fuera del campo: |0.562774 - R| de 0.94 pp (S3xD3) a 18.61 pp (S3xD1); ver RESULT-TRA-SXD12-ARB-C5-DIAG-*
   criterio_adjudicacion: {texto: "error absoluto por celda en pp vs R derivado en COMMIT-3; INDECIDIBLE si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R) (CAREO-ADV-DUELO-diseno-v2:38), cada challenger contra cada piso; un challenger gana solo si vence a los dos pisos en >= 9 de las PUNTUADA y las PUNTUADA son >= 9 de 12; precedencia INDECIDIBLE; B-bis declarado (spec §5)", escala: "puntos porcentuales; EE(R) = (IC95sup - IC95inf)/3.92"}
   estado_decidibilidad: PUNTUADA   # 12/12 celdas PUNTUADA; el enum no admite `SIN-CANDIDATO-SUPERIOR`, que es el VEREDICTO y viaja en `margen_material` y en el CALC (mismo criterio que la primera celda-D)
-  margen_material: 1.568052   # pp; MAE del MEJOR candidato (C2) contra R. VEREDICTO = SIN-CANDIDATO-SUPERIOR: ningun challenger vence a los dos pisos en ninguna celda (0 de 12)
-  momentos_holdout_refs: ["CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001--7e86d93722ec", "milpa/catalogo-momentos-v0_1.tsv:M05"]   # la reserva (el cruce de 2025) se LEVANTO en el COMMIT-3, despues de sellar las emisiones en el COMMIT-2
+  margen_material: 1.568029853628543   # pp (-0002; el -0001 daba 1.568052); MAE del MEJOR candidato (C2) contra R. VEREDICTO = SIN-CANDIDATO-SUPERIOR: ningun challenger vence a los dos pisos en ninguna celda (0 de 12)
+  momentos_holdout_refs: ["CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001--7e86d93722ec", "milpa/catalogo-momentos-v0_1.tsv:M05", "CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002--9fe8fe6e378e"]   # R nace en el -0001; el -0002 la re-deriva identica (oro).  la reserva (el cruce de 2025) se LEVANTO en el COMMIT-3, despues de sellar las emisiones en el COMMIT-2
   veredicto: SIN-CANDIDATO-SUPERIOR
-  champion_actual: C2  # Enmienda 2026-09-19: piso por firma de mesa 17/sep; veredicto intacto.
-  adjudicacion_por_celda:
+  champion_actual: C2  # Enmienda 2026-09-19: piso por firma de mesa 17/sep; veredicto intacto. Desde 24/sep/2026 el punto es el de CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002 (piso NUEVO por id; GEN2-PISOS-GEN2-2)
+  adjudicacion_por_celda:   # punto e IC de C2 = piso NUEVO CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001 citado por el -0002; relevo por Decision 1 de ADOPCION-2 extendida (encargo GEN2-PISOS-GEN2-2 §2)
+    S1xD1: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S1xD1, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S1xD1, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S1xD1, decision_ref: adopcion:piso-C2-20-celdas}
+    S1xD2: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S1xD2, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S1xD2, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S1xD2, decision_ref: adopcion:piso-C2-20-celdas}
+    S1xD3: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S1xD3, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S1xD3, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S1xD3, decision_ref: adopcion:piso-C2-20-celdas}
+    S2xD1: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S2xD1, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S2xD1, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S2xD1, decision_ref: adopcion:piso-C2-20-celdas}
+    S2xD2: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S2xD2, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S2xD2, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S2xD2, decision_ref: adopcion:piso-C2-20-celdas}
+    S2xD3: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S2xD3, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S2xD3, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S2xD3, decision_ref: adopcion:piso-C2-20-celdas}
+    S3xD1: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S3xD1, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S3xD1, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S3xD1, decision_ref: adopcion:piso-C2-20-celdas}
+    S3xD2: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S3xD2, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S3xD2, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S3xD2, decision_ref: adopcion:piso-C2-20-celdas}
+    S3xD3: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S3xD3, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S3xD3, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S3xD3, decision_ref: adopcion:piso-C2-20-celdas}
+    S4xD1: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S4xD1, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S4xD1, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S4xD1, decision_ref: adopcion:piso-C2-20-celdas}
+    S4xD2: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S4xD2, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S4xD2, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S4xD2, decision_ref: adopcion:piso-C2-20-celdas}
+    S4xD3: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002, resultado_puntual: RESULT-TRA-SXD12-ARB2-C2-P-S4xD3, ic95inf: RESULT-TRA-SXD12-ARB2-C2-IC95INF-S4xD3, ic95sup: RESULT-TRA-SXD12-ARB2-C2-IC95SUP-S4xD3, decision_ref: adopcion:piso-C2-20-celdas}
+  adjudicacion_por_celda_0001:   # HISTORICO -- bloque del -0001 (punto C2 de cadena legacy); sustituido el 24/sep/2026 por GEN2-PISOS-GEN2-2
     S1xD1: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001, resultado_puntual: RESULT-TRA-SXD12-C2-P-S1xD1, ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD1, ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD1, decision_ref: adopcion:piso-C2-20-celdas}
     S1xD2: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001, resultado_puntual: RESULT-TRA-SXD12-C2-P-S1xD2, ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD2, ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD2, decision_ref: adopcion:piso-C2-20-celdas}
     S1xD3: {id_candidato: C2, calc: CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001, resultado_puntual: RESULT-TRA-SXD12-C2-P-S1xD3, ic95inf: RESULT-TRA-SXD12-C2-IC95INF-S1xD3, ic95sup: RESULT-TRA-SXD12-C2-IC95SUP-S1xD3, decision_ref: adopcion:piso-C2-20-celdas}
