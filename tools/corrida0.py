@@ -3231,7 +3231,48 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
                     _camina(elemento, contexto)
 
         _camina(crudo, [])
+    declarados.update(_marcas_catalogo(CATALOGO_MOMENTOS))
     return declarados
+
+
+# ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1 (24/sep/2026, Decision 3 de mesa de
+# ADOPCION-2): el catalogo sellado no tenia donde MATERIALIZAR una cifra, asi
+# que T-REPRO (c) comparaba 'NO-DECLARADO-EN-EL-REGISTRO' contra el RESULT y
+# ninguna cita lateral podia pasar. El relevo va en columnas propias,
+# anadidas al final del TSV sin tocar las selladas: el valor GEN2 y su cita
+# (RESULT, CALC, sello). Una cita incompleta (RESULT sin CALC o sin sello)
+# no cuenta como cita: el valor queda "sin cita" y T-REPRO (c) lo rechaza.
+# `discrepancia_gen1` rotula el choque con la cifra GEN1 y no bloquea.
+CATALOGO_MOMENTOS = RAIZ / "milpa" / "catalogo-momentos-v0_1.tsv"
+COLUMNAS_RELEVO_CATALOGO = ("valor_gen2", "corrida0_resultado_id",
+                            "corrida0_generacion", "calc_gen2", "sello_gen2",
+                            "discrepancia_gen1")
+
+
+def _marcas_catalogo(ruta: Path) -> dict[str, dict]:
+    if not ruta.exists():
+        return {}
+    with open(ruta, encoding="utf-8", newline="") as fh:
+        filas = list(csv.DictReader(fh, delimiter="\t"))
+    marcas: dict[str, dict] = {}
+    for f in filas:
+        crudo_valor = (f.get("valor_gen2") or "").strip()
+        rid = (f.get("corrida0_resultado_id") or "").strip()
+        gen = (f.get("corrida0_generacion") or "").strip()
+        if not (crudo_valor or rid or gen):
+            continue
+        cita_completa = bool(rid and (f.get("calc_gen2") or "").strip()
+                             and (f.get("sello_gen2") or "").strip())
+        # misma llave que `_consumidores_momentos` escribe en la demanda
+        marcas[f"milpa/catalogo-momentos-v0_1.tsv:{f['id_momento']}"] = {
+            "resultado_id": rid if cita_completa else "",
+            "generacion": gen,
+            "uso": "",
+            "valor": (_numero_o_texto(crudo_valor) if crudo_valor
+                      else NO_DECLARADO),
+            "discrepancia_gen1": (f.get("discrepancia_gen1") or "").strip(),
+        }
+    return marcas
 
 
 def _resultados_citados_en(ruta: Path) -> set[str]:
