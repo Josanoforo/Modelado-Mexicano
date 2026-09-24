@@ -1,7 +1,7 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
 ### `estado` · **v1.16** · 23 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
-> **Cabecera de era.** GEN2 · 18–23/sep/2026 · instrucciones vigentes `v2.16` (`ADR-260921-GEN2-V216-d3da-01`) · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · **régimen de estimación por celda**: `ADR-531`/`ADR-91` (composición matricial, no estimador por defecto), `FP-383` (emisor fuera del marcador), contrato celda-D `v0.6` · **régimen operativo nuevo** (§15): canal de publicación por PR, sello externo por firma GPG (OpenTimestamps/TSA bloqueados por red), auto-merge construido y sin activar.
+> **Cabecera de era.** GEN2 · 18–23/sep/2026 · instrucciones vigentes `v2.16` · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · **régimen de estimación por celda**: `ADR-531`/`ADR-91`, `FP-383`, contrato celda-D `v0.6` · **régimen operativo nuevo** (§15): canal por PR, sello externo, auto-merge.
 >
 > **Enmienda (23/sep/2026, `ADR-260923-GEN2-ESTADO-V16-1-fa47-01`, `ACTO GEN2-ESTADO-V16-1`).** Se cierra la etapa de retadores (seis evaluaciones, siete familias, cero `VENCE` puro entre 18 celdas-D con dictamen). `v1.15` **no se retira esta vez** — el encargo exige `v1.15` intacta (`git diff` vacío) y queda en el árbol como historia inmediatamente anterior, ya no vigente; no aplica T01.
 >
@@ -10,7 +10,7 @@
 > | | |
 > |---|---|
 > | **ARCHIVO** | `estado-programa-v1.16.md` |
-> | **REEMPLAZA A** | `estado-programa-v1.15.md` — **no retirada** esta vez (el encargo `GEN2-ESTADO-V16-1` exige `v1.15` intacta, `git diff` vacío); permanece en el árbol, ya no vigente. |
+> | **REEMPLAZA A** | `estado-programa-v1.15.md` — **no retirada** esta vez (encargo la exige intacta); permanece en el árbol, ya no vigente. |
 > | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§14 y las anotaciones L0 se preservan verbatim (heredadas de `v1.15`, `diff` vacío) · §15 retrata el 22–23/sep con cada cifra atada a un comentario `<!-- comando -->` reproducible donde el árbol local basta, o a una cita de archivo/PR donde no (red `DENEGADA-POR-POLITICA` en NUBE) · §16 declara qué este corte no puede afirmar aún. |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
