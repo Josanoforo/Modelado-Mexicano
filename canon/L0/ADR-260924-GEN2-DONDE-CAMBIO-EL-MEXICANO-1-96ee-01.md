@@ -1,0 +1,3 @@
+# ADR-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-01
+
+24/sep/2026 · `ACTO GEN2-DONDE-CAMBIO-EL-MEXICANO-1` (CAJA). Series 2011–2025 por conducta y segmento con dictamen cerrado, vocabulario sellado antes del primer dato (`9aea5a09`), mapa congelado sin valores (`625f98af`). 7872 series: 583 ESTABLE · 8 CAMBIO-SOSTENIDO · 0 SALTO-DE-INSTRUMENTO · 81 SALTO-SIN-EXPLICAR · 7200 SIN-SERIE (suma de RESULT-DC-<INST>-N-* de los nueve CALC-<INST>-SERIE-DICTAMEN-0001); RETROSPECTIVA, adopta NO. Los 8 CAMBIO-SOSTENIDO son ENOE y se declaran artefacto de IC estrecho; ENVIPE no denuncia salta sólo en 2019→2020. Documento `canon/donde-cambio-el-mexicano-v1_0.md`. `celdas_validadas` 219 → 219.

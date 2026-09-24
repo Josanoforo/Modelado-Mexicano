@@ -1,4 +1,7 @@
 """Sintético del dictamen DONDE-CAMBIO (spec v1.0 §2-§4): cada rama del vocabulario."""
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import math
 from tools.series import dictamen as D
 

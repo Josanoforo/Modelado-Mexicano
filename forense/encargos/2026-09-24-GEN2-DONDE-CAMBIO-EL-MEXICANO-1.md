@@ -35,3 +35,10 @@ Propio: `forense/prereg-caja/DONDE-CAMBIO-*`, `data/corrida0/CALC-*-SERIE-*` nue
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No predice, no adopta. Sucesores: informe v1.3 §«dónde cambió»; U4 (familias 2027) usa los CAMBIO-SOSTENIDO como candidatos a estimando prospectivo.
+
+## NO-CORRIDO / RESERVAS
+
+- NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-01 · P2 universo «catálogo U1»: 16 filas ENCIG del catálogo no entraron al mapa · DIFERIDO-A:GEN2-DONDE-CAMBIO-EL-MEXICANO-2 · impacto: 16 filas ausentes de la tabla; todas de una ola salvo `adopta_encig2025_luz`, que extendería C-LUZ-DIGITAL a 2023→2025; ningún dictamen de las 7872 cambia · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
+- NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-02 · P3 series ENDIREH dictaminables · DIFERIDO-A:GEN2-DONDE-CAMBIO-EL-MEXICANO-2: sin crosswalk de módulos ni tabla de comparabilidad por texto · impacto: 6311 series SIN-SERIE · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
+- NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-03 · P2 ENOE `horas_ocupado`, `ingreso_ocupado_nominal` fuera del mapa · DIFERIDO-A:GEN2-DONDE-CAMBIO-EL-MEXICANO-2 · impacto: ninguno sobre dictámenes (serían SIN-SERIE) · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
+- NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-04 · «Hecho»: CALC por instrumento para los ocho menores · SUSTITUIDO-POR:CALC-OTROS-SERIE-DICTAMEN-0001, que absorbe los ocho (21 SIN-SERIE); nada queda huérfano · impacto: ninguno · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.

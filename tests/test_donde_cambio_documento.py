@@ -7,6 +7,9 @@ byte a byte; (2) toda línea del documento con una cifra (detector de
 `tools/recibo/cifras_sin_result.py`) cita un `RESULT-`; (3) control positivo:
 el detector marca una línea con cifra y sin cita.
 """
+import os
+import sys
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from tools.recibo.cifras_sin_result import cifras_en_linea
 from tools.series import documento as DOC
 
