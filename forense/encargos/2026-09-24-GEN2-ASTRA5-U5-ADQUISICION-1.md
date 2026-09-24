@@ -45,3 +45,19 @@ Propio: `data/curacion-registro/cola-adquisicion-registro.tsv` (append), `data/c
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no abre olas, no cambia dictámenes, no baja documentos al corpus (constancias aparte). Sucesores: `-2` para lo que quede en cola; las unidades de medición de ASTRA-5 sobre lo adquirido (salud, bienestar, movilidad…) cuando su ola histórica esté abierta: dirección las escribe sobre el manifiesto nuevo.
+
+## NO-CORRIDO / RESERVAS
+
+| id | qué | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01 | P3 · fuentes con solicitud, términos o comité: EMOVI 2023, EMOVI 2011, WVS ola 7 EE.UU./Japón, WVS longitudinal, IFPS México, MCPS | DECISIÓN-DE-MESA-PENDIENTE: barreras de credencial/solicitud; /sonda sin copia pública autorizada; receta en la nota §8 y en cada fila | 6 filas de cola NO-ACCESIBLE | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 | P3 · INEGI pobreza multidimensional 2024, ENEM 2024, EQD panel 2018 | DIFERIDO-A:GEN2-ASTRA5-U5-ADQUISICION-2 (NO-OBTENIDO-POR-ESTE-AGENTE, rutas agotadas citadas) | 3 filas de cola sin payload | GEN2-ASTRA5-U5-ADQUISICION-2 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03 | P3 · REDECO, cortes anteriores a 30/09/2025 | DIFERIDO-A:GEN2-ASTRA5-U5-ADQUISICION-2 (CKAN sólo publica dos cortes; repodatos niega por IP) | fila OBTENIDO-PARCIAL | GEN2-ASTRA5-U5-ADQUISICION-2 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04 | catalogación de los 782 payloads (mesa eligió «Solo documentación») | DIFERIDO-A:GEN2-ASTRA5-U5-ADQUISICION-2 (catálogo versionado por acto; inventario_fd.py escribe la v1_0 obsoleta) | busca_reactivos.py no ve los instrumentos nuevos | GEN2-ASTRA5-U5-ADQUISICION-2 (o el acto de catalogación que mesa designe) |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-05 | P4 · 14 NO-ACCESIBLE, 41 NO-ENCONTRADO, 14 EXISTE-NO-SATISFACE | DIFERIDO-A:ASTRA5-U0-MAPA-DOMINIOS-v1_1 (el encargo veda cambiar dictámenes) | ningún dictamen cambia | ASTRA5-U0-MAPA-DOMINIOS v1.1 (propuesta a mesa) |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-06 | P1 · constancias: 16 NO-ENCONTRADO, ENIGH 2024 (reservada), copias no versionadas | DIFERIDO-A:GEN2-ASTRA5-U5-ADQUISICION-2 (identidad por sha256 + URL) | 16 constancias sin documento | GEN2-ASTRA5-U5-ADQUISICION-2 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-07 | defecto heredado: estado_reserva de ENOE 2026T1 fuera de vocabulario | FUERA-DE-PERÍMETRO: de ASTRA5-U1-TRABAJO-ENOE (4ed8176b) | --registra y el cron de /adquiere no pueden escribir el manifiesto | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-08 | NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04 (copias físicas de U0 al manifiesto) | DECISIÓN-DE-MESA-PENDIENTE: este encargo no baja documentos al corpus | 63db-04 sigue ABIERTA | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03 |
+| NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-09 | «hecho»: `estado: VERIFICADO` / `estado_reserva: RESERVADA` literales | DECISIÓN-DE-MESA-PENDIENTE: no existen en el esquema; se usó el vocabulario vigente | ninguno sobre el dato | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04 |
+
+Fuera del perímetro §9, por instrucción del titular en la sesión (verbatim en la nota §6): `tools/renderiza_pagina.py`, `tests/test_renderiza_pagina.py`, `.claude/commands/adquiere.md` §3 (ruta v) y dos filas en `forense/analisis/ci-guardias/censo-tests.tsv`. Defecto adyacente corregido (D-21): id duplicado `enoe_n_diseno_muestral_pdf` en `data/manifiesto.yaml`. Exposición declarada (E.6): página índice de ENIGH 2024 pedida por un ejecutor (carcasa SPA sin cifras, bytes borrados); páginas de descarga de ENSANUT 2025 y ENCODAT 2025 (nombres de archivo). Nota: `forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md`.
