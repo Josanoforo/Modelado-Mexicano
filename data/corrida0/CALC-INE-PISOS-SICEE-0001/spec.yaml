@@ -1,0 +1,30 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-INE-PISOS-SICEE-0001
+spec_md: ../../../forense/prereg-caja/INE-SICEE-PARTICIPACION-spec-v1_0.md
+spec_md_sha256: acdd584825ab80446b6723718ef7044ed20427720410ab516dcc31d9785d67d2
+script: data/corrida0/CALC-INE-PISOS-SICEE-0001/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-ADMINISTRATIVO, cuenta_gen2: SI, cuenta_gen2_nota: Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta, adopta: 'NO', origen_numerico: NUEVO, acto: ASTRA5-U3-POLITICA-COMPLETAR, calibracion: SIN-HISTORIA-PARA-CALIBRAR}
+inputs:
+- {id: a6_sicee_participacion_nacional_1991_2024, origen: manifiesto}
+variables:
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: cargo, rol: elección o mecanismo; nunca se suma entre cargos}
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: anio, rol: año de la jornada}
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: distribucion, rol: 'llave SICEE 1/2 no documentada; opaca, no se suma'}
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: total_votos, rol: 'numerador: votos totales publicados (incluye nulos y no registrados)'}
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: lista_nominal, rol: 'denominador: lista nominal publicada'}
+- {archivo: A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json, variable: porcentaje_participacion, rol: tasa publicada; control aritmético}
+universo: elecciones federales y mecanismos nacionales de participación 1991-2024 publicados por SICEE-INE a escala nacional
+filtros: ninguno sobre filas; cargo fuera de contrato o valor no numérico detiene sin sello; lista_nominal<=0 -> NO-ESTIMABLE
+ponderador: 'NO-APLICA: registro administrativo, suma de numerador/denominador ya publicada'
+transformacion: tasa = total_votos/lista_nominal por fila; dif_pp = 100*tasa - porcentaje publicado; diagnóstico de igualdad entre distribuciones
+estimando: participación administrativa sobre lista nominal por cargo×año×distribución; sin IC de muestreo, sin serie ni causalidad
+dependencias_materiales: []
+parametros:
+  cargos: [PRE, SEN_MR, SEN_RP, SEN, DIP_MR, DIP_RP, CONS_POP, CONS_POP_RM]
+  hash_medidor_sha256: 7ae01fa5b817bf828cc280edc2bc1fe1a6a9be2f59d8db161763424acc5821ce
+  hash_payload_sha256: 8088f9f36345e99203e8bb6f32c657c3f85335977bcf49da5084064ec893d87b
+seed: {aplica: false}
+tolerancia: {tipo: exacta, razon: aritmética determinista sobre enteros publicados}
+resultados:
+- {id: RESULT-INE-PISOS-SICEE-FILAS, tipo: entero, unidad: filas cargo×año×distribución en el JSON}
+- {id: RESULT-INE-PISOS-SICEE-TABLA, tipo: texto, unidad: JSON canónico de tasas por fila y diagnóstico de distribución, permite_no_estimable: true}

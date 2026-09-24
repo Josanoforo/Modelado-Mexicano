@@ -1,0 +1,2390 @@
+calc_id: CALC-ENDIREH-PISOS-2011-MODULOS-0001
+spec_md: spec.md
+spec_md_sha256: e7326eeb5e02ef37b4fecd355b2a578532a9edef7dd61796452b27664a2bb3c9
+script: data/corrida0/CALC-ENDIREH-PISOS-2011-MODULOS-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2011 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh_2011_bd_endireh_2011_csv
+  origen: manifiesto
+variables:
+- archivo: TUnidas1.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_5_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_2_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_2_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_4_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_4_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_7_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_8_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_8_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_10_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_9_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_12_9_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_6_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_7_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_8_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP2_9_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP3_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP3_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: AP3_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas1.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_22
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_22
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_23
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_23
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_24
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_24
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_25
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_25
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_26
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_26
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_27
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_27
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_28
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_28
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_29
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_29
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_1_30
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_3_30
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_5_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_8_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: AP6_11_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas2.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: AP7_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: AP7_1_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: AP8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TUnidas3.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_5_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_2_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_2_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_4_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_4_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_7_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_8_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_8_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_10_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_9_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_12_9_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_6_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_7_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_8_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP2_9_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP3_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP3_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: BP3_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida1.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_22
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_22
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_23
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_23
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_24
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_24
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_25
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_25
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_26
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_26
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_27
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_27
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_28
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_28
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_29
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_29
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_1_30
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_3_30
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_5_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: BP6_8_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida2.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP6_11_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: BP7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TDunida3.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_5_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_2_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_2_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_2_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_2_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_4_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_4_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_5_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_5_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_5_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_5_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_6_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_6_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_6_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_6_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_7_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_8_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_8_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_8_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_8_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_9_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_10_9_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_9_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_12_9_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_10_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_10_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_11_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_11_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_6_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_12_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_7_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_8_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP2_9_12_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP3_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP3_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP3_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CP4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter1.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CONTROL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: VIV_SEL
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: HOGAR
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: R_SEL_M
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_14
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_15
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_16
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_17
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_18
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_19
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_20
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_1_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_3_21
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_4_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_8
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_9
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_10
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_11
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_12
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP6_7_13
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_1
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_2
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_3
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_4
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_5
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_6
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CP7_1_7
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: FAC_PER
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: DOMINIO
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: EST_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: UPM_DIS
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSolter2.csv
+  variable: CVE_ENT
+  rol: filtro, acto, ayuda, decision o diseno
+- archivo: TSDem.csv
+  variable: CONTROL
+  rol: edad, escolaridad o llave
+- archivo: TSDem.csv
+  variable: VIV_SEL
+  rol: edad, escolaridad o llave
+- archivo: TSDem.csv
+  variable: HOGAR
+  rol: edad, escolaridad o llave
+- archivo: TSDem.csv
+  variable: N_REN
+  rol: edad, escolaridad o llave
+- archivo: TSDem.csv
+  variable: EDAD
+  rol: edad, escolaridad o llave
+- archivo: TSDem.csv
+  variable: NIV
+  rol: edad, escolaridad o llave
+universo: Mujeres 15+ A/B/C por cuestionario; pareja C con CP4_1=1/2.
+filtros: Codigos y subuniversos propios 2011 en spec.md; no homologacion automatica.
+ponderador: FAC_PER positivo, sin normalizar
+transformacion: Union de actos por agresor/lugar y pareja; ayuda y decisiones separados.
+estimando: Prevalencias descriptivas ENDIREH 2011 por modulo y situacion conyugal.
+dependencias_materiales:
+- numpy==2.3.5
+parametros:
+  bootstrap_replicas: 200
+  metodo_ic: UPM completas dentro de EST_DIS, percentiles 2.5/97.5
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: 7e6a573d65851827dac40bdc5ed7247967d9ac30f129486ac2a83aae237f1635
+  hash_prueba_sha256: 17288da00eb1deb1eb068addeb4ace380e16c5fad1ac99b47ab3f30cdf849653
+  hash_payload_sha256: 8ece557b2ac1d78dc0bfdee1d8f9743b2da1e44184be340d22967d60b10d52e5
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2011-MOD-TABLA
+  tipo: texto
+  unidad: tabla de prevalencias y replicas agregadas
+- id: RESULT-ENDIREH2011-MOD-SOPORTE
+  tipo: entero
+  unidad: mujeres 15+ con factor valido
