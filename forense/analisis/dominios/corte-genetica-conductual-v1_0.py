@@ -58,6 +58,27 @@ LINNER = dict(
     siguiente_operacion="Registrar referencia/versión/hash/condiciones; cotejar suplemento de variantes y R² por cohorte. Para México requerir validación y un estimando causal de entorno comparable.",
     prioridad="3",
 )
+HOLMES = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L9; detalle L84-L90",
+    tier_report="sin rótulo explícito",
+    clase="asociación genotipo ADH1B y consumo declarado",
+    limite_inferencial="Comparación publicada de portadores A frente a no portadores de rs1229984, no efecto por cada alelo ni efecto de una intervención individual. Los tres desenlaces tienen n analíticos y número de estudios diferentes. Meta-análisis de ascendencia europea no mide frecuencia del alelo, cantidad bebida o política pública en México.",
+    conducta_unidad_universo="Meta-análisis de randomización mendeliana Holmes et al. con 56 estudios y 261,991 participantes de ascendencia europea total; cada desenlace usa subconjunto distinto según Tabla 1.",
+    instrumento_ola="Holmes et al., BMJ 349:g4164 (2014), DOI 10.1136/bmj.g4164, ADH1B rs1229984",
+    documento_id_hash_pagina="SIN-ID:holmes2014_adh1b_bmj.pdf|3800caa104c13569996d32da02d83a52350cfdde2f3eb1e08a0cada8431fb3c5|pp.1-2 Tabla1 y Métodos;https://wrap.warwick.ac.uk/id/eprint/61914/1/WRAP_Palmer_bmj.g4164.full.pdf",
+    pregunta_textual_codigo_respuestas="No cuestionario único: armonización de medidas de consumo en 56 estudios; comparación genética A-portador frente a no portador, volumen semanal en unidades británicas, binge y abstención autoreportados según cada cohorte.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Artículo BMJ final primario físico con SHA/DOI, Tabla 1, universos de desenlace y licencia CC BY-NC 3.0 cotejados. No id documental ni RESULT propio.",
+    datos_id_estado="Datos individuales de los 56 estudios no abiertos/descargados por U0; sin RESULT propio.",
+    reserva="CC BY-NC 3.0 con atribución/uso no comercial; copia PDF local, id pendiente. Hipótesis mecanística y causalidad MR requieren revisar supuestos; no transferir asociación europea a México ni inferir efecto individual.",
+    gen2_existente="Sin RESULT ADH1B rs1229984 compatible en main.",
+    propietario="ASTRA5-MESA-GENETICA / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar DOI/licencia/SHA y suplemento; revisar heterogeneidad e instrumento MR por desenlace; pedir datos mexicanos y diseño comparable antes de transferencia.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-GENBEH-001",
@@ -84,6 +105,21 @@ ROWS = [
         texto_vigente="El score LDpred de tolerancia general al riesgo añadió 1.6 puntos porcentuales de R² en la cohorte de validación UKB-siblings, n≈35,000.",
         componente_contrastable="R² incremental 1.6% tras sexo, año de nacimiento y diez PCs, usando GWAS que excluyó UKB-siblings; no es porcentaje de conducta causada por un gen ni utilidad clínica mexicana.",
         localizador="L125-L127; síntesis L214,L228",
+    ),
+    HOLMES | dict(
+        id_afirmacion="ASTRA5-U0-GENBEH-006",
+        texto_vigente="En Holmes et al. 2014 los portadores A de ADH1B rs1229984 declararon 17.22% menos unidades de alcohol por semana que no portadores (IC95 −18.86 a −15.55).",
+        componente_contrastable="Tabla 1: volumen semanal log-transformado, 46 estudios, n=218,969; diferencia porcentual entre portadores/no portadores, no efecto aditivo por alelo.",
+    ),
+    HOLMES | dict(
+        id_afirmacion="ASTRA5-U0-GENBEH-007",
+        texto_vigente="En Holmes et al. 2014 los portadores A tuvieron menor odds de binge drinking declarado que no portadores: OR 0.78 (IC95 0.73–0.84).",
+        componente_contrastable="Tabla 1: 21 estudios, 22,198 casos binge de n=131,290; comparación de portadores/no portadores, heterogeneidad I²=47%.",
+    ),
+    HOLMES | dict(
+        id_afirmacion="ASTRA5-U0-GENBEH-008",
+        texto_vigente="En Holmes et al. 2014 los portadores A tuvieron mayor odds de abstención declarada que no portadores: OR 1.27 (IC95 1.21–1.34).",
+        componente_contrastable="Tabla 1: 32 estudios, 24,482 abstinentes de n=189,854; comparación de portadores/no portadores, heterogeneidad I²=73%.",
     ),
 ]
 
