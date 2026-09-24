@@ -53,6 +53,69 @@ MARG_PILOTEADO = {
 NAC_PILOTEADO = 0.357153
 UMBRAL_REPRODUCCION = 1e-12
 
+# ACTO GEN2-CONTADORES-CONSUMO-2 (23/sep/2026): las aserciones de estado
+# del marcador se evalúan contra el marcador RE-DERIVADO por
+# `tools/marcador_segmento.py` en un directorio temporal, no contra el TSV
+# publicado. El marcador lo publica sólo el job de derivados de verify.yml
+# (el PR no puede llevarlo: `derivados_protegidos --toca`), así que entre el
+# merge de un cambio de decisiones y el PR `[deriva]` el TSV publicado
+# describe el estado anterior; un test sobre ese TSV no pasa en los dos.
+# Se deriva hasta el punto fijo: `emitidas_sin_evaluar` sale de
+# `c2_compuesto.emisiones()`, que lee las RESERVADA del TSV publicado, y
+# con el TSV viejo la primera pasada da 206 emitidas y la segunda 174.
+_DERIVADO: dict = {}
+
+
+def _marcador_derivado() -> dict:
+    """Rutas a `marcador-segmento.tsv` y `estimadores-por-segmento.yaml`
+    re-derivados hasta su punto fijo (una vez por proceso) fuera del
+    árbol."""
+    if not _DERIVADO:
+        import atexit
+        import contextlib
+        import io
+        import shutil
+        import tempfile
+        import marcador_segmento as MS
+        tmp = Path(tempfile.mkdtemp(prefix="c2-compuesto-marcador-"))
+        atexit.register(shutil.rmtree, tmp, True)
+        rutas = {"tsv": tmp / "marcador-segmento.tsv",
+                 "yaml": tmp / "estimadores-por-segmento.yaml"}
+        viejo = (MS.RAIZ, MS.MARCADOR_TSV, MS.ESTIMADORES_YAML, C2.MARCADOR)
+        antes = None
+        try:
+            for _ in range(4):
+                v = MS.deriva()
+                MS.RAIZ, MS.MARCADOR_TSV, MS.ESTIMADORES_YAML = (
+                    tmp, rutas["tsv"], rutas["yaml"])
+                with contextlib.redirect_stdout(io.StringIO()):
+                    MS.escribe_tsv(v["filas"])
+                    MS.escribe_estimadores_yaml(v["filas"])
+                MS.RAIZ = viejo[0]
+                C2.MARCADOR = rutas["tsv"]
+                ahora = (rutas["tsv"].read_bytes(), rutas["yaml"].read_bytes())
+                if ahora == antes:
+                    break
+                antes = ahora
+            else:
+                raise AssertionError(
+                    "marcador_segmento no llega a punto fijo en 4 pasadas")
+        finally:
+            MS.RAIZ, MS.MARCADOR_TSV, MS.ESTIMADORES_YAML, C2.MARCADOR = viejo
+        _DERIVADO.update(rutas)
+    return _DERIVADO
+
+
+_MARCADOR_PUBLICADO = C2.MARCADOR
+
+
+def setUpModule():
+    C2.MARCADOR = _marcador_derivado()["tsv"]
+
+
+def tearDownModule():
+    C2.MARCADOR = _MARCADOR_PUBLICADO
+
 
 class ControlDeReproduccion(unittest.TestCase):
     """(1) spec §7 -- rama negativa explícita, sin ajustar nada."""
@@ -291,6 +354,7 @@ class GuardiaD14(unittest.TestCase):
         spec = _iu.spec_from_file_location("estimadores_segmento_d14", ruta)
         cls.E = _iu.module_from_spec(spec)
         spec.loader.exec_module(cls.E)
+        cls.E.RUTA_ESTIMADORES = _marcador_derivado()["yaml"]
         cls.emitidas = cls.E.celdas_emitidas_sin_evaluar()
         cls.adoptadas = _yaml_estimadores().get("celdas") or {}
 
@@ -395,13 +459,13 @@ class GuardiaD14(unittest.TestCase):
 def _yaml_estimadores() -> dict:
     import yaml
     return yaml.safe_load(
-        (RAIZ / "milpa" / "estimadores-por-segmento.yaml").read_text(
+        _marcador_derivado()["yaml"].read_text(
             encoding="utf-8")) or {}
 
 
 def _filas_marcador() -> list[dict]:
     import csv
-    ruta = RAIZ / "data" / "corrida0" / "marcador-segmento.tsv"
+    ruta = _marcador_derivado()["tsv"]
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
     return list(csv.DictReader(lineas, delimiter="\t"))
@@ -420,8 +484,14 @@ def corre() -> list[str]:
         if isinstance(obj, type) and issubclass(obj, unittest.TestCase)
         and obj is not unittest.TestCase)
     import os
-    with open(os.devnull, "w") as nulo:
-        res = unittest.TextTestRunner(stream=nulo, verbosity=0).run(suite)
+    # Cargado por `check.py` fuera de `sys.modules`, unittest no llama a
+    # los fixtures de módulo: se llaman aquí.
+    setUpModule()
+    try:
+        with open(os.devnull, "w") as nulo:
+            res = unittest.TextTestRunner(stream=nulo, verbosity=0).run(suite)
+    finally:
+        tearDownModule()
     if res.testsRun == 0:
         return ["`tests/test_c2_compuesto.py` no expuso ningun caso"]
     return [f"{caso}: {traza.strip().splitlines()[-1][:220]}"
