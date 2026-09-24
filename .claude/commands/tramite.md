@@ -132,11 +132,17 @@ empieces sin ellas.
    quedan disponibles aunque la suite bloquee lo que sigue. Hecho eso:
    `python3 tests/check.py --baseline --parallel`.
    - **VERDE** → sigue.
-   - Con la línea base verde, regenera el bloque vivo del tablero antes
-     de seguir (T0, `GEN2-TABLERO-SENAL-1`): `python3
-     tools/tablero_programa.py --actualiza`. Es derivación mecánica —
-     no decide nada — y si cambia algo, va en el mismo commit de huella
-     de este ciclo.
+   - Con la línea base verde, intenta regenerar el bloque vivo del
+     tablero (T0, `GEN2-TABLERO-SENAL-1`): `python3
+     tools/tablero_programa.py --actualiza`. **Sin `--permitir-rama`**
+     (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1, P2): el único productor del
+     canal es el job `guardias` de CI sobre `origin/main`, y esta rama
+     administrativa casi siempre está adelante de `origin/main` (ya con
+     la huella de este ciclo commiteada) — el comando se niega con
+     código != 0 y **eso es lo esperado**, no un fallo del ciclo ni un
+     PARO: no escribe nada y el trámite sigue. Si por excepción `HEAD`
+     coincidiera con `origin/main` y sí escribe, el cambio va en el
+     mismo commit de huella de este ciclo.
    - **ROJO** → **PARO**. Termina con cero commits (salvo la huella ya
      permitida del bloque 2/3.5) y reporta la salida cruda. Un agente de
      trámite que commitea sobre una línea base rota mete su ruido encima
