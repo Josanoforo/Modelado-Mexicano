@@ -39,3 +39,17 @@ Propio: `.github/workflows/verify.yml` (solo la línea del tablero en el paso de
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia qué mide el tablero ni sus definiciones (`celdas_validadas_definicion_desde` sigue siendo de CONTADORES). Sucesor: ninguno; si Pages exige un include que Jekyll no soporte, `-2` con la copia por job.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P5 — prueba real de que el primer PR `[deriva]` posterior al merge trae `forense/tablero/TABLERO-PROGRAMA.md` con `SHA` = commit del push y `¿árbol == origin/main? True`.
+  **por qué:** NO-VERIFICABLE-AQUÍ — solo se puede observar sobre un commit ya fusionado en `origin/main`; este acto abre el PR, no lo fusiona (mesa fusiona).
+  **impacto:** el mecanismo (P1 + P2) sí quedó verificado unitariamente (`tests/test_tablero_programa.py`, 14 pruebas) y a mano (`--actualiza` sin `--permitir-rama` se niega fuera de `origin/main`, código 1, salida citada en el ADR); falta únicamente la confirmación empírica de la primera corrida real en canal.
+  **sucesor:** seguimiento de este mismo PR tras el merge, o el siguiente `/tramite` que lea el primer bloque publicado en canal.
+
+- **qué:** P3 — verificar que GitHub Pages sirve `docs/tablero.md` y `docs/PROTOCOLO-TABLERO.md` por URL.
+  **por qué:** DIFERIDO-A:FP-260923-GEN2-FRONT-1-4296-01 — Pages desde `main/docs` todavía no está activo (fila `ABIERTA`, mesa propuso activarlo el fin de semana 26-27/sep/2026, después de que `CONTADORES-2` fusionara).
+  **impacto:** los dos archivos existen, están commiteados y siguen la receta de Jekyll del resto de `docs/`; nadie puede confirmar hoy que Pages los sirve, solo que están listos para cuando se active.
+  **sucesor:** `FP-260923-GEN2-FRONT-1-4296-01` (ya `ABIERTA`, fin de semana 26-27/sep/2026).
+
+Corrección de premisa declarada aquí (no se edita el cuerpo, A.3): las cinco menciones de `canon/TABLERO-PROGRAMA.md` en este encargo (§1, §9) citan una ruta que no existe en el árbol; el archivo real, con el mismo contenido que la premisa `[EJECUTADO]` de §3 describe (`SHA 8a867a04`), es `forense/tablero/TABLERO-PROGRAMA.md`. Todas las piezas (P1-P4) se implementaron contra la ruta real.
