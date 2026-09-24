@@ -700,9 +700,18 @@ def cargar_indice_linaje_emision(
         ruta_resultados: Path = RUTA_RESULTADOS_CORRIDA0,
 ) -> IndiceLinajeEmision:
     """Consume las vistas de 17; no vuelve a resolver rutas ni procedencia."""
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · COMMIT-A: `fuente_replay`
+    # (y `tolerancia`/`funciones_dependencia`, sin uso aqui) salieron de
+    # `resultados.tsv` -- viven una vez por corrida en `corridas.tsv`. El
+    # join los reconstruye por fila antes de construir EvidenciaResultado;
+    # sin esto, `evidencia.fuente_replay` (linea 908 de este archivo)
+    # quedaria siempre vacio y el gate de emision se rompe en silencio.
+    from tools.vista import join_resultado, corridas_por_id
+    _corridas = corridas_por_id(ruta_resultados.parent / "corridas.tsv")
     por_id: dict[str, list[dict[str, str]]] = {}
     for fila in _leer_vista_derivada(ruta_resultados):
-        por_id.setdefault(fila["resultado_id"], []).append(fila)
+        por_id.setdefault(fila["resultado_id"], []).append(
+            join_resultado(fila, _corridas))
 
     resultados: dict[str, EvidenciaResultado] = {}
     superados: dict[str, ResultadoSuperado] = {}

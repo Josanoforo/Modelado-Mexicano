@@ -582,8 +582,21 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
                        raiz: Path = RAIZ) -> list[dict]:
     """Concilia el alcance por identidad y propósito, nunca por parecido textual."""
     usos = _tsv(raiz / cfg["fuente_usos"])
-    resultados = {x["resultado_id"]: x for x in _tsv(
-        raiz / cfg["fuente_resultados"])}
+    # `tolerancia`/`funciones_dependencia`/`fuente_replay` salieron de
+    # resultados.tsv en COMMIT-A (ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2):
+    # el join las reconstruye desde corridas.tsv por corrida_id. Ruta de
+    # corridas.tsv: mismo directorio que fuente_resultados. `sys.path` se
+    # ajusta aqui (no `from tools.vista import`) porque este archivo se
+    # invoca como script suelto (`python3 tools/adq_investigacion.py`),
+    # sin la raiz del repo en el path -- un `from tools.X import` revienta
+    # con `ModuleNotFoundError` fuera de un checkout con RAIZ en sys.path.
+    import sys as _sys
+    _sys.path.insert(0, str(Path(__file__).resolve().parent))
+    from vista import join_resultado, corridas_por_id
+    ruta_resultados = raiz / cfg["fuente_resultados"]
+    _corridas = corridas_por_id(ruta_resultados.parent / "corridas.tsv")
+    resultados = {x["resultado_id"]: join_resultado(x, _corridas)
+                  for x in _tsv(ruta_resultados)}
     demanda = {x["resultado_id"]: x for x in _tsv(
         raiz / cfg["fuente_demanda_resultados"])}
     decisiones = _tsv(raiz / cfg["fuente_decisiones"])

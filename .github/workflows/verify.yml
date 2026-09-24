@@ -454,6 +454,24 @@ jobs:
             }
           fi
           python3 tools/resuelve_citas.py tabla --escribe
+          # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · P1/COMMIT-A: guarda de
+          # tamaño ANTES de commitear -- un GH001 silencioso en este paso
+          # es una publicación perdida (§8 del encargo, "Guarda en CI"
+          # protege: borrar). Falla duro a 100 MB (el límite real de
+          # GitHub); avisa (no falla) a 50 MB mientras `camino_linaje`
+          # sigue en `resultados.tsv` (COMMIT-B lo saca y este guardia baja
+          # a "falla a 50" en ese mismo commit).
+          for f in data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv; do
+            [ -f "$f" ] || continue
+            BYTES=$(stat -c%s "$f")
+            MB=$((BYTES / 1024 / 1024))
+            if [ "$BYTES" -gt $((100 * 1024 * 1024)) ]; then
+              echo "GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 100 MB de GitHub (GH001 lo habría rechazado igual, esto lo atrapa antes del push)." >&2
+              exit 1
+            elif [ "$BYTES" -gt $((50 * 1024 * 1024)) ]; then
+              echo "AVISO GUARDA-TAMANO: $f es ${MB} MB, sobre el umbral de 50 MB de la firma de mesa (autorizado a ~70 MB entre COMMIT-A y COMMIT-B de GEN2-TUBERIA-VISTA-NORMALIZADA-2)."
+            fi
+          done
           git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml
           if git diff --cached --quiet; then
             echo "sin diff derivado -- nada que publicar"
