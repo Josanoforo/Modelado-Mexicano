@@ -66,8 +66,17 @@ def main():
     fallos = []
     for cmd in comandos:
         try:
+            # `bash -o pipefail` -- sin esto, `sh` (el shell de `shell=True`
+            # en Linux) toma el exit code del ULTIMO comando de un pipe: un
+            # `git log <ref-inexistente> | grep -c X` con `<ref-inexistente>`
+            # fallando en silencio da exit 0 (o 1 por "0 matches", cita
+            # aparte) en vez de propagar el fallo real -- descubierto en CI
+            # (GEN2-ESTADO-V16-1, 24/sep/2026): el checkout de `guardias`
+            # sólo trae `refs/remotes/origin/ci`, nunca `origin/main`, y
+            # `git log ... origin/main | wc -l` reportaba "0" en vez de
+            # fallar.
             r = subprocess.run(
-                cmd, shell=True, cwd=ROOT,
+                ["bash", "-o", "pipefail", "-c", cmd], cwd=ROOT,
                 capture_output=True, text=True, timeout=_TIMEOUT_S,
             )
         except Exception as exc:
