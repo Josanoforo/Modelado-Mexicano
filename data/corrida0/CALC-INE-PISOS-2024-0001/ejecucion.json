@@ -1,0 +1,95 @@
+{
+ "corrida_id": "CALC-INE-PISOS-2024-0001--5df43151a67b",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "python-stdlib": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA",
+  "adopta": false,
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3 23/sep/2026; no adopta",
+  "generacion": "GEN2",
+  "tipo": "PISO-ADMINISTRATIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T16:41:39Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 438,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "5df43151a67b44624cd7c6f483cbe7953d607cf4",
+  "git_rama": "codex/astra5-politica-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5df43151a67b44624cd7c6f483cbe7953d607cf4",
+ "input_ids": [
+  "ine_conteos_censales_participacion_2024"
+ ],
+ "input_sha256": {
+  "ine_conteos_censales_participacion_2024": "c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2"
+ },
+ "parametros": {
+  "eleccion": 2024,
+  "hash_medidor_sha256": "aa83ad13c409e08338f2a44778a73983be737e40fd31f5bba3a1cd4dcfbd7744",
+  "hash_payload_sha256": "c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2",
+  "n_minimo": 30
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-INE-PISOS-2024-DESCUADRES",
+  "RESULT-INE-PISOS-2024-FILAS",
+  "RESULT-INE-PISOS-2024-TABLA"
+ ],
+ "script_blob_sha256": "aa83ad13c409e08338f2a44778a73983be737e40fd31f5bba3a1cd4dcfbd7744",
+ "script_path": "data/corrida0/CALC-INE-PISOS-2024-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-INE-PISOS-2024-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "1c2e41d80c575a63081dce3c0def5b7947ab118663470cf1fb9045ecfd2d707b",
+ "spec_yaml_sha256": "2309c3a3a1196b07f6a41c7d54a455a855dd61134ce5f39f6f81c65f07f9e4c0",
+ "tolerancia": {
+  "razon": "sumas enteras y JSON determinista",
+  "tipo": "exacta"
+ }
+}
