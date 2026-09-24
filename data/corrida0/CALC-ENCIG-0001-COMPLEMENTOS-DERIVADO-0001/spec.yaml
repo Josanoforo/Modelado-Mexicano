@@ -1,0 +1,153 @@
+calc_id: CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001
+spec_md: spec.md
+spec_md_sha256: 25c20888255a6d26c42cdcbe836f97af1070b20a3404b73a1c2be0c2f3309e15
+script: data/corrida0/CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVADO-DETERMINISTA-SOBRE-RESULTADO-SELLADO
+  cuenta_gen2: SI
+  validacion_independiente: NO-APLICA-TRANSFORMACION-DETERMINISTA
+  padre: CALC-ENCIG-0001
+  demanda_que_releva: "Complementos q=1-p de RES-0004, RES-0014, RES-0016 y RES-0022 (consumidor milpa/tramite.yaml); no edita el consumidor."
+  medidor_ejecutado_al_congelar: "NO; spec, medidor y prueba sintetica se comprometen antes del primer run real."
+  informacion_muestral_independiente: "NINGUNA; q e IC(q) son funciones deterministas de p e IC(p)."
+
+inputs:
+  - id: IN-ENCIG-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG-0001/resultados.json
+    sha256: 958b377fbe4483e08973e1e07e3f65aac97309b8aa7481dc2e024713b2e23885
+  - id: IN-ENCIG-0001-SPEC
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG-0001/spec.yaml
+    sha256: a2560c61b3bc6b54d84a08c1790a56e610f17910cacdfc9612419e1cefa2a92a
+  - id: IN-ENCIG-0001-SELLO
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG-0001/sello.json
+    sha256: 9db7e8f292dc4acd43ee1107b00fe7e1c6097d6abaa3b8c78444107b6cbf58d7
+  - id: IN-ENCIG-0001-SELLO-SHA256
+    origen: repo
+    ruta: data/corrida0/CALC-ENCIG-0001/sello.sha256
+    sha256: 84faf5f48ea61498de2995b14152bb110c330cb61464f39d2c2694c4e6309934
+
+variables:
+  - {archivo: "CALC-ENCIG-0001/resultados.json", variable: "RESULT-ENCIG-MOR-{A-P-SOL1,B-P-PRE-SD,B-P-DIG-SD,C-P-ADOPTA}", rol: "p padre", codigos: "proporcion [0,1]"}
+  - {archivo: "CALC-ENCIG-0001/resultados.json", variable: "RESULT-ENCIG-MOR-*-IC-{LO,HI}-*", rol: "IC95(p) del padre", codigos: "[0,1]"}
+  - {archivo: "CALC-ENCIG-0001/resultados.json", variable: "RESULT-ENCIG-MOR-{A,B,C}-{VEREDICTO,METODO-IC}", rol: "guardia de estimabilidad y metodo heredado", codigos: "TASA-REPORTADA; texto no NO-ESTIMABLE"}
+
+universo: >-
+  El de cada primario del padre, sin cambio: A = usuarios con tramite
+  discrecional (P8_3_1 recortado), B = tramites con registro por canal
+  (presencial / digital registrado, sin deduplicar), C = tramite N_TRA=01.
+  Esta corrida no vuelve a construirlos desde microdatos.
+
+filtros: >-
+  No hay filtro nuevo. Se rechaza el padre si su cadena sellada no cubre los
+  bytes leidos, si VEREDICTO no es TASA-REPORTADA, si el metodo de IC es
+  NO-ESTIMABLE, o si 0 <= IC_lo <= p <= IC_hi <= 1 no se cumple.
+
+ponderador: "Heredado del padre; no se accede a pesos ni microdatos."
+
+transformacion: >-
+  q=1-p; IC_lo(q)=1-IC_hi(p); IC_hi(q)=1-IC_lo(p); restas en Decimal sobre
+  la representacion JSON publicada del padre.
+
+estimando: >-
+  Complemento dependiente q=1-p de cada primario, dentro del mismo recorte
+  del padre (exhaustivas y excluyentes solo bajo el recorte; residuos
+  medidos en NC-0108). No es tasa poblacional ni evidencia independiente.
+  Escala [0,1], unidad del padre.
+
+dependencias_materiales: []
+
+parametros:
+  fuente_acto: ACTO GEN2-RELEVO-MOTOR-34-1
+  padre:
+    calc_id: CALC-ENCIG-0001
+    inputs:
+      resultados: IN-ENCIG-0001-RESULTADOS
+      spec: IN-ENCIG-0001-SPEC
+      sello: IN-ENCIG-0001-SELLO
+      sello_sha256: IN-ENCIG-0001-SELLO-SHA256
+  complementos:
+    - prefijo: RESULT-ENCIGDER-A-
+      p_id: RESULT-ENCIG-MOR-A-P-SOL1
+      ic_lo_id: RESULT-ENCIG-MOR-A-IC-LO-SOL1
+      ic_hi_id: RESULT-ENCIG-MOR-A-IC-HI-SOL1
+      veredicto_id: RESULT-ENCIG-MOR-A-VEREDICTO
+      metodo_ic_id: RESULT-ENCIG-MOR-A-METODO-IC
+      consumidor: "milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal_encig2025"
+      valor_legacy: 0.914882
+    - prefijo: RESULT-ENCIGDER-B-PRE-SD-
+      p_id: RESULT-ENCIG-MOR-B-P-PRE-SD
+      ic_lo_id: RESULT-ENCIG-MOR-B-IC-LO-PRE-SD
+      ic_hi_id: RESULT-ENCIG-MOR-B-IC-HI-PRE-SD
+      veredicto_id: RESULT-ENCIG-MOR-B-VEREDICTO
+      metodo_ic_id: RESULT-ENCIG-MOR-B-METODO-IC
+      consumidor: "milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial_r2"
+      valor_legacy: 0.858959
+    - prefijo: RESULT-ENCIGDER-B-DIG-SD-
+      p_id: RESULT-ENCIG-MOR-B-P-DIG-SD
+      ic_lo_id: RESULT-ENCIG-MOR-B-IC-LO-DIG-SD
+      ic_hi_id: RESULT-ENCIG-MOR-B-IC-HI-DIG-SD
+      veredicto_id: RESULT-ENCIG-MOR-B-VEREDICTO
+      metodo_ic_id: RESULT-ENCIG-MOR-B-METODO-IC
+      consumidor: "milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital_r2"
+      valor_legacy: 0.970132
+    - prefijo: RESULT-ENCIGDER-C-
+      p_id: RESULT-ENCIG-MOR-C-P-ADOPTA
+      ic_lo_id: RESULT-ENCIG-MOR-C-IC-LO-ADOPTA
+      ic_hi_id: RESULT-ENCIG-MOR-C-IC-HI-ADOPTA
+      veredicto_id: RESULT-ENCIG-MOR-C-VEREDICTO
+      metodo_ic_id: RESULT-ENCIG-MOR-C-METODO-IC
+      consumidor: "milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio_encig2025_luz"
+      valor_legacy: 0.326607
+  veredicto_id: RESULT-ENCIGDER-VEREDICTO
+  tolerancia_legacy: 1.0e-6
+  direccion_delta: "q derivado menos legacy"
+
+seed:
+  aplica: false
+  valor: null
+  rng: null
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-15
+  razon: "Aritmetica determinista sobre los mismos bytes float del padre."
+
+resultados:
+  - {id: RESULT-ENCIGDER-A-P-PADRE, tipo: proporcion, unidad: "p copiado del padre sellado; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-Q, tipo: proporcion, unidad: "q=1-p dentro del recorte del padre; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-IC-LO-Q, tipo: flotante, unidad: "1-IC_hi(p); tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-IC-HI-Q, tipo: flotante, unidad: "1-IC_lo(p); tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-SUMA-P-Q, tipo: flotante, unidad: "control p+q=1; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-METODO-IC-HEREDADO, tipo: texto, unidad: "metodo IC del padre; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-DELTA-VS-LEGACY, tipo: flotante, unidad: "q menos legacy del consumidor; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-A-COMPATIBILIDAD-LEGACY, tipo: texto, unidad: "COINCIDE-AL-GRANO / NO-COINCIDE-AL-GRANO, tolerancia 1e-6; tramite discrecional; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-P-PADRE, tipo: proporcion, unidad: "p copiado del padre sellado; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-Q, tipo: proporcion, unidad: "q=1-p dentro del recorte del padre; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-IC-LO-Q, tipo: flotante, unidad: "1-IC_hi(p); canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-IC-HI-Q, tipo: flotante, unidad: "1-IC_lo(p); canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-SUMA-P-Q, tipo: flotante, unidad: "control p+q=1; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-METODO-IC-HEREDADO, tipo: texto, unidad: "metodo IC del padre; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-DELTA-VS-LEGACY, tipo: flotante, unidad: "q menos legacy del consumidor; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-PRE-SD-COMPATIBILIDAD-LEGACY, tipo: texto, unidad: "COINCIDE-AL-GRANO / NO-COINCIDE-AL-GRANO, tolerancia 1e-6; canal presencial SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-P-PADRE, tipo: proporcion, unidad: "p copiado del padre sellado; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-Q, tipo: proporcion, unidad: "q=1-p dentro del recorte del padre; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-IC-LO-Q, tipo: flotante, unidad: "1-IC_hi(p); canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-IC-HI-Q, tipo: flotante, unidad: "1-IC_lo(p); canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-SUMA-P-Q, tipo: flotante, unidad: "control p+q=1; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-METODO-IC-HEREDADO, tipo: texto, unidad: "metodo IC del padre; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-DELTA-VS-LEGACY, tipo: flotante, unidad: "q menos legacy del consumidor; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-B-DIG-SD-COMPATIBILIDAD-LEGACY, tipo: texto, unidad: "COINCIDE-AL-GRANO / NO-COINCIDE-AL-GRANO, tolerancia 1e-6; canal digital SD; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-P-PADRE, tipo: proporcion, unidad: "p copiado del padre sellado; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-Q, tipo: proporcion, unidad: "q=1-p dentro del recorte del padre; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-IC-LO-Q, tipo: flotante, unidad: "1-IC_hi(p); tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-IC-HI-Q, tipo: flotante, unidad: "1-IC_lo(p); tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-SUMA-P-Q, tipo: flotante, unidad: "control p+q=1; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-METODO-IC-HEREDADO, tipo: texto, unidad: "metodo IC del padre; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-DELTA-VS-LEGACY, tipo: flotante, unidad: "q menos legacy del consumidor; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-C-COMPATIBILIDAD-LEGACY, tipo: texto, unidad: "COINCIDE-AL-GRANO / NO-COINCIDE-AL-GRANO, tolerancia 1e-6; tramite N_TRA=01; escala del padre"}
+  - {id: RESULT-ENCIGDER-VEREDICTO, tipo: texto, unidad: "declara derivacion de padre sellado sin informacion muestral independiente"}
