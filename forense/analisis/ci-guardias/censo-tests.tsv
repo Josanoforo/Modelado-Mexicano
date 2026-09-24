@@ -260,3 +260,4 @@ tests/test_encig_pisos_gen2.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEP
 tests/test_vista.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_hoja_a_cola.py	script	NO	(ninguna)	NO	2.8	CORRE-EN-CI	exit 0 sin corpus
 tests/test_renderiza_pagina.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_amai_nse.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest

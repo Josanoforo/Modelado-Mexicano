@@ -1,6 +1,6 @@
 """Pruebas del conducto AMAI-NSE sobre sintético y oro (D-22 (2)); no tocan el corpus.
 
-Correr: python3 -m pytest -q tools/dominios/amai/test_amai_nse.py
+Correr: python3 -m pytest -q tests/test_amai_nse.py
 """
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from tools.dominios.amai import medidor as M
 from tools.dominios.amai import regla as R
 from tools.dominios.amai import sintetico as S
 
-ROOT = Path(__file__).resolve().parents[3]
+ROOT = Path(__file__).resolve().parents[1]
 
 
 def test_cortes_del_anexo():
