@@ -61,3 +61,7 @@ No ejecuta nada. Sucesores: `GEN2-ADOPCION-BLOQUE-Y-PINES-2` (S, T y los dos hal
 - **qué**: U · `…657c-02` contrato celda-D admite IC-CON-R. **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- ninguna firma verbatim llegó con esta sesión. **impacto**: el contrato v0.6 de celda-D sigue sin resolver el rótulo IC-CON-R para pisos C2-compuestos sin IC propio. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
 - **qué**: V · `…1269-01` activar Require merge queue. **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- depende de que R se firme primero (el propio encargo lo condiciona: «Con R(a) firmada: …»). **impacto**: la cola de fusión sigue sin Require merge queue activa. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
 - **qué**: fecha de `…c3fa-05` (§6, alianza académica). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- sin respuesta de mesa con esta sesión. **impacto**: la FP sigue sin plazo. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
+
+## CONSUMIDO
+
+PR #1107 (ACTO GEN2-TRAMITE-FIRMAS-15, ADR-260924-GEN2-TRAMITE-FIRMAS-15-0c38-01).
