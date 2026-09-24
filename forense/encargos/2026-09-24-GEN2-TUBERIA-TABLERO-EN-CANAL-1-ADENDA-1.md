@@ -55,3 +55,7 @@ No cambia qué mide el tablero ni sus definiciones (`celdas_validadas_definicion
   **sucesor:** la misma FP.
 
 Corrección de premisas declarada (no se edita el cuerpo): (1) §4 «esperado 0»: `verify.yml` ya tenía 3 menciones de `tablero_programa` y `docs/tablero.md` + `docs/PROTOCOLO-TABLERO.md` existían — P1-P4 ya estaban en `main` por PR #1117 (encargo v1, CONSUMIDO); (2) §1/§3 «el job solo se dispara con asiento nuevo»: falso, ver arriba; (3) `canon/TABLERO-PROGRAMA.md` es `forense/tablero/TABLERO-PROGRAMA.md`.
+
+## CONSUMIDO
+
+PR https://github.com/Josanoforo/Modelado-Mexicano/pull/1122 (rama `claude/new-session-e85tdt`). ADR de raíz: `ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3dd4-01`. Encargo base: `2026-09-24-GEN2-TUBERIA-TABLERO-EN-CANAL-1.md` (consumido por #1117). El PR no se fusiona en este acto: mesa fusiona.
