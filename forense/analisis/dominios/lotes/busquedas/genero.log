@@ -1,0 +1,83 @@
+# Búsquedas crudas del lote 'genero' (ASTRA5-U0), sesión que completa el trabajo.
+# El ejecutor previo de este mismo lote fue interrumpido antes de escribir salida;
+# sus búsquedas (corpus + 12 consultas web, presupuesto del lote agotado) están en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/genero.log
+# y se citan como "(ejecutor previo)" en busqueda_a13 de filas.tsv cuando se reutiliza
+# un conteo. Presupuesto web del lote: 12/12 ya usado por el ejecutor previo (items
+# [8]-[19] de previas/genero.log) → esta sesión NO hizo consultas web nuevas.
+
+### [S1] u0mf --busca sesnsp/mcci/causa en comun/cepal/cuaderno28/wef/cgpj/milei/ministerio de las mujeres --limite 3
+cd /home/pc0/mm-astra5-mapa-dominios-1
+for t in "sesnsp" "informe de violencia" "mcci" "causa en comun" "cepal" "cuaderno 28" "wef" "world economic forum" "cgpj" "milei" "ministerio de las mujeres"; do
+  python3 $U/u0mf.py --busca "$t" --limite 3
+done
+# resultado: sesnsp=0; informe de violencia=0; mcci=1 (mcci_encuesta_corrupcion_impunidad_2019_2024_xlsx,
+#   ES OTRO DOCUMENTO: encuesta de percepción de corrupción, NO la investigación de feminicidios
+#   con sentencias citada por el report — falso positivo por palabra clave); causa en comun=0;
+#   cepal=0; cuaderno 28=0; wef=0; world economic forum=0; cgpj=0; milei=0;
+#   ministerio de las mujeres=0.
+# → confirma que ninguno de los documentos SESNSP/MCCI-feminicidio/Causa en Común/CEPAL/
+#   WEF/CGPJ/Milei está en el manifiesto del corpus: son todos afirmaciones documentales
+#   externas, no encuestas del corpus ASTRA5.
+
+### [S2] u0busca ENUT cuidado de hijos/paternidad (variantes), sin filtro de ola
+python3 $U/u0busca.py -q "cuido a mis hijos|cuidar a los hijos|atender a los hijos|bano a los ninos|dar de comer a los ninos" --encuesta enut --limite 15
+# → 0 aciertos con texto de 314256 identidades revisadas, 113780 con texto (confirma lo ya
+#   hallado por el ejecutor previo con otras variantes: previas/genero.log [5],[7],[21]: la
+#   variable ENUT relevante es el bloque agregado TRAB_NO_REM_VOL, ya cubierto por el contrato
+#   ASTRA5-U0-TIME-002, no reactivos individuales de "cuidar hijos" por nombre literal).
+
+### [S3] u0mf --busca wvs / latinobarometro --limite 5
+python3 $U/u0mf.py --busca wvs --limite 5
+python3 $U/u0mf.py --busca latinobarometro --limite 5
+# → wvs: 11 entradas (WVS7 México 2018: cuestionario, metodología, diseño muestral, equipo,
+#   base v3.0 — en manifiesto, no abierto ni usado como evidencia de actitud de género en
+#   este lote, ver genero-021).
+# → latinobarometro: 9 entradas (Latinobarómetro 2024: cuestionario, fichas técnicas —
+#   en manifiesto, no abierto en este lote).
+
+### [S4] u0mf --busca endireh --busca 2021 --limite 5
+python3 $U/u0mf.py --busca endireh --busca 2021 --limite 5
+# → 46 entradas coinciden; confirmados en esta sesión: endireh2021_bd_csv_zip
+#   (sha e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e, raíz data_raw)
+#   y endireh2021_fd_pdf (sha 5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180),
+#   usados en genero-030 y genero-033.
+
+### [S5] u0busca ENOE ingreso mensual/salario mensual (para brecha salarial, variable cruda)
+python3 $U/u0busca.py -q "ingreso mensual|salario mensual" --encuesta enoe --limite 5
+# → 0 aciertos con texto (la brecha salarial 14%/86 pesos del report se cotejó por
+#   documento IMCO, no por reactivo ENOE crudo en este lote; ver genero-010, residual
+#   pendiente de recalcular directamente de ENOE).
+
+### [S6] u0busca actitud aborto/interrupción del embarazo (instrumento de actitud, no evento clínico)
+python3 $U/u0busca.py -q "interrupcion del embarazo|esta usted de acuerdo con que las mujeres" --limite 10
+# → 0 aciertos con texto (no se identificó instrumento de actitud hacia el aborto en el
+#   corpus recorrido más allá del reactivo histórico de ENNVIH 2002 hallado por el
+#   ejecutor previo — previas/genero.log [21] — que es sobre evento clínico, no actitud).
+
+### [S7] RESULTS-ASTRA5.md — lectura íntegra (57827 bytes / 47 líneas), esta sesión
+# Confirma: (1) el agregado ENDIREH 2021 "cualquier violencia 70.1%" NO está medido
+#   (unión por mujer no calculada) — usado en genero-033/genero-030; (2) RESULT-ENOE-PISOS-TABLA
+#   (#1087) mide informalidad agregada 54.64% sin desagregar por sexo — usado en genero-009;
+#   (3) RESULT-INE-PISOS-2024-TABLA mide participación en casillas (55.83%), NO la votación
+#   presidencial 59.8%/61.04% — usado en genero-012; (4) ENDUTIH 2024 (uso de internet
+#   83.12%) no tiene módulo de actitudes de género — usado en genero-024.
+
+### [S8] Referencia — presupuesto web del lote (12/12) ya consumido por el ejecutor previo:
+#  [8]  WebSearch Cuenta Satélite TNRH 2024 PIB              → genero-011
+#  [9]  WebSearch Monitor Mujeres en la Economía IMCO        → genero-008/009/010
+#  [10] WebSearch víctimas feminicidio/homicidio doloso 2019-2025 → genero-005/007
+#  [11] WebSearch cómputo distrital Sheinbaum 2024            → genero-012
+#  [12] WebSearch acción inconstitucionalidad aborto 2021/2023 → genero-014
+#  [13] WebSearch Global Gender Gap Report 2024 México        → genero-025
+#  [14] WebSearch feminicidios diarios ALC 2024 CEPAL          → genero-019
+#  [15] WebSearch víctimas mortales violencia género pareja/expareja (CGPJ España) → genero-027
+#  [16] WebSearch LFT licencia de paternidad art.132           → genero-029
+#  [17] WebFetch INEGI CSTNRHM2024_CP.pdf (extracción fallida) → genero-011
+#  [18] WebFetch IMCO Comunicado Monitor Mujeres 6 (éxito, cita literal) → genero-008/009/010
+#  [19] WebSearch Mexico rank Global Gender Gap Index 2024 109/146 → genero-025
+# Ninguna de las 12 consultas del lote buscó: Arciniega 2008, Nuñez 2016 HCHS/SOL,
+# Castillo 2010 Marianismo, Wheeler 2010, MCCI-feminicidios (distinto de la encuesta de
+# corrupción), Causa en Común, paridad constitucional/Congreso, 24 estados aborto, Banco
+# Mundial 57/44%, Argentina Milei — quedan PENDIENTE-VERIFICACION-DOCUMENTAL por
+# presupuesto agotado, no por negativa de búsqueda.
