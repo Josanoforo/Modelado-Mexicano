@@ -253,8 +253,31 @@ def _compara_head_origin_main(head: str, remoto: str) -> tuple[bool, str]:
     return True, ""
 
 
+# ADENDA-1 P2: "o el árbol está sucio". Se exceptúan los derivados que el
+# propio canal escribe ANTES del tablero (mismo `git add` de verify.yml): en
+# CI ya están modificados cuando corre `--actualiza` y son justo lo que viaja.
+DERIVADOS_DEL_CANAL = (
+    "data/corrida0/corridas.tsv", "data/corrida0/resultados.tsv",
+    "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
+    "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
+    "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
+)
+
+
+def _sucios_ajenos(porcelain: str) -> list[str]:
+    """Rutas modificadas (sin contar no rastreados) que NO son derivados del canal. Puro."""
+    rutas = [ln.split(maxsplit=1)[1] for ln in porcelain.splitlines() if ln.strip()]
+    return sorted(r for r in rutas if r not in DERIVADOS_DEL_CANAL)
+
+
 def _es_origin_main_limpio() -> tuple[bool, str]:
-    return _compara_head_origin_main(sh("git rev-parse HEAD"), sh("git rev-parse -q --verify origin/main"))
+    ok, motivo = _compara_head_origin_main(sh("git rev-parse HEAD"), sh("git rev-parse -q --verify origin/main"))
+    if not ok:
+        return ok, motivo
+    sucios = _sucios_ajenos(sh("git status --porcelain --untracked-files=no"))
+    if sucios:
+        return False, f"árbol sucio fuera de los derivados del canal: {', '.join(sucios[:5])}"
+    return True, ""
 
 
 def _marco_vigente(familia: str) -> tuple[str, str]:
@@ -516,6 +539,14 @@ def derivar_indicadores() -> dict[str, dict]:
     # el aparato existe antes que las corridas, y un tablero que ocultara
     # el cero estaria informando de un avance que nadie midio.
     gen2, comando_gen2 = _contadores_gen2()
+    # ADENDA-1 P5: los contadores GEN2 se leen de las vistas EN ÁRBOL. Esta
+    # lista dice cuáles difieren de HEAD (en CI: las recién derivadas que
+    # viajan en el PR [deriva]; en una sesión local, lo que re-derivó sin
+    # publicar). Vacía = el valor en árbol es el publicado.
+    put("vistas_arbol_distintas_de_head",
+        [r for r in DERIVADOS_DEL_CANAL[:5]
+         if subprocess.run(["git", "diff", "--quiet", "HEAD", "--", r]).returncode != 0],
+        "git diff --quiet HEAD -- <vista> por cada vista de data/corrida0 que escribe el canal")
     for clave, valor in gen2.items():
         put(f"gen2_{clave}", valor, comando_gen2)
 
@@ -713,7 +744,10 @@ def render_bloque_vivo(I: dict[str, dict], no_es_origin_main: bool = False) -> s
         f"por token: {nc_tok_txt} · prosa (sin token reconocible) `{nc.get('prosa')}`."
     )
     partes.append(
-        f"- **GEN2 (derivado de `corrida0 status`).** corridas selladas "
+        f"- **GEN2 (derivado de `corrida0 status`, valores EN ÁRBOL; vistas del árbol "
+        f"distintas de HEAD: `{', '.join(_v(I, 'vistas_arbol_distintas_de_head') or []) or 'ninguna'}`).** "
+        f"adoptados activos `{_v(I, 'gen2_N_resultados_gen2_adoptados_activos')}` · "
+        f"pendientes de adopción `{_v(I, 'gen2_N_resultados_gen2_pendientes_adopcion')}` · corridas selladas "
         f"`{_v(I, 'gen2_N_corridas_selladas')}` / requeridas `{_v(I, 'gen2_N_corridas_requeridas')}` · "
         f"resultados sellados `{_v(I, 'gen2_N_resultados_sellados')}` / activos "
         f"`{_v(I, 'gen2_N_resultados_activos')}` · pendientes `{_v(I, 'gen2_N_resultados_pendientes')}` · "
