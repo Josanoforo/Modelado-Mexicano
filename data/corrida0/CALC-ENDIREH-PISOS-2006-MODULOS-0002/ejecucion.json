@@ -1,0 +1,102 @@
+{
+ "corrida_id": "CALC-ENDIREH-PISOS-2006-MODULOS-0002--5519f9adbd77",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy==2.3.5": "AUSENTE"
+ },
+ "error": null,
+ "etiquetas": {
+  "adopcion": "NO",
+  "cuenta_gen2": "SI",
+  "generacion": "GEN2",
+  "origen_numerico": "ENDIREH 2006 microdato primario, nunca GEN1",
+  "temporalidad": "RETROSPECTIVA",
+  "tipo": "DESCRIPTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:52:23Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 458,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "9612eb91fffe5718c2e9c05577afb18f215a0e7a",
+  "git_rama": "codex/astra5-genero-endireh-sucesor-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5519f9adbd77cb6150f150214680f590969393ee",
+ "input_ids": [
+  "endireh_2006_bd_endireh_2006_csv"
+ ],
+ "input_sha256": {
+  "endireh_2006_bd_endireh_2006_csv": "e6529c97b6355e01fa48c15ae0aee398090f4a094dd84b42cfc112e929d938f0"
+ },
+ "parametros": {
+  "ancho_ic_maximo": 0.2,
+  "bootstrap_replicas": 200,
+  "cv_maximo": 0.3,
+  "hash_medidor_sha256": "ed4446699c4f1b1ac5678ec7ba3f5ad8cf4f487b08a8b9a6e1f26240bf2062df",
+  "hash_payload_sha256": "e6529c97b6355e01fa48c15ae0aee398090f4a094dd84b42cfc112e929d938f0",
+  "hash_prueba_sha256": "f565471c877fea7e788c92a7753dc4fd838a9c836acb27fdb921438c95c7f71c",
+  "metodo_ic": "UPM ZUPM completas dentro de CVE_ENT+ZEST, percentiles 2.5/97.5",
+  "n_minimo": 100,
+  "upm_minimas": 5
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENDIREH2006-MOD-SOPORTE",
+  "RESULT-ENDIREH2006-MOD-TABLA"
+ ],
+ "script_blob_sha256": "ed4446699c4f1b1ac5678ec7ba3f5ad8cf4f487b08a8b9a6e1f26240bf2062df",
+ "script_path": "data/corrida0/CALC-ENDIREH-PISOS-2006-MODULOS-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260923
+ },
+ "spec_id": "CALC-ENDIREH-PISOS-2006-MODULOS-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "7f93b74b01f2c91eb069013519593ac453ee593b30943c7c5bd2c141cc6bb55e",
+ "spec_yaml_sha256": "000361f64dd81f5b9d945c3ba82e072b98038cda19dbf59a02d7a9e544daf6f5",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "semilla y sumas deterministas",
+  "tipo": "flotante"
+ }
+}
