@@ -1,0 +1,175 @@
+# forense/analisis/adopcion-4/redaccion-reglas-v1_0.yaml
+# ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-4 · P2 — campos redactados por el
+# ejecutor (CLÁUSULA DE AUTONOMÍA v1.0 §3, forense/encargos/CLAUSULA-
+# AUTONOMIA-v1_0.md) para las tres reglas que tools/escribe_relevo_consumo.py
+# (modo "crear desde propuesta") crea en milpa/tramite.yaml, copiando
+# verbatim de milpa/tramite-ola5-propuesta-v0.yaml los campos MEDIDOS
+# (p, ic95, fuente, universo, ponderador, ola_calibracion,
+# corrida0_resultado_id, corrida0_generacion, rol_uso, uso_motor).
+#
+# TODO valor de este archivo es PROPUESTO-POR-EJECUTOR. Mesa lo adopta al
+# fusionar el PR de este acto (E.2: el merge del bloque es la adopción) o
+# lo devuelve.
+#
+# `situacion`/`disparadores`: la propuesta trae `situacion:
+# PENDIENTE-DE-MESA` y `si: {disparadores: PENDIENTE-DE-MESA}` (una
+# cadena, no un dict -- copiarla tal cual rompería `cargar_reglas`, que
+# exige `si.disparadores` como mapeo). Las tres reglas son tasas base
+# INCONDICIONALES dentro de un universo ya seleccionado (no hay
+# disparador lógico condicional del motor detrás de ellas: el mismo caso
+# que ya cubren `civico.denuncia.miedo_desconfianza`,
+# `dinero.ahorro.tiene_ahorros`, `familia.apoyo.recibe_dinero_familiares`
+# en `milpa/tramite.yaml`, todas con `si.disparadores: {}`). Esas reglas
+# usan `situacion: SELLADA`, pero ese token viaja siempre con una firma de
+# mesa específica citada en el comentario de la propia regla (D2-a, D2-c,
+# D2-d, SELLO-2 -- ninguna de ellas autoriza estas tres reglas nuevas), así
+# que reusarlo aquí sería teclear una firma que no aplica. Se redacta en su
+# lugar un `situacion` descriptivo del segmento (documentado abajo) con
+# `disparadores: {}` real (dict vacío, válido para el cargador) — el
+# segmento mismo ya vive, verbatim, en el campo `universo:` que se copia
+# de la propuesta.
+#
+# `porque.generador`: cita el generador de `canon/modelo-decision-v4_0.md`
+# §2 cuya cláusula falsable mejor describe el mecanismo; no se inventa un
+# generador nuevo (fuera de perímetro, §9 del encargo declara `emisor.py`
+# y el registro de IDs ajenos salvo cambio ≤10 líneas).
+#
+# `tier: MEDIA` en las tres — regla del encargo §1: "MEDIA salvo que el
+# report lo suba con razón". Las tres son `rol_uso: proxy_descriptivo` /
+# `uso_motor` explícitamente no-calibrador ("no calibra ninguna p del
+# motor", propuesta l.4011/4059/4085): no hay razón en el report ni en el
+# RESULT para subir a FUERTE.
+
+reglas:
+  civico.contexto_institucional_victimas.lapop:
+    situacion: victima_extorsion_evalua_contexto_institucional
+    situacion_fuente: >-
+      PROPUESTO-POR-EJECUTOR: el universo ya está declarado en la
+      propuesta ("víctimas de extorsión (vic1ext = 1) con ponderador
+      válido en la ola; nunca agrupadas entre olas"); tasa base
+      incondicional dentro de ese universo ya seleccionado, sin
+      disparador lógico condicional del motor detrás.
+    disparadores: {}
+    disparadores_estado: >-
+      PROPUESTO-POR-EJECUTOR: no hay disparador lógico condicional del
+      motor detrás de esta salida -- es tasa base incondicional dentro
+      del universo ya seleccionado y declarado en `universo:`
+      («víctimas de extorsión (vic1ext = 1) con ponderador válido en la
+      ola»), mismo patrón que `civico.denuncia.miedo_desconfianza` y
+      `dinero.ahorro.tiene_ahorros` en este archivo.
+    tier: MEDIA
+    tier_fuente: >-
+      PROPUESTO-POR-EJECUTOR: regla por defecto del encargo §1 para
+      proxy_descriptivo; la propia propuesta declara que estas salidas
+      "no falsan R10.3 ni construyen el veredicto D2-h" (l.4006-4009) --
+      no hay razón del report ni del RESULT para subir a FUERTE.
+    porque:
+      generador: [G4]
+      mecanismo: >-
+        Exposición a la extorsión (victimización) reconfigura la
+        percepción de legitimidad/eficacia de las instituciones de
+        justicia entre quienes la sufren -- G4, «Exposición a violencia +
+        impunidad» -> «Conducta defensiva, retracción del espacio
+        público», componente confianza_institucional[justicia]
+        (canon/modelo-decision-v4_0.md línea 440). Evidencia GEN1: la
+        victimización erosiona específicamente la confianza en policía y
+        sistema judicial sin afectar la confianza interpersonal
+        (Corbacho et al. 2015, citado en el report: ~10% de caída en
+        confianza en policía local tras victimización, confianza en
+        amigos/familia ~85% estable).
+      fuente: >-
+        corpus/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md,
+        sección "La violencia como destructor selectivo del tejido
+        social", líneas 153-161 (cita Corbacho et al. 2015 en línea 157).
+    falsable_si: >-
+      Si una ola LAPOP posterior (o un instrumento con el mismo índice de
+      tres ítems aoj11/b18/aoj12) mide contexto institucional alto entre
+      víctimas de extorsión fuera del rango 73-79% observado en
+      2019/2023, o si el patrón desaparece al condicionar por región o
+      clase social, el proxy queda falsado como marcador estable del
+      universo.
+
+  dinero.credito.atraso_y_dano_por_producto_banxico:
+    situacion: tiene_credito_formal_por_producto
+    situacion_fuente: >-
+      PROPUESTO-POR-EJECUTOR: el universo ya está declarado en la
+      propuesta (unidad = tenedores del producto de crédito, corte 2024);
+      tasa base incondicional dentro de ese universo ya seleccionado, sin
+      disparador lógico condicional del motor detrás.
+    disparadores: {}
+    disparadores_estado: >-
+      PROPUESTO-POR-EJECUTOR: no hay disparador lógico condicional del
+      motor detrás de esta salida -- es tasa base incondicional dentro
+      del universo ya seleccionado y declarado en `universo:` (tenedores
+      del producto de crédito, corte 2024), mismo patrón que
+      `familia.seguro.volatilidad_ausencia_estado` en este archivo.
+    tier: MEDIA
+    tier_fuente: >-
+      PROPUESTO-POR-EJECUTOR: regla por defecto del encargo §1; la propia
+      propuesta declara "no calibra ninguna p del motor, no identifica un
+      efecto causal" (l.4059) -- no hay razón del report ni del RESULT
+      para subir a FUERTE.
+    porque:
+      generador: [G3]
+      mecanismo: >-
+        La volatilidad del ingreso y la ausencia de alternativas formales
+        de suavización de consumo producen atraso recurrente en el pago
+        de crédito, con independencia del producto -- G3, «Informalidad +
+        volatilidad de ingreso» -> «Horizonte corto, ahorro informal,
+        aversión» (canon/modelo-decision-v4_0.md línea 439). Evidencia
+        GEN1: 27.3% de quienes tienen deudas han tenido retrasos en pagos
+        (ENSAFI 2023), con la trampa más fuerte en hogares de ingreso
+        volátil sin colchón.
+      fuente: >-
+        corpus/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md,
+        "Patrón 3 — Deuda como herramienta vs. deuda como trampa",
+        líneas 82-83.
+    falsable_si: >-
+      Si una ola Banxico posterior (o ENSAFI) muestra que las tasas de
+      atraso por producto ya no covarían con indicadores de volatilidad
+      de ingreso o informalidad -- por ejemplo, convergen entre tenedores
+      formales e informales --, el driver G3 queda falsado para este
+      proxy.
+
+  trabajo.prestaciones.valoracion_seguridad_social_motral:
+    situacion: ocupado_valora_seguridad_social
+    situacion_fuente: >-
+      PROPUESTO-POR-EJECUTOR: el universo ya está declarado en la
+      propuesta (ocupados, MOTRAL 2015 reactivo P17, con/sin acceso);
+      tasa base incondicional dentro de ese universo ya seleccionado, sin
+      disparador lógico condicional del motor detrás.
+    disparadores: {}
+    disparadores_estado: >-
+      PROPUESTO-POR-EJECUTOR: no hay disparador lógico condicional del
+      motor detrás de esta salida -- es tasa base incondicional dentro
+      del universo ya seleccionado (ocupados, MOTRAL 2015 reactivo P17,
+      con/sin acceso a seguridad social), mismo patrón que
+      `dinero.planeacion.formal_estable` en este archivo.
+    tier: MEDIA
+    tier_fuente: >-
+      PROPUESTO-POR-EJECUTOR: regla por defecto del encargo §1; la propia
+      propuesta declara "NO una clasificación de informalidad voluntaria"
+      y que el contraste con/sin acceso "no identifica ningún efecto
+      causal" (l.4085-4090) -- no hay razón del report ni del RESULT para
+      subir a FUERTE.
+    porque:
+      generador: [G3]
+      mecanismo: >-
+        La divisoria formal-informal organiza el acceso a una red de
+        protección ante el riesgo: quienes carecen de acceso formal no
+        pueden asumir riesgo sin red -- mismo mecanismo G3 (informalidad +
+        volatilidad de ingreso). Evidencia GEN1: incluso los ocupados sin
+        acceso valoran afirmativamente la seguridad social casi tan alto
+        como quienes sí tienen acceso (79.1% vs 83.2%, MOTRAL 2015 P17)
+        -- no hay devaluación defensiva del beneficio que no se tiene.
+      fuente: >-
+        corpus/reports/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md,
+        línea 159 ("the formal-informal divide is the master
+        variable ... you can't take risks without a safety net").
+    falsable_si: >-
+      Si una ola MOTRAL posterior (o un instrumento equivalente, p.ej. el
+      módulo de informalidad de ENOE) muestra que la valoración de la
+      seguridad social deja de variar con el acceso o la formalidad del
+      empleo -- por ejemplo, ocupados sin acceso la valoran
+      significativamente menos que con acceso, en vez de casi igual --,
+      el driver queda falsado.
