@@ -1,0 +1,154 @@
+# busquedas.log -- tanda J1 (finanzas + consumidor), segunda pasada ASTRA5-U0
+# Sesion 2026-09-24. cwd de todas las herramientas de corpus: /home/pc0/mm-astra5-mapa-dominios-1
+# U = /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+## Lectura de report (pasajes del localizador)
+sed -n '15,45p' corpus/reports/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md
+sed -n '190,215p' corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md
+sed -n '36,42p' corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md
+sed -n '138,150p' corpus/reports/Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md
+
+## FIN-031 / FIN-032 (ENIGH 2024 remesas / hogares receptores) -- devueltas por supervisor
+python3 $U/u0busca.py -q "remesas" --encuesta enigh --ola 2024 --limite 30
+  -> 0 aciertos con texto (el reactivo vive en el diccionario del archivo concentradohogar, no
+     indexado como "reactivo" clasico por u0busca)
+python3 $U/u0pdf.py -q "remesas" --idsub enigh2024 --limite 30
+  -> 7 coincidencias: enigh2024_cuest_gastos_hogar_pdf p.97; enigh2024_descripcion_base_pdf p.33,
+     p.223 (x3), p.264. Confirma variable de hogar #51 "remesas" (n(12,2), suma de ing_tri clave
+     p041, "ingresos provenientes de otros paises").
+python3 $U/u0pdf.py -q "ing_cor|ingreso corriente" --idsub enigh2024 --limite 20
+  -> 44 coincidencias; enigh2024_descripcion_base_pdf p.33 y p.220 confirman variable #23 "ing_cor"
+     (suma de ingtrab, rentas, transfer, estim_alqu y otros_ing); enigh2024_reporte_resultados_pdf
+     p.1-8 confirma series publicadas de ingreso corriente 2016-2024, con "transferencias" como
+     agregado (17.7% en 2024) -- NO desglosa remesas por separado.
+python3 $U/u0mf.py --id enigh2024_nc_csv --id enigh2024_descripcion_base_pdf
+  -> confirma ids, sha256 (7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d y
+     1b0c698594da41bfe8c976c5d161dcdf99ae4f962a8a5cafe73947582dfdf8a1), raiz data_raw,
+     estado_reserva vacio en ambos.
+python3 -c "python: lee pages 1-8 de enigh2024_reporte_resultados_pdf.txt" (pdftxt cache local)
+  -> confirma cifras publicadas de ingreso corriente por hogar 2016-2024 (contexto adicional).
+grep -n "reserva ENIGH 2024" data/manifiesto.yaml
+  -> confirma que "reserva ENIGH 2024 asentada por #964" es reserva de PROCESAMIENTO/motor GEN2,
+     no de acceso documental (no es una de las 3 reservas del encargo).
+
+## CONS-038 (ENDUTIH 2024 urbano/rural) -- devuelta por supervisor
+python3 $U/u0busca.py -q "ambito" -q "urbano" -q "rural" -q "tamano de localidad" --encuesta endutih --ola 2024 --limite 30
+  -> "ambito" 0, "urbano" 0, "rural" 10 aciertos con texto: variable DOMINIO, texto "Poblacion
+     rural y urbana", en tic_2024_hogares.DBF, tic_2024_residentes.DBF, tic_2024_usuarios.DBF,
+     tic_2024_usuarios2.DBF, tic_2024_viviendas.DBF (payload endutih2024_bd_dbf_zip, sha256
+     ef723ed125c81c4a9036b74fab67f520de007a2d52c5e0b03d4ebec509e1ae87); fuente endutih2024_fd_xlsx
+     sha256 ecdf95924b0b31e2593fdfabe69cf88ecbc5c90a40b3fa3caa9f8427147a96de,
+     hoja=tic_2024_usuarios fila=461. "tamano de localidad" 0 aciertos.
+python3 $U/u0busca.py -q "utilizo internet|uso internet|usa internet" --encuesta endutih --ola 2024 --limite 15
+  -> 2 aciertos: confirma P7_4 (horas de uso), no P7_1.
+python3 -c "consulta directa a br.lee_filas(contexto_fd26) filtrando instrumento=endutih2024, variable_id=P7_1"
+  -> confirma P7_1 "7.1 En los ultimos tres meses, ¿ha utilizado internet en este hogar o fuera de
+     el?" en tic_2024_usuarios.DBF, fuente endutih2024_fd_xlsx hoja=tic_2024_usuarios fila=101.
+
+## CONS-039 (ENIF 2024 producto financiero formal x sexo) -- devuelta por supervisor
+python3 $U/u0busca.py -q "cuenta de ahorro|cuenta bancaria|tarjeta de debito|tarjeta de credito|credito formal|producto financiero formal|inclusion financiera" --encuesta enif --ola 2024 --limite 40
+  -> 162 aciertos con texto; confirma p5_4_4 "5.4 ¿Usted tiene cuenta de ahorro?" (fila 403),
+     filtro_s5_3 "FILTRO 3: ¿TIENE TARJETA DE DEBITO (5.5=1 en cualquier opcion)?" (fila 520),
+     p6_2_1/p6_2_2 tarjeta de credito departamental/bancaria (filas 690/700), filtro_s6_1
+     "FILTRO 1: ¿TIENE TARJETA DE CREDITO DEPARTAMENTAL O BANCARIA...?" (fila 810), p6_13
+     "¿Alguna vez tuvo un prestamo, credito o tarjeta de credito...?" (fila 857); todas en TMODULO
+     de enif2024_csv (sha256 a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c),
+     fuente enif2024_fd_xlsx (sha256 17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2).
+python3 -c "consulta directa a br.lee_filas(contexto_fd26,fd) filtrando instrumento=enif2024, variable_id=SEXO"
+  -> confirma SEXO "SEXO DEL ELEGIDO" (TMODULO) y "2.4 ¿(NOMBRE) es hombre? ¿(NOMBRE) es mujer?"
+     (TSDEM).
+
+## Reservas / manifiesto general
+python3 -c "python: idx.get(id).get('estado_reserva','') para enif2024_csv, endutih2024_bd_dbf_zip, enigh2024_nc_csv"
+  -> las tres cadenas vacias (sin reserva formal en el manifiesto).
+
+## FIN-026 (Spin by OXXO, prensa Mobiletime)
+WebSearch "FEMSA "Spin" 12 millones usuarios "97%" municipios trimestral 2025" -> BLOQUEADO
+  (presupuesto de sesion 200/200 WebSearch agotado)
+WebSearch ""Spin by OXXO" "12 million users" FEMSA investor relations" -> BLOQUEADO (idem)
+WebFetch https://femsa.gcs-web.com/news-releases -> timeout (60s)
+
+## CONS-007 / CONS-008 (Wang 2022; Acuna y Tipa 2022) -- Crossref (registro bibliografico primario)
+WebFetch https://api.crossref.org/works?query.bibliographic=Wang+2022+status+mobility+conspicuous+consumption+Journal+of+Applied+Social+Psychology&rows=5
+  -> confirma DOI 10.1111/jasp.12876, Wang/Liu/Lin/Liu/Wu/Cui (2022), Journal of Applied Social
+     Psychology, "The effects of subjective socioeconomic status on conspicuous consumption";
+     resumen: estatus socioeconomico subjetivo bajo -> mas consumo conspicuo (Studies 1a/1b/2).
+WebFetch https://api.crossref.org/works?query.bibliographic=elites+economicas+mexicanas+consumo+Acuna+Tipa+Revista+Mexicana+de+Sociologia&rows=5
+  -> confirma DOI 10.22201/iis.01882503p.2022.4.60384, Acuña & Tipa (2022), Revista Mexicana de
+     Sociologia, "Consumo y comunicacion de la posicion socioeconomica de la clase alta mexicana";
+     36 entrevistas a elite economica mexicana (muestra mexicana confirmada).
+
+## CONS-009 (PCMI 82% efectivo)
+WebFetch https://paymentscmi.com -> confirma organizacion real, cobertura de Mexico entre 60+
+  mercados de payments/e-commerce/fintech intelligence.
+WebFetch https://paymentscmi.com/mexico/ -> HTTP 404 (ruta incorrecta).
+
+## CONS-019 (WhatsApp 92.2%/75%, Statista/AMVO)
+WebFetch https://www.bing.com/search?q=WhatsApp+Mexico+%2292.2%25%22+penetracion+Statista
+  -> sin resultados de Statista visibles (solo WhatsApp oficial, Wikipedia, tiendas de apps).
+
+## CONS-020 (Google Mexico Gen Z 91%, Julian Coulter)
+WebFetch https://www.thinkwithgoogle.com/intl/en-cee/marketing-strategies/data-and-measurement/
+  -> redirect 301 a https://business.google.com/us/think/
+WebFetch https://business.google.com/us/think/ -> landing general de "Think", sin el articulo.
+WebFetch https://www.bing.com/search?q=Google+Mexico+%22Gen+Z%22+%2291%25%22+decisiones+hogar+Julian+Coulter
+  -> sin resultados relevantes.
+
+## CONS-025 (BNPL mercado 24.9% CAGR / $4.56B 2024)
+WebSearch "Mexico BNPL market 4.56 billion 24.9% CAGR" -> BLOQUEADO (200/200)
+WebFetch https://www.bing.com/search?q=Mexico+BNPL+%22Kueski%22+OR+%22Aplazo%22+market+size+2024+billion
+  -> sin resultados relevantes.
+
+## CONS-026 (AMVO Buen Fin 2024, 49%)
+WebFetch https://www.amvo.org.mx/estudios/
+  -> confirma AMVO como emisor real, serie "Reportes El Buen Fin" (Pulse EBF octubre, Results EBF
+     diciembre); muestra ciclo 2025/2026, no el archivo 2024 ni la cifra 49%.
+
+## CONS-027 (Hofstede Insights)
+WebFetch https://www.hofstede-insights.com/country-comparison-tool?countries=mexico -> error
+  "Socket is closed" (2 intentos).
+WebFetch https://en.wikipedia.org/wiki/Hofstede%27s_cultural_dimensions_theory -> exitoso
+  (confirma conectividad general y el marco teorico, muestra IBM 1967-1973).
+
+## CONS-029 (Santander Trade / McKinsey LatAm lealtad de marca)
+WebFetch https://santandertrade.com/en/portal/analyse-markets/mexico/reaching-the-consumers
+  -> error "getaddrinfo EAI_AGAIN santandertrade.com" (fallo DNS).
+WebFetch https://www.santandertrade.com/en/portal/analyse-markets/mexico/reaching-the-consumers
+  -> mismo error DNS.
+WebFetch https://www.bing.com/search?q=%22Mexico%22+%22brand+loyalty%22+Latin+America+highest+Santander+Trade+McKinsey
+  -> sin resultados relevantes de Santander Trade o McKinsey.
+
+## CONS-031 (EY Future Consumer Index 2025 / McKinsey ConsumerWise 2023)
+WebFetch https://www.ey.com/en_mx/insights/consumer-products-retail/future-consumer-index -> HTTP 404
+WebFetch https://www.mckinsey.com/industries/retail/our-insights/state-of-the-consumer -> timeout (60s)
+
+## CONS-032 (Salud Publica de Mexico, varianza 46/61/13%)
+WebFetch https://api.crossref.org/works?query.bibliographic=creencias+normativas+compra+alimentos+empacados+expectativas+hijos+pareja+Salud+Publica+de+Mexico&rows=5
+  -> 0 coincidencias relevantes (unico resultado de la revista es sobre Seguro Popular, DOI
+     10.21149/7768, tema distinto).
+
+## CONS-033 (6 cifras mixtas: pago contra entrega, INEGI/ENCO, Elogia, GASA, prevencion de fraude)
+python3 $U/u0mf.py --busca "confianza del consumidor" -> 0/1680 (confirmado, sin tocar ENCO)
+python3 $U/u0mf.py --busca icc -> 200/1680 (falsos positivos de sigla, ninguno es el indice)
+WebFetch https://elogia.net -> confirma Elogia como emisor real, serie "Estudio E-commerce" para
+  Mexico; sin la cifra 79% en la pagina raiz.
+WebFetch https://www.gasa.org/reports -> HTTP 404
+WebFetch https://www.gasa.org -> confirma GASA como organizacion real, capitulo Mexico activo;
+  cifras globales visibles (57% adultos victimas en 12 meses, $442Bn perdidos mundialmente); sin
+  desglose Mexico (27%) visible en la pagina raiz.
+NOTA: el componente INEGI "indice de capacidad percibida para comprar bienes durables, marzo 2025"
+  corresponde muy probablemente a ENCO (Encuesta Nacional sobre Confianza del Consumidor), RESERVA
+  EXPLICITA del encargo (INSTRUCCIONES-LOTE.md §0.3): no se busca, no se lee y no se cita material
+  adicional de ENCO en ninguna ola, ni en web. Se deja marcado como RESERVADO sin confirmar ni
+  descartar su existencia en el manifiesto o en linea.
+
+## Nota de entorno (aplica a todas las filas de esta tanda)
+El WebSearch de esta sesion de Claude Code alcanzo su tope de 200/200 llamadas (compartido con
+otros agentes de la misma sesion) antes de iniciar este lote; todas las llamadas WebSearch de este
+lote fueron bloqueadas por esa razon (no imputable al presupuesto de 45 consultas del lote). Se
+sustituyo, donde fue posible, por WebFetch directo a sitios oficiales de los emisores y por
+WebFetch a paginas de resultados de Bing (con exito parcial: confirma existencia de organizaciones
+pero rara vez el pasaje exacto con la cifra) y por la API publica de Crossref para articulos
+academicos con DOI (exitosa en 2 de 3 intentos). Varios WebFetch a dominios especificos fallaron
+por timeout o error de resolucion DNS (femsa.gcs-web.com, hofstede-insights.com, santandertrade.com,
+mckinsey.com), sin que eso implique duda sobre la existencia de esos emisores.

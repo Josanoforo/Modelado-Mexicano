@@ -1,0 +1,50 @@
+ASTRA5-U0 · Segunda pasada · tanda J2 (confianza + trabajo) · 2026-09-24
+Cwd de herramientas locales: /home/pc0/mm-astra5-mapa-dominios-1
+
+=== Herramientas locales (u0mf.py, u0busca.py) ===
+python3 u0mf.py --busca banxico --busca efectivo -> 0 entradas (A.13: 1680 examinadas)
+python3 u0mf.py --busca globe -> 0 entradas (A.13: 1680 examinadas)
+python3 u0mf.py --busca conasami -> 0 entradas (A.13: 1680 examinadas)
+python3 u0mf.py --busca conapred -> 0 entradas (A.13: 1680 examinadas)
+python3 u0busca.py -q "efectivo" --encuesta enif --limite 15 -> 81 aciertos con texto; ENIF mide "prefiere pagar en efectivo" (p5_15_2) y "razon por la que prefiere pagar en efectivo" (p5_24), preferencia declarada, NO % de transacciones/volumen (componente distinto al citado por TRUST-018).
+
+=== Nota metodologica sobre WebSearch ===
+WebSearch reporto para toda la sesion: "this session has used its web search budget (200 of 200 WebSearch calls)". No fue posible hacer ninguna consulta WebSearch en esta tanda. Se sustituyo por: (a) WebFetch directo a sitios oficiales/emisores conocidos (gob.mx, banxico.org.mx, conapred.org.mx, diputados.gob.mx, fundacion-sm.org, manpowergroup.com); (b) WebFetch sobre la API publica de Crossref (api.crossref.org/works) para confirmar existencia/identidad de articulos academicos por titulo/autor/revista/DOI, ya que WebSearch no estaba disponible. Todas las URLs de Crossref usadas devolvieron JSON con resultados reales (verificables); no se inventó ningún DOI ni URL.
+
+=== Lecturas de reports (localizador) ===
+Read completo: corpus/reports/Confianza_y_Desconfianza_en_México__Anatomía_Psicológica_de_una_Sociedad_Dual.md (374 líneas) -> pasajes de TRUST-007 (L63/L119), TRUST-016 (L75/L183), TRUST-017 (L199), TRUST-018 (L33/L267/L303/L331/L353), TRUST-027 (L83/L109-113), TRUST-028 (L84), TRUST-034 (L95/L285-287) leídos en contexto completo.
+(Report de trabajo: Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md ya había sido leído por el ejecutor previo según el paquete; localizadores L13-L153 usados tal como cita pendientes-J2.md.)
+
+=== Crossref (api.crossref.org/works), vía WebFetch, por fila ===
+TRUST-007 (Yáñez 2006): q="Yanez confianza desconfianza factor analysis 2006" -> 5 resultados, sin acierto; q="trust distrust independent dimensions not opposite poles factor analysis 2006" -> 1 resultado relevante (González-Romá et al. 2006, burnout/engagement, no es el citado). Sin acierto.
+TRUST-016 (Blanco 2013): q="Blanco victimization trust institutions Mexico LAPOP 2013" -> 5 resultados; ACIERTO: Blanco, L.R. (2013) "The impact of crime on trust in institutions in Mexico", European Journal of Political Economy 32:38-55, DOI 10.1016/j.ejpoleco.2013.06.004.
+TRUST-027 (Triandis 1984): q="Triandis Marin Lisansky Betancourt simpatia script Hispanic 1984" -> 3 resultados sin acierto exacto; q="Simpatia as a cultural script of Hispanics Triandis Marin Lisansky Betancourt 1984 Journal of Personality and Social Psychology" -> ACIERTO exacto, DOI 10.1037/0022-3514.47.6.1363.
+TRUST-028 (Mogro-Wilson 2021): q="Mogro-Wilson personalismo scale Latino 2021" -> 3 resultados sin acierto; q="Development and validation of a Personalismo Scale Latino 2021" -> 0 relevantes; query.author=Mogro-Wilson&query.bibliographic=personalismo -> 0 resultados; query.author=Mogro-Wilson filtro 2020-2022 -> 10 publicaciones de la autora, ninguna es la escala de personalismo. Sin acierto (4 consultas).
+TRUST-034 (Bardhan 1997): q="Bardhan corruption development literature 1997 Journal of Economic Literature" -> 5 resultados incl. reimpresión 2017 mismo título; filtro fecha 1996-1998 misma bibliografía -> sin acierto de la edición original; query.author=Bardhan&query.title="Corruption and Development" -> ACIERTO identidad via reimpresión 2017, DOI 10.4324/9781315126647-30.
+TRAB-005 (GLOBE, devuelta): q="Dorfman Hanges House Javidan Dickson GLOBE eye of the beholder" -> ACIERTO Javidan/Dorfman/Sully de Luque/House (2006) Academy of Management Perspectives DOI 10.5465/amp.2006.19873410; q="Dorfman Hanges House GLOBE twenty year journey Journal of World Business" -> ACIERTO Dorfman et al. (2012) JWB DOI 10.1016/j.jwb.2012.01.004 y House et al. (2002) JWB DOI 10.1016/s1090-9516(01)00069-4; q="Culture Leadership and Organizations The GLOBE Study of 62 Societies House 2004" -> ACIERTO existencia del libro via 2 reseñas indexadas: Choice Reviews Online DOI 10.5860/choice.42-4132, Journal of Cross-Cultural Psychology DOI 10.1177/0022022105278546.
+TRAB-007 (Schmitz & Weber 2017 / Gordon 2014): q="Schmitz Weber Hofstede dimensions Mexico manufacturing 2017" -> 5 resultados sin acierto; query.container-title="International Journal of Academic Research and Reflection"&query.author=Schmitz -> 5 resultados sin acierto (revista no indexada); q="Gordon Hofstede dimensions diminishing ethnography Merida Mexico 2014" -> 5 resultados sin acierto. Sin acierto (3 consultas).
+TRAB-012 (Confianza Scale-Spanish 2024): q="Confianza Scale Spanish validation International Journal for the Advancement of Counselling 2024" -> ACIERTO exacto: Silverio, Gutierrez, Mullen (2024) "The Development of the Confianza Scale-Spanish: A Culturally Responsive Tool for Latine Relationship Building", IJAC 47, DOI 10.1007/s10447-024-09585-w.
+TRAB-013 (compadrazgo/HRM 2024): q="compadrazgo networks human resource management multinational subsidiaries Mexico 2024" -> 6 resultados, sin acierto.
+TRAB-014 (Morris & Klesner 2010): q="Morris Klesner corruption trust Mexico Comparative Political Studies 2010" -> ACIERTO exacto primer resultado, DOI 10.1177/0010414010369072.
+TRAB-018 (Uribe-Prado MBI-GS): q="Uribe-Prado burnout Maslach Mexico City workers" -> confirma autor (5 resultados relacionados, ninguno exacto n=1110); query.author="Uribe Prado"&query.bibliographic="Maslach Burnout Inventory General Survey Ciudad de Mexico" -> 3 publicaciones del autor sobre burnout, ninguna con n=1,110.
+TRAB-029 (Villarreal 2010): q="Villarreal skin color stratification ethnic identity Mexico American Sociological Review 2010" -> ACIERTO exacto primer resultado, DOI 10.1177/0003122410378232.
+TRAB-030 (Solís/Güémez/Campos-Vázquez 2023): q="Solis Guemez Campos-Vazquez skin color colorimeter Mexico 2023" -> sin acierto exacto; query.author="Patricio Solis"&query.bibliographic="skin tone color Mexico" -> ACIERTO exacto: DOI 10.1177/23326492231217232.
+TRAB-034 (Dávila & Elvira EBR): q="Davila Elvira performance management Mexico European Business Review" -> 5 resultados de los mismos autores sobre el mismo tema, ninguno en European Business Review; más cercano International Journal of Manpower (2007) DOI 10.1108/01437720710778385.
+TRUST-018 (Banxico 82% efectivo, devuelta): q="Banxico documentos de investigacion" filter prefix:10.36095 -> confirma serie DOI-registrada (10 documentos); q="efectivo medios de pago Mexico" filter prefix:10.36095 -> ACIERTO parcial: Jallath & Negrín (2001) "Evolución y estructura de los medios de pago distintos al efectivo en México", DOI 10.36095/banxico/di.2001.04 (tema relacionado, no confirma la cifra 82%).
+
+=== WebFetch directo a sitios oficiales / del emisor ===
+TRUST-018 (Banxico): https://www.banxico.org.mx/publicaciones-y-prensa/sistemas-de-pago/index.html -> redirige 302 a https://anterior.banxico.org.mx/... -> 404; https://www.banxico.org.mx/publicaciones-y-prensa/index.html -> redirige 302 a https://anterior.banxico.org.mx/... -> 404.
+TRAB-009 (CONASAMI): https://www.gob.mx/conasami -> confirma sitio oficial, menciona "Incremento a los Salarios Mínimos para 2026" (3/dic/2025); https://www.gob.mx/conasami/articulos/incremento-a-los-salarios-minimos-para-2025 -> CONFIRMADO: artículo oficial, 4/dic/2024, cifra exacta "278.80 pesos diarios" (antes 248.93).
+TRAB-026 (Conapred): https://www.conapred.org.mx/... -> error "Socket is closed"; https://www.gob.mx/conapred -> 404.
+TRAB-028 (Diputados): https://www.diputados.gob.mx/ -> contenido vacío (sitio dinámico/JS, sin datos renderizados).
+TRUST-017 (Fundación SM): https://www.fundacion-sm.org/ -> confirma Observatorio de la Juventud en Iberoamérica y sitio mx.fundacion-sm.org; https://oji.fundacion-sm.org/ -> lista "Informe Jóvenes México 2026"; https://oji.fundacion-sm.org/nuestros-estudios/ -> solo México 2026 en página 1; https://oji.fundacion-sm.org/nuestros-estudios/page/2/ -> CONFIRMADO: "Encuesta de jóvenes en México 2019" (coord. Yamil Nares y otros); https://oji.fundacion-sm.org/nuestros-estudios/encuesta-mexicana-de-la-juventud/ -> confirma año 2019 y universo 15-29 años representativo; no trae n=2,000 ni cifras exactas en el extracto.
+TRAB-039 (ManpowerGroup): https://go.manpowergroup.com/talent-shortage -> redirige 301 a https://www.manpowergroup.com/en/insights/2026-global-talent-shortage -> confirma la serie "Global Talent Shortage" vigente; sin desglose de México en el extracto.
+
+=== Filas sin consulta web adicional (regla 4 directa, report no nombra fuente) ===
+TRAB-025 (1 en 10 CEOs mujer), TRAB-041 / ENLACE (estancamiento profesional #1 motivo de renuncia 2025): el report no atribuye estas cifras a ninguna fuente ni da candidato verificable; sin WebSearch disponible, no hay término dirigido para Crossref o navegación directa. Cerradas con regla 4 (EXISTENCIA-NO-COMPROBADA, faltante = cita literal del report).
+
+=== Resumen de intentos ===
+Consultas Crossref (WebFetch a api.crossref.org): 27
+WebFetch a sitios oficiales/del emisor: 12
+WebSearch: 0 (cupo de sesión agotado: 200/200, ya consumido por el resto de esta sesión antes de que empezara esta tanda)
+u0mf.py / u0busca.py: 5
