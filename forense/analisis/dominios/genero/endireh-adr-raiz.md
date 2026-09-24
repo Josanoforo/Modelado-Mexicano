@@ -17,4 +17,4 @@
 - Usar `LLAVE` 2003 como UPM por interpretación de dígitos no documentada inventaría el diseño. Solo una llave oficial por registro o réplicas equivalentes resolvería NC-2003.
 - Forzar 2006/2011 a códigos 2016/2021 cambiaría actos, elegibilidad y ventanas. Cada spec se basó en su cuestionario/FD.
 
-Esta decisión no modifica el contador de `celdas_validadas` ni los procedimientos anteriores. Los contadores derivados pasan de 219 a 225 corridas selladas y de 65,567 a 65,579 RESULT GEN2 sellados por los seis CALC nuevos. El [registro de cierre](endireh-registro-cierre.tsv), el [FP/NC](endireh-fp-nc.md) y el recibo documentan sellos, replay y residuales.
+Esta decisión no modifica el contador de `celdas_validadas` ni los procedimientos anteriores. Aislados sobre la base de la rama, los seis CALC nuevos pasaron de 219 a 225 corridas selladas y de 65,567 a 65,579 RESULT GEN2 sellados. Después de integrar el `origin/main` concurrente, la vista derivada final es 228 corridas y 65,586 RESULT GEN2; `celdas_validadas=219`. El [registro de cierre](endireh-registro-cierre.tsv), el [FP/NC](endireh-fp-nc.md) y el recibo documentan sellos, replay y residuales.
