@@ -22,6 +22,7 @@ FILES = [
     "corte-latinobarometro-v1_0.tsv",
     "corte-genomica-v1_0.tsv",
     "corte-genetica-conductual-v1_0.tsv",
+    "corte-duelo-v1_0.tsv",
 ]
 
 
