@@ -95,6 +95,21 @@ def pares(tr):
     return out
 
 
+def evaluables(filas):
+    """Series cuyo mapa admite k >= 3 (corrida más larga de pares que unen),
+    derivado sólo de ids y estados de par, sin valores: cota superior de las
+    series que el medidor puede dictaminar distinto de SIN-SERIE."""
+    out = set()
+    for sid, olas in series_de(filas).items():
+        corrida = mejor = 0
+        for i, o in enumerate(olas):
+            corrida = corrida + 1 if (i > 0 and o["par_con_anterior"] in UNE and corrida) else 1
+            mejor = max(mejor, corrida)
+        if mejor >= 3:
+            out.add(sid)
+    return out
+
+
 # -------------------------------------------------------------- tau² (§3.3)
 
 def tau2_por_eje(series_tramos):

@@ -76,7 +76,10 @@ def test_medir_celdas_de_tabla_por_calc():
               "SRC-CALC-A": src(.30), "SRC-CALC-B": src(.30), "SRC-CALC-C": src(.30)}
     out = S.medir(inputs, {"parametros": {"instrumento": "X", "prefijo": "RESULT-X"}})
     assert out["RESULT-X-S-K"] == 3 and out["RESULT-X-S-DICTAMEN"] == "ESTABLE"
+    assert json.loads(out["RESULT-X-TABLA"])[0]["dictamen"] == "ESTABLE"
     assert out["RESULT-X-N-SERIES"] == 1
+    decl = {i for i, _, _ in S.ids_resultado("\n".join(L), {"X"}, "RESULT-X")}
+    assert decl == set(out), decl ^ set(out)
 
 
 if __name__ == "__main__":

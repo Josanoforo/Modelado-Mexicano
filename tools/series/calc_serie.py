@@ -85,8 +85,9 @@ def tau_sellado(instrumento, res):
 def medir(inputs, contrato):
     par = contrato.get("parametros", contrato)
     inst, pref = par["instrumento"], par["prefijo"]
+    insts = set(inst) if isinstance(inst, list) else {inst}
     filas = [f for f in D.lee_mapa(_bytes(inputs["MAPA"]).decode("utf-8"))
-             if f["instrumento"] == inst]
+             if f["instrumento"] in insts]
     assert filas, f"mapa sin filas de {inst}"
     por_calc = {k[4:]: _res(ent) for k, ent in inputs.items() if k.startswith("SRC-")}
     valores = {}
@@ -105,26 +106,55 @@ def medir(inputs, contrato):
     ids = {f[c] for f in filas for c in ("result_p", "result_lo", "result_hi") if f[c]}
     faltan = {i for i in ids if i not in valores}
     assert not faltan, f"ids del mapa sin RESULT: {sorted(faltan)[:5]}"
-    tau_s = tau_sellado(inst, _res(inputs["TAU2-SELLADO"])) if inst in D.TAU2_SELLADO else None
+    tau_s = (tau_sellado(inst, _res(inputs["TAU2-SELLADO"]))
+             if isinstance(inst, str) and inst in D.TAU2_SELLADO else None)
     out_s, tau, fuente = D.evalua(filas, valores, tau_s, inst)
     out = {}
     for eje in sorted({f["eje"] for f in filas}):
         out[f"{pref}-TAU2-{eje}"] = D.tau2_para(eje, tau)
     out[f"{pref}-TAU2-FUENTE"] = fuente
-    cuenta = Counter()
-    for sid, r in out_s.items():
-        b = f"{pref}-{sid}"
-        out[b + "-K"] = r["k"]
-        out[b + "-N-FUERA"] = r["n_fuera"]
-        out[b + "-DICTAMEN"] = r["dictamen"]
-        out[b + "-DIRECCION"] = r["direccion"] or "NINGUNA"
-        out[b + "-OLAS"] = ",".join(r["olas"]) or "NINGUNA"
-        out[b + "-DELTA-PP"] = r["delta_pp"]
-        out[b + "-PARES-FUERA"] = ";".join(
-            f'{p["a"]["ola"]}>{p["b"]["ola"]}:{p["estado"]}:{"SUBE" if p["delta"] > 0 else "BAJA"}'
-            f':2020={p["marca_2020"]}' for p in r["fuera"]) or "NINGUNO"
+    ev = D.evaluables(filas)
+    cuenta, tabla = Counter(), []
+    for sid, r in sorted(out_s.items()):
+        fila = {
+            "serie_id": sid, "k": r["k"], "n_fuera": r["n_fuera"],
+            "dictamen": r["dictamen"], "direccion": r["direccion"] or "NINGUNA",
+            "olas": ",".join(r["olas"]) or "NINGUNA", "delta_pp": r["delta_pp"],
+            "pares_fuera": ";".join(
+                f'{p["a"]["ola"]}>{p["b"]["ola"]}:{p["estado"]}:{"SUBE" if p["delta"] > 0 else "BAJA"}'
+                f':{100 * (p["b"]["p"] - p["a"]["p"])!r}pp:2020={p["marca_2020"]}'
+                for p in r["fuera"]) or "NINGUNO",
+        }
+        tabla.append(fila)
         cuenta[r["dictamen"]] += 1
+        if sid in ev:
+            b = f"{pref}-{sid.replace('_', '-')}"
+            out[b + "-K"] = fila["k"]
+            out[b + "-N-FUERA"] = fila["n_fuera"]
+            out[b + "-DICTAMEN"] = fila["dictamen"]
+            out[b + "-DIRECCION"] = fila["direccion"]
+            out[b + "-OLAS"] = fila["olas"]
+            out[b + "-DELTA-PP"] = fila["delta_pp"]
+            out[b + "-PARES-FUERA"] = fila["pares_fuera"]
     for v in D.VOCAB:
         out[f"{pref}-N-{v}"] = cuenta[v]
     out[f"{pref}-N-SERIES"] = len(out_s)
+    out[f"{pref}-TABLA"] = json.dumps(tabla, ensure_ascii=False, sort_keys=True)
+    return out
+
+
+def ids_resultado(mapa_texto, instrumentos, pref):
+    """Lista de RESULT que `medir` emite, derivada del mapa sin valores
+    (para `resultados:` del spec.yaml)."""
+    filas = [f for f in D.lee_mapa(mapa_texto) if f["instrumento"] in instrumentos]
+    out = [(f"{pref}-TAU2-{e}", "flotante", True) for e in sorted({f["eje"] for f in filas})]
+    out.append((f"{pref}-TAU2-FUENTE", "texto", False))
+    for sid in sorted(D.evaluables(filas)):
+        b = f"{pref}-{sid.replace('_', '-')}"
+        out += [(b + "-K", "entero", False), (b + "-N-FUERA", "entero", False),
+                (b + "-DICTAMEN", "texto", False), (b + "-DIRECCION", "texto", False),
+                (b + "-OLAS", "texto", False), (b + "-DELTA-PP", "flotante", True),
+                (b + "-PARES-FUERA", "texto", False)]
+    out += [(f"{pref}-N-{v}", "entero", False) for v in D.VOCAB]
+    out += [(f"{pref}-N-SERIES", "entero", False), (f"{pref}-TABLA", "texto", False)]
     return out

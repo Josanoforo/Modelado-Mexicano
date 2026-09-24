@@ -1,0 +1,79 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENVIPE-SERIE-DICTAMEN-0001
+spec_md: ../../../forense/prereg-caja/DONDE-CAMBIO-spec-v1_0.md
+spec_md_sha256: f3ca3d66f998086334695ec01dd29e5b6231e2a7c0d72963b74fe0e759883592
+script: data/corrida0/CALC-ENVIPE-SERIE-DICTAMEN-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DICTAMEN-SERIE-RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: NUEVO
+  origen_numerico_detalle: dictamen sobre RESULT sellados de 19 CALC; sin microdato
+  exposicion_historica: SIN-VALORES-PRE-FREEZE; mapa congelado en forense/analisis/donde-cambio/mapa/CONGELADO.md
+inputs:
+  - {id: MEDIDOR-CALC-SERIE, origen: repo, funcion: CODIGO, ruta: tools/series/calc_serie.py, sha256: 780d94b31dde9f7748ed20bdb719a3f62e31259c9a8b42c098beba8222440e92}
+  - {id: MEDIDOR-DICTAMEN, origen: repo, funcion: CODIGO, ruta: tools/series/dictamen.py, sha256: b2b846cacca8dff43a9f662a31b3a0a53afd101462ea3d34d7606405a52dd29f}
+  - {id: MAPA, origen: repo, funcion: METADATO, ruta: forense/analisis/donde-cambio/mapa/envipe.tsv, sha256: 91389e2af62f2a7f713b9b088c05ee6a287e4afc2e3c5bd4de7c08b47576792b}
+  - {id: SRC-CALC-ENVIPE-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-0001/resultados.json, sha256: 225bbaa1dd12eab410d838e3d6f7080a876c2353f8bc9ba466afb2eaa98f0e3b}
+  - {id: SRC-CALC-ENVIPE-RES0028-U4-DERIVADO-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-RES0028-U4-DERIVADO-0001/resultados.json, sha256: edecc24d12483f5f2be37603ca442ccbc4de05baa4e2b00a4d465649d8b32681}
+  - {id: SRC-CALC-ENVIPE-SERIE-2011, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2011/resultados.json, sha256: c49e46a8681b4b0216fd64efad5f3c1470906ca55764b8d5d0524574867f2863}
+  - {id: SRC-CALC-ENVIPE-SERIE-2014, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2014/resultados.json, sha256: b8218f34cd658d59b464bf0208eb1c88be477bf5bca2da91330a4fe6b7513878}
+  - {id: SRC-CALC-ENVIPE-SERIE-2016, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2016/resultados.json, sha256: bce8d75780751ca10bdf3abf64fb4d077d63813388610f9d6b0c3070c2d18569}
+  - {id: SRC-CALC-ENVIPE-SERIE-2017, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2017/resultados.json, sha256: 52ea4cbe7c96b5bfce4b92d45934b1a3da05ab7a09d43088f03bb52595b3143f}
+  - {id: SRC-CALC-ENVIPE-SERIE-2018, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2018/resultados.json, sha256: 3e88a192fad2f6df3d980022f3cad997d368cf002ff449d0d7a2695c54ebfb6f}
+  - {id: SRC-CALC-ENVIPE-SERIE-2019, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2019/resultados.json, sha256: de27883a1ea53753d8afef53a7a8d6c46e44d26cb62ccfe79e1374054d8f2658}
+  - {id: SRC-CALC-ENVIPE-SERIE-2020, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2020/resultados.json, sha256: 72f7ef65a2f416de73969fda567563ad8448152105e3fd231b177260d927fdf7}
+  - {id: SRC-CALC-ENVIPE-SERIE-2022, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENVIPE-SERIE-2022/resultados.json, sha256: b13ff6b37303a0e7d0b494b9addfb88deaae4674abd8fbc422529bbfce721f2e}
+  - {id: SRC-CALC-EVASION-NORMA-0001-v1_1, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-EVASION-NORMA-0001-v1_1/resultados.json, sha256: 85a726c1326b01c0d166ff962be8e2d7e2d201eecefd1a248ae5e32e37c5e815}
+  - {id: SRC-CALC-PISOS-ENVIPE2024-EJES-0002, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/resultados.json, sha256: a898a3cccfb3b63cc2055cc3c12f8edf4863a9f116466f74d5235a0d8c5e217f}
+  - {id: SRC-CALC-R-CIV-M-01, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-01/resultados.json, sha256: 026a18824185ca41e5d26645ca99c288fca3c00363142c4d23327a70e0a0db5e}
+  - {id: SRC-CALC-R-CIV-M-02, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-02/resultados.json, sha256: 543382b058acf056c9f59497798d682a863c3f85c073fb2a89f01a491984d639}
+  - {id: SRC-CALC-R-CIV-M-04, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-04/resultados.json, sha256: e9ba8a13ce453e60eff9302204893370c2159c8a2e91e8a9688aa6dcb01ada85}
+  - {id: SRC-CALC-R-CIV-M-10, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-10/resultados.json, sha256: 73bdb87c6d8c7b39cc168f480795f0d7d26e776eed8c2337ca3d85d8767ac136}
+  - {id: SRC-CALC-R-CIV-M-12, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-12/resultados.json, sha256: 54318445ca15b43ae1f2daa0062554aa54aa4e85fc86c236a7528ac5fc8df1c9}
+  - {id: SRC-CALC-R-CIV-M-13, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-CIV-M-13/resultados.json, sha256: a292cfa93d1d9796d75a346031b00f1e8f4738f829d73e13df07605d6549aadb}
+  - {id: SRC-CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json, sha256: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7}
+variables: []
+universo: "Series (instrumento, conducta, eje, segmento) del mapa congelado con instrumento en ['ENVIPE']."
+filtros: "tramo = corrida mas larga de olas unidas por COMPARABLE o CAMBIO-DOCUMENTADO con p, lo, hi en (0,1); spec §2."
+ponderador: "el de cada CALC origen; esta corrida consume sus RESULT"
+transformacion: "spec §3-§4: piso t-1 cubre t si p_b en expit(logit p_a +/- 1.959964 sqrt(ee_a^2 + tau2)); dictamen por la primera regla que se cumpla."
+estimando: "Dictamen cerrado por serie: SIN-SERIE, CAMBIO-SOSTENIDO, SALTO-DE-INSTRUMENTO, SALTO-SIN-EXPLICAR, ESTABLE. RETROSPECTIVA."
+seed: {aplica: false, nota: "determinista, sin remuestreo"}
+parametros:
+  instrumento: "ENVIPE"
+  prefijo: RESULT-DC-ENVIPE
+  z_95: 1.959964
+  tau2_fuente: "CALCULADO-AQUI spec §3.3"
+dependencias_materiales: []
+resultados:
+  - {id: RESULT-DC-ENVIPE-TAU2-COBERTURA-SEGURO, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-DOMINIO-URBANO-RURAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-EDAD, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-ESCOLARIDAD-PROXY, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-NACIONAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-SEXO, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-TAU2-FUENTE, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-NODENUNCIA-MIEDO-DESCONFIANZA-NACIONAL-TOTAL-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENVIPE-ENVIPE-R-NACIONAL-TOTAL-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENVIPE-N-SIN-SERIE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-N-CAMBIO-SOSTENIDO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-N-SALTO-DE-INSTRUMENTO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-N-SALTO-SIN-EXPLICAR, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-N-ESTABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-N-SERIES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENVIPE-TABLA, tipo: texto, unidad: "texto"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
