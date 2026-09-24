@@ -33,7 +33,7 @@ def ambit(name, calc):
         return "discriminacion_laboral"
     if "NOFISICA" in calc:
         return "pareja_servicios" if name.startswith(("ayuda", "denuncia", "institucion", "razon")) else "pareja"
-    if name.startswith(("pareja_", "emocional_", "economica_", "sexual_", "fisica_")) or "PAREJA" in calc:
+    if name.startswith(("pareja_", "emocional_", "economica_", "sexual_", "fisica_", "digital_", "no_fisica_")) or "PAREJA" in calc:
         return "pareja"
     if name.startswith(("externo_", "despojo_")):
         return "externo/familiares u otros"
