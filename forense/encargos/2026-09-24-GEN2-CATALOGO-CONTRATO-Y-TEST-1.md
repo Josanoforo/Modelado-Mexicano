@@ -40,3 +40,12 @@ Propio: `tools/corrida0.py` (solo el bloque T-REPRO(c)), `tests/check.py` (solo 
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No releva llaves, no escribe el catálogo ni procedencia. Sucesores: `GEN2-ADOPCION-BLOQUE-Y-PINES-4` (escritor al catálogo con N y a procedencia con el esquema que mesa firme).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2 — reserva sobre la vara de adopción · **por qué:** DIFERIDO-A:GEN2-ADOPCION-BLOQUE-Y-PINES-4 — un `valor_gen2` escrito con pocos decimales pasa T-REPRO(c) por el grano del literal; el escritor debe escribirlo a precisión completa; este acto no cambia la vara (NC-0069/FP-365) · **impacto:** ningún contador; riesgo de adoptar una cifra redondeada · **sucesor:** GEN2-ADOPCION-BLOQUE-Y-PINES-4 (NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01).
+- **qué:** P3 — «proponer el esquema con dos opciones y texto de firma (fila FP), sin implementarlo» · **por qué:** DECISIÓN-DE-MESA-PENDIENTE — propuesto, no implementado, como pide el encargo · **impacto:** legacy_activas_por_consumidor__procedencia sigue en 40 · **sucesor:** FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01 (NC-…-23e3-02).
+
+## CONSUMIDO
+
+PR #1115 (ADR-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01). `check.py --baseline --parallel`: LÍNEA BASE VERDE, sin FAIL nuevos. Merge de mesa.
