@@ -52,3 +52,7 @@ No adopta, no toca el motor, no releva legacy en otros pisos (`GEN2-PISOS-GEN2-2
 - **qué:** E.7 — las dos corridas y el cambio de champion en la vista publicada (`corridas.tsv`, `resultados.tsv`, `marcador-segmento.tsv`) · **por qué:** DIFERIDO-A:job publicador de verify.yml tras la fusión -- los derivados protegidos no viajan en PR; los dos asientos ya están en `forense/replay-evidencia.tsv` · **impacto:** hasta el `[deriva]` posterior, `main` no muestra las dos corridas ni las 16 celdas apuntando al -0002 · **sucesor:** job publicador (`derivados/auto-*`)
 - **qué:** `tests/test_encig_pisos_gen2.py` en CI · **por qué:** DIFERIDO-A:FP-398 -- CI sólo instala `requirements.txt` (sin pytest); el test corre en CAJA, 14/14 con oro ENCIG 2023 · **impacto:** CI no re-ejecuta el D-22 de este acto (el job `guardias` lo reconoce: SKIP dependencia-pendiente) · **sucesor:** FP-398
 - **qué:** «hallazgo del programa para el informe v1.3» · **por qué:** DIFERIDO-A:informe v1.3 -- la línea queda escrita en la nota §1 y en el ADR · **impacto:** el informe v1.3 no la trae hasta que se redacte · **sucesor:** informe v1.3; FIRMAS-16 asienta el hallazgo (encargo §10)
+
+## CONSUMIDO
+
+PR #1116 (ADR-260924-GEN2-ENCIG-PISOS-GEN2-1-19a3-01; CALC-ENCIG2025-PISOS-GOBDIGITAL-0001 y CALC-ENCIG-DUELO-2025-ADJUDICACION-0002 sellados, REPRODUCE/IDENTICO). Merge de mesa.
