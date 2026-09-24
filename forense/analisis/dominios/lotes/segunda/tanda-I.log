@@ -1,0 +1,60 @@
+# busquedas.log — tanda I (segunda pasada), lotes migracion/juventud/duelo
+# fecha 2026-09-24; cwd de herramientas: /home/pc0/mm-astra5-mapa-dominios-1
+# U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+## u0mf.py (confirmación de ausencia en manifiesto antes de ir a web)
+python3 $U/u0mf.py --busca satelite            -> 0 entradas (1680 examinadas)
+python3 $U/u0mf.py --busca tnrh                -> 0 entradas
+python3 $U/u0mf.py --busca "trabajo no remunerado" -> 1 entrada (enut2024_cuestionario_pdf, no es la Cuenta Satélite)
+python3 $U/u0mf.py --busca mitofsky            -> 0 entradas
+python3 $U/u0mf.py --busca orozco              -> 0 entradas
+python3 $U/u0mf.py --busca "deportation data"  -> 0 entradas
+python3 $U/u0mf.py --busca pew                 -> 9 entradas (PEW Global Attitudes Survey, no aplica a población indocumentada)
+python3 $U/u0mf.py --busca mpi                 -> 40 entradas (falsos positivos por subcadena: IEPC, PREFO, etc.; ninguna es Migration Policy Institute)
+python3 $U/u0mf.py --busca neet                -> 0 entradas
+python3 $U/u0mf.py --busca ced                 -> 65 entradas (falsos positivos por subcadena; ninguna es Comité contra la Desaparición Forzada)
+python3 $U/u0mf.py --busca fosas               -> 0 entradas
+python3 $U/u0mf.py --busca ibero               -> 0 entradas
+python3 $U/u0mf.py --busca amnistia            -> 0 entradas
+python3 $U/u0mf.py --busca "front line"        -> 0 entradas
+python3 $U/u0mf.py --busca "fundacion para la justicia" -> 0 entradas
+python3 $U/u0mf.py --busca wdi                 -> 1 entrada (Banxico crowding-out, no aplica)
+python3 $U/u0mf.py --busca "world bank"        -> 3 entradas (WBES/Enterprise Surveys, no aplica a remesas)
+python3 $U/u0mf.py --busca remesas             -> 2 entradas (ENIGH 2022 descripción/nota técnica, no aplica)
+
+## WebSearch (presupuesto de sesión agotado antes de poder ejecutar consultas nuevas en esta tanda)
+WebSearch 'MATT "Mexicans and Americans Thinking Together" documento nacionalidad deportados sin identificación'
+  -> bloqueada: "this session has used its web search budget (200 of 200 WebSearch calls)"
+WebSearch 'site:thedialogue.org Orozco remittances Mexico remitters aging cycle 30 years'
+  -> bloqueada por el mismo motivo (cupo de sesión agotado)
+(Toda evidencia web adicional de esta tanda se obtuvo por WebFetch directo a URLs identificadas por conocimiento de dominio/patrón, no por WebSearch.)
+
+## WebFetch (24/sep/2026)
+https://www.inegi.org.mx/programas/tnrh/                 -> sin contenido sustantivo en el extracto
+https://mitofsky.mx                                       -> existe; contenido 2026, sin cobertura de la elección 2024 en el extracto
+https://data.worldbank.org/indicator/BX.TRF.PWKR.DT.GD.ZS -> confirma indicador WDI "Personal remittances, received (% of GDP)"; sin cifras por país en el extracto
+https://www.pewresearch.org/hispanic/unauthorized-immigrant-population/ -> confirma serie Pew "Unauthorized Immigrant Population: National and State Trends, 2010" (1/feb/2011), México 6.5M en 2010
+https://www.migrationpolicy.org/programs/us-immigration-policy-program-data-hub/unauthorized-immigrant-population-profiles -> 403 Forbidden
+https://deportationdata.org/ -> confirma proyecto académico UC Berkeley Law + UCLA, litigio FOIA, fuente primaria (no prensa)
+https://www.pewresearch.org/short-reads/2024/07/22/what-we-know-about-unauthorized-immigrants-in-the-us/ -> 404
+https://www.migrationpolicy.org/data/unauthorized-immigrant-population/state/US -> 403 Forbidden
+https://www.thedialogue.org/experts/manuel-orozco/ -> confirma perfil/organización (Manuel Orozco, Inter-American Dialogue); no confirma cifras 26/30 años, 2%/0.8%
+https://plataformadefosas.ibero.mx/ -> error DNS, dominio no resuelve (ENOTFOUND)
+https://www.frontlinedefenders.org/en/location/mexico -> confirma página México; casos individuales; sin cifra agregada de buscadoras
+https://www.oecd.org/en/data/indicators/youth-not-in-employment-education-or-training-neet.html -> 403 Forbidden
+https://www.inegi.org.mx/programas/tnrh/2013_2024/ -> "Esta liga ya no existe"
+https://www.dhs.gov/ohss/topics/immigration/yearbook -> redirección 301 a https://ohss.dhs.gov/topics/immigration/yearbook
+https://ohss.dhs.gov/topics/immigration/yearbook -> confirma "Yearbook of Immigration Statistics" DHS/OHSS; menciona "Enforcement Actions Annual Flow Report"; sin desglose por nacionalidad/año en el extracto
+https://www.ohchr.org/en/news?f%5B0%5D=news_type%3A701 -> 404
+https://www.fundacionjusticia.org/ -> confirma organización (Fundación para la Justicia y el Estado Democrático de Derecho A.C., 2011); sin informe específico en el extracto
+https://www.amnesty.org/en/location/americas/north-america/mexico/ -> identifica informe "Mexico: Disappearing again: Violence and impacts experienced by women searchers in Mexico" (8/jul/2025) y declaración urgente "Mexico: State continues to fail those searching for loved ones" (9/jun/2026)
+https://www.inegi.org.mx/temas/tnrh/ -> confirma título "Trabajo no Remunerado de los Hogares" en INEGI; sin boletín/cifra en el extracto
+https://web.archive.org/web/2025/https://plataformadefosas.ibero.mx/ -> bloqueada por la herramienta ("Claude Code is unable to fetch from web.archive.org")
+https://www.amnesty.org/en/documents/amr41/9330/2025/en/ -> 404 (URL específica del documento no confirmada)
+https://www.inegi.org.mx/temas/tnrh/#Tabulados -> mismo título que arriba, sin tabulados en el extracto
+https://mitofsky.mx/blog/ -> 404
+https://www.ohchr.org/en/treaty-bodies/ced -> 403 Forbidden
+
+## Total consultas web de esta tanda
+WebSearch: 2 intentos, 0 ejecutadas (cupo de sesión agotado)
+WebFetch: 23 llamadas

@@ -271,6 +271,25 @@ def main(verifica: bool) -> int:
                     str(len(reps[d])), ";".join(pend[d])])
     salidas[D / "proyeccion-dominios-v1_0.tsv"] = tsv(dom)
 
+    # 8 · hoja de adquisición derivada del mapa (vocabulario del encargo), una fila por afirmación
+    hoja = [["id_afirmacion", "dominio", "report", "estado_hoja", "existencia_documento", "pieza_o_razon",
+             "instrumento_ola", "propietario", "prioridad"]]
+    for f in filas:
+        blob = " ".join([f["datos_id_estado"], f["dictamen_razon"], f["siguiente_operacion"]])
+        if f["dictamen"] == "MEDIBLE-EN-CORPUS":
+            estado, pieza = "REUTILIZAR", f["datos_id_estado"]
+        elif f["dictamen"] == "NO-MEDIBLE-POR-DISEÑO":
+            estado, pieza = "DESCARTAR-CON-RAZÓN", f["dictamen_razon"]
+        else:
+            m = re.search(r"faltante:\s*([^;]+)", blob, re.I)
+            pieza = m.group(1).strip() if m else f["datos_id_estado"]
+            dato = re.search(r"microdato|base de datos|\bdatos?\b|payload|encuesta|serie|tabulado|\bola\b", pieza, re.I)
+            estado = "ADQUIRIR" if dato else "DOCUMENTACIÓN-SOLAMENTE"
+        existencia = "NO-COMPROBADA" if "EXISTENCIA-NO-COMPROBADA" in blob.upper() else "COMPROBADA-O-NO-APLICA"
+        hoja.append([f["id_afirmacion"], f["dominio"], f["report"], estado, existencia, pieza[:400],
+                     f["instrumento_ola"][:200], f["propietario"], f["prioridad"]])
+    salidas[D / "hoja-adquisicion-derivada-v1_0.tsv"] = tsv(hoja)
+
     rd = Counter((f["report"], f["dominio"]) for f in filas)
     rdr = [["report", "dominio", "afirmaciones"]] + [[r, d, str(n)] for (r, d), n in sorted(rd.items())]
     salidas[D / "report-a-dominio-afirmaciones-v1_0.tsv"] = tsv(rdr)
