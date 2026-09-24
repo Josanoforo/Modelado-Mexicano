@@ -1,0 +1,933 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG2025-PISOS-GOBDIGITAL-0001
+spec_md: ../../../forense/prereg-caja/ENCIG2025-PISOS-GOBDIGITAL-spec-v1_0.md
+spec_md_sha256: 480392ea7504855afd193684c770902c3ae8875cea4a632fcf319472b34ed172
+script: data/corrida0/CALC-ENCIG2025-PISOS-GOBDIGITAL-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: TRAMITE
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-ENCIG-PISOS-GEN2-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-ENCIG-PISOS-GEN2-1
+  tipo: PISO-C2-COMPUESTO-DESDE-MICRODATO
+  firmas: Decision 1 de ADOPCION-2 (encargo §2, mesa 24/sep/2026) + respuesta de mesa 24/sep/2026 «Marginales 2025»
+    (spec §0)
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: RETROSPECTIVA -- sellado despues de que el -0001 derivo R (cruce visto, E.6); formula fija, no lee R
+  relevo_de: el -C2-P de CALC-ENCIG-DUELO-2025-EDADXSEXO/ESCOLARIDADXSEXO-EMISIONES-0001 (cadena CALC-C2-COMPUESTO-RESERVADAS-0001
+    -> milpa/)
+inputs:
+- id: encig25_base_datos_csv
+  origen: manifiesto
+  sha256: 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+  funcion: DATO
+  nota: ENCIG 2025; se agrupa SOLO por una variable (marginales), nunca el cruce
+- id: receta_cruce_encig
+  origen: repo
+  ruta: tools/encig_cruces_historicos.py
+  sha256: 31d7cf3b4e4acbaac5be4a6bff58cc769c461e6e6f3abf372a89537aee6d8f83
+  funcion: CODIGO
+  nota: _load_wave, _bootstrap, _summary ejecutados desde estos bytes (misma receta que el -0001)
+- id: marginales_2025_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENCIG2025-0001/resultados.json
+  sha256: 5a5272d7ef0c27f98e44d26f8e86d57ea0223fe8e4880f7b5f6601521e80d317
+  funcion: CONTROL-HISTORICO
+  nota: 'control 1: los 11 marginales -P a 1e-10 y -N exacto; no es insumo del piso'
+- id: adjudicacion_0001_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ADJUDICACION-0001/resultados.json
+  sha256: c676749537a754e1df18b9f0b93625b7d439f769811b17c7f1eaac12e1d9df74
+  funcion: CONTROL-HISTORICO
+  nota: 'controles 2 y 3: C2-P-RECALCULADO y C2-IC del -0001 a 1e-10; C2 legacy a 1e-5 (descriptivo); no es insumo
+    del piso'
+variables:
+- archivo: encig2025_04_sec_7.csv
+  variable: N_TRA
+  rol: universo
+- archivo: encig2025_04_sec_7.csv
+  variable: P7_3
+  rol: desenlace (reactivo 7.3, canal de pago)
+- archivo: encig2025_04_sec_7.csv
+  variable: FAC_TRA
+  rol: ponderador
+- archivo: encig2025_04_sec_7.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: encig2025_04_sec_7.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: encig2025_04_sec_7.csv
+  variable: ID_PER
+  rol: llave-join-m:1
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: ID_PER
+  rol: llave-join
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: SEXO
+  rol: eje-sexo
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: EDAD
+  rol: eje-edad
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: NIV
+  rol: eje-escolaridad
+universo: 'TRAMITES: pago ordinario del servicio de luz (N_TRA=01) con P7_3 en {1,2,4,5,6}; FAC_TRA > 0; EST_DIS
+  y UPM_DIS no vacios; union tramite->persona por ID_PER m:1. Cada eje sobre su propio denominador valido; total
+  sobre todo el universo.'
+filtros: Marginales de un eje sobre su propio denominador valido (edad 97 y 98/99 fuera del eje edad; FP-399/F1-bis);
+  total sobre todo el universo. Ninguna mascara de dos ejes.
+ponderador: FAC_TRA
+transformacion: adopta = P7_3 en {4,5}; no adopta = {1,2,6}; EDAD 18-29/30-44/45-59/60-96; NIV {0,1,2}/{3}/{4,5,6,7}/{8,9};
+  SEXO 1/2. C2(a,b) = expit(logit p(a) + logit p(b) - logit p(total)).
+estimando: Piso C2 de los cruces edad x sexo y escolaridad x sexo de ENCIG 2025 (16 celdas), compuesto de los 11
+  marginales de una variable medidos del manifiesto, con IC por replica; misma definicion que el C2 del duelo -0001.
+seed:
+  aplica: true
+  valor: 20260919
+  rng: numpy.PCG64
+parametros:
+  ola: '2025'
+  payload_id: encig25_base_datos_csv
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; PCG64(20260919),
+    la semilla del duelo
+  tol_marginales: 1.0e-10
+  tol_0001: 1.0e-10
+  tol_c2_sellado: 1.0e-05
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-FILAS-EVENTOS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-JOIN-SIN-DEMOGRAFIA
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-N-UNIVERSO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-N-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-P7-3-EXCLUIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-MARGINALES-MAX-ABS-P
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-MARGINALES-N-DISCORDA
+  tipo: entero
+  unidad: marginales
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-MARGINALES-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-C2-IC-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-0001-RECALCULADO-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-0001-IC-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-0001-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-UNIDAD
+  tipo: texto
+  unidad: unidad
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-INCERTIDUMBRE
+  tipo: texto
+  unidad: descripción del método
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-MARCA
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-ORIGEN
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-AUDITORIA-CODIGO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-INPUT-PAYLOAD-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-C2-MENOS-C2-0001-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporción (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-CTRL-C2-SELLADO-VEREDICTO
+  tipo: texto
+  unidad: categoría
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-INPUT-ADJUDICACION-0001-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-INPUT-MARGINALES-2025-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-G-INPUT-RECETA-CRUCE-ENCIG-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-1-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-SEXO-2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-18-29-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-30-44-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-45-59-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-EDAD-60-MAS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-HASTA-PRIMARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SECUNDARIA-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-MEDIA-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-ESCOLARIDAD-SUPERIOR-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-M-TOTAL-TODOS-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-18-29-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-30-44-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-45-59-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-EDADXSEXO-60-96-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (piso C2, punto adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95 por réplica
+  permite_no_estimable: true
+  dependencias_numericas:
+  - encig25_base_datos_csv
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG2025-PISOS-GOBDIGITAL-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-P-MENOS-C2-0001
+  tipo: flotante
+  unidad: C2 nuevo menos C2 del -0001 (descriptiva)
+  permite_no_estimable: true
+  origen_numerico: MIXTO
