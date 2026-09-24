@@ -82,6 +82,7 @@ CONDUCTAS = {
     "BUSCO-ATENCION": ("INTE", ("SEXO", "EDAD", "ESTRATO", "ESCOLARIDAD")),
     "FUE-ATENDIDO": ("INTE", ("SEXO", "EDAD", "ESTRATO", "ESCOLARIDAD")),
     "ATENCION-CONSULTORIO-FARMACIA": ("UTIL", ("SEXO", "EDAD", "ESTRATO", "ESCOLARIDAD")),
+    "ATENCION-CURANDERO-HIERBERO": ("UTIL", ("SEXO", "EDAD", "ESTRATO", "ESCOLARIDAD")),
     "IDEACION-SUICIDA-ADOLESCENTES": ("ADOL", ("SEXO", "EDAD", "ESTRATO")),
 }
 Q = ("P", "EE", "IC-LO", "IC-HI", "N")
@@ -203,6 +204,11 @@ def conducta_y(nombre, f, R):
     if nombre == "ATENCION-CONSULTORIO-FARMACIA":
         u = n(f["u0201"]).to_numpy()
         y = np.where(u == 12, 1.0, 0.0)
+        y[~((u >= 1) & (u <= 26))] = np.nan
+        return y
+    if nombre == "ATENCION-CURANDERO-HIERBERO":
+        u = n(f["u0201"]).to_numpy()
+        y = np.where(u == 20, 1.0, 0.0)
         y[~((u >= 1) & (u <= 26))] = np.nan
         return y
     raise KeyError(nombre)
