@@ -1,0 +1,150 @@
+ASTRA5-U0 segunda pasada — tanda K (lotes politica, tecnologia, salud-cuerpo, tiempo)
+Fecha: 2026-09-24. cwd de todos los comandos u0*: /home/pc0/mm-astra5-mapa-dominios-1
+
+AVISO DE INFRAESTRUCTURA: al intentar la primera consulta WebSearch de esta tanda
+(para ASTRA5-U0-TEC-018 / Ipsos AI Monitor 2024), la herramienta devolvio:
+"this session has used its web search budget (200 of 200 WebSearch calls)".
+El presupuesto de WebSearch es de SESION (compartido con todo lo que corrio antes en
+esta sesion), no el de 45 consultas/tanda del encargo, y quedo en 0 disponibles antes
+de que esta tanda pudiera usar ninguna. A partir de ese punto no se ejecuto ningun
+WebSearch nuevo. WebFetch si funciono (devuelve respuestas reales, incluidos 404), y
+se uso para un numero pequeno de intentos con URLs oficiales conjeturadas (sin
+buscador que las confirmara primero), documentados abajo. Todas las filas que
+requerian localizar un documento primario nuevo por la via web se cerraron bajo la
+regla 4 de SEGUNDA-PASADA.md (MEDIBLE-CON-ADQUISICION + frase EXISTENCIA-NO-COMPROBADA
+con el conteo de intentos), reutilizando cuando existian las consultas web ya hechas
+en la primera pasada (visibles en el busqueda_a13 original de cada fila).
+
+=== Herramientas de corpus (u0busca.py / u0pdf.py / u0mf.py) ===
+
+# POL-008
+python3 $U/u0pdf.py -q "bp1_25|que sucedio con la carpeta" --idsub envipe2025 --limite 20
+python3 $U/u0pdf.py -q "se puso al (a" --id envipe2025_fd_pdf --limite 5 --contexto 400
+
+# POL-009
+python3 $U/u0busca.py -q "costo del delito|gasto en salud|perdidas monetarias|gasto en seguridad" --encuesta envipe --ola 2025 --limite 20
+python3 $U/u0pdf.py -q "costo del delito|1.07% del PIB|gasto en atencion medica|medidas de proteccion" --idsub envipe2025 --limite 20
+python3 $U/u0mf.py --busca envipe --busca 2025 --limite 60
+python3 $U/u0pdf.py -q "gasto" --idsub envipe2025 --limite 30
+
+# POL-023
+python3 $U/u0mf.py --busca encig --limite 60
+python3 $U/u0pdf.py -q "27438|27,438|tasa de victimas de corrupcion|prevalencia de corrupcion" --idsub encig2025 --limite 20
+python3 $U/u0pdf.py -q "27438|27,438" --id encig2025_principales_resultados_pdf --limite 20
+python3 $U/u0pdf.py -q "83.1|frecuente resulta la corrupcion|con que frecuencia considera" --idsub encig23 --limite 20
+python3 $U/u0busca.py -q "frecuencia|corrupcion frecuente|considera usted que la corrupcion" --encuesta encig --ola 2023 --limite 20
+python3 $U/u0pdf.py -q "27 438|27438" --id encig2025_boletin_pdf --limite 20 --contexto 400
+python3 $U/u0pdf.py -q "prevalencia de corrupcion" --id encig2025_boletin_pdf --limite 20 --contexto 600
+python3 $U/u0pdf.py -q "corrupcion" --id encig2025_boletin_pdf --limite 20 --contexto 500
+python3 $U/u0mf.py --busca encig --busca boletin --limite 20
+python3 $U/u0mf.py --busca encig --busca 2023 --busca resultados --limite 20
+python3 $U/u0pdf.py -q "83.1|frecuentes los actos" --id encig23_estructura_base_datos_pdf --limite 20
+python3 $U/u0pdf.py -q "corrupcion" --id encig23_cuestionario_pdf --limite 20 --contexto 300
+python3 $U/u0pdf.py -q "con que frecuencia cree que ocurren practicas de corrupcion" --id encig23_estructura_base_datos_pdf --limite 10 --contexto 400
+
+# POL-041
+python3 $U/u0pdf.py -q "percepcion de inseguridad|se siente usted seguro" --idsub envipe2025 --limite 20
+python3 $U/u0pdf.py -q "se siente seguro" --idsub envipe2025 --limite 20
+python3 $U/u0pdf.py -q "inseguro" --idsub envipe2025 --limite 20
+
+# POL-017 / POL-020
+python3 $U/u0mf.py --busca mcci --limite 5
+python3 $U/u0mf.py --id mcci_encuesta_corrupcion_impunidad_2019_2024_xlsx --limite 5
+python3 $U/u0busca.py -q "aprobacion presidencial|intencion de voto|beneficiario de programa" --limite 20
+python3 $U/u0busca.py -q "morena|programa social" --limite 15
+(moreno: u0mf --busca moreno -> 0/1680, ver abajo en bloque de contadores generales)
+
+# SALUD-012
+python3 $U/u0busca.py -q "derechohabiencia|derechohabiente|afiliado al imss|seguro popular|insabi|imss bienestar" --encuesta ensanut --ola 2024 --limite 20
+python3 $U/u0busca.py -q "servicio preventivo|revision medica|chequeo medico|examen medico de rutina|deteccion oportuna" --encuesta ensanut --ola 2024 --limite 20
+python3 $U/u0busca.py -q "derechohabiencia|derechohabiente" --limite 20
+python3 $U/u0pdf.py -q "derechohabiencia|derechohabiente|afiliado" --idsub ensanut --limite 20
+python3 $U/u0pdf.py -q "preventiv" --idsub ensanut --limite 20
+python3 $U/u0busca.py -q "tiene derecho|puede atenderse" --encuesta ensanut --ola 2024 --limite 30
+python3 $U/u0mf.py --id 1_vfinal_cuestionario_hogar_ensanut_2024_etiquetas_cuestionarios --limite 3
+python3 $U/u0mf.py --id 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios --limite 3
+python3 $U/u0mf.py --busca ensanut2024 --busca hogar --limite 20
+python3 $U/u0mf.py --busca hogar_ensanut2024_w --limite 30
+
+# SALUD-024
+python3 $U/u0pdf.py -q "recomendaciones de movimiento|actividad aerobica|fortalecimiento muscular|tiempo sedentario|conducta sedentaria" --id actividad_fisica_ensanut2024_w_adultos_cuestionarios__v2026_09_01 --limite 20 --contexto 400
+python3 $U/u0mf.py --busca actividad_fisica --limite 20
+python3 $U/u0pdf.py -q "minutos|vigorosa|moderada|dias a la semana|caminata" --id actividad_fisica_ensanut2024_w_adultos_cuestionarios__v2026_09_01 --limite 20 --contexto 300
+python3 $U/u0pdf.py -q "sentado|sedentari|fortalecimiento|musculo|pantalla" --id actividad_fisica_ensanut2024_w_adultos_cuestionarios__v2026_09_01 --limite 20 --contexto 300
+
+# TIME-016 (ENSU)
+python3 $U/u0mf.py --busca ensu --limite 30
+python3 $U/u0busca.py -q "percepcion sobre seguridad|se siente seguro|ciudad en que vive" --encuesta ensu --limite 20
+python3 $U/u0busca.py -q "seguridad" --encuesta ensu --limite 20
+
+# TIME-028
+python3 $U/u0mf.py --id banxico_sie_cf891_operaciones_spei --limite 3
+python3 $U/u0mf.py --busca endutih --busca 2024 --limite 5
+python3 $U/u0busca.py -q "pago con celular|pago movil|banca por internet|compra por internet" --encuesta endutih --ola 2024 --limite 20
+
+# TIME-010 / TIME-019 / TIME-026 / TIME-035 / TIME-037 (correccion de defecto: falta busqueda_a13)
+python3 $U/u0busca.py -q "racionalidad economica|planear a 10 anios|horizonte de planeacion" --limite 10
+python3 $U/u0mf.py --busca enut --busca panel --limite 10
+python3 $U/u0busca.py -q "metas a largo plazo|planeacion financiera" --encuesta enut --limite 10
+python3 $U/u0busca.py -q "descuento hiperbolico|impaciencia intertemporal" --limite 10
+python3 $U/u0busca.py -q "cumplimiento de contrato|incumplimiento de compromiso" --limite 10
+python3 $U/u0mf.py --busca imss --busca inasistencia --limite 10
+python3 $U/u0busca.py -q "inasistencia a la cita|no acudio a la cita medica|falto a su cita" --limite 10
+
+# Contadores generales de existencia (u0mf --busca <termino>, 0 resultados salvo donde se indica)
+python3 $U/u0mf.py --busca ipsos --limite 20            -> 0/1680
+python3 $U/u0mf.py --busca moreno --limite 20            -> 0/1680 (POL-017)
+python3 $U/u0mf.py --busca mcci --limite 5               -> 1/1680 (encuesta corrupcion/impunidad 2019-2024, no la de beneficiarios)
+python3 $U/u0mf.py --busca scjn --limite 20               -> 0/1680
+python3 $U/u0mf.py --busca adip --limite 20                -> 0/1680
+python3 $U/u0mf.py --busca "el economista" --limite 20      -> 2/1680 (ambos Banxico, no relacionados)
+python3 $U/u0mf.py --busca statista --limite 20              -> 0/1680
+python3 $U/u0mf.py --busca hofstede --limite 20                -> 0/1680
+python3 $U/u0mf.py --busca occ --limite 20                       -> 0/1680
+python3 $U/u0mf.py --busca tept --limite 20                        -> 0/1680
+python3 $U/u0mf.py --busca "estres postraumatico" --limite 20        -> 0/1680
+python3 $U/u0mf.py --busca scielo --limite 20                          -> 0/1680
+python3 $U/u0mf.py --busca psicumex --limite 20                          -> 0/1680
+python3 $U/u0mf.py --busca fintech --limite 20 (ya en primera pasada)      -> 1/1680 (NBER, no relacionado)
+python3 $U/u0mf.py --busca mercadolibre --limite 5                            -> 0/1680
+python3 $U/u0mf.py --busca "mercado libre" --limite 5                          -> 0/1680
+
+=== Web (WebSearch / WebFetch) ===
+
+WebSearch "Ipsos \"AI Monitor 2024\" report ipsos.com global survey artificial intelligence"
+  -> RECHAZADO por la herramienta: presupuesto de WebSearch de la SESION agotado
+     (200 de 200 ya usados antes de esta tanda). 0 resultados. A partir de aqui, 0
+     WebSearch nuevos en toda la tanda K.
+
+WebFetch https://www.ipsos.com/en/ai-monitor-2024
+  prompt: "Does this page describe the Ipsos AI Monitor 2024 global survey report?..."
+  -> HTTP 404 Not Found (URL conjeturada sin buscador que la confirmara)
+
+WebFetch https://www.ipsos.com/en/ipsos-ai-monitor-2024
+  prompt: "Is this the Ipsos AI Monitor 2024 global survey report covering 32 countries?..."
+  -> HTTP 404 Not Found
+
+WebFetch https://www.coneval.org.mx/Medicion/Paginas/PobrezaInicio.aspx
+  prompt: "Does this page mention a 2024 measurement of 'carencia de acceso a servicios
+  de salud' for Mexico, with a specific number close to 44.5 million?..."
+  -> 200 OK; pagina accesible, pero solo muestra "Medicion de la Pobreza 2022" y series
+     historicas 2008-2020; NO contiene la cifra de 44.5 millones ni una seccion 2024
+     visible en el contenido recuperado.
+
+WebFetch https://www.fintechmexico.org/mapa-fintech
+  prompt: "Does this page or report mention a figure of 70 million (70M+) fintech
+  users in Mexico?..."
+  -> HTTP 404 Not Found
+
+Total consultas web efectivamente ejecutadas en esta tanda: 1 WebSearch (rechazado
+por la herramienta, sin resultados) + 4 WebFetch (1 con contenido util parcial —
+CONEVAL 2022 sin la cifra 2024 —, 3 con HTTP 404). 0 de 45 consultas del presupuesto
+del encargo se "gastaron" en el sentido de obtener evidencia nueva sustantiva, porque
+el bloqueo fue de infraestructura (WebSearch a 0 de sesion), no de decision del
+ejecutor.
+
+=== Filas cerradas con regla 4 (EXISTENCIA-NO-COMPROBADA) por esta causa ===
+POL-017, POL-020 (ajustada a rule-2 con MCCI propio), TEC-016, TEC-017, TEC-018,
+TEC-023, TEC-025 (rule-2 hibrida), TEC-027 (rule-2 hibrida), TEC-033, TEC-035
+(rule-2 hibrida), TEC-037, TEC-043 (rule-2 hibrida), SALUD-010, SALUD-011, SALUD-013,
+SALUD-015, SALUD-016, SALUD-021, SALUD-025, TIME-011, TIME-022, TIME-028, TIME-033.

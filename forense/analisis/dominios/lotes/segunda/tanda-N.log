@@ -1,0 +1,95 @@
+ASTRA5-U0 segunda pasada — tanda N (aspiracional, credito-facil, clientelismo) — 2026-09-24
+WebSearch de sesion agotado: toda busqueda web de esta tanda se hizo con WebFetch sobre URLs de sitios
+oficiales/emisores o infraestructura academica (Crossref/DOI). Herramientas del corpus corridas con
+python3, cwd /home/pc0/mm-astra5-mapa-dominios-1, rutas absolutas.
+
+## Corpus (u0mf.py)
+python3 $U/u0mf.py --busca condusef            -> 30/1680 (datasets CONDUSEF ya en manifiesto: anuarios,
+   reclamaciones, sanciones, REDECO/REUNE; ninguno es la declaracion de prensa del 18-mar-2026)
+python3 $U/u0mf.py --busca amda                -> 0/1680
+python3 $U/u0mf.py --busca raiavl              -> 0/1680
+python3 $U/u0mf.py --busca appsflyer           -> 0/1680
+python3 $U/u0mf.py --busca omdia               -> 0/1680
+python3 $U/u0mf.py --busca euromonitor         -> 0/1680
+python3 $U/u0mf.py --busca cornelius           -> 0/1680
+python3 $U/u0mf.py --busca schedler            -> 0/1680
+python3 $U/u0mf.py --busca cnbv                -> localiza gen2_cnbv_040_1a_r16_imor_tipo_cartera (entre otros)
+python3 $U/u0mf.py --busca portafolio          -> 2/1680: gen2_cnbv_040_1a_r16_imor_tipo_cartera,
+   gen2_banxico_imor_consumo_producto_mensual_2026t1_html
+python3 $U/u0mf.py --busca cartera             -> 1/1680: gen2_cnbv_040_1a_r16_imor_tipo_cartera
+python3 $U/u0mf.py --id gen2_cnbv_040_1a_r16_imor_tipo_cartera
+   -> usado_para CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO; nota: solo foto cacheada 202112, la macro
+      no refresca sin conexion interna CNBV, NO es la serie historica publica.
+python3 $U/u0mf.py --calc gen2_cnbv_040_1a_r16_imor_tipo_cartera -> 0 corridas (de 326)
+python3 $U/u0mf.py --id gen2_banxico_imor_consumo_producto_mensual_2026t1_html
+   -> usado_para CNBV_PORTAFOLIO_INFORMACION_IMOR_CONSUMO; nota: "Serie oficial equivalente, no R16 CNBV:
+      2016-01 a 2026-03; banca comercial; incluye Sofomes ER subsidiarias; excluye CI Banco; ruptura
+      IFRS9 desde 2022-01."
+python3 $U/u0mf.py --calc gen2_banxico_imor_consumo_producto_mensual_2026t1_html -> 0 corridas (de 326)
+
+## Lectura directa del corpus (documento agregado publicado, no microdato)
+sha256sum data/raw/GEN2_FUENTES_FINANCIERAS_CONTINUACION/banxico_imor_producto_2026T1.html
+   -> c9691762bb6e086a08b4487f3d121ace04d74b31cfdc7e7a6c4c2512aa96c4b2 (coincide con manifiesto)
+command grep --binary-files=text -o -m3 -A2 "<title>.*</title>" banxico_imor_producto_2026T1.html
+   -> "Indices de morosidad del credito al sector privado no financiero | Banco de Mexico"
+command grep --binary-files=text -n -i "consumo" banxico_imor_producto_2026T1.html
+   -> confirma columna "d) Consumo" con subcolumnas Total/Tarjetas de Credito/ABCD/Nomina/Personales
+command grep --binary-files=text -n "sep-24\|sep-25\|dic-25\|mar-26\|ago-25\|oct-24" banxico_imor_producto_2026T1.html
+   -> filas leidas literalmente:
+      sep-24: Consumo Total 3.07 | Tarjetas 3.47 | ABCD 1.46 | Nomina 2.74 | Personales 4.54
+      oct-24: Consumo Total 3.10
+      ago-25: Consumo Total 2.98
+      sep-25: Consumo Total 3.05 | Tarjetas 3.25 | ABCD 1.61 | Nomina 2.73 | Personales 4.85
+      dic-25: Consumo Total 3.39
+      mar-26: Consumo Total 3.26
+
+## WebFetch (sitios oficiales / emisor / academicos) — 2026-09-24
+1. https://www.gob.mx/condusef/prensa -> 404 Not Found
+2. https://www.inegi.org.mx/programas/raiavl/ -> "Esta liga ya no existe" (pagina rota/discontinuada)
+3. https://amda.mx/ -> confirma sitio oficial AMDA, seccion CIFRAS / Ventas Ligeros por ano
+4. https://search.crossref.org/?q=Cornelius+vote+buying+Mexico+2004&from_ui=yes -> 504 Gateway Timeout
+5. https://search.crossref.org/?q=Schedler+%22el+voto+es+nuestro%22&from_ui=yes -> timeout 60s
+6. https://www.inegi.org.mx/app/buscador/default.html?q=RAIAVL -> sin resultados especificos en el
+   contenido devuelto
+7. https://amda.mx/cifras/ -> URLs derivadas: amda.mx/power-rank/ (Power Rank Ligeros),
+   amda.mx/category/ventas-ligeros-general/ventas-ligeros-2025/, .../ventas-ligeros-2024/
+8. https://api.crossref.org/works?query.bibliographic=Cornelius+vote+buying+coercion+Mexican+electoral+politics&rows=5
+   -> coincidencia exacta: Cornelius, W.A., "Mobilized Voting in the 2000 Elections: The Changing
+      Efficacy of Vote Buying and Coercion in Mexican Electoral Politics", cap. 3 pp.47-66 en
+      "Mexico's Pivotal Democratic Election" (Stanford UP, 2003), DOI 10.1515/9780804779821-008
+9. https://api.crossref.org/works?query.bibliographic=Schedler+voto+es+nuestro+clientelismo+electoral+mexico&rows=5
+   -> coincidencia exacta: Schedler, A. & Manriquez, L. (2004), "El voto es nuestro. Como los
+      ciudadanos mexicanos perciben el clientelismo electoral", Revista Mexicana de Sociologia 66(1),
+      DOI 10.2307/3541531
+10. https://www.gob.mx/condusef/es/articulos?order=DESC&idiom=es -> 500 Internal Server Error
+11. https://doi.org/10.2307/3541531 -> redirige (302) a https://www.jstor.org/stable/3541531?origin=crossref
+12. https://doi.org/10.1515/9780804779821-008 -> redirige (302) a
+    https://www.degruyter.com/document/doi/10.1515/9780804779821-008/html
+13. https://www.inegi.org.mx/programas/raiavl/2023/ -> "Esta liga ya no existe" (2o intento, misma falla)
+14. https://www.gob.mx/condusef -> confirma seccion Prensa existe en navegacion; enlaza
+    /condusef/archivo/prensa?idiom=es (sin URL directa de sala de prensa en el contenido devuelto)
+15. https://www.jstor.org/stable/3541531?origin=crossref -> contenido bloqueado (requiere JS/sesion),
+    no se pudo leer abstract
+16. https://www.degruyter.com/document/doi/10.1515/9780804779821-008/html -> redirige (301) a
+    https://www.degruyterbrill.com/document/doi/10.1515/9780804779821-008/html
+17. https://www.condusef.gob.mx/condusef/archivo/prensa?idiom=es -> error TLS "unable to verify the
+    first certificate" (mismo patron documentado para CNBV en memoria del proyecto)
+18. https://www.inegi.org.mx/programas/ -> listado no cargo contenido especifico de programas
+19. https://www.amda.mx/power-rank/ -> confirma herramienta mensual, "ranking de ventas por marca",
+    "market share", "desempeno de marcas chinas", "participacion por origen de marca" (ult. act.
+    visible 2025-06-04); sin cifras numericas especificas en el contenido devuelto
+20. https://www.degruyterbrill.com/document/doi/10.1515/9780804779821-008/html -> 405 Method Not Allowed
+21. https://www.gob.mx/condusef/articulos?idiom=es&order=DESC -> 500 Internal Server Error
+22. https://www.appsflyer.com/press-releases/ -> 404 Not Found
+23. https://theciu.com/ -> confirma consultora mexicana real de telecom; grafica "Participacion de
+    Smartphones - % Total de lineas moviles"; sin informe especifico con URL propia sobre iPhone
+24. https://www.ab-inbev.com/newsroom/ -> 404 Not Found
+25. https://www.euromonitor.com/beer-in-mexico/report -> confirma informe "Beer in Mexico", edicion
+    ago-2026; Grupo Modelo 59% / Heineken Mexico 39% / combinado >97% (volumen off-trade 2025)
+26. https://www.grupomodelo.com/es/sala-de-prensa -> 404 Not Found
+27. https://www.appsflyer.com/resources/reports/state-of-app-marketing/ -> 404 Not Found
+28. https://omdia.tech.informa.com/pr -> 403 Forbidden
+
+Total WebFetch de esta segunda pasada: 28 (mas 5 corridas u0mf.py y lectura directa/sha256sum/grep del
+archivo Banxico IMOR ya en corpus). Ninguna busqueda toco ENOE 2026 / ENVIPE 2026 / ENCO ni prensa
+como fuente primaria (solo para identificar organismos/emisores oficiales o academicos).

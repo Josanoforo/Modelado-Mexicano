@@ -1,0 +1,76 @@
+ASTRA5-U0-SANC-008 (ENVE 2024, extorsion/cobro de piso)
+  python3 u0mf.py --busca enve --limite 40 -> 8/1680; confirma conjunto_de_datos_enve_2024_csv (dato, sha
+    5b2c5efccd0dfc2e196c37c5004976a67b62248a0d159ca2384dbfb0f1b0cf33, raiz descargas_mx) y cuestionario_principal_enve2024
+    (fuente, sha aac4e9d4cc23773727dbb43c7af1306830a794ff657ca8c789b9e6deaef7eb6f), misma ola 2024, no reservado.
+  python3 u0pdf.py -q "extorsion|extorsión" --idsub enve --limite 10 -> 20 coincidencias; confirma item p.8 ya citado.
+
+ASTRA5-U0-SANC-010 (migrante de retorno: victimizacion + ocultamiento por envidia)
+  python3 u0busca.py -q "migrante|migracion" --encuesta envipe --limite 20 -> 0 aciertos con texto.
+  python3 u0busca.py -q "remesas" --limite 20 -> 20 aciertos (ENNVIH/ENCUCI/LAPOP/CAFR; ninguno cruza retorno+victimizacion).
+  python3 u0busca.py -q "envidia" --limite 20 -> 0 aciertos con texto.
+  python3 u0busca.py -q "ocultar|ocultamiento|esconder" --limite 20 -> 0 aciertos con texto.
+
+ASTRA5-U0-SANC-020 (ENVIPE 2024, cifra negra de secuestro)
+  python3 u0busca.py -q "se denuncio el delito|denuncio este delito|denuncio ante el ministerio" --encuesta envipe --ola 2024 --limite 30 -> 6 aciertos; localiza BP1_28.
+  python3 u0busca.py -q "razon principal por la que no denuncio|no se denuncio" --encuesta envipe --ola 2024 --limite 30 -> 6 aciertos; localiza BP1_23 "1.23 ¿Cuál fue la razón principal por la que no denunció..." TMod_Vic.dta, fd_envipe2024.pdf p.72.
+  python3 u0pdf.py -q "se denuncio" --idsub envipe --limite 10 -> 2 coincidencias: envipe_2016_calculo_indicadores_r_envipe2016 p.12 y envipe_2017_calculo_indicadores_r_envipe2017 p.11, metodologia R exacta de cifra negra (variable dne, bp1_20/21/24).
+  python3 u0mf.py --id envipe_2024_bd_envipe_2024_dta (re-chequeo) -> sha e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18, raiz data_raw, no reservado.
+
+ASTRA5-U0-CONOC-007 (ENDUTIH 2023, defecto de formato documento_id_hash_pagina)
+  python3 u0mf.py --id endutih_2023_fd_endutih2023 -> confirma sha 0f78146a6d61b0b5cd4d84056aa77e0f1bf1b25a9a126e8813215eada4da62c2,
+    archivo endutih2023/FD_ENDUTIH2023.xlsx; se reformatea el campo al patron desnudo id|sha256|ref (sin prefijos "fuente_id=" / "sha256=").
+
+ASTRA5-U0-CONOC-008 (ENDUTIH 2023, penetracion de Internet)
+  python3 u0busca.py -q "usa internet|utiliza internet|usuari" --encuesta endutih --ola 2023 --limite 30 -> 14 aciertos (P7_2, P7_4, P7_7, P7_9_x en tic_2023_usuarios: subconjunto de usuarios, no poblacion general).
+  python3 u0busca.py -q "Internet" --encuesta endutih --ola 2023 --limite 60 -> localiza P3_9_2 "3.9 En los últimos tres meses, ¿(NOMBRE) ha hecho uso de… internet?" en tic_2023_residentes.DBF (hoja tic_2023_residentes fila 41), variable binaria de poblacion general 6+ (la penetracion citada).
+  python3 u0mf.py --id endutih_2023_endutih2023_bd_dbf -> confirma sha 29d195082796c2692bfeb688348de3ed792848781ff7575f91b7da68119f9696.
+
+ASTRA5-U0-CONOC-017 (Research Land/Grupo UPAX, comunicado abril 2026)
+  WebFetch https://upax.com.mx/comunicados -> seccion Research Land visible, solo notas 2025, sin el comunicado de abril 2026 buscado.
+  WebFetch https://www.researchland.com.mx -> error ENOTFOUND (dominio no resuelve).
+  WebFetch https://upax.com.mx/comunicados?marca=research-land -> mismo resultado que el primero, sin el comunicado buscado.
+  (WebSearch no disponible: presupuesto de sesion agotado, 200/200 consultas usadas por otro trabajo previo.)
+
+ASTRA5-U0-CONOC-018 (ENSANUT 2012, CAF 41.5%)
+  WebFetch https://ensanut.insp.mx/encuestas/ensanut2012/index.php -> confirma programa y estructura (Documentos analiticos / Bases de datos y cuestionarios / Informes).
+  WebFetch https://ensanut.insp.mx/encuestas/ensanut2012/informes.php -> identifica ENSANUT2012ResultadosNacionales2Ed.pdf como Informe Nacional de Resultados (2a ed.).
+  WebFetch https://ensanut.insp.mx/encuestas/ensanut2012/doctos/informes/ENSANUT2012ResultadosNacionales2Ed.pdf -> descarga el PDF (3.5MB); pdftotext -layout local sobre el archivo descargado (herramienta de sistema, no u0*) localiza en p.38: "la ENSANUT 2012 distingue dentro del mismo sector los consultorios médicos independientes, que ofrecen 58.5% del total de las consultas de este sector, y los consultorios que dependen de farmacias, los cuales ofrecen el 41.5% restante." -> coincide EXACTO con el 41.5% citado por el report.
+
+ASTRA5-U0-CONOC-021 (SEP Panorama Educativo 2024)
+  WebFetch https://www.planeacion.sep.gob.mx/estadisticaeducativa/ -> error "unable to verify the first certificate" (cadena TLS).
+  WebFetch https://www.gob.mx/sep/documentos/panorama-educativo-de-mexico -> HTTP 404.
+  WebFetch https://www.planeacion.sep.gob.mx/principalescifras/ -> error "unable to verify the first certificate" de nuevo.
+
+ASTRA5-U0-CONOC-022 (CEEY, movilidad educativa regional)
+  WebFetch https://ceey.org.mx/informe-movilidad-social/ -> identifica "Informe Movilidad Social en México 2019: hacia la igualdad regional de oportunidades" (CEEY, mayo 2019); cita textual sobre brecha sur/norte (86/100 vs. posibilidad 3x mayor en el norte).
+  WebFetch https://ceey.org.mx/wp-content/uploads/2019/05/Comunicado-Prensa-presentación-IMSM2019-Mayo2019.pdf -> HTTP 404.
+  WebFetch https://ceey.org.mx/publicaciones/ -> no lista enlace directo al informe completo; remite a reportes-de-politica-publica-ceey/.
+
+ASTRA5-U0-CONOC-023 (Brookings / López-Calva, retorno educativo)
+  WebFetch https://www.brookings.edu/people/luis-f-lopez-calva/ -> pagina de contacto generica, sin listado de publicaciones.
+  WebFetch https://www.brookings.edu/experts/luis-f-lopez-calva/ -> igual, sin directorio de investigador.
+  WebFetch https://www.brookings.edu/blog/future-development/ -> 4 articulos recientes listados, ninguno del autor ni del tema.
+
+ASTRA5-U0-CONOC-024 (Wellcome Global Monitor 2018/2020)
+  grep -n "eea01061dd982e280dba6964b38d3476a71610b029283bd9368661834435cb8d" /home/pc0/mm-astra5-mapa-dominios-1/data/manifiesto.yaml -> 0 coincidencias (el SHA heredado de CONOC-006 NO esta en el manifiesto).
+  python3 u0mf.py --busca wellcome --limite 30 -> 0/1680.
+  WebFetch https://wellcome.org/reports/wellcome-global-monitor/2018 -> confirma titulo, y cita textual EXACTA "73% of people worldwide would trust a doctor or nurse more than any other source of health advice", URL de PDF oficial https://cms.wellcome.org/sites/default/files/wellcome-global-monitor-2018.pdf.
+  WebFetch https://wellcome.org/reports/wellcome-global-monitor-covid-19 -> HTTP 404.
+  WebFetch https://wellcome.org/reports/wellcome-global-monitor-covid-19-report -> HTTP 404.
+
+ASTRA5-U0-CONOC-025 (ENPECYT 2017, boletin 272/18)
+  grep -n "8cf0c1a6dc8addd7475b1e48e94d62e7f5fe9b32667185e0315ca9315203925c" /home/pc0/mm-astra5-mapa-dominios-1/data/manifiesto.yaml -> 0 coincidencias.
+  grep -n "90526e38a60f476e1aa1124b7f5d8f496e45b78f091d2dcb2ffcc32913ceb281" /home/pc0/mm-astra5-mapa-dominios-1/data/manifiesto.yaml -> 0 coincidencias (ambos SHA heredados de CONOC-004/005 ausentes del manifiesto).
+  python3 u0mf.py --busca enpecyt --limite 20 -> 0/1680; python3 u0mf.py --busca 272 --limite 20 -> 6/1680, ninguno es el boletin ENPECYT.
+  python3 u0pdf.py -q "ENPECYT|percepcion publica de la ciencia" --limite 20 -> 0/349.
+  python3 u0pdf.py -q "bomberos" --limite 20 -> 8/349, ninguno del boletin ENPECYT (ocupaciones/cuestionarios distintos).
+  WebFetch https://www.inegi.org.mx/programas/enpecyt/2017/ -> solo confirma el nombre de la encuesta (shell SPA), sin enlaces a boletin/tabulados.
+  WebFetch https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/EstSociodemo/ENPECYT2018.pdf -> HTTP 404 ("Esta liga ya no existe").
+
+ASTRA5-U0-CONOC-029 (ENOE 4T2025, informalidad TIL1)
+  python3 u0mf.py --id enoe_2025_4t_csv -> sha e4d4284cc9924a40c39544a5530715f320a5627cd81997214c0430827616d9d6, raiz data_raw, no reservado.
+  python3 u0mf.py --id enoe_2025_4t_microdatos -> sha e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d, raiz data_raw, no reservado.
+  python3 u0mf.py --id enoe_con_basedatos_proy2010_pdf -> sha 6e70a3a910d3c6b2885ef4c72a9dbab0a50b974d403f10ef34eac437372877f5.
+  python3 u0pdf.py -q "TIL1|tasa de informalidad laboral 1" --id enoe_con_basedatos_proy2010_pdf --limite 10 -> 5 coincidencias: formula exacta en p.35 (poi/po*100, emp_ppal=1, clase2=1) y ejemplo "til1 55.1" en p.32.
+  python3 u0mf.py --id itindc_202602 -> sha 296795821a5b09951558ea1aeb722b5ee97e0d9f1d8c65aff9a04cd8662962a1 (comunicado hermano 2T2025, no 4T2025).
+  Nota: ENOE 2026 no se uso ni cito en ningun campo de ninguna fila de esta tanda (regla de reserva del encargo respetada).
