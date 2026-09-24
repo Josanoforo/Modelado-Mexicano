@@ -299,6 +299,30 @@ def prueba_render_rotula_no_es_origin_main():
     afirma("NO-ES-ORIGIN-MAIN" in fuera_de_main, "--permitir-rama debe rotular el bloque")
 
 
+def prueba_render_determinista():
+    """ADENDA-1 P4: dos renders sobre los mismos indicadores = mismo bloque
+    byte a byte (un derivado no determinista abre PR [deriva] infinitos)."""
+    I = _indicadores_fixture()
+    afirma(TP.render_bloque_vivo(I) == TP.render_bloque_vivo(I),
+           "render_bloque_vivo debe ser determinista sobre el mismo árbol")
+
+
+def prueba_sucios_ajenos():
+    """ADENDA-1 P2: el árbol sucio niega, salvo los derivados que el canal
+    mismo escribe antes del tablero (en CI ya están modificados)."""
+    afirma(TP._sucios_ajenos("") == [], "árbol limpio no tiene sucios")
+    afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\nM  docs/tablero.md") == [],
+           "los derivados del canal no cuentan como suciedad")
+    afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\n M tools/x.py") == ["tools/x.py"],
+           "un archivo ajeno sí ensucia el árbol")
+
+
+def prueba_gen2_rotula_en_arbol():
+    """ADENDA-1 P5: la línea GEN2 dice que sus valores son EN ÁRBOL y qué vistas difieren de HEAD."""
+    I = _indicadores_fixture()
+    afirma("EN ÁRBOL" in TP.render_bloque_vivo(I), "la línea GEN2 rotula los valores en árbol")
+
+
 # P4 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): NO hay aquí una prueba que
 # llame dos veces a `derivar_indicadores()` real. Se probó así durante el
 # desarrollo de este acto -- medido: 123.1s UNA sola llamada -- y encontró
@@ -331,12 +355,15 @@ def main():
     prueba_celdas_d_adoptadas_activas_universo_real()
     prueba_compara_head_origin_main()
     prueba_render_rotula_no_es_origin_main()
+    prueba_render_determinista()
+    prueba_sucios_ajenos()
+    prueba_gen2_rotula_en_arbol()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 13 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 16 pruebas, 0 fallos")
     return 0
 
 
