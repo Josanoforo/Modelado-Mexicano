@@ -18,6 +18,7 @@ FILES = [
     "corte-seguridad-v1_0.tsv",
     "corte-tiempo-v1_0.tsv",
     "corte-merito-v1_0.tsv",
+    "corte-humor-v1_0.tsv",
 ]
 
 
