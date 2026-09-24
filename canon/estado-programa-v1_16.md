@@ -833,7 +833,7 @@ celdas_emitidas_sin_r=16
 ```
 <!-- comando: python3 tools/corrida0.py status -->
 
-**El contador que el encargo pedía citar por commit: `adoptados` sigue en 72, y no es obra de `CONTADORES-2`.** `N_resultados_gen2_adoptados_activos=72` (ver el bloque `status` de arriba; no se repite el comando aquí por costo: la corrida tarda ~75s) es el mismo valor que dejó `ACTO GEN2-CONTADORES-CONSUMO-1` (`PR #1086`, fusionado antes de este corte) — `GEN2-CONTADORES-CONSUMO-2` (rama `acto/gen2-contadores-consumo-2`) sigue **en vuelo con un solo commit** (su 0-bis, `749c11e`, sin PR abierto) <!-- comando: git log --oneline origin/main..origin/acto/gen2-contadores-consumo-2 -->; el `[SUPUESTO]` del encargo ("`adoptados` → el valor que `CONTADORES-2` deje") no se cumplió como estaba escrito, y este acto lo declara en vez de ajustar la cifra: `adoptados=72` es el status quo heredado de `CONTADORES-1`, no un resultado de `CONTADORES-2` (§16 la deja pendiente).
+**El contador que el encargo pedía citar por commit: `adoptados` sigue en 72, y `CONTADORES-2` fusionó sin moverlo.** `N_resultados_gen2_adoptados_activos=72` (ver el bloque `status` de arriba) es el mismo valor que dejó `ACTO GEN2-CONTADORES-CONSUMO-1` (`PR #1086`). Al abrir esta sección, `GEN2-CONTADORES-CONSUMO-2` (rama `acto/gen2-contadores-consumo-2`) sólo tenía su 0-bis (`749c11e`), sin PR — el `[SUPUESTO]` del encargo ("`adoptados` → el valor que `CONTADORES-2` deje") no se cumplió como estaba escrito. **Actualización al cerrar:** `CONTADORES-2` fusionó como `PR #1096` mientras esta sesión seguía abierta <!-- comando: git log --merges --oneline origin/main | grep -E "^[0-9a-f]+ Merge pull request #1096 " | wc -l -->; re-corrido `corrida0.py status` contra `origin/main = 04a40b0`, `adoptados` sigue en **72** — el PR acreditó `origen_numerico` y publicó el marcador al canal (su propio título), no adoptó nada nuevo. La cifra que se cita por commit es entonces la de `04a40b0`, no la de `CONTADORES-1` por defecto, y coinciden.
 
 ### Cierre de la etapa de retadores
 
@@ -878,19 +878,21 @@ Texto de dirección (`TRANSFER-ASTRA-2026-09-23.md`): **ASTRA-1** (vence al piso
 
 <!-- comando: git log --oneline --merges --all | grep -Ec "#(1071|1073|1075|1076|1091|1092|1072)" -->
 
-**ASTRA-5: 7 de 10 PR fusionados; U0, U3, U5 siguen abiertos al corte.**
+**ASTRA-5 al abrir esta sección (23/sep, `e792419`): 7 de 10 PR fusionados; U0, U3, U5 abiertos.** `git log --merges --oneline origin/main | grep -Ec "#(1085|1087|1088|1089|1090|1093)"` → **6**, más `#1082` ya en la base — mismas piezas que la búsqueda de PR marcaba `MERGED` en ese momento; las tres abiertas (`#1079`, `#1084`, `#1094`) no aparecían en `git log` local porque no estaban fusionadas.
+
+**Actualización al cerrar (24/sep, tras fusionar `origin/main` a `04a40b0` tres commits antes de empujar este acto — §2 del aparato, "si main se movió no es PARO"): U3 y U5 fusionaron mientras esta sesión seguía abierta. Sólo U0 sigue sin fusionar.**
 
 | Unidad | PR | Estado |
 |---|---|---|
-| U0 (mapa por afirmación) | #1079 | **OPEN** |
+| U0 (mapa por afirmación) | #1079 | **OPEN** (`mergeable_state: blocked`, 105 commits, aún redactando el mapa canónico) |
 | U1 (ENOE) | #1087 | MERGED |
 | U2 (ENDIREH) | #1093 | MERGED |
-| U3 (política/vida cívica) | #1084 | **OPEN** |
+| U3 (política/vida cívica) | #1084 | MERGED (23/sep, `72595501`) |
 | U4 (ENDUTIH/MOCIBA) | #1085 | MERGED |
-| U5 (registro documental) | #1094 | **OPEN** |
+| U5 (registro documental) | #1094 | MERGED |
 | docs dirigidos (ENOE/ENDUTIH/ENDIREH, ENIF2024, ENVIPE2025, ENUT2024) | #1082, #1088, #1089, #1090 | MERGED (4) |
 
-`git log --merges --oneline origin/main | grep -Ec "#(1085|1087|1088|1089|1090|1093)"` → **6**, mismas seis piezas que la búsqueda de PR marca `MERGED` <!-- comando: git log --merges --oneline origin/main | grep -Ec "#(1085|1087|1088|1089|1090|1093)" -->; las tres abiertas (`#1079`, `#1084`, `#1094`) no aparecen en `git log` local porque no están fusionadas — confirmado con sus ramas, todavía por delante de `main`: `codex/astra5-mapa-dominios-1` (U0) <!-- comando: git log --oneline origin/main..origin/codex/astra5-mapa-dominios-1 | wc -l -->, `codex/astra5-politica-1` (U3) <!-- comando: git log --oneline origin/main..origin/codex/astra5-politica-1 | wc -l -->, `codex/adq-astra5-u5-20260923` (U5) <!-- comando: git log --oneline origin/main..origin/codex/adq-astra5-u5-20260923 | wc -l -->.
+`git log --merges --oneline origin/main | grep -E "^[0-9a-f]+ Merge pull request #(1082|1084|1085|1087|1088|1089|1090|1093|1094) " | wc -l` → **9** de los 10 PR de ASTRA-5 (patrón exacto de "Merge pull request #N", no `grep` suelto sobre el número — un merge de sincronización de rama puede *mencionar* un número sin ser ese merge, `ADR-277`) <!-- comando: git log --merges --oneline origin/main | grep -E "^[0-9a-f]+ Merge pull request #(1082|1084|1085|1087|1088|1089|1090|1093|1094) " | wc -l -->; sólo `#1079` (U0) sigue sin fusionar — confirmado por su rama, todavía por delante de `main` <!-- comando: git log --oneline origin/main..origin/codex/astra5-mapa-dominios-1 | wc -l -->.
 
 ### Cobertura de dominios
 
@@ -902,23 +904,24 @@ Texto de dirección (`TRANSFER-ASTRA-2026-09-23.md`): **ASTRA-1** (vence al piso
 
 ### FP abiertas al corte, por encargo de origen
 
-`forense/firmas-pendientes.tsv` no trae columna de "dueño" persona — el encargo de origen (columna 9) hace ese papel. **11 filas `estado == ABIERTA`** de 501 totales <!-- comando: python3 -c "import csv;r=list(csv.reader(open('forense/firmas-pendientes.tsv',encoding='utf-8'),delimiter='\t'));h=r[0];i=h.index('estado');print(sum(1 for x in r[1:] if len(x)>i and x[i]=='ABIERTA'))" -->:
+`forense/firmas-pendientes.tsv` no trae columna de "dueño" persona — el encargo de origen (columna 9) hace ese papel. **Al abrir esta sección (`e792419`): 11 filas `estado == ABIERTA`.** Mientras esta sesión seguía abierta, `origin/main` avanzó a `04a40b0` (`CONTADORES-2` y `FIRMAS-14` fusionaron, `PR #1096`/`#1095`) y `ASTRA5-U3` sumó tres filas nuevas: **al cerrar, 12 filas `ABIERTA`** <!-- comando: python3 -c "import csv;r=list(csv.reader(open('forense/firmas-pendientes.tsv',encoding='utf-8'),delimiter='\t'));h=r[0];i=h.index('estado');print(sum(1 for x in r[1:] if len(x)>i and x[i]=='ABIERTA'))" -->:
 
 | FP | Origen | Tema |
 |---|---|---|
 | `…-3d56-01` | GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1 | integridad de corpus |
 | `…-1269-01` | GEN2-TUBERIA-RUTINAS-AUTOMERGE-2 | branch protection (§ régimen, arriba) |
 | `…-657c-02` | GEN2-DUELO-ENCIG2025-CIERRE-1 | registro marcador PROSPECTIVA ENCIG2025 |
-| `…-657c-04` | GEN2-DUELO-ENCIG2025-CIERRE-1 | registro marcador publicado |
-| `…-cfce-01` | GEN2-TUBERIA-SELLO-EXTERNO-1 | cableado de `stamp` (§ régimen, arriba) |
 | `…-c3fa-05` | GEN2-TRAMITE-FIRMAS-12 | sin gate declarado |
 | `…-1f30-01` | ASTRA5-U4-TECNOLOGIA | adopción ENDUTIH-PISOS |
 | `…-1f30-02` | ASTRA5-U4-TECNOLOGIA | adopción MOCIBA-PISOS |
 | `…-e422-01` | ASTRA5-U1-TRABAJO-ENOE | adopción/publicación catálogo U1 |
-| `…-988c-01` | GEN2-CONTADORES-CONSUMO-1 | origen numérico de 2 CALC |
 | `…-4296-01` | GEN2-FRONT-1 | publicación de landing y DOI |
+| `…-df0d-01` (nueva) | ASTRA5-U3-POLITICA | INE: universo de un futuro contraste de participación |
+| `…-df0d-02` (nueva) | ASTRA5-U3-POLITICA | ENCUP: disponibilidad de peso/estrato/UPM |
+| `…-df0d-03` (nueva) | ASTRA5-U3-POLITICA | LAPOP: equivalencia textual/modo antes de serie 2004–2023 |
+| `…-749c-01` (nueva) | GEN2-CONTADORES-CONSUMO-2 | pregunta de procedencia, origen_numerico de un CALC |
 
-`PR #1095` (FIRMAS-14, **abierto, no fusionado**) propone reasignar dueño/sucesor de tres de estas once (mover `657c-04`/`988c-01` a `EJECUTA:CONTADORES-CONSUMO-2`, `cfce-01` a `EJECUTA:SELLO-EXTERNO-2`) sin ejecutar ninguna decisión — hasta que fusione, el estado vigente en `origin/main` es la tabla de arriba, sin cambio.
+**Resueltas en vuelo, ya no `ABIERTA`:** `…-657c-04` → `FIRMADA`; `…-cfce-01` → `EJECUTA:SELLO-EXTERNO-2`; `…-988c-01` (`GEN2-CONTADORES-CONSUMO-1`) → `FIRMADA` — las tres por `PR #1095`/`#1096` al fusionar, exactamente como `PR #1095` proponía (§15 lo citaba como "propuesto, no ejecutado" cuando estaba abierto; ya ejecutado al cerrar este acto) <!-- comando: python3 -c "import csv;r=list(csv.reader(open('forense/firmas-pendientes.tsv',encoding='utf-8'),delimiter='\t'));h=r[0];i=h.index('id');j=h.index('estado');print([(x[i],x[j]) for x in r[1:] if any(t in x[i] for t in ['657c-04','cfce-01','988c-01'])])" -->.
 
 ### Decisiones de mesa del 23/sep
 
@@ -926,13 +929,13 @@ Texto de dirección (`TRANSFER-ASTRA-2026-09-23.md`): **ASTRA-1** (vence al piso
 |---|---|---|
 | FIRMAS-10 | #1039 | MERGED |
 | FIRMAS-11 | #1049 | MERGED |
-| FIRMAS-12 | #1067 | MERGED (`merged_by: github-actions[bot]`) |
+| FIRMAS-12 | #1067 | MERGED (`merged_by: github-actions[bot]`, squash — no deja commit "Merge pull request #1067", sólo objeto GitHub) |
 | FIRMAS-13 | #1070 → cerrado sin fusionar (rebase limpio pedido por `/revisa`) → **#1081** | MERGED |
-| FIRMAS-14 | #1095 | **OPEN** |
+| FIRMAS-14 | #1095 | **MERGED** (fusionó mientras esta sesión seguía abierta, dentro de `PR #1096`/`04a40b0`) |
 
-<!-- comando: git log --merges --oneline | grep -Ec "#(1039|1049|1067|1081)" -->
+`git log --merges --oneline | grep -E "^[0-9a-f]+ Merge pull request #(1039|1049|1081) " | wc -l` → **3** (patrón exacto "Merge pull request #N"; `#1067` no aparece así por ser squash-merge, confirmado `merged: true` sólo por objeto GitHub, `ADR-277`: un `grep` suelto sobre el número no es prueba) <!-- comando: git log --merges --oneline | grep -E "^[0-9a-f]+ Merge pull request #(1039|1049|1081) " | wc -l -->.
 
-`PR #1095` (FIRMAS-14): "Ninguna firma verbatim de mesa llegó con el lanzamiento; llegó una `ADENDA-1` de dirección... aplica el fallback textual del encargo" — reasigna dueño/sucesor de tres FP (arriba) y dos verificaciones de logística, **no ejecuta ninguna decisión** (texto del propio PR). El repo local no guarda estado de PR remoto (`mergeable_state`), así que esta fila se cita por objeto GitHub (`mcp__github__pull_request_read`, `pullNumber=1095`), no por comando local — NO-DERIVADO localmente, REPORTADO por API, re-verificado por esta sesión antes de citarlo (no tomado del agente de sólo lectura sin re-consulta).
+`PR #1095` (FIRMAS-14) fusionó como parte de `PR #1096` (`GEN2-CONTADORES-CONSUMO-2`) mientras esta sesión seguía abierta <!-- comando: git log --merges --oneline origin/main | grep -c "1096" -->: "Ninguna firma verbatim de mesa llegó con el lanzamiento; llegó una `ADENDA-1` de dirección... aplica el fallback textual del encargo" — reasignó dueño/sucesor de tres FP (`657c-04`/`988c-01` → `CONTADORES-2`, `cfce-01` → `SELLO-EXTERNO-2`), **sin ejecutar ninguna decisión** de fondo (texto del propio PR); las tres FP citadas ya se resolvieron, arriba.
 
 **Tabla afirmación → comando/cita, resumen de esta sección:**
 
@@ -940,7 +943,7 @@ Texto de dirección (`TRANSFER-ASTRA-2026-09-23.md`): **ASTRA-1** (vence al piso
 |---|---|
 | Status completo (bloque de arriba) | `python3 tools/corrida0.py status` |
 | `celdas_validadas`=219 (prospectiva 20, retrospectiva 59); `adoptados`=72 | `python3 tools/corrida0.py status` |
-| `CONTADORES-2` en vuelo, solo 0-bis, sin PR | `git log --oneline origin/main..origin/acto/gen2-contadores-consumo-2` |
+| `CONTADORES-2` fusiona en vuelo como PR #1096, `adoptados` sigue en 72 | `git log --merges --oneline origin/main \| grep -E "Merge pull request #1096 "`; `python3 tools/corrida0.py status` |
 | 21 celdas-D, 18 con veredicto, breakdown 5/2/2/6/3, 0 `VENCE` puro | `ls data/curacion-registro/celdas-d/*.yaml \| wc -l`; `grep -h "^  veredicto:" …` |
 | Regla de salida de θ, tres pruebas satisfechas | `canon/gobernanza-v1_15.md` (ADR-593, §piloto3); `forense/notas/2026-09-23-GEN2-DUELO-ENVIPE2026-MARGINALES-2-cierre.md` |
 | Retiro de `g()`/`Theta.valor` no ejecutado | `grep -rn "se retiran g" canon/ forense/` → 0 |
@@ -952,20 +955,20 @@ Texto de dirección (`TRANSFER-ASTRA-2026-09-23.md`): **ASTRA-1** (vence al piso
 | ASTRA-5: 7/10 fusionados, U0/U3/U5 abiertos | `git log --merges --oneline origin/main`; `git log origin/main..origin/codex/astra5-*` |
 | Cobertura: 7/31 reports sellados, mapa U0 sin consolidar | `README.md`; `find canon -iname "*mapa-dominios*"` |
 | README GEN2 fusionado, Pages sin deploy, sin DOI | `git log --merges --oneline \| grep 1083`; `ls .github/workflows/`; `forense/notas/2026-09-23-GEN2-FRONT-1-cierre.md` |
-| 11 FP abiertas, por encargo de origen | `forense/firmas-pendientes.tsv`, columna `estado` |
-| FIRMAS-10/11/12/13 fusionadas, FIRMAS-14 abierta | `git log --merges --oneline \| grep -E "#(1039\|1049\|1067\|1081)"`; `mcp__github__pull_request_read pullNumber=1095` |
+| 12 FP abiertas al cerrar (11 al abrir; 3 resueltas, 4 nuevas de ASTRA5-U3/CONTADORES-2) | `forense/firmas-pendientes.tsv`, columna `estado` |
+| FIRMAS-10/11/12/13/14 todas fusionadas al cerrar (14 lo hizo en vuelo, dentro de PR #1096) | `git log --merges --oneline \| grep -E "Merge pull request #(1039\|1049\|1081) "`; `mcp__github__pull_request_read pullNumber=1067,1095` |
 
 **Lo que este estado deja de decir, a propósito.** No decide si `g()`/`Theta.valor` se retiran del código o quedan `HISTÓRICO-SIN-RETIRO` — eso es de mesa o del acto sucesor de `FP-…-8a1f-06`. No activa Pages, DOI, branch protection ni `SELLO-EXTERNO-2` — las cuatro son acción de mesa fuera de este acto (§16). No adjudica ninguna de las 11 FP abiertas ni decide el fallback de `PR #1095` — este acto lee, no fusiona ni firma.
 
 ## 16 · Lo que este estado no puede afirmar
 
-Cuatro piezas siguen en vuelo al cerrar este acto — no por omisión, sino porque este acto no las toca (§9 del encargo: "En vuelo: CONTADORES-2, FIRMAS-14, AUDITORIA, Astra"):
+El encargo (§9) nombraba cuatro piezas en vuelo: "CONTADORES-2, FIRMAS-14, AUDITORIA, Astra". Dos de las cuatro se resolvieron mientras esta sesión seguía abierta (declarado en §15, no reescrito aquí como si se hubiera sabido desde el principio); dos siguen abiertas:
 
-- **`GEN2-CONTADORES-CONSUMO-2`** (rama `acto/gen2-contadores-consumo-2`): solo su 0-bis está commiteado (`749c11e`), sin PR abierto <!-- comando: git log --oneline origin/main..origin/acto/gen2-contadores-consumo-2 | wc -l -->. Este estado NO puede afirmar qué valor final deja para `adoptados` ni para `dependencias_numericas_legacy_activas` — cita el valor heredado de `CONTADORES-1` (72) como el vigente HOY, no como el resultado de `CONTADORES-2`.
-- **`PR #1095` (FIRMAS-14)**: abierto, `mergeable_state: blocked` al momento de esta consulta. Este estado NO puede afirmar que las tres reasignaciones de FP que propone (`657c-04`, `988c-01` → `CONTADORES-2`; `cfce-01` → `SELLO-EXTERNO-2`) ya rigen — la tabla de FP abiertas de §15 es la vigente en `origin/main` sin ese PR.
-- **`GEN2-AUDITORIA-POST-HOC-ASTRA-1`** (rama `acto/gen2-auditoria-post-hoc-astra-1`): mismo estado que `CONTADORES-2` — solo 0-bis commiteado (`39d29b7`), sin PR <!-- comando: git log --oneline origin/main..origin/acto/gen2-auditoria-post-hoc-astra-1 | wc -l -->. Este estado NO puede afirmar ningún hallazgo de esa auditoría porque no ha producido ninguno todavía.
-- **Astra**: `ASTRA5-U0` (mapa de dominios, `PR #1079`), `ASTRA5-U3` (política/vida cívica, `PR #1084`) y `ASTRA5-U5` (registro documental, `PR #1094`) siguen abiertos. Este estado NO puede afirmar la cobertura de dominios final de ASTRA-5 ni el contenido del mapa U0 — §15 cita 7/31 dominios sellados como la cifra de HOY, sujeta a que estos tres PR fusionen.
+- **`GEN2-CONTADORES-CONSUMO-2`**: fusionó como `PR #1096` (`origin/main = 04a40b0`) mientras este acto seguía abierto <!-- comando: git log --merges --oneline origin/main | grep -E "^[0-9a-f]+ Merge pull request #1096 " | wc -l -->. Ya no es una pieza en vuelo: §15 cita `adoptados=72` re-derivado contra ese mismo commit.
+- **`PR #1095` (FIRMAS-14)**: fusionó dentro del mismo `PR #1096`. Las tres reasignaciones de FP que proponía (`657c-04`/`988c-01` → `CONTADORES-2`; `cfce-01` → `SELLO-EXTERNO-2`) ya rigen — verificado contra `forense/firmas-pendientes.tsv` de hoy, no sólo citado del texto del PR.
+- **`GEN2-AUDITORIA-POST-HOC-ASTRA-1`** (rama `acto/gen2-auditoria-post-hoc-astra-1`): sigue con sólo su 0-bis commiteado (`39d29b7`), sin PR <!-- comando: git log --oneline origin/main..origin/acto/gen2-auditoria-post-hoc-astra-1 | wc -l -->. Este estado NO puede afirmar ningún hallazgo de esa auditoría porque no ha producido ninguno todavía.
+- **Astra**: de las tres unidades de ASTRA-5 abiertas al comenzar esta sección (`U0` `PR #1079`, `U3` `PR #1084`, `U5` `PR #1094`), **U3 y U5 fusionaron** mientras esta sesión seguía abierta; sólo **`ASTRA5-U0`** (mapa de dominios, `PR #1079`) sigue abierto <!-- comando: git log --oneline origin/main..origin/codex/astra5-mapa-dominios-1 | wc -l -->. Este estado NO puede afirmar el contenido del mapa canónico de dominios ni si la fusión de U0 cambiará la cifra de "7/31 reports sellados" que §15 cita — U0 declara explícitamente "el mapa canónico no está cerrado" y "U0 no se autofusiona".
 
-Y fuera de esos cuatro, declarado por separado: Pages, el DOI y la activación de branch protection para auto-merge son `DECISIÓN-DE-MESA-PENDIENTE` en sus propios encargos (`GEN2-FRONT-1`, `GEN2-TUBERIA-RUTINAS-AUTOMERGE-2`) — este acto no las adjudica ni las acelera, solo las cita. `SELLO-EXTERNO-2` no tiene encargo abierto todavía; este estado no inventa una fecha para él.
+Fuera de estas dos, declarado por separado: Pages, el DOI y la activación de branch protection para auto-merge son `DECISIÓN-DE-MESA-PENDIENTE` en sus propios encargos (`GEN2-FRONT-1`, `GEN2-TUBERIA-RUTINAS-AUTOMERGE-2`) — este acto no las adjudica ni las acelera, solo las cita. `SELLO-EXTERNO-2` no tiene encargo abierto todavía; este estado no inventa una fecha para él.
 
 **NO-DERIVADO en esta sección:** (1) el contenido exacto de `PR #1056` (régimen de canal, §15) — citado por el transfer de dirección junto a `#1050`, no verificado por esta sesión más allá de su número, por alcance de tiempo, no por bloqueo de entorno. (2) si GitHub Pages está realmente activo en `https://josanoforo.github.io/Modelado-Mexicano/` — un intento de verificación en vivo dio `EGRESS_BLOCKED` (política de red de esta sesión NUBE); la evidencia del repo dice que la activación sigue pendiente de mesa, pero este acto no pudo confirmarlo desde fuera. (3) un puntero público (`README.md`/`docs/guia-lectura-publica.md`) que cite `v1.16` en vez de `v1.15` como "el estado" — queda fuera del perímetro de este acto (el `README.md` es del acto `GEN2-FRONT-1`, no de éste; NC declarada al cierre).
