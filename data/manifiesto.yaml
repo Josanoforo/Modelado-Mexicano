@@ -46097,3 +46097,69 @@
   nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
     tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: banxico_sie_ce81_ingresos_remesas
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:BANXICO-REMESAS_SERIE
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarSeries
+    (POST; idCuadro CE81, sector 1, 15 series del cuadro completo, formatoCSV)
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: BANXICO/SIE/banxico_sie_CE81_ingresos_por_remesas.csv
+  sha256: 2f7ecfa03d5f98e2a99036cfbe36614419466d48bc6f902e9858953bceae8578
+  tamano_bytes: 55005
+  formato: CSV latin-1 del SIE, cuadro CE81 completo (15 series)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: sha crudo difiere sólo en la línea 7 ''Fecha de consulta''; resto idéntico;
+    estructura CSV-SIE-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: banxico_sie_cf297_financiamiento_sector_privado
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:BANXICO-FINANCIAMIENTO-HOGARES_SERIE
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.banxico.org.mx/SieInternet/consultarDirectorioInternetAction.do?accion=consultarSeries
+    (POST; idCuadro CF297, sector 19, 38 series del cuadro completo, formatoCSV)
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: BANXICO/SIE/banxico_sie_CF297_financiamiento_total_sector_privado.csv
+  sha256: 48385886c14d1253712875fbba76fff840b060b1322a6b53c3f1cd25298fe03a
+  tamano_bytes: 45726
+  formato: CSV latin-1 del SIE, cuadro CF297 completo (38 series)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: sha crudo difiere sólo en la línea 7 ''Fecha de consulta''; resto idéntico;
+    estructura CSV-SIE-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cantu2019_replica_datawork_tab
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:CANTU-REPLICA_2019
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3137786
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: REPLICAS/CANTU-2019/datawork.tab
+  sha256: c091329ff3967bd0425b25460ae7f5a76d78463651426341fccee0744d334d16
+  tamano_bytes: 27155312
+  formato: TAB datos de réplica Cantú (2019) JOP 81(3), Dataverse doi:10.7910/DVN/XQ9RJT
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura TEXTO-PLANO-OK; no abierto (sólo
+    sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: cantu2019_replica_do
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:CANTU-REPLICA_2019
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3137785
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: REPLICAS/CANTU-2019/replica.do
+  sha256: 1f79afaa50e6a726968c796e6f7d4955deb032843a8c2d85202976f3c3f4867c
+  tamano_bytes: 3432
+  formato: DO código de réplica Cantú (2019), Dataverse doi:10.7910/DVN/XQ9RJT
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura TEXTO-PLANO-OK; no abierto (sólo
+    sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
