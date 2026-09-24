@@ -46256,3 +46256,37 @@
   nota: 'A.7: dos descargas por rangos (8 conexiones) con sha256 idéntico; tamaño = Content-Range
     declarado (1410 B); estructura RTF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: imai2020_replica_progresa_tar
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:IMAI-KING-VELASCO-REPLICA_2020
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330734
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: REPLICAS/IMAI-KING-VELASCO-2020/progresa.tar
+  sha256: d9c1855754fea348b769d6132afc7da187aedf56c065fcc2b7dafc5275ef0a24
+  tamano_bytes: 1135463936
+  formato: TAR datos de réplica (Progresa), Dataverse doi:10.7910/DVN/70SNIS
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas por rangos (8 conexiones) con sha256 idéntico; tamaño = Content-Range
+    declarado (1135463936 B); TAR: 150 miembros listados (envoltura, no abierto); estructura
+    TAR-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: imai2020_replica_sps_tar
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:IMAI-KING-VELASCO-REPLICA_2020
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330737
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: REPLICAS/IMAI-KING-VELASCO-2020/sps.tar
+  sha256: e9e98b5fb76cce906d32c881c513d00d613354c957970fa28880893ca20e9ddd
+  tamano_bytes: 1347706880
+  formato: TAR datos de réplica (Seguro Popular), Dataverse doi:10.7910/DVN/70SNIS
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas por rangos (8 conexiones) con sha256 idéntico; tamaño = Content-Range
+    declarado (1347706880 B); TAR: 199 miembros listados (envoltura, no abierto); estructura
+    TAR-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
