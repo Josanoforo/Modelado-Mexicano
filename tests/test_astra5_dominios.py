@@ -335,7 +335,7 @@ def test_cotejo_politica_mantiene_olas_y_universos_separados():
 
 def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     contracts = {r["id_afirmacion"]: r for r in read("mapa-parcial-v0_1.tsv")}
-    assert len(contracts) == 92
+    assert len(contracts) == 95
     assert not {f"ASTRA5-U0-MER-{n:03d}" for n in range(1, 4)} & contracts.keys()
     assert all("enoe2026_t1_comunicado" not in str(row) for row in contracts.values())
     assert all(f"ASTRA5-U0-TEC-{n:03d}" in contracts for n in range(1, 11))

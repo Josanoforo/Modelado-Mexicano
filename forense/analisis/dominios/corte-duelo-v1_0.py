@@ -100,6 +100,27 @@ BOSS = dict(
     siguiente_operacion="Registrar DOI/PDF/SHA/condiciones; contrastar crítica clínica con guías y estudios mexicanos antes de recomendar intervención universal.",
     prioridad="3",
 )
+SMID = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L98-L102,L171-L178; estudio México n29",
+    tier_report="sin rótulo explícito",
+    clase="entrevistas y grupos focales cualitativos sobre apoyo psicosocial",
+    limite_inferencial="Selección práctica de familiares vinculados a grupos de autoayuda/ONG, hispanohablantes; cinco entrevistas individuales y cuatro grupos con 24 personas. Datos recolectados 2–13/oct/2016 y publicados 2020. La valoración de distrés por entrevistadores clínicos no es un diagnóstico por escala ni prevalencia nacional. Por diseño bilingüe no se transcribió íntegramente; organizaciones mapeadas por área parcial.",
+    conducta_unidad_universo="29 familiares mexicanos (5 entrevistas individuales y 24 personas en cuatro grupos focales), reclutados vía colectivos/ONG; siete entrevistas a profesionales proveedores según texto final.",
+    instrumento_ola="Smid, Blaauw y Lenferink, Intervention 18(2):139–149 (2020), DOI 10.4103/INTV.INTV_55_19; campo octubre 2016",
+    documento_id_hash_pagina="SIN-ID:astra5_smid2020_mexico_relatives.pdf|4c641dd64eb0c5e4509ef0c90a3e169882315b23d2c56550b33394fc64c609be|pp.139,141,143,146-147;https://pure.rug.nl/ws/portalfiles/portal/147451347/Smid_et_al._2020_Disappearances_Mexico.pdf",
+    pregunta_textual_codigo_respuestas="Entrevista abierta sobre experiencia, necesidad/apoyo y barreras; esperanza vivo en cinco niveles. Dos clínicos valoraron distrés sin escala reportada; análisis de contenido inmediato de grabaciones, sin transcripción completa.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Artículo final PDF físico con DOI, páginas, método y límites leídos; cierra afirmaciones situadas, no prevalencia/eficacia. Falta id documental, sin RESULT cuantitativo.",
+    datos_id_estado="Audio/entrevistas individuales no abiertos ni descargados; sin RESULT compatible.",
+    reserva="PDF universitario para lectura local; portada restringe redistribución salvo permiso/licencia. El artículo imprime CC BY-NC-SA 4.0; MESA-DOCUMENTAL debe resolver condiciones aplicables a esta copia antes de circularla.",
+    gen2_existente="Sin RESULT clínico compatible en main.",
+    propietario="ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar PDF/DOI/SHA y resolver condiciones de portada/versión editorial; conservar selección, método clínico sin escala y fecha 2016; cotejar muestras externas antes de generalizar.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-DUEL-001",
@@ -169,6 +190,21 @@ ROWS = [
         texto_vigente="En las entrevistas de Almanza et al. aparecen alejamiento social y estigmatización por sospecha de vínculo de la víctima con el crimen, junto con relatos de solidaridad en algunos casos.",
         componente_contrastable="Resultados/El alejamiento de los otros: Caso 1 refiere pérdida de amistades y sospecha; Caso 4, juicio por volver al trabajo; autoras señalan apoyo en algunos casos. No frecuencia poblacional ni prueba de que toda narrativa procede del Estado.",
         localizador="L20,L90-L96; estigma y apoyo situados",
+    ),
+    SMID | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-013",
+        texto_vigente="Smid et al. entrevistaron a 29 familiares de personas desaparecidas en México durante octubre de 2016: cinco individualmente y 24 en cuatro grupos focales.",
+        componente_contrastable="Método pp.141-143: 29 familiares de colectivos/ONG, cinco entrevistas y cuatro grupos de cuatro a nueve integrantes (24 total); siete entrevistas a profesionales proveedores en artículo final. No muestra representativa; portal Utrecht resume ocho organizaciones, unidad distinta y discrepancia por cotejar.",
+    ),
+    SMID | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-014",
+        texto_vigente="En la muestra de 29 familiares entrevistados por Smid et al., todos reportaron y mostraron señales de distrés emocional severo según la valoración de los entrevistadores clínicos.",
+        componente_contrastable="Resumen y Resultados p.143: valoración clínica de psiquiatra y médico en n29; no escala, umbral diagnóstico ni denominador de población de familiares en México. Sesgo de reclutamiento reconocido pp.146-147.",
+    ),
+    SMID | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-015",
+        texto_vigente="En las entrevistas de Smid et al. se mencionaron ideación suicida, insomnio, ansiedad, cambios de apetito, recuerdos intrusivos, irritabilidad y afectación de funciones cotidianas.",
+        componente_contrastable="Resumen y Resultados p.143 enumeran síntomas frecuentes sin n por síntoma ni escala de tamizaje. No equivalen a diagnósticos ni a prevalencias mexicanas de cada síntoma.",
     ),
 ]
 
