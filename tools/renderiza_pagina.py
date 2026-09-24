@@ -18,6 +18,13 @@ por A.7 y el manifiesto), no rellena formularios, no inicia sesión, no acepta c
 elude barreras de credencial o de IP: un reto que el navegador real tampoco pasa (Cloudflare
 «Un momento…», Akamai «Access Denied») queda RETO y se declara NO-ACCESIBLE con receta humana.
 
+RENDERIZADO no es identidad: una SPA puede renderizar su portada genérica para una ruta que no
+existe (INEGI: cuatro rutas de programa inventadas dieron el mismo DOM de 216 443 B con título
+«Instituto Nacional de Estadística y Geografía (INEGI)», 24/sep). Se verifica título y enlaces
+contra la pieza, igual que el soft-404 de curl. Y un listado que el sitio carga al hacer clic en
+una pestaña no aparece en --dump-dom: para eso está el API del componente (INEGI: forense/notas/
+2026-07-31-enut-descarga.md).
+
 Requisito de entorno: corre FUERA del sandbox (interop de WSL, igual que `tar.exe`/`curl.exe`
 de Windows; ver forense/agente-adquisicion-v1_0.md). El navegador hereda stdin: se le pasa
 /dev/null, porque dentro de un bucle `while read` se comería la entrada.

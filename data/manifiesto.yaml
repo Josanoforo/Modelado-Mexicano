@@ -46223,3 +46223,36 @@
   nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
     tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: pisa2022_stu_qqq_spss_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:PISA_2022 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://webfs.oecd.org/pisa/PUF_SPSS_COMBINED_CMB_STU_QQQ.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: PISA/2022/PUF_SPSS_COMBINED_CMB_STU_QQQ.zip
+  sha256: e517fea02e34264a0891b6ccab753d8343dbd31258052a4ff9361214f682f17f
+  tamano_bytes: 440232149
+  formato: ZIP con base SPSS de estudiantes PISA 2022 (todos los países)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas por rangos (8 conexiones) con sha256 idéntico; tamaño = Content-Range
+    declarado (440232149 B); estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: imai2020_replica_readme_rtf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:IMAI-KING-VELASCO-REPLICA_2020
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330741
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: REPLICAS/IMAI-KING-VELASCO-2020/ReadMe.rtf
+  sha256: 96930ec8ff68af04aa5d0e686bf1ae9a19c48509e6991a60cb67610c9bc393b9
+  tamano_bytes: 1410
+  formato: RTF readme de la réplica, Dataverse doi:10.7910/DVN/70SNIS
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas por rangos (8 conexiones) con sha256 idéntico; tamaño = Content-Range
+    declarado (1410 B); estructura RTF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
