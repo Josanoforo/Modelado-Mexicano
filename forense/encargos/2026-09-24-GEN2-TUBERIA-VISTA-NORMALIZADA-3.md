@@ -46,3 +46,11 @@ Propio: `tools/vista.py`, `tools/corrida0.py` (solo `COLS_VISTA_RESULTADOS` y co
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No corrige el hallazgo de `valor` (§3/§6) — sucesor sin nombrar todavía (necesita triage propio: qué corridas, si el patrón `-TABLA`/`-JSON` completo debe seguir viviendo en `valor` o normalizarse aparte). No adopta, no mide, no toca microdato. No re-abre dedupe-vs-bajo-demanda (ya resuelto por la cardinalidad medida en -2). Sucesor de este acto: ninguno si «Hecho»; uno nuevo solo si un consumidor no censado resulta decidir con `camino_linaje`.
+
+## NO-CORRIDO / RESERVAS
+
+- Ninguno.
+
+## CONSUMIDO
+
+PR #1121 (`ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-3`, `ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-3-4587-01`). Las seis piezas (P1-P6) completas y verificadas: `camino_linaje` fuera de `COLS_VISTA_RESULTADOS`, `tools/vista.py` extendido con derivación bajo demanda, 22 consumidores censados (0 requirieron cambio de comportamiento salvo un comentario en `milpa/src/emisor.py`), guarda de CI a 50 MB, `data/INFRAESTRUCTURA-v1_0.md` actualizado, test de reproducción de 500 filas reales VERDE. `NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-2-f1b2-01` → CERRADA. Hallazgo fuera de perímetro declarado en `forense/hallazgos.md` (bloat de `valor`, sin sucesor nombrado). Mesa fusiona.
