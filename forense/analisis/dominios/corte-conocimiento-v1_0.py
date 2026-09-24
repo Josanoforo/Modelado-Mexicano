@@ -37,6 +37,48 @@ BASE = dict(
     siguiente_operacion="Registrar dos PDF/versiones/licencia/SHA; contrastar tabla exacta y error de rango; adquirir pregunta de aspiración familiar por instrumento distinto.",
     prioridad="3",
 )
+ENPECYT = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L20,L78,L91; ENPECYT 2017",
+    tier_report="FUERTE",
+    clase="encuesta probabilística de actitudes a ciencia y tecnología",
+    limite_inferencial="Adultos 18+ en viviendas de localidades urbanas ≥100 mil habitantes, no población nacional rural ni jóvenes. Interés en inventos/descubrimientos/tecnología es distinto de respetar a investigadores o apoyar gasto estatal. El boletín 272/18 reporta 92.2% en texto y 92.3% en numeralia para inversión; ficha web y boletín difieren en fechas de campo, pendientes de versión. No inferir confianza individual en científicos del interés agregado.",
+    conducta_unidad_universo="Personas seleccionadas de 18 años y más en 3,200 viviendas de áreas urbanas de ≥100 mil habitantes, ENPECYT 2017 México; muestra estratificada por conglomerados/bietápica según ficha INEGI.",
+    instrumento_ola="INEGI/CONACYT ENPECYT 2017, cuestionario sección IV A pregunta 1 rubro 3 y sección 25 pregunta 1; comunicado 272/18, 20/jun/2018",
+    documento_id_hash_pagina="SIN-ID:astra5_enpecyt2017_boletin272_18.pdf|8cf0c1a6dc8addd7475b1e48e94d62e7f5fe9b32667185e0315ca9315203925c|pp.1-2, nota técnica/numeralia;https://en.www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/OtrTemEcon/ENPECYT2018_06.pdf;SIN-ID:astra5_enpecyt2017_cuestionario.pdf|90526e38a60f476e1aa1124b7f5d8f496e45b78f091d2dcb2ffcc32913ceb281|sección IV A pregunta 1/ítem 3 y sección 25/ítem 1;https://www.inegi.org.mx/contenidos/programas/enpecyt/2017/doc/enpecyt2017_cuest.pdf",
+    pregunta_textual_codigo_respuestas="Interés IV A P1 ítem3: muy grande=1, grande=2, moderado=3, nulo=4; inversión sección25 ítem1: muy de acuerdo=1, de acuerdo=2, en desacuerdo=3, muy en desacuerdo=4, no sabe=5.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Boletín y cuestionario INEGI físicos con SHA; universo y reactivos exactos leídos. El agregado 92.2/92.3 y fechas de campo requieren conciliación editorial; no RESULT propio ni ids U0.",
+    datos_id_estado="Microdato ENPECYT no abierto/descargado U0; sin RESULT compatible.",
+    reserva="Documentos oficiales para lectura local; registro/licencia por MESA-DOCUMENTAL. No extender a México rural ni unir con Wellcome regional. Boletín texto 92.2 versus numeralia 92.3 y fechas ficha/boletín discordantes.",
+    gen2_existente="Sin RESULT ENPECYT compatible en main.",
+    propietario="ASTRA5-MESA-CONOCIMIENTO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar boletín/cuestionario/licencia/SHA; cotejar tabulado publicado y ficha metodológica para 92.2/92.3 y fechas, sin abrir microdatos antes de autorización.",
+    prioridad="3",
+)
+WELLCOME = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L20,L78,L91; Wellcome 2018",
+    tier_report="FUERTE",
+    clase="índice regional de confianza en científicos",
+    limite_inferencial="El 27% agrega Centroamérica y México: Costa Rica, República Dominicana, El Salvador, Guatemala, Haití, Honduras, México, Nicaragua y Panamá. No es estimación exclusiva de México ni comparable directamente con interés ENPECYT urbano 18+. Índice de cinco ítems entre población 15+ Gallup World Poll, no una pregunta única ni medición de respeto al experto accesible.",
+    conducta_unidad_universo="Personas 15+ de región Centroamérica y México en Gallup World Poll 2018/Wellcome Global Monitor; nueve países enumerados en capítulo 1.",
+    instrumento_ola="Wellcome Global Monitor 2018, informe publicado 2019, Trust in Scientists Index, cinco ítems, rango 1–4; capítulo 3 y Box 3.2",
+    documento_id_hash_pagina="SIN-ID:astra5_wellcome_global_monitor2018.pdf|eea01061dd982e280dba6964b38d3476a71610b029283bd9368661834435cb8d|pp.12,52-54;https://wellcome.org/sites/default/files/wellcome-global-monitor-2018.pdf",
+    pregunta_textual_codigo_respuestas="Cinco ítems de confianza en científicos país, precisión, universidades beneficio público y transparencia de financiación, empresas beneficio público; mucho=4, algo=3, poco=2, nada=1; índice requiere ≥3 respuestas válidas, bajo 1 a <2.5.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Informe primario físico con SHA, lista regional, universo y construcción del índice leídos; cierra atribución regional únicamente. Sin id documental ni RESULT México.",
+    datos_id_estado="Microdato Wellcome/Gallup no abierto/descargado U0; sin RESULT México.",
+    reserva="© Wellcome 2019, PDF para lectura local; registro/condiciones por MESA-DOCUMENTAL. Prohibido presentar 27% como México solo o como correlación individual con ENPECYT.",
+    gen2_existente="Sin RESULT Wellcome país compatible en main.",
+    propietario="ASTRA5-MESA-CONOCIMIENTO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar PDF/SHA/licencia; si se requiere México aislado, obtener tabla país y corte índice con permiso y método antes de contrastar con ENPECYT.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-CONOC-001",
@@ -53,6 +95,22 @@ ROWS = [
         texto_vigente="La muestra PISA 2022 México incluyó 6,288 estudiantes en 280 escuelas y representó alrededor de 64% de la población total de 15 años.",
         componente_contrastable="Ficha OCDE México sección Key features/The students: n6288, 280 escuelas, ~1,393,700 estudiantes representados, 64% de cohorte de 15 años; deja fuera población no escolarizada/elegible.",
         localizador="L25,L58; universo y cobertura PISA",
+    ),
+    ENPECYT | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-004",
+        texto_vigente="En ENPECYT 2017, 75.0% de adultos de áreas urbanas de 100 mil habitantes o más declaró interés al menos moderado por inventos, descubrimientos científicos o desarrollo tecnológico.",
+        componente_contrastable="Boletín 272/18 p.1 y numeralia: 8.4% muy grande + 27.4% grande + 39.2% moderado = 75.0%; 25.0% nulo. Cuestionario IV A P1 ítem3. No equivale a interés por ciencia exacta ni confianza en científico.",
+    ),
+    ENPECYT | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-005",
+        texto_vigente="El boletín ENPECYT 2017 atribuye alrededor de 92% de acuerdo con mayor inversión pública en investigación científica, con discrepancia interna 92.2% en texto y 92.3% en numeralia.",
+        componente_contrastable="Cuestionario sección25 ítem1 códigos 1+2; comunicado 272/18 titular/cuerpo 92.2%, numeralia final total 92.3%. La diferencia 0.1 punto no se resuelve por selección arbitraria; no prueba confianza individual ni monto presupuestal.",
+        localizador="L20,L78,L91; apoyo inversión y discrepancia",
+    ),
+    WELLCOME | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-006",
+        texto_vigente="Wellcome Global Monitor 2018 reporta 27% de confianza baja en científicos para la región Centroamérica y México conjunta.",
+        componente_contrastable="Informe 2019 cap.3 p.54: 27% bajo índice en nueve países de Centroamérica y México; Box 3.2 pp.52-53 construye índice de cinco preguntas. No es dato exclusivo de México ni misma muestra ENPECYT 2017.",
     ),
 ]
 
