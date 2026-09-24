@@ -46,3 +46,13 @@ Propio: `milpa/decisiones.tsv` (append), `tools/escribe_relevo_consumo.py` + tes
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no adopta los 6 NO-VERIFICADO, no edita el catálogo de Astra ni el contrato celda-D (U de FIRMAS-15 es del próximo acto que lo edite). Sucesores: `-3` para llaves `DIFERIDO-A`; FIRMAS-16 asienta los contadores nuevos cuando el canal publique.
+
+## NO-CORRIDO / RESERVAS
+- `NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-01` · P-S «Hecho» T-REPRO(g) VERDE · DECISIÓN-DE-MESA-PENDIENTE: la firma S aplicada literal da HEREDADO, que el marcador no acepta como medición · impacto: adoptados_activos no sube a 103 · sucesor: GEN2-ADOPCION-BLOQUE-Y-PINES-3 (FP e0db-01).
+- `NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-02` · P-W · PARO-PREMISA: la propuesta no la carga el motor; milpa/tramite.yaml queda fuera del perímetro · impacto: pendientes_adopcion sigue en 10 · sucesor: -3 (FP e0db-02).
+- `NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-03` · P-E procedencia · DIFERIDO-A: -3 (el contrato exige un esquema de mesa) · impacto: __procedencia sigue en 40.
+- `NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-04` · P-E catálogo · DIFERIDO-A: -3 (cita lateral contra T-REPRO(c); FP e0db-03) · impacto: __catalogo sigue en 23.
+- `NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05` · P-E celdas-D · DIFERIDO-A: -3 (sin sucesora adjudicada) · impacto: __celdas_D sigue en 6.
+
+## CONSUMIDO
+PR #1112 (rama claude/new-session-uq2blk). Nota: forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2-cierre.md.
