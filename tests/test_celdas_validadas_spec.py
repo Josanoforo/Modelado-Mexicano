@@ -40,6 +40,15 @@ class TestSpecExiste(unittest.TestCase):
         texto = open(SPEC_MD, encoding="utf-8").read().lower()
         self.assertIn("nunca se suman", texto)
 
+    def test_spec_declara_marca_de_definicion(self):
+        """§9 (firma P, GEN2-ADOPCION-BLOQUE-Y-PINES-1): la spec declara el
+        ancla ANTES del módulo (D-15) y cita el mismo commit que el código."""
+        import celdas_validadas as CV
+        texto = open(SPEC_MD, encoding="utf-8").read()
+        self.assertIn("Marca de definición", texto)
+        self.assertIn(CV.DEFINICION_DESDE, texto,
+                       "la spec debe citar el mismo commit que DEFINICION_DESDE")
+
 
 class TestModuloVsFormula(unittest.TestCase):
     """Caso sintético: una celda de cada clase, calculada a mano con la
@@ -116,6 +125,32 @@ class TestModuloVsFormula(unittest.TestCase):
         self.assertIn("sha", d["universo"])
         self.assertIn("archivos_leidos", d["universo"])
         self.assertTrue(d["universo"]["archivos_leidos"])
+
+    def test_json_trae_definicion_desde(self):
+        """§9: `--json` trae `definicion_desde`, al lado del total, nunca
+        fundido con él."""
+        import celdas_validadas as CV
+        out = subprocess.run([sys.executable, "tools/celdas_validadas.py", "--json"],
+                              cwd=RAIZ, capture_output=True, text=True, check=True)
+        d = json.loads(out.stdout)
+        self.assertEqual(d.get("definicion_desde"), CV.DEFINICION_DESDE)
+        self.assertIsInstance(d.get("total_celdas_validadas"), int)
+
+    def test_linea_trae_definicion_desde(self):
+        """§7/§9: `--linea` imprime `definicion_desde <commit>`."""
+        import celdas_validadas as CV
+        out = subprocess.run([sys.executable, "tools/celdas_validadas.py", "--linea"],
+                              cwd=RAIZ, capture_output=True, text=True, check=True)
+        self.assertIn(f"definicion_desde {CV.DEFINICION_DESDE}", out.stdout)
+
+    def test_status_trae_celdas_validadas_definicion_desde(self):
+        """corrida0 status imprime `celdas_validadas_definicion_desde`
+        (firma P) al lado de `celdas_validadas`, nunca fundido con él."""
+        import corrida0
+        import celdas_validadas as CV
+        c = corrida0.status(imprime=False)
+        self.assertEqual(c.get("celdas_validadas_definicion_desde"), CV.DEFINICION_DESDE)
+        self.assertIsInstance(c.get("celdas_validadas"), int)
 
 
 if __name__ == "__main__":

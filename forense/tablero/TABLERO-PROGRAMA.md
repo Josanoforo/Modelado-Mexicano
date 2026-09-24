@@ -21,7 +21,7 @@
   - *duelo de tres, nacional* · n `12` · MAE `M` `4.987` pp · `L_SOLO` `3.957` pp · `L_CORPUS` `3.889` pp · veredicto `SIN-GANADOR-UNICO` · NO se suma a las otras dos clases (otro universo, otro estimando) · `CALC-TRIADA-0002/resultados.json`
   - *sub-cifra del dominio DINERO* · cruce n `8` (error mediano `0.936` pp) · persistencia n `32` (error mediano `2.145` pp) · ENIF 2024; la brecha de persistencia es de 3 años y no se promedia con las de 1 y 2 años de ENVIPE/ENCIG
   - *NO cuentan* · `89` filas `IDENTICO` (M == R porque `EMISOR=ARBITRO`: el mismo número copiado, no una predicción contrastada) · `2` celdas de `formalidad` con piso y sin `error_piso_pp` (su error es un CALC sucesor) · universo examinado: 214 filas de data/corrida0/marcador-segmento.tsv + 3 CALC sellados
-- **Procedencia.** SHA `01b265a` · fecha del commit `2026-09-23` · ¿árbol == origin/main? `True`.
+- **Procedencia.** SHA `01b265ae` · fecha del commit `2026-09-23` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `22` · reglas con dato (>=1 conducta MEDIDO*) `21` · reglas sin dato `1` · conductas MEDIDO* `46` · tiers `{'FUERTE': 20, 'MEDIA': 2}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `20` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · NO-COMPARABLE `2` · RESERVADA `22` · SIN-PISO `15` (total `214`) · cobertura de piso `111 / 214` · valor añadido / evaluadas `0 / 52` · celdas `emision = EMITIDA-SIN-EVALUAR` `16 / 214` · `veto_pisos_activo` `True`.
 - **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 15 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 14 · `SI` 150 (selladas total `186`) · `PENDIENTE-DE-MESA`:
@@ -39,13 +39,10 @@
   - `CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001--ff84ff36db65`: `REPRODUCE`
   - `CALC-ENIGH2020-REMESAS-CONTEXTO-0001--0fcfbe663035`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
-- **Ramas presentes en origin.** **6 rama(s) presente(s) en origin (política de cero)**:
+- **Ramas presentes en origin.** **3 rama(s) presente(s) en origin (política de cero)**:
   - `acto/gen2-contadores-consumo-2-alternativa-punto-fijo-huerfana`: 3 delante / 72 detrás de main · último commit `2026-09-23`
-  - `censo/2026-09-24`: 9 delante / 0 detrás de main · último commit `2026-09-24`
-  - `claude/new-session-q4k5jc`: 16 delante / 0 detrás de main · último commit `2026-09-24`
-  - `claude/tramite-2026-09-24`: 1 delante / 0 detrás de main · último commit `2026-09-24`
+  - `claude/new-session-q4k5jc`: 10 delante / 0 detrás de main · último commit `2026-09-24`
   - `codex/astra5-mapa-dominios-1`: 109 delante / 28 detrás de main · último commit `2026-09-24`
-  - `derivados/2026-09-24`: 1 delante / 0 detrás de main · último commit `2026-09-24`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `1680` · filas de registro de curación `159` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
 - **Gobernanza operativa.** ADR máximo del espacio numérico CERRADO `593` · FP máximo del mismo espacio `409` · ids con raíz de acto (época vigente) `{'ADR': 88, 'FP': 115, 'NC': 255}` · FP abiertas: FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260923-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2-1269-01, FP-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-02, FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05, FP-260923-ASTRA5-U3-POLITICA-df0d-01, FP-260923-ASTRA5-U3-POLITICA-df0d-02, FP-260923-ASTRA5-U3-POLITICA-df0d-03, FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01, FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-02, FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01, FP-260923-GEN2-AUDITORIA-POST-HOC-ASTRA-1-39d2-01, FP-260923-ASTRA5-U2-ENDIREH-6a2c-01, FP-260923-ASTRA5-U2-ENDIREH-6a2c-02, FP-260923-ASTRA5-U2-ENDIREH-6a2c-03, FP-260923-ASTRA5-U2-ENDIREH-6a2c-04, FP-260923-ASTRA5-U2-ENDIREH-6a2c-05, FP-260923-GEN2-CONTADORES-CONSUMO-2-749c-01, FP-260923-GEN2-FRONT-1-4296-01 · encargos archivados `722` (consumidos `648`) · instrucciones vigentes `v2.16` · cola de encargos (solo estados != CONSUMIDO; consumidos `61`):
