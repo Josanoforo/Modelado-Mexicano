@@ -35,3 +35,9 @@ Propio: `forense/prereg-caja/AMAI-*`, `data/corrida0/CALC-*-NSE-*`, `tools/domin
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No adopta, no cambia el marcador. Sucesores: FIRMAS-16 (eje NSE); catálogo v1.1; informe v1.3 §cobertura por clase.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «ENIGH 2022/2024» — la ola 2024 (NSE y pisos sobre ENIGH 2024) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: ENIGH 2024 está RESERVADA entera (`reserva:enigh2024`); no se abrió · **impacto:** sin NSE de la ola más reciente de la base de la regla AMAI; el piso de remesas por clase queda en 2022 · **sucesor:** FP-260924-GEN2-CLASE-AMAI-1-e773-02 · fila `NC-260924-GEN2-CLASE-AMAI-1-e773-01`.
+- **qué:** «pisos por NSE … para toda conducta adoptable de esos instrumentos» en ENVIPE 2024/2025 y ENCIG 2023/2025 · **por qué:** PARO-PREMISA: el `[SUPUESTO]` del encargo (módulo de vivienda con las variables de la regla) es falso por texto; NSE NO-CONSTRUIBLE (ENVIPE 1 exacto + 2 aproximados de 6; ENCIG 1 + 1) · **impacto:** 23 de 55 identidades de conducta del catálogo U1 sin corte de clase AMAI; el eje NSE no cubre victimización ni trámites · **sucesor:** FP-260924-GEN2-CLASE-AMAI-1-e773-01 · fila `NC-260924-GEN2-CLASE-AMAI-1-e773-02`.
+- **qué:** ENDUTIH 2023–2025, `actividad_empleo` (su piso adoptado es el 15+ de `CALC-ENDUTIH-EMPLEO-15MAS-*`) · **por qué:** DIFERIDO-A:GEN2-CLASE-AMAI-2: la medida adoptada vive en `tools/dominios/endutih/empleo15.py`, no en `pisos.py`, que es lo que este medidor importa · **impacto:** una de las once medidas ENDUTIH adoptadas queda sin piso por NSE · **sucesor:** GEN2-CLASE-AMAI-2 · fila `NC-260924-GEN2-CLASE-AMAI-1-e773-03`.
