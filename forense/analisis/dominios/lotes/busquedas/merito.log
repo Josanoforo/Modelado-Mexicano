@@ -1,0 +1,151 @@
+LOTE merito (ASTRA5-U0) — log de búsquedas — 2026-09-24
+Paquete: /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/paquetes/merito.md
+Report: corpus/reports/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md (57 líneas, sha256 f8ef1dd3...)
+Repo: /home/pc0/mm-astra5-mapa-dominios-1 (cwd en todas las llamadas a u0busca/u0pdf/u0mf; solo lectura)
+U tools usadas: /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/{u0busca.py,u0pdf.py,u0mf.py}
+  (nota: el paquete cita una ruta U con session-id 6f1534e5-...; esa ruta no existe en esta caja.
+  Las mismas herramientas SI existen en el scratchpad de esta sesión, 427b1d4d-...; se usaron desde ahí.)
+
+=== RESERVA CRÍTICA (regla 3 del encargo) ===
+- No se leyó, buscó ni citó ningún boletín/tabulado/comunicado de ENOE 2026 (ningún trimestre), en
+  corpus ni en web. 0 consultas hechas sobre esa ola.
+- Las cifras del report en L22 y en el resumen L6 (54.8%, 32.6 millones, +583 mil, comparador 54.3%)
+  NO se copiaron a ningún campo de filas.tsv/cobertura.tsv. Verificado con:
+  grep -n "54\.8\|32\.6 mill\|583,000\|583000\|54\.3%" filas.tsv cobertura.tsv  ->  0 coincidencias.
+- MER-001..003 (retirados) no se reutilizaron como número de contrato activo en ninguna fila nueva;
+  solo se mencionan como referencia histórica/descriptiva en merito-001 (reserva).
+- ENOE-001 (ASTRA5-U0-ENOE-001, ola 2024T3) se enlazó via fila ENLACE merito-001, con dictamen
+  VER-CONTRATO, sin tocar la ola reservada.
+
+=== Búsquedas de corpus (u0mf.py --busca; A.13: 1680 entradas de manifiesto examinadas cada vez) ===
+enadis                       -> 4 aciertos (ENADIS 2022: csv, cuestionario general, cuestionario opinión, FD; NINGUNO de ENADIS 2017)
+mmsi                         -> 2 aciertos (mmsi_2016_cuestionario, mmsi_2016_manual_entrevistador; solo instrumento, no resultados)
+"mmsi 2016"                  -> mismos 2 aciertos
+pib                          -> 0 aciertos
+banxico                      -> 31 aciertos (ninguno de la serie de remesas específicamente)
+remesas                      -> 2 aciertos (ENIGH 2022 descripción/nota técnica; no relacionados)
+integralia                   -> 0 aciertos
+deloitte                     -> 0 aciertos
+cepal                        -> 0 aciertos
+pwc                          -> 0 aciertos
+amexcap                      -> 0 aciertos
+nearshoring                  -> 0 aciertos
+euromonitor                  -> 0 aciertos
+narcocultura                 -> 0 aciertos
+narcoeducacion                -> 0 aciertos
+"enadis 2017"                -> 0 aciertos
+"cuentas nacionales"         -> 0 aciertos
+scnm                         -> 0 aciertos
+"pib trimestral"             -> 0 aciertos
+"indicador trimestral actividad" -> 0 aciertos
+"remesas familiares"         -> 0 aciertos
+"balanza pagos"              -> 0 aciertos
+oxfam                        -> 0 aciertos
+enoe + 2024                  -> 9 aciertos (incluye enoe_2024_3t_microdatos, enoe_2024_3t_csv, diseño muestral)
+
+=== Búsquedas de corpus (u0busca.py -q; A.13: 9 tablas, 314256 identidades, 113780 con texto) ===
+"PIB"                                    -> 0 aciertos con texto (prueba inicial de la herramienta)
+"narcocultura|corridos tumbados|narcoeducacion" --limite 20 -> 0 aciertos con texto
+"tono de piel|color de piel" --limite 10 -> 17 aciertos con texto: ENCUCI 2020 AP5_8_1/AP5_9_1
+  (discriminación por tono de piel, universo distinto: experiencia de discriminación, no educación/
+  movilidad), AP10_12/AP10_13 (autoclasificación cromática del informante); LAPOP 2023 AmericasBarometer
+  colorr/colori (color de piel evaluado por el entrevistador, payload_id mex_2023_lapop_americasbarometer_v1_0_w,
+  sha256 4a9410a53cde9d11edeb23465bdbadce8a6abcc18330b6eebe2a4493be6e765c, raíz descargas_mx). Ninguno
+  reproduce el estimando específico citado por el report de mérito (educación por autoadscripción
+  Oxfam/MMSI2016, o movilidad por tono de piel MMSI2016); quedan anotados como instrumentos EN-CORPUS
+  relacionados para un futuro dictamen de "color de piel" con otro estimando.
+
+=== Búsquedas de corpus (u0pdf.py -q; A.13: 349 PDF registrados, caché pdftotext) ===
+"PIB"                                                          -> (no se buscó en u0pdf; agregado macro no está en cuestionarios/FD)
+"12,016|7,905|ingreso corriente por sexo"                      -> 4 coincidencias: conf17_r4_1_sestad_reporte_2021 p.6, ennvih1_2002_guia p.49, itindc_202601 p.46, itindp_202601 p.10 — NINGUNA es la tabla de ingreso por sexo de ENIGH 2024 (coincidencia numérica casual, "7,905" también aparece en deuda externa SHCP)
+"CONASAMI"                                                     -> 0 coincidencias en los 349 PDF registrados
+"movilidad social intergeneracional|tono de piel" --idsub mmsi -> 103 coincidencias, todas texto de portada/preguntas del cuestionario MMSI 2016 (no hay documento de resultados de MMSI en el corpus)
+"Por mi raza hablara la desigualdad|escalon de ingresos|autoadscripcion" -> 33 coincidencias, ninguna del informe Oxfam (corresponden a CPV2020, EDER2025, ENADID2023, ENIF2024)
+
+=== u0mf.py --calc ===
+enoe_2024_3t_microdatos -> 0 corridas con ese id exacto de input (de 326 corridas totales)
+enoe_2024_3t_csv        -> 0 corridas con ese id exacto de input
+
+=== RESULTS-ASTRA5.md / CATALOGO-CORPUS.md ===
+RESULTS-ASTRA5.md línea 8: "ENOE 2024T3 (U1, #1087, CALC-ENOE-PISOS-0003, RESULT-ENOE-PISOS-TABLA) —
+  empleo informal entre ocupados: 54.64% [54.17-55.09], n=193623 (trimestral, no anual)." Usado en
+  gen2_existente de merito-001. Sellada en disco, no registrada en vista (E.7).
+
+=== Contratos ya cerrados citados directamente (sin nueva fila, vía cobertura.tsv) ===
+ASTRA5-U0-MER-004, 005, 006, 007, 008, 009, 010, 011, 012, 013, 014, 015, 016, 017, 018, 019, 020,
+021, 022 — leídos íntegros del paquete merito.md (sección "Contratos CERRADOS existentes").
+Definición completa de ASTRA5-U0-ENOE-001 leída en paquete tiempo.md (línea 109).
+Definición completa de ASTRA5-U0-HUM-004 leída en paquete humor.md (línea 96).
+
+=== Consultas web (WebSearch + WebFetch combinadas; máximo 12 por lote; se usaron 12/12) ===
+Todas registradas con fecha 2026-09-24. Solo fuentes oficiales/primarias (INEGI, Banxico, Integralia
+[sitio del emisor], Deloitte [sitio del emisor], gob.mx/Presidencia). No se consultó prensa como
+fuente primaria (solo apareció en resultados de búsqueda, descartada como fuente de cita).
+
+ 1. WebSearch: INEGI PIB 2025 crecimiento 0.6% cifras oportunas comunicado
+    -> identificó boletín 93/26 (23-feb-2026) y boletín EOPIBT 64/26 (30-ene-2026).
+ 2. WebSearch: Banxico remesas 2025 total anual millones de dólares informe
+    -> identificó reporte "Ingresos y Egresos por Remesas, diciembre de 2025" (3-feb-2026).
+ 3. WebFetch: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/pibo/pib_eo2026_01.pdf
+    -> boletín 64/26 EOPIBT 30-ene-2026: PIB oportuno 2025 = +0.7% (desestacionalizado); leído vía
+       pdftotext local sobre el PDF descargado (no vía resumen del WebFetch, que falló en extraer texto).
+ 4. WebSearch: INEGI boletín PIB trimestral cuarto trimestre 2025 cifras definitivas 0.6 anual
+    site:inegi.org.mx -> identificó boletín 93/26 (23-feb-2026) como el que reporta 0.6% (cifras
+    originales).
+ 5. WebFetch: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/pibt/pib_Pconst2026_02.pdf
+    -> boletín 93/26 PIBT 23-feb-2026, p.2: PIB desestacionalizado 2025 = +0.8% vs 2024; p.4 Cuadro 2
+       (cifras originales): PIB anual 2025 = 0.6 (exacto, coincide con el report). Usado en merito-003.
+ 6. WebFetch: https://www.banxico.org.mx/publicaciones-y-prensa/remesas/{ED06F2CB-...}.pdf
+    -> Banxico, reporte remesas dic-2025 (3-feb-2026), pp.1 y 3: ingresos 2025=61,791 mdd, 2024=64,746
+       mdd, -4.6% anual (coincide exacto con el report). Usado en merito-006.
+ 7. WebSearch: Integralia Consultores nearshoring 2025 anuncios de inversión cayeron 23% 2024 49% 2023
+    reporte -> confirmado vía resultados del sitio integralia.com.mx: 466 anuncios 2023-2025 por
+    114,704 mdd, -23% vs 2024, -49% vs 2023, récord de inauguraciones 2025 (8,268 mdd). Usado en
+    merito-005. No se hizo WebFetch adicional (presupuesto).
+ 8. WebSearch: Deloitte "Gen Z and Millennial Survey" 2025 Mexico 548 encuestados informe
+    -> confirmado vía deloitte.com: reporte país México con URL directa al PDF
+    (2025GenZMillennialSurvey_ReporteMx.pdf), 548 encuestados (323 Gen Z + 225 millennials). Usado en
+    merito-007. No se hizo WebFetch del PDF completo (presupuesto).
+ 9. WebSearch: Sheinbaum abril 2025 estrategia cultural corridos tumbados gob.mx comunicado
+    presidencia -> identificó la fuente oficial: gob.mx/presidencia, versión estenográfica de la
+    conferencia de prensa del 7-abr-2025 (anuncio del festival "México Canta y Encanta"). Usado en
+    merito-009. Se descartaron como fuente de cita los resultados de prensa (Heraldo, El Universal,
+    La Silla Rota, etc.), usados solo para ubicar la fecha exacta del anuncio.
+10. WebSearch: ENADIS 2017 INEGI tabulados color de piel educación superior "3 de cada 10" OR "1 de
+    cada 10" -> resultados de prensa apuntaron a 30% (piel clara) vs 16% (piel oscura); se buscó el
+    documento oficial para no citar prensa como fuente primaria (ver consulta 11).
+11. WebSearch: INEGI ENADIS 2017 "Principales resultados" PDF site:inegi.org.mx color de piel
+    escolaridad -> localizó https://www.inegi.org.mx/contenidos/programas/enadis/2017/doc/
+    enadis2017_resultados.pdf (fuente oficial INEGI).
+12. WebFetch: https://www.inegi.org.mx/contenidos/programas/enadis/2017/doc/enadis2017_resultados.pdf
+    -> leído íntegro vía pdftotext local sobre el PDF descargado: gráfica "Distribución porcentual de
+    la población de 18 a 59 años por nivel de escolaridad según tonalidad de piel" — Educación
+    superior: 16.0% (tonos más obscuros A-E), 22.7% (intermedios F-G), 30.4% (claros H-K). CORRIGE la
+    cifra "1 de cada 10" (10%) del report: el valor real es 16.0%. Usado en merito-012.
+
+Presupuesto web: 12/12 consultas usadas (WebSearch+WebFetch). Quedaron SIN verificar por agotamiento
+de presupuesto (marcadas PENDIENTE-VERIFICACION-DOCUMENTAL con razón "fuera de presupuesto web"):
+  - MMSI 2016, documento de resultados/tabulados (merito-013; solo el cuestionario está en corpus)
+  - Oxfam/Colmex 2019 informe extenso íntegro (merito-010, merito-011; ya diagnosticado por el
+    paquete como TLS fallido en un pase previo, no reintentado)
+  - Género L42: ENIGH 2024 por sexo, Buk 2026, BBVA Research 2025 (merito-018; propietario U2)
+  - CONASAMI, decreto de salario mínimo 2026 y atribución de la mitad de la caída del Gini
+    (merito-019; parte del dictamen -la atribución causal- SÍ se cerró como NO-MEDIBLE-POR-DISEÑO
+    sin necesidad de más búsqueda, por ser un límite de diseño, no de presupuesto)
+  - PwC Barómetro IA, estudio de automatización con ENOE 1T2025, CEPAL 41.4% (merito-020)
+  - Euromonitor LuxuryLab, AMEXCAP/TTR Data VC (merito-021)
+
+=== Autochequeo (§7 de las instrucciones) ===
+- filas.tsv: 21 filas de datos + encabezado, TODAS con 25 columnas (verificado con awk -F'\t').
+- cobertura.tsv: 28 filas de datos + encabezado, TODAS con 4 columnas (6 G + 1 P + 21 F = 28,
+  coincide con el conteo del paquete).
+- Ningún campo contiene tabulador ni salto de línea (construcción manual, sin módulo csv, por
+  instrucción de memoria "el módulo csv corrompe los TSV de este proyecto").
+- Ningún campo empieza con comilla doble (sanitizado programáticamente).
+- Toda unidad G/P/F del paquete aparece en cobertura.tsv, enlazada a ≥1 fila propia o a un contrato
+  ya cerrado.
+- Todo MEDIBLE-EN-CORPUS: no aplica en este lote (0 filas; todo el contenido residual del report de
+  mérito es documental/macro, sin payload_id de encuesta en manifiesto).
+- Todo NO-MEDIBLE-POR-DISEÑO cita búsqueda explícita con conteos (merito-008, 014, 015, 016, 019
+  [componente causal], y merito-004 cita la regla de proyección futura del encargo).
+- Grep de verificación de la reserva ENOE 2026T1: 0 coincidencias en filas.tsv/cobertura.tsv.

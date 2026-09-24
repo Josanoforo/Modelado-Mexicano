@@ -1,0 +1,101 @@
+ASTRA5-U0 · lote humor · busquedas.log
+Ejecutor: sesion Claude, 24/sep/2026. Repo: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura, cwd fijo, sin cd).
+Herramientas: /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/{u0busca.py,u0pdf.py,u0mf.py}
+(nota: el INSTRUCCIONES-LOTE.md del encargo referencia U=.../6f1534e5-.../scratchpad/u0, que no existe en esta caja;
+las herramientas equivalentes se localizaron en la propia carpeta de sesion, misma version.)
+
+== Lectura previa ==
+- Read INSTRUCCIONES-LOTE.md (208 lineas) integro.
+- Read paquetes/humor.md (114 lineas) integro: 10 unidades G, 0 P, 0 T, 20 fichas F, 7 contratos
+  cerrados ASTRA5-U0-HUM-001..007, 3 correcciones vigentes, 5 cruces de deduplicacion.
+- Read corpus/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md (66 lineas) INTEGRO.
+- Read CLAUDE.md e instrucciones-proyecto-v2_16.md del repo (adjuntos por el sistema).
+
+== u0mf.py --busca (data/manifiesto.yaml, 1680 entradas) ==
+ehv: 0 | essh: 0 | calleja: 0 | "cruz vargas": 0 | humor: 0 | hsq: 0 | martin: 0 | toribio: 0 |
+"bravo doddoli": 0 | "sanchez rivera": 0 | "global media": 0 | "mind health": 0 | axa: 27
+(falsos positivos, sustantivos ENSANUT sin relacion) | ipsos: 0 | "salud mental": 2 (ENADID2023,
+no relacionado) | gbd: 0 | "burden of disease": 0 | nom-035: 0 | statista: 0 | datareportal: 0 |
+cantril: 0 | "world happiness": 0 | latinobarometro: 9 (cuestionario, fichas tecnicas, bd_stata:
+SI registrados, usados en HUM-004/005/006/007 y en fila humor-031).
+
+== u0pdf.py -q (349 PDF registrados, cache pdftotext) ==
+"humor": 7 aciertos, TODOS falsos positivos: "buen humor"/"mal humor" en ENBIARE2021 (PA4_01/
+PA4_06, animo del dia) y ENDIREH2011 (BP5_1_11/CP5_1_10/AP5_1_11, disposicion de la pareja) —
+"humor" en el sentido de "mood/animo", no "sentido del humor" (wit/comedy). Contraste documentado
+para no confundir estos reactivos con medicion de humor en las filas humor-008/012/013/026.
+EHV/ESSH PDFs verificados como NO indexados en el cache de 349 (grep por sha256: 0 coincidencias).
+
+== u0busca.py -q (9 inventarios, 314256 identidades, 113780 con texto) ==
+"sentido del humor": 0 | broma: 0 | chiste: 0 | meme: 3 (LAPOP 2006 D32/E5, protestas, no humor) |
+comedia: 0 | caricatura: 0 | "reir|risa": 5 (ENSANUT2024 lactancia LAC27x, falsos positivos) |
+burla: 20 (MOCIBA ciberacoso, IEPEP bullying escolar — acoso, no humor) | sarcas: 0 | ironia: 0 |
+albur: 0 | afrontamiento: 1 (ENSAFI2023 P6_10_2, ahorro, no relacionado) |
+"buen humor|mal humor": 13 (ENDIREH2011, mismo hallazgo que u0pdf arriba) | ansiedad: 9 |
+depresion: 30 (ENIF/ENSAFI/ENADID/ENASEM/ENASIC, salud mental general, no humor) |
+"estres laboral|burnout": 0 | "riesgo psicosocial": 0 | "salud mental": 2 | bienestar: 118
+(programas sociales "Bienestar", homonimo administrativo, no bienestar subjetivo).
+Conclusion: ningun instrumento del corpus ASTRA5 mide sentido del humor, chiste, broma, meme,
+comedia, caricatura, sarcasmo, ironia o albur. "Humor" en los instrumentos existentes es siempre
+el sentido de animo/temperamento (false friend), nunca sentido del humor/comedia.
+
+== Lectura directa de documentos primarios locales (mm-corpus/raw, fuera del repo, sin costo web) ==
+- sha256sum verificado: astra5_ehv_2022.pdf = 84cd234ee12287ba408367367a872fd63f47f5688881e824d
+  1021af24f1e7b5b (coincide con ficha 01-EHV).
+- sha256sum verificado: astra5_essh_2023.pdf = 3cd81a191c9a10cc0e2c761c8c50a16d35c7f66b72d4821ce
+  102aef585e514f5 (coincide con ficha 01-ESSH-*).
+- Read (paginas 1-8, PDF->imagen) astra5_ehv_2022.pdf: portada/abstract, Fase I y II, Tabla 1
+  (n1=550/n2=830), Tabla 2 (8 items finales HV1-HV8), Tabla 3 (ajuste 8 vs 9 items), Tabla 4
+  (invarianza por sexo, muestra 1 rotulada en la tabla pese a que el texto p.70 dice "muestra 2"),
+  reliability/convergent validity. Resuelve la contradiccion senalada por la ficha 01-ESSH-INVAR.
+- Read (paginas 1-8) astra5_essh_2023.pdf: portada/resumen, metodo (3 muestras n=150 exploratorio/
+  n=185 AFE/n=302 AFC), Tabla 1 (contenido tematico), Tabla 2 (AFE 17 items 3 factores), Figura 1
+  (AFC final 9 items) e indices de ajuste, Tabla 3 (invarianza: M4 vs M3 DeltaRMSEA=-.040 fuera
+  del corte <=.015 que los propios autores declaran).
+- sha256sum verificado: astra5_latinob2024_informe.pdf = 0d970f252c9fbea98e179bea8d0da296df7d81c
+  9677193017df1e91d577a55d3 (coincide con ficha 04-LB).
+- pdftotext -layout sobre astra5_latinob2024_informe.pdf (9815 lineas) + grep "apoyo a la
+  democracia" -> localizada seccion 4.1 (p.29): "del 35% en 2023 al 49% en 2024" para Mexico.
+  Reactivo confirmado via u0pdf --id latinobarometro2024_cuestionario_esp -q p10st -> P11STGBS
+  (cuestionario registrado en el manifiesto, p.1). Usado en fila humor-031 (reactivo distinto de
+  P1ST/P12STGBS.A ya cubiertos por HUM-004/005/006).
+
+== WebSearch / WebFetch (presupuesto 12 consultas compartidas; usadas 9) ==
+1. WebSearch: "Humor Styles Questionnaire" validacion Mexico Monterrey alfa .85 psicometria ->
+   candidato psicologiacientifica.com.
+2. WebSearch: Toribio Andrade 2024 afrontamiento salud mental positiva jovenes mexicanos pandemia
+   humor -> Psychologia 18(2):13-27, n=1042 estudiantes universitarios 18-24, 78.4% mujeres.
+3. WebSearch: Bravo Doddoli Sanchez Aragon 2023 "Revista de Psicologia" UAEMex parejas humor
+   cercania satisfaccion -> revistapsicologia.uaemex.mx/article/view/22115, Vol.12 Num.33
+   pp.159-189 (coincide exacto con el report).
+4. WebSearch: Sanchez Rivera "Global Media Journal Mexico" 2024 memes Guerrero Chilpancingo
+   violencia Facebook -> gmjmexico.uanl.mx/index.php/GMJ_EI/article/view/524, Vol.21(40) pp.58-85,
+   corpus de 10 imagenes estaticas (dato que el report no declara).
+5. WebSearch: DataReportal "Digital 2023: Mexico" Facebook 93.2% WhatsApp audience social media
+   statistics -> statista.com/statistics/1310360 confirma las 5 cifras del report (93.2/92.2/
+   80.4/79.4/~76.5).
+6. WebSearch: AXA Ipsos "Mind Health Report" 2024 Mexico 83% salud mental buena 36% condicion
+   comunicado marzo -> axa.mx boletin de prensa oficial (sitio del emisor, no portal de noticias),
+   confirma 83%/36% y agrega el dato de 90%/enfermedad grave no declarado por el report.
+7. WebSearch: Secretaria de Salud Mexico 2024 atenciones salud mental 303,356 ansiedad depresion
+   Global Burden of Disease 18.1 millones Mexico -> NO localizo las cifras exactas (solo el
+   Programa de Salud Mental y Adicciones 2020-2024 en terminos generales). PENDIENTE.
+8. WebFetch: https://psicologiacientifica.com/escala-del-sentido-del-humor-validacion-mexico ->
+   confirma autores Villarreal/Gonzalez/Candia (2012), Revista PsicologiaCientifica.com 14(1),
+   Monterrey N=205, 15-73 anos, alfas subescala .66/.78/.79/.83, total .847 (coincide con el
+   report: "0.66-0.83" y "alfa total de 0.85").
+9. (reservado, no usado: TikTok 45h/mes, EICH, La Cotorrisa, #MexicoOIA no se buscaron por
+   presupuesto y por tier narrativo/hipotesis de baja prioridad frente a FUERTE/MEDIA).
+
+No se consulto prensa ni portales de noticias en ningun momento (El Universal, El Financiero,
+Infobae, Milenio, TV Azteca, MexNoticias quedaron excluidos por instruccion, incluso cuando el
+propio report los cita como su unica fuente para G-06/G-08).
+
+== Reservas ==
+Ninguna cita de ENOE 2026, ENVIPE 2026 ni ENCO en este lote; sin alertas de reserva emitidas por
+las herramientas en ninguna de las consultas anteriores.
+
+== Salida ==
+filas.tsv: 35 filas (7 ENLACE a contratos HUM-001..007 + 28 filas de dictamen nuevo), 25 columnas.
+cobertura.tsv: 31 filas (10 G + 20 F + 1 INT nuevo: INT-L37), 4 columnas.
+Autocheque de columnas OK (ver build_humor.py, corrido 24/sep/2026).
