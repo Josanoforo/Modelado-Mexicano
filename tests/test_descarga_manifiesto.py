@@ -20,8 +20,8 @@ Escenarios de red (servidor local, nunca sale de 127.0.0.1):
   4 · 404                     -> NO-OBTENIDO (A.5), con receta manual
 
 Casos de regla, sin tocar la red:
-  5 · los nueve ids `banxico_sie_*` del manifiesto real salen NO-ACCESIBLE
-  6 · las cuatro entradas con `estado_reserva` salen RESERVADO (E.6)
+  5 · todo id `banxico_sie_*` del manifiesto real sale NO-ACCESIBLE (los nueve originales presentes)
+  6 · toda entrada con `estado_reserva` sale RESERVADO (E.6; las seis originales presentes)
   7 · `enif_2024_enif_2024_bd_csv` NO es rechazado por la guardia (firma 4)
   8 · `raiz` ausente / nula / declarada se resuelven sin colapsar
   9 · el subcomando no expone ningún parámetro de URL (firma 8)
@@ -187,9 +187,17 @@ def main():
         # 5 · los ids banxico_sie_*
         sie = [e for e in reales if str(e.get("id", "")).startswith("banxico_sie_")]
         clases = {e["id"]: M.clasifica_url_origen(e.get("url_origen"))[0] for e in sie}
-        check("5 · universo banxico_sie_* examinado (A.13)", len(sie) == 9,
-              f"{len(sie)} ids (el encargo declaraba 22; medido: 9)")
-        check("5 · los nueve salen NO-ACCESIBLE sin tocar la red",
+        # A.13: el universo se declara y los nueve originales siguen presentes; el
+        # manifiesto puede crecer (GEN2-ASTRA5-U5-ADQUISICION-1 sumó CE81 y CF297) y
+        # la propiedad que importa es que TODO banxico_sie_* salga NO-ACCESIBLE.
+        nueve = {"banxico_sie_cf881_cuentas_validadas", "banxico_sie_cf882_cuentas_pago_cobro",
+                 "banxico_sie_cf883_dispositivos_enrolados", "banxico_sie_cf884_operaciones",
+                 "banxico_sie_cf885_monto", "banxico_sie_cf890_monto_spei",
+                 "banxico_sie_cf891_operaciones_spei", "banxico_sie_cuadro_cf890_monto_landing",
+                 "banxico_sie_cuadro_cf891_operaciones_landing"}
+        check("5 · universo banxico_sie_* examinado (A.13): los nueve originales presentes",
+              nueve <= set(clases), f"{len(sie)} ids; faltan {sorted(nueve - set(clases))}")
+        check("5 · todos los banxico_sie_* salen NO-ACCESIBLE sin tocar la red",
               sie and all(v == "NO-ACCESIBLE" for v in clases.values()),
               f"{sorted(set(clases.values()))}")
         # La premisa que cae: ninguno "termina en .do". La regla se decide
@@ -201,15 +209,18 @@ def main():
 
         # 6-bis · reservas reales, incluidas ambas rutas de ENOE 2026T1
         reservadas = [e["id"] for e in reales if e.get("estado_reserva")]
-        check("6 · universo de entradas con estado_reserva (A.13)",
-              set(reservadas) == {
-                  "enco_2025_junio_dbf_reservado",
-                  "enco_2026_junio_dbf_reservado",
-                  "enco_fd_v5_reservado",
-                  "enco_manual_procedimientos_reservado",
-                  "enoe_2026_1t_csv",
-                  "enoe_2026_1t_microdatos",
-              }, f"{sorted(reservadas)}")
+        # E.6 hace crecer este universo con cada ola nueva (ASTRA5-U5 sumó ENSANUT y
+        # ENCODAT 2025): las seis originales siguen, y la guardia del descargador se
+        # niega a TODAS las reservadas, sin tocar la red.
+        seis = {"enco_2025_junio_dbf_reservado", "enco_2026_junio_dbf_reservado",
+                "enco_fd_v5_reservado", "enco_manual_procedimientos_reservado",
+                "enoe_2026_1t_csv", "enoe_2026_1t_microdatos"}
+        check("6 · universo de entradas con estado_reserva (A.13): las seis originales presentes",
+              seis <= set(reservadas), f"{len(reservadas)} reservadas; faltan {sorted(seis - set(reservadas))}")
+        no_cerradas = [i for i in reservadas
+                       if M._descarga_un_id(i, reales, "/nonexistent", "/nonexistent", 1, 0)["estado"] != "RESERVADO"]
+        check("6 · la guardia E.6 del descargador se niega a todas las reservadas",
+              not no_cerradas, f"{len(reservadas)} examinadas; abiertas: {no_cerradas[:5]}")
         check("6 · ambas rutas ENOE 2026T1 siguen cerradas",
               all(by[i].get("estado_reserva") ==
                   "RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR"
