@@ -1,0 +1,51 @@
+# Tanda C — segunda pasada — comandos y consultas crudas (fecha 2026-09-24)
+
+## Corpus (sin costo de presupuesto web)
+python3 u0mf.py --busca sectur -> 0/1680
+python3 u0mf.py --busca "dia de muertos" -> 0/1680
+python3 u0mf.py --busca concanaco -> 0/1680
+python3 u0mf.py --busca ipsos -> 0/1680
+python3 u0mf.py --busca blancarte -> 0/1680
+python3 u0mf.py --busca "frente nacional" -> 0/1680
+python3 u0mf.py --busca envinov -> 0/1680
+python3 u0mf.py --busca "2024_108" -> 0/1680
+python3 u0mf.py --busca dgcs -> 0/1680
+python3 u0mf.py --busca unam --busca boletin -> 0/1680
+python3 u0busca.py -q "bidireccional" -> 0 aciertos con texto (de 113780)
+python3 u0busca.py -q "victima|agredido" --encuesta endireh -> 69 aciertos con texto (ENDIREH 2006/2011/2016/2021, todos instrumento de mujer respondiente; ninguna variable de hombre víctima/bidireccionalidad)
+python3 u0mf.py --busca endireh --busca varon -> 1/1680 (ENDIREH2006 tabulados PDF, no releva bidireccionalidad)
+
+## Web (WebSearch + WebFetch; presupuesto de sesión compartido con otras tandas; se agotó WebSearch tras ~25 consultas de esta tanda)
+1. WebSearch "Statista Profeco apps de citas Tinder Bumble México preferencia" (24/sep/2026)
+2. WebFetch https://www.dgcs.unam.mx/boletin/bdboletin/2024_108.html -> error TLS "unable to verify the first certificate" (24/sep/2026)
+3. WebSearch "Mexicanos Primero Fundación Naná 2025 violencia noviazgo \"una de cada 4\"" (24/sep/2026)
+4. WebSearch "Sectur Día de Muertos 2024 25,605 millones de pesos 3.1 millones turistas" (24/sep/2026)
+5. WebFetch https://www.gob.mx/sectur/prensa/festividades-de-dia-de-muertos-2024-generaran-una-derrama-economica-de-mas-de-25-mil-millones-de-pesos -> leído íntegro (24/sep/2026)
+6. WebFetch https://www.mexicanosprimero.org/comunicado.php?url=mexicanos-primero-y-fundacion-nana-presentan-el-estudio-violencia-en-el-noviazgo-desde-la-perspectiva-escolar-250225 -> leído íntegro (24/sep/2026)
+7. WebSearch "dgcs.unam.mx boletin 2024_108 violencia noviazgo \"76 por ciento\" 2021" (24/sep/2026)
+8. WebFetch https://www.dgcs.unam.mx/boletin/bdboletin/2024_108.html -> error TLS otra vez (24/sep/2026)
+9. Bash curl -sk https://www.dgcs.unam.mx/boletin/bdboletin/2024_108.html (allowed_domains dgcs.unam.mx) -> HTTP 200, leído íntegro, cita textual confirmada: "Encuesta Nacional sobre Violencia en el Noviazgo (ENVIN), que reportó: en 2021 el 76 por ciento padeció la psicológica; 17 por ciento, sexual; y 15 por ciento física, estando en pareja" (24/sep/2026)
+10. WebSearch "site:statista.com Tinder Bumble Mexico dating app preference market share" (24/sep/2026)
+11. WebSearch "Profeco \"Revista del Consumidor\" apps de citas Tinder Bumble Instagram WhatsApp \"medio de ligue\"" (24/sep/2026)
+12. WebFetch https://www.gob.mx/profeco/prensa/conexiones-reales-riesgos-virtuales-profeco-orienta-sobre-apps-de-citas?idiom=es-MX -> leído íntegro; cita: "En una encuesta realizada en febrero de 2023 por Statista, se reveló que Tinder es la aplicación de citas con el mayor porcentaje de usuarios en México, con un 72%; le sigue Bumble, con el 68.2%." (24/sep/2026)
+13. WebSearch "\"50.9%\" Instagram OR \"47.2%\" WhatsApp \"medio de ligue\" México apps de citas" (24/sep/2026) -> identifica fuente real: The CIU, "El amor en los tiempos de las telecom-2023" (no Statista/Profeco)
+14. WebSearch "\"Escala Multidimensional de Celos\" EMUCE Rivera-Aragón Flores-Galaz Díaz-Loving Montero validación" (24/sep/2026)
+15. WebSearch "Rojas-Solís violencia digital de pareja celos control jóvenes universitarios" (24/sep/2026)
+16. WebSearch "Calderón-Pérez Flores-Galaz Rivera-Aragón 2018 infidelidad celos intracultural" (24/sep/2026)
+17. WebSearch "Díaz-Loving 2019 Premisas Histórico-Socio-Culturales individualismo adolescentes" (24/sep/2026)
+18. WebSearch "mixtecos conversión religiosa evangélica Baja California Santa Bárbara migración CIESAS Colef" (24/sep/2026)
+19. WebSearch "expulsiones religiosas Los Altos de Chiapas tsotsiles tseltales 30000 CIESAS sistema de cargos" (24/sep/2026)
+20. WebSearch "Abraido-Lanza 2007 \"Ethnicity Disease\" fatalism structural barriers Latinos" (24/sep/2026)
+21. WebSearch "Espinosa de los Monteros Gallo 2011 fatalism review Latino health" (24/sep/2026)
+22. WebSearch "censo México 1930 1940 población católica 97.7 por ciento serie histórica INEGI" (24/sep/2026)
+23. WebSearch "Ipsos \"Global Religion\" 2023 Mexico Generation Z least likely Christian report" (24/sep/2026)
+24. WebSearch "Partido Encuentro Social PES pérdida de registro INE 2018 2021" (24/sep/2026)
+25. WebSearch "Frente Nacional por la Familia 2016 marcha \"un millón\" matrimonio igualitario Senado 240 mil firmas" (24/sep/2026)
+26. WebSearch "gaceta.senado.gob.mx \"Frente Nacional por la Familia\" iniciativa 240 mil firmas 2016" (24/sep/2026)
+27. WebSearch "Roberto Blancarte \"escasez de sacerdotes\" \"6,000 habitantes\" catolicismo popular laicidad" (24/sep/2026)
+28. WebSearch "UAEM afrontamiento religioso adultos mayores diabetes tipo 2 Pargament resiliencia estrés" (24/sep/2026)
+29. WebSearch "San Judas Tadeo San Hipólito \"Revista de Ciencias Sociales\" perfil devotos estudio estigma" (24/sep/2026)
+30. WebSearch "Blancarte \"un sacerdote por cada\" habitantes México catolicismo popular ausencia liderazgo burocrático" -> RECHAZADA: "this session has used its web search budget (200 of 200 WebSearch calls)" (presupuesto de WebSearch de TODA la sesión, compartido con tandas A-B y anteriores de este mismo acto, agotado en este punto) (24/sep/2026)
+31. WebFetch https://www.ine.mx/wp-content/uploads/2022/07/deceyec-cm41.pdf (Blancarte, "Democracia y laicidad", INE) -> leído íntegro; la cifra "1 sacerdote/6,000 habitantes" NO aparece en este documento (24/sep/2026)
+
+Nota: el presupuesto de WebSearch de esta sesión (200 llamadas) es COMPARTIDO entre todas las tandas ya corridas en esta misma sesión (A, B, ... antes que C) y se agotó durante la tanda C, en la fila religiosidad-031. A partir de ahí solo quedó disponible WebFetch, usado para el intento fallido en Blancarte. No fue posible completar más consultas nuevas de WebSearch para religiosidad-031 (Blancarte, cifra exacta) ni para verificaciones adicionales de refuerzo en otras filas ya cerradas con evidencia suficiente.

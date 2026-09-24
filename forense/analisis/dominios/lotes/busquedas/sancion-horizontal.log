@@ -1,0 +1,67 @@
+# busquedas.log -- ASTRA5-U0, paquete sancion-horizontal
+# Fecha de trabajo: 2026-09-24
+# cwd de todas las corridas: /home/pc0/mm-astra5-mapa-dominios-1 (repo de solo lectura, sin cd)
+# U = /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (mismo dir que el referido en INSTRUCCIONES-LOTE.md aunque con otro hash de sesion en el texto original)
+
+## Lectura previa
+- Read INSTRUCCIONES-LOTE.md (208 lineas) integro.
+- Read paquetes/sancion-horizontal.md (109 lineas) integro.
+- Read corpus/reports/Sancion_Social_Horizontal_en_Mexico__Chisme__Envidia_y_Mal_de_Ojo_como_Mecanismos_de_Nivelacion.md (287 lineas) INTEGRO via Read tool.
+- Read RESULTS-ASTRA5.md (46 lineas) integro.
+- Read CATALOGO-CORPUS.md (parcial, 244/373 lineas via Read; complementado con grep dirigido por familia: enve, ensu, encuci, wvs/world values, latinobarometro).
+
+## u0mf.py (manifiesto, 1680 entradas)
+- --busca ensu --busca 2024 -> 0 entradas (ENSU 2024T1 NO esta registrado)
+- --busca ensu -> 7 entradas (solo ensu2025_bd_csv_zip + docs ENCO/RNM; ninguna ENSU 2024)
+- --busca ensu --busca cuestionario -> 3 entradas (ensu2025 + ENCO, sin cuestionario ENSU 2024)
+- --busca enve -> 8 entradas (conjunto_de_datos_enve_2024_csv, cuestionario_principal_enve2024, modulo_delitos_enve2024, + 5 de "Encuesta Nacional de Envejecimiento" UNAM, falso amigo lexico)
+- --busca latinobarometro -> 9 entradas (latinobarometro2024_bd_stata, _cuestionario_esp, _fichas_tecnicas + 6 falsos positivos ENCUP por coincidencia de subcadena)
+- --busca foster -> 0/1680
+- --busca gershman -> 0/1680
+- --busca dunbar -> 0/1680
+- --busca cancian -> 0/1680
+- --busca zinacantan -> 0/1680
+- --busca wolf -> 0/1680
+- --busca tzintzuntzan -> 0/1680
+- --busca envipe --busca 2024 -> 10 entradas (envipe2024_csv, envipe2024_fd_pdf, envipe2024_cuest_principal_pdf, envipe2024_cuest_modulo_pdf, 4 formatos bd_envipe_2024_*, envipe2026_csv[RESERVA] -- 2026 NO se toco)
+
+## u0busca.py (9 tablas, 314256 identidades, 113780 con texto)
+- -q "mal de ojo" -q "ojo" -> "mal de ojo": 0/113780; "ojo" 125 aciertos, todos falsos positivos (jitomate rojo, ojos irritados en ENNVIH/ENSANUT)
+- -q "envidia" -> 0/113780
+- -q "chisme" -> 0/113780
+- -q "funa" -q "cancelacion|cancelacion" -> 0/113780 ambos
+- -q "cangrejo" -> 0/113780
+- -q "ostentar|ostentacion" -q "presumir" -q "destacar" -> 0/113780 los tres
+- -q "que diran|que diran" -q "modestia" -> 0/113780 ambos
+- -q "objetos de valor" -q "llevar consigo" -> 0/113780 ambos (ENSU 2024T1 no registrado)
+- -q "secuestro" --encuesta envipe -> 2627 aciertos; ejemplos citados de ENVIPE2021 y ENVIPE2024 (AP6_10_1, TPer_Vic2.dta)
+- -q "secuestro" --ola 2024 -> incluye envipe2024 AP4_5_13, AP4_6_1-3, AP4_10_01-04, AP6_9, AP6_10_1-2 (TPer_Vic1/TPer_Vic2, p.22/24/46 del FD)
+- -q "migrante de retorno|migrantes de retorno|retorno" -> 20/113780; incluye ENADID2023 variable cond_resid (TMIGRANTE, fd fila 240) citada en fila 009
+- -q "tall poppy" -q "chaquetear" -q "jante" -> "tall poppy" 0, "chaquetear" 0, "jante" 3 (falsos positivos, subcadena de "normalmente" en ENSANUT2024)
+- -q "envidia laboral" -q "knowledge hiding" -q "sabotaje" -> 0/113780 los tres
+- -q "reputacion|reputacion" -> 5/113780: MOCIBA2015 P2_3 (ciberacoso, citado en fila 008), ENVIPE2011 fd_ext categorias "contra la reputacion" (clasificacion administrativa de delitos, sin reactivo directo)
+- -q "compadrazgo" -> 0/113780
+
+## u0pdf.py (349 PDF registrados)
+- -q "delito mas frecuente|delito mas frecuente" -> 0/349
+- -q "cifra negra" --idsub enve -> 0/2 PDF (cuestionario_principal_enve2024, modulo_delitos_enve2024; ninguno trae el indicador ya calculado)
+- -q "cifra negra" --idsub envipe -> 39/31 PDF; ejemplos: envipe2025_diseno_muestral_pdf p.8 (menciona el concepto), envipe_2016_calculo_indicadores_r_envipe2016 p.3-12 (metodologia R para calcular cifra negra, tabulado 3.3) -- ninguno con el numero exacto de ENVIPE 2024
+- -q "confiar en la mayoria|confiar en la mayoria" -> 6/349; incluye latinobarometro2024_cuestionario_esp p.1 (reactivo P10STGBS, citado en fila 005) y WVS7 Mexico 2018 cuestionario (item distinto, no usado)
+- -q "ENSU" -> 1288/349, todos falsos positivos por subcadena (ningun documento de ENSU 2024T1 registrado)
+- -q "extorsion|extorsion" --idsub enve -> 20/2 PDF; cuestionario_principal_enve2024 p.4 (items 12-15 percepcion), p.5 (medidas de proteccion), p.8 (item 10 "extorsion o cobro de piso", citado en fila 007, e item 11 "secuestro de algun propietario"); modulo_delitos_enve2024 p.3 (motivo de no denuncia "por miedo a que le extorsionaran")
+
+## Web (WebSearch; 7 de 12 consultas del tope del lote; ninguna a prensa/portales de noticias)
+1. "Latinobarometro 2024 informe Marta Lagos confianza interpersonal Mexico 26%" (24/sep/2026) -> confirma existencia del informe 2024 (democracia resiliente, Marta Lagos directora); NO se hallo la cifra especifica 26%/15% en los resultados de busqueda (queda como MEDIBLE-CON-ADQUISICION, no EN-CORPUS ni confirmado documentalmente al 100%).
+2. "Gershman Economic Origins Evil Eye Belief JEBO 2015 DOI" (24/sep/2026) -> confirma JEBO 110:119-144 (2015), SSRN DOI 10.2139/ssrn.2308137, autor Boris Gershman, American University.
+3. "Foster 1965 Peasant Society and the Image of Limited Good American Anthropologist Tzintzuntzan" (24/sep/2026) -> confirma AmAnthropologist 67(2):293-315 (abril 1965), DOI 10.1525/aa.1965.67.2.02a00010.
+4. "Wolf 1955 Types of Latin American Peasantry American Anthropologist institutionalized envy" (24/sep/2026) -> confirma AmAnthropologist 57(3):452-471 (1955); tambien revela de paso Gershman 2014 "The Two Sides of Envy", Journal of Economic Growth 19(4):407-438 (usado en fila 006a).
+5. "Dunbar Duncan Marriott 1997 Human Conversational Behavior Human Nature gossip" (24/sep/2026) -> confirma Human Nature 8:231-246 (1997).
+6. "Cancian 1965 Economics and Prestige in a Maya Community Zinacantan Stanford" (24/sep/2026) -> confirma Stanford University Press 1965, Frank Cancian, comunidad tzotzil de Zinacantan, Chiapas.
+7. "Foster 1972 The Anatomy of Envy Current Anthropology 13 165-202" (24/sep/2026) -> confirma Current Anthropology 13(2):165-202 (abril 1972), DOI 10.1086/201267.
+
+Consultas web NO usadas: 5 de las 12 disponibles quedaron sin usar (se prioizaron las citas SOLIDO/MEDIA con documento primario identificable en la literatura). No se consulto prensa ni portales de noticias en ningun caso; solo motores de busqueda general con resultados que apuntan a editoriales academicas/repositorios (Wiley, Springer, SSRN, IDEAS/RePEc, Stanford UP, American Anthropologist).
+
+## Notas de alcance
+- CERO MICRODATO: ningun ZIP/CSV/DTA/DBF/SAV de datos fue abierto, descomprimido ni leido; solo cuestionarios/FD/PDF via u0pdf y metadatos via u0busca/u0mf.
+- RESERVAS: no se toco ENOE 2026, ENVIPE 2026 ni ENCO en ninguna consulta (u0mf --busca envipe --busca 2024 devolvio tambien envipe2026_csv[RESERVA], que se registro como avistado pero NO se uso como evidencia de dictamen, conforme regla 3 de las instrucciones).
+- Los grep directos sobre CATALOGO-CORPUS.md usaron `command grep --binary-files=text` (no `grep` desnudo), conforme regla 7 de las instrucciones.
