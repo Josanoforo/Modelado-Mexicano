@@ -36,6 +36,8 @@ from __future__ import annotations
 
 import csv
 import functools
+import hashlib
+import json
 import sys
 from pathlib import Path
 
@@ -182,4 +184,99 @@ def leer_resultados_join(
     deriva bajo demanda (via el cache del proceso) solo si alguna fila
     OFERTA lo necesita -- ver `join_resultado`."""
     corridas = corridas_por_id(ruta_corridas)
-    return [join_resultado(f, corridas) for f in _leer_tsv_derivado(ruta_resultados)]
+    return [join_resultado(resuelve_fila(f), corridas)
+            for f in _leer_tsv_derivado(ruta_resultados)]
+
+
+# ── ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-B: `valor` por referencia ──
+# Un RESULT es un número con unidad; una lista es una tabla. Todo `valor`
+# cuya representación en la vista pase de UMBRAL_VALOR_BYTES (UTF-8) se
+# escribe BYTE A BYTE a `data/corrida0/<spec_id>/valores-vista/<resultado_id>.<ext>`
+# y la celda lleva `REF:<ruta relativa a la raíz>#sha256:<hex>`. La tabla es
+# DERIVADA del `resultados.json` sellado (se regenera en cada `registro
+# --escribe`), no un sello nuevo. `.json` si el texto parsea como JSON (es el
+# caso medido: listas serializadas), `.txt` si no -- nunca se re-serializa:
+# la equivalencia `valor_de(id)` antes/después es byte a byte.
+UMBRAL_VALOR_BYTES = 1024
+PREFIJO_REF = "REF:"
+# `valores-vista/`, no `tablas/` (como decía el encargo): `tablas/` ya existe
+# SELLADA dentro de CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-000{1,2} (8
+# archivos, `git ls-files`), y es donde COMMIT-C pone las tablas que un
+# medidor produce ANTES de sellar. Derivado y sellado no comparten carpeta.
+DIR_VALORES = "valores-vista"
+
+
+class ReferenciaRota(ValueError):
+    """La celda `REF:` apunta a un archivo ausente o cuyo sha256 no casa.
+    Falla en voz alta (D-23): nunca se devuelve la referencia como valor."""
+
+
+def es_referencia(valor) -> bool:
+    return isinstance(valor, str) and valor.startswith(PREFIJO_REF)
+
+
+def resuelve_valor(valor, raiz: Path = RAIZ):
+    """Texto original de una celda `valor`. Una celda que no es `REF:` se
+    devuelve tal cual (idéntica a antes de COMMIT-B)."""
+    if not es_referencia(valor):
+        return valor
+    ruta_rel, _, sha = valor[len(PREFIJO_REF):].partition("#sha256:")
+    ruta = raiz / ruta_rel
+    if not ruta.exists():
+        raise ReferenciaRota(f"{valor}: {ruta_rel} no existe")
+    datos = ruta.read_bytes()
+    if hashlib.sha256(datos).hexdigest() != sha:
+        raise ReferenciaRota(f"{valor}: sha256 de {ruta_rel} no casa")
+    return datos.decode("utf-8")
+
+
+def resuelve_fila(fila: dict, raiz: Path = RAIZ) -> dict:
+    """Copia de la fila con `valor` resuelto; las demás columnas intactas."""
+    if not es_referencia(fila.get("valor")):
+        return fila
+    return {**fila, "valor": resuelve_valor(fila["valor"], raiz)}
+
+
+def ruta_tabla(spec_id: str, resultado_id: str, texto: str) -> str:
+    try:
+        json.loads(texto)
+        ext = "json"
+    except (ValueError, TypeError):
+        ext = "txt"
+    return f"data/corrida0/{spec_id}/{DIR_VALORES}/{resultado_id}.{ext}"
+
+
+def referencia_valor(fila: dict, raiz: Path = RAIZ, escribe: bool = True) -> dict:
+    """Lado escritor. Devuelve la fila con `valor` sustituido por `REF:` si
+    su texto pasa del umbral; con `escribe`, deja la tabla en disco (se
+    reescribe sólo si el contenido cambió). Idempotente: una celda que ya
+    es `REF:` se resuelve y se vuelve a referenciar (misma ruta, mismo sha)."""
+    texto = resuelve_valor(fila.get("valor"), raiz)
+    texto = "" if texto is None else str(texto)
+    datos = texto.encode("utf-8")
+    if len(datos) <= UMBRAL_VALOR_BYTES:
+        return {**fila, "valor": texto} if es_referencia(fila.get("valor")) else fila
+    rel = ruta_tabla(fila["spec_id"], fila["resultado_id"], texto)
+    if escribe:
+        ruta = raiz / rel
+        if not ruta.exists() or ruta.read_bytes() != datos:
+            ruta.parent.mkdir(parents=True, exist_ok=True)
+            ruta.write_bytes(datos)
+    return {**fila, "valor": f"{PREFIJO_REF}{rel}#sha256:{hashlib.sha256(datos).hexdigest()}"}
+
+
+def valor_de(resultado_id: str, corrida_id: str | None = None,
+             ruta_resultados: Path = VISTA_RESULTADOS, raiz: Path = RAIZ):
+    """El `valor` de un RESULT tal como lo sella su `resultados.json`,
+    resolviendo la referencia si la vista la trae. Con varias corridas para
+    el mismo id (replays), `corrida_id` desambigua; sin él, varias filas con
+    valores distintos es un error en voz alta. `KeyError` si no está."""
+    filas = [f for f in _leer_tsv_derivado(ruta_resultados)
+             if f.get("resultado_id") == resultado_id
+             and (corrida_id is None or f.get("corrida_id") == corrida_id)]
+    if not filas:
+        raise KeyError(f"{resultado_id} no está en {ruta_resultados.name}")
+    valores = {resuelve_valor(f.get("valor"), raiz) for f in filas}
+    if len(valores) > 1:
+        raise ValueError(f"{resultado_id}: {len(filas)} corridas con valores distintos; pasa corrida_id")
+    return valores.pop()

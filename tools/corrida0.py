@@ -2297,14 +2297,51 @@ def _medidor_vive_en_calc(script_abs: Path, d: Path) -> bool:
         return False
 
 
-def _fallas_run(spec: dict, valores: dict, exit_code: int, error: str) -> list[str]:
+UMBRAL_VALOR_BYTES = 1024  # mismo umbral que tools/vista.py (COMMIT-B)
+
+
+def _problemas_valor_largo(valores: dict, d: Path | None) -> list[str]:
+    """ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-C (D-22). Un RESULT
+    es un número con unidad; una lista es una tabla. Todo `valor` que no
+    sea escalar corto (número, booleano, texto <= 1 KB) se rechaza ANTES
+    de sellar, salvo que sea `REF:data/corrida0/<CALC>/tablas/<archivo>
+    #sha256:<hex>` y ese archivo exista DENTRO de este CALC con ese sha
+    (queda cubierto por el sello como cualquier otro archivo del CALC).
+    Los CALC ya sellados no pasan por aquí en `run`; en `verify` esto es
+    un WARN `VALOR-LARGO-LEGADO`, nunca un NO-EJECUTABLE (E.3)."""
+    problemas = []
+    for rid, valor in sorted(valores.items()):
+        if valor is None or isinstance(valor, (bool, int, float)):
+            continue
+        if isinstance(valor, str) and valor.startswith("REF:"):
+            rel, _, sha = valor[4:].partition("#sha256:")
+            partes = rel.split("/")
+            ruta = RAIZ / rel
+            if (d is None or len(partes) < 5 or partes[:2] != ["data", "corrida0"]
+                    or partes[2] != d.name or partes[3] != "tablas"):
+                problemas.append(f"{rid}: VALOR-REF-FUERA-DE-TABLAS={rel!r} "
+                                 f"(debe vivir en data/corrida0/<este CALC>/tablas/)")
+            elif not ruta.exists() or hashlib.sha256(ruta.read_bytes()).hexdigest() != sha:
+                problemas.append(f"{rid}: VALOR-REF-ROTA={rel!r} (ausente o sha256 distinto)")
+            continue
+        texto = valor if isinstance(valor, str) else json.dumps(valor, ensure_ascii=False)
+        if not isinstance(valor, str) or len(texto.encode("utf-8")) > UMBRAL_VALOR_BYTES:
+            problemas.append(f"{rid}: VALOR-LARGO ({len(texto.encode('utf-8'))} bytes, "
+                             f"{type(valor).__name__}) -- una lista o tabla va a "
+                             f"tablas/ del CALC y el RESULT la cita por REF:<ruta>#sha256:<hex>")
+    return problemas
+
+
+def _fallas_run(spec: dict, valores: dict, exit_code: int, error: str,
+                d: Path | None = None) -> list[str]:
     """P3: fallo antes de outputs validos -> ningun archivo se escribe. Un
     `exit_code != 0` es un fallo por si mismo (`valores` puede venir vacio o
     a medias, no se valida); si el medidor si corrio, se validan los
-    outputs declarados (`_valida_outputs`). Lista vacia = puede sellar."""
+    outputs declarados (`_valida_outputs`) y la forma del valor
+    (`_problemas_valor_largo`, COMMIT-C). Lista vacia = puede sellar."""
     if exit_code != 0:
         return [f"medidor_fallo:{error}"]
-    return _valida_outputs(spec, valores)
+    return _valida_outputs(spec, valores) + _problemas_valor_largo(valores, d)
 
 
 def _construye_ejecucion(calc_id: str, spec: dict, d: Path, pre: dict, commit: str,
@@ -2387,7 +2424,7 @@ def run(calc_id: str, imprime: bool = True) -> dict:
     inputs_resueltos = pre["inputs_resueltos"]
     valores, exit_code, error = _ejecuta(spec, inputs_resueltos)
 
-    problemas = _fallas_run(spec, valores, exit_code, error)
+    problemas = _fallas_run(spec, valores, exit_code, error, d)
     if problemas:
         if imprime:
             print(f"\nRUN {calc_id}\nRUN: FALLO -- nada se sella:")
@@ -2911,6 +2948,10 @@ def verify(calc_id: str, imprime: bool = True) -> dict:
         # contrato no puede llamarse `REPRODUCE` aunque los numeros cuadren:
         # lo que reprodujo seria algo que la spec no autoriza a producir.
         problemas_replay = _valida_outputs(spec, valores)
+        if imprime:
+            for w in _problemas_valor_largo(valores, None):
+                print(f"  WARN VALOR-LARGO-LEGADO -- {w} (sellado antes de COMMIT-C: "
+                      f"se acepta; registro lo referencia en valores-vista/)")
         if problemas_replay:
             resultado = "NO-EJECUTABLE"
             if imprime:
@@ -4877,6 +4918,20 @@ def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
     return {**vistas, "corridas": corridas, "resultados": resultados, "usos": usos}
 
 
+def _referencia_valores_largos(vistas: dict, escribe: bool) -> dict:
+    """ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-B: todo `valor` de
+    más de 1 KB sale de `resultados.tsv` a `<CALC>/valores-vista/` y la celda lo
+    cita por ruta y sha256 (implementación única: `tools/vista.py::
+    referencia_valor`). Ningún valor cambia: `vista.valor_de` lo devuelve
+    byte a byte. Medido 24/sep: sin esto la vista re-derivada pesa 92 MB
+    (`valor` 65 MB de listas serializadas) y la guarda de 50 MB tumba el
+    canal (run 36066873728)."""
+    sys.path.insert(0, str(RAIZ / "tools"))
+    import vista as _vista
+    return {**vistas, "resultados": [_vista.referencia_valor(f, RAIZ, escribe=escribe)
+                                     for f in vistas["resultados"]]}
+
+
 def registro(escribe: bool = False, verifica: bool = False,
              imprime: bool = True, lote=None, fuentes: bool = False) -> dict:
     """FP-359: la fotocopiadora se desarma -- `escribe` por defecto es
@@ -4901,6 +4956,7 @@ def registro(escribe: bool = False, verifica: bool = False,
         if lote_autorizado:
             vistas = _acota_vistas_al_lote(vistas, lote_autorizado)
         _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
+        vistas = _referencia_valores_largos(vistas, escribe=True)
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
@@ -4910,6 +4966,7 @@ def registro(escribe: bool = False, verifica: bool = False,
                                 (VISTA_USOS, "usos")):
                 print(f"ESCRITO {_rel(ruta)}: {len(vistas[clave])} filas")
     elif imprime:
+        vistas = _referencia_valores_largos(vistas, escribe=False)
         for ruta, cols, clave in ((VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, "corridas"),
                                   (VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, "resultados"),
                                   (VISTA_USOS, COLS_VISTA_USOS, "usos")):
