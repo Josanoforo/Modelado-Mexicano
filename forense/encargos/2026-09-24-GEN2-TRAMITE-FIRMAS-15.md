@@ -52,3 +52,12 @@ Propio: `forense/firmas-pendientes.tsv`, `no-corrido.tsv`, nota, L0, cascada. Aj
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No ejecuta nada. Sucesores: `GEN2-ADOPCION-BLOQUE-Y-PINES-2` (S, T y los dos hallazgos de premisa de ADOPCION-1), `GEN2-ASTRA5-U2-ENDIREH-CIERRE-1` (#1093), FIRMAS-16 (DOI, Pages, respaldo).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: R · `…39d2-01` decisión de proceso sobre codex/* y auto-merge (opciones (a)/(b) del §1). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- ninguna firma verbatim llegó con el lanzamiento de esta sesión. **impacto**: la política real de codex/*+auto-merge sigue sin asentarse; V no puede ejecutarse porque depende de R. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
+- **qué**: S · `…749c-01` acreditación de origen_numerico de `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001`. **por qué**: `SUSTITUIDO-POR:GEN2-ADOPCION-BLOQUE-Y-PINES-2` -- el encargo (§2) ya declara que ese acto la ejecuta; este trámite solo anota `EJECUTA:` en la fila. **impacto**: los 16 T-REPRO(g) FAIL de ese CALC siguen sin protección resuelta. **sucesor**: `GEN2-ADOPCION-BLOQUE-Y-PINES-2`.
+- **qué**: T · once adopciones de Astra ya auditadas (`…1f30-01/02`, `…e422-01`, `…6a2c-01..05`, `…df0d-01..03`). **por qué**: `SUSTITUIDO-POR:GEN2-ADOPCION-BLOQUE-Y-PINES-2` -- mismo motivo que S. **impacto**: ninguna de las once celdas/pisos se usa como piso adoptado hasta que ese acto corra y mesa firme. **sucesor**: `GEN2-ADOPCION-BLOQUE-Y-PINES-2`.
+- **qué**: U · `…657c-02` contrato celda-D admite IC-CON-R. **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- ninguna firma verbatim llegó con esta sesión. **impacto**: el contrato v0.6 de celda-D sigue sin resolver el rótulo IC-CON-R para pisos C2-compuestos sin IC propio. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
+- **qué**: V · `…1269-01` activar Require merge queue. **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- depende de que R se firme primero (el propio encargo lo condiciona: «Con R(a) firmada: …»). **impacto**: la cola de fusión sigue sin Require merge queue activa. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
+- **qué**: fecha de `…c3fa-05` (§6, alianza académica). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- sin respuesta de mesa con esta sesión. **impacto**: la FP sigue sin plazo. **sucesor**: `GEN2-TRAMITE-FIRMAS-16`.
