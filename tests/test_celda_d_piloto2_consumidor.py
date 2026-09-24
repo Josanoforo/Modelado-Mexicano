@@ -202,9 +202,11 @@ class LaCeldaDYElOrdenDeLosCommits(unittest.TestCase):
         self.assertEqual(c["estado_decidibilidad"], "PUNTUADA")
         refs = c["momentos_holdout_refs"]
         self.assertIn(f"{CATALOGO}:{ID_FILA}", refs)
-        corrida = next(x for x in refs if x.startswith("CALC-"))
         self.assertTrue((RAIZ / CALC_ARBITRO / "sello.sha256").exists())
-        self.assertTrue(corrida.startswith("CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001--"))
+        # El -0001 (donde nace R) sigue citado; desde GEN2-PISOS-GEN2-2 el
+        # sucesor -0002 va primero porque su error sostiene margen_material.
+        self.assertTrue(any(x.startswith("CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0001--")
+                            for x in refs))
 
     def test_las_emisiones_se_sellaron_antes_de_que_r_existiera(self):
         """El falsador de orden, leído del historial (lección NC-0313)."""
