@@ -83,13 +83,13 @@ inputs:
 - id: piso_c2_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001/resultados.json
-  sha256: PENDIENTE-COMMIT-3a
+  sha256: 7ff64e0934207e6efd314626207417bbf38c81c736aaffa5bc304a0bfe49aa9e
   funcion: DATO
   nota: 'EL UNICO CAMBIO: fuente del punto C2 (por id); NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a'
 - id: piso_c2_sello
   origen: repo
   ruta: data/corrida0/CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001/sello.json
-  sha256: PENDIENTE-COMMIT-3a
+  sha256: 127d72907e563de5801400faf2bd6943eb7cb9c82d5149a32e20ef4c73d686cb
   funcion: METADATO
   nota: NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a
 variables:

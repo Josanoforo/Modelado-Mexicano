@@ -83,13 +83,13 @@ inputs:
 - id: piso_c2_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001/resultados.json
-  sha256: PENDIENTE-COMMIT-3a
+  sha256: 4a394a058b42eca45532faf9505a232948862e51feea73dc96869ccefd493d0f
   funcion: DATO
   nota: 'EL UNICO CAMBIO: fuente del punto C2 (por id); NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a'
 - id: piso_c2_sello
   origen: repo
   ruta: data/corrida0/CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001/sello.json
-  sha256: PENDIENTE-COMMIT-3a
+  sha256: 2ee7887681383ea296e27a44f0cfe59dab5d33f10631f71f6f0c4ab37a836b88
   funcion: METADATO
   nota: NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a
 variables:
