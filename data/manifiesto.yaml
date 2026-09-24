@@ -45448,3 +45448,367 @@
     A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
     y directorio central/%%EOF).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enpecyt2017_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENPECYT_2017 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpecyt/2017/microdatos/enpecyt2017_bd_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENPECYT/2017/enpecyt2017_bd_dbf.zip
+  sha256: dd5dbda3278b6d0c47bec98867f3268789609932a92078f057b8b4733090759a
+  tamano_bytes: 675012
+  formato: ZIP con base DBF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enpecyt2017_fd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENPECYT_2017 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enpecyt/2017/doc/enpecyt2017_fd.pdf
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENPECYT/2017/enpecyt2017_fd.pdf
+  sha256: 0f8f8b39290d39ff53c8e7feca034dd2a057510bd9b765ff562c5fa989562038
+  tamano_bytes: 1805684
+  formato: PDF descriptor de archivos (FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endiseg2021_bd_csv_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENDISEG_2021 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endiseg/2021/microdatos/endiseg_2021_bd_csv.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENDISEG/2021/endiseg_2021_bd_csv.zip
+  sha256: aca2fad1aae564f855cf91d160cb18689d24f009c2fe5a091c729b1f9fc2c2ab
+  tamano_bytes: 5120097
+  formato: ZIP con base CSV
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: endiseg2021_fd_pdf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENDISEG_2021 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endiseg/2021/microdatos/endiseg_2021_fd_pdf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENDISEG/2021/endiseg_2021_fd_pdf.zip
+  sha256: f5e5d8fa09fe4a10c719055700eaac87535cf0ef4daac20f8767f629f86853bb
+  tamano_bytes: 1179657
+  formato: ZIP con descriptor de archivos (FD) en PDF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enadid2018_bd_csv_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENADID_2018 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2018/microdatos/base_datos_enadid18_csv.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENADID/2018/base_datos_enadid18_csv.zip
+  sha256: 3c6643b706ec5ecd44a4649c8d57c08f4a992117f189e448f13d4774a60a3e5f
+  tamano_bytes: 42389523
+  formato: ZIP con base CSV
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enadid2018_fd_xlsx
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENADID_2018 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enadid/2018/doc/fd_enadid18.xlsx
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENADID/2018/fd_enadid18.xlsx
+  sha256: f776c495d40dd93772504b34d20d779a43fd9ef6bf1657fe00af2034cc39903d
+  tamano_bytes: 808034
+  formato: XLSX descriptor de archivos (FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2022_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2022 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2022_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2022/matrimonios_base_datos_2022_dbf.zip
+  sha256: ea3e0c544d16d209599163ebd5fff433e452ac40450a54032bd490e8a54edd9e
+  tamano_bytes: 5883816
+  formato: ZIP con base DBF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2023_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2023 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2023_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2023/matrimonios_base_datos_2023_dbf.zip
+  sha256: c2cde81ae8aee78f374812ec691bccfbaf7faa29b5223e555c08455e065475f0
+  tamano_bytes: 5785435
+  formato: ZIP con base DBF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: edr2015_2019_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EDR_2017 (hoja de adquisición
+    ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/edr/microdatos/defunciones/datos/defunciones_generales_base_datos_2015_2019_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip
+  sha256: 668166d7a31c3228c518e39c9247616adcd8426416059de7f39aeb905d35b4b6
+  tamano_bytes: 116617815
+  formato: ZIP con bases DBF 2015-2019 (contiene 2017)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: edr2022_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EDR_2022 (hoja de adquisición
+    ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/edr/microdatos/defunciones/2022/defunciones_base_datos_2022_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EDR/2022/defunciones_base_datos_2022_dbf.zip
+  sha256: 0a82398a697b0d9108e6bc46be637b85ffd1af38b1cb063e3ee69a68b1be08aa
+  tamano_bytes: 25864505
+  formato: ZIP con base DBF
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensu2024_bd_csv_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSU_2024T1 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensu/microdatos/ensu_bd_2024_csv.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENSU/2024/ensu_bd_2024_csv.zip
+  sha256: 97034a71d6b2e26d9e87cf5f0835d2004d12b5c92d8afe486bb73164038211f4
+  tamano_bytes: 15017962
+  formato: ZIP con bases CSV de los cuatro trimestres de 2024
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensu2024_fd_pdf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSU_2024T1 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/ensu/doc/ensu_fd_2024_pdf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENSU/2024/ensu_fd_2024_pdf.zip
+  sha256: b2f47ed6de7054b07f319a5f04d80b84679b63e7da71c26402a37d4e3f35c744
+  tamano_bytes: 11121238
+  formato: ZIP con descriptores de archivos (FD) 2024
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: mmsi2016_bd_csv_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:MMSI_2016 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/microdatos/mmsi2016_bases_csv.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: MMSI/2016/mmsi2016_bases_csv.zip
+  sha256: c37656bfcc7cc29be7295eec9a2b999b55a2adbf10630b3616da82290c9bfde1
+  tamano_bytes: 2868676
+  formato: ZIP con bases CSV
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: mmsi2016_fd_xlsx
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:MMSI_2016 (hoja de
+    adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/mmsi/2016/doc/mmsi2016_fd.xlsx
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: MMSI/2016/mmsi2016_fd.xlsx
+  sha256: d9d89618cb95e510b8f3b98494db51feb2e9409a025be65cd51da83416084c96
+  tamano_bytes: 109033
+  formato: XLSX descriptor de archivos (FD)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: latinobarometro2023_bd_stata_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:LATINOBAROMETRO_2023
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.latinobarometro.org/documents/LAT-2023/latinobarometro-2023-stata-v1-0.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: LATINOBAROMETRO/2023/latinobarometro-2023-stata-v1-0.zip
+  sha256: 7689a62d74226a1847ef24407a80d1aaa78d5702648d2b24928d5055e3466cb7
+  tamano_bytes: 4769261
+  formato: ZIP con base Stata
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_abril2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/3950528/files/base_covid_abril2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-04/base_covid_abril2020.dta
+  sha256: 9a324f35604903a5385e9d20c7220ae9948532cb7855028ad38ea482fa4ab23e
+  tamano_bytes: 209287
+  formato: DTA base Stata ronda abril 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_abril2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/3950528/files/Descripcio%CC%81n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-04/descripcion_bd.pdf
+  sha256: 9d5d3e41dea035922d50cd65c6cc3918864e656fa37baa7f8f60be28f90ef268
+  tamano_bytes: 456834
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_abril2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/3950528/files/Cuestionario.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-04/cuestionario.pdf
+  sha256: 38cc6ae83140db11ce0e457207d32807980d12ad5da0d95794a0e8c19cd89b12
+  tamano_bytes: 550637
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_abril2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/3950528/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-04/metodologia.pdf
+  sha256: 79822dbd37104216c209fb6d2ae46c71470a78fc9791d67b7bfcaac19d1b2aa0
+  tamano_bytes: 478196
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_mayo2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602361/files/base_covid_mayo2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-05/base_covid_mayo2020.dta
+  sha256: cef94db985193dd312f75a0f7454eb731d4e993c3e5f47baa1201fb579095e73
+  tamano_bytes: 802786
+  formato: DTA base Stata ronda mayo 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_mayo2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602361/files/Descripcio%CC%81n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-05/descripcion_bd.pdf
+  sha256: b5347e3b068bee9794e4bf05006a5aa06749b3a0dc9a6e286f71b9d287ff9a3e
+  tamano_bytes: 714607
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_mayo2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602361/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-05/metodologia.pdf
+  sha256: 73e3c869b4648a0f85b5794b04ae04daf54e83e9233ab307e496914f23862226
+  tamano_bytes: 354091
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ine_computos2024_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:INE-COMPUTOS_2024 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://web.archive.org/web/20260508193021if_/https://computos2024.ine.mx/20240608_2030_COMPUTOS.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: INE/computos2024/20240608_2030_COMPUTOS.zip
+  sha256: f0b0f90483720374eaac50cfb356b43425697fabfa3f963d22a5b8f2d849312f
+  tamano_bytes: 18201180
+  formato: ZIP con bases de cómputos distritales 2024 (captura Wayback 20260508193021)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: wellcome_wgm2018_dataset_xlsx
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:WELLCOME-GLOBAL-MONITOR_2018
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://wellcome.org/sites/default/files/wgm2018-dataset-crosstabs-all-countries.xlsx
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: WELLCOME/2018/wgm2018-dataset-crosstabs-all-countries.xlsx
+  sha256: 8bcbacd403a4ee531a526913364c163005be6b497ee429214ec2dd6d7a500c90
+  tamano_bytes: 52593312
+  formato: XLSX con hojas Crosstabs, Full dataset (microdato individual, 149015x60 por dimensión
+    OOXML) y Data dictionary
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
