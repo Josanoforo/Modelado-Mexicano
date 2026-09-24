@@ -190,10 +190,13 @@ def prueba_estado_cola_contra_arbol_real():
     afirma(revisados > 0, "debe haber al menos un archivo con cabecera ESTADO: en forense/encargos/cola/")
 
 
-def prueba_render_incluye_marcador_corridas_ramas_nc():
-    """P1/P2/P5 (ACTO GEN2-TABLERO-SENAL-1): las tres líneas nuevas y el
-    censo de NC por razón deben aparecer en el bloque renderizado, y el
-    rótulo del Corredor debe llevar la corrección de P2."""
+def prueba_render_incluye_marcador_corridas_nc():
+    """P1/P2/P5 (ACTO GEN2-TABLERO-SENAL-1): las líneas nuevas y el censo de
+    NC por razón deben aparecer en el bloque renderizado, y el rótulo del
+    Corredor debe llevar la corrección de P2. `ramas_remotas_detalle` dejó
+    de rendirse aquí (P4, ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1: `git
+    ls-remote`/`git fetch` en vivo hacían el bloque no determinista entre
+    dos derivaciones sobre el mismo HEAD) -- sigue disponible en `--json`."""
     I = _indicadores_fixture()
     I["marcador_segmento"] = {"valor": {
         "total_filas": 3, "por_estado": {"IDENTICO": 2, "SOLO-PISO": 1},
@@ -204,9 +207,6 @@ def prueba_render_incluye_marcador_corridas_ramas_nc():
         "selladas_total": 5, "por_cuenta_gen2": {"SI": 3, "PENDIENTE-DE-MESA": 2},
         "pendientes_de_mesa": [{"corrida_id": "CORR-X", "resultado_replay": "REPRODUCE"}],
     }, "comando": "-", "nota": ""}
-    I["ramas_remotas_detalle"] = {"valor": [
-        {"nombre": "claude/foo", "delante_de_main": 1, "detras_de_main": 0, "fecha_ultimo_commit": "2026-09-20"},
-    ], "comando": "-", "nota": ""}
     I["nc_por_razon"] = {"valor": {"abiertas": 4, "por_token": {"PARO-PREMISA": 1}, "prosa": 3}, "comando": "-", "nota": ""}
     I["instrucciones_vigentes"] = {"valor": "v2.14", "comando": "-", "nota": ""}
     bloque = TP.render_bloque_vivo(I)
@@ -214,8 +214,8 @@ def prueba_render_incluye_marcador_corridas_ramas_nc():
     afirma("2 / 3" in bloque, "debe mostrar cada número con su denominador (P1)")
     afirma("Corridas selladas que no cuentan todavía" in bloque, "debe traer la línea de corridas pendientes de contar (P1)")
     afirma("CORR-X" in bloque, "debe listar la corrida PENDIENTE-DE-MESA (P1)")
-    afirma("Ramas presentes en origin" in bloque, "debe traer la línea de ramas (P1)")
-    afirma("claude/foo" in bloque, "debe listar la rama presente (P1)")
+    afirma("Ramas presentes en origin" not in bloque,
+           "ramas_remotas_detalle ya no se rinde en el bloque committeado (P4, no determinista)")
     afirma("Corredor LEGACY (eje x = ∅, GO-MARCADOR)" in bloque, "el rótulo Corredor debe llevar la corrección de P2")
     afirma("NC abiertas por razón" in bloque, "debe traer el censo de NC por razón (P5)")
     afirma("instrucciones vigentes `v2.14`" in bloque, "instrucciones_vigentes debe aparecer en el bloque vivo (P2)")
@@ -275,6 +275,44 @@ def prueba_celdas_d_adoptadas_activas_universo_real():
            "la celda-D del piloto 3 (champion_actual: C2, firma F3) debe contar como adoptada activa")
 
 
+def prueba_compara_head_origin_main():
+    """P2 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): puro, sin tocar git real --
+    coincide, discrepa, y `origin/main` sin resolver es NO-RESUELTO, nunca
+    una coincidencia por default (A.13)."""
+    ok, motivo = TP._compara_head_origin_main("abc123", "abc123")
+    afirma(ok and motivo == "", "HEAD == origin/main debe pasar sin motivo")
+    ok, motivo = TP._compara_head_origin_main("abc123", "def456")
+    afirma(not ok and "abc123" in motivo and "def456" in motivo,
+           "HEAD != origin/main debe fallar citando los dos SHA")
+    ok, motivo = TP._compara_head_origin_main("abc123", "")
+    afirma(not ok and "no resoluble" in motivo,
+           "origin/main vacío (ref no resuelto) debe fallar como NO-RESUELTO, no como coincidencia")
+
+
+def prueba_render_rotula_no_es_origin_main():
+    """P2: el rótulo NO-ES-ORIGIN-MAIN solo aparece cuando se pide
+    explícitamente -- nunca por defecto, para no falsear un bloque normal."""
+    I = _indicadores_fixture()
+    normal = TP.render_bloque_vivo(I)
+    afirma("NO-ES-ORIGIN-MAIN" not in normal, "un bloque normal no debe llevar el rótulo")
+    fuera_de_main = TP.render_bloque_vivo(I, no_es_origin_main=True)
+    afirma("NO-ES-ORIGIN-MAIN" in fuera_de_main, "--permitir-rama debe rotular el bloque")
+
+
+def prueba_determinismo_dos_pasadas():
+    """P4 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): dos derivaciones sobre el
+    mismo árbol producen el bloque BYTE A BYTE idéntico -- el SUPUESTO que
+    permite que el job de CI y una verificación posterior coincidan.
+    Corre contra el árbol real (no un fixture): es la propiedad de
+    `derivar_indicadores()` + `render_bloque_vivo()` de punta a punta la
+    que está bajo prueba, no un caso sintético."""
+    I1 = TP.derivar_indicadores()
+    I2 = TP.derivar_indicadores()
+    b1 = TP.render_bloque_vivo(I1)
+    b2 = TP.render_bloque_vivo(I2)
+    afirma(b1 == b2, "dos derivaciones sobre el mismo árbol deben producir el mismo bloque byte a byte")
+
+
 def main():
     prueba_idempotencia_y_preservacion()
     prueba_ancla_invalida_sin_marcadores()
@@ -282,17 +320,20 @@ def main():
     prueba_ancla_invalida_end_antes_de_begin()
     prueba_estado_cola_lee_cabecera_no_substring()
     prueba_estado_cola_contra_arbol_real()
-    prueba_render_incluye_marcador_corridas_ramas_nc()
+    prueba_render_incluye_marcador_corridas_nc()
     prueba_render_cola_solo_estados_no_consumido()
     prueba_nc_por_razon_prefijo_exacto()
     prueba_celdas_d_adoptadas_activas_sintetica()
     prueba_celdas_d_adoptadas_activas_universo_real()
+    prueba_compara_head_origin_main()
+    prueba_render_rotula_no_es_origin_main()
+    prueba_determinismo_dos_pasadas()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 11 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 14 pruebas, 0 fallos")
     return 0
 
 
