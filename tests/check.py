@@ -5303,6 +5303,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1-cierre.md",
     "canon/L0/ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-01.md",
     "forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1.md",
+    # ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-2, 24/sep/2026. Sucesor del -1: el
+    # encargo (verbatim, A.3), su nota y su ADR/L0 citan el mismo momento
+    # `M08` del catálogo sellado (firma N) -- cita, no rótulo acuñado.
+    "forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2.md",
+    "forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2-cierre.md",
+    "canon/L0/ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-01.md",
 }
 
 
