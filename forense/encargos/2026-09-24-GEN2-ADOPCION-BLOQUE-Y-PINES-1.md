@@ -1,0 +1,49 @@
+# ENCARGO · ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-1 · Ejecuta lo que mesa firme en la hoja de cuadre: acredita y publica el marcador, adopta el bloque ENIGH, extiende el escritor de consumo y aplica los pines de relevo — la primera vez que `adoptados` y `legacy` se mueven en cuatro cortes
+
+> ENTORNO: **NUBE** — lee RESULT sellados, escribe `decisiones.tsv`, `milpa/*.yaml` **solo por escritor**, `pines-de-mesa.tsv` por firma; cero microdato. Hook imprime ENTORNO-DERIVADO; si dice CAJA, PARA.
+
+CABECERA · SHA de redacción `b2690dcc` (re-deriva al abrir) · una sola sesión, rama propia `acto/gen2-adopcion-bloque-y-pines-1` (D-17) · MODELO: Opus (toca el consumo del motor) · MODO: ABIERTO (lote D-11: cuatro piezas; una que PARA no tumba las otras) · ids con raíz de acto (D-24) · D-21 aplica · «Si te encuentras escribiendo fuera de la lista de §9, PARA.» · cierre por /acto: `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio si aplica) y `## CONSUMIDO` al pie.
+CONTADOR: cero mediciones. **Mueve, por derivación y solo con firma verbatim:** `N_resultados_gen2_adoptados_activos` (72 → lo que el marcador dé), `N_resultados_gen2_pendientes_adopcion` (10 → 0 o 4), `dependencias_numericas_legacy_activas` (146 → menos, por consumidor). Antes/después en la nota, por pieza. Nada a mano.
+
+## 1 · OBJETIVO
+Que lo ya medido y sellado sea lo que el programa usa: el marcador publicado con su procedencia acreditada (L), el bloque ENIGH adoptado (M), las dos decisiones del relevo ejecutadas y el escritor de consumo extendido a las llaves que la firma cubre (N), los pines de relevo aplicados y el huérfano resuelto (O), y la marca de definición del contador (P). Cada pieza mueve un contador y la nota lo prueba con `status` antes/después.
+«Hecho» sobre el commit final con origin/main fusionado y el siguiente `[deriva]` fusionado: `status` con `adoptados_activos` > 72, `pendientes_adopcion` ≤ 4, `legacy_activas_por_consumidor__motor` < 34 (o la nota dice por comando por qué una pieza no movió su contador) · `grep -c marcador_segmento .github/workflows/verify.yml` ≥ 1 · `decisiones.tsv` con las filas nuevas citando la FP/firma por id · `pines-de-mesa.tsv` sin pin huérfano · `status` imprime `celdas_validadas_definicion_desde` · `check.py --baseline` VERDE sin `--force`.
+
+## 2 · FIRMAS DE MESA — dadas el 24/sep/2026 («Firmo con las recomendaciones»), verbatim; viajan en este encargo y las asienta este acto al ejecutarlas (A.12: FIRMAS-14 no las asienta por separado)
+- **L** · «Se acredita origen_numerico de CALC-GOB-DIGITAL-EXE-EMISIONES-0002 y -ADJUDICACION-0001 según sus inputs; el marcador entra al paso de derivados de verify.yml; los FAIL de T-REPRO(g) que solo describen el marcador viejo se actualizan con cita al acto que los hizo verdad; uno que proteja una medición vuelve a mesa por FP.» (cierra FP `…CONTADORES-CONSUMO-2-749c-01/02/03` y `…DUELO-ENCIG2025-CIERRE-1-657c-04`)
+- **M** · «Se adoptan en bloque las diez corridas ENIGH con replay REPRODUCE (fila en decisiones.tsv por CALC); EDER-0002, ENFIH-0001/0002 y WBES-0001 quedan PENDIENTE-DE-MESA hasta replay afirmativo.» (cierra NC `…TRAMITE-FIRMAS-7-369b-01`)
+- **N** · «Momento 08 se acota a unidad DELITO (BPCOD=01) con discrepancia NO-REPRODUCE-GEN1 rotulada; momentos 01 y 02 adoptan la pregunta y el registro que el cotejo documental cita por texto; el escritor de consumo se extiende a esas llaves según contratos-otros-consumidores.md.» (cierra las dos decisiones de `forense/analisis/astra4-relevo/estado-y-decision.md`)
+- **O** · «El pin de vía (iii) se re-apunta a la llave vigente si el renombre se demuestra por diff del motor; si no, se retira con NC.»
+- **P** · «celdas_validadas lleva marca de definición (commit y fecha) en status y en el informe; la cifra prospectiva se reporta aparte y nunca se funde.»
+Firmas ya vigentes que se citan: #1002 (ENVIPE adopta), #1009 (ENIF con reserva), F3 (gobierno digital C2), 4.1 del 21/sep (vías de relevo y cuatro guardas), D6 del 23/sep (vía (i) lee eje RESULTADO). Una pieza cuya firma no esté arriba no corre.
+
+## 3 · LO QUE DIRECCIÓN SABE
+- `[EJECUTADO]` `status` a `b2690dcc`: 234 corridas · 65 599 RESULT · 72 adoptados · 10 pendientes · 4 vetados · 146 legacy (motor 34 · procedencia 40 · catálogo 23 · marco 43 · celdas-D 6). Cuatro cortes del tablero con la misma adopción.
+- `[LEÍDO]` FP `…CONTADORES-CONSUMO-2-749c-01/02/03` (texto en el TSV; 03 truncado en la lectura de dirección: **léelo entero**). `[LEÍDO]` Tablero v5 l.27-41: las 14 corridas PENDIENTE-DE-MESA con su replay (10 REPRODUCE, 4 NO-VERIFICADO). `[LEÍDO]` `forense/analisis/astra4-relevo/estado-y-decision.md`: «el único escritor fusionado … limitado a RES-0028; para las demás aplicaciones faltan firmas y/o escritores según `contratos-otros-consumidores.md`»; decisiones momento 08 y 01–02. `[LEÍDO]` `tools/escribe_relevo_consumo.py` docstring: «V1 admite solo RES-0028; no firma pines; el merge de mesa materializa la adopción». `[EJECUTADO]` `pines-de-mesa.tsv`: 51 líneas, columnas `llave_logica · result_gen2 · calc_gen2 · via · firma · nota`; `tools/pines_mesa.py` valida las cuatro guardas.
+- `[SUPUESTO]` que extender el escritor a otras llaves es cuestión de contrato por consumidor (el documento existe) y no de rediseño; si el contrato de un consumidor no está escrito, esa llave queda `DIFERIDO-A` con NC y no se improvisa.
+- ADJUNTOS: ninguno. La hoja de cuadre (`FIRMAS-14-ADENDA-3`, sha256 `bca75b3b118e832e`) es la fuente de los textos de §2; no hace falta adjuntarla.
+
+## 4 · YA HECHO / YA DECIDIDO
+`git log --oneline -3 -- tools/escribe_relevo_consumo.py data/corrida0/pines-de-mesa.tsv data/corrida0/decisiones.tsv` → reporta. `git ls-remote --heads origin | grep -i 'adopcion\|pines'` → 0. CONTADORES-2 (#1096) ejecutó P-B y dejó L como FP. **Repítelo.**
+
+## 5 · PIEZAS
+- **P-L · Marcador y procedencia.** Dos filas `origen_numerico` en `decisiones.tsv` (firma L verbatim, id de FP); `registro --verifica` deja de dar NO_APTA (salida pegada); `marcador_segmento.py --escribe` en el paso de derivados de `verify.yml` (quitar la exclusión de #1050); `check.py --baseline`: tabla de los 16 FAIL de T-REPRO(g) con causa; los de estado se actualizan con cita; uno que proteja medición → FP y esa aserción no se toca. Cierra `749c-01/02/03` y `657c-04`.
+- **P-M · Bloque ENIGH.** Diez filas en `decisiones.tsv` (una por CALC, firma M verbatim); `status` → `pendientes_adopcion` 4; los 4 NO-VERIFICADO quedan con NC `DIFERIDO-A: replay`. Cierra `…TRAMITE-FIRMAS-7-369b-01`.
+- **P-N · Relevo: decisiones y escritor.** Momento 08 → unidad DELITO en el catálogo con `NO-REPRODUCE-GEN1` rotulado; momentos 01–02 → pregunta y registro del cotejo (cita por texto, A.15). Extender `escribe_relevo_consumo.py` a las llaves que `contratos-otros-consumidores.md` describe **y** que tengan pin firmado y RESULT sellado con replay afirmativo (vías (i)/(ii)/(iii) leen eje RESULTADO, D6); `--apply` solo tras diff seco pegado en la nota; test por llave (el yaml gana la cita del RESULT, nunca un número tecleado). `status` → `legacy_activas_por_consumidor__motor` baja; se reporta por consumidor.
+- **P-O · Pines.** `tools/pines_mesa.py` sobre cada fila: las que pasen las cuatro guardas se aplican por el escritor (P-N); el huérfano de vía (iii): buscar la llave vigente por `git log -S <llave vieja> -- milpa/`; si es renombre, re-apuntar con nota; si no, retirar con NC. Ninguna firma nueva se escribe en el TSV: las que faltan van a FP.
+- **P-P · Marca de definición.** `corrida0.py status` imprime `celdas_validadas_definicion_desde=<commit de #1078>`; la spec humana de `celdas_validadas` lo declara (D-15: spec antes que módulo); test.
+
+## 6 · LATITUD
+Orden sugerido L → M → P → O → N (N es la que más puede parar). ≤ 10 líneas adyacentes: sí, declarado. Pregunta a mesa (sigues con el resto): un FAIL que proteja medición (P-L); una llave cuyo contrato no exista (P-N); un pin que falle una guarda (P-O: se lista, no se fuerza).
+
+## 7 · PAROS — lista cerrada
+a) no aplica · b) editar `milpa/*.yaml` a mano (solo el escritor con diff seco), commitear el marcador a mano, `--force`, `--excluye`, bajar una aserción que proteja medición, reescribir un sello o una fila FIRMADA · c) escribir una firma de pin o una fila de `decisiones.tsv` sin texto verbatim de mesa; mover un contador a mano · d) no aplica · e) CAJA · f) las cinco piezas ya están en origin/main.
+
+## 8 · COMPUERTAS
+«Cada fila de `decisiones.tsv` y cada pin aplicado citan una firma de mesa por id» protege: **adoptar** (E.2). «El motor cambia solo por el escritor, con diff seco en la nota y test por llave» protege: **adoptar / congelar**. «FAIL que protege medición → mesa» protege: **borrar**.
+
+## 9 · PERÍMETRO Y CONCURRENCIA
+Propio: `data/corrida0/decisiones.tsv` (append), `data/corrida0/pines-de-mesa.tsv` (solo `nota`/re-apunte del huérfano; ninguna firma nueva), `tools/escribe_relevo_consumo.py` + tests, `milpa/*.yaml` **solo vía escritor**, `.github/workflows/verify.yml` (paso de derivados), tests con aserciones de estado del marcador, `tools/celdas_validadas.py` + spec (P-P), `firmas-pendientes.tsv`/`no-corrido.tsv` (estado/append), nota, L0, cascada. Ajeno: `marcador_segmento.py`, `registro`, CALC, celdas-D, catálogo de Astra. En vuelo: `codex/astra5-mapa-dominios-1` (por retomar; no toca esto), AUDITORIA-POST-HOC (TSV de gobierno: union), FIRMAS-14 (misma tanda; union).
+
+## 10 · LO QUE NO HACE · SUCESORES
+No mide, no releva lo que no tenga pin firmado, no adopta lo de Astra (FP aparte tras auditoría). Sucesores: `GEN2-ADOPCION-BLOQUE-Y-PINES-2` para las llaves `DIFERIDO-A` y los 4 NO-VERIFICADO; FIRMAS-15 asienta los contadores nuevos; el informe v1.3 cita el commit.
