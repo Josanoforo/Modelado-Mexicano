@@ -1,0 +1,101 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-LAPOP-PISOS-2019-0002
+spec_md: ../../../forense/prereg-caja/LAPOP-PISOS-OLAS-spec-v1_0.md
+spec_md_sha256: 1e64e1ad32738063fa0d69ab72088b39320246fff86211c8f3c9ff57e9078d4d
+script: data/corrida0/CALC-LAPOP-PISOS-2019-0002/medidor.py
+etiquetas: {generacion: GEN2, tipo: PISO-ENCUESTA, cuenta_gen2: SI, cuenta_gen2_nota: Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta, adopta: 'NO', origen_numerico: NUEVO, acto: ASTRA5-U3-POLITICA-COMPLETAR, calibracion: SIN-HISTORIA-PARA-CALIBRAR}
+inputs:
+- {id: mexico_lapop_americasbarometer_2019_v1_0_w, origen: manifiesto}
+variables:
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: b21, rol: 'confianza_partidos_alta: evento [6, 7] entre 1..7; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: pol1, rol: 'interes_politica_mucho_algo: evento [1, 2] entre 1..4; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: eff1, rol: 'eficacia_gobernantes_interesan_alta: evento [6, 7] entre 1..7; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: eff2, rol: 'eficacia_entiende_asuntos_alta: evento [6, 7] entre 1..7; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: d1, rol: 'tolerancia_votar_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: d2, rol: 'tolerancia_manifestarse_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: d3, rol: 'tolerancia_postularse_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: d4, rol: 'tolerancia_discurso_tv_aprueba: evento [6, 7, 8, 9, 10] entre 1..10; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: clien1n, rol: 'oferta_beneficio_a_conocido: evento [1] entre 1..2; no respuesta [888888, 988888, 999999]'}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: estratopri, rol: estrato primario}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: upm, rol: UPM}
+- {archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta, variable: wt, rol: ponderador}
+universo: LAPOP México 2019, estudio nacional; presencial con dispositivo, ene-mar 2019; autoponderada (wt=1); no repite b18/clien1na de 2019-0001; personas con código sustantivo y diseño completo por reactivo
+filtros: código dentro de la escala declarada; no respuesta declarada y faltantes extendidos fuera; otro valor -> ESCALA-DISCREPANTE; peso>0 finito, estrato y UPM presentes; n mínimo 30
+ponderador: wt del microdato
+transformacion: evento por reactivo según tabla de la spec humana; proporción ponderada; IC95 bootstrap de UPM con reemplazo dentro de estrato
+estimando: proporciones marginales nacionales de entrevistados, retrospectivas, sin serie, sin causalidad ni unión con INE
+dependencias_materiales: [numpy, pandas, pyreadstat]
+parametros:
+  payload_id: mexico_lapop_americasbarometer_2019_v1_0_w
+  diseno:
+    estrato: estratopri
+    upm: [upm]
+    peso: wt
+  items:
+  - clave: confianza_partidos_alta
+    variable: b21
+    validos: &id002 [1, 2, 3, 4, 5, 6, 7]
+    evento: [6, 7]
+    faltantes: &id001 [888888, 988888, 999999]
+    semilla_desplazamiento: 0
+  - clave: interes_politica_mucho_algo
+    variable: pol1
+    validos: [1, 2, 3, 4]
+    evento: [1, 2]
+    faltantes: *id001
+    semilla_desplazamiento: 1
+  - clave: eficacia_gobernantes_interesan_alta
+    variable: eff1
+    validos: *id002
+    evento: [6, 7]
+    faltantes: *id001
+    semilla_desplazamiento: 2
+  - clave: eficacia_entiende_asuntos_alta
+    variable: eff2
+    validos: *id002
+    evento: [6, 7]
+    faltantes: *id001
+    semilla_desplazamiento: 3
+  - clave: tolerancia_votar_aprueba
+    variable: d1
+    validos: &id003 [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    evento: [6, 7, 8, 9, 10]
+    faltantes: *id001
+    semilla_desplazamiento: 4
+  - clave: tolerancia_manifestarse_aprueba
+    variable: d2
+    validos: *id003
+    evento: [6, 7, 8, 9, 10]
+    faltantes: *id001
+    semilla_desplazamiento: 5
+  - clave: tolerancia_postularse_aprueba
+    variable: d3
+    validos: *id003
+    evento: [6, 7, 8, 9, 10]
+    faltantes: *id001
+    semilla_desplazamiento: 6
+  - clave: tolerancia_discurso_tv_aprueba
+    variable: d4
+    validos: *id003
+    evento: [6, 7, 8, 9, 10]
+    faltantes: *id001
+    semilla_desplazamiento: 7
+  - clave: oferta_beneficio_a_conocido
+    variable: clien1n
+    validos: [1, 2]
+    evento: [1]
+    faltantes: *id001
+    semilla_desplazamiento: 8
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-LAPOP-PISOS-2019-COMPLEMENTO-FILAS
+  result_tablas:
+    RESULT-LAPOP-PISOS-2019-COMPLEMENTO-TABLA: [confianza_partidos_alta, interes_politica_mucho_algo, eficacia_gobernantes_interesan_alta, eficacia_entiende_asuntos_alta, tolerancia_votar_aprueba, tolerancia_manifestarse_aprueba, tolerancia_postularse_aprueba, tolerancia_discurso_tv_aprueba, oferta_beneficio_a_conocido]
+  hash_medidor_sha256: 9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c
+  hash_payload_sha256: c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57
+  dictamen: forense/analisis/dominios/politica/lapop-dictamen-olas-v1_0.tsv
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia: {tipo: exacta, razon: misma semilla por reactivo y orden determinista de estratos/UPM}
+resultados:
+- {id: RESULT-LAPOP-PISOS-2019-COMPLEMENTO-FILAS, tipo: entero, unidad: entrevistas en el microdato de la ola}
+- {id: RESULT-LAPOP-PISOS-2019-COMPLEMENTO-TABLA, tipo: texto, unidad: JSON canónico de proporciones e IC de diseño por reactivo, permite_no_estimable: true}

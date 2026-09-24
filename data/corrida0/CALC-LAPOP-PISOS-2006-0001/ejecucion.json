@@ -1,0 +1,296 @@
+{
+ "corrida_id": "CALC-LAPOP-PISOS-2006-0001--2276a2be78b5",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA-COMPLETAR",
+  "adopta": "NO",
+  "calibracion": "SIN-HISTORIA-PARA-CALIBRAR",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "tipo": "PISO-ENCUESTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:45:49Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 457,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "2276a2be78b54c60744a009c28934b2715f32c89",
+  "git_rama": "claude/astra5-politica-completar-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "2276a2be78b54c60744a009c28934b2715f32c89",
+ "input_ids": [
+  "518939279mexico_lapop_final_2006_data_set_092906"
+ ],
+ "input_sha256": {
+  "518939279mexico_lapop_final_2006_data_set_092906": "e426210067f9dba8aca87a0df2161bc7389cc5aaf9e5516aa7ebf9cb52f149fa"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "dictamen": "forense/analisis/dominios/politica/lapop-dictamen-olas-v1_0.tsv",
+  "diseno": {
+   "estrato": "ESTRATOPRI",
+   "peso": null,
+   "upm": [
+    "UPM"
+   ]
+  },
+  "hash_medidor_sha256": "9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c",
+  "hash_payload_sha256": "e426210067f9dba8aca87a0df2161bc7389cc5aaf9e5516aa7ebf9cb52f149fa",
+  "items": [
+   {
+    "clave": "interes_politica_mucho_algo",
+    "evento": [
+     1,
+     2
+    ],
+    "faltantes": [
+     8
+    ],
+    "semilla_desplazamiento": 0,
+    "validos": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "variable": "POL1"
+   },
+   {
+    "clave": "confianza_policia_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     8
+    ],
+    "semilla_desplazamiento": 1,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "B18"
+   },
+   {
+    "clave": "confianza_partidos_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     8
+    ],
+    "semilla_desplazamiento": 2,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "B21"
+   },
+   {
+    "clave": "tolerancia_votar_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 3,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "D1"
+   },
+   {
+    "clave": "tolerancia_manifestarse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 4,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "D2"
+   },
+   {
+    "clave": "tolerancia_postularse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 5,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "D3"
+   },
+   {
+    "clave": "tolerancia_discurso_tv_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 6,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "D4"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "518939279mexico_lapop_final_2006_data_set_092906",
+  "result_filas": "RESULT-LAPOP-PISOS-2006-FILAS",
+  "result_tablas": {
+   "RESULT-LAPOP-PISOS-2006-TABLA": [
+    "interes_politica_mucho_algo",
+    "confianza_policia_alta",
+    "confianza_partidos_alta",
+    "tolerancia_votar_aprueba",
+    "tolerancia_manifestarse_aprueba",
+    "tolerancia_postularse_aprueba",
+    "tolerancia_discurso_tv_aprueba"
+   ]
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-LAPOP-PISOS-2006-FILAS",
+  "RESULT-LAPOP-PISOS-2006-TABLA"
+ ],
+ "script_blob_sha256": "9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c",
+ "script_path": "data/corrida0/CALC-LAPOP-PISOS-2006-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-LAPOP-PISOS-2006-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "1e64e1ad32738063fa0d69ab72088b39320246fff86211c8f3c9ff57e9078d4d",
+ "spec_yaml_sha256": "ca2f63e19c844a4317b0cd954b19c3c3f34a788af2c2eeea33af7fa50e0f569c",
+ "tolerancia": {
+  "razon": "misma semilla por reactivo y orden determinista de estratos/UPM",
+  "tipo": "exacta"
+ }
+}
