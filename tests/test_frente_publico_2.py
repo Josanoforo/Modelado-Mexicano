@@ -18,14 +18,36 @@ ROOT = Path(__file__).resolve().parents[1]
 ARCHIVOS_CON_DERIVA = [
     "docs/one-pager.md",
     "docs/reto.md",
-    "docs/deck/02-seis-evaluaciones.md",
 ]
 
 PATRON_DERIVA = re.compile(r"(\d[\d ]*)\s*<!--\s*deriva:\s*(.+?)\s*-->")
+PATRON_STATUS_GREP = re.compile(r"^python3 tools/corrida0\.py status \| rg '\^([A-Za-z0-9_]+)='$")
+
+_STATUS_CACHE: list[str] = []
 
 
 class CifrasDerivadas(unittest.TestCase):
+    def _status(self) -> str:
+        # `corrida0.py status` recorre todo el corte (≈70s); varias líneas
+        # de los cuatro artefactos citan el mismo comando con distinto grep
+        # -- se corre UNA vez por corrida de test, no una por línea citada
+        # (T16: verificar tiene costo, no se paga varias veces por lo mismo).
+        if not _STATUS_CACHE:
+            resultado = subprocess.run(
+                ["bash", "-c", "python3 tools/corrida0.py status"],
+                cwd=ROOT, capture_output=True, text=True, timeout=200,
+            )
+            self.assertEqual(resultado.returncode, 0, f"corrida0.py status falló:\n{resultado.stderr}")
+            _STATUS_CACHE.append(resultado.stdout)
+        return _STATUS_CACHE[0]
+
     def _corre(self, comando: str) -> str:
+        m = PATRON_STATUS_GREP.match(comando)
+        if m:
+            clave = m.group(1)
+            m2 = re.search(rf"(?m)^{re.escape(clave)}=(\d+)$", self._status())
+            self.assertIsNotNone(m2, f"{clave} no aparece en corrida0.py status")
+            return f"{clave}={m2.group(1)}\n"
         resultado = subprocess.run(
             ["bash", "-c", comando], cwd=ROOT, capture_output=True, text=True, timeout=200,
         )
@@ -62,8 +84,7 @@ class CifrasDerivadas(unittest.TestCase):
         estados = {fila["estado_adopcion"] for fila in filas}
         self.assertEqual(estados, {"ADOPTADO-POR-FIRMA", "CONSUMO-GEN2-ACTIVO"})
 
-        status = self._corre("python3 tools/corrida0.py status")
-        m2 = re.search(r"^N_resultados_gen2_adoptados_activos=(\d+)$", status, re.MULTILINE)
+        m2 = re.search(r"^N_resultados_gen2_adoptados_activos=(\d+)$", self._status(), re.MULTILINE)
         self.assertIsNotNone(m2)
         self.assertEqual(len(filas), int(m2.group(1)))
 

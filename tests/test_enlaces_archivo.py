@@ -13,6 +13,12 @@ PUBLICOS = [
     "README.md", "AVISO-DE-ALCANCE.md", "USO-ACEPTABLE.md",
     "docs/index.md", "docs/verificar.md", "docs/guia-lectura-publica.md",
     "docs/catalogo.md", "docs/contacto.md",
+    "docs/one-pager.md", "docs/reto.md", "docs/deck.md",
+    "docs/deck/01-tesis.md", "docs/deck/02-seis-evaluaciones.md",
+    "docs/deck/03-corroboracion-externa.md", "docs/deck/04-catalogo.md",
+    "docs/deck/05-segmentacion-y-clase.md", "docs/deck/06-donde-ganan-los-otros.md",
+    "docs/deck/07-sellado-y-verificacion.md", "docs/deck/08-reto-publico.md",
+    "docs/deck/09-que-viene.md", "docs/deck/10-contacto.md",
 ]
 
 
