@@ -31003,6 +31003,218 @@
   nota: PDF documental; no microdato. Población objetivo 12+; diseño en tres etapas, estratificado;
     factores por persona y varianza.
 
+- id: enadid2023_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 TEC-010 y ASTRA5-U4: universo, expansión y varianza de ENADID 2023 para P3_12 por P3_23/SEXO'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463916413.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, copia documental primaria previamente disponible en mm-corpus/raw; registro ASTRA5-U5
+  archivo: 889463916413.pdf
+  sha256: 546b6b1b832ff5e7abe8e93b2139ce867d24ed121d0158e4a7bc2f1838b4f883
+  tamano_bytes: 1581078
+  formato: PDF, diseño muestral ENADID 2023
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito a INEGI, conservar metadatos
+  nota: Documento físico leído por U0 en hoja de adquisición de #1079; no microdato ni nueva descarga.
+
+- id: enigh2024_reporte_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-004..005: Gini ENIGH 2024 con/sin transferencias publicado, no inferencia causal'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enigh/ENIGH2024_RR.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: enigh2024_reporte_resultados.pdf
+  sha256: 6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d
+  tamano_bytes: 1150732
+  formato: PDF, reporte de resultados 23/25, 27 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U0 MER-006..007: población objetivo, diseño y expansión ENCIG 2025'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463930778.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_diseno_muestral.pdf
+  sha256: de74a89623696e54e2d409a5cb5ae2b41dcd54a73c9deef1102b5793d875175e
+  tamano_bytes: 1343631
+  formato: PDF, diseño muestral ENCIG 2025, 20 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_boletin_pdf
+  usado_para: 'ASTRA5-U0 MER-006: percepción frecuente de corrupción ENCIG 2025; MER-007 contexto de confianza'
+  url_origen: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2026/encig/ENCIG2025_CP.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_boletin.pdf
+  sha256: 6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4
+  tamano_bytes: 329663
+  formato: PDF, comunicado ENCIG 2025 de 21-may-2026, 3 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: encig2025_principales_resultados_pdf
+  usado_para: 'ASTRA5-U0 MER-007: confianza en gobierno federal con ENCIG 2025, gráfica p.50'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig2025_principales_resultados.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, descarga documental dirigida desde INEGI; alta transferida por ASTRA5-U5
+  archivo: encig2025_principales_resultados.pdf
+  sha256: 476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548
+  tamano_bytes: 970921
+  formato: PDF, presentación de resultados ENCIG 2025, 51 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: Alta preparada en HEAD de codex/astra5-mapa-dominios-1, fuera del perímetro U0; SHA y tamaño físicos revalidados por U5.
+
+- id: endireh2011_cuestionario_a_pdf
+  usado_para: 'ASTRA5-U2: texto, elegibilidad y ventanas del instrumento A, mujeres casadas o unidas ENDIREH 2011'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_unidas.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI identificado en RNM catálogo 275
+  archivo: endireh2011/endireh11_m_unidas.pdf
+  sha256: de9e6614564df6e36b86de7e6f9274d191546793da4f121876232ababb53ed2f
+  tamano_bytes: 891346
+  formato: PDF, ENDIREH 2011 cuestionario general y mujeres casadas o unidas, instrumento A
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: Archivo documental independiente; no se abrió ZIP de microdato.
+
+- id: endireh2011_cuestionario_b_pdf
+  usado_para: 'ASTRA5-U2: texto, elegibilidad y ventanas del instrumento B, mujeres alguna vez unidas ENDIREH 2011'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_alg_vez_unida.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI identificado en RNM catálogo 275
+  archivo: endireh2011/endireh11_m_alg_vez_unida.pdf
+  sha256: a6dca2905108ba78bc82f88b535c5e5c54a519edc6228fe04781e6b781c68d52
+  tamano_bytes: 832673
+  formato: PDF, ENDIREH 2011 cuestionario mujeres alguna vez unidas, instrumento B
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: Archivo documental independiente; no se abrió ZIP de microdato.
+
+- id: endireh2011_cuestionario_c_pdf
+  usado_para: 'ASTRA5-U2: texto, elegibilidad y ventanas del instrumento C, mujeres nunca unidas ENDIREH 2011'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_solteras.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI identificado en RNM catálogo 275
+  archivo: endireh2011/endireh11_m_solteras.pdf
+  sha256: 2bcc0e7a90e487ec37f6f760da3b5dad406d168737fcf577572bfecb2ebe4d1e
+  tamano_bytes: 801357
+  formato: PDF, ENDIREH 2011 cuestionario mujeres nunca unidas, instrumento C
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: Archivo documental independiente; no se abrió ZIP de microdato.
+
+- id: endireh2003_diseno_muestral_pdf
+  usado_para: 'ASTRA5-U2: población objetivo, tres etapas y precisión ENDIREH 2003; dictamen separado de comparabilidad'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/metodologias/est/dm_endireh03.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, PDF primario INEGI; alternativa autorizada al descriptor insuficiente
+  archivo: endireh2003/dm_endireh03.pdf
+  sha256: f6789b54578516cfccd29242f5a0eca47a7dda13bc2e32d315d60592cc4843be
+  tamano_bytes: 1392730
+  formato: PDF, ENDIREH 2003 diseño muestral, 14 páginas
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: Define mujeres de 15 años y más con pareja residente, cobertura nacional y 11 entidades; no homologa por sí solo 2003 con 2016/2021.
+
+- id: endireh2021_cuestionario_general_pdf
+  usado_para: 'ASTRA5-U2: selección de mujer elegida y situación conyugal ENDIREH 2021, complemento del cuestionario A existente'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_general.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, respaldo documental físico /tmp/astra5-endireh2021_cuestionario_general.pdf de la sesión U2; copia al corpus compartido
+  archivo: endireh2021/endireh2021_cuestionario_general.pdf
+  sha256: ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a
+  tamano_bytes: 955790
+  formato: PDF, ENDIREH 2021 cuestionario general
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: URL primaria documentada en RNM catálogo 801; copia física preservada sin abrir microdato.
+
+- id: endireh2021_cuestionario_b_pdf
+  usado_para: 'ASTRA5-U2: texto y filtros de pareja, ayuda y denuncia para mujeres separadas, divorciadas o viudas ENDIREH 2021'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_b.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, respaldo documental físico /tmp/astra5-endireh2021_cuestionario_b.pdf de la sesión U2; copia al corpus compartido
+  archivo: endireh2021/endireh2021_cuestionario_b.pdf
+  sha256: beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689
+  tamano_bytes: 1176836
+  formato: PDF, ENDIREH 2021 cuestionario B
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: URL primaria documentada en RNM catálogo 801; copia física preservada sin abrir microdato.
+
+- id: endireh2021_cuestionario_c_pdf
+  usado_para: 'ASTRA5-U2: texto y filtros de pareja, ayuda y denuncia para mujeres solteras ENDIREH 2021'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_c.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, respaldo documental físico /tmp/astra5-endireh2021_cuestionario_c.pdf de la sesión U2; copia al corpus compartido
+  archivo: endireh2021/endireh2021_cuestionario_c.pdf
+  sha256: 793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be
+  tamano_bytes: 1146041
+  formato: PDF, ENDIREH 2021 cuestionario C
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: URL primaria documentada en RNM catálogo 801; copia física preservada sin abrir microdato.
+
+- id: endireh2006_tabulados_cuestionarios_pdf
+  usado_para: 'ASTRA5-U2: cuestionario general y módulos 2006 de casadas/unidas, separadas/divorciadas/viudas y solteras en anexos; matriz por estado conyugal'
+  url_origen: https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/estudios/sociodemografico/mujeresrural/2007/Endireh06_EUM_Tab.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, publicación primaria INEGI con anexos de instrumentos; alternativa a copia local sin URL exacta
+  archivo: endireh2006/Endireh06_EUM_Tab.pdf
+  sha256: 6a3ae3b23f0b0241b536e2fb1ec7de08b25af5d43318ec35a2fa379f6a965a55
+  tamano_bytes: 2212563
+  formato: PDF, ENDIREH 2006 tabulados básicos, 209 páginas, anexos de cuestionarios
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+  nota: El texto físico del PDF ubica los tres instrumentos en sus anexos; no se abrió ZIP de microdato. Los tres PDF sueltos en /tmp se conservaron como respaldo sin registrar por no tener URL exacta.
+
+- id: endireh2016_cuestionario_general_pdf
+  usado_para: 'ASTRA5-U2: elegibilidad, vivienda y selección de mujer ENDIREH 2016'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_general.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI documentado en RNM catálogo 286
+  archivo: endireh2016/endireh2016_cuestionario_general.pdf
+  sha256: b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac
+  tamano_bytes: 946284
+  formato: PDF, ENDIREH 2016 cuestionario general
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+
+- id: endireh2016_cuestionario_a_pdf
+  usado_para: 'ASTRA5-U2: texto, filtros y ventanas para casadas o unidas ENDIREH 2016'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_a.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI documentado en RNM catálogo 286
+  archivo: endireh2016/endireh2016_cuestionario_a.pdf
+  sha256: 0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64
+  tamano_bytes: 1264691
+  formato: PDF, ENDIREH 2016 cuestionario A
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+
+- id: endireh2016_cuestionario_b_pdf
+  usado_para: 'ASTRA5-U2: texto, filtros y ventanas para separadas, divorciadas o viudas ENDIREH 2016'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_b.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI documentado en RNM catálogo 286
+  archivo: endireh2016/endireh2016_cuestionario_b.pdf
+  sha256: fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d
+  tamano_bytes: 1324453
+  formato: PDF, ENDIREH 2016 cuestionario B
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+
+- id: endireh2016_cuestionario_c_pdf
+  usado_para: 'ASTRA5-U2: texto, filtros y ventanas para solteras ENDIREH 2016'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_c.pdf
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U5, enlace primario INEGI documentado en RNM catálogo 286
+  archivo: endireh2016/endireh2016_cuestionario_c.pdf
+  sha256: a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e
+  tamano_bytes: 1818915
+  formato: PDF, ENDIREH 2016 cuestionario C
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html); crédito y metadatos
+
+- id: ced_mex_a34_decision_2026_html
+  usado_para: 'ASTRA5-U0 report duelo L18: fecha y alcance de la decisión CED de remitir el caso de México a la Asamblea General, párrafo 122'
+  url_origen: https://docstore.ohchr.org/SelfServices/FilesHandler.ashx?enc=6kUA1J%2BZpX0no0%2BcE1o8qahaszcJosu7TXiqwiZqNm1hbTOAWHFnLpCzLseHeZ7XNI6O82nGKDo3hEvgpfEUnaguryc9yYY71CGw6Kk0enM%3D
+  fecha_descarga: '2026-09-23'
+  descargado_por: ASTRA5-U0, HTML/XML UTF-16 de docstore.ohchr.org; alta documental transferida por ASTRA5-U5
+  archivo: astra5_u0/ced_mex_a34_decision_2026.html
+  sha256: 6bbabd7da0a84eae71351bf49e50646f973f0e866f78b7f21aa36e6e99074a66
+  tamano_bytes: 165002
+  formato: HTML/XML UTF-16, decisión CED/C/MEX/A.34/D/1, distribuida 17-abr-2026
+  licencia: Condiciones de utilización de Naciones Unidas (https://www.un.org/es/about-us/terms-of-use); copia local de lectura sin redistribución ni publicación del archivo
+  nota: Copia y hash documentados por U0 en hoja de #1079, verificados físicamente por U5; el documento dice remisión a la Asamblea, no resolución de ésta. No se commitea el contenido.
+
 - id: envipe2025_diseno_muestral_pdf
   usado_para: documentación muestral ENVIPE 2025 para contrato ASTRA5-U0-POL-002 de cifra
     negra
