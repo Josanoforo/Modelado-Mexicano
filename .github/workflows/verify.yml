@@ -414,13 +414,20 @@ jobs:
       # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
       # El registro escribe las vistas de corridas y resultados pedidas
       # para el piloto 4; la tabla de citas selladas acompaña esos resultados
-      # para que G5 pueda resolver sus RES. El marcador, la demanda y usos.tsv quedan pendientes:
-      # publicarlos ahora añade 21 FAIL de línea base medidos el 23/sep.
-      # El lote une los asientos
+      # para que G5 pueda resolver sus RES. El lote une los asientos
       # nuevos de este push con los sellados aún ausentes de corridas.tsv:
       # recupera #1036 tras el GH013 sin autorizar un replay ya publicado.
       # Un PR creado con GITHUB_TOKEN no dispara pull_request; workflow_dispatch
       # en su rama produce el check requerido sin fusionarlo automáticamente.
+      #
+      # ACTO GEN2-CONTADORES-CONSUMO-2 (23/sep/2026), FP-988c-01 FIRMADA: el
+      # marcador, la demanda y usos.tsv quedaban pendientes ("publicarlos
+      # ahora añade 21 FAIL de línea base", #1050) porque dos CALC de
+      # gobierno digital caían en NO_APTA por origen_numerico sin acreditar.
+      # Acreditado (decisiones.tsv) y las aserciones de estado del marcador
+      # actualizadas (tests/test_c2_compuesto.py), el marcador entra al
+      # canal: se deriva antes del registro (para que sus usos se
+      # proyecten) y usos.tsv deja de descartarse.
       - name: Deriva vistas y abre PR automático verificado (solo push a main)
         if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, '[deriva]') }}
         env:
@@ -428,6 +435,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          python3 tools/marcador_segmento.py --escribe
           if [ -n "${ANTES:-}" ] && git cat-file -e "$ANTES" 2>/dev/null; then
             LOTE="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --incluir-pendientes --csv)"
           else
@@ -442,8 +450,7 @@ jobs:
             }
           fi
           python3 tools/resuelve_citas.py tabla --escribe
-          git restore -- data/corrida0/usos.tsv
-          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv
+          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml
           if git diff --cached --quiet; then
             echo "sin diff derivado -- nada que publicar"
             exit 0
