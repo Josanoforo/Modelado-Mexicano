@@ -200,7 +200,12 @@ dirección, no un hallazgo nuevo de esta sesión. 4 tests nuevos; suite de
 - `python3 -m unittest tests.test_celdas_validadas_spec tests.test_celdas_validadas tests.test_celdas_validadas_monotonia` → 22 tests, OK.
 - `python3 tools/pines_mesa.py` (vía script ad-hoc contra el `valida_pin` real): pin de M08 → `ACEPTADO` (las cuatro guardas de 4.1 pasan); el pin se revirtió después por una razón **distinta** (`T-REPRO(c)`, ver P-N) — `ACEPTADO` en `valida_pin` no implica que la suite completa pase, y aquí es exactamente el caso. `pines_rechazados` de las 30 filas previas (sin el pin de M08) → vacío.
 - `python3 tools/corrida0.py registro --verifica --lote …` → 0 `NO_APTA` para los dos CALC de firma L en el árbol committeado.
-- `python3 tests/check.py --baseline --parallel`, corrido **dos veces**: la primera (con el pin de M08) dio `ROJO — 1 FAIL nuevo` (T-REPRO(c), ver P-N); la segunda (tras revertir el pin) confirma `VERDE — sin FAIL nuevos` — salida pegada abajo.
+- `python3 tests/check.py --baseline --parallel`, corrido **tres veces**: la primera (con el pin de M08) dio `ROJO — 1 FAIL nuevo` (T-REPRO(c), ver P-N); la segunda y la tercera (tras revertir el pin, la tercera sobre el commit final con todas las correcciones) confirman `VERDE — sin FAIL nuevos`:
+  ```
+  3 FAIL · 67168 WARN
+  LÍNEA BASE: VERDE — sin FAIL nuevos frente a tests/baseline.json (HEAD congelado 7100cd0317132b1f4513b2efdc04058fd7ae89a2)
+  ```
+  Los 3 FAIL son heredados (T06×2 Gini/confianza con valores dispares en el corpus, T08×1 reports sin mapa de evidencia) — idénticos a la línea base congelada, ninguno de este acto.
 
 ## Lo que decide mesa a continuación
 
