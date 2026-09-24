@@ -59,5 +59,12 @@ check("extrae_enlaces · filtro por regex",
 check("titulo · desescapa y recorta", r.titulo("<title> A &amp; B \n </title>") == "A & B")
 check("localiza_navegador · None si no hay candidatos", r.localiza_navegador(("/no/existe",)) is None)
 
+antes = {"viejo.pdf": (10, 1.0), "tocado.csv": (5, 1.0)}
+despues = {"viejo.pdf": (10, 1.0), "tocado.csv": (7, 2.0), "nuevo.xlsx": (358284, 3.0),
+           "parcial.xlsx.crdownload": (100, 3.0), ".oculto": (1, 3.0)}
+check("archivos_nuevos · detecta nuevos y cambiados, ignora .crdownload y ocultos",
+      r.archivos_nuevos(antes, despues) == ["nuevo.xlsx", "tocado.csv"], str(r.archivos_nuevos(antes, despues)))
+check("archivos_nuevos · sin cambios no hay nuevos", r.archivos_nuevos(antes, dict(antes)) == [])
+
 print(f"{'VERDE' if not fallos else 'ROJO'} · {fallos} fallo(s)")
 sys.exit(1 if fallos else 0)

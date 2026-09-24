@@ -46290,3 +46290,106 @@
     declarado (1347706880 B); TAR: 199 miembros listados (envoltura, no abierto); estructura
     TAR-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: sesnsp_victimas_fuero_comun_2015_2025_datastore_csv
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:SESNSP-VICTIMAS-FC_2015-2025
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.datos.gob.mx/api/3/action/datastore_search?resource_id=386f17d2-a488-4da2-9c85-99765b5a9cdc
+    (volcado completo por offset)
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: SESNSP/victimas_fuero_comun/IDVFC_datastore_datosgobmx_2015_2025.csv
+  sha256: 1a866c8bf4be3632577ff254b84080fb818f57172b099091805a56c363655403
+  tamano_bytes: 12850700
+  formato: CSV UTF-8 del volcado completo del datastore CKAN (recurso Víctimas del fuero común,
+    paquete incidencia_delictiva)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos volcados completos con sha256 idéntico; filas = total declarado por el datastore
+    (80960); estructura CSV-DATASTORE-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: condusef_redeco_2026t1_datastore_csv
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:CONDUSEF-REDECO_SERIE
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.datos.gob.mx/api/3/action/datastore_search?resource_id=49027247-aa5f-424d-a4dd-a04350dec320
+    (volcado completo por offset)
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: CONDUSEF/REDECO/redeco_2026T1_datastore_datosgobmx.csv
+  sha256: d096a168416951fdbe8051404b12ee410c6b307113509b686c728eb7bc4a26a7
+  tamano_bytes: 689649
+  formato: CSV UTF-8 del volcado completo del datastore CKAN (REDECO 2026 1er trimestre)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos volcados completos con sha256 idéntico; filas = total declarado por el datastore
+    (2409); estructura CSV-DATASTORE-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: condusef_redeco_2025_09_30_datastore_csv
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:CONDUSEF-REDECO_SERIE
+    (hoja de adquisición ASTRA5-U0)
+  url_origen: https://www.datos.gob.mx/api/3/action/datastore_search?resource_id=74fa22b0-a827-4541-975f-442be1c8fe55
+    (volcado completo por offset)
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: CONDUSEF/REDECO/redeco_despachos_cobranza_2025-09-30_datastore_datosgobmx.csv
+  sha256: 6fff0ef230fa984ea388b9f422103019bb779b07a5784089cc135c2985742ff2
+  tamano_bytes: 683951
+  formato: CSV UTF-8 del volcado completo del datastore CKAN (REDECO corte 30/09/2025)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos volcados completos con sha256 idéntico; filas = total declarado por el datastore
+    (2390); estructura CSV-DATASTORE-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: shf_ipv_nota_metodologica_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:SHF-IPV_SERIE (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1100172/Nota_metodol_gica_del__ndice_SHF_de_Precios_de_la_Vivienda_en_M_xico.pdf
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: SHF/IPV/Nota_metodologica_Indice_SHF.pdf
+  sha256: d88bc982ab84b3a759480ff1c1bf02056297d445db92363514498ff7b45d373a
+  tamano_bytes: 186612
+  formato: PDF nota metodológica del Índice SHF
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: shf_ipv_datos_abiertos_2005_2017_csv
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:SHF-IPV_SERIE (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://web.archive.org/web/20171122133826id_/http://doc.shf.gob.mx:80/Transparencia/TranspFocalizada/Documents/Indice%20datos%20abiertos%20csv.csv
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: SHF/IPV/Indice_datos_abiertos_2005_2017_wayback20171122.csv
+  sha256: 77b37945e99ad30c21a3b08cdeb6f4764921610f8240c05bbf5fb3875bdf4f6c
+  tamano_bytes: 240861
+  formato: CSV datos abiertos del Índice SHF 2005T1-2017T4 (captura Wayback 20171122133826
+    del archivo oficial de doc.shf.gob.mx)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura CSV-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: shf_ipv_datos_abiertos_2026t2_xlsx
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:SHF-IPV_SERIE (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1097035/Indice_SHF_datos_abiertos_2_trim_2026.xlsx
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: SHF/IPV/Indice_SHF_datos_abiertos_2_trim_2026.xlsx
+  sha256: 74a86c883f0345d77d3ffd007193b72461ba75c5585009428702bb1c4d543c70
+  tamano_bytes: 358284
+  formato: XLSX datos abiertos del Índice SHF de Precios de la Vivienda, corte 2o trimestre
+    2026 (hoja 'Indice SHF datos abiertos', A1:G10407 por dimensión OOXML)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'A.7: dos descargas con el navegador real (tools/renderiza_pagina.py --descarga, perfil
+    nuevo por llamada) con sha256 idéntico; a curl (Linux y Windows) el adjunto responde el
+    reto de 1 881 B; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
