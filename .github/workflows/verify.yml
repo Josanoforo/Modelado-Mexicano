@@ -348,7 +348,11 @@ jobs:
   # conteo en el resumen final.
   guardias:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    # ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 · ADENDA-1 P0: 10 -> 30. El run
+    # 36068464848 (push de #1120) murió `cancelled` a los 10 min con el paso
+    # de derivados a medias (registro del lote de 61 CALC: ~6 min, tras ~3
+    # de guardias huérfanas). Con 10 min el canal no publica nunca.
+    timeout-minutes: 30
     # La publicación abre un PR de derivados y despacha su verificación.
     # Nunca empuja a main: la regla de protección exige el check `check`.
     permissions:
@@ -437,8 +441,11 @@ jobs:
       # actualizadas (tests/test_c2_compuesto.py), el marcador entra al
       # canal: se deriva antes del registro (para que sus usos se
       # proyecten) y usos.tsv deja de descartarse.
-      - name: Deriva vistas y abre PR automático verificado (solo push a main)
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' && !startsWith(github.event.head_commit.message, '[deriva]') }}
+      # ADENDA-1 P0: además del push, `workflow_dispatch` sobre main (mesa lo
+      # dispara a mano: Actions → «Verificación del corpus» → Run workflow →
+      # rama main). Sin `before`, el lote cae a sólo pendientes (abajo).
+      - name: Deriva vistas y abre PR automático verificado (push o disparo manual sobre main)
+        if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && !startsWith(github.event.head_commit.message, '[deriva]'))) }}
         env:
           ANTES: ${{ github.event.before }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
