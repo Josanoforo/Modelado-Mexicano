@@ -84,6 +84,14 @@ _PATRONES_ERROR_C2 = (
 #: patrón (`clase_1_cruce_vs_R`, 12 celdas) antes de este cambio.
 _PATRON_D_C2 = ("-D-C2", "sufijo")
 
+#: Marca de definición (spec §9, ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-1,
+#: 24/sep/2026, firma P): el commit corto que trajo la definición VIGENTE
+#: de la métrica (§3.1 de la spec -- crédito por conducta agregada + sufijo
+#: `-D-C2` de ENCIG 2025, el salto 92 -> 219 del 23/sep). Se actualiza en el
+#: mismo commit que cambie qué cuenta como celda validada; no se toca por
+#: ninguna otra razón (D-16: no es un contador que se reescriba a ojo).
+DEFINICION_DESDE = "38dd709"
+
 
 def _errores_d_c2_encig2025(d: dict, res: dict) -> dict:
     """Error por celda del sufijo `-D-C2`, SCOPEADO a esta celda-D vía
@@ -474,6 +482,7 @@ def _celdas_validadas() -> dict:
 
     return {
         "total_celdas_validadas": n_cruce + n_persist,
+        "definicion_desde": DEFINICION_DESDE,
         "desglose_por_clase": {
             "cruce_vs_R": n_cruce,
             "persistencia_t_menos_1_vs_R": n_persist,
@@ -552,7 +561,7 @@ def linea(cv: dict | None = None) -> str:
     u = _universo()
     n = cv.get("total_celdas_validadas")
     return (f"celdas_validadas {n} (prospectiva {prosp} · retrospectiva {retro}) "
-            f"@ {u['sha'][:8]}")
+            f"@ {u['sha'][:8]} · definicion_desde {DEFINICION_DESDE}")
 
 
 def main(argv=None) -> int:

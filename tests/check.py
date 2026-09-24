@@ -5293,6 +5293,16 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # numeración de TANDA-5 -- el `E11` pelado que el regex ve ahí es la
     # misma cita, no un rótulo que esta nota acuñe.
     "forense/notas/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1-cierre.md",
+    # ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-1, 24/sep/2026. `M08` es el id del
+    # momento del catálogo sellado (`milpa/catalogo-momentos-v0_1.tsv`,
+    # ADR-68(a)) que la pieza P-N acota y pinea -- no un rótulo de acto que
+    # esta nota acuñe. `M01`/`M02` (dictaminados NO-CONSTRUIBLE en la misma
+    # pieza) son la misma clase de cita. Misma cita en el ADR/L0 y en el
+    # `## NO-CORRIDO / RESERVAS` del encargo archivado (cuerpo sellado,
+    # nunca editado; sólo la sección de cierre, añadida después del 0-bis).
+    "forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1-cierre.md",
+    "canon/L0/ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-01.md",
+    "forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1.md",
 }
 
 

@@ -5061,6 +5061,7 @@ def status(imprime: bool = True) -> dict:
     _cv = _CV._celdas_validadas()
     _prosp, _retro = _CV.prospectividad_sub_cifras(_cv)
     c["celdas_validadas"] = _cv.get("total_celdas_validadas")
+    c["celdas_validadas_definicion_desde"] = _CV.DEFINICION_DESDE
     c["celdas_validadas_prospectiva"] = _prosp
     c["celdas_validadas_retrospectiva"] = _retro
     c["celdas_emitidas_sin_r"] = _CV.emitidas_sin_r(_cv)

@@ -141,3 +141,24 @@ La métrica no baja de un merge a otro sin que una fila `VENCIDO-EN-ALCANCE`
 de mesa (A.10) lo explique — buscada por objeto en
 `data/corrida0/decisiones.tsv` y `forense/*.tsv`, nunca por defecto. Es la
 única bajada legítima: un veredicto sellado no se borra (E.3).
+
+## 9 · Marca de definición (ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-1, 24/sep/2026, firma P)
+
+El contador subió 92 → 219 el 23/sep/2026 por el cambio de §3.1 (crédito
+por conducta agregada + sufijo `-D-C2` de ENCIG 2025), no por 127
+validaciones nuevas emitidas ese día — una serie que no marca «desde cuándo
+cuenta qué» lee ese salto como si fuera producción, y no lo es. La spec
+declara el ancla verbatim, para que no haya que leer `git log` a mano cada
+vez: `tools/celdas_validadas.py::DEFINICION_DESDE` fija el commit corto
+`38dd709` (mensaje `ACTO GEN2-CONTADORES-CONSUMO-1 (P-B): celdas_validadas
+cuenta credito y ENCIG 2025`, fusionado a `main` por el PR #1086 — el
+encargo original citó «#1078» de memoria; ese PR no toca este archivo,
+verificado por `git log --oneline -- tools/celdas_validadas.py`, y el commit
+real se re-derivó por comando antes de fijarlo aquí). `corrida0 status` y
+`--json`/`--linea` de este módulo imprimen
+`celdas_validadas_definicion_desde=<ese commit>`, al lado del total — nunca
+fundido con él. Cuando la definición cambie otra vez (una clase nueva, una
+forma nueva de leer el error), este ancla se actualiza en el mismo commit
+que cambia el código, con su propia entrada aquí; las anclas viejas no se
+borran, se leen en `forense/hallazgos.md`/`canon/gobernanza-v1_15.md` de la
+fecha correspondiente.
