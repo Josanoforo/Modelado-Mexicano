@@ -32,7 +32,19 @@ para una sola entrada `G2.aversion_riesgo`, **sin valor propuesto**:
 ```
 
 La cita RESULT y el respaldo de clase requieren un campo/esquema acordado por
-mesa; el diff final no se aplica hasta tener esa decisión. Una prueba negativa
+mesa; el diff final no se aplica hasta tener esa decisión.
+
+**PROPUESTA (no implementada; ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1,
+`FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01`, espera firma):**
+(a, recomendada) mismo esquema que `milpa/tramite.yaml` — en la entrada de
+`procedencia.yaml` junto al valor: `corrida0_resultado_id`,
+`corrida0_generacion: GEN2` y `clase_respaldo: <clase del RESULT>`; el
+registro ya lee esos dos primeros campos en `procedencia.yaml`, así que
+`T-REPRO` lo cubre sin código nuevo. (b) Sidecar
+`milpa/procedencia-citas.tsv` (llave `(gen, coef)`, RESULT, CALC, sello,
+clase): no toca el YAML, pero exige un lector nuevo y reabre la
+contradicción que tuvo el catálogo (el valor vive en un archivo y la cita
+en otro). Una prueba negativa
 cambia solo la escala o el signo del RESULT y exige diff vacío; otra mantiene
 el valor pero cambia el par `(gen, coef)` y también exige diff vacío.
 
@@ -40,15 +52,30 @@ el valor pero cambia el par `(gen, coef)` y también exige diff vacío.
 
 `plan-catalogo-23.tsv` registra rol, dependencia y operación de cada momento.
 El catálogo sellado de `ADR-68` se conserva. `valor_de()` lanza para los
-15 HOLDOUT y para AJUSTE no implementado. Un CALC no modifica el catálogo;
-la operación revisable es una **cita lateral** por `Mxx` con RESULT, CALC,
-sello y rol. El adaptador propio rechaza cualquier cambio de rol, universo,
-reserva o bytes del catálogo sellado. Diff de salida esperada en registro
-lateral:
+15 HOLDOUT y para AJUSTE no implementado. Un CALC no modifica el catálogo.
+
+**Enmienda (ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1, 24/sep/2026, Decisión 3
+de mesa de ADOPCION-2).** La «cita lateral» de la versión anterior no podía
+pasar `T-REPRO(c)`: el test compara la cifra que el consumidor MATERIALIZA
+contra el RESULT (`tests/check.py`, bloque (c)), y para un momento del
+catálogo esa cifra era `NO-DECLARADO-EN-EL-REGISTRO`
+(`tools/corrida0.py::_consumidores_momentos`, `valor_legacy=NO_DECLARADO`;
+el pin de mesa copia ese mismo `valor_legacy`). La operación revisable pasa
+a ser: **el catálogo lleva el valor GEN2 y su cita en columnas propias**,
+añadidas al final del TSV, sin tocar ninguna columna sellada (id, rol,
+universo, reserva):
 
 ```diff
-+ Mxx  RESULT-<id>  CALC-<id>  <sello>  <rol-sellado>  <dictamen>
+- id_momento … spec_ref
++ id_momento … spec_ref  valor_gen2  corrida0_resultado_id  corrida0_generacion  calc_gen2  sello_gen2  discrepancia_gen1
++ Mxx … <sellado intacto>  <valor RESULT>  RESULT-<id>  GEN2  CALC-<id>  <sha256 sello.json>  NO-REPRODUCE-GEN1: unidad DELITO
 ```
+
+`T-REPRO(c)` verifica `valor_gen2 == RESULT` con la vara de adopción;
+rechaza valor sin cita completa (RESULT, CALC y sello) y cita sin valor.
+`discrepancia_gen1` rotula el choque con la cifra GEN1 y **no bloquea**.
+Escribe las columnas solo el escritor (ADOPCION-4), nunca a mano. Casos:
+`tests/test_corrida0.py::t_catalogo_*` (un positivo sobre el momento 08, dos negativos).
 
 ## Celdas-D: seis YAML y seis referencias de código
 

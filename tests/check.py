@@ -5309,6 +5309,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2.md",
     "forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2-cierre.md",
     "canon/L0/ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-01.md",
+    # ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1, 24/sep/2026: encargo (verbatim,
+    # A.3), nota y L0 citan el momento `M08` del catálogo sellado -- cita,
+    # no rótulo acuñado.
+    "forense/encargos/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1.md",
+    "forense/notas/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1-cierre.md",
+    "canon/L0/ADR-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01.md",
 }
 
 
@@ -7692,6 +7698,14 @@ def t35_repro(modulo=None):
             fail("T-REPRO", f"(e) {u['consumidor']}: declara "
                             f"corrida0_resultado_id={marca} sin "
                             f"`corrida0_generacion: GEN2` -- cadena incompleta")
+        # (c) valor sin cita (GEN2-CATALOGO-CONTRATO-Y-TEST-1): una cifra
+        # materializada en las columnas de relevo del catalogo sin RESULT,
+        # CALC y sello completos no se puede falsar contra nada.
+        if (not marca and u["consumidor"].startswith("milpa/catalogo-momentos")
+                and u.get("valor_materializado", C.NO_DECLARADO) != C.NO_DECLARADO):
+            fail("T-REPRO", f"(c) {u['consumidor']}: valor materializado "
+                            f"{u['valor_materializado']!r} sin cita completa "
+                            f"(RESULT, CALC, sello)")
         if not marca or destino is None:
             continue
         # (f) la marca dice GEN2 y el RESULT al que apunta es LEGACY-GEN1.
