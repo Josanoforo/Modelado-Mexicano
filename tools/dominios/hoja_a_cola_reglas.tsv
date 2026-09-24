@@ -1,0 +1,70 @@
+orden	patron	clase	instrumento	olas	propietario_dato	url	fuente_existente	ids_manifiesto	nota
+010	ESRU-EMOVI 2023|esru_emovi	MICRODATO	EMOVI	2023	CEEY	https://ceey.org.mx/emovi/			esru_emovi sin ola en la hoja (AUTOR-016) pide la ola más reciente: 2023
+020	EMOVI 2011	MICRODATO	EMOVI	2011	CEEY	https://ceey.org.mx/emovi/			
+030	Pobreza Multidimensional 2024	MICRODATO	INEGI-MMP	2024	INEGI	https://www.inegi.org.mx/desarrollosocial/pm/			bases y programas de cálculo de la medición multidimensional; el insumo ENIGH 2024 NC ya está en corpus (enigh2024_nc_csv, RESERVADA por decisiones.tsv:192)
+040	latinobarometro ?2023|Latinobar[oó]metro 2023	MICRODATO	LATINOBAROMETRO	2023	Corporación Latinobarómetro	https://www.latinobarometro.org/latContents.jsp			
+050	Latinobar[oó]metro 2024	MICRODATO	LATINOBAROMETRO	2024	Corporación Latinobarómetro		LATINOBARÓMETRO	latinobarometro2024_bd_stata	
+060	PISA 2022	MICRODATO	PISA	2022	OCDE	https://www.oecd.org/en/data/datasets/pisa-2022-database.html			
+070	ENPECYT 2017	MICRODATO	ENPECYT	2017	INEGI/CONACYT	https://www.inegi.org.mx/programas/enpecyt/2017/			
+080	ENSANUT 2018 y ENSANUT 2022	MICRODATO	ENSANUT	2018;2022	INSP/SSA	https://ensanut.insp.mx/			
+090	ENSANUT 2018-19	MICRODATO	ENSANUT	2018	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php			
+100	ENSANUT Continua 2021 / 2022 / 2023	MICRODATO	ENSANUT	2021;2022;2023	INSP/SSA	https://ensanut.insp.mx/			
+110	ENSANUT 2022	MICRODATO	ENSANUT	2022	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php			
+120	ENCODAT 2025	MICRODATO	ENCODAT	2025	CONASAMA/INPRFM/INSP				
+130	ENCOVID-19	MICRODATO	ENCOVID-19	2020	EQUIDE-IBERO (la hoja cita INSP)				
+140	ENDISEG 2021	MICRODATO	ENDISEG	2021	INEGI	https://www.inegi.org.mx/programas/endiseg/2021/			
+150	EMAT 2022	MICRODATO	EMAT	2022	INEGI	https://www.inegi.org.mx/programas/emat/			registro administrativo con microdato publicado (estadística de matrimonios)
+160	EMAT 2023	MICRODATO	EMAT	2023	INEGI	https://www.inegi.org.mx/programas/emat/			registro administrativo con microdato publicado
+170	EMAT \(INEGI\), serie 2013-2022	MICRODATO	EMAT	2013-2022	INEGI	https://www.inegi.org.mx/programas/emat/			serie de olas anuales; una fila por serie
+180	EDR\), anios 2017 y 2022	MICRODATO	EDR	2017;2022	INEGI	https://www.inegi.org.mx/programas/edr/			
+190	EDR\)? 2024	TABULADO	EDR-COMUNICADO	2024	INEGI				el microdato edr2024_bd_dbf_zip ya está en corpus; falta comunicado/FD
+200	ENEM 2024	MICRODATO	ENEM	2024	CIDE/CSES				
+210	wvs_ola7_eeuu_japon	MICRODATO	WVS-EEUU-JAPON	7	WVSA	https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp			México ola 7 ya está (fila WVS de la cola); ésta es la de comparadores
+220	WVS olas 1-7	MICRODATO	WVS-LONGITUDINAL	1981-2022	WVSA	https://www.worldvaluessurvey.org/WVSEVStrend.jsp			
+230	ENADID 2018	MICRODATO	ENADID	2018	INEGI	https://www.inegi.org.mx/programas/enadid/2018/			
+240	ENSU 2024 \(1er trimestre\)	MICRODATO	ENSU	2024T1	INEGI	https://www.inegi.org.mx/programas/ensu/			
+250	ENSU \(ola no especificada	TABULADO	ENSU-BOLETIN	SIN-OLA	INEGI				
+260	MMSI\)? 2016|MMSI 2016	MICRODATO	MMSI	2016	INEGI	https://www.inegi.org.mx/programas/mmsi/2016/			
+270	ENAFI \(no es ENIF	MICRODATO	ENAFI	SIN-OLA	sin identificar				instrumento nombrado por el report sin ola ni propietario confirmados
+280	Panel EQD 2018	MICRODATO	EQD-PANEL	2018	Greene y Simpser				
+290	Progresa/Oportunidades	MICRODATO	IMAI-KING-VELASCO-REPLICA	2020	Harvard Dataverse	https://doi.org/10.7910/DVN/70SNIQ			datos de réplica del artículo; DOI citado por la hoja
+300	Cant[uú] \(2019\)	MICRODATO	CANTU-REPLICA	2019	JOP Dataverse				datos de réplica del artículo
+310	Wellcome Global Monitor 2018	MICRODATO	WELLCOME-GLOBAL-MONITOR	2018	Wellcome/Gallup	https://wellcome.org/reports/wellcome-global-monitor/2018			
+320	International Food Policy Study	MICRODATO	IFPS-MEXICO	2020-2021	U. Waterloo	https://foodpolicystudy.com/			
+330	MCPS|datos individuales linkeados	MICRODATO	MCPS	SIN-OLA	Oxford/UNAM (solicitud de investigador)				exige solicitud de acceso: no se adquiere por agente
+340	IMORA de consumo|IMOR consumo por product	MICRODATO	IMOR-CONSUMO	SERIE	CNBV/Banxico		BANXICO_IMOR_CONSUMO_POR_PRODUCTO_MENSUAL		serie administrativa ya en cola
+350	Banxico REF / financiamiento a hogares	MICRODATO	BANXICO-FINANCIAMIENTO-HOGARES	SERIE	Banxico	https://www.banxico.org.mx/SieInternet/			serie administrativa
+360	CONDUSEF REDECO	MICRODATO	CONDUSEF-REDECO	SERIE	CONDUSEF	https://www.condusef.gob.mx/			serie administrativa
+370	Balanza de Pagos - Ingresos y egresos por remesas|Banxico remesas	MICRODATO	BANXICO-REMESAS	SERIE	Banxico	https://www.banxico.org.mx/SieInternet/			serie administrativa
+380	SHF Indice SHF de Precios	MICRODATO	SHF-IPV	SERIE	SHF	https://www.gob.mx/shf			serie administrativa; periodo no identificado
+390	SESNSP, datos abiertos de v[ií]ctimas	MICRODATO	SESNSP-VICTIMAS-FC	2015-2025	SESNSP	https://www.gob.mx/sesnsp			datos abiertos administrativos
+400	INE, C[oó]mputos Distritales 2024	MICRODATO	INE-COMPUTOS	2024	INE	https://computos2024.ine.mx/			resultados electorales por casilla
+410	ENBIARE	MICRODATO	ENBIARE	2021	INEGI			enbiare2021_bd_csv_zip;enbiare2021_fd_pdf	
+420	ENDIREH 2021 \(microdatos \+ FD\)	MICRODATO	ENDIREH	2021	INEGI			endireh2021_bd_csv_zip	
+430	Censo de Poblacion y Vivienda 2020|CPV2020|Censo 2020|Censo de Poblacion y Vivienda / Encuesta Intercensal|Censo de Poblaci[oó]n y Vivienda 2020	TABULADO	CPV	2020	INEGI	https://www.inegi.org.mx/programas/ccpv/2020/			
+440	World Happiness Report|WHR 202	TABULADO	WHR	2024-2025	WHR/Gallup	https://worldhappiness.report/			
+450	Hofstede	TABULADO	HOFSTEDE	SIN-OLA	Hofstede Insights				
+460	Research Land|CESOP	TABULADO	RESEARCH-LAND-CESOP	2026	Research Land / CESOP				
+455	ENCIG 2023 \(citado por el report\)	TABULADO	ENCIG-ENCOAP	2023	INEGI				
+480	Transparency International|CPI comparado	TABULADO	TI-CPI	2025	Transparency International	https://www.transparency.org/en/cpi/2025			
+490	CONEVAL	TABULADO	CONEVAL	2020-2022	CONEVAL				
+500	ENOE\(N\) 202	TABULADO	ENOE-BOLETIN	2024-2025	INEGI				microdato ENOE en corpus; falta boletín
+510	Cuenta Sat[eé]lite del Trabajo No Remunerado	TABULADO	CSTNRH	2024	INEGI	https://www.inegi.org.mx/temas/tnrh/			
+520	Estadisticas de Natalidad	TABULADO	NATALIDAD	2016-2024	INEGI				
+530	Principales cifras del sistema educativo	TABULADO	SEP-PRINCIPALES-CIFRAS	2024-2025	SEP	https://planeacion.sep.gob.mx/principalescifras/			
+540	ENIGH 2024 \(INEGI\); pieza exacta de prensa	TABULADO	ENIGH-TABULADO	2024	INEGI				ENIGH 2024 RESERVADA (decisiones.tsv:192): la constancia se registra, no se lee
+550	ENDIREH 2021 \(INEGI\)	TABULADO	ENDIREH-TABULADO	2021	INEGI				
+560	Informe de Violencia contra las Mujeres, SESNSP	TABULADO	SESNSP-VCM	2015-2025	SESNSP	https://www.gob.mx/sesnsp/documentos/informe-de-violencia-contra-las-mujeres-incidencia-delictiva-y-llamadas-de-emergencia-9-1-1-febrero-2019			
+570	Producto Interno Bruto Trimestral	TABULADO	INEGI-PIBT	2025-2026	INEGI				
+580	Indicador de Informalidad Laboral	TABULADO	INEGI-INFORMALIDAD	SIN-OLA	INEGI				
+590	STPS/Banxico indice de salario real	TABULADO	SALARIO-REAL	SIN-OLA	STPS/Banxico				candidato no confirmado
+600	serie macroeconomica	TABULADO	SERIE-MACRO	SIN-OLA	sin identificar				
+610	Censo de Vivienda / CONAVI	TABULADO	AUTOCONSTRUCCION-VIVIENDA	SIN-OLA	CONAVI/SHF/INEGI				
+620	Eurostat / OECD Family Database	TABULADO	OECD-FAMILY	SIN-OLA	OCDE/Eurostat				
+630	OECD Better Life Index	TABULADO	OECD-BLI	SIN-OLA	OCDE				
+640	Gini hist[oó]rico|Our World in Data	TABULADO	GINI-PIB-SERIES	SIN-OLA	INEGI/BM/OWID				
+650	Registros civiles de matrimonio	TABULADO	NUPCIALIDAD	SIN-OLA	INEGI				
+660	Encuesta Moreno|encuestas de salida|aprobaci[oó]n presidencial	TABULADO	ENCUESTAS-PRENSA	SIN-OLA	casas encuestadoras				
+670	Deportation Data Project|Pew Research Center	TABULADO	DEPORTACION-PEW-MPI	2025	DDP/Pew/MPI				
+680	Commonwealth Fund	TABULADO	COMMONWEALTH-CIEP	2021	Commonwealth Fund/CIEP				
+999	.	DOCUMENTO	DOC	SIN-OLA					regla por defecto: informe, artículo, norma, nota de prensa o estudio privado; se registra como constancia
