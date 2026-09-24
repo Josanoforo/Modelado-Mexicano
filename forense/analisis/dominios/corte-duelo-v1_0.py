@@ -58,6 +58,48 @@ HEEKE = dict(
     siguiente_operacion="Registrar tesis, artículo final, DOI, condiciones y SHA; cotejar instrumento PG-13/selección, buscar evidencia mexicana específica antes de extrapolar o recomendar atención.",
     prioridad="3",
 )
+ALMANZA = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L9; evidencia cualitativa Tamaulipas",
+    tier_report="sin rótulo explícito",
+    clase="entrevistas cualitativas fenomenológico-interpretativas",
+    limite_inferencial="Cinco madres contactadas por una asociación de familiares en Ciudad Victoria, selección propositiva y al menos un año desde desaparición. No prevalencia, representatividad de Tamaulipas/México ni prueba causal de corrupción, tratamiento o eficacia de búsqueda. No incluye madres fuera de organizaciones, otros familiares ni comparación sin desaparición.",
+    conducta_unidad_universo="Cinco madres con hijo/a desaparecido/a entrevistadas en Ciudad Victoria, Tamaulipas; una entrevista en profundidad por persona de 1–2 horas, muestra propositiva vía asociación local.",
+    instrumento_ola="Almanza-Avendaño, Hernández-Brussolo y Gómez-San Luis, Pérdida ambigua: madres de personas desaparecidas en Tamaulipas, México, Región y Sociedad (2020), DOI 10.22198/rys2020/32/1396, artículo cualitativo",
+    documento_id_hash_pagina="SIN-ID:almanza2020_perdida_ambigua.html|a953e1b09d5f304696401ac642436c47f4232b77994768afb865b29f38991ca8|Método/Resultados/Conclusiones;https://www.scielo.org.mx/scielo.php?script=sci_arttext&pid=S1870-39252020000100136&lng=es",
+    pregunta_textual_codigo_respuestas="Guía de entrevista: desaparición, autoridades, relación previa con hijo/a, vida cotidiana y consecuencias psicosociales; análisis fenomenológico interpretativo de transcripciones. Sin escala de prevalencia ni grupo control.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Artículo primario Scielo capturado físicamente con SHA/licencia CC BY-NC 4.0 y método/limitaciones leídos; cierre cualitativo situado. Falta id documental, no hay RESULT cuantitativo.",
+    datos_id_estado="Transcripciones individuales no abiertas/descargadas U0; sin RESULT cuantitativo propio.",
+    reserva="CC BY-NC 4.0; captura HTML local, registro documental pendiente. No reproducir citas de participantes fuera de condiciones/licencia; no generalizar n5 a México.",
+    gen2_existente="Sin RESULT cuantitativo compatible; hallazgo cualitativo situado.",
+    propietario="ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar DOI/URL/captura/licencia/SHA; conservar selección y contexto en toda cita, buscar estudios comparativos antes de afirmar mecanismo general o intervención.",
+    prioridad="3",
+)
+BOSS = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L9-L10,L27,L31; marco de pérdida ambigua y cierre",
+    tier_report="sin rótulo explícito",
+    clase="ensayo teórico y reflexión clínica",
+    limite_inferencial="Boss y Carnes integran teoría, reflexión personal y poesía; no reportan muestra mexicana, grupo comparador, estimador de daño por buscar cierre ni ensayo de eficacia terapéutica. Su argumento clínico no prueba que toda persona desaparecida en México tenga duelo prolongado ni contraindica por sí solo toda evaluación clínica.",
+    conducta_unidad_universo="Ensayo de teoría sobre pérdida ambigua, ejemplificado por ausencia física o psicológica de familiares; no universo muestral ni personas mexicanas observadas.",
+    instrumento_ola="Boss y Carnes, The Myth of Closure, Family Process 51(4):456–469 (2012), DOI 10.1111/famp.12005",
+    documento_id_hash_pagina="SIN-ID:astra5_boss_carnes2012_myth_closure.pdf|c6fb5f8e1ba925b2c6e41fd6c456a55aa75f995f7ff48903cbbffc38972bac6d|pp.456-457,463-467;https://news.cehd.umn.edu/wp-content/uploads/2020/03/TheMythofClosure-Boss.pdf",
+    pregunta_textual_codigo_respuestas="No encuesta: lectura textual de distinción desaparición física/demencia y propuesta clínica de sentido y tolerancia a incertidumbre; sin métrica de efecto.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Ensayo final íntegro en PDF institucional de autora con DOI/páginas/SHA físicos; contrato cierra atribución teórica, no efectividad o traslado clínico a México. Registro documental pendiente.",
+    datos_id_estado="Sin datos individuales ni RESULT cuantitativo.",
+    reserva="PDF institucional para lectura local; condiciones de reproducción/redistribución por MESA-DOCUMENTAL. No interpretar recomendación del ensayo como contraindicación universal o ensayo clínico.",
+    gen2_existente="Sin RESULT compatible; fuente teórica.",
+    propietario="ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar DOI/PDF/SHA/condiciones; contrastar crítica clínica con guías y estudios mexicanos antes de recomendar intervención universal.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-DUEL-001",
@@ -93,6 +135,28 @@ ROWS = [
         texto_vigente="Entre 73 familiares colombianos de desaparecidos, mayor esperanza declarada de que la persona siguiera viva se asoció con mayor severidad PG-13 (β estandarizada 0.41 en modelo final).",
         componente_contrastable="Artículo IV Tablas 11-12: Spearman ρ=0.30 (p<.01); regresión jerárquica con depresión, PTSD, trauma, tiempo y sexo, β esperanza=0.41 (p<.05), ΔR² ajustada 0.05 en paso 4; esperanza² no significativa.",
         localizador="L11; asociación esperanza y duelo",
+    ),
+    ALMANZA | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-007",
+        texto_vigente="Almanza-Avendaño et al. analizaron entrevistas en profundidad a cinco madres de personas desaparecidas de Ciudad Victoria, contactadas por una asociación de familiares.",
+        componente_contrastable="Método del artículo: cinco mujeres con hijo/a desaparecido/a desde ≥1 año, selección propositiva mediante asociación local y una entrevista individual de 1–2 horas.",
+    ),
+    ALMANZA | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-008",
+        texto_vigente="En esas cinco entrevistas las autoras interpretaron la ausencia física del hijo/a junto con prácticas para mantener su presencia psicológica y la incertidumbre sobre su destino.",
+        componente_contrastable="Resultados/conclusiones del artículo: imagen positiva del pasado, actos y lenguaje del presente, esperanza futura; experiencia y contexto de cinco casos, no frecuencia poblacional ni efecto terapéutico.",
+    ),
+    BOSS | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-009",
+        texto_vigente="Boss y Carnes distinguen pérdida por desaparición física sin destino verificado de ausencia psicológica en una persona físicamente presente.",
+        componente_contrastable="Family Process 2012 p.456: desaparición corporal sin verificación de paradero/muerte y desvanecimiento psicológico por demencia u otras condiciones. Clasificación conceptual, no prevalencia ni causa institucional mexicana.",
+        localizador="L9,L27; tipología",
+    ),
+    BOSS | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-010",
+        texto_vigente="Boss y Carnes proponen en su ensayo sustituir la meta clínica de cierre definitivo por búsqueda de sentido y mayor tolerancia a la ambigüedad cuando el destino del ser querido sigue incierto.",
+        componente_contrastable="Family Process 2012 pp.456-457,463-467: propuesta clínica argumentada con reflexión y narración; no estudio de eficacia ni demostración de daño universal por buscar cierre.",
+        localizador="L10,L31; crítica de closure",
     ),
 ]
 
