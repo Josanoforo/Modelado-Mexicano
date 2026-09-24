@@ -42,3 +42,7 @@ No predice, no adopta. Sucesores: informe v1.3 §«dónde cambió»; U4 (familia
 - NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-02 · P3 series ENDIREH dictaminables · DIFERIDO-A:GEN2-DONDE-CAMBIO-EL-MEXICANO-2: sin crosswalk de módulos ni tabla de comparabilidad por texto · impacto: 6311 series SIN-SERIE · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
 - NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-03 · P2 ENOE `horas_ocupado`, `ingreso_ocupado_nominal` fuera del mapa · DIFERIDO-A:GEN2-DONDE-CAMBIO-EL-MEXICANO-2 · impacto: ninguno sobre dictámenes (serían SIN-SERIE) · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
 - NC-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-04 · «Hecho»: CALC por instrumento para los ocho menores · SUSTITUIDO-POR:CALC-OTROS-SERIE-DICTAMEN-0001, que absorbe los ocho (21 SIN-SERIE); nada queda huérfano · impacto: ninguno · sucesor GEN2-DONDE-CAMBIO-EL-MEXICANO-2.
+
+## CONSUMIDO
+
+PR #1125 (rama `acto/gen2-donde-cambio-el-mexicano-1`), 24/sep/2026; ADR-260924-GEN2-DONDE-CAMBIO-EL-MEXICANO-1-96ee-01. Mesa fusiona.
