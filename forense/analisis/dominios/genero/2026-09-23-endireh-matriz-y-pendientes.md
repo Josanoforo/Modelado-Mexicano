@@ -1,6 +1,6 @@
 # ASTRA5-U2 · matriz de comparabilidad y estado de cobertura
 
-**Estado: programa abierto.** Esta matriz distingue resultados ejecutados de módulos todavía sin estimando congelado. No atribuye comparabilidad a los años por el solo nombre ENDIREH. La unidad publicada es mujer de 15 años o más; ninguna celda incluye identificadores, municipio o casilla. Los cortes univariados ejecutados fijaron antes de abrir: n conocido ≥100, ≥5 UPM con casos, ancho de IC ≤0.20 y CV ≤0.30 (si p>0); cada IC usa bootstrap de UPM dentro de estrato, conservando UPM de contribución cero para dominios.
+**Estado: cobertura del encargo completada en rama sucesora; revisión y publicación pendientes.** Esta matriz distingue resultados ejecutados de módulos todavía sin estimando congelado. No atribuye comparabilidad a los años por el solo nombre ENDIREH. La unidad publicada es mujer de 15 años o más; ninguna celda incluye identificadores, municipio o casilla. Los cortes univariados ejecutados fijaron antes de abrir: n conocido ≥100, ≥5 UPM con casos, ancho de IC ≤0.20 y CV ≤0.30 (si p>0); cada IC usa bootstrap de UPM dentro de estrato, conservando UPM de contribución cero para dominios.
 
 | Ola | Módulo / relación | Pregunta y códigos medidos | Elegibilidad y ventana | Factor / diseño | Resultado |
 |---|---|---|---|---|---|
@@ -17,13 +17,21 @@
 
 La matriz usa las variables y códigos efectivos de cada `spec.md` y `spec.yaml` sellados. Para texto literal, filtros y distinción entre saltos/no respuesta, consultar esos archivos y los FD/cuestionarios citados por hash en cada especificación. Ninguna unión es suma. Los denominadores de vida y reciente difieren cuando la elegibilidad o respuesta cambia. Los resultados son retrospectivos; no hay transición independiente suficiente para un IC predictivo calibrado. Estado: **SIN-HISTORIA-PARA-CALIBRAR**.
 
-## Piezas aún necesarias
+## Continuación tras #1093 · matriz final
 
-1. **2021 violencia de pareja no física y ayuda B/C:** los nueve actos físicos B1/B2/C1 ya están medidos por grupo. Faltan los demás actos y la ayuda/denuncia B/C según cuestionarios específicos. El contrato U0 GEN-001 de violencia física A1/A2 no cubre el agregado 70.1%.
-2. **2021 discriminación laboral 8.3:** `P8_2` fija trabajo de octubre 2016 a entrevista; `P8_3_1_1`/`_2` preguntan prueba de embarazo y `P8_3_2_1`/`_2`/`_3` despido, no renovación y reducción salarial/prestaciones por embarazo, con código 3 “no estuvo embarazada”. No mezclar con actos interpersonales 8.9 ni codificar 3 como ausencia de discriminación de una embarazada. Requiere estimandos separados por elegibilidad.
-3. **2016 otros ámbitos, ayuda, denuncia, decisiones y control económico:** FD 2016 y `BD_MUJERES_ENDIREH2016_SitioINEGI` disponibles. Congelar por módulo real. No trasladar códigos de 2021.
-4. **2011 y 2006:** el manifiesto contiene FD XLS y ZIP CSV distintos. FD 2011 tiene `TUnidas1/2/3`, `TDunida1/2/3`, `TSolter1/2`, TSDem; FD 2006 tiene `Endireh06_MC1/2/3`, `MD1/2/3`, `MS`, además de vivienda y sociodemográfico. Son olas, no formatos duplicados. Requieren cuestionarios y matrices por estado conyugal antes de medir.
-5. **2003:** la sección de pareja puede medirse descriptivamente solo con matriz propia y diseño verificado; no se suma a la serie 2016/2021 por mera coincidencia temática.
+La [matriz por conducta, ola y ámbito](endireh-matriz-conducta-ola-ambito.tsv) tiene **360 dictámenes trazables**: 346 resultados nacionales medidos de los CALC sellados, 13 exclusiones por diseño y una dependencia externa demostrada. Cada fila medida nombra CALC, RESULT y SHA de `resultados.json`; la tabla de su CALC conserva los cortes univariados, IC, soporte, supresión y réplicas agregadas. `MEDIDO` incluye celdas suprimidas cuando la estimación nacional no alcanza los umbrales. La ausencia de una fila nunca se usa como cero.
+
+| Ola | Cobertura agregada en la sucesora | CALC y tabla utilizable | Estado |
+|---|---|---|---|
+| 2021 | Pareja no física A/B/C y ayuda/denuncia B/C, con actos y ventanas propios; discriminación laboral 8.3, embarazo código 3 fuera del denominador | `CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001`, `CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001`; `endireh-2021-pareja-nofisica-bc-tabla.tsv`, `endireh-2021-discriminacion-tabla.tsv` | Medido y sellado; 613 + 350 celdas |
+| 2016 | Escolar, laboral interpersonal, comunitario, familiar, pareja B/C/no física, servicios y razones, dinero/decisiones; discriminación laboral 7.3 separada | `CALC-ENDIREH-PISOS-2016-RESTANTES-0001`, `CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001`; tablas homónimas | Medido y sellado; 1 731 + 350 celdas |
+| 2011 | Cuestionarios A/B/C, actos externos por agresor/lugar, pareja, ayuda, razones, discriminación, despojo y economía/permiso | `CALC-ENDIREH-PISOS-2011-MODULOS-0001`; `endireh-2011-modulos-tabla.tsv` | Medido y sellado; 2 181 celdas |
+| 2006 | Cuestionarios MC/MD/MS, pareja, ámbitos externos, discriminación, ayuda/aviso, razones y decisiones disponibles | `CALC-ENDIREH-PISOS-2006-MODULOS-0002`; `endireh-2006-modulos-tabla.tsv` | Medido y sellado; 1 392 celdas; intento 0001 preservado sin sello tras fallo |
+| 2003 | Pareja residente, ventana anual | `endireh-2003-dictamen-documental.md` | Dependencia externa: diseño oficial existe, pero CSV no entrega UPM/estrato por registro; sin IC ni tabla bajo este contrato |
+
+El [diseño muestral oficial 2003](https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/metodologias/est/dm_endireh03.pdf) confirma la UPM y el estrato. El dictamen 2003 identifica la pieza faltante para enlazarlos a cada registro; no incorpora 2003 a una serie. Las exclusiones de C2 sin pareja, denuncia institucional C 2011, ayuda institucional MS 2006, pareja anual MS 2006 y no embarazo 2021 figuran expresamente en la matriz.
+
+Las seis tablas sucesoras contienen **6 617 celdas**, con 6 008 publicables y 609 suprimidas. Los RESULT sellados guardan 200 réplicas agregadas en cada celda publicable; la exportación deja punto e IC vacíos en las suprimidas. No se construyó el 70.1% sumando prevalencias de ámbitos. Las ventanas, actos, elegibilidad y población cambian por ola; este inventario no constituye una serie homologada ni una calibración temporal.
 
 ## Hallazgo de integración
 

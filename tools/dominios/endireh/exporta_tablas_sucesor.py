@@ -12,6 +12,7 @@ CALCS = {
     "2021-discriminacion": "CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001",
     "2021-pareja-nofisica-bc": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001",
     "2016-restantes": "CALC-ENDIREH-PISOS-2016-RESTANTES-0001",
+    "2016-discriminacion": "CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001",
     "2011-modulos": "CALC-ENDIREH-PISOS-2011-MODULOS-0001",
     "2006-modulos": "CALC-ENDIREH-PISOS-2006-MODULOS-0002",
 }
@@ -29,7 +30,7 @@ def main():
         rows = json.loads(payload[result_id])
         path = OUT / f"endireh-{name}-tabla.tsv"
         with path.open("w", newline="", encoding="utf-8") as stream:
-            writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t")
+            writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t", lineterminator="\n")
             writer.writeheader()
             for row in rows:
                 ic = row.get("ic95", [])

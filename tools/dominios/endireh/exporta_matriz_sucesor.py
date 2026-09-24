@@ -21,6 +21,7 @@ CALCS = [
     "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001",
     "CALC-ENDIREH-PISOS-2016-PAREJA-FISICA-0002",
     "CALC-ENDIREH-PISOS-2016-RESTANTES-0001",
+    "CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001",
     "CALC-ENDIREH-PISOS-2011-MODULOS-0001",
     "CALC-ENDIREH-PISOS-2006-MODULOS-0002",
 ]
@@ -39,7 +40,7 @@ def ambit(name, calc):
         return "externo/familiares u otros"
     if name.startswith(("discriminacion_", "prueba_", "perjuicio_")):
         return "discriminacion_laboral"
-    if name.startswith(("decision_", "dinero_", "permiso_")):
+    if name.startswith(("decision_", "decide_", "dinero_", "permiso_")):
         return "economia_decisiones"
     for prefix, domain in (("escolar", "escolar"), ("laboral", "laboral_interpersonal"),
                            ("comunitaria", "comunitario"), ("familiar", "familiar")):
@@ -48,6 +49,34 @@ def ambit(name, calc):
     if "AYUDA" in calc:
         return "pareja_servicios"
     return "instrumento_especifico"
+
+
+def instrument_for(calc, name):
+    if "2006" in calc:
+        if name.startswith("decision_"):
+            return "MC"
+        if name.startswith("pareja_denuncia_o_aviso_familiar"):
+            return "MS"
+        if name.startswith("pareja_ayuda") or name.startswith("pareja_razon"):
+            return "MC/MD"
+        return "MC/MD/MS según pregunta"
+    if "2011" in calc:
+        if name.startswith("decision_"):
+            return "A"
+        if name.startswith("permiso_"):
+            return "C"
+        return "A/B/C según pregunta"
+    if "DECISIONES" in calc or "PAREJA-FISICA-000" in calc or "2021-AYUDA" in calc:
+        return "A1/A2"
+    if "PAREJA-FISICA-BC" in calc:
+        return "B1/B2/C1"
+    if "NOFISICA" in calc:
+        return "B1/B2/C1" if name.endswith("_bc") or "_bc_" in name else "A1/A2/B1/B2/C1"
+    if "2016-RESTANTES" in calc and name.startswith(("decision_", "dinero_")):
+        return "A1/A2"
+    if "2016-RESTANTES" in calc and ambit(name, calc) == "pareja":
+        return "A1/A2/B1/B2/C1 según acto"
+    return "A1/A2/B1/B2/C1/C2 según elegibilidad"
 
 
 def main():
@@ -62,14 +91,21 @@ def main():
         for row in rows:
             if row.get("eje") != "nacional" or row.get("categoria") != "MX":
                 continue
-            name = row["resultado"]
+            name = row.get("resultado")
+            if name is None:
+                name = ("pareja_fisica_bc" if "PAREJA-FISICA-BC" in calc else
+                        "pareja_fisica_a" if "PAREJA-FISICA" in calc else
+                        "laboral_interpersonal" if "-LABORAL-" in calc else
+                        "familiar_violencia" if "-FAMILIAR-" in calc else
+                        "escolar_violencia" if "-ESCOLAR-" in calc else
+                        "comunitaria_violencia")
             window = row.get("ventana", "")
             key = (name, window)
             if key in seen:
                 continue
             seen.add(key)
             out.append(dict(conducta=name, ola=year, ambito=ambit(name, calc), ventana=window,
-                            instrumento="A/B/C según spec; cortes de situación en tabla",
+                            instrumento=instrument_for(calc, name),
                             dictamen="MEDIDO", publicacion_nacional=row["estado"],
                             calc_id=calc, result_id=result_id,
                             resultados_sha256=hashlib.sha256(raw).hexdigest(),
@@ -96,7 +132,7 @@ def main():
                         calc_id="", result_id="", resultados_sha256="", evidencia=evidence))
     out.sort(key=lambda r: (r["ola"], r["ambito"], r["conducta"], r["ventana"]))
     with OUT.open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t")
+        writer = csv.DictWriter(stream, fieldnames=FIELDS, delimiter="\t", lineterminator="\n")
         writer.writeheader()
         writer.writerows(out)
     print(f"{OUT.relative_to(ROOT)}: {len(out)} dictámenes")
