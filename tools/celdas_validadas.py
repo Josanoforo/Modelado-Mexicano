@@ -64,14 +64,25 @@ _PATRONES_ERROR_C2 = (
 #: sufijo aparece también en `CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-
 #: CRUCES-0001` (las 4 cruces `TRA.evade_norma.envipe2025.*` con
 #: `champion_actual: NINGUNO` -- verificado por comando: su promedio de
-#: `-D-C2` también casa exacto con su `margen_material`). Generalizar el
-#: sufijo a toda la clase 1 haría contar esas 4 celdas TRA sin que mesa lo
-#: haya pedido ni revisado (nadie adjudicó un champion ahí). Este acto sólo
-#: tiene autorizado ENCIG 2025 (#1060): el sufijo se reconoce nada más para
-#: celdas-D cuyo id empieza con este prefijo; la generalización a TRA queda
-#: declarada como hallazgo nuevo, no aplicada.
-_PATRON_D_C2_ENCIG2025 = ("-D-C2", "sufijo")
-_PREFIJO_ENCIG2025_GOB = "GOB.gobierno_digital.encig2025."
+#: `-D-C2` también casa exacto con su `margen_material`).
+#:
+#: GENERALIZADO (ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026, P4, encargo
+#: §3 "aquí se autoriza generalizarlo con la misma regla, declarándolo"):
+#: se quitó la restricción de prefijo `GOB.gobierno_digital.encig2025.` y
+#: el sufijo `-D-C2` se prueba para TODA celda-D, siempre SCOPEADO vía
+#: `adjudicacion_por_celda` (nunca por `k.endswith('-D-C2')` a ciegas) --
+#: la guardia real contra las 4 celdas TRA con `champion_actual: NINGUNO`
+#: sigue siendo la misma que ya las protegía: verificado que sus YAML no
+#: declaran `adjudicacion_por_celda` (`grep -L adjudicacion_por_celda
+#: data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.{dominio_x_sexo,
+#: edad_x_escolaridad_proxy,edad_x_sexo,escolaridad_proxy_x_sexo}.yaml`), así
+#: que `_errores_d_c2_encig2025` sigue devolviendo `{}` para ellas -- nadie
+#: adjudicó un champion ahí y esta generalización no las cuenta. Medido
+#: antes/después del cambio: `celdas_validadas` no se mueve (219 -> 219);
+#: el único otro YAML con `adjudicacion_por_celda` fuera del prefijo viejo
+#: (`TRA.evade_norma.envipe2025.escolaridad_x_dominio`) ya contaba por otro
+#: patrón (`clase_1_cruce_vs_R`, 12 celdas) antes de este cambio.
+_PATRON_D_C2 = ("-D-C2", "sufijo")
 
 
 def _errores_d_c2_encig2025(d: dict, res: dict) -> dict:
@@ -232,11 +243,9 @@ def _celdas_d_adjudicadas() -> list[dict]:
                     res = json.load(fh).get("resultados", {})
             except (OSError, ValueError):
                 continue
-            patrones = _PATRONES_ERROR_C2
-            if cid.startswith(_PREFIJO_ENCIG2025_GOB):
-                patrones = _PATRONES_ERROR_C2 + (_PATRON_D_C2_ENCIG2025,)
+            patrones = _PATRONES_ERROR_C2 + (_PATRON_D_C2,)
             for patron, modo in patrones:
-                if patron == _PATRON_D_C2_ENCIG2025[0]:
+                if patron == _PATRON_D_C2[0]:
                     hit = _errores_d_c2_encig2025(d, res)
                 elif modo == "sufijo":
                     hit = {k[:-len(patron)]: v for k, v in res.items()
