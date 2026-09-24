@@ -121,6 +121,27 @@ SMID = dict(
     siguiente_operacion="Registrar PDF/DOI/SHA y resolver condiciones de portada/versión editorial; conservar selección, método clínico sin escala y fecha 2016; cotejar muestras externas antes de generalizar.",
     prioridad="3",
 )
+LEGAL = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L16,L72-L79; espera de 72 horas frente a obligación de búsqueda",
+    tier_report="sin rótulo explícito",
+    clase="norma federal y protocolo homologado documental",
+    limite_inferencial="La norma obliga búsqueda inmediata ante noticia o reporte. Las 72 horas del protocolo son umbral de presunción de delito y de Búsqueda Individualizada, no plazo de espera para iniciar la Búsqueda Inmediata. El dictamen normativo no mide cumplimiento, demora real ni responsabilidad de una autoridad en caso concreto; pueden existir reglas especiales para niñas, niños y mujeres.",
+    conducta_unidad_universo="Actuación de CNB/Comisiones Locales y fiscalías ante noticia, reporte o denuncia de persona desaparecida/no localizada en México; unidad obligación jurídica federal vigente, no tasa de casos.",
+    instrumento_ola="Ley General en Materia de Desaparición, texto consolidado Cámara de Diputados última reforma DOF 16/jul/2025 arts.88-90,137-II; Protocolo Homologado SNBP/002/2020 DOF 6/oct/2020 numerales 82,143-145,216-217",
+    documento_id_hash_pagina="SIN-ID:astra5_ley_desaparicion_2026.pdf|ef1a4d30a004381523a1c2ed66513cbebc095f7a96c163ff9b66efce7f76ad03|pp.39-41,58 arts.88-90,137-II;https://www.diputados.gob.mx/LeyesBiblio/pdf/LGMDFP.pdf;SIN-ID:astra5_protocolo_busqueda_dof2020.html|b1c2fb498100cfa464ec6240159736e52403f96a9bbc6c49ae176bccec164f06|numerales 82,143-145,216-217;https://sidof.segob.gob.mx/notas/docFuente/5601905",
+    pregunta_textual_codigo_respuestas="No encuesta: cotejo textual de verbo legal iniciar de inmediato y del umbral 72h de presunción de delito/búsqueda individualizada, distinto de búsqueda inmediata ante todo reporte.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Ley consolidada oficial y DOF protocolo capturados con SHA; artículos/numerales exactos cotejados. Falta id documental por perímetro U0; no RESULT de cumplimiento.",
+    datos_id_estado="Normas públicas, sin microdato ni RESULT de cumplimiento.",
+    reserva="Versionar última reforma 16/jul/2025 y vigencia del protocolo; circulación/cita de copia por MESA-DOCUMENTAL. No presentar umbral 72h como permiso de no buscar, ni cumplimiento normativo como hecho observado.",
+    gen2_existente="Sin RESULT compatible sobre demoras o cumplimiento.",
+    propietario="ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar ambos documentos/versiones/SHA; investigar testimonios de demora por entidad y fecha separadamente de la obligación; cotejar protocolos especiales aplicables.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-DUEL-001",
@@ -205,6 +226,11 @@ ROWS = [
         id_afirmacion="ASTRA5-U0-DUEL-015",
         texto_vigente="En las entrevistas de Smid et al. se mencionaron ideación suicida, insomnio, ansiedad, cambios de apetito, recuerdos intrusivos, irritabilidad y afectación de funciones cotidianas.",
         componente_contrastable="Resumen y Resultados p.143 enumeran síntomas frecuentes sin n por síntoma ni escala de tamizaje. No equivalen a diagnósticos ni a prevalencias mexicanas de cada síntoma.",
+    ),
+    LEGAL | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-016",
+        texto_vigente="La ley mexicana exige iniciar la búsqueda de inmediato al recibir noticia o reporte; las 72 horas del protocolo no son un periodo legal de espera para comenzar a buscar.",
+        componente_contrastable="Ley arts.88-90 y 137-II (texto consolidado DOF 16/jul/2025) + Protocolo numerales 82,143-145,216-217: búsqueda inmediata desde conocimiento; 72h cambia presunción de delito y Búsqueda Individualizada. La demora efectiva denunciada requiere evidencia empírica propia.",
     ),
 ]
 
