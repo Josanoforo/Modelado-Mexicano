@@ -3231,7 +3231,48 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
                     _camina(elemento, contexto)
 
         _camina(crudo, [])
+    declarados.update(_marcas_catalogo(CATALOGO_MOMENTOS))
     return declarados
+
+
+# ACTO GEN2-CATALOGO-CONTRATO-Y-TEST-1 (24/sep/2026, Decision 3 de mesa de
+# ADOPCION-2): el catalogo sellado no tenia donde MATERIALIZAR una cifra, asi
+# que T-REPRO (c) comparaba 'NO-DECLARADO-EN-EL-REGISTRO' contra el RESULT y
+# ninguna cita lateral podia pasar. El relevo va en columnas propias,
+# anadidas al final del TSV sin tocar las selladas: el valor GEN2 y su cita
+# (RESULT, CALC, sello). Una cita incompleta (RESULT sin CALC o sin sello)
+# no cuenta como cita: el valor queda "sin cita" y T-REPRO (c) lo rechaza.
+# `discrepancia_gen1` rotula el choque con la cifra GEN1 y no bloquea.
+CATALOGO_MOMENTOS = RAIZ / "milpa" / "catalogo-momentos-v0_1.tsv"
+COLUMNAS_RELEVO_CATALOGO = ("valor_gen2", "corrida0_resultado_id",
+                            "corrida0_generacion", "calc_gen2", "sello_gen2",
+                            "discrepancia_gen1")
+
+
+def _marcas_catalogo(ruta: Path) -> dict[str, dict]:
+    if not ruta.exists():
+        return {}
+    with open(ruta, encoding="utf-8", newline="") as fh:
+        filas = list(csv.DictReader(fh, delimiter="\t"))
+    marcas: dict[str, dict] = {}
+    for f in filas:
+        crudo_valor = (f.get("valor_gen2") or "").strip()
+        rid = (f.get("corrida0_resultado_id") or "").strip()
+        gen = (f.get("corrida0_generacion") or "").strip()
+        if not (crudo_valor or rid or gen):
+            continue
+        cita_completa = bool(rid and (f.get("calc_gen2") or "").strip()
+                             and (f.get("sello_gen2") or "").strip())
+        # misma llave que `_consumidores_momentos` escribe en la demanda
+        marcas[f"milpa/catalogo-momentos-v0_1.tsv:{f['id_momento']}"] = {
+            "resultado_id": rid if cita_completa else "",
+            "generacion": gen,
+            "uso": "",
+            "valor": (_numero_o_texto(crudo_valor) if crudo_valor
+                      else NO_DECLARADO),
+            "discrepancia_gen1": (f.get("discrepancia_gen1") or "").strip(),
+        }
+    return marcas
 
 
 def _resultados_citados_en(ruta: Path) -> set[str]:
@@ -4772,6 +4813,22 @@ def _en_lote(fila: dict, lote: set) -> bool:
     return fila.get("corrida_id") in lote or fila.get("spec_id") in lote
 
 
+def _rellena_columnas_nuevas(fila: dict, columnas: list[str]) -> dict:
+    """Una fila PUBLICADA (leída byte a byte de un TSV en disco) puede venir
+    de un header más viejo que `columnas`: el código le agregó una columna
+    (p. ej. `tolerancia` en `COLS_VISTA_CORRIDAS`, ACTO
+    GEN2-TUBERIA-VISTA-NORMALIZADA-2 COMMIT-A) después de la última vez que
+    esa fila se escribió, y el TSV en disco nunca se recongeló para
+    incluirla -- defecto real (24/sep/2026): todo `registro --escribe
+    --lote` posterior moría con `KeyError` en `_escribe`, porque una fila
+    congelada por `_acota_vistas_al_lote` no traía la columna nueva.
+    Se declara la migración (NO_DECLARADO), nunca un KeyError silencioso;
+    las columnas que la fila SÍ trae no se tocan -- sigue siendo la
+    versión publicada, byte a byte, para todo lo que su header ya cubría."""
+    faltantes = [c for c in columnas if c not in fila]
+    return {**fila, **{c: NO_DECLARADO for c in faltantes}} if faltantes else fila
+
+
 def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
     """GEN2-TUBERIA-LOTE-ESTRICTO-1 · P2: `--escribe --lote` acota la
     ESCRITURA, no solo el guardia. Toda fila YA PUBLICADA y ajena al lote
@@ -4789,17 +4846,26 @@ def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
                           lambda f: (f["corrida_id"], f["resultado_id"]))
     pub_usos = _publicadas(VISTA_USOS,
                            lambda f: (f["resultado_id"], f["consumidor"], f["tipo_uso"]))
-    corridas = [pub_corr.get(f["corrida_id"], f) if not _en_lote(f, lote) else f
-                for f in vistas["corridas"]]
-    resultados = [pub_res.get((f["corrida_id"], f["resultado_id"]), f)
-                  if not _en_lote(f, lote) else f for f in vistas["resultados"]]
+    corridas = [
+        (_rellena_columnas_nuevas(pub_corr[f["corrida_id"]], COLS_VISTA_CORRIDAS)
+         if f["corrida_id"] in pub_corr else f) if not _en_lote(f, lote) else f
+        for f in vistas["corridas"]
+    ]
+    resultados = [
+        (_rellena_columnas_nuevas(pub_res[(f["corrida_id"], f["resultado_id"])], COLS_VISTA_RESULTADOS)
+         if (f["corrida_id"], f["resultado_id"]) in pub_res else f) if not _en_lote(f, lote) else f
+        for f in vistas["resultados"]
+    ]
     en_lote_res: dict[str, bool] = {}
     for f in vistas["resultados"]:
         en_lote_res[f["resultado_id"]] = (en_lote_res.get(f["resultado_id"], False)
                                           or _en_lote(f, lote))
-    usos = [pub_usos.get((f["resultado_id"], f["consumidor"], f["tipo_uso"]), f)
-            if not en_lote_res.get(f["resultado_id"], False) else f
-            for f in vistas["usos"]]
+    usos = [
+        (_rellena_columnas_nuevas(pub_usos[(f["resultado_id"], f["consumidor"], f["tipo_uso"])], COLS_VISTA_USOS)
+         if (f["resultado_id"], f["consumidor"], f["tipo_uso"]) in pub_usos else f)
+        if not en_lote_res.get(f["resultado_id"], False) else f
+        for f in vistas["usos"]
+    ]
     return {**vistas, "corridas": corridas, "resultados": resultados, "usos": usos}
 
 

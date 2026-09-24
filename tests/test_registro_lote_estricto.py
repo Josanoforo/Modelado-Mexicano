@@ -38,6 +38,7 @@ from __future__ import annotations
 
 import csv
 import importlib.util
+import shutil
 import sys
 import tempfile
 from pathlib import Path
@@ -216,6 +217,47 @@ def t_d_lote_si_autoriza_mover_la_corrida_que_nombro():
             C.VISTA_CORRIDAS = C.CORRIDAS / "corridas.tsv"
             C.VISTA_RESULTADOS = C.CORRIDAS / "resultados.tsv"
             C.VISTA_USOS = C.CORRIDAS / "usos.tsv"
+
+
+def t_e_columna_publicada_vieja_se_rellena_no_revienta():
+    """Defecto real (24/sep/2026, hallazgo colateral de ACTO
+    GEN2-TUBERIA-TABLERO-EN-CANAL-1): una corrida PUBLICADA con un header
+    más viejo que `COLS_VISTA_CORRIDAS` (p.ej. de antes de que
+    GEN2-TUBERIA-VISTA-NORMALIZADA-2 agregara `tolerancia`) tumbaba TODO
+    `registro --escribe --lote` con `KeyError: 'tolerancia'` en `_escribe`,
+    sin que el lote tuviera nada que ver con esa corrida -- medido contra
+    `origin/main` real (24/sep/2026): dos pushes seguidos murieron así.
+    `_rellena_columnas_nuevas` declara la migración (NO_DECLARADO) en vez
+    de reventar, y no toca ninguna columna que la fila vieja sí traía."""
+    caso = "t_e_columna_publicada_vieja_se_rellena_no_revienta"
+    cols_viejas = [c for c in C.COLS_VISTA_CORRIDAS if c != "tolerancia"]
+    tmp = Path(tempfile.mkdtemp(prefix="lote-migracion-"))
+    try:
+        ruta = tmp / "corridas.tsv"
+        fila_vieja = {c: "X" for c in cols_viejas}
+        fila_vieja.update({"corrida_id": "CALC-VIEJA--01", "spec_id": "CALC-VIEJA"})
+        C._escribe(ruta, cols_viejas, [fila_vieja])
+        previo = C.VISTA_CORRIDAS
+        C.VISTA_CORRIDAS = ruta
+        try:
+            fresco = _fila("CALC-VIEJA--01", "CALC-VIEJA", "REPRODUCE", "IDENTICO")
+            nueva = _fila("CALC-NUEVA--02", "CALC-NUEVA", "REPRODUCE", "IDENTICO")
+            vistas = {"corridas": [fresco, nueva], "resultados": [], "usos": []}
+            acotada = C._acota_vistas_al_lote(vistas, {"CALC-NUEVA"})
+            por_id = {f["corrida_id"]: f for f in acotada["corridas"]}
+            vieja = por_id["CALC-VIEJA--01"]
+            _afirma(vieja["tolerancia"] == C.NO_DECLARADO, caso,
+                    "la columna nueva ausente debió rellenarse con NO_DECLARADO, "
+                    f"dio {vieja.get('tolerancia')!r}")
+            _afirma(vieja["origen"] == "X", caso,
+                    "una columna que la fila vieja SÍ tenía no debe tocarse")
+            # Y que _escribe (el punto exacto donde reventaba) no reviente
+            # con esta fila congelada.
+            C._escribe(tmp / "salida.tsv", C.COLS_VISTA_CORRIDAS, acotada["corridas"])
+        finally:
+            C.VISTA_CORRIDAS = previo
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
 
 
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
