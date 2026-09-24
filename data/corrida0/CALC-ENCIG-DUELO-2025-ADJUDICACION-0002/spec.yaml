@@ -1,0 +1,2088 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCIG-DUELO-2025-ADJUDICACION-0002
+spec_md: ../../../forense/prereg-caja/ENCIG-DUELO-2025-ADJUDICACION-0002-spec-v1_0.md
+spec_md_sha256: 0eac620b0c769428b03bbd719a0d1aa5329dcc063780239762039530e8446412
+script: data/corrida0/CALC-ENCIG-DUELO-2025-ADJUDICACION-0002/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: TRAMITE
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-ENCIG-PISOS-GEN2-1 (cuenta_gen2: SI, adopta: NO); no adopta retadores'
+  fuente_acto: GEN2-ENCIG-PISOS-GEN2-1
+  firmas: Decision 1 de ADOPCION-2 (encargo §2, mesa 24/sep/2026) + respuesta de mesa 24/sep «Marginales 2025»;
+    hereda FP-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-01 FIRMADA via el -0001
+  orden_de_commits: COMMIT-1 (specs+codigo+D22) -> COMMIT-2 piso sellado -> COMMIT-3a sha del piso -> COMMIT-3 re-adjudicacion
+  celda_d: GOB.gobierno_digital.encig2025.edad_x_sexo y .escolaridad_x_sexo (champion_actual pasa a citar este CALC
+    en COMMIT-3)
+  tipo: RE-ADJUDICACION-CELDA-D-PISO-DE-CADENA-LIMPIA
+  commit: COMMIT-3
+  condicion: SE NIEGA A CORRER si la auditoria de su codigo no sale limpia, sin los sellos de las dos emisiones
+    y del piso (sha256 verificado), si el piso no declara origen NUEVO y controles REPRODUCE, o con un input fuera
+    de la lista
+  medidor_ejecutado_al_congelar: SI -- fixtures sinteticos (tests/test_encig_pisos_gen2.py); el oro es el -0001
+    sellado (control G-CTRL-ORO-0001 en cada corrida)
+  hereda_por_sha:
+    spec_md: forense/prereg-caja/ENCIG-DUELO-2025-cierre-spec-v1_0.md 2cf3bb9578b44df8329f65f5cde7c83fc254c68125be229a67bc310f1df8623d
+    medidor: data/corrida0/CALC-ENCIG-DUELO-2025-ADJUDICACION-0001/medidor.py 74e8aa49938616299f7464e4a7cf8a94a46b83a3550ec52552587510debf86d4
+  relevo_de: 'CALC-ENCIG-DUELO-2025-ADJUDICACION-0001 (queda SELLADA como evidencia historica; no es repite_de:
+    la fuente de C2 cambia)'
+  marca: C2 RETROSPECTIVA (piso sellado despues de R); C7, C-ENCOGIDA, C-ASTRA y C1 PROSPECTIVA
+secuencia_commits:
+  commit_2: corrida0 run de CALC-ENCIG2025-PISOS-GOBDIGITAL-0001; sello; asiento de replay; commit y push.
+  commit_3a: 'misma sesion, commit aparte: escribe aqui el sha256 de piso_c2_resultados y piso_c2_sello; preflight
+    VERDE. Ninguna otra linea cambia.'
+  commit_3: corrida0 run de este CALC; sello; celdas-D; decisiones.tsv; asientos.
+  preflight_esperado_antes_del_commit_3a: BLOQUEADO exactamente por input_repo_ausente e input_repo_no_commiteado
+    de piso_c2_resultados y piso_c2_sello -- y por nada mas.
+inputs:
+- id: encig25_base_datos_csv
+  origen: manifiesto
+  sha256: 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+  nota: 'ENCIG 2025, ola RESERVADA para estos dos pares: se abre aqui, en COMMIT-3, y solo por PARES_AUTORIZADOS'
+- id: receta_cruce_encig
+  origen: repo
+  ruta: tools/encig_cruces_historicos.py
+  sha256: 31d7cf3b4e4acbaac5be4a6bff58cc769c461e6e6f3abf372a89537aee6d8f83
+  nota: receta de los cruces historicos (_load_wave, _bootstrap, _summary), ejecutada desde estos bytes
+- id: adjudicacion_piloto4
+  origen: repo
+  ruta: data/corrida0/CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001/adjudicacion.py
+  sha256: ed6e80b8cc6143ea2047cc45af0195026bbce82889a805d15e3583c91f44647d
+  nota: 'regla primaria: _estado_gana extraida por AST de estos bytes (version corregida 7ffa0a0e)'
+- id: marginales_2025_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENCIG2025-0001/resultados.json
+  sha256: 5a5272d7ef0c27f98e44d26f8e86d57ea0223fe8e4880f7b5f6601521e80d317
+  nota: 'control: los 11 marginales de un eje de 2025, ya sellados, a 1e-10'
+- id: emisiones_edadxsexo_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-EDADXSEXO-EMISIONES-0001/resultados.json
+  sha256: 509a501b919474e9bae31d1a4e3e739197e51f85e971fcbabdcf6b5a0acff50c
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
+- id: emisiones_edadxsexo_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-EDADXSEXO-EMISIONES-0001/sello.json
+  sha256: f56b0201c31d28a34ae87429fd8d7fc660c988c95c3cac77d7737ea519fd8c63
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
+- id: emisiones_escolaridadxsexo_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ESCOLARIDADXSEXO-EMISIONES-0001/resultados.json
+  sha256: 889b7def1b36dee7a87bb1cfcb4e8a32c7a2827372d7856149f72225380b5ec7
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
+- id: emisiones_escolaridadxsexo_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ESCOLARIDADXSEXO-EMISIONES-0001/sello.json
+  sha256: e3d84557e5170fbd67f0202d346c515455f1f91eb12a9be5526e21c3077ac3e2
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
+- id: piso_c2_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2025-PISOS-GOBDIGITAL-0001/resultados.json
+  sha256: b13c939d4b6053546895feca9a0436acb26cd0b845ddf931cb0e1751a4745b43
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a. Fuente UNICA del punto C2.
+- id: piso_c2_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG2025-PISOS-GOBDIGITAL-0001/sello.json
+  sha256: 0a6532333449502f9d7cf328ae2166a58f3d65ced56979cc225a85b6b5742ec6
+  funcion: METADATO
+  nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
+- id: adjudicacion_0001_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENCIG-DUELO-2025-ADJUDICACION-0001/resultados.json
+  sha256: c676749537a754e1df18b9f0b93625b7d439f769811b17c7f1eaac12e1d9df74
+  funcion: CONTROL-HISTORICO
+  nota: 'oro del -0001 (E.5): todo lo que no depende de C2 a 1e-10; no es insumo numerico'
+variables:
+- archivo: encig2025_04_sec_7.csv
+  variable: N_TRA
+  rol: universo
+- archivo: encig2025_04_sec_7.csv
+  variable: P7_3
+  rol: desenlace (reactivo 7.3, canal de pago)
+- archivo: encig2025_04_sec_7.csv
+  variable: FAC_TRA
+  rol: ponderador
+- archivo: encig2025_04_sec_7.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: encig2025_04_sec_7.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: encig2025_04_sec_7.csv
+  variable: ID_PER
+  rol: llave-join-m:1
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: ID_PER
+  rol: llave-join
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: SEXO
+  rol: eje-sexo
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: EDAD
+  rol: eje-edad
+- archivo: encig2025_02_residentes_sec_2.csv
+  variable: NIV
+  rol: eje-escolaridad
+universo: 'TRAMITES: pago ordinario del servicio de luz (N_TRA=01) con P7_3 en {1,2,4,5,6}; FAC_TRA > 0; EST_DIS
+  y UPM_DIS no vacios; union trámite->persona por ID_PER m:1. Por par: casos completos en los dos ejes.'
+filtros: Por par, casos completos en los dos ejes (residuo contado en G-RESIDUO-N); marginales de un eje sobre su
+  propio denominador valido; total sobre todo el universo.
+ponderador: FAC_TRA
+transformacion: adopta = P7_3 en {4,5}; no adopta = {1,2,6}; EDAD 18-29/30-44/45-59/60-96 (97 y 98/99 fuera); NIV
+  {0,1,2}/{3}/{4,5,6,7}/{8,9}; SEXO 1/2. R(a,b) = suma(FAC_TRA*adopta)/suma(FAC_TRA) en la celda.
+estimando: Re-adjudicacion del -0001 con C2 := RESULT -C2-P de CALC-ENCIG2025-PISOS-GOBDIGITAL-0001 (por id). R(a,b)
+  de ENCIG 2025 por celda de edad x sexo y escolaridad x sexo (unico codigo autorizado a agrupar 2025 por dos variables),
+  soporte, veredicto por celda, DeltaMAE con IC por replica de R contra C2 para C7, C-ENCOGIDA y C-ASTRA, B-bis
+  por cruce y agregado, cobertura descriptiva e IC de C2 por replica (NACE-CON-R).
+seed:
+  aplica: true
+  valor: 20260919
+  rng: numpy.PCG64
+parametros:
+  punto_de_entrada: adjudicacion
+  ola: '2025'
+  payload_id: encig25_base_datos_csv
+  bootstrap_replicas: 10000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; un solo
+    bootstrap para R y marginales; PCG64(20260919) como los historicos
+  n_minimo_celda: 200
+  delta_mae_umbral_pp: 0.5
+  fraccion_descriptiva: 0.75
+  fuera_de_soporte_global: round(k/3) celdas fallidas por cruce; k=8 -> 3
+  tol_marginales: 1.0e-10
+  tol_c2: 1.0e-05
+  criterio_indecidible_verbatim: INDECIDIBLE si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R)
+  criterio_indecidible_fuente: forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38
+  regla_primaria: DeltaMAE_j = MAE(C2) - MAE(j) en pp sobre PUNTUADA; IC 2.5/97.5 sobre replicas de R con puntos
+    fijos; IC inferior > 0.5 -> SI; > 0 -> PROPUESTA-CON-RESERVA; si no -> NO (_estado_gana del piloto 4)
+  b_bis: W vacio y todo IC superior <= 0.5 -> CORROBORADA; W vacio y alguno > 0.5 -> FALSADOR-DEBIL (manda si ambas
+    caben); W={C-ENCOGIDA} o {C7} -> LIMITA-C2-SOBRE-CUANTO-ENCOGER; otro W -> LIMITA-C2; sin soporte -> FUERA-DE-SOPORTE-GLOBAL
+  tol_oro_0001: 1.0e-10
+guardia:
+  allowlist_inputs:
+  - adjudicacion_0001_resultados
+  - adjudicacion_piloto4
+  - emisiones_edadxsexo_resultados
+  - emisiones_edadxsexo_sello
+  - emisiones_escolaridadxsexo_resultados
+  - emisiones_escolaridadxsexo_sello
+  - encig25_base_datos_csv
+  - marginales_2025_resultados
+  - piso_c2_resultados
+  - piso_c2_sello
+  - receta_cruce_encig
+  pares_autorizados:
+  - - EDAD
+    - SEXO
+  - - ESCOLARIDAD
+    - SEXO
+  par_consumido_vetado:
+  - EDAD
+  - ESCOLARIDAD
+  exige_sello_de:
+  - CALC-ENCIG-DUELO-2025-EDADXSEXO-EMISIONES-0001
+  - CALC-ENCIG-DUELO-2025-ESCOLARIDADXSEXO-EMISIONES-0001
+  - CALC-ENCIG2025-PISOS-GOBDIGITAL-0001
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-FILAS-EVENTOS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-JOIN-SIN-DEMOGRAFIA
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-N-UNIVERSO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-N-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-P7-3-EXCLUIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-MARGINALES-MAX-ABS-P
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-MARGINALES-N-DISCORDA
+  tipo: entero
+  unidad: marginales
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-MARGINALES-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-B-BIS-AGREGADO
+  tipo: texto
+  unidad: veredicto
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-ADOPCION-RETADOR
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-FUENTE-C2
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-MARCA-EMISIONES
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-UNIDAD
+  tipo: texto
+  unidad: unidad
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-UMBRAL-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INCERTIDUMBRE
+  tipo: texto
+  unidad: descripción del método
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-AUDITORIA-CODIGO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-SELLOS-EMISIONES
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-PAYLOAD-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-ORO-0001-MAX-ABS
+  tipo: flotante
+  unidad: diferencia absoluta
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-ORO-0001-N
+  tipo: entero
+  unidad: ids comparados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-CTRL-ORO-0001-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-ADJUDICACION-0001-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-ADJUDICACION-PILOTO4-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-EMISIONES-EDADXSEXO-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-EMISIONES-EDADXSEXO-SELLO-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-EMISIONES-ESCOLARIDADXSEXO-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-EMISIONES-ESCOLARIDADXSEXO-SELLO-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-MARGINALES-2025-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-PISO-C2-RESULTADOS-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-PISO-C2-SELLO-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-G-INPUT-RECETA-CRUCE-ENCIG-SHA256
+  tipo: texto
+  unidad: hash sha256
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-SEXO-1-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-SEXO-1-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-SEXO-2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-SEXO-2-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-18-29-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-30-44-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-45-59-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-EDAD-60-MAS-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-M-TOTAL-TODOS-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-N-COMPLETOS
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-RESIDUO-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-CTRL-C2-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-CTRL-C2-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C2-IC-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-PUNTUADAS-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-FALLAN-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-FUERA-GLOBAL-UMBRAL
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-SOPORTE-GLOBAL
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-GANADORES
+  tipo: texto
+  unidad: candidatos
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-PROPUESTAS-CON-RESERVA
+  tipo: texto
+  unidad: candidatos
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-B-BIS
+  tipo: texto
+  unidad: veredicto
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-VEREDICTO-CELDA-D
+  tipo: texto
+  unidad: veredicto
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-CHAMPION-PROPUESTO
+  tipo: texto
+  unidad: candidato
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-MAE-C2
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-MAE-C7
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-MAE-C-ENCOGIDA
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-MAE-C-ASTRA
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-MAE-C1
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-DENTRO-IC-R-C2
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-DENTRO-IC-R-C7
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-DENTRO-IC-R-C-ENCOGIDA
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-DENTRO-IC-R-C-ASTRA
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-DENTRO-IC-R-C1
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C7-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ENCOGIDA-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-C-ASTRA-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C1-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C1-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C1-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C1-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C7-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C7-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C7-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C7-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ENCOGIDA-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ENCOGIDA-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ASTRA-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ASTRA-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ASTRA-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-G-COBERTURA-C-ASTRA-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-18-29-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-30-44-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-45-59-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-EDADXSEXO-60-96-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-N-COMPLETOS
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-RESIDUO-N
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-CTRL-C2-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporción
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-CTRL-C2-VEREDICTO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C2-IC-ESTADO
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-PUNTUADAS-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-FALLAN-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-FUERA-GLOBAL-UMBRAL
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-SOPORTE-GLOBAL
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-GANADORES
+  tipo: texto
+  unidad: candidatos
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-PROPUESTAS-CON-RESERVA
+  tipo: texto
+  unidad: candidatos
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-B-BIS
+  tipo: texto
+  unidad: veredicto
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-VEREDICTO-CELDA-D
+  tipo: texto
+  unidad: veredicto
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-CHAMPION-PROPUESTO
+  tipo: texto
+  unidad: candidato
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-MAE-C2
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-MAE-C7
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-MAE-C-ENCOGIDA
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-MAE-C-ASTRA
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-MAE-C1
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-DENTRO-IC-R-C2
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-DENTRO-IC-R-C7
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-DENTRO-IC-R-C-ENCOGIDA
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-DENTRO-IC-R-C-ASTRA
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-DENTRO-IC-R-C1
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C7-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ENCOGIDA-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-VENCE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-INDECIDIBLE-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-FRACCION-3-4
+  tipo: texto
+  unidad: SI/NO (descriptivo)
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-DELTA-MAE-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-DELTA-MAE-IC-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-DELTA-MAE-IC-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-DELTA-MAE-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-C-ASTRA-GANA
+  tipo: texto
+  unidad: SI/PROPUESTA-CON-RESERVA/NO/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C1-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C1-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C1-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C1-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C7-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C7-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C7-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C7-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ENCOGIDA-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ENCOGIDA-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ENCOGIDA-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ENCOGIDA-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ASTRA-K
+  tipo: entero
+  unidad: celdas con R dentro del IC
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ASTRA-N
+  tipo: entero
+  unidad: celdas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ASTRA-IC-LO
+  tipo: proporcion
+  unidad: Wilson 95% inferior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-G-COBERTURA-C-ASTRA-IC-HI
+  tipo: proporcion
+  unidad: Wilson 95% superior
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-HASTA-PRIMARIA-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SECUNDARIA-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-MEDIA-SUPERIOR-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-1-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-N-2025
+  tipo: entero
+  unidad: trámites
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-SOPORTE
+  tipo: texto
+  unidad: categoría
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-R-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-R-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-R-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-R-EE
+  tipo: flotante
+  unidad: (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-R-B-VALIDAS
+  tipo: entero
+  unidad: réplicas definidas
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-DELTA-25
+  tipo: flotante
+  unidad: logit
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-P
+  tipo: proporcion
+  unidad: proporción de trámites [0,1] (punto sellado adoptable)
+  permite_no_estimable: true
+  dependencias_numericas:
+  - piso_c2_resultados
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-P-EMISION-0001
+  tipo: proporcion
+  unidad: C2 de la emision del -0001 (cadena legacy; descriptiva)
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-IC-LO
+  tipo: proporcion
+  unidad: límite inferior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-IC-HI
+  tipo: proporcion
+  unidad: límite superior por réplica, NACE-CON-R
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-C2-P-RECALCULADO
+  tipo: proporcion
+  unidad: 'control: composición en la ola'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-D-C2
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-D-C7
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-D-C-ENCOGIDA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-D-C-ASTRA
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-D-C1
+  tipo: flotante
+  unidad: '|candidato - R| pp'
+  permite_no_estimable: true
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-VEREDICTO-C7-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-VEREDICTO-C-ENCOGIDA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
+- id: RESULT-ENCIG-DUELO-2025-ADJ2-ESCOLARIDADXSEXO-SUPERIOR-X-2-VEREDICTO-C-ASTRA-VS-C2
+  tipo: texto
+  unidad: GANA-CHALLENGER/GANA-PISO/INDECIDIBLE/NO-PUNTUADA/NO-ENTRA
