@@ -1,0 +1,3 @@
+# ADR-260924-GEN2-ASTRA5-U2-ENDIREH-CIERRE-1-b0df-01
+
+24/sep/2026 · `ACTO GEN2-ASTRA5-U2-ENDIREH-CIERRE-1`. Cascada de cierre de #1093 (`codex/astra5-genero-endireh-1`, merge `8721d658`) y su sucesor #1099 (`56ca4377`), por R(a) de FIRMAS-15. Cero mediciones, no adopta. 16 CALC-ENDIREH sellados (10 + 6), todos `cuenta_gen2: SI` y con asiento REPRODUCE/IDENTICO (16/16; ningún asiento faltante). Recibo de Claude en `forense/analisis/astra5-genero-endireh/recibo-para-claude.md` (6 criterios, sin REVERTIR). `NC-…-39d2-01` cierra; nace `NC-…-b0df-01` (`CALC-ENDIREH-PISOS-2006-MODULOS-0001` sin sello y sin declaración).
