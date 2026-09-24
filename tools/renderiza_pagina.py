@@ -185,6 +185,19 @@ def _inventario(d: Path) -> dict[str, tuple[int, float]]:
     return {p.name: (p.stat().st_size, p.stat().st_mtime) for p in d.iterdir() if p.is_file()}
 
 
+def cierra_arbol(nombre_perfil: str) -> None:
+    """En modo descarga Chrome headless NO termina tras bajar el archivo, y el timeout de WSL sólo
+    mata al lanzador: el árbol de Windows queda vivo con el perfil bloqueado (medido 24/sep: 4
+    árboles, 28 procesos). Se detienen sólo los chrome.exe cuyo --user-data-dir es este perfil."""
+    if not os.path.isdir("/mnt/c"):
+        return
+    ps = ("Get-CimInstance Win32_Process -Filter \"Name='chrome.exe' OR Name='msedge.exe'\" | "
+          f"Where-Object {{ $_.CommandLine -like '*{nombre_perfil}*' }} | "
+          "ForEach-Object { Stop-Process -Id $_.ProcessId -Force -ErrorAction SilentlyContinue }")
+    subprocess.run(["powershell.exe", "-NoProfile", "-Command", ps], capture_output=True,
+                   stdin=subprocess.DEVNULL, cwd="/mnt/c", timeout=60)
+
+
 def descarga(url: str, navegador: str, salida: Path, descargas: Path, espera_ms: int = 20000,
              timeout: int = 180) -> dict:
     salida.mkdir(parents=True, exist_ok=True)
@@ -201,10 +214,6 @@ def descarga(url: str, navegador: str, salida: Path, descargas: Path, espera_ms:
         subprocess.run(cmd, stdin=subprocess.DEVNULL, capture_output=True, timeout=timeout)
     except subprocess.TimeoutExpired:
         pass
-    finally:  # el perfil temporal es de esta llamada: no se deja en C:\\Temp ni en /tmp
-        time.sleep(2)
-        for d in (perfil, Path("/mnt/c/Temp") / perfil.name):
-            shutil.rmtree(d, ignore_errors=True)
     nuevos: list[str] = []
     fin = time.time() + 60
     while time.time() < fin:  # espera a que el archivo aparezca y su tamaño se estabilice
@@ -215,6 +224,10 @@ def descarga(url: str, navegador: str, salida: Path, descargas: Path, espera_ms:
             if all((descargas / n).stat().st_size == t for n, t in t1.items()):
                 break
         time.sleep(2)
+    cierra_arbol(perfil.name)  # el perfil es de esta llamada: se cierra su árbol y se borra
+    time.sleep(2)
+    for d in (perfil, Path("/mnt/c/Temp") / perfil.name):
+        shutil.rmtree(d, ignore_errors=True)
     if len(nuevos) != 1:
         return {**rec, "estado": "SIN-DESCARGA" if not nuevos else "AMBIGUO", "nuevos": nuevos}
     destino = salida / nuevos[0]
