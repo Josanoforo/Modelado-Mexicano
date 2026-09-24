@@ -46163,3 +46163,63 @@
   nota: 'A.7: dos descargas con sha256 idéntico; estructura TEXTO-PLANO-OK; no abierto (sólo
     sha, tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2010_2014_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2013-2022 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2010_2014_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip
+  sha256: 789f53a8323338c651768b0f567f97c464c76f58617a5fc1ade7b6c988733f3f
+  tamano_bytes: 38074262
+  formato: ZIP con bases DBF de matrimonios 2010-2014 (trae 2013 y 2014)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2015_2019_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2013-2022 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2015_2019_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip
+  sha256: 607c4b8d8856bfcb1648ad7985f4eb6de8c8dbc422638a17f73174d03dbb864c
+  tamano_bytes: 34286682
+  formato: ZIP con bases DBF de matrimonios 2015-2019
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2020_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2013-2022 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2020_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2020/matrimonios_base_datos_2020_dbf.zip
+  sha256: 0fb9c29e6fa46ab6dd78c6499483fb161bbb2639d279bf3f1bf85b564131f3f3
+  tamano_bytes: 4778981
+  formato: ZIP con base DBF de matrimonios 2020
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: emat2021_bd_dbf_zip
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:EMAT_2013-2022 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/emat/microdatos/matrimonios_base_datos_2021_dbf.zip
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: EMAT/2021/matrimonios_base_datos_2021_dbf.zip
+  sha256: 2a09dc71128b4365b3bc429ae285ffe87e9ac078f616b160535fb9cf28f32164
+  tamano_bytes: 6283059
+  formato: ZIP con base DBF de matrimonios 2021
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
