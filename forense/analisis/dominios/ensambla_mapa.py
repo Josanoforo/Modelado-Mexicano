@@ -285,7 +285,12 @@ def main(verifica: bool) -> int:
             pieza = m.group(1).strip() if m else f["datos_id_estado"]
             dato = re.search(r"microdato|base de datos|\bdatos?\b|payload|encuesta|serie|tabulado|\bola\b", pieza, re.I)
             estado = "ADQUIRIR" if dato else "DOCUMENTACIÓN-SOLAMENTE"
-        existencia = "NO-COMPROBADA" if "EXISTENCIA-NO-COMPROBADA" in blob.upper() else "COMPROBADA-O-NO-APLICA"
+        if "NO-ACCESIBLE-DESDE-SANDBOX" in blob.upper():
+            existencia = "NO-ACCESIBLE-DESDE-SANDBOX"
+        elif "EXISTENCIA-NO-COMPROBADA" in blob.upper():
+            existencia = "NO-COMPROBADA"
+        else:
+            existencia = "COMPROBADA-O-NO-APLICA"
         hoja.append([f["id_afirmacion"], f["dominio"], f["report"], estado, existencia, pieza[:400],
                      f["instrumento_ola"][:200], f["propietario"], f["prioridad"]])
     salidas[D / "hoja-adquisicion-derivada-v1_0.tsv"] = tsv(hoja)
