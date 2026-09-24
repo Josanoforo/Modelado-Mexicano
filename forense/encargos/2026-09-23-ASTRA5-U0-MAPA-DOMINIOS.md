@@ -58,3 +58,7 @@ Asignación final de mesa recibida como adenda: `2026-09-23-ASTRA5-U0-MAPA-DOMIN
 | `NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-03` | ADENDA-1 §1-§2: herramienta `u0red.py` con `tests/test_u0red.py` y pasada sobre las 131 filas | `DIFERIDO-A` — el control de permisos del modo automático bloqueó escribirla y la firma de la opción 1 no llegó | ninguna fila se reintentó con la herramienta; la receta deja las rutas y su condición de entorno (máquina de mesa, fuera del sandbox) | `GEN2-ASTRA5-U5-ADQUISICION-1` |
 | `NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04` | registrar las copias físicas SIN-ID leídas por U0 (CEEY, Mijs/Hoy, Oxfam, WHR, informe Latinobarómetro, DataReportal, Nature/Science/BMJ, entre otras) | `FUERA-DE-PERÍMETRO` — el manifiesto es de solo lectura para U0 | las filas citan la copia por ruta y sha recalculado, sin id de manifiesto | `/adquiere` en CAJA (U5) |
 | `NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-05` | alcance del uso futuro de lo expuesto del boletín ENOE 2026T1 (MER-001..003 retirados; `exposicion-enoe2026t1-v1_0.md`) | `DECISIÓN-DE-MESA-PENDIENTE` | ninguna cifra expuesta entra al mapa; la ola sigue reservada | `FP-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-01` |
+
+## CONSUMIDO
+
+Consumido por el PR #1079 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1079), rama `codex/astra5-mapa-dominios-1`, `ADR-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-01`, con la `ADENDA-1` (opción 2); nota `forense/notas/2026-09-24-ASTRA5-U0-MAPA-DOMINIOS-cierre.md`. El PR no se fusiona en este acto: mesa fusiona.
