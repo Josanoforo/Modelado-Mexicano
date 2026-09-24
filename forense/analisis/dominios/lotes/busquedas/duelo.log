@@ -1,0 +1,90 @@
+# busquedas.log — lote duelo (ASTRA5-U0)
+# Fecha de trabajo: 2026-09-24
+
+## 1. Herramientas de corpus (u0busca / u0pdf / u0mf) — sin límite, corridas con python3, cwd=/home/pc0
+
+u0mf.py --busca rnpdno            -> 0/1680 entradas en manifiesto
+u0mf.py --busca cidh              -> 0/1680
+u0mf.py --busca articulo19        -> 0/1680
+u0mf.py --busca "article 19"      -> 0/1680
+u0mf.py --busca eaaf              -> 0/1680
+u0mf.py --busca ubpd              -> 0/1680
+u0mf.py --busca fafg              -> 0/1680
+u0mf.py --busca impunidad         -> 1/1680 (MCCI Encuesta Corrupción e Impunidad 2019-2024; NO es Impunidad Cero)
+u0mf.py --busca encuci            -> 5/1680 (encuci2020_bd_dbf, encuci2020_fd_pdf, + 3 ENVE no relacionados)
+
+u0busca.py -q "confia|confianza" --encuesta encuci -> 15 aciertos con texto (ENCUCI 2020, sección 5: AP5_1_1, AP5_2_1..7, AP5_3_1..6)
+u0busca.py -q "duelo|prolongad"                    -> 1 acierto con texto, FALSO POSITIVO (ENTI2022 "horario de trabajo prolongado")
+u0busca.py -q "desaparici|desaparecid"              -> 1171 aciertos con texto (predominan ENVIPE2021 TPer_Vic2, victimización delictiva de hogar; no trámite de búsqueda ni duelo)
+u0busca.py -q "estigma|discrimin"                   -> 62 aciertos con texto (ENCUCI 2020 AP5_8_1..10, discriminación general; ninguno sobre desaparición)
+u0busca.py -q "religios|iglesia|misa|peregrinacion" -> 92 aciertos con texto (ENCUCI confianza/discriminación religiosa general; ninguno sobre duelo/búsqueda)
+u0busca.py -q "colectivo de busqueda|buscadora"     -> 0 aciertos con texto (de 314256 identidades revisadas, 113780 con texto)
+u0busca.py -q "somatiz|hipertension"                -> 56 aciertos con texto (predominan ENNVIH 2002/2005/2009 salud general; sin vínculo a desaparición)
+u0busca.py -q "ideacion suicid|pensado en quitarse" -> 5 aciertos con texto (ENDIREH 2011/2016 AP6_21/p13_29, conflictos de pareja; no aplica a duelo por desaparición)
+
+u0pdf.py -q "myth of closure"                       -> 0/349 PDF registrados
+u0pdf.py -q "trastorno por duelo prolongado|PGD"    -> 0/349 PDF registrados
+
+Confirmación cruzada: ninguno de los documentos SIN-ID citados por el paquete (Almanza 2020,
+Boss/Carnes 2012, Heeke tesis 2018, Smid 2020, CED/C/MEX/A.34/D/1, Ley General, Protocolo
+Homologado) aparece en el manifiesto ni en la caché de 349 PDF (pdftxt/), consistente con los
+fichas de lectura del paquete (todas marcadas SIN-ID).
+
+## 2. Búsquedas web (WebSearch + WebFetch, máx. 12/lote; se usaron 12/12) — fecha 2026-09-24
+
+ 1. WebFetch https://www.oas.org/es/CIDH/jsForm/?File=%2Fes%2Fcidh%2Fprensa%2Fcomunicados%2F2026%2F082.asp
+    -> HTTP 403 Forbidden.
+ 2. WebSearch "CIDH comunicado 82/26 México desaparecidos informe Pochak 70,000 cuerpos 32
+    peritos forenses" -> localiza título oficial del informe, fecha 11/may/2026, relatora Andrea
+    Pochak, y el PDF oficial oas.org/es/cidh/informes/pdfs/2026/informe_desapariciones_mx_spa.pdf;
+    corrobora (vía cobertura, no primaria) >128,000 desaparecidos (corte informe) y >70,000
+    cuerpos sin identificar (estimación independiente).
+ 3. WebFetch https://www.oas.org/es/cidh/informes/pdfs/2026/informe_desapariciones_mx_spa.pdf
+    -> HTTP 403 (reto Cloudflare "Just a moment...", confirmado también con curl directo vía
+    Bash: mismo reto Cloudflare, no es límite de sandbox).
+ 4. WebFetch https://www.gob.mx/sre/documentos/presentacion-del-informe-sobre-desapariciones-...
+    -> ÉXITO. Confirma oficialmente (SRE, gob.mx): fecha 11/may/2026, nombre del informe,
+    relatora Andrea Pochak; NO da cifras.
+ 5. WebSearch "RNPDNO Registro Nacional de Personas Desaparecidas y No Localizadas cifra total
+    septiembre 2026 sexo edad" -> localiza dashboard oficial versionpublicarnpdno.segob.gob.mx;
+    de paso, cobertura de prensa reporta 132,844 al 29/ago/2026 (no primaria, no citada como
+    hecho de dictamen).
+ 6. WebFetch https://versionpublicarnpdno.segob.gob.mx/ -> ÉXITO parcial: página de términos de
+    uso (SPA), confirma que el registro trae sexo/edad/entidad/año y rezago <=5 min; SIN tabla
+    de cifras (requiere clic para entrar al dashboard, no renderizable por este fetch).
+ 7. WebFetch https://www.impunidadcero.org/uploads/app/articulo/135/archivo/Percepciones-de-
+    Impunidad-2024.pdf (URL adivinada) -> HTTP 404 Not Found.
+ 8. WebSearch "Impunidad Cero Percepciones de Impunidad 2024 desaparición 35,669 RNPDNO 141
+    sentencias 99.6%" -> localiza la página primaria correcta del comunicado.
+ 9. WebFetch https://www.impunidadcero.org/articulo.php?id=197&t=comunicado-en-mexico-tenemos-
+    un-nivel-de-impunidad-del-99-para-los-delitos-de-desaparicion-de-personas -> ÉXITO. Confirma
+    "De 2019 a 2022 se registraron 35,669 desapariciones... 141 sentencias condenatorias" y
+    "99% a nivel nacional"; no da fórmula exacta ni el 99.6% literal.
+10. WebFetch https://articulo19.org/buscadoras-agresiones-letales/ -> ÉXITO. Corte mayo 2026:
+    37 asesinadas + 8 desaparecidas (título dice "45", texto "44": inconsistencia confirmada);
+    desglose AMLO 17+1, Sheinbaum 9+6; geografía Guanajuato 13/Sinaloa 4/Jalisco 4; NO da
+    desglose exacto por sexo (dice "principalmente mujeres").
+11. WebSearch "Comisión Nacional de Búsqueda número de colectivos de familiares buscadores
+    registrados México 2026" -> sin cifra oficial de colectivos; localiza portales oficiales
+    comisionacionaldebusqueda.segob.gob.mx y cnbreportadesaparecidos.segob.gob.mx; de paso,
+    132,844 personas desaparecidas al 29/ago/2026 (cobertura, no primaria).
+12. WebSearch "EAAF Proyecto Frontera México migrantes no localizados 2,529 reportes 482
+    cuerpos identificados 6,415 perfiles genéticos" -> localiza PDF oficial EAAF
+    (eaaf.org/wp-content/uploads/2025/03/Estadisticas_Proyecto-Frontera_Generales_28feb2025-2.pdf)
+    y página eaaf.org/eaaf-en-el-mundo/mexico/; corrobora cifras 2,529/482/6,415 (vía cobertura,
+    no cotejado literal contra el PDF).
+
+Presupuesto agotado en 12/12: NO se buscaron en este lote (declarado como tal en las filas
+correspondientes, PENDIENTE-VERIFICACION-DOCUMENTAL): Plataforma Ciudadana de Fosas (IBERO),
+comunicado/acta primaria del anuncio del CED del 4/abr/2025 ("primera vez en la historia"),
+registros de Amnistía Internacional / Front Line Defenders / Fundación para la Justicia sobre
+agresiones a personas buscadoras, mandatos completos de UBPD (Colombia) y FAFG (Guatemala).
+
+No se consultó prensa ni portales de noticias como fuente primaria en ninguna fila (los
+resultados de WebSearch que citan cobertura de prensa se marcan explícitamente como "no
+primaria" y no se usan para MEDIBLE-EN-CORPUS ni como cita literal de dictamen).
+
+## 3. Reservas
+
+No se tocó ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola): no se buscó, leyó ni citó material de
+esas olas en este lote. ENCUCI 2020 (citada en duelo-028/032) no está reservada.
