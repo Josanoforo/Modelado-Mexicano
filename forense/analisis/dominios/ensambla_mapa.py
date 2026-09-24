@@ -271,7 +271,38 @@ def main(verifica: bool) -> int:
                     str(len(reps[d])), ";".join(pend[d])])
     salidas[D / "proyeccion-dominios-v1_0.tsv"] = tsv(dom)
 
-    # 8 · hoja de adquisición derivada del mapa (vocabulario del encargo), una fila por afirmación
+    # 8 · hoja de adquisición derivada del mapa (vocabulario del encargo), una fila por afirmación.
+    # GEN2-ASTRA5-U5-ADQUISICION-1 (P4): las filas NO-ACCESIBLE-DESDE-SANDBOX que la bitácora de
+    # caja verificó toman su resultado agregado por afirmación, vocabulario A.4, en este orden:
+    # EXISTE-SATISFACE > EXISTE-NO-SATISFACE > NO-ACCESIBLE > NO-ENCONTRADO, con sufijo
+    # -DESDE-CAJA. Un EXISTE-* sólo cuenta si la ruta verificó el objeto (no WEBSEARCH, CDX ni la
+    # consulta wayback/available, que localizan: A.6), con código 2xx y estructura válida. El
+    # dictamen no cambia.
+    niveles = ("EXISTE-SATISFACE", "EXISTE-NO-SATISFACE", "NO-ACCESIBLE", "NO-ENCONTRADO")
+    no_verifica = ("WEBSEARCH", "CDX")
+    estructura_mala = ("SOFT-404", "RETO-CLOUDFLARE", "CAPTCHA", "VACIO", "ERROR-CURL", "PDF-SIN-EOF")
+    desde_caja: dict[str, str] = {}
+    # un reintento de la MISMA URL (misma afirmación) sustituye al intento anterior: se conserva
+    # sólo el de fecha_utc más reciente por (afirmación, url)
+    ultimo: dict[tuple[str, str], dict] = {}
+    for b in sorted(D.glob("bitacora-existencia-*.tsv")):
+        for r in lee(b):
+            k = (r["id_afirmacion"], r["url"])
+            if k not in ultimo or r["fecha_utc"] >= ultimo[k]["fecha_utc"]:
+                ultimo[k] = r
+    for r in sorted(ultimo.values(), key=lambda x: (x["id_afirmacion"], x["fecha_utc"])):
+        res = r["resultado_intento"]
+        if res.startswith("EXISTE") and (r["ruta"] in no_verifica or not r["http_code"].startswith("2")
+                                         or r["estructura"] in estructura_mala
+                                         or "archive.org/wayback/available" in r["url"]):
+            res = ""
+        previo = desde_caja.get(r["id_afirmacion"], "")
+        for nivel in niveles:
+            if nivel in (previo, res):
+                desde_caja[r["id_afirmacion"]] = nivel
+                break
+        else:  # sólo localizado por búsqueda o índice: A.6, sin fetch que lo verifique
+            desde_caja.setdefault(r["id_afirmacion"], "SIN-FETCH")
     hoja = [["id_afirmacion", "dominio", "report", "estado_hoja", "existencia_documento", "pieza_o_razon",
              "instrumento_ola", "propietario", "prioridad"]]
     for f in filas:
@@ -285,7 +316,9 @@ def main(verifica: bool) -> int:
             pieza = m.group(1).strip() if m else f["datos_id_estado"]
             dato = re.search(r"microdato|base de datos|\bdatos?\b|payload|encuesta|serie|tabulado|\bola\b", pieza, re.I)
             estado = "ADQUIRIR" if dato else "DOCUMENTACIÓN-SOLAMENTE"
-        if "NO-ACCESIBLE-DESDE-SANDBOX" in blob.upper():
+        if "NO-ACCESIBLE-DESDE-SANDBOX" in blob.upper() and f["id_afirmacion"] in desde_caja:
+            existencia = f"{desde_caja[f['id_afirmacion']]}-DESDE-CAJA"
+        elif "NO-ACCESIBLE-DESDE-SANDBOX" in blob.upper():
             existencia = "NO-ACCESIBLE-DESDE-SANDBOX"
         elif "EXISTENCIA-NO-COMPROBADA" in blob.upper():
             existencia = "NO-COMPROBADA"
