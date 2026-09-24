@@ -275,11 +275,12 @@ def main(verifica: bool) -> int:
     # GEN2-ASTRA5-U5-ADQUISICION-1 (P4): las filas NO-ACCESIBLE-DESDE-SANDBOX que la bitácora de
     # caja verificó toman su resultado agregado por afirmación, vocabulario A.4, en este orden:
     # EXISTE-SATISFACE > EXISTE-NO-SATISFACE > NO-ACCESIBLE > NO-ENCONTRADO, con sufijo
-    # -DESDE-CAJA. Un EXISTE-* sólo cuenta si la ruta verificó el objeto (no WEBSEARCH, CDX ni la
-    # consulta wayback/available, que localizan: A.6), con código 2xx y estructura válida. El
-    # dictamen no cambia.
+    # -DESDE-CAJA. Un EXISTE-* sólo cuenta con evidencia de fetch: bytes con sha256, código 2xx,
+    # estructura válida y una URL que no sea un localizador (consulta de búsqueda, CDX o
+    # wayback/available: A.6). La regla mira la evidencia, no el rótulo de ruta. El dictamen no
+    # cambia.
     niveles = ("EXISTE-SATISFACE", "EXISTE-NO-SATISFACE", "NO-ACCESIBLE", "NO-ENCONTRADO")
-    no_verifica = ("WEBSEARCH", "CDX")
+    localizadores = ("archive.org/wayback/available", "web.archive.org/cdx/", "query:")
     estructura_mala = ("SOFT-404", "RETO-CLOUDFLARE", "CAPTCHA", "VACIO", "ERROR-CURL", "PDF-SIN-EOF")
     desde_caja: dict[str, str] = {}
     # un reintento de la MISMA URL (misma afirmación) sustituye al intento anterior: se conserva
@@ -292,9 +293,9 @@ def main(verifica: bool) -> int:
                 ultimo[k] = r
     for r in sorted(ultimo.values(), key=lambda x: (x["id_afirmacion"], x["fecha_utc"])):
         res = r["resultado_intento"]
-        if res.startswith("EXISTE") and (r["ruta"] in no_verifica or not r["http_code"].startswith("2")
+        if res.startswith("EXISTE") and (not r["sha256"] or not r["http_code"].startswith("2")
                                          or r["estructura"] in estructura_mala
-                                         or "archive.org/wayback/available" in r["url"]):
+                                         or any(x in r["url"] for x in localizadores)):
             res = ""
         previo = desde_caja.get(r["id_afirmacion"], "")
         for nivel in niveles:
