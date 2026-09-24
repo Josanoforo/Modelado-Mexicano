@@ -1,0 +1,117 @@
+# busquedas.log -- lote violencia-ambiental (ASTRA5-U0)
+# Sesión del 2026-09-23/24. cwd de las herramientas: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura).
+# U = /tmp/claude-1000/-home-pc0/6f1534e5-675f-47f1-b62b-5d894fee74fc/scratchpad/u0
+
+## 0. Preliminares
+- Read INSTRUCCIONES-LOTE.md (íntegro, 193 líneas).
+- Read paquetes/violencia-ambiental.md (íntegro, 113 líneas).
+- sha256sum del report en el repo == sha256 declarado en el paquete (6b7fe5aadece46974cf7f71110f168e93c49a81c59326299a85b8297337f890d). Coincide.
+- Read del report ÍNTEGRO (256 líneas reales; el paquete decía 257).
+- MENSAJE DEL COORDINADOR a mitad de tarea anunciando cambio de §5 de INSTRUCCIONES-LOTE.md: verificado
+  releyendo el archivo fuente (no se aceptó la afirmación sin comprobar); el cambio SÍ estaba en el
+  archivo (párrafos "Afirmaciones documentales" y "Veredictos y síntesis", líneas ~128-146). Se aplicó.
+
+## 1. u0mf.py (manifiesto.yaml, 1680 entradas)
+- --busca iep -> 12/1680 (todos ajenos: ENDIREH, World Bank IEPEP, electoral IEPC; ninguno IEP/paz)
+- --busca "indice de paz" -> 0/1680
+- --busca acnur -> 0/1680; --busca travesias -> 0/1680; --busca desplazamiento -> 0/1680
+- --busca sesnsp -> 0/1680; --busca cepal -> 0/1680; --busca feminicid -> 0/1680; --busca rnpdno -> 0/1680
+- --busca "medina-mora" -> 0/1680; --busca "epidemiologia psiquiatrica" -> 0/1680
+- --busca latinobarometro -> 9/1680 (incluye latinobarometro2024_cuestionario_esp/fichas_tecnicas)
+- --busca parametria -> 0/1680; --busca escalante -> 0/1680; --busca zepeda -> 0/1680
+- --busca concanaco -> 0/1680; --busca anpec -> 0/1680; --busca "narco emotions" -> 0/1680
+- --busca bukele -> 0/1680; --busca salvador -> 0/1680; --busca lancet -> 0/1680; --busca mare -> 0/1680
+- --busca cmdpdh -> 0/1680; --busca "research land" -> 0/1680; --busca "crisis group" -> 0/1680
+- --busca ensu -> 7/1680 (ensu2025_bd_csv_zip, ensu2025_rnm_ddi, y 5 falsos positivos por substring)
+- --busca desapari -> 0/1680; --busca secretariado -> 0/1680; --busca "salud mental" -> 0/1680
+- --busca armadas -> 0/1680
+- --busca comunicado -> 1/1680 (encig2025_boletin_pdf); --busca boletin -> 3/1680
+- --busca encig 2023 -> 9/1680 (encig23_cuestionario_pdf, encig23_estructura_base_datos_pdf, etc.)
+- --busca encoap -> 1/1680 (inegi_encoap_2023_csv)
+- --busca banxico -> 12/1680 (SPEI/CoDi/encuestas de competencias financieras; ninguno de IED/homicidios)
+- --id envipe2025_fd_pdf, envipe2025_cuest_principal_pdf, inegi_encoap_2023_csv (fichas completas)
+- --calc para: ensu2025_bd_csv_zip, envipe_2024_bd_envipe_2024_dta, envipe_2025_bd_envipe_2025_dta,
+  encig_2023_encig23_base_datos_dta, inegi_encoap_2023_csv, latinobarometro2024_cuestionario_esp
+  -> 0 corridas en TODOS (sin CALC GEN2 que use estos payloads)
+
+## 2. u0busca.py (9 tablas de reactivos, 314256 identidades, 113780 con texto)
+- -q "objetos de valor" -q "caminar de noche|salir de noche" -q "menores...salir solos" -q "transporte
+  publico" --encuesta ensu -> 0 aciertos con texto en las 4 consultas (ENSU no tiene reactivos en el
+  inventario: sin cuestionario/FD registrado)
+- -q "insegur" -q "cifra negra|no se denunci" -q "extorsion" --encuesta envipe -> insegur 736 aciertos
+  (AP4_2/AP4_4/AP5_7, envipe2021); cifra negra 0; extorsion 398 aciertos (BPCOD/BP5_1/BP5_3, envipe2021)
+- -q "entidad federativa" --encuesta envipe --ola 2024 -> 0; -q "se siente seguro" --encuesta envipe
+  --ola 2024 -> 10/66 con texto (AP4_4_01..10, fd_envipe2024.pdf p.20)
+- -q "denuncio ante|carpeta de investigacion|razon..." --encuesta envipe --ola 2025 -> 37 aciertos
+  (BP1_23/24/25/26/28/36_02, fd_envipe2025.pdf p.73-74)
+- -q extorsion --encuesta envipe --ola 2025 -> 78 aciertos (BP4_1/BP5_1/BP5_1A/BP5_3, p.79-80)
+- -q confia --encuesta envipe -> 771 aciertos (AP5_2 vecinos/compañeros/familiares/amigos; AP5_4
+  autoridades: policía municipal/estatal/GN/MP/FGR/Ejército/Marina; AP5_8 cárceles) [envipe2021]
+- -q confia --encuesta encig --ola 2023 -> 0 aciertos con texto (ENCIG no está en el inventario de
+  reactivos con ese instrumento pese a tener cuestionario registrado -- confirmado vía u0pdf directo)
+
+## 3. u0pdf.py (349 PDF registrados, caché pdftotext)
+- --idsub encig23 -q confia -> 131 coincidencias/2 PDF; página 4 (Sección A.1, escala 0-10, 7 ítems:
+  personas en general/personas conocidas/servidores públicos/gob.municipal/gob.federal/congreso/
+  policía -- SIN familia/vecinos/partidos como reactivo de confianza)
+- --idsub encig23 -q corrupcion -> 36/2 PDF; Sección 3.3 (24 ítems, incl. Vecinos(as) #11 y Partidos
+  políticos #19, pero como FRECUENCIA DE CORRUPCIÓN, no confianza)
+- --idsub ensu -q insegur -> 0/0 PDF (ningún PDF de ENSU está registrado/cacheado)
+- --idsub envipe2025 -q "cifra negra" -> 1/4 PDF (envipe2025_diseno_muestral_pdf p.8, mención
+  metodológica, no la tabla de cifra)
+- --idsub envipe2024_cuest_principal -q "en su entidad federativa" -> 0/1 PDF
+- --idsub envipe2024_cuest_principal -q confia -> 8/1 PDF
+- --idsub latinobarometro2024_cuestionario -q "Fuerzas Armadas" -> 0/1 PDF (artefacto de paginación:
+  la página lógica de la extracción no separó el salto; confirmado por grep directo sobre el .txt
+  cacheado: SÍ contiene el ítem P14STGBS.A "Las Fuerzas Armadas" línea 46)
+- pdftotext -layout local sobre PDF descargado de ENCOAP 2023 (ver §4) -> encoap.txt, 993 líneas
+
+## 4. Web (WebSearch + WebFetch; cupo 12, usadas 10)
+1. WebSearch "INEGI ENCIG 2023 boletín prensa confianza familia vecinos policía partidos políticos
+   porcentaje" (23/09/2026) -> researchland.com y losangelespress.org citan 87.4/71.4/37.1/28.9 y
+   86.7/73.0/83.7/72%; NINGÚN resultado de inegi.org.mx con esas cifras; SÍ aparece
+   "Encuesta Nacional de Confianza en la Administración Pública ENCOAP 2023" (INEGI oficial).
+2. WebSearch "INEGI ENSU tercer trimestre 2025 comunicado prensa objetos de valor caminar de noche
+   menores solos" (23/09/2026) -> confirma 40.6/36.9/35.0/22.4 vía comunicados INEGI (ENSU20205_10_CP,
+   140/25 aprox.) y "COMUNICADO DE PRENSA 4/26" (T4 2025).
+3. WebSearch "INEGI ENVIPE 2024 comunicado 562/24 percepción inseguridad 73.6%" (23/09/2026) ->
+   confirma 73.6% y comunicado 562/24, inegi.org.mx/.../ENVIPE_24.pdf.
+4. WebSearch "INEGI ENVIPE 2025 comunicado 127/25 cifra negra 93.2% extorsión 5.7 millones"
+   (23/09/2026) -> confirma 93.2%/9.6%, comunicado 127/25.
+5. WebFetch https://www.inegi.org.mx/contenidos/programas/encoap/2023/doc/encoap2023_resultados.pdf
+   (23/09/2026) -> WebFetch no pudo extraer texto (PDF con flujo comprimido); PDF quedó guardado
+   localmente; se procesó con pdftotext -layout (fuera de la sandbox de red, solo lectura local) ->
+   confirma título "Encuesta Nacional de Confianza en la Administración Pública (ENCOAP) 2023" (INEGI,
+   45pp.); partidos políticos 33.3% confianza alta/moderada (NO 28.9%); "personas" en general 56.5%;
+   SIN ítem explícito de "policía" (solo Guardia Nacional 58.1%) ni de "familia".
+6. WebSearch "Travesías forzadas desplazamiento interno México 2024 Ibero ACNUR informe 28900
+   personas Chiapas" (23/09/2026) -> confirma 28,900/72/13/+129%/12,623/Chiapas 61.8%, vía
+   ibero.mx/prensa (sitio oficial del emisor).
+7. WebSearch "SESNSP víctimas extorsión enero noviembre 2025 10,322 máximo histórico" (23/09/2026) ->
+   confirma 10,322 víctimas ene-nov 2025, atribuido a datos desagregados del SESNSP.
+8. WebSearch "CEPAL Observatorio de Igualdad de Género feminicidios México 2024 852 tasa 1.3"
+   (23/09/2026) -> confirma 852 feminicidios México 2024 (22.2% de 3,828 regionales), Boletín OIG-CEPAL
+   Nº4 (nov-2025), URL oig.cepal.org.
+9. WebSearch "RNPDNO personas desaparecidas no localizadas México 2025 116,386 registro nacional"
+   (23/09/2026) -> confirma el registro oficial (RNPDNO/Segob, dashboard versionpublicarnpdno.
+   segob.gob.mx); NO reprodujo el valor exacto 116,386 (fuentes de corte distinto: ~121,000-132,000).
+10. (reservado, no usado) -- quedaron 2 cupos sin usar de los 12 disponibles.
+
+## 5. Negativos con control positivo (regla 7: grep aquí es ugrep -I)
+- command grep --binary-files=text -ni "enoe|envipe *2026|enco\b" sobre el report -> 0 líneas
+  (exit=1); control positivo "envipe" sobre el mismo archivo -> 3+ líneas (exit=0). Confirma que el
+  report NO menciona ENOE/ENVIPE2026/ENCO (ninguna reserva tocada).
+- command grep --binary-files=text -io sobre filas.tsv/cobertura.tsv por "envipe/enoe/enco...2026"
+  -> 0 coincidencias (ninguna fila cita una ola reservada).
+
+## 6. Hallazgo forense principal de este lote
+La fila violencia-ambiental-005 (G03, hallazgo 3, L18, tier SÓLIDO ★) atribuye 87.4/71.4/37.1/28.9%
+de confianza (familia/vecinos/policía/partidos) y 86.7/73.0% de percepción de corrupción a "ENCIG 2023
+de INEGI". Ni el cuestionario ENCIG 2023 registrado (Sección A.1, 7 ítems, sin familia/vecinos/
+partidos como confianza) NI ENCOAP 2023 (la encuesta de confianza institucional real de INEGI,
+partidos políticos 33.3%, sin ítem de "familia" ni "policía" explícito) reproducen esas cifras. El
+propio report cita por separado, en el Patrón 2 (L109-111), a "Research Land 2026" para un
+diferencial +52/-64/-68 -- documento privado identificado (researchland.com) que es el candidato más
+plausible de la fuente real. Se dictaminó MEDIBLE-CON-ADQUISICIÓN (el constructo es medible y el
+instrumento existe) pero se declaró la discordancia de atribución explícitamente en dictamen_razon,
+sin maquillarla.

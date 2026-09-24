@@ -1,0 +1,50 @@
+# busquedas.log -- lote emociones-morales (ASTRA5-U0), 23/sep/2026
+# Todas las rutas absolutas, cwd=/home/pc0/mm-astra5-mapa-dominios-1, repo de solo lectura.
+
+== u0busca.py (9 tablas, 314256 identidades revisadas, 113780 con texto; A.13) ==
+u0busca -q "confianza en la mayoria de las personas|se puede confiar en la mayoria|confiar en la gente" -q "orgullo de ser mexicano|orgullo nacional" -q "satisfaccion con su vida|satisfecho con su vida|que tan satisfecho" -q "verguenza|verguenza" --limite 15
+  -> confianza: 1 acierto (Latinobarometro 2024 P10STGBS); orgullo: 4 aciertos (LAPOP 2004/2006 B43, no usado); satisfaccion: 13 aciertos (ENCUCI2020 AP4_14 [democracia, distinto constructo], ENASEM x3, LAPOP LS3, ENBIARE2021 A1/A2/A3); verguenza: 9 aciertos (MOCIBA2016 x2, ENDIREH2016 x6, ENDIREH2006 x1).
+u0busca -q "culpa" -q "dignidad|autorespeto|respeto a si mismo" -q "discriminacion|trato injusto|trato desigual" -q "machismo|caballerismo" --limite 20
+  -> culpa: 13 aciertos (MOCIBA2016, ENASIC2022 P9_23, ENDIREH2016 x3 "era su culpa", LAPOP AOJ12 [confianza judicial, distinto], ENPOL2021); dignidad: 3 aciertos (ENVIPE2011, todos clasificacion penal "delitos contra la dignidad", NO autoconstrual); discriminacion: 4 aciertos (ENASEM2024); machismo|caballerismo: 0 aciertos.
+u0busca -q "religion|catolic|evangelic|creencia religiosa|pertenece a alguna religion" -q "honor|deshonra|afrenta|defender su reputacion" -q "conflicto familiar|evitar el conflicto|quedar bien" --limite 20
+  -> religion: 64 aciertos (ENNVIH x3 "no usa metodo:religion" [anticoncepcion, no aplica], ENCUCI2020 AP5_4_3/AP5_6_8/AP10_5, Censo2020 CAAS/CEU [modulo asistencia social, NO poblacion general] x8, ENASEM2024 A36/AA39, LAPOP2004/2006 B20/Q3); honor: 2 aciertos (ENOE "por honorarios", falso positivo); conflicto/quedar bien: 0 aciertos.
+u0busca -q "confia" --encuesta wvs --limite 30
+  -> 0 aciertos (la tabla de reactivos no indexa texto WVS bajo instrumento="wvs"; ver u0pdf mas abajo para el cuestionario).
+u0busca -q "confianza en el gobierno|confia en el gobierno" -q "valores emancipativos|autonomia personal|independencia de pensamiento" -q "verguenza|verguenza|dignidad" --encuesta enadis --limite 20
+  -> los 3: 0 aciertos con texto.
+
+== u0pdf.py (349 PDF registrados; A.13) ==
+u0pdf -q "se puede confiar en la mayoria de la gente|confiar en la mayoria de las personas" --idsub wvs --limite 15
+  -> 1 coincidencia: f00006635_wvs7_questionnaire_mexico_2018_spanish, pagina 2, item 57 (texto completo confirmado leyendo la cache de pdftotext).
+u0pdf -q "confianza en el gobierno|confia en el gobierno" --idsub latinobarometro --limite 10
+  -> 0 coincidencias (2 PDF examinados: latinobarometro2024_cuestionario_esp y otro).
+u0pdf -q "verguenza|sintio mal|se sintio humillad|trato injusto|dignidad" --id enadis2022_cuestionario_general --id enadis2022_fd --limite 15
+  -> 0 coincidencias (2 PDF examinados).
+
+== u0mf.py (1680 entradas en manifiesto; A.13) ==
+u0mf --busca smith --busca 2017 -> 0; --busca krys -> 0; --busca hofstede -> 0; --busca thomson -> 0;
+  --busca "diaz-guerrero" -> 0; --busca reidl -> 0; --busca arciniega -> 0 (ninguno de estos articulos/autores esta registrado en el manifiesto: son literatura academica, no documentos del corpus).
+u0mf --busca censo --busca 2020 -> 5/1680 (cuestionario ampliado CPV2020, CAAS x2, CEU x2 -- ninguno es la tabla de religion de poblacion general).
+u0mf --busca censo --busca 1895 -> 0/1680; --busca censo --busca 2010 --busca religion -> 0/1680.
+u0mf --busca endireh --busca 2016 -> 21/1680 (incluye bd_mujeres en spss/csv/dbf/stata/rdata, bd_sd, bd_viviendas, cuestionarios A/B/C/general).
+u0mf --busca endireh --busca mujeres --busca 2006 -> 7/1680.
+u0mf --id (13 ids consultados: WVS cuestionario+csv, ENCUCI dato+FD, MOCIBA dato+FD, ENDIREH2016 mujeres spss, ENDIREH2006 FD, ENASIC dato+FD, ENASEM2024 dato+FD, Latinobarometro dato+cuestionario, ENADIS dato+cuestionario+FD) -> los 13 EXISTEN con sha256 real, ninguno reservado.
+u0mf --calc f00013146_wvs_wave_7_mexico_csv_v5_1 -> 0/326; --calc encuci2020_bd_dbf -> 3 corridas (CALC-R-TRA-M-02 v1/v2/v3, ultima SELLADA/REPRODUCE, cuenta_gen2=SI, variable distinta AP5_1_1-3); --calc mociba_2016_mociba2016_bd_sav -> 0/326; --calc enasic2022_bd_csv_zip -> 0/326; --calc latinobarometro2024_bd_stata -> 0/326; --calc conjunto_de_datos_enadis_2022_csv -> 0/326; --calc enasem2024_bd_csv_zip -> 0/326; --calc endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss -> 0/326; --calc endireh_2006_fd_endireh06 -> 0/326.
+grep en repo de "CALC-R-TRA-M-02" -> pertenece a un marco de "control"/duelo distinto (GEN2-R-COMPLETA-MARCO-P4-control), no a las variables de religion/tolerancia de este lote.
+
+== WebSearch (12 consultas, tope del lote; 23/sep/2026) ==
+1. Smith 2017 dignity face honor Mexico self-construal nine nations survey -> confirma articulo ScienceDirect S2007471917300078 (2017), distinto de Smith/Easterbrook 2020.
+2. Krys 2022 Latin American paradox collectivism independent self-construal Vignoles -> confirma Perspectives on Psychological Science 2022, DOI 10.1177/17456916211029632; hallo incidentalmente Salvador et al. (PSPB, self-enhancement Ecuador).
+3. Thomson et al. 2018 relational mobility PNAS 39 societies Mexico Puerto Rico -> confirma PNAS DOI 10.1073/pnas.1713191115; no aisla Mexico/Puerto Rico en el snippet.
+4. Hofstede indulgence dimension Mexico score 97 country comparison -> confirma IVR=97, el mas alto registrado.
+5. Hornsey 2019 perceived control desired control culture cross-national study -> confirma PSPB 2019 DOI 10.1177/0146167218780692; hallazgo principal = Japon distintivamente bajo, no un Mexico-alto especifico.
+6. INEGI Censo 2020 panorama de las religiones en Mexico catolicos 77.7% evangelicos 11.2% -> confirma cifras exactas (77.7%, 11.2%, 97864218, 14095307, declive 5.0pp) via comunicado INEGI ene/2021.
+7. Latinobarometro 2023 2024 confianza en el gobierno Mexico porcentaje informe -> confirma 38% (2023) y 52% (2024), serie 1995-2024.
+8. Reidl Jurado "Culpa y verguenza" UNAM 2007 -> confirma obra real, ampliamente citada en tesis UNAM.
+9. Arciniega 2008 "Toward a fuller conception of machismo" caballerismo scale Mexican American -> confirma Journal of Counseling Psychology 2008, DOI 10.1037/0022-0167.55.1.19, muestra mexicano-americana.
+10. MOSS-SAST escala manejo verguenza adolescentes mexicanos reconocimiento desplazamiento -> confirma articulo con muestra primaria mexicana (n=700, un municipio).
+11. Diaz-Guerrero premisas historico-socioculturales obediencia afiliativa abnegacion -> confirma marco PHSC con mismo contenido conceptual.
+12. Chiapas poblacion evangelica 1.8 millones censo 2020 mayor concentracion evangelicos Mexico -> confirma 32.5% (mayor % estatal) via CONAPRED; NO confirma cifra absoluta de 1.8 millones ni ranking con Edomex/Guerrero.
+
+== Reservas (regla 3 del encargo) ==
+Ninguna busqueda toco ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola); ninguna herramienta marco reserva no vacia ni ALERTA-RESERVA-ENCARGO en los aciertos usados.

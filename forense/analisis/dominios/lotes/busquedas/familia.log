@@ -1,0 +1,129 @@
+ASTRA5-U0 · lote familia · busquedas.log
+Paquete: corpus/reports/La_familia_mexicana_como_sistema_psicológico__entre_el_afecto__la_obligación_y_la_adaptación_económica.md
+sha256 declarado en paquete: 188f152fdc415101316cac041a28102c753cc6b3757f42f3bab8f336fe629407
+Fecha de ejecucion: 2026-09-23/24. cwd de todas las herramientas: /home/pc0/mm-astra5-mapa-dominios-1
+
+== 0. Lectura obligatoria ==
+Read integro del report (286 lineas) via herramienta Read, tool call unico, sin paginar.
+Read de $U/RESULTS-ASTRA5.md (47 lineas) e inicio de $U/CATALOGO-CORPUS.md (373 lineas, leido en 2 paginas: 1-244 y 245-373).
+Read de instrucciones-proyecto-v2_16.md y CLAUDE.md (inyectados por system-reminder al abrir el repo).
+
+== 1. u0busca.py (9 tablas; 314256 identidades revisadas, 113780 con texto) ==
+-q "familismo" -> 0 aciertos
+-q "cuidado|cuidador" --encuesta enut --limite 30 -> 181 aciertos con texto (mostrando 30; ENUT2019 modulo THOGAR/TMODULO)
+-q "abnegaci" -> 0 aciertos
+-q "cohesión familiar|cohesion familiar|enmeshment" -> 0 aciertos
+-q "ni estudia ni trabaja|nini" -> 239 aciertos (mayoria falsos positivos: substring "niño/ninio" en ENNVIH; NINGUNO es indicador NEET de ENOE)
+-q "ahorro informal|tanda" -> 127 aciertos (ENIF 2012/2015, ENNVIH 2002/2005 modulo tanda)
+-q "compadrazgo|padrino|madrina" -> 0 aciertos
+-q "pensó en suicidarse|intento suicida|ideación suicida" -> 0 aciertos (frase exacta no matchea; ver variante mas abajo)
+-q "independización|emancipación|dejó el hogar" -> 0 aciertos
+-q "empresa familiar" -> 0 aciertos
+-q "cuidado" --encuesta enut --ola 2024 --limite 40 -> 104 aciertos (ENUT2024 THOGAR/TMODULO/TSDEM/TVAR_CREA)
+-q "horas semanales|tiempo dedicado" --encuesta enut -> 0 aciertos
+-q "tanda" --encuesta enif --limite 40 -> 32 aciertos (ENIF 2012/2015/2018/2021/2024, todas las olas tienen la pregunta)
+-q "negocio familiar|es familiar el negocio|propiedad familiar" -> 8 aciertos (ENNVIH 2002/2005/2009, variable emn02/tb04 "TRABAJO NEGOCIO FAMILIAR?")
+-q "no estudia ni trabaja" -> 0 aciertos
+-q "orientación sexual|identidad de género|LGBT" -> 4 aciertos (ENCUCI2020 AP5_8_10, AP5_9_10, AP10_16 + definicion FD pag.59)
+-q "suicid" -> 6 aciertos (ENSANUT2024 adultos A1211 "¿Alguna vez ha pensado en suicidarse?" -- 1 copia registrada con id adultos_ensanut2024_w_stata_stata__v2026_09_01, 1 copia SIN-ID-MANIFIESTO en ruta distinta del mismo zip; WVS Wave7; ENVIPE2011 "induccion o ayuda al suicidio")
+-q "ropa sucia|vergüenza|estigma" -> 9 aciertos (MOCIBA2016 "vergüenza o culpa" en modulo ciberacoso, ENDIREH2016 ext, ENDIREH2006 fd_ext -- ninguno es estigma de salud mental familiar)
+-q "regresó a vivir|volvió a vivir con sus padres" -> 0 aciertos
+-q "Actividades de cuidado personal" -> 2 aciertos (ENUT2024 TVAR_CREA ACTIV_CUID_PER, variable derivada + entrada FD)
+-q "necesitó cuidados de otra persona" -> 0 aciertos (formulacion exacta con tilde no matchea; variante sin tilde SI aparecio en la busqueda de "cuidado")
+-q "usted participó en una tanda" --encuesta enif2024 -> 3 aciertos (P5_1_5, contexto + fd)
+-q "Usted tiene alguna cuenta de ahorro, nomina" -> 2 aciertos (ENIF2012 p5_3, sav+dbf)
+-q "TRABAJO NEGOCIO FAMIL" -> 3 aciertos mostrados de 6 (ENNVIH 2002/2005)
+-q "Alguna vez ha pensado en suicidarse" -> 2 aciertos (ENSANUT2024 adultos, ver nota de doble registro arriba)
+-q "Cuál de estas alternativas" -> 2 aciertos (ENCUCI2020 AP10_16 + fd_ext con definicion de orientacion sexual)
+-q "Se entiende por Orientación Sexual" -> 1 acierto (ENCUCI2020 fd_ext pag.59)
+-q "cuenta bancaria|cuenta de ahorro" --encuesta enif -> 156 aciertos con texto (mostrando 20; ENIF2012/2015 multiples preguntas de cuenta)
+-q "marianismo" -> 0; -q "riesgo psicosocial|entorno organizacional favorable" -> 0; -q "psiquiatra" -> 0; -q "boomerang" -> 0; -q "cohesión|cohesion" -> 0
+-q "asiste a la escuela" --encuesta enoe -> 0; -q "condición de actividad" --encuesta enoe -> 0
+-q "hogares ampliados|hogar ampliado|hogar unipersonal" -> 21 aciertos (ENASIC2022 HOG_UNI/FILTRO, ENSAFI2023 FILTRO_S4_1)
+-q "autoconstrucción|autoconstruccion" -> 0 aciertos
+-q "balance vida trabajo|conciliación" -> 0 aciertos
+-q "empresa" --encuesta enaproce --limite 15 -> 0 aciertos (posible desajuste de alias de encuesta; no se investigo mas por prioridad)
+-q "violencia" --encuesta endireh --ola 2021 -> 1 acierto (fd_ext, estructura de base ENDIREH2021)
+
+== 2. u0pdf.py (349 PDF registrados, cache pdftotext) ==
+-q "familismo" -> 0; -q "familismo|Zeiders|marianismo|Trevor Project" -> 0
+-q "abnegación|abnegacion" -> 0
+-q "Hofstede" -> 0
+-q "compadrazgo" -> 0
+-q "estigma" -> 5 coincidencias (conf17_r4_1_sestad_reporte_2021 p.14 estigmatizacion en salud generica; enadis2022_cuestionario_opinion p.5 y enadis2022_fd p.308 modulo prejuicios/estigmas sociales hacia grupos, no salud mental especifica; mexicanos_constitucion p.108/198 marco teorico de discriminacion) -- ninguno sustenta el ranking "segundo lugar mundial" de estigma en salud mental.
+
+== 3. u0mf.py (1680 entradas en data/manifiesto.yaml) ==
+--busca enut --busca 2024 -> 8 entradas (payload enut2024_bd_csv + FD/cuestionario/diseño muestral/diccionario/diagrama ER)
+--busca defunci -> 1 entrada (edr2024_bd_dbf_zip; NO hay EDR 2017 ni 2022 registrados)
+--busca censo --busca economic -> 3 entradas (catalogos NSE de ENSANUT, sin relacion con Censos Economicos INEGI)
+--busca nom035 -> 0 entradas
+--busca secretaria --busca economia -> 1 entrada (r2_1_ecco_reporte_se_2023, "reporte especifico de SE, no el agregado APF completo" -- no se leyo su contenido)
+--busca enaproce -> varias entradas de microdatos ejemplo (ciegos), sin FD claro de "empresa familiar"
+--busca cuenta --busca satelite -> 0; --busca satelite -> 0; --busca no_remunerado -> 0 (Cuenta Satelite del Trabajo No Remunerado NO esta en manifiesto)
+--busca endireh --busca 2021 -> 46 entradas (payload + FD + olas previas)
+--busca enigh --busca 2024 -> 12 entradas (payload nc_csv + 10 documentos: descripcion, diseño muestral, 6 cuestionarios, manual entrevistador, reporte de resultados)
+--calc enut2024_bd_csv -> 6 corridas de 326; 4 SELLADAS: CALC-ENUT-0001, CALC-ENUT2024-DISTRIBUCION-HORAS-0002 (superseeded de -0001), CALC-ENUT2024-NUCLEO-EJES-0001, CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001. Ninguna listada en RESULTS-ASTRA5.md (no son frente ASTRA5); no se abrieron sus RESULT en este lote.
+--calc enif_2024_enif_2024_bd_csv -> 10 corridas de 326; SELLADAS: CALC-ARBITRO-MARGINALES-ENIF2024-0001, CALC-C2-COMPUESTO-IC-ENIF2024-0001, CALC-C2-RESTRINGIDO-IC-ENIF2024-0001, CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1, CALC-ENIF-0001/0002/0003, CALC-TIENE-AHORROS-0001-v1_1.
+--calc ennvih1_2002_hogar_dta -> 10 corridas de 326; incl. CALC-0003-v4 (SELLADA), CALC-TANDAS-ENNVIH-PANEL-0001 (SELLADA).
+--calc endireh2021_bd_csv_zip -> 0 corridas de 326 (el RESULT rico de RESULTS-ASTRA5.md #1093/#1099 debe usar otro payload_id/variante -- no resuelto en este lote).
+--calc endireh_2021_bd_endireh_2021_dta -> 0 corridas de 326 (mismo resultado con variante .dta).
+--calc adultos_ensanut2024_w_stata_stata__v2026_09_01 -> 1 corrida (CALC-ENSANUT-0001, SELLADA; generico, no especifico a A1211 suicidio).
+--calc ensafi2023_bd_csv_zip -> 3 corridas (2 SELLADAS).
+--calc encuci2020_bd_dbf -> 10 corridas de 326; SELLADAS: CALC-ENCUCI-0001, CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001, CALC-ENCUCI2020-EXPOSICION-RESPUESTA-0001, CALC-ENCUCI2020-RESPUESTA-POR-CONTACTO-0001-v1_1 (modulo ciberacoso/exposicion, NO orientacion sexual x aceptacion familiar).
+--id enif_2024_enif_2024_bd_csv -> confirma descarga directa INEGI, licencia Terminos de Libre Uso INEGI.
+
+== 4. WebSearch (2 de 12 consultas del presupuesto del lote; 23/sep/2026) ==
+1. "Zeiders 2013 familism support obligation referent depressive symptoms Mexican American adolescents"
+   -> Identifica Zeiders et al. (2013) "Mexican-Origin Youths' Trajectories of Depressive Symptoms: The Role of Familism Values", J Adolesc Health nov-2013, PubMed 23886552, N=492.
+   HALLAZGO IMPORTANTE: los resumenes publicos (JAH/ScienceDirect/PubMed/digitalcommons, 3 fuentes independientes convergentes) indican que APOYO y REFERENCIAL se asociaron con MENOS sintomas depresivos (referencial con el efecto mas marcado, incl. efecto entre-hermanos) y que OBLIGACION no se asocio -- el texto del report en L9 invierte esta atribucion (agrupa "familia como referente" junto con "obligacion" como NO protectoras). Se documenta como discrepancia potencial en familia-001, sin resolverla (residual).
+2. "OMS recomienda 5% del gasto en salud para salud mental México 1.5%"
+   -> CIEP (ciep.mx) confirma: OMS recomienda 5% del gasto en salud para salud mental en paises de ingreso medio; presupuesto mexicano 2016-2024 oscilo 1.3%-1.6%; 2026 proyectado = 1.5%. Consistente con la cifra del report (familia-025).
+
+No se usaron las 10 consultas restantes del presupuesto de 12: se prioriza corpus/manifiesto (per instrucciones) y se documentan como "faltante" las piezas documentales de menor prioridad (NO-EXPLICITO) en vez de gastar presupuesto web en ellas.
+
+== 5. Dedup crosses del paquete (deduplicacion-v1_0.tsv), 13 listados ==
+Aplicables a este archivo (6, verificados por ruta exacta "La_familia_mexicana..." dentro del campo de cruce):
+  EMP-FAMILIAR-90 -> familia-011 (G05)
+  TRABAJO-FAMILIAR-90 -> familia-011 (G05)
+  ENUT-HORAS-NO-REM -> familia-008 (G04 horas) y familia-041 (39.7% cuidadoras L165)
+  FAMILIA-GENERO-VEJEZ-CUIDADOS -> familia-007/008/009 (G04)
+  JUV-MENTAL-FAMILIA-SUICIDIO -> familia-024/028 (G15, Nolle 2012)
+  TRANS-CONS-HOFSTEDE-FP293 -> familia-002 (G02)
+NO aplicables a este archivo (7): DUELO-HEEKE-COLOMBIA-2015, DUELO-CIDH-CORTES, DUEL-HEEKE-COLOMBIA-UNA-MUESTRA, DUEL-ALMANZA-TAMAULIPAS-CINCO-MADRES, DUEL-BOSS-CARNES-ENSAYO-2012, DUEL-SMID-MEXICO-2016-N29, DUEL-BUSQUEDA-INMEDIATA-NORMA-VS-PRACTICA.
+  Verificado con: grep -o "La_familia_mexicana[^·]*" paquetes/familia.md -- ninguno de estos 7 cruces cita la ruta de este report; todos citan exclusivamente "Ausencia_sin_certeza__duelo_y_pérdida_ambigua...md" (coinciden solo por la palabra "familia/familias de personas desaparecidas", no por el archivo). Se excluyen del enlace de filas; no se crea fila para ellos.
+
+Contratos CERRADOS (mapa-parcial-v0_1.tsv) que tocan este archivo: 0 (confirmado por el paquete).
+Correcciones vigentes (correcciones-vigentes-v1_0.tsv) que tocan este archivo: 0 (confirmado por el paquete).
+
+== 6. Reglas duras verificadas ==
+- Repo de solo lectura: no se uso Edit/Write/git de escritura sobre /home/pc0/mm-astra5-mapa-dominios-1; toda escritura fue en el scratchpad de salida.
+- Cero microdato: ningun ZIP/CSV/DTA/DBF/SAV de datos fue descomprimido ni leido; solo se consultaron u0busca/u0pdf/u0mf (que resuelven contra inventarios, no contra el binario) y se leyeron PDF de FD/cuestionario a traves de u0pdf (indices de texto).
+- Reservas: no se toco ENOE2026 (se cito 2024T3, ya expuesto en RESULTS-ASTRA5.md, no reabierto), no se toco ENVIPE2026 ni ENCO en ninguna ola.
+- Firewall genetico: no se aplico (el report no trata ascendencia/genetica).
+- GEN1: no se citó ningun valor GEN1 como insumo.
+- grep desnudo: no se uso `grep` desnudo para negativos; se usaron u0busca/u0pdf/u0mf y un `grep -o` de PRUEBA POSITIVA (no negativa) sobre el propio paquete.md para verificar los cruces dedup (seccion 5 arriba).
+
+== 8. Normalizacion mecanica de ids (parchea.normaliza_ids_por_sha) ==
+Al generar filas.tsv se detecto en la carpeta u0/ un modulo del supervisor no listado en la
+exploracion inicial del directorio: parchea.py ("Aplica correcciones del supervisor a
+salida/<k>/filas.tsv"). Su funcion normaliza_ids_por_sha(k) sustituye, en los campos
+documento_id_hash_pagina y datos_id_estado, un "nombre|sha256" por "id_de_manifiesto|sha256"
+cuando el sha256 identifica de forma unica una entrada del manifiesto y el nombre usado no era
+ya un id canonico (mecanico, A.7: el sha es la identidad). Se encontro evidencia de que este
+modulo ya se habia ejecutado una vez sobre una version intermedia de filas.tsv (dejo
+filas.orig.tsv + una entrada en parches.log) mientras yo seguia regenerando el archivo desde mi
+script; al volver a escribir filas.tsv desde el script esa correccion se habria perdido, asi que
+la re-corri explicitamente sobre la version final: normaliza_ids_por_sha('familia') -> 1 cambio.
+Corrigio familia-018/documento_id_hash_pagina: "fd_enif2012.xlsx|f03d8...900" (nombre de archivo,
+no id) -> "enif_2012_fd_enif2012|f03d8...900" (id canonico del manifiesto, mismo sha). Verificado
+despues con grep que no quedan mas patrones "<archivo>.(xlsx|pdf|dbf|csv|zip|xls)|<sha>" en
+documento_id_hash_pagina ni datos_id_estado. filas.orig.tsv y parches.log NO fueron creados por
+mi (son del modulo del supervisor); se dejan intactos, no forman parte de mi entrega (filas.tsv,
+cobertura.tsv, busquedas.log).
+
+
+== 7. Notas de juicio para el supervisor ==
+- La discrepancia Zeiders 2013 (familia-001) es la mas relevante: si se confirma, el report invierte la direccion del hallazgo mas citado ("el mas importante de la literatura" segun su propio resumen ejecutivo).
+- La contradiccion interna 50% (L27) vs 36.6% (L219) de ahorro informal (familia-018) no se resolvio; ambas citan presumiblemente ENIF pero de ola/denominador no declarados.
+- u0mf --calc sobre endireh2021_bd_csv_zip y su variante _dta dan 0 corridas pese a que RESULTS-ASTRA5.md documenta RESULT ricos de ENDIREH 2021 (#1093/#1099) -- el payload_id real usado por esos CALC no se identifico en este lote (residual en familia-042).
+- Aplicada la aclaracion del supervisor (documental = identificar y marcar CON-ADQUISICION con "faltante:"; sintesis/recomendaciones que solo recombinan filas propias = NO-MEDIBLE-POR-DISENO): esto afecta especialmente las filas de Section 10 (familia-045, familia-046) y varias piezas de "causas estructurales" (familia-035).
