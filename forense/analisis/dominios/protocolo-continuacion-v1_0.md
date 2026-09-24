@@ -39,3 +39,7 @@ Medibilidad, autorización de apertura y existencia de RESULT son tres ejes sepa
 ## 5 · Ensamblado
 
 `ensambla_mapa.py` construye el mapa canónico, la cobertura por unidad, la proyección por afirmación y por dominio, y la tabla report→dominio a partir de la base Codex, las actualizaciones explícitas, los lotes auditados, las fusiones entre archivos y la tabla de correspondencia exacta afirmación→RESULT. `--verifica` recalcula y compara byte a byte con lo publicado; la prueba `test_mapa_se_reproduce_byte_a_byte` lo exige.
+
+## 6 · Cierre (24/sep/2026)
+
+Segunda pasada documental en `lotes/segunda-pasada-v1_0.tsv`; `ensambla_mapa.py` deriva además `hoja-adquisicion-derivada-v1_0.tsv` (estado de hoja y existencia del documento por afirmación), que sucede a `hoja-adquisicion.md` como hoja completa. La pasada de acceso de la `ADENDA-1` no corrió (opción 2): las filas con existencia no comprobada están en `no-accesible-desde-sandbox-v1_0.tsv` y las rutas medidas en `receta-acceso-fuentes-2026-09-24.md`, para `GEN2-ASTRA5-U5-ADQUISICION-1`. Cierre en `ADR-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-01` y `forense/notas/2026-09-24-ASTRA5-U0-MAPA-DOMINIOS-cierre.md`.

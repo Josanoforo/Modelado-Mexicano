@@ -1,6 +1,6 @@
 # ASTRA5-U0 · MAPA-DOMINIOS · nota de cierre (24/sep/2026)
 
-**Contadores movidos por este acto: ninguno.** El mapa no mide y no toca `celdas_validadas` (219 → 219, Δ0, `tools/cierre_acto.py` sobre `649c0b70`; se re-deriva en el commit de cierre).
+**Contadores movidos por este acto: ninguno.** El mapa no mide y no toca `celdas_validadas` (219 → 219, Δ0, `tools/cierre_acto.py` sobre `7f9629de`, con `origin/main` fusionado).
 
 - ADR `ADR-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-01` (raíz D-24: `63db` del 0-bis `63dbb17d`).
 - Encargo `forense/encargos/2026-09-23-ASTRA5-U0-MAPA-DOMINIOS.md` (sello de cuerpo `372c7af8c7ae47d43c142fbb101c49e684e71547ad60760b1cf81988b43f687c`) y `…-ADENDA-1.md` (asignación final de mesa, sello `e9fbe981e596c64e7aa0cbf8fcf384ac837af3eab73a3a67eef4c82d308b2e96`).
