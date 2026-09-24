@@ -37,3 +37,14 @@ Propio: `canon/L0/<ADR>`, `canon/gobernanza-v1_15.md` (append de cabecera), `can
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no adopta. Sucesor: ninguno; si #1085 (tecnología) necesita lo mismo, `GEN2-ASTRA5-U4-TECNOLOGIA-CIERRE-1` con esta plantilla.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1 · inventario: `CALC-ENDIREH-PISOS-2006-MODULOS-0001` sin sello y sin declaración (`NC-260924-GEN2-ASTRA5-U2-ENDIREH-CIERRE-1-b0df-01`) | FUERA-DE-PERÍMETRO -- de la unidad ASTRA5-U2-GENERO-ENDIREH (Astra/Codex); sellos de Astra intactos | ninguno; cuenta 0002 sellado | ASTRA5-U2-GENERO-ENDIREH o SIN-ASIGNAR |
+| «Hecho»: `check.py --baseline` VERDE | NO-VERIFICABLE-AQUÍ -- no terminó en 600 s en sesión; `--rapido` VERDE 0 FAIL; juez = CI | ninguno si CI verde | CI de PR #1111 |
+
+## CONSUMIDO
+
+PR #1111 (rama `acto/gen2-astra5-u2-endireh-cierre-1`), ADR-260924-GEN2-ASTRA5-U2-ENDIREH-CIERRE-1-b0df-01.
