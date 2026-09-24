@@ -454,22 +454,23 @@ jobs:
             }
           fi
           python3 tools/resuelve_citas.py tabla --escribe
-          # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · P1/COMMIT-A: guarda de
-          # tamaño ANTES de commitear -- un GH001 silencioso en este paso
-          # es una publicación perdida (§8 del encargo, "Guarda en CI"
-          # protege: borrar). Falla duro a 100 MB (el límite real de
-          # GitHub); avisa (no falla) a 50 MB mientras `camino_linaje`
-          # sigue en `resultados.tsv` (COMMIT-B lo saca y este guardia baja
-          # a "falla a 50" en ese mismo commit).
+          # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · P1/COMMIT-A y ACTO
+          # GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: guarda de tamaño
+          # ANTES de commitear -- un GH001 silencioso en este paso es una
+          # publicación perdida (§8 del encargo, "Guarda en CI" protege:
+          # borrar). Falla a 50 MB (firma de mesa, encargo -2 §2: "ningún
+          # archivo derivado vuelve a superar 50 MB") desde que
+          # `camino_linaje` salió de `resultados.tsv` por derivación bajo
+          # demanda en vez de vivir en la vista (COMMIT-B, cardinalidad
+          # medida 1.0). Antes de COMMIT-B este guardia toleraba hasta
+          # 100 MB con aviso a 50; ese régimen de transición ya cerró.
           for f in data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv; do
             [ -f "$f" ] || continue
             BYTES=$(stat -c%s "$f")
             MB=$((BYTES / 1024 / 1024))
-            if [ "$BYTES" -gt $((100 * 1024 * 1024)) ]; then
-              echo "GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 100 MB de GitHub (GH001 lo habría rechazado igual, esto lo atrapa antes del push)." >&2
+            if [ "$BYTES" -gt $((50 * 1024 * 1024)) ]; then
+              echo "GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB de la firma de mesa (GEN2-TUBERIA-VISTA-NORMALIZADA-2 §2 + COMMIT-B de -3)." >&2
               exit 1
-            elif [ "$BYTES" -gt $((50 * 1024 * 1024)) ]; then
-              echo "AVISO GUARDA-TAMANO: $f es ${MB} MB, sobre el umbral de 50 MB de la firma de mesa (autorizado a ~70 MB entre COMMIT-A y COMMIT-B de GEN2-TUBERIA-VISTA-NORMALIZADA-2)."
             fi
           done
           # ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 (24/sep/2026), P1: único
