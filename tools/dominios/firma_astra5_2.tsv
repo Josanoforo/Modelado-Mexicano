@@ -1,0 +1,15 @@
+instrumento	ola	prioridad	propietario_dato	url	patron_mapa	ids_patron	reserva	nota
+ENSANUT	2006	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut2006/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2006			
+ENSANUT	2012	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut2012/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2012			
+ENSANUT	2016	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut2016/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2016			ENSANUT de Medio Camino 2016
+ENSANUT	2018	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2018			el manifiesto sólo trae un cuestionario de 2018 (conf17_r9_1_ensanut_2018_cuestionario_utilizadores), no microdato
+ENSANUT	2018-100K	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanut100k2018/descargas.php	ENSANUT[^;|]{0,10}100 ?k			ENSANUT 100k 2018 (localidades <100 mil habitantes), levantamiento distinto de la ENSANUT 2018
+ENSANUT	2020	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2020/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2020			ENSANUT Continua 2020 (COVID-19)
+ENSANUT	2021	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2021/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2021			
+ENSANUT	2022	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2022			
+ENSANUT	2023	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2023/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2023			
+ENSANUT	2024	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2024|ensanut_?2024	ensanut_?2[09]24.*_stata_stata__v2026_09_01$		ya en corpus (versión publicada 2026-09-01); A.8: no se repite
+ENSANUT	2025	0	INSP/SSA	https://ensanut.insp.mx/encuestas/ensanutcontinua2025/descargas.php	ENSANUT[^;|0-9]{0,25}(?:20\d\d\s*[-/y,]\s*){0,3}2025		RESERVADA	ola más reciente publicada (2026 responde 302 sin bases al 2026-09-24): nace RESERVADA (E.6, F-ASTRA-5-3)
+ENCODAT	2016-2017	0	CONADIC/INPRFM/INSP	https://www.gob.mx/salud%7Cconadic/acciones-y-programas/encuesta-nacional-de-consumo-de-drogas-alcohol-y-tabaco-encodat-2016-2017-136758	ENCODAT[^;|0-9]{0,15}(?:20\d\d\s*[-/y,]\s*){0,3}2016			
+ENCODAT	2025	0	CONASAMA/INPRFM/INSP		ENCODAT[^;|0-9]{0,15}(?:20\d\d\s*[-/y,]\s*){0,3}2025		RESERVADA	ola más reciente publicada: nace RESERVADA (E.6, F-ASTRA-5-3)
+ENBIARE	2021	0	INEGI	https://www.inegi.org.mx/programas/enbiare/2021/	ENBIARE	^enbiare2021_		única ola publicada; ya en corpus; A.8: no se repite
