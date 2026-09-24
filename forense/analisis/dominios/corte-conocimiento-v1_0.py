@@ -1,0 +1,68 @@
+"""Dictámenes documentales PISA 2022 del report de conocimiento."""
+
+import csv
+import hashlib
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+OUT = Path(__file__).with_suffix(".tsv")
+REPORT = "corpus/reports/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md"
+FIELDS = [
+    "id_afirmacion", "report", "report_sha256", "localizador", "texto_vigente",
+    "tier_report", "clase", "componente_contrastable", "limite_inferencial",
+    "conducta_unidad_universo", "instrumento_ola", "documento_id_hash_pagina",
+    "pregunta_textual_codigo_respuestas", "estado_verificacion", "dictamen",
+    "dictamen_razon", "datos_id_estado", "reserva", "gen2_existente",
+    "propietario", "siguiente_operacion", "prioridad",
+]
+SHA = hashlib.sha256((ROOT / REPORT).read_bytes()).hexdigest()
+BASE = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L25,L58; PISA 2022",
+    tier_report="FUERTE",
+    clase="evaluación educativa internacional de estudiantes escolarizados",
+    limite_inferencial="PISA evalúa estudiantes elegibles de 15 años en escuelas, no adultos, todos los jóvenes de 15 años ni actitudes de familias hacia educación. En México n=6288 alumnos de 280 escuelas representan cerca de 64% de la población total de 15 años. La tabla OCDE da intervalo de rango 54–64 para matemáticas, no sustenta lugar puntual 51/81 del report. Puntaje y proficiencia son estimandos distintos; ninguno identifica causalidad o valoración familiar.",
+    conducta_unidad_universo="Estudiantes de 15 años inscritos en escuelas y elegibles de México en PISA 2022; 6288 participantes en 280 escuelas, representan aproximadamente 1,393,700 estudiantes y 64% de toda la cohorte de 15 años.",
+    instrumento_ola="OECD PISA 2022 resultados matemáticas, lectura y ciencias; ficha México Vols. I-II 2023 y Vol. I tabla I.2.4/I.B1.2.1/I.B1.3.1",
+    documento_id_hash_pagina="SIN-ID:astra5_oecd_pisa2022_mexico_factsheet.pdf|8be7ac8ca27f9b37bf142ed82e9b3342c7b67a2086dfe267d997c5055bfe0558|pp.1-3,8;https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/pisa-2022-results-volume-i-and-ii-country-notes_2fca04b9/mexico_515c0d35/519eaf88-en.pdf;SIN-ID:astra5_oecd_pisa2022_volume1.pdf|84bb19ca15ba075b780bc0b37498510a5a53e2028bc8fbda19586ac88d21a025|pp.29,66 tabla I.2.4;https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/12/pisa-2022-results-volume-i_76772a36/53f23881-en.pdf",
+    pregunta_textual_codigo_respuestas="Prueba PISA de matemáticas 2022: puntuación escalada y umbral de nivel 2; no pregunta de aprecio o aspiración familiar.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Dos PDF primarios OCDE físicos con SHA, ola, tablas y universo leídos; falta id documental en manifiesto U0 y no hay RESULT propio.",
+    datos_id_estado="Microdatos PISA no abiertos ni descargados U0; sin RESULT compatible.",
+    reserva="© OECD 2023; PDF para lectura local, condiciones de redistribución por MESA-DOCUMENTAL. Evitar rango único 51/81 no acreditado y no inferir opinión de familias de rendimiento estudiantil.",
+    gen2_existente="Sin RESULT PISA compatible en main.",
+    propietario="ASTRA5-MESA-CONOCIMIENTO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar dos PDF/versiones/licencia/SHA; contrastar tabla exacta y error de rango; adquirir pregunta de aspiración familiar por instrumento distinto.",
+    prioridad="3",
+)
+ROWS = [
+    BASE | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-001",
+        texto_vigente="Los estudiantes mexicanos elegibles de 15 años obtuvieron una media de 395 puntos en matemáticas en PISA 2022.",
+        componente_contrastable="OECD Vol. I Tabla I.2.4 p.66: media 395, IC95% 391–399; intervalo de rango 54–64 de 81 países/economías, por lo que 51º puntual del report no se valida.",
+    ),
+    BASE | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-002",
+        texto_vigente="En PISA 2022, 66% de los estudiantes mexicanos evaluados quedó por debajo del nivel 2 de competencia matemática.",
+        componente_contrastable="Ficha OCDE México pp.2-3: 34% alcanza al menos nivel 2, 66% por debajo; promedio OCDE 69% alcanza nivel 2. Esta tasa no mide rechazo a educación.",
+    ),
+    BASE | dict(
+        id_afirmacion="ASTRA5-U0-CONOC-003",
+        texto_vigente="La muestra PISA 2022 México incluyó 6,288 estudiantes en 280 escuelas y representó alrededor de 64% de la población total de 15 años.",
+        componente_contrastable="Ficha OCDE México sección Key features/The students: n6288, 280 escuelas, ~1,393,700 estudiantes representados, 64% de cohorte de 15 años; deja fuera población no escolarizada/elegible.",
+        localizador="L25,L58; universo y cobertura PISA",
+    ),
+]
+
+
+def main() -> None:
+    with OUT.open("w", encoding="utf-8", newline="") as stream:
+        writer = csv.DictWriter(stream, FIELDS, delimiter="\t", lineterminator="\n")
+        writer.writeheader()
+        writer.writerows(ROWS)
+
+
+if __name__ == "__main__":
+    main()
