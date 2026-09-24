@@ -1,0 +1,95 @@
+# Búsquedas crudas del lote 'apuestas' (ASTRA5-U0), ejecutor único, 24/sep/2026
+# Repo: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura); herramientas en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+### u0mf.py --busca (manifiesto, 1680 entradas examinadas en cada corrida)
+u0mf --busca cnbv --busca corresponsal -> 0/1680
+u0mf --busca cnbv -> 30/1680 (incluye gen2_cnbv_040_1a_r16_imor_tipo_cartera, gen2_banxico_imor_consumo_producto_mensual_2026t1_html, series ADQ15/BDIF de inclusión financiera)
+u0mf --busca banxico --busca sie --busca cf88 -> 9/1680 (CF881-CF885, CF883, banxico_codi_avances_2026, banxico_informe_anual_idmf_2019..2024, codi_org_mx_estadisticas_landing)
+u0mf --busca codi -> ver CATALOGO-CORPUS.md L332-346 (banxico_sie_cf88x, banxico_codi_avances_2026, codi_org_mx_estadisticas_landing, banxico_informe_anual_idmf_*)
+u0mf --busca nber -> 1/1680 (nber_w33208_fintech_lending_no_credit_history)
+u0mf --busca progresa -> 0/1680
+u0mf --busca oportunidades -> 0/1680
+u0mf --busca ensanut --busca vacun -> 7/1680 (cuestionarios ENSANUT 2024, no el artículo académico)
+u0mf --busca 15793 -> 0/1680
+u0mf --busca saludpublica -> 0/1680
+u0mf --busca nom-194 -> 0/1680
+u0mf --busca nom_194 -> 0/1680
+u0mf --busca dof -> 1/1680 (falso positivo: cuestionario ENSANUT 2024, no DOF)
+u0mf --busca vehiculo -> 0/1680
+u0mf --busca pawn -> 0/1680
+u0mf --busca "world bank" -> 3/1680 (WBES México 2023, no el paper de Ruiz)
+u0mf --busca nu --busca holdings -> 0/1680
+u0mf --busca walmex -> 0/1680
+u0mf --busca bmv -> 0/1680
+u0mf --busca costco -> 0/1680
+u0mf --busca costco --busca lealtad -> 0/1680
+u0mf --busca amia -> 0/1680
+u0mf --busca profeco -> 0/1680
+u0mf --busca kavak -> 0/1680
+u0mf --busca jüsto -> 0/1680
+u0mf --busca justo -> 0/1680
+u0mf --busca didi -> 0/1680
+u0mf --busca rappi -> 1/1680 (nber_w33208, dato transaccional RappiCard usado por el paper)
+u0mf --busca bimbo -> 0/1680
+u0mf --busca bloomberg -> 0/1680
+u0mf --busca sicee -> 69/1680 (no relevante a este lote, ruido de búsqueda genérica)
+u0mf --busca mancomunidad -> 0/1680
+u0mf --busca femsa -> 0/1680
+u0mf --busca spin -> 0/1680
+u0mf --busca bancoppel -> 0/1680
+u0mf --busca kueski -> 0/1680
+u0mf --busca aplazo -> 0/1680
+u0mf --busca insp --busca etiquet -> 13/1680 (módulo «etiquetado» ENSANUT 2024, no el estudio INSP 2020-21)
+u0mf --busca etiquetado -> 5/1680
+u0mf --busca octagon -> 0/1680
+u0mf --busca respyn -> 0/1680
+u0mf --busca cofepris -> 0/1680
+u0mf --id 1008973606mexico_lapop_final_2006_data_set_092906 -> confirmado, sha256 f43fcf78..., raíz descargas_mx, sin reserva, url vanderbilt.edu/lapop/mexico.php
+u0mf --id 1658622845mexico_2004_export_version -> confirmado, sha256 e7253835..., raíz descargas_mx, sin reserva
+u0mf --calc (todas las filas EN-CORPUS/CON-ADQUISICIÓN con payload_id real) -> 0 corridas en todos los casos (ver columna gen2_existente de cada fila)
+
+### u0busca.py (9 tablas, 314 256 identidades revisadas, 113 780 con texto, en cada corrida)
+u0busca -q "P5_4_8" -> 12 aciertos con texto (ENIF 2012, 2021, 2024)
+u0busca -q "codi" -> 2066 aciertos con texto (mayoría ruido de subcadena "codi" en ENNVIH/otros); acotado con --encuesta enif: aciertos incluyen ENIF2021 P7_2 y ENIF2024 p7_2_1/p7_3_1/p5_4_8
+u0busca -q "historial crediticio" -> 12 aciertos con texto (ENIF 2012 P6_19_3, 2015 P6_21_5, 2018 P6_19_4, 2024 P6_17_4, en SAV/DBF/CSV y FD)
+u0busca -q "sin cuenta bancaria|no tiene cuenta" -> 1 acierto (ENNVIH 2009, variable de etiqueta, no reactivo de encuesta poblacional actual)
+u0busca -q "no bancarizado|sin cuenta de banco" -> 0 aciertos
+u0busca -q "mordida" -> 40 aciertos con texto (LAPOP 2004 dc1/exc2/exc4/exc5/exc6...; LAPOP 2006 DC1/EXC2/EXC6/EXC13-19, módulo de victimización/justificación de mordida)
+u0busca -q "miedo al sat|temor al sat" -> 0 aciertos
+u0busca -q "no lo vacun|no fue vacunado|razon de no" -> 6 aciertos, todos en ENADID 2023 (razón de no uso de anticonceptivos, NO de vacunación)
+u0busca -q "esquema de vacunacion completo|cartilla de vacunacion" -> 0 aciertos
+u0busca -q "vacun" --encuesta ensanut --limite 25 -> sin aciertos de razón/motivo de no vacunación
+u0busca -q "recomendacion de un conocido|se lo recomendo|boca a boca" -> 0 aciertos
+u0busca -q "horizonte de planeacion|horizonte temporal" -> 0 aciertos
+u0busca -q "efectivo" --encuesta enif --limite 15 -> aciertos genéricos, sin acotar al reactivo exacto de "medio de pago habitual" (pendiente de precisar consulta)
+
+### u0pdf.py (349 PDF registrados examinados en cada corrida)
+u0pdf --id nber_w33208_fintech_lending_no_credit_history -q "0.124" -q "digital footprint" -q "AUC" --limite 10
+  -> "0.124": 3 coincidencias (p.4, p.23, p.45); "digital footprint": 16 coincidencias; "AUC": 140 coincidencias
+  -> confirma verbatim las cuatro cifras del report (0.124, 0.026, 0.006, 0.001) en páginas 4 y 23
+u0pdf --id banxico_informe_anual_idmf_2024 -q "efectivo" -q "CoDi" --limite 8
+  -> "efectivo": 52 coincidencias (p.12,22,23,48); "CoDi": 47 coincidencias (p.9,11,16,17,18)
+  -> confirma que el informe anual de Banxico SÍ reporta series propias de CoDi (adopción, operaciones, usuarios finales) y de retiros/uso de efectivo
+
+### WebSearch (9 consultas; máximo permitido 12; contadas junto con WebFetch)
+1. "Behrman Hoddinott Skoufias Progresa Oportunidades evaluation consumption human capital investment" (24/sep/2026)
+   -> confirma Hoddinott/Skoufias/Washburn (2000) IFPRI "The impact of PROGRESA on consumption"; Behrman/Hoddinott (2005) Oxford Bulletin of Economics and Statistics 67(4), DOI 10.1111/j.1468-0084.2005.00131.x
+2. "Claudia Ruiz \"From Pawn Shops to Banks\" World Bank 2013 Mexico" (24/sep/2026)
+   -> confirma World Bank Policy Research Working Paper 6634 (2013), documents.worldbank.org/en/publication/documents-reports/documentdetail/465221468286796985; snippet reporta "46% menos propensos a crédito de empeño" (no coincide literalmente con el 39% citado por el report - discrepancia declarada)
+3. "NOM-194-SCFI-2015 bolsas de aire ABS Nissan Tsuru DOF" (24/sep/2026)
+   -> confirma dof.gob.mx/nota_detalle.php?codigo=5436325&fecha=09/05/2016 (texto oficial de la norma)
+4. "\"Salud Pública de México\" 2024 vol 66 no 4 ENSANUT Continua cobertura vacunación BCG esquema completo" (24/sep/2026)
+   -> confirma saludpublica.mx/index.php/spm/issue/view/551 y doi.org/10.21149/15793 «Vacunación en menores de cinco años»; snippet reporta BCG 86.5% (no coincide con 57%/91%/77% del report por año - discrepancia declarada)
+5. "CNBV corresponsalías bancarias 2019 43397 puntos OXXO participación" (24/sep/2026)
+   -> confirma gob.mx/cnbv/articulos/corresponsales-bancarios-114482 y boletín cnbv.gob.mx/SECTORES-SUPERVISADOS/BANCA-MULTIPLE/Prensa%20%20Sector%20Bancario/23%20DE%20NOVIEMBRE.pdf; cifra 43%/43397 corroborada por múltiples medios de prensa (Forbes, El Financiero, La Jornada, El Informador), fuente oficial identificada pero no leída completa
+6. "Nu México 13 millones clientes octubre 2025 15 millones abril 2026 comunicado Daniel Rojas" (24/sep/2026)
+   -> confirma blog.nu.com.mx/.../nu-mexico-13-millones-clientes/ y .../nu-mexico-15-millones-clientes/; cita de Daniel Rojas confirmada
+7. "Aplazo BusinessWire comunicado mayo 2024 tasa de pérdida crediticia digito bajo Ángel Peña" (24/sep/2026)
+   -> confirma businesswire.com/news/home/20240513556631/en/Mexico-based-Commerce-and-BNPL-Fintech-Platform-Aplazo-Secures-$70-Million-in-Equity-Funding; cita de Ángel Peña ("low-single-digit credit loss rates") confirmada
+8. "INSP 2020 2021 etiquetado frontal octágonos apoyo comprensión 9000 adultos jóvenes estudio" (24/sep/2026)
+   -> INSP tiene líneas activas de investigación sobre etiquetado (codigof.mx, facebook.com/INSP.MX) con cifras DISTINTAS a las citadas por el report (83%/89%, n=4057, estudio con U. Waterloo; 8/10 adultos consideran relevante al menos un sello) — no se aisló el estudio único con 74%/85%/79%/9000+
+9. "Costco México ventas 2025 Walmex Sam's Club México ventas anuales BMV disclosure mdp" (24/sep/2026)
+   -> confirma que Walmex cotiza en BMV y que Walmart Inc./Costco Wholesale presentan 10-K/10-Q ante SEC (sec.gov); no se confirmó la cifra exacta 189,869/94,500 mdp ni comparabilidad de periodo fiscal
+
+Total consultas web usadas: 9 de 12 permitidas (WebSearch únicamente; 0 WebFetch). No se consultó prensa/portales de noticias como fuente PRIMARIA; los resultados de WebSearch que solo devolvieron prensa (Tecate/Change.org, Jüsto/OMNi, Kavak/Profeco, DiDi/Uber participación, Nu-Bloomberg morosidad, declaración TechCrunch de Aplazo/Kueski) se dejaron sin consultar por presupuesto y por tratarse de piezas de menor prioridad (ILUSTRATIVO) o con fuente única de prensa (regla del lote: PENDIENTE-VERIFICACION-DOCUMENTAL).
