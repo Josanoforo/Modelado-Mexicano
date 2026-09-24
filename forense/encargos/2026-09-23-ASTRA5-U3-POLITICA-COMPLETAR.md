@@ -26,3 +26,7 @@ Entrega cobertura completa de candidatos medidos o dictaminados, tres instrument
 WVS y ENCUCI no se abrieron, porque el encargo lo veda. La encuesta UNAM de
 cultura política es otro instrumento y requiere asignación propia. Ninguno
 de los dos casos es una pieza pedida y no corrida.
+
+## CONSUMIDO
+
+Consumido por el PR #1098 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1098), rama `claude/astra5-politica-completar-1`. ADR `ADR-260923-ASTRA5-U3-POLITICA-COMPLETAR-d459-01`; nota `forense/notas/2026-09-23-ASTRA5-U3-POLITICA-COMPLETAR-cierre.md`.

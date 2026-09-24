@@ -130,3 +130,7 @@ medidos o dictaminados, por instrumento:
   medida y 159 objetos restantes dictaminados.
 
 Pendiente de mesa: el merge (adopción) y las tres FP citadas arriba.
+
+## CONSUMIDO
+
+El encargo `forense/encargos/2026-09-23-ASTRA5-U3-POLITICA-COMPLETAR.md` se consumió en el **PR #1098** (https://github.com/Josanoforo/Modelado-Mexicano/pull/1098). Adopción y fusión: mesa.
