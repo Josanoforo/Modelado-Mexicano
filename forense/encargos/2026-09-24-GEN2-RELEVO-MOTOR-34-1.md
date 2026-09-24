@@ -35,3 +35,14 @@ Propio: `milpa/*.yaml` (solo escritor), `tools/escribe_relevo_consumo.py` + test
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No releva los otros consumidores; no adopta lo de Astra. Sucesores: `GEN2-RELEVO-CONSUMIDORES-2` (procedencia, catálogo, marco, celdas-D); FIRMAS-16 asienta pines y reglas.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «P2 relevo por lectura» — 8 lecturas ASIGNADO con hermano GEN2 (RES-0001/0002/0007/0008/0019/0020/0023/0024) | DECISIÓN-DE-MESA-PENDIENTE: `emitir_binaria` devuelve el par ASIGNADO; sustituirlo por el medido cambia el estimando, no es relevo | `legacy_activas_por_consumidor__motor` no baja en 8 | FIRMAS-16 (FP-260924-GEN2-RELEVO-MOTOR-34-1-a157-01); NC …-a157-01..25 por lectura |
+| ídem — 4 lecturas NO-ADOPTAR-NC-0107 (RES-0009..0012) | DECISIÓN-DE-MESA-PENDIENTE: rotuladas «sólo historia» pero activas | no baja en 4 | FIRMAS-16 (FP …-a157-02) |
+| ídem — 6 cortes `CORTES_C1` (RES-0165..0170) | DECISIÓN-DE-MESA-PENDIENTE: dato sellado sin RESULT numérico; sacarlos del contador sería moverlo a mano | no baja en 6 | FIRMAS-16 (FP …-a157-03) |
+| «re-medición (E.1) → CALC en caja con COMMIT-1» — RES-0017/0018, RES-0029/0030, RES-0050..0052 | DIFERIDO-A:GEN2-RELEVO-MOTOR-34-2-CAJA: sesión NUBE sin corpus; L8 ingiere un JSON GEN1 (4.1) | no baja en 7 | GEN2-RELEVO-MOTOR-34-2-CAJA |
+| «`check.py --baseline` VERDE» | NO-VERIFICABLE-AQUÍ: la sesión corre `--rapido` (0 FAIL) y `T-REPRO` aislado (0 FAIL); la suite completa la juzga el CI del PR | ninguno si CI verde | CI del PR |
+| «cada pin con fila en `pines-de-mesa.tsv`» | SUSTITUIDO-POR:escritor V3 — para el motor la marca del consumidor manda sobre el pin (`corrida0.py:4485`); las cuatro guardas corren en `guardas_v3`. Huérfano: la clase (iii) no se muestra aparte en `status` (hallazgo) | `relevadas_por_pin_de_mesa__iii` sigue en 0 | SIN-ASIGNAR |
