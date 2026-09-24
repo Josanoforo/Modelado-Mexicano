@@ -41,3 +41,17 @@ Propio: `.github/workflows/verify.yml` (el paso de derivados: condición de disp
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia qué mide el tablero ni sus definiciones (`celdas_validadas_definicion_desde` sigue siendo de CONTADORES). Sucesor: ninguno; si Pages exige un include que Jekyll no soporte, `-2` con la copia por job.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «P6 · Prueba real: primer `[deriva]` con todo adentro; cita del run y del PR; `status` antes/después en la nota.»
+  **por qué:** DECISIÓN-DE-MESA-PENDIENTE — el canal sí corre en cada push (el disparo nunca dependió de un asiento nuevo); muere por timeout de 10 min (run 36068464848, ya corregido aquí: 30 min) y por GUARDA-TAMANO: `resultados.tsv` re-derivado = 92 MB (run 36066873728; reproducido en esta sesión: 96 768 436 bytes, `valor` 65 MB de listas de CALC pendientes del lote). Reducirlo exige tocar `registro` o la guarda de tamaño — PARO §7(b) de este encargo, que manda sobre la cláusula de autonomía (7) (D-19).
+  **impacto:** ningún PR `[deriva]` se abre; `status` en `main` no cambia. Además, re-derivar no mueve el contador: `usos.tsv` sale idéntico y `adoptados_activos` = 72 en el árbol re-derivado; el «> 72» de la premisa no sale del canal.
+  **sucesor:** FP-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3dd4-01 (recomendada: acto `GEN2-TUBERIA-VISTA-NORMALIZADA-4`, valor-lista por referencia). NC-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3dd4-01.
+
+- **qué:** «un run de Actions citado por id donde el job de derivados corre en un push **sin** asiento nuevo».
+  **por qué:** NO-VERIFICABLE-AQUÍ — requiere el merge de este PR; tras él, el paso correrá y volverá a parar en GUARDA-TAMANO mientras la fila de arriba siga abierta.
+  **impacto:** ninguno adicional al de arriba.
+  **sucesor:** la misma FP.
+
+Corrección de premisas declarada (no se edita el cuerpo): (1) §4 «esperado 0»: `verify.yml` ya tenía 3 menciones de `tablero_programa` y `docs/tablero.md` + `docs/PROTOCOLO-TABLERO.md` existían — P1-P4 ya estaban en `main` por PR #1117 (encargo v1, CONSUMIDO); (2) §1/§3 «el job solo se dispara con asiento nuevo»: falso, ver arriba; (3) `canon/TABLERO-PROGRAMA.md` es `forense/tablero/TABLERO-PROGRAMA.md`.
