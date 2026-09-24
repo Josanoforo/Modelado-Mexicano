@@ -47,7 +47,7 @@ def miembro_unico(ruta_zip, sufijo):
     return cand[0]
 
 
-def lee_dta(ruta_zip, columnas, miembro=None):
+def lee_dta(ruta_zip, columnas, miembro=None, encoding=None):
     """Lee `columnas` (nombres exactos, sin distinguir mayúsculas) del .dta del ZIP.
 
     Devuelve un DataFrame con las columnas en MINÚSCULAS. Una columna pedida que no
@@ -59,13 +59,14 @@ def lee_dta(ruta_zip, columnas, miembro=None):
     with zipfile.ZipFile(ruta_zip) as z, tempfile.TemporaryDirectory() as tmp:
         destino = Path(tmp) / "m.dta"
         destino.write_bytes(z.read(miembro))
-        _, meta = pyreadstat.read_dta(str(destino), metadataonly=True)
+        kw = {"encoding": encoding} if encoding else {}
+        _, meta = pyreadstat.read_dta(str(destino), metadataonly=True, **kw)
         reales = {c.lower(): c for c in meta.column_names}
         faltan = [c for c in columnas if c.lower() not in reales]
         if faltan:
             raise KeyError(f"columnas ausentes en {miembro}: {faltan}")
         df, _ = pyreadstat.read_dta(str(destino), usecols=[reales[c.lower()] for c in columnas],
-                                    apply_value_formats=False)
+                                    apply_value_formats=False, **kw)
     df.columns = [c.lower() for c in df.columns]
     return df
 
@@ -197,3 +198,51 @@ def wilson(k, n, z=Z95):
     cen = (ph + z * z / (2 * n)) / den
     mar = z * math.sqrt(ph * (1 - ph) / n + z * z / (4 * n * n)) / den
     return cen - mar, cen + mar
+
+
+# ═══════════════════════════ motor de marginales ═══════════════════════════
+
+def marginales(frame, conductas, ejes, w, estrato, upm, replicas, semilla):
+    """Pisos por UN eje a la vez (nunca cruces) para varias conductas.
+
+    `conductas`: {nombre: serie float (0/1 o escala; NaN = fuera del universo o sin dato)}.
+    `ejes`: {eje: (serie de categoría como texto, tupla de categorías)}; el eje "TOTAL" no se
+    pasa: se añade siempre. Una sola corrida de bootstrap por marco: todas las máscaras
+    comparten réplicas (UPM del marco entero).
+    Devuelve {(conducta, eje, cat): {"p", "ee", "lo", "hi", "n", "validas"}}.
+    """
+    claves, mascaras, ys = [], [], []
+    for nom, y in conductas.items():
+        y = np.asarray(y, dtype=float)
+        base = np.isfinite(y)
+        claves.append((nom, "TOTAL", "TODOS"))
+        mascaras.append(base)
+        ys.append(nom)
+        for eje, (serie, cats) in ejes.items():
+            s = np.asarray(serie, dtype=object)
+            for c in cats:
+                claves.append((nom, eje, c))
+                mascaras.append(base & (s == c))
+                ys.append(nom)
+    out = {}
+    for nom, y in conductas.items():
+        idx = [i for i, k in enumerate(ys) if k == nom]
+        yv = np.nan_to_num(np.asarray(y, dtype=float), nan=0.0)
+        pts, reps, n = bootstrap(frame, yv, w, estrato, upm, [mascaras[i] for i in idx], replicas, semilla)
+        for j, i in enumerate(idx):
+            ee, lo, hi, val = resumen(pts[j], reps[:, j]) if n[j] > 0 else (None, None, None, 0)
+            p = float(pts[j]) if n[j] > 0 and np.isfinite(pts[j]) else None
+            out[claves[i]] = {"p": p, "ee": ee, "lo": lo, "hi": hi, "n": int(n[j]), "validas": val}
+    return out
+
+
+def persistencia(series_por_ola, olas, cats):
+    """τ² de un grupo (conducta, eje): media de Δ² en logit entre olas consecutivas, sobre
+    las categorías `cats`. `series_por_ola[ola][cat]` = p o None."""
+    deltas = []
+    for a, b in zip(olas[:-1], olas[1:]):
+        for c in cats:
+            pa, pb = series_por_ola[a].get(c), series_por_ola[b].get(c)
+            if abierto(pa) and abierto(pb):
+                deltas.append(logit(pb) - logit(pa))
+    return tau2(deltas), len(deltas)
