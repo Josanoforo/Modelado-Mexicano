@@ -45812,3 +45812,288 @@
   nota: 'A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha,
     tamaño y directorio central/%%EOF/cabecera).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_junio2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602365/files/base_covid_junio2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-06/base_covid_junio2020.dta
+  sha256: e16998c3a22b8244aa5d7ea537b285488f30ad795fa3fa5814dc6487754dbe29
+  tamano_bytes: 540975
+  formato: DTA base Stata ronda junio 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_junio2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602365/files/Cuestionario%20Junio%202020.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-06/cuestionario_junio_2020.pdf
+  sha256: ea9e1cadbc52409928ea41568bb8760d28631ae00ff7b9c4ea62179354c215dd
+  tamano_bytes: 614634
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_junio2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602365/files/Descripcio%CC%81n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-06/descripción_bd.pdf
+  sha256: cad38a64816eba0ec524b1d5925dfce444a56e9fb590efcbe343e31fd7bbf8c0
+  tamano_bytes: 622758
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_junio2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602365/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-06/metodologia.pdf
+  sha256: d91659a4c55f332f925cec7d5ce12a4e3f799dc53ac2e174fb3b579d0ee8a7b5
+  tamano_bytes: 352532
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_julio2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602374/files/base_covid_julio2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-07/base_covid_julio2020.dta
+  sha256: 182c683ee1e543f93523f1ed4e95d2759cfce2fd10b9570af727347f911a6d03
+  tamano_bytes: 492296
+  formato: DTA base Stata ronda julio 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_julio2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602374/files/Cuestionario%20Julio%202020%20Nacional.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-07/cuestionario_julio_2020_nacional.pdf
+  sha256: 70cb3218ec4f9f90b7221efe648b9616c03c1a18bb98e4eab47db36f512fd073
+  tamano_bytes: 599615
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_julio2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602374/files/Descripcio%CC%81n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-07/descripción_bd.pdf
+  sha256: 7171621d5d048aac866ec0f204a3c0faba7914f5aea12c9d6e722bb2eee3b7db
+  tamano_bytes: 622209
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_julio2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602374/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-07/metodologia.pdf
+  sha256: 78c3f92ef1706e57954348af4eadccde66dbe7da85884e2b9ae1b6b7bc9836db
+  tamano_bytes: 352568
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_agosto2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602382/files/base_covid_agosto2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-08/base_covid_agosto2020.dta
+  sha256: 87b6fc13334ea1d92e05bf43fb0c11f5ec866398130c09a7b55290453091a7e8
+  tamano_bytes: 527531
+  formato: DTA base Stata ronda agosto 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_agosto2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602382/files/Cuestionario%20Agosto%202020%20Nacional.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-08/cuestionario_agosto_2020_nacional.pdf
+  sha256: bfc4e238dad2999dc85388b04eaba0511c918e7c822cb259332420ad062b686d
+  tamano_bytes: 657147
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_agosto2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602382/files/Descripcio%CC%81n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-08/descripción_bd.pdf
+  sha256: 6f6b946909160f6dd0bbaf716c02c25d866a7a6c9b50ae47771707b91e29df20
+  tamano_bytes: 678309
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_agosto2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4602382/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-08/metodologia.pdf
+  sha256: c4f5be84adfd04252da450d834c03e7af40cd26b3cc319912dc1c8f99280e267
+  tamano_bytes: 352450
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_octubre2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4776828/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-10/metodologia.pdf
+  sha256: 4434af82569c25fd441a1fce6d4a6b7a7f956f31b7f79337dceb60ccd4341283
+  tamano_bytes: 352464
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_octubre2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4776828/files/base_covid_octubre2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-10/base_covid_octubre2020.dta
+  sha256: 7f4cff15a8c0edd4ded7ced6509326bd5859dea0718b6e83c986b44f74409f2b
+  tamano_bytes: 512434
+  formato: DTA base Stata ronda octubre 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_octubre2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/4776828/files/Cuestionario%20Octubre%202020.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-10/cuestionario_octubre_2020.pdf
+  sha256: 314e787b550e1833b90240579ece6911205444320016a23dc52050aa76f4e9da
+  tamano_bytes: 495937
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_diciembre2020_metodologia_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/6960880/files/Metodologia.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-12/metodologia.pdf
+  sha256: c46127d6645bd3b4bf04857e191ef93ce4ba24df444ef68d4f15a9c5a5b94acf
+  tamano_bytes: 346877
+  formato: PDF metodología
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_diciembre2020_cuestionario_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/6960880/files/Cuestionario%20Diciembre%202020.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-12/cuestionario_diciembre_2020.pdf
+  sha256: 2d20f75976b8897adee464259a65ef96daf74b98d0764ab994155a8cfcf6a0d8
+  tamano_bytes: 496448
+  formato: PDF cuestionario
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_diciembre2020_dta
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/6960880/files/base_covid_diciembre2020.dta/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-12/base_covid_diciembre2020.dta
+  sha256: d88125745c05194eba143c8bd9de3176487e8b6fc2a0bb125a8fbfb33deb883b
+  tamano_bytes: 567124
+  formato: DTA base Stata ronda diciembre 2020
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura DTA-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encovid19_diciembre2020_descripcion_bd_pdf
+  usado_para: GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCOVID-19_2020 (hoja
+    de adquisición ASTRA5-U0)
+  url_origen: https://zenodo.org/api/records/6960880/files/Descripci%C3%B3n%20BD.pdf/content
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, descarga directa
+  archivo: ENCOVID-19/2020-12/descripción_bd.pdf
+  sha256: 0cfb1e9021a8aac5f2185d026576320abc16bc54cc445f7fe73adcd4fc0387d0
+  tamano_bytes: 653072
+  formato: PDF descripción de la base
+  licencia: CC-BY-4.0 (declarada en el registro Zenodo)
+  nota: 'A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha,
+    tamaño y directorio central/%%EOF/cabecera).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
