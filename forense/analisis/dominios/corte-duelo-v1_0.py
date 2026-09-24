@@ -37,6 +37,27 @@ BASE = dict(
     siguiente_operacion="Registrar PDF/HTML, versión/condiciones/SHA; localizar anuncio 4/abr/2025 y eventual acto de Asamblea por símbolo y fecha antes de actualizar estado procesal.",
     prioridad="3",
 )
+HEEKE = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L11-L12; comparación colombiana",
+    tier_report="sin rótulo explícito",
+    clase="estudio transversal de síntomas de duelo prolongado",
+    limite_inferencial="Muestra colombiana de desplazados vinculados a la ONG Tierra y Vida, no México ni muestra probabilística de todos los familiares de desaparecidos. El comparador es muerte en conflicto, 92.8% homicidio, no homicidio exclusivamente. PG-13 estudia criterio de síntomas en 2012, no diagnóstico DSM-5-TR actual. Asociación de esperanza y severidad no identifica efecto causal ni interviene sobre esperanza; medias por cinco categorías no son monótonas y celdas moderada/mucha esperanza tienen n=4/n=6.",
+    conducta_unidad_universo="Entrevistas estructuradas cara a cara sep-dic/2012 en cuatro distritos colombianos: 295 personas analíticas, 73 pérdida por desaparición forzada y 222 por muerte relacionada con conflicto, de listado de ONG Tierra y Vida.",
+    instrumento_ola="Heeke, Stammel y Knaevelsrud, J Affect Disord 173:59–64 (2015), DOI 10.1016/j.jad.2014.10.038; reproducción íntegra como artículo IV de tesis Heeke 2018, Freie Universität Berlin",
+    documento_id_hash_pagina="SIN-ID:heeke_dissertation_2018.pdf|9ec6104d4911021e2e4f086fa6273f62f656a910febb413a11e3c0f0a8754d98|Article IV pp.90-97 Tablas 9-12/Figura5;https://refubium.fu-berlin.de/bitstream/handle/fub188/22553/Dissertation_Heeke.pdf?isAllowed=y&save=y&sequence=3;PMID:25462397",
+    pregunta_textual_codigo_respuestas="PG-13 entrevista estructurada: síntomas separación y cognitivo-emocionales, duración ≥6 meses, deterioro funcional; esperanza de vida del desaparecido pregunta 0 nada a 4 mucho, solo grupo desaparecido. Depression HSCL y PTSD PCL-C son medidas distintas.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Artículo IV íntegro en tesis primaria de autora con PDF/SHA físicos; muestra, instrumento, tabla y contraste leídos. Falta id documental/condiciones específicas y RESULT propio.",
+    datos_id_estado="Entrevistas individuales no abiertas/descargadas U0; no RESULT propio.",
+    reserva="Tesis institucional para lectura local; condiciones de redistribución por MESA-DOCUMENTAL. No usar tasa colombiana como prevalencia mexicana, ni asociación de esperanza como tratamiento psicológico.",
+    gen2_existente="Sin RESULT PG-13/esperanza compatible en main.",
+    propietario="ASTRA5-MESA-DUELO / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar tesis, artículo final, DOI, condiciones y SHA; cotejar instrumento PG-13/selección, buscar evidencia mexicana específica antes de extrapolar o recomendar atención.",
+    prioridad="3",
+)
 ROWS = [
     BASE | dict(
         id_afirmacion="ASTRA5-U0-DUEL-001",
@@ -56,6 +77,22 @@ ROWS = [
         componente_contrastable="CED/C/MEX/A.34/D/1 párr.121: juicio de indicios fundados del Comité en procedimiento artículo 34; no es condena penal ni determinación de responsabilidad individual.",
         localizador="L18, componente indicios y calificación",
         siguiente_operacion="Registrar decisión y separar estándar de indicios del Comité de condena judicial; examinar eventual respuesta de Asamblea solo cuando exista acto propio.",
+    ),
+    HEEKE | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-004",
+        texto_vigente="En la muestra colombiana de Heeke et al., 17 de 73 familiares de desaparecidos (23.29%) cumplieron criterios PG-13 de duelo prolongado.",
+        componente_contrastable="Artículo IV Tabla 10: 17/73, 23.29%, grupo pérdida por desaparición forzada; estudio transversal de desplazados afiliados a ONG.",
+    ),
+    HEEKE | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-005",
+        texto_vigente="En el grupo colombiano comparador de muerte ligada al conflicto, 70 de 222 (31.50%) cumplieron criterios PG-13; la diferencia con 23.29% no fue significativa en Tabla 10.",
+        componente_contrastable="Artículo IV Tabla 10: 70/222, 31.50%, contraste χ²=1.67 no significativo; 92.8% de muertes de comparador fueron homicidios, no totalidad.",
+    ),
+    HEEKE | dict(
+        id_afirmacion="ASTRA5-U0-DUEL-006",
+        texto_vigente="Entre 73 familiares colombianos de desaparecidos, mayor esperanza declarada de que la persona siguiera viva se asoció con mayor severidad PG-13 (β estandarizada 0.41 en modelo final).",
+        componente_contrastable="Artículo IV Tablas 11-12: Spearman ρ=0.30 (p<.01); regresión jerárquica con depresión, PTSD, trauma, tiempo y sexo, β esperanza=0.41 (p<.05), ΔR² ajustada 0.05 en paso 4; esperanza² no significativa.",
+        localizador="L11; asociación esperanza y duelo",
     ),
 ]
 
