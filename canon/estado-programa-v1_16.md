@@ -3,15 +3,15 @@
 
 > **Cabecera de era.** GEN2 · 18–23/sep/2026 · instrucciones vigentes `v2.16` · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · **régimen de estimación por celda**: `ADR-531`/`ADR-91`, `FP-383`, contrato celda-D `v0.6` · **régimen operativo nuevo** (§15): canal por PR, sello externo, auto-merge.
 >
-> **Enmienda (23/sep/2026, `ADR-260923-GEN2-ESTADO-V16-1-fa47-01`, `ACTO GEN2-ESTADO-V16-1`).** Se cierra la etapa de retadores (seis evaluaciones, siete familias, cero `VENCE` puro entre 18 celdas-D con dictamen). `v1.15` **no se retira esta vez** — el encargo exige `v1.15` intacta (`git diff` vacío) y queda en el árbol como historia inmediatamente anterior, ya no vigente; no aplica T01.
+> **Enmienda (23/sep/2026, `ADR-260923-GEN2-ESTADO-V16-1-fa47-01`, `ACTO GEN2-ESTADO-V16-1`).** Se cierra la etapa de retadores (seis evaluaciones, siete familias, cero `VENCE` puro entre 18 celdas-D con dictamen); `v1.15` retirada del árbol por T01 — historia recuperable por SHA del acto que la selló (mismo mecanismo que retiró `v1.14`/`v1.13`/`v1.12`).
 >
 > **`celdas_validadas` 219 @ `e792419`** — `python3 tools/corrida0.py status` (bloque íntegro y comando en §15, no repetido aquí por costo: la corrida tarda ~75s).
 
 > | | |
 > |---|---|
 > | **ARCHIVO** | `estado-programa-v1.16.md` |
-> | **REEMPLAZA A** | `estado-programa-v1.15.md` — **no retirada** esta vez (encargo la exige intacta); permanece en el árbol, ya no vigente. |
-> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§14 y las anotaciones L0 se preservan verbatim (heredadas de `v1.15`, `diff` vacío) · §15 retrata el 22–23/sep con cada cifra atada a un comentario `<!-- comando -->` reproducible donde el árbol local basta, o a una cita de archivo/PR donde no (red `DENEGADA-POR-POLITICA` en NUBE) · §16 declara qué este corte no puede afirmar aún. |
+> | **REEMPLAZA A** | `estado-programa-v1.15.md` — **retirada del árbol por T01**; historia recuperable por SHA del acto. |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §0–§14 y las anotaciones L0 se preservan verbatim · §15 retrata el 22–23/sep con cada cifra atada a un comentario `<!-- comando -->` reproducible donde el árbol local basta, o a una cita de archivo/PR donde no (red `DENEGADA-POR-POLITICA` en NUBE) · §16 declara qué este corte no puede afirmar aún. |
 > | **NOMBRE ESTABLE** | **`estado`** — cítalo así, **nunca por nombre de archivo** |
 
 > **BLOQUE CONGELADO — no se apendica (`ACTO GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2`, 21/sep/2026, P2; guarda `T52`).**
@@ -790,6 +790,8 @@ desglose_por_clase:
 ## 15 · GEN2 · 22–23 de septiembre — se cierra la etapa de retadores y el canal deja de escribir directo a `main`
 
 Retrata, no opina. Cada afirmación trae un comentario técnico reproducible (formato declarado en `tests/test_estado_derivado.py`) que se re-ejecuta contra el árbol local, o una cita de archivo/PR donde no hay comando local posible (red `DENEGADA-POR-POLITICA` en esta sesión **NUBE**: sin `gh`, sin API de GitHub por shell). Derivado contra `origin/main = e792419` <!-- comando: git log -1 --format=%H origin/main -->, tras fusionar `PR #1089` (ASTRA5-DOCS ENVIPE2025). Un agente de sólo lectura ayudó a localizar comandos y citas; este ejecutor los volvió a correr uno por uno antes de citarlos aquí (mismo patrón que `ACTO GEN2-ESTADO-v1_15-1`).
+
+**Premisa que no se sostuvo: el encargo pedía `v1.15` intacta, y eso rompe `T01`.** El encargo (§1, «hecho») exige `canon/estado-programa-v1_15.md` intacta (`git diff` vacío) mientras existe `v1_16`. `python3 tests/check.py --baseline` con ambos archivos en el árbol da `T01: estado tiene 2 versiones a la vez` — `FAIL` nuevo, no baselineado <!-- comando: grep -c "T01 · Fuente única de verdad" tests/check.py -->. El propio §0 de este documento (heredado, líneas de arriba) ya registra el precedente **idéntico**, dos veces: `v1_10→v1_11` y `v1_11→v1_12` retiraron la versión vieja pese a que sus encargos también pedían dejarla intacta, citando `t01_single_source` como la razón. Se preguntó a mesa (no había firma previa sobre este punto exacto) con tres opciones — retirar `v1_15` como siempre, aceptar `T01` en `tests/baseline.json` como deuda declarada, o relajar `t01_single_source` con excepción explícita (código de un procedimiento congelado, D-19-d) — y **mesa decidió retirar `v1_15` del árbol por T01**, igual que en los dos precedentes citados. `v1_15` no fue editada nunca (su contenido migró aquí sin tocarse); es recuperable por el SHA del commit `a43ce35` (donde existió junto a este archivo, antes del `git rm` de esta misma sesión).
 
 **Status completo, íntegro de `python3 tools/corrida0.py status` (23/sep, `e792419`+0-bis propio `fa475b9`):**
 

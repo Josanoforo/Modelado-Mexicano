@@ -2031,12 +2031,6 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_15.md",
-    # ACTO GEN2-ESTADO-V16-1 (23/sep/2026): v1_15 NO se retira esta vez (el
-    # encargo la exige intacta), así que sigue en el árbol y su exención de
-    # arriba se conserva; v1_16 hereda verbatim el mismo cuerpo §0-§14 (diff
-    # vacío) y por tanto dispara el mismo patrón por el mismo texto heredado,
-    # no por una ranura nueva de este acto.
     "canon/estado-programa-v1_16.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
@@ -5138,12 +5132,6 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_15.md",
-    # ACTO GEN2-ESTADO-V16-1 (23/sep/2026): mismo trato que arriba -- v1_15
-    # NO se retira esta vez (el encargo la exige intacta, `git diff` vacío),
-    # así que su exención de la línea anterior se conserva; v1_16 hereda
-    # verbatim el mismo cuerpo §0-§14 y dispara el mismo patrón por el mismo
-    # texto heredado, no por un rótulo nuevo que este acto acuñe.
     "canon/estado-programa-v1_16.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
