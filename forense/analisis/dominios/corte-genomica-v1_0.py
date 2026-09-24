@@ -58,10 +58,32 @@ MCPS = dict(
     siguiente_operacion="Mesa documental registra artículo/hash; mesa genómica coteja suplementos, definición de CH, covariables y sesgos de cohortes antes de inferencia clínica.",
     prioridad="3",
 )
+PRS = dict(
+    report=REPORT,
+    report_sha256=SHA,
+    localizador="L45; repetición L15,L51",
+    tier_report="sin rótulo explícito",
+    clase="comparación de precisión predictiva de puntuaciones poligénicas",
+    limite_inferencial="La razón promedio 1.6 no es precisión absoluta, tamaño de efecto genético o rendimiento de prueba clínica en México. La categoría Hispanic/Latino American de UK Biobank no identifica a mexicanos ni sustituye validación por rasgo, cohorte, calibración y desenlace.",
+    conducta_unidad_universo="Participantes de UK Biobank clasificados en cinco grupos de ascendencia; comparación para 17 rasgos cuantitativos antropométricos y de panel sanguíneo, entrenando con resultados GWAS de ascendencia europea; no población mexicana ni enfermedad clínica única.",
+    instrumento_ola="Martin et al., Nature Genetics 2019 DOI 10.1038/s41588-019-0379-x; prepublicación bioRxiv 2018 DOI 10.1101/441261, figura 3",
+    documento_id_hash_pagina="SIN-ID:martin2018_prs_preprint.pdf|1e1a19c628ab1377c176798f5a8ee467e75c28389a46f9281721600f50655699|pp.11-12, figura 3;https://med.stanford.edu/content/dam/sm/epidemiology/documents/HRP236/Hidden-risk-in-polygenic-scores_clinical-use-today-could-exacerbate-health-disparities-Assimes-.pdf;final:10.1038/s41588-019-0379-x",
+    pregunta_textual_codigo_respuestas="No cuestionario. Razón de precisión predictiva promedio frente a grupo europeo calculada en 17 rasgos cuantitativos; el preprint reporta 1.6 veces menor en grupo Hispanic/Latino American; no prueba un PRS clínico individual.",
+    estado_verificacion="CERRADA",
+    dictamen="MEDIBLE-CON-ADQUISICIÓN",
+    dictamen_razon="Prepublicación primaria CC BY 4.0 físicamente identificada y cotejada con texto de manuscrito final indexado; cierre restringido a comparación publicada de rasgos/UKB. Falta id documental/RESULT y no se acredita validación clínica mexicana.",
+    datos_id_estado="Datos UK Biobank y GWAS subyacentes no abiertos/descargados por U0; no hay RESULT propio compatible.",
+    reserva="Prepublicación CC BY 4.0; registrar DOI, versión prepublicada/final y hash. La ausencia universal de PRS mexicano validado/en uso rutinario queda sin contrato y requiere búsqueda clínica/regulatoria fechada.",
+    gen2_existente="Sin RESULT de precisión PRS por rasgo/grupo compatible en main.",
+    propietario="ASTRA5-MESA-GENOMICA / ASTRA5-MESA-DOCUMENTAL",
+    siguiente_operacion="Registrar prepublicación/final y suplemento; solicitar métrica/rasgo/estrato exactos si se traslada a México y buscar validación clínica independiente antes de aplicación.",
+    prioridad="3",
+)
 ROWS = [
     MEXVAR | dict(id_afirmacion="ASTRA5-U0-GENOM-001", texto_vigente="Mexican Biobank incluyó 6,011 personas de 898 localidades en los 32 estados en el artículo Nature Medicine 2026.", componente_contrastable="Tamaño y cobertura territorial del conjunto genotipado descritos por Barberena-Jonas et al.; la amplitud geográfica no certifica prevalencias nacionales representativas."),
     MEXVAR | dict(id_afirmacion="ASTRA5-U0-GENOM-002", texto_vigente="MexVar publicó resultados de frecuencia para 42,769 variantes genotipadas de relevancia biomédica de Mexican Biobank.", componente_contrastable="42,769 variantes curadas por presencia en bases biomédicas y genotipadas en MXB; subconjunto clínico de alto nivel es menor: 58 SNP PGx de 22 genes y 99 variantes ClinVar patogénicas/probablemente patogénicas con MAF no cero en 33 genes ACMG SF, según cuerpo del artículo.", siguiente_operacion="Registrar artículo/suplementos; separar 42,769 curadas de subgrupos PGx/ClinVar accionables y de cualquier resultado terapéutico individual."),
     MCPS | dict(id_afirmacion="ASTRA5-U0-GENOM-003", texto_vigente="En las cohortes exómicas seleccionadas, CH fue menos frecuente en MCPS que en UKB: OR ajustada MCPS/UKB 0.59 (IC95 0.57–0.61).", componente_contrastable="Nature Genetics 2025: MCPS n=136,401 y UKB n=416,118; CH 3.12% vs 4.92% con panel de 15 genes, OR ajustada MCPS/UKB 0.59, IC95 0.57–0.61; comparación de cohortes, no de países.", siguiente_operacion="Registrar artículo y suplementos; reproducir solo con gobernanza de datos autorizada, no usar OR como consejo individual ni atribuir diferencia solo a ancestría."),
+    PRS | dict(id_afirmacion="ASTRA5-U0-GENOM-004", texto_vigente="Martin et al. encontraron precisión predictiva promedio 1.6 veces menor en el grupo Hispanic/Latino American que en el europeo para 17 rasgos cuantitativos de UK Biobank con GWAS de entrenamiento europeos.", componente_contrastable="Comparación relativa agregada para 17 rasgos antropométricos y de panel sanguíneo de UK Biobank, figura 3 del estudio 2019/prepublicación 2018; no estimador mexicano ni de desenlace clínico único."),
 ]
 
 
