@@ -1,0 +1,96 @@
+calc_id: CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001
+spec_md: spec.md
+spec_md_sha256: aa0657d4b82fd8a1bda5964f963f63680a5dfc521a4631a06a54f847b7b6b541
+script: data/corrida0/CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DESCRIPTIVO
+  cuenta_gen2: SI
+  adopcion: 'NO'
+  origen_numerico: ENDIREH 2016 microdato primario, nunca GEN1
+  temporalidad: RETROSPECTIVA
+inputs:
+- id: endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv
+  origen: manifiesto
+variables:
+- archivo: TB_SEC_VII.csv
+  variable: P7_2
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: P7_3_1_1
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: P7_3_1_2
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: P7_3_2_1
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: P7_3_2_2
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: P7_3_2_3
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: ID_MUJ
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: T_INSTRUM
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: FAC_MUJ
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: EST_DIS
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: UPM_DIS
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: DOMINIO
+  rol: empleo 7.3 o diseño
+- archivo: TB_SEC_VII.csv
+  variable: CVE_ENT
+  rol: empleo 7.3 o diseño
+- archivo: TSDem.csv
+  variable: ID_MUJ
+  rol: edad o escolaridad
+- archivo: TSDem.csv
+  variable: EDAD
+  rol: edad o escolaridad
+- archivo: TSDem.csv
+  variable: NIV
+  rol: edad o escolaridad
+universo: Mujeres 15+ con P7_2=1; embarazo solo respuesta 1/2 al evento, codigo 3 fuera.
+filtros: P7_2=1; 7.3.1 1/2; 7.3.2 1/2, 3 no estuvo embarazada; desconocidos fuera.
+ponderador: FAC_MUJ positivo, sin normalizar
+transformacion: Uniones de reactivos; ninguna suma de prevalencias. 3 de embarazo nunca negativo.
+estimando: Prevalencias condicionales de prueba de embarazo y consecuencias de embarazo en empleo desde
+  octubre 2011.
+dependencias_materiales:
+- numpy==2.3.5
+parametros:
+  bootstrap_replicas: 200
+  metodo_ic: UPM completas dentro de EST_DIS; percentiles 2.5/97.5
+  n_minimo: 100
+  upm_minimas: 5
+  ancho_ic_maximo: 0.2
+  cv_maximo: 0.3
+  hash_medidor_sha256: 928cb560d603b50c1269757f7039faa1c37aabccae272fe9bb6511756e27bc14
+  hash_prueba_sha256: c586e587c40d3bbffd9c088a10bd2e8fbddd5cdfac24ac30b64b74684ab06725
+  hash_payload_sha256: 02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10
+seed:
+  aplica: true
+  valor: 20260923
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: semilla y sumas deterministas
+resultados:
+- id: RESULT-ENDIREH2016-DIS-TABLA
+  tipo: texto
+  unidad: tabla de proporciones y replicas agregadas
+- id: RESULT-ENDIREH2016-DIS-N-ELEGIBLES
+  tipo: entero
+  unidad: mujeres trabajadoras 15+ con factor valido
