@@ -1,0 +1,280 @@
+{
+ "corrida_id": "CALC-LAPOP-PISOS-2004-0002--36254e39b03e",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA-COMPLETAR",
+  "adopta": "NO",
+  "calibracion": "SIN-HISTORIA-PARA-CALIBRAR",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta; sucesor de 2004-0001 (falló antes del sello: diagnóstico wt NaN)",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "sucede_a": "CALC-LAPOP-PISOS-2004-0001",
+  "tipo": "PISO-ENCUESTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:49:04Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 457,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "36254e39b03e912d1b098177425ee40a1155fbb2",
+  "git_rama": "claude/astra5-politica-completar-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "36254e39b03e912d1b098177425ee40a1155fbb2",
+ "input_ids": [
+  "642348348mexico_2004_export_version"
+ ],
+ "input_sha256": {
+  "642348348mexico_2004_export_version": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "dictamen": "forense/analisis/dominios/politica/lapop-dictamen-olas-v1_0.tsv",
+  "diseno": {
+   "estrato": "mestrat",
+   "peso": null,
+   "peso_diagnostico": "wt",
+   "upm": [
+    "mprov",
+    "msec"
+   ]
+  },
+  "hash_medidor_sha256": "5485d47b5234cf7ee75c618a22adb31cb1282ce8506628fe19e7b2afd95e6c9a",
+  "hash_payload_sha256": "ef46b8f5a3c565c931d8ab1d173b2ee34f9f9459987159861ee4e24bf01b9880",
+  "items": [
+   {
+    "clave": "confianza_policia_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     8
+    ],
+    "semilla_desplazamiento": 0,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "b18"
+   },
+   {
+    "clave": "confianza_partidos_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     8
+    ],
+    "semilla_desplazamiento": 1,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "b21"
+   },
+   {
+    "clave": "tolerancia_votar_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 2,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d1"
+   },
+   {
+    "clave": "tolerancia_manifestarse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 3,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d2"
+   },
+   {
+    "clave": "tolerancia_postularse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 4,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d3"
+   },
+   {
+    "clave": "tolerancia_discurso_tv_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     88
+    ],
+    "semilla_desplazamiento": 5,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d4"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "642348348mexico_2004_export_version",
+  "result_filas": "RESULT-LAPOP-PISOS-2004-FILAS",
+  "result_tablas": {
+   "RESULT-LAPOP-PISOS-2004-TABLA": [
+    "confianza_policia_alta",
+    "confianza_partidos_alta",
+    "tolerancia_votar_aprueba",
+    "tolerancia_manifestarse_aprueba",
+    "tolerancia_postularse_aprueba",
+    "tolerancia_discurso_tv_aprueba"
+   ]
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-LAPOP-PISOS-2004-FILAS",
+  "RESULT-LAPOP-PISOS-2004-TABLA"
+ ],
+ "script_blob_sha256": "5485d47b5234cf7ee75c618a22adb31cb1282ce8506628fe19e7b2afd95e6c9a",
+ "script_path": "data/corrida0/CALC-LAPOP-PISOS-2004-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-LAPOP-PISOS-2004-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "2687cdca127e30e80690132de413537be10b9db50456036916d18e49c4b6604e",
+ "spec_yaml_sha256": "7f23c91acc6d1a9e9e41ef16766afec5d878e9559a64edc4c51557695766fbc9",
+ "tolerancia": {
+  "razon": "misma semilla por reactivo y orden determinista de estratos/UPM",
+  "tipo": "exacta"
+ }
+}

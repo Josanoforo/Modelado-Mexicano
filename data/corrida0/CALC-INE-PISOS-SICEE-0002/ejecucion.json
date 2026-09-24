@@ -1,0 +1,108 @@
+{
+ "corrida_id": "CALC-INE-PISOS-SICEE-0002--bc36fea21651",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA-COMPLETAR",
+  "adopta": "NO",
+  "calibracion": "SIN-HISTORIA-PARA-CALIBRAR",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta; sucesor de SICEE-0001 (falló antes del sello: null publicado)",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "sucede_a": "CALC-INE-PISOS-SICEE-0001",
+  "tipo": "PISO-ADMINISTRATIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:49:05Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 457,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "bc36fea21651e2d7cf1fe954931df31fa0b44df3",
+  "git_rama": "claude/astra5-politica-completar-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "bc36fea21651e2d7cf1fe954931df31fa0b44df3",
+ "input_ids": [
+  "a6_sicee_participacion_nacional_1991_2024"
+ ],
+ "input_sha256": {
+  "a6_sicee_participacion_nacional_1991_2024": "8088f9f36345e99203e8bb6f32c657c3f85335977bcf49da5084064ec893d87b"
+ },
+ "parametros": {
+  "cargos": [
+   "PRE",
+   "SEN_MR",
+   "SEN_RP",
+   "SEN",
+   "DIP_MR",
+   "DIP_RP",
+   "CONS_POP",
+   "CONS_POP_RM"
+  ],
+  "hash_medidor_sha256": "351a9598fe991cf1fcc78fd62328e4e569d20e1769378e59f1472dd4a3079112",
+  "hash_payload_sha256": "8088f9f36345e99203e8bb6f32c657c3f85335977bcf49da5084064ec893d87b"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-INE-PISOS-SICEE-FILAS",
+  "RESULT-INE-PISOS-SICEE-TABLA"
+ ],
+ "script_blob_sha256": "351a9598fe991cf1fcc78fd62328e4e569d20e1769378e59f1472dd4a3079112",
+ "script_path": "data/corrida0/CALC-INE-PISOS-SICEE-0002/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-INE-PISOS-SICEE-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "373f0a1cd43d21d3a278646ba65ad86cbe678ac7aa46b1037e541eb9448b22be",
+ "spec_yaml_sha256": "91802652ea31cdab82b77782e47bbc58ddf3917ca65acc883df0e1a1303bcfe7",
+ "tolerancia": {
+  "razon": "aritmética determinista sobre enteros publicados",
+  "tipo": "exacta"
+ }
+}
