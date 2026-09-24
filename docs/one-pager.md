@@ -34,7 +34,7 @@ Detalle y cierre de cada una en el [README](https://github.com/Josanoforo/Modela
 | RESULT GEN2 adoptados (piso publicado) | 72 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
 | Celdas validadas (contador rector) | 219 <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> |
 | Reports de evidencia en el corpus | 31 <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> |
-| Áreas de consulta con estimador adoptado | 4 de 5 <!-- deriva: python3 -c "import csv;print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_0.tsv'),delimiter='\t')}))" --> |
+| Áreas de consulta con estimador adoptado (de 5 en el catálogo) | 4 <!-- deriva: python3 -c "import csv;print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_0.tsv'),delimiter='\t')}))" --> |
 
 El catálogo completo tiene 1 537 filas de estimando/segmento/ola; la mayoría es piso histórico de contexto o propuesta sin adopción, no estimador vigente. La [tabla de piso](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_0.tsv) filtra las 72 adoptadas — ésa es la línea que el [reto público]({{ '/reto.html' | relative_url }}) invita a vencer.
 

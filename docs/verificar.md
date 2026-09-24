@@ -4,7 +4,7 @@ title: Verificar
 
 # Verificar
 
-[Portada]({{ '/' | relative_url }}) · [Informe]({{ '/guia-lectura-publica.html' | relative_url }})
+[Portada]({{ '/' | relative_url }}) · [Informe]({{ '/guia-lectura-publica.html' | relative_url }}) · [Reto público]({{ '/reto.html' | relative_url }})
 
 ## Lectura rápida, sin microdatos
 
@@ -17,3 +17,5 @@ El control de identidad sobre un CALC versionado puede hacerse con `sha256sum da
 ## Reproducción numérica
 
 `python3 tools/corrida0.py verify <CALC-ID>` vuelve a comprobar la corrida. Puede necesitar los payloads del corpus montados bajo `data/raw`, dependencias y más tiempo. Consulta el `spec.yaml` del CALC para sus requisitos. Un error de corpus ausente no invalida por sí solo la inspección documental anterior.
+
+**Corregido tras una verificación de punta a punta (24/sep/2026, sesión GEN2-FRONT-2), desde un clon limpio y sin contexto previo:** los pasos de "Lectura rápida" (`status`, `sha256sum` de un CALC) reprodujeron exactamente lo declarado arriba y en el README, sin instalar nada. `verify` sobre un `CALC` de ejemplo sin `data/raw` montado sí llegó honestamente a `[3/5 INPUT AUSENTE]` para cada input del manifiesto — pero el paso `[5/5 RESULT]` puede fallar antes con `ModuleNotFoundError: No module named 'numpy'` (o `pandas`) si tu entorno de Python no los trae, un `NO-EJECUTABLE` por falta de dependencia, distinto del `NO-EJECUTABLE` por falta de corpus. `pip install --break-system-packages numpy pandas` resuelve el import; ninguno de los dos cambia el resultado si además falta `data/raw`, porque el `medidor.py` de ese `CALC` no puede recalcular sin el microdato de todos modos. El detalle completo de la sesión está en [la nota de verificación](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-24-GEN2-FRONT-2-verificacion-tercero.md).
