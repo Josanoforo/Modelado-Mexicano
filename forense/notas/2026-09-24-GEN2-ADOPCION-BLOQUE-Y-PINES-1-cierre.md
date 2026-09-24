@@ -102,13 +102,19 @@ como GEN2 en el linaje E.1) y `adoptados_activos`/`pendientes_adopcion` (si
 un consumidor activo ya la lee, E.2) son **dos ejes distintos**; el encargo
 los trató como uno. Ver NC nueva abajo.
 
-**Hallazgo de premisa 2:** de las 14 corridas PENDIENTE-DE-MESA que el
-tablero citó, sólo 10 tienen replay `REPRODUCE`; las **5** restantes (no 4)
-son `NO-VERIFICADO`: `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001` **y**
-`-0002` (firma M nombra sólo "EDER-0002"), `CALC-ENFIH2019-COBERTURA-SALDOS-
-CATPOS-0001`/`-0002`, `CALC-WBES2023-PRECISION-INTERACCIONES-0001` — 9+1+5=15,
-no 14. Las 5 quedan `PENDIENTE-DE-MESA` sin fila nueva (ninguna firma las
-autoriza); ver NC.
+**Hallazgo de premisa 2:** de las «14» corridas `PENDIENTE-DE-MESA` que el
+tablero citó, sólo 10 tienen replay `REPRODUCE` (adoptadas por P-M); las
+**6** restantes (no 4 — corregido de 5 a 6 tras revisión adversarial
+`/revisa` sobre `PR #1102`, mismo predicado `cuenta_gen2=PENDIENTE-DE-MESA`
+∧ `resultado_replay=NO-VERIFICADO` sobre `corridas.tsv`) son `NO-VERIFICADO`:
+`CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001` **y** `-0002` (firma M
+nombra sólo "EDER-0002"), `CALC-ENFIH2019-COBERTURA-SALDOS-
+CATPOS-0001`/`-0002`, `CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001` (quedó
+fuera del primer conteo), `CALC-WBES2023-PRECISION-INTERACCIONES-0001` —
+10+6=16, no 14; el «14» del tablero tampoco cuadra contra este universo, y
+ningún archivo literal «Tablero v5 l.27-41» aparece en el repo
+(`NO-VERIFICABLE-AQUÍ` esa filiación). Las 6 quedan `PENDIENTE-DE-MESA` sin
+fila nueva (ninguna firma las autoriza); ver NC.
 
 ## P-N · Relevo: momento 08 acotado (dictamen, sin pin), momentos 01/02 dictaminados, escritor no extendido con código
 
