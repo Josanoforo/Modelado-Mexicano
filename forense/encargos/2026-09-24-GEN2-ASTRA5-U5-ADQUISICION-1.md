@@ -61,3 +61,7 @@ No mide, no abre olas, no cambia dictámenes, no baja documentos al corpus (cons
 | NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-09 | «hecho»: `estado: VERIFICADO` / `estado_reserva: RESERVADA` literales | DECISIÓN-DE-MESA-PENDIENTE: no existen en el esquema; se usó el vocabulario vigente | ninguno sobre el dato | FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04 |
 
 Fuera del perímetro §9, por instrucción del titular en la sesión (verbatim en la nota §6): `tools/renderiza_pagina.py`, `tests/test_renderiza_pagina.py`, `.claude/commands/adquiere.md` §3 (ruta v) y dos filas en `forense/analisis/ci-guardias/censo-tests.tsv`. Defecto adyacente corregido (D-21): id duplicado `enoe_n_diseno_muestral_pdf` en `data/manifiesto.yaml`. Exposición declarada (E.6): página índice de ENIGH 2024 pedida por un ejecutor (carcasa SPA sin cifras, bytes borrados); páginas de descarga de ENSANUT 2025 y ENCODAT 2025 (nombres de archivo). Nota: `forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md`.
+
+## CONSUMIDO
+
+Consumido por PR #1120 (rama `acto/gen2-astra5-u5-adquisicion-1`), ADR `ADR-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01`, nota `forense/notas/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1-nota.md`. Sin fusionar: el merge es de mesa.
