@@ -39,3 +39,11 @@ Propio: `milpa/tramite.yaml` (solo vía escritor, solo etiquetas), `tools/escrib
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia valores, no releva legacy del motor (34) más allá de estas diez etiquetas si coinciden con lecturas legacy (si una etiqueta releva una lectura legacy, se declara y `legacy_activas_por_consumidor__motor` baja: se reporta). Sucesor: `-4` para reglas con `p` discordante, con la firma que mesa dé.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P1-P3 — «los diez RESULT pendientes entran al consumidor vivo del motor, milpa/tramite.yaml, escritos solo por el escritor, un RESULT por regla existente» · **por qué:** PARO-PREMISA — ninguna de las diez conductas tiene regla en milpa/tramite.yaml (0 de 22; solo en la propuesta ola 5 como proxy_descriptivo que el motor no carga); etiquetar exige crear reglas, que la firma no autoriza · **impacto:** N_resultados_gen2_pendientes_adopcion sigue en 10; adoptados_activos sigue en 72 · **sucesor:** FP-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-3-d164-01 (NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-3-d164-01).
+
+## CONSUMIDO
+
+PR #1114 (PARO-PREMISA; ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-3-d164-01). Merge de mesa.
