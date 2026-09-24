@@ -44,3 +44,7 @@ No evalúa prospectivamente (eso será una familia 2027 de U4 si mesa la firma),
 - **NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-04** · qué: eje entidad / región (pieza: segmentación (… entidad si el diseño lo permite; región U5 como referencia)) · por qué: DIFERIDO-A:GEN2-SALUD-Y-BIENESTAR-PISOS-2 -- 32 celdas por ola con n de 1.9–13 mil adultos no sostienen IC; ENCODAT 2016 no trae región · impacto: ninguna afirmación regional medida (SALUD-016, SALUD-017, TRUST-030) · sucesor: GEN2-SALUD-Y-BIENESTAR-PISOS-2
 - **NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-05** · qué: NO-CONSTRUIBLES por texto: intento de suicidio (ENSANUT 2021–2023), facilidad para cubrir gastos (ENBIARE 2021), malestar psicológico (ENCODAT 2016) (pieza: `-2` para conductas NO-CONSTRUIBLES con la pregunta que faltó) · por qué: DIFERIDO-A:GEN2-SALUD-Y-BIENESTAR-PISOS-2 -- la pregunta no existe en la ola abierta (A.15: textos y secciones en lista-cerrada-P1 §3) · impacto: JUV-009 (intento), CLASE-040, JUV-010 sin cifra · sucesor: GEN2-SALUD-Y-BIENESTAR-PISOS-2
 - **NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-06** · qué: adopción de los 3 instrumentos (pieza: las adopciones van a FP con ADOPTAR / CON-RESERVA-DE-ANCHO / VETAR) · por qué: DECISIÓN-DE-MESA-PENDIENTE -- FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01..03 · impacto: ningún consumidor usa estos pisos hasta la firma · sucesor: FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01
+
+## CONSUMIDO
+
+PR #1124 (rama `acto/gen2-salud-y-bienestar-pisos-1`), 24/sep/2026.
