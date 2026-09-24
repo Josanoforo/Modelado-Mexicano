@@ -201,6 +201,10 @@ def descarga(url: str, navegador: str, salida: Path, descargas: Path, espera_ms:
         subprocess.run(cmd, stdin=subprocess.DEVNULL, capture_output=True, timeout=timeout)
     except subprocess.TimeoutExpired:
         pass
+    finally:  # el perfil temporal es de esta llamada: no se deja en C:\\Temp ni en /tmp
+        time.sleep(2)
+        for d in (perfil, Path("/mnt/c/Temp") / perfil.name):
+            shutil.rmtree(d, ignore_errors=True)
     nuevos: list[str] = []
     fin = time.time() + 60
     while time.time() < fin:  # espera a que el archivo aparezca y su tamaño se estabilice
