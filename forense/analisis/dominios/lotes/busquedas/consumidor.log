@@ -1,0 +1,116 @@
+# busquedas.log -- lote consumidor (ASTRA5-U0)
+# Ejecutor: esta sesion, 2026-09-24. Continua un ejecutor previo interrumpido antes de
+# escribir salida; sus comandos y resultados crudos estan en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/consumidor.log
+# (23 bloques de comandos u0busca/u0pdf/u0mf + 12 WebSearch, del mismo corpus/herramientas).
+# Este archivo registra SOLO los comandos corridos por ESTA sesion (no repite el contenido
+# de previas/consumidor.log; se cita puntualmente en busqueda_a13 de filas.tsv cuando se
+# reutiliza un conteo, marcado "(ejecutor previo)").
+#
+# PRESUPUESTO WEB DEL LOTE: 12 consultas maximo (WebSearch+WebFetch). El ejecutor previo
+# ya agoto las 12 en este mismo paquete (ver previas/consumidor.log, bloques [11]-[22]).
+# Esta sesion NO realizo ninguna consulta web nueva; todo lo que exigia web y no estaba ya
+# cubierto por el ejecutor previo quedo en PENDIENTE-VERIFICACION-DOCUMENTAL con la razon
+# "presupuesto de busqueda web del lote agotado por el ejecutor previo".
+
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+### banxico (listado completo, para localizar RIB tarjetas de credito / MSI y CoDi)
+python3 $U/u0mf.py --busca "banxico" --limite 60
+# -> 31/1680 entradas: SPEI (CF881-891), CoDi avances, informes IdMF, encuestas de
+#    competencias financieras 2019/2021/2024, satisfaccion de usuarios 2019-2024,
+#    IMOR producto 2026T1, banxico_2013_17_crowding_out_70ymas. NINGUNA es el RIB
+#    "Indicadores Basicos de Tarjetas de Credito" (la serie que sustenta el MSI 20%).
+
+### condusef (listado completo)
+python3 $U/u0mf.py --busca "condusef" --limite 60
+# -> 30/1680 entradas: datos abiertos CONDUSEF (acciones de defensa, indice de
+#    reclamaciones, instituciones mas reclamadas, sanciones, educacion financiera,
+#    REDECO/REUNE, unidades especializadas). No se uso directamente en ninguna fila de
+#    este report (no citado por el texto del report consumidor), pero se dejo registrado
+#    para contexto de U0-DINERO.
+
+### enigh2024_reporte_resultados_pdf -- brecha regional CDMX/Chiapas
+python3 $U/u0pdf.py -q "Chiapas" --id enigh2024_reporte_resultados_pdf --contexto 300 --limite 5
+# -> 12 coincidencias; p.22-23 dan ingreso corriente promedio trimestral por hogar
+#    (Guerrero/Chiapas mas bajos, Nuevo Leon/CDMX mas altos) -- NO es la cifra de gasto.
+
+python3 $U/u0pdf.py -q "alimentos, bebidas y tabaco" --id enigh2024_reporte_resultados_pdf --contexto 300 --limite 6
+# -> 14 coincidencias; confirma 37.7% del gasto corriente monetario en alimentos, bebidas
+#    y tabaco en 2024 (p.15-19), rubro principal.
+
+python3 $U/u0pdf.py -q "22 128|22128|22,128" --id enigh2024_reporte_resultados_pdf --contexto 200 --limite 5
+# -> 0 coincidencias (la cifra "mensual" del report NO aparece literal en el documento).
+
+python3 $U/u0pdf.py -q "9 039|9039|9,039" --id enigh2024_reporte_resultados_pdf --contexto 200 --limite 5
+# -> 0 coincidencias (idem para Chiapas).
+
+python3 $U/u0pdf.py -q "ciudad de mexico" --id enigh2024_reporte_resultados_pdf --contexto 250 --limite 8
+# -> 12 coincidencias; p.23 da el dato correcto: "en la enigh 2024, ciudad de mexico y
+#    queretaro registraron el mayor gasto corriente monetario promedio trimestral por
+#    hogar, con 66 383 y 61 593 pesos". CDMX/3 = 22 127.7 ~ $22,128 (coincide con el report).
+
+python3 $U/u0pdf.py -q "chiapas y oaxaca reportaron los gastos" --id enigh2024_reporte_resultados_pdf --contexto 400 --limite 3
+# -> 1 coincidencia; "en 2024, chiapas registro 27 118 pesos". 27118/3 = 9039.3 ~ $9,039
+#    (coincide exactamente con el report). Ratio 66383/27118 = 2.448 ~ "2.5 veces" (coincide).
+#    CONCLUSION: el report deriva su cifra "mensual" de gasto corriente monetario TRIMESTRAL
+#    por hogar de ENIGH 2024 dividido entre 3, sin declarar esa operacion; es MEDIBLE-EN-CORPUS
+#    (fila consumidor-023).
+
+### marca patito (T-L68, narrativa popular)
+python3 $U/u0busca.py -q "marca patito" --limite 10
+# -> 0 aciertos con texto (314256 identidades, 113780 con texto revisadas). Confirma que
+#    ningun instrumento del censo pregunta por el estigma de "marca patito".
+
+### whatsapp (uso vs penetracion agregada)
+python3 $U/u0busca.py -q "whatsapp" --limite 15
+# -> 50 aciertos con texto: ENIF2015 (P3_12, celular permite apps), ENCUCI2020 (AP4_4_04/
+#    AP4_6_04), ENDUTIH2023/2024/2025 (P7_12_2/P7_12_3 uso para llamadas/mensajeria,
+#    P7_16_6 redes sociales utilizadas, P8_13_1/P8_16_1 apps de mensajeria). Ninguna
+#    variable da "penetracion total 92.2%" ni "tasa de conversion a compra 75%" -- son
+#    variables de USO, no las cifras agregadas que cita el report (PENDIENTE-VERIFICACION-
+#    DOCUMENTAL en consumidor-019).
+
+### Indice de Confianza del Consumidor / bienes durables (S4.5, INEGI marzo 2025, 30.5/100)
+python3 $U/u0mf.py --busca "confianza del consumidor" --limite 20
+# -> 0/1680 (no localizado con esta frase exacta).
+python3 $U/u0mf.py --busca "icc" --limite 20
+# -> 200/1680, todos falsos positivos de sigla (ENCIG, ENSANUT catalogos "Catlogo.xlsx",
+#    ENUT, etc.) -- ninguno es el Indice de Confianza del Consumidor de INEGI.
+
+### ENIF producto financiero formal por sexo (S5.5, 72.8%/80.9%)
+python3 $U/u0busca.py -q "tiene algun producto financiero|producto financiero formal" --encuesta enif --ola 2024 --limite 15
+# -> 0 aciertos con texto.
+python3 $U/u0busca.py -q "sexo del informante" --encuesta enif --ola 2024 --limite 5
+# -> 0 aciertos con texto.
+# (busqueda mas amplia "algun producto financiero" sin restringir ola, corrida por el
+#  ejecutor previo, dio 2 aciertos en ENIF2021 sobre fraude -- P11_2_4 -- no sobre tenencia)
+
+### Gen Z / cohorte poblacional (S G11, 30M+)
+python3 $U/u0mf.py --busca "conapo" --limite 10
+# -> 1/1680: enoe_fd_c_bas_amp_conapo_pdf (FD de ENOE que usa clasificacion CONAPO de
+#    localidad, no cohorte demografica Gen Z).
+python3 $U/u0mf.py --busca "censo2020" --limite 10
+# -> 5/1680: cpv2020_cuestionario_ampliado_pdf, cpv2020_caas_eum_csv, cpv2020_caas_descriptor_bd_xlsx,
+#    cpv2020_ceu_descriptor_bd_xlsx, cpv2020_ceu_eum_csv -- disponibles para derivar tamano de
+#    cohorte 1997-2012 en un acto futuro; no calculado aqui (cero microdato).
+
+### Ademas se reutilizaron (sin re-ejecutar) los siguientes resultados de
+### previas/consumidor.log (citados en busqueda_a13 de cada fila con "(ejecutor previo)"):
+# u0mf --busca hofstede/roland/mckinsey/gwi/kantar/izea/amvo/statista/ebanx/pcmi/nielsen/
+#   santander/coulter/velandia/kueski -> 0/1680 cada uno.
+# u0mf --busca za5900 (10), wave6/wvs (WVS7-2018 f00006635 etc, no Wave6/2012), gini (1,
+#   enigh2024_reporte_resultados_pdf), amai (0).
+# u0busca -q "tarjeta de credito" --encuesta enif (279 aciertos), "500 pesos" --encuesta enif
+#   --ola 2024 (3), "compras de 500 pesos o menos" (9, olas 2018/2021/2024), "usa internet"
+#   --encuesta endutih --ola 2024 (2, P7_4), "algun producto financiero" (2, ENIF2021 fraude).
+# u0pdf --idsub f00006635 -q "se puede confiar" (2, p.2, WVS7 Mexico 2018 cuestionario);
+#   --id enif2024_cuestionario_pdf -q "compras de 500 pesos o menos" --contexto 900 (1, p.20).
+# u0mf --calc endutih2024_bd_dbf_zip -> 0/326 corridas; --calc enif2024_csv -> 12/326 corridas.
+# WebSearch (12/12, ejecutor previo, 2026-09-23): ENIF calendario 2025-2027; Roland Berger
+#   2024; McKinsey 2012 brand switching; GWI aspiracional; Kantar Brand Footprint 2024;
+#   IZEA 2024; AMVO Estudio Venta Online 2025; EBANX Beyond Borders/OXXO; Banxico MSI/RIB;
+#   Google Mexico GenZ; AMAI Regla NSE 2024; CEEY movilidad social.
+
+### Corpus recorrido (censo de 9 tablas de u0busca; 314256 identidades, 113780 con texto;
+### 1680 entradas de manifiesto.yaml examinadas en cada u0mf).

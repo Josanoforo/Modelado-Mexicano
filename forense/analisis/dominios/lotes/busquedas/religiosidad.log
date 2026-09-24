@@ -1,0 +1,144 @@
+LOTE religiosidad · ASTRA5-U0 · busquedas.log
+Repo: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura) · Fecha de ejecucion: 2026-09-23/24
+Report: corpus/reports/Religiosidad_y_Psicología_del_Mexicano_Contemporáneo__Moral__Afrontamiento__Consumo_e_Identidad_en_Transformación.md (256 lineas, leido integro)
+
+== Herramientas de corpus (u0busca.py / u0pdf.py / u0mf.py) ==
+
+1. python3 u0busca.py -q "religion|religios|religiosidad" --limite 40
+   -> 119 aciertos con texto (de 314256 identidades, 113780 con texto). Confirma variable de religion en ENNVIH (etiqueta nativa "NO USA METODO:RELIGION"), ENCUCI2020 (confianza en sacerdotes AP5_2_2, discriminacion religiosa AP5_8_7/AP5_9_7, "¿cual es su religion?" AP10_5, "grado de religiosidad" AP10_6), Censo2020 CAAS (T_PCATOLICA/T_PRO_CRIEVA/T_PSIN_RELIG), ENASEM2024 (A35A/A36/A37 asistencia/importancia/voluntariado religioso), ENUT2019/2024 (P6_21_2 actividades religiosas), LAPOP 2004/2006 (CP6/Q3 religion, sav/dta en descargas_mx).
+
+2. python3 u0busca.py -q "catolic|católic" --limite 40
+   -> 10 aciertos con texto. Censo2020 CAAS (T_PCATOLICA/U_PCATOLICA), LAPOP 2004/2006/2019 (B20 "confianza en la Iglesia Catolica", descargas_mx), fd_iter_cpv2020.pdf (PCATOLICA, definicion literal).
+
+3. python3 u0busca.py -q "catolic|católic" --ola 2010 --limite 20
+   -> 0 aciertos con texto. Sin variable de religion del Censo 2010 en los 9 inventarios de reactivos.
+
+4. python3 u0busca.py -q "encreer|rifrem" --limite 20
+   -> 0 aciertos con texto (de 113780). ENCREER/RIFREM no esta en el corpus de reactivos.
+
+5. python3 u0busca.py -q "dios" --encuesta wvs --limite 20 / -q "importante.*religi|religi.*important" --encuesta wvs / -q "servicios religiosos|asiste a" --encuesta wvs
+   -> 0 aciertos con texto cada una (el filtro --encuesta wvs no matcheo instrumento "wvs" literal en estos 3 intentos; el hallazgo real de WVS se obtuvo por u0pdf sobre el PDF del cuestionario, ver #12/#13).
+
+6. python3 u0busca.py -q "santa muerte" --limite 10
+   -> 0 aciertos con texto (de 113780). Ningun instrumento del corpus pregunta por devocion a la Santa Muerte.
+
+7. python3 u0busca.py -q "fatalis" --limite 10 ; -q "control.*fuera de|fuerzas.*control" --limite 10
+   -> 0 aciertos con texto cada una.
+
+8. python3 u0busca.py -q "curander|santero|chaman|limpia" --limite 20
+   -> 50 aciertos con texto. Todos son de ENNVIH2009 (doctor/curandero por salud), ENCUCI2020 ("votos se cuentan limpiamente", no religioso), ENASEM2024 (curandera/hierbera como atencion medica alternativa), ENASIC2022 y ENUT (limpiar casa, quehaceres domesticos). Ninguno mide sincretismo religioso (limpias/curanderos por creencia); ENCREER sigue siendo la unica fuente identificada para el 12.9% del report.
+
+9. python3 u0busca.py -q "expulsion" --limite 10
+   -> 0 aciertos con texto (de 113780).
+
+10. python3 u0busca.py -q "conversion religios|convirtio.*religion|cambio de religion" --limite 10
+    -> 0 aciertos con texto.
+
+11. python3 u0busca.py -q "encuentro social" --limite 10
+    -> 0 aciertos con texto.
+
+12. python3 u0pdf.py -q "PCATOLICA" --id cpv2020_fd_iter_pdf --limite 10
+    -> 1 coincidencia, pagina 26: "poblacion con religion catolica... personas que tienen como creencia o preferencia espiritual la religion catolica" (cod. 214).
+
+13. python3 u0pdf.py -q "PSIN_RELIG" --id cpv2020_fd_iter_pdf --limite 10
+    -> 1 coincidencia, pagina 26: "poblacion sin religion... personas que declararon no tener religion o no estar adscritas en alguna" (cod. 217).
+
+14. python3 u0pdf.py -q "PRO_CRIEVA" --id cpv2020_fd_iter_pdf --limite 10
+    -> 1 coincidencia, pagina 26: "poblacion con grupo religioso protestante/cristiano evangelico..." (cod. 215).
+
+15. python3 u0pdf.py -q "creyente sin adscripcion" --limite 10 (sobre los 349 PDF registrados)
+    -> 0 coincidencias. No se localizo esa subcategoria censal especifica en ningun documento del corpus.
+
+16. python3 u0pdf.py -q "sin adscripcion religiosa" --id cpv2020_fd_iter_pdf --limite 10
+    -> 1 coincidencia, pagina 26, es la misma definicion unica de PSIN_RELIG (no distingue "creyente sin adscripcion" de "ateo").
+
+17. python3 u0pdf.py -q "religi" --id f00006635_wvs7_questionnaire_mexico_2018_spanish --limite 20
+    -> 21 coincidencias. WVS Mexico 2018 (ola 7) tiene: Q94 miembro activo/inactivo de iglesia/org. religiosa; Q169 ciencia vs religion; Q171 frecuencia de asistencia a servicios religiosos; Q173 "es usted una persona religiosa/no religiosa/atea"; Q289 pertenencia a religion/denominacion. Instrumento identificado como alternativa disponible (no usado por el report), payloads registrados: f00013032/f00013084/f00013146/f00013203 (SPSS/Stata/CSV/Excel).
+
+18. python3 u0pdf.py -q "dios" --id f00006635_wvs7_questionnaire_mexico_2018_spanish --limite 20
+    -> 6 coincidencias. Q164 "que tan importante es Dios en su vida" (1-10); Q165 "cree usted en Dios" (si/no); Q172 frecuencia de oracion.
+
+19. python3 u0pdf.py -q "religi" --id latinobarometro2024_cuestionario_esp --limite 15
+    -> 7 coincidencias. Latinobarometro 2024: S1 "cual es su religion"; S1a "como se considera" (muy practicante/...); P28ST.e "mas/igual/menos religioso"; item de tolerancia a "personas de una religion distinta". Payload de microdato: latinobarometro2024_bd_stata (registrado). Instrumento identificado como alternativa disponible (no usado por el report).
+
+20. python3 u0mf.py --busca pew --limite 60
+    -> 9 entradas. pew_gas2025_social_trust_topline/shortread (docs, FP29); pew_gas_spring2013/2015/2017/2018/2023/2024/2025 (datos, descargas_mx). Ningun documento Pew especifico de religion (topline/informe) registrado en el manifiesto.
+
+21. python3 u0mf.py --busca encreer --limite 20 ; --busca rifrem --limite 20
+    -> 0 entradas cada una (de 1680).
+
+22. python3 u0mf.py --busca iter --busca cpv2020 --limite 30
+    -> 2 entradas: cpv2020_iter_nal_csv (dato, ITER 2020) y cpv2020_fd_iter_pdf (FD/diccionario, p.26 con PCATOLICA/PSIN_RELIG/PRO_CRIEVA).
+
+23. python3 u0mf.py --busca cpv2010 --limite 30 ; --busca censo2010 --limite 20 ; --busca "2010" --busca censo --limite 30
+    -> 0 entradas cada una (de 1680). Censo 2010 no registrado en el manifiesto.
+
+24. python3 u0mf.py --busca "world values" --limite 10 ; --busca wvs --limite 10
+    -> "world values": 0. "wvs": 11 entradas (cuestionario, metodologia, muestreo, informe wave 7 y microdato en 4 formatos).
+
+25. python3 u0mf.py --busca latinobarometro --limite 10
+    -> 9 entradas (cuestionario 2024, fichas tecnicas 2024, microdato stata 2024, y ENCUP 2001-2012 que aparecieron por coincidencia de substring "cult" en la busqueda combinada previa, descartados).
+
+26. python3 u0mf.py --busca "santa muerte" (implicito en busqueda de reactivos) / --busca chiapas --limite 20
+    -> 0 entradas (de 1680). Sin documento especifico de Chiapas ni Santa Muerte en el manifiesto.
+
+27. python3 u0mf.py --busca "1930" --limite 10 ; --busca "1940" --limite 10
+    -> "1930": 0 entradas. "1940": 1 entrada, pero es "plomo_ensanut2024_w_csv..." (ENSANUT2024), falso positivo sin relacion con censo historico.
+
+28. python3 u0mf.py --busca "encuentro social" --limite 10
+    -> 0 entradas (de 1680).
+
+29. python3 u0mf.py --calc cpv2020_iter_nal_csv --limite 20
+    -> 0 corridas GEN2 (de 326 corridas totales) usan este payload como insumo.
+
+== Web (WebSearch + WebFetch; presupuesto usado: 12 de 12 consultas del lote) ==
+
+W1. WebSearch: Pew Research "Catholicism Has Declined in Latin America" 2026 Mexico 67%
+    -> confirma informe real (Pew Research Center, "Catholicism Has Declined in Latin America Over the Past Decade", publicado 21/ene/2026, fieldwork Spring 2024); Mexico 67% catolicos (2024), baja desde ~81% (2013-14).
+
+W2. WebSearch: ENCREER RIFREM 2016 encuesta creencias religiosas Mexico resultados
+    -> confirma instrumento real: RIFREM (CONACYT/COLEF/COLJAL/CIESAS), N=3000 muestreo aleatorio representativo, levantamiento 29/oct-30/nov/2016, poblacion 18+ en 4 grupos confesionales. Sitio: rifrem.mx/encreer.
+
+W3. WebSearch: Concanaco Servytur derrama economica Dia de Muertos 2024 45,318 millones de pesos
+    -> confirma cifra en 9 medios (Milenio, El Horizonte, informabtl, buzos, mundoejecutivo, enfoquenoticias, diarioevolucion, dossierdeprensa, comunicado propio de Concanaco).
+
+W4. WebSearch: IBGE Censo 2022 religiao evangelicos 26,9% catolicos 56,7%
+    -> confirmado por agenciagov.ebc.com.br (agencia oficial del gobierno de Brasil) y CNN Brasil/Extra Classe: evangelicos 26.9% (47.4M, de 35M en 2010); catolicos 56.7% (100.2M, de 65.1%/105.4M en 2010).
+
+W5. WebFetch: pewresearch.org/global/2026/01/21/catholicism-has-declined-in-latin-america-over-the-past-decade/
+    -> cita verbatim "nine-in-ten or more adults... believe in God"; Mexico 67% catolicos 2024; unaffiliated 20% (triplico desde 2013-14); Protestante ~10%.
+
+W6. WebFetch: rifrem.mx/encreer/resultados/
+    -> confirma metodologia general de ENCREER; NO contiene la tabla numerica de asistencia semanal/diaria por confesion (esta en subpaginas/informe completo no accedidos).
+
+W7. WebFetch: concanaco.com.mx/prensa/comunicados/... (comunicado primario Dia de Muertos)
+    -> REDIRECT 301 a concanaco.org (dominio generico, sin el comunicado); no se pudo leer el primario directo.
+
+W8. WebSearch: SEGOB CDMX Operativo Basilica Guadalupe 2025 13 millones de personas 5 al 12 de diciembre
+    -> confirmado en 10 medios (El Universal, La Jornada, Infobae, Milenio, Yucatan, MVS, Reporte Indigo) citando a la Secretaria de Gobierno/Seguridad Ciudadana de la CDMX.
+
+W9. WebSearch: Andrew Chesnut Santa Muerte "12 million" devotees 70% Mexico "Devoted to Death"
+    -> confirmado en 8 fuentes (OUP blog, VCU News, Goodreads, Amazon, Google Books, Patheos x2, France24): R. Andrew Chesnut (VCU), "Devoted to Death: Santa Muerte, the Skeleton Saint" (Oxford UP, 2012); 12 millones, 70% Mexico/15% EE.UU./10% Centroamerica.
+
+W10. WebFetch: milenio.com/negocios/muertos-2024-dejara-derrama-45-mil-318-mdp-concanaco-servytur
+    -> cita textual: Octavio de la Torre (presidente Concanaco Servytur), 16/oct/2024, 45,318 mdp (2024) vs 41,198 mdp (2023).
+
+W11. WebSearch: San Judas Tadeo San Hipolito 28 octubre 2024 "120 mil" personas afluencia CDMX
+    -> confirmado: cifra de 120 mil atribuida a la Secretaria de Gobierno (SECGOB) de la CDMX para el 28/oct/2024.
+
+W12. WebFetch: pewresearch.org/global/2026/01/21/religious-affiliation-in-latin-america/
+    -> cita verbatim exacta: "15% of all Mexican adults say they were raised Catholic and are now religiously unaffiliated, while just 4% of Mexicans say they were raised Catholic but are now Protestant." Coincide exactamente con la cifra del report.
+
+NOTA: presupuesto de 12 consultas web del lote agotado en W1-W12. Quedaron sin verificar via web (marcadas PENDIENTE-VERIFICACION-DOCUMENTAL con la pieza identificada en siguiente_operacion): boletin de Sectur (Dia de Muertos 2024), Pew 2014 "Religion in Latin America" (URL localizada solo por aparicion en resultados de busqueda relacionados, no leida), Abraido-Lanza et al. 2007, Espinosa de los Monteros & Gallo 2011, estudios UAEM de coping religioso, estudio de San Hipolito en "Revista de Ciencias Sociales", Ipsos "Religion Global 2023", PES/Encuentro Social (INE/TEPJF), Frente Nacional por la Familia 2016, obra de Blancarte sobre razon sacerdotes/habitante, censos historicos 1930/1940, estudio CIESAS/El Colef sobre migracion mixteca y expulsiones de Chiapas.
+
+== Verificacion final de ausencia en manifiesto (u0mf.py, tras autochequeo) ==
+Para no apoyar ningun negativo en un grep desnudo (aqui ugrep -I da falsos negativos), se recorrio el manifiesto con u0mf.py --busca para cada documento externo citado en las filas CON-ADQUISICION/PENDIENTE de este lote:
+concanaco -> 0/1680 · sectur -> 0/1680 · basilica -> 0/1680 · guadalupe -> 0/1680 · "san judas" -> 0/1680 ·
+hipolito -> 0/1680 · chesnut -> 0/1680 · "santa muerte" -> 0/1680 · pargament -> 0/1680 · blancarte -> 0/1680 ·
+"dia de muertos" -> 0/1680 · ipsos -> 0/1680 · "frente nacional" -> 0/1680 · rifrem -> 0/1680 · encreer -> 0/1680 ·
+diaz-guerrero -> 0/1680 · abraido -> 0/1680 · "pes" -> 57/1680 pero todas por coincidencia de subcadena dentro de
+otras palabras (ENIGH, "despues", etc.), ninguna es el Partido Encuentro Social. Confirma que ninguno de estos
+documentos esta ya registrado en el manifiesto bajo otro nombre; sostiene los dictamenes MEDIBLE-CON-ADQUISICION/
+PENDIENTE-VERIFICACION-DOCUMENTAL (no deben tratarse como MEDIBLE-EN-CORPUS).
+
+RESERVAS: ninguna afirmacion de este lote toco ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola); no aplico el protocolo de reserva.

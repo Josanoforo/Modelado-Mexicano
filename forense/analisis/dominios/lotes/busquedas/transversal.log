@@ -1,0 +1,76 @@
+# busquedas.log — lote transversal (ASTRA5-U0), clave=transversal
+# Herramienta de deduplicación propia (Python, sin módulo csv, split por tabulador):
+#   /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/buscar_lotes_transversal.py
+#   Busca en los 24 campos de texto de los 30 *-filas-v1_0.tsv (autoridad..violencia-ambiental) por
+#   substring (AND de varios términos), imprime archivo/id_afirmacion/dictamen/texto. Se corrió antes
+#   de crear cada fila propia, conforme al paso 3 del encargo del lote.
+#
+# Consultas ejecutadas contra los 30 lotes-filas-v1_0.tsv (conteo de aciertos):
+#   "55%" -> 13; "hofstede" -> 15; "GLOBE" -> 8; "Gelfand" -> 0; "familismo" -> 14;
+#   "Díaz-Guerrero" -> 1; "Ramos" -> 2; "Bartra" -> 1; "ENCUCI" -> 22; "Pavett" -> 1;
+#   "Gabrielidis" -> 1; "albur" -> 2; "Ross, Mirowsky" -> 0; "Fontes" -> 0; "EMOVI" -> 7;
+#   "Tipa" -> 4; "castas" -> 0; "OXFAM" -> 3; "Gini" -> 7; "informalidad" -> 33;
+#   "homicidios" -> 5; "secularización" -> 2; "remesas" -> 28; "Vasconcelos" -> 0; "Chiapas" -> 18;
+#   "AMAI" -> 2; "WEF" -> 1; "ENDUTIH" -> 13; "WHR" -> 6; "Pellegrini" -> 1; "McKinsey" -> 6;
+#   "Progresa" -> 1; "fintech" -> 10; "feminismo" -> 1; "OIT" -> 3; "vergüenza" -> 0;
+#   "Arciniega" -> 6; "caballerismo" -> 8; "fatalismo" -> 6; "locus de control" -> 0; "colonial" -> 3;
+#   "mestizaje" -> 0; "raza cósmica" -> 0; "censo 1930" -> 0; "WhatsApp" -> 10; "tres Méxicos" -> 0;
+#   "norte" -> 19; "TLCAN" -> 1; "redes sociales" -> 13; "TikTok" -> 6; "criptomonedas" -> 0;
+#   "Ipsos" -> 6; "clientelismo" -> 3; "Prospera" -> 2; "Becas Benito" -> 0; "Smith" -> 8;
+#   "Calzada" -> 0; "Zeiders" -> 1; "Cahill" -> 0; "PHSC" -> 3; "síndromes activos" -> 0;
+#   "laberinto de la soledad" -> 0; "pelado" -> 0; "jaula de la melancolía" -> 0; "Rosengren" -> 0;
+#   "Día de Muertos" -> 0; "cáncer" -> 0; "Ramondt" -> 0; "Mirande" -> 0; "Ramírez-Esparza" -> 0;
+#   "11,001" -> 0; "49 de cada 100" -> 0; "Krys" -> 2; "bilingües" -> 0; "Acevedo" -> 2;
+#   "Escala de Simpatía" -> 0; "EMOVI-2011" -> 0; "CEEY" -> 7; "Centro Espinosa" -> 0; "quintil" -> 6;
+#   "castas"/"Gonzalbo" -> 1 (VIOL-030, distinto); "Rappaport" -> 0; "OCDE 2023" -> 1;
+#   "personas con menor educación" -> 1; "Jordahl" -> 0; "Our World in Data" -> 0; "7.4 veces" -> 0;
+#   "Levy" -> 0; "van Der Molen" -> 0; "enfoque de salida" -> 0; "Coahuila" -> 2; "81%" -> 0;
+#   "27.1%" -> 1; "9.9% de pobreza" -> 0; "66.0%" -> 0; "paridad parlamentaria" -> 0; "6,360" -> 0;
+#   "48.5 horas" -> 0; "17 millones" -> 0; "LGBTQ" -> 1; "5.1%" -> 3; "matrimonio igualitario" -> 2;
+#   "83.12%" -> 0; "2,207" -> 2; "Morris y Klesner"->0, "Morris" -> 5; "rito de paso" -> 1; "82%" -> 6;
+#   "negociación" -> 1; "Parker y Vogl" -> 0; "Benito Juárez" -> 1; "35% de los empleos" -> 0;
+#   "803 startups" -> 0; "matrimonio" -> 15; "divorcio" -> 1; "unipersonales" -> 2; "puesto 33" -> 0;
+#   "109 de 146" -> 1; "62.1%" -> 2; "32.1%" -> 1; "Marina" -> 4; "Ejército" -> 3; "policía" -> 6;
+#   "33% en 1990" -> 2; "16% en 2005" -> 2; "Yucatán" -> 1; "Colima" -> 1; "4.5 billones" -> 0;
+#   "245 mil millones" -> 0; "61.4%" -> 1; "45.9%" -> 1; "94,000" -> 0; "desaparecidas" -> 14;
+#   "428" -> 0; "829" -> 0; "93.7%" -> 1; "96.2%" -> 0; "20%" -> 16; "feminicidios" -> 6;
+#   "Fuligni" -> 1; "colegiatura" -> 1; "empresa mexicana" -> 1; "2017" -> 27; "Schmitz" -> 1;
+#   "alto contexto" -> 2; "España" -> 5; "Cernas Ortiz" -> 0; "aquiescencia" -> 0; "IA" -> 1053 (ruido, no específico);
+#   "Banamex" -> 0; "6.1 mil millones" -> 0; "COVID" -> 10; "30% por debajo" -> 0; "70-80%" -> 0;
+#   "mestizos/indígenas" -> 0; "Tenoch" -> 0; "castings" -> 0; "500 castings" -> 0;
+#   "10.9 millones" -> 0; "38-40 millones" -> 0; "Q57" -> 7; "10.5%" -> 2; "22%" -> 9;
+#   "mercado" -> 41; "80,000"/"80000" -> 0; "marcha" -> 2; "millones de votos" -> 1; "votantes" -> 10;
+#   "participación electoral" -> 1; "personalismo" -> 3; "77.7%" -> 6; "67%" -> 4; "1970" -> 2;
+#   "Pew" -> 11; "ateos" -> 0; "25% de los" -> 0; "130 millones" -> 0; "Gen Z" -> 11; "93%" -> 2;
+#   "27% en EE.UU" -> 0; "99%/0.1% del nivel" -> 0; "alimentación" -> 1; "107.3" -> 0; "88.90%" -> 0;
+#   "69.96%" -> 0; "1,752" -> 0; "26% más que" -> 0; "60 millones de votos" -> 0; "15N" -> 0;
+#   "Ayotzinapa" -> 0; "salud mental" -> 26; "40.72" -> 0; "Gearing" -> 0; "Lagunes" -> 0; "estigma" -> 14.
+#
+# Herramientas del A.13 del encargo contra data/manifiesto.yaml (1680 entradas examinadas cada vez):
+#   u0mf --busca gelfand -> 0; diaz-guerrero -> 0; vasconcelos -> 0; rosengren -> 0; mirande -> 0;
+#   fontes -> 0; emovi -> 0 (dos aciertos de ENSANUT por substring "tipa" en nombre de archivo, no
+#   relacionados); gonzalbo -> 0; coneval -> 1 (pobreza_municipal_2020_vcompl.rar, corte municipal,
+#   no el estatal citado por el report); wef -> 0; fintech -> 1 (NBER w33208, crédito sin historial,
+#   tema distinto); cernas -> 0; parker -> 0; banamex -> 0.
+#   u0mf --id ASTRA5-U0-MER-008 -> NO-ENCONTRADO-POR-ID (0 de 1680): confirma que el contrato MER-008
+#   referencia un documento fuera de manifiesto (SIN-ID, ficha TI capturada físicamente), congruente
+#   con el propio mapa-parcial-v0_1.tsv.
+#
+# Web (WebSearch + WebFetch): 2 intentos — "Gelfand 2011 Science tightness-looseness Mexico score 7.2"
+#   y "CEEY ESRU-EMOVI 2011 49 de cada 100 movilidad social México" — AMBOS rechazados por el sistema:
+#   "this session has used its web search budget (200 of 200 WebSearch calls)". El cupo de búsqueda
+#   web de la sesión (compartida con otros lotes/agentes en curso) ya estaba agotado antes de que este
+#   ejecutor pudiera usarlo; 0 de 12 consultas del presupuesto propio del lote se pudieron ejecutar.
+#   Por eso todo el contenido novedoso sin acierto en los 30 lotes ni en el manifiesto se dictaminó
+#   PENDIENTE-VERIFICACION-DOCUMENTAL (nunca MEDIBLE) conforme a la regla del encargo: "Si al final NO
+#   pudiste comprobar ni siquiera la existencia del documento primario ... usa temporalmente
+#   dictamen = PENDIENTE-VERIFICACION-DOCUMENTAL".
+#
+# Lectura del report: Read íntegro de las 328 líneas de
+#   corpus/reports/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md
+#   (sha256 2ead6a5a8c3e16b7e94e32be1d3eebd6bfe476ed815ec5ebe6cbaed426915404, coincide con el paquete).
+#   grep -noE de tiers explícitos sobre el archivo completo: única coincidencia MEDIA en L45 (ya G05) y
+#   las siete "Calificación: ..." de la sección de mitos en L193/197/201/205/209/213/217 (dentro de
+#   G29-G35, sin requerir unidades INT-Lnn adicionales por regla del §2 del encargo).
+#
+# Reservas: no se leyó ni citó ENOE 2026, ENVIPE 2026 ni ENCO en ningún paso de este lote.

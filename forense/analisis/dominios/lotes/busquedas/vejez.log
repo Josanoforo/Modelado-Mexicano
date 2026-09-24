@@ -1,0 +1,113 @@
+ASTRA5-U0 · lote vejez · log de busquedas (corpus + web) · 2026-09-23/24
+Repo: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura). U=$U (scratchpad u0).
+
+== 1. u0mf.py (existencia en data/manifiesto.yaml, 1680 entradas) ==
+u0mf --busca enadid                                    -> 5 (solo ola 2023: datos+FD+cuestionario+diseno muestral)
+u0mf --busca enadid --busca 2018                        -> 0 (ENADID 2018 NO esta en el corpus)
+u0mf --busca conapo                                     -> 1 (irrelevante: FD de ENOE con "conapo" en el nombre)
+u0mf --busca cpv2020                                    -> 8 (Censo 2020: CAAS/ITER/CEU + cuestionario ampliado + descriptores)
+u0mf --busca inapam                                     -> 0
+u0mf --busca enasem --busca 2021                        -> 4 (2018/2021/2024: datos+FD, sin cuestionario PDF)
+u0mf --busca enasem --busca cuestionario                -> 0 (no hay cuestionario PDF de ENASEM en el manifiesto)
+u0mf --busca enasem                                     -> 6
+u0mf --busca enut --busca 2024                          -> 8 (datos+FD+cuestionario 74p.+diseno muestral: EN CORPUS)
+u0mf --busca satelite                                   -> 0 (CSTNRHM no registrada)
+u0mf --busca trabajo --busca remunerado                 -> 2 (enti2022 fd; enut2024 cuestionario)
+u0mf --busca bienestar                                  -> 22 (incl. r7_3_pub_beneficiarios_bienestar_csv: padron agregado entidad x trimestre)
+u0mf --busca nava                                       -> 0
+u0mf --busca inmujeres                                  -> 4 (incl. inmujeres_macu_indicadores_territoriales_xlsx: Mapa de Cuidados/MACU, EN CORPUS)
+u0mf --busca geriatr                                    -> 0
+u0mf --busca coneval                                    -> 1 (pobreza_municipal_2020_vcompl, otro corte/ano -- no 2022/65+)
+u0mf --busca zarit                                      -> 0
+u0mf --busca salazar                                    -> 0
+u0mf --busca demencia                                   -> 0
+u0mf --busca alzheimer                                  -> 0
+u0mf --busca enoen                                      -> 25 (ENOE(N) 2020-2025, incl. 2024T4 y 2025T1)
+u0mf --busca indicador --busca oportuno                 -> 0 (no hay boletin mensual ENOE registrado)
+u0mf --id enoe_cuestionario_basico_v7_pdf               -> confirmado (metodologia PEA/PNEA)
+u0mf --id enigh2024_cuest_personas_mayores_pdf          -> confirmado (reactivo de Pension Bienestar en ENIGH2024)
+u0mf --id inmujeres_macu_indicadores_territoriales_xlsx -> confirmado (usado_para: Observatorio de Cuidados, ACTO MAESTRA34-A1)
+u0mf --id r7_3_pub_beneficiarios_bienestar_csv          -> confirmado (agregado entidad x trimestre, CONF-17, no nominal)
+
+Chequeo de GEN2 existente (u0mf --calc <payload_id>, sobre 326 corridas):
+  enadid2023_base_datos_csv                  -> 4 corridas (CALC-ENADID-0001 SELLADA; CALC-ENADID2023-UNION-SEXO-EDAD-0002/3/4, 0004 SELLADA) -- todas miden situacion conyugal/union libre por sexo x edad, NINGUNA mide % 60+ sobre poblacion total -> "RESULT de otro componente".
+  cpv2020_caas_eum_csv                       -> 0 corridas
+  cpv2020_iter_nal_csv                       -> 0 corridas
+  enut2024_bd_csv                            -> 6 corridas (CALC-ENUT-0001 SELLADA; CALC-ENUT2024-DISTRIBUCION-HORAS-0001/0002 SELLADA; CALC-ENUT2024-NUCLEO-EJES-0001 SELLADA; CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001 SELLADA; CORR-0014 NO-CORRIDA) -- todas miden horas de CUIDADO (CUID_*) exclusivamente (razon mujeres 40+/hogar; participacion e intensidad por sexo x edad; percentiles), NINGUNA reproduce el agregado trabajo domestico+cuidados+voluntario (39.7h/18.2h/67.8%) del report ni desagrega por lengua indigena -> "RESULT de otro componente" (usado en vejez-009 y vejez-033).
+  r7_3_pub_beneficiarios_bienestar_csv       -> 0 corridas
+  enasem2024_bd_csv_zip                      -> 0 corridas
+  inmujeres_macu_indicadores_territoriales_xlsx -> 0 corridas
+  enasem2021_bd_csv_zip                      -> 0 corridas
+  enoe_2024_4t_csv                           -> 0 corridas (payload exacto; el RESULT sellado de RESULTS-ASTRA5.md es de 2024T3, otro trimestre)
+  enoe_2025_1t_csv                           -> 0 corridas
+Lectura de spec.md (data/corrida0/<CALC>/spec.md) para los 6 CALC anteriores con corridas, solo para identificar "que mide" (sin abrir resultados.json ni microdato).
+
+== 2. u0busca.py (9 inventarios de reactivos, 314256 identidades, 113780 con texto) ==
+-q "soledad" (enasem)                        -> 0 aciertos con texto (restringido a ENASEM)
+-q "soledad" (sin filtro)                    -> 3 aciertos (solo MOCIBA2016 ciberacoso, ajeno)
+-q "aislamiento|se siente solo"              -> 14 aciertos (ENSAFI2023 financiero, EDER2017 vivienda; ninguno ENASEM)
+-q "solo|acompanad|compania" --encuesta enasem -> 46 aciertos (SOLO_18/24, FALTA_COMPA_18/24 -- item de soledad real)
+-q "falte compania" --ola 2021               -> 1 acierto (FALTA_COMPA_18, enasem2021, hoja MHAS_ENASEM_2021_CONSTRUCTED_VA)
+-q "satisfecho con su vida|satisfaccion con la vida" -> 9 aciertos (SATISFECHO_18 en enasem2018/2021/2024; LAPOP LS3; Latinobarometro P1ST)
+-q "SATISFECHO_18|R esta satisfecho" --ola 2021 -> 1 acierto confirmatorio
+-q "pension|jubilacion" --encuesta enasem    -> 386 aciertos (I14, I26_2_24, I28_09_24, K58A-D_24, K59/K60, K100_24 en enasem2024)
+-q "deprimид|depresion|CESD|animo" (enasem)   -> 12 aciertos (CESD_DEPRIMIDO_18/24, C50A_24, SC19A_1_24)
+-q "60 anos y mas|60 anios y mas" --encuesta enadid -> 0
+-q "edad" --encuesta enadid2023              -> 72 aciertos (edad_1ag "grupos quinquenales de edad", entre otras)
+-q "hogar unipersonal|hogar ampliado|hogar nuclear" -> 21 aciertos (ENASIC2022, ENSAFI2023; NINGUNO en cpv2020)
+-q "adulto mayor|60 anios y mas|persona de 60" -> 0 (sin filtro por encuesta)
+-q "cotiza|afiliado al imss|derechohabiente" --encuesta enoe -> 0
+-q "trabajo remunerado" (sin filtro, via mf --busca) -> ver seccion 1
+-q "cuido a|persona que requiere cuidado|cuidados a integrantes" --encuesta enut -> 5 (P6_5_5 mascotas en enut2019/2024; no el modulo nacional de cuidado)
+-q "sin escolaridad|sin instruccion" --encuesta enasem -> 0
+
+== 3. u0pdf.py (349 PDF registrados, texto por pagina) ==
+-q "60 anos y mas" --idsub enadid              -> 0
+-q "adultos mayores" --idsub cpv2020           -> 1 (cuestionario ampliado p.14, programas sociales, no tipo de hogar)
+-q "unipersonal" --idsub cpv2020               -> 0
+-q "sistema nacional de cuidados"              -> 0 (no esta en el corpus documental)
+-q "pension para el bienestar"                 -> 30 (enadid2023_hogar_cuestionario_pdf p.7/11/15/19/23/27; enigh2022/2024 cuest_personas_mayores)
+-q "cuidado de personas" --id enut2024_cuestionario_pdf -> 4 (p.22/38/54/70, modulo de ayuda a otros hogares)
+-q "condicion de actividad" --idsub enoe       -> 41 coincidencias (metodologia ENOE, PEA/PNEA/clase1/clase2)
+-q "poblacion economicamente activa" --idsub enoe -> 26 coincidencias (formula PEA, ejemplo con cifras 2023)
+-q "ocupacion en el sector informal" --idsub enoe -> 4 coincidencias (formulas TIL1/TIL2/TOSI1/TOSI2, p.32/35/36)
+
+== 4. Web (WebSearch + WebFetch, tope 12 consultas por lote; TODAS corridas 23-sep-2026) ==
+ 1. WebSearch "CONAPO 2025 17.1 millones adultos mayores proyeccion Mexico 2030"
+    -> confirma 17.1M/12.8% (2025, rtg.com.mx) y 20.4M/14.8-14.96% (2030, elfinanciero.com.mx/elimparcial.com), superando a <15 anos en 2030.
+ 2. WebSearch "Secretaria de Bienestar Pension Adultos Mayores 2026 monto 6400 pesos bimestral"
+    -> confirma 6,400 pesos bimestral, +200 vs 2025, universal 65+ (programasparaelbienestar.gob.mx y medios).
+ 3. WebSearch "Sistema Nacional de Cuidados Senado Mexico congelado reforma Ley General de Desarrollo Social marzo 2024"
+    -> ubica nota de Expansion (12-mar-2024) y confirmacion de congelamiento en Senado desde 2020 (Infobae, Senado).
+ 4. WebSearch "Consejo Mexicano de Geriatria 841 medicos certificados Mexico geriatras"
+    -> ubica articulo CAMPUS-Ibero (suplementocampus.com, 29-nov-2022).
+ 5. WebFetch suplementocampus.com/mexico-tiene-mas-de-15-millones-de-adultos-mayores... (lectura completa)
+    -> cita literal verbatim: "15.1 millones de adultos mayores... solo 841 medicos certificados... mas de 17 mil pacientes"; NO menciona meta de 2,770 geriatras ni la cifra 850/CONACEM.
+ 6. WebFetch programasparaelbienestar.gob.mx/de-cuanto-es-la-pension-para-personas-adultas-mayores-en-2026/
+    -> HTTP 404 (no se pudo leer integro; contenido ya confirmado por (2) via sintesis de busqueda y fuentes coincidentes: cronista.com, unotv.com).
+ 7. WebFetch politica.expansion.mx/.../diputados-aprueban-concepto-de-sistema-nacional-de-cuidados-pero-con-cero-pesos
+    -> cita literal: 335 votos a favor/1 en contra (12-mar-2024); "operara con los recursos humanos, financieros y materiales ya existentes".
+ 8. WebSearch "Isalia Nava Bolanos IIEc-UNAM pension contributiva mujeres 25.4% hombres 41.5% Mexico"
+    -> confirma via Gaceta UNAM / cimacnoticias (conferencia IIEc-UNAM, 25-nov).
+ 9. WebSearch "Salazar-Barajas perfil cuidadoras adultos mayores Mexico estudio 14 horas 74%"
+    -> confirma existencia de Salazar-Barajas et al. (2019) via fuentes academicas secundarias (redalyc.org y afines) con cifras 14h/74% coincidentes.
+10. WebSearch "INEGI Cuenta Satelite del Trabajo No Remunerado de los Hogares 2024 8 billones de pesos mujeres 82339"
+    -> confirma boletin oficial INEGI (CSTNRHM2024_RR.pdf, saladeprensa/boletines/2025/tnrh/) con cifras exactas: 8 billones; 82,339 vs 34,695 pesos.
+11. WebSearch "Inmujeres demanda potencial cuidado personas mayores 15 veces infancia mapa de cuidados"
+    -> confirma plataforma Mapa de Cuidados (MACU, Inmujeres-ONU Mujeres-Colmex) y metodologia de "demanda potencial"; NO confirma el multiplicador exacto "15 veces".
+12. WebSearch "Rojas Huerta Lara Lara 2023 migracion vulnerabilidad adultos mayores municipios remesas"
+    -> confirma a Rojas Huerta como autor activo del tema (via El Colegio de Michoacan, cifra relacionada ~15% no identica); localiza tambien Lopez Ramirez/Colmex 2008 (scielo.org.mx S0186-72102008000300513), coincidente con la cita del report.
+
+Presupuesto web AGOTADO en la consulta 12 (12/12). Piezas que quedaron SIN verificar por este motivo (marcadas PENDIENTE-VERIFICACION-DOCUMENTAL en filas.tsv, con la pieza exacta en siguiente_operacion):
+  Zarit (rango 14.5-66%, estudio Ciudad Obregon/Sonora, Landeros-Perez 2014), Cabada Ramos y Martinez Castillo (2017, ISSSTE),
+  98.4% mujeres en fuerza laboral de cuidado (sin fuente citada por el report), demencia 7-8%/1.3M,
+  Rojas Huerta y Lara Lara (2023) coautoria exacta, comparacion internacional Uruguay Ley 19.353 / Japon Kaigo Hoken / BID,
+  leyes estatales de cuidados (Jalisco/CDMX/NL/EdoMex, Salud Casa por Casa/Cd. Juarez), 647 mil cuidadoras remuneradas/10,121 pesos,
+  SHCP 1.4% del PIB, 28% hogares multigeneracionales + comparacion Chile 1982-2017.
+
+== 5. Autochequeo final ==
+filas.tsv: 39 filas, 25 columnas en todas (verificado con awk -F'\t' '{print NF}').
+cobertura.tsv: 43 filas, 4 columnas en todas.
+Ningun campo empieza con comilla doble (verificado con awk).
+Ningun fila_local duplicado (verificado con sort|uniq -d).
+Las 34 unidades del paquete (13 G + 3 P + 0 T + 18 F) tienen cobertura completa; 0 faltantes (verificado por script Python contra el paquete). 9 unidades INT anadidas por lectura integra del report (L65,L79,L81,L89,L90,L92,L124,L136,L158), fuera de las exigidas por el paquete pero requeridas por la regla de "lee el report entero".

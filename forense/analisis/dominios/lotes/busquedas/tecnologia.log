@@ -1,0 +1,103 @@
+ASTRA5-U0 -- lote tecnologia -- log de busquedas (23/sep/2026)
+Report: corpus/reports/Adopcion_y_Resistencia_Tecnologica_en_Mexico__La_Paradoja_de_la_Baja_Confianza_Institucional.md
+sha256 declarado en paquete: d47463c20b6ca69c5afbe49e2b69295c75c414f7c974c405b7987c880ff4d74b
+Leido INTEGRO (178 lineas) con la herramienta Read sobre la ruta del repo.
+
+Nota de rutas: INSTRUCCIONES-LOTE.md declara U=.../6f1534e5-.../scratchpad/u0 pero ese
+directorio no existe en esta sesion; las herramientas u0busca.py/u0pdf.py/u0mf.py y los
+catalogos (CATALOGO-CORPUS.md, RESULTS-ASTRA5.md) SI existen en el scratchpad propio de esta
+sesion (.../427b1d4d-.../scratchpad/u0/) con contenido identico; se usaron desde ahi. Repo
+consultado siempre con ruta absoluta /home/pc0/mm-astra5-mapa-dominios-1, sin cd a subdirectorios.
+
+== u0mf.py (data/manifiesto.yaml, 1680 entradas) ==
+--busca edelman            -> 0/1680
+--busca ocde                -> 0/1680
+--busca banxico              -> 31/1680 (incl. CF881-885 SIE, informes IdMF 2019-2024)
+--busca codi                 -> 72/1680 (mismos + ruido por subcadena)
+--busca spei                 -> 20/1680
+--busca ipsos                -> 0/1680
+--busca curp                 -> 0/1680
+--busca r3d                  -> 0/1680
+--busca "articulo 19"        -> 0/1680
+--busca scjn                 -> 0/1680
+--busca "nu mexico"          -> 0/1680
+--busca whatsapp              -> 0/1680 (como organizacion; SI hay reactivos, ver u0busca)
+--busca llave                -> 23/1680 (ninguno es Llave MX/CDMX; falsos positivos ENIF/ENOE/ENDIREH)
+--busca adip                 -> 0/1680
+--busca latinobarometro      -> 9/1680 (cuestionario, fichas tecnicas, bd stata 2024)
+--busca "world values"       -> 0/1680
+--busca wvs                  -> 11/1680 (WVS7 Mexico 2018, cuestionario/metodologia/datos)
+--busca fintech               -> 1/1680 (NBER w33208, no relacionado)
+--busca "mercado pago"       -> 0/1680
+--busca nearshoring          -> 0/1680
+
+== u0busca.py (9 inventarios, 314256 identidades, 113780 con texto) ==
+-q "codi"                                                    -> 2066 aciertos con texto (ruido: subcadena en ENNVIH/otros; ninguno es reactivo CoDi/SAT)
+-q "whatsapp"                                                -> 50 aciertos con texto (ENIF2015 P3_12; ENCUCI2020 AP4_4_04/AP4_6_04; ENDUTIH2023/2024/2025 P7_12_2/3, P7_16_6, P8_13_1, P8_16_1; ENUT2019 P6_22_3)
+-q "banca movil|app de banco|billetera digital|monedero electronico" -> 12 aciertos (ENDUTIH2023/2024/2025 P8_13_7/P8_16_7, banca movil)
+-q "inteligencia artificial"                                 -> 0 aciertos
+-q "automatizacion|robot"                                    -> 0 aciertos
+-q "identidad digital|biometric"                             -> 1 acierto (MOCIBA2025 P2_2, medidas de seguridad -- datos biometricos)
+-q "confia en internet|confianza en internet|confianza en la tecnologia" -> 0 aciertos
+-q "telemedicina|consulta medica a distancia|teleconsulta"   -> 0 aciertos
+
+== u0pdf.py (349 PDF registrados) ==
+-q "OCDE"                                    -> 10 coincidencias (informes fiscales/economicos no relacionados con automatizacion)
+-q "Edelman"                                 -> 1 coincidencia irrelevante (dnr2025_report, no es Edelman Mexico)
+-q "CURP biometrica"                          -> 0 coincidencias
+-q "cuentas registradas|cuentas validadas"    -> 16 coincidencias en 5 PDF (informes IdMF Banxico 2020/2021/2022/2023)
+--idsub informe_anual -q "CoDi"               -> 276 coincidencias en 6 PDF (idmf 2019-2024)
+--id banxico_informe_anual_idmf_2023 -q "cuentas validadas" -> 3 (cuadro A.10, cuentas ACTIVAS mensuales en miles)
+--id banxico_informe_anual_idmf_2024 -q "cuentas validadas" -> 0 (edicion 2024 usa otra terminologia)
+--id banxico_informe_anual_idmf_2024 -q "millones de operaciones|monto promedio|ticket promedio" -> 73 coincidencias (SPEI 5,337M operaciones 2024, +57.6%)
+-q "spei es ampliamente|infraestructura de pagos mas utilizada|principal medio de pago" -> 0 coincidencias
+
+== u0mf.py --calc ==
+No se corrio --calc: ninguno de los payload_id identificados (banxico_*, latinobarometro2024_*,
+f00011928_wvs7_mexico, endutih2024_bd_dbf_zip) tiene CALC GEN2 propio de este report en
+corrida0/corridas.tsv distinto de RESULT-ENDUTIH-PISOS-2024-TABLA (#1085) ya citado en
+RESULTS-ASTRA5.md; RESULT-ENOE-PISOS-TABLA (#1087) citado igual desde RESULTS-ASTRA5.md.
+
+== Web (WebSearch + WebFetch, presupuesto maximo 12 consultas; usadas 11) ==
+Todas fechadas 23/sep/2026. Solo fuentes oficiales/primarias citadas como documento primario;
+resultados de prensa usados unicamente para triangular existencia de litigio/incidentes cuando
+no hubo fuente oficial primaria disponible (marcados PENDIENTE-VERIFICACION-DOCUMENTAL).
+
+ 1. WebSearch "Edelman Trust Barometer 2025 Mexico gobierno 47% empresas 67% confianza"
+    -> edelman.com/lat/es/trust/2025/trust-barometer confirma 47/67/61/54
+ 2. WebSearch "OCDE 2024 Creacion de empleo y desarrollo economico local Mexico automatizacion 18.9%"
+    -> oecd.org (pagina oficial, no fetched con exito, ver #10); multiples fuentes convergen en 18.9%/12%/32%/21%/Coahuila 28.1%
+ 3. WebSearch "Ipsos AI Monitor 2024 Mexico 70% emocionado inteligencia artificial"
+    -> ipsos.com/en-us/ipsos-ai-monitor-2024 confirma 70%, 5o lugar de 32 paises
+ 4. WebSearch "SCJN admite revisar constitucionalidad CURP biometrica 2025 amparo"
+    -> prensa consistente en litigio; expediente citado (AR 39/2022) parece de OTRO asunto, no verificado en fuente primaria scjn.gob.mx
+ 5. WebSearch "R3D Articulo 19 CURP biometrica Llave MX identidad digital posicionamiento 2025"
+    -> r3d.mx confirma directamente; Articulo 19 solo en fuentes secundarias
+ 6. WebSearch "Nu Mexico 13 millones de clientes octubre 2025 comunicado oficial"
+    -> nu.com/es/sala-de-prensa confirma cifras del comunicado 16-oct-2025
+ 7. WebSearch "DOF decreto reforma Ley General de Poblacion CURP biometrica julio 2025"
+    -> dof.gob.mx/nota_detalle.php?codigo=5763157&fecha=16/07/2025 (primaria oficial)
+ 8. WebSearch "Llave CDMX filtracion datos mayo 2024 ADIP 6.3 millones usuarios comunicado"
+    -> solo prensa (Excelsior, Publimetro, TecNetOne); sin comunicado oficial primario en los resultados
+ 9. WebFetch https://r3d.mx/2025/04/03/la-curp-biometrica-obligatoria-.../
+    -> exito; cita textual "Condicionar el acceso a servicios publicos y privados a la identificacion
+       o autenticacion biometrica conlleva graves riesgos de discriminacion y exclusion"
+10. WebFetch https://www.oecd.org/en/publications/job-creation-and-local-economic-development-2024-country-notes.../mexico...
+    -> HTTP 403 Forbidden (no se pudo leer el PDF/pagina primaria OCDE byte a byte)
+11. WebFetch https://dof.gob.mx/nota_detalle.php?codigo=5763157&fecha=16/07/2025
+    -> exito; confirma Art. 91 Bis LGP, CURP con huellas/fotografia como documento nacional
+       de identificacion obligatorio, de aceptacion universal
+
+No usadas (presupuesto agotado, priorizados los 11 anteriores): Ipsos/Google "Our Life with
+AI" 2025; nerviosismo IA 52% 2026; encuesta 2025 preferencia humana en servicio al cliente;
+Asociacion FinTech Mexico 70M+ usuarios; El Economista 70% empresas automatizando 2026;
+Mercado Libre reporte trimestral 3T-2025 (Mercado Pago); series primarias RBI/NPCI (India) y
+Banco Central do Brasil (Pix) para el comparativo internacional. Todas estas quedaron con
+dictamen PENDIENTE-VERIFICACION-DOCUMENTAL o NO-MEDIBLE-POR-DISENO segun corresponda, con la
+razon explicita de presupuesto agotado, no de imposibilidad.
+
+Reservas: no se toco ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola) en ninguna consulta; ENCO
+esta reservada por el encargo. No se corrio ninguna consulta con --ola 2026 sobre ENOE/ENVIPE.
+Ningun ZIP/CSV/DTA/DBF/SAV de datos fue abierto ni descomprimido: los payload_id citados en
+MEDIBLE-EN-CORPUS/MEDIBLE-CON-ADQUISICION se identifican por manifiesto + texto de PDF/HTML de
+manifiesto via u0busca/u0pdf; no se leyo microdato de encuesta alguna.

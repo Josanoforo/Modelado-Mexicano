@@ -1,0 +1,63 @@
+ASTRA5-U0 lote "pareja" — log de búsquedas (corpus + web), 23-sep-2026
+Repo: /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura, cwd raíz, sin cd a subdirectorios)
+Report leído ÍNTEGRO: corpus/reports/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md (247 líneas, sha256 declarado en paquete b27f1923c57e16c1bd4fa49760e09e417c72f558b448f21b8451d49569cccfb3 — nota: el paquete declara 65 hex chars, un caracter más que un sha256 de 64; no se corrigió, sólo se hizo notar).
+
+== Escaneo propio del report completo (más allá de G/P/T/F del paquete) ==
+python3 -c scan de líneas 1-247 buscando FUERTE|MEDIA|MEDIO|SÓLIDO|HIPÓTESIS|TIER|MALINTERPRETADO|NARRATIVA POPULAR fuera de L5-33 (ya cubiertas por G01-15)
+  → localizó la sección "## Mapa de evidencia" (L50-74, leyenda de tiers que recapitula G01-15: NO-AFIRMACION) y "Segmentos fuertes/débiles" (uso distinto de "fuerte", no es tier de evidencia: no-afirmación)
+  → localizó afirmación con tier explícito NO cubierta por ninguna unidad: L69 "Dirección del cambio generacional hacia el individualismo relacional" (HIPÓTESIS RAZONABLE), reforzada en L44/L171/L178 → creada como INT-L44 (fila pareja-040)
+grep "infidelidad|individualismo|IMIN" sobre el texto → confirma que "individualismo" sólo aparece en L44/L69/L171/L178 (mismo hilo) y que la magnitud de infidelidad sólo se menciona en L146 (celos, ya cubierto) y L245 (auditoría meta, no-afirmación)
+
+== u0busca.py (inventario de reactivos; 314256 identidades, 113780 con texto, 9 tablas) ==
+-q "estado conyugal|situacion conyugal|edo_conyug" → 48 aciertos con texto (ENADID2023 p10_1_ag, ENASEM2018/2024 EST_CONYUGAL, EDER2017 edo_conyug, ENDIREH2016 t_instrum/p3_8/sit_conyugal); NO ENOE (inventario estructurado no cubre ENOE, ver u0pdf abajo)
+-q "estado conyugal|e_con|situacion conyugal" --encuesta enoe → 0 aciertos (confirma que el inventario estructurado no indexó los PDF de ENOE)
+-q "union libre" → 49 aciertos con texto, sólo ENNVIH 2002/2005/2009 (etiquetas de variable "CASADO/UNION LIBRE"); no ENOE/ENADID/Censo (son preguntas de estado conyugal general, "unión libre" aparece como código de respuesta, no como texto de la pregunta indexado)
+-q "religion|catolic|protestante|evangelic" → 65 aciertos con texto: ENNVIH (método anticonceptivo), ENCUCI2020 AP5_4_3/AP5_6_8/AP10_5 (percepción/tolerancia religiosa), CENSO2020 CAAS T_PCATOLICA/T_PRO_CRIEVA/T_PSIN_RELIG (población de Alojamientos de Asistencia Social, NO población general), ENASEM2024 A36_24/AA39_24 (importancia de la religión)
+-q "orientacion sexual|identidad de genero|homosexual|lesbiana|bisexual" → 20 aciertos: ENCUCI2020 AP5_6_7/AP5_7_2/AP5_8_10/AP5_9_10/AP10_15/AP10_16 (discriminación y autoidentificación de orientación sexual); LAPOP2004/2006/2019/2023 D5 (aprobación de que homosexuales se postulen a cargos públicos, actitud no identificación); WVS7 Q22 (vecinos homosexuales)
+-q "noviazgo" → 10 aciertos: ENDIREH2006/2011/2016, variable "edad al inicio del noviazgo" (BP4_7/AP4_5/p12_8/P4_12), no la violencia en sí
+-q "celos" → 4 aciertos: ENDIREH2006 P6_1_6/P6_2_5, ENDIREH2016 p12_1_1_5/p12_1_2_5 ("se enoja porque es celoso/a" — enojo por celos, NO la escala EMUCE)
+-q "infidelidad|infiel" → 3 aciertos: LAPOP2023 dvw2 ("aprobación de que el hombre golpee a su esposa (infidelidad)" — ítem de actitud hacia violencia, no medición de infidelidad)
+-q "celular|telefono movil|revisa su celular|redes sociales" --encuesta endireh → 9 aciertos: ENDIREH2011 AA4_6 (tenencia de celular en vivienda); ENDIREH2016 p13_1_22/p13_2_22/p13_3_22 "le revisa su correo o celular y le exige que le dé las contraseñas"; ENDIREH2006 P1_4_6 (tenencia)
+-q "pareja|expareja|novio|esposo|conyuge" --encuesta mociba → 0 aciertos (MOCIBA no tiene reactivo de control de pareja identificado)
+-q "grindr|hombres que tienen sexo con hombres|hsh" → 0 aciertos (control positivo: en la misma corrida, "matrimonio infantil"→15 aciertos y otras consultas trajeron resultados, confirmando que la herramienta funciona y que 0 es ausencia real)
+-q "matrimonio infantil|menor de edad.*matrimonio|edad minima.*matrimonio" → 15 aciertos: LAPOP2023 childm8/9/10/12/13 (actitud: "el matrimonio infantil está justificado si...", NO el conteo administrativo EMAT que cita el report)
+-q "individualismo" → 0 aciertos (confirma ausencia del constructo PHSC/individualismo en inventarios de reactivos)
+-q "revisa su correo o celular|revisa su celular|exige que le de las contrasenas" --encuesta endireh2021 → 0 (inventario estructurado no cubre este ítem para 2021; resuelto vía u0pdf, ver abajo)
+
+== u0pdf.py (349 PDF registrados, caché pdftotext por página) ==
+-q "religion|religiosa" --id cpv2020_cuestionario_ampliado_pdf → 5 coincidencias, p.7 ("9. religion ¿cual es la religion de (nombre)?...") y p.10 (verificación de condición de actividad, no relevante)
+-q "estado conyugal|situacion conyugal" --idsub enoe → 21 coincidencias en 8 PDF: enoe_123_fd_c_bas_amp_pdf, enoe_325_fd_c_bas_amp_pdf, enoe_cuestionario_sociodemografico_v5a_pdf, enoe_fd_c_amp_v1/v2/v3/v4_pdf, enoe_fd_c_bas_amp_15ymas_pdf, enoe_fd_c_bas_amp_conapo_pdf — todos confirman variable e_con "estado conyugal", códigos 1=unión libre,2=separado,3=divorciado,4=viudo,5=casado,6=soltero,9=no sabe (estructura estable 2013-2022)
+-q "revisa su celular|revisa su correo|contrasenas" --id endireh2021_cuestionario_a_pdf --id endireh2021_cuestionario_general_pdf → 2 coincidencias, p.34 de cuestionario_a: ítem 22 "le revisa su correo o celular y le exige que le de las contrasenas" (confirma que ENDIREH2021, la ola exacta citada por el hallazgo 4/11, tiene el ítem, no sólo ENDIREH2016)
+
+== u0mf.py (1680 entradas en manifiesto; --calc sobre 326 corridas) ==
+--busca "emat" → 128 (falsos positivos: substring de "temática" u otras palabras, no EMAT); --busca "estadistica de matrimonios" → 0; --busca "endiseg" → 0; --busca "envinov" → 0; --busca "dgcs" → 0; --busca "the ciu" → 0; --busca "grindr" → 0; --busca "cepal" → 0; --busca "mexicanos primero" → 0; --busca "fundacion nana" → 0; --busca "marianismo" → 0; --busca "caballerismo" → 0; --busca "emuce" → 0; --busca "imin infidelidad" → 0
+--id cpv2020_caas_eum_csv/cpv2020_iter_nal_csv/cpv2020_ceu_eum_csv/cpv2020_cuestionario_ampliado_pdf/cpv2020_diccionario_cuestionario_ampliado_xlsx → confirma que CAAS=Censo de Alojamientos de Asistencia Social (NO población general) y CEU=cartografía urbana (nota "CORREGIDO 2026-08-03" del propio manifiesto); el Cuestionario Ampliado real (microdatos) "sigue sin bajar", sólo está el instrumento (cuestionario+diccionario)
+--calc enoe_2023_3t_csv / enoe_2023_3t_microdatos / endireh2021_bd_csv_zip / cpv2020_cuestionario_ampliado_pdf → 0 de 326 corridas cada uno
+--calc endireh_2021_bd_endireh_2021_dta/_sav/_dbf/_rdata / endireh2021_cuestionario_a_pdf → 0 de 326 (los RESULT-ENDIREH2021-* de RESULTS-ASTRA5.md deben usar otro alias de input_id; se tomó RESULTS-ASTRA5.md como referencia autorizada, no u0mf --calc, para gen2_existente de ENDIREH)
+--calc enadid2023_base_datos_csv → 4 de 326: CALC-ENADID-0001 (SELLADA,REPRODUCE) y CALC-ENADID2023-UNION-SEXO-EDAD-0002→0003→0004 (0004 SELLADA,REPRODUCE) — corridas GEN2 reales sobre unión por sexo/edad con ENADID2023, ola distinta de la ENADID2018 que cita el report
+--busca "enoe_2023_3t" → 2 (enoe_2023_3t_csv, enoe_2023_3t_microdatos)
+--id endireh2021_bd_csv_zip/endireh2021_cuestionario_a_pdf/endireh2021_cuestionario_general_pdf → confirma sha256 y procedencia (Encargo E mesa#18 / ASTRA5-U0 PR#1079 / ASTRA5-U2)
+
+== CATALOGO-CORPUS.md (grep, no u0mf) ==
+grep -i "emat|nupcialidad|matrimonio" → 0 filas; grep -i "endiseg|orientacion sexual|identidad de genero" → 0 filas; grep -i "enadid" → 1 fila (sólo "enadid 2023"); grep -i "censo.*poblacion|censo 2020|cpv" → 1 fila (cpv 2020: caas/iter/ceu + cuestionario_ampliado_pdf); grep "^- \*\*enoe" → confirma enoe 2023 (4 trimestres) sí presente; grep "^- \*\*endireh" → confirma endireh 2003/2006/2011/2016/2021 presentes; grep "mociba|emuce|marianismo|machismo|caballerismo|imin|celos|infidelidad" → sólo mociba (2015-2025, forense 2021/2022); grep "unam|dgcs|envinov|imjuve|cepal|feminicid|mexicanos primero|fundacion nana|the ciu|competitive intelligence|grindr|profeco|statista" → 0 filas
+
+== RESULTS-ASTRA5.md ==
+Consultado íntegro (46 líneas). Ninguno de los RESULT listados (ENOE2024T3, ENDUTIH2024, ENDIREH2006-2021 por ámbito, LAPOP, INE, ENCUP) coincide con instrumento+ola+ventana+universo exactos de ninguna afirmación de este lote salvo como "RESULT de otro componente" (ver dictamen_razon/gen2_existente de pareja-003,007,013,014,032,034 en filas.tsv).
+
+== Web (WebSearch; 12/12 consultas del presupuesto del lote, todas el 23-sep-2026) ==
+1. "INEGI EMAT 2022 edad promedio matrimonio 34.1 31.3 años comunicado prensa" → confirma INEGI Comunicado 564/23 (Matrimonios2022.pdf), 507052 matrimonios, 34.1H/31.3M.
+2. "INEGI comunicado 572/24 EMAT 2023 nupcialidad" → confirma URL exacta del comunicado 572/24, 501529 matrimonios 2023, tasa 5.6 (2014=7.2).
+3. "INEGI comunicado 340/22 ENDISEG 2021 población LGBT 5.1%" → confirma URL exacta (Resul_Endiseg21.pdf), 5.1% de 97.4M, metodología (44,000 hogares + módulo en línea).
+4. "\"The Competitive Intelligence Unit\" \"El amor en los Tiempos de las Telecom\" 2026" → confirma edición 2026 (los40.com.mx/expansion.mx, 13-feb-2026) y reproduce 22.3%/8.6M/2.7 veces por semana/2.4 previo.
+5. "Rodríguez-Hernández Castillo-Viveros Esquivel-Santoveña 2023 \"Psychology, Society & Education\" violencia noviazgo ENDIREH" → confirma DOI 10.21071/psye.v15i1.15508, vol.15(1):68-75, n=7140, edad media 19.3.
+6. "Tamaulipas matrimonio igualitario reforma código civil 26 octubre 2022" → confirma decreto Art.132, 23-12-1 votos, diputada Nancy Ruíz Martínez (PAN), 9 fuentes de prensa.
+7. "Quilodrán unión libre México raíz histórica cohabitación demografía colonial indígena" → confirma cuerpo de literatura y autoría de Quilodrán (redalyc.org/pdf/115/11527638008.pdf).
+8. "Yela Ferrer Bosch mitos del amor romántico escala violencia pareja" → confirma Bosch/Ferrer et al. 2007 (Instituto de la Mujer, Madrid), basado en Yela 2003.
+9. "Arciniega Anderson Tovar-Blank Tracey 2008 \"Traditional Machismo and Caballerismo Scale\" Journal Counseling Psychology" → confirma cita completa J.Counseling Psychology 55(1):19-33.
+10. "Castillo Perez Castillo Ghosheh 2010 \"Marianismo Beliefs Scale\"" → confirma cita completa Counseling Psychology Quarterly 23:163-175, 24 ítems, 5 subescalas.
+11. "UNAM DGCS-108 2024 violencia noviazgo \"3 de cada 10\" boletín Centro Investigaciones Estudios Género" → confirma URL exacta dgcs.unam.mx/boletin/bdboletin/2024_108.html, 14-feb-2024, CIEG-UNAM.
+12. "CEPAL boletín violencia feminicida cifras noviembre 2025 852 feminicidios México 2024" → confirma Boletín N°4 (repositorio.cepal.org), 852 casos, tasa 1.3/100mil, "cada 10 horas", 22% de ALyC.
+Presupuesto agotado tras estas 12; quedaron sin verificar vía web (marcadas PENDIENTE-VERIFICACION-DOCUMENTAL, fuera de presupuesto): Statista/Profeco (pareja-008), EMUCE (pareja-020), Rojas-Solís et al. (pareja-024), Mexicanos Primero+Fundación Naná (pareja-035), estudios de bidireccionalidad no referenciados (pareja-036), Calderón-Pérez et al. 2018 (pareja-039), Díaz-Loving 2019/PHSC (pareja-040), y el cotejo textual fino del boletín UNAM-DGCS-108 vs ENVINOV 2007 (pareja-029).
+
+== Reservas ==
+Ninguna búsqueda tocó ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola). No se copiaron las cifras ENOE 2026T1 del report de mérito a ningún campo nuevo.

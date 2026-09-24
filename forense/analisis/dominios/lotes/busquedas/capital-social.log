@@ -1,0 +1,57 @@
+# Búsquedas de esta sesión — lote capital-social (ASTRA5-U0), 24/sep/2026
+# U0 leyó completo previas/capital-social.log (ejecutor previo, interrumpido antes de escribir salida;
+# mismo corpus/herramientas) y lo cita explícitamente en busqueda_a13 con "(ejecutor previo)" cuando
+# reutiliza un conteo o resultado sin re-ejecutarlo. Todo lo que sostiene un dictamen en filas.tsv fue
+# releído/reconfirmado en esta sesión (u0busca/u0pdf/u0mf ejecutados de nuevo, o WebFetch/WebSearch
+# propios) salvo donde se declara expresamente lo contrario.
+
+## Herramientas del corpus (u0busca/u0pdf/u0mf), ejecutadas esta sesión
+- u0mf --busca envipe2023 -> 9 entradas (fd_pdf, cuest_principal_pdf, cuest_modulo_pdf, microdatos rdata/csv/dbf/dta/sav)
+- u0mf --busca envipe2024 -> 9 entradas (idem estructura)
+- u0mf --busca "world giving" -> 0; u0mf --busca caf_wgi -> 0
+- u0mf --busca dayton -> 0; u0mf --busca henrich -> 0
+- u0mf --busca americasbarometer -> 13 entradas (microdatos LAPOP México 2004-2023, sin topical brief comparado)
+- ls pdftxt/ para pew y envipe2023/2024 -> solo pew_gas2025_social_trust_topline.txt indexado como PDF (el shortread es HTML, 0 en caché u0pdf)
+- u0busca -q P6_1_5 --encuesta ensafi -> 2 aciertos: "6.1 Actualmente, ¿usted participa en una tanda?" (ensafi2023_bd_csv_zip / ensafi2023_fd_xlsx_zip, hoja TMODULO fila 273)
+- u0busca -q tanda --encuesta ensafi -> 3 aciertos (incluye P4_6_3 "¿usted o alguien de su hogar acostumbra a ahorrar en tandas...?")
+- u0pdf -q tanda --id ensafi2023_cuestionario_pdf -> 2 (p.8, p.15)
+- u0pdf -q "velez-ibanez|velez ibanez" --id campos_1998_tandas_mexico_pdf --contexto 2 -> 7 (p.7,13,16): muestra "mas de 60 participantes de tandas de TODAS LAS REGIONES DE MEXICO Y ESTADOS UNIDOS" (p.13) -evidencia MIXTA, no solo México
+- u0pdf -q "0.005|0,005" --id campos_1998_tandas_mexico_pdf -> 0
+- u0pdf -q "130 roscas|1,300 miembros|1300 miembros" --id campos_1998_tandas_mexico_pdf -> 0
+- u0pdf -q "madre de la tanda" --id campos_1998_tandas_mexico_pdf -> 0
+- u0busca -q pentecostal -> 3 aciertos (CPV2020 CAAS T_PRO_CRIEVA/U_PRO_CRIEVA, fd_iter_cpv2020)
+- u0mf --busca cpv2020 -> 8 entradas; u0mf --busca enadis2022 -> 3 entradas (solo cuestionarios/FD, SIN payload de microdato)
+- u0mf --calc pew_gas2025_social_trust_topline -> 0 de 326 corridas
+- u0mf --calc enut2019_bd_csv -> 1 (CALC-ENUT2019-NUCLEO-EJES-0001, SELLADA, REPRODUCE)
+- u0mf --calc enut2024_bd_csv -> 6 (incluye CALC-ENUT2024-NUCLEO-EJES-0001, SELLADA, REPRODUCE)
+- u0mf --calc envipe_2021_bd_envipe_2021_dta -> 0; --calc envipe_2023_bd_envipe_2023_dta -> 0
+- u0mf --calc ensafi2023_bd_csv_zip -> 3 (CALC-ENSAFI-DISENO-0001; CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001-v1_1, SELLADA, REPRODUCE)
+- u0mf --calc 1658622845mexico_2004_export_version (LAPOP 2004) -> 0
+- u0mf --busca 'bienes publicos' --busca juego -> 0
+- u0pdf -q 'bienes publicos|public goods game' (corpus completo) -> 2, ambas en campos_1998_tandas_mexico_pdf (bien público informal, NO PGG de laboratorio)
+- u0mf --busca 'chat vecinal' --busca segurichat -> 0
+- u0pdf -q multa --id enut2024_cuestionario_pdf -> 0
+- Lectura íntegra del report (101 líneas) vía Read, tool nativa, esta sesión.
+
+## Reutilizado del ejecutor previo (previas/capital-social.log), citado como "(ejecutor previo)" en busqueda_a13
+- u0mf --busca pew -> 9; u0mf --id pew_gas2025_social_trust_topline/shortread (usado_para, licencia, fecha_descarga del manifiesto)
+- u0pdf -q Mexico/Turkey/Kenya/Brazil --id pew_gas2025_social_trust_topline -> tabla p.2 con 18/14/20/22 (reconfirmado por mí vía lectura del mismo resultado citado en su log, no re-ejecutado)
+- u0busca -q "tequio|mano vuelta|faena" -> 5 aciertos (ENUT2019/2024, P6_17_2/P6_17_3)
+- u0pdf -q tequio (corpus completo) -> 4 en enut2024_cuestionario_pdf p.22,38,54,70
+- u0busca -q "accion conjunta|acciones conjuntas" --encuesta envipe (varias olas) -> 435 aciertos totales
+- u0pdf -q AP4_11 --id envipe2021_fd_pdf --contexto 2 -> 11, p.26 con códigos AP4_11_01..10 (1=Sí,2=No,9=NS/NR)
+- u0busca -q contribuido -q "problema de su comunidad" -> 8 aciertos (LAPOP CP5/CP5B, 2004/2006)
+- WebSearch/WebFetch de Ley 701 Guerrero, Constitución Oaxaca (tequio, párrafo confirmado con pdftotext+grep), Candelo/Eckel/Johnson (Games 2018, Economics Letters 2019), Di Giannatale et al. (Caja Mixtlán), Palerm/Sandoval-Moreno (gobernanza del agua) -> ver detalle en previas/capital-social.log [23]-[36]; no re-fetcheados por presupuesto de 12 consultas web/lote.
+
+## Consultas web propias de esta sesión (7 de 12 permitidas por el lote; todas 24/sep/2026)
+1. WebSearch "INEGI ENVIPE 2023 boletín de prensa cifra negra 92.4 comunicado" -> confirma Comunicado 546/23 (11/sep/2023): 92.4% cifra negra, 10.9% denuncia.
+2. WebSearch "INEGI ENVIPE 2024 boletín de prensa inseguridad 60.7% problema principal" -> confirma 60.7%/36.8%/34.4% (Comunicado 562/24 y presentación nacional).
+3. WebSearch "CONDUSEF ahorro informal tandas 32.7% segundo mecanismo" -> identifica condusef.gob.mx/documentos/275536_AHORRO.PDF y gob.mx/.../AHORRO-2018.pdf.
+4. WebFetch condusef.gob.mx/documentos/275536_AHORRO.PDF -> ERROR "unable to verify the first certificate" (TLS, no del sandbox).
+5. WebFetch https://www.gob.mx/cms/uploads/attachment/file/299129/AHORRO-2018.pdf -> PDF guardado localmente; pdftotext -layout + grep "32.7|tanda" -> p.8: "65% en casa, 32.5% en tanda" (24.7 millones de adultos ahorran solo informalmente). No coincide byte a byte con el 32.7% del report.
+6. WebSearch "CAF World Giving Index 2025 Mexico ranking helping a stranger generosity" -> World Giving REPORT 2025 (no Index clásico): 52% donó, 49% a individuos, trust 9.2/15 -NO coincide con "104/147"/"64-68" del report.
+7. WebSearch "Dayton-Johnson irrigation societies Mexico inequality cooperation JEBO" -> confirma JEBO 2000 vol.42 pp.19-41 y JDE 2000 vol.62 pp.181-208.
+8. WebSearch "Henrich Boyd Bowles Camerer Fehr Gintis Foundations of Human Sociality fifteen small-scale societies Tsimane Machiguenga" -> confirma OUP 2004.
+9. WebSearch "Secretaría de Seguridad Pública Guerrero 23 grupos policía comunitaria autodefensas 2012 2018 informe" -> confirma "23 grupos armados, 64% del estado" atribuido a la Secretaría estatal (citado por prensa) y localiza informe oficial CNDH.
+
+Total consultas web esta sesión: 9 (WebSearch) + 2 (WebFetch) = 11 de 12 permitidas por el lote.

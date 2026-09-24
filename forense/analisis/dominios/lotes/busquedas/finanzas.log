@@ -1,0 +1,167 @@
+# busquedas.log -- lote finanzas (ASTRA5-U0)
+# Ejecutor: sesion actual (continuacion de un ejecutor previo interrumpido antes de escribir salida;
+# su log crudo esta en ../../previas/finanzas.log y se cita abajo como "(ejecutor previo)" cuando se
+# reutiliza un conteo suyo; todo lo citado como evidencia de un dictamen fue reverificado por mi.)
+# Fecha de las busquedas web: 2026-09-24. Cwd de todos los comandos: /home/pc0/mm-astra5-mapa-dominios-1
+# U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+## 0. Lectura obligatoria
+- Read INSTRUCCIONES-LOTE.md (208 lineas, integro)
+- Read paquetes/finanzas.md (100 lineas, integro): 13 G (LECTURA-d6710e19-01..13), 0 P, 1 T
+  (TIER-d6710e19-L69), 13 F (lectura-*.tsv), 9 contratos CERRADOS (ASTRA5-U0-FIN-001..009), 9 cruces
+  de deduplicacion.
+- Read corpus/reports/Behavioral_Finance_Mexicano...md (157 lineas, integro) via herramienta Read.
+- command grep -n -i --binary-files=text -E "fuerte|media|sólido|solido|hipótesis|hipotesis|narrativa
+  popular|evidencia" sobre el report -> confirma que las UNICAS lineas con marca de tier explicito
+  fuera de los 13 hallazgos numerados son L49 (EVIDENCIA FUERTE), L58 (EVIDENCIA MEDIA), L65
+  (HIPOTESIS RAZONABLE) y L69 (NARRATIVA POPULAR, ya cubierta como T). Dentro de esos bloques se
+  identificaron 2 afirmaciones NUEVAS no cubiertas por G1-13: L51 (credito formal 37.3%, con
+  desglose en Patron 2 / L80) y L67 (dinero como estatus, desarrollado en Patron 6 / L91-93) ->
+  filas finanzas-035 y finanzas-036 (unidades INT-L49-L51, INT-L65-L67).
+- Read previas/finanzas.log (459 lineas, integro en 2 tramos) -- log crudo del ejecutor previo,
+  interrumpido antes de escribir salida.
+
+## 1. Contratos ya cerrados (paquete) -- verificados por lectura directa del paquete, no requieren
+   busqueda adicional: ASTRA5-U0-FIN-001..009 (los 9), mas ASTRA5-U0-ENOE-001 citado por el paquete
+   trabajo.md (dedup ENOE-INFORMALIDAD) que ya el ejecutor previo confirmo via
+   command grep -n "ENOE-001\|^## Contratos" paquetes/trabajo.md -> "2" contratos existentes en ese
+   paquete (ejecutor previo).
+
+## 2. Manifiesto (u0mf.py) -- confirmaciones de existencia/ausencia de instrumentos
+- u0mf --busca enafi --limite 30 -> 16 entradas, TODAS ENAFIN (Encuesta Nacional de Financiamiento
+  de las Empresas, INEGI/negocios), 0 para la encuesta de confianza/filantropia que el report cita
+  como "ENAFI". Confirma que ENAFI (Encuesta Nacional sobre Filantropia y Sociedad Civil, ITAM) NO
+  esta en el manifiesto de este proyecto.
+- u0mf --busca encig --limite 20 -> 43 entradas (olas 2011/2015/2017/2019/2021/2023/2025, todas
+  registradas con cuestionario y base de datos).
+- u0mf --busca banxico --limite 40 -> 31 entradas: incluye CoDi/SPEI (R3.4), Informe Anual sobre
+  Infraestructuras de Mercados Financieros 2019-2024 (NO es el Informe Anual 1987 historico),
+  Encuesta de Competencias Financieras 2019/2021/2024, series SIE de SPEI. Ninguna es el Informe
+  Anual 1987 de Banxico ni una serie INPC/inflacion historica.
+- u0mf --busca inpc --limite 20 -> 0 entradas.
+- u0mf --busca monte --limite 10 -> 0 entradas (Nacional Monte de Piedad no registrado).
+- u0mf --busca bancoppel --limite 10 -> 0 entradas.
+- u0mf --busca "nu holdings" --limite 10 -> 0 entradas; --busca femsa -> 0; --busca spin -> 0.
+- u0mf --busca condusef --busca cat --limite 20 -> 0 entradas (no hay dataset agregado de CAT por
+  institucion; solo fichas individuales por institucion, fuera del manifiesto).
+- u0mf --busca buro --limite 20 -> 4 entradas (indice de reclamaciones CONDUSEF/Buro de Entidades
+  Financieras, no CAT).
+- u0mf --busca cnbv --limite 30 -> 30 entradas, incluye gen2_cnbv_040_1a_r16_imor_tipo_cartera
+  (reporte regulatorio 040-1A-R16, IMOR por tipo de cartera) y
+  gen2_banxico_imor_consumo_producto_mensual_2026t1_html: instrumento regulatorio correcto para
+  metricas de mora, NO abierto en este lote (concepto CRPOP-PAGO asignado a otros paquetes).
+- u0mf --busca prendari --limite 10 -> 0 entradas; --busca empeñ -> 47 entradas, ninguna relevante
+  a Monte de Piedad (son ENVIPE/ELCOS con "empeñ" como subcadena de otra palabra).
+- u0mf --busca remesas --limite 20 -> 2 entradas (enigh2022_descripcion_base_pdf,
+  enigh2022_nota_tecnica_pdf), ninguna es la serie Banxico de remesas.
+- u0mf --busca balanza --limite 20 -> 0 entradas.
+- u0mf --busca enigh --limite 20 -> confirma ENIGH 2022 en manifiesto (ejecutor previo, no
+  reejecutado por mi).
+- u0mf --busca susu -> 0; --busca "chit fund" -> 0; --busca arisan -> 0 (las 1680 entradas del
+  manifiesto examinadas en cada corrida).
+
+## 3. u0busca.py -- reactivos de encuesta
+- u0busca -q "confianza interpersonal|puede confiarse en la mayoria|se puede confiar en la mayoria"
+  --limite 15 -> 3 aciertos: LAPOP AmericasBarometer 2019/2021 (variable it1) y Latinobarometro 2024
+  (P10STGBS) SI miden confianza interpersonal y SI estan en el manifiesto (descargas_mx), pero el
+  report no los cita: cita "ENAFI".
+- u0busca -q "tiene algun seguro|tiene usted algun seguro" --limite 10 -> 12 aciertos: confirma
+  texto literal de P7_1 ENIF2015 (sin clausula de exclusion) vs P8_1 ENIF2018/2021/2024 (con
+  clausulas de exclusion crecientes: Seguro Popular -> +INSABI -> +IMSS-Bienestar). Base de la fila
+  finanzas-028 (comparabilidad de series).
+- u0busca -q "afore" --encuesta enif --ola 2024 --limite 10 -> confirma p9_1 "¿Usted tiene una
+  cuenta de ahorro para el retiro o AFORE?" y p9_1a, p8_5_7, bateria p11_3 (queja por institucion).
+- u0busca -q "atraso en el pago" --limite 10 (sin filtro) -> 149 aciertos con texto; confirma la
+  bateria p6_13_x de ENIF2015 y su homologa en ENIF2018 (p6_10_x).
+- u0busca -q "atraso en el pago" --encuesta ensafi --limite 10 -> 1 acierto: variable P6_10_7
+  "6.10 Durante el ultimo mes, para cubrir sus gastos, ¿usted se atraso en el pago de algun credito
+  o prestamo?" en ensafi2023_bd_csv_zip (payload real, fuente ensafi2023_fd_xlsx_zip).
+- u0busca -q "tarjeta de credito departamental|tarjeta de credito bancaria" --encuesta enif --ola
+  2024 --limite 10 -> confirma filtro_s6_1, p6_2_1, p6_2_2, p6_3_1/2, p6_8 en enif2024_csv (payload
+  real). Base de la fila finanzas-035 (credito formal 37.3%).
+- u0busca -q "1982|1987|1994|nacionalizacion|nacionalización|error de diciembre" --limite 15 (sin
+  filtro de encuesta, 9 tablas, 314256 identidades revisadas) -> 0 aciertos con texto. Reconfirma
+  (ampliando el filtro de encuesta a TODO el corpus) el hallazgo del ejecutor previo
+  (u0busca -q "1982|1987|nacionalizacion|nacionalización" --encuesta enif -> 0 aciertos). Base de
+  la fila finanzas-010 (NO-MEDIBLE-POR-DISEÑO, memoria historica).
+- u0busca -q "indulgencia" -q "aversión al riesgo|aversion al riesgo" --limite 20 -> 0 aciertos con
+  texto en ambas consultas (ejecutor previo, reverificado con la misma consulta por mi). Base de la
+  fila finanzas-030.
+
+## 4. u0pdf.py -- texto literal de cuestionarios/FD
+- u0pdf -q "confia usted|confía usted" --idsub encig23 --contexto 200 --limite 10 -> 0 coincidencias
+  (la pregunta de ENCIG no usa exactamente esa frase).
+- u0pdf -q "confianza" --idsub encig23 --contexto 200 --limite 8 -> 117 coincidencias; confirma
+  Seccion XI "Confianza en instituciones", pregunta 11.1 "En su opinion, ¿cuanta confianza le
+  generan (institucion)...?" con codigos 1=mucha confianza, 2=algo de confianza, 3=algo de
+  desconfianza, 4=mucha desconfianza, 5=no aplica (pagina 24 del cuestionario ENCIG 2023). Base de
+  la fila finanzas-013.
+- u0pdf -q "podria cubrir sus gastos con sus ahorros" --idsub enif2024 --contexto 400 --limite 5 y
+  u0pdf -q "no tiene ahorros" --idsub enif2024 --contexto 600 --limite 3 -> confirman pregunta 4.10
+  y primeros codigos (1=menos de una semana/no tiene ahorros, 2=al menos una semana pero menos de
+  un mes...) en pagina 9 del cuestionario ENIF 2024. Base de la fila finanzas-007.
+- u0pdf -q "que pensarian|que dirian|estatus" --idsub enif2024 --contexto 200 --limite 6 -> 0
+  coincidencias. Base de la fila finanzas-036 (NO-MEDIBLE-POR-DISEÑO, motivo de estatus).
+- (ejecutor previo, reverificado por mi via lectura del log) u0pdf -q "no le gusta endeudarse"
+  --idsub enif --limite 10 -> confirma P6_14 en enif2018/enif2021/enif2024 (p.18-19).
+- (ejecutor previo, reverificado) u0pdf -q "desconfianza o mal servicio" --idsub enif --limite 10;
+  u0pdf -q "no tiene cuenta" --idsub enif2024 --contexto 250 --limite 8 -> confirma P5_20 (p.26-27
+  del cuestionario 2024).
+- (ejecutor previo, reverificado) u0pdf -q "tanda" --encuesta enif --limite 15 (via u0busca) -> 32
+  aciertos con texto; confirma p5_1_5 en 2012/2015/2021/2024.
+- (ejecutor previo, reverificado) u0pdf -q "tiene algun seguro" --idsub enif_2015 --contexto 200
+  --limite 6 -> 1 coincidencia p.12 del cuestionario ENIF 2015 (P7.1, sin clausula de exclusion).
+- (ejecutor previo, reverificado) u0pdf -q "atraso en el pago" --idsub ensafi --contexto 200
+  --limite 8 -> 1 coincidencia p.17 del cuestionario ENSAFI 2023.
+- (ejecutor previo, reverificado) u0pdf -q "cuenta de ahorro" --idsub enif2024 --contexto 200
+  --limite 6 -> 7 coincidencias (p.9, p.12, p.16, p.24, p.25); confirma bateria 5.4 con opcion 4
+  "cuenta de ahorro?". Base de la fila finanzas-002.
+
+## 5. u0mf.py --calc (GEN2 existente)
+- u0mf --calc enif2024_csv --limite 10 -> 12 corridas de 326 (CALC-DIN-AHORRO-SOLO-INFORMAL-*,
+  CALC-DIN-CREDITO-PREDICCION-2024-*, CALC-DIN-LOTE-ENIF2024-*, CALC-DIN-LOTE-ORO-*,
+  CALC-ENIF-FINTECH-0001); ninguna nombrada especificamente para las cifras de estas filas salvo
+  CALC-ENIF-FINTECH-0001 (relevante para FIN-008/finanzas-020).
+- u0mf --calc ensafi2023_bd_csv_zip --limite 10 -> 3 corridas (CALC-ENSAFI-DISENO-0001 SELLADA
+  REPRODUCE; CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001 SUPERADA; su v1_1 SELLADA REPRODUCE).
+- u0mf --calc encig23_datosabiertos_csv --limite 10 -> 0 corridas.
+- u0mf --calc enif_2015_enif_2015_bd_sav --limite 10 -> 0 corridas.
+- u0mf --calc enif2018_csv --limite 10 -> 9 corridas (no usado directamente en este lote, contexto
+  para descartar confusion con enif2024).
+
+## 6. Web (WebSearch) -- maximo 12 consultas por lote; 2 las hizo el ejecutor previo (Banxico
+   remesas SIE; Banxico Informe Anual 1987), 6 las hice yo. Total 8/12. Solo fuentes oficiales,
+   academicas (.edu/.itam.mx) o de sitio del emisor (SEC, banxico.org.mx, femsa.gcs-web.com,
+   bancoppel.com, montepiedad.com.mx); ninguna consulta a prensa/portales de noticias.
+- (ejecutor previo) "Banxico remesas familiares serie histórica balanza de pagos SIE" -> confirma
+  cuadros SIE CA11 (Remesas, Balanza de Pagos), CE81, CE139 en banxico.org.mx/SieInternet.
+- (ejecutor previo) "Banxico Informe Anual 1987 inflación" -> confirma URL oficial
+  https://www.banxico.org.mx/publicaciones-y-prensa/informes-anuales/{A7C23DE0-32E0-901C-D8AB-2AC54703192B}.pdf
+  ("INFORME ANUAL 1987 México, D.F. 1988").
+- "ENAFI" confianza interpersonal México encuesta 22% -> primer indicio de que ENAFI = Encuesta
+  Nacional sobre Filantropia y Sociedad Civil.
+- ENAFI "Encuesta Nacional sobre Filantropía y Sociedad Civil" ITAM confianza interpersonal
+  resultados -> confirma emisor ITAM, URL enafi.itam.mx, olas 2005/2008/2013 (posible desactualizado
+  frente a ENIF 2024).
+- Nu Holdings investor relations Mexico 13.1 million customers third quarter 2025 earnings release
+  -> confirma cifra EXACTA en SEC Form 6-K (sec.gov/Archives/edgar/data/1691493/000129281425003948/
+  nupr3q25_6k.htm) y en international.nubank.com.br: "13.1 million customers in Mexico, ~14% of the
+  adult population".
+- FEMSA Spin by OXXO Digital Femsa 12 millones usuarios informe trimestral 2025 -> localiza fuente
+  oficial femsa.gcs-web.com, pero la serie oficial encontrada (Q1'25=13.8M/8.9M activos,
+  Q3'25=15.3M/9.9M activos, Q4'24=13.1M) NO calza con "12M/9M" del report -> PENDIENTE-
+  VERIFICACION-DOCUMENTAL.
+- Nacional Monte de Piedad tasa de interés mensual préstamo prendario tarifario oficial -> confirma
+  URL oficial montepiedad.com.mx/storage/tasas-y-costos.pdf y rangos consistentes con 4%-7% mensual
+  segun modalidad.
+- BanCoppel Préstamo Personal CAT promedio tasa ordinaria anual CONDUSEF ficha -> confirma "Ficha
+  Técnica Préstamo Personal BanCoppel" en bancoppel.com con CAT 80.9% sin IVA (coincide exacto con
+  el report), calculo 30/jun/2026, vigente ago-dic/2026.
+
+## 7. Reservas verificadas
+- No se toco ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola). Las busquedas de ENOE se limitaron a
+  2024-2025 (contexto de informalidad, ya contratado por ENOE-001 en otro paquete) y a la mencion
+  del propio report, sin copiar cifras 2026T1 a ningun campo.
+- No se abrio microdato (ZIP/CSV/DTA/DBF/SAV): todas las cifras porcentuales de encuesta citadas se
+  dejaron como MEDIBLE-EN-CORPUS/MEDIBLE-CON-ADQUISICIÓN con "codigos por extraer", nunca como
+  numero verificado byte a byte.

@@ -1,0 +1,105 @@
+# busquedas.log — lote salud-cuerpo (ASTRA5-U0), ejecutor de reemplazo, 24/sep/2026
+# El ejecutor previo fue interrumpido antes de escribir salida; sus búsquedas crudas
+# viven en /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/salud-cuerpo.log
+# (mismo corpus). Este log registra SOLO las búsquedas corridas por este ejecutor
+# (verificación propia de negativos clave + búsquedas nuevas no cubiertas por la previa).
+# Cada acierto/negativo reutilizado de la previa se cita en busqueda_a13 de filas.tsv
+# como "(ejecutor previo)".
+
+## 1. Reverificación propia de negativos clave del manifiesto (u0mf.py --busca)
+u0mf --busca encodat            -> 0 de 1680
+u0mf --busca conadic            -> 0 de 1680
+u0mf --busca drogas             -> 0 de 1680
+u0mf --busca alcohol            -> 0 de 1680
+u0mf --busca tabaco             -> 0 de 1680
+u0mf --busca vapeo              -> 0 de 1680
+u0mf --busca electronico        -> 0 de 1680
+u0mf --busca gluc               -> 0 de 1680
+u0mf --busca hba1c              -> 0 de 1680
+u0mf --busca quimica            -> 0 de 1680
+u0mf --busca bioquimica         -> 0 de 1680
+grep propio de CATALOGO-CORPUS.md por 'encodat'            -> 0 líneas
+grep propio de CATALOGO-CORPUS.md por 'ensanut 2022|2018'  -> 0 líneas (solo existe 'ensanut 2024')
+
+## 2. Utilizadores ENSANUT 2024 (institución de atención / farmacia con consultorio)
+u0pdf -q 'consultorio anexo a farmacia|farmacia privada|unidad medica particular|institucion o lugar' --idsub utilizadores -> 0
+u0pdf -q 'farmacia|consultorio|hospital|clinica|imss|issste' --idsub utilizadores          -> 94 coincidencias, 30 mostradas
+  => confirma variable u0201 (institución/prestador, 24 categorías) con categoría 12
+     "consultorios pertenecientes a farmacias/farmacias con consultorio médico" (p.2-p.3)
+u0busca -q 'consultorio|farmacia' --encuesta ensanut        -> 0 aciertos con texto (índice variable-level no trae las categorías de u0201)
+u0mf --busca utilizadores --busca stata                     -> 3 payload ids confirmados
+
+## 3. Necesidad de salud / motivo de no búsqueda (Hogar ENSANUT 2024)
+u0pdf -q 'h0406|necesidad de salud|tuvo alguna enfermedad, accidente' --id 1_vfinal_cuestionario_hogar... -> 8 coincidencias (p.8,13,14)
+u0busca -q 'h0406'  -> 4 aciertos con texto (variable confirmada, adultos/integrantes)
+u0pdf -q 'por que motivo (usted/nombre) no busco atencion' --id 1_vfinal...                -> 0 (frase exacta no matchea)
+u0busca -q 'h0405'  -> 8 aciertos con texto: "H0405 ¿Por qué motivo (USTED/NOMBRE) no buscó atención?"
+
+## 4. Etiquetado (sellos octagonales)
+u0pdf -q 'al ver los sellos de advertencia' --idsub etiquetado --contexto 2  -> 1 coincidencia p.12 (eti25, códigos completos)
+u0pdf -q 'eti2[0-9]|decidio comprar otro|producto sustituto|otra marca' --idsub etiquetado  -> 0
+u0mf --id nse_hogar_ensanut_2024_csv_csv     -> confirmado (lookup NSE por FOLIO_I)
+u0mf --busca integrantes --busca ensanut     -> 11 entradas (roster de edades, para inferir presencia de menores)
+
+## 5. Alcohol: contexto social / alcoholímetro (búsqueda documentada, negativo)
+u0busca -q 'alcoholimetro|alcoholímetro|manejar tomado|conducir despues de beber'  -> 0 aciertos con texto
+u0pdf -q 'en una reunion|en una fiesta|te invitaron a tomar|le ofrecieron' --idsub adultos  -> 5, ninguna relevante
+u0pdf -q 'maneja|conducir|vehiculo' --idsub adultos                                        -> 5, ninguna sobre alcoholímetro/DUI
+
+## 6. Consumo compensatorio / recompensa (negativo documentado)
+u0busca -q 'como recompensa|premiarse|consentirse'  -> 0 aciertos con texto (113780 con texto revisadas)
+
+## 7. Colorismo / imagen corporal
+u0busca -q 'colorismo|tono de piel|color de piel'   -> 17 aciertos con texto
+  => ENCUCI2020 (AP5_8_1 discriminación por tono de piel, AP10_12/13 escala cromática),
+     LAPOP 2019/2023 (colorr/colori), MOCIBA (crítica en línea por tono de piel/peso).
+     Ninguno combina con escala de imagen corporal.
+
+## 8. Familia cuidadora / adherencia
+u0pdf -q 'le ayuda a recordar|alguien le recuerda|cuidador' --idsub ensanut  -> 5 coincidencias,
+  todas de proxy-informante infantil (niños/adolescentes) o lactancia, ninguna de adherencia adulta a crónicos.
+
+## 9. Planificación familiar / preventivo mujeres
+u0busca -q 'planificacion familiar|metodo anticonceptivo|papanicolau|mastografia'  -> 33 aciertos con texto
+  => confirma a0823 (adultos ENSANUT2024) y ENADID2023 p9_9_11 (atención prenatal + oferta de anticonceptivo)
+u0busca -q 'revision medica|chequeo medico|examen medico periodico'  -> 28 aciertos (ENUT/ENASEM, no ENSANUT-adultos-chequeo)
+
+## 10. ENIGH2024 / gasto en salud
+u0mf --id enigh2024_cuest_gastos_hogar_pdf   -> documento confirmado en manifiesto (no leído su contenido)
+u0mf --id enigh2024_nc_csv                   -> payload confirmado, con nota interna de reserva del proyecto (PR #964,
+                                                  "sin consumidor de motor declarado"); no es una de las reservas §0.3 de
+                                                  este lote (ENOE2026/ENVIPE2026/ENCO); se declaró por transparencia y no se usó.
+
+## 11. Corridas GEN2 existentes (u0mf --calc) sobre los payloads usados
+adultos_ensanut2024_w_stata_stata__v2026_09_01        -> 1 corrida: CALC-ENSANUT-0001 (mide no-vacunación/razón logística, AJENA a este lote)
+etiquetado_ensanut2924_w_stata_stata__v2026_09_01     -> 0
+utilizadores_ensanut2024_w_stata_stata                -> 0
+hogar_ensanut2024_w_icb_csv_csv                       -> 0
+integrantes_ensanut2024_w_icb_stata_stata__v2026_09_01-> 0
+nse_hogar_ensanut_2024_csv_csv                        -> 0
+enigh2024_nc_csv                                      -> 1 corrida: CALC-ENIGH-DUELO-EMISIONES-0001 (mide duelo, AJENA a este lote)
+Lectura de spec.md de CALC-ENSANUT-0001 confirma: mide "proporción ponderada de MENCIONES de no-vacunación cuya razón es
+logística" (Rama B, prereg-caja-S7-L17) — no toca diabetes, alcohol, dieta, farmacia ni ningún componente de este lote.
+
+## 12. Web (WebSearch + WebFetch, contadas juntas; presupuesto 12/lote)
+1-9.  Ejecutor previo (ítems 13-21 de previas/salud-cuerpo.log): ENCODAT (búsqueda genérica), DOF vapeo,
+      Colchero BMJ/HealthAffairs, Basto-Abreu, SCJN NOM-051, CONABIO herbolaria, IMSS consultas 1er nivel,
+      INEGI hombres atención tardía, COFEPRIS consultorios en farmacias.
+10.   WebFetch propia: https://www.gob.mx/cms/uploads/attachment/file/1044514/ENCODAT-_ResumenEjecutivo.pdf
+      -> PDF binario; se leyó con la herramienta Read (págs.1-14) tras guardarse localmente.
+      Confirma literal, con página: alcohol mujeres 62.6%->69.3% (p.12), consumo excesivo último mes
+      adolescentes 8.3%->2.6% (p.13), vapeo 1.1%->2.6% (p.3), opioides 0.1%->1.4% con nota de tramadol
+      añadido como ejemplo en 2025 (p.2, p.9). NO trae desglose específico de fentanilo ni desglose regional
+      (Península Norte/Sur) en estas 14 páginas -> quedan CON-ADQUISICIÓN (falta Informe Completo).
+11.   WebSearch propia: 'International Food Policy Study Mexico 2020 2021 sellos etiquetado octagonal
+      Medigraphic 30.5% 38.7%' -> confirma Medigraphic IDARTICULO=122581 y PLOS Medicine 10.1371/journal.pmed.1004533.
+Total usado: 11 de 12 consultas web del lote (9 heredadas del ejecutor previo + 2 propias). Se dejó 1 en reserva
+y no se usó (Basto-Abreu ambiguo entre dos artículos, IMSS 38%, INEGI >60%, ENSANUT2018-19 regional, Psicumex 2022,
+imagen corporal SciELO y CONEVAL 44.5M quedaron PENDIENTE-VERIFICACION-DOCUMENTAL por presupuesto, no por no
+haberse buscado la posibilidad de hacerlo).
+
+## 13. Reporte completo
+Read del report íntegro (286 líneas): corpus/reports/Health__Body__Food_and_Substance_Use_in_Mexico__...md
+Regex propio de re-confirmación de todas las marcas [TIER] del archivo (mismo método que el ejecutor previo,
+ítem 8 del log previo): 31 líneas con marca, coincide exactamente con las 15 G + 12 P + 4 T del paquete;
+no se hallaron líneas INT-Lnn adicionales con tier explícito no cubiertas por G/P/T.

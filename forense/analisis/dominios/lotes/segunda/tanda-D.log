@@ -1,0 +1,138 @@
+ASTRA5-U0 segunda pasada -- tanda D (salud-mental + vejez) -- log de comandos y consultas crudas
+Fecha de ejecucion: 2026-09-24
+
+=== Nota de sesion (afecta varias filas) ===
+El cupo de WebSearch de esta sesion (compartido con otros ejecutores de lote corriendo en paralelo)
+se agoto a las primeras consultas de este lote ("this session has used its web search budget (200
+of 200 WebSearch calls)"). A partir de ahi se uso WebFetch como sustituto: (a) llamadas directas a
+api.crossref.org (metadatos bibliograficos por consulta/autor/DOI) y api.semanticscholar.org (esta
+ultima devolvio HTTP 429 de forma persistente); (b) fetch directo a sitios conocidos (impo.com.uy,
+en.wikipedia.org, conacem.org.mx, who.int, inegi.org.mx); (c) intento de sustituir busqueda libre
+con html.duckduckgo.com/html (bloqueado por CAPTCHA anti-bot) y www.bing.com/search (resultados
+desalineados/irrelevantes para consultas en espanol). Se deja constancia para el supervisor.
+
+=== Corpus (u0busca / u0pdf / u0mf), sin costo de presupuesto web ===
+u0mf --busca escobar -> 0 de 1680
+u0busca -q 'somatiz|somatico' -> 0 de 314256 identidades (113780 con texto)
+u0busca -q 'machismo|marianismo|caballerismo' -> 0 de 314256 identidades
+u0busca -q 'migrante|migracion' -> 205 de 314256 identidades (ENADID/ENOE/censo, ninguno sobre
+  generacion mexicano-americana en EE.UU.)
+u0mf --busca borges -> 0 de 1680; u0mf --busca orozco -> 0 de 1680; u0mf --busca ENEP -> 0 de 1680;
+  u0mf --busca epidemiologia --busca psiquiatrica -> 0 de 1680
+u0mf --busca 'censos economicos' -> 0 de 1680
+u0mf --busca stps -> 1 de 1680 (enti2022, no aplica al caso)
+u0busca -q 'actividad economica del negocio|a que se dedica el negocio|rama' --encuesta enoe ->
+  0 aciertos con texto
+u0busca -q 'sexo' --encuesta enoe -> 0 aciertos con texto (diccionario de ENOE sin texto indexado)
+u0mf --busca enasem -> 6 de 1680 (payloads 2018/2021/2024)
+u0busca -q 'cognitiv|demencia|memoria' --encuesta enasem -> 39 aciertos con texto (localiza
+  SC19_1/SC19_1_24 autorreporte diagnostico medico de demencia/Alzheimer, y RES_COGNITIVO_16/21
+  Mex-Cog)
+u0pdf -q 'deterioro cognitivo|demencia' --idsub enasem -> 0 (cache de texto de PDF no cubre)
+u0mf --calc enasem2018_bd_csv_zip / enasem2021_bd_csv_zip / enasem2024_bd_csv_zip -> 0 de 326
+  corridas cada uno
+u0mf --busca demencia -> 0 de 1680; u0mf --busca alzheimer -> 0 de 1680
+u0busca -q 'multigeneracional|tres generaciones|generaciones en el hogar' -> 0 aciertos con texto
+u0busca -q 'parentesco' --encuesta cpv2020 -> 1 acierto (PARENTESCO, fd:1174, hoja PERSONAS,
+  '¿Qué es (NOMBRE) de la jefa o jefe?')
+u0mf --calc cpv2020_caas_eum_csv / cpv2020_ceu_eum_csv -> 0 corridas
+u0mf --busca zarit -> 0 de 1680
+
+=== WebSearch (antes del agotamiento del cupo de sesion) ===
+1. "Escobar 1987 Somatic Symptom Index Mexican American Los Angeles ECA somatization" -> confirma
+   Escobar et al. 1987, Arch Gen Psychiatry 44(8):713-8, DOI 10.1001/archpsyc.1987.01800200039006,
+   PMID 3498454; localiza articulo 1989 via PubMed PMID 2918297.
+2. "Escobar \"Somatization in the community\" 1987 Archives General Psychiatry DOI PMID" -> confirma
+   cita completa y DOI.
+3. "Husain 2007 Latino patients treatment somatic complaints depression more likely" -> confirma
+   Husain et al. 2007, STAR*D, J Psychosom Res 63:113-122.
+4. "Husain 2007 Pain in depression STARD Journal of Psychosomatic Research DOI" -> confirma cita
+   completa (Husain MM, Rush AJ, Trivedi MH, McClintock SM, Wisniewski SR, Davis L, Luther JF,
+   Zisook S, Fava M).
+5. "Baer nervios susto strongly associated with depression Mexican culture-bound syndrome" -> ubica
+   grupo de autores Baer et al. sobre nervios/susto y depresion.
+6. "Baer Susto and Nervios Culture Medicine and Psychiatry 2003 authors volume pages" -> identifica
+   dos candidatos: Baer et al. 2003 CMP 27(3):315-337, y Baer et al. 2008 CMP 32(3):406-420, DOI
+   10.1007/s11013-008-9101-7.
+7. "Borges 2013 AJPH 12-month prevalence Mexican Americans third generation migrant paradox mental
+   disorder" -> confirma Orozco/Borges/Medina-Mora/Aguilar-Gaxiola/Breslau 2013, AJPH 103(9), DOI
+   10.2105/AJPH.2012.301169, PMID 23865664; cita verbatim identica al report; confirma que el lado
+   mexicano usa la ENEP (2001-2002) fusionada con CPES (EE.UU., 2001-2003) via CIDI.
+8. "Arciniega 2008 Journal of Counseling Psychology machismo caballerismo scale development
+   traditional" -> confirma Arciniega/Anderson/Tovar-Blank/Tracey 2008, J Couns Psychol 55(1):19-33,
+   DOI 10.1037/0022-0167.55.1.19.
+9. "Nunez 2016 HCHS/SOL marianismo self-silencing depressive symptoms Hispanic women N=4426" ->
+   ubica el estudio y N exacto.
+10. "Nunez Gonzalez Talavera 2016 Machismo Marianismo and Negative Cognitive-Emotional Factors
+    Journal Latina Psychology DOI" -> confirma cita completa, DOI 10.1037/lat0000050.
+11. '"salud mental" "primer nivel" atención 30% unidades México 2020 OMS perfil país cobertura'
+    -> RECHAZADA: "this session has used its web search budget (200 of 200 WebSearch calls)".
+    A partir de aqui, WebSearch no disponible para el resto del lote.
+
+=== WebFetch: api.crossref.org (sustituto de busqueda tras agotarse WebSearch) ===
+- query.author=Salazar-Barajas + query.bibliographic=cuidadores+funcionalidad+familiar -> localiza
+  Salazar-Barajas ME como coautora en capitulo 2021 (DOI 10.59760/873320.04).
+- query.author=Salazar-Barajas + rows=20 sort=published order=asc -> resultados historicos
+  irrelevantes (ordenamiento por fecha ascendente desde 1850).
+- query.bibliographic='perfil cuidador informal funcionalidad familiar sobrecarga horas'
+  + query.author=Salazar + filtro 2018-2020 -> CONFIRMA Salazar-Barajas et al. 2019, Enfermeria
+  Universitaria 16(4), DOI 10.22201/eneo.23958421e.2019.4.615.
+- query.bibliographic='sobrecarga cuidador escala Zarit Ciudad Obregon Sonora adultos mayores' ->
+  sin match relevante.
+- query.author=Landeros-Perez + query.bibliographic='sobrecarga cuidador Guanajuato 2014' ->
+  CONFIRMA Rodriguez-Medina/Landeros-Perez 2014, Enfermeria Universitaria 11(3):87-93, DOI
+  10.1016/s1665-7063(14)72671-5.
+- query.bibliographic='cuidadores adultos mayores Cajeme Sonora sobrecarga carga cuidador' -> sin
+  match (tras un intento previo con HTTP 429).
+- query.bibliographic='Cabada Ramos Martinez Castillo sindrome cuidador ISSSTE depresion ansiedad'
+  -> HTTP 429 en primer intento, reintento sin match.
+- query.author='Cabada Martinez Castillo' + query.container-title='Psicologia y Salud' -> 10
+  resultados, confirma que la revista SI esta indexada (Sanchez Cabada et al. 2021, DOI
+  10.25009/pys.v32i1.2710) pero no el articulo de 2017 buscado.
+- query.author='Rojas Huerta Lara Lara' + bibliografico migracion/vulnerabilidad/municipios -> 12
+  resultados, confirma Rojas Huerta AV (DOI 10.15517/psm.v19i2.46929, 2022, articulo distinto).
+- query.author='Lara Lara' + bibliografico similar -> 7 resultados, sin coautor 'Lara Lara';
+  mas cercano: Hernandez Lara/Mercado Lopez 2019, DOI 10.15446/ts.v21n2.75285.
+- query.bibliographic='CONACEM certificacion geriatras Mexico Garcia Pena' -> 6 resultados, ninguno
+  coincide (confirma que Ma. del Carmen Garcia-Pena es autora academica real via DOI
+  10.2466/pr0.84.2.677-685, 1999, articulo distinto).
+- query.bibliographic='trabajadoras del hogar cuidado remuneradas Mexico OIT INEGI 647 mil' -> 8
+  resultados, ninguno coincide (Peru, Bolivia/Uruguay).
+- query.bibliographic='SHCP costo fiscal sistema nacional cuidados Mexico PIB' -> 6 resultados,
+  identifica Contreras Hernandez 2025 (CLACSO, DOI 10.54871/cl4c90ai) como candidato mas cercano.
+- query.author=Inter-American Development Bank + bibliografico aging 65 2055 -> sin match directo.
+- query.bibliographic='envejecimiento poblacional America Latina BID cuidados largo plazo' ->
+  identifica 'Long-term Care in Latin America and the Caribbean', PAHO/IDB 2023, DOI
+  10.37774/9789275127155.
+- query.bibliographic='WHO Mental Health Atlas Mexico 2020 primary health care facilities mental
+  health services' -> 6 resultados, ninguno es el Atlas (no indexado como articulo de revista).
+
+=== WebFetch: sitios directos ===
+- www.gob.mx/salud -> prueba de conectividad (OK).
+- www.impo.com.uy/bases/leyes/19353-2015 -> CONFIRMA Ley 19.353, Uruguay, promulgada 27/11/2015,
+  crea el Sistema Nacional Integrado de Cuidados (SNIC).
+- publications.iadb.org/en/search (query BID envejecimiento 65+ 2055) -> HTTP 403.
+- www.mhlw.go.jp/english/topics/elderly/care/index.html -> HTTP 404.
+- en.wikipedia.org/wiki/Long-term_care_insurance -> confirma sistema japones (Kaigo Hoken)
+  introducido en 2000.
+- www.conacem.org.mx/ -> confirma existencia de 'Revista Certeza CONACEM' con link a
+  certeza.conacem.org.mx.
+- certeza.conacem.org.mx/ -> confirma numero 14 vigente (ene-abr 2026).
+- certeza.conacem.org.mx/ediciones-anteriores -> lista completa de 14 numeros (2022-2026) + edicion
+  30 aniversario, con URLs de PDF.
+- certeza.conacem.org.mx/numero-13/contenido -> tabla de contenido, sin articulo de Garcia Pena.
+- certeza.conacem.org.mx/numero-14/contenido -> tabla de contenido, sin articulo de Garcia Pena.
+- www.inegi.org.mx/app/saladeprensa/buscador (busqueda 'cuidadoras') -> HTTP 403 (bloqueo anti-bot).
+- www.who.int/publications/i/item/9789240036703 -> CONFIRMA 'Mental Health Atlas 2020', OMS,
+  publicado 8-oct-2021, datos de referencia 2020, incluye indicador de integracion de salud mental
+  en atencion primaria.
+- html.duckduckgo.com/html/?q=ley+de+cuidados+Jalisco+febrero+2024+congreso -> bloqueado por
+  CAPTCHA anti-bot.
+- www.bing.com/search?q=%22ley+de+cuidados%22+Jalisco+febrero+2024+congreso+primera+estatal ->
+  resultados desalineados/irrelevantes.
+- www.bing.com/search?q=%22Ley+de+Cuidados+del+Estado+de+Jalisco%22 -> resultados desalineados/
+  irrelevantes.
+
+=== api.semanticscholar.org ===
+- graph/v1/paper/search?query=cuidadores+adultos+mayores+Ciudad+Obregon+Sonora+sobrecarga+Zarit ->
+  HTTP 429 (limite de tasa), sin resultado.

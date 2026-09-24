@@ -1,0 +1,162 @@
+ASTRA5-U0 · segunda pasada · tanda H (genomica, autoridad, capital-social) · 2026-09-24
+Ejecutor: fork de sesión (Sonnet 5). Repo mm-astra5-mapa-dominios-1 de solo lectura, cwd absoluto sin cd.
+Herramientas: U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (u0busca.py, u0pdf.py, u0mf.py)
+NOTA: la ruta U dada en INSTRUCCIONES-LOTE.md (sesión 6f1534e5-...) no existía en este entorno; las mismas
+herramientas se localizaron en la carpeta scratchpad de ESTA sesión (427b1d4d-...) y se usaron desde ahí.
+NOTA CRÍTICA: WebSearch llegó agotado (200/200 usados por la sesión ANTES de empezar mis búsquedas propias);
+ninguna consulta WebSearch de esta tanda se pudo ejecutar. WebFetch SÍ funcionó (presupuesto separado) y se usó
+extensivamente para páginas oficiales conocidas, PubMed y la API de CrossRef.
+
+=== Corpus (u0mf / u0busca / u0pdf) ===
+
+python3 $U/u0mf.py --busca cpv2020 --limite 60
+  -> 8 entradas: cpv2020_cuestionario_ampliado_pdf, cpv2020_caas_eum_csv, cpv2020_iter_nal_csv,
+     cpv2020_diccionario_cuestionario_ampliado_xlsx, cpv2020_caas_descriptor_bd_xlsx, cpv2020_ceu_descriptor_bd_xlsx,
+     cpv2020_fd_iter_pdf, cpv2020_ceu_eum_csv (todos con id/sha reales en manifiesto)
+
+python3 $U/u0mf.py --busca censo --busca religio --limite 40
+  -> 0 entradas (AND de substrings no coincide; no implica ausencia, ver u0busca abajo)
+
+python3 $U/u0busca.py -q "religion" --limite 40
+  -> 54 aciertos con texto; incluye cpv2020_caas_eum_csv (T_PCATOLICA, T_PSIN_RELIG, nivel CAAS/trabajadores) y
+     fd_ext de cpv2020_fd_iter_pdf (ITER, nivel localidad/entidad)
+
+python3 $U/u0busca.py -q "catolic" --limite 20
+  -> 10 aciertos con texto; confirma PCATOLICA en fd_ext (cpv2020_fd_iter_pdf) y en CAAS
+
+python3 $U/u0busca.py -q "protestante" -q "evangelic" -q "sin religion" --limite 60
+  -> confirma PRO_CRIEVA y PSIN_RELIG en fd_ext (cpv2020_fd_iter_pdf, ITER) y T_PRO_CRIEVA/T_PSIN_RELIG en CAAS
+
+python3 $U/u0busca.py -q "PPRO_EVAN" -q "PSIN_RELIG" -q "POTRA_RELIG" --limite 40
+  -> PPRO_EVAN: 0; PSIN_RELIG: 5 aciertos (confirma fd_ext cpv2020_fd_iter_pdf); POTRA_RELIG: 0 (variable
+     correcta es POTRA_REL, ver u0pdf abajo)
+
+python3 $U/u0pdf.py -q "PCATOLICA" --id cpv2020_fd_iter_pdf --limite 10   -> p.26 (línea 214)
+python3 $U/u0pdf.py -q "PRO_CRIEVA" --id cpv2020_fd_iter_pdf --limite 10 -> p.26 (línea 215)
+python3 $U/u0pdf.py -q "PSIN_RELIG" --id cpv2020_fd_iter_pdf --limite 10 -> p.26 (línea 217; también aparece
+     POTRA_REL=216 "diferentes a las anteriores")
+
+Lote religiosidad ya dictaminado (consultado por instrucción del supervisor):
+  /home/pc0/mm-astra5-mapa-dominios-1/forense/analisis/dominios/lotes/religiosidad-filas-v1_0.tsv
+  grep -i "cpv2020|iter_cpv2020|censo.*2020.*religio|catolic" -> filas RELIG-001 (MEDIBLE-CON-ADQUISICIÓN, serie
+  2010-2020), RELIG-006 (MEDIBLE-EN-CORPUS, Chiapas/entidad), RELIG-007 (MEDIBLE-EN-CORPUS, sin religión 8.1%),
+  RELIG-008 (MEDIBLE-CON-ADQUISICIÓN, subcategoría 'creyente sin adscripción'); todas sobre el mismo payload
+  cpv2020_iter_nal_csv / fuente cpv2020_fd_iter_pdf p.26. Se anotó el vínculo en dedup_concepto de AUTOR-021.
+
+python3 $U/u0mf.py --busca envipe2023 --limite 30  -> 9 entradas (csv, fd_pdf, cuest_principal_pdf,
+     cuest_modulo_pdf, bd en dta/csv/dbf/sav/rdata; todos con id/sha reales)
+python3 $U/u0mf.py --busca envipe2024 --limite 30  -> 9 entradas (mismo patrón)
+
+python3 $U/u0busca.py -q "denuncio el delito" -q "carpeta de investigacion" --encuesta envipe2023 --limite 30
+  -> "denuncio el delito": 0; "carpeta de investigacion": 24 aciertos, confirma BP1_24/25/26/36_02 en TMod_Vic,
+     fd_envipe2023.pdf p.64-65 (multiplicado por 5 formatos de archivo: dta/sav/csv/dbf/csv-original)
+
+python3 $U/u0busca.py -q "le preocupa" -q "problema mas importante" --encuesta envipe2024 --limite 30
+  -> "le preocupa": 6 aciertos, confirma AP4_2_01 (TPer_Vic1, fd p.18); "problema mas importante": 0
+
+python3 $U/u0busca.py -q "preocupan mas.*inseguridad" -q "inseguridad" --encuesta envipe2024 --limite 30
+  -> "inseguridad": 30 aciertos, confirma AP4_2_05="Inseguridad" (TPer_Vic1, fd p.19) y AP5_7_1..4 (disposición
+     de autoridades ante inseguridad, no relacionado)
+
+python3 $U/u0busca.py -q "denuncio" --encuesta envipe2023 --limite 20
+  -> 12 aciertos, confirma BP1_23 (razón de no denuncia, p.64) y BP1_28 (razón de denuncia, p.65)
+
+WebFetch/u0pdf adicional para la base de denuncia (no hubo query directo "usted o alguien denuncio" con acierto):
+python3 $U/u0pdf.py -q "1.21" --id envipe2023_fd_pdf --limite 5
+  -> p.64: "...bp1_20 numerico 1 si 1 2 no... 1.21 ¿algun otro integrante de este hogar acudio a denunciar..."
+     bp1_21 numerico 1 si 1 2 no 9 no sabe/no responde -- confirma BP1_20 como base de denuncia (Sí/No)
+python3 $U/u0pdf.py -q "BP1_22" --id envipe2023_fd_pdf --limite 5
+  -> p.64: 1.22 "¿Conoció usted todo el proceso de denuncia...?"
+
+python3 $U/u0pdf.py -q "cifra negra" --id envipe2023_fd_pdf --limite 10 -> 0 (el FD no usa el término
+  metodológico "cifra negra"; el indicador se construye a partir de BP1_20/BP1_24, no está nombrado así en el FD)
+
+Teletrabajo / relación de autoridad con el jefe (AUTOR-028, instrucción del supervisor) — 13 consultas, 0 aciertos:
+python3 $U/u0busca.py -q "trabajo en casa" -q "teletrabajo" -q "home office" -q "desde su hogar" --limite 60 -> 0/0/0/0
+python3 $U/u0busca.py -q "trabajo remoto" -q "trabaja en su vivienda" -q "trabaja en casa" -q "modalidad de trabajo" --limite 40 -> 0/0/0/0
+python3 $U/u0busca.py -q "trabajar desde" -q "trabajar a distancia" --encuesta endutih2024 --limite 20 -> 0/0
+python3 $U/u0busca.py -q "relacion con su jefe" -q "confianza en su jefe" -q "autoridad de su jefe" --limite 40 -> 0/0/0
+python3 $U/u0busca.py -q "lugar donde trabaja" -q "en su vivienda propia" --encuesta enoe --limite 20 -> 0/0
+
+Manifiesto (u0mf --busca) para términos genómica/mercado/normativa — todos 0 (ningún documento en manifiesto,
+confirma que estos son documentos externos, no instrumentos de encuesta del corpus):
+python3 $U/u0mf.py --busca mcps|gpr75|map3k15|prediabetes|cofepris|biobanco|genet|hispanel|brca|sigma|gen-t|
+  theranomics|novaseq|prometh|imarc --limite 5   -> 0 en las 15 búsquedas
+
+=== Web (WebFetch; WebSearch no disponible, presupuesto de sesión agotado 200/200) ===
+
+WebFetch https://www.imarcgroup.com/mexico-genomics-market
+  -> Report ID SR112026A33842; base 2025=USD 518.9M; meta 2034=USD 1540.4M; CAGR 12.47%; "does not provide a
+     separate 2024 figure; 2025 serves as base year". [GENOM-009]
+
+WebFetch https://duckduckgo.com/html/?q=... (redirect) -> https://html.duckduckgo.com/html/?q=...
+  -> bloqueado por captcha "select squares with ducks"; sin resultados utilizables. [CAPSOC-022, intento fallido]
+
+WebFetch https://www.gob.mx/inmegen/prensa -> HTTP 404
+WebFetch https://www.gob.mx/cofepris/acciones-y-programas -> HTTP 404
+WebFetch https://www.inmegen.gob.mx/
+  -> portada sin mención de NovaSeq X Plus/PromethION P2/eVA BRCA/piloto forense; sí menciona otra
+     actualización de infraestructura (citómetro BD FACSDiscover S8). [GENOM-015, GENOM-016]
+WebFetch https://www.gob.mx/cofepris
+  -> confirma programa vigente RELIANCE 2.0 / Vía Regulatoria Abreviada (guías fechadas 12-jun-2026); noticias
+     recientes jul-2025/jul-2026 sin mención de vigencia 10 años/287->106 trámites/16 guías ICH ni marco DTC/
+     PGx/SaMD específico. [GENOM-012, GENOM-013]
+WebFetch https://theranomics.com -> HTTP 404 [GENOM-018]
+WebFetch https://investor.regeneron.com/news-releases -> timeout 60000ms, sin contenido [GENOM-024]
+
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=SLC16A11+type+2+diabetes+Mexico+SIGMA
+  -> Williams AL et al.; SIGMA Type 2 Diabetes Consortium; "Sequence variants in SLC16A11 are a common risk
+     factor for type 2 diabetes in Mexico"; Nature 506(7486):97-101; 6-feb-2014; PMID 24390345;
+     DOI 10.1038/nature12828. [GENOM-025]
+
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=BRCA1+ex9-12del+Mexico+founder+mutation
+  -> 7 artículos; candidato principal Villarreal-Garza C et al. 2015, Cancer, PMID 25236687 ("Significant
+     clinical impact of recurrent BRCA1 and BRCA2 mutations in Mexico"); también Gallardo-Rincón D et al. 2019,
+     Gac Med Mex, PMID 31787769 ("30% BRCA1 mutation carriers con fundadora"); Martínez-Treviño 2018 PMID
+     29901183; Villarreal-Garza 2015 Breast Cancer Res Treat PMID 25716084; Gallardo-Rincón 2020 Transl Oncol
+     PMID 31869745; Alday-Montañez 2025 J Med Life PMID 40071159; Díaz-Velásquez 2023 Front Genet PMID 36845387.
+     [GENOM-026]
+
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=HISPANEL+BRCA+Hispanic+panel+genetic+testing
+  -> Villarreal-Garza C et al. 2015, Cancer, PMID 25236687: "HISPANEL detected 68% of all BRCA mutations" at
+     "2% of the sequencing and MLPA cost" (coincide con el ~68%/~2% citado por el report); también Herzog JS et
+     al. 2021, NPJ Breast Cancer, PMID 34413315 ("Genetic epidemiology of BRCA1- and BRCA2-associated cancer
+     across Latin America"). Sin la "revisión de 2024" citada por el report. [GENOM-027; misma fuente probable
+     que GENOM-026]
+
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study+type+2+diabetes+mortality+
+  Mendelian+randomization+2025 -> 0 resultados
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study+prediabetes+mortality+2025
+  -> fallo de cookies de PubMed, sin datos recuperables
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study+GPR75+MAP3K15+drug+target
+  -> 0 resultados
+WebFetch https://pubmed.ncbi.nlm.nih.gov/?term=Mexico+City+Prospective+Study+2025
+  -> 237 resultados totales en 2025 para MCPS (primeros 10 mostrados); incluye Wen S et al. Nature Genetics
+     mar-2025 PMID 39948438 (hematopoyesis clonal, ya contrato GENOM-003) y Turner M et al. Hypertension
+     nov-2025 PMID 40959886 (presión arterial/mortalidad); ninguno de los tres productos citados por
+     GENOM-007 aparece entre los primeros 10. [GENOM-007]
+
+WebFetch https://api.crossref.org/works?query.author=Fuentes+Diaz+Gasparello&query.bibliographic=CRAC-PC+
+  Guerrero+policia+comunitaria&rows=5
+  -> Gasparello, Giovanna (2020), "Administración autónoma de la justicia y su relación con el estado: el
+     sistema de seguridad y justicia comunitaria de la Costa-Montaña de Guerrero, México", tesis Maestría en
+     Ciencias Antropológicas, UAM Iztapalapa, DOI 10.24275/uami.pr76f3492. [CAPSOC-022]
+WebFetch https://api.crossref.org/works?query.author=Di+Giannatale+Elbittar&query.bibliographic=trust+game+
+  Mixtlan+Economia+Mexicana&rows=5 -> HTTP 429 Too Many Requests
+WebFetch https://api.crossref.org/works?query.bibliographic=Elbittar+trust+game+savings+bank+Mexico+field+
+  experiment&rows=5 -> sin coincidencia relevante (documentos bancarios históricos 1900s-1920s). [CAPSOC-026]
+WebFetch https://api.crossref.org/works?query.bibliographic=associational+membership+Latin+America+
+  comparative+formal+informal+survey&rows=5 -> sin coincidencia relevante (Sub-Sahara/Ecuador/economía
+  informal). [CAPSOC-007]
+
+WebFetch https://www.cafonline.org/docs/default-source/about-us-publications/wgi_2024_report.pdf
+  -> página no encontrada (URL construida por analogía, no confirmada por búsqueda). [CAPSOC-031]
+WebFetch https://www.transparency.org/en/gcb/latin-america-caribbean/latin-america-and-the-caribbean-2019
+  -> HTTP 404. [AUTOR-023, intento fallido]
+
+=== Filas cerradas sin nueva consulta web (usan evidencia ya documentada por el ejecutor previo) ===
+GENOM-008 (registro COFEPRIS SaMD / ClinicalTrials.gov no accesible sin portal específico)
+GENOM-022 (LFPDPPP/LGS/reglamentos completos no accesibles sin WebSearch/DOF)
+GENOM-028 (directorio BI julio 2025 no identificable sin WebSearch)
+AUTOR-019 (evidencia ya en la fila, ejecutor previo con WebSearch)
+AUTOR-023 (evidencia ya en la fila, ejecutor previo con u0pdf + WebSearch)

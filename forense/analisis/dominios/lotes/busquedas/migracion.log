@@ -1,0 +1,72 @@
+# Busquedas del ejecutor de este lote (migracion), sesion del 24/sep/2026
+# Corpus: /home/pc0/mm-astra5-mapa-dominios-1 (cwd, sin cd a subdirectorios)
+# U = /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+#
+# NOTA: un ejecutor previo de este lote fue interrumpido antes de escribir salida.
+# Sus busquedas crudas (comandos y resultados, mismo corpus) estan en
+# previas/migracion.log y se citan en busqueda_a13 de filas.tsv como
+# "(ejecutor previo)" cuando se reutiliza un conteo. Este archivo registra las
+# busquedas ADICIONALES corridas por este ejecutor, mas las reejecutadas para
+# verificar independientemente lo que sostiene un dictamen.
+
+### Instrumentos mexicanos explicitamente indicados por el encargo (revisados antes de declarar nada no medible)
+
+[1] python3 $U/u0busca.py -q "TMIGRANTE" -> 0 (reejecutado por el previo; confirmado ausente como termino literal)
+[2] python3 $U/u0busca.py -q "THOGAR" -> 0 (idem)
+[3] python3 $U/u0busca.py -q "P4_1" --encuesta enadid --limite 20 -> 40 aciertos: THOGAR.p4_1 (condicion migracion int'l), TMIGRANTE.p4_10_1/p4_10_2/p4_11 (mes/ano/pais de salida) [ejecutor previo, reverificado]
+[4] python3 $U/u0busca.py -q "condicion de migracion|condición de migración" -> 2 aciertos: THOGAR.migra_ho "Condicion de migracion internacional en el hogar" (enadid2023, fd_enadid23.xlsx hoja THOGAR fila 118)
+[5] python3 $U/u0busca.py -q "migra_ho" -> 2 aciertos (mismo campo, confirmado)
+[6] python3 $U/u0busca.py -q "parentesco" --encuesta enadid -> 6 aciertos: TMIGRANTE.p4_7c "Clave Parentesco" (fila 65), TSDEM.par_ag/paren_c
+[7] python3 $U/u0busca.py -q "jefe|jefa" --encuesta enadid -> 16 aciertos: THOGAR.edad_jefe "Edad de la (el) jefa(e) del hogar"
+[8] python3 $U/u0busca.py -q "P4_13|p4_13" -> 51 aciertos (20 mostrados): TMIGRANTE.p4_13 "Cuando (NOMBRE) se fue la ultima vez, ¿que tipo de documento llevaba?" (enadid2023, contexto_fd26:4672)
+[9] python3 $U/u0pdf.py --id enadid2023_hogar_cuestionario_pdf -q "documento" -> 16 coincidencias; p.28 confirma seccion 4.10-4.15 (fecha/pais/estado de destino, documento para emigrar, causa de emigracion)
+[10] python3 $U/u0pdf.py --id enadid2023_hogar_cuestionario_pdf -q "causa del retorno" --contexto 600 -> 4 coincidencias, p.28-30: secuencia 4.16-4.20 (estado de residencia EUA, lugar de residencia al retorno, fecha de retorno, causa del retorno, residencia actual)
+[11] python3 $U/u0pdf.py --id enadid2023_hogar_cuestionario_pdf -q "le deportaron" --contexto 600 -> 20 coincidencias, p.6,10,28-30: codigo de causa de retorno incluye "le deportaron (regresaron)"
+[12] python3 $U/u0pdf.py --id cpv2020_cuestionario_ampliado_pdf -q "migrante" -> 1 coincidencia, p.13: seccion IV "migracion internacional" (condicion, numero de personas, personas migrantes ultimos 5 anos)
+[13] python3 $U/u0pdf.py --id cpv2020_cuestionario_ampliado_pdf -q "Estados Unidos" -> 6 coincidencias, p.7,9,11,13: codigos "en los estados unidos de america" para destino/residencia previa
+[14] python3 $U/u0busca.py -q "migrante" --encuesta cpv -> 1 acierto: tabla MIGRANTES, variable ID_MII (cpv2020_diccionario_cuestionario_ampliado_xlsx)
+[15] python3 $U/u0busca.py -q "pais de nacimiento|entidad de nacimiento|nacio en otro pais|nació en otro país" -> 0 aciertos
+[16] python3 $U/u0busca.py -q "Estados Unidos|extranjero|otro pais|otro país" --encuesta enoe --limite 20 -> 10 aciertos: solo clasificacion laboral ("trabajador(a) en el extranjero" P7B/P9H_1) y motivo de dejar trabajo anterior ("reunirse con la familia", lugar "otro pais"); SIN modulo de migracion/retorno propio
+[17] python3 $U/u0busca.py -q "regreso|retorno" --encuesta enoe --limite 20 -> 4 aciertos: todos de clasificacion de ausentismo laboral ("ausente con retorno asegurado"), no de retorno migratorio
+[18] python3 $U/u0busca.py -q "migrante|migracion|migración" --encuesta enif --limite 20 -> 0 aciertos
+[19] python3 $U/u0busca.py -q "migrante|migracion|migración" --encuesta ensanut --limite 20 -> 0 aciertos
+[20] python3 $U/u0mf.py --busca banxico --limite 40 -> 31 aciertos: TODOS de CoDi/SPEI, ENCF (competencias financieras), IMOR, satisfaccion de usuarios; NINGUNO de series de remesas -> confirma que la serie de remesas de Banxico NO esta en el manifiesto de este corpus
+[21] python3 $U/u0pdf.py --id enigh2024_descripcion_base_pdf -q "remesas" -> 6 coincidencias, p.33 (listado variables #51 remesas, #53 transf_hog) y p.223 (formula: "remesas: ... suma de ingresos.ing_tri cuando la clave es p041 ... ingresos provenientes de otros paises")
+[22] python3 $U/u0pdf.py --id enigh2024_descripcion_base_pdf -q "transferencias" -> 19 coincidencias, p.22 (variable transferen)
+[23] python3 $U/u0pdf.py --id enigh2024_cuest_hogares_pdf -q "P041" -> 0 coincidencias (pdftotext no indexa el cuestionario por clave de pregunta en este caso)
+[24] python3 $U/u0pdf.py --id enigh2024_cuest_hogares_pdf -q "provenientes de otros" -> 0 coincidencias
+[25] python3 $U/u0busca.py -q "donativo|regalo" --encuesta enigh -> 0 aciertos
+[26] python3 $U/u0busca.py -q "uso de las remesas|destino de las remesas|en que utiliza" -> 0 aciertos -> confirma que ningun instrumento del corpus mide el USO/destino de remesas (solo el monto como ingreso)
+
+### Busquedas de constructos psicologicos citados por el report (para fundamentar NO-MEDIBLE-POR-DISEÑO)
+
+[27] python3 $U/u0busca.py -q "duelo migratorio|sindrome de Ulises|síndrome de Ulises" -> 0 aciertos
+[28] python3 $U/u0busca.py -q "ansiedad" -> 9 aciertos, ninguno de migracion (MOCIBA ciberacoso p9_3, ENADID salud materna p9_9_10, ENASIC cuidado P6_11_2/P6_30_2)
+[29] python3 $U/u0busca.py -q "prefiere migrar|preferencia migrar|rito de paso" -> 0 aciertos
+[30] python3 $U/u0busca.py -q "empoderamiento" -> 0 aciertos
+
+### Instituciones/documentos citados por el report, ausentes del manifiesto (confirmado por el ejecutor previo, no repetido)
+
+[31] u0mf --busca inm/bracero/desplaza/acnur/cmdpdh/pdh -> 0 cada uno (ejecutor previo); desplaza/acnur/cmdpdh/pdh: 0, 1680 entradas examinadas
+[32] u0mf --busca abraza/finabien/remittance -> 0 cada uno (ejecutor previo)
+
+### WebSearch (presupuesto del lote: 12 consultas maximo, WebSearch+WebFetch juntas; 8 ya usadas por el ejecutor previo, 3 mas en esta sesion = 11/12)
+
+[33 = previo #23] "remesas México 2025 total anual caída Banxico" 23/sep -> banxico.org.mx/publicaciones-y-prensa/remesas/ boletines confirmados; cifras parciales (nov-2025 -5.7% ia, ene-sep 2025 45,681 vs 48,360 mdd -5.5%)
+[34 = previo #24] "desplazamiento interno forzado México 2024 Travesías Forzadas informe" 23/sep -> ibero.mx confirma 28,900 personas, 72 eventos, 13 estados, +129% vs 2023, colaboracion ACNUR, Chiapas 61.8%
+[35 = previo #25] "programa México te abraza centros de atención migrantes retornados" 23/sep -> gob.mx/segob confirma comunicado de lanzamiento con 9 centros (report U0 cita 8 a inicios de 2026: discrepancia anotada en migracion-038)
+[36 = previo #26] "one big beautiful bill act remittance transfer excise tax 1 percent 2026" 23/sep -> irs.gov confirma 1% desde 1/ene/2026, exime digital/bancario
+[37 = previo #27] "Remittance Prices Worldwide database average cost sending money Q4 2023 6.4%" 23/sep -> remittanceprices.worldbank.org confirma 6.39% promedio simple (Q4-2023), 4.88% ponderado
+[38 = previo #28] "Bracero Program 4.6 million contracts 2.2 million workers Texas-Mexico Center" 23/sep -> blog.smu.edu (Texas-Mexico Center) confirma 4.6M contratos/2.2M trabajadores, 1942-1964
+[39 = previo #29] "ley general desplazamiento forzado interno México iniciativa 2026 Cámara de Diputados" 23/sep -> gob.mx/segob confirma aprobacion en Camara de Diputados (395 votos); posible actualizacion frente a L150 del report ("carece de ley federal"): anotado en migracion-039 como hallazgo prioritario para el supervisor
+[40 = previo #30] "estadística repatriación mexicanos por entidad de origen 2025 Unidad de Política Migratoria" 23/sep -> portales.segob.gob.mx/UPMRIP confirma existencia de Sintesis_2025.pdf y boletines por entidad
+[41] NUEVA (este ejecutor) 24/sep: WebSearch "Urban Institute Well-Being and Basic Needs Survey December 2025 immigrant families ICE worried children" -> urban.org/research/publication/immigration-concerns-disrupted-families-essential-activities-and-caused confirma ronda dic-2025, n>10,000 adultos, 47%/27%/8% (migracion-016)
+[42] NUEVA (este ejecutor) 24/sep: WebSearch "Brookings Tara Watson 2026 4.6 million citizen children undocumented parent 146,635" -> brookings.edu confirma informe Watson/Cancian/Cantu/Howard, 146,635 ninos ciudadanos con progenitor detenido, ~400,000 detenciones interiores, 36% menores de 6 anos; nota discrepancia 4.6M (report) vs 5.62M (otro articulo Brookings) (migracion-017)
+[43] NUEVA (este ejecutor) 24/sep: WebSearch "MATT encuesta migrantes retornados 40% sin documento mexicano deportados" -> confirma existencia de MATT ("Mexicans and Americans Thinking Together", estudio "The US/Mexico Cycle" 2014); NO confirma la cifra especifica 40% en fuente primaria (solo prensa, excluida) -> PENDIENTE-VERIFICACION-DOCUMENTAL (migracion-029)
+
+# Presupuesto web del lote: 11/12 consultas usadas (8 previas + 3 de esta sesion). Se reservo 1 consulta
+# sin usar; no se corrieron mas WebSearch/WebFetch por este limite (afecta a migracion-008, 015, 018,
+# 020, 027, 030, 034, 036, 040, 041, 042, que quedan como NO-MEDIBLE-POR-DISEÑO o
+# PENDIENTE-VERIFICACION-DOCUMENTAL con la busqueda pendiente declarada en cada fila).
+# No se consulto prensa ni portales de noticias en ningun caso (laparadoja.com.mx aparecio en
+# resultados de [43] y se descarto explicitamente).

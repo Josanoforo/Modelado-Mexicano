@@ -1,0 +1,171 @@
+ASTRA5-U0 segunda pasada · tanda E (violencia-ambiental) · fecha 2026-09-24
+Ejecutor: cwd /home/pc0/mm-astra5-mapa-dominios-1 ; U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+(Nota: la ruta de herramientas de INSTRUCCIONES-LOTE.md §1 apuntaba a una sesion anterior ya inexistente
+[6f1534e5-675f-47f1-b62b-5d894fee74fc]; u0busca.py/u0pdf.py/u0mf.py se localizaron y corrieron desde la
+carpeta scratchpad/u0 de ESTA sesion, contenido identico.)
+
+=== Verificacion de herramientas ===
+python3 $U/u0mf.py --busca cmdpdh -> 0/1680
+python3 $U/u0mf.py --busca concanaco -> 0/1680
+python3 $U/u0mf.py --busca anpec -> 0/1680
+python3 $U/u0mf.py --busca banxico -> 31/1680 (ninguno sobre IED/homicidios)
+
+=== Lectura del report (contexto de cada localizador) ===
+Read/sed corpus/reports/El_Efecto_Ambiental_de_la_Violencia_Cronica_en_Mexico...md lineas 20-40 y 145-256
+(patrones 5/6, seccion 5 Causas, seccion 6 Segmentacion, seccion 7 Comparacion internacional, Caveats)
+
+=== VIOL-018 (CMDPDH ~390,000) ===
+WebSearch "CMDPDH desplazamiento interno forzado México 390,000 acumulado informe" (2026-09-24)
+  -> cmdpdh.org, desplazamiento.cmdpdh.org; cifras 329,917 (dic-2017) y 346,945 (informe 2019) en otros
+     resultados (Pie de Página, prensa, no usado como fuente final); no aparece 390,000 exacto
+WebFetch https://cmdpdh.org/desplazamiento-interno/ (2026-09-24)
+  -> pagina oficial: confirma serie de informes anuales, cifra 2021 (28,000+, 40+ eventos)
+WebFetch https://desplazamiento.cmdpdh.org/informes-anuales/ (2026-09-24)
+  -> pagina oficial: lista informes 2017-2020, sin cifras desplegadas en el extracto
+Total: 3 consultas web
+
+=== VIOL-021 (Concanaco 89%) ===
+WebSearch "Concanaco Servytur extorsión 89% entidades federativas afectación" (2026-09-24)
+  -> resultados con 78%/76.8% (Forbes, otro corte metodologico)
+WebSearch "Concanaco Servytur \"89%\" entidades federativas extorsión" (2026-09-24)
+  -> confirma 89% atribuido a Concanaco Servytur via TV Azteca (jul-2025), sin comunicado propio
+WebSearch "concanaco.org extorsión 89% entidades federativas comunicado" (2026-09-24)
+  -> localiza concanaco.org/blog/comunicados-de-prensa-4/ (canal oficial), comunicado especifico con
+     89% no identificado
+Total: 3 consultas web
+
+=== VIOL-025 ("Narco Emotions") ===
+WebSearch "\"Narco Emotions\" study social media violence Mexico desensitization affective" (2026-09-24)
+  -> arXiv:1507.01287, CHI 2014 Best Paper, De Choudhury/Monroy-Hernandez/Mark
+WebFetch https://arxiv.org/abs/1507.01287 (2026-09-24)
+  -> leido titulo completo, autores, venue, abstract integro
+Total: 2 consultas web
+
+=== VIOL-027 (Crisis Group) ===
+WebSearch "Crisis Group Mexico cartels social media fear narcomensajes report" (2026-09-24)
+  -> Latin America Briefing N50 "Fear, Lies and Lucre...", 31-ene-2024, URL HTML y PDF oficiales
+WebFetch https://www.crisisgroup.org/brf/latin-america-caribbean/mexico/b50-fear-lies-lucre-how-criminal-groups-weaponise-social-media-mexico (2026-09-24)
+  -> HTTP 403 Forbidden
+WebFetch https://www.crisisgroup.org/sites/default/files/2024-01/b050-mexico-online.pdf (2026-09-24)
+  -> HTTP 403 Forbidden
+Total: 3 consultas web
+
+=== VIOL-039 (ANPEC / Culiacán / León-Canaco) ===
+WebSearch "ANPEC septiembre 2024 negocios Chiapas Sinaloa Michoacán Morelos cerró cambió giro extorsión" (2026-09-24)
+  -> confirma ANPEC, vocero Cuauhtémoc Rivera, cobertura El Financiero 26-sep-2024, canal oficial
+     anpec.com.mx
+WebFetch https://www.anpec.com.mx/boletines-de-prensa.php (2026-09-24)
+  -> archivo visible solo 2025-2026, boletin sep-2024 no accesible en la pagina cargada
+Total: 2 consultas web para ANPEC.
+Culiacán ventas nocturnas -95% (oct-2024) y León/Canaco-Concanaco cierres 5-6pm: 0 consultas -
+presupuesto WebSearch de la SESION agotado (200/200, mensaje de la herramienta: "this session has used
+its web search budget (200 of 200 WebSearch calls)") antes de llegar a estos dos items.
+
+=== VIOL-041 (Banxico IED) ===
+WebSearch "Banxico documento de investigación homicidios inversión extranjera directa estatal" (2026-09-24)
+  -> referencia a working paper Banxico sobre crimen/FDI panel estatal 2005-2015
+WebSearch "Banco de México documento investigación \"crimen\" OR \"homicidios\" \"inversión extranjera directa\" panel estatal título número" (2026-09-24)
+  -> URL exacta del PDF (Documentos de Investigacion Banxico)
+WebFetch/Read del PDF https://www.banxico.org.mx/publicaciones-y-prensa/documentos-de-investigacion-del-banco-de-mexico/%7B64942A17-DF06-170D-FFB2-F41461EE78C3%7D.pdf (2026-09-24)
+  -> WebFetch no pudo parsear el PDF binario; se recupero el archivo local guardado por la herramienta
+     y se leyo con Read (paginas 1-2): Documento de Investigacion N 2018-24, "El Efecto del Crimen y
+     Otras Fuerzas Economicas sobre la Inversion Extranjera en Mexico", Cabral Torres/Mollick/Saucedo,
+     dic-2018. Resumen leido integro.
+Total: 3 consultas web
+
+=== VIOL-042 (64 entrevistas Valle de México + Acuerdo Cobertura) ===
+WebFetch https://es.wikipedia.org/wiki/Acuerdo_para_la_Cobertura_Informativa_de_la_Violencia (2026-09-24)
+  -> HTTP 404 Not Found
+Total: 1 consulta web para (b). Item (a) [64 entrevistas]: 0 consultas - presupuesto WebSearch de la
+sesion agotado antes de llegar a este item.
+
+=== VIOL-043 (Sinaloa ENVIPE) ===
+u0mf --busca ensu --busca 2025 -> 3/1680 (ensu2025_bd_csv_zip, ensu2025_rnm_ddi, envipe2025_rnm_ddi)
+u0pdf -q "Sinaloa|Culiacán percepción inseguridad" --limite 15 -> 335 coincidencias, ninguna relevante
+  (documentos ASF de fiscalizacion, no INEGI)
+u0mf --busca envipe --busca boletin -> 0/1680
+u0mf --busca envipe (listado completo) -> confirma cuestionarios/FD/dta ENVIPE 2011-2025 en manifiesto
+u0pdf -q "seguro vivir en la entidad" --id envipe2025_cuest_principal_pdf -> 0 (frase exacta no
+  coincide)
+u0busca -q "percepción de la inseguridad|se siente seguro" --encuesta envipe --limite 15 -> 441
+  aciertos, items AP4_4_xx (por lugar especifico, no por ambito geografico general)
+u0busca -q "vivir en su entidad" --encuesta envipe / --ola 2025 / --ola 2024 -> 0 (frase exacta no
+  coincide con el texto del cuestionario)
+u0pdf -q "delincuencia" --id envipe2025_cuest_principal_pdf --limite 5 -> localiza item 4.3 (p.4):
+  "4.3 ¿en terminos de delincuencia, considera ... que vivir en (ambito geografico) es..."
+u0pdf -q "4.3" / "vivir en" --id envipe2024_cuest_principal_pdf -> confirma mismo item 4.3 en p.4 de
+  ENVIPE 2024
+u0busca -q "considera que vivir en" --ola 2025 --limite 20 -> 18 aciertos: variable AP4_3_3 (ambito
+  ESTADO), fuente fd_envipe2025.pdf p.19, payload envipe_2025_bd_envipe_2025_dta (sha256
+  0beede6230be70e48274b2abc29799dc88c549d10ca97478c86126f909c148e3), sin reserva
+u0busca -q "considera que vivir en" --ola 2024 --limite 20 -> 18 aciertos: misma variable AP4_3_3,
+  fuente fd_envipe2024.pdf p.19, payload envipe_2024_bd_envipe_2024_dta (sha256
+  e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18), sin reserva
+u0mf --id envipe_2025_bd_envipe_2025_dta / --busca envipe --busca 2024 --busca dta -> confirma ids y
+  sha256 en manifiesto, reserva vacia
+u0mf --calc envipe_2024_bd_envipe_2024_dta -> 0/326
+u0mf --calc envipe_2025_bd_envipe_2025_dta -> 0/326
+u0mf --id envipe_2024_bd_envipe_2024_dta / --id envipe_2025_bd_envipe_2025_dta -> confirma reserva
+  vacia en ambos (no reservados; solo ENVIPE 2026 lo esta)
+WebSearch "Sinaloa \"54.9\" \"80.5\" percepción inseguridad ENSU ENVIPE INEGI" (2026-09-24)
+  -> confirma 54.9% (2024) y 80.5% (2025) atribuidos a ENVIPE/INEGI (fuente secundaria
+     polls.politico.mx, no usada como evidencia final, solo para orientar la busqueda en corpus)
+Total: ~14 consultas de corpus + 1 consulta web
+
+=== VIOL-044 (cobro de piso 10-25% + caso Almanza) ===
+u0pdf -q "Almanza" --limite 5 -> 0/349
+u0pdf -q "cobro de piso" --limite 5 -> 36 coincidencias; localiza cuestionario_principal_enve2024
+  (p.4: pregunta 13 "existe cobro de piso por delincuentes"; p.8) y otras (envipe2018_cuest_modulo_pdf,
+  envipe2018_fd_pdf)
+u0mf --busca enve -> confirma en manifiesto: conjunto_de_datos_enve_2024_csv, cuestionario_principal_
+  enve2024, modulo_delitos_enve2024 (raiz descargas_mx), sin reserva
+u0pdf -q "monto|costo|gasto|perdida" --id modulo_delitos_enve2024 --limite 20 -> 5 coincidencias:
+  item 1.30/1.31 (p.5) "¿Cuánto le representó en términos económicos al establecimiento las pérdidas
+  a consecuencia del (delito)?" / "...cantidad aproximada... Registre la cantidad en pesos"
+u0busca -q "monto de lo pagado|costo de la extorsion|cuanto le costo" --limite 15 -> sin coincidencias
+  ENVE en los inventarios de u0busca (ENVE no esta en las 9 tablas que indexa u0busca; se uso u0pdf
+  directo sobre el PDF)
+u0mf --id conjunto_de_datos_enve_2024_csv -> confirma sha256, reserva vacia, licencia INEGI verificada
+u0mf --calc conjunto_de_datos_enve_2024_csv -> 0/326
+Total: 6 consultas de corpus.
+Caso Julio César Almanza (Matamoros): 0 consultas web - presupuesto WebSearch de la sesion agotado
+antes de llegar a este item.
+
+=== VIOL-048 (El Salvador, régimen de excepción) ===
+WebSearch "El Salvador decreto régimen de excepción marzo 2022 Asamblea Legislativa detenidos" (2026-09-24)
+  -> Decreto Legislativo 333 (27-mar-2022), asamblea.gob.sv, 55a prorroga a sep-2026, >93,000
+     detenidos a sep-2026 (fuentes: Infobae, WOLA, HRW citados en el resumen de busqueda, no como
+     fuente final; la fuente primaria usada es asamblea.gob.sv)
+Total: 1 consulta web
+
+=== VIOL-050 (SESNSP / México Evalúa / Causa en Común) ===
+WebFetch https://www.mexicoevalua.org (2026-09-24)
+  -> confirma publicaciones recientes: "Violencia letal en México al primer semestre de 2026"
+     (10-ago-2026) y "La seguridad pública desde la mirada ciudadana: ENVIPE" (23-sep-2026)
+WebFetch https://www.mexicoevalua.org/violencia-letal-en-mexico-al-primer-semestre-de-2026/ (2026-09-24)
+  -> HTTP 404
+WebFetch https://www.mexicoevalua.org/investigaciones/ (2026-09-24)
+  -> confirma URL real (con "2006" en el slug pese a tratar de 2026)
+WebFetch https://mexicoevalua.org/violencia-letal-en-mexico-al-primer-semestre-de-2006/ (2026-09-24)
+  -> leido: titulo, fecha (10-ago-2026), cita textual: "Entre 2015 y 2026, otros delitos contra la
+     vida aumentaron 197% y las personas desaparecidas y no localizadas 127.3%, mientras el homicidio
+     doloso disminuyó 5.2%"; el informe NO afirma reclasificacion estadistica
+WebFetch https://causaencomun.org.mx (2026-09-24) -> indice de directorio, sin contenido tematico
+WebFetch https://www.causaencomun.org.mx/ (2026-09-24) -> indice de directorio, sin contenido tematico
+  (2 consultas, EXISTENCIA-NO-COMPROBADA)
+WebFetch https://www.gob.mx/sesnsp (2026-09-24) -> pagina institucional, sin serie de datos directa
+WebFetch https://www.gob.mx/sesnsp/acciones-y-programas/datos-abiertos-de-incidencia-delictiva (2026-09-24)
+  -> confirma portal oficial de datos abiertos con diccionarios por periodo (1997-2017, 2015-2025,
+     2026-presente); archivo/reporte exacto con corte sep-2024/oct-2025 no identificado por nombre
+Total: 7 consultas web
+
+=== Resumen de presupuesto ===
+Consultas web (WebSearch + WebFetch) usadas en esta tanda: ~30 (dentro del limite de 45/tanda de
+SEGUNDA-PASADA.md). El limite que se agoto fue el CAP TECNICO DE SESION de la herramienta WebSearch
+(200 de 200 llamadas de WebSearch en TODA la sesion, compartido con el resto de la conversacion/otros
+agentes), no el presupuesto de 3/fila ni el de 45/tanda del encargo. Esto ocurrio a la mitad de la
+investigacion de VIOL-039/042/044, dejando 4 piezas documentales concretas (Culiacan ventas nocturnas,
+Leon/Canaco cierres, estudio 64 entrevistas Valle de Mexico, caso Almanza Matamoros) con 0 consultas
+WebSearch posibles en esta sesion. Se aplico honestamente la formula "EXISTENCIA-NO-COMPROBADA tras 0
+consultas" en cada una, per regla 4 de SEGUNDA-PASADA.md, en vez de maquillarlas como verificadas o
+dejarlas PENDIENTE (el encargo prohibe filas pendientes en la salida de la segunda pasada).
