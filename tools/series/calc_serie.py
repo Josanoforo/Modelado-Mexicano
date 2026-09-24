@@ -12,6 +12,7 @@ import json
 import re
 from collections import Counter
 from pathlib import Path
+from urllib.parse import unquote
 
 from tools.series import dictamen as D
 
@@ -26,6 +27,41 @@ def _bytes(ent):
 
 def _res(ent):
     return json.loads(_bytes(ent).decode("utf-8"))["resultados"]
+
+
+def _celdas(tabla):
+    """RESULT-*-TABLA sellado: string-JSON o lista/dict con lista `celdas`."""
+    if isinstance(tabla, str):
+        tabla = json.loads(tabla)
+    if isinstance(tabla, dict):
+        tabla = tabla["celdas"]
+    return tabla
+
+
+def resuelve_celdas(ids, valores):
+    """Direcciones `<RESULT-ID>#k1=v1&.../<campo>` (mapa/ESQUEMA, CELDA-DE-TABLA):
+    v percent-encoded; campo `nombre` o `nombre[i]`. `valores` son los RESULT
+    del CALC de la fila (un mismo RESULT-ID puede existir en dos CALC).
+    Devuelve {direccion: valor}; una dirección que no resuelve a exactamente
+    una celda es error."""
+    indices, out = {}, {}
+    for d in sorted(i for i in ids if "#" in i):
+        base, resto = d.split("#", 1)
+        bloque, campo = resto.rsplit("/", 1)
+        pares_kv = [p.split("=", 1) for p in bloque.split("&")]
+        nombres = tuple(k for k, _ in pares_kv)
+        clave = (base, nombres)
+        if clave not in indices:
+            idx = {}
+            for c in _celdas(valores[base]):
+                idx.setdefault(tuple(str(c.get(k)) for k in nombres), []).append(c)
+            indices[clave] = idx
+        hits = indices[clave].get(tuple(unquote(v) for _, v in pares_kv), [])
+        assert len(hits) == 1, f"{d}: {len(hits)} celdas"
+        m = re.fullmatch(r"(\w+)(?:\[(\d)\])?", campo)
+        v = hits[0][m.group(1)]
+        out[d] = v[int(m.group(2))] if m.group(2) is not None else v
+    return out
 
 
 def tau_sellado(instrumento, res):
@@ -52,18 +88,28 @@ def medir(inputs, contrato):
     filas = [f for f in D.lee_mapa(_bytes(inputs["MAPA"]).decode("utf-8"))
              if f["instrumento"] == inst]
     assert filas, f"mapa sin filas de {inst}"
+    por_calc = {k[4:]: _res(ent) for k, ent in inputs.items() if k.startswith("SRC-")}
     valores = {}
-    for k, ent in inputs.items():
-        if k.startswith("SRC-"):
-            valores.update(_res(ent))
-    faltan = {f[c] for f in filas for c in ("result_p", "result_lo", "result_hi")
-              if f[c] and f[c] not in valores}
+    for res in por_calc.values():
+        valores.update({k: v for k, v in res.items() if not k.endswith("-TABLA")})
+    for calc, res in por_calc.items():
+        ids_c = {f[c] for f in filas if f["calc"] == calc
+                 for c in ("result_p", "result_lo", "result_hi") if f[c]}
+        # la dirección de celda se prefija con su CALC para no colisionar
+        for d, v in resuelve_celdas(ids_c, res).items():
+            valores[f"{calc}::{d}"] = v
+    for f in filas:
+        for c in ("result_p", "result_lo", "result_hi"):
+            if "#" in f[c]:
+                f[c] = f"{f['calc']}::{f[c]}"
+    ids = {f[c] for f in filas for c in ("result_p", "result_lo", "result_hi") if f[c]}
+    faltan = {i for i in ids if i not in valores}
     assert not faltan, f"ids del mapa sin RESULT: {sorted(faltan)[:5]}"
     tau_s = tau_sellado(inst, _res(inputs["TAU2-SELLADO"])) if inst in D.TAU2_SELLADO else None
     out_s, tau, fuente = D.evalua(filas, valores, tau_s, inst)
     out = {}
-    for eje, t in sorted(tau.items()):
-        out[f"{pref}-TAU2-{eje}"] = t
+    for eje in sorted({f["eje"] for f in filas}):
+        out[f"{pref}-TAU2-{eje}"] = D.tau2_para(eje, tau)
     out[f"{pref}-TAU2-FUENTE"] = fuente
     cuenta = Counter()
     for sid, r in out_s.items():

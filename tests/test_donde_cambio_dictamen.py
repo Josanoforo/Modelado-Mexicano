@@ -54,6 +54,32 @@ def test_mixto_empate_no_es_sostenido():
     assert out["M"]["dictamen"] == "SALTO-SIN-EXPLICAR"
 
 
+def test_medir_celdas_de_tabla_por_calc():
+    """Misma RESULT-*-TABLA en dos CALC; valor con '/' y '&' escapado; ic95[i]."""
+    import json
+    from urllib.parse import quote
+    from tools.series import calc_serie as S
+    seg = quote("15-29/a&b", safe="")
+    L = [CAB]
+    for i, (ola, calc) in enumerate([("1", "CALC-A"), ("2", "CALC-B"), ("3", "CALC-C")]):
+        d = f"RESULT-T-TABLA#resultado=r&eje=edad&categoria={seg}"
+        L.append("\t".join(["S", "X", "d", "c", "c", "edad", "s", "P", ola, calc,
+                            d + "/p", d + "/ic95[0]", d + "/ic95[1]",
+                            "PRIMERA" if i == 0 else "COMPARABLE", "", "NO", "CELDA-DE-TABLA"]))
+    def src(p):
+        celdas = [{"resultado": "r", "eje": "edad", "categoria": "15-29/a&b",
+                   "p": p, "ic95": [p - .01, p + .01]},
+                  {"resultado": "r", "eje": "edad", "categoria": "otra",
+                   "p": .9, "ic95": [.89, .91]}]
+        return {"bytes": json.dumps({"resultados": {"RESULT-T-TABLA": json.dumps(celdas)}}).encode()}
+    inputs = {"MAPA": {"bytes": "\n".join(L).encode()},
+              "SRC-CALC-A": src(.30), "SRC-CALC-B": src(.30), "SRC-CALC-C": src(.30)}
+    out = S.medir(inputs, {"parametros": {"instrumento": "X", "prefijo": "RESULT-X"}})
+    assert out["RESULT-X-S-K"] == 3 and out["RESULT-X-S-DICTAMEN"] == "ESTABLE"
+    assert out["RESULT-X-N-SERIES"] == 1
+
+
 if __name__ == "__main__":
     test_ramas(); test_tau_calculado_excluye_documentado(); test_mixto_empate_no_es_sostenido()
+    test_medir_celdas_de_tabla_por_calc()
     print("OK")
