@@ -81,10 +81,12 @@ inputs:
 - id: piso_c2_resultados
   origen: repo
   ruta: data/corrida0/CALC-ENCIG2025-PISOS-GOBDIGITAL-0001/resultados.json
+  sha256: b13c939d4b6053546895feca9a0436acb26cd0b845ddf931cb0e1751a4745b43
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a. Fuente UNICA del punto C2.
 - id: piso_c2_sello
   origen: repo
   ruta: data/corrida0/CALC-ENCIG2025-PISOS-GOBDIGITAL-0001/sello.json
+  sha256: 0a6532333449502f9d7cf328ae2166a58f3d65ced56979cc225a85b6b5742ec6
   funcion: METADATO
   nota: NO EXISTE en COMMIT-1; lo crea el COMMIT-2; sha256 se fija en COMMIT-3a
 - id: adjudicacion_0001_resultados
