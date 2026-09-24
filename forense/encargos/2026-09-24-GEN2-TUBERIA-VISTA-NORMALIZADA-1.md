@@ -42,3 +42,13 @@ Propio: `tools/corrida0.py` (solo `registro --escribe` y lectura de vistas), `to
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No decide qué se publica, no adopta. Sucesores: ninguno si «Hecho»; `GEN2-TUBERIA-VISTA-NORMALIZADA-2` si algún consumidor queda `DIFERIDO-A`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P2 · Normalización (mover camino_linaje, tolerancia, funciones_dependencia, fuente_replay a corridas.tsv/linajes.tsv). **por qué**: `PARO-PREMISA` -- verificado por comando que `camino_linaje` NO es constante por `corrida_id` (262/313 corridas, varía por RESULT); moviendo solo los tres campos que sí lo son, la proyección real (≈69.75 MB sobre las 70 609 filas del último re-derivado) no cumple el umbral de 50 MB que la firma de mesa del propio encargo (§2) compromete textualmente. Ajustar el umbral sin que mesa lo diga toca una firma de mesa (D-19) -- PARO, no ajuste silencioso. **impacto**: ningún campo se mueve; `resultados.tsv` sigue con los 26 campos actuales. **sucesor**: `GEN2-TUBERIA-VISTA-NORMALIZADA-2`, tras decisión de mesa entre las tres opciones documentadas en el ADR.
+- **qué**: P3 · Guarda de tamaño en `verify.yml`. **por qué**: `PARO-PREMISA` -- depende de que P2 se resuelva primero (la guarda cablea el umbral que mesa decida). **impacto**: sin guarda de tamaño en CI; el próximo GH001 no se atrapa antes del push. **sucesor**: `GEN2-TUBERIA-VISTA-NORMALIZADA-2`.
+- **qué**: P4 · Prueba real del canal (push de `[deriva]` tras el merge). **por qué**: `PARO-PREMISA` -- depende de P2/P3. **impacto**: el canal de derivados sigue sin publicar `[deriva]` (GH001 persiste); `adoptados` 72→87, el bloque ENIGH y los pines de `ADOPCION-BLOQUE-Y-PINES-1` que dependían de este canal siguen sin la vista republicada. **sucesor**: `GEN2-TUBERIA-VISTA-NORMALIZADA-2`.
+
+## CONSUMIDO
+
+PR #1109 (ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-1, ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-1-8851-01). P1 EJECUTADO; P2-P4 NO-CORRIDO (PARO-PREMISA, toca firma de mesa sobre el umbral de 50 MB).
