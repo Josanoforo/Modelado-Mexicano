@@ -3021,6 +3021,15 @@ COLS_VISTA_CORRIDAS = [
 # vez por corrida en COLS_VISTA_CORRIDAS (misma razon: son identicas para
 # todo RESULT de la misma corrida). Un consumidor que las necesite por
 # RESULT usa tools/vista.py::join_resultado(fila, corridas_por_id).
+# ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: "camino_linaje" salio
+# de aqui tambien, pero no se movio a ningun lado -- cardinalidad medida
+# 65287/65287 = 1.0 (NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-2-f1b2-01):
+# con la regla del encargo (>=0.5 -> bajo demanda) no se deduplica, se
+# deriva resultado -> corrida -> spec -> inputs. `_filas_registro` lo
+# sigue calculando en memoria (lo necesita `usos.tsv`, que SI lo persiste
+# -- fuera de este perimetro), solo deja de escribirse aqui. Un consumidor
+# que lo necesite por RESULT usa tools/vista.py::join_resultado /
+# leer_resultados_join, que lo re-derivan bajo demanda.
 COLS_VISTA_RESULTADOS = [
     "resultado_id", "origen", "corrida_id", "spec_id", "valor", "tipo",
     "unidad", "estado", "generacion", "cuenta_gen2",
@@ -3029,7 +3038,6 @@ COLS_VISTA_RESULTADOS = [
     "tolerancia_adopcion",
     "validacion_independiente", "validacion_ref", "alcance_validacion",
     "rol_evaluacion", "origen_numerico",
-    "camino_linaje",
     "valor_legacy", "delta_legacy", "sello",
     "depende_de", "sucesor", "n_usos",
 ]
