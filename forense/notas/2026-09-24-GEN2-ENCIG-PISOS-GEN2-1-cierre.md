@@ -199,3 +199,5 @@ y por edad describe **acceso y oferta** (cuenta bancaria o tarjeta, conectividad
 preferencia; el denominador es quien pagó, no quien pudo pagar. **PROSPECTIVA vs RETROSPECTIVA:** retadores
 PROSPECTIVA; C2 del -0002 RETROSPECTIVA; ninguna frase las suma. **Cifra escrita a mano:** ninguna; todas salen
 de `resultados.json` sellados, con el comando en esta nota.
+
+- **Defecto adyacente (D-21, 2 líneas):** el job `guardias` falló en `tests/test_readme_derivado.py` («244 != 246 : N_corridas_selladas») porque la portada `README.md` imprime cifras de `corrida0 status` y este acto sella dos corridas. Se refrescaron las dos que cambian (corridas 244 → 246; RESULT sellados 65 890 → 66 582 = +171 +521), como hizo `cb5f9884`; las otras cinco no se mueven.
