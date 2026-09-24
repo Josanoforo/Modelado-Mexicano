@@ -5297,8 +5297,10 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # momento del catálogo sellado (`milpa/catalogo-momentos-v0_1.tsv`,
     # ADR-68(a)) que la pieza P-N acota y pinea -- no un rótulo de acto que
     # esta nota acuñe. `M01`/`M02` (dictaminados NO-CONSTRUIBLE en la misma
-    # pieza) son la misma clase de cita.
+    # pieza) son la misma clase de cita. Misma cita en el ADR/L0 del mismo
+    # acto.
     "forense/notas/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1-cierre.md",
+    "canon/L0/ADR-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-01.md",
 }
 
 
