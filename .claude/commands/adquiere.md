@@ -230,6 +230,19 @@ código de respuesta crudo). El repertorio es:
    `SIN-FETCH` en la nota — es evidencia de que la ruta existe, no un
    `OBTENIDO`.
 
+5. **(v) Navegador real renderizado** (`ACTO GEN2-ASTRA5-U5-ADQUISICION-1`,
+   24/sep/2026) — para la PÁGINA que publica los enlaces cuando curl recibe un
+   reto de JavaScript con código 200 (gob.mx sirve «Challenge Validation» de
+   1 881 B a todo cliente sin JS, Linux y Windows por igual):
+   `python3 tools/renderiza_pagina.py <url> --enlaces '\.(zip|csv|pdf|xlsx)$'`
+   (FUERA del sandbox: usa el Chrome/Edge de Windows por interop). Devuelve
+   `RENDERIZADO`/`RETO`/`VACIO` sobre el DOM, no sobre el código HTTP, y los
+   enlaces; el archivo se pide después con curl (los adjuntos
+   `gob.mx/cms/uploads/...` bajan directo) y sigue por A.7 y §5. No sirve —y
+   no se insiste— ante Cloudflare («Un momento…»/«Just a moment») ni ante un
+   bloqueo por IP (Akamai «Access Denied»): eso queda `RETO` y la fila sigue a
+   §6 con su receta.
+
 Solo después de agotar las rutas plausibles (y citar las ya agotadas) la fila
 puede cerrar en `NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)` con su receta de
 navegador (§6).
