@@ -36,7 +36,11 @@ from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parents[1]
 RUTA_RESULTADOS = RAIZ / "data" / "corrida0" / "resultados.tsv"
+RUTA_CORRIDAS = RAIZ / "data" / "corrida0" / "corridas.tsv"
 RUTA_USOS = RAIZ / "data" / "corrida0" / "usos.tsv"
+
+sys.path.insert(0, str(RAIZ / "tools"))
+import vista as _vista  # noqa: E402 -- join de tolerancia (ACTO ...-VISTA-NORMALIZADA-2)
 
 
 def _leer(ruta: Path) -> list[dict[str, str]]:
@@ -71,8 +75,12 @@ def _tolerancia_abs(crudo: str):
         return None
 
 
-def analiza(ruta_resultados=RUTA_RESULTADOS, ruta_usos=RUTA_USOS):
-    filas = _leer(ruta_resultados)
+def analiza(ruta_resultados=RUTA_RESULTADOS, ruta_usos=RUTA_USOS,
+            ruta_corridas=RUTA_CORRIDAS):
+    # `tolerancia` salio de resultados.tsv en COMMIT-A (ACTO
+    # GEN2-TUBERIA-VISTA-NORMALIZADA-2): vive una vez por corrida en
+    # corridas.tsv. El join la reconstruye por fila.
+    filas = _vista.leer_resultados_join(ruta_resultados, ruta_corridas)
     por_id = collections.defaultdict(list)
     for f in filas:
         por_id[f["resultado_id"]].append(f)

@@ -3005,6 +3005,10 @@ COLS_VISTA_CORRIDAS = [
     # ACTO GEN2-T9 · P1: la marca de la regla E.1, en su propia columna --
     # un corredor envuelto se ve en el TSV sin re-derivar la regla.
     "envuelto_legacy", "motivo_cuenta_gen2", "origen_numerico",
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · COMMIT-A: tolerancia vive aqui
+    # una vez por corrida -- es identica para todo RESULT de la misma
+    # corrida (verificado por comando en #1109, 0/313 no-constantes).
+    "tolerancia",
     "funciones_dependencia", "camino_linaje",
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
     "fecha", "n_resultados", "resultados_ids", "input_ids",
@@ -3012,17 +3016,21 @@ COLS_VISTA_CORRIDAS = [
     "fuente_replay",
     "sucesor", "entorno_requerido", "receta", "orden_causal",
 ]
+# ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · COMMIT-A: "tolerancia",
+# "funciones_dependencia" y "fuente_replay" salieron de aqui -- viven una
+# vez por corrida en COLS_VISTA_CORRIDAS (misma razon: son identicas para
+# todo RESULT de la misma corrida). Un consumidor que las necesite por
+# RESULT usa tools/vista.py::join_resultado(fila, corridas_por_id).
 COLS_VISTA_RESULTADOS = [
     "resultado_id", "origen", "corrida_id", "spec_id", "valor", "tipo",
-    "unidad", "estado", "generacion", "cuenta_gen2", "tolerancia",
+    "unidad", "estado", "generacion", "cuenta_gen2",
     # NC-0069 / FP-365: la vara de ADOPCION, separada de la de
     # reproducibilidad (`tolerancia`). Vacia = defecto (grano del consumidor).
     "tolerancia_adopcion",
     "validacion_independiente", "validacion_ref", "alcance_validacion",
     "rol_evaluacion", "origen_numerico",
-    "funciones_dependencia", "camino_linaje",
+    "camino_linaje",
     "valor_legacy", "delta_legacy", "sello",
-    "fuente_replay",
     "depende_de", "sucesor", "n_usos",
 ]
 COLS_VALIDACIONES_INDEPENDIENTES = [
@@ -4219,6 +4227,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "motivo_cuenta_gen2": "demanda sin spec: la regla E.1 se evalua "
                                   "cuando la spec declare sus inputs",
             "origen_numerico": ORIGEN_INDETERMINADO,
+            "tolerancia": "PENDIENTE",
             "funciones_dependencia": "SIN-SPEC",
             "camino_linaje": f"{c['corrida_id']} -> DEMANDA-PENDIENTE",
             "spec_yaml_sha256": "PENDIENTE", "script_path": "PENDIENTE",
@@ -4319,6 +4328,8 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "envuelto_legacy": o["envuelto_legacy"],
             "motivo_cuenta_gen2": o["motivo_cuenta_gen2"],
             "origen_numerico": o["origen_numerico"],
+            "tolerancia": json.dumps(tol, ensure_ascii=False, sort_keys=True,
+                                     default=str) if tol else NO_DECLARADO,
             "funciones_dependencia": o["funciones_dependencia"],
             "camino_linaje": o["camino_linaje"],
             "spec_yaml_sha256": ejec.get("spec_yaml_sha256") or NO_DECLARADO,
