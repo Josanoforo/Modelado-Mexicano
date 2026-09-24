@@ -31214,3 +31214,2048 @@
   formato: PDF (diseño muestral ENVIPE 2025)
   licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__ensanut_2018_cuestionario_hogar_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/ensanut_2018_cuestionario_hogar.Cuestionarios.pdf
+  sha256: 097062a3267c8060a674269ae09422ab50376950d176c3511c701ed0b3cb9cb9
+  tamano_bytes: 1055034
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvZW5zYW51dF8yMDE4X2N1ZXN0aW9uYXJpb19ob2dhci5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/ensanut_2018_cuestionario_hogar.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_viviendas_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/01-Información sobre
+    la vivienda/CS_VIVIENDAS.stata.stata.zip
+  sha256: a938a60f00d8a02fbebab74ce3307cb83e86dd6f3527e840e84ac1baa84b5c46
+  tamano_bytes: 615802
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDEtSW5mb3JtYWNpw7NuIHNvYnJlIGxhIHZpdmllbmRhL0NTX1ZJVklFTkRBUy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/01-Información sobre
+    la vivienda/CS_VIVIENDAS.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_viviendas_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/01-Información sobre
+    la vivienda/CS_VIVIENDAS.Catálogo.xlsx
+  sha256: a70d082f592e88a393e5c31d8d1ffbc15bd8b1896b8992a28e482470db38dcc7
+  tamano_bytes: 356264
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDEtSW5mb3JtYWNpw7NuIHNvYnJlIGxhIHZpdmllbmRhL0NTX1ZJVklFTkRBUy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/01-Información sobre
+    la vivienda/CS_VIVIENDAS.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_hogares_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre
+    el hogar/CS_HOGARES.stata.stata.zip
+  sha256: f0b9cb5561e3234da824c5f371ce845e4d83fae648352baf13cef6a0767b608a
+  tamano_bytes: 1855773
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDItSW5mb3JtYWNpw7NuIHNvYnJlIGVsIGhvZ2FyL0NTX0hPR0FSRVMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre
+    el hogar/CS_HOGARES.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_hogares_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre
+    el hogar/CS_HOGARES.Catálogo.xlsx
+  sha256: ceead9520f361828ebcca1802196dc0b304d4433358e8f2f8140e0eab78fb337
+  tamano_bytes: 359494
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDItSW5mb3JtYWNpw7NuIHNvYnJlIGVsIGhvZ2FyL0NTX0hPR0FSRVMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre
+    el hogar/CS_HOGARES.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_residentes_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/03-Información sobre
+    los residentes/CS_RESIDENTES.stata.stata.zip
+  sha256: 720c6df363dfa24aa1f7e092516588cc00e24552e4c5eed64df01ae99d92fd71
+  tamano_bytes: 6365025
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDMtSW5mb3JtYWNpw7NuIHNvYnJlIGxvcyByZXNpZGVudGVzL0NTX1JFU0lERU5URVMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/03-Información sobre
+    los residentes/CS_RESIDENTES.stata.stata.zip; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_residentes_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/01-Cuestionario de hogar/03-Información sobre
+    los residentes/CS_RESIDENTES.Catálogo.xlsx
+  sha256: 193ee4a1663b535de13bc7e0a47fd340f31c21d7271b6c0e351f7405b7616a49
+  tamano_bytes: 369919
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDMtSW5mb3JtYWNpw7NuIHNvYnJlIGxvcyByZXNpZGVudGVzL0NTX1JFU0lERU5URVMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 01-Componente de SALUD/01-Cuestionario de hogar/03-Información sobre
+    los residentes/CS_RESIDENTES.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adultos_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años
+    o más)/CS_ADULTOS.stata.stata.zip
+  sha256: 1c89e2348d2fdf0eaf3a03f550372347955b05c3d016db4759cea75c8e6d2987
+  tamano_bytes: 6427452
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMi1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWR1bHRvcyAoMjAgYcOxb3MgbyBtw6FzKS9DU19BRFVMVE9TLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años o
+    más)/CS_ADULTOS.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura ZIP-OK;
+    no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adultos_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años
+    o más)/CS_ADULTOS.Cuestionarios.pdf
+  sha256: 3e8b785dc49327bba8c55b07571c7f0fb7289ffc5e206db271d4b833273370fd
+  tamano_bytes: 1139969
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMi1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWR1bHRvcyAoMjAgYcOxb3MgbyBtw6FzKS9DU19BRFVMVE9TLkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: 01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años o
+    más)/CS_ADULTOS.Cuestionarios.pdf; A.7: dos descargas con sha256 idéntico; estructura
+    PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adultos_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años
+    o más)/CS_ADULTOS.Catálogo.xlsx
+  sha256: 4c602d36560ebe88ac0731cbc4d342be0573d0398145d59e991c849b3bbc4461
+  tamano_bytes: 416667
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMi1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWR1bHRvcyAoMjAgYcOxb3MgbyBtw6FzKS9DU19BRFVMVE9TLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 01-Componente de SALUD/02-Cuestionario de salud de adultos (20 años o
+    más)/CS_ADULTOS.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura ZIP-OK;
+    no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adolescentes_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10
+    a 19 años)/CS_ADOLESCENTES.stata.stata.zip
+  sha256: 562de091edf873df2076e37e9e52612392a53bd8f2381a5c77627f0bda7df3ee
+  tamano_bytes: 1466045
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMy1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWRvbGVzY2VudGVzICgxMCBhIDE5IGHDsW9zKS9DU19BRE9MRVNDRU5URVMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a
+    19 años)/CS_ADOLESCENTES.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adolescentes_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10
+    a 19 años)/CS_ADOLESCENTES.Cuestionarios.pdf
+  sha256: 8957cb327799f3dc13873408535c8b56d8125db1b757c1df86df8b8ef4dbded6
+  tamano_bytes: 1042080
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMy1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWRvbGVzY2VudGVzICgxMCBhIDE5IGHDsW9zKS9DU19BRE9MRVNDRU5URVMuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a
+    19 años)/CS_ADOLESCENTES.Cuestionarios.pdf; A.7: dos descargas con sha256 idéntico; estructura
+    PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_adolescentes_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10
+    a 19 años)/CS_ADOLESCENTES.Catálogo.xlsx
+  sha256: 70254b98ab255fbb7c05f5ae6d59a9cf401f45e7fc3e603a6a3c41db98a2bddb
+  tamano_bytes: 391711
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMy1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWRvbGVzY2VudGVzICgxMCBhIDE5IGHDsW9zKS9DU19BRE9MRVNDRU5URVMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a
+    19 años)/CS_ADOLESCENTES.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_nino_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.stata.stata.zip
+  sha256: 088d840b3d49c3f4e42edcf27bb81b58a543c2aaa953d936a7bb1ca2a5d564fa
+  tamano_bytes: 2191055
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNC1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgbmnDsW9zICgwIGEgOSBhw7FvcykvQ1NfTklOTy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_nino_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.Cuestionarios.pdf
+  sha256: 707ec53ddeac601c5839456bdffea12ee2a11de79f8dd37124514f161010784c
+  tamano_bytes: 1017663
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNC1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgbmnDsW9zICgwIGEgOSBhw7FvcykvQ1NfTklOTy5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_nino_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.Catálogo.xlsx
+  sha256: 8aa6462a7350e6fc403108981546d9ff4202b7692e3bde10f4003eb1a7eaf2bd
+  tamano_bytes: 393453
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNC1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgbmnDsW9zICgwIGEgOSBhw7FvcykvQ1NfTklOTy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 01-Componente de SALUD/04-Cuestionario de salud de niños (0 a 9 años)/CS_NINO.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_nino_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.stata.stata.zip
+  sha256: ac09c38f5548d8eec75abd9297e45a2be15171f9843f95ef57099f92912886fc
+  tamano_bytes: 148823
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAxLUFjdGl2aWRhZCBmw61zaWNhIGVuIG5pw7Fvcy9DU19BQ1RfRklTX05JTk8uc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.stata.stata.zip; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_nino_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.Cuestionarios.pdf
+  sha256: 1cef91031c42b094ceea434f37732a24f6925da31a7ddf3479874ffad5c95ba7
+  tamano_bytes: 842986
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAxLUFjdGl2aWRhZCBmw61zaWNhIGVuIG5pw7Fvcy9DU19BQ1RfRklTX05JTk8uQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.Cuestionarios.pdf; A.7: dos descargas con sha256 idéntico;
+    estructura PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_nino_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.Catálogo.xlsx
+  sha256: 8359da92f96021342ceccaaa927cd56a354621f66deb868e11ffe56b8d36ebff
+  tamano_bytes: 354110
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAxLUFjdGl2aWRhZCBmw61zaWNhIGVuIG5pw7Fvcy9DU19BQ1RfRklTX05JTk8uQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/01-Actividad
+    física en niños/CS_ACT_FIS_NINO.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_ado_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.stata.stata.zip
+  sha256: 85fb5f5a7005f5a8e476be16bb9615730cef4879bce28c88ee1e0f7f412a42ec
+  tamano_bytes: 713816
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAyLUFjdGl2aWRhZCBmw61zaWNhIGVuIGFkb2xlc2NlbnRlIHkgYWR1bHRvcy9DU19BQ1RfRklTX0FETy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.stata.stata.zip; A.7: dos descargas con
+    sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_ado_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.Cuestionarios.pdf
+  sha256: 7c57a1241723628f1c207d8b2456056c9f0547177d1fffa02b0d78ad384e1af3
+  tamano_bytes: 829469
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAyLUFjdGl2aWRhZCBmw61zaWNhIGVuIGFkb2xlc2NlbnRlIHkgYWR1bHRvcy9DU19BQ1RfRklTX0FETy5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.Cuestionarios.pdf; A.7: dos descargas con
+    sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_act_fis_ado_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.Catálogo.xlsx
+  sha256: ba22d6c4d25daeba21a0fcb7a8dbd66131efd9ea0d85dcb4bb9a85012c2c7cf6
+  tamano_bytes: 352483
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW9zIGRlIGFjdGl2aWRhZCBmw61zaWNhLzAyLUFjdGl2aWRhZCBmw61zaWNhIGVuIGFkb2xlc2NlbnRlIHkgYWR1bHRvcy9DU19BQ1RfRklTX0FETy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 01-Componente de SALUD/05-Cuestionarios de actividad física/02-Actividad
+    física en adolescente y adultos/CS_ACT_FIS_ADO.Catálogo.xlsx; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_ayuda_alimentaria_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.stata.stata.zip
+  sha256: e50aca1ed4fbe6ef67d4e5b34c79ebafd19e81575adab8c34d491f398b6a1e19
+  tamano_bytes: 1804071
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNi1DdWVzdGlvbmFyaW8gZGUgcHJvZ3JhbWFzIGRlIGF5dWRhIGFsaW1lbnRhcmlhL0NTX0FZVURBX0FMSU1FTlRBUklBLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_ayuda_alimentaria_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.Cuestionarios.pdf
+  sha256: 5f3d2f19571316aa8c5511cc4b941810c4166658f3f03e63cf59ca9536a2e38d
+  tamano_bytes: 832627
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNi1DdWVzdGlvbmFyaW8gZGUgcHJvZ3JhbWFzIGRlIGF5dWRhIGFsaW1lbnRhcmlhL0NTX0FZVURBX0FMSU1FTlRBUklBLkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: 01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_ayuda_alimentaria_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.Catálogo.xlsx
+  sha256: 820d79b6e862ce348764399dbe4c2c3a90fb7622b27a32c80d2b8e8b93d84273
+  tamano_bytes: 354914
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNi1DdWVzdGlvbmFyaW8gZGUgcHJvZ3JhbWFzIGRlIGF5dWRhIGFsaW1lbnRhcmlhL0NTX0FZVURBX0FMSU1FTlRBUklBLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 01-Componente de SALUD/06-Cuestionario de programas de ayuda alimentaria/CS_AYUDA_ALIMENTARIA.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_seguridad_alimentaria_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.stata.stata.zip
+  sha256: 3317d6b1b07f9847426279b937a909f324f82d8521dbe1305e81444f7a844bfc
+  tamano_bytes: 492871
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNy1DdWVzdGlvbmFyaW8gZGUgc2VndXJpZGFkIGFsaW1lbnRhcmlhL0NTX1NFR1VSSURBRF9BTElNRU5UQVJJQS5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_seguridad_alimentaria_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.Cuestionarios.pdf
+  sha256: ebb2003a4168703eb418d541e582e2d8cc1bd8ff6320b0ee92ba68fb7dd0187d
+  tamano_bytes: 844707
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNy1DdWVzdGlvbmFyaW8gZGUgc2VndXJpZGFkIGFsaW1lbnRhcmlhL0NTX1NFR1VSSURBRF9BTElNRU5UQVJJQS5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_seguridad_alimentaria_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.Catálogo.xlsx
+  sha256: 007db21aca09ca89056882851f03c31e79c0528f5ddcb3595495cf93d1b17fcf
+  tamano_bytes: 352971
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNy1DdWVzdGlvbmFyaW8gZGUgc2VndXJpZGFkIGFsaW1lbnRhcmlhL0NTX1NFR1VSSURBRF9BTElNRU5UQVJJQS5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 01-Componente de SALUD/07-Cuestionario de seguridad alimentaria/CS_SEGURIDAD_ALIMENTARIA.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_serv_salud_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/08-Cuestionario de utilizadores de servicios
+    de salud/CS_SERV_SALUD.stata.stata.zip
+  sha256: fcd101f202f487aabb30019b3a0afe7a0cb4a1c6fcd421d0eb76c2347ae7771d
+  tamano_bytes: 477522
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wOC1DdWVzdGlvbmFyaW8gZGUgdXRpbGl6YWRvcmVzIGRlIHNlcnZpY2lvcyBkZSBzYWx1ZC9DU19TRVJWX1NBTFVELnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 01-Componente de SALUD/08-Cuestionario de utilizadores de servicios de
+    salud/CS_SERV_SALUD.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_serv_salud_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/08-Cuestionario de utilizadores de servicios
+    de salud/CS_SERV_SALUD.Catálogo.xlsx
+  sha256: fcd78a3fd2b66e953b9ddc9fa3c2360dbf55279bf4c041236d8856447b5e1a68
+  tamano_bytes: 367033
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wOC1DdWVzdGlvbmFyaW8gZGUgdXRpbGl6YWRvcmVzIGRlIHNlcnZpY2lvcyBkZSBzYWx1ZC9DU19TRVJWX1NBTFVELkNhdMOhbG9nby54bHN4;
+    ruta del portal: 01-Componente de SALUD/08-Cuestionario de utilizadores de servicios de
+    salud/CS_SERV_SALUD.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_etiquetado_frontal_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.stata.stata.zip
+  sha256: d5d5d7720c103cdd25a22a24b8aa9980cfc6b0995f1578c6281d4f9de0201645
+  tamano_bytes: 1429002
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wOS1DdWVzdGlvbmFyaW8gZGUgZXRpcXVldGFkbyBmcm9udGFsIGRlIGFsaW1lbnRvcy9DU19FVElRVUVUQURPX0ZST05UQUwuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_etiquetado_frontal_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.Cuestionarios.pdf
+  sha256: dd5711dce444e4adef133e30b00acd10c5df1621abc9b59b2709657e6d410ebc
+  tamano_bytes: 862262
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wOS1DdWVzdGlvbmFyaW8gZGUgZXRpcXVldGFkbyBmcm9udGFsIGRlIGFsaW1lbnRvcy9DU19FVElRVUVUQURPX0ZST05UQUwuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cs_etiquetado_frontal_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.Catálogo.xlsx
+  sha256: 2d02c4907fb5b5cf4ace5a4c664e940706ee7c1c64fbf633cfe21db4789b2efd
+  tamano_bytes: 357610
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wOS1DdWVzdGlvbmFyaW8gZGUgZXRpcXVldGFkbyBmcm9udGFsIGRlIGFsaW1lbnRvcy9DU19FVElRVUVUQURPX0ZST05UQUwuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 01-Componente de SALUD/09-Cuestionario de etiquetado frontal de alimentos/CS_ETIQUETADO_FRONTAL.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_antropometria_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.stata.stata.zip
+  sha256: d02da9b8efe54b43e7952d083f6e2ac54b31417471e55257cd4045c302646881
+  tamano_bytes: 1588818
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAxLUN1ZXN0aW9uYXJpbyBkZSBhbnRyb3BvbWV0csOtYSB5IHRlbnNpw7NuIGFydGVyaWFsL0NOX0FOVFJPUE9NRVRSSUEuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_antropometria_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.Cuestionarios.pdf
+  sha256: 54a651dc5765920ea110b0966e30e57fc4d59a388625f728c810c7df053cbf29
+  tamano_bytes: 870376
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAxLUN1ZXN0aW9uYXJpbyBkZSBhbnRyb3BvbWV0csOtYSB5IHRlbnNpw7NuIGFydGVyaWFsL0NOX0FOVFJPUE9NRVRSSUEuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.Cuestionarios.pdf; A.7: dos descargas con sha256 idéntico; estructura
+    PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_antropometria_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.Catálogo.xlsx
+  sha256: f6b949c2b93a2ba383079d5392c1dc45b8e06d4f1fb2763e6c8b99d02f227d62
+  tamano_bytes: 355143
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAxLUN1ZXN0aW9uYXJpbyBkZSBhbnRyb3BvbWV0csOtYSB5IHRlbnNpw7NuIGFydGVyaWFsL0NOX0FOVFJPUE9NRVRSSUEuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/CN_ANTROPOMETRIA.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__ponderadores_hipertension_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/01-Medición de la tensión arterial/ponderadores_hipertension.stata.stata.zip
+  sha256: 89bff02fcec157aea76a48b34cc0facae847b1faba958ee263b4ec425d6beae7
+  tamano_bytes: 1128063
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAxLUN1ZXN0aW9uYXJpbyBkZSBhbnRyb3BvbWV0csOtYSB5IHRlbnNpw7NuIGFydGVyaWFsLzAxLU1lZGljacOzbiBkZSBsYSB0ZW5zacOzbiBhcnRlcmlhbC9wb25kZXJhZG9yZXNfaGlwZXJ0ZW5zaW9uLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/01-Medición de la tensión arterial/ponderadores_hipertension.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__ponderadores_hipertension_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/01-Medición de la tensión arterial/ponderadores_hipertension.Catálogo.xlsx
+  sha256: be0e01da2c156fbf05b064d0ea4e3221bfd6c585be26dab4d07ee80c2fbb5a06
+  tamano_bytes: 355268
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAxLUN1ZXN0aW9uYXJpbyBkZSBhbnRyb3BvbWV0csOtYSB5IHRlbnNpw7NuIGFydGVyaWFsLzAxLU1lZGljacOzbiBkZSBsYSB0ZW5zacOzbiBhcnRlcmlhbC9wb25kZXJhZG9yZXNfaGlwZXJ0ZW5zaW9uLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/01-Cuestionario de antropometría y tensión
+    arterial/01-Medición de la tensión arterial/ponderadores_hipertension.Catálogo.xlsx; A.7:
+    dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_prees_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.stata.stata.zip
+  sha256: 18043c325b6ffbb6ccd1c9d4563bc00841e16218f6b45b1c4724b51d2b3f2554
+  tamano_bytes: 2773272
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gcHJlZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19QUkVFUy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_prees_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.Cuestionarios.pdf
+  sha256: ce1b55ae6a8a9d66b97477d4b9cbd5204d5324006c13fe33298dcaeb02fa82e6
+  tamano_bytes: 997145
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gcHJlZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19QUkVFUy5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_prees_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.Catálogo.xlsx
+  sha256: 5e004e59a23fb3f226ec1450f42d524819ec7ad7ab24643b5936dcb9ba560f72
+  tamano_bytes: 352578
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gcHJlZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19QUkVFUy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/CN_ALIMENTOS_PREES.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_prees_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/01-Frecuencia de consumo - Grupo
+    de alimentos/CN_FCA_PREES.stata.stata.zip
+  sha256: 168f796ae313ca68b2e532eb18928e94994aee27df353051c5db757324a90041
+  tamano_bytes: 101642
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gcHJlZXNjb2xhcmVzLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyAtIEdydXBvIGRlIGFsaW1lbnRvcy9DTl9GQ0FfUFJFRVMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/01-Frecuencia de consumo - Grupo
+    de alimentos/CN_FCA_PREES.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_prees_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/01-Frecuencia de consumo - Grupo
+    de alimentos/CN_FCA_PREES.Catálogo.xlsx
+  sha256: d302f61c1726c6f0215ceae03117eb66743774af2276686422566328e8ec1312
+  tamano_bytes: 352503
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gcHJlZXNjb2xhcmVzLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyAtIEdydXBvIGRlIGFsaW1lbnRvcy9DTl9GQ0FfUFJFRVMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/01-Frecuencia de consumo en preescolares/01-Frecuencia de consumo - Grupo
+    de alimentos/CN_FCA_PREES.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_esc_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.stata.stata.zip
+  sha256: f776367e7e04b6d6125de752ed5d16a4ab3e1c1129bf6d105c48b694a8e40b28
+  tamano_bytes: 5183172
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19FU0Muc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.stata.stata.zip; A.7:
+    dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_esc_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.Cuestionarios.pdf
+  sha256: 79506d4478f283ec2ad54cd49c9220d88b5ed246095f0f12ae37285c17830e7f
+  tamano_bytes: 1010951
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19FU0MuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_esc_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.Catálogo.xlsx
+  sha256: cd89bea528e042ccc09cc1bf1032ffcd711ef82d0eaf93b23b3c50d2fd5d71e0
+  tamano_bytes: 352449
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gZXNjb2xhcmVzL0NOX0FMSU1FTlRPU19FU0MuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/CN_ALIMENTOS_ESC.Catálogo.xlsx; A.7:
+    dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_esc_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/01-Frecuencia de consumo - Grupo de
+    Alimentos/CN_FCA_ESC.stata.stata.zip
+  sha256: 99564e82f61db2a9e3ea8823155262d369294369e9d113655f0077826f73813f
+  tamano_bytes: 152002
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gZXNjb2xhcmVzLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyAtIEdydXBvIGRlIEFsaW1lbnRvcy9DTl9GQ0FfRVNDLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/01-Frecuencia de consumo - Grupo de
+    Alimentos/CN_FCA_ESC.stata.stata.zip; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_esc_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/01-Frecuencia de consumo - Grupo de
+    Alimentos/CN_FCA_ESC.Catálogo.xlsx
+  sha256: d84c41d1d71a26383ce9f8405c4e253f644da408a68ae22778eee553fde5f0cb
+  tamano_bytes: 352454
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gZXNjb2xhcmVzLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyAtIEdydXBvIGRlIEFsaW1lbnRvcy9DTl9GQ0FfRVNDLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/02-Frecuencia de consumo en escolares/01-Frecuencia de consumo - Grupo de
+    Alimentos/CN_FCA_ESC.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico; estructura
+    ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_adu_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.stata.stata.zip
+  sha256: 07934d19e0536351600215362ddf8ea71d8bdbed07bb49d1a49783e693d42a80
+  tamano_bytes: 17667497
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpL0NOX0FMSU1FTlRPU19BRFUuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_adu_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.Cuestionarios.pdf
+  sha256: 148638b48e65efccbce5ce31d1882166b2bb35cd50fb07542a0439d3e485cccd
+  tamano_bytes: 996155
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpL0NOX0FMSU1FTlRPU19BRFUuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_adu_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.Catálogo.xlsx
+  sha256: f3a86e2e4713f35e45d22172a5555f15504ae084965a876b91410058445c8350
+  tamano_bytes: 352513
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpL0NOX0FMSU1FTlRPU19BRFUuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/CN_ALIMENTOS_ADU.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_adolescentes_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/01-Frecuencia
+    de consumo en adolescentes - Grupo de alimentos/CN_FCA_ADOLESCENTES.stata.stata.zip
+  sha256: 55516a407e73d12d0f87d3d6628aa1c612403b7b398438932b5be5f6c5743f93
+  tamano_bytes: 136963
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyBlbiBhZG9sZXNjZW50ZXMgLSBHcnVwbyBkZSBhbGltZW50b3MvQ05fRkNBX0FET0xFU0NFTlRFUy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/01-Frecuencia
+    de consumo en adolescentes - Grupo de alimentos/CN_FCA_ADOLESCENTES.stata.stata.zip; A.7:
+    dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_adolescentes_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/01-Frecuencia
+    de consumo en adolescentes - Grupo de alimentos/CN_FCA_ADOLESCENTES.Catálogo.xlsx
+  sha256: 0dad2386f1ac4d0fd537132b70c8395ac2ed2f8ee2b40b37406ae25227a34862
+  tamano_bytes: 352472
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpLzAxLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyBlbiBhZG9sZXNjZW50ZXMgLSBHcnVwbyBkZSBhbGltZW50b3MvQ05fRkNBX0FET0xFU0NFTlRFUy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/01-Frecuencia
+    de consumo en adolescentes - Grupo de alimentos/CN_FCA_ADOLESCENTES.Catálogo.xlsx; A.7:
+    dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_adu_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/02-Frecuencia
+    de consumo en adultos - Grupo de Alimentos/CN_FCA_ADU.stata.stata.zip
+  sha256: 9f05cdd91bad46df4e3a40fa89f00bed086df41f47454d3a72b08bfb13b4f429
+  tamano_bytes: 485538
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpLzAyLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyBlbiBhZHVsdG9zIC0gR3J1cG8gZGUgQWxpbWVudG9zL0NOX0ZDQV9BRFUuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/02-Frecuencia
+    de consumo en adultos - Grupo de Alimentos/CN_FCA_ADU.stata.stata.zip; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_fca_adu_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/02-Frecuencia
+    de consumo en adultos - Grupo de Alimentos/CN_FCA_ADU.Catálogo.xlsx
+  sha256: 55feefb496739886badeb067d7e7acc730834b7d3187896e1ebe3d25c0008420
+  tamano_bytes: 352580
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wMy1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gZW4gYWRvbGVzY2VudGVzIHkgYWR1bHRvcyAtICgxMiBhw7FvcyBvIG3DoXMpLzAyLUZyZWN1ZW5jaWEgZGUgY29uc3VtbyBlbiBhZHVsdG9zIC0gR3J1cG8gZGUgQWxpbWVudG9zL0NOX0ZDQV9BRFUuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/03-Frecuencia de consumo en adolescentes y adultos - (12 años o más)/02-Frecuencia
+    de consumo en adultos - Grupo de Alimentos/CN_FCA_ADU.Catálogo.xlsx; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_com_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/04-Frecuencia de consumo - Complemento  (tortilla)/CN_ALIMENTOS_COM.stata.stata.zip
+  sha256: f17c9fa705abcca33ebc7c03aacee912d05d56fede4ca97341cf8c4ca998122a
+  tamano_bytes: 743104
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNC1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDb21wbGVtZW50byAgKHRvcnRpbGxhKS9DTl9BTElNRU5UT1NfQ09NLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/04-Frecuencia de consumo - Complemento  (tortilla)/CN_ALIMENTOS_COM.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_alimentos_com_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/04-Frecuencia de consumo - Complemento  (tortilla)/CN_ALIMENTOS_COM.Catálogo.xlsx
+  sha256: 699b2c80ce45aadca4bb8ad45f05aaa6e6a9580ddf95d6d08fdc8438e5bb35cd
+  tamano_bytes: 352350
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNC1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDb21wbGVtZW50byAgKHRvcnRpbGxhKS9DTl9BTElNRU5UT1NfQ09NLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/04-Frecuencia de consumo - Complemento  (tortilla)/CN_ALIMENTOS_COM.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_cat_alimentos_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/05-Frecuencia de consumo - Catálogo de alimentos/CN_CAT_ALIMENTOS.stata.stata.zip
+  sha256: 43806938dfab6bd30c585152d70e868e6488368df3d097fe6117d77a275c23fa
+  tamano_bytes: 5637
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDYXTDoWxvZ28gZGUgYWxpbWVudG9zL0NOX0NBVF9BTElNRU5UT1Muc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/05-Frecuencia de consumo - Catálogo de alimentos/CN_CAT_ALIMENTOS.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_cat_alimentos_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/05-Frecuencia de consumo - Catálogo de alimentos/CN_CAT_ALIMENTOS.Catálogo.xlsx
+  sha256: 0aa4ce0728a29452bfdb2e9666e9b1f6035d33e4a08ee08578b0271105b0d213
+  tamano_bytes: 350661
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNS1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDYXTDoWxvZ28gZGUgYWxpbWVudG9zL0NOX0NBVF9BTElNRU5UT1MuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/05-Frecuencia de consumo - Catálogo de alimentos/CN_CAT_ALIMENTOS.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__contenido_alfatoxinas_ensanut2018_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/06-Frecuencia de consumo - Contenido aflatoxinas/Contenido.alfatoxinas-ENSANUT2018.stata.stata.zip
+  sha256: 55485103a918ecb85625a40c01d1eca6f810f9eda374611678ed83830bf69479
+  tamano_bytes: 445811
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDb250ZW5pZG8gYWZsYXRveGluYXMvQ29udGVuaWRvLmFsZmF0b3hpbmFzLUVOU0FOVVQyMDE4LnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/06-Frecuencia de consumo - Contenido aflatoxinas/Contenido.alfatoxinas-ENSANUT2018.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__contenido_alfatoxinas_ensanut2018_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/06-Frecuencia de consumo - Contenido aflatoxinas/Contenido.alfatoxinas-ENSANUT2018.Catálogo.xlsx
+  sha256: f5e963dacc0f290f1b228ae2da9083eefcbbca95e0b0bd86daa7e334e8025146
+  tamano_bytes: 353500
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAyLUN1ZXN0aW9uYXJpb3MgZGUgZnJlY3VlbmNpYSBkZSBjb25zdW1vIGRlIGFsaW1lbnRvcy8wNi1GcmVjdWVuY2lhIGRlIGNvbnN1bW8gLSBDb250ZW5pZG8gYWZsYXRveGluYXMvQ29udGVuaWRvLmFsZmF0b3hpbmFzLUVOU0FOVVQyMDE4LkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/02-Cuestionarios de frecuencia de consumo
+    de alimentos/06-Frecuencia de consumo - Contenido aflatoxinas/Contenido.alfatoxinas-ENSANUT2018.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_plomo_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de
+    plomo en niños y mujeres embarazadas/CN_PLOMO.stata.stata.zip
+  sha256: 4818908ca706d8be3a30693bca767e8fb0474475674c55518bd776478dbe95d2
+  tamano_bytes: 67005
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAzLUN1ZXN0aW9uYXJpbyBkZSBlc3R1ZGlvIGRlIG5pdmVsZXMgZGUgcGxvbW8gZW4gbmnDsW9zIHkgbXVqZXJlcyBlbWJhcmF6YWRhcy9DTl9QTE9NTy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de plomo
+    en niños y mujeres embarazadas/CN_PLOMO.stata.stata.zip; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_plomo_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de
+    plomo en niños y mujeres embarazadas/CN_PLOMO.Cuestionarios.pdf
+  sha256: d6d544065bbdf2bd22cbe4d7269269ed93b8c3fc64b3f55ce9e2fc3d2889261c
+  tamano_bytes: 842299
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAzLUN1ZXN0aW9uYXJpbyBkZSBlc3R1ZGlvIGRlIG5pdmVsZXMgZGUgcGxvbW8gZW4gbmnDsW9zIHkgbXVqZXJlcyBlbWJhcmF6YWRhcy9DTl9QTE9NTy5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: 02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de plomo
+    en niños y mujeres embarazadas/CN_PLOMO.Cuestionarios.pdf; A.7: dos descargas con sha256
+    idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_plomo_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de
+    plomo en niños y mujeres embarazadas/CN_PLOMO.Catálogo.xlsx
+  sha256: ebd6c8b1f8d516f8ce59f4209a8d986492af25b842d3c1ac043ad805c9e306fb
+  tamano_bytes: 351676
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzAzLUN1ZXN0aW9uYXJpbyBkZSBlc3R1ZGlvIGRlIG5pdmVsZXMgZGUgcGxvbW8gZW4gbmnDsW9zIHkgbXVqZXJlcyBlbWJhcmF6YWRhcy9DTl9QTE9NTy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/03-Cuestionario de estudio de niveles de plomo
+    en niños y mujeres embarazadas/CN_PLOMO.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__ensanut_2018_desarrollo_infantil_temprano_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil
+    temprano en niños(as) (menores de 5 años)/ensanut_2018_desarrollo_infantil_temprano.Cuestionarios.pdf
+  sha256: 4bd46b7203a874efab1b27debd1b2fe42c5370a3fa23c636d3978f625ef9113a
+  tamano_bytes: 1025542
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA0LUN1ZXN0aW9uYXJpbyBkZSBkZXNhcnJvbGxvIGluZmFudGlsIHRlbXByYW5vIGVuIG5pw7FvcyhhcykgKG1lbm9yZXMgZGUgNSBhw7FvcykvZW5zYW51dF8yMDE4X2Rlc2Fycm9sbG9faW5mYW50aWxfdGVtcHJhbm8uQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: 02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil temprano
+    en niños(as) (menores de 5 años)/ensanut_2018_desarrollo_infantil_temprano.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_des_inf_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil
+    temprano en niños(as) (menores de 5 años)/01-CDIT - Preguntas generales/CN_DES_INF.stata.stata.zip
+  sha256: c824c406209c30fcf628302767ab096144f7bc1099e39a499417ed08755d563b
+  tamano_bytes: 339965
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA0LUN1ZXN0aW9uYXJpbyBkZSBkZXNhcnJvbGxvIGluZmFudGlsIHRlbXByYW5vIGVuIG5pw7FvcyhhcykgKG1lbm9yZXMgZGUgNSBhw7FvcykvMDEtQ0RJVCAtIFByZWd1bnRhcyBnZW5lcmFsZXMvQ05fREVTX0lORi5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil temprano
+    en niños(as) (menores de 5 años)/01-CDIT - Preguntas generales/CN_DES_INF.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_des_inf_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil
+    temprano en niños(as) (menores de 5 años)/01-CDIT - Preguntas generales/CN_DES_INF.Catálogo.xlsx
+  sha256: a22e8f7761bba1eaea39bde807bbcae80ae3355dc4ab6e648d2ae079c310419e
+  tamano_bytes: 378480
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA0LUN1ZXN0aW9uYXJpbyBkZSBkZXNhcnJvbGxvIGluZmFudGlsIHRlbXByYW5vIGVuIG5pw7FvcyhhcykgKG1lbm9yZXMgZGUgNSBhw7FvcykvMDEtQ0RJVCAtIFByZWd1bnRhcyBnZW5lcmFsZXMvQ05fREVTX0lORi5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil temprano
+    en niños(as) (menores de 5 años)/01-CDIT - Preguntas generales/CN_DES_INF.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_des_inf_p7_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil
+    temprano en niños(as) (menores de 5 años)/02-CDIT- Evaluación del lenguaje/CN_DES_INF_P7.stata.stata.zip
+  sha256: 74bc13e60db4fc2197d0123556bcaf6f51b82fcc5a447f459997f5a525dc9c89
+  tamano_bytes: 235940
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA0LUN1ZXN0aW9uYXJpbyBkZSBkZXNhcnJvbGxvIGluZmFudGlsIHRlbXByYW5vIGVuIG5pw7FvcyhhcykgKG1lbm9yZXMgZGUgNSBhw7FvcykvMDItQ0RJVC0gRXZhbHVhY2nDs24gZGVsIGxlbmd1YWplL0NOX0RFU19JTkZfUDcuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil temprano
+    en niños(as) (menores de 5 años)/02-CDIT- Evaluación del lenguaje/CN_DES_INF_P7.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_des_inf_p7_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil
+    temprano en niños(as) (menores de 5 años)/02-CDIT- Evaluación del lenguaje/CN_DES_INF_P7.Catálogo.xlsx
+  sha256: 61d0d5b546b0dd0c52896d5159d6d3c9e8e32764acb6ae545bf8d44f3b9a4687
+  tamano_bytes: 372280
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA0LUN1ZXN0aW9uYXJpbyBkZSBkZXNhcnJvbGxvIGluZmFudGlsIHRlbXByYW5vIGVuIG5pw7FvcyhhcykgKG1lbm9yZXMgZGUgNSBhw7FvcykvMDItQ0RJVC0gRXZhbHVhY2nDs24gZGVsIGxlbmd1YWplL0NOX0RFU19JTkZfUDcuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/04-Cuestionario de desarrollo infantil temprano
+    en niños(as) (menores de 5 años)/02-CDIT- Evaluación del lenguaje/CN_DES_INF_P7.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_lac_mat_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y
+    prácticas de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.stata.stata.zip
+  sha256: 86eb437c614a42d5519a58a5dbbd81fbdb76a066df080b2424ec84de800bc288
+  tamano_bytes: 212314
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA1LUN1ZXN0aW9uYXJpbyBkZSBsYWN0YW5jaWEgbWF0ZXJuYSB5IHByw6FjdGljYXMgZGUgYWxpbWVudGFjacOzbiBjb21wbGVtZW50YXJpYSAoMCBhIDM2IG1lc2VzKS9DTl9MQUNfTUFULnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y prácticas
+    de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.stata.stata.zip; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_lac_mat_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y
+    prácticas de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.Cuestionarios.pdf
+  sha256: 398ba7661ab17dd509b562366428609467e5faf7b0aabdd7b71b4ddba057f013
+  tamano_bytes: 877849
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA1LUN1ZXN0aW9uYXJpbyBkZSBsYWN0YW5jaWEgbWF0ZXJuYSB5IHByw6FjdGljYXMgZGUgYWxpbWVudGFjacOzbiBjb21wbGVtZW50YXJpYSAoMCBhIDM2IG1lc2VzKS9DTl9MQUNfTUFULkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: 02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y prácticas
+    de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.Cuestionarios.pdf; A.7: dos descargas
+    con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_lac_mat_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y
+    prácticas de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.Catálogo.xlsx
+  sha256: a94e8e304521c1a935789dd8d9b4e577ece7327e289a3893d1ad98b8955cfc36
+  tamano_bytes: 365216
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA1LUN1ZXN0aW9uYXJpbyBkZSBsYWN0YW5jaWEgbWF0ZXJuYSB5IHByw6FjdGljYXMgZGUgYWxpbWVudGFjacOzbiBjb21wbGVtZW50YXJpYSAoMCBhIDM2IG1lc2VzKS9DTl9MQUNfTUFULkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/05-Cuestionario de lactancia materna y prácticas
+    de alimentación complementaria (0 a 36 meses)/CN_LAC_MAT.Catálogo.xlsx; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__ensanut_2018_formato_muestras_sanguineas_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: PDF cuestionario'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/ensanut_2018_formato_muestras_sanguineas.Cuestionarios.pdf
+  sha256: 3ffc2531b7f6183b81ab9b538a01fc5552ff258c2a4a66d1ab02e916150f378c
+  tamano_bytes: 846967
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy9lbnNhbnV0XzIwMThfZm9ybWF0b19tdWVzdHJhc19zYW5ndWluZWFzLkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/ensanut_2018_formato_muestras_sanguineas.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__detbiocronicosadultos_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/01-Padecimientos
+    crónicos en adultos/DetBioCronicosAdultos.stata.stata.zip
+  sha256: 5e8565f9efd6018b87f5eec1d5e07604f47a9d134df03c3fefc877c794be01a5
+  tamano_bytes: 1748036
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMS1QYWRlY2ltaWVudG9zIGNyw7NuaWNvcyBlbiBhZHVsdG9zL0RldEJpb0Nyb25pY29zQWR1bHRvcy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/01-Padecimientos
+    crónicos en adultos/DetBioCronicosAdultos.stata.stata.zip; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__detbiocronicosadultos_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/01-Padecimientos
+    crónicos en adultos/DetBioCronicosAdultos.Catálogo.xlsx
+  sha256: e8811ae9437c7869200b027385c858d41837d4f24a6a4fab630837385ab4b010
+  tamano_bytes: 353335
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMS1QYWRlY2ltaWVudG9zIGNyw7NuaWNvcyBlbiBhZHVsdG9zL0RldEJpb0Nyb25pY29zQWR1bHRvcy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/01-Padecimientos
+    crónicos en adultos/DetBioCronicosAdultos.Catálogo.xlsx; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_prees_20200413_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/01-Deficiencias de micronutrientes en preescolares/E18_MUESAN_DETBIO_PREES_20200413.stata.stata.zip
+  sha256: 179188260f21df52e5cf13d6a51844cb03d063938d9521994bb6ad01cf6b304b
+  tamano_bytes: 74212
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAxLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gcHJlZXNjb2xhcmVzL0UxOF9NVUVTQU5fREVUQklPX1BSRUVTXzIwMjAwNDEzLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/01-Deficiencias de micronutrientes en preescolares/E18_MUESAN_DETBIO_PREES_20200413.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_prees_20200413_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/01-Deficiencias de micronutrientes en preescolares/E18_MUESAN_DETBIO_PREES_20200413.Catálogo.xlsx
+  sha256: 9c0f10d2ae3f27941ec2504c583d7105c315e9de10997e087cc59c57f3be49ef
+  tamano_bytes: 352554
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAxLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gcHJlZXNjb2xhcmVzL0UxOF9NVUVTQU5fREVUQklPX1BSRUVTXzIwMjAwNDEzLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/01-Deficiencias de micronutrientes en preescolares/E18_MUESAN_DETBIO_PREES_20200413.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_esc_20200413_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/02-Deficiencias de micronutrientes en escolares/E18_MUESAN_DETBIO_ESC_20200413.stata.stata.zip
+  sha256: f2b307dbdf3309c6ba15b7f5e51626c225eeca454c2c31cb72e14dd1bca73414
+  tamano_bytes: 170902
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAyLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gZXNjb2xhcmVzL0UxOF9NVUVTQU5fREVUQklPX0VTQ18yMDIwMDQxMy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/02-Deficiencias de micronutrientes en escolares/E18_MUESAN_DETBIO_ESC_20200413.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_esc_20200413_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/02-Deficiencias de micronutrientes en escolares/E18_MUESAN_DETBIO_ESC_20200413.Catálogo.xlsx
+  sha256: e310e446ae705772c05ad69481a92954665c34db67eb9bd655c7c15b3063cceb
+  tamano_bytes: 352521
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAyLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gZXNjb2xhcmVzL0UxOF9NVUVTQU5fREVUQklPX0VTQ18yMDIwMDQxMy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/02-Deficiencias de micronutrientes en escolares/E18_MUESAN_DETBIO_ESC_20200413.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_adul_20200413_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/03-Deficiencias de micronutrientes en adultos mayores/E18_MUESAN_DETBIO_ADUL_20200413.stata.stata.zip
+  sha256: 5a92d96ca3beb0e8f295e79d12d71eea6002839d691910ee14009f230b9a8545
+  tamano_bytes: 131114
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAzLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gYWR1bHRvcyBtYXlvcmVzL0UxOF9NVUVTQU5fREVUQklPX0FEVUxfMjAyMDA0MTMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/03-Deficiencias de micronutrientes en adultos mayores/E18_MUESAN_DETBIO_ADUL_20200413.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_adul_20200413_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/03-Deficiencias de micronutrientes en adultos mayores/E18_MUESAN_DETBIO_ADUL_20200413.Catálogo.xlsx
+  sha256: 81526b7545777fba0b8a94ebb9c217593aa04614ab05627847d93ed52375c179
+  tamano_bytes: 352356
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzAzLURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gYWR1bHRvcyBtYXlvcmVzL0UxOF9NVUVTQU5fREVUQklPX0FEVUxfMjAyMDA0MTMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/03-Deficiencias de micronutrientes en adultos mayores/E18_MUESAN_DETBIO_ADUL_20200413.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_muj_20200413_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/04-Deficiencias de micronutrientes en mujeres (20 a 49 años)/E18_MUESAN_DETBIO_MUJ_20200413.stata.stata.zip
+  sha256: ebb18f78a61a07f5bb6c52cd1dc28b5a11b0e870f1a002e32ce2636c1d71a7df
+  tamano_bytes: 71485
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzA0LURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gbXVqZXJlcyAoMjAgYSA0OSBhw7FvcykvRTE4X01VRVNBTl9ERVRCSU9fTVVKXzIwMjAwNDEzLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/04-Deficiencias de micronutrientes en mujeres (20 a 49 años)/E18_MUESAN_DETBIO_MUJ_20200413.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__e18_muesan_detbio_muj_20200413_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/04-Deficiencias de micronutrientes en mujeres (20 a 49 años)/E18_MUESAN_DETBIO_MUJ_20200413.Catálogo.xlsx
+  sha256: 45d6bc4e6a4daec82d7f76e4270bba0f3ddf9d7d6ddbbad425c2ce2892e5b456
+  tamano_bytes: 352442
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMi1EZWZpY2llbmNpYXMgZGUgbWljcm9udXRyaWVudGVzLzA0LURlZmljaWVuY2lhcyBkZSBtaWNyb251dHJpZW50ZXMgZW4gbXVqZXJlcyAoMjAgYSA0OSBhw7FvcykvRTE4X01VRVNBTl9ERVRCSU9fTVVKXzIwMjAwNDEzLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/02-Deficiencias
+    de micronutrientes/04-Deficiencias de micronutrientes en mujeres (20 a 49 años)/E18_MUESAN_DETBIO_MUJ_20200413.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_hepa_adu_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/03-Muestras
+    de sangre de hepatitis/CN_MUESAN_HEPA_ADU.stata.stata.zip
+  sha256: 254e82962bac18001ecf4a9c5870d6fc3ea400e809ccae4301a04a4a6e203fc8
+  tamano_bytes: 422059
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMy1NdWVzdHJhcyBkZSBzYW5ncmUgZGUgaGVwYXRpdGlzL0NOX01VRVNBTl9IRVBBX0FEVS5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/03-Muestras
+    de sangre de hepatitis/CN_MUESAN_HEPA_ADU.stata.stata.zip; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_hepa_adu_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/03-Muestras
+    de sangre de hepatitis/CN_MUESAN_HEPA_ADU.Catálogo.xlsx
+  sha256: 0639297846d88c88263fdf5f5a796f643ac7956fbc5ab7931fbb42db53e0408a
+  tamano_bytes: 352518
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wMy1NdWVzdHJhcyBkZSBzYW5ncmUgZGUgaGVwYXRpdGlzL0NOX01VRVNBTl9IRVBBX0FEVS5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/03-Muestras
+    de sangre de hepatitis/CN_MUESAN_HEPA_ADU.Catálogo.xlsx; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_hemoglobina_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/04-Muestras
+    de sangre de hemoglobina/CN_MUESAN_HEMOGLOBINA.stata.stata.zip
+  sha256: 2d1569ea87226813ca9c3fa49884d673b8f983b7729739c6c9f85bf50cac3b20
+  tamano_bytes: 781619
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wNC1NdWVzdHJhcyBkZSBzYW5ncmUgZGUgaGVtb2dsb2JpbmEvQ05fTVVFU0FOX0hFTU9HTE9CSU5BLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/04-Muestras
+    de sangre de hemoglobina/CN_MUESAN_HEMOGLOBINA.stata.stata.zip; A.7: dos descargas con
+    sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_hemoglobina_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/04-Muestras
+    de sangre de hemoglobina/CN_MUESAN_HEMOGLOBINA.Catálogo.xlsx
+  sha256: ca5e8f73f659f344649961e746ac7fe83a49695d4ec364146c46850be5e88095
+  tamano_bytes: 351572
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wNC1NdWVzdHJhcyBkZSBzYW5ncmUgZGUgaGVtb2dsb2JpbmEvQ05fTVVFU0FOX0hFTU9HTE9CSU5BLkNhdMOhbG9nby54bHN4;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/04-Muestras
+    de sangre de hemoglobina/CN_MUESAN_HEMOGLOBINA.Catálogo.xlsx; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_plomo_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: ZIP con base Stata (.dta)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/05-Muestras
+    de sangre capilar para plomo/CN_MUESAN_PLOMO.stata.stata.zip
+  sha256: d9f32c60771a5de0838b64e68d88904bf33837c149c346bd785d82f56477066b
+  tamano_bytes: 70552
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wNS1NdWVzdHJhcyBkZSBzYW5ncmUgY2FwaWxhciBwYXJhIHBsb21vL0NOX01VRVNBTl9QTE9NTy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/05-Muestras
+    de sangre capilar para plomo/CN_MUESAN_PLOMO.stata.stata.zip; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: ensanut2018__cn_muesan_plomo_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENSANUT_2018 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENSANUT 2018: XLSX catálogo de variables (codebook)'
+  url_origen: https://ensanut.insp.mx/encuestas/ensanut2018/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENSANUT/2018/02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/05-Muestras
+    de sangre capilar para plomo/CN_MUESAN_PLOMO.Catálogo.xlsx
+  sha256: 20c9f071fad4b2f57e899e86a236781f9545147502607291907330c2293fb29b
+  tamano_bytes: 351555
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=MDItQ29tcG9uZW50ZSBkZSBOVVRSSUNJw5NOLzA2LUN1ZXN0aW9uYXJpbyAgZm9ybWF0byBkZSBtdWVzdHJhcyBzYW5ndcOtbmVhcy8wNS1NdWVzdHJhcyBkZSBzYW5ncmUgY2FwaWxhciBwYXJhIHBsb21vL0NOX01VRVNBTl9QTE9NTy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: 02-Componente de NUTRICIÓN/06-Cuestionario  formato de muestras sanguíneas/05-Muestras
+    de sangre capilar para plomo/CN_MUESAN_PLOMO.Catálogo.xlsx; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: PDF cuestionario'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/cuestionario_encodat_hogar_2016_2017.Cuestionarios.pdf
+  sha256: bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a
+  tamano_bytes: 359262
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDEtQ3Vlc3Rpb25hcmlvIGRlIEhvZ2FyL2N1ZXN0aW9uYXJpb19lbmNvZGF0X2hvZ2FyXzIwMTZfMjAxNy5DdWVzdGlvbmFyaW9zLnBkZg==;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/cuestionario_encodat_hogar_2016_2017.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_hogar_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: ZIP con base Stata
+    (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2016_2017_Hogar.stata.stata.zip
+  sha256: 716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781
+  tamano_bytes: 1861215
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDEtQ3Vlc3Rpb25hcmlvIGRlIEhvZ2FyLzAxLUluZm9ybWFjacOzbiBzb2JyZSBlbCBob2dhci9FTkNPREFUXzIwMTZfMjAxN19Ib2dhci5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2016_2017_Hogar.stata.stata.zip; A.7: dos descargas con sha256
+    idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_hogar_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: XLSX catálogo
+    de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2016_2017_Hogar.Catálogo.xlsx
+  sha256: c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e
+  tamano_bytes: 629419
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDEtQ3Vlc3Rpb25hcmlvIGRlIEhvZ2FyLzAxLUluZm9ybWFjacOzbiBzb2JyZSBlbCBob2dhci9FTkNPREFUXzIwMTZfMjAxN19Ib2dhci5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2016_2017_Hogar.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_integrantes_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: ZIP con base Stata
+    (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2016_2017_Integrantes.stata.stata.zip
+  sha256: 938a23ea3b16981b9fb0d5d370e8f1b8b0dabb057a2bd40220ec31b122ffe0c3
+  tamano_bytes: 3171701
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDEtQ3Vlc3Rpb25hcmlvIGRlIEhvZ2FyLzAyLUluZm9ybWFjacOzbiBzb2JyZSBsb3MgaW50ZWdyYW50ZXMgZGVsIGhvZ2FyL0VOQ09EQVRfMjAxNl8yMDE3X0ludGVncmFudGVzLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2016_2017_Integrantes.stata.stata.zip; A.7: dos
+    descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: XLSX catálogo
+    de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2016_2017_Integrantes.Catálogo.xlsx
+  sha256: b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0
+  tamano_bytes: 626208
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDEtQ3Vlc3Rpb25hcmlvIGRlIEhvZ2FyLzAyLUluZm9ybWFjacOzbiBzb2JyZSBsb3MgaW50ZWdyYW50ZXMgZGVsIGhvZ2FyL0VOQ09EQVRfMjAxNl8yMDE3X0ludGVncmFudGVzLkNhdMOhbG9nby54bHN4;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2016_2017_Integrantes.Catálogo.xlsx; A.7: dos
+    descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio
+    central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_individual_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: ZIP con base Stata
+    (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.stata.stata.zip
+  sha256: bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346
+  tamano_bytes: 26877179
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDItQ3Vlc3Rpb25hcmlvIGluZGl2aWR1YWwvRU5DT0RBVF8yMDE2XzIwMTdfSW5kaXZpZHVhbC5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: PDF cuestionario'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/cuestionario_encodat_individual_2016_2017.Cuestionarios.pdf
+  sha256: 6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2
+  tamano_bytes: 3285514
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDItQ3Vlc3Rpb25hcmlvIGluZGl2aWR1YWwvY3Vlc3Rpb25hcmlvX2VuY29kYXRfaW5kaXZpZHVhbF8yMDE2XzIwMTcuQ3Vlc3Rpb25hcmlvcy5wZGY=;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/cuestionario_encodat_individual_2016_2017.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2016_2017__encodat_2016_2017_individual_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2016-2017
+    (F-ASTRA-5-2: ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2016-2017: XLSX catálogo
+    de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.Catálogo.xlsx
+  sha256: 12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b
+  tamano_bytes: 924864
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDE2IDIwMTcvMDItQ3Vlc3Rpb25hcmlvIGluZGl2aWR1YWwvRU5DT0RBVF8yMDE2XzIwMTdfSW5kaXZpZHVhbC5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__cuestionario_hogar_integrantes_encodat_2025_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: PDF cuestionario'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/CUESTIONARIO_HOGAR_INTEGRANTES_ENCODAT_2025.Cuestionarios.pdf
+  raiz: reserva_respondentes
+  sha256: fe969e26f3ff7ee8ea8db7205726c2ffcd3925c97b94ab225ab1efdfaa0e5afc
+  tamano_bytes: 764409
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAxLUN1ZXN0aW9uYXJpbyBkZSBIb2dhci9DVUVTVElPTkFSSU9fSE9HQVJfSU5URUdSQU5URVNfRU5DT0RBVF8yMDI1LkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/CUESTIONARIO_HOGAR_INTEGRANTES_ENCODAT_2025.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_hogar_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: ZIP con base Stata (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2025_HOGAR.stata.stata.zip
+  raiz: reserva_respondentes
+  sha256: 84bce6d9db8e0ddb59ede8c2f16a4f92c854e45a85ff147c1ce3a6d854a2ae2d
+  tamano_bytes: 570621
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAxLUN1ZXN0aW9uYXJpbyBkZSBIb2dhci8wMS1JbmZvcm1hY2nDs24gc29icmUgZWwgaG9nYXIvRU5DT0RBVF8yMDI1X0hPR0FSLnN0YXRhLnN0YXRhLnppcA==;
+    ruta del portal: Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2025_HOGAR.stata.stata.zip; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_hogar_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: XLSX catálogo de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2025_HOGAR.Catálogo.xlsx
+  raiz: reserva_respondentes
+  sha256: 3ac1bfb0465f63b0a1f313f3f7d813da9d266a83a744b18c5e7654c440f4cdec
+  tamano_bytes: 231544
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAxLUN1ZXN0aW9uYXJpbyBkZSBIb2dhci8wMS1JbmZvcm1hY2nDs24gc29icmUgZWwgaG9nYXIvRU5DT0RBVF8yMDI1X0hPR0FSLkNhdMOhbG9nby54bHN4;
+    ruta del portal: Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/01-Información
+    sobre el hogar/ENCODAT_2025_HOGAR.Catálogo.xlsx; A.7: dos descargas con sha256 idéntico;
+    estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_integrantes_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: ZIP con base Stata (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2025_INTEGRANTES.stata.stata.zip
+  raiz: reserva_respondentes
+  sha256: 60aed487562f40ae1c7c56978827a12ce08c66aa2bb5d8bf7518b27c0bcd9440
+  tamano_bytes: 1755692
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAxLUN1ZXN0aW9uYXJpbyBkZSBIb2dhci8wMi1JbmZvcm1hY2nDs24gc29icmUgbG9zIGludGVncmFudGVzIGRlbCBob2dhci9FTkNPREFUXzIwMjVfSU5URUdSQU5URVMuc3RhdGEuc3RhdGEuemlw;
+    ruta del portal: Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2025_INTEGRANTES.stata.stata.zip; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_integrantes_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: XLSX catálogo de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2025_INTEGRANTES.Catálogo.xlsx
+  raiz: reserva_respondentes
+  sha256: 3763a16d94a1ecc63aed0cf3633f536fa4f4a8891d250209eb686d2378bd8947
+  tamano_bytes: 229210
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAxLUN1ZXN0aW9uYXJpbyBkZSBIb2dhci8wMi1JbmZvcm1hY2nDs24gc29icmUgbG9zIGludGVncmFudGVzIGRlbCBob2dhci9FTkNPREFUXzIwMjVfSU5URUdSQU5URVMuQ2F0w6Fsb2dvLnhsc3g=;
+    ruta del portal: Bases de datos de ENCODAT 2025/01-Cuestionario de Hogar/02-Información
+    sobre los integrantes del hogar/ENCODAT_2025_INTEGRANTES.Catálogo.xlsx; A.7: dos descargas
+    con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño y directorio central/%%EOF).'
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_adolescentes_adultos_stata_stata_zip
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: ZIP con base Stata (.dta)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/02-Cuestionario individual/ENCODAT_2025_ADOLESCENTES_ADULTOS.stata.stata.zip
+  raiz: reserva_respondentes
+  sha256: 007c6af2c3dd5b41e8de1694b8c436da27fe79cd7230c43f244dde9c8138b4fd
+  tamano_bytes: 7936448
+  formato: ZIP con base Stata (.dta)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAyLUN1ZXN0aW9uYXJpbyBpbmRpdmlkdWFsL0VOQ09EQVRfMjAyNV9BRE9MRVNDRU5URVNfQURVTFRPUy5zdGF0YS5zdGF0YS56aXA=;
+    ruta del portal: Bases de datos de ENCODAT 2025/02-Cuestionario individual/ENCODAT_2025_ADOLESCENTES_ADULTOS.stata.stata.zip;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__cuestionario_adolescentes_adultos_2025_cuestionarios_pdf
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: PDF cuestionario'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/02-Cuestionario individual/CUESTIONARIO_ADOLESCENTES_ADULTOS_2025.Cuestionarios.pdf
+  raiz: reserva_respondentes
+  sha256: df1dfa75e0764bf29b292ce42e235396b82345214a24c82f038d25bb8a281512
+  tamano_bytes: 1628218
+  formato: PDF cuestionario
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAyLUN1ZXN0aW9uYXJpbyBpbmRpdmlkdWFsL0NVRVNUSU9OQVJJT19BRE9MRVNDRU5URVNfQURVTFRPU18yMDI1LkN1ZXN0aW9uYXJpb3MucGRm;
+    ruta del portal: Bases de datos de ENCODAT 2025/02-Cuestionario individual/CUESTIONARIO_ADOLESCENTES_ADULTOS_2025.Cuestionarios.pdf;
+    A.7: dos descargas con sha256 idéntico; estructura PDF-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: encodat2025__encodat_2025_adolescentes_adultos_catalogo_xlsx
+  usado_para: 'GEN2-ASTRA5-U5-ADQUISICION-1 P3 · fila de cola ASTRA5-U5:ENCODAT_2025 (F-ASTRA-5-2:
+    ENSANUT + ENCODAT y ENBIARE primero) · ENCODAT 2025: XLSX catálogo de variables (codebook)'
+  url_origen: https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2025/descargas.php
+  fecha_descarga: '2026-09-24'
+  descargado_por: agente Claude (Opus 5.5) en CAJA, POST ArchId directo del portal
+  archivo: ENCODAT/2025/Bases de datos de ENCODAT 2025/02-Cuestionario individual/ENCODAT_2025_ADOLESCENTES_ADULTOS.Catálogo.xlsx
+  raiz: reserva_respondentes
+  sha256: ab817a84930dbc3e220e0f06d4729b65e384a6677a921fbbb2f539bc793a821c
+  tamano_bytes: 342344
+  formato: XLSX catálogo de variables (codebook)
+  licencia: uso público; descarga directa sin registro ni clickwrap en el portal; términos
+    del propietario no leídos por este agente
+  nota: 'POST ArchId=QmFzZXMgZGUgZGF0b3MgZGUgRU5DT0RBVCAyMDI1LzAyLUN1ZXN0aW9uYXJpbyBpbmRpdmlkdWFsL0VOQ09EQVRfMjAyNV9BRE9MRVNDRU5URVNfQURVTFRPUy5DYXTDoWxvZ28ueGxzeA==;
+    ruta del portal: Bases de datos de ENCODAT 2025/02-Cuestionario individual/ENCODAT_2025_ADOLESCENTES_ADULTOS.Catálogo.xlsx;
+    A.7: dos descargas con sha256 idéntico; estructura ZIP-OK; no abierto (sólo sha, tamaño
+    y directorio central/%%EOF).'
+  estado_reserva: DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
