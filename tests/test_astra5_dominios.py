@@ -3,6 +3,7 @@
 import csv
 import hashlib
 import json
+import re
 from pathlib import Path
 
 
@@ -355,6 +356,112 @@ def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     cotejo = read("cotejo-result-endutih-v1_0.tsv")
     assert cotejo[-1]["id_afirmacion"] == "ASTRA5-U0-TEC-002"
     assert all(r["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-86_9-68_5" for r in cotejo[1:3])
+
+
+# --- Mapa canónico (continuación Claude, 24/sep/2026) ---------------------------------
+# Defectos que atrapan (ya ocurridos en este acto): una fila PENDIENTE presentada como mapa
+# terminado; MEDIBLE-EN-CORPUS con un id|sha que no está en el manifiesto o con otro sha; una
+# unidad del índice (G, P, T o ficha) que desaparece sin razón; RESULT rotulado MEDIDO sin fila
+# en la vista; y un mapa publicado a mano que ya no se reproduce desde sus insumos.
+
+CANON_MAPA = ROOT / "canon/mapa-dominios-v1_0.tsv"
+DICTAMENES_CERRADOS = {"MEDIBLE-EN-CORPUS", "MEDIBLE-CON-ADQUISICIÓN", "NO-MEDIBLE-POR-DISEÑO"}
+
+
+def _mapa():
+    with CANON_MAPA.open(encoding="utf-8", newline="") as stream:
+        return list(csv.DictReader(stream, delimiter="\t"))
+
+
+def _manifiesto():
+    import yaml
+
+    with (ROOT / "data/manifiesto.yaml").open(encoding="utf-8") as stream:
+        return {e["id"]: e for e in yaml.safe_load(stream) if isinstance(e, dict) and e.get("id")}
+
+
+def test_mapa_canonico_cerrado_y_sin_pendientes():
+    rows = _mapa()
+    assert rows, "el mapa canónico no puede estar vacío"
+    ids = [r["id_afirmacion"] for r in rows]
+    assert len(ids) == len(set(ids))
+    for r in rows:
+        assert r["estado_verificacion"] == "CERRADA", r["id_afirmacion"]
+        assert r["dictamen"] in DICTAMENES_CERRADOS, r["id_afirmacion"]
+        assert r["componente_contrastable"] and r["dictamen_razon"] and r["siguiente_operacion"], r["id_afirmacion"]
+        assert hashlib.sha256((ROOT / r["report"]).read_bytes()).hexdigest() == r["report_sha256"]
+    # los contratos retirados por la exposición ENOE 2026T1 no vuelven al corte activo
+    assert not {"ASTRA5-U0-MER-001", "ASTRA5-U0-MER-002", "ASTRA5-U0-MER-003"} & set(ids)
+
+
+def test_mapa_se_reproduce_byte_a_byte():
+    import subprocess
+    import sys
+
+    r = subprocess.run([sys.executable, str(DIR / "ensambla_mapa.py"), "--verifica"], capture_output=True, text=True)
+    assert r.returncode == 0, r.stdout + r.stderr
+
+
+def test_universo_completo_por_comando():
+    """Cada unidad G (474), P (112), T (111) y ficha de lectura queda cubierta por una fila, un
+    contrato o una razón cerrada; los 37 archivos del censo tienen afirmaciones en el mapa."""
+    cob = read("cobertura-unidades-v1_0.tsv")
+    cubiertas = {c["unidad"] for c in cob if c["filas_o_contratos"].strip() or c["razon"].strip()}
+    g = {r["id_lectura"] for r in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    assert len(g) == 474 and g <= cubiertas, sorted(g - cubiertas)[:10]
+    grupos = {(r["ruta"], r["linea"]) for r in read("afirmaciones-para-dictamen-v1_0.tsv")}
+    p = {f"CAND-{r['sha256_recalculado'][:8]}-L{r['linea']}" for r in read("candidatas-v1_0.tsv") if (r["ruta"], r["linea"]) not in grupos}
+    assert len(p) == 112 and p <= cubiertas, sorted(p - cubiertas)[:10]
+    t = {r["unidad"] for r in read("unidades-tier-ampliado-v1_0.tsv")}
+    assert len(t) == 111 and t <= cubiertas, sorted(t - cubiertas)[:10]
+    fichas = set()
+    for f in DIR.glob("lectura-*.tsv"):
+        for r in read(f.name):
+            fichas.add(r.get("id_lectura") or r.get("id_pasaje"))
+    assert None not in fichas and "" not in fichas
+    assert fichas <= cubiertas, sorted(fichas - cubiertas)[:10]
+    reports = {r["report"] for r in _mapa()}
+    assert len(reports) == 37
+
+
+def test_medible_en_corpus_cita_ids_y_sha_del_manifiesto():
+    man = _manifiesto()
+    for r in _mapa():
+        if r["dictamen"] != "MEDIBLE-EN-CORPUS":
+            continue
+        pares = re.findall(r"([A-Za-z0-9_\-\.]+)\|([0-9a-f]{64})", r["datos_id_estado"] + ";" + r["documento_id_hash_pagina"])
+        registrados = [(i, s) for i, s in pares if i in man]
+        assert registrados, r["id_afirmacion"]
+        for i, s in registrados:
+            assert man[i].get("sha256") == s, (r["id_afirmacion"], i)
+        assert r["pregunta_textual_codigo_respuestas"].strip(), r["id_afirmacion"]
+
+
+def test_adquisicion_nombra_pieza_y_no_medible_explicita_busqueda():
+    for r in _mapa():
+        texto = " ".join([r["dictamen_razon"], r["datos_id_estado"], r["siguiente_operacion"], r["documento_id_hash_pagina"]]).lower()
+        if r["dictamen"] == "MEDIBLE-CON-ADQUISICIÓN":
+            assert "faltante" in texto or "sin-id" in texto or "registr" in texto, r["id_afirmacion"]
+        if r["dictamen"] == "NO-MEDIBLE-POR-DISEÑO":
+            assert r["busqueda_a13"].strip(), r["id_afirmacion"]
+
+
+def test_proyeccion_separa_medibilidad_autorizacion_y_result():
+    proy = read("proyeccion-cobertura-v1_0.tsv")
+    mapa = {r["id_afirmacion"]: r for r in _mapa()}
+    assert {p["id_afirmacion"] for p in proy} == set(mapa)
+    vista = (ROOT / "data/corrida0/resultados.tsv")
+    vista_txt = vista.read_text(encoding="utf-8") if vista.exists() else ""
+    for p in proy:
+        assert p["medibilidad"] == mapa[p["id_afirmacion"]]["dictamen"]
+        assert p["estado_result"] in {"MEDIDO", "EN-MEDICIÓN", "SIN-RESULT"}
+        for rid in re.findall(r"RESULT-[A-Z0-9\-]+[A-Z0-9]", p["result_ids"]):
+            calc = [d for d in (ROOT / "data/corrida0").glob("CALC-*") if (d / "resultados.json").exists() and f'"{rid}"' in (d / "resultados.json").read_text(encoding="utf-8")]
+            assert calc, (p["id_afirmacion"], rid)
+            if p["estado_result"] == "MEDIDO":  # E.7: medido exige fila en la vista
+                assert rid in vista_txt, (p["id_afirmacion"], rid)
+    dom = read("proyeccion-dominios-v1_0.tsv")
+    assert sum(int(d["afirmaciones"]) for d in dom) == len(mapa)
 
 
 if __name__ == "__main__":

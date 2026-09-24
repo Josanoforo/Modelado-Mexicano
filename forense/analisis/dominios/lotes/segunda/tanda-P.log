@@ -1,0 +1,237 @@
+SEGUNDA PASADA ASTRA5-U0 -- tanda P (transversal, 24 filas) -- log de comandos y consultas
+Fecha de ejecucion: 2026-09-24
+cwd para herramientas de corpus: /home/pc0/mm-astra5-mapa-dominios-1
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+=== Herramientas de corpus (u0mf / u0pdf / u0busca) ===
+
+python3 $U/u0mf.py --busca coneval --busca pobreza
+  -> 1 entrada: pobreza_municipal_2020_vcompl.rar (sha256 c37a4ee0...875b2), raiz descargas_mx,
+     corte MUNICIPAL 2020 (confirma que no hay corte ESTATAL en manifiesto, ver web abajo).
+
+python3 $U/u0mf.py --busca enoe --busca 2025
+  -> 9 entradas: enoe_2025_{1,2,3,4}t_csv (data_raw, con sha256) y
+     enoe_2025_{1,2,3,4}t_microdatos (data_raw, con sha256); tambien
+     enoe_cuestionario_basico_v7_pdf y enoe_con_basedatos_proy2010_pdf.
+
+python3 $U/u0mf.py --busca enoe_con_basedatos
+  -> 1 entrada: enoe_con_basedatos_proy2010_pdf
+     (con_basedatos_proy2010.pdf, sha256 6e70a3a9...877f5, raiz data_raw,
+     "Conociendo la base de datos de la ENOE", cubre 2005-2026).
+
+python3 $U/u0pdf.py -q "TIL1|tasa de informalidad laboral 1" --id enoe_con_basedatos_proy2010_pdf --limite 10
+  -> 5 coincidencias: p.32 (TIL1 nacional 2023 = 55.1, contexto del documento, no citado como
+     cifra nueva de la fila) y p.35 (formula literal completa de TIL1: "criterio general:
+     r_def=00 y c_res=1 o 3 y edad=15-98; til1 = poi/po x 100; poi: poblacion en ocupacion
+     informal (emp_ppal=1); po: poblacion ocupada (clase2=1)").
+
+python3 $U/u0busca.py -q "informalidad|TIL1|informal" --limite 20
+  -> 66 aciertos con texto; ninguno es ENOE TIL1 por entidad directamente (aciertos en
+     ENIF2024, ENFIH2019, descargas_mx varias con reactivos "informal" no relacionados con
+     TIL1). Confirma que el desglose por entidad no esta pre-tabulado como reactivo de
+     encuesta; se calcula sobre microdato ENOE con la formula de u0pdf arriba.
+
+python3 $U/u0mf.py --calc enoe_2025_1t_microdatos
+python3 $U/u0mf.py --calc enoe_2025_2t_microdatos
+python3 $U/u0mf.py --calc enoe_2025_3t_microdatos
+python3 $U/u0mf.py --calc enoe_2025_4t_microdatos
+  -> 0 corridas cada uno (de 326 corridas totales en data/corrida0/corridas.tsv).
+
+=== Crossref (identificacion de obras academicas) ===
+
+https://api.crossref.org/works?query.bibliographic=Gelfand+2011+tightness+looseness+33+nations+Science
+  -> sin match exacto en top-3 bibliografico.
+https://api.crossref.org/works/10.1126/science.1197754
+  -> CONFIRMADO: Gelfand et al. (2011) "Differences Between Tight and Loose Cultures: A
+     33-Nation Study", Science 332(6033):1100-1104.
+
+https://api.crossref.org/works?query.bibliographic=Diaz-Loving+Ethnopsychology+Pieces+Mexican+Research+Gallery+Springer+2019
+  -> CONFIRMADO: Diaz-Loving (2019) "Ethnopsychology: Pieces from the Mexican Research
+     Gallery", Springer, DOI 10.1007/978-3-030-26604-2 (+ capitulo _8 historia).
+
+https://api.crossref.org/works?query.bibliographic=Ramirez-Esparza+bilinguals+sociability+simpatia+Spanish+English
+  -> 429 Too Many Requests (reintentado).
+https://api.crossref.org/works?query.bibliographic=Ramirez-Esparza+simpatia+bilinguals+code-switching+personality
+  -> candidato "Do bilinguals have two personalities?" (2006), no exacto.
+https://api.crossref.org/works?query.bibliographic=Ramirez-Esparza+Paradox+Lost+Simpatia+2008
+  -> CONFIRMADO exacto: Ramirez-Esparza, Gosling & Pennebaker (2008) "Paradox Lost:
+     Unraveling the Puzzle of Simpatia", Journal of Cross-Cultural Psychology 39(6), DOI
+     10.1177/0022022108323786.
+
+https://api.crossref.org/works?query.bibliographic=Rosengren+death+understanding+Mexico+Day+of+the+Dead
+  -> 429 Too Many Requests (reintentado).
+https://api.crossref.org/works?query.bibliographic=Rosengren+Metzger+death+concepts+Mexican+children+ritual
+  -> CONFIRMADO candidato: Gutierrez, Menendez, Jiang, Hernandez, Miller & Rosengren (2020)
+     "Embracing Death: Mexican Parent and Child Perspectives on Death", Child Development
+     91(2), DOI 10.1111/cdev.13263.
+
+https://api.crossref.org/works?query.bibliographic=Ross+Mirowsky+Cockerham+1983+fatalism+distress
+  -> 429 Too Many Requests (reintentado).
+https://api.crossref.org/works/10.1007/BF00894055
+  -> CONFIRMADO: Ross, Mirowsky & Cockerham (1983) "Social class, Mexican culture, and
+     fatalism", American Journal of Community Psychology 11(4):383-399.
+
+https://api.crossref.org/works?query.bibliographic=fatalism+breast+cancer+survivors+Mexican+Colombian+locus+of+control+2024
+  -> 429 (reintento 1); sin match exacto (reintento 2, filtro from-pub-date 2023).
+https://api.crossref.org/works?query.bibliographic=fatalism+coping+locus+control+Latina+breast+cancer+survivors&filter=from-pub-date:2023-01-01
+  -> candidato: Lopez Torralba, Sukhu, de Azevedo Daruge, Loerzel & Lee, "Evaluating
+     Fatalism Among Breast Cancer Survivors in a Heterogeneous Hispanic Population",
+     preprint MDPI AG, DOI 10.20944/preprints202507.0230.v1 (julio 2025, no 2024 exacto).
+
+https://api.crossref.org/works?query.bibliographic=Ramondt+Ramirez+2017+fatalism+cancer
+  -> 429 (reintento 1).
+https://api.crossref.org/works?query.bibliographic=Ramondt+Ramirez-Esparza+fatalism+rational+response+2017
+  -> CONFIRMADO: Ramondt & Ramirez (2017) "Fatalism and exposure to health information from
+     the media", Annals of the International Communication Association, DOI
+     10.1080/23808985.2017.1387502.
+
+https://api.crossref.org/works?query.bibliographic=Fontes+2007+shame+Latino+mental+health
+  -> 429 (reintento 1, sin match relacionado).
+https://api.crossref.org/works?query.bibliographic=Fontes+2007+Wounded+Body+Latino+shame+child+abuse
+  -> CONFIRMADO: Fontes (2007) "Sin Verguenza: Addressing Shame with Latino Victims of Child
+     Sexual Abuse and Their Families", Journal of Child Sexual Abuse 16(1):61-83, DOI
+     10.1300/j070v16n01_04.
+
+https://api.crossref.org/works?query.bibliographic=Mirande+1988+chicano+men+machismo+survey
+  -> sin match 1988; candidato relacionado Mirande (1979) DOI 10.2307/583507.
+https://api.crossref.org/works?query.bibliographic=Mirande+Hombres+y+Machos+Masculinity+Latino+Culture
+  -> CONFIRMADO: Mirande "Hombres y Machos: Masculinity and Latino Culture", Routledge,
+     DOI 10.4324/9780429500008 (edicion digital 2018 de la obra de 1997; discrepancia de
+     ano con la cita del report "1988").
+
+https://api.crossref.org/works?query.bibliographic=Cernas+Ortiz+2018+acquiescence+leniency+bias+organizational+commitment+Mexico
+  -> sin match exacto (candidato 2016 hallado).
+https://api.crossref.org/works?query.author=Cernas-Ortiz&query.bibliographic=response+style+Mexico&filter=from-pub-date:2017-01-01,until-pub-date:2019-12-31
+  -> sin match relacionado.
+https://api.crossref.org/works?query.bibliographic=Cernas-Ortiz+2018+invarianza+medicion+satisfaccion+laboral+compromiso+organizacional
+  -> CONFIRMADO exacto: Cernas Ortiz, Mercado Salgado & Leon Cazares (2018) "Satisfaccion
+     laboral y compromiso organizacional: prueba de equivalencia de medicion entre Mexico y
+     Estados Unidos", Contaduria y Administracion, DOI 10.22201/fca.24488410e.2018.986.
+
+https://api.crossref.org/works?query.bibliographic=Parker+Vogl+2023+Economic+Journal+conditional+cash+transfers+next+generation+Mexico
+  -> 429 (reintento 1).
+https://api.crossref.org/works?query.bibliographic=Parker+Vogl+conditional+cash+transfers+next+generation+Mexico+Economic+Journal
+  -> CONFIRMADO exacto: Parker & Vogl (2023) "Do Conditional Cash Transfers Improve
+     Economic Outcomes in the Next Generation? Evidence from Mexico", The Economic Journal
+     133(655), DOI 10.1093/ej/uead049.
+
+https://api.crossref.org/works?query.bibliographic=Gearing+2024+self-stigma+mental+illness+Mexico
+  -> sin match exacto.
+https://api.crossref.org/works?query.bibliographic=Gearing+self-stigma+schizophrenia+Mexico+CURA
+  -> candidatos relacionados: Washburn/Brewer/Gearing (2025) diabetes/depresion stigma
+     Mexico, DOI 10.1037/sah0000629.
+https://api.crossref.org/works?query.author=Gearing&query.bibliographic=self-stigma+serious+mental+illness+Mexico+2024
+  -> candidatos: Perez-Ramirez/Barthelemy/Gearing (2021) prision, DOI
+     10.1080/14999013.2021.1876186; Brewer/Gibson/Tomar et al (2024) Latino US vs Mexico,
+     DOI 10.1007/s10903-023-01550-w. Ninguno exacto para "auto-estigma cuarto de
+     prevalencia".
+
+https://api.crossref.org/works?query.bibliographic=Lagunes-Cordoba+2021+stigma+psychiatrists+Mexico
+  -> CONFIRMADO 2 candidatos del mismo grupo: (1) "Mexican Psychiatric Trainees'
+     Attitudes...", Community Mental Health Journal 58(5), 2021, DOI
+     10.1007/s10597-021-00907-5; (2) "Mental Health Service Users' Perceptions of
+     Stigma...", Community Mental Health Journal 57(5), 2020, DOI 10.1007/s10597-020-00706-4.
+
+https://api.crossref.org/works?query.bibliographic=Jordahl+2009+inequality+trust+handbook+social+capital
+  -> CONFIRMADO: Jordahl (2009) "Economic Inequality", capitulo en Handbook of Social
+     Capital, Edward Elgar Publishing, DOI 10.4337/9781848447486.00031.
+
+https://api.crossref.org/works?query.bibliographic=Gonzalbo+Aizpuru+2013+sistema+castas+Nueva+Espana
+  -> sin match directo (in memoriam y obras de otros anos).
+https://api.crossref.org/works?query.bibliographic=Gonzalbo+Aizpuru+mestizaje+identidad+colonial+casta+fluidez
+  -> sin match directo. EXISTENCIA-NO-COMPROBADA tras 2 consultas dedicadas.
+
+https://api.crossref.org/works?query.bibliographic=Rappaport+2014+disappearing+mestizo+configuring+difference+Nueva+Granada
+  -> CONFIRMADO exacto: Rappaport (2014) "The Disappearing Mestizo: Configuring Difference
+     in the Colonial New Kingdom of Granada", Duke University Press, DOI
+     10.1215/9780822376859.
+
+https://api.crossref.org/works?query.bibliographic=perception+inequality+Mexico+seven+cities+survey+information+experiment
+  -> candidato: Mijs & Hoy, "How Information about Inequality Impacts Belief in
+     Meritocracy: Evidence from a Randomized Survey Experiment in Australia, Indonesia and
+     Mexico", Social Problems, DOI 10.1093/socpro/spaa059. Identidad exacta (N=2,493, 7
+     ciudades) NO confirmada.
+
+https://api.crossref.org/works?query.bibliographic=Tipa+colorism+advertising+casting+Mexico
+  -> CONFIRMADO exacto: Tipa (2020) "Colorism in Commercial and Governmental Advertising
+     in Mexico: 'International Latino', Racism and Ethics", Westminster Papers in
+     Communication and Culture, DOI 10.16997/wpcc.379 (n=500 castings, coincide); + Tipa
+     (2023), Revista CS, DOI 10.18046/recs.i41.01.
+
+https://api.crossref.org/works?query.bibliographic=Levy+2008+Good+Intentions+Bad+Outcomes+Social+Policy+Informality+Mexico
+  -> CONFIRMADO: Levy (2008) "Good Intentions, Bad Outcomes: Social Policy, Informality,
+     and Economic Growth in Mexico", Brookings Institution Press (sin DOI propio indexado;
+     confirmado via resenas: DOI 10.1017/s1531426x00009055, DOI 10.1086/652482).
+
+https://api.crossref.org/works?query.bibliographic=van+der+Molen+2016+voice+exit+informality+Mexico
+  -> sin match. EXISTENCIA-NO-COMPROBADA tras 1 consulta.
+
+https://api.crossref.org/works?query.bibliographic=Gmyrek+Berg+Bescond+Generative+AI+Jobs+Global+Analysis+Potential+Effects+Employment+ILO
+  -> CONFIRMADO: Gmyrek, Berg & Bescond (2023) "Generative AI and jobs", ILO Research
+     Department, DOI 10.54394/fhem8239 (+ brief companero DOI 10.54394/fvnq9406, basado en
+     ILO Working Paper 96) -- coincide con la metodologia de exposicion combinada
+     (5.1-5.4%) citada por el report.
+
+=== WebFetch a sitios oficiales/primarios ===
+
+weforum.org/publications/global-gender-gap-report-2024/ -> 403 Forbidden.
+www3.weforum.org/docs/WEF_GGGR_2024.pdf -> 200 OK (PDF 9.4MB confirmado real), pero texto
+  no extraible en esta sesion (binario/codificado).
+weforum.org/press/2024/06/global-gender-gap-report-2024-insight-report/ -> 403 Forbidden.
+es.wikipedia.org/wiki/Indice_de_Brecha_de_Genero -> 404 Not Found.
+
+ceey.org.mx/emovi-2011/ -> 404 Not Found.
+www.ceey.org.mx/ -> 200 OK, confirma serie ESRU-EMOVI sin detalle de 2011.
+ceey.org.mx/emovi/ -> 200 OK, CONFIRMA N=11,001 entrevistas efectivas EMOVI 2011,
+  representatividad nacional 25-64 anos.
+
+oxfammexico.org/informe-desigualdad-extrema-en-mexico -> redirect 301 a oxfam.mx/...
+oxfam.mx/informe-desigualdad-extrema-en-mexico -> 404 Not Found.
+oxfam.mx/publicaciones/ -> 404 Not Found.
+oxfam.org/en/what-we-do/countries/mexico -> redirect 301 a oxfammexico.org, sin contenido
+  especifico recuperado.
+
+visionofhumanity.org/maps/mexico-peace-index/ -> 200 OK. CONFIRMA: Colima 111
+  homicidios/100k en 2023 (coincide exacto con report); Yucatan "held the top position"
+  (estado mas pacifico) 9 anos consecutivos; impacto economico de la violencia 2024: 4.9
+  billones de pesos / USD245 mil millones (USD coincide exacto con report) / 19.8% del PIB
+  (report cita 18%, discrepancia menor de edicion).
+
+migrationpolicy.org/article/mexican-immigrants-united-states -> 403 Forbidden.
+migrationpolicy.org/programs/data-hub/charts/immigrant-population-country-birth -> 403
+  Forbidden.
+
+inegi.org.mx/programas/ccpv/1930/ -> 200 OK, CONFIRMA pagina oficial "Quinto Censo de
+  Poblacion (CPV) 1930".
+gutenberg.org/ebooks/author/5306 -> 200 OK pero catalogo de autor incorrecto (Robert
+  Montgomery Bird), 0 coincidencias con Vasconcelos.
+
+coneval.org.mx/Medicion/MP/Paginas/Pobreza_2020.aspx -> 200 OK, CONFIRMA que CONEVAL
+  publica resultados de pobreza multidimensional a nivel NACIONAL y ESTATAL para
+  2016/2018/2020 (Anexo Estadistico, Cuadro resumen por entidad federativa) -- distinto del
+  archivo municipal ya en manifiesto.
+
+inegi.org.mx/temas/matrimonios/ -> pagina de error "esta liga ya no existe".
+inegi.org.mx/temas/nupcialidad/ -> 200 OK, pagina tematica confirmada, contenido detallado
+  no extraido mas alla del titulo.
+
+data.worldbank.org/indicator/SI.POV.GINI?locations=CO-BR-CL-AR-MX -> 429 Too Many Requests.
+transparency.org/en/cpi/2023 -> 200 OK, confirma existencia del informe CPI 2023, cifras
+  por pais no extraidas del contenido disponible (remite a Excel/PDF descargable).
+consejociudadanomx.org.mx/ -> socket cerrado / conexion fallida.
+seguridadjusticiaypaz.org.mx/ -> intento no completado (mismo bloque de fallo).
+
+finnovista.com/fintech-radar-mexico/ -> 404 Not Found.
+
+ilo.org/publications/generative-ai-and-jobs-global-analysis-potential-effects-employment
+  -> 404 Not Found.
+ilo.org/resource/news/generative-ai-and-jobs-global-analysis-potential-effects-employment
+  -> 404 Not Found.
+ilo.org/publications -> 200 OK, sin match especifico al reporte buscado (se resolvio via
+  Crossref, ver arriba).
+
+=== Resumen de presupuesto ===
+Consultas web (WebFetch, incl. Crossref): aprox. 55 llamadas (algunas repetidas por 429/403/404).
+Consultas de corpus (u0mf/u0pdf/u0busca): 8 comandos, cubriendo la fila devuelta por el
+supervisor (SINT-013, informalidad ENOE) con evidencia literal (payload_id + sha256 +
+formula TIL1 p.35).
