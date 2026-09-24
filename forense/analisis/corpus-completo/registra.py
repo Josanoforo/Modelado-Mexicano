@@ -60,7 +60,13 @@ def main() -> int:
     por_sha = {e.get("sha256"): e["id"] for e in entradas if e.get("sha256")}
     ids = {e["id"] for e in entradas}
     nuevas, vistos, dup = [], set(), []
+    sys.path.insert(0, str(ROOT / "tools" / "curador_registro"))
+    from tsv_crudo import leer_dicts  # noqa: E402
+    en_cola = {f["fuente_canonica"] for f in leer_dicts(ROOT / "data/curacion-registro/cola-adquisicion-registro.tsv")
+               if f["fila_origen"].startswith("CORPUS-COMPLETO-1:")}
     for r in lee(BITACORA):
+        if f"{r['programa']}_{r['ola']}".replace(" ", "-") not in en_cola:
+            continue  # A.8 de objeto: la fila es de otro acto (p. ej. ASTRA5-U5); no se registra aquí
         if r["resultado"] != "OK" or r["url"] in vistos:
             continue
         vistos.add(r["url"])

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """ACTO GEN2-CORPUS-COMPLETO-1 · P2 · /adquiere por tandas sobre el catálogo.
 
-Camina catalogo-v1_0.tsv (clase ARCHIVO, en_manifiesto=NO) en el orden de prioridad del
-catálogo (afirmaciones del mapa que citan el programa, descendente) y, por archivo:
+Camina la VISTA de la cola (data/cola-adquisicion-v1_0.tsv, regenerada desde el registro por
+tools/vista_cola_adquisicion.py): sólo filas `CORPUS-COMPLETO-1` en PENDIENTE, sembradas por
+catalogo_a_cola.py. Por cada fila baja los archivos del catálogo de ese (programa, ola), en el
+orden de prioridad del catálogo (afirmaciones del mapa, descendente), y por archivo:
 
 1. A.7: dos descargas completas; se aceptan sólo si los dos sha256 crudos coinciden.
 2. Estructura, no tamaño: firma de bytes (`PK\\x03\\x04` zip, `%PDF` + `%%EOF`, etc.) y,
@@ -45,6 +47,17 @@ COLS = ["fecha_utc", "fuente", "programa", "ola", "id_archivo", "url", "http_cod
         "sha256_1", "sha256_2", "estructura", "reserva", "destino", "resultado", "nota"]
 
 
+VISTA = ROOT / "data/cola-adquisicion-v1_0.tsv"
+
+
+def pendientes_de_la_vista() -> set[str]:
+    lineas = VISTA.read_text(encoding="utf-8").splitlines()
+    cab = lineas[1].split("\t")
+    filas = (dict(zip(cab, l.split("\t"))) for l in lineas[2:])
+    return {f["fuente_canonica"] for f in filas
+            if f["estado_A4A5"] == "PENDIENTE" and "corpus-completo/catalogo" in f["origen"]}
+
+
 def lee_catalogo() -> list[dict]:
     lineas = CATALOGO.read_text(encoding="utf-8").splitlines()
     cab = lineas[1].split("\t")
@@ -69,7 +82,18 @@ def anota(fila: dict) -> None:
 
 
 def baja(url: str, destino: Path) -> tuple[str, int, str]:
-    """curl a `destino`; devuelve (http_code, bytes, error_curl)."""
+    """curl a `destino` con hasta 3 reintentos ante corte de red; (http_code, bytes, error)."""
+    for intento in range(3):
+        c, b, e = _baja(url, destino)
+        if c.startswith("2") and b and not e:
+            return c, b, e
+        if c.startswith("4"):
+            break
+        time.sleep(20 * (intento + 1))
+    return c, b, e
+
+
+def _baja(url: str, destino: Path) -> tuple[str, int, str]:
     p = subprocess.run(["curl", "-sS", "-L", "-A", UA, "--max-time", "3600",
                         "--connect-timeout", "30", "-o", str(destino), "-w", "%{http_code}", url],
                        capture_output=True, text=True)
@@ -124,8 +148,9 @@ def main() -> int:
     a = ap.parse_args()
     TMP.mkdir(parents=True, exist_ok=True)
     hechas = ya_ok()
+    cola = pendientes_de_la_vista()
     filas = [r for r in lee_catalogo() if r["clase"] == "ARCHIVO" and r["en_manifiesto"] == "NO"
-             and r["url"] not in hechas and (not a.programa or r["programa"] in a.programa)]
+             and f"{r['programa']}_{r['ola']}".replace(" ", "-") in cola and r["url"] not in hechas and (not a.programa or r["programa"] in a.programa)]
     print(f"pendientes: {len(filas)}", flush=True)
     fallos_seguidos, total_b, n = 0, 0, 0
     for r in filas:
