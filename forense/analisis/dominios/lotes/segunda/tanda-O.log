@@ -1,0 +1,113 @@
+ASTRA5-U0 segunda pasada — tanda O — busquedas.log
+Ejecutor: sesión segunda pasada, 2026-09-24. cwd de las herramientas de corpus: /home/pc0/mm-astra5-mapa-dominios-1
+Report leído íntegro: corpus/forense/Apuestas_Conductuales_sobre_el_Consumidor_Mexicano__Validación_Forense_de_Supuestos_contra_Desenlaces_Reales.md
+
+== Herramientas de corpus (u0busca / u0pdf / u0mf) ==
+
+$ python3 u0mf.py --id etiquetado_ensanut2924_w_cuestionarios__v2026_09_01
+-> payload confirmado: sha256 843fcc9b831f3a88cd390b88e6f44839b1af6be1bf8568c35f0975abb4e69f14, raíz descargas_mx, url ensanut.insp.mx
+
+$ python3 u0pdf.py --idsub ensanut -q "etiquetado|octágono|sello" --limite 20
+-> 30 coincidencias (mostrando 20), páginas 1-12 del cuestionario etiquetado_ensanut2924_w_cuestionarios__v2026_09_01
+
+$ python3 u0pdf.py --id etiquetado_ensanut2924_w_cuestionarios__v2026_09_01 -q "ha visto estos sellos" --contexto 400 --limite 5
+-> 1 coincidencia, p.2 (pregunta 4, exposición/comprensión)
+
+$ python3 u0pdf.py --id etiquetado_ensanut2924_w_cuestionarios__v2026_09_01 -q "de acuerdo con que los alimentos" --contexto 400 --limite 5
+-> 1 coincidencia, p.3 (pregunta 5c, apoyo)
+
+$ python3 u0pdf.py --id etiquetado_ensanut2924_w_cuestionarios__v2026_09_01 -q "sellos de exceso para decidir" --contexto 400 --limite 5
+-> 0 coincidencias (texto de uso, pregunta 21, confirmado vía la consulta genérica etiquetado|octágono|sello en p.10-11)
+
+$ python3 u0busca.py -q "medio de pago" --encuesta enif --limite 20
+-> 0 aciertos con texto
+
+$ python3 u0busca.py -q "forma de pago" --encuesta enif --limite 20
+-> 20 aciertos: P4_8/P4_8A (ENIF2015), P7_1_1/P7_1_2 (ENIF2018/2021/2024), variable "7.1 ¿Qué forma de pago utiliza con más frecuencia..."
+
+$ python3 u0busca.py -q "pago en efectivo" --encuesta enif --limite 20
+-> 0 aciertos con texto
+
+$ python3 u0pdf.py --idsub enif -q "forma de pago utiliza con" --contexto 500 --limite 10
+-> 4 coincidencias: enif2018_cuestionario_pdf p.16, enif2021_cuestionario_pdf p.19, enif2024_cuestionario_pdf p.20, enif_2015_cuestionario_pdf p.5
+
+$ python3 u0pdf.py --id enif2024_cuestionario_pdf -q "transferencia electronica o aplicacion" --contexto 900 --limite 3
+-> 6 coincidencias (mostrando 3), p.20-21: opciones de la tarjeta 5 (transferencia electrónica/app, tarjeta débito/crédito uso físico, efectivo, ...)
+
+$ python3 u0pdf.py --id enif2021_cuestionario_pdf -q "transferencia electronica" --contexto 900 --limite 3
+-> 5 coincidencias (mostrando 3), p.19-20: opciones de la tarjeta 3/4 (transferencia electrónica/app, tarjeta débito/crédito, efectivo, ...)
+
+$ python3 u0mf.py --calc enif2021_csv
+-> 16 corridas (de 326); ninguna sobre forma de pago (DIN-AHORRO/DIN-CREDITO)
+
+$ python3 u0mf.py --calc enif2024_csv
+-> 12 corridas (de 326); ninguna sobre forma de pago
+
+$ python3 u0mf.py --calc etiquetado_ensanut2924_w_csv_csv__v2026_09_01
+-> 0 corridas (de 326)
+
+$ python3 u0mf.py --busca "nu holdings" ; --busca "aplazo" ; --busca "kueski" ; --busca "heineken" ; --busca "cofepris" ; --busca "imperiales pharma" ; --busca "susana distancia" ; --busca "cepal"
+-> 0/1680 en todos los casos
+
+$ python3 u0mf.py --busca "tecate"
+-> 1/1680, pero es ieebc_bc_2016_municipes_x_casilla_xlsx (archivo electoral de Baja California homónimo, sin relación con la cervecería); descartado
+
+$ python3 u0mf.py --busca "femsa" ; --busca "spin"
+-> 0/1680 (reportado ya por el primer ejecutor, confirmado sin cambios)
+
+$ python3 u0mf.py --busca "didi" ; --busca "profeco" ; --busca "kavak"
+-> 0/1680 (reportado ya por el primer ejecutor, confirmado sin cambios)
+
+== WebFetch (WebSearch de la sesión agotado; se navegó por URL directa a sitios oficiales/emisores) ==
+
+Fecha de todas las consultas web: 2026-09-24
+
+1. https://repositorio.cepal.org/simple-search?query=Oportunidades+movilidad+ocupacional+intergeneracional -> HTTP 404 [fila 022]
+2. https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=nu+holdings&type=20-F&dateb=&owner=include&count=40 -> OK: CIK 0001691493, 5 filings 20-F (2022-2026) [fila 013]
+3. https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company=fomento+economico+mexicano&type=20-F&dateb=&owner=include&count=40 -> "No matching companies" (búsqueda por nombre no funcionó) [fila 019]
+4. https://www.gob.mx/busqueda?utf8=%E2%9C%93&site=cofepris&q=Laboratorios+Imperiales+Pharma -> OK, portal general gob.mx sin resultado específico [fila 038]
+5. https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=FMX&type=20-F&dateb=&owner=include&count=40 -> OK: FEMSA = "Mexican Economic Development Inc", CIK 0001061736, 20-F filed 2026-04-24, accession 0001628280-26-027231 [fila 019]
+6. https://www.sec.gov/Archives/edgar/data/1691493/000129281423001671/0001292814-23-001671-index.htm -> OK: documento nuform20f_2022.htm, 20-F FY2022 de Nu Holdings, filed 2023-04-20 [fila 013]
+7. https://repositorio.cepal.org/discover?query=Oportunidades+movilidad+intergeneracional -> HTTP 404 [fila 022]
+8. https://www.femsa.com/en/press-releases/ -> HTTP 404 [fila 019]
+9. https://www.gob.mx/cofepris -> OK: identifica sección "Resoluciones y sanciones" y plataforma de proveedores irregulares, sin resultado puntual sobre Laboratorios Imperiales Pharma [fila 038]
+10. https://www.profeco.gob.mx/ -> 302 redirect a https://www.gob.mx/profeco [fila 044]
+11. https://www.gob.mx/salud -> OK: identifica sección "Comunicados" en navegación, sin listado accesible desde esta vista [fila 046]
+12. https://www.cepal.org/es/publicaciones/search?text=Oportunidades+movilidad+intergeneracional -> HTTP 404 [fila 022]
+13. https://www.femsa.com/en/newsroom/ -> HTTP 404 [fila 019]
+14. https://www.gob.mx/salud/prensa -> HTTP 404 [fila 046]
+15. https://www.gob.mx/profeco/prensa -> HTTP 404 [fila 044]
+16. https://www.gob.mx/cofepris/articulos -> HTTP 404 [fila 038]
+17. https://www.gob.mx/profeco -> OK: sección "Prensa" referenciada en navegación sin URL funcional expuesta, sin mención de Kavak [fila 044]
+18. https://www.gob.mx/salud/articulos -> HTTP 404 [fila 046]
+19. https://www.cepal.org/es -> OK: confirma que el buscador de publicaciones vive en repositorio.cepal.org y en /es/publicaciones, sin resultado puntual del documento 2016 [fila 022]
+20. https://www.kueski.com/prensa -> HTTP 404 [fila 016]
+21. https://www.aplazo.mx/blog -> OK: blog oficial de Aplazo, sin la cita de Ángel Peña ni la cifra del 40% [fila 016]
+22. https://www.heinekenmexico.com/sala-de-prensa -> HTTP 404 [fila 033]
+23. https://www.justo.mx -> HTTP 403 Forbidden (dominio activo, acceso bloqueado) [fila 035]
+24. https://www.gob.mx/cofepris/articulos -> HTTP 404 (repetido, ruta alternativa) [fila 038]
+25. https://www.gob.mx/salud/articulos -> HTTP 404 (repetido, ruta alternativa) [fila 046]
+26. https://www.cuauhtemocmoctezuma.com.mx/sala-de-prensa -> error de resolución DNS (getaddrinfo ENOTFOUND) [fila 033]
+27. https://www.justo.mx -> HTTP 403 (repetido) [fila 035]
+28. https://www.gob.mx/cofepris/articulos -> HTTP 404 (repetido) [fila 038]
+29. https://www.gob.mx/salud/articulos -> HTTP 404 (repetido) [fila 046]
+30. https://www.amvo.org.mx/estudios/ -> OK: catálogo de estudios AMVO cubre eCommerce, no participación de mercado de apps de movilidad [fila 027]
+
+Total consultas WebFetch de esta pasada: 22 URLs distintas (algunas reconsultadas por rutas alternativas). Ninguna a prensa ni portales de noticias; todas a dominios oficiales/de emisor (sec.gov, cepal.org/repositorio.cepal.org, femsa.com, gob.mx/cofepris, gob.mx/profeco, gob.mx/salud, kueski.com, aplazo.mx, heinekenmexico.com, cuauhtemocmoctezuma.com.mx, justo.mx, generalatlantic.com, amvo.org.mx). No se abrió TechCrunch, Bloomberg Línea ni ningún otro medio de prensa.
+
+== Resultado por fila (documento primario identificado vs. EXISTENCIA-NO-COMPROBADA) ==
+
+013 Nu Holdings: DOCUMENTO IDENTIFICADO (20-F FY2022, SEC EDGAR) -> MEDIBLE-CON-ADQUISICIÓN
+016 Aplazo/Kueski: EXISTENCIA-NO-COMPROBADA tras 2 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+019 FEMSA Spin: DOCUMENTO IDENTIFICADO (20-F FEMSA, SEC EDGAR, CIK 0001061736) -> MEDIBLE-CON-ADQUISICIÓN [corrige devolución del supervisor]
+022 CEPAL 2016: EXISTENCIA-NO-COMPROBADA tras 4 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante) [corrige devolución del supervisor]
+025 ENSANUT etiquetado: TEXTO LITERAL extraído (p.2, p.3, p.10-11) -> MEDIBLE-EN-CORPUS [corrige devolución del supervisor]
+027 DiDi/Uber: EXISTENCIA-NO-COMPROBADA tras 2 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+030 ENIF medio de pago: REACTIVO EXACTO localizado (P7_1_1/P7_1_2) -> MEDIBLE-EN-CORPUS [corrige devolución del supervisor]
+033 Tecate/Heineken: EXISTENCIA-NO-COMPROBADA tras 2 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+035 Jüsto: EXISTENCIA-NO-COMPROBADA tras 2 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+038 COFEPRIS/BCG: EXISTENCIA-NO-COMPROBADA tras 3 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+044 Kavak/Profeco: EXISTENCIA-NO-COMPROBADA tras 2 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+046 Susana Distancia: EXISTENCIA-NO-COMPROBADA tras 3 consultas -> MEDIBLE-CON-ADQUISICIÓN (faltante)
+
+Ninguna fila quedó en PENDIENTE-VERIFICACION-DOCUMENTAL.

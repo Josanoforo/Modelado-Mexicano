@@ -1,0 +1,181 @@
+# Búsquedas del ejecutor actual del lote 'juventud' (24/sep/2026)
+# Las búsquedas del ejecutor previo (interrumpido antes de escribir salida) están íntegras en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/juventud.log
+# (mismo corpus/herramientas). Se leyó completo y se citan sus conteos como "(ejecutor previo)"
+# en busqueda_a13 de filas.tsv cuando se reutilizan; todo lo que sostiene un dictamen en este
+# lote fue re-verificado por este ejecutor (ver comandos abajo y los sha256 cotejados contra
+# data/manifiesto.yaml).
+
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+## Verificación de existencia en manifiesto (u0mf.py --busca)
+
+python3 $U/u0mf.py --busca encodat
+  -> # busca ['encodat']: 0 entradas coinciden (mostradas 0)
+
+python3 $U/u0mf.py --busca ensanut --busca 2022
+  -> # busca ['ensanut', '2022']: 0 entradas coinciden (mostradas 0)
+
+python3 $U/u0mf.py --busca ensanut
+  -> # busca ['ensanut']: 150 entradas coinciden (mostradas 60); solo ENSANUT 2024, 2018 (una
+     entrada ensanut_2018_utilizadores) y 2023 (INSP descargas); NINGUNA entrada 2022.
+
+python3 $U/u0mf.py --busca conapo
+  -> 1 entrada (enoe_fd_c_bas_amp_conapo_pdf: FD de ENOE que menciona CONAPO en el nombre de
+     archivo, no es una serie demográfica de CONAPO).
+
+python3 $U/u0mf.py --busca indicadores_demograficos
+  -> 0 entradas.
+
+python3 $U/u0mf.py --busca cpv2010
+python3 $U/u0mf.py --busca censo2010
+python3 $U/u0mf.py --busca 2010 --busca censo
+python3 $U/u0mf.py --busca iter --busca 2010
+  -> las cuatro consultas: 0 entradas coinciden. CPV2010 NO está en el manifiesto (solo CPV2020).
+
+python3 $U/u0mf.py --busca latinobarometro
+  -> 9 entradas coinciden, incluida latinobarometro2024_bd_stata (microdato Stata + cuestionarios
+     esp/eng en ZIP), latinobarometro2024_cuestionario_esp y latinobarometro2024_fichas_tecnicas.
+
+python3 $U/u0mf.py --busca berkeley
+python3 $U/u0mf.py --busca deloitte
+python3 $U/u0mf.py --busca oxfam
+python3 $U/u0mf.py --busca vilanova
+python3 $U/u0mf.py --busca mitofsky
+python3 $U/u0mf.py --busca madrigal
+  -> las seis: 0 entradas coinciden (ninguno de estos documentos foráneos/comerciales está
+     registrado en el manifiesto).
+
+python3 $U/u0mf.py --busca defunciones
+  -> 1 entrada: edr2024_bd_dbf_zip (Base de datos EDR 2024, defunciones registradas). No se abrió.
+
+python3 $U/u0mf.py --busca suicidio
+python3 $U/u0mf.py --busca mortalidad   (además de EDR, trae 3 archivos EDER2025 por coincidencia
+  de substring "mortalidad" dentro de otra palabra, irrelevantes)
+python3 $U/u0mf.py --busca borges
+python3 $U/u0mf.py --busca saludpublica
+  -> suicidio: 0; borges: 0; saludpublica: 0.
+
+python3 $U/u0mf.py --busca edr2024
+python3 $U/u0mf.py --busca edr --busca fd
+python3 $U/u0mf.py --busca defunciones --busca descripcion
+  -> edr2024: 1 (el mismo payload); edr+fd: 1 (mismo payload, SIN FD/diccionario de causas
+     registrado por separado); defunciones+descripcion: 0.
+
+python3 $U/u0mf.py --busca oecd
+  -> 4 entradas: ea3385cf_en (DOI 10.1787/ea3385cf-en), TC-OECD-Trust-Survey-PUM-2021-2023-2025
+     (formulario de acceso, no dato), a6_oecd_tdg_2025_csv, a6_oecd_public_integrity_csv. NINGUNA
+     es "Society at a Glance".
+python3 $U/u0mf.py --busca society_at_a_glance
+  -> 0 entradas.
+
+python3 $U/u0mf.py --busca satelite
+python3 $U/u0mf.py --busca tnrh
+  -> 0 y 0 (Cuenta Satélite del Trabajo No Remunerado NO está en el manifiesto).
+
+python3 $U/u0mf.py --busca gire
+  -> 0 entradas.
+
+python3 $U/u0mf.py --busca imjuve
+  -> 6 entradas, todas ENJUVE 2005/2010 (encuesta discontinuada tras 2010; no citada por el report
+     para las cifras que se dictaminaron en este lote).
+
+python3 $U/u0mf.py --busca enadid --busca 2018
+python3 $U/u0mf.py --busca enadid   (todas las olas)
+  -> enadid+2018: 0; enadid solo: 5 entradas, TODAS de ENADID 2023 (cuestionario hogar, módulo
+     mujer, base de datos, FD, diseño muestral). ENADID 2018 NO está en el manifiesto.
+
+python3 $U/u0mf.py --busca enoe --busca 2024 --busca 3t
+  -> 2 entradas: enoe_2024_3t_csv (datos abiertos) y enoe_2024_3t_microdatos (microdatos post2019);
+     mismo trimestre usado por RESULT-ENOE-PISOS-TABLA.
+
+## Confirmación de identidad de documentos vía u0pdf.py (texto de página)
+
+python3 $U/u0pdf.py -q "Society at a Glance|young adults living with their parents|Mexico" --id ea3385cf_en
+python3 $U/u0pdf.py -q "46%25 |living with parents|20-30" --id ea3385cf_en
+  -> 47 coincidencias sobre confianza institucional (OECD/LAC Trust Survey, Chile/Colombia/Costa
+     Rica/México/Brasil/etc., recolección INEGI en México); 0 coincidencias de "46%"/"living with
+     parents". Confirma que ea3385cf_en NO es el documento que sustenta la cifra de 46% del report
+     (es un documento OCDE distinto, sobre confianza, no sobre convivencia intergeneracional).
+
+python3 $U/u0pdf.py -q "suicid" --id 3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios
+  -> 1 coincidencia, p.26: "8.17 ¿alguna vez has pensado en suicidarte? si...1 no..."
+
+python3 $U/u0pdf.py -q "suicid" --id 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios
+  -> 1 coincidencia, p.30: "12.11 ¿alguna vez ha pensado en suicidarse? |__| no... 12.13 siempre o
+     muy..."
+
+python3 $U/u0pdf.py -q "primera union" --id eder2025_descripcion_bd_pdf
+  -> 5 coincidencias, p.16/p.65/p.66: variable #42 edo_civil1 "estado civil primera unión", con
+     pregunta textual y códigos 0/10/20/30/40/50/60/70.
+
+python3 $U/u0pdf.py -q "democracia es preferible|apoyo a la democracia" --id latinobarometro2024_cuestionario_esp
+  -> 1 coincidencia, p.1: "la democracia es preferible a cualquier otra forma de gobierno... en
+     algunas circunstancias, un gobierno no..."
+
+## Confirmación de variables vía u0busca.py (reactivos)
+
+python3 $U/u0busca.py -q "apoyo a la democracia|sistema democratico|democracia es preferible"
+  -> 4 aciertos: ing4 "Apoyo a la democracia" (LAPOP México 2023, .dta/.sav) y P11STGBS "Apoyo a la
+     democracia" (Latinobarometro_2024_Stata_esp_v20250817.dta, ext:57286).
+
+python3 $U/u0busca.py -q "cuantas horas al dia|tiempo de conexion|horas de conexion" --encuesta endutih
+  -> 28 aciertos; confirma P7_4 "¿Cuántas horas al día usa internet? (cuando lo utiliza)" en
+     ENDUTIH 2023/2024/2025 (tic_20XX_usuarios.DBF).
+
+python3 $U/u0busca.py -q "usa internet|utiliza internet|es usuario de internet" --encuesta endutih --ola 2024
+  -> 8 aciertos: P7_2 (por qué no usa), P7_4 (horas), P7_7 (desde cuándo usa) — confirma el bloque
+     de uso de internet de ENDUTIH 2024.
+
+python3 $U/u0busca.py -q "edad" --encuesta enoe
+  -> 8 aciertos; fd_ext:4596 (enoe_325_fd_c_bas_amp.pdf) trae en la MISMA fila la variable EDA
+     ("Edad") junto con la tabla "persona" del ENOE.
+
+python3 $U/u0busca.py -q "sector informal"
+  -> 9 aciertos; confirma la clasificación SEC_INS/TIPO "Sector informal" en enoe_123/enoe_325
+     fd_c_bas_amp.pdf y variantes fd_c_amp_v1/v2/v3, fd_c_bas_v1/v2, fd_c_bas_amp_15ymas.
+
+python3 $U/u0busca.py -q "condicion de ocupacion|situacion en el trabajo|PNEA|no economicamente activa"
+  -> 54 aciertos; confirma C_INAC5C (con categoría "Quehaceres domésticos") y PNEA_EST dentro de
+     enoe_325_fd_c_bas_amp.pdf, misma tabla que SEC_INS/TIPO y EDA.
+
+python3 $U/u0busca.py -q "ideacion suicida|intento de suicidio|malestar psicologico" --encuesta ensanut
+  -> 0 aciertos con texto (la pregunta 8.17/12.11 no está indexada como reactivo corto en los
+     inventarios; se confirmó por u0pdf sobre el cuestionario en su lugar, ver arriba).
+
+python3 $U/u0busca.py -q "causa de la muerte|lesion autoinfligida|suicid" --encuesta edr
+  -> 0 aciertos con texto (EDR no tiene FD/diccionario registrado en el manifiesto; no se pudo
+     confirmar variable de causa de muerte por este camino).
+
+python3 $U/u0busca.py -q "tasa especifica de fecundidad|tasa global de fecundidad|nacimientos por cada mil"
+  -> 0 aciertos con texto (la tasa publicada no aparece como reactivo; se calcularía desde
+     historia de nacimientos, ver TFECHISEMB/nh_prim ya confirmados por el ejecutor previo).
+
+python3 $U/u0busca.py -q "irreverencia|inmediatez|innovacion social"
+  -> 0 aciertos con texto.
+
+## Cross-check de sha256 contra data/manifiesto.yaml (lectura de solo el archivo de manifiesto,
+## no de microdato) para todo id citado como MEDIBLE-EN-CORPUS en filas.tsv:
+## eder2025_bd_csv_zip, eder2025_descripcion_bd_pdf, endutih2024_bd_dbf_zip, endutih2024_fd_xlsx,
+## enadid2023_base_datos_csv, enadid2023_fd_xlsx, latinobarometro2024_bd_stata,
+## latinobarometro2024_cuestionario_esp, cpv2020_cuestionario_ampliado_pdf, cpv2020_caas_eum_csv,
+## cpv2020_iter_nal_csv, enoe_2024_3t_csv, enoe_325_fd_c_bas_amp_pdf, edr2024_bd_dbf_zip,
+## adolescentes_ensanut2024_w_stata_stata, adultos_ensanut2024_w_catlogo,
+## 3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios,
+## 4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios
+## -> las 18 entradas cotejadas coinciden byte a byte con el sha256 impreso por u0mf/u0busca/u0pdf.
+## No se abrió ningún microdato; solo se leyó el archivo de texto data/manifiesto.yaml.
+
+## Lectura del report completo (Read tool sobre la ruta del paquete, 303 líneas) y de
+## RESULTS-ASTRA5.md y CATALOGO-CORPUS.md (parcial, sección de índice por familia/año).
+
+## Reserva ENOE 2026 / ENVIPE 2026 / ENCO: no se leyó ni citó ninguna ola 2026 en este lote; toda
+## cifra ENOE usada (informalidad, EDA, sector informal) corresponde a 2024T3, ya expuesta en
+## RESULT-ENOE-PISOS-TABLA (main, sellada, no reservada).
+
+## Presupuesto web: 0 consultas WebSearch/WebFetch propias en este lote (12 disponibles). Se
+## reutilizaron como evidencia de existencia documental las 9 consultas WebSearch ya hechas por el
+## ejecutor previo (ENCODAT, Oxfam, Mitofsky x2, Berkeley, Deloitte, Acta Sociológica, OECD,
+## ENDISEG — todas del 23/sep/2026, íntegras en previas/juventud.log), citadas como "(ejecutor
+## previo, 23/sep)" en busqueda_a13 de las filas que las usan. Quedan 3 consultas web del
+## presupuesto del lote sin usar.

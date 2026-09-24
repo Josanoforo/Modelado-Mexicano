@@ -1,0 +1,90 @@
+# Búsquedas crudas del ejecutor actual del lote autoridad (24/sep/2026)
+# Las búsquedas del ejecutor previo (interrumpido antes de escribir salida) están en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/autoridad.log
+# y se citan en busqueda_a13 como «(ejecutor previo)» cuando se reutiliza un conteo ya verificado aquí.
+
+### [P1] u0mf --busca panorama --busca religio / --busca censo --busca poblacion / --busca ccpv
+# panorama+religio: 0 entradas (INEGI "Panorama de las religiones en México 2020" NO está en el manifiesto)
+# censo+poblacion: 0 entradas
+# ccpv: 9 entradas -- incluye cpv2020_cuestionario_ampliado_pdf (Censo2020_cuest_ampliado.pdf, sha
+#   4a88b9b7a3e8c7dfae2804008ddb5082522a8f9e2bd63880fc34fdde1b972272), cpv2020_caas_* (Censo de
+#   Alojamientos de Asistencia Social, NO es la muestra censal general), cpv2020_iter_nal_csv
+#   (tabla iterativa sin religión). No hay tabulados publicados de religión de población general.
+
+### [P2] u0mf --busca esru / --busca emovi / --busca censos_economicos / --busca economicos
+# esru: 1 entrada (endireh2006 tabulados -- falso positivo por substring, no es ESRU-EMOVI)
+# emovi: 0 entradas · censos_economicos: 0 · economicos: 0
+# Confirma: ESRU-EMOVI (movilidad social intergeneracional) NO está en el manifiesto.
+
+### [P3] u0pdf --id cpv2020_cuestionario_ampliado_pdf -q "religion|religión|catolic" --contexto 300 --limite 10
+# 6 coincidencias p.7: pregunta 9 "religion ¿cual es la religion de (nombre)?" -- confirma que el
+# Censo 2020 cuestionario ampliado SÍ pregunta religión (documento en corpus), pero el documento con
+# los TABULADOS publicados (Panorama de las religiones 2020) no está registrado.
+
+### [P4] u0busca -q "religion" --limite 20
+# 54 aciertos con texto. Instrumentos con reactivo de religión en el corpus: ENNVIH 2002/2005/2009
+# (ac23_1j, "NO USA METODO:RELIGION" -- etiqueta de anticoncepción, falso amigo), ENCUCI 2020
+# (AP5_4_3, AP5_6_8, AP10_5 "¿cuál es su religión?"), Censo2020 CAAS (T_PCATOLICA/T_PSIN_RELIG,
+# trabajadores/usuarios de asistencia social, NO población general), ENASEM 2024 (A36_24/AA39_24,
+# importancia de la religión, población 50+), LAPOP 2004/2006 (Q3 "¿Cuál es su religión?"),
+# LAPOP 2023 (q3cn, q5b importancia). Ninguno es el censo general de población por religión.
+
+### [P5] u0busca -q "compadre|compadrazgo|palanca" --limite 15
+# 2 aciertos: LAPOP 2004/2006 DC13 "Una persona desempleada es cuñado de un político importante, y
+# éste usa su palanca para conseguirle un empleo público. ¿Usted cree que el político es...
+# (correcto/incorrecto)" -- mide PERCEPCIÓN DE NEPOTISMO/corrupción en un escenario hipotético, no
+# mide "redes informales como gobernanza paralela" ni "personalismo como legitimador de autoridad".
+# Ningún instrumento del corpus compara influencia efectiva de jefe formal vs. compadre informal.
+
+### [P6] u0busca -q "indirecta|comunicacion" --limite 15
+# 265 aciertos con texto (gasto en medios de comunicación ENNVIH, identificación de autoridad "por
+# medios de comunicación" ENVIPE, barreras físicas de vivienda ENVIPE AP1_2 -- todos falsos amigos
+# léxicos). Ningún instrumento pregunta por normas de comunicación indirecta/evitación de conflicto
+# laboral ("sí/quizás/no").
+
+### [P7] u0mf --busca enoe --busca 2024 --limite 15
+# 9 entradas: enoe_2024_1t..4t_csv (datos abiertos) y _microdatos (trim1-4), enoe_n_diseno_muestral_pdf.
+# ENOE 2024 (todas las olas) está en el manifiesto y NO está reservado (la reserva es solo ENOE 2026).
+
+### [W1] WebFetch https://www.hofstede-insights.com/country-comparison-tool?countries=mexico -- FALLÓ
+# dos intentos: error "Socket is closed" (fallo de red de la herramienta, no confirmado como bloqueo
+# de sandbox). No se pudo leer el pasaje primario directamente.
+
+### [W2] WebSearch "GLOBE study Mexico power distance practices values scores House 2004 table"
+# Confirma que GLOBE (House et al. 2004; globeproject.com) publica prácticas ("As Is") y valores
+# ("Should Be") de distancia de poder por país/clúster, con México en el clúster latinoamericano de
+# alta distancia de poder practicada y menor deseada. No se obtuvo la tabla numérica exacta (81
+# práctica / valor deseado) en este lote -- documento identificado, cifra exacta no cotejada.
+
+### [W3] WebSearch "Campos-Vázquez Medina-Cortina skin color Mexico Demography 2018 DOI wages"
+# Confirma el documento primario: Campos-Vázquez, R.M. y Medina-Cortina, E.M. "Skin Color and Social
+# Mobility: Evidence From Mexico", Demography 56(1):321-343, 2019. DOI: 10.1007/s13524-018-0734-z.
+# Hallazgo citado por fuentes secundarias: piel más clara = +1.4 años de escolaridad y +53% en
+# ingreso por hora frente a piel más oscura (NO ">100%"/"más del doble" como dice el report en L25 y L145).
+
+### [W4] WebSearch "Transparency International Global Corruption Barometer Mexico bribery officials refuse percentage"
+# No se localizó la cifra específica "27% cree que los funcionarios rechazan sobornos" del report.
+# GCB LAC reporta cifras distintas (51% pagó soborno 2021; 34% en 2024; 9% de quienes sobornan lo
+# reportan; 62% cree improbable que se sancione al funcionario) -- ninguna coincide con el "27%"
+# citado. Documento primario del 27% NO identificado en este lote.
+
+### [W5] WebSearch "Hofstede Insights Mexico power distance index 81 country comparison"
+# Múltiples fuentes secundarias (Penn State, cyborlink, clearlycultural) confirman PDI México = 81
+# en la herramienta de comparación de países de Hofstede Insights, consistente con el report. Página
+# primaria (hofstede-insights.com) no pudo fetch-earse directamente (ver W1).
+
+### [W6] WebSearch "Berkeley 2024 study Mexico hierarchy preference generational millennials fatalism egalitarian +0.18 +0.32"
+# HALLAZGO IMPORTANTE: el estudio Berkeley 2024 con esos coeficientes (+0.18 igualitarismo, +0.32
+# fatalismo, sin diferencia generacional en jerarquía) es "Cultural Evolution" del Berkeley Institute
+# for Young Americans (BIFYA, youngamericans.berkeley.edu) -- sobre VOTANTES DE ESTADOS UNIDOS, no
+# sobre México. No se localizó una versión o réplica del estudio con muestra mexicana. Posible
+# error de atribución en el report (L27, L151): cita un estudio estadounidense como evidencia sobre
+# la fuerza laboral/generaciones mexicanas.
+
+### [W7] WebSearch ""90%" empresas mexicanas familiares fuente estudio gobernanza plan de sucesión KPMG PwC IMEF"
+# Documento primario probable identificado: KPMG "Empresas familiares en México: Tiempo de sucesión
+# en un escenario disruptivo" (2019); también PwC Biennial Survey on Family Businesses Mexico 2014 e
+# IPADE (Centro de Investigación de la Familia Empresaria). Discrepancia detectada: una reseña de la
+# cifra KPMG cita 37% con plan de sucesión (aunque parcial) frente al 3% que cita el report (L33,
+# L231) -- posible confusión entre "sin ningún plan" / "plan formal completo" / distintas ediciones
+# del estudio. Cotejo exacto pendiente (no se abrió el documento primario en este lote).

@@ -1,0 +1,99 @@
+# busquedas.log — lote aspiracional (ASTRA5-U0)
+# Ejecutor único, sesión 2026-09-24. Repo /home/pc0/mm-astra5-mapa-dominios-1 (solo lectura, sin cd a subdirectorios).
+# Herramientas: U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (u0busca.py, u0pdf.py, u0mf.py),
+# corridas con cwd=/home/pc0/mm-astra5-mapa-dominios-1 y rutas absolutas a las herramientas.
+
+## 0. Lectura del report y del paquete
+- Read corpus/forense/Consumo_Aspiracional_en_México__Validación_Forense_del_Modelo_Anti-Esencialista.md (164 líneas, ÍNTEGRO).
+- Read scratchpad/u0/paquetes/aspiracional.md (paquete: 4 G, 3 P, 9 T, 19 F, 0 contratos cerrados, 3 correcciones vigentes, 1 dedup cruzado MAMA-LUCHA-FORENSES).
+- Read scratchpad/u0/INSTRUCCIONES-LOTE.md íntegro.
+- Read scratchpad/u0/RESULTS-ASTRA5.md íntegro (ENOE2024T3, ENDUTIH2024, ENDIREH, política — ningún RESULT toca consumo/aspiracional directamente).
+
+## 1. corpus/reports/ — los tres reports citados por la corrección L15,L129
+- ls corpus/reports | grep -iE "consumidor|clasemediero|behavioral" -> confirma que los 3 reports SÍ existen en el repo:
+  Psicología_del_Consumidor_Mexicano__Patrones__Contradicciones_y_Estrategia.md,
+  El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md,
+  Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md.
+- command grep -n --binary-files=text -iE "G2|perfil 2|perfil 3|generador|consumo compensatorio|señalizaci[oó]n de estatus" sobre los 3 reports
+  -> Psicología_del_Consumidor: 2 aciertos (L64, L384, "consumo compensatorio", cita Velandia-Morales 2022, Universidad de Granada — marco importado, corregido por FP-38 el 18/ago/2026 según el propio report).
+  -> El_Clasemediero_Mexicano: 0 aciertos.
+  -> Behavioral_Finance_Mexicano: 3 aciertos (L67, L92, L152, "consumo compensatorio", hipótesis razonable, no dato duro).
+  -> Ninguna definición operacional verbatim de "perfiles 2/3" ni "generador G2" en los tres reports.
+- command grep -rli --binary-files=text "glosario-corregido\|glosario corregido" . -> 17 aciertos, todos en forense/analisis/dominios/* y forense/rescate/* (tracking del propio forense/lote), ninguno es el glosario mismo. glosario-corregido-v2 NO localizado en el repo.
+
+## 2. u0mf --busca — documentos de empresas (manifiesto, 1680 entradas examinadas cada corrida)
+alsea -> 0 | liverpool -> 0 | "palacio de hierro" -> 0 | miniso -> 0 | becle -> 0 | heineken -> 0 |
+"grupo modelo" -> 0 | costco -> 0 | walmex -> 0 | ikea -> 0 | raiavl -> 0 | amda -> 0 |
+appsflyer -> 0 | omdia -> 0 | "the ciu" -> 0 | "j.d. power" -> 0 | telcel -> 0 | cuervo -> 0 |
+att -> 18 (falsos positivos: coincide con subcadena "att" dentro de otras palabras, ningún acierto real a AT&T).
+u0mf --busca "registro administrativo" -> 0.
+Conclusión: ningún documento financiero corporativo (BMV/NYSE/Nasdaq) ni INEGI RAIAVL/AMDA está en el manifiesto del proyecto.
+u0mf --busca enigh -> 23 entradas (enigh2012/2014/2016/2018/2020/2022/2024 en data_raw, con descripcion_base y diseño_muestral 2022/2024) -- disponibles para gasto por rubro, no usadas en filas (ningún caso pide gasto agregado por rubro sin marca).
+
+## 3. u0busca — corpus de reactivos (9 tablas; 314256 identidades, 113780 con texto)
+"meses sin intereses" -> 0 aciertos con texto.
+"crédito al consumo" -> 2 aciertos (Infonacot, glosario CNBV — no es MSI ni marca).
+"compra a plazos" -> 0.
+"tarjeta departamental" -> 4 aciertos (enfih2019 P8_12 "¿Con qué tienda tiene esta tarjeta departamental?"; MTO_TCRD monto de deuda).
+"P6_14" -> 323 aciertos con texto (mostrando 6); repetido con --encuesta enif --ola 2015 -> 5 aciertos con texto:
+  enif2015 p6_14_1/p6_14_2 "¿Usted utiliza su(s) tarjeta(s) de crédito bancaria(s) o departamental(es) para... hacer compras en establecimientos comerciales, tiendas o restaurantes?" (tmodulo2.sav y .DBF, fd hoja TModulo2 filas 229/232).
+"tanda" -> 123 aciertos (enif2012/2015 ahorro en tanda, ennvih2002 CRH01_1E) -- no usado en filas de este lote (fuera del alcance de los 9 casos/pares).
+"marca extranjera" -> 0.
+"estatus" -> 20 aciertos (endutih2024/2025 variable ESTATUS = estatus del registro del hogar/persona en el levantamiento, NO estatus social/de consumo -- variable homónima descartada).
+"aspiracion" -> 0.
+"gasto en restaurantes" -> 0. "cafeter" -> 12. "club de precios" -> 0. "membresía" -> 0.
+"celular" -> 917. "teléfono celular" -> 444. "smartphone" -> 272 (ninguno de los tres desagrega marca/fabricante).
+"cerveza" -> 27. "tequila" -> 12. "auto nuevo" -> 0. "automóvil" -> 589.
+"marca del celular" -> 0. "marca de su celular" -> 0. "iPhone" -> 0. "sistema operativo" -> 0.
+"24 mensualidades" -> 0.
+Conclusión: ningún instrumento del corpus pregunta por marca de celular, sistema operativo, MSI, ni por "aspiración"/"estatus de consumo" como constructo; la pieza más cercana disponible es ENIF2015 P6_14 (uso de tarjeta bancaria/departamental para compras), usada en la fila aspiracional-005.
+
+## 4. u0mf --calc (relevo GEN2)
+u0mf --calc enif_2015_enif_2015_bd_sav -> "corridas con input enif_2015_enif_2015_bd_sav: 0 (de 326 corridas)".
+
+## 5. WebSearch (12/12 del presupuesto del lote; solo fuentes .mx/.com oficiales de cada emisora, SEC EDGAR, IR/newsroom propios; se descartan explícitamente los resultados de prensa/portales de noticias como evidencia, solo se usan para localizar el documento primario)
+Todas ejecutadas 2026-09-24.
+ 1. "El Puerto de Liverpool reporte resultados primer trimestre 2026 BMV"
+    -> confirma elpuertodeliverpool.mx/docs/informes-trimestrales/2026/1TXBRL2026.pdf y
+       elpuertodeliverpool.mx/docs/comunicados-prensa/2026/Liverpool_1Q26_QuarterlyResults.pdf (IR propio).
+       Ingresos $45,418M (-0.2%), Comercial -1.9%, GMV digital +12.4%.
+ 2. "Grupo Palacio de Hierro reporte financiero primer trimestre 2026"
+    -> confirma elpalaciodehierro.com/.../GPH-1ER-TRIM-2026.pdf (IR propio) y bmv.com.mx/es/emisoras/.../GPH-5446.
+       Ingresos $13,274M (+4.2%), utilidad neta $422M, EBITDA $1,624M -- coincide con las cifras citadas por el report.
+ 3. "Becle S.A.B. de C.V. reporte trimestral resultados BMV tercer trimestre 2025"
+    -> confirma cuervo.com.mx/documents/reportes-trimestrales/2025/3T25%20Reporte%20de%20Resultados%20-%20Final.pdf (IR propio).
+       Utilidad neta 3T2025 MXN 4,125.34M vs MXN 896.11M (3T2024) -- coincide con +354.6% a $4,123M citado por el report.
+ 4. "Alsea reporte resultados segundo trimestre 2026 BMV Starbucks Mexico"
+    -> solo resultados de prensa (Expansión, Milenio, Crónica, El Ceo, Merca2.0); ningún documento primario en esta consulta.
+ 5. "Alsea investor relations reporte trimestral 2T26 PDF alsea.com.mx"
+    -> confirma alsea.net/uploads/en/documents/reports_quarterly/260720_RESULTADOS_ALSEA_2T_ENG.pdf (IR propio).
+       Ingresos consolidados $21,092M (-1%), Alsea México $12,160M (+4.2%), utilidad neta -52.1%.
+ 6. "Heineken N.V. Full Year Results 2025 report February 2026"
+    -> confirma theheinekencompany.com/sites/heineken-corp/files/2026-02/heineken-nv-2025-full-year-results.pdf (newsroom propio, 11-feb-2026).
+       Heineken® volumen +2.7%, global brands +1.9%, volumen total -1.2%, ingreso/hl +3.8% -- cifras globales, sin desglose México.
+ 7. "MINISO Group Holding first half 2025 unaudited financial results NYSE announcement"
+    -> confirma ir.miniso.com/2025-08-21-MINISO-Group-Announces-2025-June-Quarter-and-Interim-Unaudited-Financial-Results (IR propio).
+       Ingresos globales +23.1% (RMB), sin desglose México; 223 tiendas México no confirmadas en esta fuente.
+ 8. "Ikano Retail Ikea annual summary FY2025 Mexico Guadalajara"
+    -> confirma ikea.com/mx/en/newsroom/corporate-news/our-year-ikano-retail-fy25-annual-report-pubfc93d620/ (oficial IKEA/Ikano).
+       México 182M€, Guadalajara Expo +71% -- coincide con las cifras citadas por el report.
+ 9. "Costco Wholesale fiscal year 2025 annual report 10-K international Mexico comparable sales"
+    -> confirma sec.gov/Archives/edgar/data/909832/000090983225000101/cost-20250831.htm (SEC EDGAR, primario).
+       914 tiendas totales, 42 en México; comparables totales +6%, Other International +5% (México no desglosado).
+10. "Walmex Walmart de México reporte trimestral 2025 Sam's Club formato con mejor desempeño"
+    -> confirma files.walmex.mx/upload/files/2025/ES/Trimestral/1T25/WALMEX_1T25_BMV.pdf y .../3T25/Walmex_Reporte_de_Resultados_3T25.pdf (IR propio).
+       Sam's Club citado como formato de mejor desempeño 1T2025 y 3T2025.
+11. "AMDA INEGI RAIAVL ventas autos chinos MG Chirey BYD participación 2024 2025"
+    -> SOLO resultados de prensa (El Imparcial, Expansión, Forbes México, TyT, El Ceo, El Universal); ningún documento
+       primario de AMDA/AMIA/INEGI-RAIAVL localizado con URL propia. Dictamen: PENDIENTE-VERIFICACION-DOCUMENTAL.
+12. "AppsFlyer penetración iPhone México 2026 financiamiento Expansión Omdia envíos"
+    -> SOLO resultados de prensa/portales tecnológicos (Expansión, roastbrief, 9to5mac, Xataka, El Financiero); ningún
+       documento primario de AppsFlyer/Omdia/The CIU localizado con URL propia. Dictamen: PENDIENTE-VERIFICACION-DOCUMENTAL.
+
+Presupuesto web: 12/12 consultas usadas (WebSearch). 0 WebFetch usadas (los snippets de WebSearch bastaron para confirmar
+existencia/identidad del documento primario en 8 de las 10 piezas objetivo; Grupo Modelo 2018-2019 no se buscó por
+agotamiento del presupuesto, ver fila aspiracional-017b).
+
+## 6. Reservas
+Ninguna búsqueda tocó ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola). No se copiaron cifras del report de mérito
+ENOE2026T1 fuera de su propio texto.

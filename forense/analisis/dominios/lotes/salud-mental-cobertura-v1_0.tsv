@@ -1,0 +1,40 @@
+unidad	tipo	filas_o_contratos	razon
+LECTURA-fb2ddd66-01	G,F	ASTRA5-U0-SALMEN-001;ASTRA5-U0-SALMEN-002;ASTRA5-U0-SALMEN-003	
+LECTURA-fb2ddd66-02	G,F	ASTRA5-U0-SALMEN-006;ASTRA5-U0-SALMEN-007	
+LECTURA-fb2ddd66-03	G,F	ASTRA5-U0-SALMEN-008	
+LECTURA-fb2ddd66-04	G,F	ASTRA5-U0-SALMEN-009	
+LECTURA-fb2ddd66-05	G,F	ASTRA5-U0-SALMEN-011	
+LECTURA-fb2ddd66-06	G,F	ASTRA5-U0-SALMEN-013;ASTRA5-U0-SALMEN-014	
+LECTURA-fb2ddd66-07	G,F	ASTRA5-U0-SALMEN-015;ASTRA5-U0-SALMEN-016	
+LECTURA-fb2ddd66-08	G,F	ASTRA5-U0-SALMEN-017	
+LECTURA-fb2ddd66-09	G,F	ASTRA5-U0-SALMEN-018	
+LECTURA-fb2ddd66-10	G,F	ASTRA5-U0-SALMEN-019	
+LECTURA-fb2ddd66-11	G,F	ASTRA5-U0-SALMEN-021	
+LECTURA-fb2ddd66-12	G,F	ASTRA5-U0-SALMEN-022	
+LECTURA-fb2ddd66-13	G,F	ASTRA5-U0-SALMEN-024	
+LECTURA-fb2ddd66-14	G,F	ASTRA5-U0-SALMEN-026	
+LECTURA-fb2ddd66-15	G,F	ASTRA5-U0-SALMEN-028	
+CAND-fb2ddd66-L10	P	ASTRA5-U0-SALMEN-020	DEDUP: salud-mental-006;salud-mental-007;salud-mental-019 (gasto/psiquiatras y estigma-vs-acceso ya cubiertos; L10 solo aporta la cifra nueva de Kohn 80%, en fila propia)
+CAND-fb2ddd66-L11	P	ASTRA5-U0-SALMEN-012	DEDUP: salud-mental-008;salud-mental-009;salud-mental-011 (somatizacion, idioms de distress e immigrant paradox ya cubiertos; L11 solo aporta la interpretacion anti-genetica, en fila propia)
+CAND-fb2ddd66-L12	P	ASTRA5-U0-SALMEN-023	DEDUP: salud-mental-021;salud-mental-022;salud-mental-009 (machismo, marianismo y somatizacion ya cubiertos; L12 solo aporta la tesis funcion+costo, en fila propia)
+MENTAL-INTERNO-01	F	ASTRA5-U0-SALMEN-030;ASTRA5-U0-SALMEN-031;ASTRA5-U0-SALMEN-032;ASTRA5-U0-SALMEN-033;ASTRA5-U0-SALMEN-034;ASTRA5-U0-SALMEN-035;ASTRA5-U0-SALMEN-036;ASTRA5-U0-SALMEN-037;ASTRA5-U0-SALMEN-038;ASTRA5-U0-SALMEN-039	
+MENTAL-INTERNO-02	F	ASTRA5-U0-SALMEN-004;ASTRA5-U0-SALMEN-010;ASTRA5-U0-SALMEN-027	DEDUP: el resto del rango L116-220 (Patrones 1-8 y causas) restata G1-G15/P10-P12 ya cubiertos en sus fichas propias; solo se listan aqui las 3 afirmaciones nuevas con cifra propia dentro del rango
+MENTAL-INTERNO-03	F	ASTRA5-U0-SALMEN-029	DEDUP: salud-mental-036;salud-mental-037;salud-mental-038;salud-mental-039 (los 4 mitos de L257-265 estan en su version mas completa como unidades INT-L106/107/108/109, con localizador que cubre ambos sitios); DEDUP: L221-231 (comparacion internacional) y L269-278 (sintesis) restatan G1-G15/P10-P12 ya cubiertos; el resto de L233-253 (aplicadas) sin cifra propia adicional es interpretacion ya cubierta por G8/G15
+MENTAL-INTERNO-04	F	ASTRA5-U0-SALMEN-005	NO-AFIRMACION: auditoria meta (L281-321, 'Modulo de auditoria de rigor extremo' es autoevaluacion del propio report, no afirmacion sobre Mexico verificable por instrumento); DEDUP: L273-280 (sintesis final) restata G1-G15 ya cubiertos; unica cifra nueva del rango (L316-318, DSM-IV 26.1%/36.4%) tiene fila propia
+INT-L95	INT	ASTRA5-U0-SALMEN-030	
+INT-L96	INT	ASTRA5-U0-SALMEN-031	
+INT-L98	INT	ASTRA5-U0-SALMEN-032	
+INT-L101	INT	ASTRA5-U0-SALMEN-033	
+INT-L102	INT	ASTRA5-U0-SALMEN-034	
+INT-L103	INT	ASTRA5-U0-SALMEN-035	
+INT-L106	INT	ASTRA5-U0-SALMEN-036	
+INT-L107	INT	ASTRA5-U0-SALMEN-037	
+INT-L108	INT	ASTRA5-U0-SALMEN-038	
+INT-L109	INT	ASTRA5-U0-SALMEN-039	
+INT-L117	INT	ASTRA5-U0-SALMEN-004	
+INT-L126	INT	ASTRA5-U0-SALMEN-010	
+INT-L164	INT	ASTRA5-U0-SALMEN-025	
+INT-L195	INT	ASTRA5-U0-SALMEN-027	
+INT-L247	INT	ASTRA5-U0-SALMEN-029	
+INT-L318	INT	ASTRA5-U0-SALMEN-005	
+TIER-fb2ddd66-L18	T		NO-AFIRMACION: leyenda de marcas del resumen ejecutivo ([MÁS SÓLIDOS]/[MÁS MALINTERPRETADOS]/[MAYOR UTILIDAD PRÁCTICA])

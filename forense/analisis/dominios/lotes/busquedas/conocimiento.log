@@ -1,0 +1,69 @@
+# ASTRA5-U0 · lote conocimiento · busquedas.log (24/sep/2026)
+# cwd para u0busca/u0pdf/u0mf: /home/pc0/mm-astra5-mapa-dominios-1
+# U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (ruta corregida; el encargo citaba una sesión distinta, 6f1534e5-..., que no existe en este filesystem)
+
+## Lectura íntegra
+Read corpus/reports/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md (249 líneas, completo)
+Read paquetes/conocimiento.md (paquete completo)
+Read RESULTS-ASTRA5.md, CATALOGO-CORPUS.md (índices)
+
+## u0busca / u0pdf / u0mf (corpus)
+python3 $U/u0busca.py -q "ENPECYT" --limite 3 → 0 aciertos con texto (prueba de humo, no es búsqueda por sinónimo de encuesta)
+python3 $U/u0mf.py --busca ensanut --busca 2021 → 0
+python3 $U/u0mf.py --busca ensanut --busca 2022 → 0
+python3 $U/u0mf.py --busca ensanut --busca 2023 → 0
+python3 $U/u0mf.py --busca ensanut → 150 entradas (todas ENSANUT 2024 y un cuestionario ENSANUT 2018 utilizadores)
+python3 $U/u0mf.py --busca enpecyt → 0
+python3 $U/u0mf.py --busca wellcome → 0
+python3 $U/u0mf.py --busca pisa → 0
+python3 $U/u0mf.py --busca reuters → 11 entradas (dnr2024/dnr2025, no dnr2026)
+python3 $U/u0mf.py --busca "panorama educativo" → 0
+python3 $U/u0mf.py --busca ceey → 0
+python3 $U/u0mf.py --busca "education at a glance" → 0
+python3 $U/u0mf.py --busca ocde → 0; --busca oecd → 3 (ea3385cf_en = OECD Trust survey LAC 2025, NO es EAG2025; oecd_tdg2025; oecd_pii)
+python3 $U/u0mf.py --busca dnr2026 → 0
+python3 $U/u0mf.py --id ea3385cf_en → confirma "OECD Survey on Drivers of Trust in Public Institutions in LAC 2025", no relacionado con EAG2025
+python3 $U/u0busca.py -q "usuario de internet|uso de internet" --encuesta endutih --ola 2023 --limite 10 → 2 aciertos (P8_17, frecuencia; no la binaria de "usuario")
+python3 $U/u0busca.py -q "mensajeria|whatsapp" --encuesta endutih --ola 2023 --limite 10 → 10 aciertos (P7_12_2/3, P7_16_6, P8_13_1, P8_16_1)
+python3 $U/u0busca.py -q "conecta a Internet|dispositivo.*conecta" --encuesta endutih --ola 2023 --limite 20 → 20 aciertos (P7_6_1..7, P8_12_1/2)
+python3 $U/u0busca.py -q "es usuario|Es usuario de Internet" --encuesta endutih --ola 2023 --limite 20 → 0
+python3 $U/u0mf.py --busca 8cf0c1a6 (ENPECYT boletín SHA) → 0; --busca 90526e38 (ENPECYT cuestionario SHA) → 0; --busca eea01061 (Wellcome SHA) → 0; --busca 8be7ac8c / 84bb19ca (PISA SHA) → 0 — confirma que siguen SIN-ID (sin cambio respecto al paquete)
+python3 $U/u0mf.py --id encig2025_boletin_pdf → confirma id/sha/MER-006/MER-007
+python3 $U/u0mf.py --id encig2025_principales_resultados_pdf → confirma id/sha/MER-007
+python3 $U/u0mf.py --id encig_2025_encig25_base_datos_dbf → confirma microdato en corpus, sin uso asignado
+python3 $U/u0pdf.py -q "familiares|confianza" --id encig2025_boletin_pdf --limite 15 → 6 coincidencias, p.1 y p.3 (84.8%/23.9%/75.9%/74.6% confirmados)
+python3 $U/u0mf.py --busca latinobarometro → 9 entradas (bd_stata, fichas_tecnicas, cuestionario_esp; sin informe/tablas de resultados)
+python3 $U/u0mf.py --busca latinobar --busca informe → 0
+python3 $U/u0mf.py --busca enoe --busca 2025 → 9 entradas (microdato 1T-4T 2025 en corpus, no reservado)
+python3 $U/u0mf.py --busca enoe --busca informalidad → 0; --busca enoe --busca boletin → 0
+python3 $U/u0pdf.py -q "tasa de informalidad laboral" --limite 10 → 9 coincidencias, incl. itindc_202602 p.19 (2T2025: 55.1%) y enoe_con_basedatos_proy2010_pdf (fórmula TIL1)
+python3 $U/u0busca.py -q "confianza radial" --limite 20 → 0 aciertos con texto
+python3 $U/u0busca.py -q "saber del oficio|maestro-aprendiz|aprendizaje informal" --limite 20 → 0 aciertos con texto
+python3 $U/u0mf.py --busca upax → 0; --busca "research land" → 0
+python3 $U/u0mf.py --busca whatsapp → 0; --busca "hurtado razo" → 0
+python3 $U/u0mf.py --busca palomar → 0
+python3 $U/u0mf.py --busca sep --busca panorama → 0
+python3 $U/u0mf.py --busca ensanut --busca 2012 → 0
+python3 $U/u0pdf.py -q "bomberos|muy respetable" --limite 10 → 8 coincidencias, ninguna del boletín ENPECYT (LAPOP/CNGMD/ENGASTO/ENIGH/ENPOL, falsos positivos por "bomberos" como categoría ocupacional)
+python3 $U/u0pdf.py -q "consultorio adyacente a farmacia|CAF" --limite 10 → 195 coincidencias, ninguna del informe ENSANUT 2012 (falsos positivos por substring "caf")
+python3 $U/u0pdf.py -q "movilidad social en Mexico|CEEY" --limite 10 → 0
+python3 $U/u0pdf.py -q "Panorama Educativo de Mexico" --limite 10 → 0
+python3 $U/u0pdf.py -q "mexico" --id dnr2025_report --limite 80 → confirma capítulo México p.130-131, "low at 36%" (trust score DNR2025)
+python3 $U/u0pdf.py -q "trust the news" --id dnr2025_report --limite 40 → 2 coincidencias (p.41, p.86, no México)
+
+## Web (12/12 consultas usadas; solo fuentes oficiales/primarias, ninguna prensa citada como evidencia final)
+1. WebSearch "OECD Education at a Glance 2025 Mexico earnings premium tertiary education 50% 150%" → confirma título/URL country note México; no confirma el 50-150% específico
+2. WebSearch "Research Land Grupo UPAX abril 2026 automedicación farmacia encuesta salud" → solo prensa (saludiario, fastcompany, la jornada, cionoticias, elasertivo) — no usado como evidencia, solo pista
+3. WebFetch OECD Mexico country note PDF (oecd.org/.../mexico_364135ce/3b36a6f6-en.pdf) → PDF binario ilegible por la herramienta
+4. WebFetch OECD "what-are-the-earnings-advantages-to-education" HTML → HTTP 403 (bloqueo ya documentado en universo-puertas fila 114)
+5. WebSearch "Research Land OR Grupo UPAX ... site:researchland.com.mx OR site:grupoupax.com" → localiza upax.com.mx/comunicados (sitio propio del emisor)
+6. WebFetch https://upax.com.mx/comunicados → no expone el comunicado específico de abril/2026 sobre automedicación
+7. WebSearch "Latinobarómetro 2024 informe México confianza en el gobierno 52% máximo histórico" → snippet vía El Financiero (prensa, no usado como evidencia final) + localiza inep.org (espejo, no usado)
+8. WebSearch "site:latinobarometro.org informe 2024 confianza gobierno" → localiza news page y PDF propios del emisor
+9. WebFetch https://www.latinobarometro.org/news/informe-latinobarometro-2024-la-democracia-resiliente → confirma título "La Democracia Resiliente" y enlace al PDF; NO confirma la cifra 52% México
+10. WebSearch "Hurtado Razo WhatsApp desinformación COVID México UNAM estudio 78.5% verificó" → confirma autor (FCPyS-UNAM), cifras 78.5%/10%→19.5%, boletines oficiales dgcs.unam.mx (órgano propio de la UNAM, no prensa de terceros)
+11. WebSearch "Reuters Institute Digital News Report 2026 Mexico" → confirma publicación 16/jun/2026, URL oficial reutersinstitute.politics.ox.ac.uk/digital-news-report/2026
+12. WebFetch https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/mexico → CITA LITERAL confirmada: "Trust in news has dipped to 31%, its lowest level since 2017" (-5pp); "Social media remains the most important source of news... 66% weekly"
+
+## Presupuesto agotado
+Quedaron sin consulta web dedicada (PENDIENTE-VERIFICACION-DOCUMENTAL por presupuesto, no por documento inexistente): ENSANUT 2012 CAF (fila conocimiento-018), SEP/Panorama Educativo 2024 (021), CEEY movilidad (022), Brookings/López-Calva (023). Quedan para la segunda pasada documental (SEGUNDA-PASADA.md) con presupuesto propio de 3 consultas cada una.

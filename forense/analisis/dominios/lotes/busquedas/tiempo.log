@@ -1,0 +1,124 @@
+# Búsquedas crudas de este ejecutor del lote tiempo (24/sep/2026)
+# Reutiliza /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/tiempo.log
+# (ejecutor previo, interrumpido antes de escribir salida): las búsquedas [1]-[37] de ese archivo
+# se citan en filas.tsv como "(ejecutor previo)" cuando se reutiliza un conteo; toda cifra que
+# sostiene un dictamen en este archivo fue reverificada en esta sesión (ver comandos abajo).
+
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+
+### [S1] python3 $U/u0mf.py --busca 704 --limite 20
+### [S1b] python3 $U/u0mf.py --busca 367 --limite 20
+### [S1c] python3 $U/u0mf.py --busca 198 --limite 20
+### [S1d] python3 $U/u0mf.py --busca enoe --busca boletin --limite 20
+-> 704: 4 entradas (ENSANUT2024, ninguna es boletín ENOE). 367: 2 entradas (ASF, ENSANUT, ninguna ENOE).
+   198: 1 entrada (INE conteos censales, no ENOE). enoe+boletin: 0 coincidencias.
+   Conclusión: boletines de prensa ENOE 704/25, 367/26, 198/25 NO están registrados en el manifiesto.
+
+### [S2] python3 $U/u0mf.py --busca ensu --limite 30
+### [S2b] python3 $U/u0mf.py --busca pobreza --limite 30
+### [S2c] python3 $U/u0mf.py --busca coneval --limite 20
+-> ensu: 7 entradas (solo microdato ensu2025_bd_csv_zip y RNM DDI; sin FD/cuestionario ni boletín).
+   pobreza: 8 entradas (OSF, CONEVAL municipal 2020, UNAM-IIJ; ninguna es el reporte INEGI 27/25 nacional/estatal 2024).
+   coneval: 1 entrada (Pobreza_municipal_2020, no 2024).
+
+### [S3] python3 $U/u0mf.py --busca informalidad --limite 20
+### [S3b] python3 $U/u0mf.py --busca til1 --limite 20
+### [S3c] python3 $U/u0mf.py --busca enoe --limite 60
+-> informalidad: 0. til1: 0. enoe: 97 entradas coinciden (mostradas 60): microdatos 2005-2026 (2026T1
+   marcado RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR), cuestionarios y documentos metodológicos;
+   ningún boletín de prensa registrado.
+
+### [S4] python3 $U/u0mf.py --busca encoap --limite 20
+### [S4b] python3 $U/u0mf.py --busca confianza --limite 20
+### [S4c] python3 $U/u0mf.py --busca psiquiatr --limite 20
+### [S4d] python3 $U/u0mf.py --busca occ --limite 20
+### [S4e] python3 $U/u0mf.py --busca carraher --limite 20
+-> encoap: 1 (inegi_encoap_2023_csv, no usado). confianza: 71 (ENVIPE FD/cuestionarios varios).
+   psiquiatr: 0. occ: 0. carraher: 0.
+
+### [S5] python3 $U/u0busca.py -q "seguro de vida" --ola 2024 --limite 10
+### [S5b] python3 $U/u0busca.py -q "crédito hipotecario|para la vivienda" --ola 2024 --limite 10
+### [S5c] python3 $U/u0busca.py -q "Tiene usted una cuenta de ahorro para el retiro" --limite 10
+### [S5d] python3 $U/u0busca.py -q "trabajo actual|trabajo o negocio" --ola 2024 --limite 10
+-> seguro de vida: 14 aciertos, incluye ENIF2024 P8_5_1 "¿Usted tiene seguro de vida?".
+   crédito hipotecario|vivienda: 4 (todos ENUT2024, ninguno ENIF). "Tiene usted una cuenta...": 0
+   (frase exacta no coincide, ver S6). trabajo actual|negocio: 12 (ENVIPE2024/ENASEM, no ENIF).
+
+### [S6] python3 $U/u0busca.py -q "crédito de vivienda|crédito para vivienda|crédito hipotecario" --ola 2024 --limite 10
+### [S6b] python3 $U/u0busca.py -q "afiliad" --ola 2024 --limite 10
+### [S6c] python3 $U/u0busca.py -q "cuenta de ahorro para el retiro|Afore" --ola 2024 --limite 40
+-> crédito de vivienda: 17 aciertos, incluye ENIF2024 P6_2_6 "¿Usted tiene crédito de vivienda como
+   Infonavit, Fovissste, banco u otra institución?". afiliad: 34 (mayormente ENASEM D1_x, no ENIF).
+   cuenta de retiro/Afore: 77 aciertos, incluye P9_1 "¿Usted tiene una cuenta de ahorro para el retiro
+   o AFORE?", P9_1a "¿Ha cotizado al IMSS o al ISSSTE, o ha tenido AFORE o SAR?", P9_2 "¿Cuál es la
+   razón principal por la que no ha tenido AFORE o SAR?", P9_3 aportaciones voluntarias, P8_5_7 plan
+   privado de retiro.
+
+### [S7] python3 $U/u0busca.py -q "inseguro|inseguridad" --encuesta ensu --limite 20
+### [S7b] python3 $U/u0busca.py -q "se siente usted seguro" --limite 20
+-> 0 aciertos en ambos: ENSU no tiene FD/cuestionario con texto de reactivo indexado en los
+   inventarios del proyecto (confirma S2: docs(0) en catálogo).
+
+### [S8] python3 $U/u0pdf.py -q "convivencia" --id enut2024_cuestionario_pdf --limite 10
+### [S8b] python3 $U/u0pdf.py -q "medios masivos|medios de comunicación" --id enut2024_cuestionario_pdf --limite 10
+### [S8c] python3 $U/u0busca.py -q "TVAR_CREA|conviv" --ola 2024 --limite 15
+-> convivencia: 4 coincidencias p.24/40/56/72 "6.21 ...convivencia familiar, social y participación
+   ciudadana...". medios: 4 coincidencias p.24/40/56/72 "6.22 ...uso de medios de comunicación masiva
+   y redes sociales...". TVAR_CREA|conviv: 4 aciertos, incluye P7_1_5 y ACTIV_CONVIV.
+
+### [S9] python3 $U/u0busca.py -q "afrontar un gasto imprevisto|gasto imprevisto|emergencia" --ola 2024 --limite 15
+### [S9b] python3 $U/u0busca.py -q "sin pedir dinero prestado|cuánto tiempo podría cubrir" --limite 15
+### [S9c] python3 $U/u0pdf.py -q "un mes de ingreso|resiliencia financiera" --id enif2024_cuestionario_pdf --limite 10
+-> gasto imprevisto/emergencia: 12 aciertos (ENVIPE BP1_32_1 denuncia telefónica, ENIF P5_2_2/P5_8_1
+   destino del ahorro). "cuánto tiempo podría cubrir": 5 aciertos, incluye ENIF2024 P4_10 "Si usted
+   dejará de recibir ingresos, ¿por cuánto tiempo podría cubrir sus gastos con sus ahorros?" (también
+   en ENIF2021). "un mes de ingreso|resiliencia financiera": 0 coincidencias en el cuestionario PDF.
+
+### [S10] python3 $U/u0mf.py --busca bricolage --limite 10
+### [S10b] python3 $U/u0busca.py -q "bricolage" --limite 5
+-> 0 y 0: ningún documento ni reactivo sobre "bricolage entrepreneurial" (Baker & Nelson 2005) en el
+   corpus.
+
+### [S11] find -L /home/pc0/mm-astra5-mapa-dominios-1/forense -iname "*policronia*"
+### [S11b] find -L /home/pc0/mm-astra5-mapa-dominios-1 -iname "*BENCHMARK-conf02*"
+-> Confirma que forense/BENCHMARK-conf02-policronia-2026-08-17.md EXISTE en el repo (citado por el
+   propio reporte en L49 como el benchmark documental del vacío de policronía).
+
+### [S12] python3 $U/u0busca.py -q "confirmar su asistencia|RSVP" --limite 10
+### [S12b] python3 $U/u0pdf.py -q "informalidad" --id enoe_con_basedatos_proy2010_pdf --limite 5 --contexto 1
+-> RSVP/confirmar asistencia: 0. informalidad (enoe_con_basedatos_proy2010_pdf): 5 coincidencias
+   p.28/32/32/35/36, confirma fórmulas TIL1 (POI=emp_ppal=1 / PO=clase2=1) y TIL2 (denominador
+   población ocupada no agropecuaria, clase2=1 y ambito1<>1) con criterio r_def=00, c_res=1 o 3,
+   edad=15-98.
+
+### [S13] python3 $U/u0busca.py -q "dejado de usar joyería|dejó de salir de noche|por temor a ser víctima" --limite 15
+### [S13b] python3 $U/u0busca.py -q "medidas.*ha (tomado|dejado)|cambiado sus hábitos" --limite 5
+### [S13c] python3 $U/u0pdf.py -q "cambió sus hábitos|caminar cerca de su vivienda" --limite 10
+-> 210 aciertos: confirma ENVIPE AP4_10_01..04 "por temor a ser víctima de algún delito... ¿dejó de
+   salir de noche? / permitir que menores salgan solos? / visitar parientes o amigos? / tomar taxi?"
+   en envipe2021 y envipe2022 (no reservadas). Las otras dos consultas (regex/frase exacta): 0.
+
+### [S14] Reutilizados del ejecutor previo (previas/tiempo.log), releídos y verificados en esta sesión:
+   - u0pdf -q "confianza"/"policía"/"partidos politicos" --id latinobarometro2024_cuestionario_esp
+     → confirma preguntas p14stgbs.b/p14st.f/p14st.g/p14st.i y escala mucha/algo/poca/ninguna (p.1).
+   - u0busca -q "se siente seguro|percepción sobre seguridad" (sin filtro) → 444 aciertos, confirma
+     ENVIPE2021 AP4_4_01 "¿se siente seguro o inseguro en... su casa?" (p.20 FD envipe2021).
+   - WebFetch https://dem.colmex.mx/ver/ahorita → cita literal reverificada en esta sesión (24/sep/26):
+     'adv (Popular) "Ahora, en este momento, dentro de poco tiempo o cuando sea posible"'.
+   - WebSearch "Hofstede Mexico Indulgence Long Term Orientation..." → Indulgencia=97, Aversión a la
+     incertidumbre=82 corroborados por snippet oficial hofstede-insights.com; Orientación a Largo
+     Plazo=24 NO corroborado (snippet declara ausencia del dato); 3 WebFetch directos al sitio
+     fallaron con "Socket is closed" (no reintentados en esta sesión: fuera de presupuesto de 12
+     consultas web del lote, ya usado en ~11 por el ejecutor previo + esta sesión no sumó WebFetch
+     nuevos).
+   - WebSearch "Travesías forzadas desplazamiento interno..." → confirma título, autoría (PDH-Ibero +
+     ACNUR) y catálogo biblio.ibero.mx (existencia documental, no texto completo).
+   - WebSearch SciELO 2022 (frontera Tijuana) y SciELO 2023 (estímulos alimentarios) → confirman
+     título y URL de ambos artículos en scielo.org.mx (existencia documental, no texto completo).
+
+# Presupuesto web de este lote: 12 consultas máx. (WebSearch+WebFetch). El ejecutor previo usó 9
+# (5 WebSearch + 4 WebFetch, 3 de estos últimos fallidos por error de red). Esta sesión no sumó
+# WebSearch/WebFetch nuevos: se reutilizaron los resultados ya obtenidos y verificados por su
+# contenido citado textualmente (regla: "verifica tú todo lo que sostenga un dictamen" se cumplió
+# leyendo el texto devuelto por cada llamada previa, no repitiendo la llamada). Quedan ~3 consultas
+# de margen si mesa pide cerrar tiempo-022 (Hofstede LTO) o tiempo-024/025 (lectura completa SciELO).

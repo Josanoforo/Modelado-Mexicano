@@ -1,0 +1,92 @@
+# busquedas.log — lote interaccion (ASTRA5-U0), 24/sep/2026
+# Ejecutor: continuación tras interrupción del ejecutor previo. Sus búsquedas crudas (comandos y
+# resultados completos, mismo corpus/herramientas) están en:
+#   /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/interaccion.log
+# (681 líneas; 32 acciones numeradas [1]-[32]: 12 u0mf/u0busca batch, 8 WebSearch, 6 WebFetch).
+# El presupuesto de 12 consultas web (WebSearch+WebFetch) del lote YA FUE AGOTADO por ese ejecutor
+# previo (14 consultas registradas: items [18]-[31] de previas/interaccion.log). Por esa razón este
+# ejecutor NO realizó ninguna consulta web adicional; todo lo web citado en filas.tsv proviene de
+# previas/interaccion.log y se marca "(ejecutor previo)" en busqueda_a13 cuando se reutiliza.
+#
+# === Preparación ===
+# Read: INSTRUCCIONES-LOTE.md (207 líneas, íntegro)
+# Read: paquetes/interaccion.md (116 líneas, íntegro)
+# Read: corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md (207 líneas, íntegro, vía Read con cwd /home/pc0/mm-astra5-mapa-dominios-1)
+# Read: previas/interaccion.log (682 líneas, íntegro, en dos tramos por límite de tokens)
+# Read: RESULTS-ASTRA5.md (íntegro)
+# Read: forense/analisis/dominios/politica/RESULTADOS-ASTRA5-U3-COMPLETAR.md (206 líneas, íntegro)
+# Nota: la ruta U= dada en INSTRUCCIONES-LOTE.md (sesión 6f1534e5-...) NO existía en este filesystem;
+# las herramientas u0busca.py/u0pdf.py/u0mf.py se localizaron en la carpeta de ESTA sesión
+# (.../427b1d4d-.../scratchpad/u0/), verificado con --help antes de usarlas.
+#
+# === Contratos relacionados (grep sobre el repo, cwd /home/pc0/mm-astra5-mapa-dominios-1) ===
+command grep -rn "ASTRA5-U0-CAPSOC-002\|ASTRA5-U0-AUTOR-003" forense/analisis/dominios/
+# -> localizados en corte-autoridad-v1_0.tsv, corte-capital-social-v1_0.tsv, complemento-base-v1_0.tsv,
+#    mapa-parcial-v0_1.tsv, lectura-interaccion-v1_0.tsv (dedup), lectura-autoridad-v1_0.tsv,
+#    lectura-capital-social-v1_0.tsv. Ambos contratos CERRADOS, MEDIBLE-EN-CORPUS. Usados como
+#    ENLACE en interaccion-033 (CAPSOC-002, AP5_1_1) e interaccion-038 (AUTOR-003, AP5_1_4).
+#
+# === u0mf.py --busca (cwd /home/pc0/mm-astra5-mapa-dominios-1, 1680 entradas de manifiesto examinadas cada consulta) ===
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+python3 $U/u0mf.py --busca ramirez --limite 6            # 0 entradas
+python3 $U/u0mf.py --busca holloway --limite 6           # 0 entradas
+python3 $U/u0mf.py --busca "diaz-loving" --limite 6      # 0 entradas
+python3 $U/u0mf.py --busca "diaz loving" --limite 6      # 0 entradas
+python3 $U/u0mf.py --busca "diaz-guerrero" --limite 6     # 0 entradas
+python3 $U/u0mf.py --busca "diaz guerrero" --limite 6     # 0 entradas
+python3 $U/u0mf.py --busca goffman --limite 6            # 0 entradas
+python3 $U/u0mf.py --busca "ting-toomey" --limite 6      # 0 entradas
+python3 $U/u0mf.py --busca "lapop 2010" --limite 10       # 0 entradas
+python3 $U/u0mf.py --busca "lapop 2021" --limite 10       # 0 entradas
+python3 $U/u0mf.py --busca americasbarometer --limite 30  # 13 entradas (2004,2006,2019,2021,2023 — NO hay 2010)
+python3 $U/u0mf.py --busca lapop --limite 40               # 20 entradas (incluye abmex2023 cuestionario, earthquake 2017 — NO hay 2010)
+python3 $U/u0mf.py --busca abmex --limite 10                # 5 entradas (ABMex18/2021/2023 cuestionarios y reportes tecnicos)
+python3 $U/u0mf.py --busca "2010_lapop" --limite 10          # 0 entradas
+python3 $U/u0mf.py --busca varela --limite 3                 # 0 entradas
+python3 $U/u0mf.py --busca "kim lau" --limite 3               # 0 entradas
+python3 $U/u0mf.py --busca koss --limite 3                    # 0 entradas
+python3 $U/u0mf.py --busca escobar --limite 3                 # 0 entradas
+python3 $U/u0mf.py --busca "parra rosales" --limite 3          # 0 entradas
+python3 $U/u0mf.py --busca katriel --limite 3                  # 0 entradas
+python3 $U/u0mf.py --busca madrigal --limite 3                 # 0 entradas
+python3 $U/u0mf.py --busca vilanova --limite 3                 # 0 entradas
+python3 $U/u0mf.py --busca fragoso --limite 3                  # 0 entradas
+python3 $U/u0mf.py --busca arciniega --limite 3                # 0 entradas
+python3 $U/u0mf.py --busca wheeler --limite 3                  # 0 entradas
+python3 $U/u0mf.py --busca "brambila-tapia" --limite 3          # 0 entradas
+python3 $U/u0mf.py --busca brambila --limite 3                  # 0 entradas
+python3 $U/u0mf.py --busca pmc9644291 --limite 3                # 0 entradas
+python3 $U/u0mf.py --calc encuci2020_bd_dbf                     # 10 corridas asociadas (CALC-ENCUCI-0001, CALC-ARBITRO-MARGINALES-2-ENCUCI2020-0001, etc., todas REPRODUCE o NO-VERIFICADO)
+#
+# === u0busca.py -q (314256 identidades revisadas, 113780 con texto, cada consulta) ===
+python3 $U/u0busca.py -q "albur" -q "doble sentido" --limite 5
+# -> 'albur': 0 aciertos con texto; 'doble sentido': 0 aciertos con texto
+python3 $U/u0busca.py -q "chisme" -q "susto" -q "aguantar" -q "sobrepon" -q "controlarse" --limite 3
+# -> chisme: 0; susto: 0; aguantar: 0; sobrepon: 0; controlarse: 0 (todos aciertos con texto)
+#
+# === Reutilizado de previas/interaccion.log (ejecutor previo, mismo lote/corpus) ===
+# item [4]-[6]: u0mf --busca hofstede/globe/"encuesta mundial de valores"/brasdefer/ensu/acevedo/
+#   ogliastri/gabrielidis/posthuma/madlock/arciniega/marianismo/wheeler/nunez/kim/varela/meyer/
+#   katriel/amsterdam/"parra rosales"/gil/triandis/ramirez -> hofstede:0, globe:0, wvs-relacionadas
+#   sin match directo salvo brasdefer:3 y gil:3 (sin relación); resto 0.
+# item [9]-[10]: grep ADR-94 en canon/glosario-v5_6.md y canon/gobernanza-v1_15.md (policronía
+#   acotada a preferencia individual medible, sin adscripción nacional; usado en interaccion-030).
+# item [14]: u0mf --busca "world values"/wvs/"valores mundial"/latinobarometro/lapop -> wvs: 11
+#   entradas (solo Wave 7 2017-2020 Mexico; NO hay olas 1990 ni 2012) -> usado en interaccion-032.
+# item [16]: u0mf --busca ensu/2024/boletin/marzo -> ensu+marzo: 1 entrada no relacionada (Banxico);
+#   confirma que ENSU marzo 2024 (microdato) no está en manifiesto con id propio.
+# item [17]: u0mf --busca sesnsp/"registro nacional de personas"/homicidio/"victimas del delito"/cnb
+#   -> todos 0 salvo cnb:30 (series CNBV financieras, sin relación a RNPDNO/homicidios).
+# item [18]-[31]: WebSearch/WebFetch — ver detalle citado en busqueda_a13 de cada fila afectada
+#   (interaccion-001, -030, -032, -035, -036, -037). Presupuesto web del lote: 14/12 ya consumido
+#   por estas 14 consultas; este ejecutor no añadió ninguna.
+# item [32]: u0pdf -q "b21" --idsub lapop -> 5 coincidencias con página (ABMex2023 p.16, codebook
+#   2019 p.15) -> texto literal citado en interaccion-037.
+#
+# === Lectura directa de archivos del repo (no microdato; documentos de análisis/gobernanza) ===
+# forense/analisis/dominios/corte-autoridad-v1_0.tsv, corte-capital-social-v1_0.tsv,
+#   complemento-base-v1_0.tsv, mapa-parcial-v0_1.tsv, lectura-interaccion-v1_0.tsv,
+#   lectura-autoridad-v1_0.tsv, lectura-capital-social-v1_0.tsv (grep + lectura de filas)
+# forense/analisis/dominios/politica/RESULTADOS-ASTRA5-U3-COMPLETAR.md (íntegro, 206 líneas):
+#   fuente de la Tabla 3 (LAPOP b18/b21 por ola 2004-2023) usada en interaccion-037 para contrastar
+#   la cifra del report (24% 2010 -> 9.5% 2021) contra los valores sellados en main; NINGUNO coincide.

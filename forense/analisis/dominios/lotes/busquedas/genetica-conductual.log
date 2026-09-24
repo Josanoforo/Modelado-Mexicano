@@ -1,0 +1,79 @@
+# busquedas.log — lote genetica-conductual (ASTRA5-U0)
+# Ejecutor actual: continuación tras interrupción del ejecutor previo (ver nota del supervisor).
+# Búsquedas crudas completas del ejecutor previo (12 WebSearch ya usadas del presupuesto de 12 del lote, mas
+# llamadas u0busca/u0pdf/u0mf): /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/genetica-conductual.log (361 líneas, consultado íntegro, citado
+# como «(ejecutor previo)» en busqueda_a13 de filas.tsv cuando se reutiliza un hallazgo).
+#
+# Esta sesión NO usó presupuesto web adicional (12/12 ya consumidas por el ejecutor previo en: Moreno-Estrada,
+# ALDH2 monomorfismo, Garcia-Andrade/Wall/Ehlers, Caspi 2002, Byrd & Manuck 2014, Lea & Chambers 2007,
+# Lisker/Konishi, Buchwald 2022, Sanchez-Roige 2018/2025, Sharafi 2016, Mani et al 2013, DRD2/ANKK1 mexicano).
+# Re-verifiqué yo mismo (Read del log íntegro) el contenido de cada uno de esos 12 resultados antes de usarlo
+# en un dictamen; dos citas del report NO quedaron confirmadas por esas búsquedas (Lisker 1995 parece ser un
+# artículo sobre mestizaje racial, no sobre ADH1B; Konishi apareció fechado 2004, no 2003; Sharafi 2016 no se
+# confirmó, se halló en su lugar un estudio de 2018 sobre el mismo tema) — quedaron PENDIENTE-VERIFICACION-
+# DOCUMENTAL en vez de MEDIBLE-CON-ADQUISICIÓN.
+#
+# Búsquedas de corpus (u0busca/u0mf) que SÍ corrí de nuevo esta sesión, con salida cruda completa:
+
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'adh1b|aldh2|cyp2a6|tas2r38|drd2|ankk1|maoa': 0 aciertos con texto; mostrando 0
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+# consulta 'gen guerrero|gen de riesgo|genoma|genetica|genetico|adn|adicion genetica': 3 aciertos con texto; mostrando 3
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+gen guerrero|gen de riesgo|genoma|genetica|genetico|adn|adicion genetica	contexto:8283	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_b5/v_fh.dta	fh16	CADA CUADNO LLEVA NINO DR PADRE?	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_b5/v_fh.dta;metadato_nativo
+gen guerrero|gen de riesgo|genoma|genetica|genetico|adn|adicion genetica	contexto:16236	ennvih2009	2009	ennvih/ehh09dta_all.zip	ennvih3_2009_hogar_dta	00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15	data_raw		ehh09dta_all/ehh09dta_b5/v_fh.dta	fh16	CADA CUADNO LLEVA DOCTOR PADRE?	ETIQUETA_VARIABLE	ennvih/ehh09dta_all.zip	ennvih3_2009_hogar_dta	00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15	miembro=ehh09dta_all/ehh09dta_b5/v_fh.dta;metadato_nativo
+gen guerrero|gen de riesgo|genoma|genetica|genetico|adn|adicion genetica	fd_ext:5344	envipe2011	NO_DETERMINADO	envipe2011/fd_envipe2011.xls	envipe_2011_fd_envipe2011	d296c9f18cdb6f89b6d589f3b3665dbe88c2b3ebe50b7c9b955041d76b0fb99a	data_raw		envipe2011/fd_envipe2011.xls	1151.0	Manipulación genética					
+# consulta 'randomizacion mendeliana|mendeliana': 0 aciertos con texto; mostrando 0
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'descuento temporal|impulsividad|preferencia por el presente|impulsivo': 1 aciertos con texto; mostrando 1
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+descuento temporal|impulsividad|preferencia por el presente|impulsivo	contexto:26570	ensafi2023	2023	ensafi2023/ensafi_2023_bd_csv.zip	ensafi2023_bd_csv_zip	c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd	data_raw		TMODULO.csv	IMPULSIVID	Impulsividad	PREGUNTA_DICCIONARIO	ensafi2023/ensafi_2023_fd_xlsx.zip	ensafi2023_fd_xlsx_zip	37bd0cb6dd54ddb8d8962114971e60e06d2628e97eeb8b4e32269129d556ff4b	miembro=ensafi_2023_fd.xlsx;hoja=TMODULO;fila=919
+# consulta 'tolerancia al riesgo|propension al riesgo': 0 aciertos con texto; mostrando 0
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'no le alcanza|dificulta.*pagar|escasez|le alcanza el dinero|batallar para pagar': 0 aciertos con texto; mostrando 0
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'amargo|sabor amargo|verdura': 27 aciertos con texto; mostrando 10
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+amargo|sabor amargo|verdura	contexto:957	ennvih2002	2002	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	data_raw		ehh02dta_all/ehh02dta_b1/i_cs.dta	cs02a_81	HUBO GASTO OTRAS VERDURAS?	ETIQUETA_VARIABLE	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	miembro=ehh02dta_all/ehh02dta_b1/i_cs.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:958	ennvih2002	2002	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	data_raw		ehh02dta_all/ehh02dta_b1/i_cs.dta	cs02a_82	GASTO 7DIAS:OTRAS VERDURAS	ETIQUETA_VARIABLE	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	miembro=ehh02dta_all/ehh02dta_b1/i_cs.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:1012	ennvih2002	2002	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	data_raw		ehh02dta_all/ehh02dta_b1/i_cs.dta	cs04a_81	7DIAS:LE REGALARON/CULT OTRAS VERDURAS?	ETIQUETA_VARIABLE	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	miembro=ehh02dta_all/ehh02dta_b1/i_cs.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:1013	ennvih2002	2002	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	data_raw		ehh02dta_all/ehh02dta_b1/i_cs.dta	cs04a_82	VALOR TOT 7DIAS:OTRAS VERDURAS REGALO/CULT	ETIQUETA_VARIABLE	ennvih/ehh02dta_all.zip	ennvih1_2002_hogar_dta	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	miembro=ehh02dta_all/ehh02dta_b1/i_cs.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8767	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_1	PREPARAR VERDURAS CAPEADAS:ACEITE VEGETAL	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8768	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_2	PREPARAR VERDURAS CAPEADAS:MANTECA CERDO	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8769	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_3	PREPARAR VERDURAS CAPEADAS:MANTECA VEGETAL	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8770	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_4	PREPARAR VERDURAS CAPEADAS:MARGARINA	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8771	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_5	PREPARAR VERDURAS CAPEADAS:MANTEQUILLA	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+amargo|sabor amargo|verdura	contexto:8772	ennvih2005	2005	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	data_raw		ehh05dta_bd/d_ca1.dta	cac8_6	PREPARAR VERDURAS CAPEADAS:MAYONESA	ETIQUETA_VARIABLE	ennvih/ehh05dta_all.zip	ennvih2_2005_hogar_dta	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	miembro=ehh05dta_bd/d_ca1.dta;metadato_nativo
+
+# busca ['genotipo']: 0 entradas coinciden (mostradas 0)
+# busca ['polimorfismo']: 0 entradas coinciden (mostradas 0)
+# busca ['encodat']: 0 entradas coinciden (mostradas 0)
+# busca ['adicciones']: 1 entradas coinciden (mostradas 1)
+# busca ['holmes']: 0 entradas coinciden (mostradas 0)
+# busca ['karlsson']: 0 entradas coinciden (mostradas 0)
+# busca ['duncan']: 0 entradas coinciden (mostradas 0)
+# busca ['moreno']: 0 entradas coinciden (mostradas 0)
+# busca ['byrd']: 0 entradas coinciden (mostradas 0)
+# busca ['caspi']: 0 entradas coinciden (mostradas 0)
+# busca ['bierut']: 0 entradas coinciden (mostradas 0)
+# busca ['mani']: 65 entradas coinciden (mostradas 60)
+# busca ['sanchez']: 0 entradas coinciden (mostradas 0)
+# busca ['anokhin']: 0 entradas coinciden (mostradas 0)
+# busca ['sharafi']: 0 entradas coinciden (mostradas 0)
+# busca ['buchwald']: 0 entradas coinciden (mostradas 0)
+# busca ['lerman']: 0 entradas coinciden (mostradas 0)
+# busca ['lisker']: 0 entradas coinciden (mostradas 0)
+# busca ['konishi']: 0 entradas coinciden (mostradas 0)
+# busca ['garcia']: 0 entradas coinciden (mostradas 0)
+# busca ['drd2']: 0 entradas coinciden (mostradas 0)
+# busca ['maoa']: 0 entradas coinciden (mostradas 0)
+# busca ['huichol']: 0 entradas coinciden (mostradas 0)
+
+# pdftxt cache (349 PDF registrados) — ningún archivo con nombre de los autores citados por el report:
+(0 coincidencias de 349 archivos)

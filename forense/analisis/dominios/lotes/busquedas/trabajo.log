@@ -1,0 +1,113 @@
+# busquedas.log — lote 'trabajo' (ASTRA5-U0), ejecutor 24/sep/2026
+# Report: corpus/reports/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md
+# sha256 e869c5110dc919af20ecf5914c94d2bd61b8ed2a0070dfce3f30114a7a16b613
+#
+# Este ejecutor retomó el trabajo de un ejecutor previo interrummpido (ver
+# /tmp/.../scratchpad/u0/previas/trabajo.log, 27 entradas [1]-[27] con corridas u0mf/u0busca/u0pdf
+# y 10 WebSearch, de las cuales 5 obtuvieron resultado antes de que la sesión anterior agotara su
+# cupo de 200 WebSearch globales). Se reutilizan sus hallazgos citándolos como "(ejecutor previo)"
+# y se verifica de nuevo lo que sostiene un dictamen de este lote.
+#
+# === Herramientas de corpus (u0mf / u0busca / u0pdf), propias de esta sesión ===
+# (cwd /home/pc0/mm-astra5-mapa-dominios-1; U=/tmp/claude-1000/-home-pc0/427b1d4d-.../scratchpad/u0)
+
+u0mf --busca pisa                    -> 0 entradas
+u0mf --busca inequality              -> 2 entradas (ISSP Social Inequality 2019 dta/sav; FALSO AMIGO, no es World Inequality Report)
+u0mf --busca census                  -> 0 entradas
+u0mf --busca bea.gov                 -> 0 entradas
+u0mf --busca economia --busca ied    -> 0 entradas
+u0mf --busca diputad                 -> 1 entrada (XLSX electoral Coahuila local 2023; FALSO POSITIVO, no es Cámara de Diputados federal)
+u0mf --busca cifem                   -> 0 entradas
+u0mf --busca randstad                -> 0 entradas
+u0mf --busca gem                     -> 0 entradas
+u0mf --busca conapred                -> 0 entradas
+u0mf --busca mckinsey                -> 0 entradas
+u0mf --busca kelly                   -> 0 entradas
+u0mf --busca globe                   -> 0 entradas
+u0mf --busca stps                    -> 1 entrada (DBF ENTI 2022; FALSO POSITIVO, no es NOM-035)
+u0mf --busca confianza_scale         -> 0 entradas
+u0mf --busca informalidad            -> 0 entradas
+u0mf --busca itlp                    -> 0 entradas
+u0mf --busca tasa_informalidad       -> 0 entradas
+
+# correcciones-vigentes-v1_0.tsv filtrado por 'Psicolog'+'Trabajo_en_M' -> 0 filas (sin corrección
+# vigente archivada específicamente para este report; Hofstede se trata igual degradado por
+# instrucción de proyecto, precedente en Consumidor/Arquitectura-invisible).
+# mapa-parcial-v0_1.tsv: 102 filas totales; 2 filas ya cerradas para este report
+# (ASTRA5-U0-ENOE-002 L3, ASTRA5-U0-ENOE-003 L59).
+
+u0pdf -q "edad" --id enoe_123_fd_c_bas_amp_pdf   -> 36 coincidencias; EDA (p.17), EDA5C grupo
+  15-24/25-44/45-64/65+ (p.24), CLASE1 PEA/PNEA (p.20)
+u0pdf -q "sexo" --id enoe_123_fd_c_bas_amp_pdf   -> 2 coincidencias; SEX (p.17): 1 hombre/2 mujer
+u0busca -q "tasa de participación|población económicamente activa" --encuesta enoe
+  -> 2 aciertos con texto (previa [16], reconfirmado): Clase1/Clase2/Clase3 PEA/PNEA/ocupada/
+  desocupada, enoe19123 y enoe19325.
+
+# === Reutilizadas del ejecutor previo (trabajo.log), verificadas contra los mismos comandos ===
+# [2]-[3] u0mf --busca nom/035/coneval/conasami/hofstede/globe/gem/gallup/imss/cifem/randstad
+#   -> todas 0, salvo coneval (1, pobreza_municipal_2020_vcompl, RAR distinto del ITLP-IS citado
+#   por el report) e imss (varias filas DGIS urgencias, FALSOS POSITIVOS).
+# [9]-[10] u0mf --calc enoe_2024_3t_csv / enoe_2024_3t_microdatos -> 0 corridas de 326 (ninguna
+#   corrida GEN2 previa sobre el payload físico de ENOE 2024T3; el RESULT de RESULTS-ASTRA5.md
+#   está sellado en disco y no registrado en resultados.tsv, per E.7).
+# [13] u0busca -q "puede confiar|mayoría de las personas" -> 5 aciertos (WVS7 México, ENCUCI2020).
+# [14]-[15] u0mf --busca wvs -> 11 entradas (cuestionario, metodología, microdato WVS7 México);
+#   u0pdf -q "puede confiar en la mayoria" --idsub wvs7 -> 1 coincidencia p.2.
+# [17] u0pdf -q "económicamente activa" --idsub enoe -> 82 coincidencias.
+
+# === Web (WebSearch/WebFetch; máximo 12 consultas/lote, WebSearch+WebFetch juntas) ===
+# 5 del ejecutor previo (entradas [18]-[22] de trabajo.log, con resultado; [23]-[27] no se
+# ejecutaron: cupo de sesión agotado):
+# [18] "OECD average annual hours worked Mexico 2023 2024 data" -> confirma serie OCDE 'Hours
+#      worked', México >2000h en 2023; no confirma el punto exacto 2,207h del report.
+# [19] "CONEVAL ITLP pobreza laboral primer trimestre 2025 porcentaje" -> confirma página oficial
+#      ITLP-IS; dato indexado más reciente 4T2024=35.4%; no se leyó 1T2025=33.9% puntual.
+# [20] "NOM-035-STPS-2018 factores de riesgo psicosocial texto" -> confirma DOF/STPS oficiales,
+#      objetivo, aclaración de que NO evalúa estrés individual.
+# [21] "Gallup State of the Global Workplace 2025 report Latin America Caribbean employee
+#      engagement" -> LAC=30%, México=29%, EUA/Canadá=31% (2025/2026) — DISCREPA del "31% LAC
+#      tied for highest" del report.
+# [22] "IMSS estrés laboral fatiga trabajadores porcentaje informe" -> menciones de 75% vía
+#      fuentes mixtas (oficiales y prensa); se re-verificó con WebFetch propio (ver abajo).
+#
+# 6 propias de esta sesión (fecha de lectura: 24/sep/2026):
+# [P1] WebSearch "GEM Global Entrepreneurship Monitor México 2024 reporte nacional 'conoce a
+#      alguien' nuevo negocio 55.3%" -> confirma GEM México existe (gemconsortium.org/
+#      country-profile/87, Tec de Monterrey/EGADE coordina el capítulo); NO confirma 55.3%
+#      puntual (KNOWENT); sí aparece "81% por necesidad" (métrica distinta, TEA-necesidad).
+# [P2] WebSearch "CIFEM BBVA UDLAP empresas familiares México porcentaje PIB empleo plan de
+#      sucesión estudio oficial" -> confirma cifem.ipade.mx, bbva.com/es/mx, udlap.mx/cig;
+#      PIB 50-80% (report dice 60%), empleo 70-90% (report dice 70%, dentro de rango), empresas
+#      90-95% (report dice 90%, dentro de rango), sucesión CEO 3% en edición 2023 (MATCH exacto),
+#      riesgo de sucesión 53% (report dice 73% sin plan formal, NO coincide), institucionalización
+#      4%/66% en riesgo (report dice 5% institucionalizadas, cercano no exacto).
+# [P3] WebSearch "IMSS 75% trabajadores fatiga estrés laboral informe oficial gob.mx" -> listó
+#      fuentes mixtas (prensa + imss.gob.mx/salud-en-linea/estres-laboral); no se usó para
+#      dictaminar sin re-verificación directa (ver P4).
+# [P4] WebFetch https://www.imss.gob.mx/salud-en-linea/estres-laboral -> CONFIRMADO: la página
+#      oficial del IMSS sí contiene "El 75% de los mexicanos padece fatiga por estrés laboral,
+#      superando a países como China y Estados Unidos"; NO contiene los puntos comparativos
+#      exactos China=73%/EUA=59% que el report añade sin atribución adicional.
+# [P5] WebSearch "Randstad Workmonitor 2025 México equilibrio vida trabajo supera salario
+#      motivador principal" -> confirma randstad.com.mx/.com; hallazgo específico para México:
+#      SALARIO 88% > BALANCE 84% — CONTRADICE la afirmación del report de que el balance superó
+#      al salario "por primera vez" en México (ese hallazgo es GLOBAL, no de México).
+# [P6] WebSearch "Pellegrini Scandura 2008 paternalistic leadership Mexico benevolent
+#      authoritative" -> CONFIRMA Pellegrini & Scandura (2008), Journal of Management 34(3):
+#      566-593, DOI 10.1177/0149206308316063; es artículo DE REVISIÓN teórica, no campo
+#      cualitativo propio en México como lo caracteriza el report (discrepancia de género de
+#      estudio).
+#
+# Total web usado en este lote: 5 (previo) + 6 (propio) = 11 de 12 permitidas. Se agotó
+# deliberadamente antes del límite para dejar 1 consulta de margen; el resto de fuentes
+# académicas citadas por el report (Pavett-Morris 1995, Howell et al. 2007, Confianza Scale-
+# Spanish 2024, compadrazgo HRM 2024, Morris & Klesner 2010, Posthuma et al. 2006, Pfister 2019,
+# Baker & Nelson 2005, Villarreal 2010, Solís-Güémez-Campos-Vázquez 2023, Dávila & Elvira,
+# Uribe-Prado MBI-GS, Schmitz & Weber 2017, Gordon 2014) NO se verificaron en este lote por
+# presupuesto: quedan PENDIENTE-VERIFICACION-DOCUMENTAL en filas.tsv con su cita completa
+# (autor/año/revista tal como la da el report) para que un lote sucesor las compruebe.
+#
+# Ninguna consulta tocó ENOE 2026, ENVIPE 2026 ni ENCO (ninguna reserva violada). Ninguna
+# consulta de prensa/portal de noticias se usó como fuente primaria; donde solo había prensa
+# (p.ej. IMSS 75% inicialmente) se re-verificó contra el sitio oficial del emisor antes de
+# dictaminar (ver [P4]).

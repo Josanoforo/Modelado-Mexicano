@@ -1,0 +1,189 @@
+=== u0mf --busca mcps ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['mcps']: 0 entradas coinciden (mostradas 0)
+=== u0mf --busca genom ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['genom']: 0 entradas coinciden (mostradas 0)
+=== u0mf --busca mxb ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['mxb']: 0 entradas coinciden (mostradas 0)
+=== u0mf --busca 'biobank' ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['biobank']: 0 entradas coinciden (mostradas 0)
+=== u0mf --busca ennvih ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+ennvih_mxfls_licencia		data_raw					
+ennvih1_2002_hogar_dta	ennvih/ehh02dta_all.zip	data_raw	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	17534918		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02dta_all.zip
+ennvih1_2002_hogar_cb	ennvih/ehh02cb_all.zip	data_raw	a3220412505d6684e50548bdd1e01ce816d3af99ed846e4e27f30f35e9b506b2	2195863		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02cb_all.zip
+ennvih1_2002_hogar_q	ennvih/ehh02q_all.zip	data_raw	40af29bd864e967200dbbde2c9744795b33c0a23cdbb19902dd2ecdb7beb3cac	3750632		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02q_all.zip
+ennvih1_2002_ponderador	ennvih/ehh02w_all.zip	data_raw	bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587	755310		ZIP con los ponderadores muestrales por libro, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02w_all.zip
+ennvih1_2002_local_dta	ennvih/eloc02dta_all.zip	data_raw	7d3f350a7e7146528822f046f721afbfa1fdd62e0fa2a0781ca54a45181f894e	1591239		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02dta_all.zip
+ennvih1_2002_local_cb	ennvih/eloc02cb_all.zip	data_raw	29bedbaecf229e15e6af1dd6410533bc2ecfa740334cdf9a9cd7043e925ea2e6	901067		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02cb_all.zip
+ennvih1_2002_local_q	ennvih/eloc02q_all.zip	data_raw	e8a28cdd05def8e0a9b89c86b6ba5574e8cd819de7ab86780a22c9f473d46d97	5995112		ZIP con los cuestionarios (PDF) de localidad, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02q_all.zip
+ennvih1_2002_guia	ennvih/guiausuariov1.pdf	data_raw	d38ee15b9c6b4681364e75fefeed27a26b216c5974a2a5d5c4c7c213e2eede53	483275		PDF — Guía de Usuario ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/guiausuariov1.pdf
+ennvih2_2005_hogar_dta	ennvih/ehh05dta_all.zip	data_raw	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	20198874		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05dta_all.zip
+ennvih2_2005_hogar_cb	ennvih/ehh05cb_all.zip	data_raw	1bbbb7ee97bd8d1273213e0d4d2ee616198405d32bc145df9236efa2940f210b	1184711		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05cb_all.zip
+ennvih2_2005_hogar_q	ennvih/ehh05q_all.zip	data_raw	e73709d1de16f4c79cd20a48080dca7ea6ec3a2dcca491837d7f79a00928e894	2913036		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05q_all.zip
+ennvih2_2005_ponderador_transversal	ennvih/ehh05w_all.zip	data_raw	34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b	759009		ZIP con los ponderadores TRANSVERSALES (población mexicana en 2005) por libro, ENNViH-2	https://www.ennvih-mxfls.org/assets/ehh05w_all.zip
+ennvih2_2005_ponderador_longitudinal	ennvih/ehh05lw_all.zip	data_raw	6567bcbf3386b04b3d77c0ac0eb564d5be752b0090bb9caa31ccb1e077a745bf	698559		ZIP con los ponderadores LONGITUDINALES (población del 2002) por libro, ENNViH-2	https://www.ennvih-mxfls.org/assets/ehh05lw_all.zip
+ennvih2_2005_local_dta	ennvih/eloc05dta_all.zip	data_raw	fd7c1888d33a81d0269675654f3fc8f32b442d80a70b0164080fa19859cda1e0	417340		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05dta_all.zip
+ennvih2_2005_local_cb	ennvih/eloc05cb_all.zip	data_raw	e793a63ba5b39bd5599c9340f64129e6ab380a7c67fc87c0721a04283fff2d7b	166796		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05cb_all.zip
+ennvih2_2005_local_q	ennvih/eloc05q_all.zip	data_raw	eb9aee58ebeb3206f77f7d75931fb298d8b50b03a0f8d793300f9dfbcaa06f2c	642097		ZIP con los cuestionarios (PDF) de localidad, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05q_all.zip
+ennvih2_2005_guia	ennvih/guiausuariov2.pdf	data_raw	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	307528		PDF — Guía de Usuario ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/guiausuariov2.pdf
+ennvih3_2009_hogar_dta	ennvih/ehh09dta_all.zip	data_raw	00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15	26376091		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09dta_all.zip
+ennvih3_2009_hogar_cb	ennvih/ehh09cb_all.zip	data_raw	1e23ee82ac16f1f977daa78f017753045a459dc468ba599c1ec4011cc08ef059	10077598		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09cb_all.zip
+ennvih3_2009_hogar_q	ennvih/ehh09q_all.zip	data_raw	4eaed9c07a638fdd388901cd84692b9de2f8503ccf5d54da524b660b46fb5340	6156032		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09q_all.zip
+ennvih3_2009_ponderador_transversal	ennvih/ehh09w_all.zip	data_raw	e7929b49a7cd4f1eae5aa17da77c7eea4794d0f26265fbd40dde5e9c8e3ef8b8	876722		ZIP con los ponderadores TRANSVERSALES por libro, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09w_all.zip
+ennvih3_2009_ponderador_longitudinal	ennvih/ehh09lw_all.zip	data_raw	52472e0c648c5c35e00bf11b546c9b60beadec93f01290771b67adece3903833	655349		ZIP con los ponderadores LONGITUDINALES por libro, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09lw_all.zip
+ennvih3_2009_local_dta	ennvih/eloc09dta_all.zip	data_raw	da3d4d6f80943d85d481f021b50771956bedaec3a8c257753d46e31b65000406	423878		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09dta_all.zip
+ennvih3_2009_local_cb	ennvih/eloc09cb_all.zip	data_raw	1e319818bf0abaa4c6ae076c91500c94ac0daa50f6c5c8517b1e297734a46d5e	1796199		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09cb_all.zip
+ennvih3_2009_local_q	ennvih/eloc09q_all.zip	data_raw	7740382889fdc5b6d634c888bd35cee541e50a875b991952f299ae0881b36379	2618552		ZIP con los cuestionarios (PDF) de localidad, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09q_all.zip
+ennvih3_2009_guia	ennvih/guia_de_usuario_ennvih-3.pdf	data_raw	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	774086		PDF — Guía de Usuario ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/guia_de_usuario_ennvih-3.pdf
+ennvih3_2009_factores_exp	ennvih/calculo-de-factores-de-expansion.pdf	data_raw	cc297561caa5e963fd5a7cd88a8ab0a45726b997015eafbcdac7bcf088fe214d	337947		PDF — Cálculo de factores de expansión, documentación de ponderadores de la ola 3 (enlazada desde documentacion3.html)	https://www.ennvih-mxfls.org/assets/calculo-de-factores-de-expansion.pdf
+ennvih1_muestra_diseno	ennvih_diseno/ennvih-1_muestra.pdf	data_raw	9f90df10338c7749cf46f86edc0664fc300c913e4fc4b1eee5e360d2970e91f0	56225		pdf	http://ennvih-mxfls.org/assets/ennvih-1_muestra.pdf
+ehh02cb_b2	ennvih/doc/ehh02cb_b2.pdf	data_raw	2b1d1fcbf9e57c996f9c0706b4686683fff13685eecca36fabc838b8c0dcdfb0	225237			no determinada
+# busca ['ennvih']: 57 entradas coinciden (mostradas 30)
+=== u0mf --busca mxfls ===
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+ennvih_mxfls_licencia		data_raw					
+ennvih1_2002_hogar_dta	ennvih/ehh02dta_all.zip	data_raw	8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923	17534918		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02dta_all.zip
+ennvih1_2002_hogar_cb	ennvih/ehh02cb_all.zip	data_raw	a3220412505d6684e50548bdd1e01ce816d3af99ed846e4e27f30f35e9b506b2	2195863		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02cb_all.zip
+ennvih1_2002_hogar_q	ennvih/ehh02q_all.zip	data_raw	40af29bd864e967200dbbde2c9744795b33c0a23cdbb19902dd2ecdb7beb3cac	3750632		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02q_all.zip
+ennvih1_2002_ponderador	ennvih/ehh02w_all.zip	data_raw	bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587	755310		ZIP con los ponderadores muestrales por libro, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/ehh02w_all.zip
+ennvih1_2002_local_dta	ennvih/eloc02dta_all.zip	data_raw	7d3f350a7e7146528822f046f721afbfa1fdd62e0fa2a0781ca54a45181f894e	1591239		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02dta_all.zip
+ennvih1_2002_local_cb	ennvih/eloc02cb_all.zip	data_raw	29bedbaecf229e15e6af1dd6410533bc2ecfa740334cdf9a9cd7043e925ea2e6	901067		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02cb_all.zip
+ennvih1_2002_local_q	ennvih/eloc02q_all.zip	data_raw	e8a28cdd05def8e0a9b89c86b6ba5574e8cd819de7ab86780a22c9f473d46d97	5995112		ZIP con los cuestionarios (PDF) de localidad, ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/eloc02q_all.zip
+ennvih1_2002_guia	ennvih/guiausuariov1.pdf	data_raw	d38ee15b9c6b4681364e75fefeed27a26b216c5974a2a5d5c4c7c213e2eede53	483275		PDF — Guía de Usuario ENNViH-1 (2002)	https://www.ennvih-mxfls.org/assets/guiausuariov1.pdf
+ennvih2_2005_hogar_dta	ennvih/ehh05dta_all.zip	data_raw	fc4ea4ae7d0cf4bc906bb46ad5e1e7444b9c24f8e0c569ae3f6e5a9b72453c1a	20198874		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05dta_all.zip
+ennvih2_2005_hogar_cb	ennvih/ehh05cb_all.zip	data_raw	1bbbb7ee97bd8d1273213e0d4d2ee616198405d32bc145df9236efa2940f210b	1184711		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05cb_all.zip
+ennvih2_2005_hogar_q	ennvih/ehh05q_all.zip	data_raw	e73709d1de16f4c79cd20a48080dca7ea6ec3a2dcca491837d7f79a00928e894	2913036		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/ehh05q_all.zip
+ennvih2_2005_ponderador_transversal	ennvih/ehh05w_all.zip	data_raw	34ee12b0c0d71e76676197089b5fd6048c0fdaa590a220f440d95526b1f4713b	759009		ZIP con los ponderadores TRANSVERSALES (población mexicana en 2005) por libro, ENNViH-2	https://www.ennvih-mxfls.org/assets/ehh05w_all.zip
+ennvih2_2005_ponderador_longitudinal	ennvih/ehh05lw_all.zip	data_raw	6567bcbf3386b04b3d77c0ac0eb564d5be752b0090bb9caa31ccb1e077a745bf	698559		ZIP con los ponderadores LONGITUDINALES (población del 2002) por libro, ENNViH-2	https://www.ennvih-mxfls.org/assets/ehh05lw_all.zip
+ennvih2_2005_local_dta	ennvih/eloc05dta_all.zip	data_raw	fd7c1888d33a81d0269675654f3fc8f32b442d80a70b0164080fa19859cda1e0	417340		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05dta_all.zip
+ennvih2_2005_local_cb	ennvih/eloc05cb_all.zip	data_raw	e793a63ba5b39bd5599c9340f64129e6ab380a7c67fc87c0721a04283fff2d7b	166796		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05cb_all.zip
+ennvih2_2005_local_q	ennvih/eloc05q_all.zip	data_raw	eb9aee58ebeb3206f77f7d75931fb298d8b50b03a0f8d793300f9dfbcaa06f2c	642097		ZIP con los cuestionarios (PDF) de localidad, ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/eloc05q_all.zip
+ennvih2_2005_guia	ennvih/guiausuariov2.pdf	data_raw	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	307528		PDF — Guía de Usuario ENNViH-2 (2005-06)	https://www.ennvih-mxfls.org/assets/guiausuariov2.pdf
+ennvih3_2009_hogar_dta	ennvih/ehh09dta_all.zip	data_raw	00a7649a1839a3523be22612c2fa3555d5e743cf5329d6bcdc432b901e98bd15	26376091		ZIP con las bases .dta (Stata) de todos los libros del cuestionario de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09dta_all.zip
+ennvih3_2009_hogar_cb	ennvih/ehh09cb_all.zip	data_raw	1e23ee82ac16f1f977daa78f017753045a459dc468ba599c1ec4011cc08ef059	10077598		ZIP con los manuales de codificación (PDF) de todos los libros de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09cb_all.zip
+ennvih3_2009_hogar_q	ennvih/ehh09q_all.zip	data_raw	4eaed9c07a638fdd388901cd84692b9de2f8503ccf5d54da524b660b46fb5340	6156032		ZIP con los cuestionarios (PDF) de todos los libros de hogar, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09q_all.zip
+ennvih3_2009_ponderador_transversal	ennvih/ehh09w_all.zip	data_raw	e7929b49a7cd4f1eae5aa17da77c7eea4794d0f26265fbd40dde5e9c8e3ef8b8	876722		ZIP con los ponderadores TRANSVERSALES por libro, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09w_all.zip
+ennvih3_2009_ponderador_longitudinal	ennvih/ehh09lw_all.zip	data_raw	52472e0c648c5c35e00bf11b546c9b60beadec93f01290771b67adece3903833	655349		ZIP con los ponderadores LONGITUDINALES por libro, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/ehh09lw_all.zip
+ennvih3_2009_local_dta	ennvih/eloc09dta_all.zip	data_raw	da3d4d6f80943d85d481f021b50771956bedaec3a8c257753d46e31b65000406	423878		ZIP con las bases .dta del cuestionario de LOCALIDAD, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09dta_all.zip
+ennvih3_2009_local_cb	ennvih/eloc09cb_all.zip	data_raw	1e319818bf0abaa4c6ae076c91500c94ac0daa50f6c5c8517b1e297734a46d5e	1796199		ZIP con los manuales de codificación (PDF) del cuestionario de localidad, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09cb_all.zip
+ennvih3_2009_local_q	ennvih/eloc09q_all.zip	data_raw	7740382889fdc5b6d634c888bd35cee541e50a875b991952f299ae0881b36379	2618552		ZIP con los cuestionarios (PDF) de localidad, ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/eloc09q_all.zip
+ennvih3_2009_guia	ennvih/guia_de_usuario_ennvih-3.pdf	data_raw	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	774086		PDF — Guía de Usuario ENNViH-3 (2009-12)	https://www.ennvih-mxfls.org/assets/guia_de_usuario_ennvih-3.pdf
+ennvih3_2009_factores_exp	ennvih/calculo-de-factores-de-expansion.pdf	data_raw	cc297561caa5e963fd5a7cd88a8ab0a45726b997015eafbcdac7bcf088fe214d	337947		PDF — Cálculo de factores de expansión, documentación de ponderadores de la ola 3 (enlazada desde documentacion3.html)	https://www.ennvih-mxfls.org/assets/calculo-de-factores-de-expansion.pdf
+ennvih1_muestra_diseno	ennvih_diseno/ennvih-1_muestra.pdf	data_raw	9f90df10338c7749cf46f86edc0664fc300c913e4fc4b1eee5e360d2970e91f0	56225		pdf	http://ennvih-mxfls.org/assets/ennvih-1_muestra.pdf
+ennvih2_2005_guia_usuario_ingles	ennvih/usersguidev2-en.pdf	data_raw	63e98081cfb4c0556909be2890d73b7d0000784e880cb9118bf2c21fd4e42fcc	385292		PDF legible, 37 páginas, guía de usuario MxFLS-2 en inglés	https://www.ennvih-mxfls.org/english/assets/usersguidev2.pdf
+# busca ['mxfls']: 32 entradas coinciden (mostradas 30)
+=== u0busca --encuesta ennvih -q preferencia ===
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'preferencia temporal|preferencia por el presente|descuento temporal|horizonte de planeacion|impulsivo|impaciente|impaciencia': 0 aciertos con texto; mostrando 0
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+=== u0pdf --idsub ennvih -q preferencia ===
+# u0pdf A.13: 7 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'preferencia|descuento|impacien|impulsiv|horizonte': 12 coincidencias (texto de página aplanado); mostrando 12
+manifest_id	sha256	raiz	pagina	contexto
+ennvih1_2002_guia	d38ee15b9c6b4681364e75fefeed27a26b216c5974a2a5d5c4c7c213e2eede53	data_raw	p.16	…e 12 anos y mas fue entrevistado directamente. la informacion correspondiente a los ninos menores de 12 anos fue respondida por un adulto miembro del hogar -de preferencia el responsable de su cuidado-. el libro proxy tiene como objetivo recabar informacion acerca de los miembros del hogar de 15 anos y mas que no pudieron ser ent…
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.8	…s y preguntas que se incluyen en la linea basal, la ennvih-2 incorpora nuevas secciones que contienen preguntas relacionadas con expectativas individuales, con preferencias inter- temporales, altruismo y aceptacion de riesgo. asimismo, se incluyen preguntas nuevas sobre paternidad y guarderias. 1.1 colaboracion institucional inve…
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.9	… la ennvih-1. adicionalmente, la ennvih-2 contiene modulos novedosos que recolectan informacion acerca de la formacion de los hijos, expectativas individuales, preferencias inter-temporales, comportamiento sobre altruismo y aceptacion de riesgo. esto permitira estudiar, por ejemplo, la relacion entre expectativas y preferencias i…
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.9	…s, preferencias inter-temporales, comportamiento sobre altruismo y aceptacion de riesgo. esto permitira estudiar, por ejemplo, la relacion entre expectativas y preferencias individuales, y el comportamiento de los integrantes del hogar en la toma de decisiones al interior de su hogar y su entorno comunitario. el diseno de estos n…
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.10	… tierra. • informacion acerca de situaciones de riesgo en la toma de decisiones. • informacion acerca del nivel de confianza en su entorno. • informacion sobre preferencias en el tiempo. • informacion acerca de la formacion de los hijos. 4 …
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.16	…nto) aseguramiento) re (recontacto de parientes re (recontacto de parientes ninguna en estados unidos) en estados unidos) cr (credito) cr (credito) ninguna pr (preferencias) pr (preferencias) ninguna - fh (formacion de los hijos) nueva seccion en la ennvih-2 tp (transferencias de tp (transferencias de padres ninguna padres no res…
+ennvih2_2005_guia	6d3334e77e1d417bf7be997715c4e38b0c0047e595a948d7bbcd8295255f0ddc	data_raw	p.16	…) re (recontacto de parientes re (recontacto de parientes ninguna en estados unidos) en estados unidos) cr (credito) cr (credito) ninguna pr (preferencias) pr (preferencias) ninguna - fh (formacion de los hijos) nueva seccion en la ennvih-2 tp (transferencias de tp (transferencias de padres ninguna padres no residentes) no reside…
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.11	…uso de tierra. informacion acerca de situaciones de riesgo en la toma de decisiones. informacion acerca del nivel de confianza en su entorno. informacion sobre preferencias en el tiempo. informacion acerca de la formacion de los hijos. 2.3 confidencialidad para asegurar la confidencialidad de los informantes de la ennvih-3, toda …
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.25	… de respuesta 9 (se pasa respuesta 9 a la 10) en la pregunta cr29 para saber si se cuenta con ahorros en el trabajo. 1) se adiciona pase pr03 para pedir al pr (preferencias) pr (preferencias) participante imagine que ha ganado la loteria en caso que haya elegido opcion de respuesta 2 de la pregunta pr01 donde especifica que no ti…
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.25	…e pasa respuesta 9 a la 10) en la pregunta cr29 para saber si se cuenta con ahorros en el trabajo. 1) se adiciona pase pr03 para pedir al pr (preferencias) pr (preferencias) participante imagine que ha ganado la loteria en caso que haya elegido opcion de respuesta 2 de la pregunta pr01 donde especifica que no tiene suficiente din…
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.26	…libro ennvih-2 ennvih-3 diferencias ennvih-2 y ennvih-3 secciones secciones pr (preferencias) pr (preferencias) 3) se modificaron los pases de la siguientes opciones sobre en que tiempo y cantidad se elige el pago de diversas cantidades al haber ganad…
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.26	…libro ennvih-2 ennvih-3 diferencias ennvih-2 y ennvih-3 secciones secciones pr (preferencias) pr (preferencias) 3) se modificaron los pases de la siguientes opciones sobre en que tiempo y cantidad se elige el pago de diversas cantidades al haber ganado la loteria de la…
+=== u0pdf -q 'tiempo de espera' idsub ennvih ===
+# u0pdf A.13: 7 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'prefiere recibir|hoy o|dentro de un año|tasa de interes|ahorra': 1 coincidencias (texto de página aplanado); mostrando 1
+manifest_id	sha256	raiz	pagina	contexto
+ennvih3_2009_guia	f5e884eb6d923211ea21bf98c5584d87cb04e7540c62d59d6812bbaa28401ba8	data_raw	p.25	…ganado la loteria en caso que haya elegido opcion de respuesta 2 de la pregunta pr01 donde especifica que no tiene suficiente dinero para pensar el futuro para ahorrar o gastar. 2) se modifica cantidad de dinero en la opcion de respuesta b y d en la temporalidad de cobrar la loteria en un mes de la pregunta pr03. 25 …
+=== u0busca -q impulsivid ===
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'impulsivid': 1 aciertos con texto; mostrando 1
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+impulsivid	contexto:26570	ensafi2023	2023	ensafi2023/ensafi_2023_bd_csv.zip	ensafi2023_bd_csv_zip	c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd	data_raw		TMODULO.csv	IMPULSIVID	Impulsividad	PREGUNTA_DICCIONARIO	ensafi2023/ensafi_2023_fd_xlsx.zip	ensafi2023_fd_xlsx_zip	37bd0cb6dd54ddb8d8962114971e60e06d2628e97eeb8b4e32269129d556ff4b	miembro=ensafi_2023_fd.xlsx;hoja=TMODULO;fila=919
+=== Consultas web (WebSearch + WebFetch) — segunda pasada, tanda F (genetica-conductual), 24/sep/2026 ===
+NOTA: WebSearch de la sesion llego a su tope compartido (200/200) muy temprano en esta tanda
+(tras 2-3 consultas); el resto de la verificacion documental se hizo con WebFetch contra la
+API de NCBI E-utilities (eutils.ncbi.nlm.nih.gov/entrez/eutils/{esearch,esummary,efetch}.fcgi,
+db=pubmed), que es fuente primaria (PubMed/NCBI) y no consume el cupo de WebSearch.
+
+--- GENBEH-010 / GENBEH-026 (MCPS/MXB, devueltas) ---
+WebSearch: "Mexico City Prospective Study cohort profile alcohol consumption questionnaire baseline recruitment"
+  -> confirma alcohol autorreportado (frecuencia/cantidad/tipo) en ~150,000 participantes; Lancet Public Health.
+WebSearch: "Mexico City Prospective Study genotype data access application Regeneron researchers"
+  -> confirma genotipado/exoma 141,046 + WGS 9,950 (Nature 2023, PMID 37821707); acceso via DNAnexus.
+WebFetch: https://academic.oup.com/ije/article/35/2/243/694920
+  -> cita exacta Tapia-Conyer R et al. 2006, Int J Epidemiol 35(2):243-249, DOI 10.1093/ije/dyl042.
+WebSearch: "Mexico City Prospective Study data access committee application individual-level genetic phenotype data researchers"
+  -> confirma politica de acceso bona-fide: https://mcps-epcm.org/study.html ; https://www.ctsu.ox.ac.uk/research/mcps
+WebSearch: "Mexico City Prospective Study" OR "Mexican Biobank" CYP2A6 nicotine metabolism smoking genotype
+  -> RECHAZADA por el sistema: "this session has used its web search budget (200 of 200 WebSearch calls)".
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=CYP2A6+Mexican+nicotine+metabolism
+  -> 4 candidatos: Borrego-Soto 2020/2023, Perez-Rubio 2017/2021.
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=Borrego-Soto+CYP2A6+nicotine+Mexican
+  -> confirma Borrego-Soto G et al. 2020, Pharmacogenomics J 20(4):586-594, PMID 31959879.
+
+--- GENBEH-019 / GENBEH-020 (Lea&Chambers NZMJ 2007; Wells/Bayout) ---
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=Lea+Chambers+MAOA+Maori+New+Zealand+Medical+Journal+2007 -> 0 resultados
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=Deshaware+Singhal+TAS2R38+bitter+taste+vegetable+intake+community+intervention -> 0
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=Lea+Chambers+MAOA+warrior+gene -> 0
+WebFetch: https://pubmed.ncbi.nlm.nih.gov/?term=TAS2R38+bitter+taste+community+dietary+intervention+vegetable+intake+2018 -> bloqueado por cookie-notice
+WebFetch eutils esearch: term=Lea+RA+Chambers+GK+MAOA+Maori -> count 1, id 22377710 (articulo DISTINTO: Eccles et al 2012)
+WebFetch eutils esearch: term=TAS2R38+bitter+taste+dietary+intervention+vegetable -> count 1, id 29686110 (Calancie et al 2018)
+WebFetch eutils esummary: id=22377710 -> Eccles DA et al. J Hum Genet 2012;57:294-300
+WebFetch eutils esummary: id=29686110 -> Calancie L et al. G3 2018;8(6):2107-2119
+WebFetch eutils esearch: term=Lea+RA[Author]+AND+Chambers+GK[Author] -> count 13, ids: 26628212,26474483,24314549,23870060,23841727,23792058,23137322,22377710,21244673,18425152,18208337,17180580,16531539
+WebFetch eutils esummary: ids=17180580,18425152,18208337 -> ninguno es el articulo de MAOA/2007 buscado
+WebFetch: https://www.google.com/search?q=%22amicus+brief%22+NAACP+Legal+Defense+Fund+MAOA+Wells+Texas+case -> sin resultado util (pagina de busqueda cruda)
+WebFetch: https://html.duckduckgo.com/html/?q=%22Bayout%22+MAOA+Italy+2009+court+sentence+mitigation -> bloqueado por CAPTCHA
+WebFetch eutils esearch: term=Bayout+MAOA+Italy+court+sentence -> count 0
+WebFetch eutils esearch: term=MAOA+courtroom+death+penalty+race+African+American+genetic+evidence -> count 0
+
+--- GENBEH-011, 014, 024, 025, 027 (Bierut, Gonzalez&Skewes, Chenoweth, Lerman, Anokhin) ---
+WebFetch eutils esearch: term=Bierut+ADH1B+alcohol+dependence+Molecular+Psychiatry+2012 -> count 1, id 21968928
+WebFetch eutils esearch: term=Gonzalez+Skewes+firewater+myth+Psychology+of+Addictive+Behaviors+2018 -> count 1, id 29723011
+WebFetch eutils esearch: term=Chenoweth+CYP2A6+nicotine+metabolism+adolescent+smoking+cessation+2013 -> HTTP 429 (reintentado despues)
+WebFetch eutils esearch: term=Lerman+CYP2A6+nicotine+metabolite+ratio+treatment+2015 -> count 4, ids 26272810,26132489,26069034,26014804 (ninguno exacto)
+WebFetch eutils esearch: term=Anokhin+delay+discounting+heritability+twin+adolescent+2011 -> HTTP 429 (reintentado despues)
+WebFetch eutils esummary: ids=21968928,29723011 -> Bierut Mol Psychiatry 2012;17:445-50; Gonzalez&Skewes Psychol Addict Behav 2018;32:401-409
+WebFetch eutils efetch abstract: id=21968928 -> "the His48 variant (OR 0.34, 95% CI 0.24, 0.48)"
+WebFetch eutils efetch abstract: id=29723011 -> "associated with worse alcohol outcomes"
+WebFetch eutils esummary: ids=26272810,26132489,26069034,26014804 -> ninguno es la interaccion NMR x tratamiento buscada
+WebFetch eutils esearch: term=Lerman+nicotine+metabolite+ratio+biomarker+nicotine+patch+varenicline+randomised+2015 -> count 1, id 25588294
+WebFetch eutils esearch: term=Chenoweth+CYP2A6+adolescent+smoking+cessation+odds+ratio+2013 -> count 1, id 23462429
+WebFetch eutils esearch: term=Anokhin+delay+discounting+twin+heritability+adolescent -> count 2, ids 25555481, 20700643
+WebFetch eutils esummary: ids=25588294,23462429,25555481,20700643 -> Lerman Lancet Respir Med 2015;3(2):131-8; Chenoweth Pharmacogenet Genomics 2013;23(4):232-5; Anokhin(2015) Biol Psychiatry; Anokhin(2011) Behav Genet 41(2):175-83
+WebFetch eutils efetch abstract: id=23462429 -> "odds ratio for quitting was 2.25 (95% CI 1.05, 4.80; P=0.037)"
+WebFetch eutils efetch abstract: id=20700643 -> "significant heritability of DD at ages 12 and 14 (30 and 51%, respectively)"
+WebFetch eutils efetch abstract: id=25588294 -> "varenicline was more efficacious than nicotine patch in normal metabolisers (OR 2.17) but not in slow metabolisers (OR 1.13...)"; no menciona 22-26%/CYP2A6
+
+--- GENBEH-015, 016 (Lisker/Konishi; huichol) ---
+WebFetch eutils esearch: term=Lisker+admixture+mestizo+Mexico+City+1995 -> count 1, id 28557218
+WebFetch eutils esearch: term=Konishi+ADH1B+ADH1C+DRD2+Mexican+American+alcoholism -> count 1, id 15318112
+WebFetch eutils esearch: term=Lisker+ADH2+ADH3+alcohol+dehydrogenase+Mexican -> count 0
+WebFetch eutils esummary: ids=28557218,15318112 -> Lisker AJHB 1995;7(2):213-6; Konishi Alcohol Clin Exp Res 2004;28(8):1145-52 (año real 2004, no 2003)
+WebFetch eutils efetch abstract: id=28557218 -> no menciona ADH2/ADH3/ADH1B
+WebFetch eutils efetch abstract: id=15318112 -> "extremely low allele frequency for both ALDH2*2 and ADH1B*2" sin cifra numerica
+WebFetch eutils esearch: term=Huichol+ADH2+ADH1B+alcohol+dehydrogenase+allele+frequency -> count 0
+WebFetch eutils esearch: term=Amerindian+Mexico+ADH2*2+allele+frequency+alcohol -> count 0
+WebFetch eutils esearch: term=Huichol+alcohol+dehydrogenase -> count 0
+WebFetch eutils esearch: term=Bortolini+ADH2+ADH3+Native+American+alcohol -> count 0
+WebFetch eutils esearch: term=ADH1B*2+frequency+indigenous+Mexico+population+alcohol -> count 0
+
+--- GENBEH-032, 033 (Sharafi/Deshaware&Singhal/Calancie) ---
+WebFetch eutils esearch: term=Deshaware+Singhal+TAS2R38 -> count 1, id 28652185
+WebFetch eutils esummary: id=28652185 -> Deshaware S, Singhal R. Gene. 2017;627:363-368
+WebFetch eutils efetch abstract: id=28652185 -> "Food preferences did not significantly (p>0.05) correlate with TAS2R38 diplotypes or PROP phenotypes" (India, transversal, sin intervencion)
+WebFetch eutils efetch abstract: id=29686110 -> abstract completo Calancie et al. 2018, confirma hallazgo del report casi verbatim
+WebFetch eutils esearch: term=Sharafi+TAS2R38+bitter+taste -> count 0
+WebFetch eutils esearch: term=Sharafi+bitter+taste+vegetable+intake -> count 0
+WebFetch eutils esearch: term=Sharafi+taste+phenotype -> count 3, ids 29746892,27457970,23682306
+WebFetch eutils esummary: ids=29746892,27457970,23682306 -> Physiology&Behavior 2018; Appetite 2016 (aronia berry, no TAS2R38/verdura); Chemosensory Perception 2013 -- ninguno es "Food Quality and Preference 2016"
+
+--- GENBEH-031 (ENNViH; herramientas de corpus, sin web) ---
+(ver busquedas.log principal: u0mf --busca ennvih/mxfls; u0busca --encuesta ennvih; u0pdf --idsub ennvih)

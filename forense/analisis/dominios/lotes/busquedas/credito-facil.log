@@ -1,0 +1,50 @@
+LOTE credito-facil (ASTRA5-U0) — log de busquedas, 24-sep-2026
+Paquete: /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/paquetes/credito-facil.md
+Report leido INTEGRO (102 lineas): corpus/forense/Crédito_Fácil_y_Sobreendeudamiento_en_México__Escaneo_de_Indicadores_Adelantados_2025-2026.md (dentro de /home/pc0/mm-astra5-mapa-dominios-1/)
+
+== Herramientas del corpus (u0busca / u0pdf / u0mf) ==
+- grep -n "FUERTE|MEDIA|MEDIO|SOLIDO|HIPOTESIS" sobre el report -> confirma que los unicos marcadores de tier explicitos fuera de las unidades G/P/T/F ya listadas caen dentro de esas mismas unidades (L5,L7,L30,L33,L36,L39,L42,L45,L48,L51,L54,L57,L74x2); no se hallaron INT-Lnn adicionales.
+- grep -rn "FIN-009" forense/analisis/dominios -> localiza corte-finanzas-v1_0.tsv (contrato ASTRA5-U0-FIN-009, CERRADO, MEDIBLE-EN-CORPUS sobre ENIF 2024 P6_14) y deduplicacion-v1_0.tsv (fila ENIF-AVERSION-DEUDA-384, cubre L57 y L76 de este forense) y CRED-FACIL-PRECIO-MORA (nota de NO fusion entre CAT/IMOR/REDECO, L7,L33,L54).
+- u0mf.py --busca cnbv --limite 60 -> 30 entradas (1680 examinadas). Incluye gen2_cnbv_040_1a_r16_imor_tipo_cartera (XLS R16, foto cacheada 202112, ya usado por lote credito-popular) y los boletines AFyFeM (CNBV_AhorroFinanciero_Financiamiento) y BDIF (CNBV_BDIF_inclusion_financiera).
+- u0mf.py --busca banxico --limite 60 -> 31 entradas. Incluye gen2_banxico_imor_consumo_producto_mensual_2026t1_html (tabla oficial IMOR consumo por producto, ene-2016 a mar-2026) y banxico_informe_anual_idmf_* (CoDi/SPEI, no relevante a credito).
+- u0mf.py --busca condusef --limite 60 -> 30 entradas. Incluye despachos_cobranza_30_09_25, redeco_datosabiertos1ertrim_2026 y varios CSV de A6_CONDUSEF_DATOS_ABIERTOS (reclamaciones, instituciones mas reclamadas, sanciones) -- todos CSV, no abiertos (CERO MICRODATO).
+- u0mf.py --busca imora --limite 20 -> 0 entradas (1680 examinadas): no hay payload propio con la serie IMORA.
+- u0mf.py --busca enif --busca 2024 --limite 20 -> 8 entradas (cuestionario, FD, diseno muestral, CSV/ZIP de datos ENIF 2024).
+- u0mf.py --busca bmv --limite 20 -> 0 entradas.
+- u0mf.py --busca amvo --limite 20 -> 0 entradas.
+- u0mf.py --busca comparador --limite 20 -> 1 entrada (irrelevante, microseguro MILK-RCT).
+- u0mf.py --busca sofom --limite 20 -> 0 entradas.
+- u0mf.py --busca 040_1a --limite 20 -> 1 entrada (gen2_cnbv_040_1a_r16_imor_tipo_cartera, ya listada).
+- u0mf.py --calc gen2_cnbv_040_1a_r16_imor_tipo_cartera -> 0 corridas (de 326).
+- u0mf.py --calc gen2_banxico_imor_consumo_producto_mensual_2026t1_html -> 0 corridas (de 326).
+- u0mf.py --calc enif2024_cuestionario_pdf -> 0 corridas (de 326).
+- u0mf.py --calc despachos_cobranza_30_09_25 -> 0 corridas.
+- u0mf.py --calc redeco_datosabiertos1ertrim_2026 -> 0 corridas.
+- u0mf.py --calc a6_condusef_anuario_actividades_condusef_indice_reclamaciones__03_indi -> 0 corridas.
+- u0mf.py --calc adq15_afyfem_afyfem_dic_2023 -> 0 corridas.
+- u0busca.py -q "no le gusta endeudarse" --limite 15 -> 6 aciertos (todos ENIF 2012/2015, no 2024 -- consistente con que FIN-009 ya cito el cuestionario 2024 directamente por PDF, no por u0busca).
+- u0pdf.py -q "Reporte de Estabilidad Financiera" --limite 15 -> 0 coincidencias (349 PDF examinados; el REF de Banxico no esta cacheado como PDF en este corpus).
+- u0pdf.py -q "morosidad" --idsub condusef --limite 15 -> 0 PDF examinados bajo ese idsub (nombre de sub-identidad sin coincidencias).
+- u0pdf.py -q "cartera de consumo" --limite 15 -> 4 coincidencias: itindc_202601, itindc_202602, itinin_202601, itinse_202602 (boletines SHCP "Informes sobre la Situacion Economica, las Finanzas Publicas y la Deuda Publica"; p.23 de itindc_202602: "la cartera de consumo continuo creciendo a una tasa de 0.8% real... impulsada por el rubro de tarjetas de credito").
+- u0pdf.py -q "financiamiento al consumo" --limite 15 -> 0 coincidencias.
+- u0pdf.py -q "consumo" --idsub afyfem --limite 15 -> 60 coincidencias (6 PDF AFyFeM de CNBV examinados; boletines de cartera de credito por tipo de intermediario, no serie de morosidad).
+- u0pdf.py -q "gestion de cobranza" --limite 10 -> 0 coincidencias.
+- u0pdf.py -q "reclamaciones" --limite 10 -> 5 coincidencias, todas en cuestionarios ENIF (2012,2015,2018,2021,2024), no en documentos institucionales de CONDUSEF.
+- u0pdf.py -q "sofom enr" --limite 10 -> 21 coincidencias, todas en boletines AFyFeM de CNBV (agregados de cartera por tipo de intermediario).
+- Lectura directa del archivo local (Read/python, no microdato): gen2_banxico_imor_consumo_producto_mensual_2026t1_html en /home/pc0/mm-corpus/raw/GEN2_FUENTES_FINANCIERAS_CONTINUACION/banxico_imor_producto_2026T1.html (223671 bytes). Parseo de tabla HTML (131 filas <tr>, 123 filas mensuales ene-2016 a mar-2026, columnas a)Total b)Empresas c)Vivienda d)Consumo[Total,Tarjetas,ABCD,Nomina,Personales]). Usado en filas credito-facil-001 y credito-facil-002.
+
+== Web (WebSearch/WebFetch; maximo 12 consultas por lote; usadas 6) ==
+1. WebSearch "Reporte de Estabilidad Financiera diciembre 2025 Banco de Mexico cartera de consumo hogares solido resiliente" (allowed_domains=banxico.org.mx), 24-sep-2026 -> confirma titulo y URL oficiales del REF 10-dic-2025 (banxico.org.mx/publicaciones-y-prensa/reportes-sobre-el-sistema-financiero/{8461AAA6-044D-B53A-0136-011291ECEAE7}.pdf) y resumen visual asociado; resumen de busqueda consistente con el pasaje citado por el forense (riesgo de credito consumo/corporativo subio levemente; sistema "solido y resiliente"). No se leyo el PDF completo con pagina.
+2. WebSearch "CONDUSEF morosidad credito al consumo 12 por ciento nominal 2025 Oscar Rosado" (allowed_domains=gob.mx), 24-sep-2026 -> sin comunicado especifico de 18-mar-2026; el resultado mas cercano por titulo ("CONDUSEF recomienda cautela...") resulto ser de 2013 (ver WebFetch abajo).
+3. WebSearch "AMVO Estudio de Venta Online 2025 compra a plazos BNPL" (allowed_domains=amvo.org.mx), 24-sep-2026 -> confirma existencia del Estudio de Venta Online 2025 (publicado en marzo, ~1000 entrevistas, metodologia AMVO NORM + Netquest) y corrobora de forma cruzada la cifra de mercado BNPL ~4.56 mil millones USD para fines de 2024.
+4. WebSearch "CONDUSEF quejas gestion de cobranza REDECO 2025 incremento reclamaciones" (allowed_domains=gob.mx), 24-sep-2026 -> confirma que REDECO es mecanismo real y activo, con cifras DISTINTAS a las del forense (14046 quejas contra despachos de cobranza "durante el ano", banca multiple 76.82%; monto reclamado ene-may-2025 87.5 mdp, +5.3% vs 2024) -- discrepancia no reconciliada, registrada en fila credito-facil-005.
+5. WebSearch "Banxico comparador tarjetas de credito CAT promedio 2024" (allowed_domains=banxico.org.mx), 24-sep-2026 -> confirma el comparador oficial vigente (comparador.banxico.org.mx, banxico.org.mx/tarjetascat, archivo historico CAT_TC_Jun2024.xls).
+6. WebFetch a https://www.gob.mx/condusef/prensa/condusef-recomienda-a-instituciones-financieras-cautela-en-el-otorgamiento-de-creditos, 24-sep-2026 -> el comunicado es de 11-feb-2013 con cifras de morosidad 2011-2012 (nomina 2.62%->4.05%; personales 5.31%->6.41%); NO es el comunicado del 18-mar-2026 citado por el forense -> ese componente queda PENDIENTE-VERIFICACION-DOCUMENTAL (fila credito-facil-006a).
+
+Presupuesto web usado: 6 de 12 consultas (5 WebSearch + 1 WebFetch).
+
+== Restriccion CERO MICRODATO aplicada ==
+No se abrieron: despachos_cobranza_30_09_25.csv, redeco_datosabiertos1ertrim_2026.csv, los CSV de A6_CONDUSEF_DATOS_ABIERTOS, enif2024_csv.zip, ni el XLS/OLE de gen2_cnbv_040_1a_r16_imor_tipo_cartera (con macros) mas alla de lo ya reportado por el lote credito-popular (hoja MINFO, celdas de etiqueta). El unico archivo de datos leido directamente fue el HTML publico agregado de Banxico (gen2_banxico_imor_consumo_producto_mensual_2026t1_html), que es una tabla de serie regulatoria publica (no microdato de encuesta).
+
+== Reservas ==
+Ninguna de las unidades tratadas en este lote toco material de ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola); no se disparo ALERTA-RESERVA-ENCARGO en ninguna busqueda.

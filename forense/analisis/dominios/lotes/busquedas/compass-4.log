@@ -1,0 +1,116 @@
+# Búsquedas del ejecutor de este lote (compass-4), 24-sep-2026.
+# Complementa (no repite) /tmp/.../scratchpad/u0/previas/compass-4.log del ejecutor previo interrumpido,
+# cuyos comandos y resultados (incl. 9 WebSearch de las 12 permitidas por el lote) se citan como
+# "(ejecutor previo)" dentro de busqueda_a13 de filas.tsv cuando se reutilizan. Este ejecutor NO corrió
+# WebSearch/WebFetch adicionales: quedaron 3 de las 12 consultas web del lote sin usar, declaradas
+# disponibles para el cierre de mesa (ver siguiente_operacion de compass-4-001/002/004/005/006/009/016).
+
+## [1] Lectura íntegra del archivo del censo
+Read /home/pc0/mm-astra5-mapa-dominios-1/corpus/forense/compass-4-e29a28d4-credito-popular-2026.md
+126 líneas, sha256 declarado en el paquete: ea74603e6a597f3c036cfc98aeaab2877e75ff3407c158da0bc851bef1a8f03f
+Leído completo (TL;DR, Key Findings 1-5, Tabla A de 11 casos + control, Síntesis B, Recomendaciones,
+Anexo de fuentes C, notas de calidad de dato).
+
+## [2] Lectura íntegra del forense base (para DEDUP) y su cross-dedup
+Read forense/analisis/dominios/lotes/credito-popular-filas-v1_0.tsv (44 filas, 26 columnas -- formato
+legado con id_afirmacion como primera columna, distinto del formato de 25 columnas exigido por
+INSTRUCCIONES-LOTE.md v2 para este lote; se cita por id_afirmacion como en el TSV original).
+python3 -c "..." -> listado completo de id_afirmacion|localizador|texto_vigente[:220]|dedup_concepto|
+dictamen para las 44 filas (comando ejecutado, salida completa revisada).
+python3 -c "..." búsqueda de substrings de control en las 44 filas para: Compartamos, Gentera, Monte de
+Piedad/Nacional Monte, FirstCash/First Cash, Provident, AlphaCredit/Alpha Credit, tanda, cundina, ROSCA,
+poverty-action, Bruhn, Love, 13.7%, tarjeta IMOR ajustado, grupal, garantía solidaria, microcrédito
+grupal, Findep, Financiera Independencia, concurso mercantil, Chapter 11/Ch.11/Ch.15, banca múltiple
+(control), indicadores básicos, RIB, cundinas, 93.5, 63.5, 40.53, 83.5, "CAT ", 100%+, castigos anuales,
+2,406 ->
+  Compartamos/Gentera/Monte de Piedad/Nacional Monte/FirstCash/First Cash/Provident/Alpha Credit/tanda/
+  cundina/ROSCA/poverty-action/13.7%/tarjeta IMOR ajustado/concurso mercantil/Chapter 11/Ch.11/Ch.15/
+  banca múltiple (control)/indicadores básicos/RIB/cundinas/93.5/63.5/40.53/83.5/100%+/castigos anuales/
+  2,406 -> 0 coincidencias cada una (44 filas examinadas por término) => confirmado NUEVO, no en base.
+  AlphaCredit -> 1 coincidencia (ASTRA5-U0-CRPOP-010, mención tangencial, no dictaminada como caso propio).
+  Bruhn/Love -> coinciden en ASTRA5-U0-CRPOP-015/016 (estudio Banco Mundial sobre Banco Azteca, DISTINTO
+  del RCT de IPA sobre Compartamos Crédito Mujer que cita compass-4).
+  Findep/Financiera Independencia -> coinciden en CRPOP-029/034 (IMOR/IMORA ya filados).
+  grupal/garantía solidaria/microcrédito grupal -> sólo CRPOP-038 (mención genérica, no Compartamos).
+Read del cruce deduplicacion-v1_0.tsv citado en el paquete (sección "Cruces de deduplicación"): confirma
+CRPOP-PAGO y CRPOP-COLAPSOS con delta explícito "compass-4 añade AlphaCredit; no colapsar conteos de dos
+y tres quiebras".
+
+## [3] Confirmación de reserva y gen2_existente para ENIF (tandas)
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+python3 $U/u0mf.py --id enif_2012_bases_enif2012_sav -> sin campo reserva en el manifiesto (1680
+  entradas examinadas); nota: población objetivo 18-70 años.
+python3 $U/u0mf.py --id enif_2015_enif_2015_bd_sav -> sin campo reserva en el manifiesto.
+python3 $U/u0mf.py --calc enif_2012_bases_enif2012_sav -> 0 corridas (de 326).
+python3 $U/u0mf.py --calc enif_2015_enif_2015_bd_sav -> 0 corridas (de 326).
+python3 $U/u0mf.py --calc ehh02cb_b3b (ENNVIH) -> 0 corridas (de 326).
+ENIF no está en la lista de reservas del encargo ASTRA5-U0 (ENOE2026/ENVIPE2026/ENCO) -> no reservado.
+
+## [4] u0pdf para las instituciones nuevas del complemento
+python3 $U/u0pdf.py -q "alphacredit|alpha credit" --limite 10 -> 0 coincidencias (349 PDF examinados).
+python3 $U/u0pdf.py -q "compartamos" --limite 10 -> 110 coincidencias (349 PDF); 10 mostradas: todas
+  menciones de terceros (BANSEFI PATMIR 2006, Banxico encuestas de competencias financieras 2019/2021,
+  Banxico Informe Anual IdMF 2019, estudio Bauchet RCT microseguro 2012) -- ninguna es reporte financiero
+  propio de Compartamos/Gentera.
+python3 $U/u0pdf.py -q "monte de piedad" --limite 10 -> 3 coincidencias (349 PDF): ehh02cb_b3b p.43,
+  ehh05cb_b3b p.46, ehh09cb_b3b p.67 (ENNVIH 2002/2005/2009) -- las tres son la opción de respuesta
+  "monte de piedad/casa de préstamo" en la pregunta cr14_1 "¿dónde pidió prestado?", no la cifra de
+  redención de NMP.
+python3 $U/u0pdf.py -q "firstcash|first cash" --limite 10 -> 0 coincidencias.
+python3 $U/u0pdf.py -q "provident" --limite 10 -> 0 coincidencias.
+
+## [5] u0mf para instituciones/series nuevas
+python3 $U/u0mf.py --busca sofipo -> 0 entradas (1680 examinadas).
+python3 $U/u0mf.py --busca eacp -> 3 entradas: ADQ15_CNBV_BDIF_inclusion_financiera (52Sep2022 BD Uso
+  EACP Edo/Mun/Nal, CSV) -- datos de USO/inclusión financiera por entidad-municipio-nacional, NO de
+  morosidad/IMOR; no sirve para el componente CAME de compass-4-016.
+python3 $U/u0mf.py --busca ahorro --busca popular -> 0 entradas (AND de dos términos).
+python3 $U/u0mf.py --busca bmv -> 0 entradas (no hay documentos BMV propios en el manifiesto).
+python3 $U/u0mf.py --busca alpha -> 8 entradas (encig25_base_datos_csv, encig25_estructura_base_datos,
+  za6980/za5900/za7600 -ISSP-, ieebc_bc_2019) -- todas falsos positivos de subcadena "alpha"
+  (Cronbach's alpha / nombres de archivo), ninguna es AlphaCredit.
+python3 $U/u0mf.py --busca monte -> 0 entradas.
+python3 $U/u0mf.py --busca firstcash -> 0 entradas.
+python3 $U/u0mf.py --busca provident -> 0 entradas.
+python3 $U/u0mf.py --busca compartamos -> 3 entradas (116334_v1, milk_rct_microseguro, bauchet -- ver [4]).
+python3 $U/u0mf.py --busca gentera -> 0 entradas (ejecutor previo, log previas #5, confirmado por [4]/[5]).
+
+## [6] u0busca para el instrumento de tandas y de empeño (participación, no default)
+python3 $U/u0busca.py -q "tanda|cundina|rosca" --limite 40 -> 124 aciertos con texto (314256 identidades
+  revisadas, 113780 con texto); reactivos ENIF 2012 (p5_1_5, p5_1_4 "¿ahorró en una tanda?") y ENIF 2015
+  equivalentes, columna reserva vacía en los aciertos revisados.
+python3 $U/u0busca.py -q "tanda|cundina|rosca" --encuesta enif --limite 5 -> 32 aciertos con texto en ENIF
+  específicamente; confirma columna reserva vacía.
+python3 $U/u0busca.py -q "empeño|prendari" --limite 15 -> 569 aciertos con texto; primeros 15 revisados:
+  ENIF (preguntas de fuente de crédito/empeño, p4_4_3, p6_1_2, p6_2_2, p6_2_4) y ENVIPE (falsos positivos
+  de "desempeño" en preguntas de evaluación de autoridades) -- ninguno mide motivación de redención.
+
+## [7] Reutilización de WebSearch del ejecutor previo (citados como "(ejecutor previo)" en busqueda_a13)
+No se corrió WebSearch/WebFetch nuevo en esta sesión. Se reutilizaron, verificando su contenido contra
+lo que efectivamente afirman (no más de lo que dicen), los siguientes 9 resultados ya obtenidos por el
+ejecutor previo el 23-sep-2026 (ver previas/compass-4.log íntegro para el texto crudo):
+  [9]  "Gentera Banco Compartamos Comentarios y Análisis 4T25 resultados IMOR castigos"
+  [10] "Elektra Credimax CAT términos de promociones"
+  [11] "FirstCash 10-K 2024 annual report pawn inventory Mexico segment"
+  [12] "AlphaCredit comunicado eventos relevantes 2021"
+  [13] "Indicadores Básicos de Créditos Personales y Microcréditos Banxico"
+  [14] "CNBV comunicado intervención gerencial CAME sociedad financiera popular 2025" (no usado: cubre
+       el hecho regulatorio de CAME ya filado en la base CRPOP-031; no aporta la cifra 34.0%/24.8% de
+       PCR Verum que necesita compass-4-016, declarado PENDIENTE en vez de asumir cobertura)
+  [15] "Nacional Monte de Piedad estadística redención prendas informe anual"
+  [16] "Provident México CAT costo anual total préstamo domiciliario"
+  [17] "Crédito Real CREAL reporte trimestral cartera nómina factsheet"
+Cada snippet se releyó íntegro en esta sesión antes de citarlo en dictamen_razon/busqueda_a13; en dos
+casos (Monte de Piedad, Azteca CAT) el snippet reveló una DISCREPANCIA con la cifra del report
+(~80% vs ~90% redención; CAT 2026 63.5%/83.5% vs CAT 2024 93.5%), declarada explícitamente en falsador
+en vez de darse por corroborada.
+
+## [8] Autochequeo final (ver también resumen impreso por genera_compass4.py)
+- 17/17 filas con 25 columnas exactas (csv.reader, verificado).
+- 0 celdas con \r embebido; 0 celdas que empiecen con comilla doble.
+- 0 texto_vigente > 450 caracteres.
+- 13/13 unidades del paquete (5 G/F compartidas + 3 P + 5 F-solo) enlazadas en cobertura.tsv; T=0 (no
+  hay unidades T en este paquete, confirmado por el propio paquete).
+- 2 filas MEDIBLE-EN-CORPUS (compass-4-011, compass-4-012) con payload_id/fuente_id/sha256 copiados
+  verbatim de la salida de u0busca/u0mf citada arriba.
+- 0 filas usan payload_id=SIN-ID-MANIFIESTO como si fuera EN-CORPUS.

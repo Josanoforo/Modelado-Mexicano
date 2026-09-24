@@ -1,0 +1,125 @@
+# ASTRA5-U0 segunda pasada -- tanda A (clasemediero, credito-popular, compass-4)
+# Fecha: 24-sep-2026. cwd para u0busca/u0pdf/u0mf: /home/pc0/mm-astra5-mapa-dominios-1
+
+## 1. Busquedas locales de corpus (u0mf.py, sin costo de presupuesto web)
+cd /home/pc0/mm-astra5-mapa-dominios-1
+U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0
+$ python3 $U/u0mf.py --busca de_las_heras --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca demotecnia --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca forbes --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca banco_mundial --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca world_bank --limite 10
+  -> 6 entradas (todas WBES Enterprise Surveys, irrelevantes)
+$ python3 $U/u0mf.py --busca neri --limite 10
+  -> 3 entradas (Latinobarometro/GDELT/cero_desabasto, irrelevantes)
+$ python3 $U/u0mf.py --busca fgv --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca nexos --limite 10
+  -> 5 entradas (INE/ENDIREH, irrelevantes -- falso positivo de subcadena)
+$ python3 $U/u0mf.py --busca viridiana --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca sofipo --limite 20
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca estabilidad_financiera --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca iecm --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca alcaldia --limite 10
+  -> 2 entradas (INEGI CNGMD 2023, no electoral)
+$ python3 $U/u0mf.py --busca sicee --limite 15
+  -> 69 entradas (calendarios/marco geografico electoral INE, no resultados alcaldias CDMX 2021 en los primeros 15)
+$ python3 $U/u0mf.py --busca reporte_de_estabilidad --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca ref_2025 --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca pcr_verum --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca moodys --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca moody --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca sp_global --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca clasemediero --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca de_la_calle --limite 10
+  -> 0 entradas
+$ python3 $U/u0mf.py --busca cnbv --limite 60
+  -> 30 entradas: ADQ15_CNBV_AhorroFinanciero_Financiamiento (AFyFeM, macro), ADQ15_CNBV_BDIF_inclusion_financiera (acceso/uso, no morosidad), gen2_cnbv_040_1a_r16_imor_tipo_cartera (R16, Banca Multiple, periodo 202112 unico), gen2_banxico_imor_consumo_producto_mensual_2026t1_html -- NINGUNO cubre SOFIPO/Sofomes por entidad
+
+## 2. Consultas web (WebSearch/WebFetch), fecha 24-sep-2026, solo fuentes oficiales/primarias o snippet de buscador sin abrir portales de prensa
+[WebSearch] De las Heras Demotecnia encuesta autoidentificacion clase media Mexico 60%
+  -> confirma forbes.com.mx/encuesta-6-de-cada-10-mexicanos-se-consideran-de-clase-media/ (CLASE-003)
+[WebSearch] World Bank Mexico middle class fell poverty vulnerability 2020 4.7 million report
+  -> localiza comunicado worldbank.org 24-jun-2021 (CLASE-025)
+[WebSearch] Marcelo Neri FGV classe C Brasil 39 milhoes 2003 2011
+  -> confirma autor/institucion y cifra 39.5 millones (CLASE-031)
+[WebSearch] Viridiana Rios New York Times 2020 clase media Mexico mito
+  -> confirma via cuenta oficial @nytopinion (CLASE-038)
+[WebSearch] De la Calle Rubio Clasemediero 2010 libro pobre no mas resenia
+  -> confirma ficha editorial CIDAC/ISBN (CLASE-017)
+[WebSearch] Nexos analisis voto CDMX 2021 alcaldias gradiente ingreso percentil
+  -> localiza iecm.mx y labrujula.nexos.com.mx (CLASE-041)
+[WebSearch] Banxico Reporte de Estabilidad Financiera 2025 sofipos morosidad
+  -> confirma REF 2S-2025 y recuadro dedicado a sofipos (CLASE-042)
+[WebSearch] gobierno federal Morena clase media expansion 2018 2024 Banco Mundial
+  -> corrobora evento dic-2025 y cifras via 5 fuentes independientes (CLASE-035)
+[WebFetch] https://www.worldbank.org/en/news/press-release/2021/06/24/pandemic-crisis-fuels-decline-of-middle-class-LAC
+  -> lectura completa: 4.7M/12M es cifra LAC regional, Mexico no desagregado (CLASE-025)
+[WebSearch] BanCoppel "1.6" mujeres tarjeta credito banco que mas presta a mujeres
+  -> sin resultado especifico, solo paginas de producto (CRPOP-020)
+[WebSearch] Luis Nino de Rivera Banco Azteca 4400 gestores cobranza 2015 entrevista
+  -> localiza perfil lideresmexicanos.com sin confirmar cifra (CRPOP-014)
+[WebSearch] Credito Real Bloomberg Linea 46% interes devengado no cobrado analista BWC abril 2022
+  -> confirma nota y cifra 46% (CRPOP-004, CRPOP-027)
+[WebSearch] Moody's Banco Azteca Grupo Salinas partes relacionadas 32.3% capital basico Elektra desliste
+  -> 3 consultas encadenadas por el motor; confirma cifra exacta 12,022 mdp/32.3% dic-2024 y desliste Elektra (CRPOP-013)
+[WebSearch] S&P Global Market Intelligence Credito Real cartera nomina 2020 "300x" mayor banco
+  -> sin informe puntual, contexto Famsa confirmado (CRPOP-025)
+[WebSearch] PCR Verum CAME calificacion B+/M abril 2024 cartera vencida SOFIPO
+  -> localiza comunicado exacto pcrverum.mx (CRPOP-060)
+[WebSearch] CNBV boletin estadistico SOFIPO EACP IMOR IMORA por entidad portafolio informacion
+  -> confirma portafolioinfo.cnbv.gob.mx/PUBLICACIONES/Boletines/Paginas/SOFIPOS.aspx (CRPOP-005, 032, 036, 043)
+[WebFetch] https://portafolioinfo.cnbv.gob.mx/PUBLICACIONES/Boletines/Paginas/SOFIPOS.aspx
+  -> FALLO: 'unable to verify the first certificate'
+[WebSearch] CNBV boletin estadistico Sofomes ENR portafolio informacion IMOR por institucion Findep
+  -> confirma serie BE_SOFOMERS con ejemplar dic-2017 (CRPOP-029)
+[WebSearch] creal.mx Factsheet 3T16 3T17 3T18 cartera nomina morosidad
+  -> localiza URLs directas Factsheet-3T16.pdf/3T17.pdf en creal.mx (CRPOP-048, CRPOP-009)
+[WebSearch] CNBV circular modificacion clasificacion cartera reservas SOFIPO 2026
+  -> corrobora hecho regulatorio via prensa especializada, sin numero exacto (CRPOP-043)
+[WebFetch] https://pcrverum.mx/calificaciones/pcr-verum-baja-a-b-m-la-calificacion-corporativa-de-largo-plazo-de-came-y-coloca-calificaciones-en-observacion-negativa/
+  -> lectura integra: coincidencia EXACTA de las 4 cifras del report (CRPOP-060)
+[WebSearch] Findep Financiera Independencia HSBC linea de credito 1400 millones pesos 2024 refinanciamiento
+  -> confirma cifra exacta 1,400 mdp/nov-2026 (CRPOP-029)
+[WebSearch] Credito Real Factsheet 4T20 OR 1T21 cartera nomina morosidad creal.mx
+  -> confirma IMOR ajustado ~3.7% a 4T20 via HR Ratings (CRPOP-009)
+[WebSearch] CNBV "Prosofipo" capitalizacion disposiciones reservas 2026 resolucion modificatoria site:cnbv.gob.mx OR site:dof.gob.mx
+  -> localiza Comunicado de Prensa No. 020 Revocacion CAME 22-sep-2025, sin la circular 2026 exacta (CRPOP-043)
+[WebSearch] Credito Real "Nuncio Accipiens" Cabal Peniche aviso BMV prestamo
+  -> confirma cesion de acciones y aviso BMV oct-2021, 695 mdp, via 7 medios independientes (CRPOP-027)
+[WebSearch] Credito Real abril 2021 revision cartera vencida al doble 3.3% comunicado CEO
+  -> confirma presentacion BMV 24-abr-2021 y localiza Comunicado No. 29 SHCP/CNBV (CRPOP-004, 009, 027)
+[WebFetch] https://www.gob.mx/cms/uploads/attachment/file/714472/Comunicado_No._29_Situaci_n_de_Cr_dito_Real_en_M_xico.pdf
+  -> documento existe (338KB) pero WebFetch no pudo extraer texto legible (binario)
+[WebSearch] BanCoppel "1.6 mujeres" OR "mujeres por cada hombre" tarjetas credito otorgadas informe sustentabilidad
+  -> NO EJECUTADA: presupuesto de WebSearch de la sesion agotado (200/200)
+[WebSearch] "Nino de Rivera" "gestores" cobranza domiciliaria Banco Azteca entrevista Forbes o Expansion
+  -> NO EJECUTADA: presupuesto de WebSearch de la sesion agotado (200/200)
+[WebSearch] presidencia maniuanera diciembre 2025 clase media 39.6% Banco Mundial grafica gob.mx
+  -> NO EJECUTADA: presupuesto de WebSearch de la sesion agotado (200/200)
+
+## 3. Nota sobre presupuesto
+Se usaron 26 llamadas WebSearch + 4 WebFetch = 30 consultas efectivas dentro del limite de 45/tanda del encargo.
+A las ~26 WebSearch, la sesion de Claude Code (compartida con otros procesos/tandas paralelas) alcanzo su tope
+global de 200 WebSearch por sesion (CLAUDE_CODE_MAX_WEB_SEARCHES_PER_SESSION), lo cual impidio completar
+3 consultas planeadas para CRPOP-014, CRPOP-020 y CLASE-035 (variantes adicionales). Esas filas quedaron
+resueltas con la regla 4 del encargo (EXISTENCIA-NO-COMPROBADA con lo ya buscado) en vez de PENDIENTE.
+No se realizo ningun WebFetch a dominios de prensa (bloomberglinea.com, forbes.com.mx, nytimes.com,
+nexos.com.mx, elceo.com): las piezas de prensa se identificaron solo por snippet de WebSearch, sin abrir el portal,
+conforme a la regla del encargo. WebFetch se uso solo en dominios oficiales/primarios: worldbank.org, gob.mx,
+pcrverum.mx (calificadora) y portafolioinfo.cnbv.gob.mx (este ultimo fallo por error de certificado TLS).

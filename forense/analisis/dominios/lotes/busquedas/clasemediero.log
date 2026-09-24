@@ -1,0 +1,78 @@
+# busquedas.log -- lote clasemediero (ASTRA5-U0), 2026-09-23/24
+# cwd de todas las corridas: /home/pc0/mm-astra5-mapa-dominios-1
+# U = /tmp/claude-1000/-home-pc0/6f1534e5-675f-47f1-b62b-5d894fee74fc/scratchpad/u0
+
+## 1. Lectura de instrucciones y paquete
+- Read INSTRUCCIONES-LOTE.md (íntegro, 193 líneas).
+- Read paquetes/clasemediero.md (íntegro, 113 líneas): 15 G, 1 P, 1 T, 20 F, 0 contratos cerrados listados, 0 correcciones, 7 cruces de deduplicación.
+- Read corpus/reports/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md (íntegro, 268 líneas).
+- Read RESULTS-ASTRA5.md y CATALOGO-CORPUS.md (íntegro, 373 líneas, en dos partes por límite de tokens).
+
+## 2. u0mf.py (manifiesto, 1680 entradas examinadas cada corrida)
+--busca ceey -> 0 entradas
+--busca enbiare -> 2 entradas (enbiare2021_bd_csv_zip; enbiare2021_fd_pdf)
+--busca amai -> 0 entradas
+--busca banco_mundial -> 0 entradas
+--busca ferreira -> 0 entradas
+--busca hofstede -> 0 entradas
+--busca wilkinson -> 0 entradas
+--busca pickett -> 0 entradas
+--busca neri -> 3 entradas, las 3 irrelevantes (latinobarometro2024, gdelt, cero_desabasto)
+--busca bravo -> 1 entrada irrelevante (ietam_tamaulipas_municipal 2018_RioBravo.xlsx)
+--busca parametria -> 0 entradas
+--busca financiero -> varias entradas Banxico/CNBV, ninguna es El Financiero/Parametría
+--busca banxico -> varias entradas (CoDi/SPEI/SIE), ninguna es el Reporte de Estabilidad Financiera 2025 ni Sofipos
+--busca teruel -> 0 entradas
+--busca coneval -> 1 entrada irrelevante (pobreza_municipal_2020_vcompl.rar)
+--busca enoe_2025_4t -> 2 entradas (enoe_2025_4t_csv; enoe_2025_4t_microdatos)
+--busca mmsi -> 2 entradas (mmsi_2016_cuestionario; mmsi_2016_manual_entrevistador; datos(0))
+--busca sofipo -> 0 entradas
+--busca estabilidad_financiera -> 0 entradas
+--calc enbiare2021_bd_csv_zip -> 0 corridas (de 326)
+--calc enigh2024_nc_csv -> 1 corrida (CALC-ENIGH-DUELO-EMISIONES-0001, SELLADA, REPRODUCE, 2026-09-22)
+--id CALC-ENIGH-DUELO-EMISIONES-0001 -> NO-ENCONTRADO-POR-ID (herramienta busca ids de manifiesto, no de corridas.tsv)
+
+## 3. u0busca.py (9 tablas de reactivos; 314,256 identidades revisadas, 113,780 con texto, cada corrida)
+-q "supera|superado a sus padres|logro patrimonial" -> 1 acierto con texto (no es el ítem buscado)
+-q "nivel socioeconomico|nivel social" --encuesta enbiare -> 0 aciertos
+-q "miedo a caer|temor a caer|miedo a perder" -> 0 aciertos
+-q "ansiedad de estatus|ansiedad social" -> 0 aciertos
+-q "clase media|identidad de clase" -> 0 aciertos
+-q "generación anterior|que sus padres|nivel de vida de sus padres" -> 19 aciertos (ENDIREH/LAPOP, no ENBIARE)
+-q "escuela privada|colegiatura|escuela particular" -> 85 aciertos (mostrando 20; todos ENNVIH 2002/2005, gasto en colegiatura, ninguno de motivo)
+-q "trabajo informal|empleo informal" --encuesta enoe -> 0 aciertos
+-q "PI2|PI5" --encuesta enbiare -> 1 acierto con texto exacto de PI2 (I2. nivel de vida socioeconómico vs. hogar en que creció)
+-q "EMP_PPAL" -> 1 acierto (fd_c_bas_amp_conapo.pdf: "Clasificación de empleos formales e informales de la primera actividad")
+-q "facilidad|dificultad para cubrir sus gastos|cubrir gastos" --encuesta enbiare -> 0 aciertos
+-q "vivienda propia|Infonavit|credito hipotecario" -> 94 aciertos (mostrando 10; ENIF 2012/2015, uso/pago de crédito hipotecario, ninguno enmarca "ancla emocional")
+-q "color de piel|tono de piel" -> 17 aciertos (ENCUCI2020 AP5_8_1/AP5_9_1/AP10_12/AP10_13; LAPOP colorr/colori; MOCIBA P4_03 "tono de piel...o clase social")
+-q "satisfecho con su vida|satisfaccion con la vida" --encuesta enbiare -> 0 aciertos
+
+## 4. u0pdf.py (349 PDF registrados, texto por página en caché pdftotext)
+-q "superado a sus padres|nivel socioeconómico mayor" --idsub enbiare -> 0 coincidencias (1 PDF examinado: enbiare2021_fd_pdf)
+-q "nivel de vida (socioeconomico) de su hogar actual" --id enbiare2021_fd_pdf --contexto 400 -> 1 coincidencia, p.35 (ítem I2/PI2 completo con códigos 1 mayor/2 similar/3 menor)
+-q "18 anios y mas|cobertura|poblacion objetivo|ambito urbano" --id enbiare2021_fd_pdf -> 0 coincidencias (el FD no trae diseño muestral)
+-q "informante adecuado|vivienda particular|residente habitual|marco muestral" --id enbiare2021_fd_pdf -> 0 coincidencias
+-q "padres" --id enbiare2021_fd_pdf -> 13 coincidencias (p.32, p.35 x3, p.36 x9; incluye I1-I5 del bloque "Movilidad intergeneracional", con I5/PI5 en p.36: oportunidades de patrimonio mayor/similar/menor/aún no ha intentado)
+-q "cubrir sus gastos|gastos mensuales|para cubrir" --id enbiare2021_fd_pdf -> 0 coincidencias
+
+## 5. Repo (grep/lectura de contratos ya cerrados, solo lectura)
+grep -rn "ASTRA5-U0-MER-013|014|004|005" *.tsv *.md -> forense/analisis/dominios/mapa-parcial-v0_1.tsv, corte-merito-v1_0.tsv, lectura-merito-v1_0.tsv, complemento-base-v1_0.tsv, lectura-clasemediero-v1_0.tsv, actualizaciones-contratos-v1_0.tsv
+Lectura íntegra de las filas ASTRA5-U0-MER-004, -005, -013, -014 en mapa-parcial-v0_1.tsv (id_afirmacion, 22 columnas cada una).
+Escaneo de mapa-parcial-v0_1.tsv (102 filas) por palabras clave (ingreso por habitante, estancamiento, AMAI, informalidad, autoidentificacion, Bravo, deuda, Hofstede, colorismo, piel, matricula, escuela privada, Banco Mundial, vulnerable) -> 2 aciertos: ASTRA5-U0-ENOE-001 (otro report, informalidad 55.7% 2024) y ASTRA5-U0-FIN-009 (otro report, crédito); ninguno "toca" clasemediero.md según el propio campo report.
+Lectura íntegra de ASTRA5-U0-ENOE-001 (usada como precedente de citación de EMP_PPAL/FD SDEM, no como contrato de esta fila).
+
+## 6. Web (WebSearch/WebFetch; máximo 12 consultas del lote, 12/12 usadas)
+1. WebSearch "INEGI Cuantificando la Clase Media en México 2010-2020 42.2% hogares 47.2 millones personas" -> confirma cm_desarrollo.pdf/cmedia_nota.pdf/cmedia_resumen.pdf en inegi.org.mx; cifras coincidentes.
+2. WebSearch "Teruel CONEVAL clase media segura 25% 27% seguridad económica México" -> confirma estudio con clases latentes CONEVAL, 27.5% (2014), scielo.org.mx.
+3. WebSearch "Ferreira Economic Mobility and the Rise of the Latin American Middle Class World Bank vulnerable $4 $10 PPP" -> confirma libro/informe Banco Mundial 2013, umbrales pobre<4/vulnerable 4-10/clase media >10 US$ PPP 2005.
+4. WebSearch "CEEY informe movilidad social México 2025 colorismo piel oscura 57% piel clara 34% quintil" -> confirma ceey.org.mx/informe-de-movilidad-social-en-mexico-2025/ (mismo URL que MER-013/014) y cifras 57%/34%.
+5. WebSearch "AMAI Regla NSE 2024 distribución nacional hogares A/B C+ C C- D+ D E porcentaje" -> confirma amai.org/descargas/NOTA_METODOLOGICA_NSE_AMAI_2024_v6.pdf y las siete cuotas.
+6. WebSearch "Parametría encuesta salida 2021 clase media voto efecto nulo elecciones" -> confirma parametria.com.mx y scielo.org.mx (pid S2448-49112022000100033), n=2,192, 6-jun-2021.
+7. WebSearch "El Financiero encuesta salida 2024 Sheinbaum Galvez clase media 59% media baja 61% media alta 49%" -> confirma elfinanciero.com.mx, n=5,229, margen ±1.6%, 130 casillas.
+8. WebSearch "Perfil del Deudor Mexicano 2025 Bravo deuda promedio 193,198 ingreso 24,426" -> confirma vía xataka.com.mx/cronista.com/elimparcial.com (2026), incluye el 72% en el mismo informe.
+9. WebSearch "SEP matrícula educación básica escuelas privadas México 10% 3.5 millones alumnos" -> identifica planeacion.sep.gob.mx "Principales cifras del sistema educativo nacional 2024-2025"; cifra hallada (13% de escuelas/planteles) no coincide con "10% de matrícula" del report (métrica distinta).
+10. WebFetch a planeacion.sep.gob.mx/.../principales_cifras_2024_2025_bolsillo.pdf -> ERROR "unable to verify the first certificate" (documento identificado, no leído).
+11. WebSearch "Jaeger 1986 crítica Hofstede muestra IBM empleados sesgo distancia de poder colectivismo" -> confirma Jaeger A.M. (1986), Academy of Management Review 11(2):178-190.
+12. WebSearch "Wilkinson Pickett status anxiety 31 countries European inequality all income levels" -> confirma estudio de 2007, ~34,000 individuos, 31 países europeos, marco Spirit Level.
+Presupuesto de 12 consultas agotado; piezas no verificadas por web en este lote quedan PENDIENTE-VERIFICACION-DOCUMENTAL (De las Heras/Forbes 60%; Banco Mundial 4.7M 2020; De la Calle y Rubio 2010; Viridiana Ríos NYT 2020; Nexos CDMX 2021; CNBV Sofipos/Banxico REF 2025; Neri/FGV Brasil).

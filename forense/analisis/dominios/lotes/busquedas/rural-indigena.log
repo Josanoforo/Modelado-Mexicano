@@ -1,0 +1,86 @@
+ASTRA5-U0 · lote rural-indigena · busquedas.log
+Paquete: rural-indigena.md · report corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md (sha256 546e89ccc00ee6198c8f87594053cd34d395e5e33a39a14ed9f416b57a643472, 280 líneas, leído íntegro).
+cwd todas las corridas: /home/pc0/mm-astra5-mapa-dominios-1 (repo de solo lectura). U = ruta de herramientas del lote.
+
+== u0busca.py (9 tablas: contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2; 314256 identidades revisadas, 113780 con texto) ==
+-q tequio -> 5 aciertos con texto
+-q "gozona|guelaguetza|mano vuelta" -> 5 aciertos con texto (mismo reactivo compuesto ENUT P6_17)
+-q "usos y costumbres" -> 0 aciertos con texto
+-q "sistema de cargos|cargo comunitario|mayordomia" -> 5 aciertos con texto (mismo reactivo ENUT P6_17)
+-q "asamblea comunitaria|asamblea general de comuneros" -> 0 aciertos con texto
+-q comunalidad -> 0 aciertos con texto
+-q "lengua indigena|habla lengua indigena" -> 195 aciertos con texto (ENNVIH/ENCUCI2020/ENIF2021-2024/ENSAFI2023/ENDIREH2011)
+-q "autoidentifica|autoadscri|se considera indigena" -> 42 aciertos con texto (ENCUCI2020/ENIF2024/ENSAFI2023/ENADID2023/ENASIC2022/ENDUTIH2025/ENUT2019)
+-q monolingue -> 0 aciertos con texto (ver u0pdf/CPV2020 para el agregado ITER)
+-q "pertenece a un pueblo indigena|pueblo indigena" -> 3 aciertos con texto (EDER2017, variable puebloind)
+-q ejido -> 4 aciertos con texto (los 4 son categoría de seguro IMSS en ENNVIH, no institución agraria)
+-q "comunidad agraria" -> 0 aciertos con texto
+-q "propiedad social" -> 0 aciertos con texto
+-q "tierra comunal|territorio comunal" -> 0 aciertos con texto
+-q "remesas colectivas|club de oriundos" -> 0 aciertos con texto
+-q "3x1|programa 3 x 1" -> 0 aciertos con texto
+-q migrante -> 23 aciertos con texto (ENADID2023 TMIGRANTE, LAPOP/Latinobarómetro actitudes hacia inmigrantes, CPV2020 identificador de migrante)
+-q discriminacion -> 4 aciertos con texto (ENASEM2024, discriminación general, no desagregada por indígena)
+-q "consulta previa|convenio 169" -> 0 aciertos con texto
+-q "partera|parteria" -> 11 aciertos con texto (ENNVIH, ENDIREH2016 p9_5_8)
+-q herbolaria -> 0 aciertos con texto
+-q "susto|empacho|mal de ojo" -> 0 aciertos con texto
+-q "medicina tradicional" -> 0 aciertos con texto
+-q asamblea -> 1 acierto con texto (Asamblea Legislativa CDMX, LAPOP2004 cp2; irrelevante al tema)
+-q "evangelic|protestante" -> 6 aciertos con texto (CPV2020 CAAS T_PRO_CRIEVA/U_PRO_CRIEVA, LAPOP2019 b20a)
+-q "sembrando vida" -> 0 aciertos con texto
+-q "oportunidades|progresa|prospera" -> 117 aciertos con texto (ENNVIH panel 2002/2005, becas Progresa/Oportunidades)
+-q "pension para el bienestar|pension bienestar" -> 8 aciertos con texto (ENASEM2024 K79A_24/K82C_24, ENASIC2022 P3A_3_5/P3A_3_6)
+-q "discrimina.*indigena|indigena.*discrimina" -> 0 aciertos con texto
+--encuesta cpv2020 -q lengua -> 16 aciertos con texto (HLENGUA/ELENGUA/QDIALECT_INALI/P3YM_HLI y familia ITER)
+--encuesta cpv2020 -q indigena -> 17 aciertos con texto (PERTE_INDIGENA + familia ITER P3YM_HLI/P3HLINHE/P3HLI_HE/PHOG_IND)
+--encuesta cpv2020 -q hablante -> 0 aciertos con texto
+--encuesta cpv2020 -q monolingue -> 0 aciertos con texto
+--encuesta cpv2020 -q "autoidentifica|se considera" -> 11 aciertos con texto (PERTE_INDIGENA, AFRODES, POB_AFRO + agregados de hogar)
+--encuesta cpv2020 -q analfab -> 0 aciertos con texto (variable SÍ existe en fd_iter, ver u0pdf abajo; el término "analfab" no aparece en el inventario de reactivos con ese plegado)
+
+== u0pdf.py (349 PDF registrados; caché pdftotext) ==
+-q analfab --id cpv2020_fd_iter_pdf -> 3 coincidencias, p.20 (P15YM_AN/_F/_M "analfabeta")
+-q P3YM_HLI --id cpv2020_fd_iter_pdf -> 3 coincidencias, p.14 (P3YM_HLI/_F/_M "lengua indigena")
+
+== u0mf.py (1680 entradas en data/manifiesto.yaml) ==
+--busca ran -> 183 coincidencias, TODAS falsos positivos por substring "ran" (p.ej. "transversales", "programas"); ninguna es el Registro Agrario Nacional
+--busca ieepco -> 1 coincidencia: estadistica_concejales_2016_ieepco (año/producto 2016, distinto del acuerdo SNI 2023 citado por el report)
+--busca coneval -> 1 coincidencia: pobreza_municipal_2020_vcompl (CONEVAL, corte municipal 2020, producto distinto del comunicado nacional/estatal 2022 citado por el report)
+--busca inpi -> 0 coincidencias
+--busca educa -> 28 coincidencias, todas de otras familias (ENSANUT/CONDUSEF/UNAM-educación); ninguna es EDUCA Oaxaca
+--busca cheran -> 0 coincidencias
+--busca tepjf -> 5 coincidencias (SICEE federal, JEA elecciones concurrentes); ninguna es la sentencia SUP-JDC-9167/2011
+--busca bonfil -> 0; --busca cancian -> 0; --busca chance -> 0; --busca warman -> 0; --busca scott -> 0; --busca wolf -> 0; --busca popkin -> 0; --busca kearney -> 0; --busca besserer -> 0; --busca stephen -> 0; --busca mauss -> 0 (11 apellidos de bibliografía académica citada por el report; 0 de 1680 cada uno)
+--busca sembrando -> 0 coincidencias
+--busca oportunidades -> 0 coincidencias (como programa nombrado; sí hay reactivos de encuesta que preguntan por él, ver u0busca arriba)
+--busca "169" -> 4 coincidencias, ninguna es el Convenio 169 OIT
+--busca cngmd -> 94 coincidencias (Censo Nacional de Gobierno Municipal y Delegacional 2023, módulos m1-m7: administración, seguridad/justicia, protección civil, justicia cívica, agua/saneamiento, residuos sólidos); ningún módulo cubre usos y costumbres/sistemas normativos indígenas
+--id enut2019_fd_xlsx / enut2019_bd_csv / enut2024_fd_xlsx / enut2024_bd_csv / cpv2020_iter_nal_csv / cpv2020_fd_iter_pdf / cpv2020_diccionario_cuestionario_ampliado_xlsx / cpv2020_caas_descriptor_bd_xlsx / endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss / enasem2024_bd_csv_zip / enasem2024_fd_xlsx / enasic2022_bd_csv_zip / enasic2022_fd_xlsx -> los 13 ids existen en el manifiesto; sha256 verificados uno a uno contra los citados en filas.tsv (una discrepancia de transcripción detectada y corregida: enasem2024_bd_csv_zip)
+--calc cpv2020_iter_nal_csv -> 0 de 326 corridas
+--calc cpv2020_diccionario_cuestionario_ampliado_xlsx -> 0 de 326
+--calc enut2019_bd_csv -> 1 de 326 (CALC-ENUT2019-NUCLEO-EJES-0001, SELLADA, REPRODUCE; no confirmado que use P6_17_2)
+--calc enut2024_bd_csv -> 6 de 326 (CALC-ENUT-0001, CALC-ENUT2024-DISTRIBUCION-HORAS-0001/0002, CALC-ENUT2024-NUCLEO-EJES-0001, CALC-ENUT2024-PARTICIPACION-INTENSIDAD-0001, CORR-0014 NO-CORRIDA; ninguno confirmado sobre P6_17_3)
+--calc endireh_2016_bd_mujeres_endireh2016_sitioinegi_spss -> 0 de 326
+--calc enasem2024_bd_csv_zip -> 0 de 326
+--calc enasic2022_bd_csv_zip -> 0 de 326
+--calc enif_2024_enif_2024_bd_csv -> 10 de 326 (ninguno sobre autoidentificación indígena p3_6/p3_7; todos de inclusión financiera)
+--calc enadid2023_base_datos_csv -> 4 de 326 (todos CALC-ENADID2023-UNION-SEXO-EDAD, no del módulo de migración/indígena)
+--calc pobreza_municipal_2020_vcompl -> 0 de 326
+
+== Web (6 WebSearch + 3 WebFetch = 9 de 12 consultas del presupuesto del lote; todas fechadas 2026-09-23) ==
+WebSearch: RAN "Indicadores Básicos de la Propiedad Social" 2022 "50.7%" hectáreas ejidos comunidades -> corrobora 29,813 ejidos/2,416 comunidades a corte dic-2022 (gob.mx/ran)
+WebSearch: IEEPCO 2023 municipios sistemas normativos internos 417 570 Oaxaca -> corrobora 417/570 vía comunicados/fichas IEEPCO (ieepco.org.mx); una fuente secundaria da 418/152 para otro corte
+WebSearch: CONEVAL 2022 pobreza por entidad Chiapas 67.4 Guerrero 60.4 Oaxaca 58.4 Puebla Tlaxcala -> corrobora las 5 cifras vía prensa (pagina3.mx, lasillarota.com) citando a CONEVAL
+WebSearch: TEPJF SUP-JDC-9167/2011 Cherán consulta 18 diciembre 2011 4844 votos -> confirma resolución 2/nov/2011 y mandato de consulta al IEM; NO confirma el conteo de votos 4844/7
+WebSearch: EDUCA Oaxaca 2020 municipios sistemas normativos internos conflictividad "350" -> corrobora la cifra vía educaoaxaca.org (artículo agosto 2020); una fuente relacionada menciona "342 conflictos registrados en 2020" (cifra distinta, no la misma métrica)
+WebSearch: Comisión Esclarecimiento Histórico Guatemala "Memoria del Silencio" 1999 200000 muertos 83% mayas 626 masacres -> corrobora las 4 cifras vía fuentes secundarias (Wikipedia, CMI, ONU)
+WebSearch: Programa 3x1 migrantes 2005 "527 clubes" remesas colectivas 15 millones dólares -> corrobora la cifra vía literatura académica (scielo.org.mx/colef.mx)
+WebFetch: gob.mx/ran (Indicadores Básicos de la Propiedad Social) -> LEÍDO: "la superficie ejidal registrada supera los 82.2 millones de hectáreas... comunal ronda los 17.5 millones..." y "29 mil 813 ejidos y 2 mil 416 comunidades... corte al 31 de diciembre de 2022"
+WebFetch: coneval.org.mx/.../Comunicado_07_Medicion_Pobreza_2022.pdf -> extracción HTML falló (PDF con streams comprimidos); PDF guardado localmente y LEÍDO con la herramienta Read (páginas 1-4): confirma pobreza 41.9%->36.3% y extrema 7.0%->7.1% (2018-2022, nacional); NO trae la tabla por entidad en esas 4 páginas
+WebFetch: ieepco.org.mx/comunicados/93-por-ciento... -> FALLÓ ("unable to verify the first certificate", error de cadena TLS del sitio, no del sandbox); no se reintentó
+
+Presupuesto web usado: 9 de 12 consultas (6 WebSearch + 3 WebFetch, 1 WebFetch fallida por certificado). 3 consultas quedaron sin usar; no se gastaron en piezas de menor prioridad (Warman título exacto, Cherán reforestación, expulsión evangélicos Chamula) para priorizar las cifras FUERTE/SÓLIDO estructurales (RAN, IEEPCO, CONEVAL, Cherán/TEPJF, EDUCA, 3x1, Guatemala CEH).
+
+== Resumen de patrón de ausencia ==
+Bibliografía académica citada por el report (Bonfil, Cancian, Chance & Taylor, Warman, Scott, Wolf, Popkin, Kearney, Besserer, Stephen, Mauss, González de la Rocha, Escobar Latapí, Hevia de la Jara, Díaz, Martínez Luna): 0 coincidencias en el manifiesto para cada autor buscado por apellido. Documentos administrativos/legales citados (RAN, IEEPCO 2023, TEPJF/Cherán, CONEVAL 2022 estatal, EDUCA Oaxaca, Convenio 169/CCMSS, Sembrando Vida, INPI/UNAM 2024): 0 en el manifiesto con ese id exacto (solo productos homónimos de otro año/tema en 3 casos: IEEPCO-2016, CONEVAL-municipal-2020, y el padrón genérico de Bienestar). Vocabulario institucional específico del report (usos y costumbres, comunalidad, asamblea comunitaria, propiedad social, comunidad agraria, tierra comunal, herbolaria, susto/empacho, medicina tradicional, consulta previa/convenio 169, 3x1/remesas colectivas, sembrando vida): 0 aciertos con texto en los 9 inventarios de reactivos de encuesta (313256-314256 identidades revisadas según la corrida). Sí existen en el corpus: reactivo compuesto de trabajo comunitario gratuito (ENUT P6_17, incluye tequio/mano vuelta/mayordomía), autoidentificación étnica indígena y habla de lengua indígena (CPV2020 ITER + seis encuestas más: ENIF, ENSAFI, ENASIC, ENDUTIH, ENADID, ENDIREH2011, ENNVIH, ENCUCI2020), partería en control prenatal (ENDIREH2016), y recepción de Pensión para el Bienestar a nivel hogar (ENASEM2024, ENASIC2022).

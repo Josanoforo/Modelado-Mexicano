@@ -1,0 +1,77 @@
+ASTRA5-U0 · lote politica · busquedas.log (A.13)
+Fecha de ejecucion: 2026-09-24
+Report leido INTEGRO: corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md (315 lineas, sha256 8d98900588d3f07e05839c2252c8b0945ecd405512d47cf43f55cae90738d4a0)
+Grep exhaustivo de marcas de tier sobre el archivo completo (command grep -n --binary-files=text -E) para confirmar que no hay afirmaciones INT-Lnn fuera de las unidades G/P/T ya listadas en el paquete: confirmado, cero adicionales.
+
+== Corpus (u0busca / u0pdf / u0mf) ==
+u0busca.py -q "confianza en la familia|confia en su familia" -q "confianza en universidades publicas" -q "confianza en el ejercito|confianza en la marina" --encuesta encig --ola 2025 --limite 20 -> 0 aciertos con texto (9 tablas, 314256 identidades revisadas)
+u0busca.py -q "confianza" --encuesta encig --ola 2025 --limite 30 -> 0 aciertos con texto
+u0pdf.py -q "confianza" --idsub encig2025 --limite 15 -> 15 aciertos (3 PDF examinados): confirma 84.8/75.9/74.6/23.9/29.7/34.1% (encig2025_boletin_pdf, encig2025_principales_resultados_pdf)
+u0pdf.py -q "ejercito|marina" --idsub encig2025 --limite 15 -> 4 aciertos (3 PDF): confirma Ejercito y Marina 62.0% (p.50 principales_resultados)
+u0pdf.py -q "marina|fuerza aerea" --idsub envipe2025 --limite 20 -> 22 aciertos (4 PDF): confirma variables AP5_4_09 (fuerza aerea) y AP5_4_10 (marina), FD p.33-34
+u0mf.py --busca envipe --busca 2025 --busca boletin -> 0 entradas (no hay comunicado ENVIPE 2025 registrado)
+u0mf.py --busca envipe --busca 2025 --busca comunicado -> 0 entradas
+u0mf.py --busca envipe --busca 2025 --busca resultados -> 0 entradas
+u0mf.py --id envipe_2025_bd_envipe_2025_dbf -> payload real, no reservado, sha e83c22c5d08b9adcb6b77ecbf7086db479e39d7186a886b72b12b338335e4f91
+u0mf.py --id encig_2025_encig25_base_datos_dbf -> payload real, no reservado, sha fa92a6ea4119ff1b64986a10b7939ccc1ef02b2af3c127a38c93bed830d6fe59
+u0mf.py --id encig2025_boletin_pdf -> sha 6515cb698a8a7f0821a225827ac2402d06cd6405cabf76208f0d6c529b29eaa4
+u0mf.py --id encig2025_principales_resultados_pdf -> sha 476cf06ee8cb18727f2326c0d80e5f113ca3554a0851f89f3414ab1a03113548
+u0mf.py --id envipe2025_fd_pdf -> sha 83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad
+u0pdf.py -q "denuncio|se denuncio|denuncia ante" --idsub envipe2025 --limite 15 -> 7 aciertos (4 PDF): confirma BP1_20/21/23/27/28
+u0pdf.py -q "carpeta de investigacion|averiguacion previa" --idsub envipe2025 --limite 15 -> 7 aciertos (4 PDF): confirma BP1_24/25/26
+u0mf.py --busca ine --busca participacion --limite 20 -> 11 entradas (ninguna es el Estudio Muestral de Participacion Ciudadana; incluye a6_sicee_participacion_nacional/entidad_1991_2024 y ine_conteos_censales_participacion_2024)
+u0mf.py --busca ine --busca judicial --limite 20 -> 0 entradas
+u0mf.py --busca scjn --limite 20 -> 0 entradas
+u0mf.py --busca estudio_muestral --limite 20 -> 1 entrada (IEPC Jalisco, no es INE)
+u0mf.py --busca muestral --limite 20 -> 68 entradas (ninguna es el Estudio Muestral INE 2024)
+u0mf.py --busca judicial --limite 20 -> 0 entradas
+u0mf.py --busca 2025 --busca eleccion --limite 20 -> 2 entradas (ninguna es computo judicial)
+u0mf.py --busca latinobarometro --limite 20 -> 9 entradas (solo ola 2024: cuestionario, fichas tecnicas, bd_stata; sin 2023)
+u0pdf.py -q "forma preferible de gobierno|democracia es preferible" --idsub latinobarometro2024 --limite 10 -> 1 acierto (2 PDF): confirma pregunta de preferencia de regimen en cuestionario p.1
+u0mf.py --busca cses --limite 20 -> 9 entradas (cses5_modulo5_2016_2021_csv/codebook/cuestionario + modulos 2-4 y CIDE 2015 en descargas_mx)
+u0mf.py --busca presupuesto --limite 20 -> 2 entradas (Banxico, no PEF)
+u0pdf.py -q "soborno|mordida|le pidieron dinero" --idsub encig2023 --limite 15 -> 0 PDF registrados examinados (idsub no calzo alias)
+u0mf.py --busca encig --busca 2023 --limite 20 -> 9 entradas: encig23_cuestionario_pdf, encig23_estructura_base_datos_pdf, encig_2023_encig23_base_datos_dbf/rdata/dta/sav, encig2023_datosabiertos_csv
+u0mf.py --id encig_2023_encig23_base_datos_dbf -> payload real, no reservado, sha 8512fc49f4cbac12e18d44c4d7d0d063214bbd3d01ff1b24cca4df7bf7285737
+u0pdf.py -q "acto de corrupcion|le pidieron|dieron dinero" --id encig23_cuestionario_pdf --limite 15 -> 0 aciertos (terminos exactos no calzan; ver busqueda siguiente)
+u0pdf.py -q "corrupcion" --id encig23_estructura_base_datos_pdf --limite 15 -> 24 aciertos: confirma seccion VIII "Corrupcion" (tabla encig2023_05_sec_8, 24 variables)
+u0pdf.py -q "corrupcion" --id encig23_cuestionario_pdf --limite 20 -> 12 aciertos: confirma Seccion VIII Corrupcion p.20, Seccion IX Corrupcion general p.22-23
+u0mf.py --busca transparencia --limite 20 -> 4 entradas (IMSS Bienestar, ninguna es Transparencia Internacional/Mexicana)
+u0mf.py --busca "indice de percepcion" --limite 20 -> 0 entradas
+u0mf.py --id envipe2025_cuest_modulo_pdf -> sha 21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27
+u0mf.py --id envipe2025_cuest_principal_pdf -> sha a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228
+u0mf.py --id envipe2025_diseno_muestral_pdf -> sha f60661545c2980026619370b69b7d7d3988ab62100cfa7a9b33ac76b4a7f0e69
+u0mf.py --id encig23_estructura_base_datos_pdf -> sha eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906
+u0mf.py --id a6_sicee_participacion_nacional_1991_2024 -> sha 8088f9f36345e99203e8bb6f32c657c3f85335977bcf49da5084064ec893d87b
+u0mf.py --id ine_conteos_censales_participacion_2024 -> sha c0de34d04e782ad99579b83591a6e3e6c8d1e20f4914d4845743bd79d2bd28b2
+grep -in "politica|LAPOP|ENCUP|ENVIPE|ENCIG|INE" sobre CATALOGO-CORPUS.md: confirma ausencia de Latinobarometro 2023, ausencia de boletin/comunicado ENVIPE 2025, ausencia de PEF/CPI/LEM/CRAC-PC/RNPDNO en el catalogo
+cotejo-result-politica-v1_0.tsv leido integro (8 filas: RESULT-INE-PISOS-2024-TABLA, RESULT-ENCUP-PISOS-2012-TABLA x4, RESULT-LAPOP-PISOS-2019-TABLA x2)
+corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México...md leido (Resumen ejecutivo, Casos C1/C2/C3, Pares contrafactuales 1-4)
+
+Totales de busqueda de negativos declarados (A.13):
+- u0mf.py consultas de este lote: 21 llamadas, cada una declara "N entradas examinadas en data/manifiesto.yaml" (1680 entradas totales del manifiesto en cada corrida)
+- u0busca.py consultas: 2 llamadas, cada una sobre 9 tablas / 314256 identidades / 113780 con texto
+- u0pdf.py consultas: 10 llamadas, cada una declara cuantos PDF registrados examino (entre 0 y 4 segun --idsub/--id)
+
+== Web (WebSearch; maximo 12 consultas por lote, usadas 9, todas fuentes oficiales/primarias) ==
+1. WebSearch 'INE "Estudio Muestral" "Participacion Ciudadana" 2024 59.8%' site:ine.mx -> confirma 59.8% (Estudio Muestral, repositoriodocumental.ine.mx/xmlui/handle/123456789/178351) y desagregacion por sexo/edad
+2. WebSearch 'INE computo distrital presidencial 2024 61.04% participacion' site:ine.mx -> confirma 61.04%, centralelectoral.ine.mx/2024/06/09/
+3. WebSearch 'INE eleccion judicial 2025 participacion 12.86% computo SCJN' site:ine.mx -> no dio la cifra exacta en el primer intento (ver consulta 5)
+4. WebSearch 'Transparency International Corruption Perceptions Index 2024 Mexico score 26' site:transparency.org -> confirma 26/100, lugar 140/180, publicado 11-feb-2025, transparency.org/en/cpi/2024/index/mex
+5. WebSearch '"12.86" OR "12.57" participacion eleccion judicial 2025 Taddei lista nominal' -> confirma 12.8630% computo final (lista nominal), centralelectoral.ine.mx/2025/06/02/
+6. WebSearch 'Registro Nacional de Personas Desaparecidas y No Localizadas RNPDNO cifra total' site:gob.mx -> confirma existencia RNPDNO, versionpublicarnpdno.segob.gob.mx, 127903 en corte consultado
+7. WebSearch 'Sandra Ley CIDE "Linchamientos en Mexico" base de datos LEM 2009 2022' -> confirma base LEM, sandraley.net/data/
+8. WebSearch 'Presupuesto de Egresos de la Federacion 2026 programas prioritarios "992,763" OR "992763" millones de pesos' site:dof.gob.mx OR site:transparenciapresupuestaria.gob.mx -> confirma existencia PEF 2026 (dof.gob.mx/2025/SHCP/PEF_2026.html), NO confirma la cifra exacta 992,763 mdp
+9. WebSearch 'Latinobarometro 2023 Mexico apoyo a la democracia 35% informe' site:latinobarometro.org -> confirma 34.9% (Latinobarometro 2023 Mexico), y localiza Informe Latinobarometro 2024 (para la ola 2024/49%)
+Consultas web NO usadas del presupuesto de 12 (reservadas/descartadas por prioridad y por ser prensa): CRAC-PC (estatutos/actas), Moreno 2024/Castro Cornejo termometro academico, Oraculus/agregador de encuestadoras, MCCI (publicacion propia) — quedan declaradas como faltante en las filas correspondientes, NO como NO-MEDIBLE.
+
+== Verificacion de gen2_existente (u0mf --calc) ==
+u0mf.py --calc envipe_2025_bd_envipe_2025_dbf -> 0 corridas (de 326)
+u0mf.py --calc encig_2025_encig25_base_datos_dbf -> 0 corridas (de 326)
+u0mf.py --calc encig_2023_encig23_base_datos_dbf -> 0 corridas (de 326)
+u0mf.py --calc latinobarometro2024_bd_stata -> 0 corridas (de 326)
+u0mf.py --calc cses5_modulo5_2016_2021_csv -> 0 corridas (de 326)
+(confirma el "ninguna corrida con <payload_id> (u0mf --calc: 0)" de las filas correspondientes en filas.tsv)
+
+== Reservas ==
+Ninguna consulta toco ENOE 2026, ENVIPE 2026 ni ENCO (ninguna ola). Ninguna cifra reservada fue usada como evidencia de dictamen.

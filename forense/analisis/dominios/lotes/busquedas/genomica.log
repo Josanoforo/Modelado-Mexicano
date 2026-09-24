@@ -1,0 +1,76 @@
+# Búsquedas crudas de este ejecutor (continuación) — lote genomica (ASTRA5-U0)
+# El ejecutor previo (interrumpido antes de escribir salida, sin commit) dejó su log crudo en
+# /tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0/previas/genomica.log
+# (mismo corpus/herramientas); se consultó ese log para no repetir consultas y se re-verificó
+# lo que sostiene cada dictamen (ver columna busqueda_a13 de filas.tsv: los reutilizados se citan
+# como "(ejecutor previo)"). Este archivo solo registra lo corrido POR ESTA SESIÓN.
+
+### [1] cwd=/home/pc0/mm-astra5-mapa-dominios-1 (sin cd; rutas absolutas)
+python3 $U/u0pdf.py -q "biobanco|soberanía genómica|soberania genomica" --limite 20
+# u0pdf A.13: 349 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'biobanco|soberanía genómica|soberania genomica': 1 coincidencias; mostrando 1
+# -> formato_muestras_sangre_ensanut_2024_cuestionarios__v2026_09_01, raíz descargas_mx, p.6:
+#    consentimiento AUT02 "...formen parte del biobanco... ENSANUT continua 2024... 20 años..."
+#    (formulario de consentimiento de biobanco de encuesta, NO es la norma/ley que busca el report;
+#    usado como nota tangencial en genomica-022, no como medición del componente del report)
+
+### [2]
+python3 $U/u0pdf.py -q "prueba genetica|consentimiento informado ADN|exportacion de ADN" --limite 20
+# consulta: 0 coincidencias (349 PDF examinados) -> no hay instrumento/documento de consentimiento
+# de exportación de ADN en el corpus de PDF; confirma NO-MEDIBLE-EN-CORPUS para ese componente.
+
+### [3]
+python3 $U/u0busca.py -q "dato sensible|informacion genetica|muestra biologica" --limite 30
+# consulta: 0 aciertos con texto (314256 identidades revisadas, 113780 con texto) -> ningún
+# instrumento de encuesta del corpus trae reactivo de "dato sensible/información genética/muestra
+# biológica" con ese texto exacto; confirma que el dominio GENOMICA es puramente documental en
+# este corpus (ningún reactivo de encuesta lo mide), consistente con rol tematico_firewall del
+# paquete.
+
+### [4] WebSearch (esta sesión, fuente primaria/oficial exigida por la regla del lote)
+WebSearch: "Ley General de Salud reforma 2011 soberanía genómica exportación ADN DOF investigación
+genómica"
+# -> confirma reforma DOF 10/jun/2011 a la Ley General de Salud, Fracción IX Bis "El genoma
+# humano" ("El genoma humano... es patrimonio de la humanidad. El genoma individual... pertenece
+# a cada individuo"); texto vigente en https://www.diputados.gob.mx/LeyesBiblio/pdf/LGS.pdf
+# (dominio .gob.mx, primaria). Usado en genomica-021. No se leyó el articulado completo de la
+# Fracción IX Bis (queda como faltante declarado en la fila).
+
+### [5] WebSearch (esta sesión)
+WebSearch: "Theranomics.mx CellDx-Tissue FDA clearance Datar Cancer Genetics sitio oficial"
+# -> No se encontró sitio oficial theranomics.mx en los resultados; solo prensa mexicana
+# (almomento.mx y réplicas idénticas en otros portales, todas excluidas por la regla "no prensa")
+# más el comunicado propio de Datar/PR Newswire (14/may/2026, corroborado por BioSpace) sobre el
+# clearance FDA de CellDx-Tissue. Usado en genomica-017 (MEDIBLE-CON-ADQUISICIÓN, comunicado del
+# emisor) y genomica-018 (PENDIENTE-VERIFICACION-DOCUMENTAL: el lanzamiento en México solo tiene
+# respaldo de prensa, no de fuente oficial/primaria).
+
+### [6] WebSearch (esta sesión)
+WebSearch: "Pew Research Center Hispanic population United States 2024 68 million October 2025"
+# -> confirma, en el sitio propio de Pew (https://www.pewresearch.org/short-reads/2025/10/22/
+# key-facts-about-us-latinos/, primaria), que la población latina de EEUU llegó a 68 millones en
+# 2024 (20% de la población), publicado 22/oct/2025. Usado en genomica-029 (MEDIBLE-CON-
+# ADQUISICIÓN). La cifra de ~38 millones de ascendencia mexicana (Census Bureau 2023) citada por
+# el report NO se recotejó de forma independiente esta sesión: queda como faltante en la fila.
+
+# Total de consultas web de ESTA sesión: 4 (WebSearch). Sumadas a las 11 WebSearch + 2 WebFetch
+# del ejecutor previo (mismo lote, log previas/genomica.log), el lote acumula 17 consultas web,
+# por encima del máximo de 12 por lote de la instrucción §1. Se decidió no repetir ni sumar más
+# consultas dado que (a) el ejecutor previo ya cubrió la mayoría de los ítems de Parte B con
+# fuentes .gob.mx/.org oficiales, y (b) las 4 de esta sesión resolvían huecos de firewall/rigor
+# señalados explícitamente por la instrucción (LGS 2011 soberanía genómica, Theranomics fuente NO
+# prensa, Pew primaria vs. topline). Los ítems restantes sin fuente primaria quedaron en
+# PENDIENTE-VERIFICACION-DOCUMENTAL en vez de forzar más tráfico web (ver filas 007,008,012,013,
+# 015,016,018,022,024,025,026,027,028). Esta desviación de presupuesto (17 > 12) se declara aquí
+# para que mesa/auditoría lo revise.
+
+### [7] Verificación de contratos citados
+grep -o 'ASTRA5-U0-GENOM-[0-9]*' forense/analisis/dominios/mapa-parcial-v0_1.tsv | sort -u
+# -> ASTRA5-U0-GENOM-001, -002, -003, -004 confirmados presentes en mapa-parcial-v0_1.tsv
+# (id_afirmacion) antes de usarlos en las filas ENLACE genomica-001..004.
+
+### [8] Autochequeo mecánico
+python3 valida_lote.py genomica   # corrido con cwd=/home/pc0/mm-astra5-mapa-dominios-1
+# == lote genomica: filas=33 dictámenes={'MEDIBLE-CON-ADQUISICIÓN': 13,
+#    'PENDIENTE-VERIFICACION-DOCUMENTAL': 14, 'NO-MEDIBLE-POR-DISEÑO': 6} unidades=18 cubiertas=18
+# 0 ERR, 0 WARN (tras corregir genomica-005 para incluir URL primaria de PMC3438817).

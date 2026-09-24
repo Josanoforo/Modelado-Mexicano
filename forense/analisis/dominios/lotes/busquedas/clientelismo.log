@@ -1,0 +1,133 @@
+# busquedas.log -- lote clientelismo (ASTRA5-U0)
+# cwd de todos los u0busca/u0pdf/u0mf: /home/pc0/mm-astra5-mapa-dominios-1 (sin cd; rutas absolutas)
+# U=/tmp/claude-1000/-home-pc0/427b1d4d-1447-4998-92f5-de9c7e70504b/scratchpad/u0 (nota: INSTRUCCIONES-LOTE.md apuntaba a
+#   una sesion U distinta (6f1534e5-...) que no existe en esta caja; las herramientas u0busca.py/u0pdf.py/u0mf.py reales
+#   se encontraron en la carpeta scratchpad de ESTA sesion, 427b1d4d-..., y se usaron desde ahi.)
+
+## Lectura del report
+Read corpus/forense/Validación_Forense_del_Clientelismo_Electoral_en_México__Agencia_del_Votante__Programas_Sociales_y_Límites_de_la_Compra_de_Voto.md
+  -> 163 lineas, integro. sha256 declarado en el paquete: baa568e2f5023ef9ae41cb6f5c12f2c2ec65d51e8eca3b4a4fa740065922693f
+
+## u0busca.py (9 tablas de inventario; 314256 identidades revisadas, 113780 con texto -- A.13, banner repetido en cada corrida)
+python3 $U/u0busca.py -q "clien1|clientel" --limite 60
+  -> consulta 'clien1|clientel': 2 aciertos con texto
+     LAPOP 2019 (mexico_lapop_americasbarometer_2019_v1_0_w, sha c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57):
+       clien1n = "A un conocido le ofrecieron beneficio por su voto (última elección nacional)"
+       clien1na = "Le ofrecieron un beneficio por su voto en la última elección generales"
+
+python3 $U/u0busca.py -q "compra de voto|comprar el voto" -q "dadiva|dadivas" -q "beneficiario de programa|beneficiario social" -q "pension del bienestar|pension para adultos mayores" --limite 30
+  -> 'compra de voto|comprar el voto': 1 acierto -> ENCUCI2020 AP7_16_3 (compra de votos, percepcion de frecuencia)
+  -> 'dadiva|dadivas': 2 aciertos -> ENCUCI2020 AP5_17/AP5_18 (dadiva por tramite -- corrupcion administrativa, NO electoral; descartado por dominio distinto)
+  -> 'beneficiario de programa|beneficiario social': 0 aciertos
+  -> 'pension del bienestar|pension para adultos mayores': 5 aciertos -> ENUT2019/2024 P6_9_3 (tramito/cobro programa social)
+
+python3 $U/u0busca.py -q "servidor de la nacion|servidores de la nacion" -q "programa social|programas sociales" -q "sembrando vida" -q "jovenes construyendo" -q "beca benito juarez|becas benito juarez" -q "secreto del voto|voto secreto" -q "identificacion partidista|identidad partidista" -q "aprobacion presidencial|aprueba al presidente" --limite 20
+  -> 'servidor de la nacion|servidores de la nacion': 0
+  -> 'programa social|programas sociales': 38 aciertos (ENCUCI2020 AP6_9/AP6_10/AP8_2, ENSAFI2023, ELCOS2012, ENASEM2024, ENASIC2022)
+  -> 'sembrando vida': 0
+  -> 'jovenes construyendo': 19 aciertos (ENCUCI2020 AP6_9/AP6_10, ENIF2021/2024 P3_4, ENSAFI2023, ENASIC2022, ENUT2019/2024, CPV2020)
+  -> 'beca benito juarez|becas benito juarez': 7 aciertos (ENIF2021/2024, ENSAFI2023)
+  -> 'secreto del voto|voto secreto': 0 (texto compuesto no calza; ver AP7_15 abajo con termino simple)
+  -> 'identificacion partidista|identidad partidista': 0
+  -> 'aprobacion presidencial|aprueba al presidente': 0
+
+python3 $U/u0busca.py -q "AP7_" -q "AP8_" --encuesta encuci2020 --limite 60
+  -> 'AP7_': 67 aciertos con texto, incluye AP7_13 (simpatia partidista 2018), AP7_14 (el voto sirve...),
+     AP7_15 ("¿Usted cree que su voto es secreto o se puede descubrir por quién ha votado?"),
+     AP7_16_1..7 (frecuencia percibida de: votos limpios, prohibir oposicion, COMPRA DE VOTOS, ricos compran elecciones,
+     autoridades justas, amenaza a votantes, uso de recursos publicos)
+  -> 'AP8_': 26 aciertos con texto: AP8_1_1/1_2 (conoce a alguien que recibio dinero/regalos por su voto, 2018),
+     AP8_1A (quien lo otorgo: servidor publico/partido), AP8_2_1..9 (tipo de regalo: utilitarios, programas sociales,
+     tramites, materiales de construccion, subsidio alimenticio), AP8_3_1/3_2 (amenazado/presionado para votar o no votar,
+     2018), AP8_3A (quien presiono), AP8_4_01..09 (vio/escucho: pedir fotos de boleta, pedir credencial, robar boletas,
+     embarazar urnas, presionar subordinados, inducir voto religioso)
+
+python3 $U/u0busca.py -q "voto de protesta|antisistema" -q "clase media aspiracion|aspiracional" -q "sindicato magisterial|SNTE" --limite 15
+  -> los tres: 0 aciertos con texto (9 tablas, 113780 identidades con texto revisadas) -- sustenta NO-MEDIBLE-POR-DISEÑO de REGLA 4 (clientelismo-021)
+
+python3 $U/u0busca.py -q "vote for your support|voted for you" --limite 10
+  -> 0 aciertos (CSES en ingles no calza con el plegado de texto en español del inventario)
+
+## u0pdf.py (349 PDF registrados; caché pdftotext)
+python3 $U/u0pdf.py -q "CLIEN1" --idsub lapop --limite 20
+  -> 18 coincidencias en mexico_lapop_americasbarometer_2019_codebook_v1_0_w (sha 4efa5809c3fde487516a60acf782f013444889a775bf368745c8da577cba75ce), p.31-32:
+     "clien1n pensando en las ultimas elecciones nacionales/generales de [ano], ¿algun candidato o alguien de un partido
+     politico le ofrecio un favor, regalo u otro beneficio..." (a un conocido); "clien1na y pensando en las ultimas
+     elecciones presidenciales/generales de [ano] ¿alguien le ofrecio a usted un favor, regalo o beneficio a cambio de
+     su voto?" (al propio entrevistado); codigos 1 si / 2 no / .a no sabe / .b no responde;
+     nota: existe tambien clien4a/clien4b (split-sample experimental), no medidos segun RESULTS-ASTRA5.md, fuera de
+     alcance de este lote.
+
+python3 $U/u0pdf.py -q "clientelis" --idsub lapop --limite 10
+  -> 0 coincidencias (el codebook usa "clien1"/"clientelism" en ingles en otras paginas no indexadas por este termino exacto)
+
+## u0mf.py (1680 entradas en data/manifiesto.yaml)
+python3 $U/u0mf.py --busca cses --limite 30 -> CSES modulo 5 (2016-2021) y modulos 2/3/4 (universo 2026, ver RESERVA); no se encontro bateria de clientelismo/compra de voto especifica en el cuestionario CSES5 con las busquedas de texto (u0busca no arrojo aciertos de CSES en la tabla de reactivos)
+python3 $U/u0mf.py --busca ine --busca computo --limite 30 -> sin coincidencia de "computo" exacto; solo calendarios electorales PEL
+python3 $U/u0mf.py --busca conteos --busca participacion --limite 30 -> 3 entradas: ine_conteos_censales_participacion_2024, ine_conteos_censales_prision_preventiva_2024, ine_conteos_censales_voto_anticipado_2024
+python3 $U/u0mf.py --busca judicial --limite 30 -> 0 entradas (comprueba que los computos judiciales SCJN 2025 NO estan en el manifiesto)
+python3 $U/u0mf.py --busca enem --limite 20 -> 1 entrada espuria (gen2_encrige2020_diseno_muestral, coincide solo por substring "enem" en "encrige"), NO es el Estudio Nacional Electoral de Mexico
+python3 $U/u0mf.py --id ine_conteos_censales_participacion_2024 -> ficha completa leida (usado_para, nota de adquisicion MAESTRA33-A3, fecha_descarga 2026-09-01)
+python3 $U/u0mf.py --busca servidor --busca nacion --limite 20 -> 0 entradas (dentro de la corrida combinada de u0busca ya reportada arriba)
+python3 $U/u0mf.py --calc mexico_lapop_americasbarometer_2019_v1_0_w --limite 20
+  -> 2 corridas: CALC-0002 (SELLADA, cuenta_gen2=SI, 29 resultados, REPRODUCE) y
+     CALC-ARBITRO-MARGINALES-2-LAPOP-0001 (SELLADA, cuenta_gen2=SI, 5 resultados, REPRODUCE);
+     ninguna con el id CALC-LAPOP-PISOS-2019-0001 citado en cotejo-result-politica-v1_0.tsv (posible corrida con otro
+     nombre o aun no registrada en corridas.tsv; declarado como duda para supervisor)
+
+## Lectura directa de archivos del repo citados por el encargo (sin herramienta u0*, via Read/Bash cat)
+Read forense/analisis/dominios/cotejo-result-politica-v1_0.tsv
+  -> 8 lineas (7 filas + cabecera): RESULT-INE-PISOS-2024-TABLA (marcas de voto/LN=55.83%, NO-CONTRASTE-DIRECTO con 59.8%/61.04%
+     citados en forense clientelismo), RESULT-ENCUP-PISOS-2012-TABLA (4 filas, no citado en filas de este lote por no tocar
+     clientelismo directamente), RESULT-LAPOP-PISOS-2019-TABLA (CLIEN1NA oferta=17.173638% IC95 15.26-19.09%,
+     CALC-LAPOP-PISOS-2019-0001; tambien B18 confianza policia, OTRA-OLA-NO-RESUELVE-CONTRATO para POL-001)
+Read /tmp/.../scratchpad/u0/RESULTS-ASTRA5.md -> LAPOP 2018-19 clien1na 17.2%/clien1n 28.4% confirmados como YA MEDIDOS;
+  LAPOP 2023 con b18/b21 (POL-001), sin bateria clien en 2023 segun este indice; ENCUP 2012 sin diseno acreditado
+Read /tmp/.../scratchpad/u0/CATALOGO-CORPUS.md -> grep clientelismo/CSES/ENCUCI/ENIGH/INE: confirma cses5_modulo5_2016_2021,
+  encuci2020 (bd+fd), enigh 2012-2024 (sin modulo de programas sociales especifico, solo ingreso agregado), entradas INE
+  (conteos censales participacion 2024, PREP 2024, marco geografico electoral, fiscalizacion)
+
+## WebSearch (presupuesto del lote: 12 consultas WebSearch+WebFetch; se usaron 12/12, priorizando tier FUERTE)
+Todas fechadas 2026-09-24. Solo dominios oficiales/primarios (journals.uchicago.edu, cambridge.org, onlinelibrary.wiley.com,
+gking.harvard.edu, politicaygobierno.cide.edu, forointernacional.colmex.mx, centralelectoral.ine.mx, computospj2025.ine.mx,
+gob.mx, lopezobrador.org.mx); prensa (jornada.com.mx, infobae.com, expansion.mx) solo como indicio de que el acto ocurrio,
+nunca citada como fuente primaria del dato.
+
+1. "Imai King Velasco Rivera 2020 Journal of Politics Progresa Seguro Popular nonpartisan programmatic policies partisan
+   electoral effects" -> CONFIRMADO: Journal of Politics 82(2):714-730, DOI 10.1086/707059, gking.harvard.edu
+2. "Cantú 2019 Journal of Politics 81 3 tarjetas Soriana clientelism vote buying Mexico" -> existencia del caso confirmada
+   via fuentes secundarias (scielo.org.mx), sin DOI directo en esta consulta
+3. "Larreguy Marshall Querubín 2016 American Political Science Review broker monitoring vote buying Mexico" -> CONFIRMADO:
+   APSR 110(1):160-179, cambridge.org/core
+4. "Greene Simpser 2020 Política y Gobierno compra de votos panel México encuesta" -> CONFIRMADO: Política y Gobierno 27(2),
+   2020, politicaygobierno.cide.edu/index.php/pyg/article/view/1309 (CIDE, sitio oficial de la revista)
+5. "Greene 2024 Money Can't Buy You Love American Journal of Political Science vote buying backlash" -> CONFIRMADO: AJPS
+   68(2):644-660, DOI 10.1111/ajps.12738, onlinelibrary.wiley.com
+6. "Cantú 2019 Journal of Politics 81 3 Corruption at the Grassroots OR Soriana gift cards vote buying DOI" -> hallado
+   por via lateral en la consulta 7: "Groceries for Votes: The Electoral Returns of Vote Buying", Journal of Politics
+   81(3), DOI 10.1086/702945, journals.uchicago.edu (coincide en journal/volumen/paginas con la cita del report)
+7. "Ascencio Chang 2025 Political Science Research and Methods secret ballot vote buying Mexico DOI 10.1017/psrm.2024.54"
+   -> CONFIRMADO: PSRM 13(4):903-922, DOI 10.1017/psrm.2024.54, cambridge.org/core, repository.essex.ac.uk/38289
+8. "Langston 2025 Foro Internacional Servidores de la Nación clientelismo El Colegio de México" -> CONFIRMADO: Foro
+   Internacional 65(3):575-616 (2025), forointernacional.colmex.mx/index.php/fi/article/view/3124, tambien en
+   scielo.org.mx/pdf/fi/v65n3
+9. "ENEM 2024 Castro Cornejo Altamirano Beltrán encuesta nacional elecciones México resultados" -> existencia del
+   instrumento ENEM 2024 (CIDE) confirmada; NO se localizo el articulo/modelo especifico con el coeficiente de
+   "beneficiario" citado por el report
+10. "INE cómputo elección presidencial 2024 participación 61.04% resultados oficiales" -> CONFIRMADO:
+    centralelectoral.ine.mx, 9-jun-2024, 60,115,184 votos = 61.04% participacion
+11. "INE elección judicial 2025 participación 13.02% cómputo oficial ine.mx" -> rango preliminar 12.57%-13.32% y cifra
+    general ~12.86% confirmados via computospj2025.ine.mx (portal oficial identificado, no leido en detalle); el 13.02%
+    especifico de SCJN citado por el report NO se distinguio de la cifra general en esta busqueda
+12. "AMLO conferencia mañanera 4 enero 2023 ayudando a los pobres transformación versión estenográfica gob.mx" ->
+    CONFIRMADO: acto y URL oficiales (gob.mx/amlo/galerias/..., lopezobrador.org.mx/secciones/version-estenografica);
+    transcripcion integra NO leida en este lote (solo snippets de busqueda); La Jornada citada solo como indicio de que
+    el acto ocurrio, no como fuente primaria del texto
+
+## Presupuesto agotado -- casos NO buscados en web en este lote (quedan PENDIENTE-VERIFICACION-DOCUMENTAL o CON-ADQUISICIÓN
+## sin verificacion aparte, declarado fila por fila en dictamen_razon):
+- Cornelius (2002) y Schedler (2004) -- CASO A4 (clientelismo-006): 0 consultas, EXISTENCIA-NO-COMPROBADA
+- De La O (2013) AJPS -- citada junto con Imai-King-Velasco (clientelismo-002), no verificada aparte
+- Larreguy, Montiel Olea & Querubín (2017) AJPS sobre SNTE -- citada junto con B2 (clientelismo-008), no verificada aparte
+- Encuesta nacional INE 2020 (79% cree que la compra de voto es practica comun) -- citada en CASO B3, no verificada aparte
+  (ver complemento de corpus ENCUCI2020 AP7_16_3 en clientelismo-010, instrumento distinto)

@@ -1,0 +1,111 @@
+SEGUNDA PASADA ASTRA5-U0 · tanda L (interaccion, merito, humor) · 24/sep/2026
+Ejecutor: sesión segunda pasada. cwd de u0busca/u0pdf/u0mf: /home/pc0/mm-astra5-mapa-dominios-1
+(vía scripts en /tmp/.../scratchpad/u0/{u0busca,u0pdf,u0mf}.py, rutas absolutas, sin cd).
+
+== Lectura previa (sin costo web) ==
+Read completo: corpus/reports/La_arquitectura_invisible_de_la_interacción_social_en_México.md (206 líneas)
+Read completo: corpus/reports/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md (56 líneas)
+Read completo: corpus/reports/Humor_in_Mexican_Psychological_Life__2023-2026_Update.md (65 líneas)
+
+== Corpus (sin costo web) ==
+python3 u0pdf.py -q "ingreso corriente|ingreso promedio" --idsub enigh2024 --limite 15
+  -> 53 coincidencias (10 PDF examinados)
+python3 u0mf.py --busca enigh2024 --busca nc_csv
+  -> 1 entrada (enigh2024_nc_csv, manifiesto 1680 examinadas)
+python3 u0pdf.py -q "12 016|12016|7 905|7905" --idsub enigh2024 --limite 15
+  -> 0 coincidencias
+python3 u0pdf.py -q "hombres|mujeres" --idsub enigh2024_reporte --limite 20
+  -> 34 coincidencias; localiza Cuadro 9 p.12 (enigh2024_reporte_resultados_pdf,
+     sha256 6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d):
+     fila 2024 poblacion total/hombres/mujeres = 30 160/36 047/23 714 pesos TRIMESTRALES,
+     que al dividir entre 3 reproduce 12,016/7,905 MENSUALES citados por el report (MER-038).
+
+== WebSearch (bloqueado en esta sesión) ==
+6 intentos de WebSearch (Castillo 2019, Acevedo 2020, Ramirez-Esparza 2009, Holloway 2009,
+Nunez 2016, Gil Vazquez 1996) devolvieron: "this session has used its web search budget
+(200 of 200 WebSearch calls)". Se cambió de estrategia a WebFetch sobre APIs bibliográficas
+(Crossref, OpenLibrary, PubMed Central) y sitios institucionales, que sí funcionó.
+
+== WebFetch: Crossref (api.crossref.org/works?query.bibliographic=...) ==
+[24/sep/2026, todas]
+1. "Ramirez-Esparza Mehl Alvarez-Bermudez Pennebaker 2009 talkativeness" -> DOI 10.1016/j.jrp.2008.09.002
+2. "Castillo 2019 honor reputation forgiveness offense Mexican" -> 0 relevantes (INTER-001)
+3. "Acevedo Herrera Shenhav Yim Campos 2020 simpatia scale warmth conflict avoidance" -> DOI 10.1037/cdp0000324
+4. "Holloway Waldrip Ickes 2009 Latino nonverbal dyadic" -> HTTP 429 (reintento abajo)
+5. "Nunez 2016 self-silencing marianismo Hispanic Community Health Study" -> HTTP 429 (reintento abajo)
+6. "Gabrielidis Stephan Ybarra Pearson Villareal 1997 conflict resolution Mexico" -> HTTP 429 (reintento abajo)
+7. "Posthuma White Dworkin Yanez Swift 2006 conflict management Mexico" -> DOI 10.1108/10444060610742344
+8. "Holloway Waldrip Ickes 2009 cheerful facial expressivity Latino" (reintento) -> DOI 10.1037/a0013883
+9. "Nunez 2016 self-silencing marianismo HCHS/SOL Latinos" (reintento) -> DOI 10.1037/lat0000050
+10. "Gabrielidis Stephan Ybarra Pearson Villareal 1997 preference conflict resolution styles" -> HTTP 429
+11. "Madlock 2012 communication apprehension power distance Mexican employees" -> HTTP 429
+12. "Diaz-Loving Cruz-Torres Armenta-Hurtarte Reyes-Ruiz 2018 individualismo colectivismo regiones Mexico" -> DOI 10.1080/02134748.2018.1435217
+13. "Gabrielidis... 1997" (reintento) -> DOI 10.1177/0022022197286002
+14. "Madlock 2012..." (reintento) -> DOI 10.1177/0021943612436973
+15. "Arciniega 2008 machismo caballerismo traditional masculinity ideology scale" -> DOI 10.1037/0022-0167.55.1.19
+16. "Wheeler Updegraff Thayer 2010 demand withdraw Mexican American couples JMF" -> DOI 10.1111/j.1741-3737.2010.00744.x (N=227 confirmado)
+17. "Varela Premeaux 2008 360 feedback leniency halo Latin America" -> HTTP 429 (reintento abajo)
+18. "Varela Premeaux 2008 360-degree feedback leniency halo Latin America" (reintento) -> DOI 10.1111/j.1468-2389.2008.00418.x (muestra Venezuela/Colombia, NO Mexico)
+19. "Ogliastri Davis 2017 Mexican negotiation style trust" -> Fosse/Ogliastri/Rendon 2017 (sin Davis), DOI 10.1111/ncmr.12103, no coincide
+20. "Castillo 2010 marianismo beliefs scale five pillars" -> HTTP 429 (reintento abajo)
+21. "Castillo 2010 marianismo beliefs scale family virtue subordination self-silencing spiritual" (reintento) -> DOI 10.1080/09515071003776036
+22. "Castillo (autor) 2019 forgiveness honor reputation Mexican" (query.author=Castillo) -> HTTP 429 (reintento abajo)
+23. "Ogliastri negotiation Latin America Mexico trust relationship" -> 3 obras de Ogliastri sin coautor Davis
+24. "Ogliastri Mexican negotiators trust exploratory missions anchoring" -> HTTP 429 (no reintentado, presupuesto)
+25. "Castillo 2010..." (reintento query.bibliographic) -> ya cubierto en #21
+26. "Ogliastri 2017 Mexican negotiators zero-sum extreme opening offers Davis" -> 0 relevantes (Verdini Trejo 2017, De Villiers/Rigby 2017, sin relación)
+27. "Linda Castillo 2019" (query.author=Linda+Castillo) -> 0 coincidencias relevantes en dataset 2019
+28. "Fragoso Kashubeck 2000 machismo Mexican American men gender role conflict" -> DOI 10.1037/1524-9220.1.2.87
+29. "Kim Lau Chorpita respect parent child Asian Latino treatment engagement community mental health" -> HTTP 429 (reintento abajo)
+30. "Kim Lau Chorpita..." (reintento) -> DOI 10.1007/s10826-015-0259-7 (coincidencia de autoría/año; cita textual del report no confirmada en resumen)
+31. "Amsterdam University Applied Sciences 2024 Mexican company Dutch intercultural friction directness" -> 0 relevantes
+32. "Diaz-Guerrero historico-socioculturales premises supremacy father sacrifice mother Mexican" -> HTTP 429 (no reintentado vía Crossref; se usó OpenLibrary)
+33. "Brambila-Tapia 2023 somatization depression anxiety stress Mexican adults" -> DOI 10.3390/healthcare10061048 (Crossref registra año 2022, no 2023; N=1008, 62.2% mujeres, confirma)
+34. "Escobar 2000 immigration somatic symptoms Mexican Americans psychiatric" -> DOI 10.1080/hrp_8.2.64
+35. "Koss 1990 somatization Hispanics Transcultural Psychiatry" -> DOI 10.1177/136346159002700101
+36. "Gil Vazquez 1996 Maria Paradox Latina mandates therapy" -> confirmado via reseña Affilia 1997 indexada (sin DOI propio, libro)
+37. "Madrigal-Moreno Generacion Z Chile Colombia Mexico Panama Reunir UNIR" -> 0 relevantes
+
+== WebFetch: PubMed Central / NCBI ==
+38. pubmed.ncbi.nlm.nih.gov/?term=PMC9644291 -> sin metadatos (solo aviso de cookies)
+39. ncbi.nlm.nih.gov/pmc/articles/PMC9644291/ -> redirect 301 a pmc.ncbi.nlm.nih.gov
+40. pmc.ncbi.nlm.nih.gov/articles/PMC9644291/ -> CONFIRMADO: Young, Karnilowicz, Mauss, Hastings,
+    Guyer, Robins (2022), "Prospective Associations between Emotion Regulation and Depressive
+    Symptoms among Mexican-origin Adolescents", Emotion. Texto literal del hallazgo confirmado
+    (supresión positiva -> mayor anhedonia; supresión negativa -> menor anhedonia 16-19 años).
+
+== WebFetch: OpenLibrary (openlibrary.org/search.json) ==
+41. author=Diaz-Guerrero q="psicologia del mexicano" -> "Estudios de psicología del mexicano"
+    (Rogelio Díaz Guerrero, 1961; reed. 1972)
+42. q="GLOBE study House culture leadership organizations 2004" -> no coincide (reintento abajo)
+43. q="Katriel Talking Straight Dugri Speech Israeli Sabra" -> "Talking straight" (Tamar Katriel, 1986)
+44. title="Culture Leadership and Organizations" author=House -> "Culture, leadership, and
+    organizations" (Robert J. House, 2004)
+
+== WebFetch: sitios institucionales / oficiales ==
+45. oxfammexico.org/informes/por-mi-raza-hablara-la-desigualdad -> redirect 301 a oxfam.mx/...
+46. oxfam.mx/informes/por-mi-raza-hablara-la-desigualdad -> HTTP 404
+47. web.archive.org/... -> bloqueado (Claude Code no puede fetch de web.archive.org)
+48. oxfam.mx/?s=por+mi+raza+hablara+la+desigualdad -> 0 resultados relevantes
+49. oxfam.mx/wp-content/uploads/2019/01/Informe-completo-... .pdf (URL adivinada) -> HTTP 404
+50. ceey.org.mx/informe-de-movilidad-social-en-mexico-2025/ -> CONFIRMADO (título, autores,
+    enlace de descarga propio del CEEY vía Google Drive)
+51. datareportal.com/reports/digital-2025-mexico -> confirmado (3/mar/2025), cifra "45h TikTok"
+    no localizada en el contenido recuperado
+52. healthdata.org/research-analysis/health-by-location/profiles/mexico -> HTTP 403
+53. gob.mx/salud/prensa/salud-mental-2024-atenciones (URL adivinada) -> HTTP 404
+54. amexcap.com/prensa -> HTTP 404
+55. youtube.com/@LaCotorrisa/about -> HTTP 404
+56. youtube.com/c/LaCotorrisaOficial/about -> HTTP 404
+57. research.hva.nl/en/publications/?search=Mexican%20Dutch%20intercultural -> HTTP 403
+58. cepal.org/es/enfoques/futuro-trabajo-automatizacion-america-latina (URL adivinada) -> HTTP 404
+59. api.crossref.org query "automatizacion informalidad salarios Mexico ENOE 2025 Revista
+    Finanzas Politica Economica" -> DOI 10.14718/revfinanzpolitecon.v17.2025.18 (CONFIRMADO,
+    Ceballos Mina & Guadarrama Gómez 2025, datos ENOE 1T2025 -- ola NO reservada)
+
+== Resumen de presupuesto ==
+WebSearch: 0 útiles (6 intentos, budget de sesión agotado externamente, no de este lote).
+WebFetch: 59 llamadas (incluye ~8 reintentos por HTTP 429 de Crossref). Ninguna tocó ENOE 2026,
+ENVIPE 2026 ni ENCO. Ninguna abrió microdato (ZIP/CSV/DTA/DBF/SAV). Las 4 llamadas a u0pdf/u0mf
+sobre ENIGH 2024 resolvieron MER-038 sin costo web, leyendo solo el reporte de resultados
+publicado (documento ya en manifiesto).

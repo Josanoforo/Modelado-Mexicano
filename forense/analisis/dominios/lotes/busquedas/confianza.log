@@ -1,0 +1,274 @@
+# Ejecutor 2 del lote confianza -- retoma tras interrupción del ejecutor previo
+# búsquedas del ejecutor previo re-verificadas en previas/confianza.log; aquí solo búsquedas NUEVAS
+
+### research land (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['research land']: 0 entradas coinciden (mostradas 0)
+
+### ipsos (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['ipsos']: 0 entradas coinciden (mostradas 0)
+
+### jovenes / fundacion sm (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+integrantes_ensanut2024_w_icb_catlogo	integrantes_ensanut2024_w_ICB.Catlogo.xlsx	descargas_mx	d0acf24dd918f07c4462ade607171933a2756f4ff6a2fa8fff64193ea4566448	197249			https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php
+ecopred14_bd_dbf	ecopred2014/ecopred14_bd_dbf.zip	data_raw	c1c62e7f201c33f327152be182a2ce767033a054cd210eaacc9aebff6725a81b	22296331			https://www.inegi.org.mx/programas/ecopred/2014/
+descripcion_bases_encuesta_nacional_de_ninos_adolescentes_y_jovenes	losmexicanos_unam_iij/ninosadolescentesyjovenes/Descripcion_bases_Encuesta_Nacional_de_Ninos_Adolescentes_y_Jovenes.xls	data_raw	607d8c2ee7e1ff1bab01adf6b42f179523f029afb7b383ab4696f1b7737f4055	301056			http://www.losmexicanos.unam.mx/
+encuesta_nacional_de_ninos_adolescentes_y_jovenes	losmexicanos_unam_iij/ninosadolescentesyjovenes/Encuesta_Nacional_de_Ninos_Adolescentes_y_Jovenes.csv	data_raw	c2a10933b288b2ff087adb7a926eba95c85ccaa388fdb6dda8ce3e2850aea660	1147041			http://www.losmexicanos.unam.mx/
+encuesta_nacional_de_ninos_adolescentes_y_jovenes_2	losmexicanos_unam_iij/ninosadolescentesyjovenes/Encuesta_Nacional_de_Ninos_Adolescentes_y_Jovenes.dta	data_raw	5437376f5abb684254698f05532277d694057b250d08ebfaf359d083fdfad910	6211324			http://www.losmexicanos.unam.mx/
+encuesta_nacional_de_ninos_adolescentes_y_jovenes_3	losmexicanos_unam_iij/ninosadolescentesyjovenes/Encuesta_Nacional_de_Ninos_Adolescentes_y_Jovenes.sav	data_raw	c592e6868ef426d6736072faf89ecaaca90d8d7d6927bb530b709ca722535f0b	1117744			http://www.losmexicanos.unam.mx/
+encuesta_nacional_de_ninos_adolescentes_y_jovenes_4	losmexicanos_unam_iij/ninosadolescentesyjovenes/Encuesta_Nacional_de_Ninos_Adolescentes_y_Jovenes.xls	data_raw	815c3b4507be9f3019b9a6bf050e5382376aab0bc61679d5f38caf1a65386362	1806848			http://www.losmexicanos.unam.mx/
+# busca ['jovenes']: 7 entradas coinciden (mostradas 7)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['fundacion sm']: 0 entradas coinciden (mostradas 0)
+
+### oxxo (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['oxxo']: 0 entradas coinciden (mostradas 0)
+
+### nubank / nu holdings / nu bank (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['nubank']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['nu holdings']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['nu bank']: 0 entradas coinciden (mostradas 0)
+
+### envipe 2024 manifiesto
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+envipe2024_csv	envipe2024_csv.zip	data_raw	90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2	17837779		ZIP (datos abiertos ENVIPE 2024) -- no inspeccionado, solo hasheado	https://www.inegi.org.mx/contenidos/programas/envipe/2024/datosabiertos/conjunto_de_datos_ENVIPE_2024_csv.zip
+envipe2024_fd_pdf	fd_envipe2024.pdf	data_raw	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	3087144		PDF (Descriptor de archivos / FD)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/doc/fd_envipe2024.pdf
+envipe2024_cuest_principal_pdf	cuest_principal_envipe2024.pdf	data_raw	39a0d899fdef7fb6a5ffce617ed59754055e6cfa2250c23d73b830d41975694f	1308710		PDF (Cuestionario principal)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/doc/cuest_principal_envipe2024.pdf
+envipe2024_cuest_modulo_pdf	cuest_modulo_envipe2024.pdf	data_raw	7628127d5e9bd4424737f7a8cb60bbded28e21c2242d1f412c86367e03836e28	933605		PDF (Cuestionario de módulos)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/doc/cuest_modulo_envipe2024.pdf
+envipe_2024_bd_envipe_2024_rdata	envipe2024/bd_envipe_2024_RData.zip	data_raw	b1217ac453b5c4c52c9bce4d050f3ea852a57577f99fbe3e9adffc45bf17b2b4	17337721		ZIP (1 miembros)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/microdatos/bd_envipe_2024_RData.zip
+envipe_2024_bd_envipe_2024_csv	envipe2024/bd_envipe_2024_csv.zip	data_raw	0af555fad17edd3b5379f0183bbbe553ce805f431a8971393cb1135419040393	23430232		ZIP (6 miembros)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/microdatos/bd_envipe_2024_csv.zip
+envipe_2024_bd_envipe_2024_dbf	envipe2024/bd_envipe_2024_dbf.zip	data_raw	ece8512747e7c6035e77d5c077a41e5cb433431a37a4cbcfa5ad1eeb7c8c5578	33648165		ZIP (6 miembros)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/microdatos/bd_envipe_2024_dbf.zip
+envipe_2024_bd_envipe_2024_dta	envipe2024/bd_envipe_2024_dta.zip	data_raw	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	22669258		ZIP (6 miembros)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/microdatos/bd_envipe_2024_dta.zip
+envipe_2024_bd_envipe_2024_sav	envipe2024/bd_envipe_2024_sav.zip	data_raw	2af741d8d1ee16c957315b995518ac51b962d94d22a342b2ff65152e87de1ecc	23160739		ZIP (6 miembros)	https://www.inegi.org.mx/contenidos/programas/envipe/2024/microdatos/bd_envipe_2024_sav.zip
+envipe2026_csv	envipe2026_csv.zip	data_raw	dd79f589eb6ed7d3675cc86e21ac9bbdbf269913963091d8698d6e28e0540a17	20258782		ZIP (datos abiertos ENVIPE 2026) -- no inspeccionado, solo hasheado	https://www.inegi.org.mx/contenidos/programas/envipe/2026/datosabiertos/conjunto_de_datos_ENVIPE_2026_csv.zip
+# busca ['envipe', '2024']: 10 entradas coinciden (mostradas 10)
+
+### latinobarometro busca 2024/informe/resultados
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+latinobarometro2024_cuestionario_esp	latinobarometro2024_cuestionario_esp.pdf	data_raw	f1fe995d24081906d91ff7646aa4afa7ecdf0e1728c3192d1dd264b89172fb7b	430128		pdf	https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-cuestionario-esp.pdf
+latinobarometro2024_fichas_tecnicas	latinobarometro2024_fichas_tecnicas.pdf	data_raw	e5dc667acbb2ba3d8518462ba669bcfaa66e01d6acc13e46239c5af7d20bfbca	16325		pdf	https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-fichas-tecnicas.pdf
+encup_2012_base_datos_xlsx	encup_2012_base_datos_xlsx.xlsx	data_raw	50341d97a3e305e6ed3348757632e5b23ab2e87b2052304961905619d85612e4	4814178		XLSX, base de datos ENCUP 2012 (última edición)	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/BaseDatos_ENCUP_2012_Final.xlsx
+encup_2001_cuestionario_pdf	encup_2001_cuestionario_pdf.pdf	data_raw	bb33eeddc30bc8acfea43400c34b9d0e53ad3bb9d6c63d92fbc9f16c835f98cf	147691		PDF, cuestionario ENCUP primera edición 2001	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Primera_2001_ENCUP.pdf
+encup_2003_cuestionario_pdf	encup_2003_cuestionario_pdf.pdf	data_raw	acae1fe19bad780c6d9d7feda9a1739263a28118956011417cc357200270f24c	233736		PDF, cuestionario ENCUP segunda edición 2003	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Segunda_2003_ENCUP.pdf
+encup_2005_cuestionario_pdf	encup_2005_cuestionario_pdf.pdf	data_raw	c6f4a3c77002949fcda99be40f3342f27241916b60e1fd63d3a8a5e3dbb57562	116061		PDF, cuestionario ENCUP tercera edición 2005	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Tercera_2005_ENCUP.pdf
+encup_2008_cuestionario_pdf	encup_2008_cuestionario_pdf.pdf	data_raw	df4337c8e95a3764b8c0c03a0c7dd6b91d97c30910a1042ec23a01749d3a5cbd	396678		PDF, cuestionario ENCUP cuarta edición 2008	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario_Cuarta_2008_ENCUP.pdf
+encup_2012_cuestionario_pdf	encup_2012_cuestionario_pdf.pdf	data_raw	33be2b2192530dee6d916cb7dc517483d608e47b73f097ffe68899dcdd96e7c6	1026475		PDF, cuestionario ENCUP quinta edición 2012 (última edición)	https://fomentocivico.segob.gob.mx/work/models/FomentoCivico/Documentos/PDF/CultDemo/Cuestionario-Quinta_2012_ENCUP.pdf
+latinobarometro2024_bd_stata	latinobarometro2024_bd_stata.zip	data_raw	469a94c55395b36c4d1f013851a7e79d0619620640a64653eca79afce21f5e97	6691592		ZIP con microdato Stata (.dta, esp/eng) y cuestionarios PDF (esp/eng), Latinobarómetro 2024	https://www.latinobarometro.org/documents/LAT-2024/latinobarometro-2024-stata-v20250817.zip
+# busca ['latinobarometro']: 9 entradas coinciden (mostradas 9)
+
+### Chong Nopo / Corbacho / Morris Klesner / Bardhan / Yañez (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+adq15_jpal_electoral_replication_files_24ft7wz	ADQ15_JPAL_Experimento_Informacion_Electoral_2009/Replication-files-24ft7wz.zip	data_raw	bade222ed3139d5af2579e0cb33fd286e044e79e6c0de3814a0298ea636c473e	184801		ZIP	http://campuspress.yale.edu/anadelao/files/2010/11/Replication-files-24ft7wz.zip
+adq15_jpal_electoral_jpal_evaluacion_landing	ADQ15_JPAL_Experimento_Informacion_Electoral_2009/jpal_evaluacion_landing.html	data_raw	55206c0237981559d612fccfa0a13341a68ac6da2681a423744c6a7957a944eb	104790		HTML	https://www.povertyactionlab.org/evaluation/information-dissemination-campaign-and-voters-behavior-2009-municipal-elections-mexico
+# busca ['chong']: 2 entradas coinciden (mostradas 2)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['corbacho']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['klesner']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['bardhan']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['yanez']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['great place']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['datareportal']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['campos-vazquez']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+enigh2024_reporte_resultados_pdf	enigh2024_reporte_resultados.pdf	data_raw	6b091e2d640b6682ca568203637d2a327fbcae950ba7ef66c441c5970568903d	1150732		PDF, reporte de resultados 23/25, 27 páginas	https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enigh/ENIGH2024_RR.pdf
+# busca ['gini']: 1 entradas coinciden (mostradas 1)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+engasto_2012_engasto12_fd	engasto2012/engasto12_fd.pdf	data_raw	aabc23ca59246bb534180c1970951dd99d055f951f6d1917656ad92a598e667a	1461889		PDF	https://www.inegi.org.mx/contenidos/programas/engasto/2012/doc/engasto12_fd.pdf
+engasto_2012_gasto_dbf	engasto2013/gasto_dbf.zip	data_raw	422ef16e6b80682fa78fec4a464e43dc000af2207a22a2fee04cbcfe4b1f6887	60663633		ZIP (1 miembros)	https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_dbf.zip
+engasto_2012_gasto_de_consumo_ajustado_constante_dbf	engasto2013/gasto_de_consumo_ajustado_constante_dbf.zip	data_raw	80473e363e158dcaedd15a443107f8e9909f88d670fc06758a5897004bd8cc73	63269584		ZIP (1 miembros)	https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_dbf.zip
+engasto_2012_gasto_de_consumo_ajustado_constante_dta	engasto2013/gasto_de_consumo_ajustado_constante_dta.zip	data_raw	5e63fcaa909157bfea1b1669ca7631aebed03a96ab0f58d82fd0cfbadb53a181	49248833		ZIP (1 miembros)	https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_dta.zip
+engasto_2012_gasto_de_consumo_ajustado_constante_sav	engasto2013/gasto_de_consumo_ajustado_constante_sav.zip	data_raw	afde0a418546576a93267c1e92af54ff57524c70bac25b1da472b5eb16750b69	79293283		ZIP (1 miembros)	https://www.inegi.org.mx/contenidos/programas/engasto/2012/microdatos/gasto_de_consumo_ajustado_constante_sav.zip
+# busca ['bti']: 29 entradas coinciden (mostradas 5)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['transparency']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['wilson center']: 0 entradas coinciden (mostradas 0)
+
+### ENCIG 2023 seccion XI confianza en instituciones -- lista completa de items (cuestionario)
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta '11.1': 3 coincidencias (texto de página aplanado); mostrando 3
+manifest_id	sha256	raiz	pagina	contexto
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	… seccion xi. confianza en instituciones 11.1 en su opinion, ¿cuanta confianza le generan... 11.1a (institucion) ¿cual de las registra un solo codigo dos / tres calificaciones le otorga en (respuesta en mu…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	… seccion xi. confianza en instituciones 11.1 en su opinion, ¿cuanta confianza le generan... 11.1a (institucion) ¿cual de las registra un solo codigo dos / tres calificaciones le otorga en (respuesta en mucha confianza............................1 11.1)? al…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	…n... 11.1a (institucion) ¿cual de las registra un solo codigo dos / tres calificaciones le otorga en (respuesta en mucha confianza............................1 11.1)? algo de confianza...........................2 algo de desconfianza.....................3 mucha desconfianza......................4 muestre la tarjeta "b / la…
+
+### ENCIG 2023 estructura -- confianza items p11_1
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'p11_1_': 25 coincidencias (texto de página aplanado); mostrando 25
+manifest_id	sha256	raiz	pagina	contexto
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.65	… calidad e impacto gubernamental 2023. encig. estructura de la base de datos. 2024 11.1 en su opinion, ¿cuanta confianza le generan… 14 universidades publicas? p11_1_01 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 15 policias? p11_1_02 numeri…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.65	…ublicas? p11_1_01 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 15 policias? p11_1_02 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 16 hospitales publicos? p11_…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.65	…1_1_02 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 16 hospitales publicos? p11_1_03 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 17 presidencia de la republi…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.65	…merico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 17 presidencia de la republica y p11_1_04 numerico 1 mucha confianza 1 secretarias de estado? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 18 em…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.65	…ucha confianza 1 secretarias de estado? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 18 empresarios(as)? p11_1_05 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 62 (continua) inegi. encuest…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	… 19 gubernatura de su estado/ p11_1_06 numerico 1 mucha confianza 1 jefatura de gobierno (cdmx)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	… jefatura de gobierno (cdmx)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 20 companeros(as) del trabajo p11_1_07 numerico 1 mucha confianza 1 (jefes[as] o subordinados[as])? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no respo…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…[as] o subordinados[as])? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 21 presidencias municipales de su p11_1_08 numerico 1 mucha confianza 1 estado/alcaldias (cdmx)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza inegi. encuesta nacional de calidad e i…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…a nacional de calidad e impacto gubernamental 2023. encig. estructura de la base de datos. 2024 5 no aplica 9 no sabe / no responde 22 parientes como tios(as), p11_1_09 numerico 1 mucha confianza 1 primos(as), sobrinos(as), etcetera? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no r…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…fianza 1 primos(as), sobrinos(as), etcetera? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 23 sindicatos? p11_1_10 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 24 vecinos(as)? p11_1_11 num…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…atos? p11_1_10 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 24 vecinos(as)? p11_1_11 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde camaras de diputados y 25 p1…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…1_11 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde camaras de diputados y 25 p11_1_12 numerico 1 mucha confianza 1 senadores? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 26 medios de comu…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.66	…o 1 mucha confianza 1 senadores? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 26 medios de comunicacion? p11_1_13 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza (continua) 63 inegi. encuesta nacional de calidad e impacto gubernamental 2023. snieg…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	… 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 27 institutos electorales? p11_1_14 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 28 comisiones de derechos p1…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	…1_14 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 28 comisiones de derechos p11_1_15 numerico 1 mucha confianza 1 humanos? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 29 escuelas publica…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	… 1 mucha confianza 1 humanos? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 29 escuelas publicas de nivel p11_1_16 numerico 1 mucha confianza 1 basico? 2 algo de confianza inegi. encuesta nacional de calidad e impacto gubernamental 2023. encig. estructura de la base de da…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	…bernamental 2023. encig. estructura de la base de datos. 2024 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 30 jueces(ezas) y p11_1_17 numerico 1 mucha confianza 1 magistrados(as)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 31 instituc…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	…onfianza 1 magistrados(as)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 31 instituciones religiosas, su p11_1_18 numerico 1 mucha confianza 1 iglesia o grupo religioso? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 3…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	…nfianza 1 iglesia o grupo religioso? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 32 partidos politicos? p11_1_19 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 33 guardia nacional? p11_1_2…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	… p11_1_19 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 33 guardia nacional? p11_1_20 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 34 ejercito y marina? p11_1_…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.67	…p11_1_20 numerico 1 mucha confianza 1 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 34 ejercito y marina? p11_1_21 numerico 1 mucha confianza 1 64 (continua) inegi. encuesta nacional de calidad e impacto gubernamental 2023. snieg. informacion de interes nacional …
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.68	… 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde ministerio publico o fiscalia p11_1_22 mucha confianza 35 1 1 estatal? numerico 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 36 servidores(as…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.68	…a 35 1 1 estatal? numerico 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 36 servidores(as) publicos(as) o p11_1_23 numerico 1 mucha confianza 1 empleados(as) de gobierno? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica inegi. encuesta nacional …
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.68	…encuesta nacional de calidad e impacto gubernamental 2023. encig. estructura de la base de datos. 2024 9 no sabe / no responde 37 organizaciones de la sociedad p11_1_24 numerico 1 mucha confianza 1 civil (ong’s)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 38 organismos…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.68	…o 1 mucha confianza 1 civil (ong’s)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfianza 5 no aplica 9 no sabe / no responde 38 organismos publicos p11_1_25 numerico 1 mucha confianza 1 autonomos/descentralizados (conapred, ine, cndh, inegi, etcetera)? 2 algo de confianza 3 algo de desconfianza 4 mucha desconfian…
+
+### ENCIG 2023 cuestionario p.25 (lista de instituciones bateria XI) via 'ejercito' 'fuerzas armadas' 'marina'
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'ejercito|fuerzas armadas|marina': 4 coincidencias (texto de página aplanado); mostrando 4
+manifest_id	sha256	raiz	pagina	contexto
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.4	…uardia nacional?���������������������������������������������������������������������� 09 parientes como tios(as), primos(as), sobrinos(as), etcetera?���� 21 ejercito y marina?���������������������������������������������������������������������� 10 sindicatos?���������������������������������������������������������������…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.4	…onal?���������������������������������������������������������������������� 09 parientes como tios(as), primos(as), sobrinos(as), etcetera?���� 21 ejercito y marina?���������������������������������������������������������������������� 10 sindicatos?������������������������������������������������������������������������…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	…�������������������� 20 guardia nacional?������������������������������������������������������������������������������������������������������������������ 21 ejercito y marina?������������������������������������������������������������������������������������������������������������������ 22 ministerio publico o fiscalia e…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	…��������� 20 guardia nacional?������������������������������������������������������������������������������������������������������������������ 21 ejercito y marina?������������������������������������������������������������������������������������������������������������������ 22 ministerio publico o fiscalia estatal?�…
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'su familia': 2 coincidencias (texto de página aplanado); mostrando 2
+manifest_id	sha256	raiz	pagina	contexto
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.5	…������������������������������������ muy insatisfecho(a)��������������������������������������������� 6 4 son seguros en terminos de delincuencia para usted y su familia?� no sabe / no responde���������������������������������������� 9 4.5 de acuerdo con su experiencia, ¿la recoleccion de basura de 4.5a considerando las carac…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.6	… calificaciones no sabe / no responde����������� 9 algo satisfecho(a)������������������������������������������������ 3 le otorga? 1 contribuye a que usted y su familia se sientan seguros(as) dentro algo insatisfecho(a)��������������������������������������������� 4 registra con numero insatisfecho(a)������������������������…
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'partidos politicos': 2 coincidencias (texto de página aplanado); mostrando 2
+manifest_id	sha256	raiz	pagina	contexto
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.4	…obierno (cdmx)?���� 18 instituciones religiosas, su iglesia o grupo religioso?���������� 07 companeros(as) del trabajo (jefes[as] o subordinados[as])?��� 19 partidos politicos?��������������������������������������������������������������������� 08 presidencias municipales de su estado/alcaldias (cdmx)?� 20 guardia nacional?������…
+encig23_cuestionario_pdf	65000ad38419da504e46b34a0a2426f218d1ba6e604ad37a14762bbd07881e1e	data_raw	p.24	…������������������������������������������ 18 instituciones religiosas, su iglesia o grupo religioso?������������������������������������������������������ 19 partidos politicos?����������������������������������������������������������������������������������������������������������������� 20 guardia nacional?�����������������������…
+
+### WVS otras olas / series longitudinales / time series (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+f00006635_wvs7_questionnaire_mexico_2018_spanish	F00006635-WVS7_Questionnaire_Mexico_2018_Spanish.pdf	descargas_mx	d84607c68d30985f537a18048c5c903b2f5b73e57420f37689ab67758bac387d	96941			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=6635
+f00008602_wvs7_methodology_report_mexico_2018	F00008602-WVS7_Methodology_Report_Mexico_2018.pdf	descargas_mx	ba4ebdd333ca4e46bb79b0ac7f8988eb4a2475ba82ec61ba87542082fe9c95ee	320171			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=8602
+f00010700_wvs7_information_about_the_team_mexico_2018	F00010700-WVS7_Information_about_the_team_Mexico_2018.pdf	descargas_mx	fd2d50c0cb9b7b7001f16c6d3cd45b10c73b0684ec525544e9a5ff0636e2e884	84609			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=10700
+f00010701_wvs7_sample_design_mexico_2018	F00010701-WVS7_Sample_Design_Mexico_2018.pdf	descargas_mx	148b41f4315af1060a434fe35a76e874fdae87a2db40425f679ece29f6df8b66	209667			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=10701
+f00011928_world_values_survey_wave_7_2017_2020_mexico_v3_0	F00011928-World_Values_Survey_Wave_7_2017-2020_Mexico_v3.0.pdf	descargas_mx	faee54eeaff1ca170bc86b3f26c0593df99b576d035d44055f08470f97b03005	3064693			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=11928
+f00013032_wvs_wave_7_mexico_spss_v5_1	F00013032-WVS_Wave_7_Mexico_Spss_v5.1.zip	descargas_mx	4b5f387199ded46d22c760ef1aa65ce82f38d77efc1c75db5fc174856bdc364d	407655			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13032
+f00013084_wvs_wave_7_mexico_stata_v5_1	F00013084-WVS_Wave_7_Mexico_Stata_v5.1.zip	descargas_mx	a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4	412519			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13084
+f00013146_wvs_wave_7_mexico_csv_v5_1	F00013146-WVS_Wave_7_Mexico_Csv_v5.1.zip	descargas_mx	cf0b774e1f6611b5531cfb66db982a8c3443e658bb0befcb1ef053d790ca4afe	443663			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13146
+f00013203_wvs_wave_7_mexico_excel_v5_1	F00013203-WVS_Wave_7_Mexico_Excel_v5.1.xlsx	descargas_mx	b7665211531d4dbda82640ea78f1b92b2b53820f69b1674a27018a2c7e31f200	2373291			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13203
+f00013259_wvs_wave_7_mexico_exceltxt_v5_0	F00013259-WVS_Wave_7_Mexico_ExcelTxt_v5.0.xlsx	descargas_mx	a2272e83db5a1ad9c6cb28fbf085a2e5b42bb0bb30764e1c2c4ab9abf72bc4d0	2696219			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13259
+f00013316_wvs_wave_7_mexico_csvtext_v5_1	F00013316-WVS_Wave_7_Mexico_CsvText_v5.1.zip	descargas_mx	2cb902597fd6164f075b446c684fcfba16ff4969f3719a13f2f80d769005b726	1013749			https://www.worldvaluessurvey.org/AJDownload.jsp DOID=13316
+# busca ['wvs']: 11 entradas coinciden (mostradas 11)
+
+### ENIF 2024 P5_13 P7_9 completo (contexto para 82% efectivo, procedencia individual)
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'p5_13|p7_9_1_3': 6 aciertos con texto; mostrando 6
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+p5_13|p7_9_1_3	contexto:24366	enif2024	2024	enif2024_csv.zip	enif2024_csv	a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c	data_raw		conjunto_de_datos_tmodulo_enif_2024/conjunto_de_datos/conjunto_de_datos_tmodulo_enif2024.csv	p5_13	5.13 ¿Cuál es la razón principal por la que prefiere pagar sus compras en efectivo?	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=537
+p5_13|p7_9_1_3	contexto:24541	enif2024	2024	enif2024_csv.zip	enif2024_csv	a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c	data_raw		conjunto_de_datos_tmodulo_enif_2024/conjunto_de_datos/conjunto_de_datos_tmodulo_enif2024.csv	p7_9_1_3	7.9 Le voy a dar esta tarjeta (ENTREGUE LA TARJETA 5). De las opciones, ¿dígame cuáles utilizó para realizar compras en mercados, tienditas de abarrotes, u otras (carnicería, verdulería, ferretería, estética)? - Efectivo	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=942
+p5_13|p7_9_1_3	contexto:26205	enif2024	2024	enif_2024_bd_csv.zip	enif_2024_enif_2024_bd_csv	00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039	data_raw		TMODULO.csv	P5_13	5.13 ¿Cuál es la razón principal por la que prefiere pagar sus compras en efectivo?	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=537
+p5_13|p7_9_1_3	contexto:26380	enif2024	2024	enif_2024_bd_csv.zip	enif_2024_enif_2024_bd_csv	00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039	data_raw		TMODULO.csv	P7_9_1_3	7.9 Le voy a dar esta tarjeta (ENTREGUE LA TARJETA 5). De las opciones, ¿dígame cuáles utilizó para realizar compras en mercados, tienditas de abarrotes, u otras (carnicería, verdulería, ferretería, estética)? - Efectivo	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=942
+p5_13|p7_9_1_3	fd:12224	enif2024	NO_DETERMINADO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	data_raw		TMODULO	P5_13	5.13 ¿Cuál es la razón principal por la que prefiere pagar sus compras en efectivo?					
+p5_13|p7_9_1_3	fd:12399	enif2024	NO_DETERMINADO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	data_raw		TMODULO	P7_9_1_3	7.9 Le voy a dar esta tarjeta (ENTREGUE LA TARJETA 5). De las opciones, ¿dígame cuáles utilizó para realizar compras en mercados, tienditas de abarrotes, u otras (carnicería, verdulería, ferretería, estética)? - Efectivo					
+
+### autores/estudios varios (manifiesto): triandis, ramirez-esparza, mogro-wilson, blanco, fukuyama, delhey, heidenheimer, krozer, flores-yeffal
+-- triandis --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['triandis']: 0 entradas coinciden (mostradas 0)
+-- ramirez-esparza --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['ramirez-esparza']: 0 entradas coinciden (mostradas 0)
+-- mogro-wilson --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['mogro-wilson']: 0 entradas coinciden (mostradas 0)
+-- blanco --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+cngmd2023_m4_proteccion_civil_cuestionario_pdf	cngmd_2023_m4.pdf	data_raw	21b830b45b444a65eac2b30af2f4c5bff81f5bbbc6ea527d10b02ff0abf83be0	1939327		PDF	https://www.inegi.org.mx/programas/cngmd/2023/
+cngmd2023_m5_justicia_civica_cuestionario_pdf	cngmd_2023_m5.pdf	data_raw	82bfaef6dd7986f2bbfea2d6175ebc35e951f016873a0860e28ac3ee5ef63be0	2643423		PDF	https://www.inegi.org.mx/programas/cngmd/2023/
+cngmd2023_m6_agua_saneamiento_cuestionario_pdf	cngmd_2023_m6.pdf	data_raw	c57cb73d8d01bdf042c3dc4677ba64ccf8c44fdaf6e61ce363da9ba1a6d5a284	9251680		PDF	https://www.inegi.org.mx/programas/cngmd/2023/
+cngmd2023_m7_residuos_solidos_cuestionario_pdf	cngmd_2023_m7.pdf	data_raw	ad39d975e43265660ccbcc5ef250d436c0436dc3100981cc0d6a6941a1328635	3334783		PDF	https://www.inegi.org.mx/programas/cngmd/2023/
+# busca ['blanco']: 4 entradas coinciden (mostradas 4)
+-- fukuyama --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['fukuyama']: 0 entradas coinciden (mostradas 0)
+-- delhey --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['delhey']: 0 entradas coinciden (mostradas 0)
+-- heidenheimer --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['heidenheimer']: 0 entradas coinciden (mostradas 0)
+-- krozer --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['krozer']: 0 entradas coinciden (mostradas 0)
+-- flores-yeffal --
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['flores-yeffal']: 0 entradas coinciden (mostradas 0)
+
+### ENVIPE 2024 denuncio/carpeta (mismo patron que 2025 BP1_20/21/24)
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'denuncio|denuncia': 78 aciertos con texto; mostrando 10
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+denuncio|denuncia	contexto:20763	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_20	1.20 ¿Acudió ante el Ministerio Público o Fiscalía Estatal a denunciar el delito?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=71;tabla=TMod_Vic
+denuncio|denuncia	contexto:20764	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_21	1.21 ¿Algún(a) otro(a) integrante de este hogar acudió a denunciar el delito ante el Ministerio Público o Fiscalía Estatal?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=72;tabla=TMod_Vic
+denuncio|denuncia	contexto:20765	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_22	1.22 ¿Conoció usted todo el proceso de denuncia que se hizo ante el Ministerio Público o Fiscalía Estatal?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=72;tabla=TMod_Vic
+denuncio|denuncia	contexto:20766	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_23	1.23 ¿Cuál fue la razón principal por la que no denunció o no denunciaron el delito ante el Ministerio Público o Fiscalía Estatal?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=72;tabla=TMod_Vic
+denuncio|denuncia	contexto:20770	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_27	1.27 ¿Cuánto tiempo le llevó realizar el trámite de su denuncia ante el Ministerio Público o Fiscalía Estatal?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=73;tabla=TMod_Vic
+denuncio|denuncia	contexto:20771	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_28	1.28 ¿Cuál fue la razón principal por la que denunció ante el Ministerio Público o Fiscalía Estatal?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=73;tabla=TMod_Vic
+denuncio|denuncia	contexto:20772	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_29	1.29 ¿Cómo califica el trato que le dieron en la Agencia del Ministerio Público o Fiscalía Estatal cuando acudió a denunciar?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=73;tabla=TMod_Vic
+denuncio|denuncia	contexto:20783	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_32_1	1.32 Existen otros medios para denunciar el delito. ¿Usted utilizó… denuncia telefónica a números de emergencia (066, 089, 911)?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=74;tabla=TMod_Vic
+denuncio|denuncia	contexto:20784	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_32_2	1.32 Existen otros medios para denunciar el delito. ¿Usted utilizó… página web (internet)?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=74;tabla=TMod_Vic
+denuncio|denuncia	contexto:20785	envipe2024	2024	envipe2024/bd_envipe_2024_dta.zip	envipe_2024_bd_envipe_2024_dta	e2f5c57cd9103524dacf27c9d13b2c33c7dc0476daa8fc028aae5efb913a8b18	data_raw		TMod_Vic.dta	BP1_32_3	1.32 Existen otros medios para denunciar el delito. ¿Usted utilizó… correo electrónico a una dirección de denuncias?	PREGUNTA_DICCIONARIO	fd_envipe2024.pdf	envipe2024_fd_pdf	f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5	miembro=fd_envipe2024.pdf;pagina=74;tabla=TMod_Vic
+
+### ENCIG 2023 estructura: variable de entidad/estado (geografia)
+# u0pdf A.13: 1 PDF registrados examinados (caché pdftotext de 349)
+# consulta 'entidad federativa|cve_ent': 21 coincidencias (texto de página aplanado); mostrando 10
+manifest_id	sha256	raiz	pagina	contexto
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.5	… la descripcion de estos campos es la siguiente: la encig 2023 cuenta con tres factores de expansion; uno corresponde a la poblacion de 18 cve_ent= clave de la entidad federativa anos y mas (fac_p18), otro a la vivienda (fac_viv) upm= unidad primaria de muestreo y el ultimo a los tramites captados en la seccion vi v_sel=vivienda selecci…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.5	…n relaciona con la informacion contenida en el resto de ciudades de cien mil habitantes y mas. las tablas a traves de la llave primaria formada por los campos: cve_ent+upm+v_sel 1.4 factor de expansion la descripcion de estos campos es la siguiente: la encig 2023 cuenta con tres factores de expansion; uno corresponde a la pob…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.5	…4 factor de expansion la descripcion de estos campos es la siguiente: la encig 2023 cuenta con tres factores de expansion; uno corresponde a la poblacion de 18 cve_ent= clave de la entidad federativa anos y mas (fac_p18), otro a la vivienda (fac_viv) upm= unidad primaria de muestreo y el ultimo a los tramites captados en la s…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…on general. inegi. encuesta nacional de calidad e impacto gubernamental 2023. encig. estructura de la base de datos. 2024 numero de variables 267 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, r_ele tabla encig2023_02_residentes_sec_2 contenido informacion relacionada con los integrantes del hogar princ…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…l de calidad e impacto gubernamental 2023. encig. estructura de la base de datos. 2024 numero de variables 267 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, r_ele tabla encig2023_02_residentes_sec_2 contenido informacion relacionada con los integrantes del hogar principal y las caracteristicas sociodem…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…s_sec_2 contenido informacion relacionada con los integrantes del hogar principal y las caracteristicas sociodemograficas. numero de variables 25 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, n_ren tabla encig2023_03_sec_6 contenido informacion sobre las experiencias del informante seleccionado con los…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…ionada con los integrantes del hogar principal y las caracteristicas sociodemograficas. numero de variables 25 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, n_ren tabla encig2023_03_sec_6 contenido informacion sobre las experiencias del informante seleccionado con los pagos, tramites y servicios public…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…c_6 contenido informacion sobre las experiencias del informante seleccionado con los pagos, tramites y servicios publicos. numero de variables 23 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, r_ele, n_tra tabla encig2023_04_sec_7 informacion relacionada con la calidad de los tramites y de los servicios…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	… experiencias del informante seleccionado con los pagos, tramites y servicios publicos. numero de variables 23 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, r_ele, n_tra tabla encig2023_04_sec_7 informacion relacionada con la calidad de los tramites y de los servicios publicos realizados de manera pers…
+encig23_estructura_base_datos_pdf	eb89820cd58af0d8799387a376b9e60b062ed59daea74cdbea7ff3b4ee13a906	data_raw	p.6	…alidad de los tramites y de los servicios publicos realizados de manera personal contenido por el informante seleccionado. numero de variables 51 llave foranea cve_ent, upm, v_sel llave primaria cve_ent, upm, v_sel, r_ele, n_tra 3 inegi. encuesta nacional de calidad e impacto gubernamental 2023. snieg. informacion de interes …
+
+### compadrazgo / palanca / catolicismo (manifiesto)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['compadrazgo']: 0 entradas coinciden (mostradas 0)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+cses5_modulo5_2016_2021_csv	cses5_csv.zip	data_raw	4e8bc74a9e62ec405f172346a1cfe28fecd66934d0176ea4a0493c3807fd7e13	16604927		ZIP (contiene 1 CSV)	https://cses.org/wp-content/uploads/2023/07/cses5_csv.zip
+gps_do_files_country_level	GPS_do-files_country_level.zip	data_raw	1c6da5b663cfdf126b475a4e95a80eba9b42819f372d08567b0630fd8a9c90c6	1362		ZIP (contiene .do de Stata)	https://gps.econ.uni-bonn.de/file/GPS_do-files_country_level.zip
+wb2661_asq_questionnaires	wb2661_ASQ_Questionnaires.zip	data_raw	3ea807864522a499f2611e2936693e8b64263472d34a5c1fb2efe21ac6d669de	7573363		ZIP (PDFs por edad en meses)	https://microdata.worldbank.org/catalog/2661/download/38386
+banxico_encuesta_competencias_financieras_2024	banxico_encuesta_competencias_financieras_2024.xlsx	data_raw	8745de04acee2137d4c130fa65e690d996f9b39fbc31315d238579b8352a5245	1210013		XLSX	https://www.banxico.org.mx/publicaciones-y-prensa/encuesta-de-competencias-financieras-de-la-poblaci/microdatos/{746E6FB8-DA99-CB2F-3D57-ABC5118E154B}.xlsx
+zenodo_electoral_precinct_level_mexico_municipal	zenodo_electoral_precinct_level_mexico_municipal.zip	data_raw	8998b4dca1712216a3aa871138afc9a6a06c907191cc4a750771f274250f1acf	739952144		ZIP	https://zenodo.org/api/records/14991955/files/brunocalderonh/The-Mexican-municipal-elections-electoral-precinct-level-database-Static_v1.zip/content
+# busca ['palanca']: 111 entradas coinciden (mostradas 5)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['catolicismo']: 0 entradas coinciden (mostradas 0)
+
+### ENIF 2024 P5_4_8 (app no bancaria, mecanismo puente fisico)
+# u0busca A.13: 9 tablas (contexto,contexto_fd26,descargas_mx,descargas_mx_v1_1,ext,fd,fd_ext,fd_recuperado,v1_2); 314256 identidades revisadas, 113780 con texto
+# consulta 'p5_4_8': 3 aciertos con texto; mostrando 3
+consulta	tabla_inv	instrumento	ola	payload_archivo	payload_id	payload_sha256	payload_raiz	reserva	archivo_miembro	variable_id	texto_reactivo	texto_tipo	fuente_texto	fuente_id	fuente_sha256	referencia_fuente
+p5_4_8	contexto:24420	enif2024	2024	enif2024_csv.zip	enif2024_csv	a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c	data_raw		conjunto_de_datos_tmodulo_enif_2024/conjunto_de_datos/conjunto_de_datos_tmodulo_enif2024.csv	p5_4_8	5.4 ¿Usted tiene cuenta contratada por internet o aplicación (no bancaria) como Mercado Pago, Nu o Spin de Oxxo?	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=429
+p5_4_8	contexto:26259	enif2024	2024	enif_2024_bd_csv.zip	enif_2024_enif_2024_bd_csv	00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039	data_raw		TMODULO.csv	P5_4_8	5.4 ¿Usted tiene cuenta contratada por internet o aplicación (no bancaria) como Mercado Pago, Nu o Spin de Oxxo?	PREGUNTA_DICCIONARIO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	miembro=enif_2024_fd.xlsx;hoja=TMODULO;fila=429
+p5_4_8	fd:12278	enif2024	NO_DETERMINADO	enif_2024_fd.xlsx	enif2024_fd_xlsx	17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2	data_raw		TMODULO	P5_4_8	5.4 ¿Usted tiene cuenta contratada por internet o aplicación (no bancaria) como Mercado Pago, Nu o Spin de Oxxo?					
+
+### uruguay (manifiesto, para confianza-034)
+# u0mf A.13: 1680 entradas examinadas en data/manifiesto.yaml
+# busca ['uruguay']: 0 entradas coinciden (mostradas 0)
+
+### Nota de cumplimiento de reserva (regla dura #3)
+# La consulta 'u0mf --busca envipe --busca 2024' (arriba) devolvió incidentalmente la fila
+# envipe2026_csv (coincide por contener la subcadena 'envipe'). ENVIPE 2026 esta RESERVADA
+# (regla dura #3 de INSTRUCCIONES-LOTE.md): esa fila NO se uso como evidencia de ningun
+# dictamen en filas.tsv; solo se anota aqui que existe en el manifiesto y esta reservada.
+# Ninguna cifra de ENOE 2026, ENVIPE 2026 ni ENCO fue leida, buscada ni citada en este lote.

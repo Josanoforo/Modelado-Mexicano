@@ -1,0 +1,101 @@
+ASTRA5-U0 · lote credito-popular · busquedas.log
+Archivo: corpus/forense/Crédito_Popular_en_México__Morosidad_Auditada__Fondeo_y_Gobierno_Corporativo_como_Verdaderos_Riesgos_Estructurales.md
+Fecha de la sesión: 23-sep-2026 (revisión de supervisor y correcciones: 24-sep-2026)
+cwd de las herramientas: /home/pc0/mm-astra5-mapa-dominios-1 ; U=/tmp/claude-1000/-home-pc0/6f1534e5-675f-47f1-b62b-5d894fee74fc/scratchpad/u0
+
+== u0mf.py (manifiesto, A.13: 1680 entradas examinadas por corrida) ==
+python3 $U/u0mf.py --busca cnbv --limite 40            -> 30 coincidencias (ADQ15_CNBV_AhorroFinanciero_Financiamiento [6], ADQ15_CNBV_BDIF_inclusion_financiera [11], banxico_encuesta_competencias_financieras_* , gen2_cnbv_040_1a_r16_imor_tipo_cartera, gen2_banxico_imor_consumo_producto_mensual_2026t1_html, etc.)
+python3 $U/u0mf.py --busca banxico --limite 40         -> 31 coincidencias (R3.4_Banxico_CoDi_SPEI/*, banxico_encuesta_competencias_financieras_*, gen2_banxico_imor_consumo_producto_mensual_2026t1_html, gen2_banxico_satisfaccion_usuarios_*)
+python3 $U/u0mf.py --busca imor --limite 40            -> 2 coincidencias (gen2_cnbv_040_1a_r16_imor_tipo_cartera; gen2_banxico_imor_consumo_producto_mensual_2026t1_html)
+python3 $U/u0mf.py --busca ensafi --limite 40          -> 5 coincidencias (bd_csv_zip, fd_xlsx_zip, cuestionario_pdf, diseno_muestral, presentacion_resultados)
+python3 $U/u0mf.py --busca azteca                      -> 0
+python3 $U/u0mf.py --busca bancoppel                   -> 0
+python3 $U/u0mf.py --busca famsa                       -> 0
+python3 $U/u0mf.py --busca credito_real                -> 0
+python3 $U/u0mf.py --busca findep                      -> 0
+python3 $U/u0mf.py --busca independencia               -> 0
+python3 $U/u0mf.py --busca sofipo                      -> 0
+python3 $U/u0mf.py --busca came                        -> 59 coincidencias, TODAS falsos positivos por subcadena en usado_para/nota de ENSANUT/ENOE/ENUT/ENCUP (verificado leyendo la lista; ninguna es la SOFIPO CAME)
+python3 $U/u0mf.py --busca nu_mexico                    -> 0
+python3 $U/u0mf.py --busca elektra                     -> 0
+python3 $U/u0mf.py --busca coppel                       -> 0
+python3 $U/u0mf.py --busca moody                        -> 0
+python3 $U/u0mf.py --busca hr_ratings                   -> 0
+python3 $U/u0mf.py --busca fitch                        -> 0
+python3 $U/u0mf.py --busca pcr_verum                    -> 0
+python3 $U/u0mf.py --busca ipab                         -> 0
+python3 $U/u0mf.py --busca 1812                         -> 1 coincidencia, falso positivo (ENSANUT2024 rec24h..., no relacionado a Famsa)
+python3 $U/u0mf.py --busca dof                          -> 1 coincidencia, falso positivo (ENSANUT2024 cuestionario, no relacionado)
+python3 $U/u0mf.py --busca shcp                         -> 11 coincidencias, TODAS "Descargas Manuales/itind*_2026*.pdf" no determinadas, no relacionadas a Famsa
+python3 $U/u0mf.py --busca bruhn                        -> 0
+python3 $U/u0mf.py --id gen2_cnbv_040_1a_r16_imor_tipo_cartera --id gen2_banxico_imor_consumo_producto_mensual_2026t1_html
+   -> notas leídas: R16 = "XLS OLE con macros; reporte 040-1A-R16; foto cacheada 202112 ... la macro refresca sp_obtiene_reporte contra una conexión interna UNC de CNBV, por lo que no constituye la serie histórica pública solicitada"
+   -> Banxico = "Serie oficial equivalente, no R16 CNBV: 2016-01 a 2026-03; banca comercial; incluye Sofomes ER subsidiarias; excluye CI Banco; ruptura IFRS9 desde 2022-01"
+python3 $U/u0mf.py --calc gen2_cnbv_040_1a_r16_imor_tipo_cartera                  -> 0 corridas (de 326)
+python3 $U/u0mf.py --calc gen2_banxico_imor_consumo_producto_mensual_2026t1_html  -> 0 corridas (de 326)
+python3 $U/u0mf.py --calc ensafi2023_bd_csv_zip                                    -> 3 corridas: CALC-ENSAFI-DISENO-0001 (SELLADA,SI,REPRODUCE); CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001 (SUPERADO,PENDIENTE-DE-MESA,NO-VERIFICADO); -v1_1 (SELLADA,SI,REPRODUCE) -- ninguna mide atraso/ingreso/deuda máxima (P6_7,P5_22,P6_13)
+python3 $U/u0mf.py --busca " banxico_informe_anual_idmf_2020" (via --calc)         -> 0 corridas
+
+== u0busca.py (reactivos, A.13: 9 tablas; 314256 identidades; 113780 con texto) ==
+python3 $U/u0busca.py -q "atraso|atrasado" --encuesta ensafi --limite 40
+   -> 3 aciertos: P6_10_7 "6.10 Durante el último mes, para cubrir sus gastos, ¿usted se atrasó en el pago de algún crédito o préstamo?" (fd fila 383); P6_7 "6.7 ¿Usted se ha atrasado en el pago de uno de estos préstamos o créditos?" (fd fila 350); P1_10 (TVIVIENDA, atraso en crédito de vivienda, fd fila 93)
+python3 $U/u0busca.py -q "pago mensual" -q "ingreso" --encuesta ensafi --limite 40
+   -> "pago mensual": 0. "ingreso": 36 aciertos, incl. P4_2 (ingreso hogar), P4_3 (rango), P5_22 "5.22 En su opinión, ¿de cuánto debería ser su ingreso mensual suficiente para cubrir todos sus gastos?" (fd fila 225)
+python3 $U/u0busca.py -q "maximo" -q "capacidad de pago" -q "podria pagar" --encuesta ensafi --limite 20
+   -> "maximo": 2 (P6_12 monto máximo endeudarse; P6_13 "6.13 ¿cuál podría ser el monto máximo mensual en deudas que usted podría pagar sin afectar su patrimonio?", fd fila 411). "capacidad de pago": 0. "podria pagar": 9 (incl. P6_13, P7_6_1..8 urgencia económica)
+
+== u0pdf.py (349 PDF registrados, texto por página) ==
+python3 $U/u0pdf.py -q "se ha atrasado en el pago" --idsub ensafi --limite 10
+   -> 2: ensafi2023_cuestionario_pdf p.16 (texto de la pregunta 6.7/6.8); gen2_ensafi2023_presentacion_resultados p.14: "el 27.3% de la población de 18 años y más con deuda, se ha atrasado en el pago de algún préstamo o crédito. 28.6 28.3 26.6 ... para mujeres es de ... 26.1% y para los hombres de 28.5 por ciento. 18 a 29 años 30 a 49 años 50 a 64 años 65 años [y más]"
+python3 $U/u0pdf.py -q "monto maximo mensual" --idsub ensafi --contexto 500 --limite 5
+   -> 2: cuestionario p.17 (texto pregunta 6.12/6.13); presentación p.16: "...es de 2,262 y para los mujer... hombres de 3,382 pesos... nota: se excluye la población que no especificó el monto máximo mensual posible de endeudamiento. fuente: ensafi 2023."
+python3 $U/u0pdf.py -q "ingreso mensual suficiente" --idsub ensafi --contexto 400 --limite 10
+   -> 1: cuestionario p.14 (texto pregunta 5.22); NO se localizó en esta sesión el valor pooled nacional (16,421) en la página muestreada de la presentación de resultados.
+python3 $U/u0pdf.py -q "bruhn" --limite 5
+   -> 3, TODAS de ddi_documentation_english_microdata_2049 (Bruhn/Lara Ibarra/McKenzie, "Minimal Impact of a Large-Scale Financial Education Program in Mexico City", 2013-14) -- documento DISTINTO al citado por el forense (Bruhn & Love 2014, J.Finance).
+python3 $U/u0pdf.py -q "famsa" --limite 5
+   -> 9 coincidencias (349 PDF examinados); relevantes: banxico_informe_anual_idmf_2020 p.21,p.33,p.68 -- confirma: "como consecuencia de que el 30 de junio de 2020 la junta de gobierno de la CNBV acordó revocar la autorización otorgada a Banco Ahorro Famsa, S.A. Institución de Banca Múltiple" (p.33 y p.68).
+python3 $U/u0pdf.py -q "credito real" --limite 5
+   -> 5 coincidencias; ninguna es EEFF/BMV propio de la empresa (banxico_encuesta_competencias_financieras_*_manual sólo la menciona como ejemplo de microfinanciera en una pregunta).
+python3 $U/u0pdf.py -q "CAME" --limite 5
+   -> 1535 coincidencias, TODAS falsos positivos de subcadena (encuesta, campo, etc. en cuestionarios ENSANUT/CAM_mexico); ninguna es la SOFIPO CAME.
+
+== Verificación directa del archivo CNBV 040-1A-R16 (gen2_cnbv_040_1a_r16_imor_tipo_cartera) ==
+Motivo: la revisión de supervisor citó contenido específico de la "hoja MINFO" de este archivo; se verificó contra la fuente antes de incorporarlo (no se aceptó la afirmación relevada sin comprobarla).
+find -L data/raw -iname "*R16*"  -> data/raw/GEN2_FUENTES_FINANCIERAS_20/040_1a_R16.xls (símlink data/raw -> /home/pc0/mm-corpus/raw; el payload SÍ está físicamente en disco, no sólo registrado)
+file data/raw/.../040_1a_R16.xls -> "Composite Document File V2 Document ... Microsoft Excel ... Create Time/Date: Fri Sep 11 16:36:24 2009"
+strings -e l / strings (ASCII) sobre el archivo, sin ejecutar macros -> confirma menciones "MINFO", "MINFO!A1", "&o_IMOR", líneas de macro VBA que referencian "Sheets(\"minfo\").Select"
+python3 -c "import xlrd; wb=xlrd.open_workbook(...,on_demand=True); print(wb.sheet_names())"
+   -> hojas=['MINFO','Notas','BD','Formato','Query','Notas T','Calidad de Información']
+python3 -c "import xlrd; sh=wb.sheet_by_name('MINFO'); [leer celdas fila 0-24, col 0-7]"
+   -> fila 8: 'Concepto' | 'Total Banca Múltiple' (col C: periodo 202112.0)
+      fila 10: código 4022300.0 | 'IMOR Cartera total' | 1.9691
+      fila 17: 4022305.0 | '     IMOR Cartera total de consumo' | 3.3494
+      fila 18: 4022306.0 | '          IMOR Tarjeta de Crédito' | 3.6436
+      fila 19: 4022307.0 | '          IMOR Personales' | 5.2126
+      fila 20: 4022308.0 | '          IMOR Nómina' | 2.3573
+      fila 21: 4022315.0 | '          IMOR ABCD' | 2.8536
+      fila 22: 4022309.0 | '          IMOR Automotriz' | 2.1309
+      fila 23: 4022310.0 | '          IMOR Adq. de Bienes Muebles' | 6.0811
+   Lectura acotada a celdas de etiqueta/leyenda (hoja MINFO, filas 8-23); no se abrió la hoja BD de detalle ni se ejecutó ninguna macro. Confirma la nota del supervisor: la copia cacheada es "Total Banca Múltiple" (sistema), NO desagregada por institución, y corresponde a periodo 202112 (dic-2021), no a fechas más recientes citadas por el forense.
+
+== WebSearch / WebFetch (presupuesto 12 consultas; usadas 7: 5 WebSearch + 2 WebFetch) ==
+1. WebSearch "Bruhn Love 'Real Impact of Improved Access to Finance' Mexico Journal of Finance Banco Azteca" (23-sep-2026)
+   -> confirma Bruhn & Love (2014), Journal of Finance 69:1347-1376; DOI 10.1111/jofi.12091 (Wiley); SSRN abstract_id=2285013; coincide con Semantic Scholar, ResearchGate, World Bank openknowledge.
+2. WebSearch "DOF revocación Banco Ahorro Famsa 1 julio 2020 CNBV comunicado SHCP 058" (23-sep-2026)
+   -> confirma DOF nota_detalle codigo=5595953 fecha=01/07/2020 (dof.gob.mx); SIDOF docFuente/5595953; CNBV Comunicado_058.pdf; SHCP comunicado-no-058 (gob.mx/shcp); IPAB comunicado-no-058 (gob.mx/ipab); ICAP -6.02% cierre marzo-2020.
+3. WebSearch "Crédito Real impago bono suizo febrero 2022 Fitch retiró calificaciones default" (23-sep-2026)
+   -> confirma default 9-feb-2022 (bono CHF170M/US$184M), caída de acciones, liquidación judicial, Fitch RD->D y retiro de calificaciones 2-sep-2022 (bmv.com.mx/docs-pub/eventoca/eventoca_1164095_2.pdf; bloomberglinea.com; elfinanciero.com.mx; milenio.com).
+4. WebSearch "CNBV interviene CAME SOFIPO junio 2025 NICAP IMORA" (23-sep-2026)
+   -> confirma intervención 13-jun-2025 (junta 9-jun-2025), categoría 4 NICAP, "insolvencia financiera e irregularidades contables" (gob.mx/cnbv, expansion.mx, jornada.com.mx, cronica.com.mx); El Financiero 22-sep-2025 reporta revocación de licencia posterior (disolución) -- consistente y no contradice al forense.
+5. WebFetch https://www.banxico.org.mx/TablasWeb/informes-trimestrales/enero-marzo-2026/B133C3DC-462F-40C1-B2BA-04086A1CFAB1.html (23-sep-2026)
+   -> resumen de modelo pequeño (poco confiable, tabla renderizada por cliente): "personales feb-2024=1.54; consumo total abr-2021=4.50 (tarjetas 3.37, nómina 2.60, ABCD 6.57); consumo total mar-2026=3.26". DISCREPA en orden de magnitud con el 10.8%/23.9% del forense; declarado como discrepancia sin resolver (filas 006,037), no como hecho.
+6. WebSearch "BanCoppel HR Ratings IMOR IMORA 3T24 PCR Verum ICV consolidado 2024" (23-sep-2026)
+   -> snippet con ICV 8.4% (2023:8.3%; 2022:6.4%), IMORA 15.7% (vs 13.5% 3T23), capitalización 17.3% (hrratings.com/pdf/Bancoppel_ReporteRevisiAn_2024.pdf, 16-dic-2024) -- coincide con cifras del forense.
+7. WebFetch https://www.hrratings.com/pdf/Bancoppel_ReporteRevisiAn_2024.pdf (23-sep-2026)
+   -> "no puedo localizar las cifras... contenido principalmente comprimido/codificado (FlateDecode)"; PDF binario, sin texto extraíble por esta vía. Documento queda identificado por URL, no comprobado con página exacta.
+
+Presupuesto web usado: 7 de 12 consultas (5 WebSearch + 2 WebFetch). No se usó el resto del presupuesto en Nu México/CAME numérico específico ni en Findep/Sofomes (quedan PENDIENTE-VERIFICACION-DOCUMENTAL, ver filas 005,029,032 de filas.tsv) ni en la columna de mercado de BanCoppel por producto (fila 007/018) ni en el comunicado/nota de BanCoppel sobre 1.6 mujeres/hombre (fila 020) ni en la entrevista de Niño de Rivera 2015 (fila 014) ni en la norma CNBV de inicios de 2026 (fila 046) ni en S&P Global Market Intelligence (fila 025) ni en la nota de Bloomberg Línea de Crédito Real 46% (fila 004/027).
+
+== Reservas (regla 3 de INSTRUCCIONES-LOTE.md) ==
+Ninguna búsqueda de este lote tocó ENOE 2026, ENVIPE 2026 ni ENCO. u0busca.py marca RESERVA-ASTRA5-U1-... explícitamente en manifiesto para enoe_2026_1t_csv (visto incidentalmente al buscar "came", sin usarlo como evidencia de este lote).
