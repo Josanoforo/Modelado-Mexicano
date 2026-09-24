@@ -472,7 +472,20 @@ jobs:
               echo "AVISO GUARDA-TAMANO: $f es ${MB} MB, sobre el umbral de 50 MB de la firma de mesa (autorizado a ~70 MB entre COMMIT-A y COMMIT-B de GEN2-TUBERIA-VISTA-NORMALIZADA-2)."
             fi
           done
-          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml
+          # ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 (24/sep/2026), P1: único
+          # productor del tablero. Va DESPUÉS de la guarda de tamaño de
+          # VISTA-NORMALIZADA-2 (decisión de dirección 24/sep, comunicada a
+          # mesa sin objeción). `git fetch -q origin main` resuelve el ref
+          # `origin/main` en este checkout -- el checkout de este job sólo
+          # trae `refs/remotes/origin/ci` (arriba), y el guardián de P2 en
+          # `tablero_programa.py` exige que ese ref resuelva y coincida con
+          # HEAD antes de escribir; sin este fetch se negaría siempre aquí
+          # también. HEAD no se movió desde el checkout (el commit `[deriva]`
+          # es más abajo), así que coincide con `origin/main` sin necesitar
+          # `--permitir-rama`.
+          git fetch -q origin main
+          python3 tools/tablero_programa.py --actualiza
+          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md
           if git diff --cached --quiet; then
             echo "sin diff derivado -- nada que publicar"
             exit 0

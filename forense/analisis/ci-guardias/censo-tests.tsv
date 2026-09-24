@@ -256,4 +256,5 @@ tests/test_astra5_endireh_discriminacion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-
 tests/test_astra5_endireh_nofisica_bc.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	2 pruebas sintéticas, exit 0 sin corpus
 tests/test_lapop_pisos_olas.py	pytest	NO	(ninguna)	NO	0.9	CORRE-EN-CI	exit 0 sin corpus
 tests/test_ine_sicee_participacion.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
+tests/test_encig_pisos_gen2.py	pytest	NO	numpy,pandas,pytest	SI	0.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_encig_duelo_2025.py, cuyos fixtures importa); el oro (b) necesita corpus y se omite sin él
 tests/test_vista.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus

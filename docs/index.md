@@ -11,6 +11,7 @@ Los retadores evaluados no superaron los criterios de superioridad fijados en su
 - [Qué prueba el programa]({{ '/guia-lectura-publica.html' | relative_url }})
 - [Verificar estructura y sellos]({{ '/verificar.html' | relative_url }})
 - [Corpus y catálogo]({{ '/catalogo.html' | relative_url }})
+- [Tablero del programa]({{ '/tablero.html' | relative_url }})
 - [Licencia y contacto]({{ '/contacto.html' | relative_url }})
 
 El [README completo](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md) deriva los contadores del corte actual. La [advertencia de alcance](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/AVISO-DE-ALCANCE.md) explica unidades, incertidumbre y límites.

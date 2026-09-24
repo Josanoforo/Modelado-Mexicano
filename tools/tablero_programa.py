@@ -239,6 +239,24 @@ MARCA_INICIO = "<!-- TABLERO-DERIVADO:BEGIN -->"
 MARCA_FIN = "<!-- TABLERO-DERIVADO:END -->"
 
 
+def _compara_head_origin_main(head: str, remoto: str) -> tuple[bool, str]:
+    """P2 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): ¿HEAD es exactamente
+    `origin/main`? Puro -- recibe los dos SHA ya resueltos, para que el test
+    no dependa del estado de git real. `remoto` vacío es NO-RESUELTO (un
+    checkout que no trae el ref, no una coincidencia por default -- A.13:
+    un negativo que no examinó nada no es negativo, y un `==` contra cadena
+    vacía sería justo ese negativo fabricado)."""
+    if not remoto:
+        return False, "origin/main no resoluble (falta `git fetch origin main` antes de --actualiza)"
+    if head != remoto:
+        return False, f"HEAD ({head}) != origin/main ({remoto})"
+    return True, ""
+
+
+def _es_origin_main_limpio() -> tuple[bool, str]:
+    return _compara_head_origin_main(sh("git rev-parse HEAD"), sh("git rev-parse -q --verify origin/main"))
+
+
 def _marco_vigente(familia: str) -> tuple[str, str]:
     """(version, ruta) del marco `familia` de version maxima en el arbol.
     Deriva; no clava una version en el codigo (ACTO GEN2-E6)."""
@@ -587,12 +605,17 @@ def _linea_celdas_validadas(cv: dict) -> str:
     return "\n".join(L)
 
 
-def render_bloque_vivo(I: dict[str, dict]) -> str:
+def render_bloque_vivo(I: dict[str, dict], no_es_origin_main: bool = False) -> str:
     """Construye el bloque factual committeado a partir del dict de derivar_indicadores().
 
     Solo hechos mecanicos y estables entre corridas -- sin cifras efimeras
     (edad en dias de FP, ramas remotas presentes), que siguen disponibles en
     la salida interactiva normal (markdown/--json) pero no aqui.
+
+    `no_es_origin_main` (P2, ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): True solo
+    cuando `--actualiza --permitir-rama` corrió fuera de `origin/main`.
+    Antepone el rótulo `NO-ES-ORIGIN-MAIN` -- `docs/PROTOCOLO-TABLERO.md`
+    dice que una conversación lo ignora.
     """
     fp_ids = ", ".join(a["id"] for a in (_v(I, "fp_abiertas") or [])) or "(ninguna)"
     # P3 (GEN2-TABLERO-SENAL-1): la cola deja de listar las 64 lineas de
@@ -614,20 +637,16 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         for p in cpc.get("pendientes_de_mesa", [])
     ) or "  (ninguna)"
 
-    ramas_detalle = _v(I, "ramas_remotas_detalle") or []
-    ramas_n = len(ramas_detalle)
-    ramas_txt = "\n".join(
-        f"  - `{r['nombre']}`: {r['delante_de_main']} delante / {r['detras_de_main']} detrás de main · "
-        f"último commit `{r['fecha_ultimo_commit']}`"
-        for r in ramas_detalle
-    ) or "  (ninguna)"
-    if ramas_n > 0:
-        ramas_cabecera = f"**{ramas_n} rama(s) presente(s) en origin (política de cero)**"
-    else:
-        ramas_cabecera = "0 ramas presentes en origin (política de cero cumplida)"
-
     partes = []
     partes.append(MARCA_INICIO)
+    if no_es_origin_main:
+        partes.append(
+            "**NO-ES-ORIGIN-MAIN** -- generado con `--permitir-rama` fuera de "
+            "`origin/main`. El único productor del canal es el job `guardias` "
+            "de CI (`.github/workflows/verify.yml`) sobre `origin/main`; una "
+            "conversación de mesa lo ignora (`docs/PROTOCOLO-TABLERO.md`)."
+        )
+        partes.append("")
     partes.append("## Estado vivo derivado")
     partes.append("")
     partes.append(_linea_celdas_validadas(_v(I, "celdas_validadas") or {}))
@@ -653,9 +672,15 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
         f"- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: {cpc_cuenta_txt} "
         f"(selladas total `{cpc.get('selladas_total')}`) · `PENDIENTE-DE-MESA`:\n{cpc_pend_txt}"
     )
-    partes.append(
-        f"- **Ramas presentes en origin.** {ramas_cabecera}:\n{ramas_txt}"
-    )
+    # "Ramas presentes en origin" NO va en este bloque committeado (P4, ACTO
+    # GEN2-TUBERIA-TABLERO-EN-CANAL-1): `ramas_remotas_detalle` corre `git
+    # ls-remote`/`git fetch` en vivo contra un repo compartido con sesiones
+    # concurrentes -- dos derivaciones sobre el MISMO HEAD, minutos aparte,
+    # ya difieren aquí (medido: 3→4 ramas en dos corridas seguidas de este
+    # acto). Coincide con lo que el docstring de esta función ya prometía
+    # ("sin cifras efímeras... ramas remotas presentes") y que el bloque no
+    # cumplía. Sigue disponible sin cambios en `--json` y en `tools/
+    # tablero_vista.py` -- el indicador no se borra, solo sale del committeado.
     partes.append(
         f"- **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. "
         f"marco vigente `marco-M-{_v(I, 'marco_vigente_sorteado')}` sorteado / "
@@ -793,7 +818,7 @@ def render_bloque_vivo(I: dict[str, dict]) -> str:
     return "\n".join(partes)
 
 
-def _actualiza_tablero(ruta: str, I: dict[str, dict]) -> int:
+def _actualiza_tablero(ruta: str, I: dict[str, dict], no_es_origin_main: bool = False) -> int:
     if not os.path.exists(ruta):
         print(f"error: no existe {ruta}", file=sys.stderr)
         return 1
@@ -812,7 +837,7 @@ def _actualiza_tablero(ruta: str, I: dict[str, dict]) -> int:
     if i_begin >= i_end:
         print(f"error: BEGIN debe preceder a END en {ruta}", file=sys.stderr)
         return 1
-    nuevo_bloque = render_bloque_vivo(I)
+    nuevo_bloque = render_bloque_vivo(I, no_es_origin_main=no_es_origin_main)
     fin_bloque = i_end + len(MARCA_FIN)
     nuevo_texto = texto[:i_begin] + nuevo_bloque + texto[fin_bloque:]
     if nuevo_texto == texto:
@@ -833,11 +858,36 @@ def _actualiza_tablero(ruta: str, I: dict[str, dict]) -> int:
 
 
 def main() -> None:
-    I = derivar_indicadores()
-
     if "--actualiza" in sys.argv:
-        rc = _actualiza_tablero("forense/tablero/TABLERO-PROGRAMA.md", I)
+        # P2 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): único productor sobre
+        # `origin/main`. Defecto real que corrige (evidencia en el encargo):
+        # `/tramite` T0 regeneró el bloque desde una rama (commit `78f79c80`,
+        # SHA del bloque `8a867a04`, ¿árbol==origin/main? False) mientras el
+        # job de CI producía otro bloque distinto (SHA `3423b498`, True) --
+        # dos productores, dos resultados. `--permitir-rama` es la única
+        # salida y rotula el bloque `NO-ES-ORIGIN-MAIN` (nunca silenciosa).
+        permitir_rama = "--permitir-rama" in sys.argv
+        ok, motivo = _es_origin_main_limpio()
+        if not ok and not permitir_rama:
+            print(
+                f"error: --actualiza se niega -- {motivo}. El único productor "
+                "del canal es el job `guardias` de CI sobre origin/main "
+                "(.github/workflows/verify.yml); usa --permitir-rama para "
+                "forzarlo de todos modos -- rotula el bloque NO-ES-ORIGIN-MAIN.",
+                file=sys.stderr,
+            )
+            sys.exit(1)
+        no_es_origin_main = not ok
+        I = derivar_indicadores()
+        rc = _actualiza_tablero("forense/tablero/TABLERO-PROGRAMA.md", I, no_es_origin_main=no_es_origin_main)
+        if rc == 0 and os.path.exists("docs/tablero.md"):
+            # P3: misma derivación, misma función ya probada
+            # (idempotencia/preservación) -- una segunda salida, no un
+            # segundo productor.
+            rc = _actualiza_tablero("docs/tablero.md", I, no_es_origin_main=no_es_origin_main)
         sys.exit(rc)
+
+    I = derivar_indicadores()
 
     if "--json" in sys.argv:
         print(json.dumps(I, ensure_ascii=False, indent=2, default=str))
