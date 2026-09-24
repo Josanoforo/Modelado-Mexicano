@@ -2912,7 +2912,7 @@
     FF-5563
 
 - id: enoe_n_diseno_muestral_pdf
-  usado_para: ASTRA5-U1-TRABAJO-ENOE -- diseño estratificado/UPM de ENOEN y edición posterior
+  usado_para: 'ASTRA5-U1-TRABAJO-ENOE -- diseño estratificado/UPM de ENOEN y edición posterior; también ASTRA5-U0 ENOE 2024 T3, diseño muestral (PR #1079, filas ENOE-001..003; url directa https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_diseno_muestral.pdf). Fusiona la entrada duplicada (mismo id, sha y archivo) de 0e671c1a; GEN2-ASTRA5-U5-ADQUISICION-1, 2026-09-24'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_trim3_2020-trim4_2022.zip
   fecha_descarga: '2026-07-30'
   descargado_por: extracción documental de paquete ya registrado, ASTRA5-U1, 23/sep/2026
@@ -30891,19 +30891,6 @@
     de usar'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   nota: DOI 10.7910/DVN/P6NC0M; documentación/código de asignación
-
-- id: enoe_n_diseno_muestral_pdf
-  usado_para: 'ASTRA5-U0 ENOE 2024 T3, diseño muestral; PR #1079, filas ENOE-001..003'
-  url_origen: https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_diseno_muestral.pdf
-  fecha_descarga: '2026-09-23'
-  descargado_por: documento ya presente en corpus compartido; ASTRA5-U0 verificó hash físico
-  archivo: enoe_n_diseno_muestral.pdf
-  sha256: 42eaa300fcbd4bec98c2a38f3edb5912bcc2208fe69a54a0c1103b75a85dbd09
-  tamano_bytes: 1192674
-  formato: PDF, diseño muestral ENOE Nueva Edición
-  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html);
-    crédito a INEGI
-  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
 
 - id: endutih2024_cuestionario_pdf
   usado_para: 'ASTRA5-U0 ENDUTIH 2024, PR #1079 fila TEC-001'
