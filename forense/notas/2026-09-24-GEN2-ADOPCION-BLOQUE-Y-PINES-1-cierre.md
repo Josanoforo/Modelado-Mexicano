@@ -15,6 +15,24 @@ lo confirma: el rótulo derivado de la rama (`NEW-SESSION-Q4K5JC`) no trae
 (`GEN2-ADOPCION-BLOQUE-Y-PINES-1`), como el propio tool indica hacer cuando
 ambos difieren.
 
+**Corrección declarada (24/sep/2026, antes de abrir el PR).** P-N escribió
+primero un pin `catalogo-momentos::M08` (vía `i-CRUDO`); pasó las cuatro
+guardas de `pines_mesa.valida_pin` (`ACEPTADO`) y movió
+`dependencias_numericas_legacy_activas` 146→145. `python3 tests/check.py
+--baseline --parallel` corrido sobre ese commit dio **ROJO, 1 FAIL nuevo**:
+`T-REPRO (c) milpa/catalogo-momentos-v0_1.tsv:M08: valor materializado
+'NO-DECLARADO-EN-EL-REGISTRO' != RESULT-ENVIPE-SEG-CON-P-DENUNCIA
+(0.7909064453831163)`. `milpa/catalogo-momentos-v0_1.tsv` (sellado,
+ADR-68(a)) no tiene columna que materialice un literal numérico para un
+momento `AJUSTE`, así que **ningún** pin sobre este consumidor puede pasar
+`T-REPRO(c)` sin tocar el catálogo sellado — confirma, por una segunda vía
+independiente, el hallazgo ya declarado sobre `milpa/src/momentos.py:
+119-134`. El pin se **revirtió** en el mismo acto; el dictamen sustantivo de
+momento 08 se conservó, movido a `decisiones.tsv:catalogo:M08:civico.
+denuncia.con_seguro`. La tabla de abajo y el resto de esta nota ya reflejan
+el estado corregido (post-reversión); las cifras "P-N +1"/"−1" de una
+versión anterior de esta nota no ocurrieron en el commit final.
+
 ## `status` antes → después (comando: `python3 tools/corrida0.py status`)
 
 | Contador | Antes (`b2690dcc`) | Después | Δ | Pieza |
@@ -22,13 +40,19 @@ ambos difieren.
 | `N_corridas_selladas` | 234 | 244 | +10 | P-M |
 | `N_resultados_gen2_sellados` | 65599 | 65890 | +291 | P-M |
 | `N_resultados_gen2_pendientes_adopcion` | 10 | 10 | 0 | ninguna lo mueve — ver §"Hallazgo de premisa 1" |
-| `N_resultados_gen2_adoptados_activos` | 72 | 73 | +1 | P-N (pin M08, no P-M) |
-| `dependencias_numericas_legacy_activas` | 146 | 145 | −1 | P-N |
-| `legacy_activas_por_consumidor__catalogo_de_momentos` | 23 | 22 | −1 | P-N |
+| `N_resultados_gen2_adoptados_activos` | 72 | 72 | 0 | ninguna lo mueve (el pin de P-N que lo hubiera subido a 73 se revirtió) |
+| `dependencias_numericas_legacy_activas` | 146 | 146 | 0 | ninguna lo mueve (idem) |
+| `legacy_activas_por_consumidor__catalogo_de_momentos` | 23 | 23 | 0 | ninguna lo mueve (idem) |
 | `legacy_activas_por_consumidor__motor` | 34 | 34 | 0 | ninguna lo mueve — ver §"Hallazgo de premisa 1" |
-| `relevadas_por_pin_de_mesa__i_CRUDO` | 14 | 15 | +1 | P-N |
+| `relevadas_por_pin_de_mesa__i_CRUDO` | 14 | 14 | 0 | ninguna lo mueve (idem) |
 | `celdas_validadas` | 219 | 219 | 0 | (P-P sólo etiqueta la definición, no la cambia) |
 | `celdas_validadas_definicion_desde` | (no existía) | `38dd709` | nuevo | P-P |
+
+**Ningún contador de adopción/consumo se mueve en este acto**, más allá de
+`N_corridas_selladas`/`N_resultados_gen2_sellados` (P-M, clasificación
+`cuenta_gen2`, eje E.1) y la marca nueva de P-P. Es el resultado honesto
+tras revertir el único intento (P-N) que sí movía algo en ese eje y
+resultó no viable — declarado arriba, no maquillado.
 
 ## P-L · Marcador y procedencia — reducida por ADENDA-1, sin cambios propios
 
@@ -86,23 +110,33 @@ CATPOS-0001`/`-0002`, `CALC-WBES2023-PRECISION-INTERACCIONES-0001` — 9+1+5=15,
 no 14. Las 5 quedan `PENDIENTE-DE-MESA` sin fila nueva (ninguna firma las
 autoriza); ver NC.
 
-## P-N · Relevo: momento 08 acotado, momentos 01/02 dictaminados, escritor no extendido con código
+## P-N · Relevo: momento 08 acotado (dictamen, sin pin), momentos 01/02 dictaminados, escritor no extendido con código
 
-- **Momento 08** (`civico.denuncia.con_seguro`): pin nuevo en
-  `pines-de-mesa.tsv`, `catalogo-momentos::M08` → `RESULT-ENVIPE-SEG-CON-P-
-  DENUNCIA` (`CALC-ENVIPE-DENUNCIA-SEGURO-0001`, vía `i-CRUDO`). Validado
-  **contra el código real**, no a mano:
-  `pines_mesa.valida_pin(fila, ctx, specs, {})` → `('ACEPTADO', '')`. Efecto
-  medido: `legacy_activas_por_consumidor__catalogo_de_momentos` 23→22,
-  `relevadas_por_pin_de_mesa__i_CRUDO` 14→15, y — hallazgo no anticipado,
-  verificado tras escribir el pin — el `uso` de `catalogo-momentos::M08`
-  pasa a `aptitud_uso=APTA-POR-LINAJE` y entra a `adoptados_activos` (72→73):
-  el motivo de aptitud trae el mismo matiz que la nota del pin
-  ("no certifica compatibilidad semántica del estimando con el parámetro").
-  Acotado a unidad **DELITO** (BPCOD=01, robo total de vehículo) según
-  `cotejo-documental-catalogo.md` momento 08, no al registro PERSONA/ENIGH
-  2022 que `milpa/catalogo-momentos-v0_1.tsv` declara. **NO-REPRODUCE-GEN1**
-  rotulado en la nota del pin: no reproduce la regla **ASIGNADA** de
+- **Momento 08** (`civico.denuncia.con_seguro`): **se probó y se revirtió**
+  un pin `pines-de-mesa.tsv`, `catalogo-momentos::M08` → `RESULT-ENVIPE-SEG-
+  CON-P-DENUNCIA` (`CALC-ENVIPE-DENUNCIA-SEGURO-0001`, vía `i-CRUDO`).
+  Validado contra el código real, no a mano —
+  `pines_mesa.valida_pin(fila, ctx, specs, {})` → `('ACEPTADO', '')` — y con
+  efecto medido: `legacy_activas_por_consumidor__catalogo_de_momentos` 23→22,
+  `relevadas_por_pin_de_mesa__i_CRUDO` 14→15, `adoptados_activos` 72→73. Pero
+  `python3 tests/check.py --baseline --parallel` sobre ese commit dio **ROJO,
+  1 FAIL nuevo**: `T-REPRO (c) milpa/catalogo-momentos-v0_1.tsv:M08: valor
+  materializado 'NO-DECLARADO-EN-EL-REGISTRO' != RESULT-ENVIPE-SEG-CON-P-
+  DENUNCIA (0.7909064453831163)`. Causa: `T-REPRO(c)` (`tools/corrida0.py`
+  ~línea 4470) exige que **todo** uso activo GEN2 materialice, en su archivo
+  consumidor, un literal comparable contra el RESULT; `milpa/catalogo-
+  momentos-v0_1.tsv` (sellado, ADR-68(a)) no tiene columna para eso en un
+  momento `AJUSTE` — confirma, por una **segunda vía independiente**, el
+  mismo hallazgo que `milpa/src/momentos.py:119-134` ya daba: ningún pin
+  sobre este consumidor puede pasar `T-REPRO(c)` sin tocar el catálogo
+  sellado. **El pin se revirtió** en el mismo acto (`git` — commit de
+  corrección, mismo PR); `status` vuelve a 23/14/72 en esos tres contadores.
+  El **dictamen sustantivo sobrevive**, movido a `decisiones.tsv`
+  (`catalogo:M08:civico.denuncia.con_seguro`, dictamen
+  `ACOTADO-A-DELITO-SIN-ESCRITOR`): acotado a unidad **DELITO** (BPCOD=01,
+  robo total de vehículo) según `cotejo-documental-catalogo.md` momento 08,
+  no al registro PERSONA/ENIGH 2022 que `milpa/catalogo-momentos-v0_1.tsv`
+  declara. **NO-REPRODUCE-GEN1**: no reproduce la regla **ASIGNADA** de
   `milpa/procedencia.yaml:859-862` (`valores=[0.78,0.22]`, "ENVIPE no
   publica esta condicional en esa forma") — el valor medido aquí
   (0.790906/0.209094) es de otra unidad y otra clase de evidencia (medido,
@@ -113,15 +147,19 @@ autoriza); ver NC.
   momentos 01/02) no cita pregunta/registro que satisfaga el estimando:
   ENCIG P8_3 registra SOLICITUD de trámite, no pago con o sin
   discrecionalidad. Verdicto `NO-EQUIVALENTE-PAGO`; no se fuerza candidato.
-- **Escritor de consumo — NO extendido con código nuevo**, y se documenta
-  por qué en vez de forzarlo: `milpa/src/momentos.py:119-134`,
-  `valor_de()`, lanza `NotImplementedError` para **todo** momento `AJUSTE`
-  en E0, por diseño deliberado ("E0 no mira el disco, §3.3 de la
-  propuesta"). Ninguna cita lateral que este acto pudiera escribir cambia lo
-  que el motor consume hoy — D-14 (gate para automatizar) falla: no hay
-  medición ni decisión que ese código mueva todavía. El pin de M08 sí mueve
-  la trazabilidad de gobierno (arriba) sin escribir código nuevo, con el
-  canal ya construido (`tools/pines_mesa.py`).
+- **Escritor de consumo — NO extendido con código nuevo, y ningún pin
+  sobrevive para este consumidor**, documentado por qué en vez de forzarlo:
+  `milpa/src/momentos.py:119-134`, `valor_de()`, lanza `NotImplementedError`
+  para **todo** momento `AJUSTE` en E0, por diseño deliberado ("E0 no mira
+  el disco, §3.3 de la propuesta"); y, por la vía independiente del pin
+  probado y revertido arriba, `T-REPRO(c)` confirma que `milpa/catalogo-
+  momentos-v0_1.tsv` no puede materializar el literal que ese check exige.
+  Ninguna cita lateral que este acto pudiera escribir cambia lo que el motor
+  consume hoy, y ningún pin sobre este consumidor pasa la suite — D-14 (gate
+  para automatizar) falla dos veces: no hay medición ni decisión que ese
+  código mueva todavía, y el canal ya construido (`tools/pines_mesa.py`) no
+  tiene dónde materializar la cita para este consumidor sin tocar el
+  catálogo sellado.
 
 ## P-O · El pin de vía (iii) no estaba huérfano
 
@@ -160,8 +198,9 @@ dirección, no un hallazgo nuevo de esta sesión. 4 tests nuevos; suite de
 
 - `python3 tests/check.py --rapido` → VERDE, 0 FAIL (corrido después de cada pieza).
 - `python3 -m unittest tests.test_celdas_validadas_spec tests.test_celdas_validadas tests.test_celdas_validadas_monotonia` → 22 tests, OK.
-- `python3 tools/pines_mesa.py` (vía script ad-hoc contra el `valida_pin` real): pin de M08 → `ACEPTADO`; `pines_rechazados` de las 30 filas previas → vacío.
+- `python3 tools/pines_mesa.py` (vía script ad-hoc contra el `valida_pin` real): pin de M08 → `ACEPTADO` (las cuatro guardas de 4.1 pasan); el pin se revirtió después por una razón **distinta** (`T-REPRO(c)`, ver P-N) — `ACEPTADO` en `valida_pin` no implica que la suite completa pase, y aquí es exactamente el caso. `pines_rechazados` de las 30 filas previas (sin el pin de M08) → vacío.
 - `python3 tools/corrida0.py registro --verifica --lote …` → 0 `NO_APTA` para los dos CALC de firma L en el árbol committeado.
+- `python3 tests/check.py --baseline --parallel`, corrido **dos veces**: la primera (con el pin de M08) dio `ROJO — 1 FAIL nuevo` (T-REPRO(c), ver P-N); la segunda (tras revertir el pin) confirma `VERDE — sin FAIL nuevos` — salida pegada abajo.
 
 ## Lo que decide mesa a continuación
 
