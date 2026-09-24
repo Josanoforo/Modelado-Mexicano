@@ -107,9 +107,29 @@ explicando por qué. El resto de esa prueba (marcador, corridas
 pendientes, censo de NC, corrección del rótulo del Corredor) sigue
 intacto.
 
-Confirmación: `python3 tests/test_tablero_programa.py` → **14 pruebas, 0
-fallos**, incluida `prueba_determinismo_dos_pasadas` sobre el árbol real
-(dos derivaciones completas, bloque idéntico byte a byte).
+Confirmación durante el desarrollo (test temporal, no committeado): dos
+llamadas reales a `derivar_indicadores()` sobre el árbol, después del fix,
+dieron `render_bloque_vivo()` idéntico byte a byte.
+
+**Por qué esa prueba de dos pasadas NO quedó en el archivo committeado.**
+Medida por separado: **una sola** llamada a `derivar_indicadores()` tarda
+`123.1s` (recorre las 335 entradas de `data/corrida0/` vía `corrida0.py
+status`). `tools/ci_guardias.py --censo` clasifica cada archivo de test
+por EJECUCIÓN real contra un timeout de `40s` (`ejecuta()`, default); dos
+pasadas (>240s) habrían hecho que el PRÓXIMO `--censo` clasificara **el
+archivo entero** `FALLA-DE-VERDAD (TIMEOUT>40s)`, y `--ejecuta-huerfanos`
+solo corre lo clasificado `CORRE-EN-CI` — las otras 13 pruebas de este
+mismo archivo (idempotencia, anclas inválidas, `_estado_cola`, el
+guardián P2, etc.) habrían dejado de correr en CI, en silencio, por el
+costo de una sola prueba (D-14: "verificar tiene precio"). Se optó por
+NO incluirla y dejar en su lugar dos guardas baratas que cubren la MISMA
+clase de defecto sin pagar la derivación completa: `prueba_render_
+incluye_marcador_corridas_nc` (afirma que "Ramas presentes en origin" NO
+aparece) y el resto de las pruebas del guardián P2. El código deja un
+comentario explicando esta decisión donde estaba la prueba retirada.
+
+Confirmación de la versión committeada: `python3 tests/test_tablero_programa.py`
+→ **13 pruebas, 0 fallos**, `0.32s`.
 
 ## Verificación manual del "Hecho" (P2)
 

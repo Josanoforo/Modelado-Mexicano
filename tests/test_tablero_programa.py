@@ -299,18 +299,22 @@ def prueba_render_rotula_no_es_origin_main():
     afirma("NO-ES-ORIGIN-MAIN" in fuera_de_main, "--permitir-rama debe rotular el bloque")
 
 
-def prueba_determinismo_dos_pasadas():
-    """P4 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): dos derivaciones sobre el
-    mismo árbol producen el bloque BYTE A BYTE idéntico -- el SUPUESTO que
-    permite que el job de CI y una verificación posterior coincidan.
-    Corre contra el árbol real (no un fixture): es la propiedad de
-    `derivar_indicadores()` + `render_bloque_vivo()` de punta a punta la
-    que está bajo prueba, no un caso sintético."""
-    I1 = TP.derivar_indicadores()
-    I2 = TP.derivar_indicadores()
-    b1 = TP.render_bloque_vivo(I1)
-    b2 = TP.render_bloque_vivo(I2)
-    afirma(b1 == b2, "dos derivaciones sobre el mismo árbol deben producir el mismo bloque byte a byte")
+# P4 (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1): NO hay aquí una prueba que
+# llame dos veces a `derivar_indicadores()` real. Se probó así durante el
+# desarrollo de este acto -- medido: 123.1s UNA sola llamada -- y encontró
+# el defecto real que motivó el fix de `prueba_render_rotula_no_es_origin_main`
+# / la línea "Ramas presentes en origin" (ver la nota de cierre y el ADR
+# para la evidencia cruda). Pero `tools/ci_guardias.py --censo` clasifica
+# por EJECUCIÓN con un timeout de 40s (`ejecuta()`, default); dos pasadas
+# reales (>240s) habrían marcado el ARCHIVO ENTERO `FALLA-DE-VERDAD
+# (TIMEOUT>40s)` en el próximo censo, sacando las otras 13 pruebas de este
+# archivo de `--ejecuta-huerfanos` en silencio -- el costo de la prueba le
+# habría costado la cobertura a todas las demás. La guarda barata que
+# queda en la suite (arriba: el rótulo NO-ES-ORIGIN-MAIN nunca por
+# defecto, y abajo: "Ramas presentes en origin" ausente del bloque
+# committeado) cubre la clase de defecto -- una fuente de dato que no es
+# función del árbol filtrándose al bloque -- sin pagar el costo de la
+# derivación completa en cada corrida de CI.
 
 
 def main():
@@ -327,13 +331,12 @@ def main():
     prueba_celdas_d_adoptadas_activas_universo_real()
     prueba_compara_head_origin_main()
     prueba_render_rotula_no_es_origin_main()
-    prueba_determinismo_dos_pasadas()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 14 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 13 pruebas, 0 fallos")
     return 0
 
 
