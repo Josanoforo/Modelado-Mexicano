@@ -53,3 +53,7 @@ No cambia qué mide el tablero ni sus definiciones (`celdas_validadas_definicion
   **sucesor:** `FP-260923-GEN2-FRONT-1-4296-01` (ya `ABIERTA`, fin de semana 26-27/sep/2026).
 
 Corrección de premisa declarada aquí (no se edita el cuerpo, A.3): las cinco menciones de `canon/TABLERO-PROGRAMA.md` en este encargo (§1, §9) citan una ruta que no existe en el árbol; el archivo real, con el mismo contenido que la premisa `[EJECUTADO]` de §3 describe (`SHA 8a867a04`), es `forense/tablero/TABLERO-PROGRAMA.md`. Todas las piezas (P1-P4) se implementaron contra la ruta real.
+
+## CONSUMIDO
+
+PR https://github.com/Josanoforo/Modelado-Mexicano/pull/1117 (rama `claude/new-session-tydnvn`). ADR de raíz: `ADR-260924-GEN2-TUBERIA-TABLERO-EN-CANAL-1-3726-01`. El PR no se fusiona en este acto: mesa fusiona.
