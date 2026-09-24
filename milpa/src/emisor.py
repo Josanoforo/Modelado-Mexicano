@@ -706,6 +706,14 @@ def cargar_indice_linaje_emision(
     # join los reconstruye por fila antes de construir EvidenciaResultado;
     # sin esto, `evidencia.fuente_replay` (linea 908 de este archivo)
     # quedaria siempre vacio y el gate de emision se rompe en silencio.
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: `camino_linaje`
+    # (usado abajo, `EvidenciaResultado.camino_linaje`) salio de
+    # `resultados.tsv` sin mudarse a ningun lado -- cardinalidad 1.0, se
+    # deriva bajo demanda. `join_resultado` sin `linajes` explicito cae al
+    # cache del proceso (`vista._linajes_cache`, un solo calculo de toda
+    # la oferta la PRIMERA fila real que lo necesite -- ~310 CALC-*/,
+    # medido ~70s 24/sep/2026): una fixture sintetica que ya trae el campo
+    # (como las de `tests/test_linaje_superado.py`) nunca lo dispara.
     from tools.vista import join_resultado, corridas_por_id
     _corridas = corridas_por_id(ruta_resultados.parent / "corridas.tsv")
     por_id: dict[str, list[dict[str, str]]] = {}
