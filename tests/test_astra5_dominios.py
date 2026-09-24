@@ -355,3 +355,18 @@ def test_endutih_no_confunde_porcentaje_total_con_motivo_condicional():
     cotejo = read("cotejo-result-endutih-v1_0.tsv")
     assert cotejo[-1]["id_afirmacion"] == "ASTRA5-U0-TEC-002"
     assert all(r["dictamen_contraste"] == "SIN-CONTRASTE-DIRECTO-86_9-68_5" for r in cotejo[1:3])
+
+
+if __name__ == "__main__":
+    import sys
+
+    pruebas = [(n, f) for n, f in sorted(globals().items()) if n.startswith("test_") and callable(f)]
+    fallos = 0
+    for nombre, prueba in pruebas:
+        try:
+            prueba()
+        except Exception as exc:  # noqa: BLE001 - se reporta y se cuenta
+            fallos += 1
+            print(f"FALLA {nombre}: {type(exc).__name__}: {exc}")
+    print(f"{len(pruebas)} pruebas, {fallos} fallos")
+    sys.exit(1 if fallos else 0)
