@@ -3983,6 +3983,13 @@ reglas_propuestas:
     medido_en: "ACTO GEN2-E5 · CALC-0001, 8/sep/2026 — corrida sellada CALC-0001--174c269a07b6, data/corrida0/CALC-0001/resultados.json"
 
   - id: civico.contexto_institucional_victimas.lapop
+    # ADOPTADA-EN-MOTOR: ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-4, 24/sep/2026 --
+    # la regla vive ahora, además, en milpa/tramite.yaml (mismo id), creada
+    # por tools/escribe_relevo_consumo.py --crear-desde-propuesta con `p`/
+    # `entonces` copiados VERBATIM de este bloque (ningún valor de aquí se
+    # tocó) y `situacion`/`si.disparadores`/`porque`/`tier`/`falsable_si`
+    # redactados por el ejecutor (PROPUESTO-POR-EJECUTOR, sujetos a mesa).
+    # Este bloque se conserva como historia de la propuesta; no se borra.
     # OBJETO 8 de la HOJA DE FIRMAS DE MESA 2026-09-15 (NC-0167), firma
     # verbatim «Si a todas.»: mesa abre "contexto institucional alto entre
     # víctimas" como estimando DESCRIPTIVO propio, con patrón
@@ -4039,6 +4046,13 @@ reglas_propuestas:
   # OBJETO firma («SHED #745 referencia sin transporte de tasas»).
   # ══════════════════════════════════════════════════════════════════
   - id: dinero.credito.atraso_y_dano_por_producto_banxico
+    # ADOPTADA-EN-MOTOR: ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-4, 24/sep/2026 --
+    # la regla vive ahora, además, en milpa/tramite.yaml (mismo id), creada
+    # por tools/escribe_relevo_consumo.py --crear-desde-propuesta con `p`/
+    # `entonces` copiados VERBATIM de este bloque (ningún valor de aquí se
+    # tocó) y `situacion`/`si.disparadores`/`porque`/`tier`/`falsable_si`
+    # redactados por el ejecutor (PROPUESTO-POR-EJECUTOR, sujetos a mesa).
+    # Este bloque se conserva como historia de la propuesta; no se borra.
     situacion: PENDIENTE-DE-MESA
     si:
       disparadores: PENDIENTE-DE-MESA
@@ -4067,6 +4081,13 @@ reglas_propuestas:
     medido_en: "ACTO GEN2-BANXICO-PRODUCTO-ATRASO-Y-COSTO (PR #746) — CALC-BANXICO-PRODUCTO-DANO-0001, 35 RESULT sellados; data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/spec.yaml declara uso_motor: DESCRIPTIVO-NO-CALIBRA-NI-ADOPTA"
 
   - id: trabajo.prestaciones.valoracion_seguridad_social_motral
+    # ADOPTADA-EN-MOTOR: ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-4, 24/sep/2026 --
+    # la regla vive ahora, además, en milpa/tramite.yaml (mismo id), creada
+    # por tools/escribe_relevo_consumo.py --crear-desde-propuesta con `p`/
+    # `entonces` copiados VERBATIM de este bloque (ningún valor de aquí se
+    # tocó) y `situacion`/`si.disparadores`/`porque`/`tier`/`falsable_si`
+    # redactados por el ejecutor (PROPUESTO-POR-EJECUTOR, sujetos a mesa).
+    # Este bloque se conserva como historia de la propuesta; no se borra.
     situacion: PENDIENTE-DE-MESA
     si:
       disparadores: PENDIENTE-DE-MESA
