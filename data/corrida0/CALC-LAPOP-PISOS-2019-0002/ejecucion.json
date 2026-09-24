@@ -1,0 +1,352 @@
+{
+ "corrida_id": "CALC-LAPOP-PISOS-2019-0002--6b507dcd9caf",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "ASTRA5-U3-POLITICA-COMPLETAR",
+  "adopta": "NO",
+  "calibracion": "SIN-HISTORIA-PARA-CALIBRAR",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "Mandato ASTRA5-U3-POLITICA-COMPLETAR 23/sep/2026; RETROSPECTIVA; no adopta",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "tipo": "PISO-ENCUESTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-23T23:45:51Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 457,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "6b507dcd9caf09654246b4d1c4d0db1ac4c17cee",
+  "git_rama": "claude/astra5-politica-completar-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "ffa6756f317a30ac8ef7186787a6eb653de42d482a0b0091a5c887002818b68c",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "6b507dcd9caf09654246b4d1c4d0db1ac4c17cee",
+ "input_ids": [
+  "mexico_lapop_americasbarometer_2019_v1_0_w"
+ ],
+ "input_sha256": {
+  "mexico_lapop_americasbarometer_2019_v1_0_w": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "dictamen": "forense/analisis/dominios/politica/lapop-dictamen-olas-v1_0.tsv",
+  "diseno": {
+   "estrato": "estratopri",
+   "peso": "wt",
+   "upm": [
+    "upm"
+   ]
+  },
+  "hash_medidor_sha256": "9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c",
+  "hash_payload_sha256": "c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57",
+  "items": [
+   {
+    "clave": "confianza_partidos_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 0,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "b21"
+   },
+   {
+    "clave": "interes_politica_mucho_algo",
+    "evento": [
+     1,
+     2
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 1,
+    "validos": [
+     1,
+     2,
+     3,
+     4
+    ],
+    "variable": "pol1"
+   },
+   {
+    "clave": "eficacia_gobernantes_interesan_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 2,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "eff1"
+   },
+   {
+    "clave": "eficacia_entiende_asuntos_alta",
+    "evento": [
+     6,
+     7
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 3,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7
+    ],
+    "variable": "eff2"
+   },
+   {
+    "clave": "tolerancia_votar_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 4,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d1"
+   },
+   {
+    "clave": "tolerancia_manifestarse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 5,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d2"
+   },
+   {
+    "clave": "tolerancia_postularse_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 6,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d3"
+   },
+   {
+    "clave": "tolerancia_discurso_tv_aprueba",
+    "evento": [
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 7,
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "d4"
+   },
+   {
+    "clave": "oferta_beneficio_a_conocido",
+    "evento": [
+     1
+    ],
+    "faltantes": [
+     888888,
+     988888,
+     999999
+    ],
+    "semilla_desplazamiento": 8,
+    "validos": [
+     1,
+     2
+    ],
+    "variable": "clien1n"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "mexico_lapop_americasbarometer_2019_v1_0_w",
+  "result_filas": "RESULT-LAPOP-PISOS-2019-COMPLEMENTO-FILAS",
+  "result_tablas": {
+   "RESULT-LAPOP-PISOS-2019-COMPLEMENTO-TABLA": [
+    "confianza_partidos_alta",
+    "interes_politica_mucho_algo",
+    "eficacia_gobernantes_interesan_alta",
+    "eficacia_entiende_asuntos_alta",
+    "tolerancia_votar_aprueba",
+    "tolerancia_manifestarse_aprueba",
+    "tolerancia_postularse_aprueba",
+    "tolerancia_discurso_tv_aprueba",
+    "oferta_beneficio_a_conocido"
+   ]
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-LAPOP-PISOS-2019-COMPLEMENTO-FILAS",
+  "RESULT-LAPOP-PISOS-2019-COMPLEMENTO-TABLA"
+ ],
+ "script_blob_sha256": "9edb6da10f1ce573159c1c31626790016adb2b87ff0f83629d42edd079d1713c",
+ "script_path": "data/corrida0/CALC-LAPOP-PISOS-2019-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-LAPOP-PISOS-2019-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "1e64e1ad32738063fa0d69ab72088b39320246fff86211c8f3c9ff57e9078d4d",
+ "spec_yaml_sha256": "2bfd28b2ab584b9d62280b0985d14c29ec4bd645628eea43450df30de8894a0d",
+ "tolerancia": {
+  "razon": "misma semilla por reactivo y orden determinista de estratos/UPM",
+  "tipo": "exacta"
+ }
+}

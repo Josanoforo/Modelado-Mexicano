@@ -63,24 +63,29 @@ celda-D) — es la MISMA regla, no una excepción:
   que `error_mediano_pp = error_max_pp = MAE_PP` (el único número que hay).
   Sin per-cell breakdown, se declara con `escala_cruda:
   AGREGADO-POR-CONDUCTA`.
-- **Sufijo `-D-C2` de ENCIG 2025** (NC-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-03):
+- **Sufijo `-D-C2`** (NC-260923-GEN2-DUELO-ENCIG2025-CIERRE-1-657c-03;
+  generalizado por ACTO GEN2-CONTADORES-CONSUMO-2, 23/sep/2026, P4):
   `CALC-ENCIG-DUELO-2025-ADJUDICACION-0001` emite el error por celda como
   `...-D-C2` (sin "ARB" ni "PP"). Es un archivo COMPARTIDO por varias
-  celdas-D de ENCIG 2025 a la vez (edad_x_sexo Y escolaridad_x_sexo en el
-  mismo `resultados.json`): el sufijo se localiza por celda leyendo
-  `adjudicacion_por_celda` del propio YAML (nunca por posición ni por
-  nombre adivinado), quitando el sufijo `-{id_candidato}-P` de cada
-  `resultado_puntual` para obtener el prefijo de esa celda. **Este sufijo
-  se reconoce sólo para celdas-D cuyo id empieza con
-  `GOB.gobierno_digital.encig2025.`** (lo que este acto tiene autorizado,
-  #1060): el mismo sufijo `-D-C2` aparece también en
+  celdas-D a la vez (edad_x_sexo Y escolaridad_x_sexo en el mismo
+  `resultados.json`): el sufijo se localiza por celda leyendo
+  `adjudicacion_por_celda` del propio YAML (nunca por posición, por nombre
+  adivinado ni por `k.endswith('-D-C2')` a ciegas), quitando el sufijo
+  `-{id_candidato}-P` de cada `resultado_puntual` para obtener el prefijo
+  de esa celda. **Este sufijo se reconoce para TODA celda-D** — ya no está
+  restringido al prefijo `GOB.gobierno_digital.encig2025.` — porque el
+  scoping real es `adjudicacion_por_celda`, no el prefijo del id: una
+  celda-D sin ese campo nunca produce un hit, prefijo o no. El mismo
+  sufijo `-D-C2` aparece también en
   `CALC-TRA-EVADE-NORMA-CRUCES-ENCOGIDA-ARBITRO-CRUCES-0001`
   (`TRA.evade_norma.envipe2025.dominio_x_sexo` y sus tres hermanas, con
   `champion_actual: NINGUNO` — verificado por comando: su promedio del
-  sufijo también casa exacto con su `margen_material`), pero mesa no ha
-  revisado si una celda sin champion adjudicado debe contar; generalizar
-  el sufijo a esas 4 celdas TRA es HALLAZGO NUEVO para un acto sucesor, no
-  algo que este acto decida.
+  sufijo también casa exacto con su `margen_material`), pero esas cuatro
+  celdas-D no declaran `adjudicacion_por_celda` en su YAML (nadie adjudicó
+  un champion ahí): la generalización no las cuenta — verificado
+  antes/después, `celdas_validadas` no se mueve (219 -> 219). Si algún día
+  mesa adjudica un champion ahí y alguien puebla `adjudicacion_por_celda`,
+  esta misma regla las cuenta sin tocar el código de nuevo.
 
 `total_celdas_validadas = n(clase 1) + n(clase 2)`. La clase 3 se reporta
 por separado y nunca se suma al total.
