@@ -43,3 +43,13 @@ Propio: `tools/corrida0.py` (solo `registro --escribe` y lectura de vistas), `to
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No decide qué se publica; no adopta. Sucesor: ninguno si «Hecho»; -3 solo si COMMIT-B deja un consumidor `DIFERIDO-A`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: P3 · COMMIT-B (cardinalidad medida y pegada, dedupe o bajo demanda, spec, consumidores, guarda a 50, test de reproducción de 500 filas, tamaño final). **por qué**: `DIFERIDO-A` -- cardinalidad medida (n_distinct(camino_linaje)/n_filas = 1.0 sobre las 65 287 filas de main, regla del encargo: ≥0.5 → bajo demanda, no dedup); implementar la derivación bajo demanda fielmente y su test de reproducción de 500 filas es pieza propia con su propio riesgo de correctitud -- camino_linaje es exactamente el campo que la disciplina de procedencia del proyecto (A.7, D-24, E.2) más cuida, y apresurarla en el mismo acto que COMMIT-A habría sido exactamente lo que este trámite evita. **impacto**: resultados.tsv sigue sin bajar de ~70 MB (autorizado por la firma de mesa); el umbral de 50 MB firmado no se cumple en su forma literal hasta que corra el sucesor. **sucesor**: `GEN2-TUBERIA-VISTA-NORMALIZADA-3`.
+- **qué**: P2 · Prueba real A (merge por mesa → run → `derivados/auto-*` con check VERDE, cita del run y del PR). **por qué**: `NO-VERIFICABLE-AQUÍ` -- depende de que mesa fusione este PR; el job de derivados corre automáticamente tras el push a `main`, fuera del alcance de esta sesión. **impacto**: sin cita del run real hasta que mesa fusione. **sucesor**: se completa solo, vía el job `guardias` de `verify.yml` tras el merge; si algo falla ahí, `GEN2-TUBERIA-VISTA-NORMALIZADA-3` lo hereda junto con COMMIT-B.
+- **qué**: P4 · Cierre -- NC `…749c-03` cerrada `SUSTITUIDO-POR: este acto`; FP V marcada `EJECUTA: mesa`. **por qué**: `FUERA-DE-PERÍMETRO` -- ya resuelto por `GEN2-TRAMITE-FIRMAS-15-ADENDA-1` (mesa firmó V como `FIRMADA`, `EJECUTA: mesa`, gateada a que este acto devuelva el canal a verde); `NC-…-749c-03` no se re-verificó en este acto (fuera de perímetro declarado, §9). **impacto**: ninguno -- ya cubierto por el acto que corresponde. **sucesor**: ninguno, ya resuelto.
+
+## CONSUMIDO
+
+PR #1113 (ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2, ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-2-f1b2-01). COMMIT-A completo y verificado; P2 (prueba real) depende del merge de mesa; COMMIT-B y su spec/consumidores propios NO-CORRIDO, sucesor GEN2-TUBERIA-VISTA-NORMALIZADA-3.
