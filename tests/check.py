@@ -3172,6 +3172,9 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_0.md",
     "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_1.md",
     "forense/prereg-caja/DIN-ahorro-solo-informal-lxe8-spec-v1_2.md",
+    # ACTO GEN2-PISOS-GEN2-2, 24/sep/2026: el piso de esa celda-D cita los mismos
+    # tramos E1-E4 de la lxe8; spec sellada (sha en el spec.yaml sellado del CALC).
+    "forense/prereg-caja/ENIF2024-PISOS-AHORRO-INFORMAL-LXE-spec-v1_0.md",
     # Misma causa, mismo acto: la nota de cierre transcribe los rotulos de
     # celda `L1xE1`..`L2xE4` y los tramos `E1`..`E4` desde los RESULT ya
     # SELLADOS de los dos CALC. Reescribirlos falsearia lo que el registro
