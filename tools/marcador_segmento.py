@@ -265,8 +265,14 @@ def _ic_calibrado_enif() -> dict:
     return out
 
 
+# GEN2-TUBERIA-RENDIMIENTO-1 P3: mismo contrato seguro que `yaml.safe_load`,
+# con libyaml cuando esta instalado (el perfil marco el parseo Python como
+# cuello); sin libyaml cae al loader Python, igual que `tools/corrida0.py`.
+_YAML_SAFE_LOADER = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+
+
 def _yaml(ruta: Path):
-    return yaml.safe_load(ruta.read_text(encoding="utf-8"))
+    return yaml.load(ruta.read_text(encoding="utf-8"), Loader=_YAML_SAFE_LOADER)
 
 
 def _lee_decisiones() -> dict:
@@ -494,8 +500,17 @@ def _unidad_dato(regla: dict) -> str:
 
 # ── enlace piso <-> celda marginal, por la tabla de identidad ─────────────
 
+_REGLAS_OLA5: dict | None = None
+
+
 def _regla_ola5(regla_id: str) -> dict:
-    d = _yaml(PROPUESTA_OLA5)
+    # GEN2-TUBERIA-RENDIMIENTO-1 P3: la propuesta de ola 5 se parseaba una vez
+    # POR CELDA (83% del tiempo del marcador); se parsea una vez por proceso.
+    # Solo lectura: `_unidad_dato` no muta la regla devuelta.
+    global _REGLAS_OLA5
+    if _REGLAS_OLA5 is None:
+        _REGLAS_OLA5 = _yaml(PROPUESTA_OLA5) or {}
+    d = _REGLAS_OLA5
     for r in d.get("reglas_propuestas", []):
         if r.get("id") == regla_id:
             return r

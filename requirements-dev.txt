@@ -1,0 +1,9 @@
+# Herramientas de sesion y de desarrollo -- ACTO GEN2-TUBERIA-RENDIMIENTO-1
+# (P3/P4). No las necesita la suite ni la CI; se instalan a mano:
+#   uv pip install --system -r requirements-dev.txt
+# Binarios de sistema recomendados (apt): ripgrep, jq, hyperfine.
+-r requirements.txt
+uv
+pytest-xdist   # `pytest -n auto` para archivos de pytest grandes, en local
+py-spy         # perfil antes de optimizar: py-spy record -o perfil.svg -- <cmd>
+yq             # consultas YAML: yq '.[] | select(.id=="<id>")' data/manifiesto.yaml

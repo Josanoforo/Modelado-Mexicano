@@ -87,6 +87,8 @@ el objetivo sigue alcanzable, resuélvelo, síguele y decláralo.
 1 · REPO. Localiza el CLON EXISTENTE. No clones uno nuevo salvo que no
     haya ninguno, y si clonas, dilo.
     Reporta:  ruta absoluta  ·  `git log -1 --format="%h %s"`  ·  `git status`
+    Si clonas en la nube: clon parcial por la receta de `docs/sesiones.md` §1
+    (`GEN2-TUBERIA-RENDIMIENTO-1`), e instalación con `uv` (§2).
     ⚠️ No arranques desde el home. Si el cliente avisa "launched in your
     home directory", cámbiate al clon antes de nada.
 

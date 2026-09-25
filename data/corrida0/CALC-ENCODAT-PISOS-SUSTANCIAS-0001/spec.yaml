@@ -1,0 +1,2647 @@
+# CALC-ENCODAT-PISOS-SUSTANCIAS-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENCODAT-PISOS-SUSTANCIAS-0001
+spec_md: ../../../forense/prereg-caja/SALUD-ENCODAT-PISOS-spec-v1_0.md
+spec_md_sha256: 81bff5d7a0fd7b50b2ebedd9c9e21a21b58ec1d28f55bbbd7bee7bc645c5d4c7
+script: data/corrida0/CALC-ENCODAT-PISOS-SUSTANCIAS-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-SALUD-Y-BIENESTAR-PISOS-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-SALUD-Y-BIENESTAR-PISOS-1
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2, F-ASTRA-5-4, regla 6, E.6 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  ola_reservada: ENCODAT 2025 (no es input)
+inputs:
+- id: encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip
+  origen: manifiesto
+  sha256: bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346
+  funcion: DATO
+  nota: ENCODAT 2016-17 individual
+- id: encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip
+  origen: manifiesto
+  sha256: 716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781
+  funcion: DATO
+  nota: ENCODAT 2016-17 hogar (diseno)
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_dta/lee_csv_zip, marginales, bootstrap, resumen, persistencia, ic_calibrado ejecutados desde
+    estos bytes
+variables:
+- archivo: individual
+  variable: id_pers
+  rol: reactivo o diseno
+- archivo: individual
+  variable: ponde_ss
+  rol: reactivo o diseno
+- archivo: individual
+  variable: ds2
+  rol: reactivo o diseno
+- archivo: individual
+  variable: ds3
+  rol: reactivo o diseno
+- archivo: individual
+  variable: ds9
+  rol: reactivo o diseno
+- archivo: individual
+  variable: al1
+  rol: reactivo o diseno
+- archivo: individual
+  variable: al4
+  rol: reactivo o diseno
+- archivo: individual
+  variable: al9
+  rol: reactivo o diseno
+- archivo: individual
+  variable: al11
+  rol: reactivo o diseno
+- archivo: individual
+  variable: tb02
+  rol: reactivo o diseno
+- archivo: individual
+  variable: tb05
+  rol: reactivo o diseno
+- archivo: individual
+  variable: tb50
+  rol: reactivo o diseno
+- archivo: individual
+  variable: tp1
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1a
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1b
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1c
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1d
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1e
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1f
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1g
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1h
+  rol: reactivo o diseno
+- archivo: individual
+  variable: di1i
+  rol: reactivo o diseno
+- archivo: individual
+  variable: dm1a
+  rol: reactivo o diseno
+- archivo: individual
+  variable: dm1b
+  rol: reactivo o diseno
+- archivo: individual
+  variable: dm1c
+  rol: reactivo o diseno
+- archivo: individual
+  variable: dm1d
+  rol: reactivo o diseno
+- archivo: hogar
+  variable: id_hogar
+  rol: diseno
+- archivo: hogar
+  variable: estrato
+  rol: diseno
+- archivo: hogar
+  variable: est_var
+  rol: diseno
+- archivo: hogar
+  variable: code_upm
+  rol: diseno
+universo: Personas 12-65 del cuestionario individual; ponde_ss>0; diseno del hogar por id_pers[:20]==id_hogar.
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESTRATO, ESCOLARIDAD 18+); nunca cruces.
+ponderador: ponde_ss
+transformacion: 'Recodificacion por texto: lista-cerrada-P1 §2 (ENCODAT) y spec §2-§3.'
+estimando: Pisos por segmento ENCODAT 2016-17 de 10 conductas de consumo con IC de diseno; sin persistencia
+  (una ola).
+seed:
+  aplica: true
+  valor: 20260924
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  ola: 2016-2017
+  llave_hogar: id_pers[:20] == id_hogar
+  encoding: UTF-8
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-FILAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-JOIN-SIN-HOGAR
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-FILAS-UNIVERSO-12-65
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-INPUT-RECETA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENCODAT-PISOS-SUSTANCIAS-G-OLA-RESERVADA
+  tipo: texto
+  unidad: declaración
