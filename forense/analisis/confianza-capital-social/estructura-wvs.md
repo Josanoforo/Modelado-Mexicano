@@ -103,7 +103,7 @@ Fuente del texto de pregunta: `F00006635-WVS7_Questionnaire_Mexico_2018_Spanish.
 | Q82 | Confidence: Major regional organization (combined) | Q82 "El Tratado de Libre Comercio de América del Norte, TLCAN" (variable específica de país, combinada en el archivo armonizado) | mismo esquema |
 | Q83–Q89 | Confidence: UN, IMF, ICC, NATO, WB, WHO, WTO | Q83 "La ONU" … Q89 "La Organización Mundial del Comercio" | mismo esquema (`1..4`, `a`, `b`) |
 
-Nota: el cuestionario mexicano además incluye `M89 "El Instituto Nacional Electoral, INE"` como ítem específico de país (no aparece como `Q` en la lista de columnas objetivo revisada; no se confirmó su nombre exacto de variable en el .dta, se reporta como hallazgo del cuestionario).
+Nota: el cuestionario mexicano además incluye el ítem de país «El Instituto Nacional Electoral, INE» (numeración del cuestionario con prefijo M) como ítem específico de país (no aparece como `Q` en la lista de columnas objetivo revisada; no se confirmó su nombre exacto de variable en el .dta, se reporta como hallazgo del cuestionario).
 
 ### Membresía en organizaciones (Q94–Q105)
 
@@ -168,7 +168,7 @@ Nota: el cuestionario mexicano además incluye `M89 "El Instituto Nacional Elect
 - Q82: la etiqueta Stata dice "Confidence: Major regional organization (combined from country-specific)" — es una variable armonizada entre países; el ítem específico de México detrás de esa etiqueta es el TLCAN ("El Tratado de Libre Comercio de América del Norte, TLCAN"), que no es obvio desde el rótulo inglés genérico. Riesgo de lectura errónea si no se coteja con el cuestionario nacional.
 - Q289: el cuestionario ES incluye una octava opción "8) Otros (anotar)" que no aparece en las etiquetas de valor Stata revisadas (`0`–`7`, `a`, `b`); no se pudo confirmar si existe un código `8` en la variable sin leer valores — se reporta como discrepancia potencial a verificar en fase de codificación, no en esta fase de estructura.
 - Q18–Q26 (vecinos no deseados): no se extrajeron las etiquetas de valor Stata exactas para cada ítem individual (solo se confirmó el esquema general "Sí mencionó/No mencionó" desde el texto del cuestionario y por analogía con Q7/Q17 que comparten el mismo bloque de tarjeta). Se recomienda verificación puntual antes de operacionalizar.
-- El bloque M89 (INE) y M212 ("Asistir a una protesta o evento político convocado por...") son ítems específicos de México visibles en el cuestionario que no se buscaron por nombre de variable exacto en el .dta (prefijo `M` en vez de `Q`); quedan fuera de la tabla de reactivos por no confirmarse su nombre de columna.
+- Los ítems de país del INE y de protesta ("Asistir a una protesta o evento político convocado por...") son ítems específicos de México visibles en el cuestionario que no se buscaron por nombre de variable exacto en el .dta (prefijo `M` en vez de `Q`); quedan fuera de la tabla de reactivos por no confirmarse su nombre de columna.
 
 ## Nota metodológica
 
