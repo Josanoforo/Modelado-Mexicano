@@ -463,7 +463,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
     añade esta sección al final del encargo archivado en el paso 3,
     **después** de `## NO-CORRIDO / RESERVAS` (paso 10, nunca antes),
     citando el número real del PR del paso 9 (o el commit, si el acto no
-    abre PR) que lo ejecutó, y empuja ese commit. El encargo no se borra
+    abre PR) que lo ejecutó, y empuja ese commit. El encabezado va con esas palabras exactas —`## CONSUMIDO`— aunque el ADR o la nota hagan de cierre (`ACTO GEN2-TRAMITE-FIRMAS-17`, F: FRONT-2 y otros lo sustituyeron por el ADR). El encargo no se borra
     ni se edita en ningún otro punto: es el registro de qué se pidió,
     para poder auditar si el ejecutor hizo lo que se le dijo. Excepción
     única: cuando el acto corre bajo `/despacha`, que ya escribe
