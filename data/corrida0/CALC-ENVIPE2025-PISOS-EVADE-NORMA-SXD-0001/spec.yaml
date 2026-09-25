@@ -1,0 +1,554 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001
+spec_md: ../../../forense/prereg-caja/ENVIPE2025-PISOS-EVADE-NORMA-SXD-spec-v1_0.md
+spec_md_sha256: 63eb5d9c10d165be6b03c63b8e1d35a208ef858c6c96c301d0d23dcaf422fdd6
+script: data/corrida0/CALC-ENVIPE2025-PISOS-EVADE-NORMA-SXD-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: DELITO
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-PISOS-GEN2-2 (cuenta_gen2: SI, adopta: NO) -- forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md:6'
+  fuente_acto: GEN2-PISOS-GEN2-2
+  tipo: PISO-C2-COMPUESTO-DESDE-MICRODATO
+  firmas: Decision 1 de ADOPCION-2 (mesa 24/sep/2026) extendida a todas las celdas-D por el encargo GEN2-PISOS-GEN2-2
+    §2 (INTERPRETACION-DECLARADA); E.1; firma 17/sep; regla 6
+  agrupacion: 'UNA-SOLA-VARIABLE (ola cargada reservada=True: el cruce lanza ReservaRota)'
+  marca: RETROSPECTIVA -- sellado despues de que el -0001 derivo R (cruce visto, E.6); formula fija, no lee R
+  relevo_de: el -C2-P de CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001 (parametros.marginales_sellados -> milpa/)
+  celda_d: TRA.evade_norma.envipe2025.escolaridad_x_dominio
+inputs:
+- id: envipe2025_csv
+  origen: manifiesto
+  sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+  funcion: DATO
+  nota: ENVIPE 2025; SOLO marginales de un eje
+- id: receta_marginales
+  origen: repo
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+  funcion: CODIGO
+  nota: carga_ola, replicas_compartidas, marginal, cruce (guardia) ejecutados desde estos bytes
+- id: ejes_l1
+  origen: repo
+  ruta: tools/ejes_maestra35_l1.py
+  sha256: 502f5a4138c6733677f9472947cfe8c112dd04618e6ac325dd816758f7206c4d
+  funcion: CODIGO
+  nota: construccion de ejes del arbitro, importada por la receta
+- id: calibracion_ic
+  origen: repo
+  ruta: tools/calibracion_mordida_encig_serie.py
+  sha256: b2e636b059538e43c57f4f1a288e028c796ef34965186c5bbb771bea5a462bd3
+  funcion: CODIGO
+  nota: wprop_ic_conglomerado, importada por la receta
+- id: funcion_c2
+  origen: repo
+  ruta: tests/test_celda_d_c2.py
+  sha256: 71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9
+  funcion: CODIGO
+  nota: piso_log_aditivo (el mismo objeto que usaron las emisiones)
+- id: emisiones_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/resultados.json
+  sha256: 5d120c1f302c364639c5cdfaf82efec7a7a84cbb1a0d55c0825aa0188330c7c7
+  funcion: CONTROL-HISTORICO
+  nota: 'control 1 (oro a 1e-10: M25 marginales, C2-P-REDERIVADO, C2-IC) y control 3 (C2 legacy, descriptivo); no
+    es insumo del piso'
+- id: emisiones_sello
+  origen: repo
+  ruta: data/corrida0/CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001/sello.json
+  sha256: 2ee24feda904577ab49e508cd21f8ce81dc08a441254d478d183516d289ae10a
+  funcion: METADATO
+  nota: el sha de emisiones_resultados debe estar en este sello
+- id: arbitro_envipe2025_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/resultados.json
+  sha256: 732567d2c201f029c1e979c6f45f0b641081eb2d220da4f36cf9b580e5960694
+  funcion: CONTROL-HISTORICO
+  nota: 'control 2: los 8 marginales -P a 1e-10 y -N exacto'
+- id: arbitro_envipe2025_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENVIPE2025-0001/sello.json
+  sha256: 48a122149a28dd94990541267b5d5087f752a83c4f32b82503efb84396aa2725
+  funcion: METADATO
+  nota: el sha de arbitro_envipe2025_resultados debe estar en este sello
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_20
+  rol: universo-y-desenlace
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_23
+  rol: desenlace
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: FAC_DEL
+  rol: ponderador
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: UPM_DIS
+  rol: upm
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: ID_PER
+  rol: llave-delito-persona
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: DOMINIO
+  rol: eje-dominio
+- archivo: conjunto_de_datos_tsdem_envipe2025.csv
+  variable: ID_PER
+  rol: llave-persona
+- archivo: conjunto_de_datos_tsdem_envipe2025.csv
+  variable: NIV
+  rol: eje-escolaridad-proxy
+universo: DELITOS de tmod_vic ENVIPE 2025 con BP1_20 in {1,2} (el de las emisiones y el arbitro); cada eje sobre
+  su denominador valido.
+filtros: Los de mr.carga_ola (FAC_DEL > 0, EST_DIS/UPM_DIS no vacios, ID_PER unica en tsdem), ejecutados desde sus
+  bytes.
+ponderador: FAC_DEL
+transformacion: evade_norma = BP1_20 == 2 y BP1_23 in {04,05,06,08}; S1..S4 escolaridad_proxy (NIV), D1..D3 = Rural/Complemento
+  urbano/Urbano.
+estimando: C2(s,d) = expit(logit p25(s) + logit p25(d) - logit p25) en las 12 celdas escolaridad x dominio; marginales
+  de un eje de ENVIPE 2025; IC 2.5/97.5 de la composicion replica a replica.
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64 (replicas compartidas) + numpy.random.default_rng (wprop_ic_conglomerado)
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: misma semilla y mismo modulo congelado que las emisiones
+parametros:
+  bootstrap_replicas: 10000
+  c2_desenlace_id: evade_norma::BP1_20==2 AND BP1_23 in {04,05,06,08}
+  tol_control_emisiones: 1.0e-10
+  tol_control_arbitro: 1.0e-10
+resultados:
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S1xD1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S1xD2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S1xD3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S2xD1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S2xD2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S2xD3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S3xD1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S3xD2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S3xD3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S4xD1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S4xD2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-DELTA-LEGACY-S4xD3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S1xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S1xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S1xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S2xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S2xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S2xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S3xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S3xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S3xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S4xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S4xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95INF-S4xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S1xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S1xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S1xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S2xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S2xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S2xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S3xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S3xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S3xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S4xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S4xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-IC95SUP-S4xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S1xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S1xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S1xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S2xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S2xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S2xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S3xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S3xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S3xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S4xD1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S4xD2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-C2-P-S4xD3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-C2-CELDAS-NO-CONSTRUIBLES
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-C2-IC-ESTADO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D1-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D1-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D2-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D2-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D3-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-D3-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-NAC-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-NAC-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S1-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S1-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S2-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S2-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S3-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S3-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S4-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-S4-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-ARBITRO-VEREDICTO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-C2-LEGACY-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-EMISIONES-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-EMISIONES-N-DISCORDA
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-CTRL-EMISIONES-VEREDICTO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-DOMINIO-FUERA
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-ESCOLARIDAD-FUERA
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-ESTRATOS
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-FILAS-ARCHIVO
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-FILAS-UNIVERSO
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-GUARDIA-CRUCE-DERIVADO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-INPUT-ENVIPE2025-CSV-SHA256
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-ORIGEN
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-G-UPM
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D1-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D1-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D1-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D1-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D2-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D2-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D2-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D2-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D3-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D3-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D3-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-D3-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-NAC-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-NAC-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-NAC-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-NAC-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S1-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S1-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S1-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S1-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S2-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S2-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S2-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S2-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S3-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S3-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S3-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S3-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S4-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S4-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S4-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENVIPE2025-PISOS-EVADE-NORMA-SXD-MARG-S4-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true

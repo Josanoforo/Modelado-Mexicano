@@ -1,0 +1,1030 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002
+spec_md: ../../../forense/prereg-caja/DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002-spec-v1_0.md
+spec_md_sha256: 3073ce31cb4b8df7c253c9acd5647c860d0713d0ee509b45ca2aff8b218e4572
+script: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-PISOS-GEN2-2 (cuenta_gen2: SI, adopta: NO) -- forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md:6'
+  fuente_acto: GEN2-PISOS-GEN2-2
+  tipo: RE-ADJUDICACION-CELDA-D-PISO-DE-CADENA-LIMPIA
+  firmas: Decision 1 de ADOPCION-2 (mesa 24/sep/2026) extendida a todas las celdas-D por el encargo GEN2-PISOS-GEN2-2
+    §2 (INTERPRETACION-DECLARADA); E.1; firma 17/sep; regla 6
+  celda_d: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+  sucesor_de: 'CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001 (queda SELLADA como evidencia historica; no es repite_de:
+    la fuente de C2 cambia)'
+  hereda_por_sha:
+    medidor: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/medidor.py 95c1b63e619763970030428e68c861af68848b8bffb61b37ab0d6d1e26b94ae3
+    spec_md: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/spec.md 427117eec290ceb93444296c555c869512f11faef25d4432bbbda991ef1f1b3e
+    parametros_y_seed: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/spec.yaml c47f6065ee5022431d34e532419ac2468bda17050f6f9b744fb837df7b083654
+      (copiados verbatim)
+  orden_de_commits: COMMIT-1 (specs+codigo+D22) -> COMMIT-2 piso sellado -> COMMIT-3a sha del piso -> COMMIT-3 re-adjudicacion
+  marca: C2 RETROSPECTIVA (piso sellado despues de R); los demas contendientes conservan su marca del -0001
+  condicion: SE NIEGA A CORRER sin los sellos de emisiones, -0001 y piso (sha verificado), si el piso no declara
+    ORIGEN NUEVO, control de emisiones REPRODUCE e IC EMITIDO, o con un input fuera de la lista
+inputs:
+- id: enif2024_csv
+  origen: manifiesto
+- id: emisiones_selladas
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json
+  sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+  funcion: DATO
+  nota: las emisiones selladas del -0001 (C1, C3, C6, C7, soporte); su -C2-P se sustituye por el del piso antes
+    de adjudicar
+- id: emisiones_sello
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/sello.json
+  sha256: f412f9036dc43e2e0964893b28793f7a791968bc5d4217d2cbb54e1774f2c5a9
+  funcion: METADATO
+  nota: el sha de emisiones_selladas debe estar en este sello
+- id: medidor_0001
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/medidor.py
+  sha256: 95c1b63e619763970030428e68c861af68848b8bffb61b37ab0d6d1e26b94ae3
+  funcion: CODIGO
+  nota: el medidor del -0001, ejecutado sin editar
+- id: medidor_emisiones
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/medidor.py
+  sha256: ee1476a234aecbd878a4ac9466e98d85d7373ea011243116de50c1589d3f8d39
+  funcion: CODIGO
+  nota: importado por el medidor del -0001 (motor de bootstrap)
+- id: funcion_c2
+  origen: repo
+  ruta: tests/test_celda_d_c2.py
+  sha256: 71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9
+  funcion: CODIGO
+  nota: importada por el medidor de las emisiones
+- id: extrae_l
+  origen: repo
+  ruta: tools/extrae_l_v1_1.py
+  sha256: efb71de15da18f8239647b0467f85e085f69450db12c5a54728af66aac1ab48f
+  funcion: CODIGO
+  nota: importada por el medidor de las emisiones
+- id: adjudicacion_0001_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/resultados.json
+  sha256: 0482265e112205e225bc55cc6a060b836a63a79f4fa539fa2601070460e84273
+  funcion: CONTROL-HISTORICO
+  nota: 'oro (E.5): todo id que no depende de C2 reproduce a tol_oro_0001'
+- id: adjudicacion_0001_sello
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001/sello.json
+  sha256: 260612f40fd478d5e404470806f95137f9bb7d8879cf56b750567b764a868689
+  funcion: METADATO
+  nota: el sha del -0001 debe estar en este sello
+- id: piso_c2_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001/resultados.json
+  sha256: 7ff64e0934207e6efd314626207417bbf38c81c736aaffa5bc304a0bfe49aa9e
+  funcion: DATO
+  nota: 'EL UNICO CAMBIO: fuente del punto C2 (por id); NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a'
+- id: piso_c2_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001/sello.json
+  sha256: 127d72907e563de5801400faf2bd6943eb7cb9c82d5149a32e20ef4c73d686cb
+  funcion: METADATO
+  nota: NO EXISTE en COMMIT-1; sha256 se fija en COMMIT-3a
+variables:
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_1
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_2
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_3
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_4
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_5
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_6
+  rol: ahorro-informal-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_1
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_2
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_3
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_4
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_5
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_8
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_9
+  rol: via-formal-2024-los-siete-de-la-sensibilidad-D7
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_6
+  rol: via-formal-2024-los-dos-que-completan-D9-primario
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_7
+  rol: via-formal-2024-los-dos-que-completan-D9-primario
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: tloc
+  rol: eje-localidad-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: edad_v
+  rol: eje-edad-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: fac_per
+  rol: ponderador-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: est_dis
+  rol: estrato-diseno-2024
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: upm_dis
+  rol: upm-diseno-2024
+universo: 'Identico al de las emisiones (spec humana §3.1): personas ELEGIDAS de 18 anos y mas del modulo TMODULO
+  de ENIF 2024, una fila por persona seleccionada.'
+filtros: 'Los mismos tres, en el mismo orden: edad valida 18 <= edad_v <= 97 excluyendo los centinelas 98 y 99;
+  tloc en {1,2,3,4}; fac_per presente y > 0. AQUI SI se construye la llave (localidad, edad) sobre ENIF 2024: es
+  el objeto de este CALC y el commit en que la reserva se levanta. Las emisiones ya estaban selladas cuando esto
+  corrio -- el orden del diff es el sello.'
+ponderador: fac_per -- Factor de expansion a nivel persona (FD 6,C,fac_per)
+transformacion: 'R = p(ahorra_solo_informal | localidad, edad) en las 8 celdas de cruce de ENIF 2024, misma receta
+  que el arbitro marginal: razon de totales ponderados, bootstrap de conglomerados estratificado (remuestreo con
+  reemplazo de upm_dis dentro de est_dis), 10 000 replicas, seed 42, IC95 por percentiles 2.5/97.5. R9 (nueve tipos)
+  es el PRIMARIO; R7 (siete) es la SENSIBILIDAD y NO ADJUDICA. Adjudicacion por celda: error absoluto en puntos
+  porcentuales contra R9; INDECIDIBLE por las dos condiciones verbatim del programa; skill 1 - MAE/MAE(piso) que
+  se reporta y no adjudica; conteo a nivel celda-D.'
+estimando: 'Re-adjudicacion del CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001 con C2 := RESULT -C2-P (y su IC)
+  de CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001, por id. Todo lo demas: el estimando del -0001, verbatim: El arbitro
+  R del cruce y la adjudicacion por celda de los candidatos ya emitidos y sellados. Diagnostico C5: |p_nacional
+  - p_celda| por celda, solo descriptivo, fuera de toda competencia.'
+precision: 'R: IC95 muestral por bootstrap de conglomerados estratificado, 10 000 replicas, seed 42. EE(R) = (IC95sup
+  - IC95inf)/3.92, que es la escala del criterio INDECIDIBLE. La adjudicacion NO produce un IC propio: es un conteo
+  sobre 8 celdas de una misma muestra, no independientes, y por eso el umbral es de conteo y no hay valor-p.'
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: mismo generador, mismo orden de consumo y misma semilla que el CALC de emisiones
+parametros:
+  celdas:
+  - L1xE1
+  - L1xE2
+  - L1xE3
+  - L1xE4
+  - L2xE1
+  - L2xE2
+  - L2xE3
+  - L2xE4
+  desenlace_primario: D9
+  desenlace_sensibilidad: D7
+  desenlace_sensibilidad_adjudica: false
+  localidad_L1_tloc:
+  - '3'
+  - '4'
+  localidad_L2_tloc:
+  - '1'
+  - '2'
+  edad_tramos:
+    E1:
+    - 18
+    - 29
+    E2:
+    - 30
+    - 44
+    E3:
+    - 45
+    - 59
+    E4:
+    - 60
+    - 97
+  edad_centinela:
+  - '98'
+  - '99'
+  codigos_informal_2024:
+  - p5_1_1
+  - p5_1_2
+  - p5_1_3
+  - p5_1_4
+  - p5_1_5
+  - p5_1_6
+  codigos_formal_D9_2024:
+  - p5_6_1
+  - p5_6_2
+  - p5_6_3
+  - p5_6_4
+  - p5_6_5
+  - p5_6_6
+  - p5_6_7
+  - p5_6_8
+  - p5_6_9
+  codigos_formal_D7_2024:
+  - p5_6_1
+  - p5_6_2
+  - p5_6_3
+  - p5_6_4
+  - p5_6_5
+  - p5_6_8
+  - p5_6_9
+  codigo_si: '1'
+  bootstrap_replicas: 10000
+  umbral_soporte_n: 200
+  pisos:
+  - C1
+  - C2
+  challengers:
+  - C3-LSOLO
+  challenger_diferido: C3-LCORPUS
+  criterio_indecidible_verbatim: si ambos caen dentro del IC de R o si |d_L-d_M| < 0.5*EE(R)
+  criterio_indecidible_fuente: forense/CAREO-ADV-DUELO-diseno-v2-2026-08-19.md:38
+  ee_r_formula: (IC95sup - IC95inf)/3.92
+  umbral_celdas_gana: 6
+  umbral_celdas_puntuadas: 6
+  precedencia: si dos filas se satisfacen, manda INDECIDIBLE
+  paradas_admisibles:
+  - ADJUDICADA
+  - INDECIDIBLE
+  - SIN-CANDIDATO-SUPERIOR
+  - FUERA-DE-SOPORTE
+  b_bis_c1: si nadie vence a C1 -> la persistencia queda corroborada como piso en DIN
+  b_bis_c2: 'si nadie vence a C2 -> los candidatos ensayados no superaron este piso, bajo esta evaluacion, en estas
+    ocho celdas. Eso es TODO lo que dice (H5): no identifica ausencia de interaccion, ni ausencia de informacion
+    aprovechable por otros metodos, ni una propiedad de la poblacion.'
+  limite_de_la_evaluacion: si el ganador se ELIGE con las ocho celdas, esa misma evaluacion no lo valida de forma
+    independiente (H5, fila 7 de la tabla fundida). El resultado se reporta como seleccion mas desempeno conjunto,
+    nunca como desempeno independiente del ganador.
+  p_nacional_c5: 0.357153
+  p_nacional_c5_fuente: milpa/tramite.yaml:1312 -- clase DERIVADO, sin IC propio; no es MEDIDO
+  c5_rol: COMPLEMENTO / diagnostico puro; fuera de la competencia porque el emisor es el arbitro con otro nombre
+    (tramite.yaml:712)
+  champion: NINGUNO
+  adopcion: NINGUNA
+  tol_oro_0001: 1.0e-10
+secuencia_commits:
+  commit_2: corrida0 run de CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001; sello; asiento de replay; commit y push.
+  commit_3a: 'commit aparte: rellena el sha256 de piso_c2_resultados y piso_c2_sello; preflight VERDE. Ninguna otra
+    linea cambia.'
+  commit_3: corrida0 run de este CALC; sello; celda-D; decisiones.tsv; asientos.
+  preflight_esperado_antes_del_commit_3a: BLOQUEADO exactamente por los dos inputs del piso -- y por nada mas.
+resultados:
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95INF-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-IC95SUP-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-EMISION-0001-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C2-P-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L1xE1
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L1xE2
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L1xE3
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L1xE4
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L2xE1
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L2xE2
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L2xE3
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-C5-DIAG-L2xE4
+  tipo: flotante
+  unidad: '|p_nacional - R9| en proporcion -- diagnostico, no compite'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L1xE1
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L1xE2
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L1xE3
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L1xE4
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L2xE1
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L2xE2
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L2xE3
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C1-L2xE4
+  tipo: flotante
+  unidad: '|C1 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L1xE1
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L1xE2
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L1xE3
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L1xE4
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L2xE1
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L2xE2
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L2xE3
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C2-L2xE4
+  tipo: flotante
+  unidad: '|C2 - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L1xE1
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L1xE2
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L1xE3
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L1xE4
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L2xE1
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L2xE2
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L2xE3
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-D-C3-L2xE4
+  tipo: flotante
+  unidad: '|C3-LSOLO - R9| en proporcion'
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-G-B-BIS-C1
+  tipo: texto
+  unidad: lectura declarada antes de correr si nadie vence a C1
+- id: RESULT-DIN-LXE8-ARB2-G-B-BIS-C2
+  tipo: texto
+  unidad: lectura declarada antes de correr si nadie vence a C2
+- id: RESULT-DIN-LXE8-ARB2-G-BRECHA-D9-D7-MAX
+  tipo: flotante
+  unidad: max |R9 - R7| sobre las 8 celdas -- magnitud de lo que D2(a) habria producido
+- id: RESULT-DIN-LXE8-ARB2-G-C3-GANA-A-AMBOS-PISOS
+  tipo: entero
+  unidad: celdas PUNTUADA en que C3 vence a C1 y a C2
+- id: RESULT-DIN-LXE8-ARB2-G-C3-INDECIDIBLES
+  tipo: entero
+  unidad: pares challenger-piso resueltos INDECIDIBLE
+- id: RESULT-DIN-LXE8-ARB2-G-C5-DIAG-MAX
+  tipo: flotante
+  unidad: max |p_nacional - R9| sobre las 8 celdas
+- id: RESULT-DIN-LXE8-ARB2-G-CELDAS-FUERA-DE-SOPORTE-2024
+  tipo: entero
+  unidad: celdas con n_2024 < 200
+- id: RESULT-DIN-LXE8-ARB2-G-CELDAS-PUNTUADAS
+  tipo: entero
+  unidad: celdas con soporte y los tres candidatos con valor
+- id: RESULT-DIN-LXE8-ARB2-G-CHAMPION
+  tipo: texto
+  unidad: campeon adoptado por este CALC
+- id: RESULT-DIN-LXE8-ARB2-G-CONDICION-INDECIDIBLE-VERBATIM
+  tipo: texto
+  unidad: las dos condiciones, verbatim de su fuente
+- id: RESULT-DIN-LXE8-ARB2-G-CTRL-ORO-0001-COMPARADOS
+  tipo: entero
+  unidad: conteo
+- id: RESULT-DIN-LXE8-ARB2-G-CTRL-ORO-0001-DISCORDAN
+  tipo: entero
+  unidad: conteo
+- id: RESULT-DIN-LXE8-ARB2-G-CTRL-ORO-0001-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-DIN-LXE8-ARB2-G-CTRL-ORO-0001-VEREDICTO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-DIN-LXE8-ARB2-G-DICTAMEN-0001
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-DIN-LXE8-ARB2-G-DICTAMEN-CAMBIA
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-DIN-LXE8-ARB2-G-EMISIONES-CORRIDA-ID
+  tipo: texto
+  unidad: corrida_id de las emisiones que este CALC adjudica
+- id: RESULT-DIN-LXE8-ARB2-G-FUENTE-C2
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-DIN-LXE8-ARB2-G-INPUT-EMISIONES-SHA256
+  tipo: texto
+  unidad: sha256 de resultados.json del CALC de emisiones
+- id: RESULT-DIN-LXE8-ARB2-G-INPUT-ENIF2024-CSV-SHA256
+  tipo: texto
+  unidad: sha256 del payload enif2024_csv
+- id: RESULT-DIN-LXE8-ARB2-G-LIMITE-DE-LA-EVALUACION
+  tipo: texto
+  unidad: seleccion mas desempeno conjunto, nunca desempeno independiente
+- id: RESULT-DIN-LXE8-ARB2-G-MAE-C1
+  tipo: flotante
+  unidad: MAE de C1 contra R9, en proporcion
+- id: RESULT-DIN-LXE8-ARB2-G-MAE-C2
+  tipo: flotante
+  unidad: MAE de C2 contra R9, en proporcion
+- id: RESULT-DIN-LXE8-ARB2-G-MAE-C3
+  tipo: flotante
+  unidad: MAE de C3-LSOLO contra R9, en proporcion
+- id: RESULT-DIN-LXE8-ARB2-G-PISO-C2-SHA256
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-DIN-LXE8-ARB2-G-R-COBERTURA-PONDERADA
+  tipo: proporcion
+  unidad: peso universo / peso archivo
+- id: RESULT-DIN-LXE8-ARB2-G-R-COBERTURA-SIN-PONDERAR
+  tipo: proporcion
+  unidad: filas universo / filas archivo
+- id: RESULT-DIN-LXE8-ARB2-G-R-ESTRATOS
+  tipo: entero
+  unidad: est_dis distintos en el universo
+- id: RESULT-DIN-LXE8-ARB2-G-R-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: estratos con una sola UPM (IC conservador)
+- id: RESULT-DIN-LXE8-ARB2-G-R-FILAS-ARCHIVO
+  tipo: entero
+  unidad: filas del microdato TMODULO 2024
+- id: RESULT-DIN-LXE8-ARB2-G-R-FILAS-CODIGO-FUERA-DE-DOMINIO
+  tipo: entero
+  unidad: filas con algun valor fuera de dominio
+- id: RESULT-DIN-LXE8-ARB2-G-R-FILAS-EDAD-CENTINELA
+  tipo: entero
+  unidad: filas excluidas por edad_v en {98,99}
+- id: RESULT-DIN-LXE8-ARB2-G-R-FILAS-UNIVERSO
+  tipo: entero
+  unidad: filas tras los tres filtros
+- id: RESULT-DIN-LXE8-ARB2-G-R-MONOTONIA-D9-SUBSET-D7
+  tipo: texto
+  unidad: VERIFICADA o VIOLADA -- falsador del medidor
+- id: RESULT-DIN-LXE8-ARB2-G-R-P-NACIONAL-D7
+  tipo: proporcion
+  unidad: p nacional ponderada 2024 bajo D7 (sensibilidad)
+- id: RESULT-DIN-LXE8-ARB2-G-R-P-NACIONAL-D9
+  tipo: proporcion
+  unidad: p nacional ponderada 2024 bajo D9
+- id: RESULT-DIN-LXE8-ARB2-G-R-UPM
+  tipo: entero
+  unidad: upm_dis distintas en el universo
+- id: RESULT-DIN-LXE8-ARB2-G-SKILL-C3-VS-C1
+  tipo: flotante
+  unidad: 1 - MAE(C3)/MAE(C1) -- se reporta, no adjudica
+- id: RESULT-DIN-LXE8-ARB2-G-SKILL-C3-VS-C2
+  tipo: flotante
+  unidad: 1 - MAE(C3)/MAE(C2) -- se reporta, no adjudica
+- id: RESULT-DIN-LXE8-ARB2-G-VEREDICTO-CELDA-D
+  tipo: texto
+  unidad: ADJUDICADA / INDECIDIBLE / SIN-CANDIDATO-SUPERIOR / FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L1xE1
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L1xE2
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L1xE3
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L1xE4
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L2xE1
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L2xE2
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L2xE3
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-PUNTUADA-L2xE4
+  tipo: texto
+  unidad: SI o NO
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L1xE1
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L1xE2
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L1xE3
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L1xE4
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L2xE1
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L2xE2
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L2xE3
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95INF-L2xE4
+  tipo: proporcion
+  unidad: IC95 inferior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L1xE1
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L1xE2
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L1xE3
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L1xE4
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L2xE1
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L2xE2
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L2xE3
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-IC95SUP-L2xE4
+  tipo: proporcion
+  unidad: IC95 superior, sensibilidad
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L1xE1
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L1xE2
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L1xE3
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L1xE4
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L2xE1
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L2xE2
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L2xE3
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D7-P-L2xE4
+  tipo: proporcion
+  unidad: sensibilidad D7 -- NO adjudica
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L1xE1
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L1xE2
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L1xE3
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L1xE4
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L2xE1
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L2xE2
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L2xE3
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-EE-L2xE4
+  tipo: flotante
+  unidad: EE(R) = (IC95sup - IC95inf)/3.92
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L1xE1
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L1xE2
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L1xE3
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L1xE4
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L2xE1
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L2xE2
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L2xE3
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95INF-L2xE4
+  tipo: proporcion
+  unidad: IC95 inferior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L1xE1
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L1xE2
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L1xE3
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L1xE4
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L2xE1
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L2xE2
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L2xE3
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-IC95SUP-L2xE4
+  tipo: proporcion
+  unidad: IC95 superior bootstrap
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L1xE1
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L1xE2
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L1xE3
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L1xE4
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L2xE1
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L2xE2
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L2xE3
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-N-L2xE4
+  tipo: entero
+  unidad: filas del universo 2024 en la celda
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L1xE1
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L1xE2
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L1xE3
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L1xE4
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L2xE1
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L2xE2
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L2xE3
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-R-D9-P-L2xE4
+  tipo: proporcion
+  unidad: arbitro R, ENIF 2024, D9 primario
+  permite_no_estimable: true
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L1xE1
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L1xE2
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L1xE3
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L1xE4
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L2xE1
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L2xE2
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L2xE3
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-SOPORTE-2024-L2xE4
+  tipo: texto
+  unidad: SOPORTE-OK o FUERA-DE-SOPORTE
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L1xE1
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L1xE2
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L1xE3
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L1xE4
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L2xE1
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L2xE2
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L2xE3
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C1-L2xE4
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L1xE1
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L1xE2
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L1xE3
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L1xE4
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L2xE1
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L2xE2
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L2xE3
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-C3-VS-C2-L2xE4
+  tipo: texto
+  unidad: GANA-CHALLENGER / GANA-PISO / INDECIDIBLE / NO-PUNTUADA
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L1xE1
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L1xE2
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L1xE3
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L1xE4
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L2xE1
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L2xE2
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L2xE3
+  tipo: texto
+  unidad: resultado conjunto de la celda
+- id: RESULT-DIN-LXE8-ARB2-VEREDICTO-CELDA-L2xE4
+  tipo: texto
+  unidad: resultado conjunto de la celda
