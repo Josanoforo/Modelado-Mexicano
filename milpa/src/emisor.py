@@ -714,10 +714,12 @@ def cargar_indice_linaje_emision(
     # la oferta la PRIMERA fila real que lo necesite -- ~310 CALC-*/,
     # medido ~70s 24/sep/2026): una fixture sintetica que ya trae el campo
     # (como las de `tests/test_linaje_superado.py`) nunca lo dispara.
-    from tools.vista import join_resultado, corridas_por_id
+    from tools.vista import join_resultado, corridas_por_id, resuelve_fila
     _corridas = corridas_por_id(ruta_resultados.parent / "corridas.tsv")
     por_id: dict[str, list[dict[str, str]]] = {}
-    for fila in _leer_vista_derivada(ruta_resultados):
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4: `valor` > 1 KB llega como
+    # `REF:<ruta>#sha256:<hex>`; se resuelve al texto sellado antes de usarlo.
+    for fila in map(resuelve_fila, _leer_vista_derivada(ruta_resultados)):
         por_id.setdefault(fila["resultado_id"], []).append(
             join_resultado(fila, _corridas))
 

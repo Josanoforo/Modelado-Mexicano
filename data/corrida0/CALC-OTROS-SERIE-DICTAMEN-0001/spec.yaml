@@ -1,0 +1,53 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-OTROS-SERIE-DICTAMEN-0001
+spec_md: ../../../forense/prereg-caja/DONDE-CAMBIO-spec-v1_0.md
+spec_md_sha256: f3ca3d66f998086334695ec01dd29e5b6231e2a7c0d72963b74fe0e759883592
+script: data/corrida0/CALC-OTROS-SERIE-DICTAMEN-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DICTAMEN-SERIE-RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: NUEVO
+  origen_numerico_detalle: dictamen sobre RESULT sellados de 10 CALC; sin microdato
+  exposicion_historica: SIN-VALORES-PRE-FREEZE; mapa congelado en forense/analisis/donde-cambio/mapa/CONGELADO.md
+inputs:
+  - {id: MEDIDOR-CALC-SERIE, origen: repo, funcion: CODIGO, ruta: tools/series/calc_serie.py, sha256: 780d94b31dde9f7748ed20bdb719a3f62e31259c9a8b42c098beba8222440e92}
+  - {id: MEDIDOR-DICTAMEN, origen: repo, funcion: CODIGO, ruta: tools/series/dictamen.py, sha256: b2b846cacca8dff43a9f662a31b3a0a53afd101462ea3d34d7606405a52dd29f}
+  - {id: MAPA, origen: repo, funcion: METADATO, ruta: forense/analisis/donde-cambio/mapa/resto.tsv, sha256: 67e6f9c08209daf5ff9b149f6f9ec9227f05aa747b784de63d717e45c5ca1ab8}
+  - {id: SRC-CALC-0002, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-0002/resultados.json, sha256: 4f76c4c929c0f1c0e15a30dd253c3c5cae0992aa638d5a26f2e7d2e1f0f209fa}
+  - {id: SRC-CALC-BANXICO-PRODUCTO-DANO-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-BANXICO-PRODUCTO-DANO-0001/resultados.json, sha256: d187c6375d3333c17d19359404cfd46c4051539eca26e9e739ca44424bd759ba}
+  - {id: SRC-CALC-EDER-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-EDER-0001/resultados.json, sha256: fdae379a4c1c7ffda56b214a6e8e3d186e4b60b373de4331dd4c767ecdea1a8b}
+  - {id: SRC-CALC-EDER-0003, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-EDER-0003/resultados.json, sha256: cc26fc6225c6a2a177166ad4c1c261f28e37540e99329be3ab27baf7819dfb48}
+  - {id: SRC-CALC-ENCUCI-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENCUCI-0001/resultados.json, sha256: 81bd129c52a4f96d60377e09b1e16b5c8dbb1df3d13a1b6b57ac1ac779c0f704}
+  - {id: SRC-CALC-ENFIH-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENFIH-0001/resultados.json, sha256: 471392e79276aebc0e74ec4a8fa65f3a63c3edfe1e47922e54edc931b48633be}
+  - {id: SRC-CALC-ENSANUT-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENSANUT-0001/resultados.json, sha256: 3df2e79f5a782b54afade3e7c2c494c52652f7a026dde9c1ce0b3f2f87556189}
+  - {id: SRC-CALC-MOTRAL2015-VALORACION-SS-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-MOTRAL2015-VALORACION-SS-0001/resultados.json, sha256: 5fbfcb88dc74d8da2d0ad16b7e5f3d51c39c76aa26570d240f995651ead4d026}
+  - {id: SRC-CALC-R-DIN-M-01-v4, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-DIN-M-01-v4/resultados.json, sha256: 632d0f8c5a33addeee218319ebcfda2636aa8505567ceabccd2fb8dc9684509d}
+  - {id: SRC-CALC-R-TRA-M-02-v3, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-TRA-M-02-v3/resultados.json, sha256: 275e678104ce87919e92d5e7fd88d76330f5fd9e365b45c27cc3ba2163a69e01}
+variables: []
+universo: "Series (instrumento, conducta, eje, segmento) del mapa congelado con instrumento en ['BANXICO', 'EDER', 'ENCUCI', 'ENFIH', 'ENNVIH', 'ENSANUT', 'LAPOP', 'MOTRAL']."
+filtros: "tramo = corrida mas larga de olas unidas por COMPARABLE o CAMBIO-DOCUMENTADO con p, lo, hi en (0,1); spec §2."
+ponderador: "el de cada CALC origen; esta corrida consume sus RESULT"
+transformacion: "spec §3-§4: piso t-1 cubre t si p_b en expit(logit p_a +/- 1.959964 sqrt(ee_a^2 + tau2)); dictamen por la primera regla que se cumpla."
+estimando: "Dictamen cerrado por serie: SIN-SERIE, CAMBIO-SOSTENIDO, SALTO-DE-INSTRUMENTO, SALTO-SIN-EXPLICAR, ESTABLE. RETROSPECTIVA."
+seed: {aplica: false, nota: "determinista, sin remuestreo"}
+parametros:
+  instrumento: ["BANXICO", "EDER", "ENCUCI", "ENFIH", "ENNVIH", "ENSANUT", "LAPOP", "MOTRAL"]
+  prefijo: RESULT-DC-OTROS
+  z_95: 1.959964
+  tau2_fuente: "CALCULADO-AQUI spec §3.3"
+dependencias_materiales: []
+resultados:
+  - {id: RESULT-DC-OTROS-TAU2-NACIONAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-OTROS-TAU2-RURAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-OTROS-TAU2-URBANO, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-OTROS-TAU2-FUENTE, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-OTROS-N-SIN-SERIE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-N-CAMBIO-SOSTENIDO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-N-SALTO-DE-INSTRUMENTO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-N-SALTO-SIN-EXPLICAR, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-N-ESTABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-N-SERIES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-OTROS-TABLA, tipo: texto, unidad: "texto"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}
