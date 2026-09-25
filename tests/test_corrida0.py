@@ -3270,8 +3270,11 @@ def _repro_catalogo(fila_relevo: dict) -> str:
         with open(previo, encoding="utf-8", newline="") as fh:
             lector = csv.DictReader(fh, delimiter="\t")
             cols = list(lector.fieldnames) + list(C.COLUMNAS_RELEVO_CATALOGO)
-            filas = [dict(f, **(fila_relevo if f["id_momento"] == "M08" else {}))
-                     for f in lector]
+            # M08 real ya trae su cita (ACTO GEN2-RELEVO-CONSUMIDORES-2): el
+            # caso sintetico parte de columnas de relevo VACIAS, no hereda.
+            vacia = {c: "" for c in C.COLUMNAS_RELEVO_CATALOGO}
+            filas = [dict(f, **({**vacia, **fila_relevo} if f["id_momento"] == "M08"
+                                else vacia)) for f in lector]
         C.CATALOGO_MOMENTOS = tmp / "catalogo-momentos-v0_1.tsv"
         try:
             with C.CATALOGO_MOMENTOS.open("w", encoding="utf-8", newline="") as fh:
