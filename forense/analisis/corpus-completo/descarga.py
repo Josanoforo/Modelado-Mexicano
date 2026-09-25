@@ -94,6 +94,7 @@ def baja(url: str, destino: Path) -> tuple[str, int, str]:
 
 
 def _baja(url: str, destino: Path) -> tuple[str, int, str]:
+    url = url.replace(" ", "%20")  # rutas INEGI con espacio literal (cnpje/cnije 2012)
     p = subprocess.run(["curl", "-sS", "-L", "-A", UA, "--max-time", "3600",
                         "--connect-timeout", "30", "-o", str(destino), "-w", "%{http_code}", url],
                        capture_output=True, text=True)
@@ -109,7 +110,7 @@ def sha(path: Path) -> str:
     return h.hexdigest()
 
 
-def estructura(path: Path) -> str:
+def estructura(path: Path, nombre: str = "") -> str:
     with path.open("rb") as f:
         cab = f.read(8)
     if cab[:4] == b"PK\x03\x04":
@@ -127,8 +128,14 @@ def estructura(path: Path) -> str:
         return "RAR-OK"
     if cab[:2] == b"\x1f\x8b":
         return "GZIP-OK"
+    if cab[:8] == b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1":
+        return "OLE2-OK"  # .xls/.doc binario de Office
     if cab.lstrip()[:1] == b"<":
         return "HTML(SOFT-404-O-PAGINA)"
+    if Path(nombre or path.name).suffix.lower() in (".csv", ".txt"):
+        with path.open("rb") as f:
+            muestra = f.read(4096)
+        return "TEXTO-OK" if b"\x00" not in muestra and b"<html" not in muestra.lower() else "TEXTO-SOSPECHOSO"
     return f"OTRA({cab[:4].hex()})"
 
 
@@ -145,12 +152,18 @@ def main() -> int:
     ap.add_argument("--max", type=int, default=0)
     ap.add_argument("--programa", nargs="*", default=None)
     ap.add_argument("--hasta-gb", type=float, default=0.0)
+    ap.add_argument("--shard", default="0/1", help="i/n: sólo las filas (programa, ola) de este reparto")
     a = ap.parse_args()
+    si, sn = (int(x) for x in a.shard.split("/"))
+    global TMP
+    TMP = TMP / f"shard{si}"
     TMP.mkdir(parents=True, exist_ok=True)
     hechas = ya_ok()
     cola = pendientes_de_la_vista()
     filas = [r for r in lee_catalogo() if r["clase"] == "ARCHIVO" and r["en_manifiesto"] == "NO"
-             and f"{r['programa']}_{r['ola']}".replace(" ", "-") in cola and r["url"] not in hechas and (not a.programa or r["programa"] in a.programa)]
+             and f"{r['programa']}_{r['ola']}".replace(" ", "-") in cola and r["url"] not in hechas
+             and int(hashlib.sha1(f"{r['programa']}_{r['ola']}".encode()).hexdigest(), 16) % sn == si
+             and (not a.programa or r["programa"] in a.programa)]
     print(f"pendientes: {len(filas)}", flush=True)
     fallos_seguidos, total_b, n = 0, 0, 0
     for r in filas:
@@ -174,11 +187,16 @@ def main() -> int:
             fallos_seguidos += 1
             print(f"FALLO {c1} {e1[:80]} {r['url']}", flush=True)
             if fallos_seguidos >= 3:
-                print("tres fallos seguidos: espera 600 s", flush=True)
-                time.sleep(600)
+                # el host corta TLS a todo (bloqueo por volumen): no se queman filas; se espera
+                # a que la portada responda 2xx, sondeando cada 10 min
+                print("tres fallos seguidos: pausa hasta que el host responda", flush=True)
+                host = "/".join(r["url"].split("/")[:3]) + "/"
+                while not _baja(host, TMP / "sonda.html")[0].startswith("2"):
+                    time.sleep(600)
+                print("host responde: reanuda", flush=True)
                 fallos_seguidos = 0
             continue
-        est = estructura(t1)
+        est = estructura(t1, dest.name)
         if not est.split("(")[0].endswith("-OK") and est != "RAR-OK":
             anota({**base, "fecha_utc": fecha, "http_code": c1, "bytes": b1,
                    "sha256_1": sha(t1), "estructura": est, "resultado": "RECHAZADO-ESTRUCTURA"})
@@ -206,7 +224,7 @@ def main() -> int:
         anota({**base, "fecha_utc": fecha, "http_code": c1, "bytes": b1, "sha256_1": s1,
                "sha256_2": s2, "estructura": est, "resultado": "OK"})
         print(f"OK {b1} {r['programa']} {r['ola']} {dest.name}", flush=True)
-        time.sleep(1)
+        time.sleep(3)
     print(f"tanda cerrada: {n} caminadas, {total_b / 1e9:.2f} GB", flush=True)
     return 0
 

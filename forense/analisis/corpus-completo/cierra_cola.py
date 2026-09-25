@@ -6,7 +6,7 @@ registra.py. Nada se teclea: el estado se deriva de la bitácora y del manifiest
 - todos los archivos del (programa, ola) con id en el manifiesto -> OBTENIDO
 - algunos                                                        -> OBTENIDO-PARCIAL
 - ninguno y >=1 intento en bitácora                              -> NO-OBTENIDO-POR-ESTE-AGENTE(N intentos)
-- sin intento: la fila queda PENDIENTE (no se toca)
+- con algún archivo aún sin intento: la fila queda PENDIENTE (no se toca)
 
 Escritor canónico `tsv_crudo.upsert_fila`; después regenerar la vista con
 `python3 tools/vista_cola_adquisicion.py`.
@@ -48,8 +48,9 @@ def main() -> int:
     id_por_url = {e.get("url_origen"): e["id"] for e in man}
     id_por_sha = {e.get("sha256"): e["id"] for e in man if e.get("sha256")}
     intentos, ultimo, fallo = defaultdict(int), {}, {}
-    ok_sha = {}
+    ok_sha, intentadas = {}, set()
     for b in lee(D / "bitacora-descargas.tsv"):
+        intentadas.add(b["url"])
         k = clave(b["programa"], b["ola"])
         intentos[k] += 1
         ultimo[k] = max(ultimo.get(k, ""), b["fecha_utc"][:10])
@@ -60,11 +61,11 @@ def main() -> int:
     campos = leer_lineas(REGISTRO)[0].rstrip("\n").split("\t")
     cuenta = defaultdict(int)
     for f in leer_dicts(REGISTRO):
-        if not f["fila_origen"].startswith(PREFIJO) or f["estado_A4A5"] != "PENDIENTE":
+        if not f["fila_origen"].startswith(PREFIJO) or f["estado_A4A5"].split("(")[0] not in ("PENDIENTE", "OBTENIDO-PARCIAL", "NO-OBTENIDO-POR-ESTE-AGENTE"):
             continue
         k = f["fuente_canonica"]
-        if not intentos.get(k):
-            continue
+        if not intentos.get(k) or not urls[k] <= intentadas:
+            continue  # fila aún en caminata: queda PENDIENTE hasta que cada archivo tenga intento
         ids = []
         for u in sorted(urls[k]):
             i = id_por_url.get(u) or id_por_sha.get(ok_sha.get(u, "-"))
