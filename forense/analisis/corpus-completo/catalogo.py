@@ -94,8 +94,9 @@ def elige_formato(formato: str) -> tuple[str, str, str]:
 
 
 def manifiesto() -> list[dict]:
+    # las entradas `cc1_*` las registra este mismo acto (P2): el catálogo es el estado ANTES del acto
     return [e for e in yaml.safe_load((ROOT / "data/manifiesto.yaml").read_text(encoding="utf-8"))
-            if isinstance(e, dict) and "id" in e]
+            if isinstance(e, dict) and "id" in e and not str(e["id"]).startswith("cc1_")]
 
 
 def mapa_adq() -> list[str]:
