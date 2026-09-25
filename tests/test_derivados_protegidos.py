@@ -34,6 +34,8 @@ def prueba_deteccion_por_cabecera_sobre_fixture():
     afirma(isinstance(rutas, list) and examinados > 0,
            "debe examinar al menos un archivo de texto versionado")
     for r in rutas:
+        if DP._es_tabla_de_valor(r):
+            continue  # derivado por RUTA (valores-vista/*): no admite cabecera sin cambiar el valor
         with open(os.path.join(ROOT, r), "rb") as fh:
             primera = fh.readline().decode("utf-8", "replace").rstrip("\n")
         afirma(primera.startswith(DP.CABECERA),
@@ -57,10 +59,12 @@ def prueba_universo_coincide_con_grep_manual():
     esperado = {p for p in salida
                 if not p.startswith("data/raw/") and not p.startswith(".git/")}
     rutas, _ = DP.lista_derivados()
-    obtenido = set(rutas)
+    obtenido = {r for r in rutas if not DP._es_tabla_de_valor(r)}
     # `git grep -l` encuentra la cadena en cualquier parte del archivo; la
     # función solo cuenta si es la PRIMERA línea. Todo lo que la función
     # marca debe estar en el grep amplio (subconjunto, nunca al revés).
+    # Excepción declarada: `valores-vista/*` es derivado por RUTA (§ arriba),
+    # nunca por cabecera, así que se compara aparte de este grep.
     afirma(obtenido <= esperado,
            f"la función marcó archivos que ni siquiera contienen la cabecera: {obtenido - esperado}")
 
@@ -104,11 +108,44 @@ def prueba_toca_detecta_diff_en_derivado():
                 ["git", "rev-parse", "HEAD"], cwd=tmp,
                 capture_output=True, text=True, check=True).stdout.strip()
             rc_ajeno = DP.main(["--solo-derivados", base, cambia_normal])
+
+            # Salidas del canal sin cabecera: tablero y filas status del README.
+            def rev():
+                return subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp,
+                                      capture_output=True, text=True,
+                                      check=True).stdout.strip()
+            fila = ("| Corridas selladas | {} | <!-- deriva: python3 "
+                    "tools/corrida0.py status | rg '^N_corridas_selladas=' -->"
+                    " `N_corridas_selladas` |\n")
+            os.makedirs(os.path.join(tmp, "docs"), exist_ok=True)
+            with open(os.path.join(tmp, "docs", "tablero.md"), "w") as fh:
+                fh.write("tablero v1\n")
+            with open(os.path.join(tmp, "README.md"), "w") as fh:
+                fh.write("# portada\n" + fila.format(1))
+            git("add", "-A")
+            git("commit", "-q", "-m", "base canal")
+            base_canal = rev()
+            with open(os.path.join(tmp, "docs", "tablero.md"), "w") as fh:
+                fh.write("tablero v2\n")
+            with open(os.path.join(tmp, "README.md"), "w") as fh:
+                fh.write("# portada\n" + fila.format(2))
+            with open(os.path.join(tmp, "derivado.tsv"), "a") as fh:
+                fh.write("valor3\tvalor4\n")
+            git("add", "-A")
+            git("commit", "-q", "-m", "canal")
+            rc_canal = DP.main(["--solo-derivados", base_canal, rev()])
+            with open(os.path.join(tmp, "README.md"), "w") as fh:
+                fh.write("# portada editada\n" + fila.format(2))
+            git("add", "-A")
+            git("commit", "-q", "-m", "prosa del README")
+            rc_prosa = DP.main(["--solo-derivados", base_canal, rev()])
         finally:
             DP.RAIZ = vieja_raiz
     afirma(rc_si == 1, "tocar el archivo con cabecera DERIVADO debe salir 1")
     afirma(rc_solo == 0, "PR automático con sólo derivados debe pasar")
     afirma(rc_ajeno == 1, "PR automático con archivo ajeno debe fallar")
+    afirma(rc_canal == 0, "tablero y filas status del README son salida del canal: deben pasar")
+    afirma(rc_prosa == 1, "README con una línea que no es fila status debe fallar")
 
 
 def main():

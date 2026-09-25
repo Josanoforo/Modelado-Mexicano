@@ -519,8 +519,12 @@ jobs:
           # `--permitir-rama`.
           git fetch -q origin main
           python3 tools/tablero_programa.py --actualiza
+          # Las cifras `corrida0 status` de la portada cambian con la vista;
+          # tests/test_readme_derivado.py las exige al día y el PR
+          # automático sólo admite en README esas filas (--solo-derivados).
+          python3 tools/readme_status.py --escribe
           find data/corrida0 -path '*/valores-vista/*' -type f -print0 | xargs -0 -r git add --
-          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md
+          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md README.md
           if git diff --cached --quiet; then
             echo "sin diff derivado -- nada que publicar"
             exit 0

@@ -595,7 +595,11 @@ def proyecta_elementos(cfg: dict, contratos: dict[str, dict],
     from vista import join_resultado, corridas_por_id
     ruta_resultados = raiz / cfg["fuente_resultados"]
     _corridas = corridas_por_id(ruta_resultados.parent / "corridas.tsv")
-    resultados = {x["resultado_id"]: join_resultado(x, _corridas)
+    # `linajes={}`: desde VISTA-NORMALIZADA-4 `camino_linaje` ya no viaja
+    # en resultados.tsv y el join lo derivaria importando corrida0 (todo el
+    # arbol milpa/CALC). Esta proyeccion no lo consume -- el linaje que
+    # publica sale de `usos.tsv` -- asi que no se paga ni se exige.
+    resultados = {x["resultado_id"]: join_resultado(x, _corridas, linajes={})
                   for x in _tsv(ruta_resultados)}
     demanda = {x["resultado_id"]: x for x in _tsv(
         raiz / cfg["fuente_demanda_resultados"])}

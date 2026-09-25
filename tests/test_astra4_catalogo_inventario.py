@@ -2,6 +2,7 @@
 
 import csv
 import hashlib
+import os
 import pathlib
 import subprocess
 import sys
@@ -11,13 +12,18 @@ ROOT = pathlib.Path(__file__).resolve().parents[1]
 SCRIPT = ROOT / "forense/analisis/catalogo/genera_catalogo.py"
 TABLE = ROOT / "forense/analisis/catalogo/inventario-consumo-gen2.tsv"
 PUBLISHER = ROOT / "forense/analisis/catalogo/publica.py"
+# Vista con que se congeló v1_0 (último commit de main que tocó las vistas
+# antes del primer `[deriva]` posterior al congelamiento). El canal de
+# derivados reemplaza la vista; v1_0 no se regenera con ella.
+VISTA_CONGELADA = "3e3a85a6a1339944f28f03b27d0c67576cff671b"
+ENV = {**os.environ, "CATALOGO_VISTA_REF": VISTA_CONGELADA}
 PRODUCTS = [ROOT / "canon/catalogo-del-mexicano-v1_0.md", ROOT / "canon/catalogo-del-mexicano-v1_0.tsv"]
 
 
 class CatalogoInventario(unittest.TestCase):
     def test_regeneracion_y_fuentes(self):
         before = hashlib.sha256(TABLE.read_bytes()).digest()
-        subprocess.run([sys.executable, str(SCRIPT)], cwd=ROOT, check=True)
+        subprocess.run([sys.executable, str(SCRIPT)], cwd=ROOT, check=True, env=ENV)
         self.assertEqual(before, hashlib.sha256(TABLE.read_bytes()).digest())
         with TABLE.open(newline="") as stream:
             rows = list(csv.DictReader(stream, delimiter="\t"))
