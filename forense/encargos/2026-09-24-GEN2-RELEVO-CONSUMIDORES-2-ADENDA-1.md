@@ -35,3 +35,18 @@ Propio: `milpa/procedencia.yaml`, `milpa/catalogo-momentos-v0_1.tsv`, marco del 
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No toca el motor fuera de B1/B2; no adopta lo de Astra. Sucesor: `-3` para el residuo; FIRMAS-17 asienta HISTÓRICO-SIN-RELEVO del marco.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «donde no coinciden, se conserva con rótulo» — 6 ASIGNADO conservados | DIFERIDO-A:CAJA — estimando a re-especificar (NC `…-e760-12`) | motor queda en 13 | GEN2-RELEVO-CONSUMIDORES-3 |
+| cierre de las NC `a157` resueltas por B1/B2/B3 | DIFERIDO-A:trámite — #1137 las edita en su sitio (NC `…-e760-13`) | `no_corrido_abiertas` +12 transitorio | trámite tras #1137 y #1138 |
+| «`adoptados` sube por cada cita» | NO-VERIFICABLE-AQUÍ — los RESULT citados por B1 ya estaban adoptados por sus hermanos | adoptados 81 | SIN-ASIGNAR |
+| «`check.py --baseline` VERDE» | NO-VERIFICABLE-AQUÍ — la suite completa excede la sesión de nube; `--rapido`, T-REPRO y T45 en 0 FAIL | «Hecho» pendiente del juez de CI | CI de #1138 |
+
+El resto de la adenda repite el encargo original: ver su `## NO-CORRIDO / RESERVAS`. Nota §6: `forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md`.
+
+## CONSUMIDO
+
+PR #1138 (rama `claude/new-session-9iwjnb`), 25/sep/2026. ADR-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01.

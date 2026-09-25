@@ -52,3 +52,4 @@ Nota de cierre: `forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md`. A
 ## CONSUMIDO
 
 PR #1138 (rama `claude/new-session-9iwjnb`), 25/sep/2026. ADR-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01.
+Adendas: ADENDA-1 (`forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2-ADENDA-1.md`, P5 motor B1/B2 y B3; nota §6).

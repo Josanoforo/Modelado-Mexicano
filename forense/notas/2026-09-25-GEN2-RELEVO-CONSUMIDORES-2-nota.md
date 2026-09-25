@@ -90,3 +90,60 @@ HISTÓRICO-SIN-RELEVO), cada una con recomendación y texto de firma.
   el escritor.
 - PROSPECTIVA / RETROSPECTIVA: no aplica; no se emitió ni se adjudicó nada.
 - `T-REPRO` (`check.t35_repro`, árbol final): 0 FAIL. `check.py --rapido`: 0 FAIL.
+
+## 6 · ADENDA-1 — P5 motor (FIRMAS-16 B1, B2) y B3
+
+`forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2-ADENDA-1.md` (encargo revisado,
+archivado verbatim y sellado al recibirse; el cuerpo original no se tocó). Base re-derivada:
+`origin/main` avanzó 19 commits (PISOS-GEN2-2); se fusionó sin conflicto.
+
+**Firmas** — FIRMAS-16 (#1137) **no ha fusionado**; su letra se leyó en la rama
+`claude/new-session-uzhtuf` (lectura tipo 3, §2) y se sigue porque el encargo lo manda («si
+no ha fusionado, se toma lo firmado y se declara»). Verbatim, FIRMADA 24/sep/2026:
+- a157-01 (B1) «SÍ: `emitir_binaria` devuelve el par GEN2 medido donde conducta y disparador coinciden; los ocho ASIGNADO se retiran; donde no coinciden, se conserva con rótulo.»
+- a157-02 (B2) «SÍ: las cuatro conductas NO-ADOPTAR-NC-0107 salen del consumo vivo (rol histórico, sin sortear).»
+- a157-03 (B3) «SÍ: una partición sellada (`CORTES_C1`, RES-0165..0170) no es lectura numérica; `tipo_uso corte_pi` fuera del contador; ejecuta RELEVO-CONSUMIDORES-2.»
+- 23e3-01 (B4) «(a) campos en la propia entrada (`corrida0_resultado_id`, `corrida0_generacion`, `clase_respaldo`); ejecuta RELEVO-CONSUMIDORES-2.» — es lo que ya aplicó P1.
+
+Esto **corrige** lo que dijo §2 de esta nota: B3 no estaba en el repo al cerrar la primera
+vez; ahora está firmada y se ejecuta.
+
+**B1, par por par (INTERPRETACIÓN-DECLARADA de «coinciden»):**
+
+| llave | ¿coinciden conducta y disparador? | operación |
+|---|---|---|
+| `util_sin_coercion:adopta` / `:rechaza_servicio` (RES-0019/0020) | SÍ — el universo medido impone sin coerción ni riesgo fiscal (firma a1) | retirado el ASIGNADO 0.71/0.29; devuelve el par GEN2 de `*_encig2025_luz` |
+| `discrecional:paga_mordida` / `:tramite_normal` (RES-0001/0002) | NO — el hermano mide SOLICITUD (P8_3), no pago | conservado con rótulo `ASIGNADO-CONSERVADO-B1` |
+| `con_registro:tramite_normal` / `:paga_mordida` (RES-0007/0008) | NO — proxy descriptivo del grupo P8_4, no pago | ídem |
+| `evasion_norma:evade_norma` / `:cumple_norma` (RES-0023/0024) | NO — el RESULT es la conjunta, la regla la condicional | ídem |
+
+Excepción a A.16, declarada: el rótulo de `discrecional:paga_mordida` va en un comentario
+propio encima de la línea, porque las M selladas M-TRA-M-01/02 citan esa línea por texto
+exacto (`tools/emite_m.py:cita_p`); con el rótulo en la línea, la regresión P2 fallaba
+(`test_regresion_p2_pasa`, probado).
+
+**Qué cambió y dónde:** escritor V5 `tools/escribe_relevo_consumo.py --motor-b1-b2` (diff seco,
+idempotente, rechazo atómico; guardas de 4.1 sobre el hermano: CALC sellado, `cuenta_gen2`,
+replay afirmativo, `p` = RESULT a seis decimales) · `milpa/src/emisor.py`, solo `emitir_binaria`:
+`rol_uso: historico` → NO-EMITE · `tools/corrida0.py`: B2 da uso `activo=NO` leído del YAML
+vivo; B3 saca `corte_pi` del contador y lo deja visible en
+`legacy_fuera_del_contador_por_firma__corte_pi`.
+
+Premisa que cayó: regenerar la demanda derivada (`corrida0.py demanda`) arrastra 25 RES nuevos
+(RES-0212..0236) y renumera `corrida_natural`; la demanda en main ya estaba desfasada. Asignar
+números es paso explícito de otro acto (D-23): **no se regeneró**, y B2 se lee del YAML.
+
+**Tests:** `tests/test_emisor_fidelidad.py` fijaba `adopta` = 0.71 ASIGNADO; se actualizó a la
+semántica firmada (el propio test pide «truenar» cuando el par gradúe). Suite del motor y del
+escritor: los 3 fallos que quedan son idénticos por nombre a la línea base sin estos cambios
+(`test_tramite_cinco_reglas_diez_probabilidades`, `test_motor_gen2_explicito::test_01`/`test_08`,
+preexistentes). T-REPRO y T-LEGACY-DESGLOSE-SUMA: 0 FAIL. `check.py --rapido`: 0 FAIL.
+
+**Contadores tras la adenda** (`status-despues-adenda1-consumidores2.txt`): legacy 137 → **123**;
+motor 25 → **13** (−6 B3, −2 B1, −4 B2); procedencia 39; catálogo 22; marco 43; celdas-D 6;
+adoptados 81 sin cambio (los RESULT citados por B1 ya estaban adoptados por los hermanos).
+Tabla P6 re-derivada con el bucket motor.
+
+**No editado, a propósito:** las NC `a157-05..08, 11, 12, 20..25` (resueltas por B1/B2/B3) y las
+FP `a157-01..03`. #1137 las reescribe en su sitio; editarlas aquí duplicaría ids en la unión
+(T47). Su cierre queda en NO-CORRIDO de la adenda.

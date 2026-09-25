@@ -33,11 +33,26 @@ def bucket(consumidor: str) -> str | None:
         return "catalogo_de_momentos"
     if "curacion-registro/celdas-d/" in consumidor:
         return "celdas_D"
+    if consumidor.startswith(("milpa/tramite.yaml", "milpa/src/")):
+        return "motor"  # ADENDA-1 · P5 (FIRMAS-16 B1/B2/B3)
     return None
 
 
 # (predicado, via, estado, razon A.14, sucesor). Primera que casa, gana.
+B1_RETIRA = {f"milpa/tramite.yaml:{r}:{c}" for r, c, _h in __import__(
+    "escribe_relevo_consumo").B1_RETIRA}
 REGLAS = [
+    (lambda u: u["activo"] == "NO", "escritor V5", "RETIRADA-B2",
+     "rol_uso: historico (FIRMAS-16 B2); sale del consumo vivo", "—"),
+    (lambda u: u["tipo_uso"] == "corte_pi", "firma", "FUERA-DEL-CONTADOR-B3",
+     "partición sellada, no lectura numérica (FIRMAS-16 B3)", "—"),
+    (lambda u: u["consumidor"] in B1_RETIRA and u["generacion_leida"] == "GEN2",
+     "escritor V5 (B1)", "RELEVADA", "par GEN2 del hermano medido (FIRMAS-16 B1)", "—"),
+    (lambda u: u["consumidor"].startswith("milpa/tramite.yaml") and u["generacion_leida"] == "GEN2",
+     "escritor V1-V3 / pin", "RELEVADA-PREVIA", "relevada por un acto anterior", "—"),
+    (lambda u: u["consumidor"].startswith("milpa/tramite.yaml"),
+     "—", "NC-AJENA", "NC del acto RELEVO-MOTOR-34-1 (a157); B1 conserva con rótulo o sin RESULT GEN2",
+     "ver forense/no-corrido.tsv (a157)"),
     (lambda u: u["generacion_leida"] == "GEN2" and u.get("via_relevo"),
      "pin", "RELEVADA-PREVIA", "pin de mesa firmado ya aplicado (TANDA-3/4)", "—"),
     (lambda u: u["generacion_leida"] == "GEN2",
@@ -84,7 +99,7 @@ def filas() -> list[dict]:
     salida = []
     for u in v["usos"]:
         b = bucket(str(u["consumidor"]))
-        if u["activo"] != "SI" or b is None:
+        if b is None or (u["activo"] != "SI" and b != "motor"):
             continue
         regla = next((r for r in REGLAS if r[0](u)), None)
         via, estado, razon, sucesor = regla[1:] if regla else ("—", "SIN-DICTAMEN", "", "")
