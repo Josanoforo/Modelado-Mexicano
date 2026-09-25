@@ -37,3 +37,7 @@ Propio: `forense/prereg-caja/AMAI-NSE-ENIGH2024-*`, `data/corrida0/CALC-AMAI-NSE
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide conductas por NSE en 2024. Sucesores: catálogo v1.2 y FRONT-3 consumen el eje; DONDE-CAMBIO-2 por clase si mesa lo pide.
+
+## NO-CORRIDO / RESERVAS
+
+- Ninguno.
