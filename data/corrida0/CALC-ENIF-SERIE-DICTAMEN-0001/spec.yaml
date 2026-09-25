@@ -1,0 +1,1023 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENIF-SERIE-DICTAMEN-0001
+spec_md: ../../../forense/prereg-caja/DONDE-CAMBIO-spec-v1_0.md
+spec_md_sha256: f3ca3d66f998086334695ec01dd29e5b6231e2a7c0d72963b74fe0e759883592
+script: data/corrida0/CALC-ENIF-SERIE-DICTAMEN-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DICTAMEN-SERIE-RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: NUEVO
+  origen_numerico_detalle: dictamen sobre RESULT sellados de 16 CALC; sin microdato
+  exposicion_historica: SIN-VALORES-PRE-FREEZE; mapa congelado en forense/analisis/donde-cambio/mapa/CONGELADO.md
+inputs:
+  - {id: MEDIDOR-CALC-SERIE, origen: repo, funcion: CODIGO, ruta: tools/series/calc_serie.py, sha256: 780d94b31dde9f7748ed20bdb719a3f62e31259c9a8b42c098beba8222440e92}
+  - {id: MEDIDOR-DICTAMEN, origen: repo, funcion: CODIGO, ruta: tools/series/dictamen.py, sha256: b2b846cacca8dff43a9f662a31b3a0a53afd101462ea3d34d7606405a52dd29f}
+  - {id: MAPA, origen: repo, funcion: METADATO, ruta: forense/analisis/donde-cambio/mapa/enif.tsv, sha256: 244694e8fa7bfa90a94ff24d5ef4c6a2ac0b39c39a306c94585e185756089c73}
+  - {id: TAU2-SELLADO, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001/resultados.json, sha256: 10832fbd27fd24ecec38d09abad18589ad6bfaae3367ed575265ac1bbfce82ff}
+  - {id: SRC-CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json, sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1}
+  - {id: SRC-CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-K2-BANCARIA-HISTORIA-0002/resultados.json, sha256: d30313f2e7d29fc417332eeb30e332d84efa8bd9f493bcaa776331f332a30426}
+  - {id: SRC-CALC-DIN-CREDITO-PISOS-ENIF2012-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2012-0001/resultados.json, sha256: 2f7d2204fed33eb6c77cbc4d54da9790b0d4aa9d84a1804e960a8713e5519359}
+  - {id: SRC-CALC-DIN-CREDITO-PISOS-ENIF2015-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2015-0001/resultados.json, sha256: 510415fbbc16391942973c3c883d9c2da9501db06b27fa3190284e3f78910f8d}
+  - {id: SRC-CALC-DIN-CREDITO-PISOS-ENIF2018-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2018-0001/resultados.json, sha256: 2000ab0beee184ca210cdfc34c84934a234f42e8489b83147960bf8c2dc750f5}
+  - {id: SRC-CALC-DIN-CREDITO-PISOS-ENIF2021-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2021-0001/resultados.json, sha256: 1280b82fa69f7e4ab1c081c3ba6e67b8bc492b8c4ee1210f19747c9f4bbaff6c}
+  - {id: SRC-CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DIN-CREDITO-PISOS-ENIF2021-RECORTE1870-0001/resultados.json, sha256: 5a351cb08ff8ad65edc121532b3306059013c6dac62f567d4b522c8bba87822a}
+  - {id: SRC-CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/resultados.json, sha256: d2c89529a84bf5fd0dd14455b93f78bec1b5e20999d3ce138f303724e872158d}
+  - {id: SRC-CALC-ENIF-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENIF-0001/resultados.json, sha256: 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6}
+  - {id: SRC-CALC-ENIF-0002, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENIF-0002/resultados.json, sha256: 2f9bdd564c9c460c2f775b9f1f08890e1c61414fca8222d33f400de051481dbb}
+  - {id: SRC-CALC-ENIF-FINTECH-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-ENIF-FINTECH-0001/resultados.json, sha256: 7a2f14d171bbf9d539337585b7a2dd79d216bd063b6e0d405ec6139afdf060c2}
+  - {id: SRC-CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/resultados.json, sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd}
+  - {id: SRC-CALC-PISOS-ENIF2021-EJES-0003, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/resultados.json, sha256: 3348feb66621470e07b0ad1e97d0081a4533d9b155573cd59fc45540323c17a0}
+  - {id: SRC-CALC-PISOS-ENIF2021-FORMALIDAD-0001, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-PISOS-ENIF2021-FORMALIDAD-0001/resultados.json, sha256: 2b5f1274f3b700900e40366e333cff1a820b6db7aaded0a68a0b81ac95e6e4ff}
+  - {id: SRC-CALC-R-FAM-M-01-v3, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-R-FAM-M-01-v3/resultados.json, sha256: 74f26948286d0de632598800cc5b0cd1bce1e8b6e67621ae6b3f8bd0345c062d}
+  - {id: SRC-CALC-TIENE-AHORROS-0001-v1_1, origen: repo, funcion: DATO, ruta: data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/resultados.json, sha256: 5b5f231c676e070d7d12518151bf03d89f362f6cf3d2261752b57039a2baea7a}
+variables: []
+universo: "Series (instrumento, conducta, eje, segmento) del mapa congelado con instrumento en ['ENIF']."
+filtros: "tramo = corrida mas larga de olas unidas por COMPARABLE o CAMBIO-DOCUMENTADO con p, lo, hi en (0,1); spec §2."
+ponderador: "el de cada CALC origen; esta corrida consume sus RESULT"
+transformacion: "spec §3-§4: piso t-1 cubre t si p_b en expit(logit p_a +/- 1.959964 sqrt(ee_a^2 + tau2)); dictamen por la primera regla que se cumpla."
+estimando: "Dictamen cerrado por serie: SIN-SERIE, CAMBIO-SOSTENIDO, SALTO-DE-INSTRUMENTO, SALTO-SIN-EXPLICAR, ESTABLE. RETROSPECTIVA."
+seed: {aplica: false, nota: "determinista, sin remuestreo"}
+parametros:
+  instrumento: "ENIF"
+  prefijo: RESULT-DC-ENIF
+  z_95: 1.959964
+  tau2_fuente: "SELLADO CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001"
+dependencias_materiales: []
+resultados:
+  - {id: RESULT-DC-ENIF-TAU2-CUENTA, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-EDAD, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-ESCOLARIDAD, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-FORMALIDAD, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-LOCALIDAD, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-NACIONAL, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-SEXO, tipo: flotante, unidad: "segundo momento en escala logit", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-TAU2-FUENTE, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-ENTRE-TENEDORES-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-K2-BANCARIA-HISTORIA-BANCARIA-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K1-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-AUTOMOTRIZ-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-DEPARTAMENTAL-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K2-NOMINA-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K3-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ENTRE-SOLICITANTES-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K5-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-P-TENEDORES-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-CON-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-CUENTA-SIN-CUENTA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-18-29-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-30-44-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-45-59-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-EDAD-60-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-HASTA-PRIMARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-MEDIA-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SECUNDARIA-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-ESCOLARIDAD-SUPERIOR-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-15-000-Y-MAS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-LOCALIDAD-MENOR-DE-15-000-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-NACIONAL-TODOS-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-1-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-K, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-N-FUERA, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-DICTAMEN, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-DIRECCION, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-OLAS, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-DELTA-PP, tipo: flotante, unidad: "puntos porcentuales", permite_no_estimable: true}
+  - {id: RESULT-DC-ENIF-ENIF-DIN-CREDITO-PISOS-ENIF-K6-PR-SEXO-2-PARES-FUERA, tipo: texto, unidad: "texto"}
+  - {id: RESULT-DC-ENIF-N-SIN-SERIE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-N-CAMBIO-SOSTENIDO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-N-SALTO-DE-INSTRUMENTO, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-N-SALTO-SIN-EXPLICAR, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-N-ESTABLE, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-N-SERIES, tipo: entero, unidad: "conteo"}
+  - {id: RESULT-DC-ENIF-TABLA, tipo: texto, unidad: "texto"}
+tolerancia: {tipo: flotante, abs: 1.0e-10}

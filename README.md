@@ -1,6 +1,6 @@
 # Benchmark del Mexicano
 
-**Modelado Mexicano · Psicología del Mexicano Contemporáneo.** Benchmark auditable de predicciones y estimaciones segmentadas con encuestas oficiales de México. [Informe vigente](canon/informe-programa-v1_2.md) · [Aviso de alcance](AVISO-DE-ALCANCE.md).
+**Modelado Mexicano · Psicología del Mexicano Contemporáneo.** Benchmark auditable de predicciones y estimaciones segmentadas con encuestas oficiales de México. [Informe vigente](canon/informe-programa-v1_3.md) · [Aviso de alcance](AVISO-DE-ALCANCE.md).
 
 ## Qué es y qué no es
 
@@ -19,7 +19,7 @@ Estas son **evaluaciones**, no dominios independientes ni una lista de prediccio
 | Duelo de ola nueva, sexo × dominio y edad × dominio; 12 por cruce <!-- deriva: rg -F '12 celdas puntuadas por par' forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md --> | ENVIPE 2026, delito | `NADIE-VENCE` en ambos | [Nota](forense/notas/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1-cierre.md) |
 | Duelo de candidatos, edad × sexo y escolaridad × sexo; ver celdas en cierre | ENCIG 2025, trámite | Agregado `FALSADOR-DEBIL` | [Nota](forense/notas/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1-cierre.md) |
 
-Los retadores evaluados no superaron los **criterios de superioridad fijados en esas comparaciones**. Esto no declara equivalencia ni se extiende a modelos no evaluados. El [informe](canon/informe-programa-v1_2.md) documenta la subcobertura del piso en el lote y en marginales. Los intervalos calibrados corresponden a evaluaciones concretas, no a todos los RESULT del repositorio.
+Los retadores evaluados no superaron los **criterios de superioridad fijados en esas comparaciones**. Esto no declara equivalencia ni se extiende a modelos no evaluados. El [informe](canon/informe-programa-v1_3.md) documenta la subcobertura del piso en el lote y en marginales (heredado de `v1.2`, sin cambio). Los intervalos calibrados corresponden a evaluaciones concretas, no a todos los RESULT del repositorio.
 
 ## Estado derivado
 
@@ -27,9 +27,9 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 
 | Objeto | Valor en este corte | Clave |
 |---|---:|---|
-| Corridas selladas | 246 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
-| RESULT GEN2 sellados | 66 582 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
-| RESULT GEN2 adoptados activos | 72 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
+| Corridas selladas | 263 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
+| RESULT GEN2 sellados | 72 474 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
+| RESULT GEN2 adoptados activos | 81 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
 | Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
 | Celdas retrospectivas de esa vista | 59 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
@@ -56,7 +56,7 @@ El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/rep
 
 ## Uso, límites y contribuciones
 
-Empieza por el [informe principal v1.2](canon/informe-programa-v1_2.md), su [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [estado v1.16](canon/estado-programa-v1_16.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
+Empieza por el [informe principal v1.3](canon/informe-programa-v1_3.md) (o su antecesor, [v1.2](canon/informe-programa-v1_2.md), no editado, E.3), su [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [estado v1.16](canon/estado-programa-v1_16.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licencia, cita y contacto
 
