@@ -304,8 +304,16 @@ def main(verifica: bool) -> int:
                 break
         else:  # sólo localizado por búsqueda o índice: A.6, sin fetch que lo verifique
             desde_caja.setdefault(r["id_afirmacion"], "SIN-FETCH")
+    # GEN2-CORPUS-COMPLETO-1 (P3): instrumento de la afirmación ADQUIRIR ya en corpus, derivado por
+    # forense/analisis/corpus-completo/cobertura_mapa.py (cola OBTENIDO + catálogo); vacío si no aplica
+    cobertura = {}
+    cob_p = ROOT / "forense/analisis/corpus-completo/cobertura-mapa-v1_0.tsv"
+    if cob_p.exists():
+        for l in cob_p.read_text(encoding="utf-8").splitlines()[1:]:
+            c = l.split("\t")
+            cobertura[c[0]] = c[1] + (f" ({c[4]})" if len(c) > 4 and c[4] else "")
     hoja = [["id_afirmacion", "dominio", "report", "estado_hoja", "existencia_documento", "pieza_o_razon",
-             "instrumento_ola", "propietario", "prioridad"]]
+             "instrumento_ola", "propietario", "prioridad", "instrumento_en_corpus"]]
     for f in filas:
         blob = " ".join([f["datos_id_estado"], f["dictamen_razon"], f["siguiente_operacion"]])
         if f["dictamen"] == "MEDIBLE-EN-CORPUS":
@@ -326,7 +334,8 @@ def main(verifica: bool) -> int:
         else:
             existencia = "COMPROBADA-O-NO-APLICA"
         hoja.append([f["id_afirmacion"], f["dominio"], f["report"], estado, existencia, pieza[:400],
-                     f["instrumento_ola"][:200], f["propietario"], f["prioridad"]])
+                     f["instrumento_ola"][:200], f["propietario"], f["prioridad"],
+                     cobertura.get(f["id_afirmacion"], "")])
     salidas[D / "hoja-adquisicion-derivada-v1_0.tsv"] = tsv(hoja)
 
     rd = Counter((f["report"], f["dominio"]) for f in filas)

@@ -1,0 +1,595 @@
+ <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<head>
+	<title>WVS Database</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+	<META CONTENT="WVS Data ArchiveJDS,Survey, JDSurvey, online data analysis, encuestas,WVS Database,World Values Survey Data-Archive" NAME="keywords">
+	<META CONTENT="World Values Survey Data-Archive Online Survey analysis website" NAME="description">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta name="viewport" content="width=device-width, maximum-scale=10, minimum-scale=0.1, user-scalable=yes">
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:site" content="@WVS_Survey" />
+<meta name="twitter:title" content="World Values Survey Association" />
+<meta name="twitter:description" content="World Values Survey Association" />
+<!-- <meta name="twitter:image" content="https://farm6.staticflickr.com/5510/14338202952_93595258ff_z.jpg" />	 -->
+	<script language="JavaScript" src="js/jds.js"></script>
+	<script language="JavaScript" src="/maps/FusionCharts.js"></script>
+	<link href="css/reset.css" rel="stylesheet" type="text/css">
+	
+	<link href="css/ajtypography.css" rel="stylesheet" type="text/css">
+	
+	<link href="css/homepage.css?version=2020-07-22" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/news.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/events.css" rel="stylesheet" type="text/css">
+	
+	
+	<link href="css/custom_search.css" rel="stylesheet" type="text/css">
+	
+
+	<link href="css/ajWVS.css?version=2020-07-22" rel="stylesheet" type="text/css">
+	<script type='text/javascript' src="js/jquery.tools.min.js"></script>
+
+	<link rel="STYLESHEET" type="text/css" href="js/grid/dhtmlxtabbar.css">
+	<script src="js/grid/dhtmlxcommon.js"></script>
+	<script src="js/grid/dhtmlxtabbar.js"></script>
+	
+<script>
+dhtmlx.skin = "dhx_web";
+</script>
+
+</head>
+<body class="body" link="#000000" vlink="#000000" alink="#000000" ><div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_EN/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+<form name=Datos method=Post action="">
+	<input type=hidden name=ulthost value="WVS">
+	<input type=hidden name=CMSID>
+<script language="JavaScript">
+	var datos=document.Datos;
+	var dialogBox=false;
+	var dialogDiv="";
+	
+	
+	function Home() {
+		datos.action="wvs.jsp";
+		datos.submit();
+	}
+	function SetContent(clave) {
+		datos.CMSID.value=clave;
+		if (clave=="#Home" || clave=="Home") {
+			datos.action="wvs.jsp";
+		} else if (clave.startsWith("#")) {
+			datos.action="WVS"+clave.substring(1)+".jsp";
+		} else {
+			datos.action="WVSContents.jsp";
+		}
+		datos.submit();
+	}
+	 function jdAddCssStyle(nombre,estilo) {
+	 	if(navigator.userAgent.toLowerCase().indexOf('firefox') > -1){
+	 		var x = document.styleSheets[0];
+	 		x.insertRule(nombre+" {"+estilo+"}",x.cssRules.length);
+	 	} else {
+	 		document.styleSheets[0].addRule(nombre,estilo);
+	 	}
+	 }
+	function Inicia() {
+		var w=$( window ).width();
+		if (w<960) w=960;
+		if (w>2000) w=2000;
+		jdAddCssStyle(".body","width:"+w+"px !important;");
+		jdAddCssStyle(".AJPage","width:"+w+"px !important;");
+		jdAddCssStyle(".AJFoot","width:"+w+"px !important;");
+		jdAddCssStyle(".bodyFrame","width:"+w+"px !important;");
+	}
+	
+</script>
+ 
+<div class="AJHead"></div>
+<div id=PAGE class="AJPage">
+	<div class=AJFondo>
+ 	
+
+ 
+<div id='content_header_image' style="height:230px;">
+	<div><img src='images/wvshome.jpg' style="width:100%" /></div>
+</div>
+	
+	<div id="column_container">
+
+ 	<!--Columna0 -->
+	<div id="left_column">
+		<div id="left_column_header">
+			<div class="section_heading_label">Site Sections</div>
+		</div>
+
+		<!--left-content -->
+		<div id="left_column_content">
+		<ul class='nav'><ul class='nav'><li><a href="javaScript:SetContent('#News')"  title="News">News</a><li><a href="javaScript:SetContent('WhoWeAre')"  title="Who we are">Who we are</a><li><a href="javaScript:SetContent('WhatWeDo')"  title="What we do">What we do</a><li><a href="javaScript:SetContent('wvswave7')"  title="WVS wave 8">WVS wave 8</a><li><a href="javaScript:SetContent('RINGLEHART')"  title="Ronald F. Inglehart<br>In Memoriam">Ronald F. Inglehart<br>In Memoriam</a><li><a href="javaScript:SetContent('Findings')"  title="Findings & Insights">Findings & Insights</a><li><a href="javaScript:SetContent('DataDoc')"  title="Data and Documentation">Data and Documentation</a><li><a href="javaScript:SetContent('Publications')"  title="Publications">Publications</a><li><a href="javaScript:SetContent('PaperSeries')"  title="Paper Series">Paper Series</a><li><a href="javaScript:SetContent('Webinar')"  title="Webinar Series">Webinar Series</a><li><a href="javaScript:SetContent('ContactUs')"  title="Contact Us">Contact Us</a></ul></ul>
+		</div>
+		<!--Fin left-content -->
+		<div class=clear></div>
+	</div>	
+ 	<!--Fin Columna0 -->
+
+ 	<!--Columna1 -->
+	<div id="middle_column">
+		<div id="middle_column_header">
+			<div class="section_heading_label">Welcome to the World Values Survey site</div>
+		</div>
+		<!--Content -->
+		<div id="middle_column_content">
+			 <!--Box texto -->
+			<div id="middle_column_top_text" >
+				<div id="main_content">
+					
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=779" title="World Values Survey Association Announces the Winner of the 2025 Ronald F. Inglehart Best Book Award on Political Culture and Values">
+								
+							<span class="news_item_left">
+								<span class="news_item_title" style="width:390px">
+								 World Values Survey Association Announces the Winner of the 2025 Ronald F. Inglehart Best Book Award on Political Culture and Values 
+								</span>
+										<span class="news_item_description" style="width:400px;">
+										<p style='text-align:justify'>The World Values Survey Association is pleased to announce the recipient of the 2025 Ronald F. Inglehart Best Book Award on Political Culture and Values. Following an extensive review process, the Jury unanimously selected Amy Adamczyk’s Fetal Positions: Understanding Cross-National Public Opinion about Abortion as the winner of the 2025 Ronald F. Inglehart Best Book Award on Political Culture and Values.  As part of the award ceremony on September 29, Professor Amy Adamczyk will deliver a lecture, offering the international research community an opportunity to engage directly with the findings and broader implications of her award-winning work.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000779.PNG" 
+											style="width:350px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+				</div>
+			</div>
+			<!--Fin box -->
+		</div>
+		<!--Fin content -->
+	</div>	
+ 	<!--Fin Columna1 -->
+	<div id="right_column" style="float:right;">
+		<div id="right_column_header">
+			<div class="section_heading_label">Quick Links</div>
+		</div>
+		<div id="right_column_content">
+			<div style="margin-left:20px;"><img 
+				alt="Send your donation to World Values Survey Association" onclick="javascript:donate()" 
+				src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_donateCC_LG.gif" 
+				style="border:0px solid; cursor:pointer" /> <p>
+				<a href="JavaScript:SetContent('donors')" 
+					title="Become a donor of WVS association"><span style="font-size:11px">
+ <span style="color:black; font-size:11px">Why donate the WVSA?</span></a>
+			</div>
+			
+ 	
+			<ul id="latest_news">
+				
+			</ul>
+		</div>
+	</div>
+	<!--Fin Columna2 -->
+</div>
+<div class=clear></div>
+ 	<!--Columna1 -->
+	<div id="middle_column" style="width:610px;">
+		<div id="middle_column_header"  style="width:610px;">
+			<div class="section_heading_label">Salient posts</div>
+		</div>
+		<!--Content -->
+		<div id="middle_column_content"  style="width:600px;" >
+			 <!--Box texto -->
+			<div id="middle_column_top_text"  >
+				<div id="main_content" style="width:600px;">
+					
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=782" title="WVS Webinar on September 16. Religion and Self-Perceived Social Class: What WVS Data Tell Us">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS Webinar on September 16. Religion and Self-Perceived Social Class: What WVS Data Tell Us 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>How are perceptions of social class connected to religious beliefs, values, and practices? Join us on September 16 for the next session of the World Values Survey Monthly Webinar Series where Aggeliki Yfanti will present research examining the relationship between religion and self-perceived social class using data from the seventh wave of the World Values Survey.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000782.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=781" title="WVS webinar on June 23.Economic Inequality and Unfairness Evaluations of Income Distribution Negatively Predict Political and Social Trust: Evidence From Latin America Over 23 Years">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS webinar on June 23.Economic Inequality and Unfairness Evaluations of Income Distribution Negatively Predict Political and Social Trust: Evidence From Latin America Over 23 Years 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>Join us on June 23 for the next webinar co-organized with the Research Committee 20 Comparative Sociology of the International Sociological Association. In this webinar, Efraín García-Sánchez (University of Granada, Spain & Stanford University, United States), and Juan Diego García-Castro (University of Costa Rica) will discuss how economic inequality affects public trust in Latin America. The webinar will examine how both objective levels of inequality and people’s perceptions of income distribution as unfair are linked to lower political and social trust. Drawing on evidence from 23 years of data across Latin America, the presentation will address why inequality is not only an economic problem, but also a central challenge for democratic legitimacy, institutional confidence, and social cohesion.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000781.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=780" title="WVS webinar on June 17. The Role of Data and Insights on Public Values and Attitudes in International Policymaking">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS webinar on June 17. The Role of Data and Insights on Public Values and Attitudes in International Policymaking 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>Join us on June 17 for the next webinar, where Kirstie Hewlett and Paolo Morini explore how data on public values and attitudes can inform international policymaking. The webinar highlights the importance of integrating survey insights into policy design to better reflect societal preferences and improve governance outcomes.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000780.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=778" title="WVS Webinar on June 30. Individualism–Collectivism: Reconstructing Hofstede’s Dimension of Cultural Differences">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS Webinar on June 30. Individualism–Collectivism: Reconstructing Hofstede’s Dimension of Cultural Differences 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>Join us on June 30 for the next webinar, where Plamen Akaliyski (Lingnan University) will present recent research on individualism–collectivism and the measurement of cultural differences across societies. Drawing on data from the World Values Survey and European Values Study, the webinar revisits Hofstede’s widely used individualism–collectivism scores, examines their limitations, and introduces a new theory-driven index covering 102 countries and territories. The presentation will discuss the development and validation of the new measure and its implications for comparative research on culture, values, and societal development.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000778.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=768" title="The Cool Water Effect: The Geo-Climatic Source of Western Exceptionalism">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 The Cool Water Effect: The Geo-Climatic Source of Western Exceptionalism 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>This book offers a geo-climatic explanation for the historical emergence of Western democratic institutions and emancipatory values. It identifies the Cool Water Condition—a combination of cool seasons, steady rainfall, and coastal proximity—as the ecological foundation for decentralized resource management. These conditions fostered traditions of self-governance across social groups, enabling bottom-up resistance to centralized authority and the formation of contractual state institutions. The authors argue that while rooted in specific environmental settings, the dynamics underpinning this development have broader global relevance today. The book is published by Springer and is available in open access.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000768.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=777" title="Author Meets Critics Symposium on The Cool Water Effect">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 Author Meets Critics Symposium on The Cool Water Effect 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>The World Values Survey Association is pleased to announce the public symposium Author Meets Critics, dedicated to the recently published open-access book The Cool Water Effect: The Geo-Climatic Source of Western Exceptionalism by Christian Welzel, Stefan Kruse, Lennart Brunkert, and Steven A. Brieger. The event will take place on Saturday, 13 June, from 10:30 a.m. to 4:30 p.m. at SpinPlace, Rawa Club, University of Silesia in Katowice (Bankowa 5) and will also be available via online livestream.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000777.JPG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=775" title="WVS Webinar on May 29. Globalization, populism, and climate skepticism: untangling varieties and pathways">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS Webinar on May 29. Globalization, populism, and climate skepticism: untangling varieties and pathways 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>Join us on May 29 for a WVS webinar co-organized with ISA RC20 Comparative Sociology on Globalization, populism, and climate skepticism: untangling varieties and pathways. Drawing on cross-national survey data, the talk will unpack how different forms of populist attitudes shape public responses to climate change and environmental policy.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000775.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=773" title="WVS Webinar on May 26. Can Language Models Reason about Individualistic Human Values and Preferences?">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS Webinar on May 26. Can Language Models Reason about Individualistic Human Values and Preferences? 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>Join us on May 26 for the next webinar, where Liwei Jiang (NVIDIA) explores whether language models can reason about individual human values and preferences, and what this means for pluralistic AI alignment. The session will present a new benchmark for evaluating how AI systems navigate disagreements, moral diversity, and personalized value judgments across users.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000773.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=776" title="WVS Webinar on May 18. Is reproductive agency associated with subjective well-being? A population-based cross-sectional study among men and women in four sub-Saharan African countries using the WVS">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS Webinar on May 18. Is reproductive agency associated with subjective well-being? A population-based cross-sectional study among men and women in four sub-Saharan African countries using the WVS 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>WVS webinar on May 18 where Karin Bage (Karolinska Institutet, Sweden) explores how reproductive agency relates to life satisfaction, health, and happiness, with important gendered implications across sub-Saharan Africa.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000776.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+						<div id="news_details_container">
+								
+									<a href="WVSNewsShow.jsp?ID=772" title="WVS webinar on April 15. Beyond Grievance: Happiness as a Psychological Buffer to Radicalization">
+								
+							<span class="news_item_left">
+								<span class="news_item_title">
+								 WVS webinar on April 15. Beyond Grievance: Happiness as a Psychological Buffer to Radicalization 
+								</span>
+										<span class="news_item_description" style="width:600px;">
+										<p style='text-align:justify'>WVS webinar on April 15 with Ioannis Petrakis (Newcastle Business School, Northumbria University) discussing how subjective well-being reduces ideological radicalization. This study shows that higher life satisfaction can act as a psychological buffer against extremist attitudes. Drawing on World Values Survey data, it highlights the role of social cohesion and economic security in strengthening democratic resilience.</p>
+										</span>
+								
+									<span class="news_item_right">
+										<span class="news_item_image"><img src="photos/EV000772.PNG" style="width:250px" /></span>
+										<br class="clear" />
+									</span>
+								
+							</span>
+									</a>
+
+						</div>
+						<br class="clear" />
+						
+				</div>
+			</div>
+			<!--Fin box -->
+		</div>
+		<!--Fin content -->
+	</div>	
+ 	<!--Fin Columna1 -->
+ 	<!--Columna2 -->
+ 	
+	<div style="float:right;width:320px;margin-right:10px;">
+		<div id="middle_column_header" style="width:320px;">
+			<div class="section_heading_label">Social Networks</div>
+		</div>
+		<div id="right_column_content"  style="width:320px;">
+			<ul id="latest_news">
+			</ul>
+		</div>
+	</div>
+	<div style="float:right;width:330px;">
+            <a class="twitter-timeline"  href="https://twitter.com/WVS_Survey" data-widget-id="596963469783670784">Tweets por el @WVS_Survey.</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	</div>
+	<div style="float:right;width:320px;margin-right:10px;">
+		<div id="right_column_content"  style="width:320px;">
+			<div class="section_heading_label">Latest News & Events</div>
+			<ul id="upcoming_events" >
+				<li style="width:310px;" ><a style="width:310px;"  href="WVSEventsShow.jsp?ID=484" title="WVS Webinar in February: Subjective and Objective Dimensions of Culture: The Revised Minkov-Hofstede Model Expanded Through the World Values Survey"><span class="event_date" >14 feb 2025</span><span style="width:310px;"  class="event_headline"><p style='text-align:justify'>In the WVS webinar on February 27, our guest speaker, Michael Minkov from Varna University of Management in Bulgaria, examined how cultural dimensions can be distilled into two fundamental factors, individualism-collectivism and flexibility-monumentalism. These dimensions not only align with existing cultural models but also serve as strong predictors of key societal indicators across countries, demonstrating their broad applicability and objectivity. Attendance is free; registration required.</p></span></a></li>
+			</ul>
+			<div class="right_column_more"><a href="WVSEventsShowLatest.jsp" title="More Events">More Events</a></div>
+
+		</div>
+	</div>
+	<!--Fin Columna2 -->
+
+</div>
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="CCJBL3X6T38WE">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+<script language=javascript>
+	function SetDocDownload(id) {
+		datos.DOID.value=id;
+		datos.action="AJDownload.jsp";
+		datos.submit();
+		datos.action="";
+	}
+	function donate() {
+		datos.action="https://www.paypal.com/cgi-bin/webscr";
+		datos.target="_top";
+		datos.submit();
+	}
+</script>
+<div class=clear>&nbsp;</div>
+			</div> <!-- Fondo -->
+		</div><!-- Page -->
+		<div class=AJFoot >
+
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org" >PRESIDENT<br>&nbsp;</div>
+					<div class="street-address">Christian Haerpfer</div>
+					<div class="email"><a href="mailto:christian_haerpfer@univie.ac.at" title="Email of the President">christian_haerpfer@univie.ac.at</a></div>
+					<div class="locality">WVSA President</div> 
+					<div class="locality">University of Vienna</div>
+					<div class="locality">Institute of Political Science</div>
+					<div class="locality">Vienna 1010, Austria</div>
+				</div>
+			</div>
+ 
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org"  >SECRETARIAT<br>(WVSA Headquarters)</div>
+					<div class="street-address">Kseniya Kizilova</div>
+					<div class="email"><a href="mailto:wvsa.secretariat@gmail.com" title="Email of the Secretariat">wvsa.secretariat@gmail.com</a></div>
+					<div class="locality">Head of WVSA Secretariat</div> 
+					<div class="locality">Institute for Comparative</div>
+					<div class="locality">Survey Research</div>
+					<div class="locality">Vienna 1040, Austria</div>
+				</div>
+			</div>
+			<div id="footer_address">
+				<div class="vcard">
+					<div class="org" >LEGAL SEAT<br>&nbsp;</div>
+					<div class="street-address">Bi Puranen</div>
+					<div class="email" style="font-size:120%"><a href="mailto:bi.puranen@worldvaluessurvey.org" title="Email LEGAL SEAT">bi.puranen@worldvaluessurvey.org</a></div>
+					<div class="locality">Secretary-General</div>
+					<div class="locality">Institute for Future Studies</div>
+					<div class="locality">Stockholm, Sweden 101 31</div>
+				</div>
+			</div>
+			<div id="footer_address" style="width:200px;">
+				<div class="vcard">
+					<div class="org" >DATA ARCHIVE<br>&nbsp;</div>
+					<div class="street-address">Jaime Diez-Medrano</div>
+					<div class="email"><a href="mailto:jdiezmed@jdsurvey.net" title="Email WVSA Archive">jdiezmed@jdsurvey.net</a></div>
+					<div class="locality">Director of the WVSA Archive</div>
+					<span class="locality">Pza Manuel Rodrigo 1, B-1E</span>
+					<div class="locality">Madrid, Spain 28043</div>
+				</div>
+			</div>
+			<div class=clear></div>
+			<div style="width:100%;clear:both;text-align:center;">Copyright @2020 World Values Survey Association</div>
+<!-- 			<div id="footer_links" style="float:right;width:170px;margin-right:0px;"> -->
+<!-- 				<div id="footer_links_right" style="float:right;width:170px;"> -->
+<!-- 					<div class="footer_heading">Special pages</div> -->
+<!-- 					<ul> -->
+<!-- 						<li><a href="javaScript:SetContent('Links')" title="WVS interesting links">WVS links</a></li> -->
+<!-- 						<li><a href="WVSSiteMap.jsp" title="Site Map">Site Map</a></li> -->
+<!-- 						<li><a href="WVSNewsEventsMap.jsp" title="News and events index">Index of news & events</a></li> -->
+<!-- 						<li><a href="WVSPublicationsMap.jsp" title="Publications index">Index of publications</a></li> -->
+<!-- 						<li><a href="WVSSupport.jsp" title="Send support request">Support</a></li> -->
+<!-- 					</ul>	 -->
+<!-- 				</div> -->
+<!-- 				<br class="clear" /> -->
+<!-- 			</div> -->
+			<br class="clear" />
+		</div>
+
+			
+<input type=hidden name=DOID>			
+<input type=hidden name=INID>			
+<input type=hidden name=AJArchive value="WVS Data Archive">
+<input type=hidden name=EdFunction>
+<input type=hidden name=DOP value="">
+<input type=hidden name=PUB>
+<script language=JavaScript>
+	function  SetPubDoc(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsDocuments.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubBook(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsBooks.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubPaper(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsPapers.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+	function  SetPubPres(id) {
+		datos.PUB.value=id;
+		datos.action="WVSPublicationsPresentations.jsp";
+		datos.target="_top";
+		datos.submit();
+	}
+</script>
+
+
+<script>
+		
+				var geodatos=encodeURIComponent("187.13.203.216\tx\tx\tx\tx\tx\tx\tx");
+				$.get("jdsStatJD.jsp?ID="+geodatos+
+					"&url=http%3A%2F%2F192.168.33.22%3A8380%2Fwvs.jsp&referer=null&cms=home",
+					function (resp2) {
+				});
+
+			
+</script>
+	</form>
+</body>
+</html>
+ 

@@ -1,0 +1,738 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE HTML>
+<html lang="es">
+	<head>
+		<meta charset="ISO-8859-1">
+		<title>Estructura de informaci&oacute;n (SIE, Banco de M&eacute;xico)</title>
+		<meta name="Description" content="Estructura de informaci&oacute;n (SIE, Banco de M&eacute;xico)">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="robots" content="index, nofollow">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		
+                <script src="/SieInternet/js/ConsultarDirectorio/NavigationTimingScript.js"></script>
+                <script src="/SieInternet/lib/jquery-3.6.0/jquery-3.6.0.min.js?_version=5.1.21-rc1-20260908.1749"></script>
+                
+                <noscript id="deferred-styles">
+                <link rel="stylesheet" href="/SieInternet/lib/bootstrap-4.6.0-dist/css/bootstrap.min.css?_version=5.1.21-rc1-20260908.1749" type="text/css">			
+                <link href="/SieInternet/lib/bootstrap-datepicker-1.7.1/bootstrap-datepicker.min.css?_version=5.1.21-rc1-20260908.1749" rel="stylesheet">
+                <link rel="stylesheet" href="/SieInternet/css/consultaCuadro.css?_version=5.1.21-rc1-20260908.1749" type="text/css">
+                <link rel="stylesheet" href="/SieInternet/css/opcionesConsultaSeries.css?_version=5.1.21-rc1-20260908.1749" type="text/css">
+                <link rel="stylesheet" href="/SieInternet/css/estilos.css?_version=5.1.21-rc1-20260908.1749" type="text/css">
+                <link rel="stylesheet" href="/SieInternet/css/sticky-headers-1.0/sticky-headers.css?_version=5.1.21-rc1-20260908.1749">
+                </noscript>
+                
+                <style>
+                    .heighta{
+                        height: auto;
+                    }
+                    .heightci{
+                        height: 100%;
+                    }
+                    .heightcu{
+                        height: 40px;
+                    }
+                    .heightcal{
+                        height: calc(100% - 30px);
+                    }
+                    .heightw{
+                        width: 600px;
+                    }
+                    .heightn{
+                        height: 93%;
+                    }
+                    .fonts{
+                        font-size: 16px;
+                    }
+                    .margint{
+                        margin-top: 15px;
+                    }
+                    .marginl{
+                        margin-left:5px;  
+                    }
+                    .textl{
+                        text-align:left; 
+                        cursor:pointer;
+                    }
+                    .verticala{
+                        vertical-align: central;
+                    }
+                    .textlw{
+                        text-align:left; 
+                        white-space:nowrap;
+                    }
+                    .colorc{
+                        font-weight: normal;
+                        cursor:pointer;
+                        color: #E3EBED; /* Verde claro */
+                    }
+                    .whitespace{
+                        white-space: nowrap; 
+                        padding-right: 5px;
+                    }
+                    .fontt{
+                        font-size: 13px;
+                    }
+                    img.icono{
+                        width: 18px;
+                        height: 16px;
+                        -webkit-clip-path: inset(1px 1px 1.5px 1.5px);
+                        clip-path: inset(1px 1px 1.5px 1.5px);
+                        vertical-align: middle;
+                        background: url('/SieInternet/img/sprite_iconos.png?_version=5.1.21-rc1-20260908.1749') no-repeat;
+                    }
+                    img.icono-sm{
+                        width: 12px;
+                        height: 12px;
+                        background: url('/SieInternet/img/sprite_iconos.png?_version=5.1.21-rc1-20260908.1749') no-repeat;
+                    }
+					
+					@media(max-width: 770px){	
+						.hideOnSmallScreens {
+							display: none;
+						}
+						#containerVersiones{
+							max-width: 100%!important;
+						}
+					}
+                    @media(min-width:769px) and (max-width:992px){
+                        .tdContainerDescripcion{
+                            width: 290px;
+                        }
+						#mensajeVersion {						
+							width: 55%;
+						}
+                    }
+                    @media(min-width:993px) and (max-width:1200px){
+                        .tdContainerDescripcion{
+                            width: 362.5px;
+                        }
+                        .hipervinculosTabla table{
+                            margin-right: 15px;
+                        }
+                    }	
+                    @media(min-width:1200px){	
+                        .tdContainerDescripcion{
+                            width: 435px;
+                        }
+						#mensajeVersion {						
+							width: 45%;
+						}
+                        .hipervinculosTabla table{
+                            margin-right: 15px;
+                        }
+                    }
+				    .textcw{
+				        text-align: center; width: 25px;
+				    }
+   
+				    .textcl{
+				        text-align: center;
+				    }
+				    .widthvt{
+				        width: 25px; text-align: center;
+				    }
+				    .widthq{
+				        width: 15px;  
+				    }
+				    .cursor{
+				        cursor: pointer;
+				    }
+				    .paddingr{
+				        padding-right: 10px;
+				    }
+				    .visibilityh{
+				        visibility: hidden;
+				    }
+					.textj{
+						margin-top: 7px; 
+						padding-right: 10px;
+					}
+					#selectorVersionEnComun{
+						border: 1px solid #bfbfbf;
+						min-width: 155px;
+					}
+					#mensajeVersion {
+						float: right;
+						color: #E3EBED; /* Verde claro */
+						background-color: #2F7279; /* Verde medio */
+					}
+                </style>
+
+                
+    </head>
+	<body >
+            <div class="modal fade" id="modalAvisos" tabindex="-1" role="dialog" aria-labelledby="avisoConsultaCuadro" aria-hidden="true">
+			<div class="modal-dialog modal-md modal-dialog-centered heighta">
+				<div class="modal-content heightci">
+					<div class="modal-header heightcu">
+                                                <p class="modal-title" id="avisoConsultaCuadro">Aviso</p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+					</div>
+                                                    <div class="modal-body heightcal" tabindex="0">
+						<div id="contenedorAviso" class="heightci">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+                <div class="modal fade" id="modalGrafica" role="dialog" aria-labelledby="graficaSerieModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-cent">
+				<div id="containerModal" class="modal-content">
+					<div class="modal-header">
+                                            <p class="modal-title" id="graficaSerieModal">Gr&aacute;fica</p>
+						<button id="cerrarModalBtn" type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+					</div>
+                                        <div class="modal-body">						
+                                            <iframe id="iframeGrafica" src="about:blank" class="col-12" title="Gr&aacute;fica de serie">
+                                                <!--Se incrusta la gráfica-->
+                                            </iframe>
+					</div>
+				</div>
+			</div>
+		</div>			
+		<div class="modal fade" id="modalCalculadora" tabindex="-1" role="dialog" aria-labelledby="modalCalculadoraInflacion" aria-hidden="true">
+			<div class="modal-dialog modal-lg modal-dialog-centered">
+				<div class="modal-content heightw">
+					<div class="modal-header">
+						
+                                                <p class="modal-title" id="modalCalculadoraInflacion">Calculadora de inflaci&oacute;n</p>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+					</div>
+                                                    <div class="modal-body heightn" tabindex="0"><!--Necesiario para chrome -->
+						<div id="contenedorCalculadora" class="heightci">
+							<iframe id="iframeCalculadora" src="about:blank"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>	
+		
+
+		
+		
+		
+		
+			
+			
+		
+		
+		
+		
+		
+			
+			
+				
+					
+					
+                                        
+					
+				
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/SieInternet/css/encabezado.css?_version=5.1.21-rc1-20260908.1749" type="text/css">
+
+<header>
+	<div class="container-md">
+		
+		<div class="row no-gutters">
+			<div class="col">
+				<nav aria-label="Salto de bloques">
+					
+					<a href="#contenidoPrincipal"
+					   class="pr-2"><!--
+						--><img alt="" data-license="https://fontawesome.com/license/free"
+							src="/SieInternet/img/fontawesome-free-5.13.0-web/universal-access.png"><!--
+						-->Ir al contenido principal
+					</a>
+
+					<span role="separator" aria-hidden="true">|</span>
+
+					
+					<a data-toggle="modal" href="#modalDeclaracionAccesibilidad"
+					   class="px-2"><!--
+						-->Declaraci&oacute;n de accesibilidad
+					</a>
+				</nav>
+			</div>
+		</div>
+		<div class="row no-gutters">
+			
+
+			<div class="col col-auto  mt-2 mb-1">
+				
+				<a href="/SieInternet/" rel="noopener noreferrer"
+				   aria-hidden="true" tabindex="-1"> 
+					<img class="icono-sistema" src="./img/SIE.svg?_version=5.1.21-rc1-20260908.1749">
+				</a>
+			</div>
+			<div class="col text-center  mt-2 mb-1">
+				
+				<h1>
+					<a href="/SieInternet/"
+					   class="px-2"><!--
+						-->Sistema de Informaci&oacute;n Econ&oacute;mica
+					</a>
+				</h1>
+				
+					<a href="mailto:sie@banxico.org.mx"
+					   class="px-2 encabezado-correo"><!--
+						-->sie@banxico.org.mx</a>
+					
+			</div>
+			<div class="col col-auto  mt-2 mb-1">
+				
+					<a title="Se abrir&aacute; en otra pesta&ntilde;a"
+					   onClick="return registra('consultaAPI', 'https://www.banxico.org.mx/SieAPIRest/');" href="#">
+						<img class="icono-sistema" src="./img/SIE_API.svg?_version=5.1.21-rc1-20260908.1749"
+						     alt="SIE-API">
+					</a>
+				
+
+			</div>
+			<div class="col col-auto  mt-2 mb-1">
+
+			</div>
+			<div class="px-1 col-md-auto  mt-2 mb-1">
+				<div class="row no-gutters">
+					<div class="col-md-auto" role="search">
+						<label class="sr-only" for="campoTextoBuscar">Escriba el texto a buscar</label>
+						<input id="campoTextoBuscar"
+						       class="busquedaAccion"
+						       type="text"
+						       placeholder="Ejemplo: FIX"
+						       data-toggle="popover"
+						       data-trigger="focus"
+						       data-content="Escriba el texto a buscar"
+						       data-placement="bottom"/>
+						<button type="submit"
+							id="botonBuscar">
+							<span class="sr-only sr-only-focusable">Llevar a cabo la b&uacute;squeda</span>
+							<img class="icono encabezado-icono-buscar" alt="">
+						</button>
+					</div>
+				</div>
+				<div class="row no-gutters">
+					<div class="col text-right">
+						
+							<a href="#" onClick="return registra('consultaAyuda', 'https://www.banxico.org.mx/apps/sie/%7b8561F810-0E0F-9B78-F5B0-5600ED6E94E9%7d.pdf');"><!--
+								-->Ayuda
+							</a>
+						
+					</div>
+					<div class="px-2 col col-auto">
+						
+							<span role="separator" aria-hidden="true">|</span>
+						
+					</div>
+					<div class="col col-auto">
+						
+							<!-- idioma directorio-->
+							
+
+							<!-- idioma sector visual-->
+							
+
+							<!-- idioma cuadro público y analítico-->
+							
+								
+
+	
+		
+		
+	
+	
+
+
+								
+									
+									
+										
+										<a lang="en"
+										   aria-label="Change to English language"
+										   href="/SieInternet/consultarDirectorioInternetAction.do?sector=0&amp;idCuadro=&amp;accion=consultarCuadro&amp;locale=en">English</a>
+									
+								
+							
+							<!-- idioma para el carrito-->  <!-- TO DO verificar caso de uso-->
+							
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade resultadoBusqueda" id="modalResultadoBuscar"  tabindex="-1" role="dialog" aria-labelledby="resultadoBusquedaLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content" >
+				<div class="modal-header">
+					<p class="modal-title" id="resultadoBusquedaLabel">Resultados de la b&uacute;squeda</p>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body resultadoBusqueda-height1">
+					<div id="contenedorBusqueda" class="resultadoBusqueda-height2">
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="modal fade" id="modalDeclaracionAccesibilidad" tabindex="-1" role="dialog" aria-labelledby="declaracionAccesibilidadLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<p class="modal-title" id="declaracionAccesibilidadLabel">Declaraci&oacute;n de accesibilidad</p>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body container-fluid">
+					<br>
+					<div class="row justify-content-center">
+						<a href="https://www.hearcolors.com.mx/SelloAccesibilidad.php?num_clte=BA7N6S1E"
+						   class="enlace" target="_blank" rel="noopener noreferrer nofollow external"
+						   title="Declaraci&oacute;n de accesibilidad. Se abrir&aacute; en otra ventana."
+						   ><img alt="" style="width:200px; height:200px;" src="/SieInternet/img/accesibilidad_logo-200x200.jpg?_version=5.1.21-rc1-20260908.1749"></a>
+					</div>
+					<br><br>
+					<div class="row">
+						<p>La accesibilidad web de un sitio busca garantizar que personas con alguna discapacidad puedan acceder a su contenido.</p> <p>Para lograr la accesibilidad web de un sitio debe considerarse su dise&ntilde;o, su programaci&oacute;n y la forma en que se expresan sus contenidos.</p> <p>En este contexto, el Sistema de Informaci&oacute;n Econ&oacute;mica ha logrado la certificaci&oacute;n del acceso web de su sitio conforme al nivel AA del est&aacute;ndar Web Content Accessibility Guidelines 2.1:</p>
+						<p>
+							<a href="https://www.hearcolors.com.mx/SelloAccesibilidad.php?num_clte=BA7N6S1E"
+							   class="enlace" target="_blank" rel="noopener noreferrer nofollow external"
+							   title="Se abrir&aacute; en otra ventana"
+							   >Declaraci&oacute;n de accesibilidad</a>.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+</header>
+
+<script>
+	$(document).ready(function () {
+		$("#botonBuscar").click(function (event) {
+			buscar(event, "#botonBuscar");
+		});
+
+		$("#botonBuscarModal").click(function (event) {
+			buscar(event, "#botonBuscarModal");
+		});
+
+		// Realiza busqueda al presionar enter
+		$(".busquedaAccion").on('keydown', function (event) {
+			if (event.which === 13) {
+				event.preventDefault();
+				var idTrigger = '#' + event.target.id;
+//            alert(idTrigger);
+				if (idTrigger === '#campoTextoBuscar') {
+					buscar(event, "#botonBuscar");
+				} else if (idTrigger === '#campoTextoBuscarModal') {
+					buscar(event, "#botonBuscarModal");
+				}
+			}
+		});
+
+		// Foco al campo de búsqueda al ocultar la modal resultado de búsqueda
+		$('.resultadoBusqueda').on('hidden.bs.modal', function () {
+			$('#campoTextoBuscar').focus();
+		});
+	});
+
+	function buscar(event, idComponente) {
+		$("#contenedorBusqueda").empty();
+		var busquedaSinCodificar;
+		var idCampoTexto;
+		var idBoton = idComponente;
+		if (idBoton === "#botonBuscarModal") {
+			busquedaSinCodificar = $.trim($('#campoTextoBuscarModal').val());
+			idCampoTexto = "#campoTextoBuscarModal";
+		} else if (idBoton === "#botonBuscar") {
+			busquedaSinCodificar = $.trim($('#campoTextoBuscar').val());
+			idCampoTexto = "#campoTextoBuscar";
+		}
+
+		var busqueda = escape(busquedaSinCodificar);
+		if (busqueda === "") {
+			$(idCampoTexto).css("border", "1.5px solid red");
+			$(idCampoTexto).popover("show");
+			setTimeout(function () {
+				$(idCampoTexto).css("border", "1px solid #ced4da");
+				$(idCampoTexto).popover("dispose");
+			}, 1500);
+		} else {
+			var locale = ("en" === "es") ? "en" : "es";
+			// Elige el servidor donde está el servicio de búsqueda
+			
+			var servidor = 'https://www.banxico.org.mx';
+			var url = servidor + '/AplBusquedasBM2/bsiewww.jsp?_page=1&_action=search&_lang=' + locale + '&_userquery=' + busqueda;
+			var iframe = document.createElement('iframe');
+			iframe.frameBorder = 0;
+			iframe.width = "100%";
+			iframe.height = "100%";
+			iframe.setAttribute("src", url);
+			iframe.setAttribute("title", "Resultados encontrados");
+			document.getElementById("contenedorBusqueda").appendChild(iframe);
+
+			$("#modalResultadoBuscar").modal('show');
+			$(idCampoTexto).popover('hide');
+
+		}
+		event.preventDefault();
+	}
+
+	function registra(ruta, recurso) {
+		
+			var url = "/SieInternet/consultarDirectorioInternetAction.do?accion=";
+		
+		
+		url += ruta + "&fechaInicio=" + new Date().getTime();
+		$.get(url);
+		window.open(recurso, "_blank");
+		return false;
+	}
+</script>
+	
+					<div class="avisoError container">							
+						<p>Lo sentimos, su solicitud no pudo ser atendida: no se puede encontrar la informaci&oacute;n solicitada.</p>
+				</div>
+			
+			
+			
+			
+			
+			
+		
+		
+		<script>
+		  var loadDeferredStyles = function() {
+			var addStylesNode = document.getElementById("deferred-styles");
+			var replacement = document.createElement("div");
+			replacement.innerHTML = addStylesNode.textContent;
+			document.body.appendChild(replacement)
+			addStylesNode.parentElement.removeChild(addStylesNode);
+			window.setTimeout(function(){$("body").fadeIn(50);}, 0);
+		  };
+		  var raf = window.requestAnimationFrame || window.mozRequestAnimationFrame ||
+			  window.webkitRequestAnimationFrame || window.msRequestAnimationFrame;
+		  if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
+		  else window.addEventListener('load', loadDeferredStyles);
+		</script>
+		
+		
+		<script defer src="/SieInternet/js/ConsultarDirectorio/ConsultarDirectorioUtil.js?_version=5.1.21-rc1-20260908.1749"></script>
+		<script defer src="/SieInternet/js/ConsultarDirectorio/ConsultarDirectorioControles.js?_version=5.1.21-rc1-20260908.1749"></script>
+		<script defer src="/SieInternet/js/ConsultarDirectorio/ConsultarDirectorioValida.js?_version=5.1.21-rc1-20260908.1749"></script>
+		<script src="/SieInternet/js/ConsultarDirectorio/hl.js?_version=5.1.21-rc1-20260908.1749"></script> 
+                <script src="/SieInternet/js/ConsultarDirectorio/ConsultarDirectorioPopover.js?_version=5.1.21-rc1-20260908.1749"></script>
+		<script src="/SieInternet/lib/jquery-treetable/treetable.js?_version=5.1.21-rc1-20260908.1749"></script>				
+		
+		<script defer src="/SieInternet/lib/bootstrap-4.6.0-dist/js/bootstrap.bundle.min.js?_version=5.1.21-rc1-20260908.1749"></script>
+
+		
+		<script defer src="/SieInternet/lib/bootstrap-datepicker-1.7.1/bootstrap-datepicker.min.js"></script>
+		<script defer src="/SieInternet/lib/bootstrap-datepicker-1.7.1/bootstrap-datepicker.es.min.js"></script>
+		
+		
+		<style>
+		#dialogoCambiaVersionSerie::backdrop {
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    right: 0;
+		    bottom: 0;
+		    background-color: rgba(0, 0, 0, 0.5);
+		}
+		</style>
+		<script>
+			function cambiaVersionSerie(versionSerie) {
+                            try {
+                                document.querySelector('body').insertAdjacentHTML('afterend', '<dialog id="dialogoCambiaVersionSerie"><p>Consultando la información...</p></dialog>');
+                                let dialogoCambiaVersionSerie = document.getElementById('dialogoCambiaVersionSerie')
+                                dialogoCambiaVersionSerie.showModal();
+                            } catch (error) {
+                                
+                                console.error(error);
+                                alert('Consultando la información...');
+                            }
+                            let urlActual = document.location.href;
+                            let url = new URL(urlActual);
+
+                            url.searchParams.set("versionSerie", versionSerie);
+
+                            console.log(url);
+                            document.location = url;
+//                            window.open(url, '_blank');
+                        }
+
+                        // Recarga la página con la versiónSerie seleccionada
+                        $("#selectorVersionEnComun").change(function () {
+                            let versionSerie = $("#selectorVersionEnComun").val();
+			    cambiaVersionSerie(versionSerie);
+                        });
+                    
+			function actualizarNumeroSeriesCarrito() {
+				window.setTimeout("actualizarNumero()", "1500");
+				return true;
+			}
+			function muestraAvisoModal( aviso) {
+                                $("#contenedorAviso").html(aviso);
+				$("#modalAvisos").modal();
+
+			}
+
+			var expand = new Image();
+			expand.src = "/SieInternet/img/masVerde.png?_version=5.1.21-rc1-20260908.1749";
+			var collapse = new Image();
+			collapse.src = "/SieInternet/img/menosVerde.png?_version=5.1.21-rc1-20260908.1749";
+
+			function desplegarArbol() {
+				if ($("#toggleRamasEstadoInicialTexto").attr('aria-expanded') === "false") {
+					/* abre todas las ramas */
+					treetable_expandAll('treeTable');
+
+					/* abre todas las flechas */
+					$("img[id^='img_nodo']").attr("src", "/SieInternet/img/menosVerde.png?_version=5.1.21-rc1-20260908.1749");//menos del arbol
+                                        $("button[id^='btn_nodo']").attr("aria-expanded", "true");//menos del arbol
+
+					/* Cambia la imagen y el estado de la rama */
+                                        $("#toggleRamasEstadoInicialTexto").attr('aria-expanded', 'true');
+					$("#toggleRamasEstadoInicialImagen").attr("src", "/SieInternet/img/menosVerdeClaro.png?_version=5.1.21-rc1-20260908.1749");//masTitulo
+				} else {
+					/* reestablece las ramas a su visibilidad inicial */
+					treetable_collapseAll('treeTable');
+
+					/* reestablece las flechas a su estado inicial */
+					$("img[data='true']").attr("src", collapse.src);
+                                        $("button[data='true']").attr("aria-expanded", "true");
+                                        
+					$("img[data='false']").attr("src", expand.src);
+                                        $("button[data='false']").attr("aria-expanded", "false");
+
+					/* Cambia la imagen y el estado de la rama */
+                                        $("#toggleRamasEstadoInicialTexto").attr('aria-expanded', 'false');
+					$("#toggleRamasEstadoInicialImagen").attr("src", "/SieInternet/img/masVerdeClaro.png?_version=5.1.21-rc1-20260908.1749");
+				}
+			}
+
+			$(document).ready(function () {
+                        
+                                // Actualiza la url de iframeGrafica para mostrar la grafica correspondiente
+                                $('#modalGrafica').on('shown.bs.modal', function (e) {
+                                    var boton = e.relatedTarget.id;
+                                    var hipervinculo = $('#'+boton).attr('data-url');
+                                    $("#iframeGrafica").prop("src", hipervinculo);
+                                    $('#cerrarModalBtn').focus();
+                                });
+                                
+                                // Actualiza el hipervinculo del iframe para mostrar la calculadora
+                                $('#modalCalculadora').on('show.bs.modal', function (e) {
+                                    var boton = e.relatedTarget.id;
+                                    var hipervinculo = $('#'+boton).attr('data-hipervinculo');
+                                    $("#iframeCalculadora").prop("src", hipervinculo);
+                                });
+                                 
+				$("tr[data='closed']").hide();
+				var url = "/SieInternet/consultarDirectorioInternetAction.do?accion=consultarNumeroSeriesCarrito";
+				$.ajax({
+					url: url,
+					data: {svg: new Date().getTime()},
+					success: function (data) {
+						$("#numeroSeriesCarrito").html(data);
+					}
+				});
+
+			});
+                        
+                        // Función que indica el estado expandido o contraído de una rama del directorio para Lectores de pantalla
+                        $( ".mostrarElementoRamaAbierta, .mostrarElementoRamaCerrada" ).click(function(event) {
+                            var idTarget = '#' + event.target.id;
+                            var ariaExpanded = $(idTarget).attr('aria-expanded');
+                            
+                            var imagen = idTarget + ' img';
+                            
+                            if(ariaExpanded==='true'){
+                                $(idTarget).attr('aria-expanded', 'false');
+                                $(imagen).attr('src', '/SieInternet/img/masVerde.png?_version=5.1.21-rc1-20260908.1749');
+                            }else{
+                                $(idTarget).attr('aria-expanded', 'true');
+                                $(imagen).attr('src', '/SieInternet/img/menosVerde.png?_version=5.1.21-rc1-20260908.1749');
+                            }
+                        });
+                        
+			function actualizarNumeroSeriesCarrito() {
+				window.setTimeout("actualizarNumero()", "1500");
+				return true;
+			}
+
+			function h(a, b, c, d, e, f, g, h, i) {
+				/* se usa nowrap, no se usa el atributo CSS white-space, pues dicho atributo aparecio hasta IE 5.5 y no existe en IE 5.05 */
+					return '<table id="hint" border=0 cellpadding=0 cellspacing=0 class="fontt" role="presentation">' +
+							'<tr><td>' +
+							'<table border=0 cellpadding=0 cellspacing=0 width=1>' +
+							(!a?'':'<tr><td nowrap>Serie:</td><td nowrap>&nbsp;' + a + '</td></tr>') +
+							'<tr><td nowrap>Periodicidad:</td><td nowrap>&nbsp;' + b + '</td></tr>' +
+							'<tr><td nowrap>Tipo de Cifra:</td><td nowrap>&nbsp;' + c + '</td></tr>' +
+							'<tr><td nowrap>Tipo de Unidad:</td><td nowrap>&nbsp;' + d + '</td></tr>' +
+							'<tr><td nowrap>Fecha&nbsp;inicial:</td><td nowrap>&nbsp;' + e + '</td></tr>' +
+							'<tr><td nowrap>Fecha&nbsp;final:</td><td nowrap>&nbsp;' + f + '</td></tr>' +
+							(!g?'':'<tr><td nowrap>&Uacute;ltima&nbsp;actualizaci&oacute;n:</td><td nowrap>&nbsp;' + g + '</td></tr>') +
+							(!h?'':'<tr><td nowrap>&Uacute;ltima&nbsp;liberaci&oacute;n:</td><td nowrap>&nbsp;' + h + '</td></tr>') +
+							'</table>' +
+							'</td></tr>' +
+							(!i?'':'<tr><td>' +
+							'<table role="presentation" class="fontt" border=0 cellpadding=0 cellspacing=0><tr><td width=' + Math.floor(screen.width / 3) + '>' +
+							'<br>' + i +
+							'</td></tr></table>' +
+							'</td></tr>'
+							) +
+							'</table>';
+				}
+		</script>
+
+	</body>
+</html>

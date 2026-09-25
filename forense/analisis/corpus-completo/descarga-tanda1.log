@@ -1,0 +1,15 @@
+pendientes: 4771
+OK 1603414 SALUD 2018 esep_base_datos_2018_dbf.zip
+OK 1815239 SALUD 2019 esep_base_datos_2019_dbf.zip
+OK 1758074 SALUD 2020 esep_base_datos_2020_dbf.zip
+OK 1859439 SALUD 2021 esep_base_datos_2021_dbf.zip
+OK 1773720 SALUD 2022 esep_base_datos_2022_dbf.zip
+OK 1789754 SALUD 2023 esep_base_datos_2023_dbf.zip
+OK 1752583 SALUD 2024 esep_base_datos_2024_dbf.zip
+OK 1761953 SALUD 2025 esep_base_datos_2025_dbf.zip
+OK 26753668 ENSANUT 2018 ensanut_2018_base_datos_cn_csv.zip
+A7-DIFIERE https://www.inegi.org.mx/contenidos/programas/ensanut/2018/microdatos/ensanut_2018_base_datos_cs_csv.zip
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ensanut/2018/doc/ensanut_2018_fd_cn.xlsx
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ensanut/2018/doc/ensanut_2018_fd_cs.xlsx
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ensanut/2018/doc/ensanut_2018_estructua_base_datos.pdf
+tres fallos seguidos: espera 600 s
