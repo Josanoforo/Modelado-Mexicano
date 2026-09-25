@@ -5,6 +5,8 @@ o `manifiesto.yaml` (15k+ lineas) enteros para leer un dato."""
 from __future__ import annotations
 
 import re
+
+import pytest  # noqa: F401  -- invocador pytest en ci_guardias
 from pathlib import Path
 
 RAIZ = Path(__file__).resolve().parent.parent
