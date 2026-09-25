@@ -8,7 +8,7 @@ las fuentes no INEGI sin archivo directo) y la bitácora (intentos).
 Columnas: fuente · programa · olas_adquiridas_por_este_acto · olas_ya_en_corpus (de antes o de
 otro acto) · olas_reservadas_al_entrar · no_obtenido (con «NO OBTENIDO POR ESTE AGENTE EN N
 INTENTOS» + receta) · licencia_o_barrera.
-Uso: python3 tabla_final.py [--verifica]
+Uso: python3 tabla_final_corpus.py [--verifica]
 """
 from __future__ import annotations
 
