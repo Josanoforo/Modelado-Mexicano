@@ -39,3 +39,14 @@ Propio: `forense/firmas-pendientes.tsv`, `no-corrido.tsv`, `data/corrida0/decisi
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No releva (RELEVO-CONSUMIDORES-3). Sucesor: FIRMAS-18 con lo del fin de semana.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: H1 · `RELEVO-CONSUMIDORES-2-e760-01` (8 asignados_coeficiente HISTÓRICO-SIN-RELEVO; 12 asignados_probabilidad por FIRMAS-16 B1/B2). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- ninguna firma verbatim llegó con el lanzamiento (§2 vacío). **impacto**: la FP sigue ABIERTA; ningún contador se mueve. **sucesor**: GEN2-TRAMITE-FIRMAS-18, luego RELEVO-CONSUMIDORES-3 (NC-260925-GEN2-TRAMITE-FIRMAS-17-ad95-01).
+- **qué**: H2 · `e760-02` (M01–M07, M23 bajo la regla de M08). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- sin firma. **impacto**: los ocho momentos siguen legacy. **sucesor**: GEN2-TRAMITE-FIRMAS-18, luego RELEVO-CONSUMIDORES-3 (…-ad95-02).
+- **qué**: H3 · `e760-03` (42 lecturas L/AGREGADO HISTÓRICO-SIN-RELEVO, fuera del contador legacy). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- sin firma. **impacto**: el contador legacy no baja. **sucesor**: GEN2-TRAMITE-FIRMAS-18, luego RELEVO-CONSUMIDORES-3 (…-ad95-03).
+- **qué**: H4 · `CATALOGO-V1-1-1-afe1-01` (cuatro filas de adopción en `decisiones.tsv`). **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- asentar adopción sin firma es PARO c; preparada en la nota (PR #1091 para CALC-ENIF-0001 y CALC-R-DIN-M-01-v4; PR #1128 para los dos derivados ENCIG/ENCUCI). **impacto**: los 4 CALC siguen contando por etiqueta sin fila de mesa. **sucesor**: GEN2-TRAMITE-FIRMAS-18 (…-ad95-04).
+
+## CONSUMIDO
+
+PR #1150 (rama `claude/new-session-cm7sz5`), ADR-260925-GEN2-TRAMITE-FIRMAS-17-ad95-01; nota `forense/notas/2026-09-25-GEN2-TRAMITE-FIRMAS-17-nota.md`.
