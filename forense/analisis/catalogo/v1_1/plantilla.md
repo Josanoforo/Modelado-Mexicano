@@ -3,6 +3,8 @@
 > | | |
 > |---|---|
 > | **ARCHIVO** | `catalogo-del-mexicano-v1_1.md` (sucesor de `catalogo-del-mexicano-v1_0.md`, que queda intacto — E.1) |
+> | **NOMBRE ESTABLE** | `catálogo del mexicano` |
+> | **ESTADO** | Producto consultable: solo estimadores adoptados por firma citada por id |
 > | **ACTO** | `GEN2-CATALOGO-V1-1-1` · generación GEN2 · cero mediciones nuevas · no adopta: consume adopciones firmadas |
 > | **TABLA** | [`catalogo-del-mexicano-v1_1.tsv`](catalogo-del-mexicano-v1_1.tsv) — una fila por estimador adoptado |
 > | **REGENERA** | `python3 forense/analisis/catalogo/genera_catalogo_v1_1.py` (esta portada incluida); `--sin-registro` reutiliza la vista de adoptados activos ya derivada |
