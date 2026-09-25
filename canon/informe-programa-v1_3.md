@@ -490,7 +490,7 @@ EXTERNO-1-cfce-01`, ABIERTA).
 **En curso, sin fusionar a este corte** (declarado, no se espera):
 `GEN2-PISOS-GEN2-2` (§3.5, rama `acto/gen2-pisos-gen2-2`, COMMIT-1 ya
 congelado)
-<!-- comando: git ls-remote --heads origin | grep -c "acto/gen2-pisos-gen2-2" -->.
+<!-- comando: git log --oneline origin/main | grep -c "PISOS-GEN2-2" -->. (Nota 25/sep/2026, GEN2-TRAMITE-FIRMAS-16: la rama se borró al fusionar; el comando original `git ls-remote … acto/gen2-pisos-gen2-2` caducó.)
 No había fusionado a `origin/main` al momento de escribir este informe.
 
 **Tres actos que dirección citaba como abiertos cerraron mientras este acto
