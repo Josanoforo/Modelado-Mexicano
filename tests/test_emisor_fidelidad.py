@@ -95,8 +95,14 @@ def test_emision_binaria_forma_prediccion_corredor():
     valor_punto; la clase viaja como confianza cualitativa (IPCC), el intervalo
     queda None sin EE real (Q1-bis)."""
     reglas = {r.id: r for r in emisor.cargar_reglas()}
-    p = emisor.emitir_binaria(reglas["tramite.gobierno_digital.util_sin_coercion"], "adopta")
-    assert (p.tipo_escala, p.valor_punto, p.clase) == ("binaria", 0.71, "ASIGNADO")
+    regla = reglas["tramite.gobierno_digital.util_sin_coercion"]
+    p = emisor.emitir_binaria(regla, "adopta")
+    # FIRMAS-16 B1 (ACTO GEN2-RELEVO-CONSUMIDORES-2): el ASIGNADO 0.71 se
+    # retiró; `adopta` devuelve el par GEN2 medido de su hermano.
+    medido = emisor.emitir_binaria(regla, "adopta_encig2025_luz")
+    assert (p.tipo_escala, p.valor_punto, p.clase, p.resultado_id) == (
+        "binaria", medido.valor_punto, medido.clase, medido.resultado_id)
+    assert p.clase.startswith("MEDIDO") and p.resultado_generacion == "GEN2"
     assert p.intervalo_lo is None and p.intervalo_hi is None
     assert p.confianza_declarada is None, "la clase NO se convierte a número (doctrina IPCC)"
 
@@ -109,7 +115,11 @@ def test_estampa_de_base_empirica_en_el_gate():
     coeficiente del par gradúe a MEDIDO, este test truena y obliga a leer la
     estampa nueva — es la parte que se actualiza sola."""
     g = emisor.gate_r3_4()
-    assert dict(g.insumos_clase) == {"ASIGNADO": 2}
-    assert "base medida: 0 de 2" in g.estampa
+    # FIRMAS-16 B1 (ACTO GEN2-RELEVO-CONSUMIDORES-2): `adopta` de
+    # util_sin_coercion graduó a MEDIDO; el de coercitivo sigue ASIGNADO.
+    clases = dict(g.insumos_clase)
+    assert clases.pop("ASIGNADO") == 1
+    assert len(clases) == 1 and next(iter(clases)).startswith("MEDIDO")
+    assert "base medida: 1 de 2" in g.estampa
     assert "estructurales" in g.estampa, \
         "la estampa debe decir que B y C son propiedades del par asignado, no hallazgos"
