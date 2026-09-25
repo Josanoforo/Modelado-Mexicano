@@ -1,0 +1,532 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001
+spec_md: ../../../forense/prereg-caja/ENIF2024-PISOS-AHORRO-INFORMAL-LXE-spec-v1_0.md
+spec_md_sha256: 1cb091da8b899a1aa288997d767085092fe6fec3082242603e3744f021eef414
+script: data/corrida0/CALC-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  unidad_transferencia: PERSONA-ELEGIDA-18MAS
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-PISOS-GEN2-2 (cuenta_gen2: SI, adopta: NO) -- forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md:6'
+  fuente_acto: GEN2-PISOS-GEN2-2
+  tipo: PISO-C2-COMPUESTO-DESDE-MICRODATO
+  firmas: Decision 1 de ADOPCION-2 (mesa 24/sep/2026) extendida a todas las celdas-D por el encargo GEN2-PISOS-GEN2-2
+    §2 (INTERPRETACION-DECLARADA); E.1; firma 17/sep; regla 6
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: RETROSPECTIVA -- sellado despues de que el -0001 derivo R (cruce visto, E.6); formula fija, no lee R
+  relevo_de: el -C2-P de CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001 (parametros.marginales_sellados_D9 -> milpa/)
+  celda_d: DIN.ahorro_solo_informal.enif2024.localidad_x_edad
+inputs:
+- id: enif2024_csv
+  origen: manifiesto
+  sha256: a3507b4038888247f565f1640a718ef552bb8fc363378e3372a5bf2796bb2e4c
+  funcion: DATO
+  nota: ENIF 2024; se agrupa SOLO por una variable (marginales), nunca el cruce
+- id: medidor_emisiones
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/medidor.py
+  sha256: ee1476a234aecbd878a4ac9466e98d85d7373ea011243116de50c1589d3f8d39
+  funcion: CODIGO
+  nota: _lee_miembro, _universo, _desenlaces, _replicas, _agrega_por_upm, _punto_e_ic, _matriz y DESENLACE_D9 ejecutados
+    desde estos bytes
+- id: funcion_c2
+  origen: repo
+  ruta: tests/test_celda_d_c2.py
+  sha256: 71878f9ca98698a4d770b77e583e5086875509dcd022ba6928b86caa976a12d9
+  funcion: CODIGO
+  nota: piso_log_aditivo (el mismo objeto que usaron las emisiones)
+- id: extrae_l
+  origen: repo
+  ruta: tools/extrae_l_v1_1.py
+  sha256: efb71de15da18f8239647b0467f85e085f69450db12c5a54728af66aac1ab48f
+  funcion: CODIGO
+  nota: dependencia de import del medidor de las emisiones; no se llama
+- id: emisiones_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/resultados.json
+  sha256: 69ec9c6a21d259a76ae5617f2cff801e6165c351c750121125cc77e642f2d8c1
+  funcion: CONTROL-HISTORICO
+  nota: 'control 1 (oro a 1e-10: marginales, C2-P-REDERIVADO, C2-IC) y control 3 (C2 legacy, descriptivo); no es
+    insumo del piso'
+- id: emisiones_sello
+  origen: repo
+  ruta: data/corrida0/CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001/sello.json
+  sha256: f412f9036dc43e2e0964893b28793f7a791968bc5d4217d2cbb54e1774f2c5a9
+  funcion: METADATO
+  nota: el sha de emisiones_resultados debe estar en este sello
+- id: arbitro_enif2024_resultados
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/resultados.json
+  sha256: 552aef42c92cc70ded24bebb4c3e295739b95b346644e624cd22c8392916ecc4
+  funcion: CONTROL-HISTORICO
+  nota: 'control 2: E1-E3 a 1e-10 y -N exacto; L1, L2, E4 y NAC descriptivos (universo propio, spec §3)'
+- id: arbitro_enif2024_sello
+  origen: repo
+  ruta: data/corrida0/CALC-ARBITRO-MARGINALES-ENIF2024-0001/sello.json
+  sha256: 4d1aa2d10c3b353964e2d456fc0d817c1fb5ee331ef33c145e9c803f48e52d5e
+  funcion: METADATO
+  nota: el sha de arbitro_enif2024_resultados debe estar en este sello
+variables:
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_1
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_2
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_3
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_4
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_5
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_1_6
+  rol: ahorro-informal
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_1
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_2
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_3
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_4
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_5
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_6
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_7
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_8
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: p5_6_9
+  rol: via-formal-D9
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: tloc
+  rol: eje-localidad
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: edad_v
+  rol: eje-edad
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: fac_per
+  rol: ponderador
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: est_dis
+  rol: estrato
+- archivo: conjunto_de_datos_tmodulo_enif2024.csv
+  variable: upm_dis
+  rol: upm
+universo: 'Identico al de las emisiones (DIN-ahorro-solo-informal-lxe8-spec-v1_2 §3.1): personas elegidas de 18
+  anos y mas de TMODULO ENIF 2024 con 18 <= edad_v <= 97 (sin 98/99), tloc en {1,2,3,4}, fac_per > 0; los siete
+  grupos comparten ese universo.'
+filtros: Los tres de las emisiones, en el mismo orden, ejecutados desde sus bytes (_universo).
+ponderador: fac_per
+transformacion: D9 = alguna via informal (p5_1_1..6 = 1) y ninguna de las nueve formales (p5_6_1..9 = 1). L1 = tloc
+  {3,4}; L2 = tloc {1,2}; E1..E4 = 18-29/30-44/45-59/60-97; NAC = todos.
+estimando: C2(l,e) = expit(logit p24(l) + logit p24(e) - logit p24) en las 8 celdas localidad x edad; marginales
+  de un eje de ENIF 2024; IC 2.5/97.5 de la composicion replica a replica.
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.random.PCG64
+tolerancia:
+  tipo: bootstrap
+  exacto_por_seed: true
+  abs: 1.0e-10
+  razon: misma semilla, mismo generador y mismo orden de consumo que las emisiones
+parametros:
+  bootstrap_replicas: 10000
+  codigos_informal_2024:
+  - p5_1_1
+  - p5_1_2
+  - p5_1_3
+  - p5_1_4
+  - p5_1_5
+  - p5_1_6
+  codigos_formal_D9_2024:
+  - p5_6_1
+  - p5_6_2
+  - p5_6_3
+  - p5_6_4
+  - p5_6_5
+  - p5_6_6
+  - p5_6_7
+  - p5_6_8
+  - p5_6_9
+  localidad_L1_tloc:
+  - '3'
+  - '4'
+  localidad_L2_tloc:
+  - '1'
+  - '2'
+  edad_tramos:
+    E1:
+    - 18
+    - 29
+    E2:
+    - 30
+    - 44
+    E3:
+    - 45
+    - 59
+    E4:
+    - 60
+    - 97
+  tol_control_emisiones: 1.0e-10
+  tol_control_arbitro: 1.0e-10
+  control_arbitro_mismo_universo:
+  - E1
+  - E2
+  - E3
+resultados:
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L1xE1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L1xE2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L1xE3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L1xE4
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L2xE1
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L2xE2
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L2xE3
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-DELTA-LEGACY-L2xE4
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95INF-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-IC95SUP-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L1xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L1xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L1xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L1xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L2xE1
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L2xE2
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L2xE3
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-C2-P-L2xE4
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-C2-CELDAS-NO-CONSTRUIBLES
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-C2-IC-ESTADO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-C2-REPLICAS-SIN-DEFINIR
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E1-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E1-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E2-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E2-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E3-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E3-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E4-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-E4-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-L1-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-L1-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-L2-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-L2-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-MISMO-UNIVERSO-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-NAC-DELTA-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-NAC-DELTA-P
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-ARBITRO-VEREDICTO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-C2-LEGACY-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-EMISIONES-MAX-ABS
+  tipo: flotante
+  unidad: diferencia de proporcion (con signo) o maximo absoluto
+  permite_no_estimable: false
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-EMISIONES-N-DISCORDA
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-CTRL-EMISIONES-VEREDICTO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-ESTRATOS
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-FILAS-ARCHIVO
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-FILAS-EDAD-CENTINELA
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-FILAS-UNIVERSO
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-GUARDIA-CRUCE-DERIVADO
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-INPUT-ENIF2024-CSV-SHA256
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-ORIGEN
+  tipo: texto
+  unidad: categoria / trazabilidad
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-G-UPM
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E1-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E1-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E1-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E1-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E2-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E2-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E2-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E2-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E3-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E3-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E3-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E3-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E4-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E4-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E4-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-E4-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L1-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L1-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L1-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L1-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L2-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L2-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L2-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-L2-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-NAC-IC95INF
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-NAC-IC95SUP
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-NAC-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-ENIF2024-PISOS-AHORRO-INFORMAL-LXE-MARG-NAC-P
+  tipo: proporcion
+  unidad: proporcion ponderada [0,1]
+  permite_no_estimable: true

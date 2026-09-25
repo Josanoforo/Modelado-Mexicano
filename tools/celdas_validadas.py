@@ -56,6 +56,11 @@ def tsv_rows(path: str):
 _PATRONES_ERROR_C2 = (
     ("-C2-D-PP", "sufijo"),      # piloto 3 (GOB): ya en puntos porcentuales
     ("-ARB-D-C2-", "prefijo"),   # pilotos 1 y 2 (DIN, TRA)
+    # Sucesores -0002 de los pilotos 1 y 2 (ACTO GEN2-PISOS-GEN2-2, 24/sep/2026):
+    # misma convención con raíz `ARB2`. No cambia qué cuenta como celda
+    # validada (DEFINICION_DESDE intacta): las mismas 20 celdas pasan a leerse
+    # del sucesor que su `margen_material` ya cita. Medido: 199 -> 219 == main.
+    ("-ARB2-D-C2-", "prefijo"),
 )
 
 #: Sufijo adicional de ENCIG 2025 (ACTO GEN2-CONTADORES-CONSUMO-1, NC
