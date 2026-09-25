@@ -48,3 +48,7 @@ No toca el motor (hecho), no adopta lo de Astra. Sucesor: `-3` para el residuo; 
 | «`adoptados` sube por cada cita» | NO-VERIFICABLE-AQUÍ: el RESULT citado ya estaba adoptado por `tramite.yaml`; el contador cuenta RESULT distintos | adoptados 81 sin cambio | SIN-ASIGNAR |
 
 Nota de cierre: `forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md`. Adendas: ninguna.
+
+## CONSUMIDO
+
+PR #1138 (rama `claude/new-session-9iwjnb`), 25/sep/2026. ADR-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01.
