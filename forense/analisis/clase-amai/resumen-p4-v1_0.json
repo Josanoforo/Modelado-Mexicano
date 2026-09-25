@@ -1,0 +1,38 @@
+{
+ "celdas_conducta_x_grupo": 165,
+ "celdas_pisos_publicables": 140,
+ "celdas_pisos_total": 144,
+ "celdas_publicables": 49,
+ "con_piso_nse": 17,
+ "conductas_con_piso_nse": 28,
+ "endutih_celdas": 90,
+ "endutih_publicables": 88,
+ "identidades_conducta": 55,
+ "identidades_u1": 69,
+ "por_estado": {
+  "BASE-NSE-MEDIDA;CRUCES-DE-EJES-NO-EXTENDIDOS": 2,
+  "CELDA-O-INTERACCION-NO-CONDUCTA": 14,
+  "COMPLEMENTO-DE-recibe_remesas-NO-MEDIDO-APARTE": 1,
+  "CON-PISO-NSE": 15,
+  "INSTRUMENTO-FUERA-DEL-ALCANCE-AMAI-DE-ESTE-ACTO": 14,
+  "NSE-NO-CONSTRUIBLE-EN-EL-INSTRUMENTO": 23
+ },
+ "potencia_despeja_cero": {
+  "NO": 9,
+  "NO-ESTIMABLE": 2,
+  "SI": 37
+ },
+ "publicables_por_grupo": {
+  "ALTO": 16,
+  "BAJO": 17,
+  "MEDIO": 16
+ },
+ "validacion": {
+  "ENDUTIH-2023": "APROXIMACION-CONFORME",
+  "ENDUTIH-2024": "APROXIMACION-DESVIADA",
+  "ENDUTIH-2025": "APROXIMACION-DESVIADA",
+  "ENIF-2021": "APROXIMACION-CONFORME",
+  "ENIF-2024": "APROXIMACION-CONFORME",
+  "ENIGH-2022": "CALCULABLE-REPRODUCE-AMAI"
+ }
+}
