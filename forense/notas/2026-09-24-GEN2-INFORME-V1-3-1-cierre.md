@@ -110,5 +110,8 @@ unidad (persona/hogar/delito/trámite, ninguna promediada con otra).
 
 Cero mediciones, cero adopción, cero corrida sellada por este acto.
 `celdas_validadas: 219 → 219 (Δ0)`, `celdas_d_adoptadas_activas: 17 → 17
-(Δ0)`, `N_corridas_selladas: 246 → 246 (Δ0)` — los tres re-derivan idénticos
-contra `origin/main` al cierre.
+(Δ0)` — los dos re-derivan idénticos contra `origin/main` al cierre.
+`N_corridas_selladas` 246 → 252 mientras este acto seguía abierto, por
+`GEN2-CLASE-AMAI-1` (`PR #1127`, seis `CALC-AMAI-NSE-*`), ajeno a este acto
+(§9: no toca celdas-D, no cambia `celdas_validadas`) — main se movió, se
+refrescó y se declara aquí (§0 del aparato), no es PARO.
