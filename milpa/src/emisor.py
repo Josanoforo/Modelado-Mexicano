@@ -1052,6 +1052,13 @@ def emitir_binaria(regla: Regla, conducta: str) -> PrediccionM:
     que conocen el contexto deben usar :func:`emitir_binaria_en_contexto`.
     """
     s = _salida(regla, conducta)
+    if s is not None and s.rol_uso == "historico":
+        # FIRMAS-16 B2 (ACTO GEN2-RELEVO-CONSUMIDORES-2): rol histórico, fuera
+        # del consumo vivo; el valor se conserva en el YAML como historia.
+        return PrediccionM("binaria", estado="NO-EMITE", regla_id=regla.id,
+                           valor_categoria=s.conducta, rol_uso=s.rol_uso,
+                           uso_motor=s.uso_motor,
+                           detalle="rol_uso=historico (B2): no se emite")
     if s is not None:
         punto = s.p
         if s.complemento_de:
