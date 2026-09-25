@@ -34,6 +34,8 @@ def prueba_deteccion_por_cabecera_sobre_fixture():
     afirma(isinstance(rutas, list) and examinados > 0,
            "debe examinar al menos un archivo de texto versionado")
     for r in rutas:
+        if DP._es_tabla_de_valor(r):
+            continue  # derivado por RUTA (valores-vista/*): no admite cabecera sin cambiar el valor
         with open(os.path.join(ROOT, r), "rb") as fh:
             primera = fh.readline().decode("utf-8", "replace").rstrip("\n")
         afirma(primera.startswith(DP.CABECERA),
@@ -57,10 +59,12 @@ def prueba_universo_coincide_con_grep_manual():
     esperado = {p for p in salida
                 if not p.startswith("data/raw/") and not p.startswith(".git/")}
     rutas, _ = DP.lista_derivados()
-    obtenido = set(rutas)
+    obtenido = {r for r in rutas if not DP._es_tabla_de_valor(r)}
     # `git grep -l` encuentra la cadena en cualquier parte del archivo; la
     # función solo cuenta si es la PRIMERA línea. Todo lo que la función
     # marca debe estar en el grep amplio (subconjunto, nunca al revés).
+    # Excepción declarada: `valores-vista/*` es derivado por RUTA (§ arriba),
+    # nunca por cabecera, así que se compara aparte de este grep.
     afirma(obtenido <= esperado,
            f"la función marcó archivos que ni siquiera contienen la cabecera: {obtenido - esperado}")
 
