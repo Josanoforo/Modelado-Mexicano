@@ -129,7 +129,7 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Moral Emotions in Mexico  Declared Dignity  Relational Face  and Resid | `EMOCIONES_MORALES` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 18 / 8) |
 | Mérito  Movilidad Social y Desigualdad en México  Actualización 2025-2 | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 7 | 56 (4 / 41 / 11) |
 | Non-Family Social Capital in Mexico  Cooperation  Trust  and Collectiv | `CAPITAL_SOCIAL` | **EN-MEDICIÓN** | 0 | 6 | 30 (9 / 8 / 13) |
-| Psicología Política y Comportamiento Cívico del Mexicano Contemporáneo | `POLITICA` | **MEDIDO** | 16 | 10 | 90 (20 / 42 / 28) |
+| Psicología Política y Comportamiento Cívico del Mexicano Contemporáneo | `POLITICA` | **MEDIDO** | 16 | 11 | 90 (20 / 42 / 28) |
 | Psicología  Conducta y Sociedad en el México Contemporáneo  Análisis T | `SINTESIS` | **SIN-AFIRMACIONES-EN-MAPA** | 0 | 0 | 0 (0 / 0 / 0) |
 | Psicología de la Juventud Mexicana Contemporánea  Gen Z y Millennials  | `JUVENTUD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 29 (4 / 14 / 11) |
 | Psicología del Consumidor Mexicano  Patrones  Contradicciones y Estrat | `CONSUMO` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 81 (3 / 42 / 36) |
