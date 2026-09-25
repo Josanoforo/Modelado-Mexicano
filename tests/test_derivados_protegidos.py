@@ -108,44 +108,36 @@ def prueba_toca_detecta_diff_en_derivado():
                 ["git", "rev-parse", "HEAD"], cwd=tmp,
                 capture_output=True, text=True, check=True).stdout.strip()
             rc_ajeno = DP.main(["--solo-derivados", base, cambia_normal])
-
-            # Salidas del canal sin cabecera: tablero y filas status del README.
-            def rev():
-                return subprocess.run(["git", "rev-parse", "HEAD"], cwd=tmp,
-                                      capture_output=True, text=True,
-                                      check=True).stdout.strip()
-            fila = ("| Corridas selladas | {} | <!-- deriva: python3 "
-                    "tools/corrida0.py status | rg '^N_corridas_selladas=' -->"
-                    " `N_corridas_selladas` |\n")
-            os.makedirs(os.path.join(tmp, "docs"), exist_ok=True)
-            with open(os.path.join(tmp, "docs", "tablero.md"), "w") as fh:
-                fh.write("tablero v1\n")
-            with open(os.path.join(tmp, "README.md"), "w") as fh:
-                fh.write("# portada\n" + fila.format(1))
-            git("add", "-A")
-            git("commit", "-q", "-m", "base canal")
-            base_canal = rev()
-            with open(os.path.join(tmp, "docs", "tablero.md"), "w") as fh:
-                fh.write("tablero v2\n")
-            with open(os.path.join(tmp, "README.md"), "w") as fh:
-                fh.write("# portada\n" + fila.format(2))
-            with open(os.path.join(tmp, "derivado.tsv"), "a") as fh:
-                fh.write("valor3\tvalor4\n")
-            git("add", "-A")
-            git("commit", "-q", "-m", "canal")
-            rc_canal = DP.main(["--solo-derivados", base_canal, rev()])
-            with open(os.path.join(tmp, "README.md"), "w") as fh:
-                fh.write("# portada editada\n" + fila.format(2))
-            git("add", "-A")
-            git("commit", "-q", "-m", "prosa del README")
-            rc_prosa = DP.main(["--solo-derivados", base_canal, rev()])
         finally:
             DP.RAIZ = vieja_raiz
+    with tempfile.TemporaryDirectory() as tmp:
+        def git(*args):
+            return subprocess.run(["git", *args], cwd=tmp, check=True,
+                                  capture_output=True, text=True).stdout.strip()
+        ini, fin = DP.MARCA_BLOQUE
+        ruta = os.path.join(tmp, "tablero.md")
+        def escribe(fuera, dentro):
+            with open(ruta, "w") as fh:
+                fh.write(f"{fuera}\n{ini}\n{dentro}\n{fin}\ncola\n")
+        git("init", "-q"); git("config", "user.email", "t@t.t"); git("config", "user.name", "t")
+        escribe("titulo", "n=1"); git("add", "-A"); git("commit", "-q", "-m", "base")
+        base = git("rev-parse", "HEAD")
+        escribe("titulo", "n=2"); git("commit", "-qam", "bloque")
+        dentro = git("rev-parse", "HEAD")
+        escribe("titulo editado", "n=2"); git("commit", "-qam", "fuera")
+        fuera = git("rev-parse", "HEAD")
+        vieja_raiz = DP.RAIZ
+        try:
+            DP.RAIZ = tmp
+            rc_bloque = DP.main(["--solo-derivados", base, dentro])
+            rc_fuera = DP.main(["--solo-derivados", base, fuera])
+        finally:
+            DP.RAIZ = vieja_raiz
+    afirma(rc_bloque == 0, "cambio sólo dentro del bloque TABLERO-DERIVADO debe pasar")
+    afirma(rc_fuera == 1, "cambio fuera del bloque TABLERO-DERIVADO debe fallar")
     afirma(rc_si == 1, "tocar el archivo con cabecera DERIVADO debe salir 1")
     afirma(rc_solo == 0, "PR automático con sólo derivados debe pasar")
     afirma(rc_ajeno == 1, "PR automático con archivo ajeno debe fallar")
-    afirma(rc_canal == 0, "tablero y filas status del README son salida del canal: deben pasar")
-    afirma(rc_prosa == 1, "README con una línea que no es fila status debe fallar")
 
 
 def main():

@@ -25,6 +25,7 @@ Los retadores evaluados no superaron los **criterios de superioridad fijados en 
 
 Cada contador tiene su propio universo. `status` es una vista derivada del corte disponible al ejecutar el comando, no el estado vivo de otras ramas.
 
+<!-- TABLERO-DERIVADO:BEGIN -->
 | Objeto | Valor en este corte | Clave |
 |---|---:|---|
 | Corridas selladas | 272 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
@@ -34,6 +35,7 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
 | Celdas retrospectivas de esa vista | 59 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
 | RESULT GEN2 pendientes de adopción | 10 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_pendientes_adopcion=' --> `N_resultados_gen2_pendientes_adopcion` |
+<!-- TABLERO-DERIVADO:END -->
 
 El [estado](canon/estado-programa-v1_16.md) y la [actualización del contador](canon/L0/ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01.md) explican el alcance de las celdas. El total incorpora conductas agregadas de crédito y cruces ENCIG que antes no contaba; los campos prospectiva y retrospectiva de `status` no cubren todas las formas incorporadas al total. **Validada** significa emisión comparada con R, no adopción por mesa.
 

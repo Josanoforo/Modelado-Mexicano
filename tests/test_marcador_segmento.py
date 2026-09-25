@@ -489,12 +489,36 @@ def t_marginales_adopcion_por_instrumento():
                f"veto citado en {n_veto} (se esperaban 10)")
 
 
+def t_prospectividad_sobrevive_al_sucesor():
+    """Dirección 25/sep/2026 (GEN2-CI-CANAL-DERIVADOS-VERDE-1, punto 1): una
+    celda validada prospectivamente no deja de serlo porque su piso se re-mida.
+    Árbitro: el original de la serie; emisión: el bloque `_0001` sólo si el
+    árbitro también tiene sucesor."""
+    caso = "prospectividad_sobrevive_al_sucesor"
+    ao = M._arbitro_original
+    if ao(["CALC-X-ARB-0002--aa11", "CALC-X-ARB-0001--bb22"]) != "CALC-X-ARB-0001--bb22":
+        _falla(caso, "con sucesor en la misma serie debe elegirse el -0001")
+    if ao(["CALC-X-ARB-0001"]) != "CALC-X-ARB-0001":
+        _falla(caso, "un solo ref se devuelve tal cual")
+    if ao(["CALC-X-0001", "CALC-Y-0002"]) != "":
+        _falla(caso, "series distintas: el orden no se deriva")
+    mapa = M._calcs_para_prospectividad()
+    din = "CRUCE::DIN.ahorro_solo_informal.enif2024.localidad_x_edad::L1xE1"
+    if mapa.get(din, ("", ""))[0] != "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001" or \
+            not mapa[din][1].startswith("CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0001"):
+        _falla(caso, f"DIN re-adjudicada debe fecharse emisión -0001 vs árbitro -0001: {mapa.get(din)}")
+    encig = [v for k, v in mapa.items() if ".encig2025." in k]
+    if encig and any(e.endswith("-0001") for e, _ in encig):
+        _falla(caso, "ENCIG 2025 (árbitro sin sucesor) no debe emparejar la emisión histórica")
+
+
 CASOS = (t_reserva_sin_r, t_emisor_no_compara, t_piso_no_circular,
          t_veinte_adoptadas, t_universo_97_nacional,
          t_enlace_biyectivo, t_piso_no_es_m, t_unidad_leida_del_arbitro,
          t_vetados_nunca_se_leen, t_error_piso_derivado,
          t_precedencia_entre_tablas, t_contrato_de_columnas_de_las_tablas,
-         t_marginales_adopcion_por_instrumento)
+         t_marginales_adopcion_por_instrumento,
+         t_prospectividad_sobrevive_al_sucesor)
 
 
 def corre() -> list[str]:

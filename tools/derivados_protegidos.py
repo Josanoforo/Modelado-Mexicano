@@ -20,10 +20,8 @@ Uso:
         # (`git diff --name-only refA refB`), 0 si ninguno -- lo que
         # `verify.yml` usa para el guardia de PR.
     python3 tools/derivados_protegidos.py --solo-derivados <base> <cabeza>
-        # 0 sólo si hay cambios y TODOS tienen cabecera DERIVADO (o son
-        # salida del canal: PRODUCIDOS_POR_EL_CANAL, y README.md sólo en sus
-        # filas de `corrida0 status`); habilita el PR automático del
-        # publicador sin abrir el guardia a otros PR.
+        # 0 sólo si hay cambios y TODOS tienen cabecera DERIVADO; habilita
+        # el PR automático del publicador sin abrir el guardia a otros PR.
 """
 from __future__ import annotations
 
@@ -57,6 +55,32 @@ def _es_tabla_de_valor(rel: str) -> bool:
     return len(partes) == 5 and partes[:2] == ["data", "corrida0"] and partes[3] == "valores-vista"
 
 
+MARCA_BLOQUE = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
+
+
+def _fuera_del_bloque(texto: str) -> str | None:
+    """Texto sin el bloque TABLERO-DERIVADO; `None` si no trae el par de marcas."""
+    ini, fin = MARCA_BLOQUE
+    a, b = texto.find(ini), texto.find(fin)
+    if a < 0 or b < a:
+        return None
+    return texto[:a] + texto[b + len(fin):]
+
+
+def _solo_cambia_bloque(base: str, cabeza: str, rel: str) -> bool:
+    """ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 publica el tablero en el PR
+    automático: el archivo es derivado sólo dentro del bloque marcado."""
+    def lee(ref):
+        r = subprocess.run(["git", "-C", RAIZ, "show", f"{ref}:{rel}"],
+                           capture_output=True, text=True)
+        return r.stdout if r.returncode == 0 else None
+    antes, despues = lee(base), lee(cabeza)
+    if antes is None or despues is None:
+        return False
+    fuera = _fuera_del_bloque(antes)
+    return fuera is not None and fuera == _fuera_del_bloque(despues)
+
+
 def _candidatos() -> list[str]:
     out = subprocess.run(
         ["git", "-C", RAIZ, "ls-files"],
@@ -87,32 +111,6 @@ def lista_derivados() -> list[str]:
     return sorted(hallados), examinados
 
 
-# Salidas del job `[deriva]` que no llevan cabecera DERIVADO pero sólo ese
-# job produce: el tablero (ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1, único
-# productor `tools/tablero_programa.py --actualiza`). Sin esta lista el PR
-# automático salía inválido por construcción desde ese acto.
-PRODUCIDOS_POR_EL_CANAL = frozenset({
-    "forense/tablero/TABLERO-PROGRAMA.md",
-    "docs/tablero.md",
-})
-
-
-def _readme_solo_status(base: str, cabeza: str) -> bool:
-    """README.md entra en el PR automático sólo si TODA línea que cambia es
-    una fila `<!-- deriva: python3 tools/corrida0.py status ... -->`
-    (la escribe `tools/readme_status.py --escribe` en el mismo job)."""
-    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-    from readme_status import es_fila_status
-    diff = subprocess.run(
-        ["git", "-C", RAIZ, "diff", "-U0", f"{base}...{cabeza}", "--",
-         "README.md"],
-        capture_output=True, text=True, check=True,
-    ).stdout.splitlines()
-    lineas = [l[1:] for l in diff
-              if l[:1] in "+-" and not l.startswith(("+++", "---"))]
-    return bool(lineas) and all(es_fila_status(l) for l in lineas)
-
-
 def main(argv=None) -> int:
     argv = argv if argv is not None else sys.argv[1:]
     rutas, examinados = lista_derivados()
@@ -125,11 +123,12 @@ def main(argv=None) -> int:
              f"{argv[1]}...{argv[2]}"],
             capture_output=True, text=True, check=True,
         ).stdout.splitlines())
-        ajenos = sorted(
-            f for f in cambiados - set(rutas)
-            if f not in PRODUCIDOS_POR_EL_CANAL
-            and not (f == "README.md" and _readme_solo_status(argv[1], argv[2]))
-        )
+        base = subprocess.run(
+            ["git", "-C", RAIZ, "merge-base", argv[1], argv[2]],
+            capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        ajenos = sorted(r for r in cambiados - set(rutas)
+                        if not _solo_cambia_bloque(base, argv[2], r))
         if not cambiados or ajenos:
             print("PR automático de derivados inválido: "
                   + (", ".join(ajenos) if ajenos else "sin cambios"),
