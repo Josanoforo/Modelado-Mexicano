@@ -1,0 +1,3 @@
+# ADR-260925-GEN2-MAPA-DOMINIOS-V1-1-1-3cf7-01
+
+25/sep/2026 · `ACTO GEN2-MAPA-DOMINIOS-V1-1-1` (NUBE, MODO AUTÓNOMO). Mapa v1.1 derivado por `forense/analisis/dominios/redictamina_v1_1.py` (`--verifica` byte a byte) desde v1.0 intacto + tabla final de CORPUS-COMPLETO-1: MEDIBLE-EN-CORPUS 208→214, MEDIBLE-CON-ADQUISICIÓN 768→762, NO-MEDIBLE 420 (no revisado), 0 sin dictamen. Seis ascensos con texto de pregunta verificado contra inventarios del repo (A.15); 141 afirmaciones con programa en corpus quedan con texto NO-VERIFICADO-AQUÍ (payloads fuera del clon, red denegada, examinados=0) y van a la cola de medición (61 filas dominio×programa). Cero mediciones.
