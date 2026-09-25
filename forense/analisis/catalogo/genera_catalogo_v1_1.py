@@ -117,6 +117,19 @@ FIRMAS16 = (
     "FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-03",
     "FP-260924-GEN2-CLASE-AMAI-1-e773-01",
 )
+FIRMAS16_PISOS = (
+    ("FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01", "CALC-ENSANUT-PISOS-SALUD-0001", "SALUD", "ENSANUT",
+     "ADOPTADO-CON-RESERVA-DE-ANCHO"),
+    ("FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-02", "CALC-ENCODAT-PISOS-SUSTANCIAS-0001", "SALUD", "ENCODAT",
+     "ADOPTADO-CON-RESERVA-DE-ANCHO"),
+    ("FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-03", "CALC-ENBIARE-PISOS-BIENESTAR-0001", "SALUD_MENTAL",
+     "ENBIARE", "ADOPTADO"),
+)
+FP_NSE = "FP-260924-GEN2-CLASE-AMAI-1-e773-01"
+# Letra de la firma: ENIGH 2022 y ENIF 2024; ENDUTIH 2023 como aproximación rotulada.
+NSE_ADMITIDO = {("ENIGH", "2022"): "regla AMAI reproducida", ("ENIF", "2024"): "aproximación conforme",
+                ("ENDUTIH", "2023"): "APROXIMACIÓN ROTULADA"}
+NSE_DOMINIO = {"ENIGH": "FAMILIA_CUIDADOS", "ENIF": "DINERO", "ENDUTIH": "TECNOLOGIA"}
 FP_RE = re.compile(r"FP-(?:\d{6}-[A-Z0-9-]+-[0-9a-f]{4}-\d{2}|\d+)")
 
 
@@ -246,7 +259,7 @@ def main() -> None:
         rid, calc = a["result_id"], a["calc"]
         if rid in legacy:
             fuera(rid, calc, "PISO-HEREDADO-DE-LEGACY",
-                  f"re-medición en curso, rama {RAMA_PISOS2} (censo {CENSO.name})")
+                  f"re-medido por GEN2-PISOS-GEN2-2 (PR #1123: pisos y sucesores -0002 sellados, sin adopción firmada; censo {CENSO.name})")
             continue
         data, _rh, _sh, spec = get(calc)
         firma = firma_de(calc, a["pin_de_mesa"], dec, fps)
@@ -401,6 +414,63 @@ def main() -> None:
                   "tabla JSON adoptada por Firma M; su desagregación por celda es de v1.2", f"decisiones.tsv:CALC-ENIGH{a}-{tipo}-0001")
     fuera("CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001", "CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001", "EVALUACION-NO-ESTIMADOR",
           "mide error de candidatos (MAE, cobertura), no una conducta", "decisiones.tsv:CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001")
+
+    # ── S5 · pisos de salud y bienestar (FIRMAS-16: FP 6d56-01..03)
+    for fp, calc, dom, instr, estado in FIRMAS16_PISOS:
+        if not str(fps.get(fp, "")).startswith("FIRMADA"):
+            continue
+        data = get(calc)[0]
+        pref = calc.removeprefix("CALC-").removesuffix("-0001")
+        for rid in [k for k in data if k.endswith("-P")]:
+            m = re.match(rf"RESULT-{pref}-(.+)-(20\d\d)-([A-Z]+)-(.+)-P$", rid)
+            if not m or data[rid] is None:
+                continue
+            conducta, ola, eje, seg = m.group(1).lower(), m.group(2), m.group(3), m.group(4)
+            base = rid.removesuffix("-P")
+            cal = f"{base}-ICC-LO" in data and data.get(f"{base}-ICC-LO") is not None
+            lo, hi = (f"{base}-ICC-LO", f"{base}-ICC-HI") if cal else (f"{base}-IC-LO", f"{base}-IC-HI")
+            has = lo in data and hi in data and data[lo] is not None
+            rows[rid] = {
+                "llave": rid, "dominio": dom, "instrumento": instr, "ola": ola,
+                "conducta": conducta, "eje": eje, "segmento": seg, "unidad": "proporcion",
+                "punto": num(data[rid]), "ic95_inf": num(data[lo]) if has else "",
+                "ic95_sup": num(data[hi]) if has else "",
+                "naturaleza_ic": ("IC-CALIBRADO-PERSISTENCIA" if cal else "IC95-DE-DISENO") if has else "SIN-IC-IDENTIFICADO",
+                "temporalidad": "RETROSPECTIVA", "origen_piso": "NUEVO",
+                "estado_adopcion": estado, "alcance": "DESCRIPTIVO-DE-OLA", "firma_fp": fp,
+                "result_id": rid, "celda": "", "calc": calc, "oferta_exclusion": "",
+                "reserva": "piso retrospectivo; sin uso predictivo",
+            }
+
+    # ── S6 · eje NSE AMAI (FIRMAS-16: FP e773-01, con reserva de instrumento)
+    if str(fps.get(FP_NSE, "")).startswith("FIRMADA"):
+        for r in lee(ROOT / "forense/analisis/clase-amai/pisos-nse-v1_0.tsv"):
+            clave = (r["instrumento"], r["ola"])
+            if clave not in NSE_ADMITIDO:
+                fuera(r["result_punto"], r["calc"], "NSE-FUERA-DE-RESERVA-DE-INSTRUMENTO",
+                      f"{r['instrumento']} {r['ola']}: fuera por la letra de la firma", FP_NSE)
+                continue
+            if r["estado"] != "PUBLICABLE":
+                fuera(r["result_punto"], r["calc"], f"CELDA-{r['estado']}", "sin punto publicable", FP_NSE)
+                continue
+            data = get(r["calc"])[0]
+            rid = r["result_punto"]
+            if rid not in data or float(data[rid]) != float(r["punto"]):
+                raise ValueError(f"piso NSE no coincide con su CALC: {rid}")
+            base = rid.removesuffix("-P")
+            lo = next((k for k in (f"{base}-IC-LO", f"{base}-IC95-INF") if k in data), "")
+            hi = next((k for k in (f"{base}-IC-HI", f"{base}-IC95-SUP") if k in data), "")
+            rows[rid] = {
+                "llave": rid, "dominio": NSE_DOMINIO[r["instrumento"]], "instrumento": r["instrumento"],
+                "ola": r["ola"], "conducta": r["conducta"], "eje": "NSE", "segmento": r["grupo_nse"],
+                "unidad": r["unidad"], "punto": num(data[rid]),
+                "ic95_inf": num(data[lo]) if lo else "", "ic95_sup": num(data[hi]) if hi else "",
+                "naturaleza_ic": "IC95-DE-DISENO" if lo else "SIN-IC-IDENTIFICADO",
+                "temporalidad": "RETROSPECTIVA", "origen_piso": "NUEVO",
+                "estado_adopcion": "ADOPTADO", "alcance": "DESCRIPTIVO-DE-OLA", "firma_fp": FP_NSE,
+                "result_id": rid, "celda": "", "calc": r["calc"], "oferta_exclusion": "",
+                "reserva": "eje NSE con reserva de instrumento; " + NSE_ADMITIDO[clave],
+            }
 
     # ── oferta al lado de cada marginal de mercado (DINERO)
     oferta_olas = sorted(d.name[-9:-5] for d in CORRIDA.glob("CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001"))

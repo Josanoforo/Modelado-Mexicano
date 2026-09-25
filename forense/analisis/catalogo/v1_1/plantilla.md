@@ -33,24 +33,25 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 
 - **Pisos por instrumento — Firma T** (`GEN2-TRAMITE-FIRMAS-15` §1 T + ADENDA-1): ENOE (`FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01`), ENDIREH 2021, 2016, 2011 y 2006 (`FP-260923-ASTRA5-U2-ENDIREH-6a2c-01` a `-04`), ENDUTIH 2023–2025 (`FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01`: sin las celdas originales de empleo, sustituidas por `CALC-ENDUTIH-EMPLEO-15MAS-*`) y MOCIBA 2015–2017 (`-1f30-02`: 2015 no estimable). Una fila por celda publicable; cada una es piso descriptivo retrospectivo **sin uso predictivo**.
 - **Marginales por piso t−1**: ENVIPE 2025 adoptada (`decisiones.tsv:adopcion:piso-t1-marginales-por-instrumento`) y ENIF 2024 **con reserva de ancho** (`FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01`, IC calibrado de persistencia: conservador, un solo choque). ENCIG 2025 queda vetada en nivel (fuera).
+- **Pisos de salud y bienestar — FIRMAS-16** (`GEN2-TRAMITE-FIRMAS-16`, «ejecuta GEN2-CATALOGO-V1-1-1»): ENSANUT 2021–2024 **con reserva de ancho** (`FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01`; sobre 2024 el IC es el calibrado de persistencia), ENCODAT 2016–2017 **con reserva de ancho** (`-6d56-02`; una sola ola, IC de diseño) y ENBIARE 2021 adoptado como piso de una ola (`-6d56-03`).
 - **Parámetros de reglas y celdas R/M del marco** con consumo activo (la misma vista que `corrida0 status`), cada uno con la fila de `decisiones.tsv` de su CALC, su FP o la firma del encargo que lo relevó.
 - **Bloque ENIGH — Firma M** (`GEN2-ADOPCION-BLOQUE-Y-PINES-1`): descriptores de intensidad de remesas 2016, 2018 y 2020 con IC bootstrap.
 
-**Ejes.** Sexo, edad, escolaridad, localidad (tamaño) y entidad —el eje regional disponible con RESULT adoptado— salen de las tablas ENOE, ENDIREH y ENDUTIH; formalidad y cuenta, de las marginales ENIF. **NSE no entra**: su FP (`FP-260924-GEN2-CLASE-AMAI-1-e773-01`) sigue abierta. La región de seis zonas de `canon/eje-regional-v1_0.md` es propuesta sin adopción: no aporta filas.
+**Ejes.** Sexo, edad, escolaridad, localidad (tamaño) y entidad —el eje regional disponible con RESULT adoptado— salen de las tablas ENOE, ENDIREH y ENDUTIH; formalidad y cuenta, de las marginales ENIF. **NSE entra como eje con reserva de instrumento** (`FP-260924-GEN2-CLASE-AMAI-1-e773-01`, FIRMAS-16): ENIGH 2022 (regla AMAI reproducida), ENIF 2024 (aproximación conforme) y ENDUTIH 2023 como aproximación rotulada; ENDUTIH 2024–2025 (`DESVIADA`) quedan fuera por la letra de la firma ({{c:excluidos:NSE-FUERA-DE-RESERVA-DE-INSTRUMENTO}} celdas). La región de seis zonas de `canon/eje-regional-v1_0.md` es propuesta sin adopción: no aporta filas.
 
 ### Pendiente de firma (no entran; no es PARO)
 
 {{t:pendientes}}
 
-`SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma. ENSANUT, ENCODAT, ENBIARE y NSE esperan `FIRMAS-16`.
+`SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma; esperan `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01`.
 
 ### Fuera por regla
 
 Detalle por llave en `forense/analisis/catalogo/v1_1/excluidos.tsv`:
 
-- Piso **HEREDADO-DE-LEGACY** ({{c:excluidos:PISO-HEREDADO-DE-LEGACY}} RESULT del censo de `GEN2-ENCIG-PISOS-GEN2-1`): «re-medición en curso, rama `acto/gen2-pisos-gen2-2`».
+- Piso **HEREDADO-DE-LEGACY** ({{c:excluidos:PISO-HEREDADO-DE-LEGACY}} RESULT del censo de `GEN2-ENCIG-PISOS-GEN2-1`): re-medidos por `GEN2-PISOS-GEN2-2` (`PR #1123`) con pisos y sucesores `-0002` sellados, **sin adopción firmada**: siguen fuera hasta que mesa los adopte.
 - Celdas ENDUTIH originales de empleo excluidas por la propia firma: {{c:excluidos:EXCLUIDA-POR-FIRMA}}.
-- Celdas sin punto publicable: suprimidas {{c:excluidos:CELDA-SUPRIMIDA}} + {{c:excluidos:CELDA-SUPRIMIDA-N-MENOR-100}}, no estimables {{c:excluidos:CELDA-NO-ESTIMABLE-SIN-EST_DIS}}.
+- Celdas sin punto publicable: suprimidas {{c:excluidos:CELDA-SUPRIMIDA}} + {{c:excluidos:CELDA-SUPRIMIDA-N-MENOR-100}} + {{c:excluidos:CELDA-SUPRIMIDA-N}}, no estimables {{c:excluidos:CELDA-NO-ESTIMABLE-SIN-EST_DIS}}.
 - Marginales sin adopción en nivel (ENCIG 2025, vetada): {{c:excluidos:MARGINAL-NO-ADOPTADA}}.
 - Tablas ENIGH adoptadas por Firma M y no desagregadas en esta versión (perfil estructural y remesas en contexto): {{c:excluidos:ADOPTADO-TABLA-NO-DESAGREGADA}} CALC. La evaluación de origen móvil del duelo ENIGH ({{c:excluidos:EVALUACION-NO-ESTIMADOR}} CALC) mide error de candidatos, no una conducta.
 
@@ -59,7 +60,7 @@ Detalle por llave en `forense/analisis/catalogo/v1_1/excluidos.tsv`:
 Unidad: los {{c:reports}} reports de `corpus/reports/` (el conteo de «dominios» de la ADENDA-2 y del README), cada uno asignado a su dominio primario por `forense/analisis/dominios/report-a-dominio-v1_0.tsv`; los conteos de afirmaciones salen de `canon/mapa-dominios-v1_0.tsv`. Regla, en orden (la primera que se cumple):
 
 - `MEDIDO` — el dominio tiene al menos un estimador en esta tabla.
-- `EN-MEDICIÓN` — hay CALC con `cuenta_gen2: SI` sellados para un instrumento del dominio, sin adopción todavía (ENSANUT, ENCODAT, ENBIARE, ENCUP/LAPOP/INE, NSE, ENADID, ENCUCI).
+- `EN-MEDICIÓN` — hay CALC con `cuenta_gen2: SI` sellados para un instrumento del dominio, sin adopción todavía (ENCUP/LAPOP/INE, ENADID, ENCUCI y los demás instrumentos de la regla del generador).
 - `MEDIBLE-EN-CORPUS-SIN-CALC` — el mapa dictamina afirmaciones medibles con lo que ya hay en el corpus, pero nadie corrió el mecanismo. Es un «nadie corrió» (§2), no un «no se puede»: por eso no se funde con la categoría siguiente.
 - `MEDIBLE-CON-ADQUISICIÓN` — solo medible si se adquiere el instrumento.
 - `NO-MEDIBLE-POR-DISEÑO` — todas sus afirmaciones lo son.
@@ -105,18 +106,18 @@ Lectura para el catálogo: los cambios sostenidos son todos ENOE y de décimas d
 
 ## P4 · Cobertura por clase
 
-Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/analisis/clase-amai/cobertura-por-clase-v1_0.md) (`GEN2-CLASE-AMAI-1`, RETROSPECTIVA): hay pisos por NSE AMAI en {{c:nse:celdas}} celdas (`pisos-nse-v1_0.tsv`), **sin adoptar**. El eje espera `FP-260924-GEN2-CLASE-AMAI-1-e773-01` y no aporta filas a v1.1. El hallazgo que el catálogo hereda como reserva: el corte de clase solo es posible hoy en dinero (ENIF), remesas (ENIGH) y tecnología (ENDUTIH). Lo cívico y el trato con el Estado (ENVIPE, ENCIG) no admiten NSE AMAI por construcción del cuestionario, y ahí el único corte socioeconómico es la escolaridad. Varios gradientes que parecen cultura (horizonte de ahorro corto, no usar internet por costo) son de clase según ese documento; la desconfianza declarada no muestra gradiente medible.
+Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/analisis/clase-amai/cobertura-por-clase-v1_0.md) (`GEN2-CLASE-AMAI-1`, RETROSPECTIVA): hay pisos por NSE AMAI en {{c:nse:celdas}} celdas (`pisos-nse-v1_0.tsv`); con la firma `FP-260924-GEN2-CLASE-AMAI-1-e773-01` entran al catálogo las de ENIGH 2022, ENIF 2024 y ENDUTIH 2023 (eje `NSE`). Las cifras por clase de este catálogo son esas filas; la lectura de abajo es la del documento citado. El hallazgo que el catálogo hereda como reserva: el corte de clase solo es posible hoy en dinero (ENIF), remesas (ENIGH) y tecnología (ENDUTIH). Lo cívico y el trato con el Estado (ENVIPE, ENCIG) no admiten NSE AMAI por construcción del cuestionario, y ahí el único corte socioeconómico es la escolaridad. Varios gradientes que parecen cultura (horizonte de ahorro corto, no usar internet por costo) son de clase según ese documento; la desconfianza declarada no muestra gradiente medible.
 
 ## Módulo de auditoría de rigor extremo
 
 - **¿Cuántos contadores movió este trabajo?** Dos del catálogo («estimadores con RESULT», «dominios MEDIDOS»). Cero mediciones y cero adopciones.
 - **¿Pobreza, informalidad o violencia confundidas con cultura?** Las reglas de trabajo y tecnología leen primero estructura y oferta; ninguna regla atribuye un gradiente a «cultura mexicana».
-- **¿Sobregeneralización desde la clase media urbana?** Los ejes de localidad (ENOE `MENOS-2K5`, ENDUTIH `TLOC_4`) están en la tabla. No hay NSE adoptado: el sesgo de clase dentro de lo urbano no se puede cortar con filas adoptadas en esta versión.
+- **¿Sobregeneralización desde la clase media urbana?** Los ejes de localidad (ENOE `MENOS-2K5`, ENDUTIH `TLOC_4`) están en la tabla. El eje NSE adoptado corta clase solo en dinero, remesas y tecnología: en lo cívico y en el trato con el Estado sigue sin corte de clase posible.
 - **¿Qué cambia con foco rural o indígena?** El gradiente rural de informalidad y costo digital es el más grande del catálogo. Lo indígena-comunal queda fuera por diseño y ningún instrumento adoptado lo identifica.
 - **¿Qué parece psicológico y es incentivo?** La denuncia con seguro (regla 10) y la denuncia de violencia (regla 6).
 - **¿Evidencia débil con intuición fuerte?** Todos los PORQUE. Por eso llevan tier propio.
 - **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: toda cifra sale de un marcador de conteo o de RESULT de la plantilla (`forense/analisis/catalogo/v1_1/plantilla.md`), y `tests/test_catalogo_v1_1.py` falla si aparece un dígito fuera de un identificador, un año o un placeholder resuelto.
-- **¿Deuda asumida que caducó?** Las filas «pendiente de firma» dejan de estarlo cuando `FIRMAS-16` fusione. Sucesor: v1.2.
+- **¿Deuda asumida que caducó?** FIRMAS-16 ya fusionó y sus pisos entraron; quedan pendientes los adoptados activos sin FP citable (`FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01`). Sucesor: v1.2.
 - **¿Escala de cada cantidad y contra qué se compara?** Columna `unidad`. Solo se contrastan filas del mismo CALC, unidad y ola.
 - **¿PROSPECTIVA y RETROSPECTIVA mezcladas?** No: todo el catálogo es RETROSPECTIVA. Las celdas validadas PROSPECTIVAS se citan aparte en la frase de portada.
 - **¿Unidades promediadas?** No: persona (ENOE, ENDIREH, ENDUTIH, ENIF), hogar (ENIGH), delito (ENVIPE) y evento de trámite (ENCIG) nunca se suman.

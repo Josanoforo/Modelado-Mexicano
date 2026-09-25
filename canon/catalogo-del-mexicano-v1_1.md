@@ -9,11 +9,11 @@
 > | **TABLA** | [`catalogo-del-mexicano-v1_1.tsv`](catalogo-del-mexicano-v1_1.tsv) — una fila por estimador adoptado |
 > | **REGENERA** | `python3 forense/analisis/catalogo/genera_catalogo_v1_1.py` (esta portada incluida); `--sin-registro` reutiliza la vista de adoptados activos ya derivada |
 
-**35 070 estimadores adoptados con RESULT sellado · 8 dominios del mapa medidos, en 9 de los 31 reports del corpus · 219 celdas validadas (definición vigente de `corrida0 status`), de las cuales 20 PROSPECTIVAS y 59 RETROSPECTIVAS se reportan aparte.**
+**36 130 estimadores adoptados con RESULT sellado · 9 dominios del mapa medidos, en 10 de los 31 reports del corpus · 219 celdas validadas (definición vigente de `corrida0 status`), de las cuales 20 PROSPECTIVAS y 59 RETROSPECTIVAS se reportan aparte.**
 
 **Tesis.** Lo que hoy se puede afirmar sobre el mexicano con cifra propia es **descriptivo y retrospectivo**: cuánto, dónde y en qué segmento, medido desde microdato con su intervalo de diseño. Casi todo el peso del catálogo está en trabajo (ENOE), violencia contra las mujeres (ENDIREH) y tecnología (ENDUTIH, MOCIBA). Ninguna fila es predicción ni efecto causal. Y donde el gradiente es de localidad, escolaridad o formalidad, la primera lectura es de **estructura y oferta**, no de cultura (§3 de las instrucciones).
 
-Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las filas de v1.0, que censaban lecturas con estado, a 35 070 adopciones citadas por FP) y «dominios MEDIDOS» (8). No mueve `adoptados_activos`, `celdas_validadas` ni ningún contador del marcador: los lee.
+Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las filas de v1.0, que censaban lecturas con estado, a 36 130 adopciones citadas por FP) y «dominios MEDIDOS» (9). No mueve `adoptados_activos`, `celdas_validadas` ni ningún contador del marcador: los lee.
 
 ## Cómo leerlo
 
@@ -21,8 +21,8 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 2. `result_id` + `celda` localizan la cifra: en los CALC de pisos, `RESULT-…-TABLA#i` es el registro `i` de la tabla sellada en `data/corrida0/<calc>/resultados.json`. Los hashes de cada CALC están en `forense/analisis/catalogo/v1_1/calcs.tsv`.
 3. `unidad`, `eje` y `segmento` gobiernan la lectura. Ninguna cifra de unidad delito o trámite se compara con una de unidad persona u hogar.
 4. `estado_adopcion`: `ADOPTADO` o `ADOPTADO-CON-RESERVA-DE-ANCHO` (su IC es calibrado y ancho a propósito: no se llama cobertura). `alcance`: `DESCRIPTIVO-DE-OLA` (piso de una ola, sin uso predictivo), `ESTIMADOR-DE-CELDA` (piso t−1 adjudicado a una celda del marcador) o `PARAMETRO-DE-REGLA` (lo lee una regla del motor).
-5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (35 070 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
-6. `origen_piso`: `NUEVO` (medido desde microdato en su CALC; 35 023 filas) o `HEREDADO-DE-GEN2` (el punto de la ola t es el piso GEN2 de t−1; 47 filas). **Ninguna fila es HEREDADO-DE-LEGACY.**
+5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (36 130 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
+6. `origen_piso`: `NUEVO` (medido desde microdato en su CALC; 36 083 filas) o `HEREDADO-DE-GEN2` (el punto de la ola t es el piso GEN2 de t−1; 47 filas). **Ninguna fila es HEREDADO-DE-LEGACY.**
 7. `oferta_exclusion`: en cada fila de `DINERO` va la medida de exclusión por oferta, o la declaración de que no existe una sellada para esa ola y conducta.
 
 ## P1 · Estimadores por dominio e instrumento
@@ -33,17 +33,19 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 | `CONFIANZA` | ENCUCI | 2 | 2 |
 | `CONFIANZA` | ENVIPE | 15 | 2 |
 | `DINERO` | ENFIH | 2 | 1 |
-| `DINERO` | ENIF | 40 | 4 |
+| `DINERO` | ENIF | 89 | 5 |
 | `DINERO` | ENNVIH-1 | 1 | 1 |
 | `FAMILIA_CUIDADOS` | EDER | 2 | 1 |
 | `FAMILIA_CUIDADOS` | ENIF | 3 | 2 |
-| `FAMILIA_CUIDADOS` | ENIGH | 23 | 6 |
+| `FAMILIA_CUIDADOS` | ENIGH | 26 | 7 |
 | `FAMILIA_CUIDADOS` | ENUT | 1 | 1 |
 | `GENERO` | ENDIREH | 6 887 | 4 |
 | `POLITICA` | ENCUCI | 2 | 1 |
 | `POLITICA` | ENVIPE | 14 | 10 |
-| `SALUD` | ENSANUT | 2 | 1 |
-| `TECNOLOGIA` | ENDUTIH | 1 548 | 1 |
+| `SALUD` | ENCODAT | 130 | 1 |
+| `SALUD` | ENSANUT | 670 | 2 |
+| `SALUD_MENTAL` | ENBIARE | 180 | 1 |
+| `TECNOLOGIA` | ENDUTIH | 1 578 | 2 |
 | `TECNOLOGIA` | MOCIBA | 249 | 1 |
 | `TRABAJO` | ENOE | 26 273 | 1 |
 
@@ -51,10 +53,11 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 
 - **Pisos por instrumento — Firma T** (`GEN2-TRAMITE-FIRMAS-15` §1 T + ADENDA-1): ENOE (`FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01`), ENDIREH 2021, 2016, 2011 y 2006 (`FP-260923-ASTRA5-U2-ENDIREH-6a2c-01` a `-04`), ENDUTIH 2023–2025 (`FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01`: sin las celdas originales de empleo, sustituidas por `CALC-ENDUTIH-EMPLEO-15MAS-*`) y MOCIBA 2015–2017 (`-1f30-02`: 2015 no estimable). Una fila por celda publicable; cada una es piso descriptivo retrospectivo **sin uso predictivo**.
 - **Marginales por piso t−1**: ENVIPE 2025 adoptada (`decisiones.tsv:adopcion:piso-t1-marginales-por-instrumento`) y ENIF 2024 **con reserva de ancho** (`FP-260922-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1-2868-01`, IC calibrado de persistencia: conservador, un solo choque). ENCIG 2025 queda vetada en nivel (fuera).
+- **Pisos de salud y bienestar — FIRMAS-16** (`GEN2-TRAMITE-FIRMAS-16`, «ejecuta GEN2-CATALOGO-V1-1-1»): ENSANUT 2021–2024 **con reserva de ancho** (`FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01`; sobre 2024 el IC es el calibrado de persistencia), ENCODAT 2016–2017 **con reserva de ancho** (`-6d56-02`; una sola ola, IC de diseño) y ENBIARE 2021 adoptado como piso de una ola (`-6d56-03`).
 - **Parámetros de reglas y celdas R/M del marco** con consumo activo (la misma vista que `corrida0 status`), cada uno con la fila de `decisiones.tsv` de su CALC, su FP o la firma del encargo que lo relevó.
 - **Bloque ENIGH — Firma M** (`GEN2-ADOPCION-BLOQUE-Y-PINES-1`): descriptores de intensidad de remesas 2016, 2018 y 2020 con IC bootstrap.
 
-**Ejes.** Sexo, edad, escolaridad, localidad (tamaño) y entidad —el eje regional disponible con RESULT adoptado— salen de las tablas ENOE, ENDIREH y ENDUTIH; formalidad y cuenta, de las marginales ENIF. **NSE no entra**: su FP (`FP-260924-GEN2-CLASE-AMAI-1-e773-01`) sigue abierta. La región de seis zonas de `canon/eje-regional-v1_0.md` es propuesta sin adopción: no aporta filas.
+**Ejes.** Sexo, edad, escolaridad, localidad (tamaño) y entidad —el eje regional disponible con RESULT adoptado— salen de las tablas ENOE, ENDIREH y ENDUTIH; formalidad y cuenta, de las marginales ENIF. **NSE entra como eje con reserva de instrumento** (`FP-260924-GEN2-CLASE-AMAI-1-e773-01`, FIRMAS-16): ENIGH 2022 (regla AMAI reproducida), ENIF 2024 (aproximación conforme) y ENDUTIH 2023 como aproximación rotulada; ENDUTIH 2024–2025 (`DESVIADA`) quedan fuera por la letra de la firma (60 celdas). La región de seis zonas de `canon/eje-regional-v1_0.md` es propuesta sin adopción: no aporta filas.
 
 ### Pendiente de firma (no entran; no es PARO)
 
@@ -73,20 +76,16 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 | `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-B-P-INFORMAL-P` | NO-ENCONTRADA |
 | `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P` | NO-ENCONTRADA |
 | `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P` | NO-ENCONTRADA |
-| `FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01` | `pisos/eje del acto emisor` | ABIERTA |
-| `FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-02` | `pisos/eje del acto emisor` | ABIERTA |
-| `FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-03` | `pisos/eje del acto emisor` | ABIERTA |
-| `FP-260924-GEN2-CLASE-AMAI-1-e773-01` | `pisos/eje del acto emisor` | ABIERTA |
 
-`SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma. ENSANUT, ENCODAT, ENBIARE y NSE esperan `FIRMAS-16`.
+`SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma; esperan `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01`.
 
 ### Fuera por regla
 
 Detalle por llave en `forense/analisis/catalogo/v1_1/excluidos.tsv`:
 
-- Piso **HEREDADO-DE-LEGACY** (20 RESULT del censo de `GEN2-ENCIG-PISOS-GEN2-1`): «re-medición en curso, rama `acto/gen2-pisos-gen2-2`».
+- Piso **HEREDADO-DE-LEGACY** (20 RESULT del censo de `GEN2-ENCIG-PISOS-GEN2-1`): re-medidos por `GEN2-PISOS-GEN2-2` (`PR #1123`) con pisos y sucesores `-0002` sellados, **sin adopción firmada**: siguen fuera hasta que mesa los adopte.
 - Celdas ENDUTIH originales de empleo excluidas por la propia firma: 141.
-- Celdas sin punto publicable: suprimidas 613 + 3, no estimables 30.
+- Celdas sin punto publicable: suprimidas 613 + 3 + 2, no estimables 30.
 - Marginales sin adopción en nivel (ENCIG 2025, vetada): 10.
 - Tablas ENIGH adoptadas por Firma M y no desagregadas en esta versión (perfil estructural y remesas en contexto): 6 CALC. La evaluación de origen móvil del duelo ENIGH (1 CALC) mide error de candidatos, no una conducta.
 
@@ -95,15 +94,15 @@ Detalle por llave en `forense/analisis/catalogo/v1_1/excluidos.tsv`:
 Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADENDA-2 y del README), cada uno asignado a su dominio primario por `forense/analisis/dominios/report-a-dominio-v1_0.tsv`; los conteos de afirmaciones salen de `canon/mapa-dominios-v1_0.tsv`. Regla, en orden (la primera que se cumple):
 
 - `MEDIDO` — el dominio tiene al menos un estimador en esta tabla.
-- `EN-MEDICIÓN` — hay CALC con `cuenta_gen2: SI` sellados para un instrumento del dominio, sin adopción todavía (ENSANUT, ENCODAT, ENBIARE, ENCUP/LAPOP/INE, NSE, ENADID, ENCUCI).
+- `EN-MEDICIÓN` — hay CALC con `cuenta_gen2: SI` sellados para un instrumento del dominio, sin adopción todavía (ENCUP/LAPOP/INE, ENADID, ENCUCI y los demás instrumentos de la regla del generador).
 - `MEDIBLE-EN-CORPUS-SIN-CALC` — el mapa dictamina afirmaciones medibles con lo que ya hay en el corpus, pero nadie corrió el mecanismo. Es un «nadie corrió» (§2), no un «no se puede»: por eso no se funde con la categoría siguiente.
 - `MEDIBLE-CON-ADQUISICIÓN` — solo medible si se adquiere el instrumento.
 - `NO-MEDIBLE-POR-DISEÑO` — todas sus afirmaciones lo son.
 
 | estado | reports |
 |---|---:|
-| MEDIDO | 9 |
-| EN-MEDICIÓN | 5 |
+| MEDIDO | 10 |
+| EN-MEDICIÓN | 4 |
 | MEDIBLE-EN-CORPUS-SIN-CALC | 10 |
 | MEDIBLE-CON-ADQUISICIÓN | 6 |
 | NO-MEDIBLE-POR-DISEÑO | 0 |
@@ -111,10 +110,10 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 
 | report | dominio (mapa U0) | estado | estimadores v1.1 | CALC GEN2 sin adoptar | afirmaciones (en corpus / con adquisición / no medibles) |
 |---|---|---|---:|---:|---|
-| Adopción y Resistencia Tecnológica en México  La Paradoja de la Baja C | `TECNOLOGIA` | **MEDIDO** | 1797 | 0 | 49 (17 / 18 / 14) |
+| Adopción y Resistencia Tecnológica en México  La Paradoja de la Baja C | `TECNOLOGIA` | **MEDIDO** | 1827 | 0 | 49 (17 / 18 / 14) |
 | Ausencia sin certeza  duelo y pérdida ambigua en familias de personas  | `DUELO` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 33 (3 / 23 / 7) |
 | Autoridad y jerarquía en el México contemporáneo  anatomía psicológica | `AUTORIDAD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 39 (8 / 19 / 12) |
-| Behavioral Finance Mexicano  Estructura  Adaptación Racional y Cultura | `DINERO` | **MEDIDO** | 43 | 0 | 179 (40 / 89 / 50) |
+| Behavioral Finance Mexicano  Estructura  Adaptación Racional y Cultura | `DINERO` | **MEDIDO** | 92 | 0 | 179 (40 / 89 / 50) |
 | Confianza y Desconfianza en México  Anatomía Psicológica de una Socied | `CONFIANZA` | **MEDIDO** | 23 | 0 | 59 (20 / 24 / 15) |
 | El Clasemediero Mexicano  Identidad  Ansiedad de Estatus y el Miedo Ra | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 6 | 56 (4 / 41 / 11) |
 | El Efecto Ambiental de la Violencia Crónica en México  Cómo el Miedo R | `VIOLENCIA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (11 / 36 / 9) |
@@ -122,10 +121,10 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | El México Rural e Indígena en sus Propios Términos  Comunalidad  Autor | `RURAL_INDIGENA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (7 / 30 / 19) |
 | Elegir  Cortejar y Amar en el México de Hoy  Díada de Pareja  Apps de  | `PAREJA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 32 (1 / 18 / 13) |
 | Genetica y Conducta del Mexicano Contemporaneo  Canal Individual vs  E | `GENETICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 38 (0 / 35 / 3) |
-| Health  Body  Food and Substance Use in Mexico  The Behavioral Layer o | `SALUD` | **MEDIDO** | 2 | 2 | 64 (13 / 31 / 20) |
+| Health  Body  Food and Substance Use in Mexico  The Behavioral Layer o | `SALUD` | **MEDIDO** | 800 | 2 | 64 (13 / 31 / 20) |
 | Humor in Mexican Psychological Life  2023-2026 Update | `HUMOR` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 29 (0 / 17 / 12) |
 | La arquitectura invisible de la interacción social en México | `INTERACCION` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 21 (0 / 13 / 8) |
-| La familia mexicana como sistema psicológico  entre el afecto  la obli | `FAMILIA_CUIDADOS` | **MEDIDO** | 29 | 0 | 46 (6 / 27 / 13) |
+| La familia mexicana como sistema psicológico  entre el afecto  la obli | `FAMILIA_CUIDADOS` | **MEDIDO** | 32 | 0 | 46 (6 / 27 / 13) |
 | Mexican Population Genomics  2025-2026 Scientific and Market Opportuni | `GENOMICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 33 (0 / 27 / 6) |
 | Moral Emotions in Mexico  Declared Dignity  Relational Face  and Resid | `EMOCIONES_MORALES` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 18 / 8) |
 | Mérito  Movilidad Social y Desigualdad en México  Actualización 2025-2 | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 6 | 56 (4 / 41 / 11) |
@@ -139,9 +138,9 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Reconfiguración de los Guiones de Género en México  Masculinidades  Fe | `GENERO` | **MEDIDO** | 6887 | 0 | 47 (7 / 26 / 14) |
 | Religiosidad y Psicología del Mexicano Contemporáneo  Moral  Afrontami | `RELIGIOSIDAD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 39 (5 / 25 / 9) |
 | Report 26  The Contemporary Mexican and Knowledge  Expertise  Educatio | `CONOCIMIENTO` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 15 / 11) |
-| Salud Mental en México  Prevalencia  Estigma y la Brecha entre Necesid | `SALUD_MENTAL` | **EN-MEDICIÓN** | 0 | 1 | 62 (7 / 44 / 11) |
+| Salud Mental en México  Prevalencia  Estigma y la Brecha entre Necesid | `SALUD_MENTAL` | **MEDIDO** | 180 | 1 | 62 (7 / 44 / 11) |
 | Sanción Social Horizontal en México  Chisme  Envidia y Mal de Ojo como | `SANCION_SOCIAL` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 13 (1 / 3 / 9) |
-| Vejez y Cuidado Intergeneracional en México  El Debilitamiento del Seg | `FAMILIA_CUIDADOS` | **MEDIDO** | 29 | 0 | 46 (6 / 27 / 13) |
+| Vejez y Cuidado Intergeneracional en México  El Debilitamiento del Seg | `FAMILIA_CUIDADOS` | **MEDIDO** | 32 | 0 | 46 (6 / 27 / 13) |
 
 Varios reports comparten dominio (dos de movilidad, dos de familia y cuidados): un dominio medido cuenta como medido en cada report que lo tiene como primario. El conteo por dominio del mapa está en la portada.
 
@@ -173,18 +172,18 @@ Lectura para el catálogo: los cambios sostenidos son todos ENOE y de décimas d
 
 ## P4 · Cobertura por clase
 
-Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/analisis/clase-amai/cobertura-por-clase-v1_0.md) (`GEN2-CLASE-AMAI-1`, RETROSPECTIVA): hay pisos por NSE AMAI en 144 celdas (`pisos-nse-v1_0.tsv`), **sin adoptar**. El eje espera `FP-260924-GEN2-CLASE-AMAI-1-e773-01` y no aporta filas a v1.1. El hallazgo que el catálogo hereda como reserva: el corte de clase solo es posible hoy en dinero (ENIF), remesas (ENIGH) y tecnología (ENDUTIH). Lo cívico y el trato con el Estado (ENVIPE, ENCIG) no admiten NSE AMAI por construcción del cuestionario, y ahí el único corte socioeconómico es la escolaridad. Varios gradientes que parecen cultura (horizonte de ahorro corto, no usar internet por costo) son de clase según ese documento; la desconfianza declarada no muestra gradiente medible.
+Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/analisis/clase-amai/cobertura-por-clase-v1_0.md) (`GEN2-CLASE-AMAI-1`, RETROSPECTIVA): hay pisos por NSE AMAI en 144 celdas (`pisos-nse-v1_0.tsv`); con la firma `FP-260924-GEN2-CLASE-AMAI-1-e773-01` entran al catálogo las de ENIGH 2022, ENIF 2024 y ENDUTIH 2023 (eje `NSE`). Las cifras por clase de este catálogo son esas filas; la lectura de abajo es la del documento citado. El hallazgo que el catálogo hereda como reserva: el corte de clase solo es posible hoy en dinero (ENIF), remesas (ENIGH) y tecnología (ENDUTIH). Lo cívico y el trato con el Estado (ENVIPE, ENCIG) no admiten NSE AMAI por construcción del cuestionario, y ahí el único corte socioeconómico es la escolaridad. Varios gradientes que parecen cultura (horizonte de ahorro corto, no usar internet por costo) son de clase según ese documento; la desconfianza declarada no muestra gradiente medible.
 
 ## Módulo de auditoría de rigor extremo
 
 - **¿Cuántos contadores movió este trabajo?** Dos del catálogo («estimadores con RESULT», «dominios MEDIDOS»). Cero mediciones y cero adopciones.
 - **¿Pobreza, informalidad o violencia confundidas con cultura?** Las reglas de trabajo y tecnología leen primero estructura y oferta; ninguna regla atribuye un gradiente a «cultura mexicana».
-- **¿Sobregeneralización desde la clase media urbana?** Los ejes de localidad (ENOE `MENOS-2K5`, ENDUTIH `TLOC_4`) están en la tabla. No hay NSE adoptado: el sesgo de clase dentro de lo urbano no se puede cortar con filas adoptadas en esta versión.
+- **¿Sobregeneralización desde la clase media urbana?** Los ejes de localidad (ENOE `MENOS-2K5`, ENDUTIH `TLOC_4`) están en la tabla. El eje NSE adoptado corta clase solo en dinero, remesas y tecnología: en lo cívico y en el trato con el Estado sigue sin corte de clase posible.
 - **¿Qué cambia con foco rural o indígena?** El gradiente rural de informalidad y costo digital es el más grande del catálogo. Lo indígena-comunal queda fuera por diseño y ningún instrumento adoptado lo identifica.
 - **¿Qué parece psicológico y es incentivo?** La denuncia con seguro (regla 10) y la denuncia de violencia (regla 6).
 - **¿Evidencia débil con intuición fuerte?** Todos los PORQUE. Por eso llevan tier propio.
 - **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: toda cifra sale de un marcador de conteo o de RESULT de la plantilla (`forense/analisis/catalogo/v1_1/plantilla.md`), y `tests/test_catalogo_v1_1.py` falla si aparece un dígito fuera de un identificador, un año o un placeholder resuelto.
-- **¿Deuda asumida que caducó?** Las filas «pendiente de firma» dejan de estarlo cuando `FIRMAS-16` fusione. Sucesor: v1.2.
+- **¿Deuda asumida que caducó?** FIRMAS-16 ya fusionó y sus pisos entraron; quedan pendientes los adoptados activos sin FP citable (`FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01`). Sucesor: v1.2.
 - **¿Escala de cada cantidad y contra qué se compara?** Columna `unidad`. Solo se contrastan filas del mismo CALC, unidad y ola.
 - **¿PROSPECTIVA y RETROSPECTIVA mezcladas?** No: todo el catálogo es RETROSPECTIVA. Las celdas validadas PROSPECTIVAS se citan aparte en la frase de portada.
 - **¿Unidades promediadas?** No: persona (ENOE, ENDIREH, ENDUTIH, ENIF), hogar (ENIGH), delito (ENVIPE) y evento de trámite (ENCIG) nunca se suman.

@@ -1,4 +1,4 @@
-Contadores movidos: «estimadores en catálogo con RESULT» → 35 070 (`jq .estimadores forense/analisis/catalogo/v1_1/conteos.json`); «dominios MEDIDOS» → 8 dominios del mapa U0, en 9 de 31 reports (`jq '.dominios_medidos, .reports_medidos, .reports' …/conteos.json`). Cero mediciones, cero adopciones.
+Contadores movidos: «estimadores en catálogo con RESULT» → 36 130 (`jq .estimadores forense/analisis/catalogo/v1_1/conteos.json`); «dominios MEDIDOS» → 9 dominios del mapa U0, en 10 de 31 reports (`jq '.dominios_medidos, .reports_medidos, .reports' …/conteos.json`). Cero mediciones, cero adopciones.
 
 # Cierre · ACTO GEN2-CATALOGO-V1-1-1 · catálogo del mexicano v1.1
 
@@ -34,3 +34,15 @@ v1.0 regla 1 (ENCIG, canal): CONFIRMA, mismos RESULT. v1.0 regla 2 (remesas): MA
 ## NC y FP
 
 NC `afe1-01..05` en `forense/no-corrido.tsv`; FP `afe1-01` en `forense/firmas-pendientes.tsv`.
+
+## Sync tras FIRMAS-16 (#1137) y PISOS-GEN2-2 (#1123)
+
+`git merge origin/main` sin conflictos, y el catálogo regenerado con la derivación completa de la vista de `corrida0`.
+
+- Las FP `6d56-01..03` y `e773-01` quedaron FIRMADAS y cada firma dice «ejecuta GEN2-CATALOGO-V1-1-1»:
+  - ENSANUT 2021–2024: CON-RESERVA-DE-ANCHO; sobre 2024 el IC es el calibrado (`-ICC-`).
+  - ENCODAT 2016–2017: CON-RESERVA-DE-ANCHO.
+  - ENBIARE 2021: ADOPTADO.
+  - Eje NSE: ENIGH 2022, ENIF 2024 y ENDUTIH 2023 (aproximación rotulada). ENDUTIH 2024–2025 quedan fuera por la letra de la firma y se listan en `excluidos.tsv`.
+- PISOS-GEN2-2 selló pisos y sucesores `-0002` con `adopta: NO`. Los 20 pisos legacy siguen fuera hasta que mesa adopte los re-medidos.
+- NC `afe1-05` CERRADA por este sync.
