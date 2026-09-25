@@ -1,14 +1,14 @@
 {
   "advertencia_suficiencia": "cero tareas elegibles sólo describe el selector; nunca acredita suficiencia general ni cierra necesidades",
   "contrato_cientifico_completo": 5,
-  "contrato_cientifico_incompleto": 346,
+  "contrato_cientifico_incompleto": 339,
   "contrato_completo": 5,
-  "contrato_incompleto": 346,
-  "contrato_minimo_derivado": 346,
+  "contrato_incompleto": 339,
+  "contrato_minimo_derivado": 339,
   "contrato_operativo_explicito_no_cientifico": 1,
   "contrato_operativo_no_cientifico": 9,
   "corte": "2026-09-25",
-  "descripcion_minima_derivada": 346,
+  "descripcion_minima_derivada": 339,
   "elementos_con_alcance_menor_disponible": 3,
   "elementos_con_brecha_abierta": 20,
   "elementos_gen2": [
@@ -18358,13 +18358,13 @@
   "fuente": "forense/no-corrido.tsv",
   "fuentes_sha256": {
     "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-    "data/corrida0/decisiones.tsv": "355b7c6f0a657da8e170650c18fe800c09cc21d1bea5fad058f6d3ce15220b97",
+    "data/corrida0/decisiones.tsv": "818c477c9363065fca9b0acb3d49faea82f4b705bfeaa0f8da9b35b611de02b2",
     "data/corrida0/demanda-resultados.tsv": "e41413c93ef0552edb40e400f64c191f6d3beac6c72d3056105c8017c85ce306",
     "data/corrida0/resultados.tsv": "011cf15f965a52f4151ede140a40e8366c2fa545a7b7e767651c4db325b6f98a",
     "data/corrida0/usos.tsv": "ea3513e3459fc9a96be0f407a9910bdc87e8dc93de155ff0879526047ae45eeb",
     "data/curacion-registro/necesidad-objeto-modelo.tsv": "09062d3c7878651870ee429ce6cf6c86f73579b61916976718c8544209b20981",
     "data/curacion-registro/utilidad-modelo.tsv": "ed9b4055bdbe6d7963570df7a1e57c4ba8ab05319ab96a30cd972cf291003de2",
-    "forense/no-corrido.tsv": "d9af3088e83f3993d27d8b1ab9162643e204c0f216b93d41683fb2a152070f7b",
+    "forense/no-corrido.tsv": "55dacc58be4071f74465b84908a6ff9fd2e793a5497e9d256af610e66eb93293",
     "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
     "forense/prereg-duelo-v2/universo-triada-v1_4.tsv": "840fc68ce7261686426221effbf9df313ef17e2876fa6345b3c00589bab80f80"
   },
@@ -27921,40 +27921,6 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "registrar id y sha en data/manifiesto.yaml",
-      "condicion_reapertura": null,
-      "consumidor": "ASTRA5-U0-MAPA-DOMINIOS/registro documental de copias físicas SIN-ID leídas por U0 (CEEY, Mijs/Hoy, Oxfam, WHR, Latinobarómetro informe, DataReportal, Nature/Science/BMJ, CED PDF, entre otras)",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "NO_SONDA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "el encargo declara el manifiesto de solo lectura para U0; las filas quedan MEDIBLE-CON-ADQUISICIÓN con el sha físico",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04"
-      ],
-      "frontera": "el encargo declara el manifiesto de solo lectura para U0; las filas quedan MEDIBLE-CON-ADQUISICIÓN con el sha físico",
-      "id": "NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04",
-      "investigacion_previa": "FUERA-DE-PERÍMETRO",
-      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "registrar id y sha en data/manifiesto.yaml",
-      "prioridad": 60,
-      "responsable": "GEN2-ASTRA5-U5-ADQUISICION-1 vía /adquiere",
-      "siguiente_accion": "GEN2-ASTRA5-U5-ADQUISICION-1 vía /adquiere",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "registrar id y sha en data/manifiesto.yaml",
-      "version_pregunta": "AUTO-NC-v1-0b2e9176f598"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
       "brecha": "decidir si U1 puede usar o debe ignorar esa exposición",
       "condicion_reapertura": null,
       "consumidor": "ASTRA5-U0-MAPA-DOMINIOS/alcance del uso futuro de lo expuesto del boletín ENOE 2026T1 (MER-001..003 retirados; exposicion-enoe2026t1-v1_0.md)",
@@ -27985,40 +27951,6 @@
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "decidir si U1 puede usar o debe ignorar esa exposición",
       "version_pregunta": "AUTO-NC-v1-54dab8a392a9"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "Adoptar las 4 corridas NO-VERIFICADO restantes que el tablero v5 citaba (EDER-0002, ENFIH-0001/0002, WBES-0001) junto con las 10 REPRODUCE.",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-ADOPCION-BLOQUE-Y-PINES-1/P-M: 4 corridas NO-VERIFICADO restantes del tablero",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "VALIDACION",
-      "evidencia_disponible": "esas 6 corridas siguen cuenta_gen2=PENDIENTE-DE-MESA; ningun contador las cuenta",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02"
-      ],
-      "frontera": "esas 6 corridas siguen cuenta_gen2=PENDIENTE-DE-MESA; ningun contador las cuenta",
-      "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02",
-      "investigacion_previa": "DIFERIDO-A:replay -- son 6, no 4 (CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0001 y CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001 tambien estan NO-VERIFICADO y firma M no las nombra; recuento corregido tras revision adversarial /revisa sobre PR #1102, re-verificado por el mismo comando sobre corridas.tsv -- CALC-ENSAFI2023-ESTRATEGIAS-CONJUNTAS-0001 quedo fuera del primer conteo); ninguna de las 6 tiene replay afirmativo en corridas.tsv; firma M solo autoriza adoptar replay REPRODUCE. No localice un archivo literal 'Tablero v5 l.27-41' -- el universo se deriva por predicado (cuenta_gen2=PENDIENTE-DE-MESA AND resultado_replay=NO-VERIFICADO) sobre corridas.tsv, no por cita de tablero (NO-VERIFICABLE-AQUI esa filiacion).",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "Adoptar las 4 corridas NO-VERIFICADO restantes que el tablero v5 citaba (EDER-0002, ENFIH-0001/0002, WBES-0001) junto con las 10 REPRODUCE.",
-      "prioridad": 60,
-      "responsable": "DIFERIDO-A:acto sucesor que corra o verifique su replay (GEN2-CONTADORES-CONSUMO-3 u homologo)",
-      "siguiente_accion": "DIFERIDO-A:acto sucesor que corra o verifique su replay (GEN2-CONTADORES-CONSUMO-3 u homologo)",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "Adoptar las 4 corridas NO-VERIFICADO restantes que el tablero v5 citaba (EDER-0002, ENFIH-0001/0002, WBES-0001) junto con las 10 REPRODUCE.",
-      "version_pregunta": "AUTO-NC-v1-8eb3955ebd06"
     },
     {
       "antecedentes_nc": [],
@@ -28118,13 +28050,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Escritor de consumo extendido a milpa/procedencia.yaml.",
       "prioridad": 60,
-      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-3",
-      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-3",
+      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)",
+      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Escritor de consumo extendido a milpa/procedencia.yaml.",
-      "version_pregunta": "AUTO-NC-v1-94239c9ca660"
+      "version_pregunta": "AUTO-NC-v1-733ae8162be9"
     },
     {
       "antecedentes_nc": [],
@@ -28152,13 +28084,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Relevo del catálogo por el escritor según su contrato, con T-REPRO(c) VERDE.",
       "prioridad": 60,
-      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-3",
-      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-3",
+      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B5, opción (a))",
+      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B5, opción (a))",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Relevo del catálogo por el escritor según su contrato, con T-REPRO(c) VERDE.",
-      "version_pregunta": "AUTO-NC-v1-3e27723a4ab0"
+      "version_pregunta": "AUTO-NC-v1-8d1bcca84c31"
     },
     {
       "antecedentes_nc": [],
@@ -28492,81 +28424,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "corregir para que tests/manifiesto.py --registra vuelva a validar",
       "prioridad": 60,
-      "responsable": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02",
-      "siguiente_accion": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02",
+      "responsable": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-ASTRA5-U5-ADQUISICION-2 (C1 firmada (a))",
+      "siguiente_accion": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-ASTRA5-U5-ADQUISICION-2 (C1 firmada (a))",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "corregir para que tests/manifiesto.py --registra vuelva a validar",
-      "version_pregunta": "AUTO-NC-v1-db7a0bff894a"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "registrar id y sha en data/manifiesto.yaml",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-ASTRA5-U5-ADQUISICION-1/NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04: registrar en el manifiesto las copias físicas SIN-ID leídas por U0",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "la NC 63db-04 sigue ABIERTA",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-08"
-      ],
-      "frontera": "la NC 63db-04 sigue ABIERTA",
-      "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-08",
-      "investigacion_previa": "DECISIÓN-DE-MESA-PENDIENTE: el encargo de este acto dice «no baja documentos al corpus (constancias aparte)»; las constancias-v1_0 registran URL y sha sin copia",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "registrar id y sha en data/manifiesto.yaml",
-      "prioridad": 60,
-      "responsable": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03",
-      "siguiente_accion": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "registrar id y sha en data/manifiesto.yaml",
-      "version_pregunta": "AUTO-NC-v1-99d5486341a0"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "cumplirlo literal",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-ASTRA5-U5-ADQUISICION-1/criterio de «hecho»: estado: VERIFICADO y estado_reserva: RESERVADA literales en data/manifiesto.yaml",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "ninguno sobre el dato; sólo la letra del criterio",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-09"
-      ],
-      "frontera": "ninguno sobre el dato; sólo la letra del criterio",
-      "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-09",
-      "investigacion_previa": "DECISIÓN-DE-MESA-PENDIENTE: el esquema no tiene campo estado y el validador sólo acepta RESERVADA-NO-ABIERTA-NO-INDEXAR-L / DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS con raiz reserva_respondentes; se usó el vocabulario vigente",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "cumplirlo literal",
-      "prioridad": 60,
-      "responsable": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04",
-      "siguiente_accion": "FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "cumplirlo literal",
-      "version_pregunta": "AUTO-NC-v1-19099ca566ae"
+      "version_pregunta": "AUTO-NC-v1-6dd88e119ea5"
     },
     {
       "antecedentes_nc": [],
@@ -28594,47 +28458,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "Nada sin correr; reserva: un valor_gen2 escrito con pocos decimales pasa T-REPRO(c) por el grano del literal (_tol_adopcion_de).",
       "prioridad": 60,
-      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-4",
-      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-4",
+      "responsable": "GEN2-ADOPCION-BLOQUE-Y-PINES-4 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)",
+      "siguiente_accion": "GEN2-ADOPCION-BLOQUE-Y-PINES-4 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "Nada sin correr; reserva: un valor_gen2 escrito con pocos decimales pasa T-REPRO(c) por el grano del literal (_tol_adopcion_de).",
-      "version_pregunta": "AUTO-NC-v1-8cf07f72f101"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "Implementar el esquema de cita en procedencia.yaml.",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-CATALOGO-CONTRATO-Y-TEST-1/P3 -- esquema de procedencia (40 filas)",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "legacy_activas_por_consumidor__procedencia sigue en 40.",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-02"
-      ],
-      "frontera": "legacy_activas_por_consumidor__procedencia sigue en 40.",
-      "id": "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-02",
-      "investigacion_previa": "DECISIÓN-DE-MESA-PENDIENTE -- el encargo pide proponer, no implementar; FP 23e3-01.",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "Implementar el esquema de cita en procedencia.yaml.",
-      "prioridad": 60,
-      "responsable": "FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01",
-      "siguiente_accion": "FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "Implementar el esquema de cita en procedencia.yaml.",
-      "version_pregunta": "AUTO-NC-v1-6913723425e3"
+      "version_pregunta": "AUTO-NC-v1-f041cca4bad9"
     },
     {
       "antecedentes_nc": [],
@@ -28662,13 +28492,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "NSE y pisos sobre ENIGH 2024",
       "prioridad": 60,
-      "responsable": "FP-260924-GEN2-CLASE-AMAI-1-e773-02",
-      "siguiente_accion": "FP-260924-GEN2-CLASE-AMAI-1-e773-02",
+      "responsable": "FP-260924-GEN2-CLASE-AMAI-1-e773-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CLASE-AMAI-2 (C7 firmada: levanta reserva acotada)",
+      "siguiente_accion": "FP-260924-GEN2-CLASE-AMAI-1-e773-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CLASE-AMAI-2 (C7 firmada: levanta reserva acotada)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "NSE y pisos sobre ENIGH 2024",
-      "version_pregunta": "AUTO-NC-v1-15be728d9acc"
+      "version_pregunta": "AUTO-NC-v1-c4744f9e15f6"
     },
     {
       "antecedentes_nc": [],
@@ -28696,13 +28526,13 @@
       "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
       "pregunta": "pisos NSE de las conductas ENVIPE y ENCIG",
       "prioridad": 60,
-      "responsable": "FP-260924-GEN2-CLASE-AMAI-1-e773-01",
-      "siguiente_accion": "FP-260924-GEN2-CLASE-AMAI-1-e773-01",
+      "responsable": "FP-260924-GEN2-CLASE-AMAI-1-e773-01 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CATALOGO-V1-1-1 (A4 firmada)",
+      "siguiente_accion": "FP-260924-GEN2-CLASE-AMAI-1-e773-01 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CATALOGO-V1-1-1 (A4 firmada)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "pisos NSE de las conductas ENVIPE y ENCIG",
-      "version_pregunta": "AUTO-NC-v1-1d4ead5fee14"
+      "version_pregunta": "AUTO-NC-v1-489b69c74c98"
     },
     {
       "antecedentes_nc": [],
@@ -29115,40 +28945,6 @@
     {
       "antecedentes_nc": [],
       "aplica_contrato_cientifico": true,
-      "brecha": "crear docs/informe.md",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-INFORME-V1-3-1/docs/informe.md apunta a v1.3 (criterio de «Hecho» del encargo, literal)",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
-      "evidencia_disponible": "el criterio literal del «Hecho» no se satisface por archivo homonimo (colision T02 ya diagnosticada por GEN2-FRONT-1); docs/guia-lectura-publica.md absorbe el papel y se actualizo a v1.3 en este acto -- ningun consumidor queda huerfano",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-INFORME-V1-3-1-b1aa-01"
-      ],
-      "frontera": "el criterio literal del «Hecho» no se satisface por archivo homonimo (colision T02 ya diagnosticada por GEN2-FRONT-1); docs/guia-lectura-publica.md absorbe el papel y se actualizo a v1.3 en este acto -- ningun consumidor queda huerfano",
-      "id": "NC-260924-GEN2-INFORME-V1-3-1-b1aa-01",
-      "investigacion_previa": "SUSTITUIDO-POR:GEN2-FRONT-1",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "crear docs/informe.md",
-      "prioridad": 60,
-      "responsable": "FP-260924-GEN2-INFORME-V1-3-1-b1aa-01",
-      "siguiente_accion": "FP-260924-GEN2-INFORME-V1-3-1-b1aa-01",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "crear docs/informe.md",
-      "version_pregunta": "AUTO-NC-v1-2f526114b66c"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
       "brecha": "las cuatro corridas y el cambio de champion en la vista publicada (corridas.tsv, resultados.tsv, marcador-segmento.tsv)",
       "condicion_reapertura": null,
       "consumidor": "GEN2-PISOS-GEN2-2/E.7 · vista publicada",
@@ -29385,12 +29181,12 @@
       "pregunta": "relevar RES-0001 (milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0001 (milpa/tramite.yaml:tramite.mordida.discrecional:paga_mordida) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-078446c65563"
+      "version_pregunta": "AUTO-NC-v1-932f3a79f3a9"
     },
     {
       "antecedentes_nc": [],
@@ -29423,12 +29219,12 @@
       "pregunta": "relevar RES-0002 (milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0002 (milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-c17fba65e51f"
+      "version_pregunta": "AUTO-NC-v1-04ddebf61eeb"
     },
     {
       "antecedentes_nc": [],
@@ -29461,12 +29257,12 @@
       "pregunta": "relevar RES-0007 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0007 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-a0ba015b16b5"
+      "version_pregunta": "AUTO-NC-v1-1e14718624e0"
     },
     {
       "antecedentes_nc": [],
@@ -29499,12 +29295,12 @@
       "pregunta": "relevar RES-0008 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0008 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-3c32c016496a"
+      "version_pregunta": "AUTO-NC-v1-e6326e5fe28e"
     },
     {
       "antecedentes_nc": [],
@@ -29537,12 +29333,12 @@
       "pregunta": "relevar RES-0009 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0009 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_presencial) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-c3dc3c36c973"
+      "version_pregunta": "AUTO-NC-v1-b15a77f638bf"
     },
     {
       "antecedentes_nc": [],
@@ -29575,12 +29371,12 @@
       "pregunta": "relevar RES-0010 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0010 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-445f57a27be5"
+      "version_pregunta": "AUTO-NC-v1-70969231a64a"
     },
     {
       "antecedentes_nc": [],
@@ -29613,12 +29409,12 @@
       "pregunta": "relevar RES-0011 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0011 (milpa/tramite.yaml:tramite.mordida.con_registro:paga_mordida_encig2025_digital) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-87def0b11c9c"
+      "version_pregunta": "AUTO-NC-v1-d25d5b0cd94a"
     },
     {
       "antecedentes_nc": [],
@@ -29651,12 +29447,12 @@
       "pregunta": "relevar RES-0012 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0012 (milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-68d142db41be"
+      "version_pregunta": "AUTO-NC-v1-af60758e3a86"
     },
     {
       "antecedentes_nc": [],
@@ -29753,12 +29549,12 @@
       "pregunta": "relevar RES-0019 (milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta) a GEN2",
       "prioridad": 60,
       "responsable": "FIRMAS-16 (mesa decide",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0019 (milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:adopta) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-862e7eedd204"
+      "version_pregunta": "AUTO-NC-v1-1448fefdf3ae"
     },
     {
       "antecedentes_nc": [],
@@ -29791,12 +29587,12 @@
       "pregunta": "relevar RES-0020 (milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0020 (milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-eed7e52038da"
+      "version_pregunta": "AUTO-NC-v1-87176dab9a5e"
     },
     {
       "antecedentes_nc": [],
@@ -29829,12 +29625,12 @@
       "pregunta": "relevar RES-0023 (milpa/tramite.yaml:tramite.evasion_norma:evade_norma) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0023 (milpa/tramite.yaml:tramite.evasion_norma:evade_norma) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-7ea84f36ec79"
+      "version_pregunta": "AUTO-NC-v1-21bb3c8fea13"
     },
     {
       "antecedentes_nc": [],
@@ -29867,12 +29663,12 @@
       "pregunta": "relevar RES-0024 (milpa/tramite.yaml:tramite.evasion_norma:cumple_norma) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0024 (milpa/tramite.yaml:tramite.evasion_norma:cumple_norma) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-e665abbcbb69"
+      "version_pregunta": "AUTO-NC-v1-a9fc81529133"
     },
     {
       "antecedentes_nc": [],
@@ -30075,12 +29871,12 @@
       "pregunta": "relevar RES-0165 (milpa/src/celdas.py:CORTES_C1:formalidad) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0165 (milpa/src/celdas.py:CORTES_C1:formalidad) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-ff1748f7301a"
+      "version_pregunta": "AUTO-NC-v1-65319b460898"
     },
     {
       "antecedentes_nc": [],
@@ -30113,12 +29909,12 @@
       "pregunta": "relevar RES-0166 (milpa/src/celdas.py:CORTES_C1:edad) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0166 (milpa/src/celdas.py:CORTES_C1:edad) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-bba46c6aa27c"
+      "version_pregunta": "AUTO-NC-v1-23a922eb99dc"
     },
     {
       "antecedentes_nc": [],
@@ -30151,12 +29947,12 @@
       "pregunta": "relevar RES-0167 (milpa/src/celdas.py:CORTES_C1:urbanizacion) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0167 (milpa/src/celdas.py:CORTES_C1:urbanizacion) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-1bfc82482334"
+      "version_pregunta": "AUTO-NC-v1-584e18a5adaa"
     },
     {
       "antecedentes_nc": [],
@@ -30189,12 +29985,12 @@
       "pregunta": "relevar RES-0168 (milpa/src/celdas.py:CORTES_C1:ingreso) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0168 (milpa/src/celdas.py:CORTES_C1:ingreso) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-e95e281ab601"
+      "version_pregunta": "AUTO-NC-v1-6fab2855904e"
     },
     {
       "antecedentes_nc": [],
@@ -30227,12 +30023,12 @@
       "pregunta": "relevar RES-0169 (milpa/src/celdas.py:CORTES_C1:acceso_digital) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0169 (milpa/src/celdas.py:CORTES_C1:acceso_digital) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-25b3fb4bb349"
+      "version_pregunta": "AUTO-NC-v1-59e93473585c"
     },
     {
       "antecedentes_nc": [],
@@ -30265,46 +30061,12 @@
       "pregunta": "relevar RES-0170 (milpa/src/celdas.py:CORTES_C1:migracion) a GEN2",
       "prioridad": 60,
       "responsable": "mesa",
-      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)",
+      "siguiente_accion": "FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)",
       "suficiencia": null,
       "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "relevar RES-0170 (milpa/src/celdas.py:CORTES_C1:migracion) a GEN2",
-      "version_pregunta": "AUTO-NC-v1-70035a4c0452"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "Escribir seis filas cuenta_gen2=SI citando M en decisiones.tsv (vive en data/corrida0/decisiones.tsv, no en milpa/) y cerrar NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02.",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-REPLAY-NO-VERIFICADOS-1/P3 · `decisiones.tsv`: fila por REPRODUCE con M. P4 · Cierre de `ec71-02`.",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "VALIDACION",
-      "evidencia_disponible": "cuenta_gen2 de las seis sigue PENDIENTE-DE-MESA; ec71-02 sigue ABIERTA.",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-02"
-      ],
-      "frontera": "cuenta_gen2 de las seis sigue PENDIENTE-DE-MESA; ec71-02 sigue ABIERTA.",
-      "id": "NC-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-02",
-      "investigacion_previa": "DECISIÓN-DE-MESA-PENDIENTE -- PARO (f): M («quedan PENDIENTE-DE-MESA hasta replay afirmativo», forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1.md:14) se firmó el 24/sep leyendo la vista; el replay afirmativo ya estaba asentado el 22/sep. Si M cubre un replay anterior a su firma lo decide mesa (FP-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-01, con texto de firma listo en la nota).",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "Escribir seis filas cuenta_gen2=SI citando M en decisiones.tsv (vive en data/corrida0/decisiones.tsv, no en milpa/) y cerrar NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02.",
-      "prioridad": 60,
-      "responsable": "FP-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-01 → GEN2-ADOPCION-3 (sucesor que el encargo nombra) o ADENDA a este acto",
-      "siguiente_accion": "FP-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-01 → GEN2-ADOPCION-3 (sucesor que el encargo nombra) o ADENDA a este acto",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "Escribir seis filas cuenta_gen2=SI citando M en decisiones.tsv (vive en data/corrida0/decisiones.tsv, no en milpa/) y cerrar NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02.",
-      "version_pregunta": "AUTO-NC-v1-1bf29b7ba586"
+      "version_pregunta": "AUTO-NC-v1-93c605e20ef7"
     },
     {
       "antecedentes_nc": [],
@@ -30509,40 +30271,6 @@
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "NO-CONSTRUIBLES por texto: intento de suicidio (ENSANUT 2021–2023), facilidad para cubrir gastos (ENBIARE 2021), malestar psicológico (ENCODAT 2016)",
       "version_pregunta": "AUTO-NC-v1-e10d52cadd37"
-    },
-    {
-      "antecedentes_nc": [],
-      "aplica_contrato_cientifico": true,
-      "brecha": "adopción de los 3 instrumentos",
-      "condicion_reapertura": null,
-      "consumidor": "GEN2-SALUD-Y-BIENESTAR-PISOS-1/las adopciones van a FP con ADOPTAR / CON-RESERVA-DE-ANCHO / VETAR",
-      "contrato_cientifico_completo": false,
-      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
-      "cursor_continuacion": null,
-      "estado_ruteo": "ESPERA_O_DELEGADA",
-      "etapa_faltante": "FUENTE_O_VARIABLE",
-      "evidencia_disponible": "ningún consumidor usa estos pisos hasta la firma",
-      "evidencias": [
-        "forense/no-corrido.tsv#NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-06"
-      ],
-      "frontera": "ningún consumidor usa estos pisos hasta la firma",
-      "id": "NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-06",
-      "investigacion_previa": "DECISIÓN-DE-MESA-PENDIENTE -- FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01..03",
-      "motivo_ruteo": "precedencia explícita impide reactivación automática",
-      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
-      "opciones_decision": [],
-      "origen_demanda": "NC_ABIERTA",
-      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
-      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
-      "pregunta": "adopción de los 3 instrumentos",
-      "prioridad": 60,
-      "responsable": "servicio-gen2-38",
-      "siguiente_accion": "FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01",
-      "suficiencia": null,
-      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
-      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
-      "variables": "adopción de los 3 instrumentos",
-      "version_pregunta": "AUTO-NC-v1-364d29a076b1"
     },
     {
       "antecedentes_nc": [],
@@ -30853,14 +30581,48 @@
       "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
       "variables": "un [deriva] posterior citado por run y PR, check VERDE, fusionado por auto-merge, status en main con las vistas del día",
       "version_pregunta": "AUTO-NC-v1-2a2636186d79"
+    },
+    {
+      "antecedentes_nc": [],
+      "aplica_contrato_cientifico": true,
+      "brecha": "check.py --baseline VERDE no corrido en la sesión",
+      "condicion_reapertura": null,
+      "consumidor": "GEN2-TRAMITE-FIRMAS-16/«Hecho»",
+      "contrato_cientifico_completo": false,
+      "contrato_operativo": "DESCRIPCION_MINIMA_DERIVADA",
+      "cursor_continuacion": null,
+      "estado_ruteo": "NO_SONDA",
+      "etapa_faltante": "DECISION_O_IMPLEMENTACION",
+      "evidencia_disponible": "ninguno sobre contadores; «Hecho» pendiente del juez",
+      "evidencias": [
+        "forense/no-corrido.tsv#NC-260925-GEN2-TRAMITE-FIRMAS-16-a362-01"
+      ],
+      "frontera": "ninguno sobre contadores; «Hecho» pendiente del juez",
+      "id": "NC-260925-GEN2-TRAMITE-FIRMAS-16-a362-01",
+      "investigacion_previa": "NO-VERIFICABLE-AQUÍ: la suite completa excede 10 min en nube; --rapido VERDE (0 FAIL)",
+      "motivo_ruteo": "etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa",
+      "naturaleza_necesidad": "CIENTIFICA_O_DE_ADOPCION",
+      "opciones_decision": [],
+      "origen_demanda": "NC_ABIERTA",
+      "periodo": "EL_DECLARADO_POR_LA_NC; no inferir vigencia",
+      "poblacion": "NO_ESPECIFICADA_EN_NC; verificar antes de evaluar suficiencia",
+      "pregunta": "check.py --baseline VERDE no corrido en la sesión",
+      "prioridad": 60,
+      "responsable": "CI de PR #1137 (job suite)",
+      "siguiente_accion": "CI de PR #1137 (job suite)",
+      "suficiencia": null,
+      "unidad": "NO_ESPECIFICADA_EN_NC; verificar antes de calcular",
+      "uso": "INVESTIGACION-DE-BRECHA; uso científico por decidir",
+      "variables": "check.py --baseline VERDE no corrido en la sesión",
+      "version_pregunta": "AUTO-NC-v1-001e7c7233a8"
     }
   ],
   "seleccion_siguiente": {
     "corte": "2026-09-25",
-    "demanda_activa_total": 359,
-    "demanda_con_contrato_operativo": 360,
+    "demanda_activa_total": 352,
+    "demanda_con_contrato_operativo": 353,
     "demanda_configurada": 7,
-    "demanda_vigente_total": 360,
+    "demanda_vigente_total": 353,
     "demandas_independientes_vigentes": 1,
     "elegidos": [
       {
@@ -32132,10 +31894,6 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=TUBERIA (acto de canal que mesa nombre al decidir el formato de publicación de resultados.tsv); siguiente=TUBERIA (acto de canal que mesa nombre al decidir el formato de publicación de resultados.tsv)"
       },
       {
-        "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-02",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=DIFERIDO-A:acto sucesor que corra o verifique su replay (GEN2-CONTADORES-CONSUMO-3 u homologo); siguiente=DIFERIDO-A:acto sucesor que corra o verifique su replay (GEN2-CONTADORES-CONSUMO-3 u homologo)"
-      },
-      {
         "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ec71-03",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=mesa: resolver con opciones explícitas la brecha: Extender tools/escribe_relevo_consumo.py o el canal de pines-de-mesa.tsv con un mecanismo que mueva legacy_activas_por_consumidor__catalogo_de_momentos para los momentos del catalogo (contratos-otros-consumidores.md: procedencia 40, catalogo 23 incl. M08, celdas-D 6)."
       },
@@ -32149,11 +31907,11 @@
       },
       {
         "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-03",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-3; siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-3"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4); siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)"
       },
       {
         "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-04",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-3; siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-3"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B5, opción (a)); siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-3 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B5, opción (a))"
       },
       {
         "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-2-e0db-05",
@@ -32168,20 +31926,12 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=ASTRA5-U2-GENERO-ENDIREH (Astra) o SIN-ASIGNAR; siguiente=ASTRA5-U2-GENERO-ENDIREH (Astra) o SIN-ASIGNAR"
       },
       {
-        "id": "NC-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-02",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-01 → GEN2-ADOPCION-3 (sucesor que el encargo nombra) o ADENDA a este acto; siguiente=FP-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-01 → GEN2-ADOPCION-3 (sucesor que el encargo nombra) o ADENDA a este acto"
-      },
-      {
         "id": "NC-260924-GEN2-REPLAY-NO-VERIFICADOS-1-822a-03",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=TUBERIA (acto de canal que resuelva …749c-03; debe correr registro --verifica --escribe --lote con estos seis, o hacer que lote_desde_asientos recupere asientos no proyectados)"
       },
       {
         "id": "NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-02",
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-TUBERIA-VISTA-NORMALIZADA-2; siguiente=GEN2-TUBERIA-VISTA-NORMALIZADA-2"
-      },
-      {
-        "id": "NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-04",
-        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=GEN2-ASTRA5-U5-ADQUISICION-1 vía /adquiere; siguiente=GEN2-ASTRA5-U5-ADQUISICION-1 vía /adquiere"
       },
       {
         "id": "NC-260924-ASTRA5-U0-MAPA-DOMINIOS-63db-05",
@@ -32197,11 +31947,7 @@
       },
       {
         "id": "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-4; siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-4"
-      },
-      {
-        "id": "NC-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-02",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01; siguiente=FP-260924-GEN2-CATALOGO-CONTRATO-Y-TEST-1-23e3-01"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-ADOPCION-BLOQUE-Y-PINES-4 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4); siguiente=GEN2-ADOPCION-BLOQUE-Y-PINES-4 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B4)"
       },
       {
         "id": "NC-260924-GEN2-ADOPCION-BLOQUE-Y-PINES-4-1ad0-01",
@@ -32253,15 +31999,7 @@
       },
       {
         "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-07",
-        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02; siguiente=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02"
-      },
-      {
-        "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-08",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03; siguiente=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-03"
-      },
-      {
-        "id": "NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-09",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04; siguiente=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-04"
+        "razon": "ruteo=NO_SONDA: etapa vigente VALIDACION; no corresponde investigación externa; responsable=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-ASTRA5-U5-ADQUISICION-2 (C1 firmada (a)); siguiente=FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-ASTRA5-U5-ADQUISICION-2 (C1 firmada (a))"
       },
       {
         "id": "NC-260924-GEN2-PISOS-GEN2-2-2518-01",
@@ -32308,14 +32046,6 @@
         "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=GEN2-SALUD-Y-BIENESTAR-PISOS-2; siguiente=GEN2-SALUD-Y-BIENESTAR-PISOS-2"
       },
       {
-        "id": "NC-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-06",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=servicio-gen2-38; siguiente=FP-260924-GEN2-SALUD-Y-BIENESTAR-PISOS-1-6d56-01"
-      },
-      {
-        "id": "NC-260924-GEN2-INFORME-V1-3-1-b1aa-01",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-INFORME-V1-3-1-b1aa-01; siguiente=FP-260924-GEN2-INFORME-V1-3-1-b1aa-01"
-      },
-      {
         "id": "NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-4-574d-01",
         "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=seguimiento de este PR tras el merge (mesa o /tramite lee el primer [deriva]); siguiente=seguimiento de este PR tras el merge (mesa o /tramite lee el primer [deriva])"
       },
@@ -32337,35 +32067,35 @@
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-01",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-02",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-03",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-04",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-05",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-06",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-07",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-08",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-09",
@@ -32377,19 +32107,19 @@
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-11",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FIRMAS-16 (mesa decide; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FIRMAS-16 (mesa decide; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-12",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-13",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-14",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-15",
@@ -32413,35 +32143,35 @@
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-20",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-21",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-22",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-23",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-24",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-RELEVO-MOTOR-34-1-a157-25",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota)"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=mesa; siguiente=FIRMAS-16 (mesa decide; ver forense/analisis/relevo-motor/nota) | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-RELEVO-CONSUMIDORES-2 (B1/B2/B3 firmadas)"
       },
       {
         "id": "NC-260924-GEN2-CLASE-AMAI-1-e773-01",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-CLASE-AMAI-1-e773-02; siguiente=FP-260924-GEN2-CLASE-AMAI-1-e773-02"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-CLASE-AMAI-1-e773-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CLASE-AMAI-2 (C7 firmada: levanta reserva acotada); siguiente=FP-260924-GEN2-CLASE-AMAI-1-e773-02 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CLASE-AMAI-2 (C7 firmada: levanta reserva acotada)"
       },
       {
         "id": "NC-260924-GEN2-CLASE-AMAI-1-e773-02",
-        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-CLASE-AMAI-1-e773-01; siguiente=FP-260924-GEN2-CLASE-AMAI-1-e773-01"
+        "razon": "ruteo=ESPERA_O_DELEGADA: precedencia explícita impide reactivación automática; responsable=FP-260924-GEN2-CLASE-AMAI-1-e773-01 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CATALOGO-V1-1-1 (A4 firmada); siguiente=FP-260924-GEN2-CLASE-AMAI-1-e773-01 | SUCEDIDA (GEN2-TRAMITE-FIRMAS-16): GEN2-CATALOGO-V1-1-1 (A4 firmada)"
       },
       {
         "id": "NC-260924-GEN2-CLASE-AMAI-1-e773-03",
@@ -32462,6 +32192,10 @@
       {
         "id": "NC-260924-GEN2-TUBERIA-RENDIMIENTO-1-ae2a-04",
         "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=GEN2-TUBERIA-RENDIMIENTO-2; siguiente=GEN2-TUBERIA-RENDIMIENTO-2"
+      },
+      {
+        "id": "NC-260925-GEN2-TRAMITE-FIRMAS-16-a362-01",
+        "razon": "ruteo=NO_SONDA: etapa vigente DECISION_O_IMPLEMENTACION; no corresponde investigación externa; responsable=CI de PR #1137 (job suite); siguiente=CI de PR #1137 (job suite)"
       },
       {
         "id": "NC-0260",
@@ -32519,8 +32253,8 @@
     "maximo": 3,
     "version": "GEN2-ADQ-INVESTIGACION-V1"
   },
-  "sha256_fuente": "d9af3088e83f3993d27d8b1ab9162643e204c0f216b93d41683fb2a152070f7b",
-  "sha256_insumos_demanda": "1332cc473a6412815872115bd06ea14d9fc572d728a13d426d54f9fc593d7ad8",
+  "sha256_fuente": "55dacc58be4071f74465b84908a6ff9fd2e793a5497e9d256af610e66eb93293",
+  "sha256_insumos_demanda": "3571bd9532dde730290f0f18e4c995f0b7e492cd00670bb6a3c800a8fcb04c94",
   "situaciones_elementos": {
     "CUBIERTA": 9,
     "EVALUACION_GEN2_DISPONIBLE": 70,
@@ -32532,8 +32266,8 @@
     "PENDIENTE_PREPARACION": 54,
     "PENDIENTE_VALIDACION": 39
   },
-  "total_activas": 360,
+  "total_activas": 353,
   "total_demandas_independientes": 1,
-  "total_nc_abiertas": 359,
+  "total_nc_abiertas": 352,
   "version": "GEN2-ADQ-INVESTIGACION-V1"
 }
