@@ -1,0 +1,3599 @@
+# CALC-ENBIARE-PISOS-BIENESTAR-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENBIARE-PISOS-BIENESTAR-0001
+spec_md: ../../../forense/prereg-caja/SALUD-ENBIARE-PISOS-spec-v1_0.md
+spec_md_sha256: 18aa71044e27587d8e502d246a8d6811dee977464846dc82fbd0189c8ebb346d
+script: data/corrida0/CALC-ENBIARE-PISOS-BIENESTAR-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-SALUD-Y-BIENESTAR-PISOS-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-SALUD-Y-BIENESTAR-PISOS-1
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2, F-ASTRA-5-4, regla 6, E.6 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  ola_unica: ENBIARE 2021 (unica ola en corpus; se abre, E.6)
+inputs:
+- id: enbiare2021_bd_csv_zip
+  origen: manifiesto
+  sha256: afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354
+  funcion: DATO
+  nota: ENBIARE 2021 base de datos (TENBIARE, TSDEM)
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: lee_dta/lee_csv_zip, marginales, bootstrap, resumen, persistencia, ic_calibrado ejecutados desde
+    estos bytes
+variables:
+- archivo: TENBIARE.csv
+  variable: FOLIO
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: VIV_SEL
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: HOGAR
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: N_REN
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: FAC_ELE
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: EST_DIS
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: UPM_DIS
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: TLOC
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PA1
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PA5
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB1_01
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB1_02
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB1_04
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB1_11
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB2_1
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PB2_2
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD3_1
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD3_2
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PG6
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PG7
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_1
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_2
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_3
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_4
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_5
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_6
+  rol: reactivo o diseno
+- archivo: TENBIARE.csv
+  variable: PD2_7
+  rol: reactivo o diseno
+- archivo: TSDEM.csv
+  variable: FOLIO
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: VIV_SEL
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: HOGAR
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: N_REN
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: SEXO
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: EDAD
+  rol: eje o llave
+- archivo: TSDEM.csv
+  variable: NIVEL
+  rol: eje o llave
+universo: Persona elegida 18+ (TENBIARE); FAC_ELE>0; EST_DIS y UPM_DIS no vacios; ejes de TSDEM por FOLIO+VIV_SEL+HOGAR+N_REN.
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD, ESCOLARIDAD, TLOC); nunca cruces.
+ponderador: FAC_ELE
+transformacion: 'Recodificacion por texto: lista-cerrada-P1 §2 (ENBIARE) y spec §2-§3.'
+estimando: Pisos por segmento ENBIARE 2021 de 12 conductas/escalas con IC de diseno; sin persistencia
+  (una ola).
+seed:
+  aplica: true
+  valor: 20260924
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  ola: '2021'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-FILAS-ELEGIDOS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-JOIN-SIN-SOCIODEMOGRAFICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: media ponderada escala 0-10
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-INPUT-RECETA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENBIARE-PISOS-BIENESTAR-G-OLA-UNICA
+  tipo: texto
+  unidad: declaración
