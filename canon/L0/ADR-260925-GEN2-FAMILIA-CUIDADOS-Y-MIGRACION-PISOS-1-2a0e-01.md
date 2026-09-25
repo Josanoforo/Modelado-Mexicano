@@ -1,0 +1,3 @@
+# ADR-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01
+
+25/sep/2026 · `ACTO GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1` (CAJA). Tres CALC de pisos por segmento sellados desde microdato (ENADID 2009–2018 con IC calibrado de persistencia, 2023 reservada; ENASIC 2022; Pew GAS México 2013–2023, 2025 reservada), 24 conductas: FAMILIA_CUIDADOS 6 · VEJEZ 9 · PAREJA 2 · MIGRACION 7. Verify aislado REPRODUCE/IDENTICO ×3. VEJEZ-002 COINCIDE. EMIF NO-OBTENIDO. Sin adopción: FP `…-2a0e-01..03`. Nota `forense/notas/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-cierre.md`.
