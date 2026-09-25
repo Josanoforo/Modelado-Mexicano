@@ -30687,7 +30687,13 @@
 - id: enigh2024_nc_csv
   usado_para: 'reserva ENIGH 2024 asentada por #964 (o por §2 de este encargo si aún no está
     en main): nueva serie ENIGH 2024, sin consumidor de motor declarado hoy -- solo se baja
-    y se hashea'
+    y se hashea. SIGUE RESERVADA (decisiones.tsv reserva:enigh2024). APERTURA-PARCIAL: C7,
+    columnas [viviendas.folioviv, viviendas.cuart_dorm, viviendas.bano_comp, hogares.folioviv,
+    hogares.foliohog, hogares.conex_inte, hogares.num_auto, hogares.num_van, hogares.num_pick,
+    concentrado.folioviv, concentrado.foliohog, concentrado.educa_jefe, concentrado.ocupados,
+    concentrado.factor, concentrado.est_dis, concentrado.upm] -- solo distribución NSE AMAI
+    nacional por hogares, CALC-AMAI-NSE-ENIGH-2024-0001 (GEN2-CLASE-AMAI-2); ver decisiones.tsv
+    reserva:enigh2024-nse-amai-apertura-parcial'
   url_origen: https://www.inegi.org.mx/contenidos/programas/enigh/nc/2024/datosabiertos/conjunto_de_datos_enigh2024_ns_csv.zip
   fecha_descarga: '2026-09-21'
   descargado_por: agente, directamente de inegi.org.mx (patrón datosabiertos)
