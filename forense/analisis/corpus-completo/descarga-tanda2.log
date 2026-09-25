@@ -1,0 +1,5 @@
+pendientes: 4716
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ccpv/1990/doc/fd_cgpv1990.pdf
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ccpv/1990/doc/catalogos_1990.xls
+FALLO 000 curl: (56) OpenSSL SSL_read: OpenSSL/3.5.5: error:0A000126:SSL routines::unexpec https://www.inegi.org.mx/contenidos/programas/ccpv/1990/microdatos/cgpv90p_01_dbf.zip
+tres fallos seguidos: espera 600 s
