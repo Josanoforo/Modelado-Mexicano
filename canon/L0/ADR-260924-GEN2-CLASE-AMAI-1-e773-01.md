@@ -1,0 +1,3 @@
+# ADR-260924-GEN2-CLASE-AMAI-1-e773-01
+
+24/sep/2026 · `ACTO GEN2-CLASE-AMAI-1` (CAJA). Primer corte de clase AMAI del programa: NSE AMAI 2024 construido por hogar en ENIGH 2022 (reproduce la distribución publicada por AMAI), ENIF 2021/2024 y ENDUTIH 2023–2025 (aproximaciones declaradas; ENDUTIH 2024–2025 desviadas y rotuladas); ENVIPE y ENCIG no lo permiten por texto. Seis CALC sellados con `verify` REPRODUCE; 28 conductas con piso por NSE; del catálogo U1, 17 de 55 conductas tienen corte de clase y 23 (victimización y trámites) no pueden tenerlo. Recomienda a mesa NSE como eje con reserva de instrumento (FP e773-01). No adopta.
