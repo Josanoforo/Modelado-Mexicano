@@ -267,7 +267,8 @@ DERIVADOS_DEL_CANAL = (
 def _sucios_ajenos(porcelain: str) -> list[str]:
     """Rutas modificadas (sin contar no rastreados) que NO son derivados del canal. Puro."""
     rutas = [ln.split(maxsplit=1)[1] for ln in porcelain.splitlines() if ln.strip()]
-    return sorted(r for r in rutas if r not in DERIVADOS_DEL_CANAL)
+    # VISTA-NORMALIZADA-4: `data/corrida0/<CALC>/valores-vista/*` también lo escribe el canal.
+    return sorted(r for r in rutas if r not in DERIVADOS_DEL_CANAL and "/valores-vista/" not in r)
 
 
 def _es_origin_main_limpio() -> tuple[bool, str]:

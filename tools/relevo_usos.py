@@ -639,7 +639,9 @@ def _canal_c3(spec: dict) -> tuple[set[str], set[str]]:
 def deriva() -> tuple[list[dict], dict]:
     slots = _lee_tsv(C0 / "demanda-resultados.tsv")
     corridas = _lee_tsv(C0 / "corridas.tsv")
-    resultados = _lee_tsv(C0 / "resultados.tsv")
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4: `valor` REF -> texto sellado.
+    from vista import resuelve_fila  # noqa: PLC0415
+    resultados = [resuelve_fila(f) for f in _lee_tsv(C0 / "resultados.tsv")]
     declarado = corrida0._ids_corrida0_declarados()
     specs = _specs()
 
