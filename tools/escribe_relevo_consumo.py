@@ -794,6 +794,188 @@ def relevo_consumidores_v4(apply_: bool = False) -> None:
             print(f"APLICADO: {rel}")
 
 
+# ── V5 · ACTO GEN2-RELEVO-CONSUMIDORES-2 (ADENDA-1, P5) · motor B1/B2 ─────
+# Firmas FIRMAS-16, verbatim (forense/firmas-pendientes.tsv, rama de #1137):
+#   a157-01 «SÍ: `emitir_binaria` devuelve el par GEN2 medido donde conducta y
+#   disparador coinciden; los ocho ASIGNADO se retiran; donde no coinciden, se
+#   conserva con rótulo.»
+#   a157-02 «SÍ: las cuatro conductas NO-ADOPTAR-NC-0107 salen del consumo
+#   vivo (rol histórico, sin sortear).»
+REGLA_UTIL = "tramite.gobierno_digital.util_sin_coercion"
+REGLA_DISC = "tramite.mordida.discrecional"
+REGLA_REG = "tramite.mordida.con_registro"
+REGLA_EVA = "tramite.evasion_norma"
+
+# (regla, ASIGNADO, hermano medido): coinciden conducta y disparador -> retira.
+B1_RETIRA = (
+    (REGLA_UTIL, "adopta", "adopta_encig2025_luz"),
+    (REGLA_UTIL, "rechaza_servicio", "rechaza_servicio_encig2025_luz"),
+)
+_NO_COINCIDE_MORDIDA = ("el hermano medido es SOLICITUD (ENCIG P8_3) o proxy "
+                        "descriptivo del grupo P8_4, no PAGO")
+_NO_COINCIDE_EVASION = ("el RESULT es la CONJUNTA P(no denunció ∧ norma inútil); "
+                        "la regla escribe la CONDICIONAL")
+# (regla, ASIGNADO, razón): no coinciden -> se conserva con rótulo.
+B1_CONSERVA = (
+    (REGLA_DISC, "paga_mordida", _NO_COINCIDE_MORDIDA),
+    (REGLA_DISC, "tramite_normal", _NO_COINCIDE_MORDIDA),
+    (REGLA_REG, "tramite_normal", _NO_COINCIDE_MORDIDA),
+    (REGLA_REG, "paga_mordida", _NO_COINCIDE_MORDIDA),
+    (REGLA_EVA, "evade_norma", _NO_COINCIDE_EVASION),
+    (REGLA_EVA, "cumple_norma", _NO_COINCIDE_EVASION),
+)
+B2_HISTORICO = (
+    (REGLA_REG, "paga_mordida_encig2025_presencial"),
+    (REGLA_REG, "tramite_normal_encig2025_presencial"),
+    (REGLA_REG, "paga_mordida_encig2025_digital"),
+    (REGLA_REG, "tramite_normal_encig2025_digital"),
+)
+ROTULO_B1 = "ASIGNADO-CONSERVADO-B1"
+# Líneas que una M sellada cita por TEXTO EXACTO (M-TRA-M-01/02 vía
+# tools/emite_m.py:cita_p; tests/test_emite_m_calibracion.py::test_regresion_p2_pasa):
+# su rótulo va en un comentario propio encima, nunca en la línea.
+CITADAS_POR_M_SELLADA = frozenset({(REGLA_DISC, "paga_mordida")})
+
+
+def _calc_de_result(result: str) -> str:
+    hits = [c.name for c in sorted(CORRIDAS_DIR.iterdir())
+            if (c / "resultados.json").exists()
+            and result in json.loads((c / "resultados.json").read_text())
+            .get("resultados", {})]
+    if len(hits) != 1:
+        raise ValueError(f"{result}: se esperaba un CALC único, hay {hits}")
+    return hits[0]
+
+
+def guardas_b1(regla: dict, hermano: str, ctx: dict) -> dict:
+    """El hermano medido ya cita un RESULT GEN2: CALC sellado, cuenta GEN2,
+    replay afirmativo en RESULTADO y `p` = RESULT al grano de seis decimales.
+    Devuelve la salida cruda del hermano."""
+    import pines_mesa  # noqa: PLC0415
+    s = [e for e in regla["entonces"] if e.get("conducta") == hermano]
+    if len(s) != 1:
+        raise ValueError(f"{regla['id']}:{hermano}: hermano no único")
+    s = s[0]
+    result = s.get("corrida0_resultado_id")
+    if not result or s.get("corrida0_generacion") != "GEN2":
+        raise ValueError(f"{regla['id']}:{hermano}: el hermano no cita GEN2")
+    calc = _calc_de_result(result)
+    carpeta = CORRIDAS_DIR / calc
+    if not _sello_coincide(carpeta):
+        raise ValueError(f"{hermano}: {calc} sello discordante")
+    spec_id = calc.split("--")[0]
+    estado = ctx.get(spec_id) or ctx.get(calc)
+    if (estado is None or not str(estado["estado"]).startswith("SELLADA")
+            or estado["cuenta_gen2"] != "SI"
+            or estado["resultado_replay"] not in pines_mesa.veredictos_afirmativos_en_resultado()):
+        raise ValueError(f"{hermano}: {calc} no pasa las guardas de 4.1 ({estado})")
+    valor = json.loads((carpeta / "resultados.json").read_text())["resultados"][result]
+    if f"{float(s['p']):.6f}" != f"{float(valor):.6f}":
+        raise ValueError(f"{hermano}: p={s['p']} != {result}={valor}")
+    return s
+
+
+def _linea_flujo(lineas: list[str], regla_id: str, conducta: str) -> int:
+    i = _ubica_conducta(lineas, regla_id, conducta)
+    if not lineas[i].lstrip().startswith("- {"):
+        raise ValueError(f"{regla_id}:{conducta}: se esperaba forma flujo")
+    return i
+
+
+def _anade_campos(linea: str, campos: str) -> str:
+    codigo, sep, comentario = linea.rstrip("\n").partition("}  #")
+    if sep:
+        return f"{codigo}, {campos}}}  #{comentario}\n"
+    cuerpo = linea.rstrip("\n")
+    if not cuerpo.endswith("}"):
+        raise ValueError(f"línea sin cierre de flujo: {cuerpo[:60]!r}")
+    return f"{cuerpo[:-1]}, {campos}}}\n"
+
+
+def transform_motor_v5(source: str, ctx: dict) -> str:
+    reglas = {r["id"]: r for r in _yaml_load_texto(source)["reglas"]}
+    lineas = source.splitlines(keepends=True)
+    for regla_id, asignado, hermano in B1_RETIRA:
+        i = _linea_flujo(lineas, regla_id, asignado)
+        if "corrida0_" in lineas[i]:
+            if f"B1 (FIRMAS-16): par GEN2 de {hermano}" in lineas[i]:
+                continue
+            raise ValueError(f"{regla_id}:{asignado}: cita previa distinta; rechazo atómico")
+        viejo = next(e for e in reglas[regla_id]["entonces"] if e["conducta"] == asignado)
+        if viejo.get("clase") != "ASIGNADO":
+            raise ValueError(f"{regla_id}:{asignado}: no es ASIGNADO")
+        s = guardas_b1(reglas[regla_id], hermano, ctx)
+        clase = json.dumps(s["clase"], ensure_ascii=False)
+        lineas[i] = (
+            f"      - {{conducta: {asignado}, p: {float(s['p']):.6f}, clase: {clase}, "
+            f"corrida0_resultado_id: {s['corrida0_resultado_id']}, corrida0_generacion: GEN2}}"
+            f"  # B1 (FIRMAS-16): par GEN2 de {hermano}; conducta y disparador coinciden "
+            f"(el universo impone sin coerción ni riesgo fiscal, firma a1). Retirado el "
+            f"ASIGNADO p={viejo['p']} (ACTO {ACTO_V4}).\n")
+    for regla_id, asignado, razon in B1_CONSERVA:
+        i = _linea_flujo(lineas, regla_id, asignado)
+        previa = lineas[i - 1].lstrip()
+        if ROTULO_B1 in lineas[i] or (previa.startswith("#") and ROTULO_B1 in previa):
+            continue
+        if "uso_motor:" in lineas[i].split("}  #", 1)[0]:
+            raise ValueError(f"{regla_id}:{asignado}: ya trae uso_motor; rechazo atómico")
+        rotulo = json.dumps(f"{ROTULO_B1} (FIRMAS-16): no coinciden conducta y "
+                            f"disparador -- {razon}; estimando a re-especificar en CAJA",
+                            ensure_ascii=False)
+        if (regla_id, asignado) in CITADAS_POR_M_SELLADA:
+            lineas.insert(i, f"      # {json.loads(rotulo)} -- rótulo fuera de la "
+                             f"línea: M-TRA-M-01/02 la citan por texto exacto.\n")
+            continue
+        lineas[i] = _anade_campos(lineas[i], f"uso_motor: {rotulo}")
+    for regla_id, conducta in B2_HISTORICO:
+        i = _linea_flujo(lineas, regla_id, conducta)
+        codigo = lineas[i].split("}  #", 1)[0]
+        if "rol_uso: historico" in codigo:
+            continue
+        if "rol_uso:" in codigo or "NO-ADOPTAR-NC-0107" not in codigo:
+            raise ValueError(f"{regla_id}:{conducta}: no es NO-ADOPTAR-NC-0107 sin rol")
+        lineas[i] = _anade_campos(lineas[i], "rol_uso: historico")
+    return "".join(lineas)
+
+
+def relevo_motor_v5(apply_: bool = False) -> None:
+    old = TARGET.read_text(encoding="utf-8")
+    nuevo = transform_motor_v5(old, _ctx_corridas())
+    from milpa.src import emisor  # noqa: PLC0415
+    with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", suffix=".yaml", delete=False) as fh:
+        fh.write(nuevo)
+        ruta_tmp = Path(fh.name)
+    try:
+        cargadas = {r.id: r for r in emisor.cargar_reglas(ruta_tmp)}
+    finally:
+        ruta_tmp.unlink(missing_ok=True)
+    for regla_id, asignado, hermano in B1_RETIRA:
+        a = emisor.emitir_binaria(cargadas[regla_id], asignado)
+        h = emisor.emitir_binaria(cargadas[regla_id], hermano)
+        if a.estado == "NO-EMITE" or a.valor_punto != h.valor_punto or a.resultado_id != h.resultado_id:
+            raise ValueError(f"{regla_id}:{asignado}: no devuelve el par GEN2 de {hermano}")
+    for regla_id, conducta in B2_HISTORICO:
+        if emisor.emitir_binaria(cargadas[regla_id], conducta).estado != "NO-EMITE":
+            raise ValueError(f"{regla_id}:{conducta}: sigue emitiendo")
+    diff = "".join(difflib.unified_diff(
+        old.splitlines(keepends=True), nuevo.splitlines(keepends=True),
+        fromfile="a/milpa/tramite.yaml", tofile="b/milpa/tramite.yaml"))
+    print(diff or "SIN-DIFF: ya aplicado")
+    if apply_ and nuevo != old:
+        with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=TARGET.parent,
+                prefix=".relevo-consumo-", delete=False) as handle:
+            temp = Path(handle.name)
+            handle.write(nuevo)
+        try:
+            os.replace(temp, TARGET)
+        finally:
+            temp.unlink(missing_ok=True)
+        print(f"APLICADO: B1 retira {len(B1_RETIRA)}, conserva {len(B1_CONSERVA)} "
+              f"con rótulo; B2 {len(B2_HISTORICO)} a rol histórico")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true")
@@ -814,7 +996,14 @@ def main() -> None:
         help="modo V4 (ACTO GEN2-RELEVO-CONSUMIDORES-2): cita B4 en "
              "milpa/procedencia.yaml y columnas de relevo en el catálogo de "
              "momentos. Por defecto imprime el diff seco.")
+    parser.add_argument(
+        "--motor-b1-b2", action="store_true",
+        help="modo V5 (ACTO GEN2-RELEVO-CONSUMIDORES-2, ADENDA-1): FIRMAS-16 "
+             "B1 y B2 sobre milpa/tramite.yaml. Por defecto imprime el diff seco.")
     args = parser.parse_args()
+    if args.motor_b1_b2:
+        relevo_motor_v5(apply_=args.apply)
+        return
     if args.relevo_consumidores_2:
         relevo_consumidores_v4(apply_=args.apply)
         return

@@ -333,6 +333,21 @@ def _consumidores_conductas(crudo_tramite, ambiguas) -> list[dict]:
     return filas
 
 
+# FIRMAS-16 B2/B3 (FP a157-02/03, FIRMADA 24/sep/2026; ejecuta
+# RELEVO-CONSUMIDORES-2). B2: una salida con `rol_uso: historico` sale del
+# consumo vivo (uso activo=NO). B3: `tipo_uso corte_pi` fuera del contador.
+ROL_HISTORICO = "historico"
+TIPOS_FUERA_DEL_CONTADOR = frozenset({"corte_pi"})
+
+
+def _consumidores_rol_historico() -> set[str]:
+    """Consumidores de `tramite.yaml` cuya salida declara `rol_uso: historico`
+    (B2), leidos del YAML vivo: la demanda derivada no se regenera para esto."""
+    return {f"milpa/tramite.yaml:{r.id}:{s.conducta}"
+            for r in cargar_reglas(TRAMITE) for s in r.entonces
+            if s.rol_uso == ROL_HISTORICO}
+
+
 def medido_alguno(regla) -> bool:
     return any(str(s.clase or "").startswith("MEDIDO") for s in regla.entonces)
 
@@ -4353,6 +4368,7 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
             "orden_causal": c["orden_causal"],
         })
 
+    retirados_historico = _consumidores_rol_historico()
     usos_por_resultado: dict[str, int] = {}
     for r in demanda_res:
         rid = r["resultado_id"]
@@ -4384,7 +4400,8 @@ def _filas_registro(verifica: bool = False, verifica_ids: set | None = None) -> 
         usos_por_resultado[rid] = 1
         filas_usos.append({
             "resultado_id": rid, "consumidor": r["consumidor"],
-            "tipo_uso": r["tipo"], "activo": "SI",
+            "tipo_uso": r["tipo"],
+            "activo": "NO" if r["consumidor"] in retirados_historico else "SI",
             "reglas_impacto": _regla_de(r["consumidor"]),
             # `generacion_leida` se deriva de `corrida0_generacion`, una
             # señal INDEPENDIENTE de si `corrida0_resultado_id` esta
@@ -5134,6 +5151,10 @@ def status(imprime: bool = True) -> dict:
     sellada = lambda f: str(f["estado"]).startswith(("SELLADA", "SUPERADO"))
     activos = [f for f in resultados if f["origen"] == "DEMANDA"]
     usos_activos = [u for u in usos if u["activo"] == "SI"]
+    # FIRMAS-16 B3 (ejecuta RELEVO-CONSUMIDORES-2): una particion sellada no
+    # es lectura numerica; se cuenta aparte, no se borra del registro.
+    fuera_por_firma = [u for u in usos_activos if u["tipo_uso"] in TIPOS_FUERA_DEL_CONTADOR]
+    usos_activos = [u for u in usos_activos if u["tipo_uso"] not in TIPOS_FUERA_DEL_CONTADOR]
 
     # ACTO GEN2-PRE-E5 · P3: separar MEDICION de ADOPCION. Medir (sellar un
     # RESULT) y adoptar (que un consumidor activo lo lea) son eventos
@@ -5186,6 +5207,11 @@ def status(imprime: bool = True) -> dict:
         # cifra (firma 20/sep/2026). Los cuatro son RELEVABLES: ninguno se
         # declara fuera del contador.
         **_legacy_por_consumidor(usos_activos),
+        "legacy_fuera_del_contador_por_firma__corte_pi": sum(
+            1 for u in fuera_por_firma if u["generacion_leida"] == GENERACION_LEGADO),
+        "usos_retirados_por_firma__rol_historico": sum(
+            1 for u in usos if u["activo"] == "NO"
+            and u["consumidor"] in _consumidores_rol_historico()),
         **_clases_de_relevo(usos_activos),
         "N_resultados_gen2_sellados": len(ids_sellados_gen2),
         "N_resultados_gen2_pendientes_adopcion": len(ids_pendientes),

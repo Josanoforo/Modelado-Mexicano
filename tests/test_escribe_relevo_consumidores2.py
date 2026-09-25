@@ -96,3 +96,59 @@ def test_guarda_rechaza_calc_que_ingiere(ctx):
     with pytest.raises(ValueError):
         E.guardas_v4("x", "CALC-GOB-DIGITAL-EXE-ADJUDICACION-0001",
                      "RESULT-GOB-EXE15-ADJ-2025-B-BIS", ctx)
+
+
+# ── V5 · FIRMAS-16 B1/B2 sobre milpa/tramite.yaml (ADENDA-1, P5) ───────────
+from milpa.src import emisor  # noqa: E402
+
+_REGLAS = {r.id: r for r in emisor.cargar_reglas(E.TARGET)}
+
+
+@pytest.mark.parametrize("llave", E.B1_RETIRA, ids=lambda k: f"{k[0]}:{k[1]}")
+def test_b1_retira_devuelve_par_gen2_del_hermano(llave):
+    regla_id, asignado, hermano = llave
+    a = emisor.emitir_binaria(_REGLAS[regla_id], asignado)
+    h = emisor.emitir_binaria(_REGLAS[regla_id], hermano)
+    assert a.valor_punto == h.valor_punto and a.resultado_id == h.resultado_id
+    assert a.resultado_generacion == "GEN2" and a.clase != "ASIGNADO"
+
+
+@pytest.mark.parametrize("llave", E.B1_CONSERVA, ids=lambda k: f"{k[0]}:{k[1]}")
+def test_b1_conserva_asignado_con_rotulo(llave):
+    regla_id, asignado, _razon = llave
+    s = next(x for x in _REGLAS[regla_id].entonces if x.conducta == asignado)
+    assert s.clase == "ASIGNADO" and s.resultado_id is None
+    lineas = E.TARGET.read_text(encoding="utf-8").splitlines()
+    i = E._ubica_conducta([l + "\n" for l in lineas], regla_id, asignado)
+    if (regla_id, asignado) in E.CITADAS_POR_M_SELLADA:
+        assert E.ROTULO_B1 in lineas[i - 1] and E.ROTULO_B1 not in lineas[i]
+    else:
+        assert E.ROTULO_B1 in (s.uso_motor or "")
+
+
+@pytest.mark.parametrize("llave", E.B2_HISTORICO, ids=lambda k: k[1])
+def test_b2_rol_historico_no_emite(llave):
+    regla_id, conducta = llave
+    s = next(x for x in _REGLAS[regla_id].entonces if x.conducta == conducta)
+    assert s.rol_uso == "historico" and "NO-ADOPTAR-NC-0107" in s.uso_motor
+    assert emisor.emitir_binaria(_REGLAS[regla_id], conducta).estado == "NO-EMITE"
+
+
+def test_v5_idempotente(ctx):
+    fuente = E.TARGET.read_text(encoding="utf-8")
+    assert E.transform_motor_v5(fuente, ctx) == fuente
+
+
+def test_b1_rechaza_hermano_sin_cita(ctx):
+    regla = {"id": "x", "entonces": [{"conducta": "h", "p": 0.5, "clase": "MEDIDO"}]}
+    with pytest.raises(ValueError, match="no cita GEN2"):
+        E.guardas_b1(regla, "h", ctx)
+
+
+def test_b3_cortes_fuera_del_contador_y_b2_no_activo():
+    assert "corte_pi" in C.TIPOS_FUERA_DEL_CONTADOR
+    v = C._filas_registro(verifica=False)
+    esperados = {f"milpa/tramite.yaml:{r}:{c}" for r, c in E.B2_HISTORICO}
+    assert C._consumidores_rol_historico() == esperados
+    hist = [u for u in v["usos"] if u["consumidor"] in esperados]
+    assert len(hist) == len(esperados) and all(u["activo"] == "NO" for u in hist)
