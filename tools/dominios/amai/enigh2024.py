@@ -54,6 +54,7 @@ COLUMNAS = {
                     "est_dis", "upm"),
 }
 AGRUPACIONES = ("nivel", "grupo")
+RAIZ = Path(__file__).resolve().parents[3]   # igual desde tools/ y desde el CALC
 LEIDAS: list[str] = []
 
 
@@ -153,6 +154,18 @@ def guardia_salida(out: dict) -> None:
         raise GuardiaAgrupacion(f"salida fuera de la distribución NSE nacional: {malos}")
 
 
+def _tabla(texto: str, par: dict) -> str:
+    """El JSON (> 1 KB) va a `data/corrida0/<calc_id>/tablas/` y el RESULT lo
+    cita por `REF:<ruta>#sha256:<hex>` (regla VALOR-LARGO del conducto)."""
+    rel = f"data/corrida0/{par['calc_id']}/tablas/nse-enigh2024.json"
+    ruta = RAIZ / rel
+    datos = texto.encode("utf-8")
+    ruta.parent.mkdir(parents=True, exist_ok=True)
+    if not ruta.exists() or ruta.read_bytes() != datos:
+        ruta.write_bytes(datos)
+    return f"REF:{rel}#sha256:{hashlib.sha256(datos).hexdigest()}"
+
+
 def medir(inputs: dict, contrato: dict) -> dict:
     par = contrato["parametros"]
     if list(par["columnas_leidas"]) != lista_blanca():
@@ -192,9 +205,9 @@ def medir(inputs: dict, contrato: dict) -> dict:
            "construccion": {"componentes_faltantes": faltantes}, "distribucion": dist,
            "n_hogares_por_celda": n_celda, "suprimidas_n": suprimidas,
            "validacion": val, "modulos_sha256": modulos}
-    out = {pref + "-JSON": json.dumps(doc, ensure_ascii=False, sort_keys=True,
-                                      separators=(",", ":"), allow_nan=False),
-           pref + "-COLUMNAS-LEIDAS": ",".join(LEIDAS)}
+    texto = json.dumps(doc, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+                       allow_nan=False)
+    out = {pref + "-JSON": _tabla(texto, par), pref + "-COLUMNAS-LEIDAS": ",".join(LEIDAS)}
     for n in R.NIVELES:
         out[f"{pref}-DIST-{n}-P"] = None if n in suprimidas else dist["niveles"][n]
     for g in R.ORDEN_GRUPOS:

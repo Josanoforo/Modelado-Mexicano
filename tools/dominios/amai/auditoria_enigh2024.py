@@ -27,7 +27,7 @@ DERIVADOS = {"llave", "educa_jefe", "banos", "autos", "internet", "ocupados",
              "niveles", "grupos", "masa_puntaje_cero", "n_hogares_con_nse",
              "n_hogares_sin_nse", "estado", "desvio_max_grupo_pp", "desvio_max_nivel_pp",
              "parametros", "columnas_leidas", "input_id", "ruta_absoluta",
-             "viviendas", "hogares", "concentrado", "n_min", "sum", "size"}
+             "viviendas", "hogares", "concentrado", "n_min", "sum", "size", "calc_id"}
 
 
 def _funcion_de(arbol: ast.AST) -> dict[ast.AST, str]:

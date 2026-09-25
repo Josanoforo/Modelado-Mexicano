@@ -18,12 +18,12 @@ inputs:
   origen: repo
   funcion: CODIGO
   ruta: tools/dominios/amai/enigh2024.py
-  sha256: 40347e4ab74ac461739bbb09863319e3769a0ffa070966f97b67ecbca65fef8d
+  sha256: d10f3129cd44bf744440d02c71cf4e54938eeeb2555e17692774e889c3f8f27d
 - id: AMAI-AUDITORIA-ENIGH2024
   origen: repo
   funcion: CODIGO
   ruta: tools/dominios/amai/auditoria_enigh2024.py
-  sha256: 04f26b034f7351888e306e5434db36b5fb419a543509e08cf9447b7fc320be48
+  sha256: ad410042e3a18f2ce7bfae3ef4fcbaa49da752448027198246a0e6cac564573a
 - id: AMAI-REGLA
   origen: repo
   funcion: CODIGO
@@ -110,6 +110,7 @@ parametros:
   instrumento: ENIGH
   ola: '2024'
   input_id: enigh2024_nc_csv
+  calc_id: CALC-AMAI-NSE-ENIGH-2024-0001
   columnas_leidas:
   - viviendas.folioviv
   - viviendas.cuart_dorm
@@ -154,7 +155,7 @@ tolerancia:
 resultados:
 - id: RESULT-AMAI-NSE-ENIGH-2024-JSON
   tipo: texto
-  unidad: JSON sin identificadores individuales
+  unidad: REF a tablas/nse-enigh2024.json (JSON sin identificadores individuales)
 - id: RESULT-AMAI-NSE-ENIGH-2024-COLUMNAS-LEIDAS
   tipo: texto
   unidad: lista tabla.columna separada por comas

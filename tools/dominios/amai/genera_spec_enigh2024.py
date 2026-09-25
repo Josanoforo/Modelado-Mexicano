@@ -40,7 +40,7 @@ def sha(p: Path) -> str:
 
 
 def parametros(input_id: str) -> dict:
-    return {"instrumento": "ENIGH", "ola": "2024", "input_id": input_id,
+    return {"instrumento": "ENIGH", "ola": "2024", "input_id": input_id, "calc_id": CID,
             "columnas_leidas": E.lista_blanca(), "umbral_desvio_pp": 5.0, "n_min": 200,
             "referencia": "nota AMAI 2024 p.4 Figura 1 (ENIGH 2022)",
             "agrupacion": {"BAJO": ["E", "D", "D+"], "MEDIO": ["C-", "C"],
@@ -51,14 +51,21 @@ def parametros(input_id: str) -> dict:
 def genera() -> None:
     with tempfile.TemporaryDirectory() as t:
         z = zip_sintetico(Path(t) / "x.zip")
-        out = E.medir({"P": {"ruta_absoluta": str(z)}},
-                      {"parametros": parametros("P"), "seed": {"valor": 0}})
+        raiz, E.RAIZ = E.RAIZ, Path(t)   # la tabla sintética no toca el CALC real
+        try:
+            out = E.medir({"P": {"ruta_absoluta": str(z)}},
+                          {"parametros": parametros("P"), "seed": {"valor": 0}})
+        finally:
+            E.RAIZ = raiz
     carpeta = ROOT / "data/corrida0" / CID
     carpeta.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(ROOT / "tools/dominios/amai/enigh2024.py", carpeta / "medidor.py")
     resultados = []
     for k, v in out.items():
         tipo = _tipo(k, v)
+        if k.endswith("-JSON"):
+            tipo = {"tipo": "texto", "unidad": "REF a tablas/nse-enigh2024.json (JSON sin "
+                                               "identificadores individuales)"}
         if k.endswith("-COLUMNAS-LEIDAS"):
             tipo = {"tipo": "texto", "unidad": "lista tabla.columna separada por comas"}
         resultados.append({"id": k, **tipo})

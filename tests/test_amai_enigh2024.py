@@ -48,7 +48,7 @@ def zip_sintetico(ruta: Path, n: int = 3000, semilla: int = 7) -> Path:
 
 
 def contrato():
-    return {"parametros": {"input_id": "P", "columnas_leidas": E.lista_blanca(),
+    return {"parametros": {"input_id": "P", "calc_id": "CALC-SINTETICO", "columnas_leidas": E.lista_blanca(),
                            "umbral_desvio_pp": 5.0, "n_min": 200}, "seed": {"valor": 20260925}}
 
 
@@ -57,10 +57,12 @@ class TestGuardia(unittest.TestCase):
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
         cls.zip = zip_sintetico(Path(cls.tmp.name) / "x.zip")
+        cls.raiz, E.RAIZ = E.RAIZ, Path(cls.tmp.name)
         cls.out = E.medir({"P": {"ruta_absoluta": str(cls.zip)}}, contrato())
 
     @classmethod
     def tearDownClass(cls):
+        E.RAIZ = cls.raiz
         cls.tmp.cleanup()
 
     def test_auditoria_verde_sobre_el_fuente(self):
@@ -69,7 +71,10 @@ class TestGuardia(unittest.TestCase):
     def test_lee_exactamente_la_lista_blanca(self):
         self.assertEqual(self.out["RESULT-AMAI-NSE-ENIGH-2024-COLUMNAS-LEIDAS"].split(","),
                          E.lista_blanca())
-        self.assertNotIn("ing_cor", self.out["RESULT-AMAI-NSE-ENIGH-2024-JSON"])
+        ref = self.out["RESULT-AMAI-NSE-ENIGH-2024-JSON"]
+        self.assertTrue(ref.startswith("REF:data/corrida0/CALC-SINTETICO/tablas/"))
+        tabla = (Path(self.tmp.name) / ref[4:].split("#")[0]).read_text(encoding="utf-8")
+        self.assertNotIn("ing_cor", tabla)
 
     def test_distribucion_suma_uno(self):
         s = sum(self.out[f"RESULT-AMAI-NSE-ENIGH-2024-DIST-{g}-P"] for g in ("BAJO", "MEDIO", "ALTO"))
@@ -92,9 +97,11 @@ class TestGuardia(unittest.TestCase):
     def test_mutacion_lista_blanca_ampliada_para_en_medir(self):
         spec = importlib.util.spec_from_loader("mut", loader=None)
         mut = importlib.util.module_from_spec(spec)
+        mut.__file__ = str(ROOT / "tools/dominios/amai/enigh2024.py")
         exec(compile(FUENTE.replace('"est_dis", "upm"),', '"est_dis", "upm", "ing_cor"),'),
                      "mut", "exec"), mut.__dict__)
         self.assertIn("concentrado.ing_cor", mut.lista_blanca())
+        mut.RAIZ = Path(self.tmp.name)
         with self.assertRaises(mut.GuardiaColumnas):
             mut.medir({"P": {"ruta_absoluta": str(self.zip)}}, contrato())
 
