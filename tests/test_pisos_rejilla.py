@@ -104,14 +104,7 @@ def corre():
             errors.append(f"{row['cell_id']}: dictamen mezclado con resultados")
     with (ROOT/"data/corrida0/usos.tsv").open(encoding="utf-8",newline="") as fh:
         usage=list(csv.DictReader((line for line in fh if not line.startswith("#")),delimiter="\t"))
-    with (ROOT/"data/corrida0/decisiones.tsv").open(encoding="utf-8",newline="") as fh:
-        decisiones={r["objeto"]: r["decision"]
-                    for r in csv.DictReader(fh, delimiter="\t")}
-    # Un piso con firma de mesa sobre origen_numerico (objeto
-    # `origen:<calc_id>:<cell_id>` en decisiones.tsv) ya fue adoptado; su
-    # consumo no es "antes de adopción" (FP-260922-...-c45c-01).
-    floor_ids={r["cell_id"] for r in delivered if r["status"]=="CONSTRUIBLE"
-               and f"origen:{r['calc_id']}:{r['cell_id']}" not in decisiones}
+    floor_ids={r["cell_id"] for r in delivered if r["status"]=="CONSTRUIBLE"}
     if any(r["resultado_id"] in floor_ids for r in usage):
         errors.append("usos: un piso nuevo tiene consumo productivo antes de adopción")
     with CATALOGS.open(encoding="utf-8",newline="") as fh:
