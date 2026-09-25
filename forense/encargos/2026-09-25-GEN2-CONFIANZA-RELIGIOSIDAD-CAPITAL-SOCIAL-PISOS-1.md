@@ -38,3 +38,7 @@ No evalúa prospectivamente, no adopta, no construye series entre instrumentos. 
 - **qué:** Reports: … *Emociones morales* (solo lo medible) — reactivos de culpa, verguenza o dignidad · **por qué:** NO-VERIFICABLE-AQUÍ -- ninguno de los cuatro instrumentos trae reactivo de emocion moral (informes de estructura) · **impacto:** EMOCIONES_MORALES sin piso salvo confianza · **sucesor:** catálogo v1.2 (EMOCIONES_MORALES sin instrumento en corpus) · `NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-05`
 - **qué:** confianza interpersonal … (LAPOP, … WVS …) — serie WVS 1990-2012 (olas 2-6) citada por TRUST-001/003, INTER-032, CONS-012 · **por qué:** NO-VERIFICABLE-AQUÍ -- solo WVS ola 7 esta en corpus · **impacto:** la caida 33 % -> 12 % no se verifica · **sucesor:** SIN-ASIGNAR (adquisicion WVS olas 2-6) · `NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-06`
 - **qué:** LAPOP … (módulo EXC) — APUEST-006 mordida / corrupcion LAPOP 2004-2006 · **por qué:** FUERA-DE-PERÍMETRO -- dominio CONFIANZA pero objeto corrupcion; pertenece a GEN2-POLITICA/corrupcion (ASTRA5-U3 dictamen de olas) · **impacto:** sin piso de victimizacion por corrupcion aqui · **sucesor:** ASTRA5-U3-POLITICA sucesor · `NC-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-07`
+
+## CONSUMIDO
+
+Consumido por PR #1154 (`acto/gen2-confianza-religiosidad-capital-social-pisos-1`), 25/sep/2026. ADR-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01. El merge es de mesa.
