@@ -55,7 +55,8 @@ def pendientes_de_la_vista() -> set[str]:
     cab = lineas[1].split("\t")
     filas = (dict(zip(cab, l.split("\t"))) for l in lineas[2:])
     return {f["fuente_canonica"] for f in filas
-            if f["estado_A4A5"] == "PENDIENTE" and "corpus-completo/catalogo" in f["origen"]}
+            if f["estado_A4A5"].split("(")[0] in ("PENDIENTE", "OBTENIDO-PARCIAL", "NO-OBTENIDO-POR-ESTE-AGENTE")
+            and "corpus-completo/catalogo" in f["origen"]}
 
 
 def lee_catalogo() -> list[dict]:
@@ -95,6 +96,8 @@ def baja(url: str, destino: Path) -> tuple[str, int, str]:
 
 def _baja(url: str, destino: Path) -> tuple[str, int, str]:
     url = url.replace(" ", "%20")  # rutas INEGI con espacio literal (cnpje/cnije 2012)
+    if url.startswith("http://"):  # coneval.org.mx corta http (curl 52) y sirve https
+        url = "https://" + url[len("http://"):]
     p = subprocess.run(["curl", "-sS", "-L", "-A", UA, "--max-time", "3600",
                         "--connect-timeout", "30", "-o", str(destino), "-w", "%{http_code}", url],
                        capture_output=True, text=True)
@@ -214,6 +217,14 @@ def main() -> int:
             continue
         fallos_seguidos = 0
         dest.parent.mkdir(parents=True, exist_ok=True)
+        if dest.exists() and sha(dest) != s1:
+            # homónimo de otro módulo (m2/, m5/, iltefm/ vs ilm/): el destino lleva el
+            # directorio de origen como prefijo
+            segs = r["url"].split("?")[0].split("/")
+            dest = dest.parent / f"{segs[-2]}__{segs[-1]}"
+            if dest.exists() and sha(dest) != s1:  # mismo directorio padre: sube un nivel más
+                dest = dest.parent / f"{segs[-4]}__{segs[-2]}__{segs[-1]}"
+            base["destino"] = str(dest)
         if dest.exists() and sha(dest) != s1:
             anota({**base, "fecha_utc": fecha, "http_code": c1, "bytes": b1, "sha256_1": s1,
                    "sha256_2": s2, "estructura": est, "resultado": "DESTINO-OCUPADO-OTRO-SHA"})
