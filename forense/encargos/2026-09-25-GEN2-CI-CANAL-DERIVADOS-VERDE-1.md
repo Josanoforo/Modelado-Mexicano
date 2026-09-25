@@ -5,3 +5,11 @@
 3. Procedimiento con la rama del bot: no le fusiones main a derivados/auto-*. Cuando el PR de arreglos entre, dispara el job a mano (Actions → Run workflow → main, ya existe desde TABLERO-EN-CANAL) y deja que nazca un [deriva] fresco y limpio; las dos ramas viejas del bot se borran. Menos historia rara en una rama generada, y la prueba real del canal es justo esa: un [deriva] que se abre y fusiona solo.
 
 Lo demás — el guard que acepta tablero solo si nada cambió fuera del bloque derivado, el readme_derivado.py en el publicador, linajes={} en el join, y el guard de pisos que lee las firmas de decisiones.tsv como adopción (es E.2 al pie de la letra) — bien. Que el PR de arreglos entre por /acto con su ADR, aunque sea chico: es lo que hace que el siguiente que toque el canal sepa por qué está como está.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «Cuando el PR de arreglos entre, dispara el job a mano (Actions → Run workflow → main …) y deja que nazca un [deriva] fresco y limpio; las dos ramas viejas del bot se borran.» · **por qué:** DIFERIDO-A:post-merge de #1147 — sólo se puede correr con este arreglo ya en `main`. · **impacto:** el `[deriva]` con prospectiva 20 no nace hasta entonces; #1146/#1148 siguen abiertos. · **sucesor:** `NC-260925-GEN2-CI-CANAL-DERIVADOS-VERDE-1-e7f0-01`.
+
+## CONSUMIDO
+
+PR #1147 (`acto/ci-canal-derivados-verde`), ADR-260925-GEN2-CI-CANAL-DERIVADOS-VERDE-1-e7f0-01.
