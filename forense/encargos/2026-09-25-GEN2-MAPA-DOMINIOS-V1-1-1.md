@@ -35,3 +35,11 @@ Propio: `canon/mapa-dominios-v1_1.tsv`, `forense/analisis/dominios/` (equivalenc
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no adquiere (lo que falte: `ASTRA5-U5-ADQUISICION-2`). Sucesores: las unidades por dominio en el orden de la cola.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2 — «verificado por texto de pregunta en el cuestionario/FD del payload» para las 141 afirmaciones con programa en corpus (67 con ola casada, 74 sin). **por qué:** NO-VERIFICABLE-AQUÍ: payloads de CORPUS-COMPLETO-1 fuera de este clon (data/raw ausente, examinados=0), red denegada por política (sonda INEGI 000), sin inventario de reactivos en el repo para esos instrumento-ola; el [SUPUESTO] de §3 cayó. **impacto:** MEDIBLE-EN-CORPUS queda en 214; ningún NO-CONSTRUIBLE-EN-CORPUS dictado. **sucesor:** unidades por dominio en el orden de `forense/analisis/dominios/cola-medicion-v1_0.tsv` (NC-260925-GEN2-MAPA-DOMINIOS-V1-1-1-3cf7-01).
+
+## CONSUMIDO
+
+PR #1151 (rama `claude/new-session-nkpczi`), ADR-260925-GEN2-MAPA-DOMINIOS-V1-1-1-3cf7-01.
