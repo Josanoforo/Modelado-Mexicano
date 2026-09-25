@@ -102,7 +102,10 @@ def companion(data: dict, point: str, suffix: str) -> str:
 
 
 def main() -> None:
-    results = {row["resultado_id"]: row for row in tsv("resultados.tsv")}
+    # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4: `valor` REF -> texto sellado.
+    sys.path.insert(0, str(pathlib.Path(__file__).resolve().parents[3] / "tools"))
+    from vista import resuelve_fila  # noqa: PLC0415
+    results = {row["resultado_id"]: resuelve_fila(row) for row in tsv("resultados.tsv")}
     uses = [
         row for row in tsv("usos.tsv")
         if row["activo"] == "SI" and row["generacion_leida"] == "GEN2"

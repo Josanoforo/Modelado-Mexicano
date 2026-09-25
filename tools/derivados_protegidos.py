@@ -36,7 +36,7 @@ CABECERA = "# DERIVADO — NO EDITAR"
 # Extensiones de texto donde tiene sentido buscar la cabecera; evita abrir
 # binarios o payloads del corpus (data/raw, etc.) que grep -r igual saltaría
 # por ser binarios, pero así queda declarado y no es un accidente de grep.
-_EXT = (".tsv", ".md", ".yaml", ".yml", ".json")
+_EXT = (".tsv", ".md", ".yaml", ".yml", ".json", ".txt")
 
 # Directorios fuera de perímetro que nunca se examinan aunque tuvieran un
 # TSV con esa cabecera (payloads de terceros, corpus crudo, .git): A.13 --
@@ -45,6 +45,14 @@ _EXCLUYE_PREFIJOS = (
     os.path.join(RAIZ, ".git") + os.sep,
     os.path.join(RAIZ, "data", "raw") + os.sep,
 )
+
+
+def _es_tabla_de_valor(rel: str) -> bool:
+    """ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4: `data/corrida0/<CALC>/valores-vista/*`
+    es derivado por RUTA (lo escribe `registro --escribe`, byte a byte del
+    `valor` sellado: no admite cabecera sin cambiar el valor)."""
+    partes = rel.split("/")
+    return len(partes) == 5 and partes[:2] == ["data", "corrida0"] and partes[3] == "valores-vista"
 
 
 def _candidatos() -> list[str]:
@@ -72,7 +80,7 @@ def lista_derivados() -> list[str]:
                 primera = fh.readline().decode("utf-8", "replace").rstrip("\n")
         except OSError:
             continue
-        if primera.startswith(CABECERA):
+        if primera.startswith(CABECERA) or _es_tabla_de_valor(rel):
             hallados.append(rel)
     return sorted(hallados), examinados
 

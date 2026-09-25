@@ -114,10 +114,11 @@ CLAVE_SIN_FUENTE = {"fuente", "fuentes", "diseno", "diseno_datos"}
 # dos pilotos ya emitidos sin convertir 8/12 en una regla para celdas futuras.
 PILOTOS_POR_ID = {
     "DIN.ahorro_solo_informal.enif2024.localidad_x_edad": (
-        "CALC-DIN-AHORRO-SOLO-INFORMAL-EMISIONES-0001", "DIN-LXE8", "L", "E",
+        # GEN2-PISOS-GEN2-2 (24/sep/2026): C2 relevado al -0002 (piso NUEVO por id).
+        "CALC-DIN-AHORRO-SOLO-INFORMAL-ARBITRO-CRUCE-0002", "DIN-LXE8-ARB2", "L", "E",
         {f"L{i}xE{j}" for i in (1, 2) for j in range(1, 5)}),
     "TRA.evade_norma.envipe2025.escolaridad_x_dominio": (
-        "CALC-TRA-EVADE-NORMA-SXD-EMISIONES-0001", "TRA-SXD12", "S", "D",
+        "CALC-TRA-EVADE-NORMA-SXD-ARBITRO-CRUCE-0002", "TRA-SXD12-ARB2", "S", "D",
         {f"S{i}xD{j}" for i in range(1, 5) for j in range(1, 4)}),
 }
 
