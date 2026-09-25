@@ -1,0 +1,3124 @@
+# CALC-PEW-MIGRACION-MEX-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PEW-MIGRACION-MEX-0001
+spec_md: ../../../forense/prereg-caja/FAMILIA-PEW-PISOS-spec-v1_0.md
+spec_md_sha256: 1321b09e5be394a7aca62861e0621eecc06cc968677edd2e48a7ba3a8c3bd58d
+script: data/corrida0/CALC-PEW-MIGRACION-MEX-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+- dbfread
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-4, regla 6, E.6, §3 v2.16 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA (adulto entrevistado en Mexico)
+  evidencia: (a) -- residentes de Mexico entrevistados en Mexico
+  ola_reservada: 'Pew GAS Spring 2025 (E.6): no es input'
+inputs:
+- id: pew_gas_spring2013
+  origen: manifiesto
+  sha256: e794d64acd9369b592217b25702f306dbd67ab132e4af068cbc7e70cde1dc3f0
+  funcion: DATO
+  nota: Pew GAS Spring 2013 (.sav)
+- id: pew_gas_spring2015
+  origen: manifiesto
+  sha256: 00db792d0d6e4aee239ce276492bc0aa3478da3ab40130c239d405160c0d75b2
+  funcion: DATO
+  nota: Pew GAS Spring 2015 (.sav)
+- id: pew_gas_spring2017
+  origen: manifiesto
+  sha256: d5445443e2a07f5b69dc7b84913994d7650e905f9c4dd1b3d12422eae1ff859c
+  funcion: DATO
+  nota: Pew GAS Spring 2017 (.sav)
+- id: pew_gas_spring2018
+  origen: manifiesto
+  sha256: 77c057672f81cb4d873f7efaba97aa5890b58036ebe6e71c8f5fb6eb8b0efd5d
+  funcion: DATO
+  nota: Pew GAS Spring 2018 (.sav)
+- id: pew_gas_spring2023
+  origen: manifiesto
+  sha256: 93c4f17e348ab34781c72d8e3d30982749486855e37c4e7e64022efe0f94fc8f
+  funcion: DATO
+  nota: Pew GAS Spring 2023 (.sav)
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, persistencia, ic_calibrado ejecutados desde estos bytes
+- id: lectores_familia
+  origen: repo
+  ruta: tools/dominios/familia/lectores.py
+  sha256: 4e71238800c2c1a0d9215443dc8aadbb8add35b120c0c0ff1c1e87773e62e331
+  funcion: CODIGO
+  nota: lee_dbf_zip / lee_csv_zip / lee_sav_zip ejecutados desde estos bytes
+variables:
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q164
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q165
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: WEIGHT
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q151
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q152
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q54
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q167
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q169
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: Q153
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2013.zip:.sav
+  variable: COUNTRY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q145
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q146
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: WEIGHT
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: PSU
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: STRATUM_MEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q127
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q128
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q101
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: Q147
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2015.zip:.sav
+  variable: COUNTRY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: SEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: AGE
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: WEIGHT
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: PSU_MEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: STRATUM_MEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: MEX_LIVE_US
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: MEX_WO_AUTH
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: FRIENDS_ABROAD
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: RECEIVE_MONEY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2017.zip:.sav
+  variable: COUNTRY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: SEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: AGE
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: WEIGHT
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: PSU_MEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: STRATUM_MEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: MEX_LIVE_US
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: RECEIVE_MONEY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: GOOD_LIVE_US
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2018.zip:.sav
+  variable: COUNTRY
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2023.zip:.sav
+  variable: SEX
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2023.zip:.sav
+  variable: AGE
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2023.zip:.sav
+  variable: WEIGHT
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2023.zip:.sav
+  variable: US_BETTER_LIFE
+  rol: reactivo o diseno
+- archivo: pew_gas_spring2023.zip:.sav
+  variable: COUNTRY
+  rol: reactivo o diseno
+universo: Adultos 18-97 entrevistados en Mexico (codigo de pais por ola); weight>0.
+filtros: Un eje a la vez (TOTAL, SEXO, EDAD); nunca cruces.
+ponderador: weight
+transformacion: 'Recodificacion por texto: lista-cerrada-P1 §2 (Pew) y spec §2-§3.'
+estimando: Pisos por segmento de 6 conductas de intencion migratoria, lazos y remesas, Pew GAS Mexico 2013-2023,
+  con IC bootstrap e IC calibrado de persistencia (>= 3 olas).
+seed:
+  aplica: true
+  valor: 20260925
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: 'bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; bloques
+    de 50; contrato conservador; sin PSU (2013, 2023): entrevista = UPM'
+  olas:
+  - '2013'
+  - '2015'
+  - '2017'
+  - '2018'
+  - '2023'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-PEW-MIGRACION-MEX-G-2013-FILAS-MEXICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2013-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2015-FILAS-MEXICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2015-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2017-FILAS-MEXICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2017-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2018-FILAS-MEXICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2018-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2023-FILAS-MEXICO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-G-2023-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2015-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2017-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-A-VIVIR-A-EEUU-2018-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2015-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-IRIA-SIN-AUTORIZACION-ENTRE-QUIENES-IRIAN-2017-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2015-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-EN-EEUU-SE-VIVE-MEJOR-2023-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2015-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-CONTACTO-REGULAR-CON-PARIENTES-O-AMIGOS-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2017-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-RECIBE-DINERO-DE-PARIENTES-EN-EL-EXTRANJERO-2018-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-TOTAL-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-TOTAL-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-TOTAL-TODOS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-SEXO-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-SEXO-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-HOMBRE-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-SEXO-MUJER-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2013-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-N
+  tipo: entero
+  unidad: entrevistas sin ponderar
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-TAU2
+  tipo: flotante
+  unidad: varianza logit entre olas
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-EDAD-N-DELTAS
+  tipo: entero
+  unidad: deltas definidos
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-18-29-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-30-44-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-45-59-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-ICC-LO
+  tipo: proporcion
+  unidad: IC calibrado persistencia, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-BUENO-PARA-MEXICO-QUE-VIVAN-EN-EEUU-2018-EDAD-60-MAS-ICC-HI
+  tipo: proporcion
+  unidad: IC calibrado persistencia, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-MIGRACION-MEX-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-PEW-MIGRACION-MEX-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-PEW-MIGRACION-MEX-G-INPUT-RECETA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-PEW-MIGRACION-MEX-G-INPUT-LECTORES-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-PEW-MIGRACION-MEX-G-OLA-RESERVADA
+  tipo: texto
+  unidad: declaración
+- id: RESULT-PEW-MIGRACION-MEX-G-EVIDENCIA
+  tipo: texto
+  unidad: declaración

@@ -214,9 +214,24 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
+        # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
+        # sus cuatro specs selladas (COMMIT-1), así que no se renombra.
+        frozenset({
+            "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
+            "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+        }),
         frozenset({
             "forense/analisis/gen2-celda-d-piloto-4-encogida-1/evidencia-replay.json",
             "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-replay.json",
+        }),
+        # ACTO GEN2-CONSUMO-Y-GASTO-PISOS-1 (25/sep/2026): la lista cerrada P1 está citada por ruta en tres
+        # specs selladas (v1.0 ENIGH, v1.1 ENIGH, v1.0 ENGASTO); contenido distinto. Con confianza-capital-social
+        # ya en main el grupo real es de tres (T02 compara el conjunto exacto).
+        frozenset({
+            "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
+            "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
+            "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)

@@ -1,0 +1,41 @@
+{
+ "calibracion_2024": {
+  "CALC-AMAI-NSE-ENDUTIH-2023-0001": 1.7849485703282126,
+  "CALC-AMAI-NSE-ENDUTIH-2024-0001": 3.4655062387325963,
+  "CALC-AMAI-NSE-ENDUTIH-2025-0001": 4.979151000859483,
+  "CALC-AMAI-NSE-ENIF-2021-0001": 4.849841054793841,
+  "CALC-AMAI-NSE-ENIF-2024-0001": 1.721691648647189,
+  "CALC-AMAI-NSE-ENIGH-2022-0001": 4.810701563481857
+ },
+ "celdas_conducta_x_grupo": 165,
+ "celdas_publicables": 49,
+ "con_piso_nse": 17,
+ "filas_eje_nse": 84,
+ "filas_eje_nse_por_estado": {
+  "MEDIDA-POR-NSE": 52,
+  "MEDIDA-POR-NSE-APROXIMACION": 24,
+  "MEDIDA-POR-NSE-APROXIMACION-CIRCULAR": 6,
+  "SUPRIMIDA-N": 2
+ },
+ "filas_eje_nse_por_instrumento": {
+  "ENDUTIH 2023": 30,
+  "ENIF 2024": 51,
+  "ENIGH 2022": 3
+ },
+ "identidades_conducta": 55,
+ "identidades_u1": 69,
+ "identidades_u1_en_eje_nse": 17,
+ "por_estado": {
+  "BASE-NSE-MEDIDA;CRUCES-DE-EJES-NO-EXTENDIDOS": 2,
+  "CELDA-O-INTERACCION-NO-CONDUCTA": 14,
+  "COMPLEMENTO-DE-recibe_remesas-NO-MEDIDO-APARTE": 1,
+  "CON-PISO-NSE": 15,
+  "INSTRUMENTO-FUERA-DEL-ALCANCE-AMAI-DE-ESTE-ACTO": 14,
+  "NSE-NO-CONSTRUIBLE-EN-EL-INSTRUMENTO": 23
+ },
+ "publicables_por_grupo": {
+  "ALTO": 16,
+  "BAJO": 17,
+  "MEDIO": 16
+ }
+}

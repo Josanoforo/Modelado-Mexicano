@@ -1,0 +1,3 @@
+# ADR-260925-GEN2-CLASE-AMAI-2-f601-01
+
+25/sep/2026 · `ACTO GEN2-CLASE-AMAI-2` (CAJA). Primera apertura de ENIGH 2024 por firma de mesa (C7), acotada por código a 16 columnas y a la distribución NSE AMAI nacional por hogares: BAJO 44.3 %, MEDIO 34.2 %, ALTO 21.5 %, a 4.74 pp como máximo de la última publicada por AMAI (ENIGH 2022) → APROXIMACION-CONFORME. Un CALC sellado y reproducido; el resto de ENIGH 2024 sigue reservado. El eje NSE entra al marcador por firma A4 en ENIGH 2022, ENIF 2024 y ENDUTIH 2023 (aproximación): 84 filas por id, sin mover pisos ni `celdas_validadas`. No adopta; mesa fusiona.
