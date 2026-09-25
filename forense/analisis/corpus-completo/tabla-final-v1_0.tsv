@@ -1,0 +1,147 @@
+fuente	programa	n_olas_este_acto	olas_adquiridas_por_este_acto	olas_ya_en_corpus	olas_reservadas_al_entrar	no_obtenido	licencia_o_barrera
+EXTERNO	BANXICO	0		IMOR_CONSUMO_POR_PRODUCTO_MENSUAL [forense/encargos/2026-09-11-GEN2-FUENTES-FINANCIERAS-CONTINUACION-EFECTIVA.md];SATISFACCION_USUARIOS_2019_2024 [forense/notas/2026-09-11-GEN2-N34-DATOS-PRODUCTO-Y-DANO-cierre.md#BANXICO]		Encuestas de expectativas del sector privado (agregado): NO-APLICA (sin microdato individual publicado): Página fetchada (crudo/banxico-encuestas.html, HTTP 200, 291316B, <title>Encuestas de expectativas del sector privado...</title>). Es una encuesta de opinión de	ACCESO-ABIERTO;N/A
+EXTERNO	CEEY_EMOVI	0				EMOVI 2011: NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO: formulario para descargar cuestionario y); RECETA: Página fetchada crudo/ceey-emovi-pre.html (HTTP 200, 268084B) contiene el texto literal 'Llena el formulario y descarga el cuestionario y bases de datos de la ESRU-EMOVI'. crudo/ceey-emovi.html (HTTP 200, 315109B) es la página general de EMOVI y solo expone un PDF público (Nota-sobre-la-regionalizac | EMOVI 2017: NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO); RECETA: Mismo formulario y receta que la fila EMOVI 2011 (crudo/ceey-emovi-pre.html); el formulario cubre todas las olas mediante un selector, no hay URL diferenciada por año confirmada por este fetch. | EMOVI 2023: NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO); RECETA: Mismo formulario y receta que la fila EMOVI 2011 (crudo/ceey-emovi-pre.html).	REGISTRO-REQUERIDO;REGISTRO-REQUERIDO: formulario para descargar cuestionario y bases
+EXTERNO	CNBV	0		PORTAFOLIO_INFORMACION_IMOR_CONSUMO [forense/encargos/2026-09-04-MAESTRA38-N6-PROPAGA-FP298-TESTS-Y-A3.md]		Portafolio de Información (portal): NO-APLICA (sin microdato individual publicado): crudo/cnbv-portafolioinfo.html capturó un 302 'Object Moved' hacia esta URL (confirmado por curl -L). El Portafolio de Información de CNBV publica series agrega	ACCESO-ABIERTO pero sin descarga de microdato individual: es un tablero de indicadores agregados por institución financi
+EXTERNO	CONEVAL	9	Cambios pobreza 2008-2018 (resultados);Cambios pobreza 2010-2012 (resultados);Cambios pobreza 2010-2014 (resultados);Cambios pobreza 2010-2016 (resultados);Cambios pobreza 2016-2020 (resultados);Programas de cálculo MMP 2016;Programas de cálculo MMP 2018;Programas de cálculo MMP 2020;Programas de cálculo MMP 2022 (Python/R/STATA)	CONEVAL [forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md]			ACCESO-ABIERTO;REGISTRO-NO-REQUERIDO
+EXTERNO	ENSANUT	0		2006 [ASTRA5-U5];2012 [ASTRA5-U5];2016 [ASTRA5-U5];2018 [ASTRA5-U5 OBTENIDO];2018 [ASTRA5-U5];2018-100K [ASTRA5-U5];2020 [ASTRA5-U5];2021 [ASTRA5-U5];2022 [ASTRA5-U5];2023 [ASTRA5-U5];2024 [ASTRA5-U5];2025 [ASTRA5-U5]			ACCESO-ABIERTO;ACCESO-ABIERTO: sin login, descarga por botón POST;Términos de Libre Uso de la Información del INEGI
+EXTERNO	EVS	0				European/World Values Survey México (dentro de EVS-WVS Joint / oleadas históricas EVS con México): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO); RECETA: NO-CONFIRMADO-POR-COMANDO: no se intentó un fetch específico a evs.eui.eu (la EVS clásica europea no incluye México como país encuestado en la mayoría de sus rondas; México participa vía el EVS-WVS Joint dataset, servido en el mismo portal de WVS ya fetchado arriba). Verificar en la mesa si se requi	REGISTRO-REQUERIDO
+EXTERNO	LAPOP	0		LAPOP [cola-adquisicion-v1_0.tsv]		AmericasBarometer México 2004-2023 (todas las rondas): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO); RECETA: Páginas fetchadas: crudo/lapop-free-access.html y crudo/lapop-raw-data.html (HTTP 200, 147397B, <title>Data Access | Center for Global Democracy...</title>) contienen un enlace directo a 'https://www.vanderbilt.edu/cgd/wp-login.php?redirect_to=...' para acceder a los datos, y texto de términos de us	REGISTRO-REQUERIDO
+EXTERNO	LATINOBAROMETRO	0		2023 [ASTRA5-U5]		Bancos de datos 1995-2024 (todas las olas): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO: login obligatorio antes de descargar); RECETA: Páginas fetchadas: crudo/latinobarometro-contents.html (HTTP 200, 18274B, <title>Latinobarómetro</title>), crudo/latinobarometro-documentacion-datos.html (16182B, <title>Documentación y Datos</title>) y crudo/latinobarometro-online.html (18274B) que expone href='documentacion-datos' y el acceso 'Ban	REGISTRO-REQUERIDO: login obligatorio antes de descargar
+EXTERNO	PEW	0		GLOBAL_ATTITUDES_MEXICO [forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md]		Religion in Latin America 2014 (dataset de microdatos): NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO además de bloqueo anti-bot); RECETA: Página fetchada crudo/pew-religion-latam.html (HTTP 200 pero cuerpo de solo 4215 bytes con <title>Checking your browser...</title>), es decir un reto de Cloudflare (challenge page), no el contenido real: confirma que el sitio filtra tráfico automatizado además de exigir login para el dataset. Receta	REGISTRO-REQUERIDO además de bloqueo anti-bot
+EXTERNO	WVS	0		WVS [cola-adquisicion-v1_0.tsv]		World Values Survey México, oleadas 1-7: NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS (barrera: REGISTRO-REQUERIDO); RECETA: Páginas fetchadas: crudo/wvs-contents.html (HTTP 200, 29101B, <title>WVS Database</title>) y crudo/wvs-documentation-wvl.html (13793B, <title>WVS Database</title>). No se hallaron enlaces .zip/.sav/.dta directos en el HTML capturado (el listado de oleadas y el formulario de descarga se cargan de for	REGISTRO-REQUERIDO
+INEGI	ACCIDENTES	29	1997;1998;1999;2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	ADICCIONES	1	2002				Términos de Libre Uso de la Información del INEGI
+INEGI	AMCA	1	2016				Términos de Libre Uso de la Información del INEGI
+INEGI	BIARE	14	2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024;2025;2026				Términos de Libre Uso de la Información del INEGI
+INEGI	CA	1	2021 Oct				Términos de Libre Uso de la Información del INEGI
+INEGI	CAAS	1	2015		2015		Términos de Libre Uso de la Información del INEGI
+INEGI	CAE	3	1991;2001;2007				Términos de Libre Uso de la Información del INEGI
+INEGI	CAGF	2	1991;2007				Términos de Libre Uso de la Información del INEGI
+INEGI	CCPV	6	1990;1995;2000;2005;2010;2020	2010;2020			Términos de Libre Uso de la Información del INEGI
+INEGI	CE	7	1994;1999;2004;2009;2014;2019;2023				Términos de Libre Uso de la Información del INEGI
+INEGI	CJM	3	2021;2023;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	CLEU	1	2014				Términos de Libre Uso de la Información del INEGI
+INEGI	CNDHE	3	2016;2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNDHF	2	2016;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNGF	3	2016;2017;2018		2018		Términos de Libre Uso de la Información del INEGI
+INEGI	CNGMD	6	2010;2012;2014;2016;2018;2019		2019		Términos de Libre Uso de la Información del INEGI
+INEGI	CNGSPSPE	9	2010;2011;2012;2013;2014;2015;2016;2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNIJE	9	2010;2011;2012;2013;2014;2015;2016;2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNIJF	7	2010-2012;2013;2014;2015;2016;2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNPJ	6	2013;2014;2015;2016;2017;2018	2013	2018		Términos de Libre Uso de la Información del INEGI
+INEGI	CNPJE	9	2010;2011;2012;2013;2014;2015;2016;2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNPLE	2	2016;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNSPEF	2	2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNSPF	2	2017;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNTAIPPDPE	3	2015;2016;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	CNTAIPPDPF	3	2015;2016;2018				Términos de Libre Uso de la Información del INEGI
+INEGI	COMEXT	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	DH	3	2013;2014;2015				Términos de Libre Uso de la Información del INEGI
+INEGI	DUTIH	8	2015;2016;2017;2018;2019;2020;2021;2022				Términos de Libre Uso de la Información del INEGI
+INEGI	EAC	1	2010				Términos de Libre Uso de la Información del INEGI
+INEGI	EAIM	2	2011;2021				Términos de Libre Uso de la Información del INEGI
+INEGI	EASPNF	1	2012				Términos de Libre Uso de la Información del INEGI
+INEGI	EAT	1	2012				Términos de Libre Uso de la Información del INEGI
+INEGI	ECADEFI	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	ECENASEM	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	ECOPRED	1	2014	2014			Términos de Libre Uso de la Información del INEGI
+INEGI	ECOSEP	5	2009;2010;2011;2012;2013				Términos de Libre Uso de la Información del INEGI
+INEGI	ECOVIDIE	3	2020 Abril;2020 Agosto;2021 Febrero				Términos de Libre Uso de la Información del INEGI
+INEGI	ED	12	1985;1990;1995;2000;2005;2010;2015;2020;2021;2022;2023;2024				Términos de Libre Uso de la Información del INEGI
+INEGI	EDER	3	2011;2017;2025	2011;2017;2025			Términos de Libre Uso de la Información del INEGI
+INEGI	EDF	13	1985;1990;1995;2000;2005;2010;2015;2020;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	EDR	8	1990;1995;2000;2005;2010;2020;2021;2023	2015;2022;2024			Términos de Libre Uso de la Información del INEGI
+INEGI	EIA	2	2003;2009				Términos de Libre Uso de la Información del INEGI
+INEGI	EIC	1	2025		2025		Términos de Libre Uso de la Información del INEGI
+INEGI	EIM	1	2008				Términos de Libre Uso de la Información del INEGI
+INEGI	EIMA	1	2010				Términos de Libre Uso de la Información del INEGI
+INEGI	ELCOS	1	2012	2012			Términos de Libre Uso de la Información del INEGI
+INEGI	EMAT	5	1993;1995;2000;2005;2024	2010;2015;2020;2021;2022;2023	2024		Términos de Libre Uso de la Información del INEGI
+INEGI	EMEC	1	2006				Términos de Libre Uso de la Información del INEGI
+INEGI	EMIM	2	2013;2020				Términos de Libre Uso de la Información del INEGI
+INEGI	EMOE	1	2008				Términos de Libre Uso de la Información del INEGI
+INEGI	EMS	1	2014				Términos de Libre Uso de la Información del INEGI
+INEGI	ENA	4	2012;2014;2017;2019				Términos de Libre Uso de la Información del INEGI
+INEGI	ENADID	5	1992;1997;2009;2014;2023	2018;2018 [ASTRA5-U5 OBTENIDO];2023			Términos de Libre Uso de la Información del INEGI
+INEGI	ENADIS	2	2017;2022				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAF	1	2020				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAFIN	3	2010;2016;2022				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAID	2	2016;2019				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAMIN	8	1992;1994;1996;1998;2002;2008;2010;2012				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAPE	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	ENAPROCE	0		2013;2016			Términos de Libre Uso de la Información del INEGI
+INEGI	ENASEM	3	2018;2021;2024	2018;2021;2024			Términos de Libre Uso de la Información del INEGI
+INEGI	ENASIC	1	2022	2022			Términos de Libre Uso de la Información del INEGI
+INEGI	ENASJUP	1	2022				Términos de Libre Uso de la Información del INEGI
+INEGI	ENBIARE	1	2025	2021;2021 [ASTRA5-U5 OBTENIDO]	2025		Términos de Libre Uso de la Información del INEGI
+INEGI	ENCCUM	1	2012				Términos de Libre Uso de la Información del INEGI
+INEGI	ENCEVI	1	2018				Términos de Libre Uso de la Información del INEGI
+INEGI	ENCIG	8	2011;2013;2015;2017;2019;2021;2023;2025	2011;2013;2015;2017;2019;2021;2023;2025			Términos de Libre Uso de la Información del INEGI
+INEGI	ENCO	14	2001;2003;2006;2008;2010;2011;2016;2018;2021;2022;2023;2024;2025;2026	2025;2026	2026		Términos de Libre Uso de la Información del INEGI
+INEGI	ENCOAP	2	2023;2025	2023	2025		Términos de Libre Uso de la Información del INEGI
+INEGI	ENCRIGE	1	2016		2016		Términos de Libre Uso de la Información del INEGI
+INEGI	ENCUCI	1	2020				Términos de Libre Uso de la Información del INEGI
+INEGI	ENDIREH	3	2003;2006;2011	2003;2006;2011;2016;2021;2021 [ASTRA5-U5 OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	ENDISEG	0		2021;2021 [ASTRA5-U5 OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	ENDUTIH	3	2023;2024;2025	2023;2024;2025			Términos de Libre Uso de la Información del INEGI
+INEGI	ENE	11	1991;1995;1996;1997;1998;1999;2000;2001;2002;2003;2004				Términos de Libre Uso de la Información del INEGI
+INEGI	ENECAP	1	2017				Términos de Libre Uso de la Información del INEGI
+INEGI	ENECE	7	1991;1993;1995;1997;1999;2001;2009				Términos de Libre Uso de la Información del INEGI
+INEGI	ENESS	6	1996;2000;2004;2009;2013;2017				Términos de Libre Uso de la Información del INEGI
+INEGI	ENESTYC	0		1992;1995;1999;2001;2005			Términos de Libre Uso de la Información del INEGI
+INEGI	ENEU	18	1987;1988;1989;1990;1991;1992;1993;1994;1995;1996;1997;1998;1999;2000;2001;2002;2003;2004				Términos de Libre Uso de la Información del INEGI
+INEGI	ENFIH	1	2019	2019			Términos de Libre Uso de la Información del INEGI
+INEGI	ENG	1	2009		2009		Términos de Libre Uso de la Información del INEGI
+INEGI	ENGASTO	1	2012	2012;2013			Términos de Libre Uso de la Información del INEGI
+INEGI	ENGSPJM	1	2008				Términos de Libre Uso de la Información del INEGI
+INEGI	ENH	3	2014;2015;2016	2017			Términos de Libre Uso de la Información del INEGI
+INEGI	ENIF	5	2012;2014;2015;2018;2024	2012;2015;2018;2021;2024			Términos de Libre Uso de la Información del INEGI
+INEGI	ENIGH	20	1984;1989;1992;1994;1996;1998;2000;2002;2004;2005;2006;2008;2010;2012;2014;2016;2018;2020;2022;2024				Términos de Libre Uso de la Información del INEGI
+INEGI	ENILEMS	3	2012;2016;2019				Términos de Libre Uso de la Información del INEGI
+INEGI	ENOE	55	2005;2005T2;2005T3;2005T4;2006;2006T1;2006T2;2006T3;2006T4;2007;2007T1;2007T2;2007T3;2007T4;2008;2008T2;2008T3;2008T4;2009;2009T1;2009T2;2009T3;2009T4;2010;2010T1;2010T2;2010T3;2010T4;2011;2011T1;2011T2;2011T3;2011T4;2012;2012T2;2012T3;2012T4;2013;2013T1;2013T2;2013T3;2013T4;2014;2014T2;2014T3;2014T4;2015T1;2015T3;2015T4;2020;2021;2022;2023;2025;2026T2	2005T1;2008T1;2012T1;2014T1;2015T2;2016T1;2016T2;2016T3;2016T4;2017T1;2017T2;2017T3;2017T4;2018T1;2018T2;2018T3;2018T4;2019T1;2019T2;2019T3;2019T4;2020T1;2020T3;2020T4;2021T1;2021T2;2021T3;2021T4;2022T1;2022T2;2022T3;2022T4;2023T1;2023T2;2023T3;2023T4;2024T1;2024T2;2024T3;2024T4;2025T1;2025T2;2025T3;2025T4;2026T1	2026T2		Términos de Libre Uso de la Información del INEGI
+INEGI	ENPECYT	6	2005;2007;2009;2011;2013;2015	2017;2017 [ASTRA5-U5 OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	ENPETAH	1	2012				Términos de Libre Uso de la Información del INEGI
+INEGI	ENPL	1	2006				Términos de Libre Uso de la Información del INEGI
+INEGI	ENPOL	2	2016;2021	2021			Términos de Libre Uso de la Información del INEGI
+INEGI	ENSAFI	0		2023			Términos de Libre Uso de la Información del INEGI
+INEGI	ENSI	3	2004;2008;2010				Términos de Libre Uso de la Información del INEGI
+INEGI	ENSU	13	2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2025;2026	2024;2025	2026		Términos de Libre Uso de la Información del INEGI
+INEGI	ENTI	2	2019;2022	2022			Términos de Libre Uso de la Información del INEGI
+INEGI	ENTIC	2	2009;2013				Términos de Libre Uso de la Información del INEGI
+INEGI	ENUT	4	2009;2014;2019;2024	2002;2009;2014;2024			Términos de Libre Uso de la Información del INEGI
+INEGI	ENVE	4	2012;2014;2016;2018		2018		Términos de Libre Uso de la Información del INEGI
+INEGI	ENVI	2	2014;2020				Términos de Libre Uso de la Información del INEGI
+INEGI	ENVIF	1	1999				Términos de Libre Uso de la Información del INEGI
+INEGI	ENVIN	1	2007				Términos de Libre Uso de la Información del INEGI
+INEGI	ENVIPE	15	2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024;2025	2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024;2025;2026 [residual OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	EOD	1	2017				Términos de Libre Uso de la Información del INEGI
+INEGI	ESIDET	6	2006;2008;2010;2012;2014;2017				Términos de Libre Uso de la Información del INEGI
+INEGI	ESMNG	1	2009				Términos de Libre Uso de la Información del INEGI
+INEGI	ETI	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	EVF	1	2021				Términos de Libre Uso de la Información del INEGI
+INEGI	ILMM	9	2017;2018;2019;2020;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	IMMEX	1	2015				Términos de Libre Uso de la Información del INEGI
+INEGI	INDMAQ	1	SIN-AÑO				Términos de Libre Uso de la Información del INEGI
+INEGI	INTERCENSAL	0		2015 [forense/encargos/2026-09-03-MAESTRA38-A1-SONDA-Y-DESCARGA-UNIVERSO-1.md OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	INVESTIGACION	14	2012;2013;2013-2017;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024	2015;2017;2018;2019;2020;2021	2024		Términos de Libre Uso de la Información del INEGI
+INEGI	JUDICIALESPENAL	16	1997;1998;1999;2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012				Términos de Libre Uso de la Información del INEGI
+INEGI	JUSTICIAPENAL	8	2014;2015;2016;2017;2018;2019;2020;2021				Términos de Libre Uso de la Información del INEGI
+INEGI	MCS	5	2008;2010;2012;2014;2015				Términos de Libre Uso de la Información del INEGI
+INEGI	MIGRACION	1	2002		2002		Términos de Libre Uso de la Información del INEGI
+INEGI	MMSI	0		2016;2016 [ASTRA5-U5 OBTENIDO]			Términos de Libre Uso de la Información del INEGI
+INEGI	MOCIBA	10	2015;2016;2017;2019;2020;2021;2022;2023;2024;2025	2015;2016;2017;2019;2020;2021;2022;2023;2024;2025			Términos de Libre Uso de la Información del INEGI
+INEGI	MODECULT	10	2016;2017;2018;2019;2020;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	MODUTIH	13	2001;2002;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014				Términos de Libre Uso de la Información del INEGI
+INEGI	MOHOMA	1	2017				Términos de Libre Uso de la Información del INEGI
+INEGI	MOLEC	12	2015;2016;2017;2018;2019;2020;2021;2022;2023;2024;2025;2025 Jun				Términos de Libre Uso de la Información del INEGI
+INEGI	MOPRADEF	29	2013;2013 Nov;2014;2014 Ago;2014 Feb;2014 May;2014 Nov;2015;2015 Nov;2016;2016 Nov;2017;2017 Nov;2018;2018 Nov;2019;2019 Nov;2020;2020 Nov;2021;2021 Nov;2022;2022 Nov;2023;2023 Nov;2024;2024 Oct;2025;2025 Jun				Términos de Libre Uso de la Información del INEGI
+INEGI	MORTALIDAD	10	1985;1990;1995;2000;2005;2010;2015;2020;2021;2022	2015;2022	2022		Términos de Libre Uso de la Información del INEGI
+INEGI	MOTRAL	1	2012	2012;2015			Términos de Libre Uso de la Información del INEGI
+INEGI	MTI	6	2007;2009;2011;2013;2015;2017				Términos de Libre Uso de la Información del INEGI
+INEGI	MUSEOS	6	2016;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	NATALIDAD	40	1985;1986;1987;1988;1989;1990;1991;1992;1993;1994;1995;1996;1997;1998;1999;2000;2001;2002;2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;2013;2014;2015;2016;2017;2018;2019;2020;2021;2022;2023;2024				Términos de Libre Uso de la Información del INEGI
+INEGI	NUPCIALIDAD	11	1985;1990;1993;1995;2000;2005;2010;2015;2020;2021;2022	2010;2015;2020;2021;2022	2022		Términos de Libre Uso de la Información del INEGI
+INEGI	PEME	1	2016				Términos de Libre Uso de la Información del INEGI
+INEGI	RELLABORALES	11	1991;1996;2001;2006;2011;2016;2021;2022;2023;2024;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	RELLABORALESPRUEBA	2	2015;2025				Términos de Libre Uso de la Información del INEGI
+INEGI	SALUD	8	2018;2019;2020;2021;2022;2023;2024;2025		2025		Términos de Libre Uso de la Información del INEGI
