@@ -33,6 +33,7 @@ def _load(path, name):
 
 R = _load("tools/dominios/salud/pisos_diseno.py", "receta_pisos_consumo_test")
 ENIGH = _load("data/corrida0/CALC-ENIGH-CONSUMO-PISOS-0001/medidor.py", "m_enigh_consumo")
+ENIGH2 = _load("data/corrida0/CALC-ENIGH-CONSUMO-PISOS-0002/medidor.py", "m_enigh_consumo_0002")
 ENGASTO = _load("data/corrida0/CALC-ENGASTO-CONSUMO-PISOS-0001/medidor.py", "m_engasto_consumo")
 
 
@@ -153,6 +154,32 @@ def test_enigh_guardia_rechaza_2024():
 
 def test_enigh_resultados_del_spec_son_el_esquema():
     assert _spec("CALC-ENIGH-CONSUMO-PISOS-0001")["resultados"] == ENIGH.esquema_resultados()
+
+
+def test_enigh_0002_ramas_terminales_y_mismo_calculo_que_0001():
+    por1, por2, d1, d2 = {}, {}, {}, {}
+    for j, ola in enumerate(ENIGH.OLAS):
+        fr = _enigh_ola(10 + j)
+        por1[ola], d1[ola] = ENIGH.mide_ola(fr, R, 20, 7)
+        por2[ola], d2[ola] = ENIGH2.mide_ola(fr, R, 20, 7)
+    o1, o2 = ENIGH.calcula(por1, d1, R), ENIGH2.calcula(por2, d2, R)
+    assert o1 == o2  # mismo insumo -> mismo resultado: 0002 sólo cambia de dónde lee gastoshogar
+    _cierra(ENIGH2, o2, {"BOOTSTRAP-REPLICAS": 20, "SEED": 7, "INPUT-RECETA-SHA256": "x",
+                         "OLA-RESERVADA": "ENIGH 2024", "FUENTE-GASTOSHOGAR": "x"})
+
+
+def test_enigh_0002_exige_gastoshogar_por_tabla():
+    ins = {pid: {"ruta_absoluta": "/x"} for pid in ENIGH2.PAYLOADS.values()}
+    ins["receta_pisos"] = {"bytes": b""}
+    try:
+        ENIGH2._guardia_inputs(ins)
+    except ENIGH2.ParoDeGuardia:
+        return
+    raise AssertionError("la guardia no paró sin los gastoshogar por tabla")
+
+
+def test_enigh_0002_resultados_del_spec_son_el_esquema():
+    assert _spec("CALC-ENIGH-CONSUMO-PISOS-0002")["resultados"] == ENIGH2.esquema_resultados()
 
 
 # ═══════════════════════════ ENGASTO ═══════════════════════════

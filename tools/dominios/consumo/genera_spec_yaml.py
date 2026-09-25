@@ -109,6 +109,20 @@ CONF = {
 }
 
 
+CONF["ENIGH2"] = {
+    **CONF["ENIGH"],
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "spec_md": "forense/prereg-caja/CONSUMO-ENIGH-PISOS-spec-v1_1.md",
+    "payloads": {**CONF["ENIGH"]["payloads"],
+                 "cc1_inegi_enigh_2016__enigh2016_ns_gastoshogar_csv":
+                     "ENIGH 2016 GASTOSHOGAR por tabla (completo; el del ZIP integrado esta truncado)",
+                 "cc1_inegi_enigh_2018__enigh2018_ns_gastoshogar_csv":
+                     "ENIGH 2018 GASTOSHOGAR por tabla (completo; el del ZIP integrado esta truncado)"},
+    "extra_etiquetas": {**CONF["ENIGH"]["extra_etiquetas"],
+                        "sucede_a": "CALC-ENIGH-CONSUMO-PISOS-0001 (gastoshogar 2016/2018 truncado en su insumo)"},
+}
+
+
 def genera(clave):
     c = CONF[clave]
     m = _medidor(c["calc"])
