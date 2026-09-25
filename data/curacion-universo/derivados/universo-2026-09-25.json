@@ -1,0 +1,94 @@
+{
+  "conteos": {
+    "candidatos_reconciliacion": 8754,
+    "cobertura_adquisicion_puntual": "NO_DETERMINADO",
+    "componentes_declarados_conservadores": 45222,
+    "contenidos_locales_sha256_unicos": 6503,
+    "cota_superior_activos_declarados": 45222,
+    "declaraciones_parseadas": 48383,
+    "denominador_activos_declarados": "NO_DETERMINADO",
+    "discrepancias_hash_local": 2,
+    "duplicados_locales_reales": 154,
+    "hashes_representaciones_locales_verificados": 6657,
+    "identidades_locales_verificadas": 6503,
+    "inputs": 92,
+    "inputs_con_error": 0,
+    "numerador_adquirido_identidades_locales_verificadas": 6503,
+    "representaciones_locales": 6657
+  },
+  "conteos_operativos": {
+    "activos_declarados_cota_superior_conservadora": 45222,
+    "adquiridos_identidades_sha256": 6503,
+    "inspeccionados_identidades_sha256": 549,
+    "inspecciones_arrastradas_por": "interseccion_sha256_universo_vigente_con_ledgers",
+    "ledgers": [
+      {
+        "identidades_sha256": 509,
+        "ruta": "data/curacion-universo/ledger-inspecciones-t0.tsv"
+      },
+      {
+        "identidades_sha256": 662,
+        "ruta": "data/curacion-universo/ledger-inspecciones-barrido2.tsv"
+      }
+    ],
+    "reserva_denominador": "El universo sólo ofrece una cota superior conservadora mientras haya candidatos de reconciliación; no se publica porcentaje de inspección. Las cifras de adquiridos e inspeccionados son identidades de contenido SHA-256 y sí son comparables entre sí."
+  },
+  "deltas": {
+    "candidatos_reconciliacion": {
+      "anterior": 8736,
+      "delta": 18,
+      "nuevo": 8754
+    },
+    "componentes_declarados_conservadores": {
+      "anterior": 40028,
+      "delta": 5194,
+      "nuevo": 45222
+    },
+    "contenidos_locales_sha256_unicos": {
+      "anterior": 1377,
+      "delta": 5126,
+      "nuevo": 6503
+    },
+    "cota_superior_activos_declarados": {
+      "anterior": 40028,
+      "delta": 5194,
+      "nuevo": 45222
+    },
+    "declaraciones_parseadas": {
+      "anterior": 42326,
+      "delta": 6057,
+      "nuevo": 48383
+    },
+    "duplicados_locales_reales": {
+      "anterior": 4,
+      "delta": 150,
+      "nuevo": 154
+    },
+    "hashes_representaciones_locales_verificados": {
+      "anterior": 1381,
+      "delta": 5276,
+      "nuevo": 6657
+    },
+    "identidades_locales_verificadas": {
+      "anterior": 1377,
+      "delta": 5126,
+      "nuevo": 6503
+    },
+    "numerador_adquirido_identidades_locales_verificadas": {
+      "anterior": 1377,
+      "delta": 5126,
+      "nuevo": 6503
+    },
+    "representaciones_locales": {
+      "anterior": 1381,
+      "delta": 5276,
+      "nuevo": 6657
+    }
+  },
+  "fecha": "2026-09-25",
+  "hash_anterior": "9f95bc9e9ca13cec7b338ddb6f6097251a8830004d1adc8b5a7e5da6fc83878c",
+  "hash_cambio": true,
+  "material": false,
+  "motivo_material": [],
+  "snapshot_sha256_del_dia": "51cca25758541dcd11f84b5dfdba571f272c8c7b85719078f84c14d2e7a370d1"
+}
