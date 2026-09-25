@@ -80,10 +80,13 @@ módulo de auditoría): **cero**. Este acto no adopta, no sella ninguna
 corrida y no escribe `data/corrida0/marcador-segmento.tsv`; sólo lee.
 `celdas_validadas=219` y `celdas_d_adoptadas_activas=17` son los que ya
 estaban en `origin/main` al abrir este acto y no se movieron por él.
-`N_corridas_selladas` sí avanzó mientras este acto estaba abierto (246→252)
-— por `GEN2-CLASE-AMAI-1` (seis `CALC-AMAI-NSE-*`, fusionado como `PR
-#1127` mientras esta sesión seguía en curso), ajeno a este acto y sin
-celdas-D nuevas (siguen 21) ni cambio en `celdas_validadas`. **Comando único
+`N_corridas_selladas` sí avanzó mientras este acto estaba abierto (246→263,
+en dos oleadas) — por `GEN2-CLASE-AMAI-1` (seis `CALC-AMAI-NSE-*`, `PR
+#1127`), `GEN2-DONDE-CAMBIO-EL-MEXICANO-1` (nueve `CALC-*-SERIE-DICTAMEN-
+0001`, `PR #1125`) y `GEN2-RELEVO-MOTOR-34-1` (dos CALC derivados, `PR
+#1128`), los tres fusionados mientras esta sesión seguía en curso, ajenos a
+este acto y sin celdas-D nuevas (siguen 21) ni cambio en `celdas_validadas`.
+**Comando único
 para los seis contadores de `corrida0.py status` que este informe cita**
 (§1.2, §4) — no se repite más abajo, una sola corrida basta para todos:
 <!-- comando: python3 tools/corrida0.py status | grep -E "^(celdas_validadas|celdas_validadas_definicion_desde|celdas_validadas_prospectiva|celdas_validadas_retrospectiva|legacy_activas_por_consumidor__celdas_D|N_corridas_selladas)=" -->.
@@ -487,18 +490,33 @@ EXTERNO-1-cfce-01`, ABIERTA).
 
 **En curso, sin fusionar a este corte** (declarado, no se espera):
 `GEN2-PISOS-GEN2-2` (§3.5, rama `acto/gen2-pisos-gen2-2`, COMMIT-1 ya
-congelado) y `GEN2-DONDE-CAMBIO-EL-MEXICANO-1` (rama
-`acto/gen2-donde-cambio-el-mexicano-1`)
-<!-- comando: git ls-remote --heads origin | grep -Ec "acto/gen2-(pisos-gen2-2|donde-cambio-el-mexicano-1)" -->.
-Ninguna de las dos había fusionado a `origin/main` al momento de escribir
-este informe. **`GEN2-CLASE-AMAI-1` sí cerró mientras este acto seguía
-abierto** (`PR #1127`, rama borrada tras fusionar — política de cero
-ramas): sella seis `CALC-AMAI-NSE-*` (clase AMAI/NSE por instrumento,
-`forense/analisis/clase-amai/`), un eje descriptivo de clase social, no una
-séptima evaluación de la etapa de retadores — no cambia ninguna cifra de
-§0–§4 (`celdas_validadas`, `celdas_d_adoptadas_activas` y las 21 celdas-D
-no se movieron, verificado). v1.4 lo incorpora como su propia sección
-cuando el eje de clase se consolide con el eje regional.
+congelado)
+<!-- comando: git ls-remote --heads origin | grep -c "acto/gen2-pisos-gen2-2" -->.
+No había fusionado a `origin/main` al momento de escribir este informe.
+
+**Tres actos que dirección citaba como abiertos cerraron mientras este acto
+seguía en curso** — ninguno cambia ninguna cifra de §0–§4
+(`celdas_validadas`, `celdas_d_adoptadas_activas` y las 21 celdas-D no se
+movieron, verificado):
+
+- **`GEN2-CLASE-AMAI-1`** (`PR #1127`): seis `CALC-AMAI-NSE-*` (clase
+  AMAI/NSE por instrumento, `forense/analisis/clase-amai/`), un eje
+  descriptivo de clase social, no una séptima evaluación de la etapa de
+  retadores.
+- **`GEN2-DONDE-CAMBIO-EL-MEXICANO-1`** (`PR #1125`): nueve
+  `CALC-*-SERIE-DICTAMEN-0001`, 7872 series dictaminadas (583 ESTABLE · 8
+  CAMBIO-SOSTENIDO · 0 SALTO-DE-INSTRUMENTO · 81 SALTO-SIN-EXPLICAR · 7200
+  SIN-SERIE), todo **RETROSPECTIVA**, `adopta: NO`
+  (`canon/donde-cambio-el-mexicano-v1_0.md`) — es exactamente el «dónde sí
+  cambió el mexicano» que dirección cita como lo que viene, ya con primer
+  documento; no es una evaluación de retadores ni mueve ningún candidato de
+  §2.
+- **`GEN2-RELEVO-MOTOR-34-1`** (`PR #1128`): dos CALC derivados de clase
+  iii, relevo de nueve lecturas del motor — mecánico, sin tocar celda-D.
+
+Las tres ramas se borraron al fusionar (política de cero ramas). v1.4
+incorpora `GEN2-DONDE-CAMBIO-EL-MEXICANO-1` y `GEN2-CLASE-AMAI-1` como
+secciones propias.
 
 ---
 
@@ -594,8 +612,10 @@ Este acto es de sólo lectura: no adopta, no sella, no escribe
 - **`GEN2-PISOS-GEN2-2` no ha cerrado** (§3.5, §5): 20 RESULT / 2 celdas-D
   (ENIF, ENVIPE) siguen con piso legacy tecleado; este informe reporta el
   censo «antes», no el «después».
-- **`GEN2-DONDE-CAMBIO-EL-MEXICANO-1` no ha cerrado** (§5): sus hallazgos, si
-  los hay, no están reflejados aquí.
+- **`GEN2-DONDE-CAMBIO-EL-MEXICANO-1` cerró (`PR #1125`) mientras este acto
+  seguía abierto** (§5): su documento (`canon/donde-cambio-el-mexicano-
+  v1_0.md`, 7872 series, todo RETROSPECTIVA) no está descrito en este
+  informe más allá de la nota de §5; v1.4 le da su propia sección.
 - **`GEN2-CLASE-AMAI-1` cerró (`PR #1127`) mientras este acto seguía
   abierto** (§5): sus seis `CALC-AMAI-NSE-*` no están descritos en este
   informe más allá de la nota de §5 — es un eje de clase social descriptivo,

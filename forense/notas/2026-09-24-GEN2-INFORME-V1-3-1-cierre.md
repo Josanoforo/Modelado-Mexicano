@@ -110,8 +110,31 @@ unidad (persona/hogar/delito/trámite, ninguna promediada con otra).
 
 Cero mediciones, cero adopción, cero corrida sellada por este acto.
 `celdas_validadas: 219 → 219 (Δ0)`, `celdas_d_adoptadas_activas: 17 → 17
-(Δ0)` — los dos re-derivan idénticos contra `origin/main` al cierre.
-`N_corridas_selladas` 246 → 252 mientras este acto seguía abierto, por
-`GEN2-CLASE-AMAI-1` (`PR #1127`, seis `CALC-AMAI-NSE-*`), ajeno a este acto
-(§9: no toca celdas-D, no cambia `celdas_validadas`) — main se movió, se
-refrescó y se declara aquí (§0 del aparato), no es PARO.
+(Δ0)` — los dos re-derivan idénticos contra `origin/main` al cierre, en las
+tres veces que main se movió mientras este acto seguía abierto.
+`N_corridas_selladas` 246 → 252 → 263, por `GEN2-CLASE-AMAI-1` (`PR #1127`,
+seis `CALC-AMAI-NSE-*`), `GEN2-DONDE-CAMBIO-EL-MEXICANO-1` (`PR #1125`,
+nueve `CALC-*-SERIE-DICTAMEN-0001`) y `GEN2-RELEVO-MOTOR-34-1` (`PR #1128`,
+dos CALC), los tres ajenos a este acto (§9: ninguno toca celda-D, ninguno
+cambia `celdas_validadas`) — main se movió tres veces, se refrescó cada vez
+(`git merge origin/main`, sin conflictos las tres) y se declara aquí (§0 del
+aparato), no es PARO. `GEN2-DONDE-CAMBIO-EL-MEXICANO-1` es, además, el acto
+al que dirección se refería en su propio texto de §5 («dónde sí cambió el
+mexicano») — el informe se actualizó para citarlo cerrado en vez de «en
+curso».
+
+**CI (jobs `guardias`/`check` de la primera versión del PR): FALLABA**
+porque `tests/test_informe_derivado.py` nació sin fila en
+`forense/analisis/ci-guardias/censo-tests.tsv` (D-21: un test nuevo entra a
+CI como huérfano, pero necesita su fila de censo; `tools/ci_guardias.py
+--ejecuta-huerfanos` corta con `FALLA: tests sin fila en el censo` si no la
+tiene). Corregido con una fila sola (sin regenerar el censo completo, que
+arrastraría jitter de tiempo en cientos de filas ajenas), clasificada
+`CORRE-EN-CI` igual que sus hermanos `test_estado_derivado.py`/
+`test_readme_derivado.py`. De paso, el propio informe citaba
+`corrida0.py status` en seis comandos separados (~75-90s cada uno) y el CLI
+completo de `tools/tablero_programa.py` (con sus llamadas a `git
+ls-remote`) en vez del derivador directo: consolidado a un solo
+`corrida0.py status` con alternancia de claves y una llamada directa a
+`_celdas_d_adoptadas_activas()` — de ~7-8 minutos a ~1m30s por corrida del
+test, mismo costo que `test_estado_derivado.py`.
