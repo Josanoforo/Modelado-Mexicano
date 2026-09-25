@@ -218,6 +218,12 @@ def t02_duplicates():
             "forense/analisis/gen2-celda-d-piloto-4-encogida-1/evidencia-replay.json",
             "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-replay.json",
         }),
+        # ACTO GEN2-CONSUMO-Y-GASTO-PISOS-1 (25/sep/2026): la lista cerrada P1 está citada por ruta en tres
+        # specs selladas (v1.0 ENIGH, v1.1 ENIGH, v1.0 ENGASTO); contenido distinto al de salud-bienestar.
+        frozenset({
+            "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
+            "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):

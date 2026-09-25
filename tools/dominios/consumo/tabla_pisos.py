@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Deriva forense/analisis/consumo-gasto/tabla-pisos-v1_0.tsv (conducta × segmento × ola, con el
+"""Deriva forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv (conducta × segmento × ola, con el
 id de cada RESULT) desde los resultados.json sellados de los dos CALC de ACTO
 GEN2-CONSUMO-Y-GASTO-PISOS-1, e imprime «N conductas con piso GEN2 por dominio». Sólo lee
 los sellados; ninguna cifra se teclea. Uso: python3 tools/dominios/consumo/tabla_pisos.py"""
@@ -8,7 +8,7 @@ import os
 import re
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
-CALCS = {"CALC-ENIGH-CONSUMO-PISOS-0001": "RESULT-ENIGH-CONSUMO-PISOS",
+CALCS = {"CALC-ENIGH-CONSUMO-PISOS-0002": "RESULT-ENIGH-CONSUMO-PISOS",  # 0002 sucede a 0001
          "CALC-ENGASTO-CONSUMO-PISOS-0001": "RESULT-ENGASTO-CONSUMO-PISOS"}
 # dominio del mapa (canon/mapa-dominios-v1_0.tsv col. 26): crédito, deuda, préstamo, medio de pago
 # e ingreso-gasto son DINERO; estructura, canal y conectividad del gasto son CONSUMO.
@@ -17,7 +17,7 @@ DINERO = {"PART-EFECTIVO-EN-GASTO-DIRECTO", "HOG-TIENE-TARJETA-CREDITO", "HOG-US
           "HOG-COMPRA-FIADO", "HOG-COMPRA-TARJETA-CREDITO"}
 PAT = re.compile(r"^(?P<c>.+?)-(?P<ola>20\d\d)-(?P<eje>TOTAL|SEXO-JEFE|EDAD-JEFE|ESCOLARIDAD-JEFE|TLOC|DECIL|ENTIDAD)"
                  r"-(?P<cat>.+)-P$")
-SALIDA = os.path.join(RAIZ, "forense", "analisis", "consumo-gasto", "tabla-pisos-v1_0.tsv")
+SALIDA = os.path.join(RAIZ, "forense", "analisis", "consumo-gasto", "tabla-pisos-consumo-v1_0.tsv")
 
 
 def _v(r, k):
