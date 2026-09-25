@@ -107,6 +107,28 @@ corregir aquí; el documento ya se anticipó a este caso.
 Ver el resultado crudo pegado abajo (corrida completa desde el clon,
 misma sesión, después de los pasos 1–4).
 
+## AUTOCORRECCIÓN (25/sep/2026, PR #1126 aún abierto)
+
+Los párrafos de arriba (Paso 3, "Qué no se corrigió") afirman que
+`requirements.txt` **no declara** `numpy`/`pandas`. **Es falso.**
+`requirements.txt` sí los declara (sección "ASTRA5-U3-POLITICA", junto con
+`pyreadstat`, para los medidores de ENCUP/LAPOP). El error fue de lectura
+propia: esta sesión sólo había leído `head -20 requirements.txt` antes de
+escribir esa afirmación, y nunca corrió `pip install -r requirements.txt`
+en el clon de verificación — instaló `numpy`/`pandas` sueltos con `pip
+install`, sin pasar por el archivo que ya los tenía. El texto original de
+arriba **no se reescribe** (append-only, `CONTRIBUTING.md` §3); esta
+sección es la corrección fechada.
+
+Lo que sigue siendo cierto y útil de este hallazgo: alguien que clona el
+repo y va directo a `python3 tools/corrida0.py verify <CALC-ID>` sin haber
+corrido `pip install -r requirements.txt` primero ve el mismo
+`ModuleNotFoundError` y puede confundirlo con "falta el corpus". La
+corrección real en `docs/verificar.md` queda como "corre `pip install -r
+requirements.txt`", no como una receta de `numpy`/`pandas` sueltos.
+`NC-260924-GEN2-FRONT-2-d095-01` se corrigió y se cerró en el mismo acto
+(`forense/no-corrido.tsv`, `canon/L0/ADR-260924-GEN2-FRONT-2-d095-01.md`).
+
 ## Qué se corrigió
 
 `docs/verificar.md`: enlace al reto público en la navegación; párrafo
