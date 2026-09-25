@@ -40,3 +40,17 @@ Propio: `tools/corrida0.py` (`registro --escribe`, `_valida_outputs`), `tools/vi
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No corrige por qué `adoptados` no sube (RELEVO-MOTOR-34-1), no re-sella CALC con listas (legados: referenciados), no mide. Sucesor: `-5` solo si un consumidor no puede pasar por `valor_de()`.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «un `[deriva]` posterior al COMMIT-A citado por run y PR, con `check` VERDE, fusionado por auto-merge, y `status` en `main` con las vistas del día».
+  **por qué:** NO-VERIFICABLE-AQUÍ — requiere el merge de este PR y la corrida del job en el push resultante; el job del push de #1122 (run 36074645794) corre todavía sin COMMIT-B y debe parar en GUARDA-TAMANO.
+  **impacto:** la vista de `main` sigue siendo la del 21-23/sep hasta ese `[deriva]`; ningún contador se mueve por esto (`adoptados_activos` = 72 antes y después, medido).
+  **sucesor:** NC-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-4-574d-01 (seguimiento tras el merge).
+
+- **qué:** «COMMIT-A (puente, publica hoy): guarda de tamaño a 100 MB».
+  **por qué:** SUSTITUIDO-POR:GEN2-TUBERIA-VISTA-NORMALIZADA-4 COMMIT-B — A y B viajan en el mismo PR; con B la vista re-derivada mide 28.9 MB y la guarda se queda en 50. Absorbe: la publicación de hoy. Huérfano: nada.
+  **impacto:** ninguno; se evita la ventana a 100 MB.
+  **sucesor:** ninguno necesario (NC-…-574d-01 cubre la prueba real).
+
+Discrepancias declaradas (el cuerpo no se edita): `tablas/` ya existía sellada en CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-000{1,2} → el derivado va a `valores-vista/`; `derivados_protegidos.py` no cubría archivos sin cabecera → reconocimiento por ruta añadido; B y C en un solo commit. Detalle en `ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-4-574d-01`.
