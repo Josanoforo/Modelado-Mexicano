@@ -278,3 +278,4 @@ tests/test_escribe_relevo_motor34.py	pytest	NO	(ninguna)	NO	24.0	CORRE-EN-CI	exi
 tests/test_relevo_motor34_derivados.py	pytest	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus; 24 sintéticas de los dos CALC derivados
 tests/test_amai_nse.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
 tests/test_informe_derivado.py	script	NO	(ninguna)	NO	83.2	CORRE-EN-CI	exit 0 sin corpus (patron de test_estado_derivado.py: re-ejecuta cada comando citado en canon/informe-programa-v1_3.md)
+tests/test_catalogo_v1_1.py	script	NO	(ninguna)	NO	7.0	CORRE-EN-CI	Catálogo v1.1 (GEN2-CATALOGO-V1-1-1): regeneración idéntica, cada cifra contra su CALC sellado, firma citada por id, sin piso legacy, cero dígitos tecleados en la plantilla; 5 pruebas locales OK
