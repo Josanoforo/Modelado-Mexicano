@@ -226,8 +226,10 @@ def t02_duplicates():
             "forense/analisis/issp2017-redes-apoyo-cotidiano-cli-1/evidencia-replay.json",
         }),
         # ACTO GEN2-CONSUMO-Y-GASTO-PISOS-1 (25/sep/2026): la lista cerrada P1 está citada por ruta en tres
-        # specs selladas (v1.0 ENIGH, v1.1 ENIGH, v1.0 ENGASTO); contenido distinto al de salud-bienestar.
+        # specs selladas (v1.0 ENIGH, v1.1 ENIGH, v1.0 ENGASTO); contenido distinto. Con confianza-capital-social
+        # ya en main el grupo real es de tres (T02 compara el conjunto exacto).
         frozenset({
+            "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
