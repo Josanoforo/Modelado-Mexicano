@@ -40,3 +40,7 @@ No evalúa prospectivamente, no adopta. Sucesores: FIRMAS-18; catálogo v1.2.
 | NC-…-2a0e-05 | segmentación: formalidad, región, NSE; TLOC en ENASIC; escolaridad/urbanidad en Pew | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- formalidad fuera de las tablas usadas; NSE no construido para estas encuestas; ENASIC no publica localidad; Pew cambia variables por ola | ninguna afirmación regional ni por formalidad medida | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
 | NC-…-2a0e-06 | FP de adopción por instrumento | DECISIÓN-DE-MESA-PENDIENTE -- FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01..03 | ningún consumidor usa estos pisos hasta la firma | FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01 |
 | NC-…-2a0e-07 | ola más reciente reservada (E.6): ENADID 2023 (conductas de esta lista) y Pew GAS Spring 2025 | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- reservadas por diseño; este acto no evalúa prospectivamente | reservas sin abrir; celdas_validadas no se mueve | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
+
+## CONSUMIDO
+
+Ejecutado por PR #1153 (rama `acto/gen2-familia-cuidados-y-migracion-pisos-1`), 25/sep/2026. ADR `ADR-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01`; nota `forense/notas/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-cierre.md`.
