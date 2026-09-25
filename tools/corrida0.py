@@ -3259,10 +3259,14 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
                 marca_uso = nodo.get("corrida0_uso")
                 if marca_id or marca_gen or marca_uso:
                     nombre = (nodo.get("conducta") or nodo.get("id")
-                              or nodo.get("clave") or "")
+                              or nodo.get("clave") or nodo.get("regla") or "")
                     ruta_c = [c for c in contexto if c] + ([nombre] if nombre else [])
                     valor = next((nodo[c] for c in CAMPOS_VALOR_MATERIALIZADO
                                   if c in nodo), None)
+                    # RELEVO-CONSUMIDORES-2: `asignados_probabilidad` guarda
+                    # una lista; la cita es la de su primera categoria.
+                    if valor is None and nodo.get("valores"):
+                        valor = nodo["valores"][0]
                     declarados[f"{rel}:{':'.join(ruta_c)}"] = {
                         "resultado_id": str(marca_id) if marca_id else "",
                         "generacion": str(marca_gen) if marca_gen else "",
@@ -3279,7 +3283,11 @@ def _ids_corrida0_declarados() -> dict[str, dict]:
                 for elemento in nodo:
                     _camina(elemento, contexto)
 
-        _camina(crudo, [])
+        if ruta == PROCEDENCIA and isinstance(crudo, dict):
+            for seccion, valor in crudo.items():  # misma llave que la demanda
+                _camina(valor, [str(seccion)])
+        else:
+            _camina(crudo, [])
     declarados.update(_marcas_catalogo(CATALOGO_MOMENTOS))
     return declarados
 

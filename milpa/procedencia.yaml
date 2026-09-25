@@ -857,7 +857,11 @@ asignados_probabilidad:
     que_sostiene_de_verdad: "la dirección; ya viene marcada NO CALIBRADA en el propio archivo"
 
   - regla: civico.denuncia.con_seguro
-    valores: [0.78, 0.22]
+    valores: [0.790906, 0.209094]
+    corrida0_resultado_id: RESULT-ENVIPE-SEG-CON-P-DENUNCIA
+    corrida0_generacion: GEN2
+    clase_respaldo: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"
+    relevo_gen2: "ACTO GEN2-RELEVO-CONSUMIDORES-2: valores = RESULT de CALC-ENVIPE-DENUNCIA-SEGURO-0001 (antes ASIGNADO [0.78, 0.22]); la cita es la de la primera categoría"
     fuente_citada: [ENVIPE2025]
     que_sostiene_de_verdad: "la dirección (el trámite del seguro vuelve racional denunciar); ENVIPE no publica esta condicional en esa forma"
 

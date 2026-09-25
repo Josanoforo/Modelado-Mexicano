@@ -626,6 +626,174 @@ def transform(source: str, rendered: str) -> str:
     return "".join(lines)
 
 
+# ── V4 · ACTO GEN2-RELEVO-CONSUMIDORES-2 · procedencia y catálogo ─────────
+# Esquema de cita B4 (opción a): la cita va en la propia entrada, junto al
+# valor. Mismas guardas de 4.1 (+D6) que V3, vía (i): CALC sellado, cuenta
+# GEN2, replay afirmativo en RESULTADO, insumo crudo sin ingestión.
+ACTO_V4 = "GEN2-RELEVO-CONSUMIDORES-2"
+PROCEDENCIA = ROOT / "milpa/procedencia.yaml"
+CATALOGO = ROOT / "milpa/catalogo-momentos-v0_1.tsv"
+CALC_SEGURO = "CALC-ENVIPE-DENUNCIA-SEGURO-0001"
+CLASE_SEGURO = ("MEDIDO·p(tasa base ponderada, condicional a seguro; unidad "
+                "delito, robo total de vehículo BPCOD=01)")
+
+# (regla de asignados_probabilidad, RESULT por categoría en el orden de `valores`)
+RELEVOS_PROCEDENCIA_V4 = (
+    ("civico.denuncia.con_seguro",
+     ("RESULT-ENVIPE-SEG-CON-P-DENUNCIA", "RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA")),
+)
+# (momento, RESULT, discrepancia_gen1) -- M08 bajo firma N (unidad DELITO).
+RELEVOS_CATALOGO_V4 = (
+    ("M08", "RESULT-ENVIPE-SEG-CON-P-DENUNCIA",
+     "NO-REPRODUCE-GEN1: unidad DELITO (robo total de vehículo, FAC_DEL), "
+     "no registro PERSONA; firma N"),
+)
+COLUMNAS_CATALOGO_V4 = ("valor_gen2", "corrida0_resultado_id",
+                        "corrida0_generacion", "calc_gen2", "sello_gen2",
+                        "discrepancia_gen1")
+
+
+def guardas_v4(consumidor: str, calc: str, result: str, ctx: dict) -> float:
+    """Guardas de 4.1 (+D6) vía (i), sin la liga regla↔payload de V3 (la
+    entrada de procedencia y el catálogo no citan payload): la liga es la
+    tabla de arriba, revisada por llave en los tests."""
+    import pines_mesa  # noqa: PLC0415
+    carpeta = CORRIDAS_DIR / calc
+    if not (carpeta / "sello.json").exists() or not _sello_coincide(carpeta):
+        raise ValueError(f"{consumidor}: {calc} sin sello o sello discordante")
+    estado = ctx.get(calc)
+    if estado is None or not str(estado["estado"]).startswith("SELLADA"):
+        raise ValueError(f"{consumidor}: {calc} no SELLADA en el registro")
+    if estado["cuenta_gen2"] != "SI":
+        raise ValueError(f"{consumidor}: {calc} cuenta_gen2={estado['cuenta_gen2']!r}")
+    if estado["resultado_replay"] not in pines_mesa.veredictos_afirmativos_en_resultado():
+        raise ValueError(f"{consumidor}: replay de {calc} = "
+                         f"{estado['resultado_replay']!r}, no afirmativo en RESULTADO")
+    spec = _yaml_load(carpeta / "spec.yaml")
+    if pines_mesa._ingiere(spec) or not pines_mesa._tiene_crudo(spec):
+        raise ValueError(f"{consumidor}: vía (i) exige insumo crudo sin ingestión")
+    valor = json.loads((carpeta / "resultados.json").read_text())["resultados"].get(result)
+    if isinstance(valor, bool) or not isinstance(valor, (int, float)) or not 0 <= valor <= 1:
+        raise ValueError(f"{consumidor}: {result}={valor!r} fuera de escala [0,1]")
+    return float(valor)
+
+
+def transform_procedencia_v4(source: str, regla: str, valores: list[float],
+                             result: str) -> str:
+    """Reescribe `valores:` de UNA entrada de asignados_probabilidad y añade
+    la cita B4 debajo. Rechazo atómico si la entrada no es única o ya trae
+    una cita distinta."""
+    lineas = source.splitlines(keepends=True)
+    hits = [i for i, l in enumerate(lineas) if l.rstrip("\n") == f"  - regla: {regla}"]
+    if len(hits) != 1:
+        raise ValueError(f"{regla}: se esperaba una entrada única, hay {len(hits)}")
+    i = hits[0]
+    fin = next((j for j in range(i + 1, len(lineas))
+                if not lineas[j].startswith("    ")), len(lineas))
+    bloque = range(i + 1, fin)
+    if any("corrida0_" in lineas[j] for j in bloque):
+        if any(f"corrida0_resultado_id: {result}" in lineas[j] for j in bloque):
+            return source
+        raise ValueError(f"{regla}: cita previa distinta; rechazo atómico")
+    jv = [j for j in bloque if lineas[j].startswith("    valores: [")]
+    if len(jv) != 1:
+        raise ValueError(f"{regla}: `valores:` no único")
+    viejos = _yaml_load_texto(lineas[jv[0]])["valores"]
+    if len(viejos) != len(valores):
+        raise ValueError(f"{regla}: cardinalidad {len(viejos)} != {len(valores)}")
+    lineas[jv[0]] = (
+        f"    valores: [{', '.join(f'{v:.6f}' for v in valores)}]\n"
+        f"    corrida0_resultado_id: {result}\n"
+        f"    corrida0_generacion: GEN2\n"
+        f"    clase_respaldo: \"{CLASE_SEGURO}\"\n"
+        f"    relevo_gen2: \"ACTO {ACTO_V4}: valores = RESULT de {CALC_SEGURO} "
+        f"(antes ASIGNADO {viejos}); la cita es la de la primera categoría\"\n")
+    return "".join(lineas)
+
+
+def _yaml_load_texto(texto: str):
+    import yaml  # noqa: PLC0415
+    return yaml.safe_load(texto)
+
+
+def transform_catalogo_v4(source: str, momento: str, fila_relevo: dict) -> str:
+    """Añade al final del TSV las seis columnas de relevo (si faltan) y llena
+    las de UN momento. Ninguna columna sellada se toca."""
+    import csv  # noqa: PLC0415
+    import io  # noqa: PLC0415
+    lector = csv.DictReader(io.StringIO(source), delimiter="\t")
+    cols = list(lector.fieldnames)
+    filas = list(lector)
+    nuevas = [c for c in COLUMNAS_CATALOGO_V4 if c not in cols]
+    if nuevas and len(nuevas) != len(COLUMNAS_CATALOGO_V4):
+        raise ValueError("catálogo con columnas de relevo parciales; rechazo atómico")
+    cols += nuevas
+    hits = [f for f in filas if f["id_momento"] == momento]
+    if len(hits) != 1:
+        raise ValueError(f"{momento}: se esperaba un momento único, hay {len(hits)}")
+    previo = {c: (hits[0].get(c) or "") for c in COLUMNAS_CATALOGO_V4}
+    if any(previo.values()):
+        if previo == fila_relevo:
+            return source
+        raise ValueError(f"{momento}: cita previa distinta; rechazo atómico")
+    hits[0].update(fila_relevo)
+    salida = io.StringIO()
+    w = csv.DictWriter(salida, fieldnames=cols, delimiter="\t",
+                       lineterminator="\n", restval="")
+    w.writeheader()
+    w.writerows(filas)
+    return salida.getvalue()
+
+
+def relevo_consumidores_v4(apply_: bool = False) -> None:
+    ctx = _ctx_corridas()
+    cambios = []
+    old_p = PROCEDENCIA.read_text(encoding="utf-8")
+    nuevo_p = old_p
+    for regla, results in RELEVOS_PROCEDENCIA_V4:
+        consumidor = f"milpa/procedencia.yaml:asignados_probabilidad:{regla}"
+        valores = [guardas_v4(consumidor, CALC_SEGURO, r, ctx) for r in results]
+        if abs(sum(valores) - 1) > 1e-6:
+            raise ValueError(f"{consumidor}: suma {sum(valores)!r} != 1")
+        nuevo_p = transform_procedencia_v4(nuevo_p, regla, valores, results[0])
+    # la entrada relevada carga como YAML y conserva cardinalidad
+    cargado = {e["regla"]: e for e in _yaml_load_texto(nuevo_p)["asignados_probabilidad"]}
+    for regla, results in RELEVOS_PROCEDENCIA_V4:
+        if cargado[regla].get("corrida0_resultado_id") != results[0]:
+            raise ValueError(f"{regla}: no cargó con su cita")
+    cambios.append((PROCEDENCIA, old_p, nuevo_p))
+
+    old_c = CATALOGO.read_text(encoding="utf-8")
+    nuevo_c = old_c
+    for momento, result, discrepancia in RELEVOS_CATALOGO_V4:
+        consumidor = f"milpa/catalogo-momentos-v0_1.tsv:{momento}"
+        valor = guardas_v4(consumidor, CALC_SEGURO, result, ctx)
+        nuevo_c = transform_catalogo_v4(nuevo_c, momento, {
+            "valor_gen2": repr(valor), "corrida0_resultado_id": result,
+            "corrida0_generacion": "GEN2", "calc_gen2": CALC_SEGURO,
+            "sello_gen2": sha(CORRIDAS_DIR / CALC_SEGURO / "sello.json"),
+            "discrepancia_gen1": discrepancia})
+    cambios.append((CATALOGO, old_c, nuevo_c))
+
+    for ruta, viejo, nuevo in cambios:
+        rel = ruta.relative_to(ROOT)
+        diff = "".join(difflib.unified_diff(
+            viejo.splitlines(keepends=True), nuevo.splitlines(keepends=True),
+            fromfile=f"a/{rel}", tofile=f"b/{rel}"))
+        print(diff or f"SIN-DIFF: {rel} ya aplicado")
+        if apply_ and nuevo != viejo:
+            with tempfile.NamedTemporaryFile(
+                    mode="w", encoding="utf-8", dir=ruta.parent,
+                    prefix=".relevo-consumo-", delete=False) as handle:
+                temp = Path(handle.name)
+                handle.write(nuevo)
+            try:
+                os.replace(temp, ruta)
+            finally:
+                temp.unlink(missing_ok=True)
+            print(f"APLICADO: {rel}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--apply", action="store_true")
@@ -641,7 +809,15 @@ def main() -> None:
         help="modo V3 (ACTO GEN2-RELEVO-MOTOR-34-1): cita en milpa/tramite.yaml "
              "los RESULT sellados de RELEVOS_V3 tras las guardas de 4.1. Por "
              "defecto imprime el diff seco.")
+    parser.add_argument(
+        "--relevo-consumidores-2", action="store_true",
+        help="modo V4 (ACTO GEN2-RELEVO-CONSUMIDORES-2): cita B4 en "
+             "milpa/procedencia.yaml y columnas de relevo en el catálogo de "
+             "momentos. Por defecto imprime el diff seco.")
     args = parser.parse_args()
+    if args.relevo_consumidores_2:
+        relevo_consumidores_v4(apply_=args.apply)
+        return
     if args.relevo_motor_34:
         relevo_motor_v3(apply_=args.apply)
         return
