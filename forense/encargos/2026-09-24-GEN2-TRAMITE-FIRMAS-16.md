@@ -42,3 +42,11 @@ Propio: `forense/firmas-pendientes.tsv`, `forense/no-corrido.tsv`, `data/corrida
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No ejecuta adopciones de instrumento (CATALOGO-V1-1-1), no toca el motor (RELEVO-CONSUMIDORES-2), no levanta reservas (CLASE-AMAI-2). Sucesores nombrados en cada fila.
+
+## NO-CORRIDO / RESERVAS
+
+- `check.py --baseline` VERDE (criterio de «Hecho») · NO-VERIFICABLE-AQUÍ: la suite completa excede 10 min en la sesión de nube; `--rapido` VERDE (0 FAIL) · impacto: ninguno sobre contadores · sucesor: CI de PR #1137 (job suite) · `NC-260925-GEN2-TRAMITE-FIRMAS-16-a362-01`.
+
+## CONSUMIDO
+
+PR #1137 (ADR-260925-GEN2-TRAMITE-FIRMAS-16-a362-01). Sin adendas.
