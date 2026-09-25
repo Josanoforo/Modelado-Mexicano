@@ -83,8 +83,10 @@ estaban en `origin/main` al abrir este acto y no se movieron por él.
 `N_corridas_selladas` sí avanzó mientras este acto estaba abierto (246→252)
 — por `GEN2-CLASE-AMAI-1` (seis `CALC-AMAI-NSE-*`, fusionado como `PR
 #1127` mientras esta sesión seguía en curso), ajeno a este acto y sin
-celdas-D nuevas (siguen 21) ni cambio en `celdas_validadas`
-<!-- comando: python3 tools/corrida0.py status | rg "^(celdas_validadas|N_corridas_selladas)=" -->.
+celdas-D nuevas (siguen 21) ni cambio en `celdas_validadas`. **Comando único
+para los seis contadores de `corrida0.py status` que este informe cita**
+(§1.2, §4) — no se repite más abajo, una sola corrida basta para todos:
+<!-- comando: python3 tools/corrida0.py status | grep -E "^(celdas_validadas|celdas_validadas_definicion_desde|celdas_validadas_prospectiva|celdas_validadas_retrospectiva|legacy_activas_por_consumidor__celdas_D|N_corridas_selladas)=" -->.
 
 ---
 
@@ -118,14 +120,12 @@ sellado se cita, no se re-mide; lo no sellado se proyecta y se declara así).
 
 ### 1.2 · `celdas_validadas` y `celdas_d_adoptadas_activas`, re-derivados hoy
 
-**`celdas_validadas` = 219**, no 92 como citaba v1.2 (22/sep)
-<!-- comando: python3 tools/corrida0.py status | rg '^celdas_validadas=' -->.
-El salto 92→219 **no ocurrió por trabajo de esta sesión ni de ayer**: es un
-cambio de **definición** de la métrica —crédito por conducta agregada +
-sufijo `-D-C2` de ENCIG 2025— fusionado el 23/sep por `PR #1086`
-(`tools/celdas_validadas.py::DEFINICION_DESDE = "38dd709"`)
-<!-- comando: python3 tools/corrida0.py status | rg '^celdas_validadas_definicion_desde=' -->.
-**Corrección de premisa** (este acto, no el encargo): el encargo de dirección
+**`celdas_validadas` = 219** (comando único, §0), no 92 como citaba v1.2
+(22/sep). El salto 92→219 **no ocurrió por trabajo de esta sesión ni de
+ayer**: es un cambio de **definición** de la métrica —crédito por conducta
+agregada + sufijo `-D-C2` de ENCIG 2025— fusionado el 23/sep por `PR #1086`
+(`tools/celdas_validadas.py::DEFINICION_DESDE = "38dd709"`, comando único,
+§0). **Corrección de premisa** (este acto, no el encargo): el encargo de dirección
 citaba «definición vigente desde commit de #1078»; ese PR
 (`GEN2-TRAMITE-FIRMAS-12`, rescate de su ADENDA-1) no toca
 `tools/celdas_validadas.py` — cero menciones en su historia de archivo
@@ -136,20 +136,21 @@ El commit real es `38dd709` (`PR #1086`, `ACTO GEN2-CONTADORES-CONSUMO-1`)
 La misma confusión #1078/#1086 ya había sido corregida una vez antes, para
 otra fila, por `GEN2-TRAMITE-FIRMAS-14` (23/sep) — no es un hallazgo nuevo de
 esta sesión, es una cita recurrente de dirección que este acto vuelve a
-corregir. De los 219: **20 PROSPECTIVA · 59 RETROSPECTIVA**, reportadas
-aparte y nunca fundidas (firma P, §2)
-<!-- comando: python3 tools/corrida0.py status | rg '^celdas_validadas_(prospectiva|retrospectiva)=' -->.
+corregir. De los 219: **20 PROSPECTIVA · 59 RETROSPECTIVA** (comando único,
+§0), reportadas aparte y nunca fundidas (firma P, §2).
 
-**`celdas_d_adoptadas_activas` = 17 de 21**, no 6 como citaba v1.2
-<!-- comando: python3 tools/tablero_programa.py | rg 'celdas_d_adoptadas_activas' -->,
-por instrumento: **ENIF (DIN) 10 · ENCIG (GOB) 3 · ENVIPE (TRA) 1**, más
-**3** fuera de esas tres encuestas (`G5.*`, baseline ENASIC/ENCUCI, dominio
-cultura/tiempo/capital social, no confecciones con ENIF/ENCIG/ENVIPE)
+**`celdas_d_adoptadas_activas` = 17 de 21**, no 6 como citaba v1.2, por
+instrumento: **ENIF (DIN) 10 · ENCIG (GOB) 3 · ENVIPE (TRA) 1**, más **3**
+fuera de esas tres encuestas (`G5.*`, baseline ENASIC/ENCUCI, dominio
+cultura/tiempo/capital social, no confecciones con ENIF/ENCIG/ENVIPE) —
+llamada directa al derivador, no el CLI completo (evita el costo de sus
+demás indicadores, incluida la consulta de ramas remotas)
 <!-- comando: python3 -c "
 import sys; sys.path.insert(0,'tools')
 import tablero_programa as TP
-r = TP._celdas_d_adoptadas_activas()
 from collections import Counter
+r = TP._celdas_d_adoptadas_activas()
+print('total:', r['total_adoptadas_activas'])
 print(Counter(d['celda_d'].split('.')[0] for d in r['detalle']))
 " -->.
 Las **4** celdas-D sin adoptar son las cuatro `TRA.evade_norma.envipe2025.*`
@@ -158,11 +159,10 @@ proxy, edad×sexo, escolaridad proxy×sexo — «Piloto 4 ENVIPE 2025», §2 aba
 <!-- comando: grep -l "champion_actual: NINGUNO" data/curacion-registro/celdas-d/TRA.evade_norma.envipe2025.*.yaml | wc -l -->.
 **Nota de vocabulario (hallazgo de esta sesión, para que no se repita):**
 `legacy_activas_por_consumidor__celdas_D` (un contador de `corrida0.py
-status`, hoy en **6**) cuenta dependencias numéricas legacy activas de las
-celdas-D, no adopciones — es un contador distinto de
+status`, hoy en **6** — comando único, §0) cuenta dependencias numéricas
+legacy activas de las celdas-D, no adopciones — es un contador distinto de
 `celdas_d_adoptadas_activas`; que ambos coincidieran en «6» el 22/sep fue
-casualidad de fecha, no identidad de definición
-<!-- comando: python3 tools/corrida0.py status | rg '^legacy_activas_por_consumidor__celdas_D=' -->.
+casualidad de fecha, no identidad de definición.
 
 Heredado de v1.2 §1.2, sin cambio (se cita, no se re-mide): `SIN-PISO-POR-
 DISEÑO` sigue distinguiendo ENUT 2024 (11 filas, `CAMBIO-DE-INSTRUMENTO`) y
@@ -431,7 +431,7 @@ de cierre, tal como el encargo lo pide.
    = 38dd709`, PR #1086, no #1078 como citaba dirección — §1.2), de las
    cuales **20 son prospectivas**, reportadas aparte y nunca fundidas con
    las 59 retrospectivas (firma P, `ACTO GEN2-ADOPCION-BLOQUE-Y-PINES-1`,
-   24/sep) <!-- comando: python3 tools/corrida0.py status | rg '^celdas_validadas=' -->.
+   24/sep; comando único, §0).
 5. **7 de 31 dominios del corpus con medición sellada y consolidada**
    (dinero/ENIF, trámites/ENCIG, seguridad/ENVIPE, tiempo/ENUT,
    ingreso/ENIGH, trabajo/ENOE, tecnología/ENDUTIH+MOCIBA), **2 más con
