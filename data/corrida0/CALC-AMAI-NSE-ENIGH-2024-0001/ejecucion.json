@@ -1,0 +1,169 @@
+{
+ "corrida_id": "CALC-AMAI-NSE-ENIGH-2024-0001--bad0da800685",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CLASE-AMAI-2",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "rotulo": "RETROSPECTIVA",
+  "tipo": "DISTRIBUCION-NSE-AMAI-RETROSPECTIVA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-25T19:56:00Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "bad0da8006854fa098aa6de259005f83bfff9745",
+  "git_rama": "acto/gen2-clase-amai-2",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "bad0da8006854fa098aa6de259005f83bfff9745",
+ "input_ids": [
+  "enigh2024_nc_csv",
+  "AMAI-ENIGH2024",
+  "AMAI-AUDITORIA-ENIGH2024",
+  "AMAI-REGLA",
+  "AMAI-MEDIDOR-CLASE-AMAI-1",
+  "AMAI-COMPONENTES",
+  "AMAI-IMPUTACION",
+  "DBFMINI"
+ ],
+ "input_sha256": {
+  "AMAI-AUDITORIA-ENIGH2024": "ad410042e3a18f2ce7bfae3ef4fcbaa49da752448027198246a0e6cac564573a",
+  "AMAI-COMPONENTES": "7e499bcf5852ae9148c6c9e600749dc0835e5221fd2d34a3d05aa62b671cfd5d",
+  "AMAI-ENIGH2024": "d10f3129cd44bf744440d02c71cf4e54938eeeb2555e17692774e889c3f8f27d",
+  "AMAI-IMPUTACION": "938f80cd8f3c9c26a35362f75b1561dbe58e34fe9edc8487addd58ce350256fe",
+  "AMAI-MEDIDOR-CLASE-AMAI-1": "67b97f07a94d657e3056918bf7d3b00d39d8884fdacaa9c1a084fd88607d483d",
+  "AMAI-REGLA": "7ad2c0dd4fe1449c45ad4572d9ad1bf6ab417c6f57bd4c23bc720df79eab7dd1",
+  "DBFMINI": "a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b",
+  "enigh2024_nc_csv": "7cbf18fee02c58849356e5495fb851ae4d0330743e34d26e35973f9ad5a1155d"
+ },
+ "parametros": {
+  "agrupacion": {
+   "ALTO": [
+    "C+",
+    "A/B"
+   ],
+   "BAJO": [
+    "E",
+    "D",
+    "D+"
+   ],
+   "MEDIO": [
+    "C-",
+    "C"
+   ]
+  },
+  "calc_id": "CALC-AMAI-NSE-ENIGH-2024-0001",
+  "columnas_leidas": [
+   "viviendas.folioviv",
+   "viviendas.cuart_dorm",
+   "viviendas.bano_comp",
+   "hogares.folioviv",
+   "hogares.foliohog",
+   "hogares.conex_inte",
+   "hogares.num_auto",
+   "hogares.num_van",
+   "hogares.num_pick",
+   "concentrado.folioviv",
+   "concentrado.foliohog",
+   "concentrado.educa_jefe",
+   "concentrado.ocupados",
+   "concentrado.factor",
+   "concentrado.est_dis",
+   "concentrado.upm"
+  ],
+  "firma": "C7 (FIRMAS-16, 24/sep/2026)",
+  "input_id": "enigh2024_nc_csv",
+  "instrumento": "ENIGH",
+  "n_min": 200,
+  "ola": "2024",
+  "referencia": "nota AMAI 2024 p.4 Figura 1 (ENIGH 2022)",
+  "umbral_desvio_pp": 5.0
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-AMAI-NSE-ENIGH-2024-COLUMNAS-LEIDAS",
+  "RESULT-AMAI-NSE-ENIGH-2024-DESVIO-MAX-GRUPO-PP",
+  "RESULT-AMAI-NSE-ENIGH-2024-DESVIO-MAX-NIVEL-PP",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-A/B-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-ALTO-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-BAJO-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-C+-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-C--P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-C-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-D+-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-D-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-E-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-DIST-MEDIO-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-JSON",
+  "RESULT-AMAI-NSE-ENIGH-2024-MASA-PUNTAJE-CERO-P",
+  "RESULT-AMAI-NSE-ENIGH-2024-N-HOGARES-CON-NSE",
+  "RESULT-AMAI-NSE-ENIGH-2024-N-HOGARES-SIN-NSE",
+  "RESULT-AMAI-NSE-ENIGH-2024-VALIDACION-ESTADO"
+ ],
+ "script_blob_sha256": "d10f3129cd44bf744440d02c71cf4e54938eeeb2555e17692774e889c3f8f27d",
+ "script_path": "data/corrida0/CALC-AMAI-NSE-ENIGH-2024-0001/medidor.py",
+ "seed": {
+  "aplica": false
+ },
+ "spec_id": "CALC-AMAI-NSE-ENIGH-2024-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "29285ebc978b818c53f6edf536384050c2beb558a47aafe14a9d9d9932d28fc6",
+ "spec_yaml_sha256": "abd768b35bd0102f0c9689cce9def5dfc7df5f09b5d68c7df3974c30472f3d83",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "mismo payload y mismo orden de filas; sin azar",
+  "tipo": "flotante"
+ }
+}
