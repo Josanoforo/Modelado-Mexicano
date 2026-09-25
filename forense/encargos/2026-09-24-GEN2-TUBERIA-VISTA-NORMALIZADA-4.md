@@ -54,3 +54,7 @@ No corrige por qué `adoptados` no sube (RELEVO-MOTOR-34-1), no re-sella CALC co
   **sucesor:** ninguno necesario (NC-…-574d-01 cubre la prueba real).
 
 Discrepancias declaradas (el cuerpo no se edita): `tablas/` ya existía sellada en CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-000{1,2} → el derivado va a `valores-vista/`; `derivados_protegidos.py` no cubría archivos sin cabecera → reconocimiento por ruta añadido; B y C en un solo commit. Detalle en `ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-4-574d-01`.
+
+## CONSUMIDO
+
+PR https://github.com/Josanoforo/Modelado-Mexicano/pull/1129 (rama `claude/new-session-e85tdt`). ADR de raíz: `ADR-260924-GEN2-TUBERIA-VISTA-NORMALIZADA-4-574d-01`. El PR no se fusiona en este acto: mesa fusiona.
