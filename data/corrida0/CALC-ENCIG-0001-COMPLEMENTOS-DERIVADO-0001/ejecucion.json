@@ -1,0 +1,185 @@
+{
+ "corrida_id": "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001--413bc8d7a695",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "SI",
+  "demanda_que_releva": "Complementos q=1-p de RES-0004, RES-0014, RES-0016 y RES-0022 (consumidor milpa/tramite.yaml); no edita el consumidor.",
+  "generacion": "GEN2",
+  "informacion_muestral_independiente": "NINGUNA; q e IC(q) son funciones deterministas de p e IC(p).",
+  "medidor_ejecutado_al_congelar": "NO; spec, medidor y prueba sintetica se comprometen antes del primer run real.",
+  "padre": "CALC-ENCIG-0001",
+  "tipo": "DERIVADO-DETERMINISTA-SOBRE-RESULTADO-SELLADO",
+  "validacion_independiente": "NO-APLICA-TRANSFORMACION-DETERMINISTA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-24T23:26:30Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "VACIO",
+   "primera_entrada": null
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "413bc8d7a695a207a6b143937b02a027d07abda3",
+  "git_rama": "claude/new-session-y5cznd",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "413bc8d7a695a207a6b143937b02a027d07abda3",
+ "input_ids": [
+  "IN-ENCIG-0001-RESULTADOS",
+  "IN-ENCIG-0001-SPEC",
+  "IN-ENCIG-0001-SELLO",
+  "IN-ENCIG-0001-SELLO-SHA256"
+ ],
+ "input_sha256": {
+  "IN-ENCIG-0001-RESULTADOS": "958b377fbe4483e08973e1e07e3f65aac97309b8aa7481dc2e024713b2e23885",
+  "IN-ENCIG-0001-SELLO": "9db7e8f292dc4acd43ee1107b00fe7e1c6097d6abaa3b8c78444107b6cbf58d7",
+  "IN-ENCIG-0001-SELLO-SHA256": "84faf5f48ea61498de2995b14152bb110c330cb61464f39d2c2694c4e6309934",
+  "IN-ENCIG-0001-SPEC": "a2560c61b3bc6b54d84a08c1790a56e610f17910cacdfc9612419e1cefa2a92a"
+ },
+ "parametros": {
+  "complementos": [
+   {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.discrecional:tramite_normal_encig2025",
+    "ic_hi_id": "RESULT-ENCIG-MOR-A-IC-HI-SOL1",
+    "ic_lo_id": "RESULT-ENCIG-MOR-A-IC-LO-SOL1",
+    "metodo_ic_id": "RESULT-ENCIG-MOR-A-METODO-IC",
+    "p_id": "RESULT-ENCIG-MOR-A-P-SOL1",
+    "prefijo": "RESULT-ENCIGDER-A-",
+    "valor_legacy": 0.914882,
+    "veredicto_id": "RESULT-ENCIG-MOR-A-VEREDICTO"
+   },
+   {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_presencial_r2",
+    "ic_hi_id": "RESULT-ENCIG-MOR-B-IC-HI-PRE-SD",
+    "ic_lo_id": "RESULT-ENCIG-MOR-B-IC-LO-PRE-SD",
+    "metodo_ic_id": "RESULT-ENCIG-MOR-B-METODO-IC",
+    "p_id": "RESULT-ENCIG-MOR-B-P-PRE-SD",
+    "prefijo": "RESULT-ENCIGDER-B-PRE-SD-",
+    "valor_legacy": 0.858959,
+    "veredicto_id": "RESULT-ENCIG-MOR-B-VEREDICTO"
+   },
+   {
+    "consumidor": "milpa/tramite.yaml:tramite.mordida.con_registro:tramite_normal_encig2025_digital_r2",
+    "ic_hi_id": "RESULT-ENCIG-MOR-B-IC-HI-DIG-SD",
+    "ic_lo_id": "RESULT-ENCIG-MOR-B-IC-LO-DIG-SD",
+    "metodo_ic_id": "RESULT-ENCIG-MOR-B-METODO-IC",
+    "p_id": "RESULT-ENCIG-MOR-B-P-DIG-SD",
+    "prefijo": "RESULT-ENCIGDER-B-DIG-SD-",
+    "valor_legacy": 0.970132,
+    "veredicto_id": "RESULT-ENCIG-MOR-B-VEREDICTO"
+   },
+   {
+    "consumidor": "milpa/tramite.yaml:tramite.gobierno_digital.util_sin_coercion:rechaza_servicio_encig2025_luz",
+    "ic_hi_id": "RESULT-ENCIG-MOR-C-IC-HI-ADOPTA",
+    "ic_lo_id": "RESULT-ENCIG-MOR-C-IC-LO-ADOPTA",
+    "metodo_ic_id": "RESULT-ENCIG-MOR-C-METODO-IC",
+    "p_id": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+    "prefijo": "RESULT-ENCIGDER-C-",
+    "valor_legacy": 0.326607,
+    "veredicto_id": "RESULT-ENCIG-MOR-C-VEREDICTO"
+   }
+  ],
+  "direccion_delta": "q derivado menos legacy",
+  "fuente_acto": "ACTO GEN2-RELEVO-MOTOR-34-1",
+  "padre": {
+   "calc_id": "CALC-ENCIG-0001",
+   "inputs": {
+    "resultados": "IN-ENCIG-0001-RESULTADOS",
+    "sello": "IN-ENCIG-0001-SELLO",
+    "sello_sha256": "IN-ENCIG-0001-SELLO-SHA256",
+    "spec": "IN-ENCIG-0001-SPEC"
+   }
+  },
+  "tolerancia_legacy": 1e-06,
+  "veredicto_id": "RESULT-ENCIGDER-VEREDICTO"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-ENCIGDER-A-COMPATIBILIDAD-LEGACY",
+  "RESULT-ENCIGDER-A-DELTA-VS-LEGACY",
+  "RESULT-ENCIGDER-A-IC-HI-Q",
+  "RESULT-ENCIGDER-A-IC-LO-Q",
+  "RESULT-ENCIGDER-A-METODO-IC-HEREDADO",
+  "RESULT-ENCIGDER-A-P-PADRE",
+  "RESULT-ENCIGDER-A-Q",
+  "RESULT-ENCIGDER-A-SUMA-P-Q",
+  "RESULT-ENCIGDER-B-DIG-SD-COMPATIBILIDAD-LEGACY",
+  "RESULT-ENCIGDER-B-DIG-SD-DELTA-VS-LEGACY",
+  "RESULT-ENCIGDER-B-DIG-SD-IC-HI-Q",
+  "RESULT-ENCIGDER-B-DIG-SD-IC-LO-Q",
+  "RESULT-ENCIGDER-B-DIG-SD-METODO-IC-HEREDADO",
+  "RESULT-ENCIGDER-B-DIG-SD-P-PADRE",
+  "RESULT-ENCIGDER-B-DIG-SD-Q",
+  "RESULT-ENCIGDER-B-DIG-SD-SUMA-P-Q",
+  "RESULT-ENCIGDER-B-PRE-SD-COMPATIBILIDAD-LEGACY",
+  "RESULT-ENCIGDER-B-PRE-SD-DELTA-VS-LEGACY",
+  "RESULT-ENCIGDER-B-PRE-SD-IC-HI-Q",
+  "RESULT-ENCIGDER-B-PRE-SD-IC-LO-Q",
+  "RESULT-ENCIGDER-B-PRE-SD-METODO-IC-HEREDADO",
+  "RESULT-ENCIGDER-B-PRE-SD-P-PADRE",
+  "RESULT-ENCIGDER-B-PRE-SD-Q",
+  "RESULT-ENCIGDER-B-PRE-SD-SUMA-P-Q",
+  "RESULT-ENCIGDER-C-COMPATIBILIDAD-LEGACY",
+  "RESULT-ENCIGDER-C-DELTA-VS-LEGACY",
+  "RESULT-ENCIGDER-C-IC-HI-Q",
+  "RESULT-ENCIGDER-C-IC-LO-Q",
+  "RESULT-ENCIGDER-C-METODO-IC-HEREDADO",
+  "RESULT-ENCIGDER-C-P-PADRE",
+  "RESULT-ENCIGDER-C-Q",
+  "RESULT-ENCIGDER-C-SUMA-P-Q",
+  "RESULT-ENCIGDER-VEREDICTO"
+ ],
+ "script_blob_sha256": "d5791d2407f7ca64e60e3a5fcdd548a874b9222382ec50925401b684f17e5fb1",
+ "script_path": "data/corrida0/CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": null,
+  "valor": null
+ },
+ "spec_id": "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "25c20888255a6d26c42cdcbe836f97af1070b20a3404b73a1c2be0c2f3309e15",
+ "spec_yaml_sha256": "fbdaaf4f42da03c6dc160aa735c8bb877a7881e62c49fae9012d6da7e4eb6a5d",
+ "tolerancia": {
+  "abs": 1e-15,
+  "razon": "Aritmetica determinista sobre los mismos bytes float del padre.",
+  "tipo": "flotante"
+ }
+}

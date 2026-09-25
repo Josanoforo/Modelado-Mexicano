@@ -1,0 +1,114 @@
+{
+ "corrida_id": "CALC-MOCIBA-SERIE-DICTAMEN-0001--054ffd9f34de",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "exposicion_historica": "SIN-VALORES-PRE-FREEZE; mapa congelado en forense/analisis/donde-cambio/mapa/CONGELADO.md",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "origen_numerico_detalle": "dictamen sobre RESULT sellados de 2 CALC; sin microdato",
+  "tipo": "DICTAMEN-SERIE-RETROSPECTIVA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-24T23:24:16Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "054ffd9f34dedac01f25087b1d1c5e6506706483",
+  "git_rama": "acto/gen2-donde-cambio-el-mexicano-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "054ffd9f34dedac01f25087b1d1c5e6506706483",
+ "input_ids": [
+  "MEDIDOR-CALC-SERIE",
+  "MEDIDOR-DICTAMEN",
+  "MAPA",
+  "SRC-CALC-MOCIBA-PISOS-2016-0001",
+  "SRC-CALC-MOCIBA-PISOS-2017-0001"
+ ],
+ "input_sha256": {
+  "MAPA": "67e6f9c08209daf5ff9b149f6f9ec9227f05aa747b784de63d717e45c5ca1ab8",
+  "MEDIDOR-CALC-SERIE": "780d94b31dde9f7748ed20bdb719a3f62e31259c9a8b42c098beba8222440e92",
+  "MEDIDOR-DICTAMEN": "b2b846cacca8dff43a9f662a31b3a0a53afd101462ea3d34d7606405a52dd29f",
+  "SRC-CALC-MOCIBA-PISOS-2016-0001": "f9b04f3085d7671cbaf8ba0a5ad58016d7f789a3cf32858f27a3b7baa59f3d6d",
+  "SRC-CALC-MOCIBA-PISOS-2017-0001": "cae70695f8978666f1a1d6ea6f2f30439541b6af6f2a3ec1b28f403be011af86"
+ },
+ "parametros": {
+  "instrumento": "MOCIBA",
+  "prefijo": "RESULT-DC-MOCIBA",
+  "tau2_fuente": "CALCULADO-AQUI spec §3.3",
+  "z_95": 1.959964
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-DC-MOCIBA-N-CAMBIO-SOSTENIDO",
+  "RESULT-DC-MOCIBA-N-ESTABLE",
+  "RESULT-DC-MOCIBA-N-SALTO-DE-INSTRUMENTO",
+  "RESULT-DC-MOCIBA-N-SALTO-SIN-EXPLICAR",
+  "RESULT-DC-MOCIBA-N-SERIES",
+  "RESULT-DC-MOCIBA-N-SIN-SERIE",
+  "RESULT-DC-MOCIBA-TABLA",
+  "RESULT-DC-MOCIBA-TAU2-FUENTE",
+  "RESULT-DC-MOCIBA-TAU2-NACIONAL"
+ ],
+ "script_blob_sha256": "f4c407f5b096d0623cca102204e9ccc2cfe08eb0c665bc55d5078b075c866482",
+ "script_path": "data/corrida0/CALC-MOCIBA-SERIE-DICTAMEN-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "nota": "determinista, sin remuestreo"
+ },
+ "spec_id": "CALC-MOCIBA-SERIE-DICTAMEN-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "f3ca3d66f998086334695ec01dd29e5b6231e2a7c0d72963b74fe0e759883592",
+ "spec_yaml_sha256": "26ef71c3ad1d911663079751490c5ed90038c35441d98ce142cfcc43629742a8",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}

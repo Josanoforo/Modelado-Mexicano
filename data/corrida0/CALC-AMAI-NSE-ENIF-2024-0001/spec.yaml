@@ -1,0 +1,1111 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-AMAI-NSE-ENIF-2024-0001
+spec_md: ../../../forense/prereg-caja/AMAI-NSE-spec-v1_0.md
+spec_md_sha256: 4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde
+script: data/corrida0/CALC-AMAI-NSE-ENIF-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-NSE-AMAI-RETROSPECTIVO
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: GEN2-CLASE-AMAI-1
+  origen_numerico: NUEVO
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: AMAI-REGLA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/regla.py
+  sha256: 7ad2c0dd4fe1449c45ad4572d9ad1bf6ab417c6f57bd4c23bc720df79eab7dd1
+- id: AMAI-COMPONENTES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/componentes.py
+  sha256: 7e499bcf5852ae9148c6c9e600749dc0835e5221fd2d34a3d05aa62b671cfd5d
+- id: AMAI-IMPUTACION
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/imputacion.py
+  sha256: 938f80cd8f3c9c26a35362f75b1561dbe58e34fe9edc8487addd58ce350256fe
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+- id: DBFMINI
+  origen: repo
+  funcion: CODIGO
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: REGION-ENIF-PORTAFOLIO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_portafolio.py
+  sha256: a0d8f989b33b899d72cce17c138fec24de7052f8ae07e05ed659167ccf835608
+- id: REGION-ENIF-CONDICIONALES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_condicionales.py
+  sha256: a64e53c07506a43ed8b6d0bea116082bdaa9bf95ea067e9807a297d4fd86f245
+- id: REGION-ENIF-NO-TRABAJA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_no_trabaja.py
+  sha256: 2773ea8e281bee58b86b5170589033308c4d7388f2cc0119dbe27452f620e3ce
+- id: REGION-MEDIDOR-CSV
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/medidor.py
+  sha256: d049cfb96c84f36b32667cc71c55c3591233ab538e7b53abf7c9d71098d0a4f4
+variables:
+- archivo: microdato de la spec humana §4
+  variable: FAC_PER
+  rol: factor de expansión
+- archivo: microdato de la spec humana §4
+  variable: EST_DIS/est_dis
+  rol: estrato de diseño
+- archivo: microdato de la spec humana §4
+  variable: UPM_DIS/upm
+  rol: UPM de diseño
+universo: ENIF 2024; NSE por hogar; pisos en unidad persona elegida 18+
+filtros: Hogar sin algún componente válido queda sin NSE; conductas con su denominador
+  sellado; no se filtra el marco antes de las réplicas
+ponderador: FAC_PER
+transformacion: regla AMAI 2024 (spec §1-§4); razón de masas ponderadas por grupo
+  NSE; IC percentil de réplicas UPM compartidas; supresión n<200
+estimando: distribución NSE de hogares y proporción de cada conducta por grupo NSE
+  (BAJO/MEDIO/ALTO), ENIF 2024
+parametros:
+  instrumento: ENIF
+  ola: '2024'
+  input_id: enif_2024_enif_2024_bd_csv
+  conductas:
+  - tiene_ahorros_enif2024
+  - no_tiene_ahorros_enif2024
+  - informal_cualquiera
+  - formal_cualquiera
+  - ahorra_solo_informal
+  - ahorra_solo_formal
+  - ahorra_ambas_vias
+  - no_ahorra
+  - horizonte_corto_sin_ss
+  - horizonte_no_corto_sin_ss
+  - horizonte_corto_con_ss
+  - horizonte_no_corto_con_ss
+  - desconfia_conoce_proteccion
+  - desconfia_no_conoce_proteccion
+  - horizonte_corto_no_trabaja
+  - recibe_dinero_familiares_para_vejez
+  - no_recibe_dinero_familiares_para_vejez
+  bootstrap_replicas: 1000
+  n_min: 200
+  umbral_desvio_pp: 5.0
+  tolerancia_reproduce_pp: 0.15
+  agrupacion:
+    BAJO:
+    - E
+    - D
+    - D+
+    MEDIO:
+    - C-
+    - C
+    ALTO:
+    - C+
+    - A/B
+seed:
+  aplica: true
+  valor: 20260924
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, mismo orden de filas y semilla
+resultados:
+- id: RESULT-AMAI-NSE-ENIF-2024-JSON
+  tipo: texto
+  unidad: JSON sin identificadores individuales
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-E-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-D-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-D+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-C--P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-C-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-C+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-A/B-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DIST-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-N-HOGARES-CON-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-N-HOGARES-SIN-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-VALIDACION-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-DESVIO-MAX-GRUPO-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-DESVIO-MAX-NIVEL-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-tiene_ahorros_enif2024-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_tiene_ahorros_enif2024-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-informal_cualquiera-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-formal_cualquiera-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_informal-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_solo_formal-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-ahorra_ambas_vias-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_ahorra-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_sin_ss-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_sin_ss-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_con_ss-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_no_corto_con_ss-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_conoce_proteccion-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-desconfia_no_conoce_proteccion-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-horizonte_corto_no_trabaja-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-recibe_dinero_familiares_para_vejez-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2024-no_recibe_dinero_familiares_para_vejez-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación

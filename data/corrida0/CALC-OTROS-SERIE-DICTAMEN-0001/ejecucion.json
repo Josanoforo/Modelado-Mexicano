@@ -1,0 +1,141 @@
+{
+ "corrida_id": "CALC-OTROS-SERIE-DICTAMEN-0001--77d9fa4825ed",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "exposicion_historica": "SIN-VALORES-PRE-FREEZE; mapa congelado en forense/analisis/donde-cambio/mapa/CONGELADO.md",
+  "generacion": "GEN2",
+  "origen_numerico": "NUEVO",
+  "origen_numerico_detalle": "dictamen sobre RESULT sellados de 10 CALC; sin microdato",
+  "tipo": "DICTAMEN-SERIE-RETROSPECTIVA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-24T23:24:17Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "77d9fa4825ed8f06dbb8634188b866e744c9b19e",
+  "git_rama": "acto/gen2-donde-cambio-el-mexicano-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "77d9fa4825ed8f06dbb8634188b866e744c9b19e",
+ "input_ids": [
+  "MEDIDOR-CALC-SERIE",
+  "MEDIDOR-DICTAMEN",
+  "MAPA",
+  "SRC-CALC-0002",
+  "SRC-CALC-BANXICO-PRODUCTO-DANO-0001",
+  "SRC-CALC-EDER-0001",
+  "SRC-CALC-EDER-0003",
+  "SRC-CALC-ENCUCI-0001",
+  "SRC-CALC-ENFIH-0001",
+  "SRC-CALC-ENSANUT-0001",
+  "SRC-CALC-MOTRAL2015-VALORACION-SS-0001",
+  "SRC-CALC-R-DIN-M-01-v4",
+  "SRC-CALC-R-TRA-M-02-v3"
+ ],
+ "input_sha256": {
+  "MAPA": "67e6f9c08209daf5ff9b149f6f9ec9227f05aa747b784de63d717e45c5ca1ab8",
+  "MEDIDOR-CALC-SERIE": "780d94b31dde9f7748ed20bdb719a3f62e31259c9a8b42c098beba8222440e92",
+  "MEDIDOR-DICTAMEN": "b2b846cacca8dff43a9f662a31b3a0a53afd101462ea3d34d7606405a52dd29f",
+  "SRC-CALC-0002": "4f76c4c929c0f1c0e15a30dd253c3c5cae0992aa638d5a26f2e7d2e1f0f209fa",
+  "SRC-CALC-BANXICO-PRODUCTO-DANO-0001": "d187c6375d3333c17d19359404cfd46c4051539eca26e9e739ca44424bd759ba",
+  "SRC-CALC-EDER-0001": "fdae379a4c1c7ffda56b214a6e8e3d186e4b60b373de4331dd4c767ecdea1a8b",
+  "SRC-CALC-EDER-0003": "cc26fc6225c6a2a177166ad4c1c261f28e37540e99329be3ab27baf7819dfb48",
+  "SRC-CALC-ENCUCI-0001": "81bd129c52a4f96d60377e09b1e16b5c8dbb1df3d13a1b6b57ac1ac779c0f704",
+  "SRC-CALC-ENFIH-0001": "471392e79276aebc0e74ec4a8fa65f3a63c3edfe1e47922e54edc931b48633be",
+  "SRC-CALC-ENSANUT-0001": "3df2e79f5a782b54afade3e7c2c494c52652f7a026dde9c1ce0b3f2f87556189",
+  "SRC-CALC-MOTRAL2015-VALORACION-SS-0001": "5fbfcb88dc74d8da2d0ad16b7e5f3d51c39c76aa26570d240f995651ead4d026",
+  "SRC-CALC-R-DIN-M-01-v4": "632d0f8c5a33addeee218319ebcfda2636aa8505567ceabccd2fb8dc9684509d",
+  "SRC-CALC-R-TRA-M-02-v3": "275e678104ce87919e92d5e7fd88d76330f5fd9e365b45c27cc3ba2163a69e01"
+ },
+ "parametros": {
+  "instrumento": [
+   "BANXICO",
+   "EDER",
+   "ENCUCI",
+   "ENFIH",
+   "ENNVIH",
+   "ENSANUT",
+   "LAPOP",
+   "MOTRAL"
+  ],
+  "prefijo": "RESULT-DC-OTROS",
+  "tau2_fuente": "CALCULADO-AQUI spec §3.3",
+  "z_95": 1.959964
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-DC-OTROS-N-CAMBIO-SOSTENIDO",
+  "RESULT-DC-OTROS-N-ESTABLE",
+  "RESULT-DC-OTROS-N-SALTO-DE-INSTRUMENTO",
+  "RESULT-DC-OTROS-N-SALTO-SIN-EXPLICAR",
+  "RESULT-DC-OTROS-N-SERIES",
+  "RESULT-DC-OTROS-N-SIN-SERIE",
+  "RESULT-DC-OTROS-TABLA",
+  "RESULT-DC-OTROS-TAU2-FUENTE",
+  "RESULT-DC-OTROS-TAU2-NACIONAL",
+  "RESULT-DC-OTROS-TAU2-RURAL",
+  "RESULT-DC-OTROS-TAU2-URBANO"
+ ],
+ "script_blob_sha256": "f4c407f5b096d0623cca102204e9ccc2cfe08eb0c665bc55d5078b075c866482",
+ "script_path": "data/corrida0/CALC-OTROS-SERIE-DICTAMEN-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "nota": "determinista, sin remuestreo"
+ },
+ "spec_id": "CALC-OTROS-SERIE-DICTAMEN-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "f3ca3d66f998086334695ec01dd29e5b6231e2a7c0d72963b74fe0e759883592",
+ "spec_yaml_sha256": "04353dc14fd18d8e1a03ec05dea9a52436bf5e87b57d31a1b4305e89f088a2f1",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}
