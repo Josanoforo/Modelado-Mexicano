@@ -1,0 +1,222 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-AMAI-NSE-ENIGH-2024-0001
+spec_md: ../../../forense/prereg-caja/AMAI-NSE-ENIGH2024-spec-v1_0.md
+spec_md_sha256: 29285ebc978b818c53f6edf536384050c2beb558a47aafe14a9d9d9932d28fc6
+script: data/corrida0/CALC-AMAI-NSE-ENIGH-2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: DISTRIBUCION-NSE-AMAI-RETROSPECTIVA
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: GEN2-CLASE-AMAI-2
+  origen_numerico: NUEVO
+inputs:
+- id: enigh2024_nc_csv
+  origen: manifiesto
+- id: AMAI-ENIGH2024
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/enigh2024.py
+  sha256: d10f3129cd44bf744440d02c71cf4e54938eeeb2555e17692774e889c3f8f27d
+- id: AMAI-AUDITORIA-ENIGH2024
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/auditoria_enigh2024.py
+  sha256: ad410042e3a18f2ce7bfae3ef4fcbaa49da752448027198246a0e6cac564573a
+- id: AMAI-REGLA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/regla.py
+  sha256: 7ad2c0dd4fe1449c45ad4572d9ad1bf6ab417c6f57bd4c23bc720df79eab7dd1
+- id: AMAI-MEDIDOR-CLASE-AMAI-1
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/medidor.py
+  sha256: 67b97f07a94d657e3056918bf7d3b00d39d8884fdacaa9c1a084fd88607d483d
+- id: AMAI-COMPONENTES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/componentes.py
+  sha256: 7e499bcf5852ae9148c6c9e600749dc0835e5221fd2d34a3d05aa62b671cfd5d
+- id: AMAI-IMPUTACION
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/imputacion.py
+  sha256: 938f80cd8f3c9c26a35362f75b1561dbe58e34fe9edc8487addd58ce350256fe
+- id: DBFMINI
+  origen: repo
+  funcion: CODIGO
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+variables:
+- archivo: viviendas
+  variable: folioviv
+  rol: columna autorizada por C7 (spec §2)
+- archivo: viviendas
+  variable: cuart_dorm
+  rol: columna autorizada por C7 (spec §2)
+- archivo: viviendas
+  variable: bano_comp
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: folioviv
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: foliohog
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: conex_inte
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: num_auto
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: num_van
+  rol: columna autorizada por C7 (spec §2)
+- archivo: hogares
+  variable: num_pick
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: folioviv
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: foliohog
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: educa_jefe
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: ocupados
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: factor
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: est_dis
+  rol: columna autorizada por C7 (spec §2)
+- archivo: concentrado
+  variable: upm
+  rol: columna autorizada por C7 (spec §2)
+universo: ENIGH 2024 NS; hogares de concentradohogar; nacional
+filtros: Hogar sin algún componente válido queda sin NSE (conteo reportado); factor
+  > 0
+ponderador: factor
+transformacion: regla AMAI 2024 (spec AMAI-NSE v1.0 §1); masa ponderada por nivel
+  y grupo NSE; supresión n<200
+estimando: distribución NSE AMAI nacional de hogares, ENIGH 2024, y su desvío contra
+  la Figura 1 AMAI (ENIGH 2022)
+parametros:
+  instrumento: ENIGH
+  ola: '2024'
+  input_id: enigh2024_nc_csv
+  calc_id: CALC-AMAI-NSE-ENIGH-2024-0001
+  columnas_leidas:
+  - viviendas.folioviv
+  - viviendas.cuart_dorm
+  - viviendas.bano_comp
+  - hogares.folioviv
+  - hogares.foliohog
+  - hogares.conex_inte
+  - hogares.num_auto
+  - hogares.num_van
+  - hogares.num_pick
+  - concentrado.folioviv
+  - concentrado.foliohog
+  - concentrado.educa_jefe
+  - concentrado.ocupados
+  - concentrado.factor
+  - concentrado.est_dis
+  - concentrado.upm
+  umbral_desvio_pp: 5.0
+  n_min: 200
+  referencia: nota AMAI 2024 p.4 Figura 1 (ENIGH 2022)
+  agrupacion:
+    BAJO:
+    - E
+    - D
+    - D+
+    MEDIO:
+    - C-
+    - C
+    ALTO:
+    - C+
+    - A/B
+  firma: C7 (FIRMAS-16, 24/sep/2026)
+seed:
+  aplica: false
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload y mismo orden de filas; sin azar
+resultados:
+- id: RESULT-AMAI-NSE-ENIGH-2024-JSON
+  tipo: texto
+  unidad: REF a tablas/nse-enigh2024.json (JSON sin identificadores individuales)
+- id: RESULT-AMAI-NSE-ENIGH-2024-COLUMNAS-LEIDAS
+  tipo: texto
+  unidad: lista tabla.columna separada por comas
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-E-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-D-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-D+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-C--P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-C-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-C+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-A/B-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DIST-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-MASA-PUNTAJE-CERO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-N-HOGARES-CON-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIGH-2024-N-HOGARES-SIN-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIGH-2024-VALIDACION-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIGH-2024-DESVIO-MAX-GRUPO-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIGH-2024-DESVIO-MAX-NIVEL-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
