@@ -30,10 +30,10 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 |---|---:|---|
 | Corridas selladas | 276 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
 | RESULT GEN2 sellados | 83 827 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
-| RESULT GEN2 adoptados activos | 81 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
+| RESULT GEN2 adoptados activos | 128 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
 | Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |
-| Celdas retrospectivas de esa vista | 59 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
+| Celdas retrospectivas de esa vista | 75 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_retrospectiva=' --> `celdas_validadas_retrospectiva` |
 | RESULT GEN2 pendientes de adopción | 10 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_pendientes_adopcion=' --> `N_resultados_gen2_pendientes_adopcion` |
 <!-- TABLERO-DERIVADO:END -->
 
