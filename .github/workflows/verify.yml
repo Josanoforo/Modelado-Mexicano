@@ -69,7 +69,14 @@ jobs:
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
         # PyYAML: tests/manifiesto.py y tools/corrida0.py (import directo,
         # nunca opcional) la usan; markdown: tools/tablero_vista.py.
-        run: python3 -m pip install -r requirements.txt
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt
 
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
         run: time python3 tests/check.py --baseline --parallel
@@ -101,7 +108,14 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt
 
       - name: ASTRA5-U3 Política — contratos sintéticos INE, ENCUP y LAPOP (bloqueante)
         run: python3 -m pytest -q tests/test_ine_pisos.py tests/test_encup_pisos.py tests/test_encup_pisos_etiquetas.py tests/test_lapop_pisos.py
@@ -396,7 +410,14 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt numpy pytest
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt numpy pytest
 
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
@@ -556,7 +577,14 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
-        run: python3 -m pip install -r requirements.txt
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt
 
       - name: Prueba por mutación del chequeo (bloqueante — D-21, el acto cablea su test)
         run: python3 tests/test_preflight_calc_tocados.py
@@ -599,7 +627,14 @@ jobs:
         run: python3 -VV
 
       - name: Instala dependencias (requirements.txt)
-        run: python3 -m pip install -r requirements.txt
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt
 
       - name: G1..G6 — identidad RES/llave lógica (bloqueante)
         run: python3 tools/ci_guardas_res.py --base refs/remotes/origin/base

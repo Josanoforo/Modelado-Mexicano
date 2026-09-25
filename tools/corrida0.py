@@ -4134,6 +4134,20 @@ def _propaga_envuelto(oferta: list[dict], decisiones: dict | None = None) -> Non
             return salidas
         return []
 
+    # GEN2-TUBERIA-RENDIMIENTO-1 P3: indice por CALC de `resultados` (primera
+    # declaracion por id, igual que el `next(...)` lineal al que sustituye);
+    # el perfil marco ese barrido O(n^2) como segundo cuello de `registro`.
+    decl_memo: dict[str, dict] = {}
+
+    def decl_por_calc(calc_id: str, spec: dict) -> dict:
+        if calc_id not in decl_memo:
+            idx: dict = {}
+            for d in (spec.get("resultados") or []):
+                if isinstance(d, dict):
+                    idx.setdefault(str(d.get("id")), d)
+            decl_memo[calc_id] = idx
+        return decl_memo[calc_id]
+
     def resuelve_resultado(calc_id: str, rid: str, pila: tuple[str, ...] = ()) -> dict:
         clave = (calc_id, rid)
         if clave in memo:
@@ -4154,8 +4168,7 @@ def _propaga_envuelto(oferta: list[dict], decisiones: dict | None = None) -> Non
             memo[clave] = r
             return r
         entradas = [e for e in (spec.get("inputs") or []) if isinstance(e, dict)]
-        decl = next((d for d in (spec.get("resultados") or [])
-                     if isinstance(d, dict) and str(d.get("id")) == rid), {})
+        decl = decl_por_calc(calc_id, spec).get(rid, {})
         origen_declarado = str(decl.get("origen_numerico") or "").upper()
         if origen_declarado in {ORIGEN_NUEVO, ORIGEN_HEREDADO, ORIGEN_MIXTO, ORIGEN_INDETERMINADO}:
             r = {"origen": origen_declarado,
