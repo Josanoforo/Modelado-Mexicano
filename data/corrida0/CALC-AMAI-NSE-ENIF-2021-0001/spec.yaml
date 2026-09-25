@@ -1,0 +1,176 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-AMAI-NSE-ENIF-2021-0001
+spec_md: ../../../forense/prereg-caja/AMAI-NSE-spec-v1_0.md
+spec_md_sha256: 4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde
+script: data/corrida0/CALC-AMAI-NSE-ENIF-2021-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-NSE-AMAI-RETROSPECTIVO
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: GEN2-CLASE-AMAI-1
+  origen_numerico: NUEVO
+inputs:
+- id: enif_2021_enif_2021_bd_csv
+  origen: manifiesto
+- id: AMAI-REGLA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/regla.py
+  sha256: 7ad2c0dd4fe1449c45ad4572d9ad1bf6ab417c6f57bd4c23bc720df79eab7dd1
+- id: AMAI-COMPONENTES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/componentes.py
+  sha256: 7e499bcf5852ae9148c6c9e600749dc0835e5221fd2d34a3d05aa62b671cfd5d
+- id: AMAI-IMPUTACION
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/imputacion.py
+  sha256: 938f80cd8f3c9c26a35362f75b1561dbe58e34fe9edc8487addd58ce350256fe
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+- id: DBFMINI
+  origen: repo
+  funcion: CODIGO
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: REGION-ENIF-PORTAFOLIO
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_portafolio.py
+  sha256: a0d8f989b33b899d72cce17c138fec24de7052f8ae07e05ed659167ccf835608
+- id: REGION-ENIF-CONDICIONALES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_condicionales.py
+  sha256: a64e53c07506a43ed8b6d0bea116082bdaa9bf95ea067e9807a297d4fd86f245
+- id: REGION-ENIF-NO-TRABAJA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/enif_no_trabaja.py
+  sha256: 2773ea8e281bee58b86b5170589033308c4d7388f2cc0119dbe27452f620e3ce
+- id: REGION-MEDIDOR-CSV
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/medidor.py
+  sha256: d049cfb96c84f36b32667cc71c55c3591233ab538e7b53abf7c9d71098d0a4f4
+variables:
+- archivo: microdato de la spec humana §4
+  variable: FAC_HOG
+  rol: factor de expansión
+- archivo: microdato de la spec humana §4
+  variable: EST_DIS/est_dis
+  rol: estrato de diseño
+- archivo: microdato de la spec humana §4
+  variable: UPM_DIS/upm
+  rol: UPM de diseño
+universo: ENIF 2021; NSE por hogar; pisos en unidad hogar (sin pisos)
+filtros: Hogar sin algún componente válido queda sin NSE; conductas con su denominador
+  sellado; no se filtra el marco antes de las réplicas
+ponderador: FAC_HOG
+transformacion: regla AMAI 2024 (spec §1-§4); razón de masas ponderadas por grupo
+  NSE; IC percentil de réplicas UPM compartidas; supresión n<200
+estimando: distribución NSE de hogares y proporción de cada conducta por grupo NSE
+  (BAJO/MEDIO/ALTO), ENIF 2021
+parametros:
+  instrumento: ENIF
+  ola: '2021'
+  input_id: enif_2021_enif_2021_bd_csv
+  conductas: []
+  bootstrap_replicas: 1000
+  n_min: 200
+  umbral_desvio_pp: 5.0
+  tolerancia_reproduce_pp: 0.15
+  agrupacion:
+    BAJO:
+    - E
+    - D
+    - D+
+    MEDIO:
+    - C-
+    - C
+    ALTO:
+    - C+
+    - A/B
+seed:
+  aplica: true
+  valor: 20260924
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, mismo orden de filas y semilla
+resultados:
+- id: RESULT-AMAI-NSE-ENIF-2021-JSON
+  tipo: texto
+  unidad: JSON sin identificadores individuales
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-E-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-D-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-D+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-C--P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-C-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-C+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-A/B-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DIST-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-N-HOGARES-CON-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2021-N-HOGARES-SIN-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENIF-2021-VALIDACION-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENIF-2021-DESVIO-MAX-GRUPO-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENIF-2021-DESVIO-MAX-NIVEL-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
