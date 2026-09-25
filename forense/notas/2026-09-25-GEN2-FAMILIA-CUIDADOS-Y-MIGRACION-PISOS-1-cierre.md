@@ -183,3 +183,11 @@ PSU en 2013/2023, n ≈ 1 000, τ² grande en remesas y sin autorización). Este
    nombre viejo y no se editan: la cita se resuelve por este párrafo y el hallazgo.
 5. **EMIF:** NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO; receta en la lista cerrada §4 → NC.
 6. **ENADID 2014 CSV `_PE`** no es la base completa (≈ 1/40 del tamaño): se usó el DBF.
+7. **Catálogo v1.1 regenerado por comando (fuera de §9, declarado):** el job `guardias` falló en
+   `tests/test_catalogo_v1_1.py::test_regenera_identico` porque las FP nuevas de este acto
+   cambian un derivado del catálogo (MIGRACION pasa de MEDIBLE-EN-CORPUS-SIN-CALC a
+   EN-MEDICIÓN, 1 pendiente de firma). Se regeneró con
+   `python3 forense/analisis/catalogo/genera_catalogo_v1_1.py --sin-registro` (3 archivos:
+   `canon/catalogo-del-mexicano-v1_1.md`, `cobertura-31.tsv`, `conteos.json`); nada se editó a
+   mano. El catálogo es ajeno por el encargo §9: se toca sólo su salida derivada, cláusula 6
+   («fuera de §9 sin declarar» es lo vedado).
