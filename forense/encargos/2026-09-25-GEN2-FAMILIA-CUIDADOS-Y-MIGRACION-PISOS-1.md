@@ -28,3 +28,15 @@ Propio: `forense/prereg-caja/FAMILIA-*`, `data/corrida0/CALC-ENADID*-FAMILIA-*`,
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No evalúa prospectivamente, no adopta. Sucesores: FIRMAS-18; catálogo v1.2.
+
+## NO-CORRIDO / RESERVAS
+
+| id | qué | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01 | «Hecho»: ≥ 1 CALC sellado por instrumento con `verify` REPRODUCE y asiento — registro en la vista (corridas/resultados.tsv) de los 3 CALC | DIFERIDO-A:GEN2-TUBERIA -- derivados protegidos no viajan en PR; el asiento en replay-evidencia.tsv publica la fila cuando el job de main corra registro --lote | los 3 CALC quedan sellados en disco, no registrados, hasta el job | mesa / job de push a main (registro --lote) |
+| NC-…-2a0e-02 | [SUPUESTO] que EMIF (COLEF) se obtuvo; si no, `/adquiere` o NO-OBTENIDO con receta | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO (colef.mx/emif/ sin enlaces estáticos a bases; bases.php 404; CKAN sin JSON); receta en lista-cerrada-familia-migracion-P1 §4 | sin piso de flujos EMIF | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
+| NC-…-2a0e-03 | fecundidad deseada vs observada | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- el ideal de hijos cambia de número y nemónico por ola en el módulo de la mujer | sin piso de fecundidad deseada | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
+| NC-…-2a0e-04 | ENADID primero: serie — 1992 y 1997 | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- otro esquema, sin estrato/UPM de diseño estándar ni clase de hogar derivada | la serie empieza en 2009 (τ² de 2 Δ) | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
+| NC-…-2a0e-05 | segmentación: formalidad, región, NSE; TLOC en ENASIC; escolaridad/urbanidad en Pew | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- formalidad fuera de las tablas usadas; NSE no construido para estas encuestas; ENASIC no publica localidad; Pew cambia variables por ola | ninguna afirmación regional ni por formalidad medida | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
+| NC-…-2a0e-06 | FP de adopción por instrumento | DECISIÓN-DE-MESA-PENDIENTE -- FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01..03 | ningún consumidor usa estos pisos hasta la firma | FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01 |
+| NC-…-2a0e-07 | ola más reciente reservada (E.6): ENADID 2023 (conductas de esta lista) y Pew GAS Spring 2025 | DIFERIDO-A:GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 -- reservadas por diseño; este acto no evalúa prospectivamente | reservas sin abrir; celdas_validadas no se mueve | GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-2 |
