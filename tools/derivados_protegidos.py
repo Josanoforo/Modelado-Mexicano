@@ -55,6 +55,32 @@ def _es_tabla_de_valor(rel: str) -> bool:
     return len(partes) == 5 and partes[:2] == ["data", "corrida0"] and partes[3] == "valores-vista"
 
 
+MARCA_BLOQUE = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
+
+
+def _fuera_del_bloque(texto: str) -> str | None:
+    """Texto sin el bloque TABLERO-DERIVADO; `None` si no trae el par de marcas."""
+    ini, fin = MARCA_BLOQUE
+    a, b = texto.find(ini), texto.find(fin)
+    if a < 0 or b < a:
+        return None
+    return texto[:a] + texto[b + len(fin):]
+
+
+def _solo_cambia_bloque(base: str, cabeza: str, rel: str) -> bool:
+    """ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 publica el tablero en el PR
+    automático: el archivo es derivado sólo dentro del bloque marcado."""
+    def lee(ref):
+        r = subprocess.run(["git", "-C", RAIZ, "show", f"{ref}:{rel}"],
+                           capture_output=True, text=True)
+        return r.stdout if r.returncode == 0 else None
+    antes, despues = lee(base), lee(cabeza)
+    if antes is None or despues is None:
+        return False
+    fuera = _fuera_del_bloque(antes)
+    return fuera is not None and fuera == _fuera_del_bloque(despues)
+
+
 def _candidatos() -> list[str]:
     out = subprocess.run(
         ["git", "-C", RAIZ, "ls-files"],
@@ -97,7 +123,12 @@ def main(argv=None) -> int:
              f"{argv[1]}...{argv[2]}"],
             capture_output=True, text=True, check=True,
         ).stdout.splitlines())
-        ajenos = sorted(cambiados - set(rutas))
+        base = subprocess.run(
+            ["git", "-C", RAIZ, "merge-base", argv[1], argv[2]],
+            capture_output=True, text=True, check=True,
+        ).stdout.strip()
+        ajenos = sorted(r for r in cambiados - set(rutas)
+                        if not _solo_cambia_bloque(base, argv[2], r))
         if not cambiados or ajenos:
             print("PR automático de derivados inválido: "
                   + (", ".join(ajenos) if ajenos else "sin cambios"),

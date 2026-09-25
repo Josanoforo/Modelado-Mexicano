@@ -16,9 +16,8 @@ PRODUCTS = [ROOT / "canon/catalogo-del-mexicano-v1_0.md", ROOT / "canon/catalogo
 
 class CatalogoInventario(unittest.TestCase):
     def test_regeneracion_y_fuentes(self):
-        before = hashlib.sha256(TABLE.read_bytes()).digest()
-        subprocess.run([sys.executable, str(SCRIPT)], cwd=ROOT, check=True)
-        self.assertEqual(before, hashlib.sha256(TABLE.read_bytes()).digest())
+        # v1.0 está congelado (GEN2-CATALOGO-V1-1-1, tests/test_catalogo_v1_1.py):
+        # su inventario es parte del corte y no se re-deriva del corpus vivo.
         with TABLE.open(newline="") as stream:
             rows = list(csv.DictReader(stream, delimiter="\t"))
         self.assertEqual(len(rows), len({row["llave"] for row in rows}))

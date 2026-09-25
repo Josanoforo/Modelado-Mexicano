@@ -34,6 +34,8 @@ def prueba_deteccion_por_cabecera_sobre_fixture():
     afirma(isinstance(rutas, list) and examinados > 0,
            "debe examinar al menos un archivo de texto versionado")
     for r in rutas:
+        if DP._es_tabla_de_valor(r):
+            continue  # derivado por RUTA (valores-vista/*): no admite cabecera sin cambiar el valor
         with open(os.path.join(ROOT, r), "rb") as fh:
             primera = fh.readline().decode("utf-8", "replace").rstrip("\n")
         afirma(primera.startswith(DP.CABECERA),
@@ -57,10 +59,12 @@ def prueba_universo_coincide_con_grep_manual():
     esperado = {p for p in salida
                 if not p.startswith("data/raw/") and not p.startswith(".git/")}
     rutas, _ = DP.lista_derivados()
-    obtenido = set(rutas)
+    obtenido = {r for r in rutas if not DP._es_tabla_de_valor(r)}
     # `git grep -l` encuentra la cadena en cualquier parte del archivo; la
     # función solo cuenta si es la PRIMERA línea. Todo lo que la función
     # marca debe estar en el grep amplio (subconjunto, nunca al revés).
+    # Excepción declarada: `valores-vista/*` es derivado por RUTA (§ arriba),
+    # nunca por cabecera, así que se compara aparte de este grep.
     afirma(obtenido <= esperado,
            f"la función marcó archivos que ni siquiera contienen la cabecera: {obtenido - esperado}")
 
@@ -106,6 +110,31 @@ def prueba_toca_detecta_diff_en_derivado():
             rc_ajeno = DP.main(["--solo-derivados", base, cambia_normal])
         finally:
             DP.RAIZ = vieja_raiz
+    with tempfile.TemporaryDirectory() as tmp:
+        def git(*args):
+            return subprocess.run(["git", *args], cwd=tmp, check=True,
+                                  capture_output=True, text=True).stdout.strip()
+        ini, fin = DP.MARCA_BLOQUE
+        ruta = os.path.join(tmp, "tablero.md")
+        def escribe(fuera, dentro):
+            with open(ruta, "w") as fh:
+                fh.write(f"{fuera}\n{ini}\n{dentro}\n{fin}\ncola\n")
+        git("init", "-q"); git("config", "user.email", "t@t.t"); git("config", "user.name", "t")
+        escribe("titulo", "n=1"); git("add", "-A"); git("commit", "-q", "-m", "base")
+        base = git("rev-parse", "HEAD")
+        escribe("titulo", "n=2"); git("commit", "-qam", "bloque")
+        dentro = git("rev-parse", "HEAD")
+        escribe("titulo editado", "n=2"); git("commit", "-qam", "fuera")
+        fuera = git("rev-parse", "HEAD")
+        vieja_raiz = DP.RAIZ
+        try:
+            DP.RAIZ = tmp
+            rc_bloque = DP.main(["--solo-derivados", base, dentro])
+            rc_fuera = DP.main(["--solo-derivados", base, fuera])
+        finally:
+            DP.RAIZ = vieja_raiz
+    afirma(rc_bloque == 0, "cambio sólo dentro del bloque TABLERO-DERIVADO debe pasar")
+    afirma(rc_fuera == 1, "cambio fuera del bloque TABLERO-DERIVADO debe fallar")
     afirma(rc_si == 1, "tocar el archivo con cabecera DERIVADO debe salir 1")
     afirma(rc_solo == 0, "PR automático con sólo derivados debe pasar")
     afirma(rc_ajeno == 1, "PR automático con archivo ajeno debe fallar")
