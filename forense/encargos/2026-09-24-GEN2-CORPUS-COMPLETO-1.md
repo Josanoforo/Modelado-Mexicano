@@ -35,3 +35,13 @@ Propio: `forense/analisis/corpus-completo/`, `data/curacion-registro/cola-adquis
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no abre, no cambia dictámenes. Sucesor: `-2` para lo NO OBTENIDO con receta; las unidades de medición por dominio sobre lo adquirido.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «las 768 afirmaciones MEDIBLE-CON-ADQUISICIÓN del mapa dejan de tener instrumento ausente» (§1 «Hecho» / CONTADOR) · **por qué:** PARO-PREMISA: 605 de las 768 son DOCUMENTACIÓN-SOLAMENTE en la hoja derivada (prensa, informes, artículos) y un catálogo de microdatos no las cubre; de las 163 ADQUIRIR, 41 quedan con instrumento y ola en corpus, 10 con ola distinta y 112 sin instrumento en corpus (`forense/analisis/corpus-completo/cobertura-mapa-v1_0.tsv`) · **impacto:** el dictamen del mapa no se mueve (768 siguen MEDIBLE-CON-ADQUISICIÓN); la hoja publica `instrumento_en_corpus` · **sucesor:** GEN2-CORPUS-COMPLETO-2 (las 112 ADQUIRIR sin instrumento) y ASTRA5-U5-ADQUISICION-2 (constancias documentales) · `NC-260925-GEN2-CORPUS-COMPLETO-1-7813-01`
+- **qué:** Latinobarómetro 1995–2024, LAPOP México 2004–2023, WVS/EVS México olas 1–7, CEEY EMOVI 2011/2017/2023, Pew Religion in Latin America 2014 (P2/P4) · **por qué:** DIFERIDO-A:GEN2-CORPUS-COMPLETO-2 — NO OBTENIDO POR ESTE AGENTE EN 1 INTENTOS: registro, formulario o reto anti-bot (A.5: no se intentan credenciales); la receta de un minuto por fuente está en `tabla-final-v1_0.tsv` · **impacto:** no entra microdato nuevo de opinión comparada; Latinobarómetro 2023, WVS México y LAPOP ya estaban en corpus por otros actos · **sucesor:** GEN2-CORPUS-COMPLETO-2 (el titular baja a Descargas MX; el sucesor registra por sha) · `NC-260925-GEN2-CORPUS-COMPLETO-1-7813-02`
+- **qué:** la reserva E.6 de la «ola más reciente» de programas descontinuados: CAAS 2015, ENG 2009, ENCRIGE 2016, MIGRACION 2002 (P2) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: por la letra de E.6 nacieron RESERVADAS (ola más reciente de un programa con historia, ausente del corpus); son olas viejas sin sucesora: reservarlas no abre nada, pero impide usarlas · **impacto:** esas 4 olas no se pueden usar hasta que mesa las levante por escrito · **sucesor:** mesa (levantar por escrito o confirmar) · `NC-260925-GEN2-CORPUS-COMPLETO-1-7813-03`
+
+## CONSUMIDO
+
+PR #1145 (rama `acto/gen2-corpus-completo-1`), 25/sep/2026 · ADR-260925-GEN2-CORPUS-COMPLETO-1-7813-01 · nota `forense/notas/2026-09-25-GEN2-CORPUS-COMPLETO-1-nota.md`.
