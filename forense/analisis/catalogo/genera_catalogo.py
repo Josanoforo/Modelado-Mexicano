@@ -10,8 +10,10 @@ from __future__ import annotations
 import csv
 import hashlib
 import json
+import os
 import pathlib
 import re
+import subprocess
 import sys
 
 import yaml
@@ -44,12 +46,30 @@ INSTRUMENT_FALLBACK = {
 }
 
 
-def tsv(name: str) -> list[dict[str, str]]:
+# v1_0 quedó congelado (ACTO GEN2-CATALOGO-V1-1-1) sobre una vista que el
+# canal `[deriva]` reemplaza. Con `CATALOGO_VISTA_REF=<commit>` las vistas
+# derivadas se leen de ese commit y no del árbol: así la regeneración de v1_0
+# se comprueba contra la vista con que se congeló, no contra la vigente.
+VISTAS = {"resultados.tsv", "usos.tsv", "marcador-segmento.tsv", "corridas.tsv"}
+
+
+def _lineas(name: str) -> list[str]:
+    ref = os.environ.get("CATALOGO_VISTA_REF")
+    if ref and name in VISTAS:
+        texto = subprocess.run(
+            ["git", "-C", str(ROOT), "show", f"{ref}:data/corrida0/{name}"],
+            capture_output=True, check=True,
+        ).stdout.decode("utf-8")
+        return texto.splitlines(keepends=True)
     with (CORRIDA / name).open(newline="") as stream:
-        return list(csv.DictReader(
-            (line for line in stream if not line.startswith("#")),
-            delimiter="\t",
-        ))
+        return stream.readlines()
+
+
+def tsv(name: str) -> list[dict[str, str]]:
+    return list(csv.DictReader(
+        (line for line in _lineas(name) if not line.startswith("#")),
+        delimiter="\t",
+    ))
 
 
 def digest(path: pathlib.Path) -> str:

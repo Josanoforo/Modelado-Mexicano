@@ -1189,12 +1189,38 @@ def filas_cruce_reservadas() -> tuple[list[dict], dict]:
 
 # ── ensamblado + cuatro números derivados al pie ──────────────────────────
 
+def _arbitro_original(refs: list[str]) -> str:
+    """El CALC árbitro contra el que se fecha la emisión.
+
+    Un solo ref: ése. Varios de la MISMA serie (`CALC-X-0001`, `CALC-X-0002`
+    -- el sucesor que re-mide el piso, GEN2-PISOS-GEN2-2): el ORIGINAL, el de
+    número menor. Dirección 25/sep/2026 bajo v2.16 §4 (encargo
+    GEN2-CI-CANAL-DERIVADOS-VERDE-1, punto 1): «una celda validada
+    prospectivamente no deja de serlo porque su piso se re-mida después»; la R
+    nace en el -0001 y el sucesor añade una comparación retrospectiva-mecánica,
+    no la sustituye. Refs de series distintas: vacío (el orden no se deriva y
+    la fila no sube a PROSPECTIVA -- dirección del error de prospectividad.py).
+    """
+    if len(refs) == 1:
+        return refs[0]
+    serie = {}
+    for r in refs:
+        m = re.fullmatch(r"(CALC-.+)-(\d{4})(--[0-9a-f]+)?", r.strip())
+        if not m:
+            return ""
+        serie.setdefault(m.group(1), []).append((int(m.group(2)), r))
+    if len(serie) != 1:
+        return ""
+    return min(next(iter(serie.values())))[1]
+
+
 def _calcs_para_prospectividad() -> dict:
     """`{celda_id: (CALC de la emisión, CALC de la R)}` para las filas de cruce.
 
     ACTO GEN2-MARCADOR-E-INFORME-1 · P2. Los dos nombres ya viven en la celda-D
-    y aquí sólo se leen: la emisión en `adjudicacion_por_celda[*].calc` y el
-    árbitro en `momentos_holdout_refs` (la referencia trae el hash de corrida,
+    y aquí sólo se leen: la emisión en `adjudicacion_por_celda[*].calc` (o en
+    `adjudicacion_por_celda_0001` si un sucesor re-adjudicó) y el
+    árbitro original en `momentos_holdout_refs` (la referencia trae el hash de corrida,
     que `prospectividad` normaliza). El marcador NO decide el orden: lo lee de
     los `ejecucion.json` sellados de esos dos CALC.
     """
@@ -1206,10 +1232,23 @@ def _calcs_para_prospectividad() -> dict:
             continue
         refs = [r for r in (d.get("momentos_holdout_refs") or [])
                 if isinstance(r, str) and r.startswith("CALC-")]
-        calc_r = refs[0] if len(refs) == 1 else ""
+        calc_r = _arbitro_original(refs)
+        # La evaluación original manda (dirección 25/sep, ver
+        # `_arbitro_original`): si un sucesor re-adjudicó, su bloque previo
+        # queda como `adjudicacion_por_celda_0001` (histórico, GEN2-PISOS-
+        # GEN2-2) y la emisión que se fecha es la de ese bloque.
+        # Sólo cuando el árbitro también tiene sucesor (varios refs, y se
+        # eligió el original): emparejar la emisión histórica con un árbitro
+        # sucesor fabricaría una PROSPECTIVA (medido: 16 celdas ENCIG 2025).
+        original = d.get("adjudicacion_por_celda_0001")
+        if not (isinstance(original, dict) and len(refs) > 1 and calc_r):
+            original = {}
         for sub_celda, info in sub.items():
             if not isinstance(info, dict) or info.get("id_candidato") != "C2":
                 continue
+            previo = original.get(sub_celda)
+            if isinstance(previo, dict) and previo.get("calc"):
+                info = previo
             mapa[f"CRUCE::{d['id']}::{sub_celda}"] = (info.get("calc", ""), calc_r)
     return mapa
 
