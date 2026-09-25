@@ -61,3 +61,5 @@ Lectura: las dos olas ENDUTIH que #1127 declaró `DESVIADA` contra la Figura 1 (
 ## 8 · Escrituras colaterales revertidas
 
 `tools/ci_guardias.py --ejecuta-huerfanos` (14:09:59) re-derivó `canon/catalogo-del-mexicano-v1_1.md` y `forense/analisis/catalogo/v1_1/cobertura-31.tsv` (MOVILIDAD «EN-MEDICIÓN» 6 → 7: cuenta el CALC nuevo). Son del catálogo (sucesor catálogo v1.2, encargo §10), fuera de §9: se revirtieron con `git checkout --` y no viajan en este PR. La primera pasada de ese corredor reportó 1 fallido transitorio; la segunda, 0 de 158.
+
+**Corrección (tras CI del PR #1152):** la reversión de arriba fue un error. `tests/test_catalogo_v1_1.py::test_regenera_identico` (job `guardias`) exige que el catálogo commiteado sea igual al regenerado, y el CALC nuevo mueve MOVILIDAD de 6 a 7 CALC. Ese era el «fallido transitorio» de la primera pasada. Los dos archivos se commitean regenerados, como defecto adyacente D-21.
