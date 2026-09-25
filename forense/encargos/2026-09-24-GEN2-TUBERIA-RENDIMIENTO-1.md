@@ -48,7 +48,7 @@ No reescribe los 103 módulos de pandas; no cambia formatos de publicación (TSV
 - P5 · caché Parquet de microdato — DIFERIDO-A:sesión de caja — medidores siguen leyendo el payload — sucesor: GEN2-TUBERIA-RENDIMIENTO-2 (`NC-260924-GEN2-TUBERIA-RENDIMIENTO-1-ae2a-01`)
 - P4 · `pytest -n auto` en check.py/CI; apt ripgrep/jq — DIFERIDO-A:GEN2-TUBERIA-RENDIMIENTO-2 — check.py no es pytest; los pytest corren por `tools/ci_guardias.py` (fuera de §9) — sucesor: GEN2-TUBERIA-RENDIMIENTO-2 (`…-ae2a-02`)
 - P4 · `uv.lock` — DIFERIDO-A:GEN2-TUBERIA-RENDIMIENTO-2 — requiere `pyproject.toml` (fuera de §9) — sucesor: GEN2-TUBERIA-RENDIMIENTO-2 (`…-ae2a-03`)
-- P3/P4 · tiempos de CI antes/después — NO-VERIFICABLE-AQUÍ — se leen en los logs de CI del PR — sucesor: SIN-ASIGNAR (`…-ae2a-04`)
+- P3/P4 · tiempos de CI antes/después — NO-VERIFICABLE-AQUÍ — se leen en los logs de CI del PR — sucesor: GEN2-TUBERIA-RENDIMIENTO-2 (`…-ae2a-04`)
 
 ## CONSUMIDO
 
