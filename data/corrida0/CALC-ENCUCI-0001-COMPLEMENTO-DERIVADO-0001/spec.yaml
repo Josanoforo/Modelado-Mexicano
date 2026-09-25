@@ -1,0 +1,104 @@
+calc_id: CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001
+spec_md: spec.md
+spec_md_sha256: 8a069d78cfb9eca4b5db273c46d21b957e1cb7081e382419dcc096e987fea525
+script: data/corrida0/CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  tipo: DERIVADO-DETERMINISTA-SOBRE-RESULTADO-SELLADO
+  cuenta_gen2: SI
+  validacion_independiente: NO-APLICA-TRANSFORMACION-DETERMINISTA
+  padre: CALC-ENCUCI-0001
+  demanda_que_releva: "Complemento q=1-p de RES-0006 (consumidor milpa/tramite.yaml); no edita el consumidor."
+  medidor_ejecutado_al_congelar: "NO; spec, medidor y prueba sintetica se comprometen antes del primer run real."
+  informacion_muestral_independiente: "NINGUNA; q e IC(q) son funciones deterministas de p e IC(p)."
+
+inputs:
+  - id: IN-ENCUCI-0001-RESULTADOS
+    origen: repo
+    ruta: data/corrida0/CALC-ENCUCI-0001/resultados.json
+    sha256: 81bd129c52a4f96d60377e09b1e16b5c8dbb1df3d13a1b6b57ac1ac779c0f704
+  - id: IN-ENCUCI-0001-SPEC
+    origen: repo
+    ruta: data/corrida0/CALC-ENCUCI-0001/spec.yaml
+    sha256: f29561fbe59b550b398f05505e9891c5c512d6674eddf4924c904e0c406d678a
+  - id: IN-ENCUCI-0001-SELLO
+    origen: repo
+    ruta: data/corrida0/CALC-ENCUCI-0001/sello.json
+    sha256: 556d3ddc77213702e9147565a8771662087a8cf4f21ec1aabd75d7c1429269f0
+  - id: IN-ENCUCI-0001-SELLO-SHA256
+    origen: repo
+    ruta: data/corrida0/CALC-ENCUCI-0001/sello.sha256
+    sha256: 9bcfb165182c157b58556adaa2e06bf6f38aec4a71d293996be8d06409474ee2
+
+variables:
+  - {archivo: "CALC-ENCUCI-0001/resultados.json", variable: RESULT-ENCUCI-A-P-CUALQUIERA, rol: "p padre (union S o E)", codigos: "proporcion [0,1]"}
+  - {archivo: "CALC-ENCUCI-0001/resultados.json", variable: "RESULT-ENCUCI-A-IC-{LO,HI}-CUALQUIERA", rol: "IC95(p)", codigos: "[0,1]"}
+  - {archivo: "CALC-ENCUCI-0001/resultados.json", variable: "RESULT-ENCUCI-A-{VEREDICTO,METODO-IC}", rol: "guardia y metodo heredado", codigos: "TASA-REPORTADA; texto"}
+
+universo: >-
+  U-A del padre: personas con contacto con funcionario en los ultimos 12
+  meses y respuesta valida a AP5_17/AP5_18. Sin cambio; no se reconstruye.
+
+filtros: >-
+  No hay filtro nuevo. Se rechaza el padre si su cadena sellada no cubre los
+  bytes leidos, si VEREDICTO no es TASA-REPORTADA, si el metodo de IC es
+  NO-ESTIMABLE, o si 0 <= IC_lo <= p <= IC_hi <= 1 no se cumple.
+
+ponderador: "Heredado del padre; no se accede a pesos ni microdatos."
+
+transformacion: >-
+  q=1-p; IC_lo(q)=1-IC_hi(p); IC_hi(q)=1-IC_lo(p); restas en Decimal sobre
+  la representacion JSON publicada del padre.
+
+estimando: >-
+  Complemento dependiente q=1-p de cada primario, dentro del mismo recorte
+  del padre (exhaustivas y excluyentes solo bajo U-A; denominador
+  abierto en NC-0139). No es tasa poblacional ni evidencia independiente.
+  Escala [0,1], unidad del padre.
+
+dependencias_materiales: []
+
+
+parametros:
+  fuente_acto: ACTO GEN2-RELEVO-MOTOR-34-1
+  padre:
+    calc_id: CALC-ENCUCI-0001
+    inputs:
+      resultados: IN-ENCUCI-0001-RESULTADOS
+      spec: IN-ENCUCI-0001-SPEC
+      sello: IN-ENCUCI-0001-SELLO
+      sello_sha256: IN-ENCUCI-0001-SELLO-SHA256
+  complementos:
+    - prefijo: RESULT-ENCUCIDER-A-
+      p_id: RESULT-ENCUCI-A-P-CUALQUIERA
+      ic_lo_id: RESULT-ENCUCI-A-IC-LO-CUALQUIERA
+      ic_hi_id: RESULT-ENCUCI-A-IC-HI-CUALQUIERA
+      veredicto_id: RESULT-ENCUCI-A-VEREDICTO
+      metodo_ic_id: RESULT-ENCUCI-A-METODO-IC
+      consumidor: "milpa/tramite.yaml:tramite.mordida.discrecional:sin_solicitud_y_sin_entrega_encuci2020"
+      valor_legacy: 0.873994
+  veredicto_id: RESULT-ENCUCIDER-VEREDICTO
+  tolerancia_legacy: 1.0e-6
+  direccion_delta: "q derivado menos legacy"
+
+seed:
+  aplica: false
+  valor: null
+  rng: null
+
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-15
+  razon: "Aritmetica determinista sobre los mismos bytes float del padre."
+
+resultados:
+  - {id: RESULT-ENCUCIDER-A-P-PADRE, tipo: proporcion, unidad: "p copiado del padre sellado; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-Q, tipo: proporcion, unidad: "q=1-p, sin solicitud y sin entrega; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-IC-LO-Q, tipo: flotante, unidad: "1-IC_hi(p); U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-IC-HI-Q, tipo: flotante, unidad: "1-IC_lo(p); U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-SUMA-P-Q, tipo: flotante, unidad: "control p+q=1; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-METODO-IC-HEREDADO, tipo: texto, unidad: "metodo IC del padre; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-DELTA-VS-LEGACY, tipo: flotante, unidad: "q menos legacy del consumidor; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-A-COMPATIBILIDAD-LEGACY, tipo: texto, unidad: "COINCIDE-AL-GRANO / NO-COINCIDE-AL-GRANO, tolerancia 1e-6; U-A del padre; escala [0,1]"}
+  - {id: RESULT-ENCUCIDER-VEREDICTO, tipo: texto, unidad: "declara derivacion de padre sellado sin informacion muestral independiente"}

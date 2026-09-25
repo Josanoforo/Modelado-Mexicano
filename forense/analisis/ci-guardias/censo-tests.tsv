@@ -262,3 +262,6 @@ tests/test_hoja_a_cola.py	script	NO	(ninguna)	NO	2.8	CORRE-EN-CI	exit 0 sin corp
 tests/test_renderiza_pagina.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_donde_cambio_dictamen.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	Sintético de cada rama del vocabulario, τ² sin pares documentados, celdas de tabla por CALC e ids declarados = emitidos; sin corpus
 tests/test_donde_cambio_documento.py	script	NO	(ninguna)	NO	0.2	CORRE-EN-CI	Regenera tabla y documento desde RESULT sellados byte a byte; 0 cifras sin RESULT con control positivo; sin corpus
+tests/test_escribe_relevo_motor34.py	pytest	NO	(ninguna)	NO	24.0	CORRE-EN-CI	exit 0 sin corpus; escritor V3 de GEN2-RELEVO-MOTOR-34-1, una prueba por llave
+tests/test_relevo_motor34_derivados.py	pytest	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus; 24 sintéticas de los dos CALC derivados
+tests/test_amai_nse.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest

@@ -1,0 +1,64 @@
+--- a/milpa/tramite.yaml
++++ b/milpa/tramite.yaml
+@@ -60,7 +60,7 @@
+       # coincidencia.
+       # SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado; el reactivo 8.3 completo (A-P-SOLANY = 0.115702) queda descriptivo sin consumidor hasta que un caso de uso lo pida. Comentario en linea propia -- esta conducta la cita cita_p (M-TRA-M-02__v1_3 y hermanas) por TEXTO EXACTO de su propia linea; anotar en la misma linea rompe esa regresion (tests/test_emite_m_calibracion.py::test_regresion_p2_pasa).
+       - {conducta: paga_mordida_encig2025, p: 0.085118, clase: "MEDIDO·p(tasa base ponderada)", corrida0_resultado_id: RESULT-ENCIG-MOR-A-P-SOL1, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio esta tasa bajo GEN2 (RESULT-ENCIG-MOR-A-P-SOL1 = 0.08511814556534456, n=40042, 442 estratos, 9172 UPM) y reproduce el 0.085118 publicado al grano de seis decimales con que milpa/ materializa (delta +1.456e-07). El `p` NO se movio: se declara de donde viene. RESERVA declarada en la spec sellada §2.1: P8_3_1 mide SOLICITUD, no pago, y es solo el PRIMER inciso del reactivo 8.3 -- los tres juntos dan 0.115702 (RESULT-ENCIG-MOR-A-P-SOLANY).
+-      - {conducta: tramite_normal_encig2025, p: 0.914882, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025); residuo del denominador declarado en la spec sellada §3.1-3.4. Sin corrida0 propia, sin cita corrida0_*.
++      - {conducta: tramite_normal_encig2025, p: 0.914882, corrida0_resultado_id: RESULT-ENCIGDER-A-Q, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada)"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025); residuo del denominador declarado en la spec sellada §3.1-3.4. Relevado por clase iii (ACTO GEN2-RELEVO-MOTOR-34-1): cita el complemento sellado de CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001.
+       # ── ENMIENDA ENCUCI · FP-200=b (mesa, 31/ago/2026) · ACTO MAESTRA32-E20 ──
+       # Las DOS salidas de arriba NO se tocan: siguen ASIGNADAS y siguen siendo
+       # lo que emitir_binaria devuelve para `paga_mordida`/`tramite_normal`
+@@ -87,6 +87,8 @@
+         evento: "AP5_17=2 y AP5_18=2 dentro del mismo recorte válido"
+         dominio_elegible: {contacto_funcionario_ultimos_12_meses: true, respuesta_solicitud_entrega_valida: true}
+         p: 0.873994
++        corrida0_resultado_id: RESULT-ENCUCIDER-A-Q
++        corrida0_generacion: GEN2
+         clase: "DERIVADO·q=1-p(unión), mismo universo e incertidumbre"
+         complemento_de: solicitud_o_entrega_mordida_encuci2020
+         uso_motor: "complemento dependiente; no sortear como confirmación independiente"
+@@ -183,9 +185,9 @@
+       - {conducta: tramite_normal_encig2025_digital, p: 0.972642, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, complemento_de: paga_mordida_encig2025_digital, uso_motor: "NO-ADOPTAR-NC-0107: comparte la discrepancia del padre"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
+       # CORRIDA 2 (2/sep, recorrida sin deduplicar, firma r1) -- ACTO MAESTRA35-N4 · SELLA-L1
+       - {conducta: paga_mordida_encig2025_presencial_r2, p: 0.141041, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-PRE-SD, corrida0_generacion: GEN2, dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO de la tabla unida: sólo consulta descriptiva, escenario o baseline dentro del grupo observado por P8_4; no es tasa general ni probabilidad empírica de solicitud atribuida a cada evento"}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-PRE-SD = 0.1410407168724654, n=11167 eventos, 381 estratos, 2996 UPM -- los dos conteos de diseno identicos a los sellados) y reproduce el 0.141041 al grano de seis decimales (delta -2.831e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+-      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, complemento_de: paga_mordida_encig2025_presencial_r2, rol_uso: complemento_proxy_descriptivo, uso_motor: "complemento dependiente del mismo proxy descriptivo y grupo observado que el padre; no sortear aparte ni interpretar como probabilidad empírica por evento"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
++      - {conducta: tramite_normal_encig2025_presencial_r2, p: 0.858959, corrida0_resultado_id: RESULT-ENCIGDER-B-PRE-SD-Q, corrida0_generacion: GEN2, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: presencial}, complemento_de: paga_mordida_encig2025_presencial_r2, rol_uso: complemento_proxy_descriptivo, uso_motor: "complemento dependiente del mismo proxy descriptivo y grupo observado que el padre; no sortear aparte ni interpretar como probabilidad empírica por evento"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_presencial_r2); residuo del denominador declarado en la spec sellada. Relevado por clase iii (ACTO GEN2-RELEVO-MOTOR-34-1): cita el complemento sellado de CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001.
+       - {conducta: paga_mordida_encig2025_digital_r2, p: 0.029868, clase: "MEDIDO·p(tasa base ponderada, condicional a canal, sin deduplicar)", corrida0_resultado_id: RESULT-ENCIG-MOR-B-P-DIG-SD, corrida0_generacion: GEN2, dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, rol_uso: proxy_descriptivo, uso_motor: "PROXY-DESCRIPTIVO de la tabla unida: sólo consulta descriptiva, escenario o baseline dentro del grupo observado por P8_4; no es tasa general ni probabilidad empírica de solicitud atribuida a cada evento"}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-B-P-DIG-SD = 0.029867554626649372, n=7219 eventos, 362 estratos, 2518 UPM -- identicos a los sellados) y reproduce el 0.029868 al grano de seis decimales (delta -4.454e-07). El `p` NO se movio. SEMANTICA (D4, NC-0113, ACTO GEN2-MOTOR-SEMANTICA): mide solicitud de pago informal, no pago consumado.
+-      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, complemento_de: paga_mordida_encig2025_digital_r2, rol_uso: complemento_proxy_descriptivo, uso_motor: "complemento dependiente del mismo proxy descriptivo y grupo observado que el padre; no sortear aparte ni interpretar como probabilidad empírica por evento"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital_r2); residuo del denominador declarado en la spec sellada. Sin corrida0 propia, sin cita corrida0_*.
++      - {conducta: tramite_normal_encig2025_digital_r2, p: 0.970132, corrida0_resultado_id: RESULT-ENCIGDER-B-DIG-SD-Q, corrida0_generacion: GEN2, clase: "DERIVADO·q=1-p(tasa condicional a canal)", dominio_elegible: {p8_4_observado: true, canal_p7_3: digital_registrado}, complemento_de: paga_mordida_encig2025_digital_r2, rol_uso: complemento_proxy_descriptivo, uso_motor: "complemento dependiente del mismo proxy descriptivo y grupo observado que el padre; no sortear aparte ni interpretar como probabilidad empírica por evento"}  # DERIVADO-NO-MEDIDO (D1, NC-0108, ACTO GEN2-MOTOR-SEMANTICA): 1-p del primario (paga_mordida_encig2025_digital_r2); residuo del denominador declarado en la spec sellada. Relevado por clase iii (ACTO GEN2-RELEVO-MOTOR-34-1): cita el complemento sellado de CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001.
+     porque: {generador: [G1], mecanismo: "el registro rompe la trampa social"}
+     tier: FUERTE
+     falsable_si: "Si la digitalización no reduce la mordida, la hipótesis de trampa social falla"
+@@ -398,7 +400,7 @@
+       - {conducta: rechaza_servicio, p: 0.29, clase: ASIGNADO}
+       # ── ENMIENDA ENCIG2025 · firma a1 (2/sep/2026) · ACTO MAESTRA35-N1 ──
+       - {conducta: adopta_encig2025_luz, p: 0.673393, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)", corrida0_resultado_id: RESULT-ENCIG-MOR-C-P-ADOPTA, corrida0_generacion: GEN2}  # ACTO GEN2-LOTE-ENCIG-1: CALC-ENCIG-0001 remidio bajo GEN2 (RESULT-ENCIG-MOR-C-P-ADOPTA = 0.6733930340661712, n=20203, 441 estratos, 8486 UPM) y reproduce el 0.673393 al grano de seis decimales (delta +3.407e-08). El `p` NO se movio.
+-      - {conducta: rechaza_servicio_encig2025_luz, p: 0.326607, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)"}
++      - {conducta: rechaza_servicio_encig2025_luz, p: 0.326607, corrida0_resultado_id: RESULT-ENCIGDER-C-Q, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada, universo N_TRA=01)"}
+     porque: {generador: [G1], mecanismo: "la utilidad predice la adopción; sin coerción ni amenaza fiscal desaparece la razón para rechazar"}
+     tier: FUERTE          # era MEDIA-FUERTE; sube por firma a1 (mesa 2/sep/2026, ACTO MAESTRA35-N1)
+     alcance: "gobierno digital ÚNICAMENTE (cambio 11 del modelo v2). ESTAMPA A.10: universo medido = pago ordinario del recibo de luz (N_TRA=01), ENCIG 2025, SHA 11af678; la condición sin coerción/sin riesgo fiscal la impone la construcción del universo, no el informante (firma a1). No es la adopción de gobierno digital en México."
+@@ -989,8 +991,8 @@
+     si:
+       disparadores: {cobertura_seguro: true}
+     entonces:
+-      - {conducta: denuncia, p: 0.790900, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+-      - {conducta: no_denuncia, p: 0.209100, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
++      - {conducta: denuncia, p: 0.790906, corrida0_resultado_id: RESULT-ENVIPE-SEG-CON-P-DENUNCIA, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
++      - {conducta: no_denuncia, p: 0.209094, corrida0_resultado_id: RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+     porque: {generador: NO-DECLARADO-EN-§3.3, mecanismo: "miedo + inutilidad percibida (denunciar rinde 0.8%); SI es robo de vehículo asegurado ENTONCES sí denuncia, por el trámite del seguro -- canon/modelo-decision-v4_0.md:552 verbatim"}
+     tier: FUERTE # firma a1
+     falsable_si: "R7.2 en forense/hitoD-preregistro-v2_0.md:205-231 (Nota 11, corrida completa 4/ago/2026) y forense/hitoD-R7_2-veredicto-v1_0.md -- cita, no reescribas"
+@@ -1011,8 +1013,8 @@
+     si:
+       disparadores: {cobertura_seguro: false}
+     entonces:
+-      - {conducta: denuncia, p: 0.672000, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+-      - {conducta: no_denuncia, p: 0.328000, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
++      - {conducta: denuncia, p: 0.672014, corrida0_resultado_id: RESULT-ENVIPE-SEG-SIN-P-DENUNCIA, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
++      - {conducta: no_denuncia, p: 0.327986, corrida0_resultado_id: RESULT-ENVIPE-SEG-SIN-P-NO-DENUNCIA, corrida0_generacion: GEN2, clase: "MEDIDO·p(tasa base ponderada, condicional a seguro; unidad delito, robo total de vehículo BPCOD=01)"}
+     porque: {generador: NO-DECLARADO-EN-§3.3, mecanismo: "miedo + inutilidad percibida (denunciar rinde 0.8%); sin cobertura de seguro, la cifra negra se sostiene -- canon/modelo-decision-v4_0.md:552 verbatim"}
+     tier: FUERTE # firma a1
+     falsable_si: "R7.2 en forense/hitoD-preregistro-v2_0.md:205-231 (Nota 11, corrida completa 4/ago/2026) y forense/hitoD-R7_2-veredicto-v1_0.md -- cita, no reescribas"
+

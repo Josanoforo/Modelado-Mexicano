@@ -1,0 +1,714 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-AMAI-NSE-ENDUTIH-2023-0001
+spec_md: ../../../forense/prereg-caja/AMAI-NSE-spec-v1_0.md
+spec_md_sha256: 4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde
+script: data/corrida0/CALC-AMAI-NSE-ENDUTIH-2023-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: PISO-NSE-AMAI-RETROSPECTIVO
+  rotulo: RETROSPECTIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  acto: GEN2-CLASE-AMAI-1
+  origen_numerico: NUEVO
+inputs:
+- id: endutih_2023_endutih2023_bd_dbf
+  origen: manifiesto
+- id: enigh2022_nc_csv
+  origen: manifiesto
+- id: AMAI-REGLA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/regla.py
+  sha256: 7ad2c0dd4fe1449c45ad4572d9ad1bf6ab417c6f57bd4c23bc720df79eab7dd1
+- id: AMAI-COMPONENTES
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/componentes.py
+  sha256: 7e499bcf5852ae9148c6c9e600749dc0835e5221fd2d34a3d05aa62b671cfd5d
+- id: AMAI-IMPUTACION
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/amai/imputacion.py
+  sha256: 938f80cd8f3c9c26a35362f75b1561dbe58e34fe9edc8487addd58ce350256fe
+- id: REGION-ESTADISTICA
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/astra/region/estadistica.py
+  sha256: b832c08b953fdbe7029146f5ec6395f10c539d01acf1ec3510e7eae5072f7b65
+- id: REPLICAS-COMPARTIDAS
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/celda_d/marginales_reproduccion.py
+  sha256: 4df2c630179c194345594d959d012b7dd18d94ac93fab3f48b8f6683753dafd6
+- id: DBFMINI
+  origen: repo
+  funcion: CODIGO
+  ruta: tests/dbfmini.py
+  sha256: a14952e7f754b6921c78312cf1f5c2156b73d4b82f12fa6f9dad72740160335b
+- id: ENDUTIH-PISOS-MEDIDOR
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/dominios/endutih/pisos.py
+  sha256: 0b25cd1036508eb636ba18a9bfbe6de5eb3f797dc1c2be4c083c7a596c02e622
+variables:
+- archivo: microdato de la spec humana §4
+  variable: FAC_PER
+  rol: factor de expansión
+- archivo: microdato de la spec humana §4
+  variable: EST_DIS/est_dis
+  rol: estrato de diseño
+- archivo: microdato de la spec humana §4
+  variable: UPM_DIS/upm
+  rol: UPM de diseño
+universo: ENDUTIH 2023; NSE por hogar; pisos en unidad persona 6+
+filtros: Hogar sin algún componente válido queda sin NSE; conductas con su denominador
+  sellado; no se filtra el marco antes de las réplicas
+ponderador: FAC_PER
+transformacion: regla AMAI 2024 (spec §1-§4); razón de masas ponderadas por grupo
+  NSE; IC percentil de réplicas UPM compartidas; supresión n<200
+estimando: distribución NSE de hogares y proporción de cada conducta por grupo NSE
+  (BAJO/MEDIO/ALTO), ENDUTIH 2023
+parametros:
+  instrumento: ENDUTIH
+  ola: '2023'
+  input_id: endutih_2023_endutih2023_bd_dbf
+  conductas:
+  - internet
+  - celular
+  - actividad_mensajes
+  - actividad_tramite
+  - no_internet_acceso
+  - no_internet_costo
+  - no_internet_preferencia
+  - no_celular_costo
+  - no_celular_preferencia
+  - no_celular_cobertura
+  bootstrap_replicas: 1000
+  n_min: 200
+  umbral_desvio_pp: 5.0
+  tolerancia_reproduce_pp: 0.15
+  agrupacion:
+    BAJO:
+    - E
+    - D
+    - D+
+    MEDIO:
+    - C-
+    - C
+    ALTO:
+    - C+
+    - A/B
+  input_donante: enigh2022_nc_csv
+seed:
+  aplica: true
+  valor: 20260924
+  rng: numpy.PCG64
+dependencias_materiales:
+- numpy
+- pandas
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: mismo payload, mismo orden de filas y semilla
+resultados:
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-JSON
+  tipo: texto
+  unidad: JSON sin identificadores individuales
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-E-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-D-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-D+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-C--P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-C-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-C+-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-A/B-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DIST-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-N-HOGARES-CON-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-N-HOGARES-SIN-NSE
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-VALIDACION-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DESVIO-MAX-GRUPO-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-DESVIO-MAX-NIVEL-PP
+  tipo: flotante
+  unidad: puntos porcentuales
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-internet-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-celular-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_mensajes-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-actividad_tramite-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_acceso-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_costo-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_internet_preferencia-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_costo-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_preferencia-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-BAJO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-BAJO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-BAJO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-BAJO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-BAJO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-MEDIO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-MEDIO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-MEDIO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-MEDIO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-MEDIO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-ALTO-P
+  tipo: proporcion
+  unidad: proporción [0,1]
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-ALTO-IC-LO
+  tipo: proporcion
+  unidad: límite inferior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-ALTO-IC-HI
+  tipo: proporcion
+  unidad: límite superior IC95
+  permite_no_estimable: true
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-ALTO-N
+  tipo: entero
+  unidad: conteo no ponderado
+- id: RESULT-AMAI-NSE-ENDUTIH-2023-no_celular_cobertura-ALTO-ESTADO
+  tipo: texto
+  unidad: estado de publicación o de validación
