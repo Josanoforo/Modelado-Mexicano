@@ -316,6 +316,233 @@ def crear_desde_propuesta(apply_: bool = False) -> None:
               "rotulados PROPUESTO-POR-EJECUTOR")
 
 
+# ── V3 · ACTO GEN2-RELEVO-MOTOR-34-1 · relevo por lote de conductas del motor ──
+ACTO_V3 = "GEN2-RELEVO-MOTOR-34-1"
+CORRIDAS_DIR = ROOT / "data/corrida0"
+CORRIDAS_TSV = CORRIDAS_DIR / "corridas.tsv"
+REPLAY_TSV = ROOT / "forense/replay-evidencia.tsv"
+VIA_I, VIA_III = "i-CRUDO", "iii-DERIVADO-DE-GEN2"
+
+# Cada relevo liga UNA conducta de una regla a UN RESULT sellado. La liga no
+# se infiere por nombre: vía (iii) exige que la spec del derivado declare
+# este mismo consumidor; vía (i) exige que la regla y el CALC citen el mismo
+# payload del manifiesto (`sha256_payload`).
+RELEVOS_V3 = (
+    ("tramite.mordida.discrecional", "tramite_normal_encig2025",
+     "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001", "RESULT-ENCIGDER-A-Q", VIA_III),
+    ("tramite.mordida.discrecional", "sin_solicitud_y_sin_entrega_encuci2020",
+     "CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001", "RESULT-ENCUCIDER-A-Q", VIA_III),
+    ("tramite.mordida.con_registro", "tramite_normal_encig2025_presencial_r2",
+     "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001", "RESULT-ENCIGDER-B-PRE-SD-Q", VIA_III),
+    ("tramite.mordida.con_registro", "tramite_normal_encig2025_digital_r2",
+     "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001", "RESULT-ENCIGDER-B-DIG-SD-Q", VIA_III),
+    ("tramite.gobierno_digital.util_sin_coercion", "rechaza_servicio_encig2025_luz",
+     "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001", "RESULT-ENCIGDER-C-Q", VIA_III),
+    ("civico.denuncia.con_seguro", "denuncia",
+     "CALC-ENVIPE-DENUNCIA-SEGURO-0001", "RESULT-ENVIPE-SEG-CON-P-DENUNCIA", VIA_I),
+    ("civico.denuncia.con_seguro", "no_denuncia",
+     "CALC-ENVIPE-DENUNCIA-SEGURO-0001", "RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA", VIA_I),
+    ("civico.denuncia.sin_seguro", "denuncia",
+     "CALC-ENVIPE-DENUNCIA-SEGURO-0001", "RESULT-ENVIPE-SEG-SIN-P-DENUNCIA", VIA_I),
+    ("civico.denuncia.sin_seguro", "no_denuncia",
+     "CALC-ENVIPE-DENUNCIA-SEGURO-0001", "RESULT-ENVIPE-SEG-SIN-P-NO-DENUNCIA", VIA_I),
+)
+
+_COMENTARIO_OBSOLETO_V3 = "Sin corrida0 propia, sin cita corrida0_*."
+_COMENTARIO_NUEVO_V3 = (
+    f"Relevado por clase iii (ACTO {ACTO_V3}): cita el complemento sellado "
+    "de CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001.")
+
+
+def _leer_tsv_simple(ruta: Path) -> list[dict]:
+    import csv  # noqa: PLC0415
+    csv.field_size_limit(sys.maxsize)
+    lineas = [l for l in ruta.read_text(encoding="utf-8").splitlines()
+              if not l.startswith("#")]
+    return list(csv.DictReader(lineas, delimiter="\t"))
+
+
+def _ctx_corridas() -> dict:
+    """`calc -> {estado, cuenta_gen2, resultado_replay}`: la vista publicada,
+    completada para los CALC sellados en esta rama que el canal [deriva]
+    todavía no publicó (se leen de su sello, su spec y su asiento de replay,
+    las tres fuentes de las que la vista misma se deriva)."""
+    ctx = {f["spec_id"]: {"estado": f["estado"], "cuenta_gen2": f["cuenta_gen2"],
+                          "resultado_replay": f["resultado_replay"]}
+           for f in _leer_tsv_simple(CORRIDAS_TSV) if f.get("origen") == "OFERTA"}
+    asientos = {f["calc_id"]: f for f in _leer_tsv_simple(REPLAY_TSV)}
+    for calc in {c for *_, c, _r, _v in RELEVOS_V3} - set(ctx):
+        carpeta = CORRIDAS_DIR / calc
+        sello = carpeta / "sello.json"
+        if not sello.exists():
+            continue
+        spec = _yaml_load(carpeta / "spec.yaml")
+        asiento = asientos.get(calc, {})
+        ctx[calc] = {
+            "estado": "SELLADA" if _sello_coincide(carpeta) else "SELLO-DISCORDANTE",
+            "cuenta_gen2": str((spec.get("etiquetas") or {}).get("cuenta_gen2", "")),
+            "resultado_replay": asiento.get("resultado_replay", "NO-VERIFICADO"),
+        }
+    return ctx
+
+
+def _sello_coincide(carpeta: Path) -> bool:
+    sello_json = carpeta / "sello.json"
+    lado = (carpeta / "sello.sha256").read_text().split()
+    if not lado or lado[0] != sha(sello_json):
+        return False
+    cubre = json.loads(sello_json.read_text())
+    return all(sha(carpeta / nombre) == h for nombre, h in cubre.items())
+
+
+def guardas_v3(relevo: tuple, ctx: dict, reglas: dict) -> float:
+    """Las guardas de 4.1 (+D6: eje RESULTADO) sobre un relevo del motor.
+    Devuelve el valor sellado del RESULT o levanta ValueError con la razón."""
+    import pines_mesa  # noqa: PLC0415
+    regla_id, conducta, calc, result, via = relevo
+    consumidor = f"milpa/tramite.yaml:{regla_id}:{conducta}"
+    carpeta = CORRIDAS_DIR / calc
+    if not (carpeta / "sello.json").exists() or not _sello_coincide(carpeta):
+        raise ValueError(f"{consumidor}: {calc} sin sello o sello discordante")
+    estado = ctx.get(calc)
+    if estado is None:
+        raise ValueError(f"{consumidor}: {calc} no está en el registro")
+    if not str(estado["estado"]).startswith("SELLADA"):
+        raise ValueError(f"{consumidor}: {calc} estado={estado['estado']!r}")
+    if estado["cuenta_gen2"] != "SI":
+        raise ValueError(f"{consumidor}: {calc} cuenta_gen2={estado['cuenta_gen2']!r}")
+    if estado["resultado_replay"] not in pines_mesa.veredictos_afirmativos_en_resultado():
+        raise ValueError(f"{consumidor}: replay de {calc} = "
+                         f"{estado['resultado_replay']!r}, no afirmativo en RESULTADO")
+    spec = _yaml_load(carpeta / "spec.yaml")
+    if via == VIA_I:
+        if pines_mesa._ingiere(spec) or not pines_mesa._tiene_crudo(spec):
+            raise ValueError(f"{consumidor}: vía (i) exige insumo crudo sin ingestión")
+        regla = reglas[regla_id]
+        pid = str(regla.get("payload_manifiesto_id", ""))
+        ids_crudo = {str(i.get("id")) for i in spec.get("inputs") or []
+                     if i.get("origen") == "manifiesto"}
+        manifiesto = {e["id"]: e for e in _yaml_load(ROOT / "data/manifiesto.yaml")
+                      if isinstance(e, dict) and "id" in e}
+        if (not pid or pid not in ids_crudo
+                or str(manifiesto.get(pid, {}).get("sha256")) != str(regla.get("sha256_payload"))):
+            raise ValueError(f"{consumidor}: la regla y {calc} no citan el mismo payload")
+    elif via == VIA_III:
+        specs = {c: _yaml_load(CORRIDAS_DIR / c / "spec.yaml")
+                 for c in pines_mesa._calcs_ingeridos(spec)[0]
+                 if (CORRIDAS_DIR / c / "spec.yaml").exists()}
+        codigo, razon = pines_mesa._valida_derivado(consumidor, calc, spec, ctx, specs)
+        if codigo != pines_mesa.ACEPTADO:
+            raise ValueError(f"{codigo}: {razon}")
+        declarados = {(c["consumidor"], c["prefijo"] + "Q")
+                      for c in spec["parametros"]["complementos"]}
+        if (consumidor, result) not in declarados:
+            raise ValueError(f"{consumidor}: {calc} no declara {result} para este consumidor")
+    else:
+        raise ValueError(f"{consumidor}: vía desconocida {via!r}")
+    valor = json.loads((carpeta / "resultados.json").read_text())["resultados"].get(result)
+    if isinstance(valor, bool) or not isinstance(valor, (int, float)) or not 0 <= valor <= 1:
+        raise ValueError(f"{consumidor}: {result}={valor!r} fuera de escala [0,1]")
+    return float(valor)
+
+
+def _ubica_conducta(lineas: list[str], regla_id: str, conducta: str) -> int:
+    inicio = [i for i, l in enumerate(lineas) if l.rstrip("\n") == f"  - id: {regla_id}"]
+    if len(inicio) != 1:
+        raise ValueError(f"{regla_id}: se esperaba una regla única, hay {len(inicio)}")
+    fin = next((j for j in range(inicio[0] + 1, len(lineas))
+                if lineas[j].startswith("  - id: ")), len(lineas))
+    patron = re.compile(rf"(\{{|- )conducta: {re.escape(conducta)}(,|\s*$)")
+    hits = [j for j in range(inicio[0], fin) if patron.search(lineas[j])]
+    if len(hits) != 1:
+        raise ValueError(f"{regla_id}:{conducta}: se esperaba una conducta única, hay {len(hits)}")
+    return hits[0]
+
+
+def transform_v3(source: str, relevo: tuple, valor: float) -> str:
+    regla_id, conducta, _calc, result, via = relevo
+    lineas = source.splitlines(keepends=True)
+    i = _ubica_conducta(lineas, regla_id, conducta)
+    rendered = f"{valor:.6f}"
+    cita = f"corrida0_resultado_id: {result}, corrida0_generacion: GEN2"
+    linea = lineas[i]
+    if linea.lstrip().startswith("- {"):
+        codigo = linea.split("}  #", 1)[0]
+        if "corrida0_" in codigo:
+            if cita in codigo and f"p: {rendered}," in codigo:
+                return source
+            raise ValueError(f"{regla_id}:{conducta}: cita previa distinta; rechazo atómico")
+        m = re.search(r"\bp: ([0-9.]+),", linea)
+        if m is None:
+            raise ValueError(f"{regla_id}:{conducta}: p literal no localizado")
+        if via == VIA_III and m.group(1) != rendered:
+            raise ValueError(f"{regla_id}:{conducta}: vía (iii) no cambia p "
+                             f"({m.group(1)} != {rendered})")
+        linea = linea[:m.start()] + f"p: {rendered}, {cita}," + linea[m.end():]
+        linea = linea.replace(_COMENTARIO_OBSOLETO_V3, _COMENTARIO_NUEVO_V3)
+        lineas[i] = linea
+        return "".join(lineas)
+    # forma bloque: `- conducta: X` y campos indentados debajo.
+    fin = next(j for j in range(i + 1, len(lineas))
+               if not lineas[j].startswith(" " * 8))
+    bloque = range(i + 1, fin)
+    if any("corrida0_" in lineas[j] for j in bloque):
+        if any(f"corrida0_resultado_id: {result}" in lineas[j] for j in bloque):
+            return source
+        raise ValueError(f"{regla_id}:{conducta}: cita previa distinta; rechazo atómico")
+    jp = [j for j in bloque if re.fullmatch(r" {8}p: [0-9.]+\n", lineas[j])]
+    if len(jp) != 1:
+        raise ValueError(f"{regla_id}:{conducta}: p de bloque no único")
+    actual = lineas[jp[0]].split(":", 1)[1].strip()
+    if via == VIA_III and actual != rendered:
+        raise ValueError(f"{regla_id}:{conducta}: vía (iii) no cambia p ({actual} != {rendered})")
+    lineas[jp[0]] = (f"        p: {rendered}\n"
+                     f"        corrida0_resultado_id: {result}\n"
+                     f"        corrida0_generacion: GEN2\n")
+    return "".join(lineas)
+
+
+def relevo_motor_v3(apply_: bool = False) -> None:
+    reglas = {r["id"]: r for r in _yaml_load(TARGET)["reglas"]}
+    ctx = _ctx_corridas()
+    old = TARGET.read_text(encoding="utf-8")
+    nuevo = old
+    for relevo in RELEVOS_V3:
+        nuevo = transform_v3(nuevo, relevo, guardas_v3(relevo, ctx, reglas))
+
+    from milpa.src.emisor import cargar_reglas  # noqa: PLC0415
+    with tempfile.NamedTemporaryFile(
+            mode="w", encoding="utf-8", suffix=".yaml", delete=False) as fh:
+        fh.write(nuevo)
+        ruta_tmp = Path(fh.name)
+    try:
+        cargadas = {r.id: r for r in cargar_reglas(ruta_tmp)}
+    finally:
+        ruta_tmp.unlink(missing_ok=True)
+    for regla_id, conducta, calc, result, _via in RELEVOS_V3:
+        salida = next(s for s in cargadas[regla_id].entonces if s.conducta == conducta)
+        valor = json.loads((CORRIDAS_DIR / calc / "resultados.json").read_text())["resultados"][result]
+        if salida.resultado_id != result or f"{salida.p:.6f}" != f"{valor:.6f}":
+            raise ValueError(f"{regla_id}:{conducta}: no cargó con p=RESULT y su cita")
+
+    diff = "".join(difflib.unified_diff(
+        old.splitlines(keepends=True), nuevo.splitlines(keepends=True),
+        fromfile="a/milpa/tramite.yaml", tofile="b/milpa/tramite.yaml"))
+    print(diff or "SIN-DIFF: ya aplicado")
+    if apply_ and nuevo != old:
+        with tempfile.NamedTemporaryFile(
+                mode="w", encoding="utf-8", dir=TARGET.parent,
+                prefix=".relevo-consumo-", delete=False) as handle:
+            temp = Path(handle.name)
+            handle.write(nuevo)
+        try:
+            os.replace(temp, TARGET)
+        finally:
+            temp.unlink(missing_ok=True)
+        print(f"APLICADO: {len(RELEVOS_V3)} conductas; p = RESULT al grano de seis "
+              "decimales y cita GEN2; vía (iii) sin cambio de p")
+
+
 def sha(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
@@ -409,7 +636,15 @@ def main() -> None:
              "medidos de milpa/tramite-ola5-propuesta-v0.yaml y los "
              "campos redactados de forense/analisis/adopcion-4/"
              "redaccion-reglas-v1_0.yaml. Por defecto imprime el diff seco.")
+    parser.add_argument(
+        "--relevo-motor-34", action="store_true",
+        help="modo V3 (ACTO GEN2-RELEVO-MOTOR-34-1): cita en milpa/tramite.yaml "
+             "los RESULT sellados de RELEVOS_V3 tras las guardas de 4.1. Por "
+             "defecto imprime el diff seco.")
     args = parser.parse_args()
+    if args.relevo_motor_34:
+        relevo_motor_v3(apply_=args.apply)
+        return
     if args.crear_desde_propuesta:
         crear_desde_propuesta(apply_=args.apply)
         return

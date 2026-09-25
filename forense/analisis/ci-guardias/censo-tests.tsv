@@ -261,3 +261,6 @@ tests/test_vista.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_hoja_a_cola.py	script	NO	(ninguna)	NO	2.8	CORRE-EN-CI	exit 0 sin corpus
 tests/test_renderiza_pagina.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_valor_por_referencia.py	script	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus
+tests/test_escribe_relevo_motor34.py	pytest	NO	(ninguna)	NO	24.0	CORRE-EN-CI	exit 0 sin corpus; escritor V3 de GEN2-RELEVO-MOTOR-34-1, una prueba por llave
+tests/test_relevo_motor34_derivados.py	pytest	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus; 24 sintéticas de los dos CALC derivados
+tests/test_amai_nse.py	pytest	NO	numpy,pandas,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	/usr/local/bin/python3: No module named pytest
