@@ -46,3 +46,7 @@ No releva los otros consumidores; no adopta lo de Astra. Sucesores: `GEN2-RELEVO
 | «re-medición (E.1) → CALC en caja con COMMIT-1» — RES-0017/0018, RES-0029/0030, RES-0050..0052 | DIFERIDO-A:GEN2-RELEVO-MOTOR-34-2-CAJA: sesión NUBE sin corpus; L8 ingiere un JSON GEN1 (4.1) | no baja en 7 | GEN2-RELEVO-MOTOR-34-2-CAJA |
 | «`check.py --baseline` VERDE» | NO-VERIFICABLE-AQUÍ: la sesión corre `--rapido` (0 FAIL) y `T-REPRO` aislado (0 FAIL); la suite completa la juzga el CI del PR | ninguno si CI verde | CI del PR |
 | «cada pin con fila en `pines-de-mesa.tsv`» | SUSTITUIDO-POR:escritor V3 — para el motor la marca del consumidor manda sobre el pin (`corrida0.py:4485`); las cuatro guardas corren en `guardas_v3`. Huérfano: la clase (iii) no se muestra aparte en `status` (hallazgo) | `relevadas_por_pin_de_mesa__iii` sigue en 0 | SIN-ASIGNAR |
+
+## CONSUMIDO
+
+PR #1128 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1128), rama `claude/new-session-y5cznd`, 24–25/sep/2026. Sin adendas.
