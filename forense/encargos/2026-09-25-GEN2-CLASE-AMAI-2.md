@@ -41,3 +41,7 @@ No mide conductas por NSE en 2024. Sucesores: catálogo v1.2 y FRONT-3 consumen 
 ## NO-CORRIDO / RESERVAS
 
 - Ninguno.
+
+## CONSUMIDO
+
+Ejecutado por PR #1152 (rama `acto/gen2-clase-amai-2`), ADR `ADR-260925-GEN2-CLASE-AMAI-2-f601-01`, 25/sep/2026.
