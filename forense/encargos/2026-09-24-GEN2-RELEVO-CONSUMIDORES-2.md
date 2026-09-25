@@ -35,3 +35,16 @@ Propio: `milpa/procedencia.yaml`, `milpa/catalogo-momentos-v0_1.tsv`, marco del 
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No toca el motor (hecho), no adopta lo de Astra. Sucesor: `-3` para el residuo; FIRMAS-17 asienta HISTÓRICO-SIN-RELEVO del marco.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «(P1) procedencia (40): por fila, RESULT GEN2 por conducta…» — 39 de 40 filas | DIFERIDO-A:CAJA (7 β̂ de generador) · DECISIÓN-DE-MESA-PENDIENTE (20 ASIGNADO) · DIFERIDO-A:θ (12 condicionales) — NC `…-e760-01/02/03/11` | `legacy_activas_por_consumidor__procedencia` queda en 39 | GEN2-RELEVO-CONSUMIDORES-3 · FP `…-e760-01` (FIRMAS-17) |
+| «(P2) catálogo de momentos (23)… momentos 01–02 por cotejo» — 22 de 23 | DECISIÓN-DE-MESA-PENDIENTE (M01–M07 sin identidad; M05/M23 sin champion) · DIFERIDO-A:instrumento (14 HOLDOUT) — NC `…-e760-08/09/10` | catálogo queda en 22 | FP `…-e760-02` (FIRMAS-17) · SIN-ASIGNAR (HOLDOUT) |
+| «(P3) marco del duelo (43)… parámetros de diseño» | PARO-PREMISA: las 43 no son parámetros sino 42 emisiones L/AGREGADO (propuesta HISTÓRICO-SIN-RELEVO) + DIN-M-01:M (DIFERIDO-A:CAJA, ENNViH) — NC `…-e760-04/05` | marco queda en 43 | FP `…-e760-03` (FIRMAS-17) · CAJA |
+| «las particiones (CORTES_C1) salen del contador por B3» | DECISIÓN-DE-MESA-PENDIENTE: B3 = FP `…-a157-03`, ABIERTA en el repo; FIRMAS-16 no fusionado | motor (6 cortes) sin cambio | FIRMAS-16/17 |
+| «(P4) celdas-D (6)… cita al RESULT del champion vigente» | PARO-PREMISA: no hay champion GEN2 citable; pin GOB rechazado por la guarda (RECHAZADO-RESULT-INGERIDO) — NC `…-e760-06/07` | celdas-D queda en 6 | GEN2-RELEVO-CONSUMIDORES-3 |
+| «`adoptados` sube por cada cita» | NO-VERIFICABLE-AQUÍ: el RESULT citado ya estaba adoptado por `tramite.yaml`; el contador cuenta RESULT distintos | adoptados 81 sin cambio | SIN-ASIGNAR |
+
+Nota de cierre: `forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md`. Adendas: ninguna.

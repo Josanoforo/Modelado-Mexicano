@@ -1,0 +1,3 @@
+# ADR-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01
+
+25/sep/2026 · `ACTO GEN2-RELEVO-CONSUMIDORES-2` (NUBE). Dos de las 112 lecturas legacy de procedencia, catálogo, marco y celdas-D salen a GEN2 por el escritor V4 (`--relevo-consumidores-2`): `civico.denuncia.con_seguro` en procedencia (cita B4) y M08 del catálogo (firma N, unidad DELITO), las dos desde `CALC-ENVIPE-DENUNCIA-SEGURO-0001`. Legacy 137 → 135 (procedencia 39, catálogo 22, marco 43, celdas-D 6). Las otras 110 no tienen RESULT GEN2 citable o esperan una decisión de mesa: 11 NC y 3 FP (HISTÓRICO-SIN-RELEVO propuesto para 8 coeficientes asignados y 42 emisiones del marco). B3 (cortes fuera del contador) no se aplicó: su FP sigue ABIERTA. PR #1138.

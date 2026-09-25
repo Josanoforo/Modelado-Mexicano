@@ -2945,6 +2945,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-RELEVO-CONSUMIDORES-2, 25/sep/2026: `M01`..`M23` son ids de
+    # FILA de `milpa/catalogo-momentos-v0_1.tsv` (momentos sellados por ADR-68),
+    # no rótulos de acto; mismo caso que las menciones ya censadas del catálogo.
+    "canon/L0/ADR-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-01.md",
+    "forense/notas/2026-09-25-GEN2-RELEVO-CONSUMIDORES-2-nota.md",
+    "forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2.md",
     # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
     # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
     "forense/analisis/astra-theta/seleccion.md",
