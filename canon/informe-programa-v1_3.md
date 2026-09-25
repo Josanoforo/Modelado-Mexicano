@@ -369,7 +369,7 @@ El censo de `PR #1116` encontró que **4 de 5** celdas-D consumidas por el
 marcador como piso `C2` tenían ese piso armado con marginales **tecleados**
 en `milpa/tramite-ola5-propuesta-v0.yaml` (nacional de `milpa/tramite.yaml`),
 no derivados de su `inputs` declarado
-<!-- comando: rg -F "4 de 5" forense/notas/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1-cierre.md -->.
+<!-- comando: grep -F "4 de 5" forense/notas/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1-cierre.md -->.
 La tesis sobrevive —el piso ganó aunque estuviera peor especificado—, pero
 ningún estimador adoptable puede tener esa cadena: el acto `PISOS-GEN2-2`
 re-mide cada piso legacy desde microdato y re-adjudica con sucesores; este
@@ -401,14 +401,13 @@ piso todavía legacy, diferidos a `GEN2-PISOS-GEN2-2` por decisión de mesa
 (fuera de perímetro §9)
 <!-- comando: grep -n "NC a PISOS-GEN2-2" forense/notas/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1-cierre.md -->.
 
-**Estado de `GEN2-PISOS-GEN2-2` a este corte: en curso, sin fusionar.** Tiene
-rama abierta (`acto/gen2-pisos-gen2-2`) con un COMMIT-1 de specs congeladas y
-un censo de origen generalizado en curso (125 filas, tipo (3): reportado por
-otra sesión, no verificado aquí, no se cita como hecho)
-<!-- comando: git log --all --oneline | grep -c "GEN2-PISOS-GEN2-2" -->
-<!-- comando: git log origin/main --oneline | { grep -c "GEN2-PISOS-GEN2-2" || true; } -->.
-Cuando cierre, este informe se actualiza con la tabla «después» y el commit
-de cierre, tal como el encargo lo pide.
+**Estado de `GEN2-PISOS-GEN2-2` a este corte: en curso, sin fusionar**
+(comando único, §5: `git ls-remote --heads origin`, rama viva en el
+remoto). Tiene rama abierta (`acto/gen2-pisos-gen2-2`) con un COMMIT-1 de
+specs congeladas y un censo de origen generalizado en curso (125 filas,
+tipo (3): reportado por otra sesión, no verificado aquí, no se cita como
+hecho). Cuando cierre, este informe se actualiza con la tabla «después» y
+el commit de cierre, tal como el encargo lo pide.
 
 ---
 
