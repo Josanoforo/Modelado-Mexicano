@@ -2,8 +2,9 @@
 """Cola de medición v1.1 con estado por fila · ACTO GEN2-COLA-COMPLETA-1.
 
 Insumos (ninguno se edita aquí):
-  · `forense/analisis/dominios/cola-medicion-v1_0.tsv` — la cola que deriva
-    `redictamina_v1_1.py` (filas (dominio, programa) con sus ids);
+  · `forense/analisis/dominios/cola-medicion-v1_0.tsv` en el SHA de redacción del encargo
+    (`34949751`, 61 filas): la cola que este acto agota. Se lee de git y no del árbol, porque
+    `redictamina_v1_1.py` la re-deriva y la encoge a medida que las afirmaciones se resuelven;
   · `tools/dominios/cola-completa/adjudicacion-v1_0.tsv` — una fila por afirmación con el
     estado que este acto le da y su evidencia (CALC y RESULT citados, pregunta buscada o
     razón). Es texto de decisión, no cifras: ningún valor numérico vive ahí.
@@ -23,13 +24,14 @@ sobre es error (sale 2), no fila sin estado.
 from __future__ import annotations
 
 import csv
+import subprocess
 import io
 import sys
 from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
-COLA = ROOT / "forense/analisis/dominios/cola-medicion-v1_0.tsv"
+COLA_SHA, COLA_REL = "34949751", "forense/analisis/dominios/cola-medicion-v1_0.tsv"
 ADJ = Path(__file__).resolve().parent / "adjudicacion-v1_0.tsv"
 OUT = ROOT / "forense/analisis/dominios/cola-medicion-v1_1.tsv"
 ESTADOS = ("MEDIDO", "NO-CONSTRUIBLE", "DIFERIDO")
@@ -51,7 +53,9 @@ def estado_fila(estados: list[str]) -> str:
 
 
 def main(verifica: bool) -> int:
-    cola = lee(COLA)
+    txt = subprocess.run(["git", "-C", str(ROOT), "show", f"{COLA_SHA}:{COLA_REL}"], check=True,
+                         capture_output=True, text=True).stdout
+    cola = list(csv.DictReader((l for l in io.StringIO(txt) if not l.startswith("#")), delimiter="\t"))
     adj_rows = lee(ADJ)
     errores = []
     if adj_rows and tuple(adj_rows[0].keys()) != CAMPOS_ADJ:
