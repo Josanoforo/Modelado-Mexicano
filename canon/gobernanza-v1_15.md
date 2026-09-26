@@ -4374,6 +4374,8 @@ Gate: ninguno — acto de mesa directo, sin PR previo que fusionar. Entorno **NU
 
 **ADR-260926-GEN2-ASTRA6-C1-PAQUETES-1-6c30-01 · ACTO ASTRA6-C1-PAQUETES-1 · 26/sep/2026.** Preparación NO CIEGA del catálogo al corte `4f125e709d3b3830078fe749c82068b3d55e6e70`: universo completo y paquetes con SHA, primer lanzamiento local probado sin recálculo; faltantes explícitos, cero validaciones o adopciones nuevas. Encargo `forense/encargos/2026-09-26-ASTRA6-C1-PAQUETES-1.md`, SHA de redacción 34949751113358869be981e2220f25d97e8097bd; firma «Acordado» ya archivada en 0-bis, no duplicada. Producto `forense/validacion-independiente/catalogo-1/astra6-c1-paquetes-guia.md`; recibo de Claude pendiente.
 
+**ADR-260926-ASTRA6-C3-SOCIAL-1-5803-01 · ACTO ASTRA6-C3-SOCIAL-1 · 26/sep/2026.** Tres reports completos v2; 604 registros de afirmación (113 del mapa), 139 registros cuantitativos trazados y 10 reglas propuestas, no adoptadas. Encargo `forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md`, SHA de redacción `34949751113358869be981e2220f25d97e8097bd`; cuerpo y sello archivados por #1166 conservados, firma no duplicada. Corte `2c646cba`, primer commit de ejecución `58032b66`; raíz derivada por herramienta vigente. Control local VERDE y revisión dirigida; cero mediciones y cero adopciones. Índice `forense/analisis/reports-v2/social-1/social-indice.md`; recibo técnico de Claude pendiente. Corrección adyacente D-21: dos líneas en T02 para identidad por ruta de reports y recibos v2 con nombres obligatorios por lote.
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.
