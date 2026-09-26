@@ -38,3 +38,14 @@ Propio: `milpa/procedencia.yaml`, `milpa/catalogo-momentos-v0_1.tsv`, el archivo
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide; no adopta lo de las unidades. Sucesor: `-4` para el residuo real (lecturas sin RESULT ni decisión).
+
+## NO-CORRIDO / RESERVAS
+
+- **qué**: «M01–M07 y M23 por la regla de M08» — M03. **por qué**: `DIFERIDO-A:GEN2-RELEVO-CONSUMIDORES-4` -- cotejo PARCIAL sin RESULT GEN2 de coercitivo en ninguna unidad. **impacto**: catálogo no baja por M03. **sucesor**: GEN2-RELEVO-CONSUMIDORES-4 (NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-02).
+- **qué**: idem — M05, M23. **por qué**: `DECISIÓN-DE-MESA-PENDIENTE` -- cotejo DERIVADO SELLADO SIN ADOPCIÓN, ni PARCIAL ni NO-EQUIVALENTE; recomendación HISTÓRICO-SIN-RELEVO. **impacto**: catálogo 17, esperado ≤ 15 no alcanzado. **sucesor**: GEN2-RELEVO-CONSUMIDORES-4 (…-72d9-03).
+- **qué**: «las 12 asignados_probabilidad → misma regla que B1/B2» — 11 sin par coincidente. **por qué**: `DIFERIDO-A:GEN2-RELEVO-CONSUMIDORES-4` -- B1 las conserva con rótulo; siguen legacy. **impacto**: procedencia 30. **sucesor**: GEN2-RELEVO-CONSUMIDORES-4 (…-72d9-01).
+- **qué**: residuo heredado de -2 (7 β̂, 12 θ, 6 celdas-D). **por qué**: `FUERA-DE-PERÍMETRO: GEN2-RELEVO-CONSUMIDORES-4` -- no está en §1/§9. **impacto**: procedencia 19, celdas_D 6. **sucesor**: GEN2-RELEVO-CONSUMIDORES-4 (…-72d9-04).
+
+## CONSUMIDO
+
+Consumido por PR #1160 (rama `claude/new-session-p3kone`), ADR-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-01. Legacy 123 → 67.
