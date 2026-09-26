@@ -51,3 +51,9 @@ A mitad del acto, el clasificador del modo automático de Claude Code negó cont
 
 ## Módulo de auditoría
 No aplica: el acto no afirma nada sobre México. Movió 0 contadores de medición.
+
+## Adenda de cierre (19:05 UTC)
+- **Arranque en un *resume* real.** Al reanudar la sesión, los dos hooks de `SessionStart` corrieron en orden: primero `entorno.py --arranque`, luego `arranque_memoria.py`, que imprimió las 15 líneas de la memoria y `status: NO-TERMINÓ en 8 s`. Esto cubre en parte P7. La NC -04 sigue abierta porque no se abrió una sesión *nueva*.
+- **Hook versionado.** `.claude/hooks/arranque_memoria.py` no estaba en la rama: `.gitignore` excluye `.claude/*`. Se añadió `!.claude/hooks/` con aprobación de mesa en chat («espera a que 1163 fusione y luego continuas (cambios aprobados)»), junto con `test_hook_arranque_versionado`.
+- **Censo.** La regeneración completa de `ci_guardias --censo` en nube pasaba 30 tests de CORRE-EN-CI a NECESITA-DEPENDENCIA por dependencias ausentes. Solo se añadió la fila del test nuevo. Hallazgo: el censo depende del entorno donde se deriva.
+- PR: #1165.

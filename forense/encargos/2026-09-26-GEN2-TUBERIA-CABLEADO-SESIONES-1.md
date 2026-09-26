@@ -78,3 +78,14 @@ No cambia las reglas de contenido; no reescribe las instrucciones (v2.17 es de d
 - Producto: canon/catalogo-del-mexicano-v1_N, canon/informe-programa-v1_N, canon/tabla-de-piso-v1_N, docs/ (Pages). Tablero: canon/TABLERO-PROGRAMA.md (solo el bloque derivado; árbol == origin/main True o inválido).
 - Sellos: data/corrida0/CALC-*/sello.json; manifiesto de sellos: forense/sellos/. Corpus: data/manifiesto.yaml (por id; nunca cat).
 ```
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2 · «las cinco reglas de Astra del 23/sep» · **por qué:** `NO-VERIFICABLE-AQUÍ` — el texto no aparece en `forense/`, `canon/` ni `AGENTS.md`, y el clon superficial no deja ver el historial; se citó R(a) firmada en su lugar · **impacto:** `AGENTS.md` no trae las cinco reglas por nombre · **sucesor:** GEN2-TUBERIA-CABLEADO-SESIONES-2 (`NC-260926-GEN2-TUBERIA-CABLEADO-SESIONES-1-0038-01`).
+- **qué:** P6 · caché Parquet · **por qué:** `DIFERIDO-A:caja` — la sesión es NUBE; la receta está en la NC · **impacto:** sin caché de microdato en caja · **sucesor:** GEN2-TUBERIA-CABLEADO-SESIONES-2 (`…-0038-02`).
+- **qué:** P5 · tiempos de CI leídos de los logs del PR · **por qué:** `NO-VERIFICABLE-AQUÍ` — se pegaron los tiempos medidos en esta nube (9 min 38 s → 6 min 29 s) · **impacto:** el ahorro en el runner no está medido · **sucesor:** GEN2-TUBERIA-CABLEADO-SESIONES-2 (`…-0038-03`).
+- **qué:** P7 · abrir una sesión nueva sobre la rama · **por qué:** `NO-VERIFICABLE-AQUÍ` — la prueba se hizo en vivo en esta sesión (3 bloqueos) y en un *resume* · **impacto:** falta el recibo de una sesión fresca · **sucesor:** GEN2-TUBERIA-CABLEADO-SESIONES-2 (`…-0038-04`).
+
+## CONSUMIDO
+
+Ejecutado por PR #1165 (rama `claude/new-session-ibivey`), ADR-260926-GEN2-TUBERIA-CABLEADO-SESIONES-1-0038-01, nota `forense/notas/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1-cierre.md`.
