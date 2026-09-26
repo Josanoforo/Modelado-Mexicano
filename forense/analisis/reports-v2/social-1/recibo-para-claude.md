@@ -21,3 +21,5 @@
 | Qué | Por qué | Impacto | Sucesor |
 |---|---|---|---|
 | Recibo técnico de Claude | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no lo acredita | No se autoriza integración humana del PR ni adopción de reglas por esta sesión | forense/analisis/reports-v2/social-1/recibo-para-claude.md |
+
+**EJECUTADO.** Entrega publicada en [PR #1171](https://github.com/Josanoforo/Modelado-Mexicano/pull/1171), rama `astra6-c3-social-1`. Solicitud de recibo técnico pendiente; no fusionado.
