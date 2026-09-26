@@ -1,5 +1,18 @@
 title: Benchmark del Mexicano
-description: Evidencia, predicciones y verificaciones del programa Modelado Mexicano
+description: "Benchmark auditable del comportamiento del mexicano con encuestas oficiales: pisos por segmento con intervalo calibrado, predicciones selladas antes de cada ola, todo reproducible."
 baseurl: /Modelado-Mexicano
 markdown: kramdown
 plugins: []
+theme: minima
+# Navegación de primer nivel (GEN2-FRONT-3-PORTADA-1, P4): Inicio · Informe ·
+# Catálogo · Consultar · Verificar · Reto · Contacto. minima pinta estas
+# páginas en la cabecera con su `title`; «Inicio» es el título del sitio.
+# «Consultar» es docs/consultar.md (PRODUCTO-CONSULTA-1, #1163). Lo demás
+# se enlaza desde «Más» en docs/index.md.
+header_pages:
+  - informe.md
+  - catalogo.md
+  - consultar.md
+  - verificar.md
+  - reto.md
+  - contacto.md
