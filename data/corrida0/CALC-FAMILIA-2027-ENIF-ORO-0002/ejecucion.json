@@ -1,0 +1,123 @@
+{
+ "corrida_id": "CALC-FAMILIA-2027-ENIF-ORO-0002--e2612b9ceac1",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "NO",
+  "generacion": "GEN2",
+  "rotulo": "HISTORICO-AUTORIZADO",
+  "sucesion": "AUTORIZADA-POR-USUARIO: Autorizar sucesora de serialización; sólo serialización REF, cálculo intacto",
+  "tipo": "AUXILIAR-HISTORICO-PROSPECTIVA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-26T20:47:53Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "e2612b9ceac14998898a6b706ae992450c239b84",
+  "git_rama": "codex/astra6-c2-enif-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "e2612b9ceac14998898a6b706ae992450c239b84",
+ "input_ids": [
+  "enif_2024_enif_2024_bd_csv"
+ ],
+ "input_sha256": {
+  "enif_2024_enif_2024_bd_csv": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+ },
+ "parametros": {
+  "R_futura": null,
+  "agrupacion": "NACIONAL",
+  "banda": 0.02,
+  "futuro_ids": null,
+  "min_estratos": 150,
+  "min_n": 10000,
+  "min_upm": 1000,
+  "numpy_cuantiles": "numpy.quantile method=linear (default); firma de versión en ejecucion.json",
+  "pisos_autenticados_futuro": "PISOS_HASH en código congelado, no p0 del caller",
+  "replicas": 2000,
+  "tablas_serializacion": {
+   "POTENCIA": "tablas/potencia.json",
+   "REPLICAS": "tablas/replicas.json",
+   "formato": "JSON UTF-8 compacto sort_keys=True allow_nan=False con LF final"
+  },
+  "terminales_potencia": "réplicas ausentes: escenarios=[], mde80=[null,null], correlación=null; varianza marginal cero: correlación=null"
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-FAMILIA-ENIF-ORO-AMBAS-P",
+  "RESULT-FAMILIA-ENIF-ORO-AUDITORIA",
+  "RESULT-FAMILIA-ENIF-ORO-ESTRATOS",
+  "RESULT-FAMILIA-ENIF-ORO-FORMAL-P",
+  "RESULT-FAMILIA-ENIF-ORO-INFORMAL-P",
+  "RESULT-FAMILIA-ENIF-ORO-MASA",
+  "RESULT-FAMILIA-ENIF-ORO-N",
+  "RESULT-FAMILIA-ENIF-ORO-POTENCIA",
+  "RESULT-FAMILIA-ENIF-ORO-REPLICAS",
+  "RESULT-FAMILIA-ENIF-ORO-SOPORTE",
+  "RESULT-FAMILIA-ENIF-ORO-UNICAS",
+  "RESULT-FAMILIA-ENIF-ORO-UNION-P",
+  "RESULT-FAMILIA-ENIF-ORO-UPM"
+ ],
+ "script_blob_sha256": "35bb694684281072a8634061abd76b537a11d86dd1134467e472a2eb01f20cfb",
+ "script_path": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.random.default_rng PCG64",
+  "valor": 20260926
+ },
+ "spec_id": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967",
+ "spec_yaml_sha256": "aae22e3b29b67a938e57550daefe3076aa105539eb71696b9910ff77f64fb3cc",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}
