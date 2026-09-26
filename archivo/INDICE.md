@@ -57,3 +57,14 @@ inventario sigue en la [nota de cierre](../forense/notas/2026-09-23-GEN2-FRONT-1
 | `revision-programa-2026-07-31.md` | `archivo/propuestas/revision-programa-2026-07-31.md` | `1734006a` |
 | `revision-publicacion-2026-07-30.md` | `archivo/propuestas/revision-publicacion-2026-07-30.md` | `1734006a` |
 | `requirements-dev.txt` | `archivo/requirements-dev.txt` | `40a1829a` |
+
+## Comandos reubicados
+
+Un comando citado en texto sellado (`<!-- comando: … -->` de `canon/`) que leía
+contenido que este acto sacó de la portada: el texto sellado no se edita; los
+verificadores (`tests/test_informe_derivado.py`, `tests/test_estado_derivado.py`)
+corren el comando resuelto de esta tabla (`tools/resuelve_cita.py --comando`).
+
+| comando citado | comando resuelto | commit del movimiento |
+|---|---|---|
+| `grep -n "31 reports temáticos" README.md` | `grep -n "31 reports temáticos" docs/estado.md` | `412b8146` |

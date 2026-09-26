@@ -119,6 +119,13 @@ def prueba_resolvedor():
                        capture_output=True, text=True)
     if r.returncode != 1:
         _falla("resolvedor", f"un nombre inexistente debe salir con 1, salió con {r.returncode}")
+    for citado, resuelto in RC.comandos().items():
+        if RC.comando(citado) != resuelto or citado == resuelto:
+            _falla("resolvedor", f"comando reubicado mal resuelto: {citado!r}")
+        salida = subprocess.run(["bash", "-o", "pipefail", "-c", resuelto], cwd=RAIZ,
+                                capture_output=True, text=True)
+        if salida.returncode != 0 or not salida.stdout.strip():
+            _falla("resolvedor", f"el comando resuelto no reproduce: {resuelto!r}")
 
 
 def main() -> int:

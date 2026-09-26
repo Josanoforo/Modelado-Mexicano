@@ -13,6 +13,7 @@ Uso:
   python3 tools/resuelve_cita.py <nombre>          # imprime la ruta actual (exit 1 si no resuelve)
   python3 tools/resuelve_cita.py --genera <commit> # imprime las filas del índice para los
                                                    # renombres de ese commit (git show -M)
+  python3 tools/resuelve_cita.py --comando '<cmd>' # comando sellado -> comando resuelto
 
 La tabla del índice se deriva con `--genera` sobre el commit de movimiento;
 nunca se teclea a mano.
@@ -27,13 +28,27 @@ import sys
 RAIZ = pathlib.Path(__file__).resolve().parents[1]
 INDICE = RAIZ / "archivo" / "INDICE.md"
 FILA = re.compile(r"^\| `([^`]+)` \| `([^`]+)` \| `([0-9a-f]{7,40})` \|$", re.M)
+SECCION_COMANDOS = "## Comandos reubicados"
+
+
+def _secciones() -> tuple[str, str]:
+    texto = INDICE.read_text(encoding="utf-8") if INDICE.exists() else ""
+    nombres, _, comandos = texto.partition(SECCION_COMANDOS)
+    return nombres, comandos
 
 
 def tabla() -> dict[str, tuple[str, str]]:
     """nombre citado -> (ruta actual, commit del movimiento)."""
-    if not INDICE.exists():
-        return {}
-    return {n: (r, c) for n, r, c in FILA.findall(INDICE.read_text(encoding="utf-8"))}
+    return {n: (r, c) for n, r, c in FILA.findall(_secciones()[0])}
+
+
+def comandos() -> dict[str, str]:
+    """comando citado en texto sellado -> comando resuelto (contenido reubicado)."""
+    return {a: b for a, b, _c in FILA.findall(_secciones()[1])}
+
+
+def comando(cmd: str) -> str:
+    return comandos().get(cmd.strip(), cmd)
 
 
 def resuelve(nombre: str) -> str | None:
@@ -60,6 +75,9 @@ def genera(commit: str) -> list[str]:
 
 
 def main(argv: list[str]) -> int:
+    if len(argv) == 2 and argv[0] == "--comando":
+        print(comando(argv[1]))
+        return 0
     if len(argv) == 2 and argv[0] == "--genera":
         print("\n".join(genera(argv[1])))
         return 0
