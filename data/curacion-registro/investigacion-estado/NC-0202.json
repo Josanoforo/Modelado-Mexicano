@@ -1,16 +1,16 @@
 {
   "alternativa_requerida": true,
   "alternativas": [],
-  "ciclos_sin_avance": 5,
+  "ciclos_sin_avance": 6,
   "continuacion_pendiente": true,
   "cursor_continuacion": "Continuar sólo por documentos o variables ejecutables; alternativa humana NC-0156, sin imputar conglomerados.",
   "estado": "continua",
   "evidencias": [
-    "forense/notas/2026-09-23-GEN2-38-investigacion-adq.md"
+    "forense/notas/2026-09-26-GEN2-38-investigacion-adq.md"
   ],
   "frontera_no_examinada": "Copia pública independiente de Berumen (2007), adjunto INEGI (2004) Sample Design o archivo oficial con UPM/estrato/réplicas.",
   "necesidad_id": "NC-0202",
-  "proxima_revision": "2026-09-24",
+  "proxima_revision": "2026-09-27",
   "suficiencia": {
     "conceptual": "ACREDITADA",
     "diseno": "PARCIAL",
@@ -23,6 +23,6 @@
     "unidad": "ACREDITADA",
     "uso_habilitado": "APTA_ALCANCE_MENOR"
   },
-  "ultima_exploracion": "2026-09-23",
+  "ultima_exploracion": "2026-09-26",
   "version_pregunta": "2026-09-15-ennvih-diseno-publico-v1"
 }
