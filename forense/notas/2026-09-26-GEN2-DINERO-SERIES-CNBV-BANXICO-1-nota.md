@@ -35,7 +35,7 @@ ADR: `ADR-260926-GEN2-DINERO-SERIES-CNBV-BANXICO-1-8dbe-01`. Encargo:
   NO-DERIVACION-CONTEXTUAL`). Se citan; ninguno emite nivel por mes citado
   ni por producto en los periodos de las afirmaciones.
   `git ls-remote --heads origin | grep -ic 'cnbv\|banxico\|DINERO-SERIES'` →
-  0; PR abiertos con `DINERO-SERIES` → 0.
+  0; PR abiertos: `mcp__github__search_pull_requests(query="DINERO-SERIES is:open", owner=josanoforo, repo=modelado-mexicano)` → `total_count: 0` (`gh` no existe en NUBE).
 
 ## 2 · P1 · afirmación → serie
 
