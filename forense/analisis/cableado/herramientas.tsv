@@ -1,0 +1,169 @@
+herramienta	descripcion
+tools/actualiza_expedientes_acceso_21.py	Actualiza únicamente las filas de seguimiento del encargo 21.
+tools/actualiza_reactivos_contexto.py	Publica un overlay incremental de texto acreditado para reactivos.
+tools/adq_autorizacion.py	Contrato común de autorización para objetos de adquisición.
+tools/adq_config.py	tools/adq_config.py -- lector de `data/adq-config.yaml` (P6, ACTO
+tools/adq_doctor.py	tools/adq_doctor.py -- diagnóstico de solo lectura del sistema de
+tools/adq_enoe_docs.py	ADQ-ENOE-PRE2019 · T2, extension declarada sobre COMMIT A.
+tools/adq_enoe_pre2019.py	ADQ-ENOE-PRE2019 · T1. Baja las 13 olas que COMMIT A (bbis-adq-enoe-pre2019
+tools/adq_enoe_sonda_eras.py	ADQ-ENOE-PRE2019 · T2, segunda extension declarada sobre COMMIT A.
+tools/adq_handoff.py	Handoff redundante y métricas mecánicas del cierre ADQ.
+tools/adq_investigacion.py	Proyecta demanda científica activa y selecciona investigación recurrente.
+tools/adq_residual.py	Alta/actualización atómica de un objeto residual de adquisición.
+tools/adq_suficiencia.py	Guardia de uso: expone cobertura por dimensión sin fabricar un puntaje.
+tools/agrega_l_v1_0.py	tools/agrega_l_v1_0.py -- agregador reusable de lecturas L (campo LLM).
+tools/arbitra.py	Arbitro generico de R por celda. ENCARGO MAESTRA33-C2 ARBITRO-R-1.
+tools/arbitra_gen2.py	Adaptador GEN2 del corredor R -- `tools/arbitra.py` envuelto para que cada
+tools/asienta_replay_aislado.py	Asienta, sin reejecutar, la evidencia aislada ya conservada por este acto.
+tools/barrido_descargas_vs_manifiesto.py	Barrido A.8 de solo lectura: ¿qué hay en las carpetas de descargas que el
+tools/barrido_enoe_constructos.py	ADQ-ENOE-PRE2019 · T2. Barre las olas pre-2019 contra los 9 constructos
+tools/barrido_enoe_contexto.py	SIN-DOCSTRING
+tools/barrido_negativos_m38.py	Barrido de vocabulario por regla sobre los tres inventarios vigentes.
+tools/baseline_temporal.py	Selector B para proporciones: última ola disponible antes del objetivo.
+tools/busca_reactivos.py	ACTO MAESTRA33-E7 · MAPEADOR-1 — P1. Buscador genérico de reactivos.
+tools/c2_compuesto.py	C2 compuesto sobre los cruces RESERVADA del marcador de segmento.
+tools/calcula_f5_completa.py	Extrae, calcula y adjudica F5 completa conforme a su spec congelada.
+tools/calcula_f5_sin_fugas.py	Calculador sucesor de F5 con inputs cerrados y elegibilidad por celda.
+tools/calcula_l_desde_capturas.py	GEN2-L-DESDE-CAPTURAS-1 · CALC que produce L por celda y por variante desde
+tools/calibracion_mordida_encig_serie.py	ACTO MAESTRA34-L1 · MORDIDA-SERIE — COMMIT-2, piezas P1 y P2.
+tools/celdas_validadas.py	celdas_validadas.py -- MÉTRICA RECTORA del programa: una sola derivación
+tools/censa_reactivos_ciegos.py	ACTO GEN2-REACTIVOS-RESIDUALES-2 · P1 — censo derivado de los grupos ciegos de NC-0136.
+tools/censo_ejes_maestra35_l1.py	ACTO MAESTRA35-L1 · P0 · CENSO A.4 de ejes de segmentacion.
+tools/censo_encup_participacion.py	ACTO MAESTRA33-E18-P3 · REGLAS-OLA6-ACTIVOS-L1 — COMMIT-1 de la Regla 3
+tools/censo_estimabilidad.py	Derivador del censo de estimabilidad de los 15 coeficientes de generador.
+tools/censo_lote_lapop.py	ACTO MAESTRA38-LOTE-LAPOP · censo A.4 compartido por L4/L5/L18.
+tools/censo_r34_bc.py	tools/censo_r34_bc.py -- barrido de instrumentos del corpus para el censo de las
+tools/ci_guardas_res.py	Las seis guardas de identidad `RES`/llave lógica (G1..G6).
+tools/ci_guardias.py	ci_guardias.py -- censo y corredor de guardias huerfanas (ACTO GEN2-CI-GUARDIAS-VIVAS-1)
+tools/cierra_libro_gen1.py	`tools/cierra_libro_gen1.py` -- cierra el libro GEN1 de un solo golpe y
+tools/cierre_acto.py	tools/cierre_acto.py -- preflight + reconciliador mecánico del cierre de
+tools/clasifica_pr.py	Qué tipo de merge es este PR, derivado de su diff.
+tools/construye_corpus_f5_v2.py	Construye el manifiesto del corpus F5 v2.0 sin mirar R ni resultados.
+tools/consulta.py	`tools/consulta.py` -- una fila del repo en UNA linea, sin abrir la vista.
+tools/consulta_gen2.py	Consulta operativa del emisor GEN2 con contrato explícito.
+tools/control_motral2015_valoracion.py	Control independiente de tres hechos de CALC-MOTRAL2015-VALORACION-SS-0001.
+tools/corrida0.py	`corrida0` -- CLI del registro GEN2 (PLAN-FINAL-GEN2 v2.0, B-1).
+tools/crosswalk_tablas_fd.py	Publica el crosswalk de tablas entre el payload y su descriptor (FD).
+tools/delta_comparacion.py	Comparacion explicita y reproducible entre dos valores identificados.
+tools/delta_pin_superado.py	Delta del pin de un `resultado_id` íntegramente superado — por comando.
+tools/deriva_diferidas_fp172.py	Deriva, para cada variable_id EXISTE-SATISFACE de data/cruce-inverso-v1_1.tsv,
+tools/deriva_resumen.py	Construye el resumen fechado del universo sin confundir adquisición e inspección.
+tools/deriva_serie_envipe_completa.py	Deriva la vista anual 2010–2024 de p(C1,U1) desde RESULT sellados.
+tools/derivados_protegidos.py	tools/derivados_protegidos.py -- lista por COMANDO los archivos
+tools/diagnostico_encig_unidad_canal.py	Diagnóstico exploratorio de la unidad de canal en ENCIG 2025.
+tools/diagnostico_fuente_general_corrupcion.py	Tabulaciones descriptivas de dos candidatos parciales para NC-0153.
+tools/digesto_tramite.py	tools/digesto_tramite.py — el digesto de trámite del agente de fondo.
+tools/ejes_maestra35_l1.py	ACTO MAESTRA35-L1 · maquinaria de ejes compartida por P2, P3 y P4.
+tools/emite_m.py	Emisor M por celda del sorteado -- ACTO MAESTRA33-E6 · EMISOR-M-1.
+tools/emite_propuesta_ejes_maestra35_l1.py	ACTO MAESTRA35-L1 · emite las tres entradas de propuesta de P2, P3 y P4.
+tools/emite_resultados_l7.py	ACTO MAESTRA35-L7 · corre los cuatro medidores congelados y emite
+tools/encig_cruces_historicos.py	Cruces históricos ENCIG, congelados antes de abrir las respuestas.
+tools/encig_origen_movil.py	Validación de origen móvil de cuatro pisos mecánicos sobre la serie ENCIG.
+tools/encig_serie_canal.py	Serie ENCIG 2015-2023 del pago ordinario de luz por canal digital útil.
+tools/enco_reserva_prepara.py	Preflight ENCO reservado: estructura DBF y fixtures, nunca respuestas.
+tools/encrige_carga_intensidad.py	Deriva carga, intensidad y participaciones desde el CSV ENCRIGE sellado.
+tools/enigh_duelo_guardian.py	Guardián de ENIGH 2024 para el duelo prospectivo — único código autorizado
+tools/enigh_duelo_nacional.py	Contendientes mecánicos a nivel NACIONAL para el duelo prospectivo ENIGH
+tools/entorno.py	`tools/entorno.py` -- la FIRMA DEL ENTORNO, en JSON y en una linea.
+tools/enut_nucleo.py	Núcleo común de cuidado en ENUT (2009 · 2014 · 2019 · 2024) — un solo
+tools/enut_persistencia_serie.py	P4 del acto GEN2-ENUT-PISOS-Y-SERIE-1 (21/sep/2026): calificación de la
+tools/escribe_relevo_consumo.py	Escritor acotado del consumo GEN2 de trámite, desde pin firmado y RESULT.
+tools/estado_comun.py	tools/estado_comun.py -- primitivas de estado operativo compartidas entre
+tools/etiqueta_v1_2.py	ACTO MAESTRA32-E6 · ETIQUETA-v1_2 — COMMIT-2.
+tools/extrae_fuentes_financieras.py	Extrae los objetos financieros de #717 y su continuación efectiva.
+tools/extrae_l_v1_1.py	Extractor congelado de `valor_extraido` para las 176 capturas de
+tools/extrae_l_v1_3.py	Extractor congelado de `valor_extraido` para las 224 capturas reales de
+tools/extrae_n34_producto_dano.py	Hace utilizables las fuentes adquiridas para NC-0164/N34.
+tools/f5_documental.py	Prepara, congela, ejecuta y resume FP-373 sin abrir FP-374/F6.
+tools/f5_documental_mcp.py	MCP minimo para analizar un TSV sin exponer el resto del sistema de archivos.
+tools/f6_factibilidad_prepara.py	Preflight documental de F6 y transformaciones sintéticas mínimas.
+tools/genera_deck.py	Genera el deck de diez láminas (docs/deck/*.md + docs/deck.pptx) desde
+tools/genera_f5_sin_fugas_spec.py	Genera/verifica la lista cerrada de inputs de CALC-F5-REANALISIS-0001.
+tools/genera_pdf_one_pager.py	Genera docs/one-pager.pdf desde docs/one-pager.md.
+tools/genera_specs_envipe_serie_completa.py	Genera las ocho caras mecánicas del preregistro ENVIPE-SERIE-COMPLETA.
+tools/genera_tabla_piso.py	Deriva canon/tabla-de-piso-v1_0.tsv desde canon/catalogo-del-mexicano-v1_0.tsv.
+tools/hook_lectura.py	Hook PreToolUse (Bash|Read) que hace cumplir las reglas de lectura.
+tools/informe_pilotos.py	Cifras de los tres pilotos para el informe del programa -- ACTO GEN2-MARCADOR-E-INFORME-1 · P4.
+tools/integra_banxico_producto_dano.py	Actualiza sólo la relación Banxico de N34 con la medición sellada.
+tools/integra_demanda_motor_sonda.py	Da de alta o cierra idempotentemente la NC de demanda preadopción.
+tools/integra_gen2_39_reactivos.py	Concilia NC-0100/NC-0136 y la anotación L0 tras GEN2-39.
+tools/integra_n34_producto_dano.py	Integra el cierre N34 en cola, necesidad y no-corrido sin reserializar TSV.
+tools/inventario_fd.py	ACTO MAESTRA31-E6 · DICCIONARIOS-FD — genera data/inventario-fd-v1_0.tsv.
+tools/inventario_fd_ext.py	ACTO MAESTRA32-E12 · EXTRACTOR-FD — genera data/inventario-fd-ext-v1_0.tsv.
+tools/inventario_reactivos.py	ACTO MAESTRA31-E4 · ORDEN-SUPERIOR — genera data/inventario-reactivos-v1_0.tsv.
+tools/inventario_reactivos_ext.py	ACTO MAESTRA32-E3 · EXTRACTOR-DTA (v2) — genera
+tools/l0_vista.py	tools/l0_vista.py -- vista completa de la línea L0 (histórico congelado +
+tools/l6_estimador_concurrencia.py	ACTO MAESTRA34-L6 · P3 — estimador del efecto de la concurrencia.
+tools/l6_lectores.py	ACTO MAESTRA34-L6 · P3 — lectores de la serie municipal.
+tools/l8_amplia_tipo_boleta.py	ACTO MAESTRA35-L8 · CIVICA-8-ENTIDADES -- amplia el panel de L3 con Hidalgo,
+tools/limpia_arbol.py	`tools/limpia_arbol.py --reporta` -- higiene del arbol de trabajo, en
+tools/lote_desde_asientos.py	tools/lote_desde_asientos.py -- el lote de `registro --escribe --lote`
+tools/marcador_segmento.py	`tools/marcador_segmento.py` -- deriva `data/corrida0/marcador-segmento.tsv`.
+tools/medicion_compuesta.py	ACTO MAESTRA32-E8 · MEDICION-COMPUESTA — COMMIT-2, corrida única.
+tools/medicion_familismo.py	ACTO MAESTRA32-E16 · MEDIDOR-FAMILISMO-APOYO.
+tools/medidor_ahorro_enif24.py	ACTO MAESTRA34-L5 · P4 · tenencia de ahorro (formal ∪ informal), ENIF 2024.
+tools/medidor_clientelismo_lapop.py	ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3 — piezas (a) y (a') sobre LAPOP Mexico.
+tools/medidor_cuidado_enut.py	ACTO MAESTRA35-L7 · familia.cuidado.recae_mujeres_40mas (R5.2) · ENUT 2024.
+tools/medidor_denuncia_seguro_envipe25.py	ACTO MAESTRA35-L7 · civico.denuncia.sin_seguro / con_seguro · ENVIPE 2025.
+tools/medidor_entitlement.py	ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3 — pieza (c).
+tools/medidor_envipe_serie_completa.py	Medidor sucesor de la serie ENVIPE de razones de no denuncia, olas 2011–2022.
+tools/medidor_evasion_norma_envipe25.py	ACTO MAESTRA34-L5 · P3 · evasión de norma percibida inútil, ENVIPE 2025.
+tools/medidor_gobierno_digital_encig25.py	ACTO MAESTRA34-L5 · P1 · adopción de canal digital de gobierno, ENCIG 2025.
+tools/medidor_gobierno_digital_endutih.py	ACTO MAESTRA35-L6 · P1 · adopción de trámites de gobierno por internet, ENDUTIH.
+tools/medidor_horizonte_enif24.py	ACTO MAESTRA35-L7 · dinero.ahorro.volatilidad_horizonte_corto (R1.1) · ENIF 2024.
+tools/medidor_l11_encuci2020.py	ACTO MAESTRA35-L11 · ROBUSTECE-L9 — segundo instrumento (ENCUCI 2020) para
+tools/medidor_l12_mps2012.py	ACTO MAESTRA36-L12 · MPS-2012-CROSSTABS — medidor de las piezas P0..P4.
+tools/medidor_l13_sat_efirma.py	ACTO MAESTRA36-L13 · COERCITIVO-SAT-EFIRMA.
+tools/medidor_l14_coercitivo_universos.py	ACTO MAESTRA36-L14 · COERCITIVO-TRES-UNIVERSOS.
+tools/medidor_l16_atencion_grave.py	ACTO MAESTRA38-L16 · salud.atencion.grave (R4.4) · Rama B (ENSANUT2024)
+tools/medidor_l17_vacunacion_disponible.py	ACTO MAESTRA38-L17 · salud.vacunacion.disponible (R9.2) · Ramas B (primaria)
+tools/medidor_l18_ver_oir_callar_lapop2004.py	ACTO MAESTRA38-L18 · `comunicacion.inseguridad.ver_oir_callar` (R10.3)
+tools/medidor_l2lista_mps2012.py	Medidor de `MAESTRA38-L2-LISTA` — ejecuta `prereg-caja-S10-L2-LISTA` §2
+tools/medidor_l4_clientelar_lapop2019.py	ACTO MAESTRA38-L4 · `civico.voto.clientelar_si_observable` (R7.6) — LAPOP Mexico 2019.
+tools/medidor_l5_protesta_multiola.py	ACTO MAESTRA38-L5 · civico.protesta.agravio_urbano (R7.4) — multi-ola LAPOP.
+tools/medidor_protesta_lapop.py	ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3 — pieza (b).
+tools/medidor_puente_enif24.py	ACTO MAESTRA35-L6 · P2 · respaldo personal x adopción de producto formal, ENIF 2024.
+tools/medidor_seguro_deposito_enif24.py	ACTO MAESTRA35-L9 · REGLAS-ACTIVOS-L3 — pieza (d).
+tools/medidor_union_libre.py	ACTO MAESTRA35-L7 · familia.union.baja_garantia_institucional (R5.3).
+tools/memoria_operativa.py	T-MEM: regenera los bloques derivados de canon/MEMORIA-OPERATIVA.md.
+tools/mide_participacion_concurrente.py	ACTO MAESTRA34-L4 · P3 · COMMIT 2 — mide el Δ de participación municipal entre
+tools/mide_participacion_tipo_boleta.py	ACTO MAESTRA35-L3 · CIVICA-TIPO-DE-BOLETA — medidor por TIPO de boleta federal.
+tools/nc_por_clase.py	nc_por_clase.py -- clasifica las NC ABIERTAS de `forense/no-corrido.tsv` POR LO
+tools/nc_por_razon.py	tools/nc_por_razon.py -- cuenta NC de `forense/no-corrido.tsv` por token de
+tools/p0_calendario_pel.py	ACTO MAESTRA34-L6 · P0 — tabla de tratamiento de la homologacion escalonada.
+tools/pines_mesa.py	Canal de PINES DE MESA -- ACTO GEN2-RELEVO-TANDA-3, P1 y P2.
+tools/pisos_ejes.py	Motor compartido de los pisos GEN2 por eje.
+tools/preflight_calc_tocados.py	preflight sobre los CALC SIN SELLO que un cambio añade o toca.
+tools/prepara_corpus.py	Prepara un worktree para resolver un conjunto cerrado de payloads.
+tools/prepara_oecd_pum_docx.py	Completa sólo los campos técnicos del formulario OECD Trust Survey PUM.
+tools/prospectividad.py	Rótulo PROSPECTIVA / RETROSPECTIVA del marcador -- ACTO GEN2-MARCADOR-E-INFORME-1 · P2.
+tools/publica_motral2015_valoracion.py	Publica la tabla larga de estimandos sellados de MOTRAL 2015.
+tools/publica_shed2025_bnpl_dano.py	Materializa agregados legibles del RESULT sellado de SHED 2025.
+tools/readme_derivado.py	Refresca las cifras de `corrida0.py status` en la tabla derivada de README.md.
+tools/recorre_mordida_con_registro_encig25.py	ACTO MAESTRA35-L1 · P1 · `tramite.mordida.con_registro` recorrida SIN deduplicar.
+tools/recupera_reactivos_fd.py	ACTO GEN2-RESIDUAL-81-1 — recupera enunciados de reactivo desde la capa FD ya indexada.
+tools/reempareja.py	SIN-DOCSTRING
+tools/relevo_candidatos_delta.py	Prepara y decide los CANDIDATO-GEN2 vigentes sin adoptar consumidores.
+tools/relevo_usos.py	`relevo-usos` -- ACTO GEN2-RELEVO-USOS-1 · cablea la ultima milla.
+tools/renderiza_pagina.py	Renderiza páginas con el navegador real de la caja (Chrome/Edge de Windows, headless) y
+tools/resuelve_citas.py	Resuelve una cita `RES-####` / `CORR-####` AL MOMENTO EN QUE SE ESCRIBIO.
+tools/rutas_sin_candidato.py	Clasifica el residual SIN-CANDIDATO sin inferir equivalencias científicas.
+tools/rutinas.py	Reglas deterministas compartidas por `/revisa`, `/despacha` y `/tramite`.
+tools/score_marco_m.py	Adaptador marco-M -> entrada de `forense/prereg-duelo-v2/scoring-adv1-m3.py`.
+tools/sella_sha256.py	tools/sella_sha256.py -- sella o verifica el sidecar sha256 de un
+tools/sello_externo.py	Manifiesto de sellos GEN2 y su atestación externa (D-a1..D-a6, GEN2-TUBERIA-SELLO-EXTERNO-1).
+tools/snapshot_motor_gen2.py	Construye el snapshot reproducible del emisor GEN2 explícito.
+tools/tablero_programa.py	tablero_programa.py -- deriva los indicadores del TABLERO DEL PROGRAMA desde el
+tools/tablero_vista.py	tablero_vista.py -- vista visual del TABLERO DEL PROGRAMA, para leerse en diez segundos.
+tools/tasas_base_corresidencia_actual.py	ACTO MAESTRA33-C1 · RE-SPEC-CORRESIDENCIA — COMMIT-2
+tools/tasas_base_fase1.py	ACTO MAESTRA32-E18 · REGLAS-OLA5-FASE1 — COMMIT-2
+tools/tasas_base_ola6_activos.py	ACTO MAESTRA33-E18-P3 · REGLAS-OLA6-ACTIVOS-L1 — COMMIT-2 por regla
+tools/valida_envipe_independiente.py	Validación independiente y producto gráfico de la serie ENVIPE p(C1,U1).
+tools/verifica_aislada.py	Ejecuta ``corrida0 verify`` en un intérprete nuevo por CALC.
+tools/verifica_encargos_gen2.py	`tools/verifica_encargos_gen2.py` -- ACTO GEN2-PRE-E5 ·
+tools/verifica_head_remoto.py	tools/verifica_head_remoto.py -- guard de sólo lectura: HEAD local ==
+tools/verifica_shed2025_bnpl_independiente.py	Control independiente de dos cocientes SHED; no importa el medidor.
+tools/verifica_sidecars.py	tools/verifica_sidecars.py -- recorre los sidecars sha256 de
+tools/vista.py	ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2/-3 · reconstruye la fila completa
+tools/vista_cola_adquisicion.py	Regenera data/cola-adquisicion-v1_0.tsv como VISTA (P3, MAESTRA33-A5).
+tools/ya_medido.py	ya_medido.py — ¿esta regla ya se midió, en algún lado del repo?

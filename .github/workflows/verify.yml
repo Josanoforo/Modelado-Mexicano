@@ -417,7 +417,7 @@ jobs:
           python3 -m pip install -q uv
           python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
           echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
-          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt numpy pytest
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt numpy pytest pytest-xdist
 
       - name: Guardias huérfanas — censo + invocador correcto por archivo (bloqueante)
         run: python3 tools/ci_guardias.py --ejecuta-huerfanos
