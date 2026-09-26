@@ -36,3 +36,14 @@ Propio: `canon/{catalogo-del-mexicano-v1_2.*, informe-programa-v1_4.md, estado-p
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No mide, no adopta, no publica en Zenodo (mesa con la receta). Sucesores: v1.3/v1.5/v1.18 en el siguiente corte.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «ENSU y COLA-LOTE-1 si ya fusionaron» (ENSU) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE -- ENSU fusionó (PR #1162) pero `FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01` sigue ABIERTA · **impacto:** catálogo y tabla de piso sin pisos ENSU · **sucesor:** esa FP → catálogo v1.3 (`NC-260926-GEN2-CIERRE-SEMANAL-1-dea2-01`)
+- **qué:** ídem (COLA-LOTE-1) · **por qué:** DIFERIDO-A:catálogo v1.3 -- rama `acto/gen2-cola-lote-1` sin fusionar · **impacto:** faltan las filas del lote · **sucesor:** GEN2-COLA-LOTE-1 (`…dea2-02`)
+- **qué:** «la columna de oferta de DINERO-SERIES junto a cada piso de crédito/ahorro» · **por qué:** DIFERIDO-A:sucesor de las NC 8dbe -- ese acto no produjo columna de oferta (PARO-ENTORNO); se conserva la de ENIF crédito · **impacto:** pisos de ahorro sin medida de oferta sellada · **sucesor:** NC 8dbe (`…dea2-03`)
+- **qué:** «`check.py --baseline` VERDE» · **por qué:** NO-VERIFICABLE-AQUÍ -- la suite completa la juzga el CI del PR; `--rapido` da 0 FAIL localmente · **impacto:** ninguno si el CI queda verde · **sucesor:** CI de PR #1168 (`…dea2-04`)
+
+## CONSUMIDO
+
+Consumido por PR #1168 (`ADR-260926-GEN2-CIERRE-SEMANAL-1-dea2-01`; nota `forense/notas/2026-09-26-GEN2-CIERRE-SEMANAL-1-cierre.md`).
