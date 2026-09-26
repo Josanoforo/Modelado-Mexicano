@@ -84,9 +84,9 @@ class CifrasDerivadas(unittest.TestCase):
         estados = {fila["estado_adopcion"] for fila in filas}
         self.assertEqual(estados, {"ADOPTADO-POR-FIRMA", "CONSUMO-GEN2-ACTIVO"})
 
-        m2 = re.search(r"^N_resultados_gen2_adoptados_activos=(\d+)$", self._status(), re.MULTILINE)
-        self.assertIsNotNone(m2)
-        self.assertEqual(len(filas), int(m2.group(1)))
+        # v1.0 es histórica (E.1): ya no se iguala al contador vivo de status (72 != 81 desde
+        # RELEVO-3); la tabla vigente es v1.1, probada en tests/test_catalogo_v1_2.py
+        # (GEN2-CIERRE-SEMANAL-1, defecto adyacente D-21).
 
     def test_delta_mae_piloto3_citado_verbatim(self):
         fuente = (ROOT / "forense/notas/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3-cierre.md").read_text(encoding="utf-8")

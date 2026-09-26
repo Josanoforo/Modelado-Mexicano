@@ -214,6 +214,11 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # ASTRA6-C2-ENVIPE-1: recibo exigido por nombre, evidencias de actos distintos.
+        frozenset({
+            "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md",
+        }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
         # sus cuatro specs selladas (COMMIT-1), así que no se renombra.
@@ -284,7 +289,8 @@ def t02_duplicates():
         # Los módulos de herramientas con paquete tienen identidad por ruta:
         # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
         # El control por contenido sigue incluyendo todos los módulos.
-        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
+        # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
+        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
         if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/")):  # ASTRA6-C3: reports/recibos por lote, identidad por ruta.
             nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
@@ -2067,7 +2073,7 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
     # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
@@ -5193,7 +5199,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
     # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
@@ -8336,7 +8342,7 @@ def t51_rotulos_par_unico():
 #   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
 #   se anota y se revisa.
 # ───────────────────────────────────────────────────────────────
-RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_16.md"
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_17.md"
 _T52_N_ANOTACIONES = 96
 _T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
 _T52_FILA_GOBERNANZA = (
