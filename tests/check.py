@@ -233,6 +233,15 @@ def t02_duplicates():
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
+        # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1 (25/sep/2026): lista cerrada P1 citada por ruta en la spec
+        # sellada ENSU-SERIE-spec-v1_0.md (COMMIT-1); contenido distinto; con las tres anteriores en main
+        # el grupo exacto es de cuatro.
+        frozenset({
+            "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
+            "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
+            "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+            "forense/analisis/seguridad-ensu/lista-cerrada-P1.md",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
@@ -2960,6 +2969,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1, 25/sep/2026: `E1`/`E2`/`E3` son las tres ERAS de
+    # cuestionario ENSU (2013-15, 2016-20, 2021-25) de la lista cerrada y la spec sellada (COMMIT-1),
+    # no rótulos de acto; los dos archivos están congelados y no se editan.
+    "forense/analisis/seguridad-ensu/lista-cerrada-P1.md",
+    "forense/prereg-caja/ENSU-SERIE-spec-v1_0.md",
     # ACTO GEN2-RELEVO-CONSUMIDORES-2, 25/sep/2026: `M01`..`M23` son ids de
     # FILA de `milpa/catalogo-momentos-v0_1.tsv` (momentos sellados por ADR-68),
     # no rótulos de acto; mismo caso que las menciones ya censadas del catálogo.

@@ -3,7 +3,7 @@
 
   tabla-serie-v1_0.tsv     conducta × eje × categoría × ola -> RESULT P/IC/N (CALC-ENSU-SERIE-0001
                            y, para ENT y CIUDAD de C02-C15, CALC-ENSU-PISOS-0001)
-  tabla-dictamen-v1_0.tsv  una fila por serie -> RESULT del dictamen DONDE-CAMBIO
+  tabla-dictamen-ensu-v1_0.tsv  una fila por serie -> RESULT del dictamen DONDE-CAMBIO
 
     python3 tools/dominios/ensu/tablas.py
 """
@@ -56,7 +56,7 @@ def main():
         b = D + s
         lin2.append("\t".join([c, e, cat] + [b + x for x in ("-DICTAMEN", "-DIRECCION", "-K", "-N-FUERA", "-DELTA-PP",
                                                              "-OLA-INI", "-OLA-FIN", "-N-CAMBIO-DOCUMENTADO")]))
-    (OUT / "tabla-dictamen-v1_0.tsv").write_text("\n".join(lin2) + "\n", encoding="utf-8")
+    (OUT / "tabla-dictamen-ensu-v1_0.tsv").write_text("\n".join(lin2) + "\n", encoding="utf-8")
     print("serie", len(lin) - 2, "dictamen", len(lin2) - 2)
 
 
