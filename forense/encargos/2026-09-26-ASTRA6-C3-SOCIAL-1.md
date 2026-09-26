@@ -220,3 +220,13 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Por qué | Impacto | Sucesor |
+|---|---|---|---|
+| Recibo técnico de Claude | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no lo acredita | No se autoriza integración humana del PR ni adopción de reglas por esta sesión | forense/analisis/reports-v2/social-1/recibo-para-claude.md |
+
+## CONSUMIDO
+
+EJECUTADO por PR #1171: tres reports v2 completos, tablas de dictamen, trazabilidad, revisión dirigida, índice local y hoja de reglas propuestas. Recibo técnico de Claude pendiente, solicitado en `forense/analisis/reports-v2/social-1/recibo-para-claude.md`. No fusionado; cero mediciones y cero adopciones nuevas. Cuerpo y sello archivados por #1166 conservados; firma de mesa sin duplicar.
