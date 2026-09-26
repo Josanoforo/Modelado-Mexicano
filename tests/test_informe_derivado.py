@@ -20,9 +20,14 @@ import glob
 import os
 import re
 import subprocess
+import tempfile
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# GEN2-FRONT-3-PORTADA-1: un comando sellado cuyo contenido salió de la portada
+# se corre resuelto por archivo/INDICE.md (§Comandos reubicados); el texto sellado no se edita.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import resuelve_cita  # noqa: E402
 
 _MIN_COMANDOS = 20
 _TIMEOUT_S = 120  # `corrida0.py status` por sí solo tarda ~75s (mismo aviso que estado)
@@ -65,13 +70,19 @@ def main():
         return 1
 
     fallos = []
+    # `corrida0.py status` tarda ~227s desde el 26/sep (202 900 resultados): se corre UNA vez
+    # y cada comando la lee de un archivo (GEN2-CIERRE-SEMANAL-1, defecto adyacente D-21).
+    cache = os.path.join(tempfile.mkdtemp(), "status.txt")
+    if any("tools/corrida0.py status" in c for c in comandos):
+        subprocess.run(f"python3 tools/corrida0.py status > {cache}", shell=True, cwd=ROOT, check=True)
     for cmd in comandos:
+        cmd = re.sub(r"python3 tools/corrida0\.py status(?=\s*(\||$))", f"cat {cache}", cmd)
         try:
             # `bash -o pipefail` -- mismo motivo que test_estado_derivado.py:
             # sin esto un pipe con el primer comando fallando en silencio no
             # propaga el error bajo `shell=True` simple.
             r = subprocess.run(
-                ["bash", "-o", "pipefail", "-c", cmd], cwd=ROOT,
+                ["bash", "-o", "pipefail", "-c", resuelve_cita.comando(cmd)], cwd=ROOT,
                 capture_output=True, text=True, timeout=_TIMEOUT_S,
             )
         except Exception as exc:

@@ -1,0 +1,1414 @@
+{
+  "metodo": "bootstrap centrado conjunto de una ola, IC percentil de errores centrados 95%, p0 fijo",
+  "semilla": 20260926,
+  "draws": 10000,
+  "replicas": 2000,
+  "banda_absoluta": 0.02,
+  "deltas": [
+    0.0,
+    -0.01,
+    0.01,
+    -0.02,
+    0.02,
+    -0.04,
+    0.04,
+    -0.06,
+    0.06
+  ],
+  "taus": [
+    0.0,
+    0.01,
+    0.02
+  ],
+  "supuestos": {
+    "temporal": "ESCENARIO-NO-ESTIMACION: shock común normal(0,tau²)",
+    "muestreo": "error de la ola histórica como escenario de precisión futura",
+    "dependencia": "índice conjunto en una misma ola; ningún pairing entre olas",
+    "ic": "tau no entra al IC primario; p0 sin incertidumbre histórica propagada",
+    "cambios": "delta igual en ambas familias; sin truncar errores en [0,1]",
+    "mde": "rejilla 0.001, primer delta con P(DESVIO)>=0.80; no monotonicidad impuesta"
+  },
+  "correlacion_replicas": -0.033122802064662664,
+  "familias": {
+    "DENUNCIA_U4": {
+      "p0": 0.29431298745731216,
+      "singleton_marco": false,
+      "soporte": {
+        "n": 13023,
+        "numerador_n": 3837,
+        "masa": 14982594.0,
+        "punto": 0.29431298745731216,
+        "n_efectivo_kish": 5636.7467543504645,
+        "estratos": 725,
+        "upm": 7830,
+        "singleton_soporte": 83,
+        "singleton_marco": 0,
+        "replicas_validas": 2000,
+        "ic_diagnostico": [
+          0.2822840835965598,
+          0.3060427005777772
+        ],
+        "estimable": true,
+        "estado": "CONTRASTE-DISPONIBLE"
+      },
+      "error_muestral_sd": 0.005985258633303247,
+      "error_cuantiles_95": [
+        -0.011927860030275407,
+        0.011830756950941967
+      ],
+      "estado_inferencia": "ESCENARIO-CONDICIONAL"
+    },
+    "EVASION_NORMA": {
+      "p0": 0.5627744787844097,
+      "singleton_marco": false,
+      "soporte": {
+        "n": 40280,
+        "numerador_n": 21761,
+        "masa": 35595875.0,
+        "punto": 0.5627744787844097,
+        "n_efectivo_kish": 14848.001719322869,
+        "estratos": 739,
+        "upm": 10694,
+        "singleton_soporte": 23,
+        "singleton_marco": 0,
+        "replicas_validas": 2000,
+        "ic_diagnostico": [
+          0.5522315120184866,
+          0.5731963264718443
+        ],
+        "estimable": true,
+        "estado": "CONTRASTE-DISPONIBLE"
+      },
+      "error_muestral_sd": 0.005339450268148122,
+      "error_cuantiles_95": [
+        -0.01055333410519573,
+        0.010411480348161863
+      ],
+      "estado_inferencia": "ESCENARIO-CONDICIONAL"
+    }
+  },
+  "escenarios": [
+    {
+      "delta": 0.0,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.8323,
+            "INDETERMINADO": 0.1677,
+            "DESVIO": 0.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.8323,
+          "probabilidad_conclusion_informativa_autorizada": 0.8323
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.925,
+            "INDETERMINADO": 0.075,
+            "DESVIO": 0.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.925,
+          "probabilidad_conclusion_informativa_autorizada": 0.925
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.771,
+          "COMPATIBLE|INDETERMINADO": 0.0613,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.154,
+          "INDETERMINADO|INDETERMINADO": 0.0137,
+          "INDETERMINADO|DESVIO": 0.0,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0,
+          "DESVIO|DESVIO": 0.0
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.771,
+        "probabilidad_ambas_informativas_autorizada": 0.771
+      },
+      "error_relevante_delta_cero": {
+        "DENUNCIA_U4": 0.0,
+        "EVASION_NORMA": 0.0
+      }
+    },
+    {
+      "delta": -0.01,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3646,
+            "INDETERMINADO": 0.6354,
+            "DESVIO": 0.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.3646,
+          "probabilidad_conclusion_informativa_autorizada": 0.3646
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.4607,
+            "INDETERMINADO": 0.5393,
+            "DESVIO": 0.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4607,
+          "probabilidad_conclusion_informativa_autorizada": 0.4607
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1658,
+          "COMPATIBLE|INDETERMINADO": 0.1988,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.2949,
+          "INDETERMINADO|INDETERMINADO": 0.3405,
+          "INDETERMINADO|DESVIO": 0.0,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0,
+          "DESVIO|DESVIO": 0.0
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.1658,
+        "probabilidad_ambas_informativas_autorizada": 0.1658
+      }
+    },
+    {
+      "delta": 0.01,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3785,
+            "INDETERMINADO": 0.6209,
+            "DESVIO": 0.0006
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.3791,
+          "probabilidad_conclusion_informativa_autorizada": 0.3791
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.4504,
+            "INDETERMINADO": 0.5496,
+            "DESVIO": 0.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4504,
+          "probabilidad_conclusion_informativa_autorizada": 0.4504
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1726,
+          "COMPATIBLE|INDETERMINADO": 0.2059,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.2772,
+          "INDETERMINADO|INDETERMINADO": 0.3437,
+          "INDETERMINADO|DESVIO": 0.0,
+          "DESVIO|COMPATIBLE": 0.0006,
+          "DESVIO|INDETERMINADO": 0.0,
+          "DESVIO|DESVIO": 0.0
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.1732,
+        "probabilidad_ambas_informativas_autorizada": 0.1732
+      }
+    },
+    {
+      "delta": -0.02,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.025,
+            "INDETERMINADO": 0.9476,
+            "DESVIO": 0.0274
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.0524,
+          "probabilidad_conclusion_informativa_autorizada": 0.0524
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0248,
+            "INDETERMINADO": 0.9476,
+            "DESVIO": 0.0276
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.0524,
+          "probabilidad_conclusion_informativa_autorizada": 0.0524
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0007,
+          "COMPATIBLE|INDETERMINADO": 0.0229,
+          "COMPATIBLE|DESVIO": 0.0014,
+          "INDETERMINADO|COMPATIBLE": 0.0234,
+          "INDETERMINADO|INDETERMINADO": 0.8995,
+          "INDETERMINADO|DESVIO": 0.0247,
+          "DESVIO|COMPATIBLE": 0.0007,
+          "DESVIO|INDETERMINADO": 0.0252,
+          "DESVIO|DESVIO": 0.0015
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.0043,
+        "probabilidad_ambas_informativas_autorizada": 0.0043
+      }
+    },
+    {
+      "delta": 0.02,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0274,
+            "INDETERMINADO": 0.9476,
+            "DESVIO": 0.025
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.0524,
+          "probabilidad_conclusion_informativa_autorizada": 0.0524
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0276,
+            "INDETERMINADO": 0.9476,
+            "DESVIO": 0.0248
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.0524,
+          "probabilidad_conclusion_informativa_autorizada": 0.0524
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0015,
+          "COMPATIBLE|INDETERMINADO": 0.0252,
+          "COMPATIBLE|DESVIO": 0.0007,
+          "INDETERMINADO|COMPATIBLE": 0.0247,
+          "INDETERMINADO|INDETERMINADO": 0.8995,
+          "INDETERMINADO|DESVIO": 0.0234,
+          "DESVIO|COMPATIBLE": 0.0014,
+          "DESVIO|INDETERMINADO": 0.0229,
+          "DESVIO|DESVIO": 0.0007
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.0043,
+        "probabilidad_ambas_informativas_autorizada": 0.0043
+      }
+    },
+    {
+      "delta": -0.04,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0859,
+            "DESVIO": 0.9141
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9141,
+          "probabilidad_conclusion_informativa_autorizada": 0.9141
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0349,
+            "DESVIO": 0.9651
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9651,
+          "probabilidad_conclusion_informativa_autorizada": 0.9651
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0014,
+          "INDETERMINADO|DESVIO": 0.0845,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0335,
+          "DESVIO|DESVIO": 0.8806
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.8806,
+        "probabilidad_ambas_informativas_autorizada": 0.8806
+      }
+    },
+    {
+      "delta": 0.04,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0818,
+            "DESVIO": 0.9182
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9182,
+          "probabilidad_conclusion_informativa_autorizada": 0.9182
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0401,
+            "DESVIO": 0.9599
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9599,
+          "probabilidad_conclusion_informativa_autorizada": 0.9599
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0036,
+          "INDETERMINADO|DESVIO": 0.0782,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0365,
+          "DESVIO|DESVIO": 0.8817
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.8817,
+        "probabilidad_ambas_informativas_autorizada": 0.8817
+      }
+    },
+    {
+      "delta": -0.06,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0,
+            "DESVIO": 1.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 1.0,
+          "probabilidad_conclusion_informativa_autorizada": 1.0
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0,
+            "DESVIO": 1.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 1.0,
+          "probabilidad_conclusion_informativa_autorizada": 1.0
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0,
+          "INDETERMINADO|DESVIO": 0.0,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0,
+          "DESVIO|DESVIO": 1.0
+        },
+        "probabilidad_ambas_informativas_diagnostica": 1.0,
+        "probabilidad_ambas_informativas_autorizada": 1.0
+      }
+    },
+    {
+      "delta": 0.06,
+      "tau": 0.0,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": -0.024350535273641623,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0,
+            "DESVIO": 1.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 1.0,
+          "probabilidad_conclusion_informativa_autorizada": 1.0
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0,
+            "DESVIO": 1.0
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 1.0,
+          "probabilidad_conclusion_informativa_autorizada": 1.0
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0,
+          "INDETERMINADO|DESVIO": 0.0,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0,
+          "DESVIO|DESVIO": 1.0
+        },
+        "probabilidad_ambas_informativas_diagnostica": 1.0,
+        "probabilidad_ambas_informativas_autorizada": 1.0
+      }
+    },
+    {
+      "delta": 0.0,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.5141,
+            "INDETERMINADO": 0.4799,
+            "DESVIO": 0.006
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.5201,
+          "probabilidad_conclusion_informativa_autorizada": 0.5201
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.6047,
+            "INDETERMINADO": 0.3883,
+            "DESVIO": 0.007
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.6117,
+          "probabilidad_conclusion_informativa_autorizada": 0.6117
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.3932,
+          "COMPATIBLE|INDETERMINADO": 0.1208,
+          "COMPATIBLE|DESVIO": 0.0001,
+          "INDETERMINADO|COMPATIBLE": 0.2114,
+          "INDETERMINADO|INDETERMINADO": 0.2628,
+          "INDETERMINADO|DESVIO": 0.0057,
+          "DESVIO|COMPATIBLE": 0.0001,
+          "DESVIO|INDETERMINADO": 0.0047,
+          "DESVIO|DESVIO": 0.0012
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3946,
+        "probabilidad_ambas_informativas_autorizada": 0.3946
+      },
+      "error_relevante_delta_cero": {
+        "DENUNCIA_U4": 0.006,
+        "EVASION_NORMA": 0.007
+      }
+    },
+    {
+      "delta": -0.01,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3752,
+            "INDETERMINADO": 0.5932,
+            "DESVIO": 0.0316
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4068,
+          "probabilidad_conclusion_informativa_autorizada": 0.4068
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.4411,
+            "INDETERMINADO": 0.5239,
+            "DESVIO": 0.035
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.47609999999999997,
+          "probabilidad_conclusion_informativa_autorizada": 0.47609999999999997
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.2675,
+          "COMPATIBLE|INDETERMINADO": 0.1073,
+          "COMPATIBLE|DESVIO": 0.0004,
+          "INDETERMINADO|COMPATIBLE": 0.1735,
+          "INDETERMINADO|INDETERMINADO": 0.3969,
+          "INDETERMINADO|DESVIO": 0.0228,
+          "DESVIO|COMPATIBLE": 0.0001,
+          "DESVIO|INDETERMINADO": 0.0197,
+          "DESVIO|DESVIO": 0.0118
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.2798,
+        "probabilidad_ambas_informativas_autorizada": 0.2798
+      }
+    },
+    {
+      "delta": 0.01,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3774,
+            "INDETERMINADO": 0.5927,
+            "DESVIO": 0.0299
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4073,
+          "probabilidad_conclusion_informativa_autorizada": 0.4073
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.4428,
+            "INDETERMINADO": 0.5221,
+            "DESVIO": 0.0351
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.47790000000000005,
+          "probabilidad_conclusion_informativa_autorizada": 0.47790000000000005
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.2672,
+          "COMPATIBLE|INDETERMINADO": 0.11,
+          "COMPATIBLE|DESVIO": 0.0002,
+          "INDETERMINADO|COMPATIBLE": 0.1752,
+          "INDETERMINADO|INDETERMINADO": 0.3951,
+          "INDETERMINADO|DESVIO": 0.0224,
+          "DESVIO|COMPATIBLE": 0.0004,
+          "DESVIO|INDETERMINADO": 0.017,
+          "DESVIO|DESVIO": 0.0125
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.2803,
+        "probabilidad_ambas_informativas_autorizada": 0.2803
+      }
+    },
+    {
+      "delta": -0.02,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1448,
+            "INDETERMINADO": 0.6988,
+            "DESVIO": 0.1564
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.3012,
+          "probabilidad_conclusion_informativa_autorizada": 0.3012
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1687,
+            "INDETERMINADO": 0.6568,
+            "DESVIO": 0.1745
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.34319999999999995,
+          "probabilidad_conclusion_informativa_autorizada": 0.34319999999999995
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0841,
+          "COMPATIBLE|INDETERMINADO": 0.06,
+          "COMPATIBLE|DESVIO": 0.0007,
+          "INDETERMINADO|COMPATIBLE": 0.0845,
+          "INDETERMINADO|INDETERMINADO": 0.5369,
+          "INDETERMINADO|DESVIO": 0.0774,
+          "DESVIO|COMPATIBLE": 0.0001,
+          "DESVIO|INDETERMINADO": 0.0599,
+          "DESVIO|DESVIO": 0.0964
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.1813,
+        "probabilidad_ambas_informativas_autorizada": 0.1813
+      }
+    },
+    {
+      "delta": 0.02,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1481,
+            "INDETERMINADO": 0.6989,
+            "DESVIO": 0.153
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.30110000000000003,
+          "probabilidad_conclusion_informativa_autorizada": 0.30110000000000003
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1704,
+            "INDETERMINADO": 0.6561,
+            "DESVIO": 0.1735
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.3439,
+          "probabilidad_conclusion_informativa_autorizada": 0.3439
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0861,
+          "COMPATIBLE|INDETERMINADO": 0.0619,
+          "COMPATIBLE|DESVIO": 0.0001,
+          "INDETERMINADO|COMPATIBLE": 0.0836,
+          "INDETERMINADO|INDETERMINADO": 0.5365,
+          "INDETERMINADO|DESVIO": 0.0788,
+          "DESVIO|COMPATIBLE": 0.0007,
+          "DESVIO|INDETERMINADO": 0.0577,
+          "DESVIO|DESVIO": 0.0946
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.1815,
+        "probabilidad_ambas_informativas_autorizada": 0.1815
+      }
+    },
+    {
+      "delta": -0.04,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0031,
+            "INDETERMINADO": 0.2408,
+            "DESVIO": 0.7561
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7592,
+          "probabilidad_conclusion_informativa_autorizada": 0.7592
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0036,
+            "INDETERMINADO": 0.1912,
+            "DESVIO": 0.8052
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.8088000000000001,
+          "probabilidad_conclusion_informativa_autorizada": 0.8088000000000001
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0006,
+          "COMPATIBLE|INDETERMINADO": 0.0024,
+          "COMPATIBLE|DESVIO": 0.0001,
+          "INDETERMINADO|COMPATIBLE": 0.003,
+          "INDETERMINADO|INDETERMINADO": 0.128,
+          "INDETERMINADO|DESVIO": 0.1098,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0608,
+          "DESVIO|DESVIO": 0.6953
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.696,
+        "probabilidad_ambas_informativas_autorizada": 0.696
+      }
+    },
+    {
+      "delta": 0.04,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0029,
+            "INDETERMINADO": 0.2391,
+            "DESVIO": 0.758
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7609,
+          "probabilidad_conclusion_informativa_autorizada": 0.7609
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0034,
+            "INDETERMINADO": 0.1971,
+            "DESVIO": 0.7995
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.8029,
+          "probabilidad_conclusion_informativa_autorizada": 0.8029
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0006,
+          "COMPATIBLE|INDETERMINADO": 0.0023,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0027,
+          "INDETERMINADO|INDETERMINADO": 0.1318,
+          "INDETERMINADO|DESVIO": 0.1046,
+          "DESVIO|COMPATIBLE": 0.0001,
+          "DESVIO|INDETERMINADO": 0.063,
+          "DESVIO|DESVIO": 0.6949
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.6956,
+        "probabilidad_ambas_informativas_autorizada": 0.6956
+      }
+    },
+    {
+      "delta": -0.06,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0082,
+            "DESVIO": 0.9918
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9918,
+          "probabilidad_conclusion_informativa_autorizada": 0.9918
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0048,
+            "DESVIO": 0.9952
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9952,
+          "probabilidad_conclusion_informativa_autorizada": 0.9952
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0016,
+          "INDETERMINADO|DESVIO": 0.0066,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0032,
+          "DESVIO|DESVIO": 0.9886
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.9886,
+        "probabilidad_ambas_informativas_autorizada": 0.9886
+      }
+    },
+    {
+      "delta": 0.06,
+      "tau": 0.01,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.7506963739173743,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0083,
+            "DESVIO": 0.9917
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9917,
+          "probabilidad_conclusion_informativa_autorizada": 0.9917
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0,
+            "INDETERMINADO": 0.0041,
+            "DESVIO": 0.9959
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9959,
+          "probabilidad_conclusion_informativa_autorizada": 0.9959
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0,
+          "COMPATIBLE|INDETERMINADO": 0.0,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0,
+          "INDETERMINADO|INDETERMINADO": 0.0013,
+          "INDETERMINADO|DESVIO": 0.007,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0028,
+          "DESVIO|DESVIO": 0.9889
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.9889,
+        "probabilidad_ambas_informativas_autorizada": 0.9889
+      }
+    },
+    {
+      "delta": 0.0,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3107,
+            "INDETERMINADO": 0.5594,
+            "DESVIO": 0.1299
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4406,
+          "probabilidad_conclusion_informativa_autorizada": 0.4406
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3587,
+            "INDETERMINADO": 0.4994,
+            "DESVIO": 0.1419
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.5006,
+          "probabilidad_conclusion_informativa_autorizada": 0.5006
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.2246,
+          "COMPATIBLE|INDETERMINADO": 0.0859,
+          "COMPATIBLE|DESVIO": 0.0002,
+          "INDETERMINADO|COMPATIBLE": 0.1338,
+          "INDETERMINADO|INDETERMINADO": 0.3774,
+          "INDETERMINADO|DESVIO": 0.0482,
+          "DESVIO|COMPATIBLE": 0.0003,
+          "DESVIO|INDETERMINADO": 0.0361,
+          "DESVIO|DESVIO": 0.0935
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3186,
+        "probabilidad_ambas_informativas_autorizada": 0.3186
+      },
+      "error_relevante_delta_cero": {
+        "DENUNCIA_U4": 0.1299,
+        "EVASION_NORMA": 0.1419
+      }
+    },
+    {
+      "delta": -0.01,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.2727,
+            "INDETERMINADO": 0.5522,
+            "DESVIO": 0.1751
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4478,
+          "probabilidad_conclusion_informativa_autorizada": 0.4478
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.3256,
+            "INDETERMINADO": 0.4882,
+            "DESVIO": 0.1862
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.5118,
+          "probabilidad_conclusion_informativa_autorizada": 0.5118
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1957,
+          "COMPATIBLE|INDETERMINADO": 0.0769,
+          "COMPATIBLE|DESVIO": 0.0001,
+          "INDETERMINADO|COMPATIBLE": 0.1297,
+          "INDETERMINADO|INDETERMINADO": 0.3739,
+          "INDETERMINADO|DESVIO": 0.0486,
+          "DESVIO|COMPATIBLE": 0.0002,
+          "DESVIO|INDETERMINADO": 0.0374,
+          "DESVIO|DESVIO": 0.1375
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3335,
+        "probabilidad_ambas_informativas_autorizada": 0.3335
+      }
+    },
+    {
+      "delta": 0.01,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.2668,
+            "INDETERMINADO": 0.5657,
+            "DESVIO": 0.1675
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4343,
+          "probabilidad_conclusion_informativa_autorizada": 0.4343
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.317,
+            "INDETERMINADO": 0.5018,
+            "DESVIO": 0.1812
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4982,
+          "probabilidad_conclusion_informativa_autorizada": 0.4982
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1888,
+          "COMPATIBLE|INDETERMINADO": 0.0779,
+          "COMPATIBLE|DESVIO": 0.0001,
+          "INDETERMINADO|COMPATIBLE": 0.128,
+          "INDETERMINADO|INDETERMINADO": 0.3842,
+          "INDETERMINADO|DESVIO": 0.0535,
+          "DESVIO|COMPATIBLE": 0.0002,
+          "DESVIO|INDETERMINADO": 0.0397,
+          "DESVIO|DESVIO": 0.1276
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3167,
+        "probabilidad_ambas_informativas_autorizada": 0.3167
+      }
+    },
+    {
+      "delta": -0.02,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1937,
+            "INDETERMINADO": 0.5171,
+            "DESVIO": 0.2892
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4829,
+          "probabilidad_conclusion_informativa_autorizada": 0.4829
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.2246,
+            "INDETERMINADO": 0.4632,
+            "DESVIO": 0.3122
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.5367999999999999,
+          "probabilidad_conclusion_informativa_autorizada": 0.5367999999999999
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1313,
+          "COMPATIBLE|INDETERMINADO": 0.062,
+          "COMPATIBLE|DESVIO": 0.0004,
+          "INDETERMINADO|COMPATIBLE": 0.0933,
+          "INDETERMINADO|INDETERMINADO": 0.3561,
+          "INDETERMINADO|DESVIO": 0.0677,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0451,
+          "DESVIO|DESVIO": 0.2441
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3758,
+        "probabilidad_ambas_informativas_autorizada": 0.3758
+      }
+    },
+    {
+      "delta": 0.02,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.1893,
+            "INDETERMINADO": 0.5221,
+            "DESVIO": 0.2886
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.4779,
+          "probabilidad_conclusion_informativa_autorizada": 0.4779
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.2282,
+            "INDETERMINADO": 0.4616,
+            "DESVIO": 0.3102
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.5384,
+          "probabilidad_conclusion_informativa_autorizada": 0.5384
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.1299,
+          "COMPATIBLE|INDETERMINADO": 0.0594,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0979,
+          "INDETERMINADO|INDETERMINADO": 0.3554,
+          "INDETERMINADO|DESVIO": 0.0688,
+          "DESVIO|COMPATIBLE": 0.0004,
+          "DESVIO|INDETERMINADO": 0.0468,
+          "DESVIO|DESVIO": 0.2414
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.3717,
+        "probabilidad_ambas_informativas_autorizada": 0.3717
+      }
+    },
+    {
+      "delta": -0.04,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0513,
+            "INDETERMINADO": 0.2929,
+            "DESVIO": 0.6558
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7071000000000001,
+          "probabilidad_conclusion_informativa_autorizada": 0.7071000000000001
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0633,
+            "INDETERMINADO": 0.2551,
+            "DESVIO": 0.6816
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7449,
+          "probabilidad_conclusion_informativa_autorizada": 0.7449
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0339,
+          "COMPATIBLE|INDETERMINADO": 0.0171,
+          "COMPATIBLE|DESVIO": 0.0003,
+          "INDETERMINADO|COMPATIBLE": 0.0294,
+          "INDETERMINADO|INDETERMINADO": 0.1932,
+          "INDETERMINADO|DESVIO": 0.0703,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0448,
+          "DESVIO|DESVIO": 0.611
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.6452,
+        "probabilidad_ambas_informativas_autorizada": 0.6452
+      }
+    },
+    {
+      "delta": 0.04,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0572,
+            "INDETERMINADO": 0.2874,
+            "DESVIO": 0.6554
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7126,
+          "probabilidad_conclusion_informativa_autorizada": 0.7126
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0624,
+            "INDETERMINADO": 0.2601,
+            "DESVIO": 0.6775
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.7399,
+          "probabilidad_conclusion_informativa_autorizada": 0.7399
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0336,
+          "COMPATIBLE|INDETERMINADO": 0.0236,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0286,
+          "INDETERMINADO|INDETERMINADO": 0.1929,
+          "INDETERMINADO|DESVIO": 0.0659,
+          "DESVIO|COMPATIBLE": 0.0002,
+          "DESVIO|INDETERMINADO": 0.0436,
+          "DESVIO|DESVIO": 0.6116
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.6454,
+        "probabilidad_ambas_informativas_autorizada": 0.6454
+      }
+    },
+    {
+      "delta": -0.06,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0067,
+            "INDETERMINADO": 0.0824,
+            "DESVIO": 0.9109
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9176000000000001,
+          "probabilidad_conclusion_informativa_autorizada": 0.9176000000000001
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.007,
+            "INDETERMINADO": 0.0718,
+            "DESVIO": 0.9212
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9282,
+          "probabilidad_conclusion_informativa_autorizada": 0.9282
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.004,
+          "COMPATIBLE|INDETERMINADO": 0.0027,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.003,
+          "INDETERMINADO|INDETERMINADO": 0.0506,
+          "INDETERMINADO|DESVIO": 0.0288,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0185,
+          "DESVIO|DESVIO": 0.8924
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.8964,
+        "probabilidad_ambas_informativas_autorizada": 0.8964
+      }
+    },
+    {
+      "delta": 0.06,
+      "tau": 0.02,
+      "poblacion_hipotetica_en_0_1": true,
+      "correlacion_error_con_shock": 0.9232396735251734,
+      "familias": {
+        "DENUNCIA_U4": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0053,
+            "INDETERMINADO": 0.0874,
+            "DESVIO": 0.9073
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9126,
+          "probabilidad_conclusion_informativa_autorizada": 0.9126
+        },
+        "EVASION_NORMA": {
+          "estado_inferencia": "ESCENARIO-CONDICIONAL",
+          "probabilidades": {
+            "COMPATIBLE": 0.0064,
+            "INDETERMINADO": 0.0705,
+            "DESVIO": 0.9231
+          },
+          "probabilidad_conclusion_informativa_diagnostica": 0.9295,
+          "probabilidad_conclusion_informativa_autorizada": 0.9295
+        }
+      },
+      "conjunta": {
+        "estado_inferencia": "ESCENARIO-CONDICIONAL",
+        "probabilidades": {
+          "COMPATIBLE|COMPATIBLE": 0.0029,
+          "COMPATIBLE|INDETERMINADO": 0.0024,
+          "COMPATIBLE|DESVIO": 0.0,
+          "INDETERMINADO|COMPATIBLE": 0.0035,
+          "INDETERMINADO|INDETERMINADO": 0.0502,
+          "INDETERMINADO|DESVIO": 0.0337,
+          "DESVIO|COMPATIBLE": 0.0,
+          "DESVIO|INDETERMINADO": 0.0179,
+          "DESVIO|DESVIO": 0.8894
+        },
+        "probabilidad_ambas_informativas_diagnostica": 0.8923,
+        "probabilidad_ambas_informativas_autorizada": 0.8923
+      }
+    }
+  ],
+  "mde": [
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.0,
+      "direccion": -1,
+      "maximo_delta_factible": 0.29431298745731216,
+      "delta_diagnostico": -0.037,
+      "probabilidad_desvio_diagnostica": 0.8066,
+      "delta_inferencial_autorizado": -0.037,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.0,
+      "direccion": 1,
+      "maximo_delta_factible": 0.7056870125426878,
+      "delta_diagnostico": 0.037,
+      "probabilidad_desvio_diagnostica": 0.8004,
+      "delta_inferencial_autorizado": 0.037,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.0,
+      "direccion": -1,
+      "maximo_delta_factible": 0.5627744787844097,
+      "delta_diagnostico": -0.035,
+      "probabilidad_desvio_diagnostica": 0.8009,
+      "delta_inferencial_autorizado": -0.035,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.0,
+      "direccion": 1,
+      "maximo_delta_factible": 0.43722552121559033,
+      "delta_diagnostico": 0.035,
+      "probabilidad_desvio_diagnostica": 0.8036,
+      "delta_inferencial_autorizado": 0.035,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.01,
+      "direccion": -1,
+      "maximo_delta_factible": 0.29431298745731216,
+      "delta_diagnostico": -0.042,
+      "probabilidad_desvio_diagnostica": 0.8053,
+      "delta_inferencial_autorizado": -0.042,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.01,
+      "direccion": 1,
+      "maximo_delta_factible": 0.7056870125426878,
+      "delta_diagnostico": 0.042,
+      "probabilidad_desvio_diagnostica": 0.8019,
+      "delta_inferencial_autorizado": 0.042,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.01,
+      "direccion": -1,
+      "maximo_delta_factible": 0.5627744787844097,
+      "delta_diagnostico": -0.04,
+      "probabilidad_desvio_diagnostica": 0.8052,
+      "delta_inferencial_autorizado": -0.04,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.01,
+      "direccion": 1,
+      "maximo_delta_factible": 0.43722552121559033,
+      "delta_diagnostico": 0.041,
+      "probabilidad_desvio_diagnostica": 0.8263,
+      "delta_inferencial_autorizado": 0.041,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.02,
+      "direccion": -1,
+      "maximo_delta_factible": 0.29431298745731216,
+      "delta_diagnostico": -0.05,
+      "probabilidad_desvio_diagnostica": 0.8091,
+      "delta_inferencial_autorizado": -0.05,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "DENUNCIA_U4",
+      "tau": 0.02,
+      "direccion": 1,
+      "maximo_delta_factible": 0.7056870125426878,
+      "delta_diagnostico": 0.05,
+      "probabilidad_desvio_diagnostica": 0.8058,
+      "delta_inferencial_autorizado": 0.05,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.02,
+      "direccion": -1,
+      "maximo_delta_factible": 0.5627744787844097,
+      "delta_diagnostico": -0.048,
+      "probabilidad_desvio_diagnostica": 0.8077,
+      "delta_inferencial_autorizado": -0.048,
+      "estado": "ALCANZA-80"
+    },
+    {
+      "familia": "EVASION_NORMA",
+      "tau": 0.02,
+      "direccion": 1,
+      "maximo_delta_factible": 0.43722552121559033,
+      "delta_diagnostico": 0.048,
+      "probabilidad_desvio_diagnostica": 0.8019,
+      "delta_inferencial_autorizado": 0.048,
+      "estado": "ALCANZA-80"
+    }
+  ]
+}

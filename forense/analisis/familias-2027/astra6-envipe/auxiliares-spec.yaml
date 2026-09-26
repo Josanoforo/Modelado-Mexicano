@@ -1,0 +1,44 @@
+estado: PROPUESTO-POR-EJECUTOR; COMMIT-1 anterior a histórico
+insumo:
+  id: envipe2025_csv
+  sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+replicas: 2000
+semilla: 20260909
+rng: PCG64
+columnas:
+  modulo:
+  - ID_PER
+  - ID_DEL
+  - BPCOD
+  - BP1_20
+  - BP1_23
+  - FAC_DEL
+  - EST_DIS
+  - UPM_DIS
+  persona:
+  - ID_PER
+  - FAC_ELE
+  - EST_DIS
+  - UPM_DIS
+agrupacion:
+- EST_DIS
+- UPM_DIS
+tablas:
+  modulo: tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv
+  persona: tper_vic2_envipe2025/conjunto_de_datos/conjunto_de_datos_tper_vic2_envipe2025.csv
+gates:
+  DENUNCIA_U4:
+    n: 5000
+  EVASION_NORMA:
+    n: 10000
+dependencias:
+  numpy: 2.3.5
+  yaml: 6.0.3
+oro: reproduce punto por RESULT abs<=1e-6; IC diagnóstico distinto de histórico
+singleton: no colapsar ni descartar; NO-ESTIMABLE para inferencia
+ids_nulos:
+  R_futura: null
+  result_futuro: null
+  retador: null
+futuro: lector rechaza modo futuro; adaptación nominal y autorización por acto COMMIT-3
+  sin ampliar estimandos

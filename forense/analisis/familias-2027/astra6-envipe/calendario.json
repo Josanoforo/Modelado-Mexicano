@@ -1,0 +1,23 @@
+{
+  "acto": "ASTRA6-C2-ENVIPE-1",
+  "fecha_consulta": "2026-09-26",
+  "commit_corte": "2c646cba93eebc9189a8135a5369bb45e8d29b89",
+  "ola_objetivo": "ENVIPE 2027",
+  "familias": ["ENVIPE-DENUNCIA-U4", "ENVIPE-EVASION-NORMA"],
+  "numero_olas": 1,
+  "estado": "CONDICIONAL",
+  "fecha_confirmada": null,
+  "estado_fecha": "NO-CONFIRMADA",
+  "ventana_esperada": {"inicio": "2027-09-01", "fin": "2027-09-30", "tipo": "PROPUESTO-POR-EJECUTOR", "es_fecha_oficial": false},
+  "periodo_victimizacion_esperado": {"anio": 2026, "estado": "INFERENCIA-PENDIENTE-DE-METADATOS-2027"},
+  "periodo_percepcion": "PENDIENTE-DE-FICHA-Y-REACTIVO-FUTUROS",
+  "fuentes": [
+    {"url": "https://www.inegi.org.mx/rnm/index.php/catalog/1130", "tipo": "METADATOS-HISTORICOS", "consulta": "2026-09-26", "acceso": "APERTURA-CORRECTA", "evidencia": "ENVIPE 2025: publicación 2025-09-18; referencia de victimización 2024-01-01 a 2024-12-31."},
+    {"url": "https://snieg.inegi.org.mx/calendario_iin_2026/", "tipo": "CALENDARIO-OFICIAL", "consulta": "2026-09-26", "acceso": "BUSQUEDA-INDEXADA; APERTURA-TIMEOUT", "evidencia": "ENVIPE 2026 anual; fecha programada 2026-09-10."},
+    {"url": "https://snieg.inegi.org.mx/Documentos/CalendarioIIN/Calendario-IIN-SNIEG_2026.pdf", "tipo": "CALENDARIO-OFICIAL", "consulta": "2026-09-26", "acceso": "BUSQUEDA-INDEXADA", "evidencia": "Corrobora fila ENVIPE 2026 del calendario IIN."}
+  ],
+  "busqueda_2027": {"dominio": "snieg.inegi.org.mx", "consultas": ["Documentos/CalendarioIIN/ 2027 ENVIPE", "Calendario de Información de Interés Nacional 2027"], "url_intentada": "https://snieg.inegi.org.mx/calendario_iin_2027/", "resultado": "SIN-CONFIRMACION-LOCALIZADA; URL-NO-ACCESIBLE", "demuestra_inexistencia": false},
+  "dependencia": "Dos familias comparten una ola y muestra; no independencia entre pruebas.",
+  "activacion": "La incorporación autorizada de ENVIPE 2027 nace RESERVADA; fecha o ventana no autoriza apertura. Verificar esquema, referencia y comparabilidad antes del código autorizado.",
+  "frontera": "No se abrió ni descargó contenido de resultados ENVIPE 2026. Extractos incidentales en búsquedas se excluyeron de fuentes, dictámenes y emisiones."
+}

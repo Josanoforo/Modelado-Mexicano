@@ -1007,6 +1007,15 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | `forense/analisis/dinero-series/afirmacion-serie-v1_0.tsv` | `python3 tools/dominios/dinero-series/dictamina.py` (`--verifica` byte a byte); valores leídos de los `resultados.json` sellados | `id_afirmacion · programa_cola · dictamen · serie · id_serie_tabla · periodicidad · unidad · url · fecha_descarga_constancia · result_ids · valores · veredicto · evaluacion · razon` | catálogo v1.2 (columna de oferta), FIRMAS-20 | 30 filas = ids de `cola-medicion-v1_0.tsv` DINERO/{CNBV,BANXICO}; el script falla si difieren. Dictamen RESULT / NO-CONSTRUIBLE / NO-ACCESIBLE (no se colapsan). Unidad: % de saldo, no persona. |
 | `data/corrida0/CALC-BANXICO-SERIES-IMOR-0001/insumos/banxico-imor-consumo-mensual.csv` · `data/corrida0/CALC-CNBV-SERIES-IMOR-R16-0001/insumos/cnbv-imor-consumo.csv` | copia byte a byte de `data/fuentes-financieras-20/` (constancia congelada, sha en `spec.yaml`) | los de origen | los dos medidores | Una serie viva no se sella; se sella la descarga del 2026-09-11. |
 
+## `canon/catalogo-del-mexicano-v1_2.*`, `canon/tabla-de-piso-v1_1.tsv` y `forense/analisis/catalogo/v1_2/` — catálogo v1.2 y tabla de piso v1.1 (`ACTO GEN2-CIERRE-SEMANAL-1`, 26/sep/2026)
+
+| tabla | cómo se produce | qué contiene | quién la consume | trampa |
+|---|---|---|---|---|
+| `canon/catalogo-del-mexicano-v1_2.tsv` · `.md` | `python3 forense/analisis/catalogo/genera_catalogo_v1_2.py` (≈10 min: deriva la vista de `corrida0`); `--sin-registro` reutiliza `v1_2/adoptados-activos-v1_2.tsv` y `v1_2/status-v1_2.json`. La portada sale de `v1_2/plantilla-v1_2.md` | las columnas de v1.1, más los pisos de FIRMAS-19 (J1–J10; J3 veta `CALC-ENIGH-CONSUMO-PISOS-0001`) y los adoptados por etiqueta que entran por `…afe1-01` | `docs/catalogo.md`, informe v1.4, tabla de piso v1.1 | los derivados de `v1_2/` llevan sufijo `-v1_2` por T02 (sin él, colisionan en nombre y contenido con `v1_1/`) |
+| `canon/tabla-de-piso-v1_1.tsv` | `python3 tools/genera_tabla_piso_v1_1.py --escribe` (sin flag solo cuenta; `--verifica` compara byte a byte) | una fila por estimador del catálogo v1.2 con área de consulta, hashes del CALC y `eje_nse_o_region` | `docs/reto.md`, `docs/one-pager.md` | la v1.0 (`tools/genera_tabla_piso.py`) es histórica: ya no se iguala al contador vivo de `status` |
+| `forense/analisis/informe-v1_4/cifra.py` | solo lee | una cifra por clave para el informe v1.4 | `canon/informe-programa-v1_4.md` (comentarios `comando:`) | — |
+| `tools/deriva_cifras.py` | `python3 tools/deriva_cifras.py [--escribe] ARCHIVO…` | re-deriva toda cifra `N <!-- deriva: cmd -->` de un documento (una sola corrida de `status`) | `docs/*.md` | sin `--escribe` sale 1 si hay desfase |
+
 | `forense/validacion-independiente/catalogo-1/universo.tsv` | `python3 tools/validacion/astra6_paquetes.py --prepara` antes de congelación; `--verifica` después | llave · CALC · RESULT · celda · instrumento · ola · unidad · firma · paquete · estado | validadores C1 y comparador de preparación | Corte fijo, estado NO-EVALUADO; no es registro de validaciones. Paquetes y esperados se separan. |
 
 ## `docs/data/` — export de consulta estática (`ACTO GEN2-PRODUCTO-CONSULTA-1`, 26/sep/2026)
@@ -1017,4 +1026,11 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 
 ### Tablas locales reports v2 · GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1
 
-`forense/analisis/reports-v2/consumo-familia-1/{consumo,familia}/afirmaciones.json`: cobertura v1/mapa con dictamen; `cifras.json`: valores/RESULT/estado/localizador/hash; `fuentes.json`: literatura primaria y alcance. Consumidor: dos reports v2; control `forense/analisis/reports-v2/consumo-familia-1/verifica_lote.py`. Sólo tablas del lote, sin productor central ni contadores. Índice local `forense/analisis/reports-v2/consumo-familia-1/indice-consumo-familia-1.md`; ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1-edf7-01.
+`forense/analisis/reports-v2/consumo-familia-1/<carril>/<carril>-afirmaciones.json`: cobertura v1/mapa con dictamen; `<carril>-cifras.json`: valores/RESULT/estado/localizador/hash; `<carril>-fuentes.json`: literatura primaria y alcance. Consumidor: dos reports v2; control `forense/analisis/reports-v2/consumo-familia-1/verifica_lote.py`. Sólo tablas del lote, sin productor central ni contadores. Índice local `forense/analisis/reports-v2/consumo-familia-1/indice-consumo-familia-1.md`; ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1-edf7-01.
+
+## Reports v2 · lote social (`ACTO ASTRA6-C3-SOCIAL-1`)
+
+| Tabla | Produce | Contiene | Consume | Límite |
+|---|---|---|---|---|
+| `forense/analisis/reports-v2/social-1/*-afirmaciones.{json,tsv}` | Lectura completa v1 y mapa al corte; juicios editoriales explícitos, verificados por `verifica_lote.py` | Afirmación, origen/localizador, dictamen, argumento, evidencia, estado y cambio editorial | Tres reports v2, índice local y recibo | Sin edición del mapa; conteo incluye procedencias repetidas, no pruebas independientes |
+| `forense/analisis/reports-v2/social-1/*-cifras.json` y `*-fuentes.json` | Extracción puntual sellada y lectura primaria pública | Valor/clave/hash/FP, unidad/periodo/transformación; fuentes con población/método/tier | Comprobador y revisión dirigida | Cifra externa sin RESULT ficticio; no microdato ni ola reservada |
