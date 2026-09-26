@@ -2,3 +2,4 @@ fecha	sesion	herramienta	decision	motivo	comando
 2026-09-26T18:33:40Z	7a95baa7-9eb5-5f55-917e-5f61fbceb499	Bash	BLOQUEO	(c) git log -p sin ruta	git log -p -n 1 | head -n 2
 2026-09-26T18:33:44Z	7a95baa7-9eb5-5f55-917e-5f61fbceb499	Bash	BLOQUEO	(b) lectura completa de derivado data/corrida0/resultados.tsv	cat data/corrida0/resultados.tsv
 2026-09-26T18:33:45Z	7a95baa7-9eb5-5f55-917e-5f61fbceb499	Read	BLOQUEO	(b) lectura completa de derivado data/manifiesto.yaml	Read /home/user/Modelado-Mexicano/data/manifiesto.yaml
+2026-09-26T20:57:10Z	957a09e2-38bd-5b06-ad82-9930433ce9bc	Read	BLOQUEO	(a) lectura completa de /tmp/revisa-1174-wt/forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md (220 líneas > 200)	Read /tmp/revisa-1174-wt/forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md
