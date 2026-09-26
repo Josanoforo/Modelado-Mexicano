@@ -45,3 +45,11 @@ Propio: `forense/firmas-pendientes.tsv`, `no-corrido.tsv`, `data/corrida0/decisi
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No adopta en consumidor. Sucesor: `GEN2-CATALOGO-V1-2-1`.
+
+## NO-CORRIDO / RESERVAS
+
+Ninguno.
+
+## CONSUMIDO
+
+CONSUMIDO en PR #1158 (ADR-260926-GEN2-TRAMITE-FIRMAS-19-9012-01), rama claude/new-session-i5tl29.
