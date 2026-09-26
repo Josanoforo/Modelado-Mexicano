@@ -121,12 +121,17 @@ def cmd_abre():
                           f"(casos={e.get('casos', '?')}, {e.get('estado', '?')})")
 
     print("\n--- Versión de instrucciones vigente ---")
-    instr = leer("archivo/instrucciones/instrucciones-proyecto-v2.md")
+    # GEN2-FRONT-3-PORTADA-1 (reserva de /revisa en #1164): la vigente es la
+    # que importa CLAUDE.md (hoy en gobierno/), no `instrucciones-proyecto-v2.md`
+    # (v2.3, histórica); se deriva del @import, no se clava el nombre.
+    m_vig = re.search(r"@((?:gobierno/)?instrucciones-proyecto-v[\w.]+\.md)", leer("CLAUDE.md") or "")
+    ruta_instr = m_vig.group(1) if m_vig else None
+    instr = leer(ruta_instr) if ruta_instr else None
     if instr is None:
-        faltantes.append("versión de instrucciones (el archivo no existe)")
+        faltantes.append("versión de instrucciones (CLAUDE.md no la importa o el archivo no existe)")
     else:
         primera = instr.split("\n", 1)[0]
-        commit_instr = git("log", "-1", "--format=%h %ci", "--", "archivo/instrucciones/instrucciones-proyecto-v2.md")
+        commit_instr = git("log", "-1", "--format=%h %ci", "--", ruta_instr)
         print(f"  {primera}")
         print(f"  último commit que la tocó: {commit_instr or '(no derivable)'}")
 
