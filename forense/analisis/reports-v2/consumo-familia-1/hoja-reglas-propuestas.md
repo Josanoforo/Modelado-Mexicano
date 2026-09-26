@@ -1,0 +1,16 @@
+# Hoja de reglas propuestas · consumo y familia
+
+PROPUESTO-POR-EJECUTOR. Recomendación: recibir estas reglas para integración editorial del catálogo sucesor, manteniendo como hipótesis las recomendaciones comerciales/clínicas y como límites descriptivos las de unidad. Alternativa: mantenerlas sólo en los reports hasta disponer de evaluaciones por segmento. No se pide autorizar implementación ni se declara adopción por este PR.
+
+| Regla SI–ENTONCES / driver | Frecuencia / mecanismo | Evidencia | Falsador y resultado si no refuta |
+|---|---|---|---|
+| SI venta exige pago digital, ENTONCES comprobar acceso, aceptación y entrega antes de interpretar rechazo; driver oferta/costo | Alta histórica / no identificado | Consumo: CONS-EFECTIVO, TARJETA, INTERNET; ENIGH 0002 | Variar acceso y costos comparables sin cambio de uso debilita explicación de barrera; no refutación sólo la acota |
+| SI presupuesto alimentario pesa más en ingresos bajos, ENTONCES comparar canasta, presentaciones y costo total; driver restricción | Alta descriptiva / hipótesis media | CONS-ALIMENTOS-D01/D10 | Si presupuesto no modifica elección con calidad/oferta constantes, retirar explicación suficiente; no refutación no identifica cultura |
+| SI se evalúa marca alternativa, ENTONCES separar prueba/satisfacción/repetición; driver aprendizaje | Media comercial histórica / causal baja | MK2012/2023/2025 | Satisfacción sin repetición debilita aprendizaje suficiente; no refutación deja hipótesis acotada |
+| SI se ofrece crédito o garantía, ENTONCES evaluar compra neta y pago sostenible; driver acceso/costo error | SIN-CIFRA eficacia / bajo | Hipótesis v1; acceso ENIGH | Sin mejora neta o con más mora/cancelación, retirar recomendación; no refutación exige seguimiento |
+| SI se propone señal social, ENTONCES medir incrementalidad por fuente y segmento; driver incertidumbre | SIN-CIFRA nacional / no identificado | CONS-013/014/019/020 | Ninguna diferencia frente a información técnica debilita primacía social; no refutación no prueba universalidad |
+| SI unidad es hogar ampliado o hijo del jefe, ENTONCES describir composición y parentesco; driver límite instrumental | Alta ENADID abierta / no identificado | FAM-C01/C08 | Instrumento de motivos y diseño exógeno permite superar límite; no refutación no corrobora cultura |
+| SI se diseña apoyo de cuidado, ENTONCES observar receptor/cuidador/carga/red antes de asignar por género; driver heterogeneidad | Alta con reserva ENASIC / propuesta | FAM-C09 | Si distinción no mejora identificación de necesidad respecto a alternativa simple, retirar utilidad; no refutación no prueba empleo |
+| SI participación familiar se considera en atención psicológica, ENTONCES comprobar consentimiento y barreras; driver apoyo ambivalente | SIN-CIFRA nacional / media cualitativa situada | F-GALAN, F-GUTIERREZ, F-BRAVO | Seguimiento comparable sin discriminación de acceso/seguridad debilita utilidad; no refutación sólo poblaciones estudiadas |
+
+Todos son disparadores de investigación o decisión local; no coeficientes del motor. Nuevos estimandos para cola: elección con oferta/costo comparable; transición residencial con motivos; carga/red/consentimiento en cuidado. No se ejecutan, no se abren reservas. Firma de propuesta: véase fila FP propia; la firma «Acordado» del encargo ya activó la misión, no estas reglas.
