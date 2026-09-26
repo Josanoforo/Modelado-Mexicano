@@ -53,6 +53,8 @@ INVENTARIOS = [
     "data/inventario-reactivos-contexto-v1_1.tsv",
     # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1: textos ENSU del FD (sin inventario previo).
     "forense/analisis/seguridad-ensu/inventario-reactivos-ensu-v1_0.tsv",
+    # ACTO GEN2-COLA-COMPLETA-1: textos transcritos del FD/cuestionario (MMSI, ENDISEG, ENADID, Latinobarómetro, PEW, ENSANUT).
+    "tools/dominios/cola-completa/inventario-reactivos-cola-completa-v1_0.tsv",
 ]
 
 MED_ADQ = "MEDIBLE-CON-ADQUISICIÓN"

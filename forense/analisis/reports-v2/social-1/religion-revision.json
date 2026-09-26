@@ -1,0 +1,56 @@
+[
+  {
+    "afirmacion": "Religiosidad nominal distinta de práctica",
+    "referencia": [
+      "GEN2-01",
+      "GEN2-04"
+    ],
+    "denominador": "Adultos válidos de preguntas distintas, WVS denominación sólo códigos 0–7",
+    "limite": "No cruce individual ni católicos semanales"
+  },
+  {
+    "afirmacion": "Sin caída monotónica PEW",
+    "referencia": [
+      "GEN2-03"
+    ],
+    "denominador": "Adultos válidos mexicanos por ola abierta 2013–2024",
+    "limite": "No invariancia, no experiencia individual ni cifra prospectiva"
+  },
+  {
+    "afirmacion": "Censo descenso afiliación",
+    "referencia": [
+      "REL-S10",
+      "REL-E1",
+      "REL-E2"
+    ],
+    "denominador": "Población total censada, no adultos entrevistados",
+    "limite": "No causa institucional ni estimación de práctica"
+  },
+  {
+    "afirmacion": "Edad y afiliación",
+    "referencia": [
+      "GEN2-02"
+    ],
+    "denominador": "Adultos válidos por reactivo de Latinobarómetro 2023",
+    "limite": "No cohorte ni efecto causal digital"
+  },
+  {
+    "afirmacion": "Afrontamiento y salud",
+    "referencia": [
+      "REL-S1",
+      "REL-S2",
+      "REL-S3",
+      "REL-S8"
+    ],
+    "denominador": "Subpoblaciones clínicas/educativas, no México completo",
+    "limite": "No tratamiento ni causalidad; lectura parcial explícita fuentes"
+  },
+  {
+    "afirmacion": "Peregrinación",
+    "referencia": [
+      "REL-S5"
+    ],
+    "denominador": "Flujo operativo acumulado hasta comunicado",
+    "limite": "No visitantes únicos ni ranking mundial"
+  }
+]
