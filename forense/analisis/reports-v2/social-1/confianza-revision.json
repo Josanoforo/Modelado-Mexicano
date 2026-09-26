@@ -1,0 +1,39 @@
+[
+  {
+    "afirmacion": "Se rompe atribución de ~22% a WVS2018",
+    "referencia": "CONF-C42",
+    "denominador": "personas18+ válidas Q57=1; p ponderada",
+    "limite": "No prueba cambio temporal frente a Latinobarómetro2023 ni refuta cooperación; coeficientes causales ausentes"
+  },
+  {
+    "afirmacion": "Gradiente familia frente a generalizada y vecinos",
+    "referencia": [
+      "CONF-C35",
+      "CONF-C41",
+      "CONF-C42"
+    ],
+    "denominador": "Batería particularizada completa/algo y pregunta dicotómica Q57; personas adultas válidas por reactivo",
+    "limite": "Cada reactivo puede tener denominador válido propio; no resta como stock de confianza transferido ni orden de cada individuo"
+  },
+  {
+    "afirmacion": "ENCIG familiar no familia nuclear nacional",
+    "referencia": "CONF-E01",
+    "denominador": "personas18+ en localidades100mil+; mucha/algo",
+    "limite": "No profunda, no rural; diferencia no cambio temporal con WVS"
+  },
+  {
+    "afirmacion": "Confianza institucional no universalmente baja",
+    "referencia": "CONF-E02",
+    "denominador": "adultos urbanos OCDE/INEGI2023; respuestas6–10 de0–10",
+    "limite": "Publicación2025 no nueva ola; no enlace con WVS o aprobación electoral"
+  },
+  {
+    "afirmacion": "Adaptación racional y transferencia no identificadas",
+    "referencia": [
+      "CONF-CARBON24",
+      "CONF-C35"
+    ],
+    "denominador": "Experimento sobre señales/actitudes fiscales y marginal de referentes; unidades distintas",
+    "limite": "Mediación postratamiento no canal causal identificado; redes pueden complementar instituciones; C1 pendiente"
+  }
+]
