@@ -1014,3 +1014,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | tabla | deriva | columnas | consume | nota |
 |---|---|---|---|---|
 | `docs/data/catalogo-v1_N.json` · `docs/data/catalogo-vigente.json` | `python3 tools/benchmark.py exporta` desde el catálogo vigente (`canon/catalogo-del-mexicano-v1_N.tsv`, N mayor) | columnar: `columnas · diccionarios · filas` (las del catálogo) + `hashes · reglas · ejes · olas_reservadas · cobertura · excluidos` | `docs/consultar.md` | Derivado; no se edita a mano. `tests/test_benchmark.py` lo compara con el catálogo fila por fila. Contrato: `docs/consulta.md`. |
+
+### ASTRA6-C2-ENCIG-1 · tablas propias
+
+`data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/tablas/replicas.json`: vector conjunto agregado de bootstrap y soporte por familia, emitido por medidor.py con spec congelada y citado mediante REF/hash. `forense/analisis/familias-2027/astra6-encig/potencia.json`: escenarios derivados por potencia.py, no resultados futuros. No registros individuales; vistas protegidas no modificadas.
