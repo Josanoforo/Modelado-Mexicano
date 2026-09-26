@@ -42,3 +42,6 @@ No releva. Sucesor: `GEN2-RELEVO-CONSUMIDORES-3` (H1–H3; dirección lo escribe
 
 ## NO-CORRIDO / RESERVAS
 Ninguno. (Premisa corregida y declarada en la nota: H4 cita PR #1093, no #1091, para CALC-ENIF-0001 y CALC-R-DIN-M-01-v4 — logística; la firma pide «el PR de fusión».)
+
+## CONSUMIDO
+PR #1157 (rama claude/new-session-s0mx1p), ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01.
