@@ -34,3 +34,5 @@ Evidencia local en cierre-verificacion.txt, replay-*.txt, auxiliar-primer-intent
 Atestación externa por circuito de mesa; recibo real de Claude; anuncio/identidad/adquisición futura y autorización de única apertura, con descriptor/cuestionario comparable y soporte válido. Ningún registro reservado abierto. El trabajo histórico/interno está completo; el lote no se anuncia atestiguado ni aceptado y no se fusiona.
 
 [EJECUTADO] Corte final incorporado 948f024a80a04cae48e5d4fca828da58f94a6b62; D22 preflight posterior al sello rechaza reejecución por inmutabilidad, verify posterior acredita reproducción/hashes. Evidencia cruda conservada. Excepción T02 puntual de nomenclatura para el recibo propio.
+
+[PROPUESTO] Solicitud de recibo vinculada al PR #1174: https://github.com/Josanoforo/Modelado-Mexicano/pull/1174. Mesa remite a Claude para revisión técnica; la sesión no concede recibo ni fusiona.
