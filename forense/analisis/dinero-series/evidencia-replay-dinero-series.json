@@ -1,0 +1,128 @@
+[
+  {
+    "calc_id": "CALC-BANXICO-SERIES-IMOR-0001",
+    "fecha_verificacion": "2026-09-26",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/local/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-BANXICO-SERIES-IMOR-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "1009e0ededaadada15e26e56af4c38c0e13ed27ad6725a119f880911c6aae04f",
+      "script_blob_sha256": "ee29f59bfd1cec9def4b5cd12a9246bf44bf1f6ab7dcfea28200548be8d8a836",
+      "input_sha256_efectivos": "IN-BANXICO-IMOR-CONSUMO-MENSUAL=772f9d0b9da57b18ef9abdd5824b0824b6191e65668103e3a8329171d3df88e9"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-BANXICO-SERIES-ABCD-2023-12": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-2024-02": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-2024-03": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-2024-12": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-2025-09": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-2026-03": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-MEDIA-2025": 0.0,
+        "RESULT-BANXICO-SERIES-ABCD-YOY-2026-03-PP": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2023-12": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2024-02": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2024-03": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2024-12": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2025-09": 0.0,
+        "RESULT-BANXICO-SERIES-CON-2026-03": 0.0,
+        "RESULT-BANXICO-SERIES-CON-MEDIA-2025": 0.0,
+        "RESULT-BANXICO-SERIES-CON-YOY-2026-03-PP": 0.0,
+        "RESULT-BANXICO-SERIES-G-CORTE": null,
+        "RESULT-BANXICO-SERIES-G-INPUT-SHA256": null,
+        "RESULT-BANXICO-SERIES-G-N-FILAS": null,
+        "RESULT-BANXICO-SERIES-G-UNIDAD": null,
+        "RESULT-BANXICO-SERIES-NOM-2023-12": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-2024-02": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-2024-03": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-2024-12": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-2025-09": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-2026-03": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-MEDIA-2025": 0.0,
+        "RESULT-BANXICO-SERIES-NOM-YOY-2026-03-PP": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2023-12": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2024-02": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2024-03": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2024-12": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2025-09": 0.0,
+        "RESULT-BANXICO-SERIES-PER-2026-03": 0.0,
+        "RESULT-BANXICO-SERIES-PER-MEDIA-2025": 0.0,
+        "RESULT-BANXICO-SERIES-PER-YOY-2026-03-PP": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2023-12": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2024-02": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2024-03": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2024-12": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2025-09": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-2026-03": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-MEDIA-2025": 0.0,
+        "RESULT-BANXICO-SERIES-TDC-YOY-2026-03-PP": 0.0
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "calculo determinista sobre valores de dos decimales"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-BANXICO-SERIES-ABCD-2023-12\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-2024-02\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-2024-03\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-2024-12\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-2025-09\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-2026-03\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-MEDIA-2025\": 0.0, \"RESULT-BANXICO-SERIES-ABCD-YOY-2026-03-PP\": 0.0, \"RESULT-BANXICO-SERIES-CON-2023-12\": 0.0, \"RESULT-BANXICO-SERIES-CON-2024-02\": 0.0, \"RESULT-BANXICO-SERIES-CON-2024-03\": 0.0, \"RESULT-BANXICO-SERIES-CON-2024-12\": 0.0, \"RESULT-BANXICO-SERIES-CON-2025-09\": 0.0, \"RESULT-BANXICO-SERIES-CON-2026-03\": 0.0, \"RESULT-BANXICO-SERIES-CON-MEDIA-2025\": 0.0, \"RESULT-BANXICO-SERIES-CON-YOY-2026-03-PP\": 0.0, \"RESULT-BANXICO-SERIES-G-CORTE\": null, \"RESULT-BANXICO-SERIES-G-INPUT-SHA256\": null, \"RESULT-BANXICO-SERIES-G-N-FILAS\": null, \"RESULT-BANXICO-SERIES-G-UNIDAD\": null, \"RESULT-BANXICO-SERIES-NOM-2023-12\": 0.0, \"RESULT-BANXICO-SERIES-NOM-2024-02\": 0.0, \"RESULT-BANXICO-SERIES-NOM-2024-03\": 0.0, \"RESULT-BANXICO-SERIES-NOM-2024-12\": 0.0, \"RESULT-BANXICO-SERIES-NOM-2025-09\": 0.0, \"RESULT-BANXICO-SERIES-NOM-2026-03\": 0.0, \"RESULT-BANXICO-SERIES-NOM-MEDIA-2025\": 0.0, \"RESULT-BANXICO-SERIES-NOM-YOY-2026-03-PP\": 0.0, \"RESULT-BANXICO-SERIES-PER-2023-12\": 0.0, \"RESULT-BANXICO-SERIES-PER-2024-02\": 0.0, \"RESULT-BANXICO-SERIES-PER-2024-03\": 0.0, \"RESULT-BANXICO-SERIES-PER-2024-12\": 0.0, \"RESULT-BANXICO-SERIES-PER-2025-09\": 0.0, \"RESULT-BANXICO-SERIES-PER-2026-03\": 0.0, \"RESULT-BANXICO-SERIES-PER-MEDIA-2025\": 0.0, \"RESULT-BANXICO-SERIES-PER-YOY-2026-03-PP\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2023-12\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2024-02\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2024-03\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2024-12\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2025-09\": 0.0, \"RESULT-BANXICO-SERIES-TDC-2026-03\": 0.0, \"RESULT-BANXICO-SERIES-TDC-MEDIA-2025\": 0.0, \"RESULT-BANXICO-SERIES-TDC-YOY-2026-03-PP\": 0.0}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"calculo determinista sobre valores de dos decimales\"}}, \"identidad\": {\"spec_yaml_sha256\": \"1009e0ededaadada15e26e56af4c38c0e13ed27ad6725a119f880911c6aae04f\", \"script_blob_sha256\": \"ee29f59bfd1cec9def4b5cd12a9246bf44bf1f6ab7dcfea28200548be8d8a836\", \"input_sha256_efectivos\": \"IN-BANXICO-IMOR-CONSUMO-MENSUAL=772f9d0b9da57b18ef9abdd5824b0824b6191e65668103e3a8329171d3df88e9\"}}\n"
+  },
+  {
+    "calc_id": "CALC-CNBV-SERIES-IMOR-R16-0001",
+    "fecha_verificacion": "2026-09-26",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/local/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-CNBV-SERIES-IMOR-R16-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "f3756ed383b1f305b54cf95cbd16c150f47347b2de3add994d460e8f4f085471",
+      "script_blob_sha256": "7ccf6d418d1f800e08e0d618dee0420caa28ba155f2a7d6da93f1542672461d7",
+      "input_sha256_efectivos": "IN-CNBV-R16-IMOR-CONSUMO-202112=e61c97a3acd6634e2c0cabdad18a9fbde06ff58f1c2363a3e290c3cc40e23400"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-CNBV-SERIES-ABCD-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-AUT-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-BM-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-CON-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-G-INPUT-SHA256": null,
+        "RESULT-CNBV-SERIES-G-N-PRODUCTOS": null,
+        "RESULT-CNBV-SERIES-G-N-VACIOS": null,
+        "RESULT-CNBV-SERIES-G-UNIDAD": null,
+        "RESULT-CNBV-SERIES-NOM-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-OTR-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-PER-2021-12": 0.0,
+        "RESULT-CNBV-SERIES-TDC-2021-12": 0.0
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "calculo determinista sobre valores de dos decimales"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-CNBV-SERIES-ABCD-2021-12\": 0.0, \"RESULT-CNBV-SERIES-AUT-2021-12\": 0.0, \"RESULT-CNBV-SERIES-BM-2021-12\": 0.0, \"RESULT-CNBV-SERIES-CON-2021-12\": 0.0, \"RESULT-CNBV-SERIES-G-INPUT-SHA256\": null, \"RESULT-CNBV-SERIES-G-N-PRODUCTOS\": null, \"RESULT-CNBV-SERIES-G-N-VACIOS\": null, \"RESULT-CNBV-SERIES-G-UNIDAD\": null, \"RESULT-CNBV-SERIES-NOM-2021-12\": 0.0, \"RESULT-CNBV-SERIES-OTR-2021-12\": 0.0, \"RESULT-CNBV-SERIES-PER-2021-12\": 0.0, \"RESULT-CNBV-SERIES-TDC-2021-12\": 0.0}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"calculo determinista sobre valores de dos decimales\"}}, \"identidad\": {\"spec_yaml_sha256\": \"f3756ed383b1f305b54cf95cbd16c150f47347b2de3add994d460e8f4f085471\", \"script_blob_sha256\": \"7ccf6d418d1f800e08e0d618dee0420caa28ba155f2a7d6da93f1542672461d7\", \"input_sha256_efectivos\": \"IN-CNBV-R16-IMOR-CONSUMO-202112=e61c97a3acd6634e2c0cabdad18a9fbde06ff58f1c2363a3e290c3cc40e23400\"}}\n"
+  }
+]
