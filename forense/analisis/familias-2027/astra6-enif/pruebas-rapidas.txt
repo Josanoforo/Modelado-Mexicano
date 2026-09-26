@@ -1,0 +1,630 @@
+════════════════════════════════════════════════════════════════════════
+  VERIFICACIÓN DEL CORPUS   [--rapido]
+════════════════════════════════════════════════════════════════════════
+  [ ok ]  T02 duplicados nombre/contenido
+  [tiempo] T02 duplicados nombre/contenido: 3.586 s
+  [ ok ]  T15 T-ADR-COUNT
+  [tiempo] T15 T-ADR-COUNT: 0.146 s
+  [warn]  T22 T-FIRMAS  (114 warn)
+  [tiempo] T22 T-FIRMAS: 0.392 s
+  [ ok ]  T25 T-ROTULOS
+  [tiempo] T25 T-ROTULOS: 0.254 s
+  [ ok ]  T27 T-INFRA
+  [tiempo] T27 T-INFRA: 7.182 s
+  [ ok ]  T30 T-YAMEDIDO
+  [tiempo] T30 T-YAMEDIDO: 0.007 s
+  [warn]  T34 T-NO-CORRIDO  (424 warn)
+  [tiempo] T34 T-NO-CORRIDO: 0.036 s
+VERIFICA-SIDECARS · sólo lectura, nunca reescribe ni normaliza
+  universo: forense/encargos + forense/notas  ·  sidecars examinados: 196  (A.13)
+
+  [cuerpo] CASA      forense/encargos/2026-09-20-GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-20-GEN2-DIN-CREDITO-COMPARABILIDAD-TEXTO-1.md
+             candidato=prefijo-antes-de-linea-137: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-ENCARGO-GEN2-V216-instrucciones-v2_16.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-ENCARGO-GEN2-V216-instrucciones-v2_16.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ADQUIERE-ENVIPE2026-ENIGH2024-1.md
+             candidato=prefijo-antes-de-linea-50: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-1.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ARBITRO-MARGINALES-2.md
+             candidato=prefijo-antes-de-linea-31: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_2.md
+             candidato=prefijo-antes-de-linea-150: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-1-v1_3.md
+             candidato=prefijo-antes-de-linea-165: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_2.md
+             candidato=prefijo-antes-de-linea-137: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CELDA-D-PILOTO-3-COMMIT-2-3-v1_3.md
+             candidato=prefijo-antes-de-linea-50: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-CUADERNO-DE-MESA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-CUADERNO-DE-MESA-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DIN-CREDITO-HISTORIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DIN-CREDITO-HISTORIA-1.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-1.md
+             candidato=prefijo-antes-de-linea-33: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-A.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-A.md
+             candidato=prefijo-antes-de-linea-112: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-1.md
+             candidato=prefijo-antes-de-linea-51: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DIN-LOTE-ENIF2024-COMMIT-2-3.md
+             candidato=prefijo-antes-de-linea-36: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DUELO-ENVIPE2026-COMMIT-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DUELO-ENVIPE2026-COMMIT-1.md
+             candidato=prefijo-antes-de-linea-196: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-DUELO-ENVIPE2026-CONGELA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-DUELO-ENVIPE2026-CONGELA-1.md
+             candidato=prefijo-antes-de-linea-38: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ENCIG-SERIE-Y-TENDENCIA-1.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ENIGH2024-RESERVA-Y-DISENO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ENIGH2024-RESERVA-Y-DISENO-1.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ENIGH2024-SERIE-Y-COMMIT-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ENIGH2024-SERIE-Y-COMMIT-1.md
+             candidato=prefijo-antes-de-linea-30: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-ENUT-PISOS-Y-SERIE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-ENUT-PISOS-Y-SERIE-1.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-L-DESDE-CAPTURAS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-L-DESDE-CAPTURAS-1.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-MARCADOR-E-INFORME-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-MARCADOR-E-INFORME-1.md
+             candidato=prefijo-antes-de-linea-30: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-RELEVO-TANDA-4.md
+             candidato=prefijo-antes-de-linea-53: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-4.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-4.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-5.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TRAMITE-FIRMAS-5.md
+             candidato=prefijo-antes-de-linea-55: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-CI-MEDICION-1.md
+             candidato=prefijo-antes-de-linea-109: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-RAPIDO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-RAPIDO-1.md
+             candidato=prefijo-antes-de-linea-143: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1.md
+             candidato=prefijo-antes-de-linea-117: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-2.md
+             candidato=prefijo-antes-de-linea-66: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-ENRUTAMIENTO-PR-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-ENRUTAMIENTO-PR-1.md
+             candidato=prefijo-antes-de-linea-77: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-TUBERIA-SIDECAR-CUERPO-1.md
+             candidato=prefijo-antes-de-linea-88: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-21-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-21-GEN2-VALIDACION-INDEPENDIENTE-PILOTOS-1.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ADQ-F6-DIRIGIDA-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-CELDA-D-PILOTO-4-ENCOGIDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2-ADENDA-2.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-ESCOLARIDAD-2.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-K2-HISTORIA-RUN-1.md
+             candidato=prefijo-antes-de-linea-42: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PISOS-1870-RUN-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PISOS-1870-RUN-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PISOS-1870-RUN-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PISOS-1870-RUN-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-CREDITO-PREDICCION-2024-COMMIT-2-3.md
+             candidato=prefijo-antes-de-linea-33: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-LOTE-C2-RESTRINGIDO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-LOTE-C2-RESTRINGIDO-1.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DIN-LOTE-ENIF2024-SECUNDARIA-1.md
+             candidato=prefijo-antes-de-linea-41: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-EJECUCION-1.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-DUELO-ENVIPE2026-MARGINALES-2.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ENIF-PERSISTENCIA-IC-CALIBRADO-1.md
+             candidato=prefijo-antes-de-linea-42: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ENIGH2024-DUELO-COMMIT-2-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ENIGH2024-DUELO-COMMIT-2-3.md
+             candidato=prefijo-antes-de-linea-30: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ENUT-NUCLEO-CELDAS-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-ESTADO-v1_15-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-ESTADO-v1_15-1.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-FP374-RESELLO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-FP374-RESELLO-1.md
+             candidato=prefijo-antes-de-linea-60: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1.md
+             candidato=prefijo-antes-de-linea-33: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-MARCADOR-CONSUMO-Y-ADOPCION-2.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-MARCO-M-CONSUMIDOR-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-MARCO-M-CONSUMIDOR-1.md
+             candidato=prefijo-antes-de-linea-59: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-MARGINALES-ADOPCION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-MARGINALES-ADOPCION-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-PENDIENTES-CAJA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-PENDIENTES-CAJA-1.md
+             candidato=prefijo-antes-de-linea-59: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-PENDIENTES-RECONCILIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-PENDIENTES-RECONCILIA-1.md
+             candidato=prefijo-antes-de-linea-59: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-RECIBO-ASTRA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-RECIBO-ASTRA-1.md
+             candidato=prefijo-antes-de-linea-52: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-5.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-5.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-6.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-RELEVO-TANDA-6.md
+             candidato=prefijo-antes-de-linea-33: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-COLA-VIEJA-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-6.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-7.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-8-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-8-ADENDA-1.md
+             candidato=prefijo-antes-de-linea-7: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-8.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-8.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-FIRMAS-9.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-PENDIENTES-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-PENDIENTES-1.md
+             candidato=prefijo-antes-de-linea-63: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TRAMITE-SIN-ASIGNAR-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TRAMITE-SIN-ASIGNAR-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-CANAL-PUBLICACION-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-EFICIENCIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-EFICIENCIA-1.md
+             candidato=prefijo-antes-de-linea-51: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-LOTE-ESTRICTO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-LOTE-ESTRICTO-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-METRICA-RECTORA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-METRICA-RECTORA-1.md
+             candidato=prefijo-antes-de-linea-103: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-PARSER-FP-1.md
+             candidato=prefijo-antes-de-linea-42: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-TUBERIA-RUTINAS-AUTOMERGE-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-GEN2-VALIDACION-INDEPENDIENTE-LOTE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-GEN2-VALIDACION-INDEPENDIENTE-LOTE-1.md
+             candidato=prefijo-antes-de-linea-30: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-PENDIENTES-PROGRAMA.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-22-gen2-relevo-tanda-7.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-22-gen2-relevo-tanda-7.md
+             candidato=prefijo-antes-de-linea-31: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U1-CATALOGO-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U1-CATALOGO-ADENDA-1.md
+             candidato=prefijo-antes-de-linea-12: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U1-CATALOGO.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U1-CATALOGO.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U2-RELEVO-INTEGRAL.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U2-RELEVO-INTEGRAL.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U3-ANEXO-INFORME.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U3-ANEXO-INFORME.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U4-FAMILIAS-PROSPECTIVAS.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U4-FAMILIAS-PROSPECTIVAS.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U5-EJE-REGIONAL.md-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U5-EJE-REGIONAL.md-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA4-U5-EJE-REGIONAL.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA4-U5-EJE-REGIONAL.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U0-MAPA-DOMINIOS-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U0-MAPA-DOMINIOS-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U0-MAPA-DOMINIOS.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U0-MAPA-DOMINIOS.md
+             candidato=prefijo-antes-de-linea-50: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U1-TRABAJO-ENOE.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U1-TRABAJO-ENOE.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U2-GENERO-ENDIREH.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U2-GENERO-ENDIREH.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U3-POLITICA-COMPLETAR.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U3-POLITICA-COMPLETAR.md
+             candidato=prefijo-antes-de-linea-16: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U3-POLITICA.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U3-POLITICA.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-ASTRA5-U4-TECNOLOGIA.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-ASTRA-ENVIPE-ADJUDICACION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-ASTRA-ENVIPE-ADJUDICACION-1.md
+             candidato=prefijo-antes-de-linea-53: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-AUDITORIA-POST-HOC-ASTRA-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-CONTADORES-CONSUMO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-CONTADORES-CONSUMO-1.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-CONTADORES-CONSUMO-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-CONTADORES-CONSUMO-2.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-CORPUS-RESPALDO-EJECUCION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-CORPUS-RESPALDO-EJECUCION-1.md
+             candidato=prefijo-antes-de-linea-51: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-DIN-CREDITO-CELDAS-D-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-DIN-CREDITO-CELDAS-D-1.md
+             candidato=prefijo-antes-de-linea-52: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-DIN-CREDITO-CELDAS-D-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-DIN-CREDITO-CELDAS-D-2.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-DUELO-ENCIG2025-CIERRE-1.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-ESTADO-V16-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-ESTADO-V16-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-FRONT-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-FRONT-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-MOTOR-DEUDA-LOTE-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-10.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-10.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-11.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-11.md
+             candidato=prefijo-antes-de-linea-54: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-12.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-13.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-13.md
+             candidato=prefijo-antes-de-linea-36: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14-ADENDA-2.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TRAMITE-FIRMAS-14.md
+             candidato=prefijo-antes-de-linea-48: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TUBERIA-CANAL-REPARACION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TUBERIA-CANAL-REPARACION-1.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TUBERIA-RUTINAS-AUTOMERGE-2.md
+             candidato=prefijo-antes-de-linea-51: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-23-GEN2-TUBERIA-SELLO-EXTERNO-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-1.md
+             candidato=prefijo-antes-de-linea-51: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-2.md
+             candidato=prefijo-antes-de-linea-50: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-3.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-4.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ADOPCION-BLOQUE-Y-PINES-4.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ASTRA5-U2-ENDIREH-CIERRE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ASTRA5-U2-ENDIREH-CIERRE-1.md
+             candidato=prefijo-antes-de-linea-41: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ASTRA5-U5-ADQUISICION-1.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-CATALOGO-CONTRATO-Y-TEST-1.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-CATALOGO-V1-1-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-CATALOGO-V1-1-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-CLASE-AMAI-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-CLASE-AMAI-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-CORPUS-COMPLETO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-CORPUS-COMPLETO-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-DONDE-CAMBIO-EL-MEXICANO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-DONDE-CAMBIO-EL-MEXICANO-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-FRONT-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-FRONT-2.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-INFORME-V1-3-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-INFORME-V1-3-1.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-PISOS-GEN2-2.md
+             candidato=prefijo-antes-de-linea-40: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2-ADENDA-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-RELEVO-CONSUMIDORES-2.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-RELEVO-MOTOR-34-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-RELEVO-MOTOR-34-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-REPLAY-NO-VERIFICADOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-REPLAY-NO-VERIFICADOS-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-SALUD-Y-BIENESTAR-PISOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-SALUD-Y-BIENESTAR-PISOS-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-15-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-15-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-15.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-15.md
+             candidato=prefijo-antes-de-linea-56: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-16.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TRAMITE-FIRMAS-16.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-RENDIMIENTO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-RENDIMIENTO-1.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-TABLERO-EN-CANAL-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-TABLERO-EN-CANAL-1-ADENDA-1.md
+             candidato=prefijo-antes-de-linea-45: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-TABLERO-EN-CANAL-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-TABLERO-EN-CANAL-1.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-1.md
+             candidato=prefijo-antes-de-linea-46: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-2.md
+             candidato=prefijo-antes-de-linea-47: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-3.md
+             candidato=prefijo-antes-de-linea-50: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-4.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-24-GEN2-TUBERIA-VISTA-NORMALIZADA-4.md
+             candidato=prefijo-antes-de-linea-44: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-CI-CANAL-DERIVADOS-VERDE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-CI-CANAL-DERIVADOS-VERDE-1.md
+             candidato=prefijo-antes-de-linea-9: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-CLASE-AMAI-2.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-CLASE-AMAI-2.md
+             candidato=prefijo-antes-de-linea-41: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1.md
+             candidato=prefijo-antes-de-linea-32: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-CONSUMO-Y-GASTO-PISOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-CONSUMO-Y-GASTO-PISOS-1.md
+             candidato=prefijo-antes-de-linea-32: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-DINERO-SERIES-CNBV-BANXICO-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-DINERO-SERIES-CNBV-BANXICO-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1.md
+             candidato=prefijo-antes-de-linea-32: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-MAPA-DOMINIOS-V1-1-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-MAPA-DOMINIOS-V1-1-1.md
+             candidato=prefijo-antes-de-linea-39: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-RELEVO-CONSUMIDORES-3.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-RELEVO-CONSUMIDORES-3.md
+             candidato=prefijo-antes-de-linea-42: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-SEGURIDAD-ENSU-SERIE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-SEGURIDAD-ENSU-SERIE-1.md
+             candidato=prefijo-antes-de-linea-32: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-17.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-17.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md
+             candidato=prefijo-antes-de-linea-43: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-19.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-19.md
+             candidato=prefijo-antes-de-linea-49: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C1-PAQUETES-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C1-PAQUETES-1.md
+             candidato=prefijo-antes-de-linea-211: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C2-ENCIG-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C2-ENCIG-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1-ADENDA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1-ADENDA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C2-ENVIPE-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C2-ENVIPE-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C3-CONSUMO-FAMILIA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C3-CONSUMO-FAMILIA-1.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md
+             candidato=prefijo-antes-de-linea-224: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-26-GEN2-FRONT-3-PORTADA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-GEN2-FRONT-3-PORTADA-1.md
+             candidato=prefijo-antes-de-linea-76: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-26-GEN2-PRODUCTO-CONSULTA-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-GEN2-PRODUCTO-CONSULTA-1.md
+             candidato=prefijo-antes-de-linea-40: ## NO-CORRIDO / RESERVAS
+  [cuerpo] CASA      forense/encargos/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1.md.cuerpo.sha256
+             objetivo: forense/encargos/2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1.md
+             candidato=prefijo-antes-de-linea-82: ## NO-CORRIDO / RESERVAS
+  [viejo ] CASA      forense/encargos/CLAUSULA-AUTONOMIA-v1_0.sha256
+             objetivo: forense/encargos/CLAUSULA-AUTONOMIA-v1_0.md
+             formato leído: cita 'CLAUSULA-AUTONOMIA-v1_0.md'
+  [viejo ] CASA      forense/encargos/CUADERNO-DE-FIRMAS-2026-09-21.md.sha256
+             objetivo: forense/encargos/CUADERNO-DE-FIRMAS-2026-09-21.md
+             formato leído: cita 'CUADERNO-DE-FIRMAS-2026-09-21.md'
+  [viejo ] CASA      forense/encargos/CUADERNO-DE-MESA-2026-09-21.md.sha256
+             objetivo: forense/encargos/CUADERNO-DE-MESA-2026-09-21.md
+             formato leído: cita 'CUADERNO-DE-MESA-2026-09-21.md'
+  [viejo ] CASA      forense/encargos/MISION-ASTRA-4-ADENDA-1.md.sha256
+             objetivo: forense/encargos/MISION-ASTRA-4-ADENDA-1.md
+             formato leído: hash pelado
+  [viejo ] CASA      forense/encargos/PLANTILLA-ENCARGO-v2_0.md.sha256
+             objetivo: forense/encargos/PLANTILLA-ENCARGO-v2_0.md
+             formato leído: cita 'PLANTILLA-ENCARGO-v2_0.md'
+  [viejo ] CASA      forense/encargos/PLANTILLA-ENCARGO-v2_1.md.sha256
+             objetivo: forense/encargos/PLANTILLA-ENCARGO-v2_1.md
+             formato leído: cita 'forense/encargos/PLANTILLA-ENCARGO-v2_1.md'
+  [viejo ] CASA      forense/encargos/fuentes/ASTRA4-anexos.sha256
+             objetivo: forense/encargos/fuentes/MISION-ASTRA-4-producto.md
+             formato leído: cita 'MISION-ASTRA-4-producto.md'
+  [viejo ] CASA      forense/encargos/fuentes/BRIEF-DEEP-SEARCH-competencia-Mexico-2026-09-23.md.sha256
+             objetivo: forense/encargos/fuentes/BRIEF-DEEP-SEARCH-competencia-Mexico-2026-09-23.md
+             formato leído: hash pelado
+  [viejo ] CASA      forense/encargos/fuentes/HERRAMIENTAS-rendimiento-y-consumo-2026-09-24.md.sha256
+             objetivo: forense/encargos/fuentes/HERRAMIENTAS-rendimiento-y-consumo-2026-09-24.md
+             formato leído: cita 'HERRAMIENTAS-rendimiento-y-consumo-2026-09-24.md'
+  [viejo ] CASA      forense/encargos/fuentes/HOJA-DE-DECISIONES-2026-09-23.md.sha256
+             objetivo: forense/encargos/fuentes/HOJA-DE-DECISIONES-2026-09-23.md
+             formato leído: hash pelado
+  [viejo ] CASA      forense/encargos/fuentes/INFORME-COMPETENCIA-2026-09-23.md.sha256
+             objetivo: forense/encargos/fuentes/INFORME-COMPETENCIA-2026-09-23.md
+             formato leído: hash pelado
+  [cuerpo] CASA      forense/notas/2026-09-21-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-cierre.md.cuerpo.sha256
+             objetivo: forense/notas/2026-09-21-GEN2-ENIGH2024-RESERVA-Y-DISENO-1-cierre.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/notas/2026-09-26-ASTRA6-C1-PAQUETES-1-cierre.md.cuerpo.sha256
+             objetivo: forense/notas/2026-09-26-ASTRA6-C1-PAQUETES-1-cierre.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/notas/2026-09-26-ASTRA6-C2-ENIF-1-cierre.md.cuerpo.sha256
+             objetivo: forense/notas/2026-09-26-ASTRA6-C2-ENIF-1-cierre.md
+             candidato=archivo-entero
+  [cuerpo] CASA      forense/notas/2026-09-26-ASTRA6-C3-SOCIAL-1-cierre.md.cuerpo.sha256
+             objetivo: forense/notas/2026-09-26-ASTRA6-C3-SOCIAL-1-cierre.md
+             candidato=archivo-entero
+  [viejo ] CASA      forense/notas/ADVERSARIAL-LECTURA-ESTRATEGICA-F5-2026-09-15.sha256
+             objetivo: forense/notas/ADVERSARIAL-LECTURA-ESTRATEGICA-F5-2026-09-15.md
+             formato leído: cita 'ADVERSARIAL-LECTURA-ESTRATEGICA-F5-2026-09-15.md'
+  [cuerpo] CASA      forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md.cuerpo.sha256
+             objetivo: forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md
+             candidato=archivo-entero
+  [viejo ] TESTIGO   forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.sha256
+             objetivo: forense/notas/ENCARGOS-GEN2-v1_5-aparato-antes-de-calcular-2026-09-08.md
+             esperado=8e9232f45b5a77e0e76b2ef2ca0af5668940c5e1396ca0c6b3ed130c05c47621 real=1fc3d582deb6a0d8bdb30d423af9b5abc71914cabd451543833671e44ce692c9 || TESTIGO VENCIDO EN ALCANCE (A.10) -- casa con la versión de `7c6042e4` (8/sep/2026); la nota se editó después en `cf904d60` (15/sep, ACTO GEN2-MANTENIMIENTO-Y-ARCHIVO-2, NC-0050 CERRADA). Firma de mesa `ENCARGOS-GEN2-v1_5`, 21/sep/2026: no se edita, no se borra, no se revierte el texto; el re-sello vive en el `.cuerpo.sha256` hermano.
+  [viejo ] CASA      forense/notas/LECTURA-ESTRATEGICA-F5-2026-09-15.sha256
+             objetivo: forense/notas/LECTURA-ESTRATEGICA-F5-2026-09-15.md
+             formato leído: cita 'LECTURA-ESTRATEGICA-F5-2026-09-15.md'
+  [viejo ] CASA      forense/notas/LECTURA-ESTRATEGICA-F5-v1_1-2026-09-15.sha256
+             objetivo: forense/notas/LECTURA-ESTRATEGICA-F5-v1_1-2026-09-15.md
+             formato leído: cita 'LECTURA-ESTRATEGICA-F5-v1_1-2026-09-15.md'
+  [viejo ] CASA      forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.sha256
+             objetivo: forense/notas/PLAN-FINAL-GEN2-v2_0-2026-09-07.md
+             formato leído: cita 'PLAN-FINAL-GEN2-v2_0-2026-09-07.md'
+  [viejo ] CASA      forense/notas/insumos-externos/marcador/codex-03-2d662e7.diff.sha256
+             objetivo: forense/notas/insumos-externos/marcador/codex-03-2d662e7.diff
+             formato leído: cita 'forense/notas/insumos-externos/marcador/codex-03-2d662e7.diff'
+  [viejo ] TESTIGO   forense/notas/insumos-externos/pisos-enif2021-0002-rama-codex/pisos-enif2021-0002-codex-2026-09-20-sello.sha256
+             objetivo citado 'sello.json' no está junto al sidecar ni en la raíz || HUÉRFANO DECLARADO -- el sidecar cita `sello.json` a secas; el archivo que está junto a él se llama `pisos-enif2021-0002-codex-2026-09-20-sello.json`. Es un insumo externo recibido tal cual: no se toca (ACTO GEN2-TUBERIA-SIDECAR-CUERPO-1, P-h).
+
+  WARN (se listan, no adjudican — D-16): 0
+  FAIL: 0 — VERDE
+
+  [--rapido] 11.67s (presupuesto: 15s)
+
+────────────────────────────────────────────────────────────────────────
+  WARN (538)
+────────────────────────────────────────────────────────────────────────
+  · T-NO-CORRIDO: 424
+      NC-0012 ABIERTA desde 2026-09-08 (18 día(s)) -- sucesor GEN2-E4
+      NC-0026 ABIERTA desde 2026-09-08 (18 día(s)) -- sucesor ACTO C0-D (marcador GEN2), que consume las dos funciones ya especificadas y probadas aqui
+      NC-0029 ABIERTA desde 2026-09-08 (18 día(s)) -- sucesor E03 para L y E04 para motor/adopciones; descomponer cada residual antes de cerrar || ENMIENDA FECHADA 2026-09-16 (ACTO GEN2-VIGENCIA-DEUDA-1, PROPUESTA A MESA, no decision del ejecutor): el texto de arriba NO se reescribe. E03 (cobertura vía ENCARGO GEN2-F5-COMPLETA) y E04 (cobertura vía ENCARGO GEN2-MOTOR-USOS-Y-COMPLEMENTOS) ya corrieron y se fusionaron: `grep -n "CONSUMIDO" forense/encargos/2026-09-10-GEN2-F5-COMPLETA.md` -> "Estado: CONSUMIDO en PR #687" (CALC-TRIADA-0002 sellado, 224/224, REPRODUCE/IDENTICO -- pieza L resuelta); `tail -20 forense/encargos/2026-09-10-GEN2-MOTOR-USOS-Y-COMPLEMENTOS.md` -> "## CONSUMIDO ... PR #689" (ADR-458 -- pieza motor resuelta). El corredor R también cerró por otra vía: NC-0018 = CERRADA (verificado hoy con `python3 -c` sobre `forense/no-corrido.tsv`). Lo que NO corrió y sigue sin producto: "ensamble E" -- `git grep -in "ensamble" -- '*.md' '*.py'` fuera de esta misma fila no encuentra ningún CALC/RESULT/acto que lo entregue. Y "adopción de parámetros" sigue con residuales propios y ABIERTOS hoy: NC-0085, NC-0107, NC-0111, NC-0153 (verificado con `python3 -c` sobre `forense/no-corrido.tsv`, 16/sep/2026). Esto coincide con la medición ya hecha por `forense/notas/2026-09-14-GEN2-CONCILIACION-TANDA-2-P1-tabla.md:38`, vigente sin cambios desde entonces. Sucesor propuesto: `ensamble E` (sin dueño -- abrir acto o declarar explícitamente fuera de alcance) + `NC-0085`/`NC-0107`/`NC-0111`/`NC-0153` (adopciones concretas pendientes). NC-0018/NC-0019 (corredores R/L) ya no son sucesor de esta fila -- están CERRADA.
+      … y 421 más
+  · T22: 114
+      FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01 ABIERTA desde 2026-09-21 (5 días): Destino del respaldo del corpus (P3 del encargo, §2): disco externo que mesa conecte (recomendada) ·
+      FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05 ABIERTA desde 2026-09-23 (3 días): Alianza con un laboratorio académico con acceso al laboratorio de microdatos INEGI (CIDE / ITAM) com
+      FP-260923-GEN2-FRONT-1-4296-01 ABIERTA desde 2026-09-23 (3 días): Activar GitHub Pages desde main/docs y decidir DOI Zenodo cuando el frente sea fusionado | NOTA (ADE
+      … y 111 más
+
+════════════════════════════════════════════════════════════════════════
+  0 FAIL · 538 WARN
+════════════════════════════════════════════════════════════════════════

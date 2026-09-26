@@ -1,0 +1,2 @@
+# Emisión AHORRO-FORMAL · COMMIT-1/2
+PROPUESTO-POR-EJECUTOR. Referencia humana: forense/prereg-caja/FAMILIA-2027-ENIF-AHORRO-FORMAL-spec-v1_3.md. Emite verbatim RESULT-ENIF-AHO-B-P-FORMAL-P de CALC-ENIF-0001, identificado por hash de resultado y sello. Piso fijo; cero retadores, ninguna R futura. No reinterpreta ni modifica histórico. El primer resultado producido es el reportado. Resultado propio, reproducción por corrida0 separada del oro histórico.
