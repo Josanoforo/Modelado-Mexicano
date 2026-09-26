@@ -9,11 +9,11 @@
 > | **TABLA** | [`catalogo-del-mexicano-v1_1.tsv`](catalogo-del-mexicano-v1_1.tsv) — una fila por estimador adoptado |
 > | **REGENERA** | `python3 forense/analisis/catalogo/genera_catalogo_v1_1.py` (esta portada incluida); `--sin-registro` reutiliza la vista de adoptados activos ya derivada |
 
-**36 130 estimadores adoptados con RESULT sellado · 9 dominios del mapa medidos, en 10 de los 31 reports del corpus · 219 celdas validadas (definición vigente de `corrida0 status`), de las cuales 20 PROSPECTIVAS y 59 RETROSPECTIVAS se reportan aparte.**
+**36 143 estimadores adoptados con RESULT sellado · 9 dominios del mapa medidos, en 10 de los 31 reports del corpus · 219 celdas validadas (definición vigente de `corrida0 status`), de las cuales 20 PROSPECTIVAS y 59 RETROSPECTIVAS se reportan aparte.**
 
 **Tesis.** Lo que hoy se puede afirmar sobre el mexicano con cifra propia es **descriptivo y retrospectivo**: cuánto, dónde y en qué segmento, medido desde microdato con su intervalo de diseño. Casi todo el peso del catálogo está en trabajo (ENOE), violencia contra las mujeres (ENDIREH) y tecnología (ENDUTIH, MOCIBA). Ninguna fila es predicción ni efecto causal. Y donde el gradiente es de localidad, escolaridad o formalidad, la primera lectura es de **estructura y oferta**, no de cultura (§3 de las instrucciones).
 
-Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las filas de v1.0, que censaban lecturas con estado, a 36 130 adopciones citadas por FP) y «dominios MEDIDOS» (9). No mueve `adoptados_activos`, `celdas_validadas` ni ningún contador del marcador: los lee.
+Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las filas de v1.0, que censaban lecturas con estado, a 36 143 adopciones citadas por FP) y «dominios MEDIDOS» (9). No mueve `adoptados_activos`, `celdas_validadas` ni ningún contador del marcador: los lee.
 
 ## Cómo leerlo
 
@@ -21,8 +21,8 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 2. `result_id` + `celda` localizan la cifra: en los CALC de pisos, `RESULT-…-TABLA#i` es el registro `i` de la tabla sellada en `data/corrida0/<calc>/resultados.json`. Los hashes de cada CALC están en `forense/analisis/catalogo/v1_1/calcs.tsv`.
 3. `unidad`, `eje` y `segmento` gobiernan la lectura. Ninguna cifra de unidad delito o trámite se compara con una de unidad persona u hogar.
 4. `estado_adopcion`: `ADOPTADO` o `ADOPTADO-CON-RESERVA-DE-ANCHO` (su IC es calibrado y ancho a propósito: no se llama cobertura). `alcance`: `DESCRIPTIVO-DE-OLA` (piso de una ola, sin uso predictivo), `ESTIMADOR-DE-CELDA` (piso t−1 adjudicado a una celda del marcador) o `PARAMETRO-DE-REGLA` (lo lee una regla del motor).
-5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (36 130 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
-6. `origen_piso`: `NUEVO` (medido desde microdato en su CALC; 36 083 filas) o `HEREDADO-DE-GEN2` (el punto de la ola t es el piso GEN2 de t−1; 47 filas). **Ninguna fila es HEREDADO-DE-LEGACY.**
+5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (36 143 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
+6. `origen_piso`: `NUEVO` (medido desde microdato en su CALC; 36 096 filas) o `HEREDADO-DE-GEN2` (el punto de la ola t es el piso GEN2 de t−1; 47 filas). **Ninguna fila es HEREDADO-DE-LEGACY.**
 7. `oferta_exclusion`: en cada fila de `DINERO` va la medida de exclusión por oferta, o la declaración de que no existe una sellada para esa ola y conducta.
 
 ## P1 · Estimadores por dominio e instrumento
@@ -30,10 +30,11 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 | dominio | instrumento | estimadores | firmas citadas (ids distintos) |
 |---|---|---:|---:|
 | `CONFIANZA` | ENCIG | 6 | 2 |
-| `CONFIANZA` | ENCUCI | 2 | 2 |
+| `CONFIANZA` | ENCUCI | 3 | 3 |
 | `CONFIANZA` | ENVIPE | 15 | 2 |
+| `CONFIANZA` | INSTRUMENTO-NO-IDENTIFICADO | 4 | 1 |
 | `DINERO` | ENFIH | 2 | 1 |
-| `DINERO` | ENIF | 89 | 5 |
+| `DINERO` | ENIF | 97 | 6 |
 | `DINERO` | ENNVIH-1 | 1 | 1 |
 | `FAMILIA_CUIDADOS` | EDER | 2 | 1 |
 | `FAMILIA_CUIDADOS` | ENIF | 3 | 2 |
@@ -63,19 +64,6 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (de las 
 
 | id | objeto | estado de la FP |
 |---|---|---|
-| `SIN-FP-CITABLE` | `RESULT-ENCIGDER-A-Q` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENCIGDER-B-DIG-SD-Q` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENCIGDER-B-PRE-SD-Q` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENCIGDER-C-Q` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENCUCIDER-A-Q` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-A-P-CORTO-CON-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-A-P-CORTO-SIN-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-A-P-NOCORTO-CON-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-A-P-NOCORTO-SIN-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-B-P-FORMAL-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-B-P-INFORMAL-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P` | NO-ENCONTRADA |
-| `SIN-FP-CITABLE` | `RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P` | NO-ENCONTRADA |
 
 `SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma; esperan `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01`.
 
@@ -113,8 +101,8 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Adopción y Resistencia Tecnológica en México  La Paradoja de la Baja C | `TECNOLOGIA` | **MEDIDO** | 1827 | 0 | 49 (17 / 18 / 14) |
 | Ausencia sin certeza  duelo y pérdida ambigua en familias de personas  | `DUELO` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 33 (3 / 23 / 7) |
 | Autoridad y jerarquía en el México contemporáneo  anatomía psicológica | `AUTORIDAD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 39 (8 / 19 / 12) |
-| Behavioral Finance Mexicano  Estructura  Adaptación Racional y Cultura | `DINERO` | **MEDIDO** | 92 | 0 | 179 (40 / 89 / 50) |
-| Confianza y Desconfianza en México  Anatomía Psicológica de una Socied | `CONFIANZA` | **MEDIDO** | 23 | 0 | 59 (20 / 24 / 15) |
+| Behavioral Finance Mexicano  Estructura  Adaptación Racional y Cultura | `DINERO` | **MEDIDO** | 100 | 0 | 179 (40 / 89 / 50) |
+| Confianza y Desconfianza en México  Anatomía Psicológica de una Socied | `CONFIANZA` | **MEDIDO** | 28 | 0 | 59 (20 / 24 / 15) |
 | El Clasemediero Mexicano  Identidad  Ansiedad de Estatus y el Miedo Ra | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 7 | 56 (4 / 41 / 11) |
 | El Efecto Ambiental de la Violencia Crónica en México  Cómo el Miedo R | `VIOLENCIA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (11 / 36 / 9) |
 | El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el | `TIEMPO` | **EN-MEDICIÓN** | 0 | 4 | 20 (4 / 6 / 10) |

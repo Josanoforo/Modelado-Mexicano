@@ -20,3 +20,6 @@ La nota de FIRMAS-17 atribuía CALC-ENIF-0001 y CALC-R-DIN-M-01-v4 a PR #1091. R
 
 ## P3 · NC
 NC-260925-GEN2-TRAMITE-FIRMAS-17-ad95-01..04 → CERRADA con `DECISIÓN-DADA`. Las NC e760-* de RELEVO-CONSUMIDORES-2 siguen ABIERTA: su sucesor es RELEVO-CONSUMIDORES-3.
+
+## Derivado regenerado (latitud: regenerar por comando, D-21)
+CI `guardias` falló en `tests/test_catalogo_v1_1.py::test_regenera_identico`: el catálogo v1.1 se deriva de `decisiones.tsv` y las 4 filas H4 lo cambian. Regenerado con `python3 forense/analisis/catalogo/genera_catalogo_v1_1.py --sin-registro` (fuera de la lista §9, pero es el derivado que H4 mueve; nada se teclea): `pendientes-de-firma.tsv` pierde las filas SIN-FP-CITABLE, `calcs` 65→68, `alcance:PARAMETRO-DE-REGLA` 48→61. No es medición.
