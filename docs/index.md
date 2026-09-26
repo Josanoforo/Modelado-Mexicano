@@ -4,16 +4,20 @@ title: Benchmark del Mexicano
 
 # Benchmark del Mexicano
 
-Predicciones y estimaciones segmentadas con encuestas oficiales de México, con criterios, RESULT y sellos públicos por evaluación. Es un benchmark auditable del comportamiento medido en las encuestas; no promete detectar cambios entre olas.
+[Inicio]({{ '/' | relative_url }}) · [Informe]({{ '/informe.html' | relative_url }}) · [Catálogo]({{ '/catalogo.html' | relative_url }}) · [Consultar]({{ '/catalogo.html' | relative_url }}) · [Verificar]({{ '/verificar.html' | relative_url }}) · [Reto]({{ '/reto.html' | relative_url }}) · [Contacto]({{ '/contacto.html' | relative_url }})
 
-Los retadores evaluados no superaron los criterios de superioridad fijados en sus comparaciones. El lote ENIF conserva una propuesta con reserva; el piso subcubre en esa evaluación y en marginales. Los intervalos calibrados pertenecen a pruebas concretas.
+**Lo que la gente dijo en la última encuesta oficial, por segmento, con intervalo calibrado — y la prueba pública de que ningún modelo lo ha mejorado.**
 
-- [Qué prueba el programa]({{ '/guia-lectura-publica.html' | relative_url }})
-- [Verificar estructura y sellos]({{ '/verificar.html' | relative_url }})
-- [Corpus y catálogo]({{ '/catalogo.html' | relative_url }})
-- [Tablero del programa]({{ '/tablero.html' | relative_url }})
-- [Licencia y contacto]({{ '/contacto.html' | relative_url }})
+**seis** <!-- deriva[n_evaluaciones]: python3 forense/analisis/informe-v1_3/censo_evaluaciones.py --clave n_evaluaciones --> evaluaciones prospectivas · **cuatro** <!-- deriva[n_instrumentos]: python3 forense/analisis/informe-v1_3/censo_evaluaciones.py --clave n_instrumentos --> instrumentos oficiales · **137** <!-- deriva[n_celdas_total]: python3 forense/analisis/informe-v1_3/censo_evaluaciones.py --clave n_celdas_total --> celdas de población · todo reproducible desde el repositorio.
 
-El [README completo](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md) deriva los contadores del corte actual. La [advertencia de alcance](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/AVISO-DE-ALCANCE.md) explica unidades, incertidumbre y límites.
+**[Leer el informe]({{ '/informe.html' | relative_url }}) · [Consultar el catálogo]({{ '/catalogo.html' | relative_url }}) · [Verificar en cinco minutos]({{ '/verificar.html' | relative_url }})**
 
-El [informe principal v1.3](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/informe-programa-v1_3.md) cierra la etapa de retadores y tiene un [anexo de evidencia](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/informe-programa-v1_3-ANEXO.md); su antecesor, [v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/informe-programa-v1_2.md), no se edita (E.3). El [eje regional v1.0](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/eje-regional-v1_0.md) es una propuesta retrospectiva de cobertura parcial, sin adopción.
+La predicción más simple —repetir lo que la gente dijo en la ola anterior— nunca fue superada, con intervalo que despejara el umbral fijado de antemano, por ninguno de los modelos construidos aquí ni por un retador externo. El comportamiento reportado del mexicano es estable entre olas en los dominios medidos. Detalle y dictámenes en [Estado y prueba]({{ '/estado.html' | relative_url }}); contadores vivos en el [README](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md).
+
+No respondemos preguntas que las encuestas oficiales no hicieron, no prometemos detectar cambios de conducta entre olas, no medimos compras observadas ni marcas y no vendemos gemelos digitales. La [advertencia de alcance](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/AVISO-DE-ALCANCE.md) explica unidades, incertidumbre y límites.
+
+## Más
+
+- [Estado y prueba]({{ '/estado.html' | relative_url }}) · [Guía de lectura]({{ '/guia-lectura-publica.html' | relative_url }})
+- [One-pager]({{ '/one-pager.html' | relative_url }}) · [Deck]({{ '/deck.html' | relative_url }}) · [Tablero del programa]({{ '/tablero.html' | relative_url }})
+- [Sello externo]({{ '/sello-externo.html' | relative_url }}) · [Glosario]({{ '/registro-glosario.html' | relative_url }}) · [Protocolo del tablero]({{ '/PROTOCOLO-TABLERO.html' | relative_url }})
