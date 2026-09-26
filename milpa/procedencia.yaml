@@ -751,6 +751,7 @@ derivados:
 
 asignados_probabilidad:
   - regla: dinero.ahorro.informal_sin_puente
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.74, 0.21, 0.05]
     fuente_citada: [ENIF2024, "report:behavioral_finance", "validacion:OXXO_vs_CoDi"]
     que_sostiene_de_verdad: "que sin puente ni respaldo la adopción es baja; ENIF mide tenencia de productos, no esta condicional"
@@ -759,12 +760,14 @@ asignados_probabilidad:
     lectura: "la regla habla de adopcion sin puente; el dato refuta la lectura 'informal = sustituto por exclusion' que su fuente_citada ENIF2024 sostenia; re-lectura de la regla pendiente en RH (direccion). Valores 0.74/0.21/0.05 intactos."
 
   - regla: dinero.ahorro.con_puente_y_respaldo
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.52, 0.33, 0.15]
     fuente_citada: ["validacion:Nu_Azteca_Kueski", "report:tecnologia"]
     que_sostiene_de_verdad: "que con puente la adopción sube; el 58% multiproducto de Nu es otra cantidad"
     calibrable_con: "reportes trimestrales CNBV por institución"
 
   - regla: dinero.planeacion.formal_estable
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- el hermano GEN2 (ENFIH 2019, RESULT-ENFIH-A-P) es tasa base; la condicional de formalidad no es construible (disparadores_estado) -- no coincide el disparador; sigue legacy"
     valores: [0.68, 0.32]
     fuente_citada: [ENIF2024, Progresa_RCT, "report:tiempo"]
     que_sostiene_de_verdad: "Progresa prueba la DIRECCIÓN causal (estabilizar ingreso alarga horizonte), no la proporción"
@@ -777,6 +780,7 @@ asignados_probabilidad:
       distinto)."
 
   - regla: dinero.credito.scoring_alternativo
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.71, 0.29]
     fuente_citada: [NBER_RappiCard, "validacion:V3_credito_auditado"]
     que_sostiene_de_verdad: "el NBER reporta +0.124 de AUC por huella digital; no reporta tasas de aprobación"
@@ -811,40 +815,47 @@ asignados_probabilidad:
       limite: "NC-0122 permanece: P6_6/P5_16 describen el último producto y no identifican el canal del producto fintech exacto"
 
   - regla: dinero.consumo.estatus_mediado_por_credito
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.58, 0.42]
     fuente_citada: ["validacion:V1_masstige", "report:consumidor"]
     que_sostiene_de_verdad: "que sin MSI el segmento no accede; nada sobre la proporción que compra"
     riesgo: "V1 no pudo leer los documentos del proyecto; su cruce es hipótesis, no validación canónica"
 
   - regla: salud.atencion.leve_sin_imss
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.66, 0.24, 0.10]
     fuente_citada: [ENSANUT, "report:salud"]
     que_sostiene_de_verdad: "~10.6M consultas/mes en farmacia con consultorio es un VOLUMEN, no una participación"
     calibrable_con: "ENSANUT: lugar de atención por condición de derechohabiencia"
 
   - regla: salud.atencion.grave
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.74, 0.26]
     fuente_citada: [ENSANUT, "report:salud"]
     que_sostiene_de_verdad: "la dirección (grave → sistema público)"
 
   - regla: salud.prevencion.hombre_sin_permiso
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- tramite.yaml no tiene regla hermana medida; sigue legacy"
     valores: [0.60, 0.40]
     fuente_citada: [ENSANUT, "report:salud"]
     que_sostiene_de_verdad: "la dirección; los valores redondos delatan asignación"
     riesgo_de_mito: ref.B.03.machismo_no_es_rasgo
 
   - regla: tramite.mordida.discrecional
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- el hermano medido es SOLICITUD (ENCIG P8_3) o proxy descriptivo del grupo P8_4, no PAGO; sigue legacy"
     valores: [0.62, 0.38]
     fuente_citada: [ENCIG2023, Rothstein_trampa_social, "report:politica"]
     que_sostiene_de_verdad: "verificado 29/jul/2026 contra microdatos ENCIG 2023 (encig2023_04_sec_7 x encig2023_05_sec_8): 0.62 NO corresponde a ninguna categoría medida -- es ASIGNADO, confirmado. La dirección y la razón relativa presencial/digital (~3.6x-4.9x) sí encuentran apoyo empírico; el valor absoluto no (techo medido 13.38%, no 62%). Refutación de escala, no de valor -- detalle en hitoD-R3.2 (forense/hitoD-R3_2-veredicto-v1_0.md)."
     calibrable_con: "ENCIG (bienal, estatal — NO municipal)"
 
   - regla: tramite.mordida.con_registro
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- el hermano medido es SOLICITUD (ENCIG P8_3) o proxy descriptivo del grupo P8_4, no PAGO; sigue legacy"
     valores: [0.88, 0.12]
     fuente_citada: [ENCIG2023, "report:politica"]
     que_sostiene_de_verdad: "la dirección (el registro rompe la trampa social)"
 
   - regla: tramite.gobierno_digital.coercitivo
+    rotulo_relevo: "ASIGNADO-CONSERVADO-H1 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: no hay par GEN2 con conducta y disparador coincidentes -- sin conducta GEN2 medida en tramite.yaml (las dos son ASIGNADO); sigue legacy"
     valores: [0.91, 0.09]
     fuente_citada: ["validacion:CoDi", "report:tecnologia"]
     que_sostiene_de_verdad: "3.09M cuentas en 6 años es un volumen absoluto; 0.91 no se deriva de ahí"
@@ -852,7 +863,11 @@ asignados_probabilidad:
     clase: REFUTADO-POR-COTA  # D2-g (firmas de mesa 3/sep/2026, propagado por ACTO MAESTRA37-N8), ADR-68(a): el prior 0.09 ASIGNADO queda REFUTADO-POR-COTA por tramite.gobierno_digital.coercitivo_efirma_sat/coercitivo_tabla_de_universos (milpa/tramite-ola5-propuesta-v0.yaml, SELLADA-SIN-CARGA) -- cotas [0.3684, 0.9211] no contienen 0.09; universo elegido: ninguno, la fuente no puede dar p; cuerpo (valores/fuente_citada/nota) intacto
 
   - regla: tramite.gobierno_digital.util_sin_coercion
-    valores: [0.71, 0.29]
+    valores: [0.673393, 0.326607]
+    corrida0_resultado_id: RESULT-ENCIG-MOR-C-P-ADOPTA
+    corrida0_generacion: GEN2
+    clase_respaldo: "MEDIDO·p(tasa base ponderada, universo que impone sin coerción ni riesgo fiscal: pago digital de luz, ENCIG 2025; unidad persona)"
+    relevo_gen2: "ACTO GEN2-RELEVO-CONSUMIDORES-3 · H1 (FIRMAS-18, FP e760-01, 25/sep/2026), regla B1: valores = RESULT-ENCIG-MOR-C-P-ADOPTA y su complemento RESULT-ENCIGDER-C-Q (antes ASIGNADO [0.71, 0.29]); la cita es la de la primera categoría"
     fuente_citada: ["validacion:SPEI", "modelo:3.3"]
     que_sostiene_de_verdad: "la dirección; ya viene marcada NO CALIBRADA en el propio archivo"
 
@@ -907,17 +922,17 @@ asignados_coeficiente:
     que las instrucciones v2 marcan y que la prueba de generadores debe atacar.
   detalle:
     - {gen: G1, coefs: {confianza_institucional: -0.60, radio_confianza: -0.35}, signo: sostenido, magnitud: asignada}
-    - {gen: G2, coefs: {sens_estatus: 0.55, aversion_riesgo: 0.20}, signo: sostenido, magnitud: asignada}
-    - {gen: G3, coefs: {horizonte_temporal: -0.60, aversion_riesgo: 0.40, familismo_apoyo: 0.20}, signo: sostenido, magnitud: asignada}  # ADR-30: familismo_apoyo SE CONSERVA aquí (mecanismo: pooling ante volatilidad — la tanda). NO es doble conteo con G5.
-    - {gen: G4, coefs: {exposicion_violencia: 0.70, confianza_institucional: -0.40, horizonte_temporal: -0.20, sens_estatus: -0.15}, signo: sostenido, magnitud: asignada}
-    - {gen: G5, coefs: {familismo_apoyo: 0.50, familismo_obligacion: "signo negativo o no monotónico — SIN MAGNITUD", radio_confianza: 0.15}, signo: sostenido, magnitud: asignada}
+    - {gen: G2, coefs: {sens_estatus: 0.55, aversion_riesgo: 0.20}, signo: sostenido, magnitud: asignada, historico_sin_relevo: {aversion_riesgo: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda", sens_estatus: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda"}}
+    - {gen: G3, coefs: {horizonte_temporal: -0.60, aversion_riesgo: 0.40, familismo_apoyo: 0.20}, signo: sostenido, magnitud: asignada, historico_sin_relevo: {aversion_riesgo: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda"}}  # ADR-30: familismo_apoyo SE CONSERVA aquí (mecanismo: pooling ante volatilidad — la tanda). NO es doble conteo con G5.
+    - {gen: G4, coefs: {exposicion_violencia: 0.70, confianza_institucional: -0.40, horizonte_temporal: -0.20, sens_estatus: -0.15}, signo: sostenido, magnitud: asignada, historico_sin_relevo: {horizonte_temporal: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda", sens_estatus: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda"}}
+    - {gen: G5, coefs: {familismo_apoyo: 0.50, familismo_obligacion: "signo negativo o no monotónico — SIN MAGNITUD", radio_confianza: 0.15}, signo: sostenido, magnitud: asignada, historico_sin_relevo: {familismo_obligacion: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda", radio_confianza: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda"}}
     # ⚠ CHECK OBLIGATORIO (ADR-30): una configuración donde familismo_obligacion
     #   alto mejore TODOS los desenlaces se rechaza en compilación. Si el modelo
     #   no puede producir el caso en que la familia daña, el parámetro es adorno.
     # ⚠ AMBOS parámetros heredan marca (b): las escalas de familismo
     #   (Sabogal, Lugo Steidel, Knight, Calzada, Zeiders) están validadas en
     #   contextos migratorios. Nadie los ha medido en población EN México.
-    - {gen: G6, coefs: {deferencia: 0.45}, signo: sostenido, magnitud: asignada}
+    - {gen: G6, coefs: {deferencia: 0.45}, signo: sostenido, magnitud: asignada, historico_sin_relevo: {deferencia: "HISTÓRICO-SIN-RELEVO · H1 (FIRMAS-18, FP e760-01, 25/sep/2026); valor conservado, no cuenta como deuda"}}
   # `unico_calibrable_hoy` SE RETIRA (ADR-49, D1): la premisa de conducta
   # financiera vía ENOE es falsa a nivel de reactivo (forense/hallazgos.md,
   # 31/jul/2026). Lo único que sobrevivía -- el panel rotativo sigue al mismo
