@@ -233,6 +233,14 @@ def t02_duplicates():
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
+        # ACTO GEN2-FRONT-3-PORTADA-1 (26/sep/2026): `gobierno/README.md` es la portada de la
+        # carpeta en GitHub (convención de nombre, contenido distinto), y `docs/informe.md` es el
+        # destino verbatim del botón «Leer el informe» del README firmado por dirección (§11).
+        frozenset({"README.md", "gobierno/README.md"}),
+        frozenset({
+            "docs/informe.md",
+            "forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/INFORME.md",
+        }),
         # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1 (25/sep/2026): lista cerrada P1 citada por ruta en la spec
         # sellada ENSU-SERIE-spec-v1_0.md (COMMIT-1); contenido distinto; con las tres anteriores en main
         # el grupo exacto es de cuatro.
@@ -277,6 +285,8 @@ def t02_duplicates():
         # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
         # El control por contenido sigue incluyendo todos los módulos.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/")):  # ASTRA6-C3: reports/recibos por lote, identidad por ruta.
+            nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
@@ -1347,14 +1357,16 @@ def t19b_modelo_contador_14():
 #   escala del modelo -- ADR-57(a) excluye los tres β̂ marginales).
 # ───────────────────────────────────────────────────────────────
 def t19c_readme_derivadas():
-    r = os.path.join(ROOT, "README.md")
+    # GEN2-FRONT-3-PORTADA-1: la sección pasó de README.md a docs/estado.md
+    # (la portada no lleva tabla técnica); el contenido no cambió.
+    r = os.path.join(ROOT, "docs", "estado.md")
     if not os.path.exists(r):
-        fail("T19c", "no se pudo leer `README.md`")
+        fail("T19c", "no se pudo leer `docs/estado.md`")
         return
     s = read(r)
     m = re.search(r"^## Estado del modelo\b.*?(?=^## |\Z)", s, re.M | re.S)
     if not m:
-        fail("T19c", "README.md: no se encontró la sección `## Estado del modelo`")
+        fail("T19c", "docs/estado.md: no se encontró la sección `## Estado del modelo`")
         return
     bloque = m.group(0)
 
@@ -1376,22 +1388,22 @@ def t19c_readme_derivadas():
 
             mn = re.search(r"\*\*(\d+)\s*de\s*27\*\*\s*corridas del Hito D", bloque)
             if not mn:
-                fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+                fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                              "'**N de 27** corridas del Hito D'")
             elif int(mn.group(1)) != real_n:
-                fail("T19c", f"README.md declara {mn.group(1)} de 27 corridas del Hito D; "
+                fail("T19c", f"docs/estado.md declara {mn.group(1)} de 27 corridas del Hito D; "
                             f"el bloque append-only de {rel(h)} tiene {real_n} fichas con veredicto")
 
             md = re.search(r"—\s*\*\*([\dA-E·\s]+)\*\*", bloque)
             if not md:
-                fail("T19c", "README.md, `## Estado del modelo`: no se encontró el desglose por letra "
+                fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró el desglose por letra "
                              "(forma '**NLETRA·...**' tras un guion largo)")
             else:
                 declarado = dict((letra, int(n)) for n, letra in
                                   re.findall(r"(\d+)([A-E])", md.group(1)))
                 derivado = {k: v for k, v in letras.items() if v}
                 if declarado != derivado:
-                    fail("T19c", f"README.md declara desglose {declarado}; "
+                    fail("T19c", f"docs/estado.md declara desglose {declarado}; "
                                 f"derivado del bloque append-only: {derivado}")
 
     proc = os.path.join(ROOT, "milpa", "procedencia.yaml")
@@ -1409,19 +1421,19 @@ def t19c_readme_derivadas():
     # o la suite se pone roja otra vez.
     mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*15", bloque)
     if not mcond:
-        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+        fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                      "'condicionales medidas N de 15'")
     elif int(mcond.group(1)) != real_medidas:
-        fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 15; "
+        fail("T19c", f"docs/estado.md declara condicionales medidas {mcond.group(1)} de 15; "
                     f"`grep -c 'clase: \"MEDIDO·PARCIAL\\|MEDIDO·NACIONAL' {rel(proc)}` da {real_medidas}")
 
     promovido = re.search(r"magnitud:\s*medid", ptxt, re.I) is not None
     mcoef = re.search(r"[Cc]oeficientes en escala del modelo\s*(\d+)\s*de\s*15", bloque)
     if not mcoef:
-        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+        fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                      "'coeficientes en escala del modelo N de 15'")
     elif int(mcoef.group(1)) != 0 or promovido:
-        fail("T19c", f"README.md declara {mcoef.group(1)} de 15 coeficientes en escala; "
+        fail("T19c", f"docs/estado.md declara {mcoef.group(1)} de 15 coeficientes en escala; "
                     + ("`milpa/procedencia.yaml` promueve alguno a medido -- la cifra debe subir de 0"
                        if promovido else
                        "`milpa/procedencia.yaml` no sostiene un valor distinto de 0"))
