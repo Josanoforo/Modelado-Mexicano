@@ -1,0 +1,15 @@
+calc_id: CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4
+tipo: EMISION-PROSPECTIVA-SIN-R; sellada en disco, no registrada
+familia: DENUNCIA_U4
+spec_humana: forense/prereg-caja/FAMILIA-2027-ENVIPE-DENUNCIA-U4-spec-v1_3.md
+spec_auxiliares: forense/analisis/familias-2027/astra6-envipe/auxiliares-spec.yaml
+script: tools/familias-2027/envipe/ejecuta.py
+medidor: tools/familias-2027/envipe/medidor.py
+piso:
+  calc: CALC-ENVIPE-0001
+  result: RESULT-ENVIPE-DEN-P-C2-U4
+R_futura: null
+retadores: []
+ola_futura: envipe_2027
+adopcion: NINGUNA
+apertura: COMMIT-3 por acto autorizado; una sola para dos familias

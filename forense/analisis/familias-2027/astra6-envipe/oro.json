@@ -1,0 +1,32 @@
+{
+  "tipo": "ORO-HISTORICO-NO-EVALUACION-FUTURA",
+  "commit1": "f59b1b90f2499dab32581f287fd7c3da41e6b18d",
+  "insumo": {
+    "id": "envipe2025_csv",
+    "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+  },
+  "familias": {
+    "DENUNCIA_U4": {
+      "result": "RESULT-ENVIPE-DEN-P-C2-U4",
+      "sello_sha256": "18310f8adb6fb5963038d67c2e8a7eaba50e09c062dddbc579e918f090cbde16",
+      "resultados_sha256": "225bbaa1dd12eab410d838e3d6f7080a876c2353f8bc9ba466afb2eaa98f0e3b",
+      "valor_result": 0.29431298745731216,
+      "punto_recalculado": 0.29431298745731216,
+      "error": 0.0,
+      "tolerancia": 1e-06,
+      "estado": "REPRODUCE-PUNTO",
+      "ic": "DIAGNOSTICO-NUEVO; no intenta reproducir extremos históricos"
+    },
+    "EVASION_NORMA": {
+      "result": "RESULT-EVASIONNORMA-A-P-EVADE",
+      "sello_sha256": "8076d9ff1e18ab1fe6ac7168600810580cabe99c1df9373ee21c8b40e9d2abe8",
+      "resultados_sha256": "85a726c1326b01c0d166ff962be8e2d7e2d201eecefd1a248ae5e32e37c5e815",
+      "valor_result": 0.5627744787844097,
+      "punto_recalculado": 0.5627744787844097,
+      "error": 0.0,
+      "tolerancia": 1e-06,
+      "estado": "REPRODUCE-PUNTO",
+      "ic": "DIAGNOSTICO-NUEVO; no intenta reproducir extremos históricos"
+    }
+  }
+}

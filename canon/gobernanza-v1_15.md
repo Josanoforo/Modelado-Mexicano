@@ -1134,6 +1134,9 @@ Cuando una validación rompe o degrada una afirmación:
 
 ## 4. Registro de decisiones (ADR)
 
+**ADR-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01 — ASTRA6-C2-ENVIPE-1 · dos emisiones prospectivas ENVIPE.** 26/sep/2026. Encargo archivado por #1166, cuerpo y firma existentes intactos. Se congelan dos paquetes para una ola futura, oro y reproducción separados, 27 escenarios condicionados a diseño histórico. Sin adopción, apertura futura o atestación inventada. Precisiones de v1.3 PROPUESTO-POR-EJECUTOR; hoja local FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01. Registros propios de replay y reservas con sucesor. Fuentes: `forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md`; `forense/notas/2026-09-26-ASTRA6-C2-ENVIPE-1-cierre.md`. Alias GEN2 exigido por gramática, raíz derivada del primer commit propio y 0-bis archivado reutilizado.
+
+
 *Formato: qué se decidió · por qué · qué rompería revertirla · estado.*
 
 **ADR-552 · `ACTO GEN2-TABLERO-SENAL-1 · EL TABLERO MUESTRA LO QUE HOY GOBIERNA: MARCADOR, FIRMAS DE CONTADOR PENDIENTES Y RAMAS — Y SE REFRESCA SOLO`**, 20/sep/2026, entorno **NUBE `cloud_default`; sin corpus montado (`ls data/raw` → ausente), cero microdato, cero red de datos abierta, cero medición sustantiva** (`forense/encargos/2026-09-20-GEN2-TABLERO-SENAL-1.md`, archivado verbatim por 0-bis A.3 — llegó pegado en el mensaje que invocó `/acto`; base declarada `4dedab48`, re-derivada al abrir contra `origin/main = fef26af9`; **COMPUERTA: ninguna**, declarada por el encargo).

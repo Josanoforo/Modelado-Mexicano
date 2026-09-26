@@ -3330,6 +3330,51 @@ def t_catalogo_cita_sin_valor_o_valor_distinto_falla():
             "T-CATALOGO-VALOR-DISTINTO", f"no se rechazo: {senalado!r}")
 
 
+def t_emision_prospectiva_verifica_snapshots_y_rechaza_corrupcion():
+    """Regresión CI #1170: metadatos no son archivos; hashes siguen obligatorios."""
+    with tempfile.TemporaryDirectory() as tmp:
+        base = Path(tmp)
+        d = base / "data/corrida0/CALC-FAMILIA-2027-ENVIPE-PRUEBA"
+        d.mkdir(parents=True)
+        codigo = base / "codigo.py"
+        codigo.write_text("# snapshot congelado\n")
+        (d / "spec.yaml").write_text("tipo: EMISION-PROSPECTIVA-SIN-R\n")
+        snapshot = base / "commit1-hashes.json"
+        snapshot.write_text(json.dumps({"codigo.py": C._sha256_archivo(codigo)}))
+        extension = base / "commit1-extension-hashes.json"
+        extension.write_text(snapshot.read_text())
+        emision = {"R_futura": None, "retadores": [], "estado": "SELLADO-INTERNAMENTE"}
+        previo = C.RAIZ
+        C.RAIZ = base
+        try:
+            def fixture():
+                (d / "emision.json").write_text(json.dumps(emision))
+                sello = {"tipo": "EMISION-PROSPECTIVA-SIN-R",
+                         "estado": "SELLADO-INTERNAMENTE", "atestacion_externa": None,
+                         "commit1": "a" * 40, "commit1_complemento": "b" * 40,
+                         "archivos": {str(f.relative_to(base)): C._sha256_archivo(f)
+                                      for f in [d / "spec.yaml", d / "emision.json", snapshot, extension]}}
+                (d / "sello.json").write_text(json.dumps(sello))
+                (d / "sello.sha256").write_text(C._sha256_archivo(d / "sello.json") + "  sello.json\n")
+            fixture()
+            _afirma(C._verifica_sello(d)[0] == "COINCIDE", "T-EMISION-VALIDA", "sello válido rechazado")
+            codigo.write_text("# corrupción material\n")
+            _afirma(C._verifica_sello(d)[0] == "NO-COINCIDE", "T-EMISION-CODIGO", "snapshot alterado aceptado")
+            codigo.write_text("# snapshot congelado\n")
+            (d / "spec.yaml").write_text("tipo: ALTERADO\n")
+            _afirma(C._verifica_sello(d)[0] == "NO-COINCIDE", "T-EMISION-SPEC", "spec alterada aceptada")
+            (d / "spec.yaml").write_text("tipo: EMISION-PROSPECTIVA-SIN-R\n")
+            emision["R_futura"] = 0.5
+            fixture()
+            _afirma(C._verifica_sello(d)[0] == "NO-COINCIDE", "T-EMISION-R", "R futura aceptada")
+            emision["R_futura"] = None
+            fixture()
+            (d / "sello.sha256").write_text("0" * 64 + "  sello.json\n")
+            _afirma(C._verifica_sello(d)[0] == "NO-COINCIDE", "T-EMISION-SIDECAR", "sidecar alterado aceptado")
+        finally:
+            C.RAIZ = previo
+
+
 TESTS = [v for k, v in sorted(globals().items()) if k.startswith("t_")]
 
 
