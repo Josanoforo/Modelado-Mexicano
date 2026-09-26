@@ -218,3 +218,16 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Razón | Impacto | Sucesor |
+|---|---|---|---|
+| Atestación externa de COMMIT-1/2 | NO-VERIFICABLE-AQUÍ: sin envío ni comprobante OTS; inventario exacto preparado | Atestaciones verificadas permanece en cero | Mesa / siguiente manifiesto de sellos y OTS |
+| Fecha oficial de publicación ENVIPE 2027 | NO-VERIFICABLE-AQUÍ: búsqueda oficial sin confirmación; ventana inferida rotulada | Activación permanece CONDICIONAL | FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01 |
+| Apertura, adaptación nominal y evaluación futura COMMIT-3 | DIFERIDO-A:COMMIT-3-ENVIPE-2027; depende de descriptor, comparabilidad y autorización aún inexistentes; no se abre hoy | R futura y adopciones ausentes | COMMIT-3-ENVIPE-2027 / FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01 |
+| Recibo técnico de Claude | NO-VERIFICABLE-AQUÍ: paquete de recibo entregado; revisión independiente no realizada por esta sesión | Recibo técnico no se acredita como obtenido | Claude / GEN2-RECIBO-ASTRA-PRODUCTO-N |
+
+## CONSUMIDO
+
+PR #1170 · rama `codex/astra6-c2-envipe-1` · dos emisiones prospectivas selladas internamente para una ola, oro y escenarios verificados; ninguna evaluación futura ni adopción. Recibo técnico de Claude y OTS pendientes; entrega para circuito de mesa. Cuerpo y sello archivados en #1166 intactos, firma de mesa no duplicada.

@@ -1,5 +1,18 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
-### `estado` · **v1.16** · 23 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+### `estado` · **v1.17** · 26 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+
+> **Enmienda (26/sep/2026, `ACTO GEN2-CIERRE-SEMANAL-1`, P3).** Cierre de la semana del 22 al 26 de septiembre: la cabecera es nueva y la **§17** también; la cabecera v1.16, §0–§16 y las 96 anotaciones L0 se heredan **verbatim** de `v1.16`. `v1.16` sale del árbol por `T01` (fuente única), sin editarse, igual que en los cuatro precedentes (`v1.12`–`v1.15`). Su historia se recupera por el SHA del commit de este acto que la retira.
+>
+> | | |
+> |---|---|
+> | **ARCHIVO** | `estado-programa-v1_17.md` |
+> | **REEMPLAZA A** | `estado-programa-v1_16.md`, retirada del árbol por T01 |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §17 ata cada cifra a un comentario `comando:` que `tests/test_estado_derivado.py` re-ejecuta |
+> | **NOMBRE ESTABLE** | **`estado`** — cítalo así, nunca por nombre de archivo |
+
+---
+
+*Cabecera y cuerpo heredados de v1.16, sin editar:*
 
 > **Cabecera de era.** GEN2 · 18–23/sep/2026 · instrucciones vigentes `v2.16` · plantilla de encargo `v2.1` · ids con raíz de acto (`D-24`) · **régimen de estimación por celda**: `ADR-531`/`ADR-91`, `FP-383`, contrato celda-D `v0.6` · **régimen operativo nuevo** (§15): canal por PR, sello externo, auto-merge.
 >
@@ -972,3 +985,70 @@ El encargo (§9) nombraba cuatro piezas en vuelo: "CONTADORES-2, FIRMAS-14, AUDI
 Fuera de estas dos, declarado por separado: Pages, el DOI y la activación de branch protection para auto-merge son `DECISIÓN-DE-MESA-PENDIENTE` en sus propios encargos (`GEN2-FRONT-1`, `GEN2-TUBERIA-RUTINAS-AUTOMERGE-2`) — este acto no las adjudica ni las acelera, solo las cita. `SELLO-EXTERNO-2` no tiene encargo abierto todavía; este estado no inventa una fecha para él.
 
 **NO-DERIVADO en esta sección:** (1) el contenido exacto de `PR #1056` (régimen de canal, §15) — citado por el transfer de dirección junto a `#1050`, no verificado por esta sesión más allá de su número, por alcance de tiempo, no por bloqueo de entorno. (2) si GitHub Pages está realmente activo en `https://josanoforo.github.io/Modelado-Mexicano/` — un intento de verificación en vivo dio `EGRESS_BLOCKED` (política de red de esta sesión NUBE); la evidencia del repo dice que la activación sigue pendiente de mesa, pero este acto no pudo confirmarlo desde fuera. (3) un puntero público (`README.md`/`docs/guia-lectura-publica.md`) que cite `v1.16` en vez de `v1.15` como "el estado" — queda fuera del perímetro de este acto (el `README.md` es del acto `GEN2-FRONT-1`, no de éste; NC declarada al cierre).
+
+## 17 · GEN2 · 24–26 de septiembre — la semana se cierra en cuatro documentos derivados
+
+Retrata; no opina. Cada cifra trae su comando.
+
+**Status íntegro de `python3 tools/corrida0.py status`** (26/sep, tras fusionar `origin/main = 4f125e70`; ningún commit de este acto lo mueve):
+
+```
+N_corridas_requeridas=87
+N_corridas_selladas=287
+N_resultados_activos=211
+N_resultados_sellados=198802
+N_resultados_pendientes=211
+dependencias_numericas_legacy_activas=67
+legacy_activas_por_consumidor__motor=13
+legacy_activas_por_consumidor__procedencia=30
+legacy_activas_por_consumidor__catalogo_de_momentos=17
+legacy_activas_por_consumidor__marco_del_duelo=1
+legacy_activas_por_consumidor__celdas_D=6
+legacy_activas_por_consumidor__otro=0
+legacy_fuera_del_contador_por_firma__corte_pi=6
+legacy_fuera_del_contador_por_firma__historico_sin_relevo=54
+usos_retirados_por_firma__rol_historico=4
+relevadas_por_pin_de_mesa__i_CRUDO=14
+relevadas_por_pin_de_mesa__ii_CONDUCTA_GEN2=13
+relevadas_por_pin_de_mesa__iii_DERIVADO_DE_GEN2=0
+legacy_marco_M_por_campo__R=0
+legacy_marco_M_por_campo__M=1
+legacy_marco_M_por_campo__L=0
+legacy_marco_M_por_campo__AGREGADO=0
+legacy_marco_M_celdas_M_pendientes=DIN-M-01
+N_resultados_gen2_sellados=175097
+N_resultados_gen2_pendientes_adopcion=10
+N_resultados_gen2_vetados_por_decision=4
+N_resultados_gen2_adoptados_activos=81
+resultados_con_validacion_independiente=215
+diferencias_materiales=0
+no_corrido_abiertas=411
+replays_legacy_sellados=5
+corredores_envueltos_legacy=35
+celdas_validadas=219
+celdas_validadas_definicion_desde=38dd709
+celdas_validadas_prospectiva=20
+celdas_validadas_retrospectiva=59
+celdas_emitidas_sin_r=16
+# derivado de 436 corridas · 202900 resultados · 231 usos
+```
+<!-- comando: python3 tools/corrida0.py status -->
+
+**Volumen de la semana.** Hubo 58 merges de PR en `main` desde el 24/sep <!-- comando: git log --merges --oneline --since=2026-09-24T00:00 HEAD | grep -c 'Merge pull request' -->. Se archivaron 40 encargos fechados del 24 al 26 <!-- comando: ls forense/encargos/2026-09-2[4-6]-*.md | grep -vc -- '-ADENDA-' -->, de los cuales 38 ya tienen `## CONSUMIDO` <!-- comando: grep -l '^## CONSUMIDO' $(ls forense/encargos/2026-09-2[4-6]-*.md | grep -v -- '-ADENDA-') | wc -l -->. Entre los que faltan está este mismo, que cierra con su PR.
+
+**Los cuatro documentos del corte (nombres estables):**
+- `catálogo del mexicano` v1.2 (`canon/catalogo-del-mexicano-v1_2.md`): 43,188 estimadores adoptados con firma citada por id <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:estimadores -->.
+- `tabla de piso` v1.1 (`canon/tabla-de-piso-v1_1.tsv`) para `docs/reto.md`: las mismas filas, con sus hashes y la marca NSE o región <!-- comando: python3 tools/genera_tabla_piso_v1_1.py | grep '^filas_adoptadas=' -->.
+- `informe-programa` v1.4: es v1.3 más el corte de la semana (dónde sí cambió, cobertura por clase, pisos por origen, qué queda).
+- `estado` v1.17: este documento.
+
+**Régimen operativo vigente.**
+- (a) **Canal por PR, vivo.** Nada escribe directo a `main`: las vistas derivadas y los derivados entran por PR verificado (§15 (a)). Las vistas en `main` son del 23/sep y el `[deriva]` fresco sigue sin fusionar; `status` no depende de ellas porque reconstruye el registro en memoria desde las corridas selladas.
+- (b) **Cláusula de autonomía v1.0** (`3fbc487684b77b7f`): los encargos AUTÓNOMOS la citan y los ADR la copian verbatim. Aparece 15 veces en `gobernanza` <!-- comando: grep -c '3fbc487684b77b7f' canon/gobernanza-v1_15.md -->.
+- (c) **Recibo de Codex.** El carril Codex entrega por recibo con nombre propio, no por título de merge. Hay 4 encargos `RECIBO-CODEX-N` archivados <!-- comando: ls forense/encargos | grep -c 'RECIBO-CODEX-[0-9]*\.md$' -->. El conteo de PR con recibo contra PR sin recibo sigue sin derivar (§15, NO-DERIVADO).
+- (d) **D-19 estricta.** Los PAROS son lista cerrada (dato reservado, sello, contador a mano o adopción sin firma de contenido, procedimiento congelado, entorno). Todo lo demás se resuelve con la opción recomendada y se declara.
+- (e) **Marca de definición** (firma P): `celdas_validadas` se imprime con su `definicion_desde` al lado, y las PROSPECTIVAS van aparte de las RETROSPECTIVAS, nunca fundidas (bloque `status` de arriba).
+
+**Pendientes de mesa al corte.** Hay 4 FP ABIERTAS <!-- comando: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(sum(r['estado'].startswith('ABIERTA') for r in csv.DictReader(open('forense/firmas-pendientes.tsv'),delimiter='\t')))" -->. `GEN2-SEGURIDAD-ENSU-SERIE-1` fusionó durante el acto (`PR #1162`); su adopción sigue ABIERTA. `GEN2-COLA-LOTE-1` sigue en curso. Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van al siguiente corte.
+
+**Lo que este estado no puede afirmar.** Que el `[deriva]` fresco cambie alguna cifra de las vistas: no se ha fusionado. El conteo de PR con recibo Codex. El retiro de código de `g()`/`Theta.valor`: sigue sin correr (§15).

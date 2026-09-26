@@ -121,12 +121,12 @@ def cmd_abre():
                           f"(casos={e.get('casos', '?')}, {e.get('estado', '?')})")
 
     print("\n--- Versión de instrucciones vigente ---")
-    instr = leer("instrucciones-proyecto-v2.md")
+    instr = leer("archivo/instrucciones/instrucciones-proyecto-v2.md")
     if instr is None:
         faltantes.append("versión de instrucciones (el archivo no existe)")
     else:
         primera = instr.split("\n", 1)[0]
-        commit_instr = git("log", "-1", "--format=%h %ci", "--", "instrucciones-proyecto-v2.md")
+        commit_instr = git("log", "-1", "--format=%h %ci", "--", "archivo/instrucciones/instrucciones-proyecto-v2.md")
         print(f"  {primera}")
         print(f"  último commit que la tocó: {commit_instr or '(no derivable)'}")
 
