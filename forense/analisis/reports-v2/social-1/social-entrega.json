@@ -1,0 +1,39 @@
+{
+  "adr": "ADR-260926-ASTRA6-C3-SOCIAL-1-5803-01",
+  "fp": "FP-260926-ASTRA6-C3-SOCIAL-1-5803-01",
+  "nc": "NC-260926-ASTRA6-C3-SOCIAL-1-5803-01",
+  "totales": {
+    "confianza": {
+      "CONFIRMA": 0,
+      "MATIZA": 150,
+      "ROMPE": 6,
+      "SIN-CIFRA": 201,
+      "afirmaciones": 357,
+      "mapa": 33,
+      "cifras": 45,
+      "fuentes": 7
+    },
+    "capital": {
+      "CONFIRMA": 0,
+      "MATIZA": 5,
+      "ROMPE": 0,
+      "SIN-CIFRA": 83,
+      "afirmaciones": 88,
+      "mapa": 42,
+      "cifras": 32,
+      "fuentes": 7
+    },
+    "religion": {
+      "CONFIRMA": 2,
+      "MATIZA": 106,
+      "ROMPE": 4,
+      "SIN-CIFRA": 47,
+      "afirmaciones": 159,
+      "mapa": 38,
+      "cifras": 62,
+      "fuentes": 15
+    }
+  },
+  "reglas": 10,
+  "reservas_markdown": "| Recibo técnico de Claude | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no lo acredita | No se autoriza integración humana del PR ni adopción de reglas por esta sesión | forense/analisis/reports-v2/social-1/recibo-para-claude.md |"
+}

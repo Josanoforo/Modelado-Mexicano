@@ -21,5 +21,13 @@
     1164
   ],
   "archivo_encargo_commit": "43cfbdf7",
-  "firma_mesa": "se conserva asiento de #1166; no se repite"
+  "firma_mesa": "se conserva asiento de #1166; no se repite",
+  "firma_entorno_verificada": {
+    "variable": "sin_variable",
+    "sonda_http": 200,
+    "corpus_montado": "NO",
+    "archivos_examinados": 0,
+    "via": "tools/entorno.py --sonda-red con red autorizada",
+    "interpretacion": "entorno editorial sin microdato; la sonda y corpus no identifican plataforma NUBE; no se ejecuta ninguna medición"
+  }
 }

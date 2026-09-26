@@ -277,6 +277,8 @@ def t02_duplicates():
         # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
         # El control por contenido sigue incluyendo todos los módulos.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/")):  # ASTRA6-C3: reports/recibos por lote, identidad por ruta.
+            nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
