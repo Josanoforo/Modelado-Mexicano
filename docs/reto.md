@@ -2,9 +2,11 @@
 title: Reto público
 ---
 
-# Reto público: vence al piso
+# Reto público: vence al piso · v1.1
 
-[Portada]({{ '/' | relative_url }}) · [Corpus y catálogo]({{ '/catalogo.html' | relative_url }}) · [Verificar]({{ '/verificar.html' | relative_url }})
+[Portada]({{ '/' | relative_url }}) · [Corpus y catálogo]({{ '/catalogo.html' | relative_url }}) · [Verificar]({{ '/verificar.html' | relative_url }}) · [Consultar]({{ '/consultar.html' | relative_url }}) · [Contrato de consulta]({{ '/consulta.html' | relative_url }})
+
+> v1.1 (26/sep/2026, acto `GEN2-PRODUCTO-CONSULTA-1`, PROPUESTO-POR-EJECUTOR sobre el plan de visibilización §3.6 aprobado en bloque): añade el formato de entrega para una familia 2027 — la predicción se entrega **en el mismo formato que devuelve la consulta**, sellada antes de que exista el árbitro, con recibo y comparación primaria fijados aquí. Lo demás de v1.0 no cambia.
 
 Este programa no mide para convencer: mide para que cualquiera pueda intentar vencerlo. La [tabla de piso](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_0.tsv) publica **72 filas** <!-- deriva: python3 tools/genera_tabla_piso.py | rg '^filas_adoptadas=' --> — el conjunto **adoptado**, no el catálogo completo (1 537 filas, la mayoría contexto histórico sin adopción). Adoptado significa `ADOPTADO-POR-FIRMA` o `CONSUMO-GEN2-ACTIVO`: piso u orden de mesa firmada, no propuesta, no piso histórico de contexto, no pendiente de dictamen. La tabla se deriva con `python3 tools/genera_tabla_piso.py`; no se edita a mano.
 
@@ -40,6 +42,30 @@ Cada fila trae su instrumento y ola, su universo/denominador, su unidad y escala
 4. El resultado — venza, quede con reserva, o nadie venza — se publica en esta misma tabla y en el catálogo, con la cita de tu CALC y tu sello.
 
 **Sin promesas de adopción.** El reto mide; mesa decide si un candidato que vence sustituye al piso adoptado. Vencer la comparación primaria es condición necesaria, no suficiente, para que mesa adopte.
+
+## v1.1 · Entregar predicciones para una familia 2027
+
+**Familia 2027.** Un conjunto de celdas `conducta × instrumento × segmento` cuya ola 2027 todavía no publica INEGI: no existe el árbitro `R` y, por E.6, toda ola nueva nace reservada al entrar al corpus. El piso a vencer es la fila del catálogo vigente que devuelve la [consulta]({{ '/consultar.html' | relative_url }}) para esa conducta y segmento (la ola anterior por eje, o los marginales públicos de la misma ola en cruces). Si la consulta dice `NO CONTESTA` para una celda, esa celda no tiene piso y no entra a la comparación primaria: se reporta aparte.
+
+**Formato — el contrato de consulta como formato de salida.** Un archivo `prediccion.json` con la misma envoltura que `python3 tools/benchmark.py consulta --json` ([contrato §3]({{ '/consulta.html' | relative_url }})), una respuesta por celda:
+
+| campo | valor en la entrega |
+|---|---|
+| `llave` | la llave del piso que enfrentas (de la consulta) |
+| `conducta`, `instrumento`, `eje`, `segmento`, `unidad` | idénticos a los del piso — misma unidad y mismo universo, o la celda no se compara |
+| `ola` | `"2027"` (o la ola futura que declares) |
+| `punto`, `ic95`, `tipo_ic` | tu predicción; `ic95` obligatorio si quieres que se reporte cobertura |
+| `temporalidad` | `"PROSPECTIVA"` — sólo lo es si el sello precede a la publicación de la ola |
+| `origen_piso` | `"RETADOR:<tu-id>"` |
+| `result`, `calc`, `sha256_*` | vacíos: los asigna el programa al sellar tu CALC |
+
+**Sello previo.** Abre un PR que añade `prediccion.json` y tu spec humana (universo, unidad, umbral, regla de decisión). El sello es el `sha256` de `prediccion.json` en el commit del PR, más, si quieres un testigo fuera de GitHub, el [sello externo]({{ '/sello-externo.html' | relative_url }}). Un archivo cuyo commit es posterior a la publicación de la ola se rotula `RETROSPECTIVA` y se reporta en otra columna (§4 de las instrucciones: ninguna frase mezcla las dos).
+
+**Recibo.** Un comentario en tu PR con: `sha256` de `prediccion.json`, commit, fecha, número de celdas recibidas, cuántas casan con un piso de la consulta y cuántas no (con su razón `NO CONTESTA`), y la ola contra la que se evaluará. El recibo no juzga la predicción.
+
+**Comparación primaria — fijada antes de abrir el dato.** Cuando INEGI publique la ola y el programa derive `R` con su código congelado, se calcula la regla 2 de arriba: `ΔMAE` entre el piso y tu predicción sobre las celdas puntuadas, con IC por réplica; vence / propuesta con reserva / nadie vence según el IC contra el umbral que declaraste. La cobertura (`R` dentro de tu IC) se reporta aparte, con intervalo binomial, por celda y por conglomerado. El conteo de celdas ganadas es descriptivo.
+
+**Qué no cambia.** La consulta devuelve pisos, no retadores (regla 6): tu predicción no aparece en la consulta hasta que mesa la adopte.
 
 ## A quién se invita
 

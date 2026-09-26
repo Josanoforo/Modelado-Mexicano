@@ -1,0 +1,3 @@
+# ADR-260926-GEN2-TUBERIA-CABLEADO-SESIONES-1-0038-01
+
+26/sep/2026 · `ACTO GEN2-TUBERIA-CABLEADO-SESIONES-1` (NUBE, cero mediciones). Reglas de lectura hechas cumplir: hook PreToolUse `tools/hook_lectura.py` (Bash|Read; 3 bloqueos demostrados en vivo, registro `forense/analisis/cableado/bloqueos.tsv`); fuente única `canon/REGLAS-DE-LECTURA.md` importada por `CLAUDE.md` y espejada en `AGENTS.md` con test; `canon/MEMORIA-OPERATIVA.md` (47 líneas) con T-MEM en /tramite; regla de subagentes; `ci_guardias` en paralelo + `pytest -n auto` (huérfanos 9m38s → 6m29s) y guardia WARN para Codex; `pyproject.toml` + `uv.lock`. P6 caché Parquet diferida a caja. Sucesor: GEN2-TUBERIA-CABLEADO-SESIONES-2.
