@@ -1,0 +1,120 @@
+{
+ "corrida_id": "CALC-ENCIG-AUX-FAMILIAS-2027-0001--5aa80dc05566",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5"
+ },
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "NO",
+  "generacion": "GEN2",
+  "tipo": "AUXILIAR-DISENO",
+  "validacion_independiente": "NO-HECHA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-26T20:02:52Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "5aa80dc05566d00f83605ab59d02a32c0de51b86",
+  "git_rama": "codex/astra6-c2-encig-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5aa80dc05566d00f83605ab59d02a32c0de51b86",
+ "input_ids": [
+  "encig25_base_datos_csv"
+ ],
+ "input_sha256": {
+  "encig25_base_datos_csv": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+ },
+ "parametros": {
+  "banda": 0.02,
+  "calc_id": "CALC-ENCIG-AUX-FAMILIAS-2027-0001",
+  "fraccion_replicas": 0.95,
+  "min_estratos": 100,
+  "min_n": 10000,
+  "min_replicas": 1000,
+  "min_upm": 1000,
+  "modo": "HISTORICO-ABIERTO",
+  "payload_sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12",
+  "replicas": 2000,
+  "residuo_max": {
+   "PAGO-DIGITAL": 0.01,
+   "SOLICITUD-MORDIDA": 0.02
+  },
+  "seed": 20260926
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-ESTADO",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-ESTRATOS",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-N",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-N-EFECTIVO-KISH",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-P",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-RESIDUO-FRACCION",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-RESIDUO-N",
+  "RESULT-ENCIG-AUX-PAGO-DIGITAL-UPM",
+  "RESULT-ENCIG-AUX-REPLICAS",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-ESTADO",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-ESTRATOS",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-N",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-N-EFECTIVO-KISH",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-P",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-RESIDUO-FRACCION",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-RESIDUO-N",
+  "RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-UPM"
+ ],
+ "script_blob_sha256": "6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30",
+ "script_path": "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "PCG64",
+  "valor": 20260926
+ },
+ "spec_id": "CALC-ENCIG-AUX-FAMILIAS-2027-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b",
+ "spec_yaml_sha256": "092a04ef76fa96065e9d650cc26124fccd275ab22357a785a396d987df33f202",
+ "tolerancia": {
+  "abs": 1e-12,
+  "tipo": "absoluta"
+ }
+}

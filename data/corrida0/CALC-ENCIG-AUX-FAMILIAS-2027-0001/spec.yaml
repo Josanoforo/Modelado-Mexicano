@@ -1,0 +1,116 @@
+calc_id: CALC-ENCIG-AUX-FAMILIAS-2027-0001
+spec_md: spec.md
+spec_md_sha256: aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+script: data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/medidor.py
+inputs:
+- id: encig25_base_datos_csv
+  origen: manifiesto
+variables:
+- archivo: persona
+  variable: P8_3_1
+  rol: outcome SOL1
+- archivo: evento
+  variable: P7_3
+  rol: canal pago luz
+universo: ENCIG2025 urbana100mil+,18+,persona A y evento luz C separados
+filtros: SOL1 {1,2}; N_TRA=1 canal {1,2,4,5,6}; residuo reportado
+ponderador: FAC_P18 persona; FAC_TRA evento
+transformacion: suma(w*y)/suma(w); bootstrap marco persona completo
+estimando: DESCRIPTIVO-HISTORICO-AUXILIAR, no emisión R futura
+parametros:
+  modo: HISTORICO-ABIERTO
+  payload_sha256: 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+  seed: 20260926
+  replicas: 2000
+  min_n: 10000
+  min_estratos: 100
+  min_upm: 1000
+  residuo_max:
+    PAGO-DIGITAL: 0.01
+    SOLICITUD-MORDIDA: 0.02
+  min_replicas: 1000
+  fraccion_replicas: 0.95
+  banda: 0.02
+  calc_id: CALC-ENCIG-AUX-FAMILIAS-2027-0001
+seed:
+  aplica: true
+  valor: 20260926
+  rng: PCG64
+tolerancia:
+  tipo: absoluta
+  abs: 1.0e-12
+dependencias_materiales:
+- numpy
+resultados:
+- id: RESULT-ENCIG-AUX-REPLICAS
+  tipo: texto
+  unidad: REF a réplicas conjuntas y soporte; no registros individuales
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-P
+  tipo: proporcion
+  unidad: PAGO-DIGITAL / P
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-ESTADO
+  tipo: texto
+  unidad: PAGO-DIGITAL / ESTADO
+  permite_no_estimable: false
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-N
+  tipo: entero
+  unidad: PAGO-DIGITAL / N
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-ESTRATOS
+  tipo: entero
+  unidad: PAGO-DIGITAL / ESTRATOS
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-UPM
+  tipo: entero
+  unidad: PAGO-DIGITAL / UPM
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-RESIDUO-N
+  tipo: entero
+  unidad: PAGO-DIGITAL / RESIDUO-N
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-RESIDUO-FRACCION
+  tipo: proporcion
+  unidad: PAGO-DIGITAL / RESIDUO-FRACCION
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-PAGO-DIGITAL-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: PAGO-DIGITAL / N-EFECTIVO-KISH
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-P
+  tipo: proporcion
+  unidad: SOLICITUD-MORDIDA / P
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-ESTADO
+  tipo: texto
+  unidad: SOLICITUD-MORDIDA / ESTADO
+  permite_no_estimable: false
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-N
+  tipo: entero
+  unidad: SOLICITUD-MORDIDA / N
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-ESTRATOS
+  tipo: entero
+  unidad: SOLICITUD-MORDIDA / ESTRATOS
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-UPM
+  tipo: entero
+  unidad: SOLICITUD-MORDIDA / UPM
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-RESIDUO-N
+  tipo: entero
+  unidad: SOLICITUD-MORDIDA / RESIDUO-N
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-RESIDUO-FRACCION
+  tipo: proporcion
+  unidad: SOLICITUD-MORDIDA / RESIDUO-FRACCION
+  permite_no_estimable: true
+- id: RESULT-ENCIG-AUX-SOLICITUD-MORDIDA-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA / N-EFECTIVO-KISH
+  permite_no_estimable: true
+etiquetas:
+  generacion: GEN2
+  tipo: AUXILIAR-DISENO
+  cuenta_gen2: 'NO'
+  validacion_independiente: NO-HECHA

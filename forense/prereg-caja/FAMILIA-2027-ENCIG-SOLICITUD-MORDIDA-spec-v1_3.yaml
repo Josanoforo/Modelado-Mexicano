@@ -1,0 +1,54 @@
+calc_id: CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001
+spec_md: spec.md
+spec_md_sha256: 4d002205e709eb13563122983dfe36ee1904231f9646abf7618cde544fbe40d8
+script: data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/medidor.py
+inputs:
+- id: IN-ENCIG-PISOS
+  origen: repo
+  ruta: forense/analisis/familias-2027/astra6-encig/pisos.json
+  sha256: be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+variables:
+- archivo: persona
+  variable: P8_3_1
+  rol: outcome SOL1
+- archivo: evento
+  variable: P7_3
+  rol: canal pago luz
+universo: ENCIG2025 urbana100mil+,18+,persona A y evento luz C separados
+filtros: SOL1 {1,2}; N_TRA=1 canal {1,2,4,5,6}; residuo reportado
+ponderador: FAC_P18 persona; FAC_TRA evento
+transformacion: suma(w*y)/suma(w); bootstrap marco persona completo
+estimando: EMISION-PROSPECTIVA-PUNTO-FIJO,SIN-R-FUTURA
+parametros:
+  familia: SOLICITUD-MORDIDA
+  result_origen: RESULT-ENCIG-MOR-A-P-SOL1
+  result_emision: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-P0
+  lector_sha256: 6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30
+  autorizacion_futura: NO-OTORGADA
+  olas_objetivo:
+  - encig_2027
+  apertura: UNICA-COMPARTIDA
+  reglas_normativas_ruta: data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml
+seed:
+  aplica: false
+tolerancia:
+  tipo: absoluta
+  abs: 1.0e-12
+dependencias_materiales:
+- numpy
+resultados:
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-P0
+  tipo: proporcion
+  unidad: proporción SOLICITUD-MORDIDA unidad separada; sin R futura
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-P0-FUENTE
+  tipo: texto
+  unidad: RESULT origen
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-P0-ESTADO
+  tipo: texto
+  unidad: estado del sello interno
+etiquetas:
+  generacion: GEN2
+  tipo: EMISION-PROSPECTIVA
+  cuenta_gen2: 'NO'
+  validacion_independiente: NO-HECHA
