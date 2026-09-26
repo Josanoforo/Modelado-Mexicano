@@ -36,3 +36,11 @@ Propio: `docs/consulta.md`, `docs/consultar.md`, `docs/ejemplos.md`, `docs/reto.
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No sirve API en servidor (D-14: sin servidores); no promete lo que INEGI no preguntó. Sucesores: FRONT-3 con lo que el reto reciba; API servida solo si mesa la pide y con su propia firma.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** «`docs/consultar.md` funcional en un navegador sin red» — probado en Chromium local con red externa bloqueada, no en GitHub Pages · **por qué:** NO-VERIFICABLE-AQUÍ — Pages no activo (FP-260923-GEN2-FRONT-1-4296-01 ABIERTA) · **impacto:** ningún contador; la URL pública queda sin probar · **sucesor:** FP-260923-GEN2-FRONT-1-4296-01.
+
+## CONSUMIDO
+
+Ejecutado por PR #1163 (rama `claude/new-session-nz807l`), ADR-260926-GEN2-PRODUCTO-CONSULTA-1-dcde-01, nota `forense/notas/2026-09-26-GEN2-PRODUCTO-CONSULTA-1-nota.md`.
