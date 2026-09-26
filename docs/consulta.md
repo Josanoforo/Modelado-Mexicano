@@ -22,7 +22,7 @@ Acto `GEN2-PRODUCTO-CONSULTA-1` (26/sep/2026). Este texto es la spec humana (D-1
 |---|---|---|
 | `conducta` | sí (uno de los dos) | id exacto del catálogo (columna `conducta`, p. ej. `actividad_mensajes`) |
 | `texto` | sí (uno de los dos) | palabras; casan si **todas** aparecen (sin acentos ni mayúsculas) en `conducta`, `dominio`, `instrumento` o `llave` |
-| `segmento` | no | `eje=valor`, repetible. `eje` ∈ {`sexo`, `edad`, `escolaridad`, `localidad`, `formalidad`, `region`, `nse`, `nacional`}; `valor` casa por subcadena sin acentos ni mayúsculas contra la columna `segmento` |
+| `segmento` | no | `eje=valor`, repetible. `eje` ∈ {`sexo`, `edad`, `escolaridad`, `localidad`, `formalidad`, `region`, `nse`, `nacional`}; `valor` se compara sin acentos ni mayúsculas contra la columna `segmento`: **exacto** si algún segmento de esa familia de eje es igual al valor; si ninguno lo es, por subcadena (enmienda v1.0-a del mismo acto, antes de fusionar: `superior` casaba también `media_superior`) |
 | `instrumento` | no | p. ej. `ENIF` (exacto, sin mayúsculas) |
 | `ola` | no | p. ej. `2024` (exacto) |
 
