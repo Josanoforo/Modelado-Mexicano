@@ -1126,7 +1126,14 @@ def _lee_decisiones() -> dict:
     decidir -- `cmd_demanda` no inventa decisiones que mesa no firmo."""
     if not DECISIONES.exists():
         return {}
-    return {f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)}
+    st = DECISIONES.stat()  # cache por (ruta, mtime, tamano): se llama por RESULT
+    llave = (str(DECISIONES), st.st_mtime_ns, st.st_size)
+    if _CACHE_DECISIONES.get("llave") != llave:
+        _CACHE_DECISIONES.update(llave=llave, v={f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)})
+    return dict(_CACHE_DECISIONES["v"])
+
+
+_CACHE_DECISIONES: dict = {}
 
 
 def _semilla_numeracion_de_hoy() -> dict:
@@ -1383,8 +1390,12 @@ def cmd_demanda(args) -> int:
         # con desglose, en vez de rotularlo con una sola firma que ya no lo
         # describe.
         print(f"decisiones_aplicadas = {len(decisiones)}")
-        for firma in sorted({_firma_de_decision(o) for o in decisiones}):
-            n = sum(1 for o in decisiones if _firma_de_decision(o) == firma)
+        # Una sola lectura: `_firma_de_decision` relee el TSV por objeto
+        # (cuadratico; colgo la suite con las 4516 filas de FIRMAS-19).
+        firma_de = {f["objeto"]: (f.get("fuente") or NO_DECLARADO).split("(")[0].strip()
+                    for f in _leer_tsv(DECISIONES)}
+        for firma in sorted({firma_de.get(o, NO_DECLARADO) for o in decisiones}):
+            n = sum(1 for o in decisiones if firma_de.get(o, NO_DECLARADO) == firma)
             print(f"decisiones_aplicadas[{firma}] = {n}")
     if ambiguas:
         print("\nAGRUPACIONES / RESOLUCIONES QUE EL REGISTRO NO DECIDE "
