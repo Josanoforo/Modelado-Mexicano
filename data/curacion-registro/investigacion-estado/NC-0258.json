@@ -1,0 +1,32 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 0,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "Cablear los tres cuestionarios ENAPROCE 2015 ya manifestados a la tabla de fuentes del extractor sin re-descarga; después buscar el descriptor ENAPROCE 2018.",
+  "estado": "evidencia_existente",
+  "evidencias": [
+    "forense/notas/2026-09-26-GEN2-38-investigacion-adq.md",
+    "data/manifiesto.yaml",
+    "data/raw/ENAPROCE_instrumentos/enaproce2015_micro.pdf",
+    "data/raw/ENAPROCE_instrumentos/enaproce2015_pyme_comserv.pdf",
+    "data/raw/ENAPROCE_instrumentos/enaproce2015_pyme_manufac.pdf"
+  ],
+  "frontera_no_examinada": "Las restantes familias REQUIERE-FD-EN-CORPUS, empezando por enaproce2018, y el cableado explícito ENAPROCE 2015 variable a reactivo.",
+  "necesidad_id": "NC-0258",
+  "proxima_revision": "2026-09-27",
+  "suficiencia": {
+    "conceptual": "PARCIAL",
+    "diseno": "ACREDITADA",
+    "identidad": "ACREDITADA",
+    "identificacion": "NO_APLICA",
+    "poblacional": "PARCIAL",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "PARCIAL",
+    "temporalidad": "ACREDITADA",
+    "unidad": "ACREDITADA",
+    "uso_habilitado": "APTA_ALCANCE_MENOR"
+  },
+  "ultima_exploracion": "2026-09-26",
+  "version_pregunta": "AUTO-NC-v1-11a62e37243a"
+}
