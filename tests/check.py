@@ -214,6 +214,11 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # ASTRA6-C2-ENVIPE-1: recibo exigido por nombre, evidencias de actos distintos.
+        frozenset({
+            "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md",
+        }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
         # sus cuatro specs selladas (COMMIT-1), así que no se renombra.
@@ -276,7 +281,9 @@ def t02_duplicates():
         # Los módulos de herramientas con paquete tienen identidad por ruta:
         # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
         # El control por contenido sigue incluyendo todos los módulos.
-        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
+        # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta;
+        # conserva su medidor sellado sin colisionar con el auxiliar U4 legado.
+        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
