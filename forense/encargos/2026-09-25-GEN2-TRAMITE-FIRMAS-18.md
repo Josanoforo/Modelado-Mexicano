@@ -39,3 +39,6 @@ Propio: `forense/firmas-pendientes.tsv`, `no-corrido.tsv`, `data/corrida0/decisi
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No releva. Sucesor: `GEN2-RELEVO-CONSUMIDORES-3` (H1–H3; dirección lo escribe sobre este trámite fusionado).
+
+## NO-CORRIDO / RESERVAS
+Ninguno. (Premisa corregida y declarada en la nota: H4 cita PR #1093, no #1091, para CALC-ENIF-0001 y CALC-R-DIN-M-01-v4 — logística; la firma pide «el PR de fusión».)

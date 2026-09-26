@@ -2969,6 +2969,9 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ACTO GEN2-TRAMITE-FIRMAS-17, 25/sep/2026: el encargo (verbatim, A.3) cita
     # `M01`..`M23` del catálogo, los mismos ids de momento de RELEVO-CONSUMIDORES-2.
     "forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-17.md",
+    # ACTO GEN2-TRAMITE-FIRMAS-18, 26/sep/2026: el encargo (verbatim, A.3) cita
+    # `M01`–`M23` del catálogo en la firma H2, los mismos ids de FIRMAS-17.
+    "forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md",
     # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
     # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
     "forense/analisis/astra-theta/seleccion.md",
