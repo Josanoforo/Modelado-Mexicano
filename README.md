@@ -5,7 +5,7 @@
 **Lo que la gente dijo en la última encuesta oficial, por segmento, con intervalo calibrado — y la prueba pública de que ningún modelo lo ha mejorado.**
 
 <!-- TABLERO-DERIVADO:BEGIN -->
-**296** <!-- deriva[N_corridas_selladas]: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> corridas selladas · **20** <!-- deriva[celdas_validadas_prospectiva]: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> predicciones selladas antes de abrir la ola contra la que se comparan · **28** <!-- deriva[reports_medibles]: python3 tools/readme_derivado.py --clave reports_medibles --> de **31** <!-- deriva[reports_total]: rg --files corpus/reports -g '*.md' | wc -l --> reports con afirmaciones medibles en el corpus · todo reproducible desde este repo.
+**296** <!-- deriva[N_corridas_selladas]: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> corridas selladas · **20** <!-- deriva[celdas_validadas_prospectiva]: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> predicciones selladas antes de abrir la ola contra la que se comparan · **29** <!-- deriva[reports_medibles]: python3 tools/readme_derivado.py --clave reports_medibles --> de **31** <!-- deriva[reports_total]: rg --files corpus/reports -g '*.md' | wc -l --> reports con afirmaciones medibles en el corpus · todo reproducible desde este repo.
 <!-- TABLERO-DERIVADO:END -->
 
 **[Leer el informe](docs/informe.md) · [Consultar el catálogo](docs/consultar.md) · [Verificar en cinco minutos](docs/verificar.md)**
