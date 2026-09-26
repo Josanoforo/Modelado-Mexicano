@@ -8,6 +8,7 @@ Predicciones y estimaciones segmentadas con encuestas oficiales de México, con 
 
 Los retadores evaluados no superaron los criterios de superioridad fijados en sus comparaciones. El lote ENIF conserva una propuesta con reserva; el piso subcubre en esa evaluación y en marginales. Los intervalos calibrados pertenecen a pruebas concretas.
 
+- [Consultar un piso: conducta y segmento]({{ '/consultar.html' | relative_url }}) · [contrato]({{ '/consulta.html' | relative_url }}) · [ejemplos]({{ '/ejemplos.html' | relative_url }})
 - [Qué prueba el programa]({{ '/guia-lectura-publica.html' | relative_url }})
 - [Verificar estructura y sellos]({{ '/verificar.html' | relative_url }})
 - [Corpus y catálogo]({{ '/catalogo.html' | relative_url }})

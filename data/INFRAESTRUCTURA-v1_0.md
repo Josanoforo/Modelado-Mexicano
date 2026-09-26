@@ -1008,3 +1008,9 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | `data/corrida0/CALC-BANXICO-SERIES-IMOR-0001/insumos/banxico-imor-consumo-mensual.csv` · `data/corrida0/CALC-CNBV-SERIES-IMOR-R16-0001/insumos/cnbv-imor-consumo.csv` | copia byte a byte de `data/fuentes-financieras-20/` (constancia congelada, sha en `spec.yaml`) | los de origen | los dos medidores | Una serie viva no se sella; se sella la descarga del 2026-09-11. |
 
 | `forense/validacion-independiente/catalogo-1/universo.tsv` | `python3 tools/validacion/astra6_paquetes.py --prepara` antes de congelación; `--verifica` después | llave · CALC · RESULT · celda · instrumento · ola · unidad · firma · paquete · estado | validadores C1 y comparador de preparación | Corte fijo, estado NO-EVALUADO; no es registro de validaciones. Paquetes y esperados se separan. |
+
+## `docs/data/` — export de consulta estática (`ACTO GEN2-PRODUCTO-CONSULTA-1`, 26/sep/2026)
+
+| tabla | deriva | columnas | consume | nota |
+|---|---|---|---|---|
+| `docs/data/catalogo-v1_N.json` · `docs/data/catalogo-vigente.json` | `python3 tools/benchmark.py exporta` desde el catálogo vigente (`canon/catalogo-del-mexicano-v1_N.tsv`, N mayor) | columnar: `columnas · diccionarios · filas` (las del catálogo) + `hashes · reglas · ejes · olas_reservadas · cobertura · excluidos` | `docs/consultar.md` | Derivado; no se edita a mano. `tests/test_benchmark.py` lo compara con el catálogo fila por fila. Contrato: `docs/consulta.md`. |

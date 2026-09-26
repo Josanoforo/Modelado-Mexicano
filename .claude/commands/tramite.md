@@ -65,6 +65,12 @@ el guardrail gana y lo reportas.
      tocar cualquiera de ellas, eso es interpretar o decidir contenido
      sustantivo — no toca este agente, va al acto de dirección
      correspondiente (§3 de la propuesta de Astra). Ver bloque 3.6.
+   - `canon/MEMORIA-OPERATIVA.md`, **LIMITADO al bloque entre
+     `<!-- T-MEM:INICIO -->` y `<!-- T-MEM:FIN -->`**, y
+     `forense/analisis/cableado/herramientas.tsv` — ambos solo por
+     `tools/memoria_operativa.py --escribe` (bloque 3.8; `ACTO
+     GEN2-TUBERIA-CABLEADO-SESIONES-1`). Las secciones a mano de la
+     memoria son de dirección: si el diff las toca, **PARA**.
    **Nada más.** Ni `canon/`, ni `tests/`, ni `milpa/`, ni `tools/`, ni
    `.github/`, ni el resto de `data/`, ni este archivo. Si te encuentras
    escribiendo fuera de esa lista, **PARA** — el perímetro estaba mal
@@ -477,6 +483,19 @@ Estos son veredictos de **cobertura**, no estados de los TSV. Compartir
 tema o aparecer en el mismo PR solo produce una relación candidata; no
 afirmar que una decisión nunca existió solo porque no apareció en el
 universo consultado por este agente.
+
+### 3.8 · T-MEM — regenerar la memoria operativa (`ACTO GEN2-TUBERIA-CABLEADO-SESIONES-1`, P3)
+
+En cada trámite, después de mover filas a `FIRMADA` (3.1):
+```
+python3 tools/memoria_operativa.py --escribe
+python3 tools/memoria_operativa.py --verifica   # VERDE o no se commitea
+git diff --stat -- canon/MEMORIA-OPERATIVA.md forense/analisis/cableado/herramientas.tsv
+```
+El script solo reescribe el bloque derivado (FIRMADA del último corte,
+14 días) y el índice de `tools/`; el diff de la memoria fuera de los
+marcadores debe ser vacío. Si la memoria supera 80 líneas, `--verifica`
+falla: no se recorta a mano, va como fila del digesto para dirección.
 
 ---
 
