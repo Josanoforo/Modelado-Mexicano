@@ -1,0 +1,45 @@
+calc_id: CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001
+spec_md: spec.md
+spec_md_sha256: e19c13db37e1593ba531585b1e82670cfcfa31ce3ad65866a43f2eb99af106f0
+script: data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/medidor.py
+script_sha256_congelado: 5dde6340f0d1c584d1a6f7c18eaab868f98b5c4909ba0c68326aa4f42a01b6b7
+etiquetas:
+  generacion: GEN2
+  tipo: PROSPECTIVA-EMISION-SIN-R
+  cuenta_gen2: 'NO'
+  rotulo: PROSPECTIVA
+inputs:
+- id: CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1
+  origen: repo
+  ruta: data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/resultados.json
+  sha256: 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+  sello_sha256: 1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609
+variables:
+- archivo: resultados.json
+  variable: RESULT-HVD-A-AMBAS-VIAS
+  rol: piso inmutable
+universo: proporción sobre U_B; no microdatos
+filtros: NO-APLICA
+ponderador: NO-APLICA
+transformacion: verbatim del RESULT sellado
+estimando: piso fijo histórico para una ola objetivo, sin evaluación futura
+dependencias_materiales: []
+seed:
+  aplica: false
+  motivo: determinista
+parametros:
+  replicas: 2000
+  banda: 0.02
+  min_n: 10000
+  min_estratos: 150
+  min_upm: 1000
+  futuro_ids: null
+  R_futura: null
+  agrupacion: NACIONAL
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+resultados:
+- id: RESULT-FAMILIA-ENIF-HORIZONTE-AHORRO-PISO-P
+  tipo: proporcion
+  unidad: proporción

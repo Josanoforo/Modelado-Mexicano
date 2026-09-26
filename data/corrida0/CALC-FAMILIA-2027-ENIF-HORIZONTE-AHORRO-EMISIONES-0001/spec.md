@@ -1,0 +1,2 @@
+# Emisión HORIZONTE-AHORRO · COMMIT-1/2
+PROPUESTO-POR-EJECUTOR. Referencia humana: forense/prereg-caja/FAMILIA-2027-ENIF-HORIZONTE-AHORRO-spec-v1_3.md. Emite verbatim RESULT-HVD-A-AMBAS-VIAS de CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1, identificado por hash de resultado y sello. Piso fijo; cero retadores, ninguna R futura. No reinterpreta ni modifica histórico. El primer resultado producido es el reportado. Resultado propio, reproducción por corrida0 separada del oro histórico.

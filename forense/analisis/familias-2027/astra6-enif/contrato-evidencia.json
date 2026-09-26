@@ -1,0 +1,51 @@
+{
+  "tipo": "LEÍDO-METADATOS-Y-SPECS-SIN-MICRODATOS",
+  "head": "cca0d551c5fce4509f217b3d80a3111e2c6da4c8",
+  "fuentes": {
+    "forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md": "b1b2afdfbcbe9dfc612eaa5b076aa201d58323c972148810ca7eac97daa78dd3",
+    "forense/prereg-caja/FAMILIA-2027-ENIF-AHORRO-FORMAL-spec-v1_2.md": "9873d11076d6282c35e762ea2529bb2cda8fdeb16a5861cf98b812013c585fbd",
+    "forense/prereg-caja/FAMILIA-2027-ENIF-HORIZONTE-AHORRO-spec-v1_2.md": "a163e55d22af0eb2e5c5ba88c56bb75ab6fcc25bb349ea371e3486880be41c1f",
+    "forense/analisis/familias-2027/HOJA-FAMILIAS-2027-para-mesa.md": "2978561f5eeed6dc548bccc1ffc81c2ee6c9689c9415858f18e35034133cee3f",
+    "data/corrida0/CALC-ENIF-0001/spec.yaml": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "data/corrida0/CALC-TIENE-AHORROS-0001-v1_1/spec.yaml": "5d57bfec2aef0fab1ba3cc7baf14844ab7e25c157e0e83808cb4644da798994b",
+    "data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/spec.yaml": "d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf",
+    "data/corrida0/CALC-ENIF-0001/sello.json": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/sello.json": "1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609"
+  },
+  "identidad_conceptual": "F + I - (F or I) = F and I",
+  "formal_columnas": [
+    "P5_6_1",
+    "P5_6_2",
+    "P5_6_3",
+    "P5_6_4",
+    "P5_6_5",
+    "P5_6_6",
+    "P5_6_7",
+    "P5_6_8",
+    "P5_6_9"
+  ],
+  "informal_columnas": [
+    "P5_1_1",
+    "P5_1_2",
+    "P5_1_3",
+    "P5_1_4",
+    "P5_1_5",
+    "P5_1_6"
+  ],
+  "comparacion_piso": "R - p0 fijo sellado",
+  "identidad_empirica": "PENDIENTE-ORO-AUTORIZADO",
+  "firma_mision": "encargo §2 Jonás Acordado 26/sep/2026 12:07:56 America/Mexico_City",
+  "procedimiento_v1_2": "PROPUESTO según hoja U4; no COMMIT-1 ejecutable previo localizado",
+  "firma_nueva": "NO-DUPLICADA",
+  "busqueda_firmas": {
+    "coincidencias_exactas_enif_familias": 0,
+    "registro": "forense/firmas-pendientes.tsv",
+    "historicas_referidas_por_hoja": [
+      "FP-374",
+      "NC-0161",
+      "NC-0162",
+      "NC-0234"
+    ],
+    "alcance": "referencias de otra cadena; no adopción de protocolo futuro"
+  }
+}
