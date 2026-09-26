@@ -6,12 +6,13 @@ plugins: []
 theme: minima
 # Navegación de primer nivel (GEN2-FRONT-3-PORTADA-1, P4): Inicio · Informe ·
 # Catálogo · Consultar · Verificar · Reto · Contacto. minima pinta estas
-# páginas en la cabecera con su `title`; «Inicio» es el título del sitio y
-# «Consultar» apunta al catálogo hasta que exista docs/consultar.md
-# (PRODUCTO-CONSULTA-1). Lo demás se enlaza desde «Más» en docs/index.md.
+# páginas en la cabecera con su `title`; «Inicio» es el título del sitio.
+# «Consultar» es docs/consultar.md (PRODUCTO-CONSULTA-1, #1163). Lo demás
+# se enlaza desde «Más» en docs/index.md.
 header_pages:
   - informe.md
   - catalogo.md
+  - consultar.md
   - verificar.md
   - reto.md
   - contacto.md
