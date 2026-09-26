@@ -29,6 +29,7 @@ Cifras del catálogo, por comando: 43 188 estimadores <!-- comando: python3 fore
   - `docs/one-pager.md` traía 3 cifras desfasadas (246 → 287 corridas, entre otras). Se refrescaron con el derivador.
   - Dos filas del catálogo salían `SIN-DOMINIO` porque su primer consumidor era una fila de `milpa/catalogo-momentos-v0_1.tsv`. Ahora toman el dominio de otro consumidor.
   - Los derivados de `v1_2/` llevan sufijo `-v1_2` por `T02`.
+  - `GEN2-PRODUCTO-CONSULTA-1` (`PR #1163`) fusionó durante el acto, y el encargo lo había previsto («si toca `docs/`, rebasar»). Su `tools/benchmark.py` toma el catálogo de N mayor, así que el export de Pages y `docs/ejemplos.md` quedaban en v1.1: se regeneraron con `benchmark.py exporta` y `benchmark.py ejemplos`. `docs/data/catalogo-v1_1.json` se conserva.
   - El clon era superficial. Se corrió `git fetch --unshallow` para que corrieran los comandos `git log --merges` heredados.
 
 ## Receta de release `v2026.09.2`, para mesa (P5)
