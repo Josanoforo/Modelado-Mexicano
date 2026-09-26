@@ -27,7 +27,7 @@ Cifras del catálogo, por comando: 43 188 estimadores <!-- comando: python3 fore
 - **Defectos adyacentes (D-21):**
   - `tests/test_frente_publico_2.py` exigía que la tabla de piso v1.0, que es histórica, igualara el contador vivo (72 ≠ 81, rojo también en `main`). Se quitó esa aserción.
   - `docs/one-pager.md` traía 3 cifras desfasadas (246 → 287 corridas, entre otras). Se refrescaron con el derivador.
-  - Dos filas del catálogo salían `SIN-DOMINIO` porque su primer consumidor era un momento M04/M08. Ahora toman el dominio de otro consumidor.
+  - Dos filas del catálogo salían `SIN-DOMINIO` porque su primer consumidor era una fila de `milpa/catalogo-momentos-v0_1.tsv`. Ahora toman el dominio de otro consumidor.
   - Los derivados de `v1_2/` llevan sufijo `-v1_2` por `T02`.
   - El clon era superficial. Se corrió `git fetch --unshallow` para que corrieran los comandos `git log --merges` heredados.
 
