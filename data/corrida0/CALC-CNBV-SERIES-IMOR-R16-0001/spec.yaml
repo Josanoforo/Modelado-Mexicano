@@ -43,3 +43,8 @@ resultados:
   - {id: RESULT-CNBV-SERIES-AUT-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
   - {id: RESULT-CNBV-SERIES-BM-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
   - {id: RESULT-CNBV-SERIES-OTR-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+parametros:
+  productos: {CON: Cartera total de consumo, TDC: Tarjeta de Crédito, PER: Personales, NOM: Nómina, ABCD: ABCD, AUT: Automotriz, BM: Adq. de Bienes Muebles, OTR: Otros Créditos de Consumo}
+  vacio_declarado: Ops de Arrendamiento Capitalizable
+  fecha: '2021-12'
+  adopcion: NINGUNA

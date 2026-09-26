@@ -75,3 +75,9 @@ resultados:
   - {id: RESULT-BANXICO-SERIES-PER-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
   - {id: RESULT-BANXICO-SERIES-PER-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
   - {id: RESULT-BANXICO-SERIES-PER-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+parametros:
+  productos: {CON: Consumo total, TDC: Tarjetas de crédito, ABCD: ABCD, NOM: Nómina, PER: Personales}
+  puntos: ['2026-03', '2025-09', '2024-12', '2024-03', '2024-02', '2023-12']
+  anio_media: '2025'
+  interanual: ['2026-03', '2025-03']
+  adopcion: NINGUNA
