@@ -214,6 +214,11 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # Sync #1172 con #1173: paquetes ENCIG/ENVIPE distintos; rutas congeladas y hashes propios.
+        frozenset({"forense/analisis/familias-2027/astra6-encig/calendario.md", "forense/analisis/familias-2027/astra6-envipe/calendario.md"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/arranque.md", "forense/analisis/familias-2027/astra6-envipe/arranque.md"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/potencia.json", "forense/analisis/familias-2027/astra6-envipe/potencia.json"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/commit-1-hashes.json", "forense/analisis/familias-2027/astra6-envipe/commit1-hashes.json"}),
         # ASTRA6-C2-ENVIPE-1: recibo exigido por nombre, evidencias de actos distintos.
         frozenset({
             "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",

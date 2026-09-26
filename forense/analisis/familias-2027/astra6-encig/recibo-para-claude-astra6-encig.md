@@ -23,3 +23,7 @@ SELLADO-INTERNAMENTE. Sellada en disco/no registrada aún en vistas protegidas; 
 | Qué | Por qué | Impacto | Sucesor |
 |---|---|---|---|
 | Atestación externa verificada de COMMIT-1/2 ENCIG | NO-VERIFICABLE-AQUÍ: inventario entregado; sin comprobante OTS ni envío acreditado por circuito de mesa | atestaciones verificadas permanece cero; no permite anunciar ATESTIGUADO-EXTERNAMENTE | FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02 |
+
+## Sincronización posterior a #1173
+
+EJECUTADO: main `e8de0f2853d406f344d6b1ac05735f18767ee4ed` incorporado en `a63c40ee12ad7ea405ac367c2a2ec36cf5380ab6`; infraestructura conserva ambos asientos. Corrección acotada de cuatro colisiones de nomenclatura ENCIG/ENVIPE en T02, con prueba de que archivos ajenos y duplicación de contenido continúan fallando. Evidencia: sync-1173-main-ci-encig.md. Código estadístico y sellos sin cambios; no fusión de #1172.
