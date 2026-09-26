@@ -140,13 +140,14 @@ tools/prepara_oecd_pum_docx.py	Completa sólo los campos técnicos del formulari
 tools/prospectividad.py	Rótulo PROSPECTIVA / RETROSPECTIVA del marcador -- ACTO GEN2-MARCADOR-E-INFORME-1 · P2.
 tools/publica_motral2015_valoracion.py	Publica la tabla larga de estimandos sellados de MOTRAL 2015.
 tools/publica_shed2025_bnpl_dano.py	Materializa agregados legibles del RESULT sellado de SHED 2025.
-tools/readme_derivado.py	Refresca las cifras de `corrida0.py status` en la tabla derivada de README.md.
+tools/readme_derivado.py	Deriva las cifras de la portada (README.md, docs/index.md) y sus badges por comando.
 tools/recorre_mordida_con_registro_encig25.py	ACTO MAESTRA35-L1 · P1 · `tramite.mordida.con_registro` recorrida SIN deduplicar.
 tools/recupera_reactivos_fd.py	ACTO GEN2-RESIDUAL-81-1 — recupera enunciados de reactivo desde la capa FD ya indexada.
 tools/reempareja.py	SIN-DOCSTRING
 tools/relevo_candidatos_delta.py	Prepara y decide los CANDIDATO-GEN2 vigentes sin adoptar consumidores.
 tools/relevo_usos.py	`relevo-usos` -- ACTO GEN2-RELEVO-USOS-1 · cablea la ultima milla.
 tools/renderiza_pagina.py	Renderiza páginas con el navegador real de la caja (Chrome/Edge de Windows, headless) y
+tools/resuelve_cita.py	Resuelve una cita por NOMBRE de archivo a su ruta actual, vía archivo/INDICE.md.
 tools/resuelve_citas.py	Resuelve una cita `RES-####` / `CORR-####` AL MOMENTO EN QUE SE ESCRIBIO.
 tools/rutas_sin_candidato.py	Clasifica el residual SIN-CANDIDATO sin inferir equivalencias científicas.
 tools/rutinas.py	Reglas deterministas compartidas por `/revisa`, `/despacha` y `/tramite`.

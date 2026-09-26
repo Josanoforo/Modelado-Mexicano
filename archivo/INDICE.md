@@ -11,7 +11,9 @@ estos nombres —o un enlace relativo a la raíz— se lee con esta tabla:
     python3 tools/resuelve_cita.py <nombre>
 
 La tabla se deriva por comando, no se teclea:
-`python3 tools/resuelve_cita.py --genera 1734006a`. La guarda es
+`python3 tools/resuelve_cita.py --genera 1734006a` y `--genera 40a1829a`
+(`requirements-dev.txt`, sustituido por el grupo `dev` de `pyproject.toml`;
+su `-r requirements.txt` interno ya no resuelve desde `archivo/`: usa `uv sync --group dev`). La guarda es
 `tests/test_portada.py`. Lo normativo vigente vive en [gobierno/](../gobierno/).
 
 FRONT-1 (23/sep) había aplazado este movimiento por las citas selladas; su
@@ -54,3 +56,4 @@ inventario sigue en la [nota de cierre](../forense/notas/2026-09-23-GEN2-FRONT-1
 | `PROPUESTA-remediacion-brecha-documental.md` | `archivo/propuestas/PROPUESTA-remediacion-brecha-documental.md` | `1734006a` |
 | `revision-programa-2026-07-31.md` | `archivo/propuestas/revision-programa-2026-07-31.md` | `1734006a` |
 | `revision-publicacion-2026-07-30.md` | `archivo/propuestas/revision-publicacion-2026-07-30.md` | `1734006a` |
+| `requirements-dev.txt` | `archivo/requirements-dev.txt` | `40a1829a` |

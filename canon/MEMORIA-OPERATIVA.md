@@ -26,7 +26,9 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-26 · 121 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-26 · 123 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- FP-260926-GEN2-FRONT-3-PORTADA-1-8914-02 · congelar (texto de portada) · 26/09
+- FP-260926-GEN2-FRONT-3-PORTADA-1-8914-01 · borrar / reescribir (movimiento de raíz) · 26/09
 - FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-03 · adoptar (pisos 03 del acto; ninguna regla consumidora todavia) · 26/09
 - FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-02 · adoptar (pisos 02 del acto; ninguna regla consumidora todavia) · 26/09
 - FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
@@ -37,8 +39,6 @@
 - FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-03 · adopcion de los pisos PEW Global Attitudes 2013-2024 · 26/09
 - FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02 · adopcion de los pisos Latinobarometro 2023 · 26/09
 - FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01 · adopcion de los pisos WVS 2018 · 26/09
-- FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-03 · 42 lecturas del marco · 25/09
-- FP-260925-GEN2-RELEVO-CONSUMIDORES-2-e760-02 · 8 lecturas del catálogo · 25/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa

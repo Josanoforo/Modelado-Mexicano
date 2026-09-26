@@ -2,7 +2,7 @@
 
 Encargo: `forense/encargos/2026-09-26-GEN2-FRONT-3-PORTADA-1.md` (0-bis `89148f00`, `.cuerpo.sha256` `ae0ee16a…`). SHA de redacción `34949751` = base (0 detrás). NUBE (hook: `ENTORNO-DERIVADO = NUBE`; no toca microdato ni red). Rama `claude/new-session-7p7kao`, una sesión. MODO AUTÓNOMO-AMPLIO. ADR `ADR-260926-GEN2-FRONT-3-PORTADA-1-8914-01`.
 
-CONTADOR: cero mediciones; no adopta. celdas_validadas: 219 → 219 (Δ0) @ 4761ce3a. Contador propio: archivos de primer nivel en la raíz **46 → 11** (`ls -p | grep -v / | wc -l`; ver §Premisas); enlaces relativos rotos en README, CONTRIBUTING y `docs/`: **0** (`python3 tests/test_portada.py`).
+CONTADOR: cero mediciones; no adopta. celdas_validadas: 219 → 219 (Δ0) @ 4761ce3a. Contador propio: archivos de primer nivel en la raíz **46 → 12** (`ls -p | grep -v / | wc -l`; 11 tras P1 y 12 tras fusionar CABLEADO-SESIONES-1, ver §Tras el merge); enlaces relativos rotos en README, CONTRIBUTING y `docs/`: **0** (`python3 tests/test_portada.py`).
 
 ## Piezas
 
@@ -33,3 +33,9 @@ Mesa, sobre el bloqueo de permisos de los `git mv`: «aprobado».
 ## Suite
 
 `python3 tests/check.py --rapido` @ `4761ce3a`: `0 FAIL · 516 WARN`. `tests/test_portada.py`: OK (raíz 11, índice 35, enlaces sin rotos). `tests/test_arnes_sesion.py`: 13/0. `tests/test_readme_derivado.py`: ver el cierre del encargo. `--baseline` completo: ver el cierre del encargo.
+
+## Tras el merge de CABLEADO-SESIONES-1 (#1165) y ASTRA6 (#1166)
+
+- CABLEADO dejó `pyproject.toml` y `uv.lock` en la raíz (13 archivos). P1 lo prevé («si ya está [pyproject.toml], solo pyproject.toml»), pero `requirements.txt` no puede salir: lo instalan los jobs de `verify.yml` (ajeno), lo leen `tools/ci_guardias.py` y `tests/test_cableado_sesiones.py`, y el propio `pyproject.toml` declara que «requirements.txt sigue siendo lo que instala la CI». Sale `requirements-dev.txt` (`40a1829a`, `git mv` → `archivo/`), que el grupo `dev` de `pyproject.toml` sustituye; fila 36 del índice por `resuelve_cita.py --genera 40a1829a`. `uv.lock` se queda junto a `pyproject.toml`. Raíz: **12**.
+- `canon/MEMORIA-OPERATIVA.md` (bloque T-MEM) y `forense/analisis/cableado/herramientas.tsv` son derivados que mueven las dos FP FIRMADA y el `tools/resuelve_cita.py` de este acto: regenerados por su comando (`python3 tools/memoria_operativa.py --escribe`, `--verifica` VERDE); sin eso, `tests/test_cableado_sesiones.py` falla (medido: 19/1 → 20/0).
+- Nota del ejecutor: durante esta verificación un comando mío corrió por error `git checkout origin/main -- .` sobre el árbol; se restauró con `git reset --hard HEAD` (sin `manifiesto-staging` modificado, D-d) y `git stash pop`. Ningún commit se perdió: HEAD `40a1829a` intacto, y las dos ediciones sin commit estaban en el stash.

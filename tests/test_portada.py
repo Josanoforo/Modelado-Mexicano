@@ -32,7 +32,7 @@ import resuelve_cita as RC  # noqa: E402
 MAX_RAIZ = 12
 FAILS: list[str] = []
 CITA = re.compile(
-    r"(?<![\w/.-])((?:instrucciones-proyecto-v|propuesta-|PROPUESTA-|revision-)[\w.\-]+?\.md(?:\.sha256)?)(?![\w.-])")
+    r"(?<![\w/.-])((?:instrucciones-proyecto-v|propuesta-|PROPUESTA-|revision-)[\w.\-]+?\.md(?:\.sha256)?|requirements-dev\.txt)(?![\w.-])")
 ENLACE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
 
 
