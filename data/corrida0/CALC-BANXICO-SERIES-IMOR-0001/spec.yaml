@@ -1,0 +1,83 @@
+calc_id: CALC-BANXICO-SERIES-IMOR-0001
+spec_md: ../../../forense/prereg-caja/DINERO-SERIES-IMOR-spec-v1_0.md
+spec_md_sha256: bc45e4edbbd0f4378e68524de90634a2024d6feb57a98b24553e1f518bdabf8a
+script: data/corrida0/CALC-BANXICO-SERIES-IMOR-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: SERIE-ADMINISTRATIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  evaluacion: RETROSPECTIVA
+  validacion_independiente: PENDIENTE-POST-SELLO
+  medidor_ejecutado_al_congelar: 'NO'
+  fuente_acto: ACTO GEN2-DINERO-SERIES-CNBV-BANXICO-1
+inputs:
+  - id: IN-BANXICO-IMOR-CONSUMO-MENSUAL
+    origen: repo
+    ruta: data/corrida0/CALC-BANXICO-SERIES-IMOR-0001/insumos/banxico-imor-consumo-mensual.csv
+    sha256: 772f9d0b9da57b18ef9abdd5824b0824b6191e65668103e3a8329171d3df88e9
+variables: []
+universo: >-
+  Banca comercial (incluye Sofomes ER subsidiarias; excluye CI Banco), 2016-01..2026-03, cinco productos de consumo; Banxico Informe Trimestral ene-mar 2026.
+filtros: NO-APLICA (el medidor aborta ante faltante, duplicado o fuera de rango)
+ponderador: NO-APLICA (serie agregada de saldos; media 2025 da igual peso a cada mes)
+transformacion: niveles por periodo fijado; media aritmetica 2025; cambio interanual en pp (ver spec.md §3-§4)
+estimando: >-
+  IMOR de consumo por producto (porcentaje de saldo de cartera) en periodos fijados. SERIE-ADMINISTRATIVA; unidad saldo, no persona; no se promedia con pisos de encuesta.
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: calculo determinista sobre valores de dos decimales
+resultados:
+  - {id: RESULT-BANXICO-SERIES-G-INPUT-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-BANXICO-SERIES-G-N-FILAS, tipo: entero, unidad: filas producto-mes}
+  - {id: RESULT-BANXICO-SERIES-G-CORTE, tipo: texto, unidad: periodo mensual}
+  - {id: RESULT-BANXICO-SERIES-G-UNIDAD, tipo: texto, unidad: rotulo de unidad}
+  - {id: RESULT-BANXICO-SERIES-CON-2026-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-2025-09, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-2024-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-2024-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-2024-02, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-CON-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+  - {id: RESULT-BANXICO-SERIES-TDC-2026-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-2025-09, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-2024-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-2024-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-2024-02, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-TDC-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2026-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2025-09, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2024-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2024-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2024-02, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-ABCD-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+  - {id: RESULT-BANXICO-SERIES-NOM-2026-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-2025-09, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-2024-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-2024-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-2024-02, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-NOM-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+  - {id: RESULT-BANXICO-SERIES-PER-2026-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-2025-09, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-2024-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-2024-03, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-2024-02, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-2023-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-MEDIA-2025, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-BANXICO-SERIES-PER-YOY-2026-03-PP, tipo: flotante, unidad: puntos porcentuales de saldo}
+parametros:
+  productos: {CON: Consumo total, TDC: Tarjetas de crédito, ABCD: ABCD, NOM: Nómina, PER: Personales}
+  puntos: ['2026-03', '2025-09', '2024-12', '2024-03', '2024-02', '2023-12']
+  anio_media: '2025'
+  interanual: ['2026-03', '2025-03']
+  adopcion: NINGUNA

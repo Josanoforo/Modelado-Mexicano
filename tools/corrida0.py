@@ -348,6 +348,41 @@ def _consumidores_rol_historico() -> set[str]:
             if s.rol_uso == ROL_HISTORICO}
 
 
+# FIRMAS-18 H1/H2/H3 (FP e760-01/02/03, FIRMADA 25/sep/2026; ejecuta
+# RELEVO-CONSUMIDORES-3): una lectura declarada HISTÓRICO-SIN-RELEVO sale del
+# contador legacy y se cuenta aparte; no se borra del registro. H1 y H2 se
+# leen de la marca por fila en el archivo vivo (escrita por el escritor V6);
+# H3 nombra por firma las lecturas L/AGREGADO del marco v1_3.
+ESTADO_HISTORICO_SIN_RELEVO = "HISTÓRICO-SIN-RELEVO"
+TIPOS_HISTORICO_H3 = frozenset({"celda_L", "celda_AGREGADO"})
+PREFIJO_MARCO_H3 = "forense/prereg-duelo-v2/marco-M-sorteado-v1_3.tsv:"
+
+
+def _consumidores_historico_sin_relevo() -> set[str]:
+    """Consumidores de procedencia (H1) y catálogo (H2) marcados
+    HISTÓRICO-SIN-RELEVO en su propia fila; H3 va por `tipo_uso`."""
+    fuera: set[str] = set()
+    if PROCEDENCIA.exists():
+        crudo = _yaml_safe_load(PROCEDENCIA.read_text(encoding="utf-8")) or {}
+        for d in (crudo.get("asignados_coeficiente") or {}).get("detalle") or []:
+            for coef, marca in (d.get("historico_sin_relevo") or {}).items():
+                if str(marca).startswith(ESTADO_HISTORICO_SIN_RELEVO):
+                    fuera.add(f"milpa/procedencia.yaml:asignados_coeficiente:"
+                              f"{d['gen']}.{coef}")
+    if CATALOGO_MOMENTOS.exists():
+        with open(CATALOGO_MOMENTOS, encoding="utf-8", newline="") as fh:
+            for f in csv.DictReader(fh, delimiter="\t"):
+                if (f.get("estado_relevo") or "").startswith(ESTADO_HISTORICO_SIN_RELEVO):
+                    fuera.add(f"milpa/catalogo-momentos-v0_1.tsv:{f['id_momento']}")
+    return fuera
+
+
+def _es_historico_sin_relevo(u: dict, marcados: set[str]) -> bool:
+    c = str(u["consumidor"])
+    return c in marcados or (c.startswith(PREFIJO_MARCO_H3)
+                             and u["tipo_uso"] in TIPOS_HISTORICO_H3)
+
+
 def medido_alguno(regla) -> bool:
     return any(str(s.clase or "").startswith("MEDIDO") for s in regla.entonces)
 
@@ -1091,7 +1126,14 @@ def _lee_decisiones() -> dict:
     decidir -- `cmd_demanda` no inventa decisiones que mesa no firmo."""
     if not DECISIONES.exists():
         return {}
-    return {f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)}
+    st = DECISIONES.stat()  # cache por (ruta, mtime, tamano): se llama por RESULT
+    llave = (str(DECISIONES), st.st_mtime_ns, st.st_size)
+    if _CACHE_DECISIONES.get("llave") != llave:
+        _CACHE_DECISIONES.update(llave=llave, v={f["objeto"]: f["decision"] for f in _leer_tsv(DECISIONES)})
+    return dict(_CACHE_DECISIONES["v"])
+
+
+_CACHE_DECISIONES: dict = {}
 
 
 def _semilla_numeracion_de_hoy() -> dict:
@@ -1348,8 +1390,12 @@ def cmd_demanda(args) -> int:
         # con desglose, en vez de rotularlo con una sola firma que ya no lo
         # describe.
         print(f"decisiones_aplicadas = {len(decisiones)}")
-        for firma in sorted({_firma_de_decision(o) for o in decisiones}):
-            n = sum(1 for o in decisiones if _firma_de_decision(o) == firma)
+        # Una sola lectura: `_firma_de_decision` relee el TSV por objeto
+        # (cuadratico; colgo la suite con las 4516 filas de FIRMAS-19).
+        firma_de = {f["objeto"]: (f.get("fuente") or NO_DECLARADO).split("(")[0].strip()
+                    for f in _leer_tsv(DECISIONES)}
+        for firma in sorted({firma_de.get(o, NO_DECLARADO) for o in decisiones}):
+            n = sum(1 for o in decisiones if firma_de.get(o, NO_DECLARADO) == firma)
             print(f"decisiones_aplicadas[{firma}] = {n}")
     if ambiguas:
         print("\nAGRUPACIONES / RESOLUCIONES QUE EL REGISTRO NO DECIDE "
@@ -5155,6 +5201,10 @@ def status(imprime: bool = True) -> dict:
     # es lectura numerica; se cuenta aparte, no se borra del registro.
     fuera_por_firma = [u for u in usos_activos if u["tipo_uso"] in TIPOS_FUERA_DEL_CONTADOR]
     usos_activos = [u for u in usos_activos if u["tipo_uso"] not in TIPOS_FUERA_DEL_CONTADOR]
+    # FIRMAS-18 H1/H2/H3 (ejecuta RELEVO-CONSUMIDORES-3): mismo trato.
+    _marcados_h = _consumidores_historico_sin_relevo()
+    historico_por_firma = [u for u in usos_activos if _es_historico_sin_relevo(u, _marcados_h)]
+    usos_activos = [u for u in usos_activos if not _es_historico_sin_relevo(u, _marcados_h)]
 
     # ACTO GEN2-PRE-E5 · P3: separar MEDICION de ADOPCION. Medir (sellar un
     # RESULT) y adoptar (que un consumidor activo lo lea) son eventos
@@ -5209,6 +5259,8 @@ def status(imprime: bool = True) -> dict:
         **_legacy_por_consumidor(usos_activos),
         "legacy_fuera_del_contador_por_firma__corte_pi": sum(
             1 for u in fuera_por_firma if u["generacion_leida"] == GENERACION_LEGADO),
+        "legacy_fuera_del_contador_por_firma__historico_sin_relevo": sum(
+            1 for u in historico_por_firma if u["generacion_leida"] == GENERACION_LEGADO),
         "usos_retirados_por_firma__rol_historico": sum(
             1 for u in usos if u["activo"] == "NO"
             and u["consumidor"] in _consumidores_rol_historico()),
