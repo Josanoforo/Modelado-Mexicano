@@ -233,6 +233,14 @@ def t02_duplicates():
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
+        # ACTO GEN2-FRONT-3-PORTADA-1 (26/sep/2026): `gobierno/README.md` es la portada de la
+        # carpeta en GitHub (convención de nombre, contenido distinto), y `docs/informe.md` es el
+        # destino verbatim del botón «Leer el informe» del README firmado por dirección (§11).
+        frozenset({"README.md", "gobierno/README.md"}),
+        frozenset({
+            "docs/informe.md",
+            "forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/INFORME.md",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
