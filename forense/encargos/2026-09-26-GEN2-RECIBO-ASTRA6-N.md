@@ -66,3 +66,7 @@ No fusiona, no adopta, no corrige a Astra. Sucesor: el siguiente N.
 | Citas externas de los reports de #1173 | NO-VERIFICABLE-AQUÍ: red denegada por política (EGRESS_BLOCKED). | La trazabilidad de literatura se verificó por forma, no por contenido de la fuente. | siguiente recibo C3 |
 | Plantilla GEN2-RECIBO-ASTRA-PRODUCTO-N | SUSTITUIDO-POR:criterios K1–K6 PROPUESTO-POR-EJECUTOR (absorbe los seis criterios comunes nombrados en el encargo; queda huérfano cualquier criterio de la plantilla que no esté en esa lista) | Si la plantilla aparece, la diferencia se declara. | mesa / dirección |
 | Recibo de #1166 y #1171 (N=1, N=2) | DIFERIDO-A:GEN2-RECIBO-ASTRA6-N (siguiente instancia; D-11 limita el lote a cuatro piezas) | #1171 sigue en main sin recibo (R(a)). | NC-…-996b-07 |
+
+## CONSUMIDO
+
+Ejecutado en PR #1178 (`ACTO GEN2-RECIBO-ASTRA6-N`, `ADR-260926-GEN2-RECIBO-ASTRA6-N-996b-01`) como lote D-11 de cuatro instancias: N=3 #1170 DEVOLVER · N=4 #1172 FUSIONAR-CON-NC · N=5 #1173 DEVOLVER · N=6 #1174 FUSIONAR-CON-NC. N=1 (#1166) y N=2 (#1171) quedan diferidos (NC-260926-GEN2-RECIBO-ASTRA6-N-996b-07). No fusiona, no adopta, no corrige a Astra.
