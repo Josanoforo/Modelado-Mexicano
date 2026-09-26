@@ -51,6 +51,8 @@ INVENTARIOS = [
     "data/inventario-reactivos-fd-recuperado-v1_0.tsv",
     "data/inventario-reactivos-contexto-fd26-v1_0.tsv",
     "data/inventario-reactivos-contexto-v1_1.tsv",
+    # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1: textos ENSU del FD (sin inventario previo).
+    "forense/analisis/seguridad-ensu/inventario-reactivos-ensu-v1_0.tsv",
 ]
 
 MED_ADQ = "MEDIBLE-CON-ADQUISICIÓN"
