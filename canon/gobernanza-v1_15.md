@@ -4372,6 +4372,8 @@ Gate: ninguno — acto de mesa directo, sin PR previo que fusionar. Entorno **NU
 
 ---
 
+**ADR-260926-GEN2-ASTRA6-C1-PAQUETES-1-6c30-01 · ACTO ASTRA6-C1-PAQUETES-1 · 26/sep/2026.** Preparación NO CIEGA del catálogo al corte `4f125e709d3b3830078fe749c82068b3d55e6e70`: universo completo y paquetes con SHA, primer lanzamiento local probado sin recálculo; faltantes explícitos, cero validaciones o adopciones nuevas. Encargo `forense/encargos/2026-09-26-ASTRA6-C1-PAQUETES-1.md`, SHA de redacción 34949751113358869be981e2220f25d97e8097bd; firma «Acordado» ya archivada en 0-bis, no duplicada. Producto `forense/validacion-independiente/catalogo-1/astra6-c1-paquetes-guia.md`; recibo de Claude pendiente.
+
 ## 5. Deuda declarada (decisiones abiertas, conscientemente)
 
 Esto **no** es una lista de pendientes: es deuda que se decidió asumir.

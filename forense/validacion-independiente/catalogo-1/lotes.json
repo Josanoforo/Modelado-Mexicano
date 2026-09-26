@@ -1,0 +1,855 @@
+[
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "calc": "CALC-AMAI-NSE-ENDUTIH-2023-0001",
+    "estimadores": 30,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "cf97a9af7bb640fac42fff7979a4aa4e216ffbea64c949c1a9eabc2138087b0a",
+    "archivo": "amai-nse-endutih-2023-0001-entradas.tar.gz",
+    "sha256_contenedor": "db6e61e121c08558e18f048dad7fd2c4f6ab98029674f31ce02879e376825b86"
+  },
+  {
+    "paquete": "amai-nse-enif-2024-0001",
+    "calc": "CALC-AMAI-NSE-ENIF-2024-0001",
+    "estimadores": 49,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "2cd3f52a6d7f94af1e4ea8d347171556a1442e76c685e4a823eb347958212985",
+    "archivo": "amai-nse-enif-2024-0001-entradas.tar.gz",
+    "sha256_contenedor": "dd4932eaa43a403afd30d9d60b8a58cc494d424ad61670e5935241e183e4055c"
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "calc": "CALC-AMAI-NSE-ENIGH-2022-0001",
+    "estimadores": 3,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "7fba1ec1adb80328706eb1b3ab261f97f41b9a165974375a62ad32cabb6057b9",
+    "archivo": "amai-nse-enigh-2022-0001-entradas.tar.gz",
+    "sha256_contenedor": "0d4d3542b2b1dd8f07472b372e66665bc6df6dc9b9e2db157a0cb9f8f67b1a50"
+  },
+  {
+    "paquete": "b-0001",
+    "calc": "CALC-B-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "SELECTOR: spec remite al productor para el algoritmo temporal; requiere spec humana completa del selector.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "5d051403ad59f2f0b0b713c8f8c5600a8f97347e2b2063454815115b0624d7a6",
+    "archivo": "b-0001-entradas.tar.gz",
+    "sha256_contenedor": "a53d4e9e031d7ced2f38c43f9d8977af89d5de76e86576a0a5edfe639356cf04"
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "calc": "CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 9,77,83,84,94 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "0ca943911764cb7edb92cb010d7b1f225d97b725115bc9f78387dde195768056",
+    "archivo": "dinero-familiares-vejez-0001-v1_1-entradas.tar.gz",
+    "sha256_contenedor": "0c858ccca92ee2a97564885bc224a3ef98d34bf8997e3a31573162a0d26a04f2"
+  },
+  {
+    "paquete": "eder-0003",
+    "calc": "CALC-EDER-0003",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "72327863f1b3ec253d7a4a2694114caf6ad280fdfd15cdc2502d02ce778b56a7",
+    "archivo": "eder-0003-entradas.tar.gz",
+    "sha256_contenedor": "fc4245c212ced2a67492c79c30b06f084351206db5ca2a66b5d30b4e503f7451"
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "calc": "CALC-ENBIARE-PISOS-BIENESTAR-0001",
+    "estimadores": 180,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "LISTA-CERRADA-P1: tabla de conductas externa a la spec; falta extracción humana y verificación documental de esa tabla.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "fe6c7836bf0035d69004a9292b127e3fc523abf80a947c94032558e9060bc1ca",
+    "archivo": "enbiare-pisos-bienestar-0001-entradas.tar.gz",
+    "sha256_contenedor": "f8da07914808d301a3501d8773d83de83b6f0a8e0af5b1691596c7090d75c4eb"
+  },
+  {
+    "paquete": "encig-0001",
+    "calc": "CALC-ENCIG-0001",
+    "estimadores": 4,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "34b05c4f0f2a27b7e93183cc529100720d9c243c9bd7126108f0cdb24648d302",
+    "archivo": "encig-0001-entradas.tar.gz",
+    "sha256_contenedor": "8220eedab90fb252a927072803530701afd7016b6c369537b76947e8b41022d6"
+  },
+  {
+    "paquete": "encig-0001-complementos-derivado-0001",
+    "calc": "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001",
+    "estimadores": 4,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 17,18,19,20,25,26,49 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "554d71fc952645a5c4b41bb85535911cf109c5792479a22f6e3c0fc9bae7ceb1",
+    "archivo": "encig-0001-complementos-derivado-0001-entradas.tar.gz",
+    "sha256_contenedor": "fc69feb32636e5fcf8c390e30d7eeadbc8f48357d0a707fbf92964e955245a4d"
+  },
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "calc": "CALC-ENCODAT-PISOS-SUSTANCIAS-0001",
+    "estimadores": 130,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "LISTA-CERRADA-P1: tabla de conductas externa a la spec; falta extracción humana y verificación documental de esa tabla.",
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "ce8e19f13e92e07c035ddc70ee98914c475bf63a7bb1bf24b691ab1c1a9b11fc",
+    "archivo": "encodat-pisos-sustancias-0001-entradas.tar.gz",
+    "sha256_contenedor": "cb6c1e387d3cf1eed9f8a515682163674e8a07e9ce990ca84e3c0e0263d01a12"
+  },
+  {
+    "paquete": "encuci-0001",
+    "calc": "CALC-ENCUCI-0001",
+    "estimadores": 3,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "204c077e0ccd01449119c6251133466e2a70d598312af952c05ccb6c665f1564",
+    "archivo": "encuci-0001-entradas.tar.gz",
+    "sha256_contenedor": "9c9277ef6345e6bfb95e5a6dc681cb02b2d7e0777ed87a0f459752efb0a0dc6c"
+  },
+  {
+    "paquete": "encuci-0001-complemento-derivado-0001",
+    "calc": "CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 17,21 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "79d264ccf4a8d2a09db7761580e9d4142b79c942fba35a3e4009b2cfab77f893",
+    "archivo": "encuci-0001-complemento-derivado-0001-entradas.tar.gz",
+    "sha256_contenedor": "4f41bfa5c2ee83418bc44ec5bbd672f6aff2f4e1c4852e7de1f9b55eb9270e2c"
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "calc": "CALC-ENDIREH-PISOS-2006-MODULOS-0002",
+    "estimadores": 1324,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIOS-MC-MD-MS: documento identificado mezcla tabulados y cuestionarios; faltan las tres extracciones documentales sin cifras."
+    ],
+    "sha256": "c11eb2edafe58d1c0a0c91f63e9c3cb075bbffe116eff46ee83b5f88d620cd38",
+    "archivo": "endireh-pisos-2006-modulos-0002-entradas.tar.gz",
+    "sha256_contenedor": "20d4b80c3ead3bbef975a7fccade26eb0a77d413e39f8d66ecb7b74d3f7e95df"
+  },
+  {
+    "paquete": "endireh-pisos-2011-modulos-0001",
+    "calc": "CALC-ENDIREH-PISOS-2011-MODULOS-0001",
+    "estimadores": 1894,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "a78bf4a6fb8d215c3fc7932f062f752c06d5a3f590ab236eb6ed524b5196171d",
+    "archivo": "endireh-pisos-2011-modulos-0001-entradas.tar.gz",
+    "sha256_contenedor": "79f5b09f44a638c493eef6c74b045d5dd392db79bcf92bfbe5562aae389dca88"
+  },
+  {
+    "paquete": "endireh-pisos-2016-discriminacion-0001",
+    "calc": "CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001",
+    "estimadores": 296,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "8efa0f71805abcda391f0f7706a3da5fe18c1869e179f802a5b548bfd93395b4",
+    "archivo": "endireh-pisos-2016-discriminacion-0001-entradas.tar.gz",
+    "sha256_contenedor": "62bba15f88a63f04989e5656fd9ccd58a3270b4c458312072807976d58bb4777"
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "calc": "CALC-ENDIREH-PISOS-2016-PAREJA-FISICA-0002",
+    "estimadores": 92,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "562da5f362a225df0e0da84ee84747796c680c430086f2f4a34a2b3d2c3b06cd",
+    "archivo": "endireh-pisos-2016-pareja-fisica-0002-entradas.tar.gz",
+    "sha256_contenedor": "8e2af4d0101d67bf407b71b3547adf590d54d1ed68c977b763993d16f0145aac"
+  },
+  {
+    "paquete": "endireh-pisos-2016-restantes-0001",
+    "calc": "CALC-ENDIREH-PISOS-2016-RESTANTES-0001",
+    "estimadores": 1618,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "ab0aebec8a63292cdbbaf184043cd3521fd215258665132861824867652db1de",
+    "archivo": "endireh-pisos-2016-restantes-0001-entradas.tar.gz",
+    "sha256_contenedor": "2a11511feac61eb449cf128f08c313fab9c16631be8f3bab4b2c75e40dbd123e"
+  },
+  {
+    "paquete": "endireh-pisos-2021-ayuda-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-AYUDA-0001",
+    "estimadores": 117,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "4236b29e657345fd38871a756e316ca3b6c70f32f111450e988a7cac4192b2e3",
+    "archivo": "endireh-pisos-2021-ayuda-0001-entradas.tar.gz",
+    "sha256_contenedor": "d806cb4493fc3bfc6c233824d124e318bdf1df6d3e90e7a50c2600ab707a5aee"
+  },
+  {
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-COMUNITARIA-0001",
+    "estimadores": 100,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "e8a13d0d4e8658525cf9b88fc02f976b7fac8fe44b1ad88f247dff63a4cf3f2b",
+    "archivo": "endireh-pisos-2021-comunitaria-0001-entradas.tar.gz",
+    "sha256_contenedor": "9261eeb9b8ca7e95f66ee57b271f53e9fe6a08feff85377306126025a5e04d0b"
+  },
+  {
+    "paquete": "endireh-pisos-2021-decisiones-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-DECISIONES-0001",
+    "estimadores": 138,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "011670fe1b4e2ceaff52c6dc4fd7f9814372d8dbe5aa457a24cd1d7b8ed68615",
+    "archivo": "endireh-pisos-2021-decisiones-0001-entradas.tar.gz",
+    "sha256_contenedor": "b82032c54922e476a80e4abe3ec3f949f6e4d342a56715d83895efdfc31131dc"
+  },
+  {
+    "paquete": "endireh-pisos-2021-discriminacion-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001",
+    "estimadores": 286,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "74368d05e50f32d8c988a1187313736c94baf05d5fbfc830d677ead23307c26b",
+    "archivo": "endireh-pisos-2021-discriminacion-0001-entradas.tar.gz",
+    "sha256_contenedor": "162dc454c8958b31111e8fdb3c1f29ecb92643ed54341d83406dd9d79ed1f0fe"
+  },
+  {
+    "paquete": "endireh-pisos-2021-escolar-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-ESCOLAR-0001",
+    "estimadores": 96,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "74b50525814ef0647880e161862d332826abe91304e8a17661035b8eadec1472",
+    "archivo": "endireh-pisos-2021-escolar-0001-entradas.tar.gz",
+    "sha256_contenedor": "5e33677ef0904bcca544f450cdbbe6969f0884f86f606944cf3429ddd4d1be7a"
+  },
+  {
+    "paquete": "endireh-pisos-2021-familiar-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-FAMILIAR-0001",
+    "estimadores": 50,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "de73c528a563885a3b47c0ffa3a6e0c7792e10b6fce54609c5de00f59a5240d1",
+    "archivo": "endireh-pisos-2021-familiar-0001-entradas.tar.gz",
+    "sha256_contenedor": "80fd91b91fe15c9533bc16e8aed8a5f528aab4d075d44673e64ee4a01853e9d8"
+  },
+  {
+    "paquete": "endireh-pisos-2021-laboral-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-LABORAL-0001",
+    "estimadores": 100,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "30d35e427a0adc5cb2d5025e3ad56bc5c399d80ad7eca9043f137b5811667559",
+    "archivo": "endireh-pisos-2021-laboral-0001-entradas.tar.gz",
+    "sha256_contenedor": "c56fd015b88af8659d19e8f771a20bc81839500d51e28d1c5efd08b2a9fa6c6f"
+  },
+  {
+    "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001",
+    "estimadores": 590,
+    "estado_preparacion": "DISPONIBLE",
+    "faltantes": [],
+    "sha256": "bdb0b2ae1a01761795848a1fb8b69a002279622fe8a0b95f7a94992fe3c3dfc7",
+    "archivo": "endireh-pisos-2021-nofisica-bc-0001-entradas.tar.gz",
+    "sha256_contenedor": "37e0d9f4c235d915557f635c2ac9409e9cbf87d97d115ff4362589641ba304d9"
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-0004",
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+    "estimadores": 92,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 3 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa."
+    ],
+    "sha256": "e7f7123c65e5a4c27501509e796afb26fe6b71920ef69553f93dd2270f8c9f5c",
+    "archivo": "endireh-pisos-2021-pareja-fisica-0004-entradas.tar.gz",
+    "sha256_contenedor": "7f88ca2498ce5d8769f146e50998426470783c7cb4e9a14bc8cb22cc406b8c68"
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-bc-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001",
+    "estimadores": 94,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 11 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa."
+    ],
+    "sha256": "f479f30c8bfb99463fb5d0dbf5f30bd0a2f364461ad1bc7d56e62ece0ddefdd2",
+    "archivo": "endireh-pisos-2021-pareja-fisica-bc-0001-entradas.tar.gz",
+    "sha256_contenedor": "705b69abf4391b39caaf3658af3dab64b79f4cd61aa0deee0cfa339abfc565ae"
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2023-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2023-0001",
+    "estimadores": 46,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "8d3980a8fd77a60833582018ec0d2d06e257d9e471a48e4fce11765b6b05dde8",
+    "archivo": "endutih-empleo-15mas-2023-0001-entradas.tar.gz",
+    "sha256_contenedor": "c736ff66967febd7be0b7f20348870e57b8acadaa881f37280f481d6933d60fc"
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2024-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2024-0001",
+    "estimadores": 46,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "566cc67c30829f50114110dc3d8169ea6a3ff07d9f35f10e36ebfa34eb1facfa",
+    "archivo": "endutih-empleo-15mas-2024-0001-entradas.tar.gz",
+    "sha256_contenedor": "5f52f2e013583c6fe4f2564cd2fe0fb88df5b44b67fadf288576dc417832f070"
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2025-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2025-0001",
+    "estimadores": 46,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "46e5d17059ef7f9eca168c002cf89a8f1a677abf94da393e45818469702981a9",
+    "archivo": "endutih-empleo-15mas-2025-0001-entradas.tar.gz",
+    "sha256_contenedor": "3b61fe1d3a32ffbc697576fa51cb3af537171fa1facb7e7834c986590342bac2"
+  },
+  {
+    "paquete": "endutih-pisos-2023-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2023-0001",
+    "estimadores": 470,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "4719d1c7deb3e7cfb9c2d15db8c8d8592e4b3b205844c369de0545b066df6bce",
+    "archivo": "endutih-pisos-2023-0001-entradas.tar.gz",
+    "sha256_contenedor": "18a61407446c537b6a62fb87b31acf06623a2b13381780a330b143aac583b6c9"
+  },
+  {
+    "paquete": "endutih-pisos-2024-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2024-0001",
+    "estimadores": 470,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "b6aa8553fcd2358197d523b1d0f18c0fcac2ef8fe5ea0cad003776b4eb8d718c",
+    "archivo": "endutih-pisos-2024-0001-entradas.tar.gz",
+    "sha256_contenedor": "e8c742165fba36f47830424957101f4d03a358a5a6761c9d14711af9201c0656"
+  },
+  {
+    "paquete": "endutih-pisos-2025-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2025-0001",
+    "estimadores": 470,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "a6f2043ba76b746b2b92d797b3b32cf08950757ee89cf35fa7e7a799e59555b4",
+    "archivo": "endutih-pisos-2025-0001-entradas.tar.gz",
+    "sha256_contenedor": "0e8ea6d8791860c8ad2539b65ceb137e0ce56367e15023e53b4f15902f3ea978"
+  },
+  {
+    "paquete": "enfih-0001",
+    "calc": "CALC-ENFIH-0001",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "9188de7e1d33bbc56952d9b66adaf390f78b5fab7341f73e1cf7f896392dd147",
+    "archivo": "enfih-0001-entradas.tar.gz",
+    "sha256_contenedor": "1f44f077cc3dd795c7dacc58c63279c7eecf898a8d55f883c6f39e42b84c21a5"
+  },
+  {
+    "paquete": "enif-0001",
+    "calc": "CALC-ENIF-0001",
+    "estimadores": 8,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "fd88705b3e983b7504c492b3a88fda3ae187233194a43bf09c5e37defc76715e",
+    "archivo": "enif-0001-entradas.tar.gz",
+    "sha256_contenedor": "a1f573755b35600160e69e192a6fb3de10d76089f4520c5a0f4d7c3263097c32"
+  },
+  {
+    "paquete": "enif-0002",
+    "calc": "CALC-ENIF-0002",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "2b923e011b6df6e0b181ef52ee6bd0d31e76cfb785a7251db2291bc21fe397ff",
+    "archivo": "enif-0002-entradas.tar.gz",
+    "sha256_contenedor": "6611337f2c34f0f72fb411d8043138aad11c696e49c6944cbdaa53a2e247c69b"
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "calc": "CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001",
+    "estimadores": 32,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 31 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "7bb96799c8e307ecfd6557e593be290d4ae9e71013bc7c2e4b12e75e68f9f92d",
+    "archivo": "enif-persistencia-ic-calibrado-0001-entradas.tar.gz",
+    "sha256_contenedor": "c181f460ab74c23cf2839eb40e835f76b2b405de86e8bda2dcb4751f9b6588be"
+  },
+  {
+    "paquete": "enigh-0001",
+    "calc": "CALC-ENIGH-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "6d16a938deeeb70c089e11d31ee1308c9477acb2aaf4c83d3f7199034854ad09",
+    "archivo": "enigh-0001-entradas.tar.gz",
+    "sha256_contenedor": "641824d3e5a21383df48b6f78aa87a703fd58ddf98271ed03315bdb2d0abe2f5"
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2016-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 13,17,19,35 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "9399981112b42035e4f3f2f69eca035b1bc72e7e14ac2dae38ea813499cd1e71",
+    "archivo": "enigh2016-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_contenedor": "58c58f36e55cbca344613ad253985e081e8b2cf405c306dae9821ca76c6a43ba"
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2018-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 13,17,19,35 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "7bf1e4ceaace22bd9e099dee8aae3d3ca390a4a1303c9a9b1a619abe9d6dde23",
+    "archivo": "enigh2018-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_contenedor": "bc8eb55a44d2fd2443c6144f8067b534271107016e50e9fe2d9ba9ee301f3730"
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 13,17,19,35 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "50b4789248884a6bf83c55553b8fef07b57be7691decc2e3e961f433f8b0406a",
+    "archivo": "enigh2020-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_contenedor": "64ccb47614cecaf8308bb1c134497b29f5ab8124c4815280729c04e84025bee3"
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "calc": "CALC-ENOE-PISOS-0003",
+    "estimadores": 26273,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 10 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "ACCESO:encargoEG_ruptura_enoe_y_descriptores_pendientes_navegador:AUSENTE"
+    ],
+    "sha256": "29e15fe82b39c480816008443035222a36ca846d85e83978ecac9d99401dca65",
+    "archivo": "enoe-pisos-0003-entradas.tar.gz",
+    "sha256_contenedor": "8f2e1a7feec8d77f529587ce59f8d6fb53bdb476c45bae8ac2219957d82f4609"
+  },
+  {
+    "paquete": "ensanut-0001",
+    "calc": "CALC-ENSANUT-0001",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "7c6e6fb0d763f809d3680d7da9ed247f7c6d7e7a3ecc95874c4392924e1aff28",
+    "archivo": "ensanut-0001-entradas.tar.gz",
+    "sha256_contenedor": "700405d438df5d3c5b0a08fc0ad4df631166108ef14e0f5a4165a6d3a17deccc"
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "calc": "CALC-ENSANUT-PISOS-SALUD-0001",
+    "estimadores": 668,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "LISTA-CERRADA-P1: tabla de conductas externa a la spec; falta extracción humana y verificación documental de esa tabla.",
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "273a3a265aabd621e587b1ecf23a536390095cfaf958ec3717b5809affd165ed",
+    "archivo": "ensanut-pisos-salud-0001-entradas.tar.gz",
+    "sha256_contenedor": "c7e4c41635775e5cd0947441e6cbf9ec5f7823e0ee811a2f3da316fdd5192db5"
+  },
+  {
+    "paquete": "enut-0001",
+    "calc": "CALC-ENUT-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "FILTRACION-TEXTUAL: el resumen humano cita N observado; falta extracción sucesora sin ese conteo antes de entrega."
+    ],
+    "sha256": "b4f0963bb41b5facf7a2edc766bc231ef7c2310fd76604ba276774ce7c4a7c14",
+    "archivo": "enut-0001-entradas.tar.gz",
+    "sha256_contenedor": "958b14602ac0314d69a77961c160d999c2e54835bd34ac1fd45282d444a0866b"
+  },
+  {
+    "paquete": "envipe-0001",
+    "calc": "CALC-ENVIPE-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "7df66db94795359b89eb88ed55ba13885d04020540336c46a72446b908c3e16d",
+    "archivo": "envipe-0001-entradas.tar.gz",
+    "sha256_contenedor": "482b4f2bff42dc9d7b5a185016d9fb1ba75ff03adda7164c7749da840294e744"
+  },
+  {
+    "paquete": "envipe-denuncia-seguro-0001",
+    "calc": "CALC-ENVIPE-DENUNCIA-SEGURO-0001",
+    "estimadores": 4,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "78a17b3f34363947c6dc476100c80abd6e62d0666e992ada4ec55daf8e7a4e8f",
+    "archivo": "envipe-denuncia-seguro-0001-entradas.tar.gz",
+    "sha256_contenedor": "b58cf9bf4f0b9740c9fa6a18ea23398ea2113f6ee97aac7ecb5105b6a7a1ffcb"
+  },
+  {
+    "paquete": "envipe-res0028-u4-derivado-0001",
+    "calc": "CALC-ENVIPE-RES0028-U4-DERIVADO-0001",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 38 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "db809d445ecb061c3b79340b787a70f309aa3b2cc95c6be052d240586518cc1a",
+    "archivo": "envipe-res0028-u4-derivado-0001-entradas.tar.gz",
+    "sha256_contenedor": "eab7cacb2bb45022bff8db0de14c91e053676a622f1c21d8080529d6474e57bc"
+  },
+  {
+    "paquete": "evasion-norma-0001-v1_1",
+    "calc": "CALC-EVASION-NORMA-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 9,11,24,27,28,49,63,73,74,102,121,123 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "5f24ab58dea6c7260e5b173616edcdcebdbf0daa7502b0ad12e4ae0d33ccc81e",
+    "archivo": "evasion-norma-0001-v1_1-entradas.tar.gz",
+    "sha256_contenedor": "0d917dd038448d35686d474540e79b9986fcba6916941e236661bef3fcb27f1f"
+  },
+  {
+    "paquete": "horizonte-via-derivados-0001-v1_1",
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "estimadores": 5,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 43,44,45,46,65,66,67,68,69,70,71,83,84,85,93,94,95,96,108 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "5b749eab7115719d5d0d67df4acf0999e975eb834993001475d0d06d6fc1be33",
+    "archivo": "horizonte-via-derivados-0001-v1_1-entradas.tar.gz",
+    "sha256_contenedor": "2be4dfe36d15e4940defe90f57728950ae9201592e261ca7aff0ecab53a1b6b0"
+  },
+  {
+    "paquete": "mociba-pisos-2016-0001",
+    "calc": "CALC-MOCIBA-PISOS-2016-0001",
+    "estimadores": 126,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "4b80d050d96d1587033d4485bdd27b0528f95e3b2c4ecdaa29ba0b5ca1af1f60",
+    "archivo": "mociba-pisos-2016-0001-entradas.tar.gz",
+    "sha256_contenedor": "5b25d5c960862e10bff8e91875ee8bc16512842813867d7fefee167e111d8c81"
+  },
+  {
+    "paquete": "mociba-pisos-2017-0001",
+    "calc": "CALC-MOCIBA-PISOS-2017-0001",
+    "estimadores": 123,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "fd39ce6b7815ae7afbc68fcf5bb5f9e8a09ac7213c46e911354816ef0e24b148",
+    "archivo": "mociba-pisos-2017-0001-entradas.tar.gz",
+    "sha256_contenedor": "ee68474303f826f38dc531ce50b85530e065655cdbc3044d82d70a10415d7713"
+  },
+  {
+    "paquete": "pisos-envipe2024-ejes-0002",
+    "calc": "CALC-PISOS-ENVIPE2024-EJES-0002",
+    "estimadores": 15,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "9eee352b9865bdaa7f9d6eef3adfd9500742c6c2330e0a87817cb1fb76acb75c",
+    "archivo": "pisos-envipe2024-ejes-0002-entradas.tar.gz",
+    "sha256_contenedor": "a3873ecfcb6520bd49ea380945c0ceec71add367207d2ab3125b56058f348e0e"
+  },
+  {
+    "paquete": "r-civ-m-01",
+    "calc": "CALC-R-CIV-M-01",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "987a2d7b6cb3e067f34eef77569e8591128317c5c3284e458edd26d55a902538",
+    "archivo": "r-civ-m-01-entradas.tar.gz",
+    "sha256_contenedor": "1845143cae19a6c322675bb9346d97eab6237123ab08588c6ea71e864cdd7083"
+  },
+  {
+    "paquete": "r-civ-m-02",
+    "calc": "CALC-R-CIV-M-02",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "f0f25e2761e49d78e190191cbca556d77dea0c9ca5b7c14ac078ccd2d3826962",
+    "archivo": "r-civ-m-02-entradas.tar.gz",
+    "sha256_contenedor": "29399c890d68cfa0e60501894d52f315c04af2d7c635a3ea885b9f077c7bfea3"
+  },
+  {
+    "paquete": "r-civ-m-04",
+    "calc": "CALC-R-CIV-M-04",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "ac17c84598940d4efe8e1bbd79dd59fd33c3af56ebe4ed457b8d96c2ca9fe928",
+    "archivo": "r-civ-m-04-entradas.tar.gz",
+    "sha256_contenedor": "1a959ef742e708a7387fc057ddac070b80205d9d8cd33098bc1fb4ca031e056c"
+  },
+  {
+    "paquete": "r-civ-m-10",
+    "calc": "CALC-R-CIV-M-10",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "ca22bd3fbb32b9f70a9ef7fc559dc36ddd0b3405162be6e41c11ab587ef87ced",
+    "archivo": "r-civ-m-10-entradas.tar.gz",
+    "sha256_contenedor": "ef0ed474659bb20e58ef142a9840b24c78822d74f3e732a3526656ac4307af7b"
+  },
+  {
+    "paquete": "r-civ-m-12",
+    "calc": "CALC-R-CIV-M-12",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "6dde94ee27899232aa85589799d01b5e868dfb6f8a84476e2749d11138049754",
+    "archivo": "r-civ-m-12-entradas.tar.gz",
+    "sha256_contenedor": "6d95c78c53f268b1d1fc6b57c3d67507f0ce86e32920af42ab4e10bc7f9b03cf"
+  },
+  {
+    "paquete": "r-civ-m-13",
+    "calc": "CALC-R-CIV-M-13",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: resumen remite a contrato madre del árbitro; falta extracción de todas las reglas de estimación.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "4264c75836783575b13646e4e4e787d5341a9d4ad9a913a96edb1aee7a3acd67",
+    "archivo": "r-civ-m-13-entradas.tar.gz",
+    "sha256_contenedor": "43cd5fcbd8ec6d042eb7ab902f8850af18ec6f11108cc9617bad96aff4a593e6"
+  },
+  {
+    "paquete": "r-din-m-01-v4",
+    "calc": "CALC-R-DIN-M-01-v4",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "1d7440678162e80e6b8575976395b37b60b3ee670d18286a141b46ef04fef7c3",
+    "archivo": "r-din-m-01-v4-entradas.tar.gz",
+    "sha256_contenedor": "44260d13e1650113b86643243827ce50d1aad01dab60ac64eae14456be4abf09"
+  },
+  {
+    "paquete": "r-fam-m-01-v3",
+    "calc": "CALC-R-FAM-M-01-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados."
+    ],
+    "sha256": "00474949a83e171f46283c1524f4629fc8f114c24b9b77ee2e379b84ab17ab73",
+    "archivo": "r-fam-m-01-v3-entradas.tar.gz",
+    "sha256_contenedor": "cdc9aca7e725bcce39cb658aa64ee2d449a3f661d9608577d9c93e3b446217a8"
+  },
+  {
+    "paquete": "r-fam-m-05-v3",
+    "calc": "CALC-R-FAM-M-05-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "f0d5eb050be6095e13bc0a36cca11c451470619afddc7bb96255cef1cb058c5d",
+    "archivo": "r-fam-m-05-v3-entradas.tar.gz",
+    "sha256_contenedor": "d9646dfc7d59bd7d2b6c041e2360e9b5c45962c8eda2dec9960a7301196bb954"
+  },
+  {
+    "paquete": "r-fam-m-06-v3",
+    "calc": "CALC-R-FAM-M-06-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "1ad958e71c19e9e7f7c42ef51026ad8d091a186669b9992f14bfaca632a2cffa",
+    "archivo": "r-fam-m-06-v3-entradas.tar.gz",
+    "sha256_contenedor": "ec99015313d0abe3b11ed681c031dab8873e06188162a7a0113f44510fc18464"
+  },
+  {
+    "paquete": "r-fam-m-07-v3",
+    "calc": "CALC-R-FAM-M-07-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "4b8c81fb60b4978a469b8d64de4cc8a49a1167a4f61294a59f9c1c66760ad55e",
+    "archivo": "r-fam-m-07-v3-entradas.tar.gz",
+    "sha256_contenedor": "87b930ec8dc73f43d78770f47a2f991192c6cbffe7853d601e5917ce31c6417a"
+  },
+  {
+    "paquete": "r-tra-m-02-v3",
+    "calc": "CALC-R-TRA-M-02-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "ca1d527d339aee968671965f3e88ae4e5dc6bd118e5f34f7cdafd88c21b828b9",
+    "archivo": "r-tra-m-02-v3-entradas.tar.gz",
+    "sha256_contenedor": "d09784eec4bb74920dd1e01aa336dd3fe5873a9486aff928292f2276276c3b2d"
+  },
+  {
+    "paquete": "r-tra-m-03-v3",
+    "calc": "CALC-R-TRA-M-03-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas."
+    ],
+    "sha256": "8a0a9daec6a4c1ed5f99aa671ba99d679f20a76eef31a4a9b43adcd85e55b6de",
+    "archivo": "r-tra-m-03-v3-entradas.tar.gz",
+    "sha256_contenedor": "39e90941c45f408e5309f4e057bae8ee6c3bc9b91160bed530507a1a43eeb960"
+  },
+  {
+    "paquete": "r-tra-m-07-v3",
+    "calc": "CALC-R-TRA-M-07-v3",
+    "estimadores": 1,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "METODO-MEZCLADO: renglones 7 excluidos por resultados o referencia al productor; completar extracción de método desde fuentes humanas antes de entrega completa.",
+      "METODO-R: hereda contrato del árbitro; se requiere extracción del diseño y codificación de la spec madre, sin código ni valores esperados.",
+      "FD: no hay descriptor identificado entre las entradas."
+    ],
+    "sha256": "89852023360640704f637e2d5a6c89d39deab5f830c02126106caf0dec55f1ba",
+    "archivo": "r-tra-m-07-v3-entradas.tar.gz",
+    "sha256_contenedor": "f70a1f9e59d64dbad206028b7e04b9b2cd64fd85a8d9fe9a73f04c25597ab912"
+  },
+  {
+    "paquete": "tiene-ahorros-0001-v1_1",
+    "calc": "CALC-TIENE-AHORROS-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "INCOMPLETO",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "ce65ce572e2aec98a541301df04f0c9bc1225ae6d0fc892cb6eb7c480792a964",
+    "archivo": "tiene-ahorros-0001-v1_1-entradas.tar.gz",
+    "sha256_contenedor": "6be42431cf683ab6b9ec56c32f206f227038955e3e988bef4024b7963bfdfb45"
+  }
+]

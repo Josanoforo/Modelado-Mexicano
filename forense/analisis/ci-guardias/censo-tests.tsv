@@ -289,5 +289,6 @@ tests/test_amai_enigh2024.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	GEN2-CLASE-A
 tests/test_marcador_eje_nse.py	script	NO	(ninguna)	NO	0.5	CORRE-EN-CI	GEN2-CLASE-AMAI-2 (fila manual, sin --censo): eje NSE del marcador sólo A4
 tests/test_ensu_serie_gen2.py	pytest	NO	numpy,pandas,pytest	NO	1.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_consumo_pisos_gen2.py); sintético puro, sin corpus
 tests/test_escribe_relevo_consumidores3.py	pytest	NO	(ninguna)	NO	27.0	CORRE-EN-CI	exit 0 sin corpus; escritor V6 y contador HISTÓRICO-SIN-RELEVO de GEN2-RELEVO-CONSUMIDORES-3 (FIRMAS-18 H1–H3), una prueba por llave
+tests/test_astra6_paquetes.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_cableado_sesiones.py	pytest	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_benchmark.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
