@@ -1,0 +1,117 @@
+estado: CONTRATO-COMMIT-3-NO-ACTIVADO
+ola: encig_2027
+autorizacion_futura: null
+script: tools/familias-2027/encig/lector.py
+codigo_sha256: 6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30
+resultados:
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-R
+  tipo: proporcion
+  unidad: PAGO-DIGITAL R escala proporción salvo N/conteo; no combinación de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-D
+  tipo: flotante
+  unidad: PAGO-DIGITAL D escala proporción salvo N/conteo; no combinación de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-ABS-D
+  tipo: flotante
+  unidad: PAGO-DIGITAL ABS-D escala proporción salvo N/conteo; no combinación de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-IC-D-LO
+  tipo: flotante
+  unidad: PAGO-DIGITAL IC-D-LO escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-IC-D-HI
+  tipo: flotante
+  unidad: PAGO-DIGITAL IC-D-HI escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-FRACCION-EN-BANDA
+  tipo: proporcion
+  unidad: PAGO-DIGITAL FRACCION-EN-BANDA escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-DICTAMEN
+  tipo: texto
+  unidad: PAGO-DIGITAL DICTAMEN escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: false
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-N
+  tipo: entero
+  unidad: PAGO-DIGITAL N escala proporción salvo N/conteo; no combinación de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: PAGO-DIGITAL N-EFECTIVO-KISH escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-RESIDUO-FRACCION
+  tipo: proporcion
+  unidad: PAGO-DIGITAL RESIDUO-FRACCION escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-R
+  tipo: proporcion
+  unidad: SOLICITUD-MORDIDA R escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-D
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA D escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-ABS-D
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA ABS-D escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-IC-D-LO
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA IC-D-LO escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-IC-D-HI
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA IC-D-HI escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-FRACCION-EN-BANDA
+  tipo: proporcion
+  unidad: SOLICITUD-MORDIDA FRACCION-EN-BANDA escala proporción salvo N/conteo; no
+    combinación de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-DICTAMEN
+  tipo: texto
+  unidad: SOLICITUD-MORDIDA DICTAMEN escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: false
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-N
+  tipo: entero
+  unidad: SOLICITUD-MORDIDA N escala proporción salvo N/conteo; no combinación de
+    unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-N-EFECTIVO-KISH
+  tipo: flotante
+  unidad: SOLICITUD-MORDIDA N-EFECTIVO-KISH escala proporción salvo N/conteo; no combinación
+    de unidades
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-RESIDUO-FRACCION
+  tipo: proporcion
+  unidad: SOLICITUD-MORDIDA RESIDUO-FRACCION escala proporción salvo N/conteo; no
+    combinación de unidades
+  permite_no_estimable: true
+nulls_declarados:
+- p
+- d
+- abs_d
+- ic_d_lo
+- ic_d_hi
+- fraccion_en_banda
+- n
+- n_efectivo_kish
+- residuo_fraccion
+no_finitos: NaN/Inf se rechazan, null declarado no sustituye cero
+metadatos: identidad y comparabilidad acreditadas por circuito de mesa antes de abrir
+  ZIP; esquema2027 previsto, adaptación nominal documentada si cambia
+hashes_archivos_vivos: false
+reglas_normativas_ruta: data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml
