@@ -24,6 +24,10 @@ import tempfile
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# GEN2-FRONT-3-PORTADA-1: un comando sellado cuyo contenido salió de la portada
+# se corre resuelto por archivo/INDICE.md (§Comandos reubicados); el texto sellado no se edita.
+sys.path.insert(0, os.path.join(ROOT, "tools"))
+import resuelve_cita  # noqa: E402
 
 _MIN_COMANDOS = 20
 _TIMEOUT_S = 120  # `corrida0.py status` por sí solo tarda ~75s (mismo aviso que estado)
@@ -78,7 +82,7 @@ def main():
             # sin esto un pipe con el primer comando fallando en silencio no
             # propaga el error bajo `shell=True` simple.
             r = subprocess.run(
-                ["bash", "-o", "pipefail", "-c", cmd], cwd=ROOT,
+                ["bash", "-o", "pipefail", "-c", resuelve_cita.comando(cmd)], cwd=ROOT,
                 capture_output=True, text=True, timeout=_TIMEOUT_S,
             )
         except Exception as exc:

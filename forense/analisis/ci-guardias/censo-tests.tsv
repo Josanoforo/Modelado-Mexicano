@@ -287,8 +287,12 @@ tests/test_confianza_pisos_gen2.py	pytest	NO	numpy,pandas,pytest,yaml	NO	1.4	NEC
 tests/test_familia_pisos_gen2.py	pytest	NO	numpy,pandas,pytest,yaml,pyreadstat,dbfread	NO	1.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_salud_pisos_gen2.py); sintético puro, sin corpus
 tests/test_amai_enigh2024.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	GEN2-CLASE-AMAI-2 (fila manual, sin --censo): guardia de apertura acotada ENIGH 2024 sobre sintético
 tests/test_marcador_eje_nse.py	script	NO	(ninguna)	NO	0.5	CORRE-EN-CI	GEN2-CLASE-AMAI-2 (fila manual, sin --censo): eje NSE del marcador sólo A4
+tests/test_cola_lote_1_pisos.py	pytest	NO	numpy,pandas,pytest,yaml	NO	3.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_consumo_pisos_gen2.py); sintético puro, sin corpus
 tests/test_ensu_serie_gen2.py	pytest	NO	numpy,pandas,pytest	NO	1.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_consumo_pisos_gen2.py); sintético puro, sin corpus
 tests/test_escribe_relevo_consumidores3.py	pytest	NO	(ninguna)	NO	27.0	CORRE-EN-CI	exit 0 sin corpus; escritor V6 y contador HISTÓRICO-SIN-RELEVO de GEN2-RELEVO-CONSUMIDORES-3 (FIRMAS-18 H1–H3), una prueba por llave
 tests/test_catalogo_v1_2.py	script	NO	(ninguna)	NO	25.0	CORRE-EN-CI	Catálogo v1.2 y tabla de piso v1.1 (GEN2-CIERRE-SEMANAL-1): regeneración idéntica, cada cifra contra su CALC sellado, firma citada por id, FIRMAS-19 presentes, sin SIN-DOMINIO ni filas vetadas por J3, tabla de piso derivada y solo adoptada, v1.0/v1.1 intactos; 7 pruebas locales OK
+tests/test_portada.py	script	NO	(ninguna)	NO	1.7	CORRE-EN-CI	GEN2-FRONT-3-PORTADA-1 (fila manual, sin --censo): raíz <= 12 archivos, citas selladas resueltas por archivo/INDICE.md, enlaces relativos de README/CONTRIBUTING/docs
+tests/test_astra6_paquetes.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_cableado_sesiones.py	pytest	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_benchmark.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_cola_completa_pisos_gen2.py	pytest	NO	numpy,pandas,pytest	NO	1.2	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_ensu_serie_gen2.py); sintético puro, sin corpus

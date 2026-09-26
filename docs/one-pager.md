@@ -12,7 +12,7 @@ Un benchmark auditable de cómo se comporta el mexicano, medido con microdato of
 
 ## La prueba
 
-**6 evaluaciones** <!-- deriva: rg -c '^\| Pilot|^\| Duelo|^\| Lote' README.md --> selladas antes de comparar contra el árbitro de la ola, sobre dinero, trámites, seguridad y gobierno digital. Los retadores evaluados no superaron los criterios de superioridad fijados en esas comparaciones; esto no declara equivalencia ni se extiende a modelos nunca evaluados.
+**6 evaluaciones** <!-- deriva: rg -c '^\| Pilot|^\| Duelo|^\| Lote' docs/estado.md --> selladas antes de comparar contra el árbitro de la ola, sobre dinero, trámites, seguridad y gobierno digital. Los retadores evaluados no superaron los criterios de superioridad fijados en esas comparaciones; esto no declara equivalencia ni se extiende a modelos nunca evaluados.
 
 | Evaluación | Ola | Dictamen |
 |---|---|---|
@@ -23,7 +23,7 @@ Un benchmark auditable de cómo se comporta el mexicano, medido con microdato of
 | Duelo de ola nueva | ENVIPE 2026 | `NADIE-VENCE` |
 | Duelo de candidatos | ENCIG 2025 | `FALSADOR-DÉBIL` agregado |
 
-Detalle y cierre de cada una en el [README](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md#la-prueba).
+Detalle y cierre de cada una en el [estado y prueba]({{ '/estado.html#la-prueba' | relative_url }}).
 
 ## Estado del corte
 

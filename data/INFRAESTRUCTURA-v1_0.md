@@ -1016,8 +1016,17 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | `forense/analisis/informe-v1_4/cifra.py` | solo lee | una cifra por clave para el informe v1.4 | `canon/informe-programa-v1_4.md` (comentarios `comando:`) | — |
 | `tools/deriva_cifras.py` | `python3 tools/deriva_cifras.py [--escribe] ARCHIVO…` | re-deriva toda cifra `N <!-- deriva: cmd -->` de un documento (una sola corrida de `status`) | `docs/*.md` | sin `--escribe` sale 1 si hay desfase |
 
+| `forense/validacion-independiente/catalogo-1/universo.tsv` | `python3 tools/validacion/astra6_paquetes.py --prepara` antes de congelación; `--verifica` después | llave · CALC · RESULT · celda · instrumento · ola · unidad · firma · paquete · estado | validadores C1 y comparador de preparación | Corte fijo, estado NO-EVALUADO; no es registro de validaciones. Paquetes y esperados se separan. |
+
 ## `docs/data/` — export de consulta estática (`ACTO GEN2-PRODUCTO-CONSULTA-1`, 26/sep/2026)
 
 | tabla | deriva | columnas | consume | nota |
 |---|---|---|---|---|
 | `docs/data/catalogo-v1_N.json` · `docs/data/catalogo-vigente.json` | `python3 tools/benchmark.py exporta` desde el catálogo vigente (`canon/catalogo-del-mexicano-v1_N.tsv`, N mayor) | columnar: `columnas · diccionarios · filas` (las del catálogo) + `hashes · reglas · ejes · olas_reservadas · cobertura · excluidos` | `docs/consultar.md` | Derivado; no se edita a mano. `tests/test_benchmark.py` lo compara con el catálogo fila por fila. Contrato: `docs/consulta.md`. |
+
+## Reports v2 · lote social (`ACTO ASTRA6-C3-SOCIAL-1`)
+
+| Tabla | Produce | Contiene | Consume | Límite |
+|---|---|---|---|---|
+| `forense/analisis/reports-v2/social-1/*-afirmaciones.{json,tsv}` | Lectura completa v1 y mapa al corte; juicios editoriales explícitos, verificados por `verifica_lote.py` | Afirmación, origen/localizador, dictamen, argumento, evidencia, estado y cambio editorial | Tres reports v2, índice local y recibo | Sin edición del mapa; conteo incluye procedencias repetidas, no pruebas independientes |
+| `forense/analisis/reports-v2/social-1/*-cifras.json` y `*-fuentes.json` | Extracción puntual sellada y lectura primaria pública | Valor/clave/hash/FP, unidad/periodo/transformación; fuentes con población/método/tier | Comprobador y revisión dirigida | Cifra externa sin RESULT ficticio; no microdato ni ola reservada |
