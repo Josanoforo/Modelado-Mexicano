@@ -1,0 +1,2869 @@
+# CALC-ENOE-PARTICIPACION-2024T4-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENOE-PARTICIPACION-2024T4-0001
+spec_md: ../../../forense/prereg-caja/COLA-ENOE-PARTICIPACION-spec-v1_0.md
+spec_md_sha256: 21802a6c855a93bc956cdb6ec6bdf0ae4156bcb34e99601af0d9535fbb71cfa4
+script: data/corrida0/CALC-ENOE-PARTICIPACION-2024T4-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-COLA-COMPLETA-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-COLA-COMPLETA-1
+  encargo: forense/encargos/2026-09-26-GEN2-COLA-COMPLETA-1.md
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; RETROSPECTIVO; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2/3/4, regla 6, E.6, §3, §4, C4 de FIRMAS-16 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  olas: 2024T4 abierta; 2026T2 RESERVADA y 2026T1 consumido para informalidad (C4), no son input
+inputs:
+- id: enoe_2024_4t_microdatos
+  origen: manifiesto
+  sha256: 817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305
+  funcion: DATO
+  nota: enoe_2024_trim4_csv.zip
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, lee_csv_zip (GEN2-SALUD-Y-BIENESTAR-PISOS-1) ejecutados desde
+    estos bytes
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lectura .dta/.sav con filtro de pais, recodificacion, ejes, diseno, ids (GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1)
+    ejecutados desde estos bytes
+variables:
+- archivo: ENOE_SDEMT424.csv
+  variable: r_def
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: c_res
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: eda
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: sex
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: cs_p17
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: clase1
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: clase2
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: t_loc_tri
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: niv_ins
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: ent
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: fac_tri
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: est_d_tri
+  rol: reactivo o diseno
+- archivo: ENOE_SDEMT424.csv
+  variable: upm
+  rol: reactivo o diseno
+universo: Residente habitual o nuevo (c_res 1,3) con entrevista completa (r_def 0), 15+, ENOE 2024T4 (SDEMT);
+  fac_tri>0, est_d_tri y upm no vacios.
+filtros: 'Un eje a la vez; nunca cruces. Recodificacion por texto de pregunta: spec humana §2.'
+ponderador: fac_tri
+transformacion: bin(col, UNO, CERO); todo otro codigo fuera (spec humana §2).
+estimando: Tasa de participacion economica por sexo y jovenes 18-24 que no estudian ni estan ocupados;
+  2026T2 RESERVADA y boletin 2026T1 consumido (C4)
+seed:
+  aplica: true
+  valor: 20261004
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  diseno: UPM upm dentro de estrato est_d_tri
+  ola: 2024T4
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-FILAS-LEIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-FILAS-UNIVERSO-15-MAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-15-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-18-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-25-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-45-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-EDAD-65-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-LOCALIDAD-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-01-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-02-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-03-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-04-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-05-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-06-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-07-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-08-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-09-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-10-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-11-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-12-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-13-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-14-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-15-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-16-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-18-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-19-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-20-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-21-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-22-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-23-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-25-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-26-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-27-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-28-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-30-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-31-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-ENTIDAD-32-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-15-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-18-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-25-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-45-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-EDAD-65-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-LOCALIDAD-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-INCOMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-PRIMARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-SECUNDARIA-COMPLETA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ESCOLARIDAD-MEDIA-SUPERIOR-Y-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-01-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-02-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-03-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-04-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-05-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-06-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-07-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-08-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-09-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-10-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-11-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-12-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-13-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-14-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-15-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-16-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-17-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-18-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-19-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-20-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-21-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-22-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-23-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-24-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-25-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-26-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-27-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-28-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-30-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-31-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENOE-PARTICIPACION-2024T4-MUJER-ENTRE-NO-ESTUDIA-NI-OCUPADO-18-24-2024T4-ENTIDAD-32-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-DISENO
+  tipo: texto
+  unidad: etiqueta de diseño
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-INPUT-MOTOR-PISOS-CONFIANZA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-INPUT-RECETA-PISOS-SALUD-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENOE-PARTICIPACION-2024T4-G-OLA-ABIERTA
+  tipo: texto
+  unidad: declaración

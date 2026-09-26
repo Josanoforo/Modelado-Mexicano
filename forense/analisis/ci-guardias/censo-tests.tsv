@@ -293,3 +293,4 @@ tests/test_portada.py	script	NO	(ninguna)	NO	1.7	CORRE-EN-CI	GEN2-FRONT-3-PORTAD
 tests/test_astra6_paquetes.py	pytest	NO	(ninguna)	NO	0.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_cableado_sesiones.py	pytest	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_benchmark.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_cola_completa_pisos_gen2.py	pytest	NO	numpy,pandas,pytest	NO	1.2	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_ensu_serie_gen2.py); sintético puro, sin corpus
