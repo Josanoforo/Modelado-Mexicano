@@ -229,3 +229,72 @@ def test_edr_spec_yaml_es_el_esquema():
     assert _spec("CALC-EDR-SUICIDIO-PISOS-0001")["resultados"] == EDR.esquema_resultados()
 
 
+
+
+# ═══════════════════════════ ENPECYT ═══════════════════════════
+
+ENPECYT = _load("data/corrida0/CALC-ENPECYT-CONOC-PISOS-0001/medidor.py", "m_enpecyt_conoc")
+
+
+def _enpecyt_ola(ola):
+    cd = ENPECYT.CIUDAD[ola]
+    tablas = {}
+    for t, cs in ENPECYT.campos_de(ola).items():
+        cs = list(dict.fromkeys(cs))
+        filas = []
+        for i in range(90):
+            if t == "cb2" and i == 3:
+                continue  # persona sin CB2
+            r = {cd: f"{1 + i % 3:02d}", "PER": "0001", "CON": f"{i:05d}", "V_SEL": "1", "N_HOG": "1",
+                 "N_REN": "01" if i != 4 else "02"}
+            for c in cs:
+                if c in r:
+                    continue
+                if c == "FAC":
+                    r[c] = str(0 if i == 5 else 100 + i)
+                elif c == "EST_DIS":
+                    r[c] = "4" if i == 0 else str(1 + i % 3)  # estrato 4 de la ciudad 01: UPM única
+                elif c == "UPM_DIS":
+                    r[c] = f"{i % 5:06d}"
+                elif c == "SEX":
+                    r[c] = str(1 + i % 2)
+                elif c == "EDA":
+                    r[c] = str(18 + (i * 7) % 70)
+                elif c == "NIV":
+                    r[c] = str(i % 11)
+                elif c.startswith("S4P14"):
+                    r[c] = str(1 + (i * 3) % 11)
+                else:
+                    r[c] = str(1 + i % 5)
+            filas.append(r)
+        if t == "cb1":
+            filas.append(dict(filas[7]))  # llave duplicada
+        tablas[t] = ENPECYT.lee_dbf(_dbf(filas, cs), cs)
+    return tablas
+
+
+def test_enpecyt_ramas_pasan_el_conducto():
+    por_ola = {o: _enpecyt_ola(o) for o in ENPECYT.OLAS}
+    out = ENPECYT.mide(por_ola, R, 20, 1)
+    for k, v in (("BOOTSTRAP-REPLICAS", 20), ("SEED", 1), ("INPUT-RECETA-SHA256", "x"), ("OLA-RESERVADA", "x")):
+        out[f"{ENPECYT.P}-G-{k}"] = v
+    assert corrida0._valida_outputs({"resultados": ENPECYT.esquema_resultados()}, out) == []
+    _sin_no_finitos(out)
+    assert out[f"{ENPECYT.P}-G-2013-LLAVE-DUPLICADA"] == 2
+    assert out[f"{ENPECYT.P}-G-2013-JOIN-SIN-CB2"] == 1
+    assert out[ENPECYT.rid("GOB-INVERTIR-ACUERDO", "2011", "TOTAL", "TODOS", "EE")] is None
+    assert out[ENPECYT.rid("GOB-INVERTIR-ACUERDO", "2015", "TOTAL", "TODOS", "P")] is not None
+    assert ENPECYT.rid("RESPETA-10-INVENTOR", "2013", "TOTAL", "TODOS", "P") not in out
+
+
+def test_enpecyt_guardia_rechaza_2017():
+    inputs = {pid: {"ruta_absoluta": f"/x/enpecyt/{o}/enpecyt{o}_bd_dbf.zip"} for o, pid in ENPECYT.PAY.items()}
+    inputs["receta_pisos"] = {"bytes": RECETA_BYTES}
+    ENPECYT._guardia_inputs(inputs)
+    inputs[ENPECYT.PAY["2015"]] = {"ruta_absoluta": "/x/ENPECYT/2017/enpecyt2017_bd_dbf.zip"}
+    with pytest.raises(ENPECYT.ParoDeGuardia):
+        ENPECYT._guardia_inputs(inputs)
+
+
+def test_enpecyt_spec_yaml_es_el_esquema():
+    assert _spec("CALC-ENPECYT-CONOC-PISOS-0001")["resultados"] == ENPECYT.esquema_resultados()
