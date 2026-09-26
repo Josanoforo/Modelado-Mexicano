@@ -19,3 +19,5 @@ EJECUTADO: `verifica_lote.py --autoprueba` VERDE (cobertura, cifras registradas,
 RESERVAS: literatura dirigida, no revisión sistemática; fuentes parciales explícitas; no C1 completo ni recibo técnico independiente. Ninguna de esas reservas transforma hipótesis en hecho ni bloquea el entregable editorial. No se prometen cuotas contemporáneas fuera del dato recuperado. Siguiente acción: Claude revisa el PR por circuito de mesa; mesa decide integración y fusión. No se envía mensaje externo ni se fusiona aquí.
 
 EJECUTADO / reserva de integración: suite rápida final con 3 FAIL T02 exclusivamente por nombres obligatorios de v2/recibo en rutas distintas; baseline sin FAIL. No se cambian CI ni tests ajenos; verificación local sustantiva VERDE. Detalle: `forense/analisis/reports-v2/consumo-familia-1/verificaciones.md`. La identidad por ruta debe resolverse al integrar C3; no se anuncia CI global verde.
+
+EJECUTADO: entrega y solicitud de recibo en [PR #1173](https://github.com/Josanoforo/Modelado-Mexicano/pull/1173); sin fusión y sin revisión externa atribuida.

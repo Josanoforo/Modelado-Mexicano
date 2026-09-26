@@ -13,3 +13,5 @@ PROPUESTO: ocho reglas en [hoja de firmas](hoja-reglas-propuestas.md), con falsa
 PENDIENTE-EXTERNO: este documento es la solicitud/paquete para `GEN2-RECIBO-ASTRA-PRODUCTO-N`; no acredita recibo obtenido. C1 continúa por su carril y sólo hallazgos materiales obligarán a corregir lo afectado. Entrega por PR, sin mensaje externo. Mesa fusiona después del circuito de revisión; este ejecutor no fusiona.
 
 EJECUTADO / reserva de integración: suite rápida final con 3 FAIL T02 exclusivamente por nombres obligatorios de v2/recibo en rutas distintas; baseline sin FAIL. No se cambian CI ni tests ajenos; verificación local sustantiva VERDE. Detalle: `forense/analisis/reports-v2/consumo-familia-1/verificaciones.md`. La identidad por ruta debe resolverse al integrar C3; no se anuncia CI global verde.
+
+EJECUTADO: entrega y solicitud de recibo en [PR #1173](https://github.com/Josanoforo/Modelado-Mexicano/pull/1173); sin fusión y sin revisión externa atribuida.
