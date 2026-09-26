@@ -384,9 +384,13 @@ def cmd_ejecuta_huerfanos():
         )
         sys.exit(1)
 
+    # ACTO GEN2-TUBERIA-CABLEADO-SESIONES-1 (P5, ae2a-01): los huerfanos
+    # corren en paralelo (un hilo por nucleo; cada test ya es un proceso
+    # aparte) y los de pytest van juntos en UNA invocacion `-n auto` cuando
+    # pytest-xdist esta instalado. Si ese lote falla, se re-corre archivo por
+    # archivo para nombrar el culpable. Salida en el orden del censo.
     saltados = 0
-    ejecutados = 0
-    fallidos = 0
+    tareas = []
     for f in filas:
         if f["cableado_hoy"] == "SI":
             continue
@@ -407,21 +411,95 @@ def cmd_ejecuta_huerfanos():
             )
             saltados += 1
             continue
-        invocador = f["invocador"]
-        rc, salida, dt, timed_out = ejecuta(path, invocador, timeout=600)
+        tareas.append((f["archivo"], path, f["invocador"]))
+
+    lote = [t for t in tareas if t[2] == "pytest"] if modulo_instalado("xdist") else []
+    sueltos = [t for t in tareas if t not in lote]
+
+    def corre(t):
+        return t, ejecuta(t[1], t[2], timeout=600)
+
+    def corre_lote():
+        t0 = time.time()
+        cmd = [sys.executable, "-m", "pytest", "-q", "-n", "auto"] + [t[1] for t in lote]
+        try:
+            p = subprocess.run(cmd, cwd=ROOT, capture_output=True, text=True, timeout=600)
+            return p.returncode, (p.stdout or "") + (p.stderr or ""), time.time() - t0
+        except subprocess.TimeoutExpired as e:
+            return 124, str(e), time.time() - t0
+
+    from concurrent.futures import ThreadPoolExecutor
+    resultados = {}
+    with ThreadPoolExecutor(max_workers=os.cpu_count() or 2) as ex:
+        fut_lote = ex.submit(corre_lote) if lote else None
+        for t, r in ex.map(corre, sueltos):
+            resultados[t[0]] = r
+        if fut_lote is not None:
+            rc, salida, dt = fut_lote.result()
+            print("LOTE pytest -n auto: %d archivos rc=%d (%.1fs)" % (len(lote), rc, dt))
+            if rc == 0:
+                for t in lote:
+                    resultados[t[0]] = (0, "", 0.0, False)
+            else:
+                for t, r in ex.map(corre, lote):
+                    resultados[t[0]] = r
+
+    ejecutados = 0
+    fallidos = 0
+    for archivo, _, _ in tareas:
+        rc, salida, dt, timed_out = resultados[archivo]
         ejecutados += 1
         estado = "OK" if rc == 0 and not timed_out else "FAIL"
         if estado == "FAIL":
             fallidos += 1
-        print("%s %s (%.1fs)" % (estado, f["archivo"], dt))
+        print("%s %s (%.1fs)" % (estado, archivo, dt))
         if estado == "FAIL":
             print(salida[-4000:])
 
+    guardia_lectura()
     print(
         "RESUMEN guardias: ejecutados=%d saltados=%d fallidos=%d"
         % (ejecutados, saltados, fallidos)
     )
     sys.exit(1 if fallidos else 0)
+
+
+def guardia_lectura():
+    """WARN (no bloquea, D-16) si el diff de la rama contra origin/main anade
+    `cat`/`less` de un derivado en scripts o notas. ACTO
+    GEN2-TUBERIA-CABLEADO-SESIONES-1, P2: Codex no ejecuta el hook de Claude
+    (tools/hook_lectura.py); esto mide lo que alli se bloquea. Solo lee el
+    clon (D-23): sin fetch; si origin/main no resuelve, NO-VERIFICABLE."""
+    sys.path.insert(0, os.path.join(ROOT, "tools"))
+    import fnmatch
+    from hook_lectura import DERIVADOS
+    base = subprocess.run(["git", "merge-base", "origin/main", "HEAD"], cwd=ROOT,
+                          capture_output=True, text=True)
+    if base.returncode != 0:
+        print("GUARDIA-LECTURA: NO-VERIFICABLE (origin/main no resuelve en este clon)")
+        return 0
+    d = subprocess.run(["git", "diff", "-U0", base.stdout.strip(), "HEAD", "--",
+                        "*.py", "*.sh", "*.md", "*.yml"], cwd=ROOT,
+                       capture_output=True, text=True).stdout
+    exentos = ("canon/REGLAS-DE-LECTURA.md", "AGENTS.md", "CLAUDE.md",
+               "tools/hook_lectura.py", "tests/test_cableado_sesiones.py")
+    archivo, avisos, examinadas = None, 0, 0
+    for linea in d.splitlines():
+        if linea.startswith("+++ "):
+            archivo = linea[6:] if linea.startswith("+++ b/") else None
+            continue
+        if not linea.startswith("+") or archivo is None or archivo in exentos:
+            continue
+        if archivo.startswith("forense/encargos/"):
+            continue
+        examinadas += 1
+        for m in re.finditer(r"\b(?:cat|less|more)\s+([^\s|;&<>`'\"]+)", linea):
+            if any(fnmatch.fnmatch(m.group(1), pat) for pat in DERIVADOS):
+                avisos += 1
+                print("WARN GUARDIA-LECTURA: %s anade `%s` (derivado: se consulta, no se lee)"
+                      % (archivo, m.group(0)))
+    print("GUARDIA-LECTURA: %d WARN sobre %d lineas anadidas examinadas" % (avisos, examinadas))
+    return avisos
 
 
 def main():

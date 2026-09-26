@@ -1015,3 +1015,9 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | `canon/tabla-de-piso-v1_1.tsv` | `python3 tools/genera_tabla_piso_v1_1.py --escribe` (sin flag solo cuenta; `--verifica` compara byte a byte) | una fila por estimador del catálogo v1.2 con área de consulta, hashes del CALC y `eje_nse_o_region` | `docs/reto.md`, `docs/one-pager.md` | la v1.0 (`tools/genera_tabla_piso.py`) es histórica: ya no se iguala al contador vivo de `status` |
 | `forense/analisis/informe-v1_4/cifra.py` | solo lee | una cifra por clave para el informe v1.4 | `canon/informe-programa-v1_4.md` (comentarios `comando:`) | — |
 | `tools/deriva_cifras.py` | `python3 tools/deriva_cifras.py [--escribe] ARCHIVO…` | re-deriva toda cifra `N <!-- deriva: cmd -->` de un documento (una sola corrida de `status`) | `docs/*.md` | sin `--escribe` sale 1 si hay desfase |
+
+## `docs/data/` — export de consulta estática (`ACTO GEN2-PRODUCTO-CONSULTA-1`, 26/sep/2026)
+
+| tabla | deriva | columnas | consume | nota |
+|---|---|---|---|---|
+| `docs/data/catalogo-v1_N.json` · `docs/data/catalogo-vigente.json` | `python3 tools/benchmark.py exporta` desde el catálogo vigente (`canon/catalogo-del-mexicano-v1_N.tsv`, N mayor) | columnar: `columnas · diccionarios · filas` (las del catálogo) + `hashes · reglas · ejes · olas_reservadas · cobertura · excluidos` | `docs/consultar.md` | Derivado; no se edita a mano. `tests/test_benchmark.py` lo compara con el catálogo fila por fila. Contrato: `docs/consulta.md`. |
