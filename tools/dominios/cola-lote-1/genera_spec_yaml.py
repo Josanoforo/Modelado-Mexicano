@@ -70,7 +70,7 @@ CONF = {
         "estimando": "Pisos por segmento Censo 2010 (muestra) de 13 conductas de hogar (12 proporciones, 1 media) "
                      "y 1 de persona 60+, con IC de diseno; sin persistencia (una ola abierta).",
         "parametros": {"ola": "2010"},
-        "dependencias": ["numpy", "pandas", "pyreadstat"],
+        "dependencias": ["numpy", "pandas", "pyreadstat", "inflate64"],
         "firmas": "F-ASTRA-5-4, regla 6, E.6, §4 (unidades no se promedian: defunciones ≠ personas encuestadas) "
                   "(encargo §2, verbatim)",
     },

@@ -19,7 +19,12 @@ Lo heredado se ejecuta desde los bytes hasheados de la receta común
 from __future__ import annotations
 
 import math
+import struct
+import tempfile
 import types
+import zipfile
+import zlib
+from pathlib import Path
 
 import numpy as np
 import pandas as pd
@@ -100,6 +105,45 @@ def _guardia_inputs(inputs):
         raise ParoDeGuardia("receta sin bytes: se exige origen repo")
 
 
+def bytes_miembro(ruta_zip, miembro):
+    """Bytes de un miembro del ZIP. Deflate (8) y stored (0) por `zipfile`; Deflate64 (9) —
+    MC2010_15 y MC2010_20— por `inflate64` desde el encabezado local, con largo y CRC-32
+    comprobados contra el directorio central (un inflado corto o relleno es PARO, no dato)."""
+    with zipfile.ZipFile(ruta_zip) as z:
+        info = z.getinfo(miembro)
+        if info.compress_type != 9:
+            return z.read(miembro)
+    import inflate64
+    with open(ruta_zip, "rb") as fh:
+        fh.seek(info.header_offset)
+        cab = fh.read(30)
+        n, x = struct.unpack("<HH", cab[26:30])
+        fh.seek(info.header_offset + 30 + n + x)
+        crudo = fh.read(info.compress_size)
+    datos = inflate64.Inflater().inflate(crudo)
+    if len(datos) != info.file_size or zlib.crc32(datos) != info.CRC:
+        raise ParoDeGuardia(f"{miembro}: Deflate64 inflado no casa con el directorio (largo o CRC)")
+    return datos
+
+
+def lee_dta_miembro(ruta_zip, miembro, columnas):
+    """`columnas` (sin distinguir mayúsculas) del .dta `miembro`; DataFrame en minúsculas."""
+    import pyreadstat
+
+    with tempfile.TemporaryDirectory() as tmp:
+        destino = Path(tmp) / "m.dta"
+        destino.write_bytes(bytes_miembro(ruta_zip, miembro))
+        _, meta = pyreadstat.read_dta(str(destino), metadataonly=True)
+        reales = {c.lower(): c for c in meta.column_names}
+        faltan = [c for c in columnas if c.lower() not in reales]
+        if faltan:
+            raise KeyError(f"columnas ausentes en {miembro}: {faltan}")
+        df, _ = pyreadstat.read_dta(str(destino), usecols=[reales[c.lower()] for c in columnas],
+                                    apply_value_formats=False)
+    df.columns = [c.lower() for c in df.columns]
+    return df
+
+
 def rid(conducta, eje, cat, q):
     return f"{P}-{conducta}-{OLA}-{eje}-{cat}-{q}"
 
@@ -167,6 +211,7 @@ def prepara(viv, per, R):
     diag["VIV-TIPOHOG-NE"] = int((~th.isin(TIPOHOG_VALIDOS)).sum())
     viv["_th"] = th
     okv = _diseno(viv, R)
+    per = per[per["_edad"] >= 60].copy()  # PER60-* es el único uso del marco persona
     okp = _diseno(per, R)
     diag["VIV-DISENO-VALIDO"] = int(okv.sum())
     diag["PER-DISENO-VALIDO"] = int(okp.sum())
@@ -281,8 +326,8 @@ def medir(inputs, contrato):
     vs, ps = [], []
     for e, pid in PAY.items():
         ruta = inputs[pid]["ruta_absoluta"]
-        vs.append(R.lee_dta(ruta, COLS_VIV, miembro=f"viviendas_{e}.dta"))
-        ps.append(R.lee_dta(ruta, COLS_PER, miembro=f"personas_{e}.dta"))
+        vs.append(lee_dta_miembro(ruta, f"viviendas_{e}.dta", COLS_VIV))
+        ps.append(lee_dta_miembro(ruta, f"personas_{e}.dta", COLS_PER))
     out = mide(pd.concat(vs, ignore_index=True), pd.concat(ps, ignore_index=True), R, replicas, semilla)
     out[f"{P}-G-BOOTSTRAP-REPLICAS"] = replicas
     out[f"{P}-G-SEED"] = semilla
