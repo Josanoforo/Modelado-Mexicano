@@ -182,3 +182,50 @@ def test_emat_spec_yaml_es_el_esquema():
     assert _spec("CALC-EMAT-PAREJA-PISOS-0001")["resultados"] == EMAT.esquema_resultados()
 
 
+EDR = _load("data/corrida0/CALC-EDR-SUICIDIO-PISOS-0001/medidor.py", "m_edr_suicidio")
+
+
+def _edr_ola(ola, k):
+    pres = EDR.PRESUNTO[ola]
+    filas = []
+    for i in range(80):
+        filas.append({"ENT_RESID": f"{1 + i % 3:02d}", "TLOC_RESID": ("2", "5", "8", "14", "99")[i % 5],
+                      "CAUSA_DEF": ("X700", "X84", "I219", "", "X600", "Y870")[(i + k) % 6],
+                      "SEXO": ("1", "2", "9")[i % 3], "EDAD": ("4017", "4035", "4998", "2005", "4070")[i % 5],
+                      "ANIO_OCUR": (ola, "2012")[i % 7 == 0], "ANIO_REGIS": ola,
+                      "ESCOLARIDA": ("1", "6", "8", "10", "88")[i % 5], pres: ("3", "1", "8")[i % 3]})
+    return filas
+
+
+def test_edr_ramas_pasan_el_conducto():
+    por_ola = {o: EDR.lee_dbf(_dbf(_edr_ola(o, j), EDR.CAMPOS_BASE + (EDR.PRESUNTO[o],)),
+                              EDR.CAMPOS_BASE + (EDR.PRESUNTO[o],)) for j, o in enumerate(EDR.OLAS)}
+    out = EDR.mide(por_ola, R)
+    for k in ("INPUT-RECETA-SHA256", "OLA-RESERVADA", "NATURALEZA"):
+        out[f"{EDR.P}-G-{k}"] = "x"
+    assert corrida0._valida_outputs({"resultados": EDR.esquema_resultados()}, out) == []
+    _sin_no_finitos(out)
+    assert out[f"{EDR.P}-G-2015-CAUSA-VACIA"] > 0
+    assert out[EDR.rid("SUICIDIO-CIE", "2023", "ENT", "32", "N")] == 0
+
+
+def test_edr_cie_y_edad():
+    assert list(EDR.es_suicidio_cie(["X60", "X849", "X85", "Y870", "x700", "X59"])) == [True, True, False, False,
+                                                                                      True, False]
+    a = EDR.años([4017, 4998, 2005, 1098, 4120, 5000])
+    assert a[0] == 17 and np.isnan(a[1]) and a[2] == 0 and np.isnan(a[3]) and a[4] == 120 and np.isnan(a[5])
+
+
+def test_edr_guardia_rechaza_2024():
+    inputs = {pid: {"ruta_absoluta": f"/x/EDR/{pid}.zip"} for pid in EDR.ZIPS}
+    inputs["receta_pisos"] = {"bytes": RECETA_BYTES}
+    EDR._guardia_inputs(inputs)
+    inputs["edr2022_bd_dbf_zip"] = {"ruta_absoluta": "/x/edr2024/defunciones_base_datos_2024_dbf.zip"}
+    with pytest.raises(EDR.ParoDeGuardia):
+        EDR._guardia_inputs(inputs)
+
+
+def test_edr_spec_yaml_es_el_esquema():
+    assert _spec("CALC-EDR-SUICIDIO-PISOS-0001")["resultados"] == EDR.esquema_resultados()
+
+
