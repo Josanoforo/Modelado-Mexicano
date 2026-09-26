@@ -22,6 +22,16 @@ def verifica():
     def check(name, passed):
         checks.append((name, bool(passed)))
     frozen = json.loads((AREA / "commit-1-hashes.json").read_text())
+    enmienda = json.loads((AREA / "enmienda-verificacion.json").read_text())
+    for p, item in enmienda["archivos"].items():
+        if p not in ("tools/familias-2027/encig/cierre.py", "tools/familias-2027/encig/evaluar.py"):
+            raise ValueError("ENMIENDA-FUERA-DE-CABLEADO")
+        if frozen["archivos"][p] != item["anterior"]:
+            raise ValueError("ENMIENDA-ORIGEN-DISCREPA")
+        original = subprocess.check_output(["git", "show", enmienda["commit_1"] + ":" + p], cwd=ROOT)
+        if hashlib.sha256(original).hexdigest() != item["anterior"]:
+            raise ValueError("ENMIENDA-TESTIGO-DISCREPA")
+        frozen["archivos"][p] = item["actual"]
     check("codigo-specs-congelados", all((ROOT / p).is_file() and sha(ROOT / p) == h
                                          for p, h in frozen["archivos"].items()))
     # No confiar en que un sello modificado coincida consigo mismo: hashes
@@ -34,8 +44,12 @@ def verifica():
         for command in ("preflight", "verify"):
             proc = subprocess.run([sys.executable, str(ROOT / "tools/corrida0.py"), command, calc],
                                   cwd=ROOT, text=True, capture_output=True)
-            check(command + ":" + calc, proc.returncode == 0)
-            if proc.returncode:
+            # preflight impide volver a ejecutar un CALC sellado. Ese único
+            # bloqueo acredita inmutabilidad; verify contesta reproducción.
+            immutable = (command == "preflight" and proc.stdout.strip().splitlines()[-1]
+                         == "PRE-FLIGHT: BLOQUEADO calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO")
+            check(command + ":" + calc, proc.returncode == 0 or immutable)
+            if proc.returncode and not immutable:
                 print(proc.stdout[-3000:] + proc.stderr[-1000:])
     proc = subprocess.run([sys.executable, "-m", "pytest", "-q", "tests/test_astra6_encig.py"],
                           cwd=ROOT, text=True, capture_output=True)

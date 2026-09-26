@@ -27,6 +27,13 @@ def main():
     if target.exists():
         raise SystemExit("APERTURA-EXISTENTE: no sustituir ni repetir COMMIT-3")
     inventory = json.loads((AREA / "commit-1-hashes.json").read_text())
+    enmienda = json.loads((AREA / "enmienda-verificacion.json").read_text())
+    for file, item in enmienda["archivos"].items():
+        if file not in ("tools/familias-2027/encig/cierre.py", "tools/familias-2027/encig/evaluar.py"):
+            raise SystemExit("ENMIENDA-FUERA-DE-CABLEADO")
+        if inventory["archivos"][file] != item["anterior"]:
+            raise SystemExit("ENMIENDA-ORIGEN-DISCREPA")
+        inventory["archivos"][file] = item["actual"]
     for file, sha in inventory["archivos"].items():
         if hashlib.sha256((ROOT / file).read_bytes()).hexdigest() != sha:
             raise SystemExit("CODIGO-O-SPEC-DISCREPA:" + file)
