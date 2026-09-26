@@ -91,6 +91,78 @@
       "calc": "CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001",
       "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/spec.yaml",
       "sha256": "66e9e9a39381826bb47aa909990fbba68e4050c9210d89ce7a5cefb05d41f267"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/__pycache__/medidor.cpython-314.pyc",
+      "sha256": "9ff217de07333ca20ef7720d5c1d0da05555d039e0e388c721ef2e05f51266a7"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/ejecucion.json",
+      "sha256": "784707247848755293fbf93a036a58c066fb4d2ff734e9c766c5f30f83bd563d"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py",
+      "sha256": "35bb694684281072a8634061abd76b537a11d86dd1134467e472a2eb01f20cfb"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/resultados.json",
+      "sha256": "87a44e01a45b2c71b70948be189b2c7e58575e60d7ded3f35c096330c2d9cae7"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.json",
+      "sha256": "e80ab72d72492c2e51048d6d7f7921d6a62f0a8c79ef9124b0b9fb90ab1db153"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.sha256",
+      "sha256": "84696284cd6451a4896936123bfb2efe9e1670fae5ff0381bfa51a140e6ee005"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/spec.md",
+      "sha256": "ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/spec.yaml",
+      "sha256": "aae22e3b29b67a938e57550daefe3076aa105539eb71696b9910ff77f64fb3cc"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/potencia.json",
+      "sha256": "d2d8d11c028550c4374e90681517a5c91f01f750df647b53ab098b952bfa4287"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "archivo": "data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/replicas.json",
+      "sha256": "f90fd09fe9a6104dc7e6bfb75cc48a032fa623ebbf80f41bf37eb18894c653cd"
+    },
+    {
+      "calc": "CONTRATO-FUTURO",
+      "archivo": "tools/familias-2027/enif/lector.py",
+      "sha256": "36ed270884601b46c8f16edd44dc96a953f0cccf2f62e8eda54e1ffccf4ac675"
+    },
+    {
+      "calc": "CONTRATO-FUTURO",
+      "archivo": "tools/familias-2027/enif/contrato-futuro.yaml",
+      "sha256": "e1c79a9573c469ae9cf6cae4148c020f14b4c4e3d82b8f399b608d52559dec6a"
+    },
+    {
+      "calc": "CONTRATO-FUTURO",
+      "archivo": "tools/familias-2027/enif/lector-futuro-serializacion-v2.py",
+      "sha256": "070bd5072f03092f867891c8ade61b33506c049d63e0d3b9b4a4e09c78b10d8a"
+    },
+    {
+      "calc": "CONTRATO-FUTURO",
+      "archivo": "tools/familias-2027/enif/contrato-futuro-serializacion-v2.yaml",
+      "sha256": "ccb1c7d454a3da06e0db368cb4ad6e86cbce2a5dd0b52f00db0ef80cad85f736"
     }
-  ]
+  ],
+  "COMMIT_1_sucesor": "d6fd8a0633c5bf1e976b2096c85a0b3510dee80a",
+  "COMMIT_2_auxiliar": "f7d26f129acbde4bd6dc032d6f147053c7a55be2"
 }

@@ -1,0 +1,23 @@
+VERIFY CALC-FAMILIA-2027-ENIF-ORO-0002   (data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002)
+  [1/5 SELLO] COINCIDE -- sello y todos los archivos que cubre coinciden
+  [2/5 SPEC.YAML] IDENTICO  sellado=aae22e3b29b67a938e57550daefe3076aa105539eb71696b9910ff77f64fb3cc  hoy=aae22e3b29b67a938e57550daefe3076aa105539eb71696b9910ff77f64fb3cc
+  [3/5 INPUT COINCIDE] enif_2024_enif_2024_bd_csv (manifiesto)  sellado=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039  actual=00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+  [4/5 CONTEXTO] codigo=IDENTICO  commit_informativo=DISTINTO  (FP-358: no gatea)  parametros=IDENTICO  seed=IDENTICO  dependencias=IDENTICO
+  CONTEXTO: IDENTICO
+  WARN VALOR-LARGO-LEGADO -- RESULT-FAMILIA-ENIF-ORO-POTENCIA: VALOR-REF-FUERA-DE-TABLAS='data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/potencia.json' (debe vivir en data/corrida0/<este CALC>/tablas/) (sellado antes de COMMIT-C: se acepta; registro lo referencia en valores-vista/)
+  WARN VALOR-LARGO-LEGADO -- RESULT-FAMILIA-ENIF-ORO-REPLICAS: VALOR-REF-FUERA-DE-TABLAS='data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/replicas.json' (debe vivir en data/corrida0/<este CALC>/tablas/) (sellado antes de COMMIT-C: se acepta; registro lo referencia en valores-vista/)
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-AMBAS-P (tipo=proporcion): sellado=0.2047673204233843 · hoy=0.2047673204233843 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-AUDITORIA (tipo=texto): sellado='{"codigos": {}, "faltas": {}, "masa_codigos": {}, "n_efectivo": 6147.133197359759}' · hoy='{"codigos": {}, "faltas": {}, "masa_codigos": {}, "n_efectivo": 6147.133197359759}' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-ESTRATOS (tipo=entero): sellado=190 · hoy=190 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-FORMAL-P (tipo=proporcion): sellado=0.28492736594847873 · hoy=0.28492736594847873 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-INFORMAL-P (tipo=proporcion): sellado=0.5619195210567837 · hoy=0.5619195210567837 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-MASA (tipo=flotante): sellado=94221441.0 · hoy=np.float64(94221441.0) · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-N (tipo=entero): sellado=13502 · hoy=13502 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-POTENCIA (tipo=texto): sellado='REF:data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/potencia.json#sha256:d2d8d11c028550c4374e90681517a5c91f01f750df647b53ab098b952bfa4287' · hoy='REF:data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/potencia.json#sha256:d2d8d11c028550c4374e90681517a5c91f01f750df647b53ab098b952bfa4287' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-REPLICAS (tipo=texto): sellado='REF:data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/replicas.json#sha256:f90fd09fe9a6104dc7e6bfb75cc48a032fa623ebbf80f41bf37eb18894c653cd' · hoy='REF:data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/tablas/replicas.json#sha256:f90fd09fe9a6104dc7e6bfb75cc48a032fa623ebbf80f41bf37eb18894c653cd' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-SOPORTE (tipo=texto): sellado='SI' · hoy='SI' · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-UNICAS (tipo=entero): sellado=0 · hoy=0 · delta=None
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-UNION-P (tipo=proporcion): sellado=0.6420795665818781 · hoy=0.6420795665818781 · delta=0.0
+  [5/5 RESULT REPRODUCE] RESULT-FAMILIA-ENIF-ORO-UPM (tipo=entero): sellado=2164 · hoy=2164 · delta=None
+
+VERIFY: REPRODUCE   (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
