@@ -165,6 +165,7 @@ tests/test_lote_enif2024_adjudicacion_t.py	pytest	NO	pandas,pytest	NO	0.0	NECESI
 tests/test_manifiesto_alcance.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_clon.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_manifiesto_seguro.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_mapa_dominios_v1_1.py	script	NO	(ninguna)	NO	1.9	CORRE-EN-CI	exit 0 sin corpus
 tests/test_marcador_metrica_y_prospectividad.py	script	NO	(ninguna)	NO	0.1	FALLA-DE-VERDAD	AttributeError: module 'tablero_programa' has no attribute '_celdas_d_adjudicadas'
 tests/test_marcador_segmento.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_marco_m_en_seco.py	script	NO	(ninguna)	NO	40.0	FALLA-DE-VERDAD	TIMEOUT>40s
