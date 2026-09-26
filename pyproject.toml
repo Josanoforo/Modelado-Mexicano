@@ -1,0 +1,25 @@
+# ACTO GEN2-TUBERIA-CABLEADO-SESIONES-1 (P5, ae2a-02): pyproject mínimo para
+# que `uv lock` fije versiones. No es un paquete instalable: requirements.txt
+# sigue siendo lo que instala la CI; este archivo y uv.lock reproducen el
+# entorno (`uv sync`) y dejan visible cualquier deriva de versiones.
+[project]
+name = "modelado-mexicano"
+version = "0.0.0"
+requires-python = ">=3.10"
+dependencies = [
+    "PyYAML",
+    "xlrd",
+    "markdown",
+    "jsonschema",
+    "openpyxl==3.1.5",
+    "numpy",
+    "pandas",
+    "pyreadstat",
+    "pytest",
+]
+
+[dependency-groups]
+dev = ["pytest-xdist", "py-spy", "yq"]
+
+[tool.uv]
+package = false
