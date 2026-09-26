@@ -45,3 +45,7 @@ No adopta, no evalúa prospectivamente, no toca el motor. Sucesores: la hoja de 
 | (a) pisos por segmento — piso nacional Intercensal 2015 | DIFERIDO-A:CALC-EIC-HOGARES-2015-0002 -- el payload eic2015_nacional_csv es sólo Estado de México; faltan 31 archivos por entidad (/adquiere) | FAM-035 sin RESULT nacional; CALC-EIC-HOGARES-2015-0001 vale sólo para Edomex | CALC-EIC-HOGARES-2015-0002 |
 | (b) las 135 NO-VERIFICADO-AQUÍ — verificación de texto de las que quedaron DIFERIDO (37 de 134 asentadas) | DIFERIDO-A:cola v1.2 -- sin CALC o sin acceso (CNBV/Banxico sin red, CONEVAL tabulados; EMAT/CCPV-familia/ENPECYT/EDR absorbidos por GEN2-COLA-LOTE-1, en vuelo) | 89 afirmaciones siguen MEDIBLE-CON-ADQUISICIÓN | cola v1.2 |
 | (a) RELIGIOSIDAD/CCPV — pisos de religión CCPV 2010/2020 | DIFERIDO-A:cola v1.2 -- ningún CALC mide religión en la muestra censal | RELIG-001/008 sin RESULT | cola v1.2 |
+
+## CONSUMIDO
+
+Ejecutado por PR #1169 (rama `acto/gen2-cola-completa-1`), ADR `ADR-260926-GEN2-COLA-COMPLETA-1-0d4a-01`, nota `forense/notas/2026-09-26-GEN2-COLA-COMPLETA-1-cierre.md`. Mesa fusiona.
