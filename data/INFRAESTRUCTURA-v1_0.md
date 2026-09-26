@@ -1021,3 +1021,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 |---|---|---|---|---|
 | `forense/analisis/reports-v2/social-1/*-afirmaciones.{json,tsv}` | Lectura completa v1 y mapa al corte; juicios editoriales explícitos, verificados por `verifica_lote.py` | Afirmación, origen/localizador, dictamen, argumento, evidencia, estado y cambio editorial | Tres reports v2, índice local y recibo | Sin edición del mapa; conteo incluye procedencias repetidas, no pruebas independientes |
 | `forense/analisis/reports-v2/social-1/*-cifras.json` y `*-fuentes.json` | Extracción puntual sellada y lectura primaria pública | Valor/clave/hash/FP, unidad/periodo/transformación; fuentes con población/método/tier | Comprobador y revisión dirigida | Cifra externa sin RESULT ficticio; no microdato ni ola reservada |
+
+## ASTRA6-C2-ENIF-1 · tablas locales
+
+`forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.

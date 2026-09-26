@@ -90,6 +90,20 @@ def verifica():
     fallos += audita((ROOT/"tools/familias-2027/enif/lector.py").read_text())
     if ORO.endswith("0001") and (BASE/ORO/"medidor.py").read_bytes() != (ROOT/"tools/familias-2027/enif/lector.py").read_bytes():
         fallos.append("lector congelado difiere de medidor material")
+    for name in ("contrato-futuro.yaml", "contrato-futuro-serializacion-v2.yaml"):
+        contrato = yaml.safe_load((ROOT/"tools/familias-2027/enif"/name).read_text())
+        material = ROOT/contrato["script_material"]
+        if hashlib.sha256(material.read_bytes()).hexdigest() != contrato["script_sha256_congelado"]:
+            fallos.append("hash futuro discordante: "+name)
+        if contrato["calc_id"] is not None or contrato["R_futura"] is not None:
+            fallos.append("contrato contiene ejecución futura: "+name)
+    inventario = json.loads((ANALISIS/"inventario-sellos.json").read_text())
+    for archivo in inventario["archivos"]:
+        p = ROOT/archivo["archivo"]
+        if not p.is_file() or hashlib.sha256(p.read_bytes()).hexdigest() != archivo["sha256"]:
+            fallos.append("inventario discordante: "+str(p))
+    if inventario["atestaciones_externas_verificadas"] != 0 or inventario["comprobante_ots"] is not None:
+        fallos.append("atestación no corresponde al estado acreditado del lote")
     tests = subprocess.run([sys.executable,"-m","pytest","-q",str(ROOT/"tools/familias-2027/enif/tests")], cwd=ROOT, text=True, capture_output=True)
     print(tests.stdout.strip().split("\n")[-1])
     if tests.returncode:

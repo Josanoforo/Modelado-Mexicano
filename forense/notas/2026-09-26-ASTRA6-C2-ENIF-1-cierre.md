@@ -1,4 +1,4 @@
-# ASTRA6-C2-ENIF-1 · resultado y recibo solicitado a Claude
+# ASTRA6-C2-ENIF-1 · nota de cierre
 
 [EJECUTADO] Dos familias con emisiones congeladas para una ola futura; cero R futura, cero retadores y cero atestaciones externas verificadas. Oro histórico y emisiones reproducen por separado con RESULTADO=REPRODUCE y CONTEXTO=IDENTICO. Guardias, fronteras, mutaciones, faltantes y terminales por conducto real: 32 pruebas pasan. Cierre propio VERDE.
 
