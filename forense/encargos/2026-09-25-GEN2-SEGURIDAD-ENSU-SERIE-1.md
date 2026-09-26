@@ -28,3 +28,13 @@ Propio: `forense/prereg-caja/ENSU-*`, `data/corrida0/CALC-ENSU-*`, `tools/domini
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No compara ENSU con ENVIPE sin enlace (escalas distintas); no evalúa prospectivamente (una familia 2027 de ENSU trimestral es candidata natural: se propone en la nota). Sucesores: FIRMAS-20, catálogo v1.2, U4 familias.
+
+## NO-CORRIDO / RESERVAS
+
+| # | qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|---|
+| NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 | «Hecho»: ≥ 1 CALC sellado por instrumento con `verify` REPRODUCE y asiento | DIFERIDO-A:GEN2-TUBERIA -- los derivados protegidos (corridas/resultados.tsv) no viajan en PR (firma 21/sep); el asiento sí está en `forense/replay-evidencia.tsv` | la vista no muestra las 2 corridas hasta que el job de main corra `registro` | FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 |
+| NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-02 | serie 2013–2025 por conducta y ciudad | NO-VERIFICABLE-AQUÍ -- 2017T1 sin sexo/edad (`JOIN-SIN-CS` = todas las personas; causa no diagnosticada); código congelado, no se parcha | series SEXO/EDAD con tramo 2017T2–2025T4 | FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 |
+| NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-03 | nota CONFIRMA / MATIZA / ROMPE contra cada report | DIFERIDO-A:CALC-ENSU-PISOS-0002 -- hábitos C09–C12 con «No aplica» en el denominador (congelado en COMMIT-1); el comunicado lo excluye | VIOL-001, INTER-034, SANC-007 quedan MATIZA/ROMPE por universo | FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 |
+| NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-04 | serie 2013–2025 por conducta y ciudad | DIFERIDO-A:familia ENSU por ciudad -- sólo C01 por ciudad (≈ 250 000 RESULT para las 15; spec §4, PROPUESTO-POR-EJECUTOR) | dictamen por ciudad sólo de la percepción de inseguridad | FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 |
+| NC-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-05 | segmentación (sexo, edad, escolaridad, localidad, formalidad, región, NSE donde A4 lo autorizó) | NO-VERIFICABLE-AQUÍ -- ENSU CB no capta escolaridad, formalidad ni NSE, y no hay regionalización ENSU oficial; se segmenta por ENT y CIUDAD | ningún piso ENSU por clase o región | FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 |
