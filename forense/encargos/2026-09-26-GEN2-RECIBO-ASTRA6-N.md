@@ -56,3 +56,13 @@ Propio: nota, `tools/recibo/` (scripts reutilizables), TSV de gobierno (append),
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No fusiona, no adopta, no corrige a Astra. Sucesor: el siguiente N.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «check.py --baseline VERDE sobre la rama fusionada localmente» para #1170, #1172 y #1173 | NO-VERIFICABLE-AQUÍ: los tres chocan con origin/main. #1172 y #1173 se resolvieron por union en local (#1173: VERDE). #1170 y #1172 se midieron sobre su HEAD (#1170 ROJO, #1172 VERDE). Resolver un conflicto de la rama de Astra es editarla (PARO b). | El VERDE de #1172 es sobre el HEAD, no sobre el merge. | Astra, al resolver el conflicto |
+| Replay de oro y firma CAJA de los CALC de #1170, #1172 y #1174 | NO-VERIFICABLE-AQUÍ: NUBE sin microdato. `verify` da INPUT AUSENTE o NO-EJECUTABLE. | El oro se LEYÓ de `ejecucion.json`/`oro.json`, no se re-ejecutó. | sesión CAJA post-merge (NC-…-996b-03) |
+| Citas externas de los reports de #1173 | NO-VERIFICABLE-AQUÍ: red denegada por política (EGRESS_BLOCKED). | La trazabilidad de literatura se verificó por forma, no por contenido de la fuente. | siguiente recibo C3 |
+| Plantilla GEN2-RECIBO-ASTRA-PRODUCTO-N | SUSTITUIDO-POR:criterios K1–K6 PROPUESTO-POR-EJECUTOR (absorbe los seis criterios comunes nombrados en el encargo; queda huérfano cualquier criterio de la plantilla que no esté en esa lista) | Si la plantilla aparece, la diferencia se declara. | mesa / dirección |
+| Recibo de #1166 y #1171 (N=1, N=2) | DIFERIDO-A:GEN2-RECIBO-ASTRA6-N (siguiente instancia; D-11 limita el lote a cuatro piezas) | #1171 sigue en main sin recibo (R(a)). | NC-…-996b-07 |
