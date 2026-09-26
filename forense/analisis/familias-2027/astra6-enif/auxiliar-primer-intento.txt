@@ -1,0 +1,31 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENIF-ORO-0001   (data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0001/spec.yaml
+  [NO-EN-MAIN] spec_md_sha256
+              declarado en spec.yaml = 92201ee168dee35ca24d675486ff99fbe95fccbb677bf24faaa2a5422d8affc7
+              arbol                  = 92201ee168dee35ca24d675486ff99fbe95fccbb677bf24faaa2a5422d8affc7
+              origin/main            = NO-EN-MAIN
+  [UNICOS] ids de resultados: 13 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0001/medidor.py
+              script_blob_sha256 = 36ed270884601b46c8f16edd44dc96a953f0cccf2f62e8eda54e1ffccf4ac675
+  inputs declarados: 1
+    [COINCIDE] enif_2024_enif_2024_bd_csv  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra6-c2-enif-1/data/raw/enif_2024_bd_csv.zip
+              sha256 esperado = 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+              sha256 actual   = 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+              tamano          = 3131148
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"R_futura": null, "agrupacion": "NACIONAL", "banda": 0.02, "futuro_ids": null, "min_estratos": 150, "min_n": 10000, "min_upm": 1000, "numpy_cuantiles": "numpy.quantile method=linear (default); firma de versi\u00f3n en ejecucion.json", "pisos_autenticados_futuro": "PISOS_HASH en c\u00f3digo congelado, no p0 del caller", "replicas": 2000, "terminales_potencia": "r\u00e9plicas ausentes: escenarios=[], mde80=[null,null], correlaci\u00f3n=null; varianza marginal cero: correlaci\u00f3n=null"}
+  [DECLARADO] tolerancia = {"abs": 1e-10, "tipo": "flotante"}
+  [DECLARADO] seed       = {'aplica': True, 'valor': 20260926, 'rng': 'numpy.random.default_rng PCG64'}
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SIN-SELLO-PREVIO] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0001/sello.json]
+  [AVISO] spec_md_no_esta_en_origin_main -- primera corrida de una spec aun no fusionada; se DECLARA, no se da por fusionada
+
+PRE-FLIGHT: VERDE
+
+RUN CALC-FAMILIA-2027-ENIF-ORO-0001
+RUN: FALLO -- nada se sella:
+  RESULT-FAMILIA-ENIF-ORO-POTENCIA: VALOR-LARGO (15508 bytes, str) -- una lista o tabla va a tablas/ del CALC y el RESULT la cita por REF:<ruta>#sha256:<hex>
+  RESULT-FAMILIA-ENIF-ORO-REPLICAS: VALOR-LARGO (157608 bytes, str) -- una lista o tabla va a tablas/ del CALC y el RESULT la cita por REF:<ruta>#sha256:<hex>
