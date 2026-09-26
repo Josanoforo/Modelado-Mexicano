@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """Censo de las seis evaluaciones de la etapa de retadores cerrada el 23/sep
-(v2.16 s9, cierre citado en canon/estado-programa-v1_16.md #15). Ninguna cifra
+(v2.16 s9, cierre citado en canon/estado-programa-v1_17.md #15). Ninguna cifra
 se deriva de microdato aqui: las seis vienen citadas y ya selladas en
 canon/informe-programa-v1_3-ANEXO.md (Astra U3, ajeno, no se edita) y las
-familias de retador vienen citadas en canon/estado-programa-v1_16.md #15. El
+familias de retador vienen citadas en canon/estado-programa-v1_17.md #15. El
 script falla en voz alta si la frase que cita cada numero deja de estar en su
 fuente -- no hay numero tecleado sin verificacion de linaje.
 """
@@ -14,7 +14,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 ANEXO = ROOT / "canon/informe-programa-v1_3-ANEXO.md"
-ESTADO = ROOT / "canon/estado-programa-v1_16.md"
+ESTADO = ROOT / "canon/estado-programa-v1_17.md"
 
 # (etiqueta, instrumento, n_celdas_de_cruce, frase citable verbatim en ANEXO)
 # Duelo ENIGH 2024 es un punto nacional sin cruce adjudicable (ANEXO, fila
