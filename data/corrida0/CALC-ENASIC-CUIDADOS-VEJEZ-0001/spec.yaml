@@ -1,0 +1,2087 @@
+# CALC-ENASIC-CUIDADOS-VEJEZ-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENASIC-CUIDADOS-VEJEZ-0001
+spec_md: ../../../forense/prereg-caja/FAMILIA-ENASIC-PISOS-spec-v1_0.md
+spec_md_sha256: 211c47bc834a0c774c28b4b2838dff0c6417a88811d3eedaebe132866fe46667
+script: data/corrida0/CALC-ENASIC-CUIDADOS-VEJEZ-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+- dbfread
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-4, regla 6, E.6, §3 v2.16 (encargo §2, verbatim)
+  unidad_transferencia: HOGAR y PERSONA 60+ (nunca promediadas entre si)
+  ola_unica: ENASIC 2022 (unica ola en corpus; se abre, E.6)
+inputs:
+- id: enasic2022_bd_csv_zip
+  origen: manifiesto
+  sha256: 8a5e8c5ed2dcda6e25dfe2dd630c0ac7273e0736e7b99662a15a4ef68c3ab36e
+  funcion: DATO
+  nota: ENASIC 2022 base de datos (THOGAR, TCSDEMPO)
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, persistencia, ic_calibrado ejecutados desde estos bytes
+- id: lectores_familia
+  origen: repo
+  ruta: tools/dominios/familia/lectores.py
+  sha256: 4e71238800c2c1a0d9215443dc8aadbb8add35b120c0c0ff1c1e87773e62e331
+  funcion: CODIGO
+  nota: lee_dbf_zip / lee_csv_zip / lee_sav_zip ejecutados desde estos bytes
+variables:
+- archivo: THOGAR.csv
+  variable: LLAVEHOG
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: FAC_HOG
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: EST_DIS
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: UPM_DIS
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: HN_C
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: HN_C60MA
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: SEXO_JEFE
+  rol: reactivo o diseno
+- archivo: THOGAR.csv
+  variable: EDAD_JEFE
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: LLAVESDE
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: LLAVEHOG
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: PAREN
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: SEXO
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: EDAD
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: NIV
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: P4_42
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: P4_44
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: P4_44A
+  rol: reactivo o diseno
+- archivo: TCSDEMPO.csv
+  variable: P4_45
+  rol: reactivo o diseno
+universo: Hogares (THOGAR) con FAC_HOG>0 y EST_DIS/UPM_DIS no vacios; personas de 60+ (TCSDEMPO) con diseno de su
+  hogar por LLAVEHOG.
+filtros: Un eje a la vez (TOTAL y ejes de lista-cerrada-P1 §3); nunca cruces.
+ponderador: FAC_HOG
+transformacion: 'Recodificacion por texto: lista-cerrada-P1 §2 (ENASIC) y spec §2-§3.'
+estimando: Pisos por segmento ENASIC 2022 de 7 conductas (2 hogar, 5 persona 60+) con IC de diseno; sin persistencia.
+seed:
+  aplica: true
+  valor: 20260925
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5; bloques
+    de 50; contrato conservador
+  ola: '2022'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-FILAS-HOGAR
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-FILAS-HOGAR-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-FILAS-PERSONA
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-PERSONA-SIN-HOGAR
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-FILAS-60MAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-CUIDADOR-RENGLON-SIN-PAREO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-SEXO-JEFE-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-18-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-30-44-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-45-59-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-EDAD-JEFE-60-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-1-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-1-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-1-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-1-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-1-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-2-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-2-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-2-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-2-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-2-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-3-4-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-3-4-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-3-4-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-3-4-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-3-4-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-5-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-5-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-5-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-5-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TAMANO-HOGAR-5-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-CON-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-CONDICION-PAREJA-SIN-PAREJA-EN-HOGAR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-INPUT-RECETA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-INPUT-LECTORES-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENASIC-CUIDADOS-VEJEZ-G-OLA-UNICA
+  tipo: texto
+  unidad: declaración

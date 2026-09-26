@@ -1294,6 +1294,89 @@ def _aplica_adopcion_marginales_por_instrumento(marginales: list[dict],
                 break
 
 
+# ── (4) eje NSE AMAI -- ACTO GEN2-CLASE-AMAI-2 · P3 ──────────────────────
+# Firma A4 (FIRMAS-16, fila FP-260924-GEN2-CLASE-AMAI-1-e773-01), verbatim:
+# «NSE AMAI como eje del marcador: SÍ con reserva de instrumento: ENIGH 2022 y
+# ENIF 2024; ENDUTIH 2023 como aproximación rotulada; fuera ENDUTIH 2024–25
+# (DESVIADA) y ENIF 2021.» Sólo estos tres CALC, por nombre, nunca por glob.
+# Las filas son de tipo propio (`EJE-NSE`): no son MARGINAL t-1 (no hay ola
+# anterior con NSE en ninguno de los tres) y no entran a ningún contador de
+# piso, de marginales ni a `celdas_validadas`.
+FP_EJE_NSE = "FP-260924-GEN2-CLASE-AMAI-1-e773-01"
+EJE_NSE_A4 = {
+    "ENIGH-2022": {"unidad": "hogar", "estado": "MEDIDA-POR-NSE"},
+    "ENIF-2024": {"unidad": "persona", "estado": "MEDIDA-POR-NSE"},
+    "ENDUTIH-2023": {"unidad": "persona", "estado": "MEDIDA-POR-NSE-APROXIMACION"},
+}
+# Condición (i) de la recomendación de #1127 (cobertura-por-clase-v1_0.md §3):
+# el NSE contiene internet fijo del hogar -> uso de internet/celular por NSE es
+# circular. A4 no la recoge verbatim: se ROTULA, no se excluye
+# (INTERPRETACIÓN-DECLARADA de GEN2-CLASE-AMAI-2).
+CIRCULARES_NSE = {("ENDUTIH-2023", "internet"), ("ENDUTIH-2023", "celular")}
+CALC_NSE_CALIBRACION = "CALC-AMAI-NSE-ENIGH-2024-0001"
+GRUPOS_NSE = ("BAJO", "MEDIO", "ALTO")
+
+
+def _valores_calc(calc: str) -> dict:
+    r = json.loads((RAIZ / "data/corrida0" / calc / "resultados.json")
+                   .read_text(encoding="utf-8"))
+    v = r.get("resultados", r)
+    return {x["id"]: x.get("valor") for x in v} if isinstance(v, list) else v
+
+
+def filas_eje_nse() -> list[dict]:
+    """Una fila por (instrumento A4, conducta, grupo NSE), con R, IC y n del
+    CALC sellado de CLASE-AMAI-1 leídos por id; la calibración contra la
+    distribución NSE de ENIGH 2024 (CALC de CLASE-AMAI-2) va en `fuente`."""
+    cal = RAIZ / "data/corrida0" / CALC_NSE_CALIBRACION / "resultados.json"
+    ref = _valores_calc(CALC_NSE_CALIBRACION) if cal.exists() else {}
+    filas = []
+    for io, meta in EJE_NSE_A4.items():
+        calc = f"CALC-AMAI-NSE-{io}-0001"
+        v = _valores_calc(calc)
+        pref = f"RESULT-AMAI-NSE-{io}"
+        doc = json.loads(v[pref + "-JSON"])
+        desvio = ""
+        if ref:
+            d = [abs(v[f"{pref}-DIST-{g}-P"]
+                     - ref[f"RESULT-AMAI-NSE-ENIGH-2024-DIST-{g}-P"]) * 100
+                 for g in GRUPOS_NSE]
+            desvio = f" · calibracion_2024={CALC_NSE_CALIBRACION}: desvío máx grupo {max(d):.2f} pp"
+        inst = io.replace("-", " ")
+        for conducta in sorted(doc["pisos"]):
+            for g in GRUPOS_NSE:
+                b = f"{pref}-{conducta}-{g}"
+                estado_calc = v[b + "-ESTADO"]
+                estado = meta["estado"] if estado_calc == "PUBLICABLE" else estado_calc
+                if estado_calc == "PUBLICABLE" and (io, conducta) in CIRCULARES_NSE:
+                    estado += "-CIRCULAR"
+                filas.append({
+                    "celda_id": f"NSE::{io}::{conducta}::{g}",
+                    "tipo": "EJE-NSE",
+                    "regla_o_eje_origen": conducta,
+                    "instrumento": inst,
+                    "eje_o_par": "nse",
+                    "categoria": g,
+                    "unidad_dato": meta["unidad"],
+                    "unidad_objetivo": meta["unidad"],
+                    "estado": estado,
+                    "piso_tipo": "NO-APLICA",
+                    "piso": "", "piso_ic95": "",
+                    "piso_fuente": "SIN-PISO-T1-NSE: primera ola del eje NSE en este instrumento",
+                    "error_piso_pp": "", "clase_persistencia": "",
+                    "R": v[b + "-P"], "R_ic95inf": v[b + "-IC-LO"],
+                    "R_ic95sup": v[b + "-IC-HI"],
+                    "M": "", "IC95_inf": "", "IC95_sup": "",
+                    "tipo_incertidumbre": "BOOTSTRAP-UPM-ESTRATIFICADO",
+                    "resultado_id": b + "-P",
+                    "decision_ref": FP_EJE_NSE,
+                    "emisor_vs_arbitro": "N/A-EJE-NSE",
+                    "fuente": (f"{calc} · validacion_nse="
+                               f"{v[pref + '-VALIDACION-ESTADO']}{desvio}"),
+                })
+    return filas
+
+
 def deriva() -> dict:
     decisiones = _lee_decisiones()
     veto_activo = "veto:pisos-866" in decisiones
@@ -1304,7 +1387,8 @@ def deriva() -> dict:
     cruce_adoptadas = filas_cruce_adoptadas(decisiones)
     cruce_reservadas, uni_reservadas = filas_cruce_reservadas()
 
-    todas = nacionales + marginales + cruce_adoptadas + cruce_reservadas
+    eje_nse = filas_eje_nse()
+    todas = nacionales + marginales + cruce_adoptadas + cruce_reservadas + eje_nse
 
     # P2 · el rótulo PROSPECTIVA/RETROSPECTIVA se anota sobre las filas YA
     # derivadas: una sola pasada, ninguna fila se construye distinto por él.
@@ -1344,6 +1428,9 @@ def deriva() -> dict:
         "marginales_evaluadas_gen2": n_marg_evaluadas,
         "marginales_solo_piso": n_marg_solo_piso,
         "total_filas": len(todas),
+        # ACTO GEN2-CLASE-AMAI-2 · P3: eje NSE por firma A4, aparte.
+        "eje_nse": {io: sum(1 for f in eje_nse if f["celda_id"].startswith(f"NSE::{io}::"))
+                    for io in EJE_NSE_A4},
         # P2: seis clases, cada una con su n. NO hay cifra que sume
         # PROSPECTIVA + RETROSPECTIVA -- firma de mesa 21/sep/2026.
         "prospectividad": prospectividad.resumen(todas),
