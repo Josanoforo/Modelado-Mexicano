@@ -1,0 +1,116 @@
+{
+ "corrida_id": "CALC-CNBV-SERIES-IMOR-R16-0001--ece5de7b72cf",
+ "dependencias_materiales": {
+  "numpy": "AUSENTE",
+  "pandas": "AUSENTE",
+  "pyreadstat": "AUSENTE",
+  "scipy": "AUSENTE",
+  "yaml": "6.0.1"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "evaluacion": "RETROSPECTIVA",
+  "fuente_acto": "ACTO GEN2-DINERO-SERIES-CNBV-BANXICO-1",
+  "generacion": "GEN2",
+  "medidor_ejecutado_al_congelar": "NO",
+  "tipo": "SERIE-ADMINISTRATIVA",
+  "validacion_independiente": "PENDIENTE-POST-SELLO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-26T02:58:49Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 0,
+   "montado": "NO",
+   "nota": "data/raw ausente -- normal en un clon fresco / en la nube"
+  },
+  "dependencias_materiales": {
+   "numpy": "AUSENTE",
+   "pandas": "AUSENTE",
+   "pyreadstat": "AUSENTE",
+   "scipy": "AUSENTE",
+   "yaml": "6.0.1"
+  },
+  "git_commit": "ece5de7b72cf120ab1e0245b2b0ed165aa5a06e6",
+  "git_rama": "claude/new-session-ill5zp",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.44-fc-v37-x86_64-with-glibc2.39",
+  "python": "3.11.15",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": null,
+    "configurada": "NO",
+    "raiz_logica": "data_raw"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "cloud_default",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "ece5de7b72cf120ab1e0245b2b0ed165aa5a06e6",
+ "input_ids": [
+  "IN-CNBV-R16-IMOR-CONSUMO-202112"
+ ],
+ "input_sha256": {
+  "IN-CNBV-R16-IMOR-CONSUMO-202112": "e61c97a3acd6634e2c0cabdad18a9fbde06ff58f1c2363a3e290c3cc40e23400"
+ },
+ "parametros": {
+  "adopcion": "NINGUNA",
+  "fecha": "2021-12",
+  "productos": {
+   "ABCD": "ABCD",
+   "AUT": "Automotriz",
+   "BM": "Adq. de Bienes Muebles",
+   "CON": "Cartera total de consumo",
+   "NOM": "Nómina",
+   "OTR": "Otros Créditos de Consumo",
+   "PER": "Personales",
+   "TDC": "Tarjeta de Crédito"
+  },
+  "vacio_declarado": "Ops de Arrendamiento Capitalizable"
+ },
+ "python_version": "3.11.15",
+ "resultado_ids": [
+  "RESULT-CNBV-SERIES-ABCD-2021-12",
+  "RESULT-CNBV-SERIES-AUT-2021-12",
+  "RESULT-CNBV-SERIES-BM-2021-12",
+  "RESULT-CNBV-SERIES-CON-2021-12",
+  "RESULT-CNBV-SERIES-G-INPUT-SHA256",
+  "RESULT-CNBV-SERIES-G-N-PRODUCTOS",
+  "RESULT-CNBV-SERIES-G-N-VACIOS",
+  "RESULT-CNBV-SERIES-G-UNIDAD",
+  "RESULT-CNBV-SERIES-NOM-2021-12",
+  "RESULT-CNBV-SERIES-OTR-2021-12",
+  "RESULT-CNBV-SERIES-PER-2021-12",
+  "RESULT-CNBV-SERIES-TDC-2021-12"
+ ],
+ "script_blob_sha256": "7ccf6d418d1f800e08e0d618dee0420caa28ba155f2a7d6da93f1542672461d7",
+ "script_path": "data/corrida0/CALC-CNBV-SERIES-IMOR-R16-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-CNBV-SERIES-IMOR-R16-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "bc45e4edbbd0f4378e68524de90634a2024d6feb57a98b24553e1f518bdabf8a",
+ "spec_yaml_sha256": "f3756ed383b1f305b54cf95cbd16c150f47347b2de3add994d460e8f4f085471",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "calculo determinista sobre valores de dos decimales",
+  "tipo": "flotante"
+ }
+}

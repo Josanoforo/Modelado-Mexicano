@@ -28,8 +28,8 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 <!-- TABLERO-DERIVADO:BEGIN -->
 | Objeto | Valor en este corte | Clave |
 |---|---:|---|
-| Corridas selladas | 283 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
-| RESULT GEN2 sellados | 118 022 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
+| Corridas selladas | 291 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> `N_corridas_selladas` |
+| RESULT GEN2 sellados | 199 241 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> `N_resultados_gen2_sellados` |
 | RESULT GEN2 adoptados activos | 81 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> `N_resultados_gen2_adoptados_activos` |
 | Celdas validadas (contador rector) | 219 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> `celdas_validadas` |
 | Celdas prospectivas de esa vista | 20 | <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas_prospectiva=' --> `celdas_validadas_prospectiva` |

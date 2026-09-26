@@ -233,6 +233,15 @@ def t02_duplicates():
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
         }),
+        # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1 (25/sep/2026): lista cerrada P1 citada por ruta en la spec
+        # sellada ENSU-SERIE-spec-v1_0.md (COMMIT-1); contenido distinto; con las tres anteriores en main
+        # el grupo exacto es de cuatro.
+        frozenset({
+            "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
+            "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
+            "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+            "forense/analisis/seguridad-ensu/lista-cerrada-P1.md",
+        }),
     )
     by_name, by_hash = defaultdict(list), defaultdict(list)
     for p in glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True):
@@ -2960,6 +2969,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1, 25/sep/2026: `E1`/`E2`/`E3` son las tres ERAS de
+    # cuestionario ENSU (2013-15, 2016-20, 2021-25) de la lista cerrada y la spec sellada (COMMIT-1),
+    # no rótulos de acto; los dos archivos están congelados y no se editan.
+    "forense/analisis/seguridad-ensu/lista-cerrada-P1.md",
+    "forense/prereg-caja/ENSU-SERIE-spec-v1_0.md",
     # ACTO GEN2-RELEVO-CONSUMIDORES-2, 25/sep/2026: `M01`..`M23` son ids de
     # FILA de `milpa/catalogo-momentos-v0_1.tsv` (momentos sellados por ADR-68),
     # no rótulos de acto; mismo caso que las menciones ya censadas del catálogo.
@@ -2972,6 +2986,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # ACTO GEN2-TRAMITE-FIRMAS-18, 26/sep/2026: el encargo (verbatim, A.3) cita
     # `M01`–`M23` del catálogo en la firma H2, los mismos ids de FIRMAS-17.
     "forense/encargos/2026-09-25-GEN2-TRAMITE-FIRMAS-18.md",
+    # ACTO GEN2-RELEVO-CONSUMIDORES-3, 26/sep/2026: encargo (verbatim, A.3),
+    # nota y L0 citan `M01`–`M23` del catálogo, los mismos ids de momento.
+    "forense/encargos/2026-09-25-GEN2-RELEVO-CONSUMIDORES-3.md",
+    "forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md",
+    "canon/L0/ADR-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-01.md",
     # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
     # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
     "forense/analisis/astra-theta/seleccion.md",

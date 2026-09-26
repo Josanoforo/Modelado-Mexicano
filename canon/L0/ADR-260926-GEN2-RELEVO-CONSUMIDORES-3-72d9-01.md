@@ -1,0 +1,3 @@
+# ADR-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-01
+
+26/sep/2026 · `ACTO GEN2-RELEVO-CONSUMIDORES-3` (NUBE). FIRMAS-18 H1–H3 ejecutadas por el escritor V6 (`--relevo-consumidores-3`) y el contador: 54 lecturas HISTÓRICO-SIN-RELEVO salen del contador legacy (8 coeficientes de procedencia, M01/M02/M06/M07 del catálogo, 42 L/AGREGADO del marco v1_3 por `tipo_uso`); 2 se relevan (`util_sin_coercion` en procedencia y M04 acotado, las dos desde CALC-ENCIG-0001). Legacy 123 → 67 (procedencia 30, catálogo 17, marco 1). Residuo: 11 ASIGNADO-CONSERVADO-H1, M03 sin RESULT, M05/M23 pendientes de mesa — NC 72d9-01..04, sucesor RELEVO-CONSUMIDORES-4.
