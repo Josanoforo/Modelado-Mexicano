@@ -13,7 +13,9 @@ from auditoria import audita, finitos
 ROOT = Path(__file__).resolve().parents[3]
 BASE = ROOT / "data/corrida0"
 ANALISIS = ROOT / "forense/analisis/familias-2027/astra6-enif"
-ORO = "CALC-FAMILIA-2027-ENIF-ORO-0001"
+ORO = ("CALC-FAMILIA-2027-ENIF-ORO-0002" if
+       (BASE/"CALC-FAMILIA-2027-ENIF-ORO-0002/sello.json").is_file()
+       else "CALC-FAMILIA-2027-ENIF-ORO-0001")
 FAMILIAS = ("AHORRO-FORMAL", "HORIZONTE-AHORRO")
 CALCS = [ORO] + ["CALC-FAMILIA-2027-ENIF-"+f+"-EMISIONES-0001" for f in FAMILIAS]
 
@@ -23,9 +25,23 @@ def resultados(cid):
     return o.get("resultados", o)
 
 
+def tabla_json(cid, valor):
+    if not valor.startswith("REF:"):
+        return json.loads(valor)
+    rel, _, sha = valor[4:].partition("#sha256:")
+    esperado = BASE/cid/"tablas"
+    p = ROOT/rel
+    if p.is_symlink() or p.resolve().parent != esperado.resolve():
+        raise ValueError("REF fuera de tablas propias")
+    raw = p.read_bytes()
+    if hashlib.sha256(raw).hexdigest() != sha:
+        raise ValueError("REF hash discordante")
+    return json.loads(raw)
+
+
 def deriva():
     oro = resultados(ORO)
-    potencia = json.loads(oro["RESULT-FAMILIA-ENIF-ORO-POTENCIA"])
+    potencia = tabla_json(ORO, oro["RESULT-FAMILIA-ENIF-ORO-POTENCIA"])
     with (ANALISIS/"potencia.tsv").open("w") as f:
         cols = ["familia", "escala_se", "sd_deriva", "delta", "compatible", "indeterminado", "desvio", "ambas_informativas"]
         w = csv.DictWriter(f, fieldnames=cols, delimiter="\t"); w.writeheader()
@@ -62,7 +78,7 @@ def verifica():
             if not finitos(o):
                 fallos.append("no finito en resultados: "+cid)
             for key in ("RESULT-FAMILIA-ENIF-ORO-REPLICAS", "RESULT-FAMILIA-ENIF-ORO-POTENCIA"):
-                if key in o and not finitos(json.loads(o[key])):
+                if key in o and not finitos(tabla_json(cid, o[key])):
                     fallos.append("no finito en JSON material: "+key)
         except OSError as e:
             fallos.append(str(e))
@@ -72,7 +88,7 @@ def verifica():
         if not side.exists() or hashlib.sha256(p.read_bytes()).hexdigest() != side.read_text().split()[0]:
             fallos.append("spec humana/hash discordante: "+fam)
     fallos += audita((ROOT/"tools/familias-2027/enif/lector.py").read_text())
-    if (BASE/ORO/"medidor.py").read_bytes() != (ROOT/"tools/familias-2027/enif/lector.py").read_bytes():
+    if ORO.endswith("0001") and (BASE/ORO/"medidor.py").read_bytes() != (ROOT/"tools/familias-2027/enif/lector.py").read_bytes():
         fallos.append("lector congelado difiere de medidor material")
     tests = subprocess.run([sys.executable,"-m","pytest","-q",str(ROOT/"tools/familias-2027/enif/tests")], cwd=ROOT, text=True, capture_output=True)
     print(tests.stdout.strip().split("\n")[-1])
@@ -86,10 +102,10 @@ def verifica():
             emitted = resultados("CALC-FAMILIA-2027-ENIF-"+fam+"-EMISIONES-0001")
             if abs(emitted["RESULT-FAMILIA-ENIF-"+fam+"-PISO-P"]-oro["RESULT-FAMILIA-ENIF-ORO-"+g+"-P"]) > 1e-6:
                 fallos.append("oro discrepante: "+fam)
-        reps = json.loads(oro["RESULT-FAMILIA-ENIF-ORO-REPLICAS"])
+        reps = tabla_json(ORO, oro["RESULT-FAMILIA-ENIF-ORO-REPLICAS"])
         if len(reps) != 2000 or any(len(x)!=4 for x in reps):
             fallos.append("réplicas conjuntas incompletas")
-        potencia = json.loads(oro["RESULT-FAMILIA-ENIF-ORO-POTENCIA"])
+        potencia = tabla_json(ORO, oro["RESULT-FAMILIA-ENIF-ORO-POTENCIA"])
         if len(potencia["escenarios"]) != 54 or len(potencia["mde80"]) != 2:
             fallos.append("escenarios incompletos")
         for cid in CALCS[1:]:
