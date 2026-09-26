@@ -89,6 +89,8 @@ el objetivo sigue alcanzable, resuélvelo, síguele y decláralo.
     Reporta:  ruta absoluta  ·  `git log -1 --format="%h %s"`  ·  `git status`
     Si clonas en la nube: clon parcial por la receta de `docs/sesiones.md` §1
     (`GEN2-TUBERIA-RENDIMIENTO-1`), e instalación con `uv` (§2).
+    Antes de explorar: lee `canon/MEMORIA-OPERATIVA.md` (≤ 80 líneas; el hook
+    de arranque imprime sus 15 primeras; `GEN2-TUBERIA-CABLEADO-SESIONES-1`).
     ⚠️ No arranques desde el home. Si el cliente avisa "launched in your
     home directory", cámbiate al clon antes de nada.
 
