@@ -287,3 +287,4 @@ tests/test_confianza_pisos_gen2.py	pytest	NO	numpy,pandas,pytest,yaml	NO	1.4	NEC
 tests/test_familia_pisos_gen2.py	pytest	NO	numpy,pandas,pytest,yaml,pyreadstat,dbfread	NO	1.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_salud_pisos_gen2.py); sintético puro, sin corpus
 tests/test_amai_enigh2024.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	GEN2-CLASE-AMAI-2 (fila manual, sin --censo): guardia de apertura acotada ENIGH 2024 sobre sintético
 tests/test_marcador_eje_nse.py	script	NO	(ninguna)	NO	0.5	CORRE-EN-CI	GEN2-CLASE-AMAI-2 (fila manual, sin --censo): eje NSE del marcador sólo A4
+tests/test_cola_lote_1_pisos.py	pytest	NO	numpy,pandas,pytest,yaml	NO	3.0	NECESITA-DEPENDENCIA(pytest)	CI solo instala requirements.txt; pytest no está declarado (mismo perfil que tests/test_consumo_pisos_gen2.py); sintético puro, sin corpus
