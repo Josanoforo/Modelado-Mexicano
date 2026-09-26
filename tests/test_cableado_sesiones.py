@@ -121,3 +121,10 @@ def test_pyproject_igual_a_requirements():
     bloque = py[py.index("dependencies = ["):py.index("]", py.index("dependencies = ["))]
     assert sorted(re.findall(r'"([^"]+)"', bloque)) == req
     assert (RAIZ / "uv.lock").is_file()
+
+
+def test_hook_arranque_versionado():
+    """settings.json cablea un hook que un clon fresco debe traer."""
+    p = subprocess.run(["git", "ls-files", ".claude/hooks/arranque_memoria.py"],
+                       cwd=RAIZ, capture_output=True, text=True)
+    assert p.stdout.strip() == ".claude/hooks/arranque_memoria.py"
