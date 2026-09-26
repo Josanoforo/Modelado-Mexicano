@@ -26,7 +26,7 @@ def lee(p):
 def main(clave: str) -> int:
     tipo, _, arg = clave.partition(":")
     if tipo == "cat":
-        v = json.loads((ROOT / "forense/analisis/catalogo/v1_2/conteos.json").read_text())[arg]
+        v = json.loads((ROOT / "forense/analisis/catalogo/v1_2/conteos-v1_2.json").read_text())[arg]
     elif tipo == "censo":
         v = sum(r["clase_censo"] == arg for r in lee("forense/notas/2026-09-24-GEN2-ENCIG-PISOS-GEN2-1-censo.tsv"))
     elif tipo == "cat_origen":

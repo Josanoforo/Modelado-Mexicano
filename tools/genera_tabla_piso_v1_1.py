@@ -7,7 +7,7 @@ queda intacta con su propio generador (`tools/genera_tabla_piso.py`, E.1).
 La tabla de piso es la línea que un retador de `docs/reto.md` tiene que
 vencer: SOLO lo adoptado. En el catálogo v1.2 toda fila es adopción firmada
 citada por id (`firma_fp`); aquí se proyecta con los hashes de su CALC
-(`forense/analisis/catalogo/v1_2/calcs.tsv`) y el área de consulta pública.
+(`forense/analisis/catalogo/v1_2/calcs-v1_2.tsv`) y el área de consulta pública.
 El eje NSE (A4, FIRMAS-16) y el regional (`ENTIDAD`) entran donde el catálogo
 los trae; `eje_nse_o_region` lo marca para filtrar sin leer el catálogo.
 
@@ -30,7 +30,7 @@ csv.field_size_limit(sys.maxsize)
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 CATALOGO = ROOT / "canon/catalogo-del-mexicano-v1_2.tsv"
-CALCS = ROOT / "forense/analisis/catalogo/v1_2/calcs.tsv"
+CALCS = ROOT / "forense/analisis/catalogo/v1_2/calcs-v1_2.tsv"
 SALIDA = ROOT / "canon/tabla-de-piso-v1_1.tsv"
 
 ESTADOS_ADOPTADOS = {"ADOPTADO", "ADOPTADO-CON-RESERVA-DE-ANCHO"}

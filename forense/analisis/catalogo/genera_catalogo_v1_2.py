@@ -4,14 +4,14 @@
 Deriva, sin teclear una sola cifra, las tablas del catálogo v1.2:
 
   canon/catalogo-del-mexicano-v1_2.tsv            estimadores (P1)
-  forense/analisis/catalogo/v1_2/calcs.tsv         CALC citados, con sus hashes
-  forense/analisis/catalogo/v1_2/pendientes-de-firma.tsv
-  forense/analisis/catalogo/v1_2/excluidos.tsv     fuera por regla, con nota
-  forense/analisis/catalogo/v1_2/cobertura-31.tsv  cobertura por report (P3)
-  forense/analisis/catalogo/v1_2/conteos.json      toda cifra de la portada
+  forense/analisis/catalogo/v1_2/calcs-v1_2.tsv         CALC citados, con sus hashes
+  forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv
+  forense/analisis/catalogo/v1_2/excluidos-v1_2.tsv     fuera por regla, con nota
+  forense/analisis/catalogo/v1_2/cobertura-31-v1_2.tsv  cobertura por report (P3)
+  forense/analisis/catalogo/v1_2/conteos-v1_2.json      toda cifra de la portada
 
 y renderiza la portada canon/catalogo-del-mexicano-v1_2.md desde
-forense/analisis/catalogo/v1_2/plantilla.md ({{c:clave}} -> conteos.json;
+forense/analisis/catalogo/v1_2/plantilla-v1_2.md ({{c:clave}} -> conteos.json;
 {{r:RESULT-ID}} -> valor sellado del RESULT).
 
 Entra un estimador SOLO si (a) su RESULT vive en un CALC con sello válido,
@@ -20,7 +20,7 @@ forense/firmas-pendientes.tsv, u objeto de data/corrida0/decisiones.tsv), y
 (c) su piso no es HEREDADO-DE-LEGACY (censo de ENCIG-PISOS-GEN2-1).
 
 Uso:  python3 forense/analisis/catalogo/genera_catalogo_v1_2.py [--sin-registro]
-      --sin-registro reutiliza v1_2/adoptados-activos.tsv en vez de derivar
+      --sin-registro reutiliza v1_2/adoptados-activos-v1_2.tsv en vez de derivar
       los adoptados activos de la vista en memoria de corrida0 (~2 min).
 """
 from __future__ import annotations
@@ -229,7 +229,7 @@ class Calcs:
 
 def adoptados_activos(sin_registro: bool) -> list[dict[str, str]]:
     """Los adoptados activos de `corrida0 status` (misma definición, misma vista)."""
-    path = DIR / "adoptados-activos.tsv"
+    path = DIR / "adoptados-activos-v1_2.tsv"
     fields = ["result_id", "calc", "consumidor", "regla", "tipo_uso", "pin_de_mesa",
               "origen_numerico"]
     if sin_registro and path.exists():
@@ -597,11 +597,11 @@ def main() -> None:
                 raise ValueError(f"valor no finito: {r['llave']}")
     escribe(TSV, FIELDS, lista)
     calcs = sorted({r["calc"] for r in lista})
-    escribe(DIR / "calcs.tsv", ["calc", "sha256_resultados", "sha256_sello", "filas"],
+    escribe(DIR / "calcs-v1_2.tsv", ["calc", "sha256_resultados", "sha256_sello", "filas"],
             [{"calc": c, "sha256_resultados": get(c)[1], "sha256_sello": get(c)[2],
               "filas": sum(1 for r in lista if r["calc"] == c)} for c in calcs])
-    escribe(DIR / "excluidos.tsv", ["llave", "calc", "causa", "firma", "nota"], excl)
-    escribe(DIR / "pendientes-de-firma.tsv", ["id", "objeto", "calc", "estado_fp", "nota"], pend)
+    escribe(DIR / "excluidos-v1_2.tsv", ["llave", "calc", "causa", "firma", "nota"], excl)
+    escribe(DIR / "pendientes-de-firma-v1_2.tsv", ["id", "objeto", "calc", "estado_fp", "nota"], pend)
     cob = cobertura(lista, get)
     conteos(lista, excl, pend, cob)
     render()
@@ -658,7 +658,7 @@ def cobertura(lista: list[dict], get: Calcs) -> list[dict]:
             "medible_con_adquisicion": dic["MEDIBLE-CON-ADQUISICIÓN"],
             "no_medible_por_diseno": dic["NO-MEDIBLE-POR-DISEÑO"],
         })
-    escribe(DIR / "cobertura-31.tsv", list(out[0].keys()), out)
+    escribe(DIR / "cobertura-31-v1_2.tsv", list(out[0].keys()), out)
     return out
 
 
@@ -693,12 +693,12 @@ def conteos(lista, excl, pend, cob) -> None:
     c["nse:celdas"] = len(nse)
     c["celdas_validadas"], c["celdas_validadas_prospectiva"], c["celdas_validadas_retrospectiva"] = \
         _celdas_validadas()
-    (DIR / "conteos.json").write_text(json.dumps(c, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
+    (DIR / "conteos-v1_2.json").write_text(json.dumps(c, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
 
 
 def _celdas_validadas() -> tuple[int, int, int]:
     """Definición vigente (`corrida0 status`), leída de su propia salida guardada."""
-    p = DIR / "status.json"
+    p = DIR / "status-v1_2.json"
     if "--sin-registro" not in sys.argv or not p.exists():
         import corrida0 as c0  # noqa: PLC0415
         import contextlib  # noqa: PLC0415
@@ -706,7 +706,7 @@ def _celdas_validadas() -> tuple[int, int, int]:
         with contextlib.redirect_stdout(io.StringIO()):
             s = c0.status(imprime=False)
         keep = {k: s[k] for k in ("celdas_validadas", "celdas_validadas_prospectiva",
-                                  "celdas_validadas_retrospectiva", "celdas_validadas_definicion_desde",
+                                  "celdas_validadas_retrospectiva", "celdas_validadas_definicion_desde", "N_corridas_selladas",
                                   "N_resultados_gen2_adoptados_activos")}
         p.write_text(json.dumps(keep, ensure_ascii=False, indent=1, sort_keys=True) + "\n")
     s = json.loads(p.read_text())
@@ -714,8 +714,8 @@ def _celdas_validadas() -> tuple[int, int, int]:
 
 
 def render() -> None:
-    c = json.loads((DIR / "conteos.json").read_text())
-    tpl = (DIR / "plantilla.md").read_text()
+    c = json.loads((DIR / "conteos-v1_2.json").read_text())
+    tpl = (DIR / "plantilla-v1_2.md").read_text()
     get = Calcs()
     idx = {}
     for r in lee(TSV):
@@ -746,7 +746,7 @@ def render() -> None:
 
 
 def _tabla_cobertura() -> str:
-    rows = lee(DIR / "cobertura-31.tsv")
+    rows = lee(DIR / "cobertura-31-v1_2.tsv")
     out = ["| report | dominio (mapa U0) | estado | estimadores v1.2 | CALC GEN2 sin adoptar | afirmaciones (en corpus / con adquisición / no medibles) |",
            "|---|---|---|---:|---:|---|"]
     for r in rows:
@@ -770,7 +770,7 @@ def _tabla_dominios() -> str:
 
 
 def _tabla_pendientes() -> str:
-    rows = lee(DIR / "pendientes-de-firma.tsv")
+    rows = lee(DIR / "pendientes-de-firma-v1_2.tsv")
     out = ["| id | objeto | estado de la FP |", "|---|---|---|"]
     for r in rows:
         out.append(f"| `{r['id']}` | `{r['objeto']}` | {r['estado_fp'].split(' ')[0]} |")

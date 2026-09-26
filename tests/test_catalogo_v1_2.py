@@ -40,15 +40,15 @@ class CatalogoV12(unittest.TestCase):
         cls.rows = lee(TSV)
 
     def test_regenera_identico(self):
-        productos = [TSV, MD, DIR / "calcs.tsv", DIR / "cobertura-31.tsv",
-                     DIR / "conteos.json", DIR / "excluidos.tsv", DIR / "pendientes-de-firma.tsv"]
+        productos = [TSV, MD, DIR / "calcs-v1_2.tsv", DIR / "cobertura-31-v1_2.tsv",
+                     DIR / "conteos-v1_2.json", DIR / "excluidos-v1_2.tsv", DIR / "pendientes-de-firma-v1_2.tsv"]
         antes = [sha(p) for p in productos]
         subprocess.run([sys.executable, str(GEN), "--sin-registro"], cwd=ROOT, check=True,
                        stdout=subprocess.DEVNULL)
         self.assertEqual(antes, [sha(p) for p in productos])
 
     def test_cada_cifra_es_su_result_sellado(self):
-        calcs = {r["calc"]: r for r in lee(DIR / "calcs.tsv")}
+        calcs = {r["calc"]: r for r in lee(DIR / "calcs-v1_2.tsv")}
         datos = {}
         for c, r in calcs.items():
             sello = CORRIDA / c / "sello.json"
@@ -94,7 +94,7 @@ class CatalogoV12(unittest.TestCase):
                 self.assertTrue(row["oferta_exclusion"] and row["oferta_exclusion"] != "NO-APLICA")
 
     def test_cero_cifras_tecleadas_en_la_plantilla(self):
-        texto = (DIR / "plantilla.md").read_text()
+        texto = (DIR / "plantilla-v1_2.md").read_text()
         limpio = re.sub(r"\{\{[crt]:[^}]+\}\}", "", texto)
         limpio = re.sub(r"`[^`]*`", "", limpio)                     # identificadores
         limpio = re.sub(r"\([^)]*\.(md|tsv)\)", "", limpio)         # rutas de enlaces

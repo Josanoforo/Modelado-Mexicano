@@ -18,7 +18,7 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (43 188 
 ## Cómo leerlo
 
 1. Cada fila es un estimador **adoptado por una firma de mesa citada por id** en la columna `firma_fp`: un `FP-…` FIRMADO en `forense/firmas-pendientes.tsv`, el objeto de su fila en `data/corrida0/decisiones.tsv` (`decisiones.tsv:<objeto>`) o la firma verbatim de un encargo archivado (`forense/encargos/<archivo>.md#firma …`).
-2. `result_id` + `celda` localizan la cifra: en los CALC de pisos, `RESULT-…-TABLA#i` es el registro `i` de la tabla sellada en `data/corrida0/<calc>/resultados.json`. Los hashes de cada CALC están en `forense/analisis/catalogo/v1_2/calcs.tsv`.
+2. `result_id` + `celda` localizan la cifra: en los CALC de pisos, `RESULT-…-TABLA#i` es el registro `i` de la tabla sellada en `data/corrida0/<calc>/resultados.json`. Los hashes de cada CALC están en `forense/analisis/catalogo/v1_2/calcs-v1_2.tsv`.
 3. `unidad`, `eje` y `segmento` gobiernan la lectura. Ninguna cifra de unidad delito o trámite se compara con una de unidad persona u hogar.
 4. `estado_adopcion`: `ADOPTADO` o `ADOPTADO-CON-RESERVA-DE-ANCHO` (su IC es calibrado y ancho a propósito: no se llama cobertura). `alcance`: `DESCRIPTIVO-DE-OLA` (piso de una ola, sin uso predictivo), `ESTIMADOR-DE-CELDA` (piso t−1 adjudicado a una celda del marcador) o `PARAMETRO-DE-REGLA` (lo lee una regla del motor).
 5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (43 188 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
@@ -87,7 +87,7 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (43 188 
 
 ### Fuera por regla
 
-Detalle por llave en `forense/analisis/catalogo/v1_2/excluidos.tsv`:
+Detalle por llave en `forense/analisis/catalogo/v1_2/excluidos-v1_2.tsv`:
 
 - Piso **HEREDADO-DE-LEGACY** (20 RESULT del censo de `GEN2-ENCIG-PISOS-GEN2-1`): `GEN2-PISOS-GEN2-2` cerró (`PR #1123`) re-midiéndolos con sucesores `-0002` sellados; **ninguna fila de esta tabla es HEREDADO-DE-LEGACY** (pisos por origen: `NUEVO` o `HEREDADO-DE-GEN2`).
 - Celdas FIRMAS-19 con punto nulo: 144.
@@ -189,7 +189,7 @@ Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/a
 - **¿Qué cambia con foco rural o indígena?** El gradiente rural de informalidad y costo digital es el más grande del catálogo. Lo indígena-comunal queda fuera por diseño y ningún instrumento adoptado lo identifica.
 - **¿Qué parece psicológico y es incentivo?** La denuncia con seguro (regla 10) y la denuncia de violencia (regla 6).
 - **¿Evidencia débil con intuición fuerte?** Todos los PORQUE. Por eso llevan tier propio.
-- **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: toda cifra sale de un marcador de conteo o de RESULT de la plantilla (`forense/analisis/catalogo/v1_2/plantilla.md`), y `tests/test_catalogo_v1_2.py` falla si aparece un dígito fuera de un identificador, un año o un placeholder resuelto.
+- **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: toda cifra sale de un marcador de conteo o de RESULT de la plantilla (`forense/analisis/catalogo/v1_2/plantilla-v1_2.md`), y `tests/test_catalogo_v1_2.py` falla si aparece un dígito fuera de un identificador, un año o un placeholder resuelto.
 - **¿Deuda asumida que caducó?** `afe1-01` y FIRMAS-19 fusionaron y entraron. ENSU espera su firma de adopción, COLA-LOTE-1 sigue en curso y las firmas de COLA-COMPLETA-1 van a v1.3.
 - **¿Sesgo de marcos o muestras importadas?** WVS, Latinobarómetro, PEW y LAPOP son marcos internacionales: sus ejes son los del cuestionario (clase subjetiva, ingreso subjetivo), no NSE AMAI, y ninguna fila se lee como rasgo nacional esencial. PEW migración mide disposiciones, no flujos.
 - **¿Escala de cada cantidad y contra qué se compara?** Columna `unidad`. Solo se contrastan filas del mismo CALC, unidad y ola.
