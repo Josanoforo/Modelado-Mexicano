@@ -214,6 +214,11 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # ASTRA6-C2-ENIF-1: recibo por acto exigido por contrato, contenidos propios distintos.
+        frozenset({
+            "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-enif/recibo-para-claude.md",
+        }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
         # sus cuatro specs selladas (COMMIT-1), así que no se renombra.

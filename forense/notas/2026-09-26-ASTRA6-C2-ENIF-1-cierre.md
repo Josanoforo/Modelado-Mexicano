@@ -32,3 +32,9 @@ Evidencia local en cierre-verificacion.txt, replay-*.txt, auxiliar-primer-intent
 ## Reservas materiales y siguientes acciones
 
 Atestación externa por circuito de mesa; recibo real de Claude; anuncio/identidad/adquisición futura y autorización de única apertura, con descriptor/cuestionario comparable y soporte válido. Ningún registro reservado abierto. El trabajo histórico/interno está completo; el lote no se anuncia atestiguado ni aceptado y no se fusiona.
+
+## Complemento final de cierre
+
+[EJECUTADO] Main incorporado posteriormente: 948f024a80a04cae48e5d4fca828da58f94a6b62. Cambios fuera del universo ENIF congelado. Excepción puntual T02 de cinco líneas para el nombre de recibo propio y recibo histórico de otro acto; no modifica productor/CI ni contenido ajeno.
+
+INTERPRETACIÓN-DECLARADA: el preflight fue VERDE sobre código/inputs congelados al ejecutar. Después del sello, preflight rechaza calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO por diseño de la herramienta; no se borra sello para producir un verde artificial. En el cierre se comprueban hashes y se corre verify real REPRODUCE/IDENTICO. La guarda protege no reescribir evidencia. Salida cruda preservada en preflight-final-sellado.txt.
