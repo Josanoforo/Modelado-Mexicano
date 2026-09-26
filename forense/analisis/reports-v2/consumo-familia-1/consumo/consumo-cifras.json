@@ -1,0 +1,432 @@
+[
+  {
+    "id": "CONS-INTERNET",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 659,
+    "valor": 0.06902559930381484,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.06646,
+      0.071809
+    ],
+    "ic_calibrado": [
+      0.017334,
+      0.237593
+    ]
+  },
+  {
+    "id": "CONS-CONEXION",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-CONEX-INTERNET-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 859,
+    "valor": 0.6059492137445875,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.601232,
+      0.61087
+    ],
+    "ic_calibrado": [
+      0.430324,
+      0.757893
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-COND",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-SI-CONEXION-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 759,
+    "valor": 0.10059492888406688,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares con conexión; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.096408,
+      0.104865
+    ],
+    "ic_calibrado": [
+      0.032675,
+      0.270255
+    ]
+  },
+  {
+    "id": "CONS-EFECTIVO",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-EFECTIVO-EN-GASTO-DIRECTO-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 4471,
+    "valor": 0.8125769688192422,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto directo G1; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.800206,
+      0.822682
+    ],
+    "ic_calibrado": [
+      0.771299,
+      0.847874
+    ]
+  },
+  {
+    "id": "CONS-ALIMENTOS",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1615,
+    "valor": 0.37681558826627515,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto monetario agregado; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.373267,
+      0.380147
+    ],
+    "ic_calibrado": [
+      0.34458,
+      0.41018
+    ]
+  },
+  {
+    "id": "CONS-CONVENIENCIA",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-CONVENIENCIA-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1915,
+    "valor": 0.01622010296327464,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.015537,
+      0.016931
+    ],
+    "ic_calibrado": [
+      0.014816,
+      0.017755
+    ]
+  },
+  {
+    "id": "CONS-ABARROTES",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-ABARROTES-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1815,
+    "valor": 0.27843969218434655,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.274678,
+      0.28206
+    ],
+    "ic_calibrado": [
+      0.258368,
+      0.299441
+    ]
+  },
+  {
+    "id": "CONS-SUPER",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-SUPER-MEMBRESIA-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 2443,
+    "valor": 0.1616993758832774,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.156903,
+      0.167247
+    ],
+    "ic_calibrado": [
+      0.142766,
+      0.182609
+    ]
+  },
+  {
+    "id": "CONS-TARJETA",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-TIENE-TARJETA-CREDITO-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 4271,
+    "valor": 0.2962677997619976,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.290867,
+      0.301928
+    ],
+    "ic_calibrado": [
+      0.258609,
+      0.336918
+    ]
+  },
+  {
+    "id": "CONS-TARJETA-COND",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-USA-TARJETA-ALIMENTOS-SI-TIENE-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 4371,
+    "valor": 0.22998700108870937,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares con tarjeta; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.220392,
+      0.239573
+    ],
+    "ic_calibrado": [
+      0.178582,
+      0.290947
+    ]
+  },
+  {
+    "id": "CONS-FIADO",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-FIADO-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 3543,
+    "valor": 0.08486548353422592,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.082357,
+      0.087675
+    ],
+    "ic_calibrado": [
+      0.06327,
+      0.112943
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-D01",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-DECIL-D01-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 435,
+    "valor": 0.008077227788688792,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento DECIL/D01",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.005974,
+      0.010762
+    ],
+    "ic_calibrado": [
+      0.001551,
+      0.040942
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-D10",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-DECIL-D10-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 471,
+    "valor": 0.21777949349395986,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento DECIL/D10",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.204054,
+      0.231405
+    ],
+    "ic_calibrado": [
+      0.051629,
+      0.58743
+    ]
+  },
+  {
+    "id": "CONS-ALIMENTOS-D01",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-DECIL-D01-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1391,
+    "valor": 0.5109678800394367,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto monetario agregado; segmento DECIL/D01",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.502688,
+      0.518177
+    ],
+    "ic_calibrado": [
+      0.48293,
+      0.538937
+    ]
+  },
+  {
+    "id": "CONS-ALIMENTOS-D10",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-DECIL-D10-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1427,
+    "valor": 0.2832636232723902,
+    "unidad": "participación del gasto, razón de totales",
+    "periodo": "2022",
+    "denominador": "gasto monetario agregado; segmento DECIL/D10",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.272962,
+      0.294296
+    ],
+    "ic_calibrado": [
+      0.25956,
+      0.308231
+    ]
+  },
+  {
+    "id": "CONS-GASTO-CDMX",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-ENTIDAD-09-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1151,
+    "valor": 19632.54453245953,
+    "unidad": "pesos corrientes mensuales por hogar",
+    "periodo": "2022",
+    "denominador": "hogares con gasto monetario válido; segmento ENTIDAD/09",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      17587.417916,
+      22252.716239
+    ],
+    "ic_calibrado": []
+  },
+  {
+    "id": "CONS-GASTO-CHIAPAS",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-ENTIDAD-07-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1143,
+    "valor": 8647.627775312192,
+    "unidad": "pesos corrientes mensuales por hogar",
+    "periodo": "2022",
+    "denominador": "hogares con gasto monetario válido; segmento ENTIDAD/07",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      8239.034815,
+      9057.214981
+    ],
+    "ic_calibrado": []
+  },
+  {
+    "id": "CONS-QUAL",
+    "tipo": "externa",
+    "fuente_id": "RB2024",
+    "valor": 2,
+    "unidad": "ratio declarado superior a",
+    "periodo": "2024",
+    "denominador": "importancia declarada de calidad frente a precio, todos los segmentos de poder de compra encuestados"
+  },
+  {
+    "id": "CONS-FISICO",
+    "tipo": "externa",
+    "fuente_id": "RB2024",
+    "valor": 90,
+    "unidad": "porcentaje aproximado",
+    "periodo": "2024",
+    "denominador": "consumidores de la encuesta; preferencia por tiendas físicas"
+  },
+  {
+    "id": "CONS-TRADE2011",
+    "tipo": "externa",
+    "fuente_id": "MK2012",
+    "valor": 4,
+    "unidad": "porcentaje",
+    "periodo": "2011",
+    "denominador": "respondentes referidos en pasaje alimentario p.2; cambio a marca más barata últimos doce meses"
+  },
+  {
+    "id": "CONS-PRIVADA2011",
+    "tipo": "externa",
+    "fuente_id": "MK2012",
+    "valor": 5,
+    "unidad": "porcentaje aproximado de ventas retail",
+    "periodo": "2011-2012",
+    "denominador": "ventas retail, contexto histórico citado p.3; no proporción de consumidores"
+  },
+  {
+    "id": "CONS-TRADE2023",
+    "tipo": "externa",
+    "fuente_id": "MK2023",
+    "valor": 23,
+    "unidad": "porcentaje",
+    "periodo": "2023",
+    "denominador": "respondentes que declaran trading down en la canasta, no población nacional ponderada acreditada"
+  }
+]

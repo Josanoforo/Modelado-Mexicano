@@ -1,0 +1,66 @@
+{
+  "modo": "REPRODUCCION-NO-CIEGA; no predicción futura",
+  "marco": {
+    "estratos": 442,
+    "estratos_upm_unica": 0,
+    "upm": 9172
+  },
+  "familias": {
+    "PAGO-DIGITAL": {
+      "p": 0.6733930340661712,
+      "piso_result": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+      "diferencia": 0.0,
+      "punto_coincide": true,
+      "dictamen_soporte": "NO-ESTIMABLE",
+      "soporte": {
+        "estratos": 441,
+        "estratos_upm_unica_dominio": 8,
+        "masa_denominador": 120445646.0,
+        "n": 20203,
+        "n_efectivo_kish": 7640.5387245624825,
+        "peso_potencial": 121806930.0,
+        "replicas_validas": 2000,
+        "residuo_fraccion": 0.011175751658793141,
+        "residuo_n": 189,
+        "residuo_peso": 1361284.0,
+        "sin_diseno": 0,
+        "sin_peso": 0,
+        "upm": 8486,
+        "w2": 1898708214608.0
+      },
+      "ic_diagnostico": [
+        0.663146093719655,
+        0.6839424229331048
+      ],
+      "replicas": 2000
+    },
+    "SOLICITUD-MORDIDA": {
+      "p": 0.08511814556534456,
+      "piso_result": "RESULT-ENCIG-MOR-A-P-SOL1",
+      "diferencia": 0.0,
+      "punto_coincide": true,
+      "dictamen_soporte": "ESTIMABLE",
+      "soporte": {
+        "estratos": 442,
+        "estratos_upm_unica_dominio": 0,
+        "masa_denominador": 60031665.0,
+        "n": 40042,
+        "n_efectivo_kish": 16558.462319548245,
+        "peso_potencial": 60167510.0,
+        "replicas_validas": 2000,
+        "residuo_fraccion": 0.0022577799879037706,
+        "residuo_n": 94,
+        "residuo_peso": 135845.0,
+        "sin_diseno": 0,
+        "sin_peso": 0,
+        "upm": 9172,
+        "w2": 217641030497.0
+      },
+      "ic_diagnostico": [
+        0.08078687698384816,
+        0.08921814514315475
+      ],
+      "replicas": 2000
+    }
+  }
+}

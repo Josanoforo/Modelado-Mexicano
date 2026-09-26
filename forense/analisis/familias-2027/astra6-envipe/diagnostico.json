@@ -1,0 +1,105 @@
+{
+  "familias": {
+    "DENUNCIA_U4": {
+      "n": 13023,
+      "numerador_n": 3837,
+      "masa": 14982594.0,
+      "punto": 0.29431298745731216,
+      "n_efectivo_kish": 5636.7467543504645,
+      "estratos": 725,
+      "upm": 7830,
+      "singleton_soporte": 83,
+      "singleton_marco": 0,
+      "replicas_validas": 2000,
+      "ic_diagnostico": [
+        0.2822840835965598,
+        0.3060427005777772
+      ],
+      "estimable": true,
+      "estado": "CONTRASTE-DISPONIBLE",
+      "soporte": {
+        "n": 13023,
+        "numerador_n": 3837,
+        "masa": 14982594.0,
+        "punto": 0.29431298745731216,
+        "n_efectivo_kish": 5636.7467543504645,
+        "estratos": 725,
+        "upm": 7830,
+        "singleton_soporte": 83,
+        "singleton_marco": 0,
+        "replicas_validas": 2000,
+        "ic_diagnostico": [
+          0.2822840835965598,
+          0.3060427005777772
+        ],
+        "estimable": true,
+        "estado": "CONTRASTE-DISPONIBLE"
+      }
+    },
+    "EVASION_NORMA": {
+      "n": 40280,
+      "numerador_n": 21761,
+      "masa": 35595875.0,
+      "punto": 0.5627744787844097,
+      "n_efectivo_kish": 14848.001719322869,
+      "estratos": 739,
+      "upm": 10694,
+      "singleton_soporte": 23,
+      "singleton_marco": 0,
+      "replicas_validas": 2000,
+      "ic_diagnostico": [
+        0.5522315120184866,
+        0.5731963264718443
+      ],
+      "estimable": true,
+      "estado": "CONTRASTE-DISPONIBLE",
+      "soporte": {
+        "n": 40280,
+        "numerador_n": 21761,
+        "masa": 35595875.0,
+        "punto": 0.5627744787844097,
+        "n_efectivo_kish": 14848.001719322869,
+        "estratos": 739,
+        "upm": 10694,
+        "singleton_soporte": 23,
+        "singleton_marco": 0,
+        "replicas_validas": 2000,
+        "ic_diagnostico": [
+          0.5522315120184866,
+          0.5731963264718443
+        ],
+        "estimable": true,
+        "estado": "CONTRASTE-DISPONIBLE"
+      }
+    }
+  },
+  "exclusiones": {
+    "u1_delitos_excluidos": 2311,
+    "u1_masa_excluida_fac_del": 2424198.0,
+    "u1_ns_nr": 111,
+    "u1_blancos": 0,
+    "u1_otros_codigos": 2200,
+    "personas_sin_u1_por_exclusion": 1262,
+    "masa_personas_sin_u1_fac_ele": 1239547.0,
+    "evasion_bp20_fuera": 0,
+    "evasion_ns_nr_blanco": 305,
+    "evasion_masa_ns_nr_blanco_fac_del": 195919.0
+  },
+  "u1": {
+    "n": 20225,
+    "numerador_n": 5423,
+    "masa": 23946194.0,
+    "punto": 0.2672433874042781,
+    "n_efectivo_kish": 8301.2700616273,
+    "estratos": 725,
+    "upm": 7830,
+    "singleton_soporte": 83
+  },
+  "diseno": {
+    "estratos_marco": 746,
+    "upm_marco": 13742,
+    "singleton_marco": 0,
+    "replicas_comunes": 2000,
+    "marco": "tper_vic2 completo; dominios conservados con ceros"
+  }
+}

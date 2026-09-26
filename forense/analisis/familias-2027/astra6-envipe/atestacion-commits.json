@@ -1,0 +1,16 @@
+{
+  "estado": "SELLADO-INTERNAMENTE",
+  "atestaciones_verificadas": 0,
+  "familias": 2,
+  "olas_futuras": 1,
+  "commit1": "f59b1b90f2499dab32581f287fd7c3da41e6b18d",
+  "commit1_complemento": "54c4117fcc93f87d992d885d7fae39b3d2eef8ca",
+  "sellos": {
+    "data/corrida0/CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA/sello.json": "229a4f0b877ae5f99cd4a107a15ad09f07eafe2ba3c374b8cea9f3f5e2892de5",
+    "data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4/sello.json": "4ba2cbcbe6f081c1d14e2889138c3f71a23d0dfac0ec1f6a7fdf139ead1bb07d"
+  },
+  "dependencia": "Mesa: incluir sellos en siguiente manifiesto y OTS; sólo comprobante verificable cambia estado",
+  "commit2": "7594f459b03f1828a9e11f87ce7c5da07b6fff5e",
+  "pr": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1170",
+  "inventario_material": "inventario-atestacion.json; cada sello referencia snapshots y hashes exactos de auxiliares"
+}
