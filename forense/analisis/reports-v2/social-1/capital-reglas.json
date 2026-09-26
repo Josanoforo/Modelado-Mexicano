@@ -1,0 +1,46 @@
+[
+  {
+    "id": "CAP-R01",
+    "si": "Un comité de mantenimiento tiene autoridad reconocida y presupuesto transparente",
+    "entonces": "Es plausible sostener aportaciones voluntarias; estimar aporte y continuidad por separado",
+    "porque": "Rendición de cuentas reduce incertidumbre y arreglos fiscales sostienen coordinación",
+    "tier_frecuencia": "SIN-CIFRA para efecto; asistencia LAPOP descriptiva FUERTE",
+    "tier_mecanismo": "MEDIA cualitativa localizada",
+    "falsador": "Asignación exógena de transparencia/acompañamiento: aportes y continuidad no mejoran, o exclusión/costo anulan el beneficio; si no refuta, corroboración solo local",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CAP-C03",
+      "CAP-F01",
+      "CAP-F02"
+    ]
+  },
+  {
+    "id": "CAP-R02",
+    "si": "Se usa asistencia a comités por escolaridad para segmentar oferta de coordinación",
+    "entonces": "No aplicar un gradiente educativo monótono por defecto",
+    "porque": "Los marginales observados no crecen ordenadamente; no identifican educación como causa",
+    "tier_frecuencia": "FUERTE descriptiva LAPOP histórico",
+    "tier_mecanismo": "SIN-CIFRA",
+    "falsador": "Mismo reactivo y universo en olas abiertas futuras muestra gradiente monotónico robusto con diseño; aun así no prueba mecanismo causal",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CAP-C05",
+      "CAP-C06",
+      "CAP-C07",
+      "CAP-C08"
+    ]
+  },
+  {
+    "id": "CAP-R03",
+    "si": "Una plataforma propone organizar cooperación vecinal o ahorro colectivo",
+    "entonces": "Separar alcance, permanencia, pérdidas y resultados del número de grupos creados",
+    "porque": "Digitalización puede abaratar coordinación, pero no acredita confianza ni eficacia",
+    "tier_frecuencia": "SIN-CIFRA",
+    "tier_mecanismo": "HIPÓTESIS",
+    "falsador": "Comparación de grupos equivalentes por acceso digital y exposición con inscripción previa de métricas y pérdidas; si no refuta, hipótesis acotada al diseño",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CAP-F02"
+    ]
+  }
+]
