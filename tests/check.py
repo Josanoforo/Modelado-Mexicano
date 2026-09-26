@@ -2046,7 +2046,7 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
     # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
@@ -5167,7 +5167,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
     # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
@@ -8310,7 +8310,7 @@ def t51_rotulos_par_unico():
 #   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
 #   se anota y se revisa.
 # ───────────────────────────────────────────────────────────────
-RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_16.md"
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_17.md"
 _T52_N_ANOTACIONES = 96
 _T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
 _T52_FILA_GOBERNANZA = (

@@ -1,6 +1,6 @@
 # Benchmark del Mexicano
 
-**Modelado Mexicano · Psicología del Mexicano Contemporáneo.** Benchmark auditable de predicciones y estimaciones segmentadas con encuestas oficiales de México. [Informe vigente](canon/informe-programa-v1_3.md) · [Aviso de alcance](AVISO-DE-ALCANCE.md).
+**Modelado Mexicano · Psicología del Mexicano Contemporáneo.** Benchmark auditable de predicciones y estimaciones segmentadas con encuestas oficiales de México. [Informe vigente](canon/informe-programa-v1_4.md) · [Aviso de alcance](AVISO-DE-ALCANCE.md).
 
 ## Qué es y qué no es
 
@@ -37,7 +37,7 @@ Cada contador tiene su propio universo. `status` es una vista derivada del corte
 | RESULT GEN2 pendientes de adopción | 10 | <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_pendientes_adopcion=' --> `N_resultados_gen2_pendientes_adopcion` |
 <!-- TABLERO-DERIVADO:END -->
 
-El [estado](canon/estado-programa-v1_16.md) y la [actualización del contador](canon/L0/ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01.md) explican el alcance de las celdas. El total incorpora conductas agregadas de crédito y cruces ENCIG que antes no contaba; los campos prospectiva y retrospectiva de `status` no cubren todas las formas incorporadas al total. **Validada** significa emisión comparada con R, no adopción por mesa.
+El [estado](canon/estado-programa-v1_17.md) y la [actualización del contador](canon/L0/ADR-260923-GEN2-CONTADORES-CONSUMO-1-988c-01.md) explican el alcance de las celdas. El total incorpora conductas agregadas de crédito y cruces ENCIG que antes no contaba; los campos prospectiva y retrospectiva de `status` no cubren todas las formas incorporadas al total. **Validada** significa emisión comparada con R, no adopción por mesa.
 
 ## Estado del modelo
 
@@ -58,7 +58,7 @@ El corpus contiene **31 reports temáticos**. <!-- deriva: rg --files corpus/rep
 
 ## Uso, límites y contribuciones
 
-Empieza por el [informe principal v1.3](canon/informe-programa-v1_3.md) (o su antecesor, [v1.2](canon/informe-programa-v1_2.md), no editado, E.3), su [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [estado v1.16](canon/estado-programa-v1_16.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. El catálogo público está en construcción, sin fecha. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
+Empieza por el [informe principal v1.4](canon/informe-programa-v1_4.md) (v1.3 más el cierre de la semana del 22–26/sep; sus antecesores [v1.3](canon/informe-programa-v1_3.md) y [v1.2](canon/informe-programa-v1_2.md) no se editan, E.3), el [anexo de evidencia v1.3](canon/informe-programa-v1_3-ANEXO.md), el [catálogo del mexicano v1.2](canon/catalogo-del-mexicano-v1_2.md), el [estado v1.17](canon/estado-programa-v1_17.md) y el [aviso](AVISO-DE-ALCANCE.md). El anexo lee RESULT sellados y no emite una nueva adjudicación ni sustituye la versión del informe principal. Lee los límites de muestreo y de aplicación a personas en [Uso aceptable](USO-ACEPTABLE.md). Para retar una comparación, conserva universo, sello y criterio de victoria; ver [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licencia, cita y contacto
 
