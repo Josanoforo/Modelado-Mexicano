@@ -214,6 +214,15 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # Sync ENIF #1174 tras #1172: grupos exactos por instrumento; contenidos y sellos distintos.
+        frozenset({'forense/analisis/familias-2027/astra6-encig/calendario.md', 'forense/analisis/familias-2027/astra6-enif/calendario.md', 'forense/analisis/familias-2027/astra6-envipe/calendario.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/arranque.md', 'forense/analisis/familias-2027/astra6-enif/arranque.md', 'forense/analisis/familias-2027/astra6-envipe/arranque.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/inventario-sellos.json', 'forense/analisis/familias-2027/astra6-enif/inventario-sellos.json'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/potencia.md', 'forense/analisis/familias-2027/astra6-enif/potencia.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-enif/contrato.md', 'forense/analisis/familias-2027/astra6-envipe/contrato.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-enif/ids-cierre.json', 'forense/analisis/familias-2027/astra6-envipe/ids-cierre.json'}),
+        frozenset({'tools/familias-2027/encig/cierre.py', 'tools/familias-2027/enif/cierre.py'}),
+        frozenset({'tools/familias-2027/encig/lector.py', 'tools/familias-2027/enif/lector.py'}),
         # Sync #1172 con #1173: paquetes ENCIG/ENVIPE distintos; rutas congeladas y hashes propios.
         frozenset({"forense/analisis/familias-2027/astra6-encig/calendario.md", "forense/analisis/familias-2027/astra6-envipe/calendario.md"}),
         frozenset({"forense/analisis/familias-2027/astra6-encig/arranque.md", "forense/analisis/familias-2027/astra6-envipe/arranque.md"}),
