@@ -118,3 +118,67 @@ def test_ccpv_guardia_rechaza_2020():
 
 def test_ccpv_spec_yaml_es_el_esquema():
     assert _spec("CALC-CCPV-FAM-PISOS-0001")["resultados"] == CCPV.esquema_resultados()
+
+
+# ═══════════════════════════ registros: EMAT y EDR ═══════════════════════════
+
+def _dbf(filas, campos):
+    """DBF dBase III mínimo (todos C) para probar el lector de ancho fijo; una fila extra borrada."""
+    import struct
+    largos = {c: max([len(str(f.get(c, ""))) for f in filas] + [1]) for c in campos}
+    lreg = 1 + sum(largos.values())
+    cab = bytearray(struct.pack("<BBBBIHH20x", 3, 126, 9, 25, len(filas) + 1, 32 + 32 * len(campos) + 1, lreg))
+    for c in campos:
+        cab += struct.pack("<11sc4xB15x", c.encode()[:11], b"C", largos[c])
+    cab += b"\x0d"
+    cuerpo = bytearray()
+    for f in filas + [{c: "9" for c in campos}]:
+        cuerpo += b" "
+        for c in campos:
+            cuerpo += str(f.get(c, "")).ljust(largos[c]).encode()[: largos[c]]
+    cuerpo[-lreg] = 0x2A  # la última fila está borrada
+    return bytes(cab + cuerpo)
+
+
+EMAT = _load("data/corrida0/CALC-EMAT-PAREJA-PISOS-0001/medidor.py", "m_emat_pareja")
+
+
+def _emat_ola(ola, k):
+    filas = []
+    for i in range(60):
+        filas.append({"ENT_REGIS": f"{1 + i % 4:02d}", "TAM_LOC_RE": ("1", "5", "9", "15", "99")[i % 5],
+                      "ANIO_REGIS": ola if i != 1 else "2009", "GENERO": ("1", "2", "1", "7")[i % 4],
+                      "SEXO_CON1": "1", "EDAD_CON1": ("17", "25", "33", "99", "70")[(i + k) % 5],
+                      "ESCOL_CON1": str(1 + i % 9), "CONACTCON1": ("1", "2", "9")[i % 3],
+                      "SEXO_CON2": ("2", "1")[i % 4 == 1], "EDAD_CON2": ("23", "41", "12")[i % 3],
+                      "ESCOL_CON2": str(1 + (i * 2) % 9), "CONACTCON2": ("1", "2")[i % 2]})
+    return filas
+
+
+def test_emat_lector_dbf_y_ramas_pasan_el_conducto():
+    por_ola = {o: EMAT.lee_dbf(_dbf(_emat_ola(o, j), EMAT.CAMPOS)) for j, o in enumerate(EMAT.OLAS)}
+    assert all(len(df) == 60 for df in por_ola.values())  # la fila borrada no entra
+    out = EMAT.mide(por_ola, R)
+    for k in ("INPUT-RECETA-SHA256", "OLA-RESERVADA", "NATURALEZA"):
+        out[f"{EMAT.P}-G-{k}"] = "x"
+    assert corrida0._valida_outputs({"resultados": EMAT.esquema_resultados()}, out) == []
+    _sin_no_finitos(out)
+    assert out[f"{EMAT.P}-G-2010-ANIO-REGIS-DISTINTO"] == 1
+    assert out[f"{EMAT.P}-G-2010-GENERO-FUERA-CATALOGO"] == 15
+    assert out[EMAT.rid("M-MISMO-SEXO", "2023", "ENT", "32", "N")] == 0
+    assert out[EMAT.rid_p("M-CON-MENOR-18", "TOTAL", "TODOS", "TAU2")] is not None
+
+
+def test_emat_guardia_rechaza_2024():
+    inputs = {pid: {"ruta_absoluta": f"/x/EMAT/{pid}.zip"} for pid in EMAT.ZIPS}
+    inputs["receta_pisos"] = {"bytes": RECETA_BYTES}
+    EMAT._guardia_inputs(inputs)
+    inputs["emat2023_bd_dbf_zip"] = {"ruta_absoluta": "/x/INEGI/EMAT/2024/matrimonios_base_datos_2024_dbf.zip"}
+    with pytest.raises(EMAT.ParoDeGuardia):
+        EMAT._guardia_inputs(inputs)
+
+
+def test_emat_spec_yaml_es_el_esquema():
+    assert _spec("CALC-EMAT-PAREJA-PISOS-0001")["resultados"] == EMAT.esquema_resultados()
+
+
