@@ -1014,3 +1014,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | tabla | deriva | columnas | consume | nota |
 |---|---|---|---|---|
 | `docs/data/catalogo-v1_N.json` · `docs/data/catalogo-vigente.json` | `python3 tools/benchmark.py exporta` desde el catálogo vigente (`canon/catalogo-del-mexicano-v1_N.tsv`, N mayor) | columnar: `columnas · diccionarios · filas` (las del catálogo) + `hashes · reglas · ejes · olas_reservadas · cobertura · excluidos` | `docs/consultar.md` | Derivado; no se edita a mano. `tests/test_benchmark.py` lo compara con el catálogo fila por fila. Contrato: `docs/consulta.md`. |
+
+### Tablas locales reports v2 · GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1
+
+`forense/analisis/reports-v2/consumo-familia-1/{consumo,familia}/afirmaciones.json`: cobertura v1/mapa con dictamen; `cifras.json`: valores/RESULT/estado/localizador/hash; `fuentes.json`: literatura primaria y alcance. Consumidor: dos reports v2; control `forense/analisis/reports-v2/consumo-familia-1/verifica_lote.py`. Sólo tablas del lote, sin productor central ni contadores. Índice local `forense/analisis/reports-v2/consumo-familia-1/indice-consumo-familia-1.md`; ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1-edf7-01.
