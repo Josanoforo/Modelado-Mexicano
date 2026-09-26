@@ -156,6 +156,10 @@ FIRMAS19_PISOS = (
 FP_AFE1 = "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01"
 AFE1_CALCS = ("CALC-ENIF-0001", "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001",
               "CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001", "CALC-R-DIN-M-01-v4")
+# Actos fusionados durante el corte cuya FP de adopción se lista si sigue ABIERTA (encargo §2).
+FP_ADOPCION_EN_CURSO = (
+    ("FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01", "CALC-ENSU-PISOS-0001;CALC-ENSU-SERIE-0001"),
+)
 FP_J3 = _F19 + "CONSUMO-Y-GASTO-PISOS-1-2d37-03"
 # Ejes de varios tokens en las llaves RESULT (el resto: primer token).
 EJES_COMPUESTOS = ("EDAD-JEFE", "ESCOLARIDAD-JEFE", "SEXO-JEFE", "CONDICION-PAREJA", "CLASE-SUBJETIVA",
@@ -560,6 +564,12 @@ def main() -> None:
                 "result_id": rid, "celda": "", "calc": calc, "oferta_exclusion": "",
                 "reserva": "piso retrospectivo; sin uso predictivo; " + reserva,
             }
+
+    for fp, objeto in FP_ADOPCION_EN_CURSO:
+        est_fp = fps.get(fp, "AUSENTE")
+        if not est_fp.startswith("FIRMADA"):
+            pend.append({"id": fp, "objeto": objeto, "calc": "", "estado_fp": est_fp,
+                         "nota": "acto fusionado; FP de adopción no FIRMADA al cerrar: no entra (encargo §2)"})
 
     # ── oferta al lado de cada marginal de mercado (DINERO)
     oferta_olas = sorted(d.name[-9:-5] for d in CORRIDA.glob("CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001"))

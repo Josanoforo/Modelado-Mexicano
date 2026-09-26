@@ -990,13 +990,13 @@ Fuera de estas dos, declarado por separado: Pages, el DOI y la activación de br
 
 Retrata; no opina. Cada cifra trae su comando.
 
-**Status íntegro de `python3 tools/corrida0.py status`** (26/sep, `origin/main = 34949751`, sin commits propios que lo muevan):
+**Status íntegro de `python3 tools/corrida0.py status`** (26/sep, tras fusionar `origin/main = 4f125e70`; ningún commit de este acto lo mueve):
 
 ```
 N_corridas_requeridas=87
-N_corridas_selladas=285
+N_corridas_selladas=287
 N_resultados_activos=211
-N_resultados_sellados=141783
+N_resultados_sellados=198802
 N_resultados_pendientes=211
 dependencias_numericas_legacy_activas=67
 legacy_activas_por_consumidor__motor=13
@@ -1016,13 +1016,13 @@ legacy_marco_M_por_campo__M=1
 legacy_marco_M_por_campo__L=0
 legacy_marco_M_por_campo__AGREGADO=0
 legacy_marco_M_celdas_M_pendientes=DIN-M-01
-N_resultados_gen2_sellados=118078
+N_resultados_gen2_sellados=175097
 N_resultados_gen2_pendientes_adopcion=10
 N_resultados_gen2_vetados_por_decision=4
 N_resultados_gen2_adoptados_activos=81
 resultados_con_validacion_independiente=215
 diferencias_materiales=0
-no_corrido_abiertas=406
+no_corrido_abiertas=411
 replays_legacy_sellados=5
 corredores_envueltos_legacy=35
 celdas_validadas=219
@@ -1030,11 +1030,11 @@ celdas_validadas_definicion_desde=38dd709
 celdas_validadas_prospectiva=20
 celdas_validadas_retrospectiva=59
 celdas_emitidas_sin_r=16
-# derivado de 434 corridas · 145881 resultados · 231 usos
+# derivado de 436 corridas · 202900 resultados · 231 usos
 ```
 <!-- comando: python3 tools/corrida0.py status -->
 
-**Volumen de la semana.** Hubo 54 merges de PR en `main` desde el 24/sep <!-- comando: git log --merges --oneline --since=2026-09-24T00:00 origin/main | grep -c 'Merge pull request' -->. Se archivaron 39 encargos fechados del 24 al 26 <!-- comando: ls forense/encargos/2026-09-2[4-6]-*.md | grep -vc -- '-ADENDA-' -->, de los cuales 37 ya tienen `## CONSUMIDO` <!-- comando: grep -l '^## CONSUMIDO' $(ls forense/encargos/2026-09-2[4-6]-*.md | grep -v -- '-ADENDA-') | wc -l -->. Entre los que faltan está este mismo, que cierra con su PR.
+**Volumen de la semana.** Hubo 58 merges de PR en `main` desde el 24/sep <!-- comando: git log --merges --oneline --since=2026-09-24T00:00 origin/main | grep -c 'Merge pull request' -->. Se archivaron 40 encargos fechados del 24 al 26 <!-- comando: ls forense/encargos/2026-09-2[4-6]-*.md | grep -vc -- '-ADENDA-' -->, de los cuales 38 ya tienen `## CONSUMIDO` <!-- comando: grep -l '^## CONSUMIDO' $(ls forense/encargos/2026-09-2[4-6]-*.md | grep -v -- '-ADENDA-') | wc -l -->. Entre los que faltan está este mismo, que cierra con su PR.
 
 **Los cuatro documentos del corte (nombres estables):**
 - `catálogo del mexicano` v1.2 (`canon/catalogo-del-mexicano-v1_2.md`): 43,188 estimadores adoptados con firma citada por id <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:estimadores -->.
@@ -1049,6 +1049,6 @@ celdas_emitidas_sin_r=16
 - (d) **D-19 estricta.** Los PAROS son lista cerrada (dato reservado, sello, contador a mano o adopción sin firma de contenido, procedimiento congelado, entorno). Todo lo demás se resuelve con la opción recomendada y se declara.
 - (e) **Marca de definición** (firma P): `celdas_validadas` se imprime con su `definicion_desde` al lado, y las PROSPECTIVAS van aparte de las RETROSPECTIVAS, nunca fundidas (bloque `status` de arriba).
 
-**Pendientes de mesa al corte.** Hay 4 FP ABIERTAS <!-- comando: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(sum(r['estado'].startswith('ABIERTA') for r in csv.DictReader(open('forense/firmas-pendientes.tsv'),delimiter='\t')))" -->. `GEN2-SEGURIDAD-ENSU-SERIE-1` y `GEN2-COLA-LOTE-1` están en curso, sin fusionar al abrir este acto. Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van al siguiente corte.
+**Pendientes de mesa al corte.** Hay 4 FP ABIERTAS <!-- comando: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(sum(r['estado'].startswith('ABIERTA') for r in csv.DictReader(open('forense/firmas-pendientes.tsv'),delimiter='\t')))" -->. `GEN2-SEGURIDAD-ENSU-SERIE-1` fusionó durante el acto (`PR #1162`); su adopción sigue ABIERTA. `GEN2-COLA-LOTE-1` sigue en curso. Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van al siguiente corte.
 
 **Lo que este estado no puede afirmar.** Que el `[deriva]` fresco cambie alguna cifra de las vistas: no se ha fusionado. El conteo de PR con recibo Codex. El retiro de código de `g()`/`Theta.valor`: sigue sin correr (§15).

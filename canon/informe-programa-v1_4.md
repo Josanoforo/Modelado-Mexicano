@@ -9,13 +9,13 @@ Documento del programa, escrito para mesa y para un comprador escéptico.
 > | | |
 > |---|---|
 > | **ARCHIVO** | `informe-programa-v1_4.md` |
-> | **CONVIVE CON** | `informe-programa-v1_3.md` (24/sep/2026) y sus antecesores, que **no se editan ni se retiran** (E.1). v1.4 es **v1.3 + el corte de la semana**: las secciones §A–§F de abajo son nuevas y derivadas contra `origin/main = 34949751`; §0–§7 se heredan de v1.3 **sin editar**, con su propia estampa de universo (`8358b891`). |
+> | **CONVIVE CON** | `informe-programa-v1_3.md` (24/sep/2026) y sus antecesores, que **no se editan ni se retiran** (E.1). v1.4 es **v1.3 + el corte de la semana**: las secciones §A–§F de abajo son nuevas y derivadas contra `origin/main = 4f125e70` (el SHA de redacción `34949751` más `PR #1162`, fusionado durante el acto); §0–§7 se heredan de v1.3 **sin editar**, con su propia estampa de universo (`8358b891`). Única excepción: un comando que citaba `estado-programa-v1_16.md` apunta a `v1_17`, porque v1.16 salió del árbol por T01 y v1.17 hereda ese texto verbatim. |
 > | **ACTO** | `GEN2-CIERRE-SEMANAL-1` (P2) · cero mediciones · no adopta |
 > | **VERIFICAS ASÍ** | cada cifra trae, en su línea, un comentario HTML `comando:` que la reproduce; `tests/test_informe_derivado.py` re-corre todos. Las cifras nuevas salen de `forense/analisis/informe-v1_4/cifra.py <clave>` (solo lee) o de `corrida0.py status`. |
 > | **NOMBRE ESTABLE** | **`informe-programa`** — cítalo así; la versión vigente en este corte es v1.4 |
 
-> **Estampa de universo (A.10) de §A–§F.** `origin/main = 34949751` al 0-bis
-> (`git rev-list --count HEAD..origin/main` = 0). NUBE sin corpus montado
+> **Estampa de universo (A.10) de §A–§F.** `origin/main = 34949751` al 0-bis; re-derivado tras el merge de
+> `origin/main = 4f125e70` (ENSU, `PR #1162`). NUBE sin corpus montado
 > (`acceso_corpus.montado=NO`, `archivos_examinados=0`). Fuentes: corridas
 > selladas, `decisiones.tsv`, firmas, catálogo v1.2 y mapa de dominios.
 > **Nota al pie sobre las vistas**¹.
@@ -26,7 +26,7 @@ Documento del programa, escrito para mesa y para un comprador escéptico.
 
 - El catálogo del mexicano v1.2 publica **43 188** estimadores adoptados, cada uno con firma de mesa citada por id <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:estimadores -->. Entraron las diez adopciones de FIRMAS-19 (consumo, confianza, religiosidad, capital social, familia y migración), casi todas **con reserva de ancho**.
 - **13** dominios del mapa tienen estimador adoptado <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:dominios_medidos -->, que cubren **14** de los **31** reports del corpus <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:reports_medidos && python3 forense/analisis/informe-v1_4/cifra.py cat:reports -->.
-- Contador rector sin cambio: **219** celdas validadas, **20** PROSPECTIVAS y **59** RETROSPECTIVAS reportadas aparte <!-- comando: python3 tools/corrida0.py status | grep -E "^celdas_validadas(_prospectiva|_retrospectiva)?=" -->; **285** corridas selladas <!-- comando: python3 tools/corrida0.py status | grep -E "^N_corridas_selladas=" -->.
+- Contador rector sin cambio: **219** celdas validadas, **20** PROSPECTIVAS y **59** RETROSPECTIVAS reportadas aparte <!-- comando: python3 tools/corrida0.py status | grep -E "^celdas_validadas(_prospectiva|_retrospectiva)?=" -->; **287** corridas selladas <!-- comando: python3 tools/corrida0.py status | grep -E "^N_corridas_selladas=" -->.
 - Dependencias legacy activas: de **146** (24/sep) a **67** tras `GEN2-RELEVO-CONSUMIDORES-3` <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py legacy_24sep && python3 tools/corrida0.py status | grep -E "^dependencias_numericas_legacy_activas=" -->.
 
 ## B · Dónde sí cambió
@@ -51,7 +51,7 @@ Hoy el corte de clase solo es posible en dinero, remesas, consumo y tecnología.
 - **611** afirmaciones del mapa de dominios v1.1 no tienen un programa del corpus que las mida: son `INSTRUMENTO-SIN-EQUIVALENCIA` <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py mapa11:INSTRUMENTO-SIN-EQUIVALENCIA -->. Es «nadie tiene el instrumento», no «no se puede».
 - **420** afirmaciones son `NO-MEDIBLE-POR-DISEÑO` <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py mapa11_dictamen:NO-MEDIBLE-POR-DISEÑO -->: ninguna encuesta las puede medir tal como están escritas.
 - **6** familias 2027 están pre-registradas (U4) y esperan el calendario de INEGI <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py familias2027 -->: ENCIG pago digital y solicitud de mordida, ENIF ahorro formal y horizonte de ahorro, ENVIPE denuncia y evasión de norma. Son **PROSPECTIVAS**: se reportan aparte de todo lo retrospectivo de este informe y nunca se funden con ello (firma P).
-- **En curso, sin fusionar al abrir este acto:** `GEN2-SEGURIDAD-ENSU-SERIE-1` (rama `gen2-seguridad-ensu-serie-1`) y `GEN2-COLA-LOTE-1` (rama `acto/gen2-cola-lote-1`). Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van a la v1.3 del catálogo.
+- **ENSU y COLA-LOTE-1.** `GEN2-SEGURIDAD-ENSU-SERIE-1` fusionó durante este acto (`PR #1162`), pero su adopción (`FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01`) sigue ABIERTA: no entra al catálogo. `GEN2-COLA-LOTE-1` sigue en curso (rama `acto/gen2-cola-lote-1`). Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van a la v1.3 del catálogo.
 - **Oferta en dinero:** `GEN2-DINERO-SERIES-CNBV-BANXICO-1` selló series de morosidad (CNBV, Banxico), pero **no añadió columna de oferta** a ningún piso de crédito o ahorro (P4 `PARO-ENTORNO`: el host de BDIF está denegado). La exclusión por oferta sigue siendo la de ENIF crédito (`CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001`).
 
 ## F · Módulo de auditoría, adenda v1.4
@@ -84,7 +84,7 @@ la predicción más simple —lo que la gente dijo en la ola anterior— nunca f
 vencida con intervalo que despejara el umbral por ninguno de los **6**
 retadores construidos en la casa (encogida, tendencia, C1/C7, suavizados, AP,
 θ sin emitir) ni por el retador externo (Astra, familia C-ASTRA) en ENCIG
-2025 <!-- comando: grep -n "Siete familias de retador" canon/estado-programa-v1_16.md -->.
+2025 <!-- comando: grep -n "Siete familias de retador" canon/estado-programa-v1_17.md -->.
 Una sola propuesta con reserva (crédito K1, tendencia de serie, ΔMAE +1.90
 pp, IC95 [0.62, 2.65] pp) con umbral inalcanzable por diseño
 (`umbral_vence_pp: inf` en la spec del CALC que la adjudica)

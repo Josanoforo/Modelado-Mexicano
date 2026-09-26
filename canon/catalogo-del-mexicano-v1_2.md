@@ -24,7 +24,7 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (43 188 
 5. `temporalidad`: todo el catálogo es **RETROSPECTIVA** (43 188 filas). Las celdas PROSPECTIVAS del marcador que existían eran pisos de origen legacy y quedaron fuera (ver «Fuera por regla»).
 6. `origen_piso`: `NUEVO` (medido desde microdato en su CALC; 43 141 filas) o `HEREDADO-DE-GEN2` (el punto de la ola t es el piso GEN2 de t−1; 47 filas). **Ninguna fila es HEREDADO-DE-LEGACY.**
 7. `oferta_exclusion`: en cada fila de `DINERO` va la medida de exclusión por oferta, o la declaración de que no existe una sellada para esa ola y conducta. `GEN2-DINERO-SERIES-CNBV-BANXICO-1` (`PR #1159`) no añadió columna de oferta a ningún piso de crédito o ahorro: su pieza P4 quedó `PARO-ENTORNO` (la serie BDIF de CNBV está en host denegado; NC `8dbe`), así que la columna sigue siendo la de `CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001`.
-8. **Filas de mesa pendientes de fusionar.** `GEN2-SEGURIDAD-ENSU-SERIE-1` y `GEN2-COLA-LOTE-1` no estaban en `main` al abrir este acto: **en curso**, ramas `gen2-seguridad-ensu-serie-1` y `acto/gen2-cola-lote-1`. No aportan filas; entran en v1.3.
+8. **Actos del corte sin adopción.** `GEN2-SEGURIDAD-ENSU-SERIE-1` fusionó durante este acto (`PR #1162`), pero su FP de adopción sigue ABIERTA: no entra y aparece en «Pendiente de firma». `GEN2-COLA-LOTE-1` está **en curso** (rama `acto/gen2-cola-lote-1`). Ninguno de los dos aporta filas; entran en v1.3 si mesa firma.
 
 ## P1 · Estimadores por dominio e instrumento
 
@@ -81,6 +81,7 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (43 188 
 
 | id | objeto | estado de la FP |
 |---|---|---|
+| `FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01` | `CALC-ENSU-PISOS-0001;CALC-ENSU-SERIE-0001` | ABIERTA |
 
 `SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma. La firma `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01` (FIRMADA, opción a) los hace entrar en v1.2 citándola.
 
@@ -189,7 +190,7 @@ Cita de [`forense/analisis/clase-amai/cobertura-por-clase-v1_0.md`](../forense/a
 - **¿Qué parece psicológico y es incentivo?** La denuncia con seguro (regla 10) y la denuncia de violencia (regla 6).
 - **¿Evidencia débil con intuición fuerte?** Todos los PORQUE. Por eso llevan tier propio.
 - **¿Qué afirmación sobre el corpus se escribió a mano?** Ninguna cifra: toda cifra sale de un marcador de conteo o de RESULT de la plantilla (`forense/analisis/catalogo/v1_2/plantilla.md`), y `tests/test_catalogo_v1_2.py` falla si aparece un dígito fuera de un identificador, un año o un placeholder resuelto.
-- **¿Deuda asumida que caducó?** `afe1-01` y FIRMAS-19 fusionaron y entraron. Quedan en curso ENSU y COLA-LOTE-1, y las firmas de COLA-COMPLETA-1 van a v1.3.
+- **¿Deuda asumida que caducó?** `afe1-01` y FIRMAS-19 fusionaron y entraron. ENSU espera su firma de adopción, COLA-LOTE-1 sigue en curso y las firmas de COLA-COMPLETA-1 van a v1.3.
 - **¿Sesgo de marcos o muestras importadas?** WVS, Latinobarómetro, PEW y LAPOP son marcos internacionales: sus ejes son los del cuestionario (clase subjetiva, ingreso subjetivo), no NSE AMAI, y ninguna fila se lee como rasgo nacional esencial. PEW migración mide disposiciones, no flujos.
 - **¿Escala de cada cantidad y contra qué se compara?** Columna `unidad`. Solo se contrastan filas del mismo CALC, unidad y ola.
 - **¿PROSPECTIVA y RETROSPECTIVA mezcladas?** No: todo el catálogo es RETROSPECTIVA. Las celdas validadas PROSPECTIVAS se citan aparte en la frase de portada.
