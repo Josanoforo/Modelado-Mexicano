@@ -1,0 +1,45 @@
+calc_id: CALC-CNBV-SERIES-IMOR-R16-0001
+spec_md: ../../../forense/prereg-caja/DINERO-SERIES-IMOR-spec-v1_0.md
+spec_md_sha256: bc45e4edbbd0f4378e68524de90634a2024d6feb57a98b24553e1f518bdabf8a
+script: data/corrida0/CALC-CNBV-SERIES-IMOR-R16-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  tipo: SERIE-ADMINISTRATIVA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  evaluacion: RETROSPECTIVA
+  validacion_independiente: PENDIENTE-POST-SELLO
+  medidor_ejecutado_al_congelar: 'NO'
+  fuente_acto: ACTO GEN2-DINERO-SERIES-CNBV-BANXICO-1
+inputs:
+  - id: IN-CNBV-R16-IMOR-CONSUMO-202112
+    origen: repo
+    ruta: data/corrida0/CALC-CNBV-SERIES-IMOR-R16-0001/insumos/cnbv-imor-consumo.csv
+    sha256: e61c97a3acd6634e2c0cabdad18a9fbde06ff58f1c2363a3e290c3cc40e23400
+variables: []
+universo: >-
+  Total Banca Multiple, foto 2021-12 del reporte CNBV 040-1A-R16, nueve tipos de cartera de consumo (uno vacio en origen).
+filtros: NO-APLICA (el medidor aborta ante faltante, duplicado o fuera de rango)
+ponderador: NO-APLICA (serie agregada de saldos; media 2025 da igual peso a cada mes)
+transformacion: niveles por periodo fijado; media aritmetica 2025; cambio interanual en pp (ver spec.md §3-§4)
+estimando: >-
+  IMOR de consumo por producto (porcentaje de saldo de cartera) en periodos fijados. SERIE-ADMINISTRATIVA; unidad saldo, no persona; no se promedia con pisos de encuesta.
+dependencias_materiales: []
+seed: {aplica: false, valor: null, rng: NO-APLICA}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: calculo determinista sobre valores de dos decimales
+resultados:
+  - {id: RESULT-CNBV-SERIES-G-INPUT-SHA256, tipo: texto, unidad: sha256}
+  - {id: RESULT-CNBV-SERIES-G-N-PRODUCTOS, tipo: entero, unidad: tipos de cartera con valor}
+  - {id: RESULT-CNBV-SERIES-G-N-VACIOS, tipo: entero, unidad: tipos de cartera vacios en origen}
+  - {id: RESULT-CNBV-SERIES-G-UNIDAD, tipo: texto, unidad: rotulo de unidad}
+  - {id: RESULT-CNBV-SERIES-CON-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-TDC-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-PER-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-NOM-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-ABCD-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-AUT-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-BM-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
+  - {id: RESULT-CNBV-SERIES-OTR-2021-12, tipo: flotante, unidad: porcentaje de saldo (serie administrativa)}
