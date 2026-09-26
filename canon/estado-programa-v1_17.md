@@ -1034,7 +1034,7 @@ celdas_emitidas_sin_r=16
 ```
 <!-- comando: python3 tools/corrida0.py status -->
 
-**Volumen de la semana.** Hubo 58 merges de PR en `main` desde el 24/sep <!-- comando: git log --merges --oneline --since=2026-09-24T00:00 origin/main | grep -c 'Merge pull request' -->. Se archivaron 40 encargos fechados del 24 al 26 <!-- comando: ls forense/encargos/2026-09-2[4-6]-*.md | grep -vc -- '-ADENDA-' -->, de los cuales 38 ya tienen `## CONSUMIDO` <!-- comando: grep -l '^## CONSUMIDO' $(ls forense/encargos/2026-09-2[4-6]-*.md | grep -v -- '-ADENDA-') | wc -l -->. Entre los que faltan está este mismo, que cierra con su PR.
+**Volumen de la semana.** Hubo 58 merges de PR en `main` desde el 24/sep <!-- comando: git log --merges --oneline --since=2026-09-24T00:00 HEAD | grep -c 'Merge pull request' -->. Se archivaron 40 encargos fechados del 24 al 26 <!-- comando: ls forense/encargos/2026-09-2[4-6]-*.md | grep -vc -- '-ADENDA-' -->, de los cuales 38 ya tienen `## CONSUMIDO` <!-- comando: grep -l '^## CONSUMIDO' $(ls forense/encargos/2026-09-2[4-6]-*.md | grep -v -- '-ADENDA-') | wc -l -->. Entre los que faltan está este mismo, que cierra con su PR.
 
 **Los cuatro documentos del corte (nombres estables):**
 - `catálogo del mexicano` v1.2 (`canon/catalogo-del-mexicano-v1_2.md`): 43,188 estimadores adoptados con firma citada por id <!-- comando: python3 forense/analisis/informe-v1_4/cifra.py cat:estimadores -->.

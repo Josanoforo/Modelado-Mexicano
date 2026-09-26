@@ -29,8 +29,8 @@ Detalle y cierre de cada una en el [README](https://github.com/Josanoforo/Modela
 
 | Objeto | Valor |
 |---|---:|
-| Corridas selladas | 285 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
-| RESULT GEN2 sellados | 118 078 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
+| Corridas selladas | 287 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
+| RESULT GEN2 sellados | 175 097 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
 | RESULT GEN2 adoptados (piso publicado) | 81 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
 | Celdas validadas (contador rector) | 219 <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> |
 | Reports de evidencia en el corpus | 31 <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> |
