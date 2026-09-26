@@ -25,3 +25,6 @@ NC-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-06 (DECISIÓN-DE-MESA-P
 
 ## K
 3d56-01, 4296-01, c3fa-05, 43d6-01: sin cambio.
+
+## Defecto adyacente (D-21, declarado; `tools/corrida0.py` fuera de §9)
+CI del PR #1158: `suite` cancelada a los 10 min en T32 (T-CORRIDA0). Causa: `corrida0.py` releía `decisiones.tsv` completo por objeto (`_firma_de_decision` dentro de un bucle sobre decisiones: cuadrático) y por RESULT (`_lee_decisiones` desde `_lee_oferta`); con las 4516 filas de J3 dejó de terminar. Arreglo (≤10 líneas por sitio): mapa objeto→firma leído una vez, y caché de `_lee_decisiones` por (ruta, mtime, tamaño). Tras el arreglo, `corrida0.py status` termina en 38 s; `check.py --baseline` → «LÍNEA BASE: VERDE — sin FAIL nuevos» (3 FAIL heredados T06/T08).
