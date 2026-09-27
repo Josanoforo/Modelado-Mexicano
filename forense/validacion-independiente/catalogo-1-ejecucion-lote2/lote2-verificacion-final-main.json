@@ -1,0 +1,11 @@
+{
+  "main_incorporado": "c58810f1d9c4d87f37bcd5d251552da054dabb3b",
+  "comando": "python3 tools/validacion/astra6_lote2/lote2_verifica.py",
+  "resultado": {
+    "entradas_recibidas": 11,
+    "identidades_contrato": 425,
+    "congelaciones_portables_verificadas": 11,
+    "adaptador_intacto": true
+  },
+  "objetos_del_commit_anterior_intactos": 235
+}
