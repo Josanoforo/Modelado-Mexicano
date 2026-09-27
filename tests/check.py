@@ -356,7 +356,8 @@ HISTORICOS = {
     # `2026-09-09-PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES-astra.md`. El
     # contenido citado existe en ambos casos; solo el basename pelado no
     # coincide.
-    "tramite.md",
+    # (`tramite.md` salió de aquí: GEN2-TUBERIA-RESUMEN-SUITE-1 P2 indexa
+    # `.claude/`; la limitación descrita arriba ya no aplica.)
     "PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md",
     # forense/curaduria-archivos.md §1 "SE VA"
     "estado-proyecto-psicologia-mexicano.md",
@@ -441,13 +442,8 @@ HISTORICOS = {
     # en texto que A.3 prohibe editar contra un nombre sin archivo real
     # detras, deliberadamente.
     "05-PANTALLAS-RUTINAS-CONFIGURACION.md",
-    # forense/encargos/2026-09-09-GEN2-REVISA-CALC.md (A.3, VERBATIM):
-    # cita "el bloque REVISA-CALC DENTRO DE `/revisa`" y "grep -n
-    # \"REVISA-CALC\" .claude/commands/revisa.md" -- `revisa.md` existe en
-    # `.claude/commands/revisa.md`, pero el glob recursivo de T03 no
-    # desciende a directorios ocultos como `.claude/` (mismo defecto de
-    # cobertura ya documentado arriba para `tramite.md`).
-    "revisa.md",
+    # (`revisa.md` salió de aquí por la misma razón que `tramite.md`:
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 P2.)
     # forense/notas/2026-09-09-PROPUESTA-FINAL-AUTOMATIZACIONES-
     # POSTCALCULOS-astra.md y forense/notas/2026-09-09-REVISION-
     # ADVERSARIAL-PR649-astra.md (ambos P0 de GEN2-REVISA-CALC, A.3):
@@ -588,6 +584,10 @@ def t03_dangling_refs():
     """Un documento que cita un archivo inexistente no obliga a nada."""
     existing = {os.path.basename(p) for p in
                 glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True)}
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 · P2: `**` no desciende a ocultos; `.claude/`
+    # entra explícito al índice de existentes (no a los documentos escaneados).
+    existing |= {os.path.basename(p) for p in
+                 glob.glob(os.path.join(ROOT, ".claude", "**", "*.*"), recursive=True)}
     for p in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
         if ".git" in p:
             continue

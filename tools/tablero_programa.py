@@ -37,6 +37,7 @@ except ImportError:  # pragma: no cover
 
 import estado_comun as EC
 import limpia_arbol as LA  # ACTO GEN2-T9 · P4(v)
+import resumen_suite as RS  # GEN2-TUBERIA-RESUMEN-SUITE-1 · P1
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 os.chdir(RAIZ)
@@ -569,7 +570,9 @@ def derivar_indicadores() -> dict[str, dict]:
     # perseguia vive en `canon/modelo-decision-v4_0.md`.
     put("commits", int(sh("git rev-list --count HEAD") or 0), "git rev-list --count HEAD")
     put("prs_fusionados", int(sh("git log --merges --format=%s HEAD | grep -c 'pull request'") or 0), "git log --merges --format=%s HEAD | grep -c 'pull request'")
-    put("suite", "correr: python3 tests/check.py --baseline | tail -6 (no se corre aqui: tarda; pega la salida cruda)", "python3 tests/check.py --baseline")
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 · P1: la suite no se corre aquí; se lee el
+    # resumen que el nocturno publica por su propio [deriva] (commit y fecha).
+    put("suite", RS.linea(RS.lee()), "python3 tools/resumen_suite.py lee (data/derivados/suite-resumen.tsv, del job suite nocturno)")
 
     # ── 7 · GEN2 (derivado de `corrida0 status`) ───────────────────────
     # ACTO GEN2-E6 · AUTOMATIZA-GEN2-2: el tablero deja de contar GEN2 a
