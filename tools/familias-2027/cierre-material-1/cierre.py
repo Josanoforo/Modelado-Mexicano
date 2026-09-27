@@ -7,6 +7,7 @@ import argparse
 import csv
 import hashlib
 import json
+import re
 from pathlib import Path, PurePosixPath
 import subprocess
 import sys
@@ -117,6 +118,10 @@ def verifica(root=ROOT, inv=None, esperado=None):
     if inv['comprobante_ots'] is not None or inv['comprobante_envio'] is not None:
         raise ValueError('ATESTACION-NO-ACREDITADA-EN-ESTE-CORTE')
     print('INVENTARIO: VERDE;', len(inv['archivos']), 'archivos efectivos, identidad COMMIT-1/enmienda intacta')
+    from auditoria_sucesora import audita
+    for rel in ('tools/familias-2027/enif/lector-futuro-serializacion-v2.py',
+                'data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py'):
+        audita((root/rel).read_text(), inv['archivos'][rel])
     return inv
 
 
@@ -150,12 +155,17 @@ def hoja(inv):
     for fam, piso in floors.items():
         f = gold[fam]
         ok = f['dictamen_soporte'] == 'ESTIMABLE'
-        filas.append(dict(familia='ENCIG-'+fam, instrumento='ENCIG', ola='encig_2027', unidad='persona18+ urbana100mil',
+        calendario = (prefix/'calendario.md').read_text()
+        ventana = next(line.split('|')[4].strip() for line in calendario.splitlines()
+                       if line.startswith('| ENCIG-'+fam+' |'))
+        filas.append(dict(familia='ENCIG-'+fam, instrumento='ENCIG', ola='encig_2027',
+            unidad='evento pago luz' if fam=='PAGO-DIGITAL' else 'persona18+ urbana100mil',
             p0=piso['p0'], result_id=piso['result_id'], emision='CALC-FAMILIA-2027-ENCIG-'+fam+'-0001',
             regla={'ruta':'data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml', 'parametros':rules.get('parametros')},
             soporte_historico=f['soporte'], soporte_acreditado=ok, contrato=contract,
             driver='tools/familias-2027/encig/evaluar.py', fecha=None,
-            ventana='Ventana esperada, no fecha oficial; ver calendario por identidad',
+            ventana={'descripcion':ventana,'fuente':'https://www.snieg.mx/Documentos/Gobierno/Programas/cteig_2025-2030.pdf',
+                     'tipo':'VENTANA-ESPERADA-NO-FECHA-OFICIAL'},
             calendario='forense/analisis/familias-2027/astra6-encig/calendario.md',
             estado='CONDICIONAL' if ok else 'SUSPENDIDO/NO-ESTIMABLE',
             pendiente='COMMIT-3 cerrado; autorización de ola, reconocimiento de enmienda; conservar gate vigente'))
@@ -166,7 +176,7 @@ def hoja(inv):
         cid = 'CALC-FAMILIA-2027-ENVIPE-'+fam.replace('_','-')
         e = json_leer(ROOT/'data/corrida0'/cid/'emision.json')
         filas.append(dict(familia='ENVIPE-'+fam.replace('_','-'), instrumento='ENVIPE', ola=e['ola_objetivo'],
-            unidad='delito U4' if fam == 'DENUNCIA_U4' else 'persona18+', p0=e['p0'],
+            unidad='persona U4' if fam == 'DENUNCIA_U4' else 'delito', p0=e['p0'],
             result_id=e['fuente']['result'], emision=cid,
             regla={'ruta':'forense/analisis/familias-2027/astra6-envipe/auxiliares-spec.yaml',
                    'dictamen':'tools/familias-2027/envipe/medidor.py:dictamen'},
@@ -206,10 +216,7 @@ def replay(inv):
     evidence = AREA/'replay-ejecutado.json'
     if evidence.exists():
         raise ValueError('REPLAY-YA-EJECUTADO; conservar primera evidencia')
-    for ident, item in inv['raw_historicos'].items():
-        path = ROOT/'data/raw'/item['archivo']
-        if sha(path.read_bytes()) != item['sha256']:
-            raise ValueError('INPUT-HISTORICO-DISCORDANTE: '+ident)
+    valida_raws(ROOT/'data/raw', inv['raw_historicos'])
     logdir = AREA/'logs';logdir.mkdir(exist_ok=True)
     commands = []
     calcs = ['CALC-FAMILIA-2027-ENIF-ORO-0002',
@@ -244,12 +251,70 @@ def replay(inv):
                        'raws_verificados':inv['raw_historicos'], 'comandos':records})
 
 
+def valida_raws(carpeta, entradas):
+    for ident, item in entradas.items():
+        if Path(item['archivo']).name != item['archivo']:
+            raise ValueError('RUTA-INPUT-AJENA')
+        path = carpeta/item['archivo']
+        if sha(path.read_bytes()) != item['sha256']:
+            raise ValueError('INPUT-HISTORICO-DISCORDANTE: '+ident)
+
+
+def pruebas():
+    proc = subprocess.run([sys.executable,'-m','pytest','-q',
+                           'tools/familias-2027/cierre-material-1/test_cierre.py'],cwd=ROOT)
+    if proc.returncode:
+        raise ValueError('PRUEBAS-MATERIALES-FALLAN')
+
+
+def preflight_final():
+    if git('status','--porcelain').strip():
+        raise ValueError('PREFLIGHT-FINAL-REQUIERE-COMMIT-LIMPIO')
+    inv = verifica()
+    calcs = sorted({PurePosixPath(p).parts[2] for p in inv['archivos']
+                    if p.startswith('data/corrida0/') and p.endswith('/sello.json')
+                    and '2027' in PurePosixPath(p).parts[2]})
+    logs = []
+    for cid in calcs:
+        cmd = [sys.executable,'tools/corrida0.py','preflight',cid]
+        p = subprocess.run(cmd,cwd=ROOT,text=True,capture_output=True)
+        raw = p.stdout+p.stderr
+        if 'working_tree_dirty' in raw or 'SELLO_COINCIDE' not in raw:
+            raise ValueError('PREFLIGHT-NO-ACREDITADO: '+cid)
+        logs.append((cid,raw,p.returncode))
+    # Solo después de todos los comandos: el propio log no ensucia el siguiente.
+    folder = AREA/'preflight-final';folder.mkdir(exist_ok=True)
+    for cid,raw,code in logs:
+        (folder/(cid+'.txt')).write_text(raw)
+    escribe(folder/'resumen.json', {'commit':git('rev-parse','HEAD').decode().strip(),
+            'estado':'EJECUTADO-LIMPIO; bloqueos por inmutabilidad o emisión sin ejecución, no preflight VERDE para run',
+            'calcs':[{'calc':cid,'exit_code':code,'sha256':sha(raw.encode())} for cid,raw,code in logs]})
+
+
+def verifica_replay():
+    e = json_leer(AREA/'replay-ejecutado.json')
+    for item in e['comandos']:
+        if sha((ROOT/item['log']).read_bytes()) != item['sha256']:
+            raise ValueError('LOG-REPLAY-MUTADO')
+    for cid in ('CALC-FAMILIA-2027-ENIF-ORO-0002', 'CALC-ENCIG-AUX-FAMILIAS-2027-0001'):
+        text = (AREA/'logs'/('verify-'+cid+'.txt')).read_text()
+        if 'CONTEXTO=IDENTICO · RESULTADO=REPRODUCE' not in text:
+            raise ValueError('ORO-NO-REPRODUCE: '+cid)
+    text = (AREA/'logs/cierre-envipe.txt').read_text()
+    if 'ORO-HISTORICO: REPRODUCE' not in text or 'CIERRE: PASS' not in text:
+        raise ValueError('CIERRE-ENVIPE-NO-REPRODUCE')
+    print('EVIDENCIA-HISTORICA: ACREDITADA; no atestación ni evaluación futura')
+
+
 if __name__ == '__main__':
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--prepara',action='store_true')
     p.add_argument('--verifica',action='store_true')
     p.add_argument('--hoja',action='store_true')
     p.add_argument('--replay',action='store_true')
+    p.add_argument('--pruebas',action='store_true')
+    p.add_argument('--preflight-final',action='store_true')
+    p.add_argument('--evidencia',action='store_true')
     p.add_argument('--inventario-sha256',help='ancla entregada por mesa para paquete sin Git')
     a = p.parse_args()
     if a.prepara:
@@ -260,3 +325,9 @@ if __name__ == '__main__':
             hoja(inv)
         if a.replay:
             replay(inv)
+    if a.pruebas:
+        pruebas()
+    if a.preflight_final:
+        preflight_final()
+    if a.evidencia:
+        verifica_replay()

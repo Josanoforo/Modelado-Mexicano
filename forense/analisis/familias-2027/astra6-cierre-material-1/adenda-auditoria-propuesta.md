@@ -1,0 +1,11 @@
+# Auditoría sucesora ENIF · PROPUESTO-POR-EJECUTOR
+
+Objeto para firma independiente: `tools/familias-2027/cierre-material-1/auditoria_sucesora.py`. Es una envoltura nueva, no parche al auditor, lector ni driver congelados. La identidad de todo el código efectivo se verifica contra el inventario derivado del corte Git y contra un ancla del inventario diferente de su copia de disco. El AST rechaza ejecución dinámica/importaciones ajenas; aceptar pathlib no libera sus rutas.
+
+Diff semántico frente a auditoria.py histórica: cobertura del lector futuro v2 y ORO-0002; autenticación de todas sus funciones, constantes y accesos; durante una invocación en un proceso propio, permite leer únicamente los insumos acreditados por identidad y escribir únicamente los nombres exactos de tablas del CALC propio; rechaza Path.read_bytes/read_text/write_bytes/write_text/open y open tradicional fuera de esas listas, enlaces de salida y escape `..`. Dependencias de ZIP, codificación y numpy se precargan antes del contexto. Ningún gate, muestra, semilla, estadístico o RESULT se altera.
+
+Esta capa protege código autenticado y un caller confiable; no es sandbox para ejecutar Python arbitrario hostil. Los hooks permanecen instalados e inactivos fuera de la llamada: usar un proceso propio de una tarea. La lista de inputs la establece el conducto a partir de autorización/identidades ya acreditadas, nunca el lector ni una ruta suministrada sin cotejo. Para el oro se leen solo los raw históricos autorizados; los sintéticos viven en directorios temporales ajenos a data/raw. Ninguna entrada CLI de este acto permite ejecutar R futura.
+
+Pruebas materiales: mutación de enmienda, drivers, lector v2, ORO-0002, piso, inventario/ruta e input raw; rutas Path ajenas y enlaces; ZIP sintético real por ambos lectores y `_fallas_run` con soporte completo, parcial y sin diseño. Se usan las funciones congeladas efectivas, sin reemplazar `lee_zip` ni cálculos.
+
+Recomendada: aprobar esta envoltura para integrarla al conducto de COMMIT-3 en un acto propio, conservando identidades y autorización única de ola. Alternativa: mantener cerrada la apertura y recibir un control equivalente antes de ella. Este PR entrega y prueba la propuesta; no interpreta su fusión como firma independiente de cambio al código congelado.

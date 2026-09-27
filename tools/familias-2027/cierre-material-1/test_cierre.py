@@ -13,7 +13,7 @@ import pytest
 import yaml
 
 from auditoria_sucesora import RutasExactas, audita
-from cierre import ROOT, AREA, AREA_REL, verifica, sha
+from cierre import ROOT, AREA, AREA_REL, verifica, sha, valida_raws
 
 
 def carga(nombre, path):
@@ -70,6 +70,18 @@ def test_sin_caches_y_enmienda_cubierta(inventario):
         # pathlib importado con alias no evade la identidad fijada.
         with pytest.raises(ValueError,match='CODIGO-EFECTIVO-DISCORDANTE'):
             audita(code+'\nfrom pathlib import Path as P\nP("/ajeno").read_bytes()\n',inventario['archivos'][rel])
+
+
+def test_input_raw_mutado_y_ruta_ajena(tmp_path):
+    p = tmp_path/'input.zip';p.write_bytes(b'RAW-SINTETICO')
+    entradas = {'HISTORICO':{'archivo':p.name,'sha256':sha(p.read_bytes())}}
+    valida_raws(tmp_path, entradas)
+    p.write_bytes(b'MUTADO')
+    with pytest.raises(ValueError,match='INPUT-HISTORICO-DISCORDANTE'):
+        valida_raws(tmp_path, entradas)
+    entradas['HISTORICO']['archivo'] = '../escape.zip'
+    with pytest.raises(ValueError,match='RUTA-INPUT-AJENA'):
+        valida_raws(tmp_path, entradas)
 
 
 @pytest.mark.parametrize('operacion', ['read_bytes','read_text','write_bytes','write_text','open','builtin'])
@@ -156,3 +168,22 @@ def test_futuro_v2_real_con_guardia_y_conducto(tmp_path, monkeypatch, inventario
     inputs['enif_2027']['ruta_absoluta'] = str(tmp_path/'AJENO.zip')
     with pytest.raises(PermissionError), g.aplica():
         m.medir_futuro(inputs,contrato)
+
+
+@pytest.mark.parametrize('rama',['soporte','parcial','nulos'])
+def test_oro_0002_efectivo_auditado_y_ref(tmp_path, monkeypatch, inventario, rama):
+    cid = 'CALC-FAMILIA-2027-ENIF-ORO-0002'
+    rel = 'data/corrida0/'+cid+'/medidor.py'
+    audita((ROOT/rel).read_text(),inventario['archivos'][rel])
+    m = carga('oro_auditado_'+rama,ROOT/rel)
+    c = carga('conducto_oro_auditado_'+rama,ROOT/'tools/corrida0.py')
+    d = tmp_path/'data/corrida0'/cid;d.mkdir(parents=True)
+    monkeypatch.setattr(m,'__file__',str(d/'medidor.py'))
+    monkeypatch.setattr(c,'RAIZ',tmp_path)
+    raw = tmp_path/'SINTETICO.zip';zip_sintetico(m,raw,rama)
+    g = RutasExactas([raw],[d/'tablas/replicas.json',d/'tablas/potencia.json'],[d/'tablas'])
+    with g.aplica():
+        out = m.medir({'enif_2024_enif_2024_bd_csv':{'ruta_absoluta':str(raw)}},{})
+    schema = yaml.safe_load((ROOT/'data/corrida0'/cid/'spec.yaml').read_text())
+    assert c._fallas_run(schema,out,0,'',d) == []
+    assert out['RESULT-FAMILIA-ENIF-ORO-SOPORTE'] == ('SI' if rama=='soporte' else 'NO')
