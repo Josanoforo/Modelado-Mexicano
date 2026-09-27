@@ -13,3 +13,9 @@ Corte editorial y main incorporado: `11602de8e375c10b90807d1b74e088f6b9e99c8b`, 
 EJECUTADO: prefijos corregidos y búsqueda del regex exacto T25 sin coincidencias locales; productores regenerados, --check PASS. Gate rápido final sin FAIL. La última suite completa corre sobre la corrección total, sin modificar baseline.
 
 EJECUTADO: suite final `tests/check.py --baseline --parallel` exit 0, LÍNEA BASE VERDE sin FAIL nuevos. Persisten tres FAIL heredados (T06/T08 del corpus original); no se reparan ni se modifica baseline. [Salida de adjudicación](gate-final.txt). Productores y gate rápido posterior al apéndice pasan; esto no resuelve las reservas de contenido o el incidente.
+
+## Corrección de V-020-02 · instrucción de mesa
+
+EJECUTADO: retirada la refutación aritmética que emparejaba ENASEM2021 con la población CONAPO2025 de L12. V-020-02 pasa de ROMPE a SIN-CIFRA por no comparabilidad: el absoluto permanece sin confirmar hasta recuperar población, año y denominador compatibles. Se elimina la multiplicación del productor y se regeneran report, tablas, revisión dirigida, resúmenes, índice y hashes. El mapa histórico se conserva intacto; sus referencias a esa refutación no son el dictamen editorial vigente.
+
+EJECUTADO: productores --check y autopruebas PASS después de la corrección. La exposición a ENADID2023 sigue pendiente de adjudicación por su identidad propia; no se resuelve con esta corrección. Migración y pareja pueden recibirse por separado si mesa decide desbloquearlas; no se afirma que ya hayan sido recibidas.

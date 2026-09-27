@@ -2,7 +2,7 @@
 
 EJECUTADO: tres reports completos con Bloque B y auditoría; cobertura de originales por decisiones explícitas y pasajes, incluyendo afirmaciones materiales fuera del mapa. Conteos derivados de resumen-lote.json; los registros de cobertura se solapan y no son tesis independientes.
 
-273 registros editoriales, 126 filas de mapa cubiertas, 9 registros de cifras propias: CONFIRMA 3, MATIZA 85, ROMPE 4, SIN-CIFRA 181.
+273 registros editoriales, 126 filas de mapa cubiertas, 9 registros de cifras propias: CONFIRMA 3, MATIZA 85, ROMPE 3, SIN-CIFRA 182.
 
 LEÍDO por pieza: originales, mapa, literatura primaria y estados de adopción por identidad. La revisión dirigida de ROMPE y mecanismos es del mismo equipo ejecutor; no constituye recepción independiente.
 

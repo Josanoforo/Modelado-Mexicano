@@ -4,7 +4,7 @@ Conteos derivados de decisiones editoriales explícitas. Registros de cobertura 
 
 | Pieza | Registros | Filas mapa | CONFIRMA | MATIZA | ROMPE | SIN-CIFRA | Cifras |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| vejez | 129 | 38 | 1 | 42 | 1 | 85 | 7 |
+| vejez | 129 | 38 | 1 | 42 | 0 | 86 | 7 |
 | migracion | 68 | 42 | 0 | 19 | 1 | 48 | 1 |
 | pareja | 76 | 46 | 2 | 24 | 2 | 48 | 1 |
 

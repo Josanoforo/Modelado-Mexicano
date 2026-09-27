@@ -1,8 +1,10 @@
 # Revisión dirigida · vejez
 
-EJECUTADO: juicio editorial manual de todas las cláusulas; el programa solo genera esta vista y realiza la operación aritmética, no decide ROMPE.
+EJECUTADO: juicio editorial manual de todas las cláusulas; el programa solo genera esta vista; no calcula conversiones entre bases temporales incompatibles ni decide dictámenes.
 
-Única ROMPE, V-020-02: equivalencia del v1. Sobre las cifras textuales del original: 39.8% × 17.1 millones /100 = 6.8058 millones; el absoluto afirmado es 10.3 millones. No son equivalentes. Se rompe exclusivamente la conversión/traslado de población; la soledad no queda refutada y V-020-01 permanece SIN-CIFRA por falta de tabulado. Es una prueba de consistencia interna, no una nueva estimación de población.
+V-020-02: SIN-CIFRA por no comparabilidad. La refutación aritmética anterior se retira: el porcentaje ENASEM2021 y la población CONAPO2025 citada en L12 no constituyen una misma base temporal. El absoluto permanece sin confirmar hasta recuperar población, año y denominador compatibles. V-020-01 también permanece SIN-CIFRA; ninguna de las dos cifras queda confirmada o refutada por esa multiplicación. Vejez ya no tiene dictámenes ROMPE.
+
+Esta corrección no adjudica la exposición a ENADID2023. Migración y pareja pueden recibirse por separado; su recepción no se acredita aquí.
 
 Mecanismos revisados: V-007 y V-010 separan oferta, norma y adaptación; V-008 identifica al proveedor desde receptor condicionado; V-013/V-014 separan muestra clínica, síntomas y diagnóstico; V-016 evita monocausalidad de informalidad; V-036 retira metas sin fuente y presenta propuestas evaluables. Ninguno deriva el veredicto de la medibilidad del mapa.
 

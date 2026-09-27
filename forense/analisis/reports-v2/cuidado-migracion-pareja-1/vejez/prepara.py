@@ -31,7 +31,7 @@ decisiones = [
 (17,'SIN-CIFRA','adquisición pendiente','Estado legislativo temporal no verificado contra texto primario; no prolongar congelamiento por memoria.',[],['Congelamiento Senado desde2020','Reforma marzo2024 sin recursos']),
 (18,'SIN-CIFRA','instrumento inadecuado','Demanda potencial no equivale necesidad funcional ni cuidados recibidos; multiplicador sin unidades comparables se retira.',[],['Demanda mayores15veces infancia']),
 (19,'SIN-CIFRA','falta de ejecución','Boletín ENASEM2021 leído: población general53+; no localizado88.3 con denominador60+, por tanto no conservar.','VEJ-E1'.split(),['Satisfacción88.3% personas mayores']),
-(20,'ROMPE','','Se rompe equivalencia numérica y universalización del absoluto:39.8%×17.1M=6.8058M, no10.3M; no refuta soledad. Porcentaje retirado hasta tabla reactivo/edad.','VEJ-E1'.split(),['39.8% soledad60+','Equivalencia10.3M']),
+(20,'SIN-CIFRA','no comparabilidad','El porcentaje corresponde a ENASEM2021 y la población CONAPO citada en L12 a2025; no comparten base temporal. El absoluto permanece sin confirmar hasta recuperar población, año y denominador compatibles; esa multiplicación no sostiene ROMPE.','VEJ-E1'.split(),['39.8% soledad60+','Equivalencia10.3M']),
 (21,'SIN-CIFRA','adquisición pendiente','No leídos originales etnográficos; contacto/remesa/residencia no sustituyen acompañamiento. Retener como pregunta.',[],['Remesas con soledad rural','Silencio sobre enfermedades','Remesas compran privacidad']),
 (22,'SIN-CIFRA','adquisición pendiente','No leído estudio municipal original; inferencia ecológica no identificaría efecto individual.',[],['Vulnerabilidad no concentra en alta migración','Migración no monocausal abandono']),
 (23,'SIN-CIFRA','adquisición pendiente','No leer evento como registro vigente del Consejo; cociente nacional no es carga real por médico.',[],['841 médicos2022','15.1M mayores','17mil pacientes por geriatra']),
@@ -88,7 +88,7 @@ extras=[
 ('L167','Mujeres acceden a pensión solo por viudez','SIN-CIFRA','falta de ejecución: no distribución de fuente/derecho propio/derivado calculada.'),
 ]
 for i,(l,c,d,m) in enumerate(extras,1):rows.append(dict(id=f'V-EX-{i:02}',mapa_id='',localizador=l,afirmacion=c,dictamen=d,razon_sin_cifra=m.split(':')[0] if d=='SIN-CIFRA' else '',motivo=m,evidencia=[],revision_manual=True))
-# Revisión manual: solo la equivalencia a un absoluto está refutada.
+# Revisión manual: porcentaje y absoluto no confirmados; no se cruzan bases temporales.
 porcentaje=next(x for x in rows if x['id']=='V-020-01')
 porcentaje.update(dictamen='SIN-CIFRA',razon_sin_cifra='falta de ejecución',motivo='No localizado tabulado/reactivo60+ que confirme39.8%; ausencia no refuta el porcentaje.')
 feminizacion=next(x for x in rows if x['id']=='V-008-01')
