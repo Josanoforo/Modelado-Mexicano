@@ -502,8 +502,40 @@ def guardia_lectura():
     return avisos
 
 
+# ACTO GEN2-TUBERIA-CI-TIEMPO-2 · P4: guardia de crecimiento del lote
+# pendiente de replay. Defecto que atrapa (27/sep/2026): el lote pasó de 61
+# a 121 CALC en silencio mientras cada run de main moría a los 30 min; nadie
+# lo leyó hasta que `check` salió rojo. Umbral declarado: 60 CALC (≈3 trozos
+# de 20, ≈un run del job `derivados`). Avisa, nunca falla el check.
+UMBRAL_LOTE_PENDIENTE = 60
+
+
+def linea_crecimiento_lote(pendiente, umbral=UMBRAL_LOTE_PENDIENTE):
+    """Primera línea del log del job `derivados`. `CRECE` si supera el
+    umbral; el llamador abre la NC automática con esa misma línea."""
+    estado = "CRECE" if pendiente > umbral else "OK"
+    return "LOTE-PENDIENTE: %d CALC (umbral %d) · %s" % (pendiente, umbral, estado)
+
+
+def cmd_crecimiento_lote():
+    i = sys.argv.index("--crecimiento-lote")
+    try:
+        pendiente = int(sys.argv[i + 1])
+    except (IndexError, ValueError):
+        print("uso: ci_guardias.py --crecimiento-lote <N>")
+        sys.exit(2)
+    linea = linea_crecimiento_lote(pendiente)
+    print(linea)
+    if linea.endswith("CRECE"):
+        # Anotación visible en el resumen del run; el job abre la NC.
+        print("::warning title=LOTE-PENDIENTE::%s" % linea)
+    sys.exit(0)
+
+
 def main():
-    if "--censo" in sys.argv:
+    if "--crecimiento-lote" in sys.argv:
+        cmd_crecimiento_lote()
+    elif "--censo" in sys.argv:
         cmd_censo()
     elif "--ejecuta-huerfanos" in sys.argv:
         cmd_ejecuta_huerfanos()
