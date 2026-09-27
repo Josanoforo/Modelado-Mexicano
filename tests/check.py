@@ -318,7 +318,7 @@ def t02_duplicates():
         # El control por contenido sigue incluyendo todos los módulos.
         # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
-        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "forense/encargos/fuentes/ASTRA6-tanda4-20260927/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
             nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
