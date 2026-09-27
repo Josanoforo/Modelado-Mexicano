@@ -1,0 +1,33 @@
+EJECUTADO sobre base remota final9536e5e2 (fetch final sin avance).
+Prueba sintética:5 casos PASS; wrapper potencia:5 tests OK; regresiones contrato original:6 tests OK.
+Replay oro a /tmp: cmp idéntico byte por byte.
+Potencia regenerada con diagnóstico final:6 escenarios, inference_identifiable=false, NO-LANZAR-TODAVIA.
+Hashes insumos consumidos: todos COINCIDEN.
+Históricos/manifest/familias/CI/catálogo: git diff --name-only base -- perímetros protegidos => salida vacía.
+
+Intento de gate inicial (falló por nombres; preservado):
+  FAIL (4)
+────────────────────────────────────────────────────────────────────────
+  · T02: 4
+      nombre normalizado colisiona: forense/analisis/enadid-union-actual-cli-1/auditoria.json · forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/auditoria.json
+      nombre normalizado colisiona: forense/analisis/familias-2027-enoe-inferencia-1/potencia/escenarios.tsv · forense/analisis/familias-2027-frontera-1/potencia/escenarios.tsv
+      nombre normalizado colisiona: forense/analisis/familias-2027-enoe-inferencia-1/potencia/decision.md · forense/analisis/familias-2027-frontera-1/potencia/decision.md
+      nombre normalizado colisiona: forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/diagnostico.py · tools/familias-2027/enoe_inferencia_1/diagnostico.py
+
+════════════════════════════════════════════════════════════════════════
+  4 FAIL · 602 WARN
+════════════════════════════════════════════════════════════════════════
+
+────────────────────────────────────────────────────────────────────────
+  LÍNEA BASE: ROJO — 4 FAIL nuevos frente a tests/baseline.json (HEAD congelado 7100cd0317132b1f4513b2efdc04058fd7ae89a2)
+  · T02: nombre normalizado colisiona: forense/analisis/enadid-union-actual-cli-1/auditoria.json · forense/analisis/fam
+  · T02: nombre normalizado colisiona: forense/analisis/familias-2027-enoe-inferencia-1/potencia/decision.md · forense/
+  · T02: nombre normalizado colisiona: forense/analisis/familias-2027-enoe-inferencia-1/potencia/escenarios.tsv · foren
+  · T02: nombre normalizado colisiona: forense/validacion-independiente/catalogo-1-adjudicacion-puntos/p2/diagnostico.p
+
+Gate rápido final tras corrección de nombres:
+  0 FAIL · 602 WARN
+  LÍNEA BASE: VERDE — sin FAIL nuevos frente a tests/baseline.json (HEAD congelado 7100cd0317132b1f4513b2efdc04058fd7ae89a2)
+Comando: python3 tests/check.py --rapido --baseline
+WARN heredados y estados abiertos no adjudican; FP/NC propias pendientes no son adopción.
+No suite completa local, no tanda extra CI ni prueba de capacidad predictiva futura.

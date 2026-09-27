@@ -1082,3 +1082,7 @@ Fuentes de juicio explícitas en `forense/analisis/reports-v2/cuidado-migracion-
 ## Reports v2 · dinero, tecnología y conocimiento (`ACTO ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1`)
 
 Decisiones, cobertura y evidencia por pieza en `forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/{dinero,tecnologia,conocimiento}/`. Productor/verificador `forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/verifica_lote.py` regenera tablas y el índice local desde juicios explícitos; comprueba trazabilidad, cobertura, denominadores y reservas sin decidir dictámenes por rangos. Consumidores: los tres homónimos en corpus/reports-v2, índice local y recibo. Sin cambios en mapa, sellos, catálogo, motor ni índice global. ADR-260926-ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1-9df0-01.
+
+## ASTRA6-C2-ENOE-INFERENCIA-1 · diagnóstico agregado histórico
+
+Tablas propias en `forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/` y `potencia/enoe-escenarios.tsv`; productores `tools/familias-2027/enoe_inferencia_1/enoe_diagnostico.py` y `forense/analisis/familias-2027-enoe-inferencia-1/potencia/calcula_sucesor.py`. Consumidores: hoja ENOE y recibo de mesa del mismo acto. Mismo oro abierto2024T4; sin microdatos en tablas, sin RESULT ni adopción; incertidumbre no identificada no se transforma en potencia numérica. ADR-260927-GEN2-ASTRA6-C2-ENOE-INFERENCIA-1-310e-01.
