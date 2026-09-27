@@ -59,3 +59,5 @@ Estimando institucional y elegibilidad99 global requieren contenido firmado para
 Gate pertinente: 0 FAIL, 591 WARN; baseline VERDE sin fallos nuevos ni cambios de CI/baseline. Verifica.py PASS:685 identidades,5480aristas,hashes fuentes y testimonios conservados. P4:27 casos sintéticos PASS. `git diff --check` sin defectos propios; TSV conservan CRLF/campos vacíos bajo atributo local para no cambiar sus hashes. Sin firma o revisión independiente recibida.
 
 Verificar hashes de todo el expediente desde su raíz: `sha256sum -c c1-puntos-SHA256SUMS.txt`. Los bytes TSV del índice coinciden con originales bajo atributo local; constancia c1-puntos-integridad-index.json.
+
+PR propio #1199: https://github.com/Josanoforo/Modelado-Mexicano/pull/1199 . Solicitud de recibo incorporada al cuerpo; sin mensajes externos ni autoaprobación/fusión. Entorno de cierre registrado en c1-puntos-entorno-cierre.json.

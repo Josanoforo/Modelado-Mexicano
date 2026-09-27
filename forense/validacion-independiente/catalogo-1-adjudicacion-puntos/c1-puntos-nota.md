@@ -39,3 +39,7 @@ No se ejecutan los sucesores/cambios de producto sin firma de contenido: DECISI�
 ## Comprobación final ejecutada
 
 Gate pertinente: 0 FAIL, 591 WARN; baseline VERDE sin fallos nuevos ni cambios de CI/baseline. Verifica.py PASS:685 identidades,5480aristas,hashes fuentes y testimonios conservados. P4:27 casos sintéticos PASS. `git diff --check` sin defectos propios; TSV conservan CRLF/campos vacíos bajo atributo local para no cambiar sus hashes. Sin firma o revisión independiente recibida.
+
+## CONSUMIDO
+
+Encargo ASTRA6-C1-ADJUDICACION-PUNTOS-1 ejecutado en sesión CLI responsable, PR #1199, commit sustantivo52099961. INTERPRETACIÓN-DECLARADA: el consumo se registra en esta nota dentro del perímetro; la fuente archivada por #1191 queda byte a byte intacta y conserva suSHA39de6723. Recibo solicitado en cuerpo del PR; no se obtuvo revisión independiente y no se fusionó. Pendiente únicamente el acto posterior de contenido descrito en hoja/FP.
