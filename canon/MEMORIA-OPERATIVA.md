@@ -26,19 +26,19 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-26 · 123 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-26 · 141 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 · adopción de pisos ENSU en el catálogo · 26/09
+- FP-260926-GEN2-RECIBO-ASTRA6-N-996b-01 · merge de #1170/#1172/#1173/#1174 (R(a) FIRMAS-15); v1.4 de specs FAMI… · 26/09
 - FP-260926-GEN2-FRONT-3-PORTADA-1-8914-02 · congelar (texto de portada) · 26/09
 - FP-260926-GEN2-FRONT-3-PORTADA-1-8914-01 · borrar / reescribir (movimiento de raíz) · 26/09
-- FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-03 · adoptar (pisos 03 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-02 · adoptar (pisos 02 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-03 · vetar (filas de 0001) · 26/09
-- FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-02 · adoptar (pisos 02 del acto) · 26/09
-- FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04 · adopcion de los pisos LAPOP 2004/2006/2019 · 26/09
-- FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-03 · adopcion de los pisos PEW Global Attitudes 2013-2024 · 26/09
-- FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02 · adopcion de los pisos Latinobarometro 2023 · 26/09
-- FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01 · adopcion de los pisos WVS 2018 · 26/09
+- FP-260926-GEN2-COLA-LOTE-1-3a49-04 · adoptar (pisos 04 del acto; ninguna regla consumidora todavia) · 26/09
+- FP-260926-GEN2-COLA-LOTE-1-3a49-03 · adoptar (pisos 03 del acto; ninguna regla consumidora todavia) · 26/09
+- FP-260926-GEN2-COLA-LOTE-1-3a49-02 · adoptar (pisos 02 del acto; ninguna regla consumidora todavia) · 26/09
+- FP-260926-GEN2-COLA-LOTE-1-3a49-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
+- FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01 · adopción de los 9 pisos en el catálogo v1.2 · 26/09
+- FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-02 · adjudicación de incidente y uso de reports clase y movilidad; no auto… · 26/09
+- FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-01 · adopción de reglas; no bloquea propuesta editorial · 26/09
+- FP-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01 · Adopción futura de contenido; no bloquea corrección de reports ni con… · 26/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa

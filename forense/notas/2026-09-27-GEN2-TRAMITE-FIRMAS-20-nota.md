@@ -26,3 +26,7 @@ D: el recibo queda `RECIBIDO-POST-MERGE` por la firma asentada en 996b-01; el ar
 
 ## P3 · E (`vence:`)
 3d56-01, 4296-01, 43d6-01: vence 2026-09-27 (ya asentado; se reafirma). c3fa-05: vence 2026-10-15 (ya asentado). 8914-03: no traía vence → vence 2026-09-27, PROPUESTO-POR-EJECUTOR (mismo fin de semana que Pages/Zenodo). Las cinco siguen ABIERTA con una NOTA fechada.
+
+## Derivados regenerados por comando (D-21, tras CI del PR #1190: `guardias` ROJO en 2 tests)
+- `tests/test_cableado_sesiones.py::test_memoria_cabe_y_bloque_coincide`: el bloque T-MEM de `canon/MEMORIA-OPERATIVA.md` se deriva de las FIRMADA → `python3 tools/memoria_operativa.py --escribe` (paso T-MEM de trámite). Arrastra `forense/analisis/cableado/herramientas.tsv` (+2 tools), que ya estaba ROJO en origin/main `57a3f2a4` (`--verifica` → «herramientas.tsv difiere de tools/», comprobado en worktree de origin/main).
+- `tests/test_catalogo_v1_2.py::test_regenera_identico`: la sección «pendientes de firma» del catálogo v1.2 lista FP de adopción ABIERTA; con 5916-01 FIRMADA sale de la lista (1 → 0). `python3 forense/analisis/catalogo/genera_catalogo_v1_2.py --sin-registro`: cambian solo `canon/catalogo-del-mexicano-v1_2.md` (−1 fila), `conteos-v1_2.json` (`pendientes_de_firma` 1 → 0) y `pendientes-de-firma-v1_2.tsv` (−1 fila). El TSV del catálogo no cambia: no se adopta nada en el consumidor (la adopción la hace GEN2-CATALOGO-V1-3-1). En origin/main el test pasa: el rojo lo causa este PR.
