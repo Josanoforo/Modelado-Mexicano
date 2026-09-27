@@ -1,0 +1,4530 @@
+{
+  "recibo": {
+    "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+    "paquete_sha256": "bdb0b2ae1a01761795848a1fb8b69a002279622fe8a0b95f7a94992fe3c3dfc7",
+    "sha256_contenedor": "37e0d9f4c235d915557f635c2ac9409e9cbf87d97d115ff4362589641ba304d9",
+    "entrada_registrada_utc": "2026-09-27T00:40:48.494223+00:00",
+    "separacion_efectiva": true,
+    "session_id": "01a0e04e-b48b-7630-8e8b-e65bf81ed700",
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/tanda2-endireh-pisos-2021-nofisica-bc-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "reconstruccion_sha256": "4068611e6ad521df6d82256a43ab4adbd17675d4f4284d6ba175e321c694cb82",
+    "commit_reconstruccion": "b816d9635a6bd315fb5919e7c879144462ab41c8",
+    "checkout_reconstruccion": "/home/pc0/astra6-c1-aislado/tanda2-endireh-pisos-2021-nofisica-bc-0001/trabajo/reconstruccion",
+    "ruta_reconstruccion_commit": "reconstruccion.tsv",
+    "congelacion_recibida_utc": "2026-09-27T00:46:46.275166+00:00",
+    "estado": "CONGELADO-SIN-REVELAR",
+    "congelado_antes_de_revelacion": true
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "alcance": "Coincidencia numérica; no acredita validez del estimando ni adopción.",
+  "resultados": [
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#0",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#1",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#10",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#100",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#101",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#102",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#103",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#104",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#105",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#106",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#107",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#108",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#109",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#11",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#110",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#111",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#112",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#113",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#114",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#115",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#116",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#117",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#118",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#119",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#12",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#120",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#121",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#122",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#123",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#124",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#125",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#126",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#127",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#128",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#129",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#13",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#130",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#131",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#132",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#133",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#134",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#135",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#136",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#137",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#138",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#139",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#14",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#140",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#141",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#142",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#143",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#144",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#145",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#146",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#147",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#148",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#149",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#15",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#150",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#151",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#152",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#153",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#154",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#155",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#156",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#157",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#158",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#159",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#16",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#160",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#161",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#163",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#164",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#165",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#166",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#167",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#168",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#169",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#17",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#170",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#171",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#172",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#173",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#174",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#175",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#176",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#177",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#178",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#179",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#18",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#180",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#181",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#182",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#183",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#184",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#185",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#186",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#187",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#188",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#189",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#19",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#190",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#191",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#192",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#193",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#194",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#195",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#196",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#197",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#198",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#199",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#2",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#20",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#202",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#203",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#204",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#205",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#206",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#207",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#208",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#209",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#21",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#210",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#211",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#212",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#213",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#214",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#215",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#216",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#217",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#218",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#22",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#220",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#221",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#222",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#223",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#224",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#225",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#226",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#227",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#228",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#229",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#23",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#230",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#231",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#232",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#233",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#234",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#235",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#236",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#237",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#238",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#239",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#24",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#240",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#241",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#242",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#243",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#244",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#245",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#246",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#247",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#248",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#25",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#251",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#252",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#253",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#254",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#255",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#256",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#257",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#258",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#259",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#26",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#261",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#262",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#264",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#265",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#266",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#267",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#269",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#27",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#270",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#273",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#274",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#275",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#277",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#278",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#279",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#28",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#283",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#285",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#286",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#287",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#289",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#29",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#291",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#292",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#294",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#295",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#296",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#297",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#298",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#299",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#3",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#30",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#300",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#301",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#302",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#303",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#304",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#305",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#306",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#307",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#308",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#309",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#31",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#310",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#311",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#312",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#313",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#314",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#315",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#316",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#317",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#318",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#319",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#32",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#320",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#321",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#322",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#323",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#324",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#325",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#326",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#327",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#328",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#329",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#33",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#330",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#331",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#332",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#333",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#334",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#335",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#336",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#337",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#338",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#339",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#34",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#340",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#341",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#342",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#343",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#344",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#345",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#346",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#347",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#348",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#349",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#35",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#350",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#351",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#352",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#353",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#354",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#355",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#356",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#357",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#358",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#359",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#36",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#360",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#361",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#362",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#363",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#364",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#365",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#366",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#367",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#368",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#369",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#37",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#370",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#371",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#372",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#373",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#374",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#375",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#376",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#377",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#378",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#379",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#38",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#380",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#381",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#382",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#383",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#384",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#385",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#386",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#387",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#388",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#389",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#39",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#390",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#391",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#392",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#393",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#394",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#395",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#396",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#397",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#398",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#399",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#4",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#40",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#400",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#401",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#402",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#403",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#404",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#405",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#406",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#407",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#408",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#409",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#41",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#410",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#411",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#412",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#413",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#414",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#415",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#416",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#417",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#418",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#419",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#42",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#420",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#421",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#422",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#423",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#424",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#425",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#426",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#427",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#428",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#429",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#43",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#430",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#431",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#432",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#433",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#434",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#435",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#436",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#437",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#438",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#439",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#44",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#440",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#441",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#442",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#443",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#444",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#445",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#446",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#447",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#448",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#449",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#45",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#450",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#451",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#452",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#453",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#454",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#455",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#456",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#457",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#458",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#459",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#46",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#460",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#461",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#462",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#463",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#464",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#465",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#466",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#467",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#468",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#469",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#47",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#470",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#471",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#472",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#473",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#474",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#475",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#476",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#477",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#478",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#479",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#48",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#480",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#481",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#482",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#483",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#484",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#485",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#486",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#487",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#488",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#489",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#49",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#490",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00162928861714344,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.000358830634623164,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#491",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002179597440710515,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009019687897346695,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#492",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008944740208073065,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019764596423751946,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#493",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009970890834752333,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0014306634763203152,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#494",
+      "estado": "DISCREPA",
+      "efecto": "cifra",
+      "campos": {
+        "punto": {
+          "delta": -0.0008536017867813508,
+          "dentro": false
+        },
+        "ic95_inf": {
+          "delta": -0.0007585090885486034,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00026725961434267975,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#495",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#496",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#497",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#498",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#499",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009311775040193315,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007170301905038701,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#5",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#50",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#500",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0031071830618276536,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0002806179355470534,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#501",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0011654987221050433,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -9.486389183348265e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#504",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001446361293847398,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005217332810221464,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#505",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0018941191967843732,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.000710006847260615,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#506",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00020116775694731942,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006296124601717357,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#507",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004364977401663722,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.007100408624652249,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#508",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0017474114904696414,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019108342050795646,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#509",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006154934151723496,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.003626881044782093,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#51",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#510",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.002708916860995711,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0017943027748536233,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#511",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.007419277385284681,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0017749557658062465,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#512",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.008564185206713273,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0001330377005509531,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#513",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001658029623755032,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.004259093363307917,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#514",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.006844163559612579,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0021772373877943785,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#515",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0017070029081853733,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.006141710531271716,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#516",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0036764683106089296,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0023056021353481393,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#517",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0030301288698647705,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0056301531001247684,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#518",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001537406621970619,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0023650364754128905,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#519",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001977519158877755,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003364579008350299,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#52",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#520",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -5.0112201242291654e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004727040300920221,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#521",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 4.130173398619874e-06,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -2.877558237326938e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#522",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0026290168317172832,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009217811424051953,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#523",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0013220380344639363,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0017690316623714258,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#524",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001669733354606795,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00206990493466043,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#525",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0029341874835967646,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0037454754428818127,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#526",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006556061755895494,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001445149413532465,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#527",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007404720802340892,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000804176603157139,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#528",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004784735108231547,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00024521372154212573,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#529",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0021673801651523744,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.000737341589578222,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#53",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#530",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009158876800777899,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001442840259246042,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#531",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0031015961621859434,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004779012422335346,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#532",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.007141215820309951,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0012268238066339976,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#533",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000717430645132161,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006903754457010247,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#534",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002655705797294433,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0021012226357111086,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#535",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009405396143452593,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.004008254786049423,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#536",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0036347341302089622,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0016298258760879397,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#537",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0013176650437448229,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0010523587110002064,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#538",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008661429297289192,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0058236706536964195,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#539",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00020537447705144818,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004363899895065554,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#54",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#540",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007574116597167876,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0004447054762427849,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#541",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0013316245300827034,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000990950880117053,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#542",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0010535053574070447,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0029307757232512333,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#543",
+      "estado": "DISCREPA",
+      "efecto": "cifra",
+      "campos": {
+        "punto": {
+          "delta": -0.0006975019144797312,
+          "dentro": false
+        },
+        "ic95_inf": {
+          "delta": -7.279153544489936e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002568682847689449,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#544",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#545",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#546",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#547",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#548",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005628216767075978,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001299124492918552,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#549",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -4.14737191734571e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0018232657450137496,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#55",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#550",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008804570286777419,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0010432012875069702,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#553",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00032424035385100747,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00138929936926388,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#554",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0013685877170175956,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00021935610035253572,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#555",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00018222710150409514,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0004232499418173781,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#556",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004776035794816842,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.004999445955200063,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#557",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004857648079747243,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.006473438414810406,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#558",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.007310320791177313,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.009579264921045078,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#559",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.005804795843031785,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.006990311409295236,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#56",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#560",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001649485691023564,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004943523293999552,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#561",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.004246874625084995,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002239273714472134,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#562",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0024229332220617045,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003916586139386724,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#563",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00142891494019224,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002267476894889847,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#564",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009129370138807463,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0029366734216909884,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#565",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002593973068469202,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006895073351743247,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#566",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.005587375493534552,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005069427670064686,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#567",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001369412488706541,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0007984953938288825,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#568",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00377484541094969,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0032028491240396473,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#569",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.006075865185820803,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.005091187785156798,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#57",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#570",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0018463691204809868,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.003172376491898346,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#571",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0013712832618685694,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0017125892120080782,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#572",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0012943356877200551,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0018257133218353427,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#573",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001577495433687806,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005893342845584154,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#574",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.006237560770592149,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004711573434426047,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#575",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0016842224141831452,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.006342762776646901,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#576",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004152061581956315,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0018327252131563887,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#577",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008882331599652099,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.005550058538268177,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#578",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001517043395603268,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0013686398834395486,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#579",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.004181401388028583,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.012132785241235094,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#58",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#580",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008039378027927882,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002342700362522404,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#581",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00044761114083677334,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002574512110003979,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#582",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0038002332976668357,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -5.8162725901311774e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#583",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0013961089370236393,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.004309805019698035,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#584",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0037505299578943913,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002349317386457467,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#585",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008109435499551038,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.007496252701558723,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#586",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004485567760080189,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.004878118590456476,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#587",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0001023886725576642,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00014636156304738412,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#588",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002371041035987842,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0026181072215203383,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#589",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0020928290060104847,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0014620179949602977,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#59",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#590",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.003725159829787994,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003531211320116842,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#591",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0003336581030627672,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.010520709305403608,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#592",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0021748152366459356,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0015504538187469386,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#593",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018670882114207588,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0015123533355200502,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#594",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009336687603074614,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0008834332335810602,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#595",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006536446975271976,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0010935141554774402,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#596",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0038954468435797307,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0013232791310833214,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#597",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004197168277930707,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001228161471563266,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#598",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006372832584345678,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0022236669525818598,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#599",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006714347515903163,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0008596509578711331,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#6",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#60",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#600",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003782426451400221,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004063719339347585,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#601",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0003376835776248491,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00048219894492401716,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#602",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000476146023966062,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000656182768945926,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#603",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007282831787411431,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0021644936372856305,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#604",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0002637217557822612,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006251598271982232,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#605",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009434626555230863,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0028474108085009275,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#606",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00023376100412435263,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005436057425617369,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#607",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00016271998126998408,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00017467651752655494,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#608",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009159325045554889,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009478486569343275,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#609",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005818941718037929,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000487659783762015,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#61",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#610",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003731191562135888,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0012048895877529303,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#611",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0002093670704024428,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004839092705909917,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#612",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00011703167903342332,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00022412181069939724,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#62",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#63",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#64",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#65",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#66",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#67",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#68",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#69",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#7",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#70",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#71",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#72",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#73",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#74",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#75",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#76",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#77",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#78",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#79",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#8",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#80",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#81",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#82",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#83",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#84",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#85",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#86",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#87",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#88",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#89",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#9",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#90",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#91",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#92",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#93",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#94",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#95",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#96",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#97",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#98",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-NF-BC-TABLA#99",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    }
+  ]
+}
