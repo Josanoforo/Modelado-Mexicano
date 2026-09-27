@@ -45,3 +45,16 @@ Propio: `forense/notas/<acto>/` (13 `pr-N.md` + nota principal), `forense/analis
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No fusiona, no revierte (propone), no adopta, no corrige a Astra, no recibe los PR de tanda 4 (sucesor `-3`, uno por PR o por lote conforme abran, **antes** de fusionar). Sucesores: RECIBO-ASTRA6-3; FIRMAS-21 (asienta la hoja de P2). Sin módulo de auditoría propio (no afirma sobre México; los reports los audita el criterio C3). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «`157c-04` cerrada citando este acto» (cambio de estado de la fila en `forense/firmas-pendientes.tsv`) | DECISIÓN-DE-MESA-PENDIENTE: el recibo de #1194, que es el producto, está entregado en `pr-1194.md`, pero el clasificador de permisos de la sesión denegó la edición en sitio de la fila; no se buscó otra vía | la fila sigue ABIERTA en el tablero de firmas | FIRMAS-21: marcarla `CERRADA-RECIBO` citando `ADR-260927-GEN2-RECIBO-ASTRA6-2-627e-01` |
+| «`check.py --baseline` VERDE» | NO-VERIFICABLE-AQUÍ: `--baseline` no terminó en 580 s en esta nube (exit 143); `check.py --rapido` da 0 FAIL · 617 WARN | el VERDE completo lo juzga el CI del PR | CI de este PR |
+| Ruta de la hoja: el encargo pide `forense/analisis/recibo-astra6-2/hoja-para-mesa.md` | SUSTITUIDO-POR:`hoja-para-mesa-recibo-astra6-2.md` (T02: ese nombre choca con `familias-2027/astra6-envipe/hoja-para-mesa.md`); absorbe el contenido completo; no queda nada huérfano | ninguno | FIRMAS-21 cita la ruta nueva |
+| Replay/oro en CAJA y citas externas de los reports C3 | NO-VERIFICABLE-AQUÍ: NUBE sin microdato; la muestra C3 se verificó contra RESULT o por forma de cita | trazabilidad de literatura verificada por forma | GEN2-RECIBO-ASTRA6-3 |
+
+## CONSUMIDO
+
+Ejecutado en PR #1223 (`ACTO GEN2-RECIBO-ASTRA6-2`, `ADR-260927-GEN2-RECIBO-ASTRA6-2-627e-01`): 13 recibos post-merge (4 RECIBIDO-POST-MERGE, 9 RECIBIDO-POST-MERGE-CON-NC, 0 PROPONER-REVERTIR), hoja de 15 FP para FIRMAS-21, advertencia P3, 17 NC, 2 NO-PASA. No fusiona, no revierte, no adopta.
