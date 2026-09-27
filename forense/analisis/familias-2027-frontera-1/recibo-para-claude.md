@@ -22,3 +22,5 @@ PROPUESTO: hoja-firma-frontera.md contiene objeto exacto, hashes, textos de firm
 ENOE conserva punto y SE nula por39 estratos singleton del marco completo; no se sustituye por Kish ni por colapso elegido tras potencia. ENSU falla criterio ex ante aun sin ruido temporal. MOCIBA no obtiene apertura de sus históricos F6. ENSANUT no fabrica corte clínico. No resultados futuros, COMMIT1/2 adoptados, R, COMMIT3, OTS, fusión ni revisión independiente obtenida.
 
 Se solicita por el circuito de mesa en el PR un recibo independiente sobre selección, comparabilidad, lectores, oros, potencia y disposición propuesta. Las correcciones y cualquier aceptación se documentan como sucesores; no se afirma recibo concedido. NC/FP propias71cf conservan pendientes y objetos de firma. La secuencia real con gates está en secuencia-y-calendario.md. Corte en frontera-corte-final.json; resultado y NO-CORRIDO/CONSUMIDO en frontera-cierre.md.
+
+Entrega: [PR#1195](https://github.com/Josanoforo/Modelado-Mexicano/pull/1195), rama codex/astra6-c2-frontera-1; recibo independiente solicitado en el cuerpo del PR, no concedido.
