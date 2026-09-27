@@ -1,0 +1,13 @@
+{
+  "acto": "ASTRA6-C1-INCERTIDUMBRE-SPEC-1",
+  "corte": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+  "worktree": "/home/pc0/mm-astra6-c1-incertidumbre-spec-1",
+  "rama": "codex/astra6-c1-incertidumbre-spec-1",
+  "entorno": "CAJA",
+  "exposicion": "ANALISIS-NO-CIEGO",
+  "encargo_archivado": "forense/encargos/fuentes/ASTRA6-tanda3-20260926/02-2026-09-26-ASTRA6-C1-INCERTIDUMBRE-SPEC-1.md",
+  "sha256": "635a34b8fd5e1b0d83202343493bff5c0e5bf228a2ae76b02b8cc960e04cb081",
+  "archivo_preexistente_pr": 1191,
+  "baseline_gate": "tests/check.py --rapido: 0 FAIL; 590 WARN heredados",
+  "interpretacion": "Archivo ya preservado byte a byte por #1191: se reutiliza; sin duplicar cuerpo. Subagentes por pieza AGENTS, una sesión responsable, un worktree y PR."
+}
