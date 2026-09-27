@@ -35,3 +35,18 @@ Propio: `.github/workflows/verify.yml` (job `derivados` nuevo; `guardias` sin es
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia qué se verifica ni qué se publica. Sucesor: `-3` solo si el nocturno revela que un trozo quedó sin publicar.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| (P3) Drenar el rezago hoy: disparar a mano hasta lote pendiente 0 y `[deriva]` fusionado con las cinco vistas y el tablero | NO-VERIFICABLE-AQUÍ — el job `derivados` solo existe en main tras el merge de mesa | el canal sigue sin publicar hasta el merge | esta sesión tras el merge de #1198 (disparo manual) |
+| «Hecho»: run del push a `main` con `check` VERDE < 25 min, citado | NO-VERIFICABLE-AQUÍ — solo existe tras el merge | sin cita hasta el merge | esta sesión tras el merge de #1198 |
+| (P5) Cerrar `…c6d9-05` y las NC del canal abiertas por «sin [deriva]» | DIFERIDO-A:post-merge de #1198 — cerrarlas exige el run de main y el `[deriva]` fusionado | NC siguen ABIERTAS | esta sesión tras el merge de #1198 |
+| Reserva: dos runs de `derivados` sobre bases distintas proponen el mismo trozo en dos PR | DIFERIDO-A:GEN2-TUBERIA-CI-TIEMPO-3 — la concurrencia evita correr a la vez, no el solape | el segundo PR queda en conflicto, sin auto-merge | GEN2-TUBERIA-CI-TIEMPO-3 |
+
+Filas `NC-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-01..04` en `forense/no-corrido.tsv`.
+
+## CONSUMIDO
+
+Consumido por Josanoforo/Modelado-Mexicano#1198. ADR `ADR-260927-GEN2-TUBERIA-CI-TIEMPO-2-a387-01`; nota `forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-2.md`.
