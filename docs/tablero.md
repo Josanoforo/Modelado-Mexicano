@@ -42,7 +42,7 @@ para qué hacer (y qué no hacer) con lo que sigue.
 - **Procedencia.** SHA `5f708a47` · fecha del commit `2026-09-27` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `25` · reglas con dato (>=1 conducta MEDIDO*) `24` · reglas sin dato `1` · conductas MEDIDO* `58` · tiers `{'FUERTE': 20, 'MEDIA': 5}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `52` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · MEDIDA-POR-NSE `52` · MEDIDA-POR-NSE-APROXIMACION `24` · MEDIDA-POR-NSE-APROXIMACION-CIRCULAR `6` · NO-COMPARABLE `2` · RESERVADA `19` · SIN-PISO `15` · SUPRIMIDA-N `2` (total `327`) · cobertura de piso `111 / 327` · valor añadido / evaluadas `0 / 52` · celdas `emision = EMITIDA-SIN-EVALUAR` `13 / 327` · `veto_pisos_activo` `True`.
-- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 15 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 14 · `SI` 170 (selladas total `206`) · `PENDIENTE-DE-MESA`:
+- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 185 (selladas total `225`) · `PENDIENTE-DE-MESA`:
   - `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584`: `NO-VERIFICADO`
@@ -56,6 +56,7 @@ para qué hacer (y qué no hacer) con lo que sigue.
   - `CALC-ENIGH2020-INTENSIDAD-REMESAS-0001--d41b466457b6`: `REPRODUCE`
   - `CALC-ENIGH2020-PERFIL-ESTRUCTURAL-0001--ff84ff36db65`: `REPRODUCE`
   - `CALC-ENIGH2020-REMESAS-CONTEXTO-0001--0fcfbe663035`: `REPRODUCE`
+  - `CALC-RELEVO-ENCIG23-P83-0001-v1_1--66cfff97600b`: `REPRODUCE`
   - `CALC-WBES2023-PRECISION-INTERACCIONES-0001--7f2a0899f700`: `NO-VERIFICADO`
 - **Corredor LEGACY (eje x = ∅, GO-MARCADOR).** el marcador por segmento es la línea de arriba. marco vigente `marco-M-v1_3` sorteado / `marco-M-v1_2` congelado (derivado del árbol) · celdas sorteadas `14` · celdas con M `14` · con R `14` · con L `14` · celdas puntuables (M∩R∩L) `14` · celdas sin cobertura completa `0`.
 - **Corpus lógico.** entradas del manifiesto `7035` · filas de registro de curación `922` · filas de relaciones `231` · filas del inventario de reactivos v1.2 `178247`.
