@@ -41,9 +41,3 @@ Factor `FAC_MUJ` sin normalizar, diseño `EST_DIS`/`UPM_DIS`, `TSDem` por `ID_PE
 
 
 Manifiesto `endireh2021_bd_csv_zip`, SHA recalculado `e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e`. Descriptor SHA `5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180`; cuestionario A SHA `d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1`; cuestionarios B/C SHA `beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689`/`793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be`. Ninguna inferencia causal ni transición temporal se deriva.
-
-
-
-
-
-
