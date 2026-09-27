@@ -1,0 +1,32 @@
+{
+  "report": "corpus/reports-v2/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+  "mapa_filas": 43,
+  "afirmaciones": 130,
+  "dictamenes": {
+    "MATIZA": 42,
+    "ROMPE": 7,
+    "CONFIRMA": 7,
+    "SIN-CIFRA": 74
+  },
+  "cifras": 9,
+  "original_parrafos": 109,
+  "rotulos_sin_tesis": 11,
+  "registros_sin_mapa_id": 87,
+  "extras_editoriales": 48,
+  "clausulas_separadas": 39,
+  "unidad_conteo": "Registros editoriales; mapa compuesto, cláusulas y correspondencias pueden solaparse. No se anuncian como tesis únicas.",
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py",
+    "--check"
+  ],
+  "comando_self_test": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py",
+    "--self-test"
+  ]
+}

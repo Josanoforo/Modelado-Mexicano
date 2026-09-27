@@ -1,0 +1,322 @@
+[
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-B-P-FORMAL-P",
+    "etiqueta": "Ahorra por alguna vía formal",
+    "punto": 0.284927,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)",
+    "ic_lo": 0.274161,
+    "ic_hi": 0.296777,
+    "n": 13502,
+    "metodo_ic": "BOOTSTRAP-UPM-EN-ESTRATO"
+  },
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-B-P-INFORMAL-P",
+    "etiqueta": "Ahorra por alguna vía informal",
+    "punto": 0.56192,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "TODA la poblacion 18+ con FAC_PER valido (denominador COMPARTIDO)",
+    "ic_lo": 0.550248,
+    "ic_hi": 0.573979,
+    "n": 13502,
+    "metodo_ic": "BOOTSTRAP-UPM-EN-ESTRATO"
+  },
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+    "etiqueta": "Resiliencia corta con seguridad laboral",
+    "punto": 0.37313,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "personas 18+ con trabajo CON seguridad social (P3_13 in {1,2,3,4}) y P4_10 valido",
+    "ic_lo": 0.349888,
+    "ic_hi": 0.393834,
+    "n": 3969,
+    "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+  },
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+    "etiqueta": "Resiliencia corta sin seguridad laboral",
+    "punto": 0.541343,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "personas 18+ con trabajo SIN seguridad social (P3_13='7') y P4_10 valido",
+    "ic_lo": 0.521597,
+    "ic_hi": 0.561928,
+    "n": 4973,
+    "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+  },
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P",
+    "etiqueta": "Razón desconfianza/mal servicio; conoce protección",
+    "punto": 0.06078,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "personas 18+ SIN CUENTA que SI conocen la proteccion (P5_20 valido y P5_23='1')",
+    "ic_lo": 0.037716,
+    "ic_hi": 0.086727,
+    "n": 426,
+    "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+  },
+  {
+    "calc": "CALC-ENIF-0001",
+    "result": "RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P",
+    "etiqueta": "Razón desconfianza/mal servicio; no conoce protección",
+    "punto": 0.054767,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01",
+    "reserva": "conducta_p_medido",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6",
+    "sello_sha256": "0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6",
+    "spec_sha256": "93d76e8537e96702ba46f169a2ceab7e29a735291e38c71999c9b253bea4fc28",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-ENIF-0001",
+        "decision": "cuenta_gen2=SI · adopción por merge de mesa del PR #1093 (E.2, vía etiqueta hecha explícita)",
+        "fuente": "FIRMA DE MESA 25/sep/2026, hoja FIRMAS-17 H4 (FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01), asentada por GEN2-TRAMITE-FIRMAS-18 (ADR-260926-GEN2-TRAMITE-FIRMAS-18-6cf3-01), verbatim: «Se asienta en decisiones.tsv una fila de adopción por cada CALC adoptado solo por etiqueta, citando el PR de fusión; ejecuta este trámite.»",
+        "fecha": "2026-09-26"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "personas 18+ SIN CUENTA que NO conocen la proteccion (P5_20 valido y P5_23='2')",
+    "ic_lo": 0.045718,
+    "ic_hi": 0.064677,
+    "n": 2544,
+    "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+  },
+  {
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "result": "RESULT-HVD-A-AMBAS-VIAS",
+    "etiqueta": "Ahorra por ambas vías",
+    "punto": 0.20476743341812176,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "decisiones.tsv:CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "reserva": "conducta_p_asignado",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd",
+    "sello_sha256": "1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609",
+    "spec_sha256": "d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+        "decision": "cuenta_gen2=SI",
+        "fuente": "FIRMA DE MESA 15/sep/2026 (lanzamiento), verbatim en forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md: «FIRMA DE MESA, mesa, 15 de septiembre de 2026 — OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor.»; OBJETO=corrida sellada por ACTO GEN2-MEDICION-DEMANDA-2 sobre la sucesion v1_1 (cableado, contrato verbatim) de la spec congelada del mapa-19 por ACTO GEN2-SPECS-DEMANDA-2 (PR #781): releva CORR-0015 completa (RES-0047/0049/0053/0054/0055/0056/0066, derivados deterministas; padre CORR-0009 agotado antes de congelar); verify REPRODUCE x2, CONTEXTO=IDENTICO; el merge de mesa perfecciona la firma",
+        "fecha": "2026-09-15"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "todas las personas 18+ con FAC_PER válido; mismo universo que familia B CALC-ENIF-0001",
+    "ic_lo": null,
+    "ic_hi": null,
+    "n": null,
+    "metodo_ic": "derivado determinista; no emitir IC nuevo"
+  },
+  {
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "result": "RESULT-HVD-A-SOLO-FORMAL",
+    "etiqueta": "Ahorra solo formal",
+    "punto": 0.08015956658187823,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "decisiones.tsv:CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "reserva": "conducta_p_asignado",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd",
+    "sello_sha256": "1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609",
+    "spec_sha256": "d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+        "decision": "cuenta_gen2=SI",
+        "fuente": "FIRMA DE MESA 15/sep/2026 (lanzamiento), verbatim en forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md: «FIRMA DE MESA, mesa, 15 de septiembre de 2026 — OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor.»; OBJETO=corrida sellada por ACTO GEN2-MEDICION-DEMANDA-2 sobre la sucesion v1_1 (cableado, contrato verbatim) de la spec congelada del mapa-19 por ACTO GEN2-SPECS-DEMANDA-2 (PR #781): releva CORR-0015 completa (RES-0047/0049/0053/0054/0055/0056/0066, derivados deterministas; padre CORR-0009 agotado antes de congelar); verify REPRODUCE x2, CONTEXTO=IDENTICO; el merge de mesa perfecciona la firma",
+        "fecha": "2026-09-15"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "todas las personas 18+ con FAC_PER válido; mismo universo que familia B CALC-ENIF-0001",
+    "ic_lo": null,
+    "ic_hi": null,
+    "n": null,
+    "metodo_ic": "derivado determinista; no emitir IC nuevo"
+  },
+  {
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "result": "RESULT-HVD-A-SOLO-INFORMAL",
+    "etiqueta": "Ahorra solo informal",
+    "punto": 0.3571525665818782,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "decisiones.tsv:CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "reserva": "conducta_p_asignado",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd",
+    "sello_sha256": "1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609",
+    "spec_sha256": "d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+        "decision": "cuenta_gen2=SI",
+        "fuente": "FIRMA DE MESA 15/sep/2026 (lanzamiento), verbatim en forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md: «FIRMA DE MESA, mesa, 15 de septiembre de 2026 — OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor.»; OBJETO=corrida sellada por ACTO GEN2-MEDICION-DEMANDA-2 sobre la sucesion v1_1 (cableado, contrato verbatim) de la spec congelada del mapa-19 por ACTO GEN2-SPECS-DEMANDA-2 (PR #781): releva CORR-0015 completa (RES-0047/0049/0053/0054/0055/0056/0066, derivados deterministas; padre CORR-0009 agotado antes de congelar); verify REPRODUCE x2, CONTEXTO=IDENTICO; el merge de mesa perfecciona la firma",
+        "fecha": "2026-09-15"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "todas las personas 18+ con FAC_PER válido; mismo universo que familia B CALC-ENIF-0001",
+    "ic_lo": null,
+    "ic_hi": null,
+    "n": null,
+    "metodo_ic": "derivado determinista; no emitir IC nuevo"
+  },
+  {
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "result": "RESULT-HVD-A-NO-AHORRA",
+    "etiqueta": "No declara ahorro por esas vías",
+    "punto": 0.35792043341812185,
+    "unidad": "proporción ponderada de persona elegida 18+",
+    "ola": "ENIF2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO",
+    "firma": "decisiones.tsv:CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "reserva": "conducta_p_asignado",
+    "oferta_exclusion": "SIN-MEDIDA-DE-OFERTA-SELLADA-PARA-ESTA-OLA-Y-CONDUCTA: exclusión por oferta sellada solo para crédito ENIF 2012/2015/2018/2021 (CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001)",
+    "resultados_sha256": "16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd",
+    "sello_sha256": "1c8b329fb2088d24298acb3081e9bb2d2366dce05c6e238d282271d251d92609",
+    "spec_sha256": "d3d06053aefc5f6886ba2098ecfc50f911591fa51586bbffec08b7860e8b24cf",
+    "fuente_adopcion": [
+      {
+        "objeto": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+        "decision": "cuenta_gen2=SI",
+        "fuente": "FIRMA DE MESA 15/sep/2026 (lanzamiento), verbatim en forense/encargos/2026-09-15-GEN2-MEDICION-DEMANDA-2.md: «FIRMA DE MESA, mesa, 15 de septiembre de 2026 — OBJETO: cuenta_gen2 = SI para toda corrida que este acto selle sobre spec congelada del mapa-19; no adopta al motor.»; OBJETO=corrida sellada por ACTO GEN2-MEDICION-DEMANDA-2 sobre la sucesion v1_1 (cableado, contrato verbatim) de la spec congelada del mapa-19 por ACTO GEN2-SPECS-DEMANDA-2 (PR #781): releva CORR-0015 completa (RES-0047/0049/0053/0054/0055/0056/0066, derivados deterministas; padre CORR-0009 agotado antes de congelar); verify REPRODUCE x2, CONTEXTO=IDENTICO; el merge de mesa perfecciona la firma",
+        "fecha": "2026-09-15"
+      }
+    ],
+    "linaje": [
+      "CALC-ENIF-0001"
+    ],
+    "denominador": "todas las personas 18+ con FAC_PER válido; mismo universo que familia B CALC-ENIF-0001",
+    "ic_lo": null,
+    "ic_hi": null,
+    "n": null,
+    "metodo_ic": "derivado determinista; no emitir IC nuevo"
+  }
+]
