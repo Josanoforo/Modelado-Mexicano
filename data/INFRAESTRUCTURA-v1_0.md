@@ -1042,3 +1042,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ## ASTRA6-C2-ENIF-1 · tablas locales
 
 `forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.
+
+## ASTRA6-C1-PAQUETES-2 · entradas sucesoras
+
+`forense/validacion-independiente/catalogo-1-preparacion-lote2/`: contenedores v2 en `entradas/`, mapas y verificaciones no entregables en `preparacion/`. La correspondencia de P4 conserva los 59 paquetes de v1.1 y excluye los nueve de sesión01; delta v1.2 aparte. El comando `python3 tools/validacion/astra6_paquetes_lote2.py` comprueba hashes, identidad de estimandos, entradas, revisión semántica y disponibilidad sin leer productores ni esperados. Ninguna tabla registra recálculo, coincidencia o adopción.
