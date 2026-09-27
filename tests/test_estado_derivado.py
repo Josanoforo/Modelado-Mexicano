@@ -20,6 +20,7 @@ import glob
 import os
 import re
 import subprocess
+import tempfile
 import sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -68,7 +69,13 @@ def main():
         return 1
 
     fallos = []
+    # `corrida0.py status` tarda ~227s desde el 26/sep (202 900 resultados): se corre UNA vez
+    # y cada comando la lee de un archivo (GEN2-CIERRE-SEMANAL-1, defecto adyacente D-21).
+    cache = os.path.join(tempfile.mkdtemp(), "status.txt")
+    if any("tools/corrida0.py status" in c for c in comandos):
+        subprocess.run(f"python3 tools/corrida0.py status > {cache}", shell=True, cwd=ROOT, check=True)
     for cmd in comandos:
+        cmd = re.sub(r"python3 tools/corrida0\.py status(?=\s*(\||$))", f"cat {cache}", cmd)
         try:
             # `bash -o pipefail` -- sin esto, `sh` (el shell de `shell=True`
             # en Linux) toma el exit code del ULTIMO comando de un pipe: un

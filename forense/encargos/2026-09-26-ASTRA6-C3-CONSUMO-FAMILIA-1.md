@@ -221,3 +221,16 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Por qué | Impacto | Sucesor |
+|---|---|---|---|
+| Recibo técnico de Claude | NO-VERIFICABLE-AQUÍ: esta sesión prepara y solicita el recibo por el PR; no suplanta la revisión de Claude | Sin recibo externo obtenido ni autorización de fusión | GEN2-RECIBO-ASTRA-PRODUCTO-N (circuito de mesa) |
+
+## CONSUMIDO
+
+EJECUTADO editorialmente en PR #1173: https://github.com/Josanoforo/Modelado-Mexicano/pull/1173 · dos reports v2 completos, tablas, índice local, hoja propuesta y paquete para recibo. Corte main `2c646cba93eebc9189a8135a5369bb45e8d29b89`; commit de entrega `bfc2d40c`. Cero mediciones y cero adopciones. Original y sello previos conservados; firma de mesa no duplicada. Verificador local VERDE; tres fallos T02 de nombres obligatorios documentados. Recibo técnico externo pendiente; PR abierto sin fusión.
+
+Nota: `forense/notas/2026-09-26-ASTRA6-C3-CONSUMO-FAMILIA-1-cierre.md`. Índice/recibo: `forense/analisis/reports-v2/consumo-familia-1/`. ADR propio: ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1-edf7-01

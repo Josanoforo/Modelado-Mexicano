@@ -1,0 +1,956 @@
+# CALC-PEW-RELIGION-2024-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PEW-RELIGION-2024-0001
+spec_md: ../../../forense/prereg-caja/COLA-PEW-RELIGION-spec-v1_0.md
+spec_md_sha256: dd9f54f3b20b18e4e2119379dc59aaae5104c5bae066c5da835f057c7f3eaa43
+script: data/corrida0/CALC-PEW-RELIGION-2024-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-COLA-COMPLETA-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-COLA-COMPLETA-1
+  encargo: forense/encargos/2026-09-26-GEN2-COLA-COMPLETA-1.md
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; RETROSPECTIVO; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2/3/4, regla 6, E.6, §3, §4, C4 de FIRMAS-16 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  olas: 2024 abierta; 2025 RESERVADA (E.6), no es input
+inputs:
+- id: pew_gas_spring2024
+  origen: manifiesto
+  sha256: 1fb75a866ae8fddde03a1928d42a81f194b1258749408ec907fea3a79210ab2c
+  funcion: DATO
+  nota: pew_gas_spring2024.zip
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, lee_csv_zip (GEN2-SALUD-Y-BIENESTAR-PISOS-1) ejecutados desde
+    estos bytes
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lectura .dta/.sav con filtro de pais, recodificacion, ejes, diseno, ids (GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1)
+    ejecutados desde estos bytes
+variables:
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: religion_combined
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: religion_christian
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: religion_none
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: religion_switch
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: god
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: gender
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: age
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: d_educ_mexico
+  rol: reactivo o diseno
+- archivo: Pew Research Center Global Attitudes Spring 2024 Dataset.sav
+  variable: weight
+  rol: reactivo o diseno
+universo: Persona 18+ de Mexico (country=35), PEW Global Attitudes 2024; weight>0.
+filtros: 'Un eje a la vez; nunca cruces. Recodificacion por texto de pregunta: spec humana §2.'
+ponderador: weight
+transformacion: bin(col, UNO, CERO); todo otro codigo fuera (spec humana §2).
+estimando: Afiliacion catolica, sin religion, cambio de religion y creencia en Dios, Mexico 2024; 2025
+  RESERVADA
+seed:
+  aplica: true
+  valor: 20261002
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  diseno: 'sin estrato ni UPM en el archivo 2024: bootstrap ponderado de entrevistas (MAS-PONDERADO)'
+  ola: '2024'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-PEW-RELIGION-2024-G-FILAS-LEIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-RELIGION-2024-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-RELIGION-2024-G-FILAS-18-MAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CATOLICO-2024-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-SIN-RELIGION-2024-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CAMBIO-DE-RELIGION-2024-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-HASTA-PRIMARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SECUNDARIA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-MEDIA-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PEW-RELIGION-2024-CREE-EN-DIOS-2024-ESCOLARIDAD-SUPERIOR-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PEW-RELIGION-2024-G-DISENO
+  tipo: texto
+  unidad: etiqueta de diseño
+- id: RESULT-PEW-RELIGION-2024-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-PEW-RELIGION-2024-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-PEW-RELIGION-2024-G-INPUT-MOTOR-PISOS-CONFIANZA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-PEW-RELIGION-2024-G-INPUT-RECETA-PISOS-SALUD-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-PEW-RELIGION-2024-G-OLA-ABIERTA
+  tipo: texto
+  unidad: declaración

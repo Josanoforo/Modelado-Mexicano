@@ -1,0 +1,151 @@
+calc_id: CALC-FAMILIA-2027-ENIF-ORO-0002
+spec_md: spec.md
+spec_md_sha256: ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967
+script: data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py
+script_sha256_congelado: 35bb694684281072a8634061abd76b537a11d86dd1134467e472a2eb01f20cfb
+etiquetas:
+  generacion: GEN2
+  tipo: AUXILIAR-HISTORICO-PROSPECTIVA
+  cuenta_gen2: 'NO'
+  rotulo: HISTORICO-AUTORIZADO
+  sucesion: 'AUTORIZADA-POR-USUARIO: Autorizar sucesora de serialización; sólo serialización
+    REF, cálculo intacto'
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+variables:
+- archivo: TMODULO.csv
+  variable: LLAVEMOD
+  rol: llave única
+- archivo: TMODULO.csv
+  variable: FAC_PER
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: EDAD_V
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_1
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_2
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_3
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_4
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_5
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_6
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_7
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_8
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_6_9
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_1
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_2
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_3
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_4
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_5
+  rol: diseño o outcome predeclarado
+- archivo: TMODULO.csv
+  variable: P5_1_6
+  rol: diseño o outcome predeclarado
+universo: U_B persona elegida 18+, EDAD_V 18..98, FAC_PER finito positivo
+filtros: peso inválido contado y excluido; missing diseño contado; sin exclusiones
+  por outcome
+ponderador: FAC_PER
+transformacion: cualquier sí formal, informal, conjunción y unión; bootstrap UPM dentro
+  estrato
+estimando: cuatro proporciones sobre U_B y réplicas conjuntas; potencia bajo supuestos
+  explícitos
+dependencias_materiales:
+- numpy
+seed:
+  aplica: true
+  valor: 20260926
+  rng: numpy.random.default_rng PCG64
+parametros:
+  replicas: 2000
+  banda: 0.02
+  min_n: 10000
+  min_estratos: 150
+  min_upm: 1000
+  futuro_ids: null
+  R_futura: null
+  agrupacion: NACIONAL
+  numpy_cuantiles: numpy.quantile method=linear (default); firma de versión en ejecucion.json
+  pisos_autenticados_futuro: PISOS_HASH en código congelado, no p0 del caller
+  terminales_potencia: 'réplicas ausentes: escenarios=[], mde80=[null,null], correlación=null;
+    varianza marginal cero: correlación=null'
+  tablas_serializacion:
+    REPLICAS: tablas/replicas.json
+    POTENCIA: tablas/potencia.json
+    formato: JSON UTF-8 compacto sort_keys=True allow_nan=False con LF final
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+resultados:
+- id: RESULT-FAMILIA-ENIF-ORO-N
+  tipo: entero
+  unidad: conteo
+- id: RESULT-FAMILIA-ENIF-ORO-ESTRATOS
+  tipo: entero
+  unidad: conteo
+- id: RESULT-FAMILIA-ENIF-ORO-UPM
+  tipo: entero
+  unidad: conteo
+- id: RESULT-FAMILIA-ENIF-ORO-UNICAS
+  tipo: entero
+  unidad: conteo
+- id: RESULT-FAMILIA-ENIF-ORO-MASA
+  tipo: flotante
+  unidad: suma FAC_PER
+- id: RESULT-FAMILIA-ENIF-ORO-FORMAL-P
+  tipo: proporcion
+  unidad: proporción U_B
+- id: RESULT-FAMILIA-ENIF-ORO-INFORMAL-P
+  tipo: proporcion
+  unidad: proporción U_B
+- id: RESULT-FAMILIA-ENIF-ORO-AMBAS-P
+  tipo: proporcion
+  unidad: proporción U_B
+- id: RESULT-FAMILIA-ENIF-ORO-UNION-P
+  tipo: proporcion
+  unidad: proporción U_B
+- id: RESULT-FAMILIA-ENIF-ORO-SOPORTE
+  tipo: texto
+  unidad: JSON o SI/NO
+- id: RESULT-FAMILIA-ENIF-ORO-REPLICAS
+  tipo: texto
+  unidad: REF nativa a JSON propio con SHA-256
+- id: RESULT-FAMILIA-ENIF-ORO-AUDITORIA
+  tipo: texto
+  unidad: JSON o SI/NO
+- id: RESULT-FAMILIA-ENIF-ORO-POTENCIA
+  tipo: texto
+  unidad: REF nativa a JSON propio con SHA-256
+repite_de: CALC-FAMILIA-2027-ENIF-ORO-0001

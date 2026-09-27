@@ -1,0 +1,84 @@
+estado: CONTRATO-DE-ACEPTACION-NO-EJECUTABLE-HOY
+identidad_ola: enif_2027
+calc_id: null
+R_futura: null
+script_material: tools/familias-2027/enif/lector.py
+funcion: medir_futuro
+script_sha256_congelado: 36ed270884601b46c8f16edd44dc96a953f0cccf2f62e8eda54e1ffccf4ac675
+parametros:
+  banda: 0.02
+  replicas: 2000
+  seed: 20260926
+  min_n: 10000
+  min_estratos: 150
+  min_upm: 1000
+  min_validas: 1000
+  fraccion_validas: 0.95
+  agrupacion: NACIONAL
+  piso: bytes sellados autenticados; p0 fijo; ninguna incertidumbre histórica al primario
+precondiciones:
+- CAJA
+- RESERVADA
+- autoridad de única apertura en COMMIT-3
+- descriptor/cuestionario cotejados antes de abrir
+- identidad y hash del input validada por corrida0; ningún descriptor futuro se conoce
+  hoy
+- adaptación nominal requiere constancia; cambio material NO-COMPARABLE sin lectura
+resultados:
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-D
+  tipo: flotante
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-ABS-D
+  tipo: flotante
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-LO
+  tipo: flotante
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-HI
+  tipo: flotante
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-FRACCION-BANDA
+  tipo: proporcion
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-ESTADO
+  tipo: texto
+  unidad: dictamen/JSON
+- id: RESULT-FAMILIA-ENIF-FUTURO-AHORRO-FORMAL-D-K
+  tipo: texto
+  unidad: dictamen/JSON
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-P
+  tipo: proporcion
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-D
+  tipo: flotante
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-ABS-D
+  tipo: flotante
+  unidad: proporción
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-LO
+  tipo: flotante
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-HI
+  tipo: flotante
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-FRACCION-BANDA
+  tipo: proporcion
+  unidad: proporción
+  permite_no_estimable: true
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-ESTADO
+  tipo: texto
+  unidad: dictamen/JSON
+- id: RESULT-FAMILIA-ENIF-FUTURO-HORIZONTE-AHORRO-D-K
+  tipo: texto
+  unidad: dictamen/JSON
+- id: RESULT-FAMILIA-ENIF-FUTURO-SOPORTE
+  tipo: texto
+  unidad: JSON de conteos/diseño/masa

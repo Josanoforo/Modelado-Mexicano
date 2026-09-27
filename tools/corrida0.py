@@ -2839,6 +2839,52 @@ def _verifica_sello(d: Path) -> tuple[str, str]:
         sello = json.loads(sello_json.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
         return "NO-COINCIDE", f"sello.json ilegible: {exc}"
+    if sello.get("tipo") == "EMISION-PROSPECTIVA-SIN-R":
+        # ASTRA6-C2-ENVIPE-1: recibo de emisión, no ejecución evaluada.
+        # Su mapa de hashes es `archivos`; los metadatos no son rutas.
+        # No se resella ni se excluye del control de inmutabilidad.
+        try:
+            if not d.name.startswith("CALC-FAMILIA-2027-ENVIPE-"):
+                raise ValueError("tipo de emisión fuera de su perímetro")
+            hashes = sello["archivos"]
+            if not isinstance(hashes, dict) or not hashes:
+                raise ValueError("mapa de hashes ausente")
+            relativos = {str((d / n).relative_to(RAIZ))
+                         for n in ("spec.yaml", "emision.json")}
+            if not relativos <= hashes.keys():
+                raise ValueError("spec/emisión no cubiertas")
+            if not {"commit1-hashes.json", "commit1-extension-hashes.json"} <= {Path(n).name for n in hashes}:
+                raise ValueError("snapshots de código no cubiertos")
+            if sello["estado"] != "SELLADO-INTERNAMENTE" or sello["atestacion_externa"] is not None:
+                raise ValueError("estado de atestación no respaldado por este formato")
+            for campo in ("commit1", "commit1_complemento"):
+                if not re.fullmatch(r"[0-9a-f]{40}", sello[campo]):
+                    raise ValueError("commit inválido")
+
+            def valida_hash(nombre, esperado):
+                path = RAIZ / nombre
+                if (not isinstance(esperado, str) or
+                        not re.fullmatch(r"[0-9a-f]{64}", esperado) or
+                        not path.resolve().is_relative_to(RAIZ.resolve()) or
+                        _sha256_archivo(path) != esperado):
+                    raise ValueError(f"hash no coincide: {nombre}")
+
+            for nombre, esperado in hashes.items():
+                valida_hash(nombre, esperado)
+                if Path(nombre).name in ("commit1-hashes.json", "commit1-extension-hashes.json"):
+                    congelados = json.loads((RAIZ / nombre).read_text(encoding="utf-8"))
+                    if not isinstance(congelados, dict) or not congelados:
+                        raise ValueError("snapshot de código vacío")
+                    for fuente, sha_fuente in congelados.items():
+                        valida_hash(fuente, sha_fuente)
+            emision = json.loads((d / "emision.json").read_text(encoding="utf-8"))
+            if ("R_futura" not in emision or emision["R_futura"] is not None or
+                    emision.get("retadores") != [] or
+                    emision.get("estado") != "SELLADO-INTERNAMENTE"):
+                raise ValueError("emisión con R futura/retador/estado no autorizado")
+            return "COINCIDE", "emisión sin R: sello, archivos y código congelado coinciden"
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            return "NO-COINCIDE", f"emisión prospectiva inválida: {exc}"
     for nombre, sha_declarado in sello.items():
         real = _sha256_archivo(d / nombre)
         if real != sha_declarado:
