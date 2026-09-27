@@ -1,0 +1,9 @@
+# Auditoría ENOE propuesta
+
+Sintéticos ejecutados: ponderador desigual, blancos, no ocupados con PSU cero, edad99 fuera; rechazos por código/peso/sexo/UPM/llave/clase inválidos, duplicado y esquema incompleto. Cuatro mutaciones detectadas: numerador invertido, denominador incompleto, CLASE2 invertida y peso uniforme. Auditor AST rechaza segunda agrupación y columna ajena. El único eje de punto es SEX; EST_D_TRI/UPM se usan exclusivamente para varianza. No agrupación por edad/geografía.
+
+Oro2024T4 sha verificado; solo SDEM. Primer intento UTF8 falló (byte0xcb), se fijó latin1. R_DEF publicado0 equivalente al código00 del descriptor se normalizó explícitamente. Llave inicial sin N_PRO_VIV colisionó entre viviendas progresivas distintas en misma UPM; se añadió ese campo obligatorio y se verificó unicidad de oro antes de emitir números. Estas correcciones de cableado no alteran universo ni parámetros. No se abrió2026 ni ola objetivo. Contrato normativo banda.05 y alfa.05 comunicado antes de cálculo; no se reajustó ante potencia.
+
+Receta `python3 enoe_lector.py --oro /home/pc0/Modelado-Mexicano/data/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip --salida enoe-oro.json`; `python3 enoe_prueba_sintetica.py`. Diagnóstico abierto no acredita acierto futuro ni comparabilidad2027. Marco de UPM incluye residentes no ocupados y ambos sexos, residuos0 fuera dominio. Estrato singleton bloquea SE.
+
+Oro final tras corrección marco completo previo a EDA:1210 estratos y21056 UPM,39 estratos singleton en ambos sexos; no se estima SE por omisión ni por colapso ad hoc. Bloqueo de inferencia concreto: obtener regla oficial de tratamiento de estratos de certeza/singletons o réplicas publicadas y documentar cambio propuesto antes de calibrar potencia. Punto calculado no se usa para declarar factibilidad inferencial.

@@ -1,0 +1,7 @@
+# P3 · producto documental · PROPUESTO-POR-EJECUTOR
+
+Tabla identidades-799.tsv: cada llave histórica, conducta/eje/segmento documentados, ventana publicada cuando demostrable, fuente fechada, clase de cambio, alcance del mapa y propuesta nueva.767 omisiones de transporte tienen vínculo literal en catálogo v1.2 firmado;31 dominios educativos y1razón contradictoria son D15 sustantivo. El paquete inicial nunca recibió ese campo: su estado histórico permanece.
+
+astra6-c1-p3-spec-hoja-firma.md permite decidir transporte, composición de categorías, interpretación leyes/servicios, edad y protocoloIC. entradas/ contiene contratos humanos NUEVOS,799tuplas completas distintas, insumos y extractos oficiales de cuestionarios/FD. Es borrador para preparar evaluación futura tras decisiones; no enviado, no ciego, no listo para ejecución. Restauración pura de767 debe preparar otro paquete sin incorporar las nuevas reglas escolares/edad/IC. procedencia/ conserva fuentes, exposición y antecedentes; no entregar esta carpeta ni tabla histórica a evaluadores.
+
+No se infiere equivalencia por resultados. El mapa767 usa catálogo humano publicado y firmado por llave; para31 se conserva conducta/eje/segmento, pero no composición de bin histórica. P14_22_14 demuestra el reactivo de leyes; no demuestra el significado servicios. Las799nuevas identidades enumeradas preservan los dominios de interés histórico, incluso si resultan no estimables; no se seleccionan por valores o publicación favorable.
