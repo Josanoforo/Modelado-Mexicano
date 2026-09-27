@@ -1,0 +1,773 @@
+{
+  "cc1_inegi_enoe_2020__enoe_n_fd_c_bas_amp": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/corpus-completo/inegi/enoe/2020/enoe_n_fd_c_bas_amp.pdf",
+    "sha256": "0ecd02caf5090983c5ef6b7fec038403bf8253653abe4ab4d9417ce96fca9b8b",
+    "bytes": 1576624,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "cc1_inegi_enoe_2021__enoe_n_321_fd_c_bas_amp": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/corpus-completo/inegi/enoe/2021/enoe_n_321_fd_c_bas_amp.pdf",
+    "sha256": "e86e0ec55fc291d6dd87c1f252f53c4d527848c34037a40e79f3f4c85c610622",
+    "bytes": 1643425,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_123_fd_c_bas_amp_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_123_fd_c_bas_amp.pdf",
+    "sha256": "920a1db58ee30527bae48d0d1f45e47c8f17a9302b2dc743cf296228aa205a61",
+    "bytes": 2124901,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_2005_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2005trim1_csv.zip",
+    "sha256": "a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33",
+    "bytes": 33534030,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2008_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2008trim1_csv.zip",
+    "sha256": "a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94",
+    "bytes": 27278375,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2012_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2012trim1_csv.zip",
+    "sha256": "fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5",
+    "bytes": 31269330,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2014_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2014trim1_csv.zip",
+    "sha256": "fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2",
+    "bytes": 25134524,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2016_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2016trim1_csv.zip",
+    "sha256": "8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d",
+    "bytes": 29867488,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2016_2t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2016trim2_csv.zip",
+    "sha256": "4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f",
+    "bytes": 26779138,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2016_3t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2016trim3_csv.zip",
+    "sha256": "9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28",
+    "bytes": 26452611,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2016_4t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2016trim4_csv.zip",
+    "sha256": "f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500",
+    "bytes": 26466686,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2017_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2017trim1_csv.zip",
+    "sha256": "945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8",
+    "bytes": 29455399,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2017_2t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2017trim2_csv.zip",
+    "sha256": "bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066",
+    "bytes": 27024159,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2017_3t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2017trim3_csv.zip",
+    "sha256": "1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973",
+    "bytes": 26498706,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2017_4t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2017trim4_csv.zip",
+    "sha256": "af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4",
+    "bytes": 26664215,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2018_1t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2018trim1_csv.zip",
+    "sha256": "e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33",
+    "bytes": 29646952,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2018_2t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2018trim2_csv.zip",
+    "sha256": "2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f",
+    "bytes": 26835694,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2018_3t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2018trim3_csv.zip",
+    "sha256": "7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7",
+    "bytes": 26606485,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2018_4t_csv_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/2018trim4_csv.zip",
+    "sha256": "9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774",
+    "bytes": 26724182,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2019_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/2019trim1_csv.zip",
+    "sha256": "9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89",
+    "bytes": 31269571,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2019_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/2019trim2_csv.zip",
+    "sha256": "721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36",
+    "bytes": 28592043,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2019_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/2019trim3_csv.zip",
+    "sha256": "6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b",
+    "bytes": 31116800,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2019_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/2019trim4_csv.zip",
+    "sha256": "d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58",
+    "bytes": 28058037,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2020_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/2020trim1_csv.zip",
+    "sha256": "8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b",
+    "bytes": 27350239,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2023_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2023_trim1_csv.zip",
+    "sha256": "ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c",
+    "bytes": 37487716,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2023_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2023_trim2_csv.zip",
+    "sha256": "e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5",
+    "bytes": 39500761,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2023_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2023_trim3_csv.zip",
+    "sha256": "cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752",
+    "bytes": 40893331,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2023_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2023_trim4_csv.zip",
+    "sha256": "24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e",
+    "bytes": 40681812,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2024_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2024_trim1_csv.zip",
+    "sha256": "5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b",
+    "bytes": 37004177,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2024_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2024_trim2_csv.zip",
+    "sha256": "13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285",
+    "bytes": 31773308,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2024_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2024_trim3_csv.zip",
+    "sha256": "6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3",
+    "bytes": 43272328,
+    "magic_hex": "504b030414000800"
+  },
+  "enoe_2024_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2024_trim4_csv.zip",
+    "sha256": "817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305",
+    "bytes": 43410469,
+    "magic_hex": "504b030414000800"
+  },
+  "enoe_2025_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2025_trim1_csv.zip",
+    "sha256": "dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e",
+    "bytes": 40919680,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2025_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2025_trim2_csv.zip",
+    "sha256": "291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722",
+    "bytes": 38752236,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2025_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2025_trim3_csv.zip",
+    "sha256": "d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022",
+    "bytes": 40062680,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_2025_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_2025_trim4_csv.zip",
+    "sha256": "e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d",
+    "bytes": 43383478,
+    "magic_hex": "504b030414000800"
+  },
+  "enoe_325_fd_c_bas_amp_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_325_fd_c_bas_amp.pdf",
+    "sha256": "589b8e51cead1c3dbba5db68f4137aff23bbd9a1e1bd9c118e5f00fca148e9a2",
+    "bytes": 2124734,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_ampliado_v5_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_amp_v5.pdf",
+    "sha256": "4de904621507815e5b7c5af6262fe3202f5df4a0f3c4985d738d9f971dd70491",
+    "bytes": 1074087,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_ampliado_v6a_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_amp_v6a.pdf",
+    "sha256": "5e0cc786566fa6c891c53bb14f7e110ce205ff7da43c25a5f781d6b38218046c",
+    "bytes": 610436,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_basico_v5_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_bas_v5.pdf",
+    "sha256": "1ab575a4d098991cca2e5a5355b32eb1f91a24d7625ec1778164693532287a3f",
+    "bytes": 1057071,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_basico_v7_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_bas_v7.pdf",
+    "sha256": "7ee25f114a493cd4136bb086f7fa3a2f6db1fe7300dc5839ec2a7de9c3efa698",
+    "bytes": 591203,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_sociodemografico_v4_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_sdem_v4.pdf",
+    "sha256": "0c918e799a8ed1d3764b1e0a390a868138228cbec82b5aa723f4b3a2e2f2d00f",
+    "bytes": 916902,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_cuestionario_sociodemografico_v5a_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/c_sdem_v5a.pdf",
+    "sha256": "e306c67a6551c08c3c4d65586a09cee1356e7017699c54deed6fdfe9c73708cf",
+    "bytes": 698586,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_amp_v1_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_amp_v1.pdf",
+    "sha256": "cf408338e90516148a00a644921dd8b9fbbbb297d30b0008906d3020cb783828",
+    "bytes": 303437,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_amp_v2_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_amp_v2.pdf",
+    "sha256": "41257e6f04014146e0f9cdfc0d92bdcdd5c2c1b63bb8b5c9d289944ca0f71f79",
+    "bytes": 293353,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_amp_v3_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_amp_v3.pdf",
+    "sha256": "027d2ff97cc7cafcba99c4e9524fbf77254dfcb46dd7933880315466f17a39d1",
+    "bytes": 959621,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_amp_v4_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_amp_v4.pdf",
+    "sha256": "3a53af8acbf312f0cf9164c44ceab624a6b31949ce758d756e0ceb519124b9d7",
+    "bytes": 1082006,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_bas_amp_15ymas_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_bas_amp_15ymas.pdf",
+    "sha256": "f2f6cc39d88a10c89a819727f371150e1981940fb162c5563338debee0b01224",
+    "bytes": 4383629,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_bas_amp_conapo_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_bas_amp_conapo.pdf",
+    "sha256": "b30dcfe76a5af601000c28d9f5101f26251ff83b948b722665871adb3ccdb5d2",
+    "bytes": 1211513,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_bas_v1_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_bas_v1.pdf",
+    "sha256": "775f0f00ab5d247aef6b20e77bd6ec57ab81db50adae6a13646c3f82980ae8cc",
+    "bytes": 292326,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_fd_c_bas_v2_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_c_bas_v2.pdf",
+    "sha256": "21e1d7c4316a63c1cae2dd8882b2a6e99b43567379b9c176a3e2781331561bbe",
+    "bytes": 1091129,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enoe_n_2020_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2020_trim3_csv.zip",
+    "sha256": "924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3",
+    "bytes": 19827422,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2020_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2020_trim4_csv.zip",
+    "sha256": "5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3",
+    "bytes": 23007909,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2021_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2021_trim1_csv.zip",
+    "sha256": "208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52",
+    "bytes": 24586788,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2021_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2021_trim2_csv.zip",
+    "sha256": "a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b",
+    "bytes": 23887444,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2021_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2021_trim3_csv.zip",
+    "sha256": "853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d",
+    "bytes": 32559052,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2021_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2021_trim4_csv.zip",
+    "sha256": "1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b",
+    "bytes": 27117836,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2022_1t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2022_trim1_csv.zip",
+    "sha256": "5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6",
+    "bytes": 27691497,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2022_2t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2022_trim2_csv.zip",
+    "sha256": "19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a",
+    "bytes": 30537564,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2022_3t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2022_trim3_csv.zip",
+    "sha256": "fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5",
+    "bytes": 29571337,
+    "magic_hex": "504b030414000000"
+  },
+  "enoe_n_2022_4t_microdatos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enoe_microdatos_post2019/enoe_n_2022_trim4_csv.zip",
+    "sha256": "1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d",
+    "bytes": 29670618,
+    "magic_hex": "504b030414000000"
+  },
+  "encargoEG_ruptura_enoe_y_descriptores_pendientes_navegador": {
+    "estado": "AUSENTE",
+    "ruta": "/home/pc0/mm-corpus/raw/__AUSENTE__"
+  },
+  "enigh2016_nc_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enigh2016_nc_csv.zip",
+    "sha256": "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1",
+    "bytes": 40991826,
+    "magic_hex": "504b03040a000000"
+  },
+  "enigh2018_nc_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enigh2018_nc_csv.zip",
+    "sha256": "5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636",
+    "bytes": 43339807,
+    "magic_hex": "504b03040a000000"
+  },
+  "enigh2020_nc_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enigh2020_nc_csv.zip",
+    "sha256": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4",
+    "bytes": 93711908,
+    "magic_hex": "504b03040a000000"
+  },
+  "enigh2022_nc_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enigh2022_nc_csv.zip",
+    "sha256": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06",
+    "bytes": 90030937,
+    "magic_hex": "504b030414000000"
+  },
+  "enigh2022_descripcion_base_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enigh2022_descripcion_base_pdf.pdf",
+    "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+    "bytes": 2906552,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "encig25_base_datos_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig25_base_datos_csv.zip",
+    "sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12",
+    "bytes": 37624925,
+    "magic_hex": "504b030414000000"
+  },
+  "encig25_cuestionario_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/gen2_corrupcion_fuente_general/encig25_cuestionario.pdf",
+    "sha256": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33",
+    "bytes": 2060955,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "encig25_estructura_base_datos_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig25_estructura_base_datos.pdf",
+    "sha256": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2",
+    "bytes": 14820825,
+    "magic_hex": "255044462d312e37"
+  },
+  "encuci2020_bd_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/BD_ENCUCI2020_dbf.zip",
+    "sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+    "bytes": 6913684,
+    "magic_hex": "504b030414000000"
+  },
+  "encuci2020_fd_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/FD_ENCUCI2020.pdf",
+    "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+    "bytes": 1758249,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "envipe2025_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2025_csv.zip",
+    "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+    "bytes": 17600019,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe2025_fd_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_envipe2025.pdf",
+    "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+    "bytes": 2284580,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enif2024_cuestionario_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enif_2024_cuestionario.pdf",
+    "sha256": "32e37cc13da38691dee20fbffcef3637aeb87b8dac194e64f83bebed8b57ef8b",
+    "bytes": 1228366,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enif2024_fd_xlsx": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enif_2024_fd.xlsx",
+    "sha256": "17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2",
+    "bytes": 122271,
+    "magic_hex": "504b030414000600",
+    "tipo_detectado": "ZIP-O-XLSX"
+  },
+  "endireh2016_cuestionario_a_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endireh2016/endireh2016_cuestionario_a.pdf",
+    "sha256": "0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64",
+    "bytes": 1264691,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "endireh2016_cuestionario_b_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endireh2016/endireh2016_cuestionario_b.pdf",
+    "sha256": "fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d",
+    "bytes": 1324453,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "endireh2016_cuestionario_c_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endireh2016/endireh2016_cuestionario_c.pdf",
+    "sha256": "a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e",
+    "bytes": 1818915,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "endireh2016_cuestionario_general_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endireh2016/endireh2016_cuestionario_general.pdf",
+    "sha256": "b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac",
+    "bytes": 946284,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip",
+    "sha256": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10",
+    "bytes": 100845928,
+    "magic_hex": "504b030414000000"
+  },
+  "endutih_2023_endutih2023_bd_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endutih2023/endutih2023_bd_dbf.zip",
+    "sha256": "29d195082796c2692bfeb688348de3ed792848781ff7575f91b7da68119f9696",
+    "bytes": 9877009,
+    "magic_hex": "504b030414000000"
+  },
+  "endutih_2023_fd_endutih2023": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/endutih2023/FD_ENDUTIH2023.xlsx",
+    "sha256": "0f78146a6d61b0b5cd4d84056aa77e0f1bf1b25a9a126e8813215eada4da62c2",
+    "bytes": 140760,
+    "magic_hex": "504b030414000600",
+    "tipo_detectado": "ZIP-O-XLSX"
+  },
+  "envipe_2012_base_de_datos_envipe_2012_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2012/base_de_datos_envipe_2012_dbf.zip",
+    "sha256": "d7caa74ea4264d59fecfc1d1959824051adfe43613514e2e5ca22f24f31548f5",
+    "bytes": 10171572,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe_2012_fd_envipe2012": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2012/fd_envipe2012.xls",
+    "sha256": "dcca5373391cbcee1529c78ab4fd46a172321e77502b624f87061679b25e7a99",
+    "bytes": 415744,
+    "magic_hex": "d0cf11e0a1b11ae1",
+    "tipo_detectado": "XLS-OLE"
+  },
+  "envipe_2013_bd_envipe13_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2013/bd_envipe13_dbf.zip",
+    "sha256": "b0b9fd1d1dafc12c22162bf695aa3c95ad4c8e86bf00171f082f69e79b54f890",
+    "bytes": 10433209,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe_2013_fd_envipe2013": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2013/fd_envipe2013.xlsx",
+    "sha256": "7e842826e3f7aaa91bc3e217a731d9ed5205a5c4859259827aa94fbf1db20ec1",
+    "bytes": 192702,
+    "magic_hex": "504b030414000600",
+    "tipo_detectado": "ZIP-O-XLSX"
+  },
+  "envipe_2015_bd_envipe2015_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2015/bd_envipe2015_dbf.zip",
+    "sha256": "6c2fcb165a179b0ca5e7d956a3673b375d26309be5a4748eabc31545add66a8d",
+    "bytes": 15422694,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe_2015_fd_envipe2015": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2015/fd_envipe2015.pdf",
+    "sha256": "1042ab57b015e6de72d92184f44cfa4b1cca2ad54ceb6d60573e6800fc1c858b",
+    "bytes": 1852255,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "envipe2021_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2021_csv.zip",
+    "sha256": "88153c67ff3666be511dab3f3b483226a0af9f0e8683bd8dbfba8d616ddbfdd1",
+    "bytes": 22334244,
+    "magic_hex": "504b03040a000000"
+  },
+  "envipe2021_fd_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_envipe2021.pdf",
+    "sha256": "d85775241d6f427d6dd6643bce973ed0bdbfca4e0b0d6a9b02265e8327179945",
+    "bytes": 1758289,
+    "magic_hex": "255044462d312e37",
+    "tipo_detectado": "PDF"
+  },
+  "envipe2023_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2023_csv.zip",
+    "sha256": "0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404",
+    "bytes": 17728995,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe2023_fd_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_envipe2023.pdf",
+    "sha256": "743c260e89a6c5d6f2fcc6eac0f1884c40bc6b437164b34e13ba6fe1caf1be63",
+    "bytes": 2980669,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "envipe2024_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/envipe2024_csv.zip",
+    "sha256": "90776b2fab6e3666dad1cb5f5f3eb7d6a7699dbfefd4f8f04f07fb01e61a6fb2",
+    "bytes": 17837779,
+    "magic_hex": "504b030414000000"
+  },
+  "envipe2024_fd_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/fd_envipe2024.pdf",
+    "sha256": "f8d72038595746ceac21e5096462b277e757d7501bd3a1b61ac86bf9fc0d57d5",
+    "bytes": 3087144,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "ennvih1_2002_hogar_dta": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/ennvih/ehh02dta_all.zip",
+    "sha256": "8b9b51904ca8790421d82a8a81f7f4edbce9a296cba2ce86fef74f8f379b5923",
+    "bytes": 17534918,
+    "magic_hex": "504b030414000000"
+  },
+  "ennvih1_2002_ponderador": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/ennvih/ehh02w_all.zip",
+    "sha256": "bbe8006844f715c19b724ebb74f1408c4cfa07e2efdfe7d6748b5182ef214587",
+    "bytes": 755310,
+    "magic_hex": "504b030414000000"
+  },
+  "enif2018_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enif2018_csv.zip",
+    "sha256": "51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5",
+    "bytes": 4450312,
+    "magic_hex": "504b030414000000"
+  },
+  "enif2018_cuestionario_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enif_2018_cuestionario.pdf",
+    "sha256": "cda9a0283a39514e404c53aacb1d0200b68b38f29d8e06b4cd2386a4b8b558e9",
+    "bytes": 1688866,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "enif2018_fd_xlsx": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/enif_2018_fd.xlsx",
+    "sha256": "dd8d5c92a7a031505d95da3ee6f00b670f90d5fd5cbd94c744393ffe81b4f6d7",
+    "bytes": 246905,
+    "magic_hex": "504b030414000600",
+    "tipo_detectado": "ZIP-O-XLSX"
+  },
+  "encig_2013_encig13_base_datos_dbf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig2013/encig13_base_datos_dbf.zip",
+    "sha256": "48d29d560d3836309af61c4a82d46d8338d58ecb9d14d04ffc947c1e087caf1a",
+    "bytes": 9621208,
+    "magic_hex": "504b030414000000"
+  },
+  "encig_2013_encig13_descripcion_archivos": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig2013/encig13_descripcion_archivos.pdf",
+    "sha256": "12edd629b8a88c4c4ef9e344f821758db88a34c5d5f6c7fa9a2eabc8ed2119c7",
+    "bytes": 1397463,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "encig2021_csv": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig2021_csv.zip",
+    "sha256": "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a",
+    "bytes": 27752363,
+    "magic_hex": "504b03040a000000"
+  },
+  "encig2021_cuestionario_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig21_cuestionario.pdf",
+    "sha256": "9ee829815e8dca5ebe562b26afb006dcec475840bf27a206a0b838534041e45a",
+    "bytes": 1918370,
+    "magic_hex": "255044462d312e36",
+    "tipo_detectado": "PDF"
+  },
+  "encig2021_estructura_base_datos_pdf": {
+    "estado": "COINCIDE",
+    "ruta": "/home/pc0/mm-corpus/raw/encig21_estructura_base_datos.pdf",
+    "sha256": "365c031bf48af4c6d65a8e5422c6cf0362500efd37cd0e924e3c1fe38b965dd2",
+    "bytes": 2612238,
+    "magic_hex": "255044462d312e37"
+  }
+}

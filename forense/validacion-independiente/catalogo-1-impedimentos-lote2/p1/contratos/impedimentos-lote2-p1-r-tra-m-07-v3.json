@@ -1,0 +1,51 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-tra-m-07-v3",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-tra-m-07-v3/r-tra-m-07-v3-entradas-v2.tar.gz",
+  "sha256_original": "8e5b1edfe2ce5d30136ac2bd54a2a26340ffaccce025e5e1adeb9b25a4138e4d",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "encig2021_csv",
+      "archivo": "encig2021_csv.zip",
+      "sha256": "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2021/datosabiertos/encig2021_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encig2021_cuestionario_pdf",
+      "archivo": "encig21_cuestionario.pdf",
+      "sha256": "9ee829815e8dca5ebe562b26afb006dcec475840bf27a206a0b838534041e45a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2021/doc/encig21_cuestionario.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encig2021_estructura_base_datos_pdf",
+      "archivo": "encig21_estructura_base_datos.pdf",
+      "sha256": "365c031bf48af4c6d65a8e5422c6cf0362500efd37cd0e924e3c1fe38b965dd2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2021/doc/encig21_estructura_base_datos.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "encig2021_csv",
+  "tabla": "conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10/conjunto_de_datos/conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10.csv",
+  "variable": "P8_3_1",
+  "peso": "FAC_P18",
+  "estrato": "EST_DIS",
+  "upm": "UPM_DIS",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#TRA-M-07",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "persona18+",
+  "universo": "FAC_P18>0 finito y reactivo válido1,2;blanco fuera;roster2013 no se filtra adicionalmente",
+  "y": "1 si P8_3_1=1;0 si2;9/blanco fuera",
+  "miembro_literal": "conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10/conjunto_de_datos/conjunto_de_datos_encig2021_01_sec1_A_3_4_5_8_9_10.csv",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "c92ea34c7c57237c49ca3d8d99382e340b5939c371ce820332876f7c4c62c56a"
+}
