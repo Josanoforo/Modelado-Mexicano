@@ -26,3 +26,5 @@ python3 tests/check.py --rapido
 Reservas materiales: cobertura nominal no acreditada; seis universos2011 pendientes de sesión01; nueva recodificación educativa y aclaración de ayuda pendientes de firma; recibo de Claude pendiente. La posibilidad de reproducir un IC no autoriza declararlo defendible. `astra6-c1-incertidumbre-spec-reservas.md` da la decisión y sucesor por pieza.
 
 Gate final: `tests/check.py --rapido`,0FAIL597WARN. Los7WARN añadidos corresponden a4 firmas propuestas y3 reservas propias; los demás son heredados. Contadores de medición/adopción/celdas validadas sin cambio; sólo NC abiertas476→479. Main incorporado: `11602de8`, sin avances adicionales al cierre.
+
+PR de entrega: https://github.com/Josanoforo/Modelado-Mexicano/pull/1194 . Solicitud incluida en cuerpo; cierre local separado del cuerpo archivado.
