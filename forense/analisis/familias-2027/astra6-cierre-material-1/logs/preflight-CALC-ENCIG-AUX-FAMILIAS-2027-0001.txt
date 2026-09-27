@@ -1,0 +1,29 @@
+PRE-FLIGHT CALC-ENCIG-AUX-FAMILIAS-2027-0001   (data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001)
+  [COMMITEADO] data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+              arbol                  = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+              origin/main            = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+  [UNICOS] ids de resultados: 17 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/medidor.py
+              script_blob_sha256 = 6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30
+  inputs declarados: 1
+    [COINCIDE] encig25_base_datos_csv  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra6-c2-cierre-material-1/data/raw/encig25_base_datos_csv.zip
+              sha256 esperado = 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+              sha256 actual   = 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+              tamano          = 37624925
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"banda": 0.02, "calc_id": "CALC-ENCIG-AUX-FAMILIAS-2027-0001", "fraccion_replicas": 0.95, "min_estratos": 100, "min_n": 10000, "min_replicas": 1000, "min_upm": 1000, "modo": "HISTORICO-ABIERTO", "payload_sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12", "replicas": 2000, "residuo_max": {"PAGO-DIGITAL": 0.01, "SOLICITUD-MORDIDA": 0.02}, "seed": 20260926}
+  [DECLARADO] tolerancia = {"abs": 1e-12, "tipo": "absoluta"}
+  [DECLARADO] seed       = {'aplica': True, 'valor': 20260926, 'rng': 'PCG64'}
+  [SUCIO] git status --porcelain (4 lineas)
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.json
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.tsv
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/logs/
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/producto.txt
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO working_tree_dirty=SI calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO

@@ -1,0 +1,5 @@
+# ADR-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-01 · paquete C2 verificable
+
+EJECUTADO: inventario sucesor de Git sin caches, enmienda y drivers efectivos ENCIG cotejados con COMMIT-1, auditoría ENIF v2/ORO-0002 con control de rutas propuesto, hoja conjunta derivada de sellados y diagnósticos. Oro histórico acreditado en CAJA; emisiones ENVIPE y oro por comprobación propia separados de E.3. Los originales permanecen intactos. Raíz ad01 deriva del 0-bis ad0168ce. Documento de trabajo y archivo a cargo de otra sesión por instrucción de mesa, sin duplicar firma de misión.
+
+LEÍDO: recibo #1178 sobre HEAD anteriores, cotejado por objeto en matriz-nc-1178.tsv. No atestación, adopción, revisión independiente ni apertura futura. PROPUESTO: mantener gate y suspender digital; firmas de control/enmienda/singleton por FP-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-01. NC propias 01..04. Resultado, evidencia y reservas: forense/analisis/familias-2027/astra6-cierre-material-1/recibo-para-claude.md. Contadores de estimación/adopción: sin cambio por este acto; producto operativo en producto.txt deriva cobertura, no se edita contador global.
