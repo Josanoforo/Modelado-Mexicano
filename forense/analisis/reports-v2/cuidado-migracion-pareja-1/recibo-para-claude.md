@@ -46,3 +46,7 @@ EJECUTADO: retirada la refutación aritmética que emparejaba ENASEM2021 con la 
 EJECUTADO: productores --check y autopruebas PASS después de la corrección. La exposición a ENADID2023 sigue pendiente de adjudicación por su identidad propia; no se resuelve con esta corrección. Migración y pareja pueden recibirse por separado si mesa decide desbloquearlas; no se afirma que ya hayan sido recibidas.
 
 EJECUTADO: main actualizado a `c58810f1` (#1198/#1199), incorporado por merge sin conflictos tras commit de corrección `09dd1a5f`. Corte editorial original conservado; corte de integración actualizado. Productor conjunto --check PASS y gate rápido sobre integración sin FAIL. No se modifican objetos sellados ni se adjudica ENADID2023.
+
+## Sincronización solicitada · 27/sep
+
+EJECUTADO: fetch de main `bf5fc5e7b80be00fa9a9e29f7aa166cf6fe93a2a`, integrado por merge `26f83a70`. Conflicto único en INFRAESTRUCTURA resuelto conservando las entradas de cuidado/migración/pareja y dinero/tecnología/conocimiento. Productor conjunto --check PASS; gate rápido exit 0, cero FAIL. El HEAD anterior `c71942a2` tenía CI verde; los checks del HEAD sincronizado se comprueban después del push, sin extrapolar aquel resultado. La reserva ENADID2023 y V-020-02 SIN-CIFRA permanecen. No fusionado ni adoptado.
