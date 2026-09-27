@@ -187,3 +187,15 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1 · Resolución por causas / P2 · Entradas sucesoras sin filtraciones / P3 · Disponibilidad y entrega por paquete | DIFERIDO-A:ASTRA6-C1-IMPEDIMENTOS-LOTE2: 48 paquetes/32347 estimadores conservan impedimentos concretos, hashes y acciones en astra6-c1-lote2-entrega-59.tsv y p3-verificacion.json; acceso reservado ENIF/ENUT/ENSANUT2024 y tolerancias nuevas requieren firma, insuficiencia humana requiere dictamen D-15, y documentación pendiente tiene fuentes/intentos separados. | 32347 estimadores no se pueden entregar como recálculo completo. No cambia validación ni adopción. | ASTRA6-C1-IMPEDIMENTOS-LOTE2; hoja de firma y acciones por paquete |
+| Solicitarlo por circuito de mesa en el PR, sin enviar mensajes externos | DIFERIDO-A:GEN2-RECIBO-ASTRA-PRODUCTO-N: requiere revisión real de mesa sobre el PR final; solicitud incluida en el PR. | No se declara revisión independiente obtenida ni se fusiona el PR. | GEN2-RECIBO-ASTRA-PRODUCTO-N por circuito de mesa |
+
+## CONSUMIDO
+
+Ejecutado como preparación, con cobertura59/32772:11 preparados/425 estimadores y48 con impedimentos/32347. PR #1185: https://github.com/Josanoforo/Modelado-Mexicano/pull/1185. Sin recálculos, comparación, aperturas reservadas ni adopción. Recibo técnico de Claude solicitado por circuito de mesa, pendiente; PR abierto, sin fusión por ejecutor.
