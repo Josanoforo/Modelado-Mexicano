@@ -1,0 +1,25 @@
+{
+  "estado": "VERDE",
+  "fixture": "SINTETICO-NO-MEDICION",
+  "pruebas": [
+    "peso-desigual",
+    "blanco-excluido",
+    "no-ocupado-PSU-cero",
+    "edad99-fuera",
+    "rechaza-EMP_PPAL-9",
+    "rechaza-FAC_TRI-nan",
+    "rechaza-FAC_TRI-0",
+    "rechaza-SEX-9",
+    "rechaza-UPM-",
+    "rechaza-CON-",
+    "rechaza-CLASE2-9",
+    "duplicado",
+    "esquema-faltante",
+    "mutacion-detectada-int(b)==1",
+    "mutacion-detectada-{'1','2'}",
+    "mutacion-detectada-r['CLASE2']!='1'",
+    "mutacion-detectada-w=float(r['FAC_TRI'])",
+    "auditoria-eje-campo",
+    "auditoria-eje-campo"
+  ]
+}
