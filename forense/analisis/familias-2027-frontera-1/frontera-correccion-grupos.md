@@ -1,0 +1,7 @@
+# Corrección de cobertura para decisión futura · PR#1195
+
+EJECUTADO: se corrigió el falso lanzamiento de una familia parcial descrito por mesa: un sexo con precisión suficiente y el otro con SE nula o ausente. Antes la decisión evaluaba sólo filas calculadas y podía aprobar junto a un bloqueo. Ahora exige ambos grupos previstos, todos los escenarios temporales sin duplicados, SE históricas/futuras finitas y positivas, y ausencia de bloqueos de la familia. La cota conjunta permanece nula si falta esa cobertura; no se publica sobre un solo sexo como si fuese conjunta.
+
+EJECUTADO: regresiones CLI sobre fixtures aislados para ENSU/ENOE con un grupo bloqueado y otro ausente; SE cero, negativa, no finita, booleano o texto; escenarios faltantes/duplicados; bloqueo incluso con filas completas. Control positivo: una familia completa con buena precisión puede recibir PREPARAR-LANZAMIENTO-CONDICIONAL. Comando: `python3 forense/analisis/familias-2027-frontera-1/potencia/frontera_test_potencia.py`. Los fixtures se ejecutan en directorios temporales y no reemplazan evidencia histórica.
+
+EJECUTADO: se regeneró potencia desde los mismos dos oros JSON, sin abrir microdatos. Ambas recomendaciones permanecen NO-LANZAR-TODAVIA. Criterios, bandas, grupos previstos, oros, lectores y emisiones anteriores no cambian. Se actualiza el inventario de objetos propuestos; las identidades anteriores quedan en historial Git. Main actual incorporado antes de la corrección; el corte original permanece documentado.

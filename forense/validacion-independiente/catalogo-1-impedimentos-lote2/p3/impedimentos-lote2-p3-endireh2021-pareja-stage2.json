@@ -1,0 +1,91 @@
+{
+  "schema": "custodia-proyeccion-v1",
+  "approved": false,
+  "status": "PROPUESTO-POR-EJECUTOR",
+  "code_sha256": "f9ecd196c087380e53d5cf2709272c44bdae20405049e550d750ca01bc02bae3",
+  "compiler_sha256": "94b9317bc1b2a74394a23a35a09780c6222406f3bf0800e30d1871ddec19790b",
+  "source_sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+  "mode": "real",
+  "custodian_uid": null,
+  "analyst_uid": null,
+  "signer": "mesa humana: clave a aprovisionar fuera del contrato",
+  "signer_key_sha256": null,
+  "act": "ASTRA6-C1-IMPEDIMENTOS-LOTE2-P3-fb50",
+  "max_archive_bytes": 2147483648,
+  "max_member_bytes": 1073741824,
+  "publication_authorized": false,
+  "operation": "project",
+  "purpose": "C1 ENDIREH2021 pareja física instrumentos A1/A2/B1/B2/C1; ventanas desde relación e inicio octubre2020 a entrevista2021; no otros ámbitos; apertura de otro módulo no habilita pareja",
+  "table_proposals": [
+    {
+      "logical_table": "TB_SEC_XIV.csv",
+      "documented_filename": "TB_SEC_XIV.csv",
+      "filename_evidence": "Método humano #1185 + FD2021 páginas físicas456–457 para ID_PER/T_INSTRUM/diseño",
+      "columns": [
+        "ID_PER",
+        "T_INSTRUM",
+        "DOMINIO",
+        "CVE_ENT",
+        "FAC_MUJ",
+        "EST_DIS",
+        "UPM_DIS",
+        "P14_1_1",
+        "P14_1_2",
+        "P14_1_3",
+        "P14_1_4",
+        "P14_1_5",
+        "P14_1_6",
+        "P14_1_7",
+        "P14_1_8",
+        "P14_1_9",
+        "P14_3_1",
+        "P14_3_2",
+        "P14_3_3",
+        "P14_3_4",
+        "P14_3_5",
+        "P14_3_6",
+        "P14_3_7",
+        "P14_3_8",
+        "P14_3_9"
+      ],
+      "purpose": "Pareja física A1/A2 y B1/B2/C1; actos 14.1/14.3, dos ventanas propias",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "TB_SEC_XIV.csv"
+    },
+    {
+      "logical_table": "TSDem.csv",
+      "documented_filename": "TSDem.csv",
+      "filename_evidence": "Método humano #1185 TSDem; EDAD y NIV del FD",
+      "columns": [
+        "ID_PER",
+        "EDAD",
+        "NIV"
+      ],
+      "purpose": "Demografía univariada por ID_PER",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "TSDem.csv"
+    }
+  ],
+  "members": {},
+  "archive_inventory": [],
+  "inventory_document_sha256": null,
+  "inventory_contract_sha256": null,
+  "packages": [
+    "endireh-pisos-2021-pareja-fisica-0004",
+    "endireh-pisos-2021-pareja-fisica-bc-0001"
+  ],
+  "reservation_overrides": {},
+  "semantic_pending": [],
+  "human_signature": {
+    "reference": null,
+    "body_sha256": null,
+    "literal": null,
+    "scope": "project",
+    "verified_by_custodian": false,
+    "reservation_scopes": []
+  }
+}

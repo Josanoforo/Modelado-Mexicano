@@ -1,0 +1,28 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "envipe-res0028-u4-derivado-0001",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/envipe-res0028-u4-derivado-0001/envipe-res0028-u4-derivado-0001-entradas-v3.tar.gz",
+  "sha256_original": "6354f32772d053821c7184eb94d3cf2d6187fa40eb54b989e7dc5ca6a875debc",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "envipe2025_csv",
+      "archivo": "envipe2025_csv.zip",
+      "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "envipe2025_fd_pdf",
+      "archivo": "fd_envipe2025.pdf",
+      "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/doc/fd_envipe2025.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "cadena": "impedimentos-lote2-p1-cadenas-humanas.json",
+  "accion": "Preparar paquete conjunto padre→transformación; congelar reconstrucción propia padre antes derivar;no consumir valores04;ENIF accesoP3"
+}

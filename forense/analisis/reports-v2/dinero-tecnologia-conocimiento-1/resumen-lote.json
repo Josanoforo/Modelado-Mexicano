@@ -1,0 +1,87 @@
+{
+  "dinero": {
+    "report": "corpus/reports-v2/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+    "mapa_filas": 35,
+    "afirmaciones": 94,
+    "dictamenes": {
+      "MATIZA": 24,
+      "SIN-CIFRA": 64,
+      "ROMPE": 5,
+      "CONFIRMA": 1
+    },
+    "cifras": 11,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py",
+      "--check"
+    ],
+    "comando_self_test": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py",
+      "--self-test"
+    ]
+  },
+  "tecnologia": {
+    "report": "corpus/reports-v2/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+    "mapa_filas": 43,
+    "afirmaciones": 130,
+    "dictamenes": {
+      "MATIZA": 42,
+      "ROMPE": 7,
+      "CONFIRMA": 7,
+      "SIN-CIFRA": 74
+    },
+    "cifras": 9,
+    "original_parrafos": 109,
+    "rotulos_sin_tesis": 11,
+    "registros_sin_mapa_id": 87,
+    "extras_editoriales": 48,
+    "clausulas_separadas": 39,
+    "unidad_conteo": "Registros editoriales; mapa compuesto, cláusulas y correspondencias pueden solaparse. No se anuncian como tesis únicas.",
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py",
+      "--check"
+    ],
+    "comando_self_test": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py",
+      "--self-test"
+    ]
+  },
+  "conocimiento": {
+    "report": "corpus/reports-v2/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md",
+    "mapa_filas": 39,
+    "afirmaciones": 134,
+    "dictamenes": {
+      "SIN-CIFRA": 99,
+      "CONFIRMA": 5,
+      "MATIZA": 28,
+      "ROMPE": 2
+    },
+    "cifras": 8,
+    "fuera_mapa": 55,
+    "resultado": "Report íntegro Bloque B; mecanismos como hipótesis; cifra propia compatible no disponible",
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/genera.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/verifica.py"
+    ],
+    "comando_self_test": [
+      "python3",
+      "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/verifica.py",
+      "--self-test"
+    ]
+  }
+}

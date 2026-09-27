@@ -1,0 +1,44 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-tra-m-02-v3",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-tra-m-02-v3/r-tra-m-02-v3-entradas-v2.tar.gz",
+  "sha256_original": "1d26c552cd865adbd77767cb4c358508ce80d04d9368a9c31b092f99fe884600",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "encuci2020_bd_dbf",
+      "archivo": "BD_ENCUCI2020_dbf.zip",
+      "sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+      "url": "https://www.inegi.org.mx/programas/encuci/2020/",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encuci2020_fd_pdf",
+      "archivo": "FD_ENCUCI2020.pdf",
+      "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+      "url": "https://www.inegi.org.mx/programas/encuci/2020/",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "encuci2020_bd_dbf",
+  "tabla": "SEC_4_5",
+  "variable": "AP5_17|AP5_18",
+  "peso": "FAC_SEL",
+  "estrato": "EST_DIS",
+  "upm": "UPM_DIS",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#TRA-M-02",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "persona seleccionada",
+  "universo": "SEC_4_5 con OR válido; contacto AP5_16_1..10=1 control del salto; no añade filtro al histórico",
+  "y": "1 si AP5_17=1 o AP5_18=1;0 si ambos2;resto fuera",
+  "miembro_literal": "ENCUCI_2020_SEC_4_5.dbf",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+}

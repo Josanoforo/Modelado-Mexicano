@@ -1,0 +1,44 @@
+{
+  "estado": "MATERIALIZADO-PUNTO-PARCIAL",
+  "identidad": "b-0001",
+  "estimadores": 1,
+  "validacion": "NO-EVALUADO",
+  "destino": "/home/pc0/astra6-c1-impedimentos-lote2-b-punto",
+  "comando": "python3 forense/validacion-independiente/catalogo-1-impedimentos-lote2/p1/impedimentos-lote2-p1-materializa-b-punto.py --destino /home/pc0/astra6-c1-impedimentos-lote2-b-punto",
+  "archivos": {
+    "impedimentos-lote2-p1-b-fd2022.pdf": {
+      "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+      "bytes": 2906552,
+      "modo": "0o600"
+    },
+    "impedimentos-lote2-p1-b-estimandos.tsv": {
+      "sha256": "c66263c981af819d99dbd38d30821650caac8470f98be3b0c090e49870711d12",
+      "bytes": 220,
+      "modo": "0o600"
+    },
+    "impedimentos-lote2-p1-b-concentrado2022.csv": {
+      "sha256": "b499ac9b6182f81d1aa0b719bebd8a74af6df27dbd7c7ad843f9797381b74752",
+      "bytes": 44484110,
+      "modo": "0o600"
+    },
+    "impedimentos-lote2-p1-b-contrato.json": {
+      "sha256": "8ab1b5626f240a11d9ad2d7d2e461b5b07929be1886d57bf08589e27e62d4e10",
+      "bytes": 2792,
+      "modo": "0o600"
+    },
+    "impedimentos-lote2-p1-b-metodo.md": {
+      "sha256": "74fb29ed513aafc5569688f8b4c219606a6c18145b7bcdf005baed75db6f526d",
+      "bytes": 376,
+      "modo": "0o600"
+    },
+    "impedimentos-lote2-p1-b-tolerancia.json": {
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "bytes": 41,
+      "modo": "0o600"
+    }
+  },
+  "comparacion": "NO-CORRIDA",
+  "ic": "FUERA-ALCANCE",
+  "instrumento": "ENIGH2022",
+  "consecuencia": "Permite reconstruir 1 punto histórico aislado; no ensayoB completo"
+}

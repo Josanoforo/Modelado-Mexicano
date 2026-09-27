@@ -1,0 +1,36 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "variable": "NIV",
+  "bins": {
+    "ninguna": [
+      0
+    ],
+    "basica": [
+      1,
+      2,
+      3,
+      5,
+      8
+    ],
+    "media_superior": [
+      4,
+      6
+    ],
+    "superior": [
+      7,
+      9,
+      10,
+      11
+    ]
+  },
+  "excluir_solo_eje": [
+    99,
+    "blanco",
+    "otro"
+  ],
+  "fuente_sha256": "d6b1805e4e0eae0d12df5acd834e4913e59e56dcc101d80d1036535e8c3f1cba",
+  "identidades_consumidoras": [
+    "endireh-pisos-2016-discriminacion-0001",
+    "endireh-pisos-2016-restantes-0001"
+  ]
+}

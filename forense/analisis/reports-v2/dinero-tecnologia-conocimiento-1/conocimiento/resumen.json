@@ -1,0 +1,27 @@
+{
+  "report": "corpus/reports-v2/Report_26__The_Contemporary_Mexican_and_Knowledge__Expertise__Education_and_Information_as_Decision_Behavior.md",
+  "mapa_filas": 39,
+  "afirmaciones": 134,
+  "dictamenes": {
+    "SIN-CIFRA": 99,
+    "CONFIRMA": 5,
+    "MATIZA": 28,
+    "ROMPE": 2
+  },
+  "cifras": 8,
+  "fuera_mapa": 55,
+  "resultado": "Report íntegro Bloque B; mecanismos como hipótesis; cifra propia compatible no disponible",
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/genera.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/verifica.py"
+  ],
+  "comando_self_test": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/verifica.py",
+    "--self-test"
+  ]
+}

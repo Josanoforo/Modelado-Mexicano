@@ -1,0 +1,91 @@
+{
+  "schema": "custodia-proyeccion-v1",
+  "approved": false,
+  "status": "PROPUESTO-POR-EJECUTOR",
+  "code_sha256": "f9ecd196c087380e53d5cf2709272c44bdae20405049e550d750ca01bc02bae3",
+  "compiler_sha256": "94b9317bc1b2a74394a23a35a09780c6222406f3bf0800e30d1871ddec19790b",
+  "source_sha256": "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba",
+  "mode": "real",
+  "custodian_uid": null,
+  "analyst_uid": null,
+  "signer": "mesa humana: clave a aprovisionar fuera del contrato",
+  "signer_key_sha256": null,
+  "act": "ASTRA6-C1-IMPEDIMENTOS-LOTE2-P3-fb50",
+  "max_archive_bytes": 2147483648,
+  "max_member_bytes": 1073741824,
+  "publication_authorized": false,
+  "operation": "project",
+  "purpose": "C1 reconstrucción A-R sólo tras firma explícita de excepción instrumental al cruce reservado; publicación no autorizada",
+  "table_proposals": [
+    {
+      "logical_table": "tvar_crea.csv",
+      "documented_filename": "tvar_crea.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEHOG",
+        "SEXO",
+        "EDAD",
+        "EST_DIS",
+        "UPM_DIS",
+        "CUID_ESP_INT_HOG_CON_CP",
+        "CUID_INT_0A5_CON_CP",
+        "CUID_INT_6A14_CON_CP",
+        "CUID_INT_60MAS_CON_CP"
+      ],
+      "purpose": "A-R requiere reparto_hogar×sexo_edad reservado",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "tvar_crea.csv"
+    },
+    {
+      "logical_table": "tsdem.csv",
+      "documented_filename": "tsdem.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEHOG",
+        "FAC_HOG"
+      ],
+      "purpose": "Factor hogar fuente primaria",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "tsdem.csv"
+    },
+    {
+      "logical_table": "thogar.csv",
+      "documented_filename": "thogar.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEHOG",
+        "FAC_HOG"
+      ],
+      "purpose": "Control igualdad factor",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "thogar.csv"
+    }
+  ],
+  "members": {},
+  "archive_inventory": [],
+  "inventory_document_sha256": null,
+  "inventory_contract_sha256": null,
+  "packages": [
+    "enut-0001"
+  ],
+  "reservation_overrides": {
+    "FP-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-bda6-02": false
+  },
+  "semantic_pending": [
+    "Mantener reserva cruce hasta acto explícito; ausencia TMODULO no otorga publicación"
+  ],
+  "human_signature": {
+    "reference": null,
+    "body_sha256": null,
+    "literal": null,
+    "scope": "project",
+    "verified_by_custodian": false,
+    "reservation_scopes": []
+  }
+}

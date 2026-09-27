@@ -1,0 +1,44 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-civ-m-12",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-civ-m-12/r-civ-m-12-entradas-v2.tar.gz",
+  "sha256_original": "30e43a37aedee386a882b563ef59774b5bc39cce6b5e14bdfd605bae6fbeb3fb",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "envipe2023_csv",
+      "archivo": "envipe2023_csv.zip",
+      "sha256": "0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2023/datosabiertos/conjunto_de_datos_ENVIPE_2023_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "envipe2023_fd_pdf",
+      "archivo": "fd_envipe2023.pdf",
+      "sha256": "743c260e89a6c5d6f2fcc6eac0f1884c40bc6b437164b34e13ba6fe1caf1be63",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2023/doc/fd_envipe2023.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "envipe2023_csv",
+  "tabla": "TMod_Vic",
+  "variable": "BP1_23",
+  "peso": "FAC_DEL",
+  "estrato": "EST_DIS",
+  "upm": "UPM_DIS",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#CIV-M-12",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "delito",
+  "universo": "Todos tipos delito; BP1_23 válido01..09 y peso finito positivo; sin filtro adicional BP1_20",
+  "y": "1 si BP1_23 en01,02,06;0 si03,04,05,07,08,09;99/blanco fuera",
+  "miembro_literal": "tmod_vic_envipe2023/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2023.csv",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "0dcc00a7fc37b79806f1bf1b85b12cd090b5ecc8e76983a3a1a861f2ef3fb404"
+}

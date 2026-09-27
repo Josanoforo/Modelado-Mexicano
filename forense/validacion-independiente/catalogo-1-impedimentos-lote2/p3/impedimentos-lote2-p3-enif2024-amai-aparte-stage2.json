@@ -1,0 +1,92 @@
+{
+  "schema": "custodia-proyeccion-v1",
+  "approved": false,
+  "status": "PROPUESTO-POR-EJECUTOR",
+  "code_sha256": "f9ecd196c087380e53d5cf2709272c44bdae20405049e550d750ca01bc02bae3",
+  "compiler_sha256": "94b9317bc1b2a74394a23a35a09780c6222406f3bf0800e30d1871ddec19790b",
+  "source_sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+  "mode": "real",
+  "custodian_uid": null,
+  "analyst_uid": null,
+  "signer": "mesa humana: clave a aprovisionar fuera del contrato",
+  "signer_key_sha256": null,
+  "act": "ASTRA6-C1-IMPEDIMENTOS-LOTE2-P3-fb50",
+  "max_archive_bytes": 2147483648,
+  "max_member_bytes": 1073741824,
+  "publication_authorized": false,
+  "operation": "project",
+  "purpose": "C1 AMAI ENIF separado; no autoriza NSE hasta dictamen mapeo NIV",
+  "table_proposals": [
+    {
+      "logical_table": "TVIVIENDA.csv",
+      "documented_filename": "TVIVIENDA.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEVIV",
+        "P0_1",
+        "P0_3",
+        "P0_4_1",
+        "P0_4_1A",
+        "P0_4_2",
+        "P0_4_2A"
+      ],
+      "purpose": "Componentes vivienda AMAI",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "TVIVIENDA.csv"
+    },
+    {
+      "logical_table": "THOGAR.csv",
+      "documented_filename": "THOGAR.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEHOG",
+        "LLAVEVIV",
+        "FAC_HOG",
+        "EST_DIS",
+        "UPM_DIS",
+        "P2_8"
+      ],
+      "purpose": "Componentes hogar AMAI",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "THOGAR.csv"
+    },
+    {
+      "logical_table": "TSDEM.csv",
+      "documented_filename": "TSDEM.csv",
+      "filename_evidence": "tabla y nombre en método humano #1185",
+      "columns": [
+        "LLAVEHOG",
+        "PAREN",
+        "NIV"
+      ],
+      "purpose": "Jefatura/escolaridad exacta FD; NIVEL y GRADO excluidos",
+      "format": "csv",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "TSDEM.csv"
+    }
+  ],
+  "members": {},
+  "archive_inventory": [],
+  "inventory_document_sha256": null,
+  "inventory_contract_sha256": null,
+  "packages": [
+    "amai-nse-enif-2024-0001"
+  ],
+  "reservation_overrides": {},
+  "semantic_pending": [
+    "Método histórico requiere grado; FD2024 sólo acredita NIV. Nuevo contrato D-15 de escolaridad necesario; no inventar grado"
+  ],
+  "human_signature": {
+    "reference": null,
+    "body_sha256": null,
+    "literal": null,
+    "scope": "project",
+    "verified_by_custodian": false,
+    "reservation_scopes": []
+  }
+}
