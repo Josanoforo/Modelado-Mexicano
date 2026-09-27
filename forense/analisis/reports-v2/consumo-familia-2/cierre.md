@@ -19,3 +19,9 @@ PROPUESTO-POR-EJECUTOR: recibir la hoja corregida para integración editorial fu
 EJECUTADO: gate final `tests/check.py --baseline --parallel` termina exit 0, LÍNEA BASE VERDE sin FAIL nuevos; detalle en [verificaciones](verificaciones.md). Permanecen fallos heredados ajenos. Los productores y el control local pasan; CI no es certificación sustantiva ni recibo independiente.
 
 EJECUTADO: entrega en [PR #1179](https://github.com/Josanoforo/Modelado-Mexicano/pull/1179). Corte de corrección `70b1f094` incorpora main `1eeb8552`; cierre posterior solo añade registro de PR/CONSUMIDO y constancias. No fusionado. Solicitud de revisión independiente en el cuerpo del PR, sin mensajes externos.
+
+## Integración final de main
+
+EJECUTADO: origin/main avanzó a `3aacda23` (#1177, adquisición/estado de investigación ajenos a consumo-familia) durante CI. Merge local `04fe3c5eb42cc76a70507aade237b9fbc169cb17` sin conflictos; conserva entradas ajenas de INFRAESTRUCTURA. No cambian mapa, RESULT, firmas, v1 ni reports del lote. Corte editorial de fuentes/juicios sigue `1eeb8552`; corte de integración es `3aacda23`.
+
+EJECUTADO sobre el merge final: ambos productores --check REPRODUCE, control local sin errores y nueve mutaciones rechazadas; `tests/check.py --rapido` exit 0, cero FAIL. La suite completa contra baseline pasó antes de este avance y su evidencia no se presenta como ejecución sobre el merge nuevo. CI del último push vuelve a juzgar la suite completa. No se modifica baseline ni se reparan fallos ajenos.

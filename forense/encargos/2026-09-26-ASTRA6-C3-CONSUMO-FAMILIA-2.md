@@ -199,3 +199,5 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 ## CONSUMIDO
 
 Ejecutado en [PR #1179](https://github.com/Josanoforo/Modelado-Mexicano/pull/1179), sobre corte main `1eeb8552`, corrección `70b1f094` y extracto de gate `ebd162b1`. Resultado sustantivo y reservas en `forense/analisis/reports-v2/consumo-familia-2/cierre.md`; nuevo recibo solicitado por circuito de mesa en el PR. No fusionado por ejecutor, sin adopción ni revisión independiente atribuida. El hash de cuerpo del archivo original se conserva.
+
+EJECUTADO: integración posterior de main `3aacda23` mediante `04fe3c5e`, sin efecto sustantivo sobre el lote; productores, verificador y gate rápido pasan sobre el merge. Detalle en recibo local.
