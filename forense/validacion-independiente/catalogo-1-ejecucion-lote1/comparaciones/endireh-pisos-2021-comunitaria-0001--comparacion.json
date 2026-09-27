@@ -1,0 +1,521 @@
+{
+  "recibo": {
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "paquete_sha256": "e8a13d0d4e8658525cf9b88fc02f976b7fac8fe44b1ad88f247dff63a4cf3f2b",
+    "reconstruccion_sha256": "6fff1cde71bf94c9b6f15b7116dcb3180d9c2af6f939acf2f93cd0c845b0ae89",
+    "commit_reconstruccion": "c0cc754afbae02361a5a069c95be8234398a1b76",
+    "checkout_reconstruccion": "/home/pc0/astra6-c1-aislado/tanda2-lote-01-intento2/trabajo/reconstruccion",
+    "congelado_antes_de_revelacion": true,
+    "commit_original_validador": "715ee64bb5e462049197e92308579f975e1ac728",
+    "reconstruccion_original_sha256": "f8b03c515c2b75b2944292cd8c7704e5ecb816223a7d269d12a41ba1bd97e66f",
+    "adaptacion": "Solo vocabulario FALTANTE_HORIZONTE_EN_LLAVE a NO-RECALCULABLE-DESDE-SPEC; sin asignar ni cambiar cifras",
+    "ruta_reconstruccion_commit": "reconstruccion-canonica.tsv"
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "alcance": "Coincidencia numérica; no acredita validez del estimando ni adopción.",
+  "resultados": [
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#0",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#1",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#10",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#11",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#12",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#13",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#14",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#15",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#16",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#17",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#18",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#19",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#2",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#20",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#21",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#22",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#23",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#24",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#25",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#26",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#27",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#28",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#29",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#3",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#30",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#31",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#32",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#33",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#34",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#35",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#36",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#37",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#38",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#39",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#4",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#40",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#41",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#42",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#43",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#44",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#45",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#46",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#47",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#48",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#49",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#5",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#50",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#51",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#52",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#53",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#54",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#55",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#56",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#57",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#58",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#59",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#6",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#60",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#61",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#62",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#63",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#64",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#65",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#66",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#67",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#68",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#69",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#7",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#70",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#71",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#72",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#73",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#74",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#75",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#76",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#77",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#78",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#79",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#8",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#80",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#81",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#82",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#83",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#84",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#85",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#86",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#87",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#88",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#89",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#9",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#90",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#91",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#92",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#93",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#94",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#95",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#96",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#97",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#98",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-COM-TABLA#99",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    }
+  ]
+}

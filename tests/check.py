@@ -173,6 +173,11 @@ def t02_duplicates():
     # diseño (`cmp` verificado al crear el congelado; `CONGELADO-v1_0.sha256`
     # registra el pin) -- mismo patrón de censo mecánico que `ADR-177`/`ADR-178`.
     EXCEPTED_HASH_GROUPS = (
+        # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
+        # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-formal.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-horizonte.txt'}),
         frozenset({
             "forense/marco-candidatas-piloto-v1_0.tsv",
             "forense/prereg-duelo-v2/marco-congelado-piloto-v1_0.tsv",
@@ -214,6 +219,8 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # PR #1182: resumen de preflight sellado; identidad por expediente y acto.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/preflight-final/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json'}),
         # Sync ENIF #1174 tras #1172: grupos exactos por instrumento; contenidos y sellos distintos.
         frozenset({'forense/analisis/familias-2027/astra6-encig/calendario.md', 'forense/analisis/familias-2027/astra6-enif/calendario.md', 'forense/analisis/familias-2027/astra6-envipe/calendario.md'}),
         frozenset({'forense/analisis/familias-2027/astra6-encig/arranque.md', 'forense/analisis/familias-2027/astra6-enif/arranque.md', 'forense/analisis/familias-2027/astra6-envipe/arranque.md'}),
@@ -233,6 +240,7 @@ def t02_duplicates():
             "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
             "forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md",
             "forense/analisis/familias-2027/astra6-enif/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-cierre-material-1/recibo-para-claude.md",
         }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por

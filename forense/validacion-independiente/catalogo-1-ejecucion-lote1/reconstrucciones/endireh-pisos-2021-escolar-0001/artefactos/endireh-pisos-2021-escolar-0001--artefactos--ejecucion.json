@@ -1,0 +1,22 @@
+{
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "rng": "numpy.random.Generator(PCG64)",
+  "semilla": 20260923,
+  "replicas": 200,
+  "orden": "replica, estrato lexicografico, UPM lexicografica; singletons sin consumo RNG",
+  "percentil": "numpy.quantile(method=linear)",
+  "cv": "std(replicas, ddof=1)/p si p>0",
+  "filas_modulo": 110127,
+  "filas_validas": 110127,
+  "estratos": 617,
+  "upm": 17744,
+  "singleton": 0,
+  "conocidos_vida": 104212,
+  "conocidos_reciente": 11092,
+  "llaves": 96,
+  "calculos": 100,
+  "publicables": 96,
+  "no_publicables": 4
+}

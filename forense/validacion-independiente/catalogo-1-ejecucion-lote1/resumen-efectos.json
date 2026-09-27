@@ -1,0 +1,14 @@
+{
+  "efectos": 2569,
+  "hallazgos_spec": 799,
+  "puntos_por_causa": {
+    "ambitos_externos: desconocidos vs negativos y denominador conocido": 535,
+    "edad_60+: filtros de edad distintos; adjudicar código con FD de esta ola": 36,
+    "pareja_reciente: condicionamiento por vida conocida distinto": 62,
+    "instituciones: solicitantes vs afectadas, cambia estimando": 6,
+    "permisos: filtro CP4_1 distinto": 34,
+    "denuncia_externa: columnas 1/5 vs 1–4 y elegibilidad distintas": 10,
+    "edad_60+: inclusión de EDAD 98/99 no especificada en productor; FD 2021": 2
+  },
+  "max_delta_absoluta_punto": 0.3325165761353075
+}
