@@ -30,3 +30,5 @@ EJECUTADO: reservas detalladas verbatim en acta/PR y cuatro filas NC/FP propias.
 EJECUTADO: interpretación de archivo por adenda de ejecución: fuente byte a byte y SHA256SUMS originales permanecen intactos; cierre/CONSUMIDO en acta sucesora enlazada por identidad. EJECUTADO: el nombre exacto local `recibo-para-claude.md` se conserva en `/tmp/astra6-c1-impedimentos-lote2-recibo/`; la copia de repo lleva prefijo de identidad para cumplir T02 sin cambiar tests.
 
 PROPUESTO: recibir la preparación y resolver firmas por contenido separadas; el merge de preparación no adopta tolerancias, contratos, cifras ni autoriza apertura. EJECUTADO: no fusión, autoaprobación, validadores o mensajes externos. LEÍDO: recibo independiente todavía pendiente.
+
+EJECUTADO: PR propio #1200, https://github.com/Josanoforo/Modelado-Mexicano/pull/1200; producto `67f484bc`. Recibo solicitado, no obtenido; no fusión.

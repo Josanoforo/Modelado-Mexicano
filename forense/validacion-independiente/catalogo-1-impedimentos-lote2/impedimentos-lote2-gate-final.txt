@@ -2,19 +2,19 @@
   VERIFICACIÓN DEL CORPUS   [--rapido]
 ════════════════════════════════════════════════════════════════════════
   [ ok ]  T02 duplicados nombre/contenido
-  [tiempo] T02 duplicados nombre/contenido: 3.608 s
+  [tiempo] T02 duplicados nombre/contenido: 3.585 s
   [ ok ]  T15 T-ADR-COUNT
-  [tiempo] T15 T-ADR-COUNT: 0.138 s
+  [tiempo] T15 T-ADR-COUNT: 0.136 s
   [warn]  T22 T-FIRMAS  (118 warn)
-  [tiempo] T22 T-FIRMAS: 0.385 s
+  [tiempo] T22 T-FIRMAS: 0.376 s
   [ ok ]  T25 T-ROTULOS
-  [tiempo] T25 T-ROTULOS: 0.247 s
+  [tiempo] T25 T-ROTULOS: 0.249 s
   [ ok ]  T27 T-INFRA
-  [tiempo] T27 T-INFRA: 6.914 s
+  [tiempo] T27 T-INFRA: 7.013 s
   [ ok ]  T30 T-YAMEDIDO
   [tiempo] T30 T-YAMEDIDO: 0.002 s
   [warn]  T34 T-NO-CORRIDO  (480 warn)
-  [tiempo] T34 T-NO-CORRIDO: 0.040 s
+  [tiempo] T34 T-NO-CORRIDO: 0.039 s
 VERIFICA-SIDECARS · sólo lectura, nunca reescribe ni normaliza
   universo: forense/encargos + forense/notas  ·  sidecars examinados: 213  (A.13)
 
@@ -662,7 +662,7 @@ VERIFICA-SIDECARS · sólo lectura, nunca reescribe ni normaliza
     - forense/notas/2026-09-26-ASTRA6-C2-ENIF-1-cierre.md.cuerpo.sha256: WARN_ENCABEZADO_AJENO=lo que sigue al cuerpo sellado abre con '## Complemento final de cierre', no con '## NO-CORRIDO' ni '## CONSUMIDO' (D-a5: se lista, no adjudica)
   FAIL: 0 — VERDE
 
-  [--rapido] 11.41s (presupuesto: 15s)
+  [--rapido] 11.47s (presupuesto: 15s)
 
 ────────────────────────────────────────────────────────────────────────
   WARN (598)

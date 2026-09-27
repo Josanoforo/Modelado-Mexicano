@@ -13,3 +13,5 @@ Cobertura real: preparación NO CIEGA, estado de validación NO-EVALUADO en toda
 Comandos pertinentes: `python3 .../impedimentos-lote2-integra.py`, `python3 .../impedimentos-lote2-verifica-integracion.py`, pruebas P3, materializador documental P4, materializador punto B y `python3 tests/check.py --rapido`. El gate del repo acredita integración, no la sustancia ni ceguera. Contador derivado con `python3 tools/corrida0.py status`: celdas_validadas219, sin incremento autorizado ni edición manual. Registros comunes sólo ADR/L0/rótulos/FP/NC propios y acta/sidecars; documentos públicos con custodia compartida, sin cambiar manifiesto.
 
 Pendientes y decisión precisa: hoja de decisiones con hashes por contenido; filas FP/NC propias; reservas verbatim en acta y PR. Recibo técnico de Claude solicitado por PR y todavía no obtenido. No fusión ni autoaprobación. Para lanzar entradas nuevas hace falta acto/cohorte distinto de04; las firmas no sustituyen disponibilidad ni revisión material de cada insumo.
+
+EJECUTADO: PR propio #1200, https://github.com/Josanoforo/Modelado-Mexicano/pull/1200; producto `67f484bc`. Recibo solicitado, no obtenido; no fusión.
