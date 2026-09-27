@@ -1,0 +1,1341 @@
+[
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "ruta_retirada": "preparacion/p2/retirados/encodat-pisos-sustancias-0001-entradas-v2.tar.gz",
+    "sha256_retirado": "6deef3b4840f942d6950686789f1ad1eb196fd08a70b5c663952a07e11787fc9",
+    "sucesor": "entradas/encodat-pisos-sustancias-0001/encodat-pisos-sustancias-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "b5e989a658d224686e4f7bd321b9ea60c8d5cb926932b8c21757ca0a31b0c613",
+    "documentos": [
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx",
+        "nombre": "p1-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información sobre el hogar/ENCODAT_2016_2017_Hogar.Catálogo.xlsx",
+        "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
+        "sha256_manifiesto": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
+        "bytes": 629419,
+        "url_fuente": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "encodat-pisos-sustancias-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "Información de variable"
+            ],
+            [
+              "Variable",
+              "Posición",
+              "Etiqueta",
+              "Nivel de medición",
+              "Ancho de columna"
+            ],
+            [
+              "id_hogar",
+              "1",
+              "Identificador del hogar",
+              "Nominal",
+              "26"
+            ]
+          ],
+          "Valores": [
+            [
+              "Valores de variable"
+            ],
+            [
+              "Valor",
+              "Etiqueta"
+            ],
+            [
+              "h101",
+              "1",
+              "Sí"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx",
+        "nombre": "p1-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/02-Información sobre los integrantes del hogar/ENCODAT_2016_2017_Integrantes.Catálogo.xlsx",
+        "sha256": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0",
+        "sha256_manifiesto": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0",
+        "bytes": 626208,
+        "url_fuente": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "encodat-pisos-sustancias-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "Información de variable"
+            ],
+            [
+              "Variable",
+              "Posición",
+              "Etiqueta",
+              "Nivel de medición",
+              "Ancho de columna"
+            ],
+            [
+              "id_hogar",
+              "1",
+              "Indentificador del hogar",
+              "Nominal",
+              "26"
+            ]
+          ],
+          "Valores": [
+            [
+              "Valores de variable"
+            ],
+            [
+              "Valor",
+              "Etiqueta"
+            ],
+            [
+              "h303",
+              "1",
+              "Hombre"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx",
+        "nombre": "p1-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.Catálogo.xlsx",
+        "sha256": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b",
+        "sha256_manifiesto": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b",
+        "bytes": 924864,
+        "url_fuente": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "encodat-pisos-sustancias-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "Información de variable"
+            ],
+            [
+              "Variable",
+              "Posición",
+              "Etiqueta",
+              "Nivel de medición",
+              "Ancho de columna"
+            ],
+            [
+              "id_pers",
+              "1",
+              "Identificador de la persona",
+              "Nominal",
+              "22"
+            ]
+          ],
+          "Valores": [
+            [
+              "Valores de variable"
+            ],
+            [
+              "Valor",
+              "Etiqueta"
+            ],
+            [
+              "ds5",
+              "1",
+              "Sí"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      }
+    ]
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "ruta_retirada": "preparacion/p2/retirados/enigh2016-intensidad-remesas-0001-entradas-v3.tar.gz",
+    "sha256_retirado": "2e8adc25c13966f183d3bd03cd2dfe4e766aab10b51a424290f050a6ded1b9bd",
+    "sucesor": "entradas/enigh2016-intensidad-remesas-0001/enigh2016-intensidad-remesas-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "21d72ea2cab684bfc1454636375bf5b33f2190fdc241ab963f69c56622c1dd6c",
+    "documentos": [
+      {
+        "ruta": "/home/pc0/mm-astra6-c1-paquetes-2/forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2016-descripcion-oficial.pdf",
+        "tipo": "fd"
+      }
+    ]
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "ruta_retirada": "preparacion/p2/retirados/enigh2018-intensidad-remesas-0001-entradas-v3.tar.gz",
+    "sha256_retirado": "9c9dae8ea60b822cd76229491894af5465181d12e89881ac3f59e5604022e5ef",
+    "sucesor": "entradas/enigh2018-intensidad-remesas-0001/enigh2018-intensidad-remesas-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "85f3219d8d94ea716d7d5e9aa9b5fc572f7f634405fff2762f3cf3a7c7990254",
+    "documentos": [
+      {
+        "ruta": "/home/pc0/mm-astra6-c1-paquetes-2/forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2018-mayores-oficial.pdf",
+        "tipo": "cuestionario"
+      }
+    ]
+  },
+  {
+    "paquete": "ensanut-0001",
+    "ruta_retirada": "preparacion/p2/retirados/ensanut-0001-entradas-v2.tar.gz",
+    "sha256_retirado": "3b727e04d7f559bad4a784c0f425abb694159f92aff625fb1e878137467cc679",
+    "sucesor": "entradas/ensanut-0001/ensanut-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "f7d5380ae10685afa3ccc5bdd720c1ae384f9ca935a8fa457180a5a4f79798aa",
+    "documentos": [
+      {
+        "id": "ASTRA6-C1-P2-ENSANUT2024-adultos-CATALOGO",
+        "nombre": "p1-ensanut2024-adultos-catalogo.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut2024-adultos-catalogo.xlsx",
+        "url": "https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php",
+        "metodo_descarga": "POST de botón oficial catálogo, sin otros campos ni raw",
+        "campo_post": "ArchIdMDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNC1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWR1bHRvcyAoMjAgYcOxb3MgbyBtw6FzKS9hZHVsdG9zX2Vuc2FudXQyMDI0X3cuQ2F0w6Fsb2dvLnhsc3g=",
+        "archivo_relativo_publicado": "01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/adultos_ensanut2024_w.Catálogo.xlsx",
+        "sha256": "fe31b8af8a08bcf6bc2ae641fc93be3676e4066b2783bed2f65e1303568da59d",
+        "bytes": 378842,
+        "estado": "CATALOGO-HUMANO-OFICIAL-ADQUIRIDO",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      }
+    ]
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "ruta_retirada": "preparacion/p2/retirados/ensanut-pisos-salud-0001-entradas-v2.tar.gz",
+    "sha256_retirado": "d8c0e31a83eb821a865479415cc7e6621494e77956e982f8ec5d2bcad34481ca",
+    "sucesor": "entradas/ensanut-pisos-salud-0001/ensanut-pisos-salud-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "ea01751b5b847f2f579a09a336ebdf66040bdb1684e36c8f841c9642daaa7aab",
+    "documentos": [
+      {
+        "id": "ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx",
+        "nombre": "p1-ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2021/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2021_w_12_01_2022.Catálogo.xlsx",
+        "sha256": "9a42c3f24374a879a9b0159d84f8f8b3aad70f9aeb3695a901ef7ea4776f2d6d",
+        "sha256_manifiesto": "9a42c3f24374a879a9b0159d84f8f8b3aad70f9aeb3695a901ef7ea4776f2d6d",
+        "bytes": 309589,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2021/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "h0302",
+              "1",
+              "Hombre"
+            ],
+            [
+              "h0302",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx",
+        "nombre": "p1-ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2021/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/ensadol2021_entrega_w_14_12_2021.Catálogo.xlsx",
+        "sha256": "bc5644aadf3a968d75a558de5f9bb606bc7fa900e833803083adbb0eb8702356",
+        "sha256_manifiesto": "bc5644aadf3a968d75a558de5f9bb606bc7fa900e833803083adbb0eb8702356",
+        "bytes": 319844,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2021/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "region",
+              "1",
+              "Pacifico_Norte"
+            ],
+            [
+              "region",
+              "2",
+              "Frontera"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx",
+        "nombre": "p1-ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2021/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/ensadul2021_entrega_w_15_12_2021.Catálogo.xlsx",
+        "sha256": "e69deaed57acd21538418e49cfd5c8fe9fd99ceba7e7a5c112cd1e334b5d1b80",
+        "sha256_manifiesto": "e69deaed57acd21538418e49cfd5c8fe9fd99ceba7e7a5c112cd1e334b5d1b80",
+        "bytes": 355667,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2021/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "region",
+              "1",
+              "Pacifico_Norte"
+            ],
+            [
+              "region",
+              "2",
+              "Frontera"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx",
+        "nombre": "p1-ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2021/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/util2021_entrega_w_14_12_2021.Catálogo.xlsx",
+        "sha256": "cd6e42d58246a47b7e2c0acd7a6c6af5a30413221efc084df4ec01649bcd8fce",
+        "sha256_manifiesto": "cd6e42d58246a47b7e2c0acd7a6c6af5a30413221efc084df4ec01649bcd8fce",
+        "bytes": 278669,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2021/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "region",
+              "1",
+              "Pacifico_Norte"
+            ],
+            [
+              "region",
+              "2",
+              "Frontera"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx",
+        "nombre": "p1-ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2022/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2022_w.Catálogo.xlsx",
+        "sha256": "9b19f4d847d2637c1aabeaf3c2ab1b67920934c33f84fb6cf3b455e6843fe6fa",
+        "sha256_manifiesto": "9b19f4d847d2637c1aabeaf3c2ab1b67920934c33f84fb6cf3b455e6843fe6fa",
+        "bytes": 270704,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "h0302",
+              "1",
+              "Hombre"
+            ],
+            [
+              "h0302",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx",
+        "nombre": "p1-ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2022/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/ensadol2022_entrega_w.Catálogo.xlsx",
+        "sha256": "7d96597a819f042e02910df1a196e1a7021533b552f11f760882f2a0134aee63",
+        "sha256_manifiesto": "7d96597a819f042e02910df1a196e1a7021533b552f11f760882f2a0134aee63",
+        "bytes": 289057,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx",
+        "nombre": "p1-ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2022/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/ensadul2022_entrega_w.Catálogo.xlsx",
+        "sha256": "ca61bebe6dd338924f8b52419411cccd1df51daab71b09980ff1abc74c459b17",
+        "sha256_manifiesto": "ca61bebe6dd338924f8b52419411cccd1df51daab71b09980ff1abc74c459b17",
+        "bytes": 309783,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2022__util2022_entrega_w_catalogo_xlsx",
+        "nombre": "p1-ensanut_2022__util2022_entrega_w_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2022__util2022_entrega_w_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2022/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/util2022_entrega_w.Catálogo.xlsx",
+        "sha256": "91272bc9cb4b31fc46ef60f615d688a0ac35da3b61afb0829d3ef25bd2600a58",
+        "sha256_manifiesto": "91272bc9cb4b31fc46ef60f615d688a0ac35da3b61afb0829d3ef25bd2600a58",
+        "bytes": 247945,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2022/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx",
+        "nombre": "p1-ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2023/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2023_w_n.Catálogo.xlsx",
+        "sha256": "ecefc3638a60b16a09ce5237e4e36028cc8248c2dd803ab0cf19b63e811feb53",
+        "sha256_manifiesto": "ecefc3638a60b16a09ce5237e4e36028cc8248c2dd803ab0cf19b63e811feb53",
+        "bytes": 291037,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2023/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_INT",
+              "1",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ],
+            [
+              "FOLIO_I",
+              "2",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "h0302",
+              "1",
+              "Hombre"
+            ],
+            [
+              "h0302",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx",
+        "nombre": "p1-ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2023/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/adolescentes_ensanut2023_w_n.Catálogo.xlsx",
+        "sha256": "f8d5433d751b12443124f61fbfd53f324bda83c78a11258a40ba3645dc2b83bc",
+        "sha256_manifiesto": "f8d5433d751b12443124f61fbfd53f324bda83c78a11258a40ba3645dc2b83bc",
+        "bytes": 292291,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2023/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_INT",
+              "1",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ],
+            [
+              "FOLIO_I",
+              "2",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "dsexo",
+              "1",
+              "Hombre"
+            ],
+            [
+              "dsexo",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx",
+        "nombre": "p1-ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2023/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/adultos_ensanut2023_w_n.Catálogo.xlsx",
+        "sha256": "24feb8c8e4090f4b811a671cedc0ecf479e4a51d095cb8e557118e82ecc61a6f",
+        "sha256_manifiesto": "24feb8c8e4090f4b811a671cedc0ecf479e4a51d095cb8e557118e82ecc61a6f",
+        "bytes": 327974,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2023/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_INT",
+              "1",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ],
+            [
+              "FOLIO_I",
+              "2",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "sexo",
+              "1",
+              "Hombre"
+            ],
+            [
+              "sexo",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx",
+        "nombre": "p1-ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx.xlsx",
+        "fuente_ruta": "data/raw/ENSANUT/2023/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/utilizadores_ensanut2023_w_n.Catálogo.xlsx",
+        "sha256": "93e956666cb3b7e51410a8a766a20ef6335a8fd042a7068138e218aa15bafcad",
+        "sha256_manifiesto": "93e956666cb3b7e51410a8a766a20ef6335a8fd042a7068138e218aa15bafcad",
+        "bytes": 237523,
+        "url_fuente": "https://ensanut.insp.mx/encuestas/ensanutcontinua2023/descargas.php",
+        "estado": "CATALOGO-HUMANO-STANDALONE-EXISTENTE-CORPUS",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_INT",
+              "1",
+              "Folio de integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ],
+            [
+              "FOLIO_I",
+              "2",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ASTRA6-C1-P2-ENSANUT2024-integrantes-CATALOGO",
+        "nombre": "p1-ensanut2024-integrantes-catalogo.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut2024-integrantes-catalogo.xlsx",
+        "url": "https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php",
+        "metodo_descarga": "POST de botón oficial catálogo, sin otros campos ni raw",
+        "campo_post": "ArchIdMDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMS1DdWVzdGlvbmFyaW8gZGUgaG9nYXIvMDItSW5mb3JtYWNpw7NuIHNvYnJlIGxvcyByZXNpZGVudGVzL2ludGVncmFudGVzX2Vuc2FudXQyMDI0X3dfaWNiLkNhdMOhbG9nby54bHN4",
+        "archivo_relativo_publicado": "01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2024_w_icb.Catálogo.xlsx",
+        "sha256": "d7d227be3b363e00e873dacffad3d36b8c5fd34b39477e611b1e7c32a48daa70",
+        "bytes": 323826,
+        "estado": "CATALOGO-HUMANO-OFICIAL-ADQUIRIDO",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "h0302",
+              "1",
+              "Hombre"
+            ],
+            [
+              "h0302",
+              "2",
+              "Mujer"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ASTRA6-C1-P2-ENSANUT2024-adolescentes-CATALOGO",
+        "nombre": "p1-ensanut2024-adolescentes-catalogo.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut2024-adolescentes-catalogo.xlsx",
+        "url": "https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php",
+        "metodo_descarga": "POST de botón oficial catálogo, sin otros campos ni raw",
+        "campo_post": "ArchIdMDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wMy1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWRvbGVzY2VudGVzICgxMCBhIDE5IGHDsW9zKS9hZG9sZXNjZW50ZXNfZW5zYW51dDIwMjRfdy5DYXTDoWxvZ28ueGxzeA==",
+        "archivo_relativo_publicado": "01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/adolescentes_ensanut2024_w.Catálogo.xlsx",
+        "sha256": "135aab4ef7079ae4a9f908e172fe8be81d5d76c9ccf8a5c38c26a3961a40d233",
+        "bytes": 334955,
+        "estado": "CATALOGO-HUMANO-OFICIAL-ADQUIRIDO",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ASTRA6-C1-P2-ENSANUT2024-adultos-CATALOGO",
+        "nombre": "p1-ensanut2024-adultos-catalogo.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut2024-adultos-catalogo.xlsx",
+        "url": "https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php",
+        "metodo_descarga": "POST de botón oficial catálogo, sin otros campos ni raw",
+        "campo_post": "ArchIdMDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNC1DdWVzdGlvbmFyaW8gZGUgc2FsdWQgZGUgYWR1bHRvcyAoMjAgYcOxb3MgbyBtw6FzKS9hZHVsdG9zX2Vuc2FudXQyMDI0X3cuQ2F0w6Fsb2dvLnhsc3g=",
+        "archivo_relativo_publicado": "01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/adultos_ensanut2024_w.Catálogo.xlsx",
+        "sha256": "fe31b8af8a08bcf6bc2ae641fc93be3676e4066b2783bed2f65e1303568da59d",
+        "bytes": 378842,
+        "estado": "CATALOGO-HUMANO-OFICIAL-ADQUIRIDO",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      },
+      {
+        "id": "ASTRA6-C1-P2-ENSANUT2024-utilizadores-CATALOGO",
+        "nombre": "p1-ensanut2024-utilizadores-catalogo.xlsx",
+        "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-ensanut2024-utilizadores-catalogo.xlsx",
+        "url": "https://ensanut.insp.mx/encuestas/ensanutcontinua2024/descargas.php",
+        "metodo_descarga": "POST de botón oficial catálogo, sin otros campos ni raw",
+        "campo_post": "ArchIdMDEtQ29tcG9uZW50ZSBkZSBTQUxVRC8wNS1DdWVzdGlvbmFyaW8gZGUgdXRpbGl6YWRvcmVzIGRlIHNlcnZpY2lvcyBkZSBzYWx1ZC91dGlsaXphZG9yZXNfZW5zYW51dDIwMjRfdy5DYXTDoWxvZ28ueGxzeA==",
+        "archivo_relativo_publicado": "01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/utilizadores_ensanut2024_w.Catálogo.xlsx",
+        "sha256": "6a2ba742321922d4e47b8cc4afa18e2a731bda09f0b5e8b6bf28e4241c302549",
+        "bytes": 278909,
+        "estado": "CATALOGO-HUMANO-OFICIAL-ADQUIRIDO",
+        "paquete": "ensanut-pisos-salud-0001",
+        "hojas": [
+          "Variables",
+          "Valores"
+        ],
+        "revision_humana": "Documento standalone de catálogo XLSX publicado: dos hojas Variables/Valores con nombre/posición/etiqueta/tipo/formato/longitud y código/etiqueta. No se leyó SAV ni registro individual ni reconstruyó diccionario desde productor. Información de identificador enumera la variable, no IDs de personas. No N observado ni porcentajes/IC de estimadores.",
+        "cabeceras_documentales": {
+          "Variables": [
+            [
+              "variable",
+              "orden",
+              "etiqueta",
+              "formato",
+              "tipo",
+              "longitud",
+              "decimales"
+            ],
+            [
+              "FOLIO_I",
+              "1",
+              "Folio",
+              "Texto",
+              "string",
+              "13",
+              "0"
+            ],
+            [
+              "FOLIO_INT",
+              "2",
+              "Folio integrante",
+              "Texto",
+              "string",
+              "16",
+              "0"
+            ]
+          ],
+          "Valores": [
+            [
+              "variable",
+              "valor",
+              "etiqueta"
+            ],
+            [
+              "nota1",
+              "1",
+              "¿Acepta usted? ,,,, Sí"
+            ],
+            [
+              "nota1",
+              "2",
+              "¿Acepta usted? ,,,, No"
+            ]
+          ]
+        },
+        "tipo": "fd"
+      }
+    ]
+  }
+]

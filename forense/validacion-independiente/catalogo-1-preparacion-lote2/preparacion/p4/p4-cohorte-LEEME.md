@@ -1,0 +1,11 @@
+# P4 · Cohorte y transferencia · preparación no ciega
+
+EJECUTADO: `python3 forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p4/cohorte.py` verifica correspondencia por CALC y filas del catálogo original. `p4-cohorte-resumen.json` fija el corte realmente consultado. Las 59 identidades de `correspondencia-59.tsv` cubren íntegramente 32772 estimadores; `nueve-fuera.tsv` separa los nueve paquetes/3371 estimadores de sesión 01. Intersección cero. No se leen productores ni valores objetivo para crear estas tablas; únicamente identidades, metadatos y conteos por lector CSV.
+
+EJECUTADO: `delta-catalogo.tsv` separa las nueve CALC/7045 filas nuevas de v1.2, fuera de este corte; ninguna fila de v1.1 desaparece y tres identidades cambian solo `conducta;reserva`. No se reemplazan inputs ni versiones de los validadores iniciados. `vetados-sustituidos-excluidos.tsv` conserva las causas, firmas y notas del inventario vigente de exclusiones, agrupadas por identidad CALC y causa. Una exclusión no se presenta automáticamente como veto: la columna causa conserva la distinción. Las 381 exclusiones cuyo CALC pertenece al lote2 son filas adicionales excluidas de producto, no parte de los 32772 estimadores ni paquetes que deban retirarse del corte.
+
+LEÍDO: la firma literal ya se conserva en `forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md:3`; `LEEME-ARCHIVO.md:5` documenta la decisión de conservarla dentro de los cuerpos recibidos sin duplicar asiento. La consulta por CSV de `forense/firmas-pendientes.tsv` no identifica una fila propia de esa firma de misión. El procedimiento `/acto` está disponible en `.claude/commands/acto.md`; el hilo responsable tramita el nuevo encargo una sola vez.
+
+PROPUESTO-POR-EJECUTOR: integrar progreso final por igualdad de `calc` con el manifiesto sucesor de P2/P3, conservando paquete y hashes originales. `estado_preparacion_original` describe el punto de partida y no afirma preparación final ni recálculo. Solo P3 puede acreditar materialización y entrega; todos los impedimentos permanecen como estados de preparación, sin tasa de validación.
+
+Los archivos de este directorio son preparación y nunca son entrada de recálculo ciego. No contienen cifras observadas del estimando.

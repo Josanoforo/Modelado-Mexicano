@@ -1,0 +1,7 @@
+# Recibo solicitado a Claude · lote2
+
+EJECUTADO: 11/59 paquetes preparados, 425/32772 estimadores preparados; 48 paquetes impedidos, sin validadores ni comparación. Main `8f4b241916efddc1343d4c6e86f8703b43d0f85f`, 0-bis `9c9eedfe`; hashes por objeto en [hashes-recibo](preparacion/hashes-recibo-lote2.json) y por contenedor/miembro en índice/manifiestos. Entrega de preparación no ciega; no se solicita adopción de cifras ni apertura por analogía.
+
+Comando propio: `python3 tools/validacion/astra6_paquetes_lote2.py`. Comandos de materialización y sesión nueva: [lanzamientos-lote2](lanzamientos-lote2.md); prueba `bash tools/validacion/astra6_catalogo/astra6_lanza_catalogo.sh --prueba <carpeta-nueva>`. El preparador no usa --ejecuta. El comparador legado reconoce sólo el hash original; una comparación del sucesor exige un acto propio que reconozca versión y hash recibidos, antes de revelación. No se sustituye el hash para simular compatibilidad. Pruebas y salidas en `preparacion/p3/`, gate de repo separado. El recibo de copia no acredita independencia cognitiva: el responsable futuro conserva identidad de sesión nueva y compromiso de código/números antes de revelación.
+
+LEÍDO/PROPUESTO: reservas y acciones en [nota](astra6-c1-lote2-nota-cierre.md) y [hoja](astra6-c1-lote2-hoja-de-firma.md). Pedimos revisión por circuito de mesa en el PR; revisión independiente no obtenida. No se enviaron mensajes externos. Los contenedores originales, nueve inputs sesión01, sellos, CALC y catálogo no se modificaron.

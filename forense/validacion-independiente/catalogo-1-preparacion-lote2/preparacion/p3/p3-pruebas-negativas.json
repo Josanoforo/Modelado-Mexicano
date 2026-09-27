@@ -1,0 +1,67 @@
+[
+  {
+    "caso": "valido",
+    "aceptado": true
+  },
+  {
+    "caso": "traversal",
+    "rechazado": true,
+    "causa": "Tar no plano o enlace"
+  },
+  {
+    "caso": "enlace",
+    "rechazado": true,
+    "causa": "Tar no plano o enlace"
+  },
+  {
+    "caso": "extra",
+    "rechazado": true,
+    "causa": "Miembros fuera de allowlist"
+  },
+  {
+    "caso": "duplicado",
+    "rechazado": true,
+    "causa": "Miembro duplicado"
+  },
+  {
+    "caso": "hash-alterado",
+    "rechazado": true,
+    "causa": "Hash miembro metodo.md"
+  },
+  {
+    "caso": "ZIP-ENIF2024",
+    "rechazado": true,
+    "causa": "ZIP-ENIF2024-INTEGRAL-NO-AUTORIZADO"
+  },
+  {
+    "caso": "ENCODAT-no-ENCO",
+    "aceptado": true
+  },
+  {
+    "caso": "FD-instrumento-o-ola-ajenos",
+    "rechazado": true
+  },
+  {
+    "caso": "bloqueado-sin-escritura",
+    "rechazado": true,
+    "causa": "Paquete bloqueado: materialización rechazada"
+  },
+  {
+    "caso": "transporte-sintetico-hash-recibo-v2",
+    "aceptado": true
+  },
+  {
+    "caso": "transporte-v5-preserva-v2",
+    "aceptado": true
+  },
+  {
+    "caso": "destino-parent-symlink",
+    "rechazado": true,
+    "causa": "Destino con ancestro enlace"
+  },
+  {
+    "caso": "hash-contenedor",
+    "rechazado": true,
+    "causa": "Hash contenedor: hash-alterado.tar.gz"
+  }
+]
