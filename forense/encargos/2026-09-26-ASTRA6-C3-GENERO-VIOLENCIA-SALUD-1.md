@@ -204,3 +204,7 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 | Recibo técnico y revisión humana de tesis | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no los acredita | No acredita revisión independiente ni adopción de reglas | forense/analisis/reports-v2/genero-violencia-salud-1/recibo-para-claude.md |
 
 Productos ejecutados; revisión humana y recibo externo pendientes. Límites por afirmación en resumen-lote.json. No se afirma recepción ni adopción.
+
+## CONSUMIDO
+
+EJECUTADO en PR #1180: https://github.com/Josanoforo/Modelado-Mexicano/pull/1180. Tres reports, tablas, índice local y verificadores; recibo/revisión humana solicitados, no concedidos. No fusionado por este autor. Corte main integrado `3aacda232b3b03f158950738f31aa4ea509d3162`.

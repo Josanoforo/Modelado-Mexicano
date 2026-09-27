@@ -15,3 +15,5 @@ PROPUESTO-POR-EJECUTOR: reglas con consumidor posible, condición, falsador y l�
 PENDIENTE: revisión humana de tesis y recibo técnico por circuito de mesa `GEN2-RECIBO-ASTRA-PRODUCTO-N`. Se solicitan en el PR; este archivo no constituye recibo concedido. Firma de misión ya preservada en 00-LEEME-LANZAMIENTO.md:3; no se duplica. C1 no bloquea; un hallazgo material posterior exige corregir únicamente lo afectado.
 
 Reservas por pieza y estados provisionales se conservan en resumen-lote.json y sus evidencias. Obtener revisión humana es condición pendiente del Hecho, aunque los productos y controles propios estén ejecutados. Este autor no fusiona ni concede autoaprobación.
+
+EJECUTADO: solicitud por circuito en [PR #1180](https://github.com/Josanoforo/Modelado-Mexicano/pull/1180). No se enviaron mensajes externos ni se fusionó. Corte main incorporado `3aacda232b3b03f158950738f31aa4ea509d3162`; verificador conjunto/autopruebas y gate rápido VERDE.
