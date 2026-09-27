@@ -1,0 +1,73 @@
+estado: PROPUESTO-POR-EJECUTOR
+familia: ENOE-INFORMALIDAD
+ola_futura: 2027T4
+oro: 2024T4
+oro_id: enoe_2024_4t_microdatos
+oro_sha256: 817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305
+universo: Personas residentes habituales15–98 ocupadas nacional, R_DEF00 C_RES1/3
+  CLASE2=1
+agrupacion:
+- SEX
+desenlace: EMP_PPAL
+numerador:
+- 1
+denominador:
+- 1
+- 2
+campos_obligatorios:
+- R_DEF
+- C_RES
+- EDA
+- SEX
+- EMP_PPAL
+- CLASE2
+- FAC_TRI
+- EST_D_TRI
+- UPM
+- ENT
+- CON
+- V_SEL
+- N_HOG
+- H_MUD
+- N_REN
+- N_PRO_VIV
+llave_persona:
+- ENT
+- UPM
+- CON
+- N_PRO_VIV
+- V_SEL
+- N_HOG
+- H_MUD
+- N_REN
+p0: proporcion ponderada oro2024T4 por SEX algoritmo fijado antes de calcular
+banda_absoluta: 0.05
+alfa_familiar: 0.05
+comparaciones: 2
+ids:
+  CALC: null
+  RESULT: null
+  COMMIT1: null
+  COMMIT2: null
+retador: null
+diseno:
+  peso: FAC_TRI
+  estrato: EST_D_TRI
+  upm: UPM
+  varianza: Taylor dominio ocupados15–98 por SEX; marco residentes habituales entrevista
+    completa todas edades, UPM fuera dominio contribuyen0; singleton bloquea
+  fpc: null
+regla_parada: Cambios universo clasificacion EMP_PPAL diseño FAC_TRI o trimestre detienen.
+  Normalizacion MAYUSCULAS es cableado fijo; no alias automático
+reserva: 2027T4 entra RESERVADA; este borrador no autoriza abrirla
+fuentes:
+- forense/prereg-caja/ENOE-PISOS-spec-v1_2.md
+- data/enoe-olas-elegibles-preparacion-v1_0.tsv
+adaptacion_serializacion:
+  encoding: latin1
+  R_DEF:
+  - '0'
+  - '00'
+  cabeceras: mayusculas
+comparacion_primaria: cambio fisico d=R-p0 IC conjunto oro+futuro con sensibilidad
+  dependencia; fuera banda si IC no intersecta±.05

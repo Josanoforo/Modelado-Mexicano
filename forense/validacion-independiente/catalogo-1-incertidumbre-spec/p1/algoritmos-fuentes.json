@@ -1,0 +1,1097 @@
+[
+  {
+    "paquete": "endireh-pisos-2011-modulos-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2011-MODULOS-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2011-modulos-0001/artefactos/endireh-pisos-2011-modulos-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2011-MODULOS-0001/medidor.py",
+        "sha256": "7e6a573d65851827dac40bdc5ed7247967d9ac30f129486ac2a83aae237f1635",
+        "extractos": [
+          {
+            "linea": 70,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 75,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 80,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 82,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 86,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 90,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 91,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 99,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 138,
+            "texto": "        weight = float(r[\"FAC_PER\"])"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2011-modulos-0001/artefactos/endireh-pisos-2011-modulos-0001--artefactos--reconstruir.py",
+        "sha256": "4ef0e83a80277950968302570eb10077db72136da8d239e2de7ef4a062bb6a5b",
+        "extractos": [
+          {
+            "linea": 10,
+            "texto": "DESIGN = ['FAC_PER', 'DOMINIO', 'EST_DIS', 'UPM_DIS', 'CVE_ENT']"
+          },
+          {
+            "linea": 11,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 12,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 145,
+            "texto": "    frame=read(z,'TViviend',lambda c:c in ['EST_DIS','UPM_DIS'])"
+          },
+          {
+            "linea": 146,
+            "texto": "    pairs=sorted(set(map(tuple,frame.to_numpy())))"
+          },
+          {
+            "linea": 151,
+            "texto": "    rng=np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 155,
+            "texto": "        m=len(indices); samples=rng.integers(0,m,size=(B,m))"
+          },
+          {
+            "linea": 158,
+            "texto": "    module_pairs=set(p for f in frames for p in zip(f.EST_DIS,f.UPM_DIS))"
+          },
+          {
+            "linea": 179,
+            "texto": "    lo,hi=np.quantile(reps,[.025,.975],method='linear')"
+          },
+          {
+            "linea": 220,
+            "texto": "    w=pd.to_numeric(d.FAC_PER,errors='raise').to_numpy(dtype=float);assert np.all(np.isfinite(w)&(w>0))"
+          },
+          {
+            "linea": 223,
+            "texto": "    dump(out/'ejecucion.json',{'python':platform.python_version(),'numpy':np.__version__,'pandas':pd.__version__,'semilla':SEED,'replicas':B,'rng':'Generator(PCG64)','uniones':audit,'diseno':da,'llaves':len(estimands),'fuente_marco_upm':'TViviend: todas las UPM observadas'})"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-ayuda-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-AYUDA-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-ayuda-0001/artefactos/endireh-pisos-2021-ayuda-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-AYUDA-0001/medidor.py",
+        "sha256": "a6b4d56f5ae349c51b92ed8baca5ee1352163784ab52a4ab7929748f87b134c7",
+        "extractos": [
+          {
+            "linea": 72,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 77,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 82,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 84,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 88,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 92,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 93,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 101,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 157,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\"}:"
+          },
+          {
+            "linea": 162,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 175,
+            "texto": "                       \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-ayuda-0001/artefactos/endireh-pisos-2021-ayuda-0001--artefactos--reconstruir.py",
+        "sha256": "76a962510a7459f90df8508ec9dc81e959e1ecc2d68085fe0dd1ac89e464f1b7",
+        "extractos": [
+          {
+            "linea": 16,
+            "texto": "SEED, B = 20260923, 500"
+          },
+          {
+            "linea": 73,
+            "texto": "    design = ['ID_PER', 'T_INSTRUM', 'DOMINIO', 'CVE_ENT',"
+          },
+          {
+            "linea": 74,
+            "texto": "              'FAC_MUJ', 'EST_DIS', 'UPM_DIS']"
+          },
+          {
+            "linea": 76,
+            "texto": "    d = d[d.T_INSTRUM.isin(['A1', 'A2'])].copy()"
+          },
+          {
+            "linea": 80,
+            "texto": "    psus = d[['EST_DIS', 'UPM_DIS']].drop_duplicates().sort_values("
+          },
+          {
+            "linea": 93,
+            "texto": "    w = pd.to_numeric(d.FAC_MUJ, errors='raise').to_numpy(float)"
+          },
+          {
+            "linea": 136,
+            "texto": "            column = {'localidad': 'DOMINIO', 'pareja': 'T_INSTRUM', 'entidad': 'CVE_ENT'}[axis]"
+          },
+          {
+            "linea": 155,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 158,
+            "texto": "    singleton = 0"
+          },
+          {
+            "linea": 164,
+            "texto": "            singleton += 1"
+          },
+          {
+            "linea": 166,
+            "texto": "            draws = rng.integers(0, size, size=(B, size))"
+          },
+          {
+            "linea": 190,
+            "texto": "                lower, upper = np.quantile(values, [.025, .975], method='linear')"
+          },
+          {
+            "linea": 215,
+            "texto": "        'semilla': SEED, 'replicas': B, 'rng': 'numpy.random.Generator(PCG64)',"
+          },
+          {
+            "linea": 217,
+            "texto": "        'percentiles': 'numpy.quantile method=linear', 'cv': 'sd de réplicas ddof=1 / punto',"
+          },
+          {
+            "linea": 221,
+            "texto": "        'upm': len(psus), 'estratos': psus.EST_DIS.nunique(), 'singleton': singleton,"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-COMUNITARIA-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-comunitaria-0001/endireh-pisos-2021-comunitaria-0001--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-COMUNITARIA-0001/medidor.py",
+        "sha256": "d1ffc15b8fe1e0230523b8485343ff03ddf5d3e74c4060fe678882d3f5f8c50c",
+        "extractos": [
+          {
+            "linea": 81,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 86,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 91,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 93,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 97,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 101,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 102,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 110,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 144,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\", \"B1\", \"B2\", \"C1\", \"C2\"}:"
+          },
+          {
+            "linea": 149,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 166,
+            "texto": "                             \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-comunitaria-0001/endireh-pisos-2021-comunitaria-0001--reconstruir.py",
+        "sha256": "8a70ed7d9e2b821307777bb4b45c38d7664fa568a4725e42b8e2fb6d86b08938",
+        "extractos": [
+          {
+            "linea": 13,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 14,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 55,
+            "texto": "        cols = ['ID_PER','T_INSTRUM','DOMINIO','CVE_ENT','FAC_MUJ','EST_DIS','UPM_DIS']"
+          },
+          {
+            "linea": 63,
+            "texto": "    weight = pd.to_numeric(data.FAC_MUJ, errors='coerce')"
+          },
+          {
+            "linea": 64,
+            "texto": "    eligible = (data.T_INSTRUM.isin(['A1','A2','B1','B2','C1','C2']) &"
+          },
+          {
+            "linea": 68,
+            "texto": "    weight = pd.to_numeric(data.FAC_MUJ).to_numpy(dtype=float)"
+          },
+          {
+            "linea": 83,
+            "texto": "                'pareja':data.T_INSTRUM.to_numpy(),"
+          },
+          {
+            "linea": 86,
+            "texto": "    psus = sorted(set(zip(data.EST_DIS, data.UPM_DIS)))"
+          },
+          {
+            "linea": 89,
+            "texto": "    strata = {}"
+          },
+          {
+            "linea": 91,
+            "texto": "        strata.setdefault(s, []).append(i)"
+          },
+          {
+            "linea": 92,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 95,
+            "texto": "        for s in sorted(strata):"
+          },
+          {
+            "linea": 96,
+            "texto": "            ids = np.array(strata[s])"
+          },
+          {
+            "linea": 97,
+            "texto": "            draw = rng.choice(ids, size=len(ids), replace=True)"
+          },
+          {
+            "linea": 111,
+            "texto": "            lo,hi = np.quantile(rp,[.025,.975],method='linear')"
+          },
+          {
+            "linea": 139,
+            "texto": "                'semilla':SEED,'replicas':B,'rng':'NumPy Generator PCG64',"
+          },
+          {
+            "linea": 142,
+            "texto": "                'estratos':len(strata),'estratos_singleton':sum(len(v)==1 for v in strata.values()),"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-decisiones-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-DECISIONES-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-decisiones-0001/artefactos/endireh-pisos-2021-decisiones-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-DECISIONES-0001/medidor.py",
+        "sha256": "8d31dabbfd7d439133e65ecb1720ea7a0f33f6556dc0bf9905f5caa1a57a1619",
+        "extractos": [
+          {
+            "linea": 72,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 77,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 82,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 84,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 88,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 92,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 93,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 101,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 147,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\"}:"
+          },
+          {
+            "linea": 152,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 167,
+            "texto": "                             \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-decisiones-0001/artefactos/endireh-pisos-2021-decisiones-0001--artefactos--reconstruir.py",
+        "sha256": "0eef64b420b59123a7c6c628e7661725e66d8022c45b3e386ade4d94747e7117",
+        "extractos": [
+          {
+            "linea": 13,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 14,
+            "texto": "REPLICAS = 500"
+          },
+          {
+            "linea": 47,
+            "texto": "                              ('pareja','T_INSTRUM',['A1','A2']),"
+          },
+          {
+            "linea": 88,
+            "texto": "    xv = read('TB_SEC_XV', ['ID_PER','T_INSTRUM','FAC_MUJ','EST_DIS','UPM_DIS',"
+          },
+          {
+            "linea": 92,
+            "texto": "    a = xv[xv.T_INSTRUM.isin(['A1','A2'])].copy()"
+          },
+          {
+            "linea": 95,
+            "texto": "    psus = a[['EST_DIS','UPM_DIS']].drop_duplicates().sort_values(['EST_DIS','UPM_DIS'])"
+          },
+          {
+            "linea": 96,
+            "texto": "    psus = psus.reset_index(drop=True)"
+          },
+          {
+            "linea": 104,
+            "texto": "    d['factor'] = pd.to_numeric(d.FAC_MUJ, errors='coerce')"
+          },
+          {
+            "linea": 138,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 139,
+            "texto": "    multiplicities = np.zeros((REPLICAS,len(psus)))"
+          },
+          {
+            "linea": 140,
+            "texto": "    singleton = 0"
+          },
+          {
+            "linea": 146,
+            "texto": "            singleton += 1"
+          },
+          {
+            "linea": 148,
+            "texto": "            draws = rng.integers(0,m,size=(REPLICAS,m))"
+          },
+          {
+            "linea": 149,
+            "texto": "            for b in range(REPLICAS):"
+          },
+          {
+            "linea": 170,
+            "texto": "                lo, hi = np.quantile(b, [0.025,0.975], method='linear')"
+          },
+          {
+            "linea": 186,
+            "texto": "    pd.DataFrame(published,index=np.arange(1,REPLICAS+1)).rename_axis('replica').to_csv("
+          },
+          {
+            "linea": 188,
+            "texto": "    audit.update(singletons=singleton,filas_universo=len(d),estados=pd.Series([r['estado'] for r in rows]).value_counts().to_dict(),"
+          },
+          {
+            "linea": 189,
+            "texto": "                 semilla=SEED,replicas=REPLICAS,rng='numpy.random.PCG64',"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-discriminacion-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-discriminacion-0001/artefactos/endireh-pisos-2021-discriminacion-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001/medidor.py",
+        "sha256": "66af57e410afdb25b2986f052096923ec6dfea68ab9a61270a2e54551b060514",
+        "extractos": [
+          {
+            "linea": 73,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 76,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 81,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 83,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 87,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 91,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 92,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 100,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 143,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 161,
+            "texto": "                       \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r.get(\"T_INSTRUM\"),"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-discriminacion-0001/artefactos/endireh-pisos-2021-discriminacion-0001--artefactos--reconstruir.py",
+        "sha256": "44e315bbfda54a30ccd3da9260bf58a936aad1f88c9f030b33b614aed330d7c1",
+        "extractos": [
+          {
+            "linea": 39,
+            "texto": "    cols=['ID_PER','EST_DIS','UPM_DIS','FAC_MUJ','P8_2','DOMINIO','CVE_ENT','T_INSTRUM','P8_3_1_1','P8_3_1_2','P8_3_2_1','P8_3_2_2','P8_3_2_3']"
+          },
+          {
+            "linea": 44,
+            "texto": "    psu=np.array([index[(r['EST_DIS'],r['UPM_DIS'])] for r in data]); weights=np.array([float(r['FAC_MUJ']) for r in data])"
+          },
+          {
+            "linea": 57,
+            "texto": "    rng=np.random.Generator(np.random.PCG64(20260923))"
+          },
+          {
+            "linea": 59,
+            "texto": "    strata=sorted(set(s for s,u in design))"
+          },
+          {
+            "linea": 60,
+            "texto": "    for s in strata:"
+          },
+          {
+            "linea": 62,
+            "texto": "        draws=rng.integers(0,n,size=(200,n))"
+          },
+          {
+            "linea": 77,
+            "texto": "            col={'localidad':'DOMINIO','entidad':'CVE_ENT','pareja':'T_INSTRUM'}[axis]"
+          },
+          {
+            "linea": 90,
+            "texto": "            low,high=np.quantile(reps,[.025,.975],method='linear');cv=float(np.std(reps,ddof=1)/p) if p>0 else None"
+          },
+          {
+            "linea": 107,
+            "texto": "    dump('ejecucion.json',dict(python=sys.version,numpy=np.__version__,semilla=20260923,rng='PCG64; Generator.integers',replicas=200,filas_modulo=len(data),elegibles=int(eligible.sum()),estratos=len(strata),upm=len(design),estados=dict(Counter(r['estado'] for r in results))))"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-escolar-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-ESCOLAR-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-escolar-0001/artefactos/endireh-pisos-2021-escolar-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-ESCOLAR-0001/medidor.py",
+        "sha256": "d8e3e1055a163200aa51581e80846f6167ec36e6b22b28ea25b7310c16c90cc2",
+        "extractos": [
+          {
+            "linea": 81,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 86,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 91,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 93,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 97,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 101,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 102,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 110,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 144,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\", \"B1\", \"B2\", \"C1\", \"C2\"}:"
+          },
+          {
+            "linea": 149,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 168,
+            "texto": "                             \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-escolar-0001/artefactos/endireh-pisos-2021-escolar-0001--artefactos--reconstruir.py",
+        "sha256": "87bd60b9f3dbd397091ad2bb9825d78745b5d77abf0a44a8dfcb108833b9fc0c",
+        "extractos": [
+          {
+            "linea": 14,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 15,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 63,
+            "texto": "    s = read('TB_SEC_VII.csv', ['ID_PER','FAC_MUJ','EST_DIS','UPM_DIS','P7_1','P7_2',"
+          },
+          {
+            "linea": 64,
+            "texto": "             'DOMINIO','CVE_ENT','T_INSTRUM'] + life_cols + recent_cols)"
+          },
+          {
+            "linea": 73,
+            "texto": "    frame = s[['EST_DIS','UPM_DIS']].drop_duplicates().sort_values(['EST_DIS','UPM_DIS'])"
+          },
+          {
+            "linea": 77,
+            "texto": "    strata = [np.array([index[p] for p in g.itertuples(index=False, name=None)])"
+          },
+          {
+            "linea": 80,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 83,
+            "texto": "        for ids in strata:"
+          },
+          {
+            "linea": 87,
+            "texto": "                sampled = rng.choice(ids, size=len(ids), replace=True)"
+          },
+          {
+            "linea": 89,
+            "texto": "    w = pd.to_numeric(s.FAC_MUJ, errors='coerce').to_numpy(float)"
+          },
+          {
+            "linea": 92,
+            "texto": "    valid &= s.T_INSTRUM.isin(['A1','A2','B1','B2','C1','C2']).to_numpy()"
+          },
+          {
+            "linea": 104,
+            "texto": "                             ('pareja','T_INSTRUM',['A1','A2','B1','B2','C1','C2']),"
+          },
+          {
+            "linea": 127,
+            "texto": "                low, high = np.quantile(estimates,[.025,.975],method='linear')"
+          },
+          {
+            "linea": 150,
+            "texto": "        rng='numpy.random.Generator(PCG64)',semilla=SEED,replicas=B,"
+          },
+          {
+            "linea": 151,
+            "texto": "        orden='replica, estrato lexicografico, UPM lexicografica; singletons sin consumo RNG',"
+          },
+          {
+            "linea": 152,
+            "texto": "        percentil='numpy.quantile(method=linear)',cv='std(replicas, ddof=1)/p si p>0',"
+          },
+          {
+            "linea": 153,
+            "texto": "        filas_modulo=len(s),filas_validas=int(valid.sum()),estratos=len(strata),upm=len(frame),"
+          },
+          {
+            "linea": 154,
+            "texto": "        singleton=sum(len(ids)==1 for ids in strata),conocidos_vida=int(np.isfinite(life).sum()),"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-familiar-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-FAMILIAR-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-familiar-0001/artefactos/endireh-pisos-2021-familiar-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-FAMILIAR-0001/medidor.py",
+        "sha256": "a3c9847ec253e12e90f99a6fa016caaa1b7d93978a39e7e8d5649e2625d2aab4",
+        "extractos": [
+          {
+            "linea": 72,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 77,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 82,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 84,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 88,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 92,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 93,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 101,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 136,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\", \"B1\", \"B2\", \"C1\", \"C2\"}:"
+          },
+          {
+            "linea": 141,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 152,
+            "texto": "                             \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-familiar-0001/artefactos/endireh-pisos-2021-familiar-0001--artefactos--reconstruir.py",
+        "sha256": "d309928770800d5d00bb6635374e0f8a163f601bed98b6d29ce0745bc255193e",
+        "extractos": [
+          {
+            "linea": 16,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 17,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 64,
+            "texto": "    xi = read('TB_SEC_XI.csv', ['ID_PER', 'T_INSTRUM', 'DOMINIO', 'CVE_ENT',"
+          },
+          {
+            "linea": 65,
+            "texto": "                              'FAC_MUJ', 'EST_DIS', 'UPM_DIS'] + items)"
+          },
+          {
+            "linea": 71,
+            "texto": "    weight = pd.to_numeric(d.FAC_MUJ, errors='coerce').to_numpy()"
+          },
+          {
+            "linea": 72,
+            "texto": "    eligible = (age.between(15, 120) & d.T_INSTRUM.isin(['A1', 'A2', 'B1', 'B2', 'C1', 'C2']) & (weight > 0)).to_numpy()"
+          },
+          {
+            "linea": 81,
+            "texto": "    strata = [g.idx.to_numpy() for _, g in psu.groupby('EST_DIS', sort=True)]"
+          },
+          {
+            "linea": 90,
+            "texto": "            'pareja': d.T_INSTRUM, 'entidad': d.CVE_ENT}"
+          },
+          {
+            "linea": 105,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 108,
+            "texto": "        draws = np.concatenate([rng.choice(s, size=len(s), replace=True) for s in strata])"
+          },
+          {
+            "linea": 113,
+            "texto": "    intervals = np.quantile(reps, [.025, .975], axis=0, method='linear')"
+          },
+          {
+            "linea": 142,
+            "texto": "        'semilla': SEED, 'replicas': B, 'rng': 'numpy.random.Generator(PCG64)',"
+          },
+          {
+            "linea": 146,
+            "texto": "                     'upm_marco': len(psu), 'estratos': len(strata), 'singleton': sum(len(s)==1 for s in strata)},"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-laboral-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-LABORAL-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-laboral-0001/artefactos/endireh-pisos-2021-laboral-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-LABORAL-0001/medidor.py",
+        "sha256": "16e8abdd01dedc7f265f8f31431affb5dd4a0f27bcb2162cc6002fe5eb00c508",
+        "extractos": [
+          {
+            "linea": 81,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 86,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 91,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 93,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 97,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 101,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 102,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 110,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 144,
+            "texto": "                if r.get(\"T_INSTRUM\") not in {\"A1\", \"A2\", \"B1\", \"B2\", \"C1\", \"C2\"}:"
+          },
+          {
+            "linea": 149,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          },
+          {
+            "linea": 168,
+            "texto": "                             \"localidad\": r.get(\"DOMINIO\"), \"pareja\": r[\"T_INSTRUM\"],"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-laboral-0001/artefactos/endireh-pisos-2021-laboral-0001--artefactos--reconstruir.py",
+        "sha256": "7a4504f63be2f8fa880b112c618f0831cfc8e3c424b8f3ac9aea97d6a79f7c1b",
+        "extractos": [
+          {
+            "linea": 15,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 16,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 74,
+            "texto": "        'rng': 'numpy.random.Generator(PCG64)', 'semilla': SEED, 'replicas': B})"
+          },
+          {
+            "linea": 88,
+            "texto": "        cols = ['ID_PER', 'DOMINIO', 'CVE_ENT', 'T_INSTRUM', 'P8_1', 'P8_4',"
+          },
+          {
+            "linea": 89,
+            "texto": "                'FAC_MUJ', 'EST_DIS', 'UPM_DIS']"
+          },
+          {
+            "linea": 102,
+            "texto": "    psus = sorted(set(zip(d.EST_DIS, d.UPM_DIS)))"
+          },
+          {
+            "linea": 105,
+            "texto": "    strata = {}"
+          },
+          {
+            "linea": 107,
+            "texto": "        strata.setdefault(h, []).append(j)"
+          },
+          {
+            "linea": 108,
+            "texto": "    rng = np.random.Generator(np.random.PCG64(SEED))"
+          },
+          {
+            "linea": 110,
+            "texto": "    for ids in strata.values():"
+          },
+          {
+            "linea": 112,
+            "texto": "        draws = rng.integers(0, n, size=(B, n))"
+          },
+          {
+            "linea": 117,
+            "texto": "    weight = pd.to_numeric(d.FAC_MUJ, errors='coerce').to_numpy()"
+          },
+          {
+            "linea": 119,
+            "texto": "    base &= d.T_INSTRUM.isin(['A1','A2','B1','B2','C1','C2']).to_numpy()"
+          },
+          {
+            "linea": 132,
+            "texto": "            'localidad': d.DOMINIO.to_numpy(), 'pareja': d.T_INSTRUM.to_numpy(),"
+          },
+          {
+            "linea": 147,
+            "texto": "            lo, hi = np.quantile(boot, [.025,.975], method='linear')"
+          },
+          {
+            "linea": 173,
+            "texto": "        'upm_marco':len(psus), 'estratos':len(strata),"
+          },
+          {
+            "linea": 174,
+            "texto": "        'estratos_singleton':sum(len(x)==1 for x in strata.values()),"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+    "productor": "data/corrida0/CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001/medidor.py",
+    "reconstruccion": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-nofisica-bc-0001/artefactos/endireh-pisos-2021-nofisica-bc-0001--artefactos--reconstruir.py",
+    "fuentes": [
+      {
+        "ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001/medidor.py",
+        "sha256": "1fc4766dc3df6bcb07c6c1472a19953b67f88809d3df70ea0a9ca0615a02a1d3",
+        "extractos": [
+          {
+            "linea": 72,
+            "texto": "    psus = {(r[\"stratum\"], r[\"psu\"]) for r in selected}"
+          },
+          {
+            "linea": 77,
+            "texto": "    clusters = {(r[\"stratum\"], r[\"psu\"]): [0.0, 0.0] for r in rows}"
+          },
+          {
+            "linea": 82,
+            "texto": "    strata = defaultdict(list)"
+          },
+          {
+            "linea": 84,
+            "texto": "        strata[stratum].append(sums)"
+          },
+          {
+            "linea": 88,
+            "texto": "    rng = np.random.default_rng(seed)"
+          },
+          {
+            "linea": 92,
+            "texto": "        for cells in strata.values():"
+          },
+          {
+            "linea": 93,
+            "texto": "            idx = rng.integers(0, len(cells), len(cells))"
+          },
+          {
+            "linea": 101,
+            "texto": "    lo, hi = np.quantile(valid, [0.025, 0.975])"
+          },
+          {
+            "linea": 181,
+            "texto": "                instrument = r.get(\"T_INSTRUM\")"
+          },
+          {
+            "linea": 187,
+            "texto": "                    weight = float(r[\"FAC_MUJ\"])"
+          }
+        ]
+      },
+      {
+        "ruta": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/reconstrucciones/endireh-pisos-2021-nofisica-bc-0001/artefactos/endireh-pisos-2021-nofisica-bc-0001--artefactos--reconstruir.py",
+        "sha256": "d2583cee95ab8436ec7dee20c4700c097fecad703769bd25c187226f578459ad",
+        "extractos": [
+          {
+            "linea": 16,
+            "texto": "SEED = 20260923"
+          },
+          {
+            "linea": 17,
+            "texto": "B = 200"
+          },
+          {
+            "linea": 18,
+            "texto": "AB = {23, 24, 35, 36, 37, 38}"
+          },
+          {
+            "linea": 47,
+            "texto": "              if not (row['T_INSTRUM'].startswith('C') and i in AB)]"
+          },
+          {
+            "linea": 54,
+            "texto": "    if axis == 'pareja': return row['T_INSTRUM'] == value"
+          },
+          {
+            "linea": 73,
+            "texto": "    r={'T_INSTRUM':'C1', **{'P14_1_'+str(i):'4' for i in range(1,39)}}"
+          },
+          {
+            "linea": 83,
+            "texto": "    r['T_INSTRUM']='A1'"
+          },
+          {
+            "linea": 111,
+            "texto": "        'semilla':SEED, 'replicas':B, 'rng':'numpy.random.Generator(PCG64)',"
+          },
+          {
+            "linea": 136,
+            "texto": "    pairs=sorted({(r['EST_DIS'],r['UPM_DIS']) for r in data})"
+          },
+          {
+            "linea": 139,
+            "texto": "    weights=np.array([float(r['FAC_MUJ']) for r in data])"
+          },
+          {
+            "linea": 141,
+            "texto": "    strata={s:np.array([i for i,p in enumerate(pairs) if p[0]==s]) for s in sorted({p[0] for p in pairs})}"
+          },
+          {
+            "linea": 142,
+            "texto": "    assert all(len(v)>1 for v in strata.values())"
+          },
+          {
+            "linea": 143,
+            "texto": "    rng=np.random.default_rng(SEED)"
+          },
+          {
+            "linea": 145,
+            "texto": "    for indices in strata.values():"
+          },
+          {
+            "linea": 147,
+            "texto": "        draws=rng.integers(0,n,size=(B,n))"
+          },
+          {
+            "linea": 149,
+            "texto": "    eligible=np.array([r['T_INSTRUM'] in ('B1','B2','C1') and"
+          },
+          {
+            "linea": 189,
+            "texto": "                lo,hi=np.quantile(rp,[.025,.975],method='linear')"
+          },
+          {
+            "linea": 206,
+            "texto": "             'marco_upm':len(pairs),'estratos':len(strata),'filas_xiv':len(data),"
+          }
+        ]
+      }
+    ]
+  }
+]
