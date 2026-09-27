@@ -200,3 +200,7 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 | Revisión humana de tesis centrales y recibo independiente; paquete y solicitud preparados | DIFERIDO-A | No se acredita aceptación ni revisión independiente por el ejecutor | GEN2-RECIBO-ASTRA-PRODUCTO-N por circuito de mesa en PR |
 | Adjudicación de exposición incidental a reporte público reservado ENIGH2024_RR.pdf; fuente excluida | DECISIÓN-DE-MESA-PENDIENTE | Mesa evalúa contaminación de reports clase y movilidad; no se presume permiso retroactivo | FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-02 y revisión del PR |
 | Aclaración primaria de cifra de pobreza con condicionamiento disputado; retirada de afirmaciones firmes | NO-VERIFICABLE-AQUÍ | No se puede usar como probabilidad de origen/destino hasta aclaración; resto del report continúa | Clarificación de CEEY con tabla y denominador explícitos; recibo evalúa tratamiento editorial |
+
+## CONSUMIDO
+
+EJECUTADO en [PR #1181](https://github.com/Josanoforo/Modelado-Mexicano/pull/1181): tres reports v2 y tablas/índice reproducibles. Revisión humana y recibo independiente SOLICITADOS, no concedidos. Reservas registradas arriba; propuestas sin adopción. El ejecutor no fusiona.

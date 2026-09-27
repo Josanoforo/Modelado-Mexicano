@@ -13,3 +13,5 @@ EJECUTADO / incidencia: las piezas de clase y movilidad abrieron incidentalmente
 PROPUESTO-POR-EJECUTOR: reglas y consumidores posibles en cada report, con condiciones, tiers y falsadores. Recibirlas para revisión del catálogo sucesor es la opción recomendada; mantenerlas locales sin adopción es la alternativa. No se modifica catálogo ni motor.
 
 PENDIENTE: revisión humana de tesis centrales y todas las ROMPE; recibo técnico independiente GEN2-RECIBO-ASTRA-PRODUCTO-N; adopción de propuestas y adjudicación de exposición incidental. Se solicita por el circuito de mesa en el PR, sin enviar mensajes externos. Este archivo es paquete de solicitud, nunca recibo concedido por su autor. El ejecutor no fusiona.
+
+EJECUTADO: entrega y solicitud de recibo por [PR #1181](https://github.com/Josanoforo/Modelado-Mexicano/pull/1181). Sin fusión ni revisión independiente atribuida.

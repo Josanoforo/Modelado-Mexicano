@@ -17,3 +17,5 @@ PROPUESTO-POR-EJECUTOR: reglas de cada report con consumidor, condición y falsa
 PENDIENTE: revisión humana de tesis centrales y recibo independiente, solicitados por circuito del PR, nunca concedidos por el autor; NC-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-01. Cifra CEEY con condicionamiento disputado retirada de afirmaciones firmes, pendiente aclaración primaria (NC-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-03). C1 no bloquea edición y obligará a corregir sólo conclusiones materialmente afectadas. No se declara cumplida aceptación humana ni avance de los 31 reports completos por este lote.
 
 Verificaciones y corte de integración final: forense/analisis/reports-v2/trabajo-movilidad-1/verificaciones.md. El ejecutor no fusiona.
+
+EJECUTADO: entrega y solicitud de recibo por [PR #1181](https://github.com/Josanoforo/Modelado-Mexicano/pull/1181). Sin fusión ni revisión independiente atribuida.
