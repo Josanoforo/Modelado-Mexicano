@@ -1,0 +1,463 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "enoe-pisos-0003",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/enoe-pisos-0003/enoe-pisos-0003-entradas-v3.tar.gz",
+  "sha256_original": "42d4b8792a70e4ed3d674ef2f1f819718d2e4298c7943391091180b1c2acd166",
+  "estimadores_historicos": 26273,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "cc1_inegi_enoe_2020__enoe_n_fd_c_bas_amp",
+      "archivo": "corpus-completo/inegi/enoe/2020/enoe_n_fd_c_bas_amp.pdf",
+      "sha256": "0ecd02caf5090983c5ef6b7fec038403bf8253653abe4ab4d9417ce96fca9b8b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_fd_c_bas_amp.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "cc1_inegi_enoe_2021__enoe_n_321_fd_c_bas_amp",
+      "archivo": "corpus-completo/inegi/enoe/2021/enoe_n_321_fd_c_bas_amp.pdf",
+      "sha256": "e86e0ec55fc291d6dd87c1f252f53c4d527848c34037a40e79f3f4c85c610622",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_n_321_fd_c_bas_amp.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_123_fd_c_bas_amp_pdf",
+      "archivo": "enoe_123_fd_c_bas_amp.pdf",
+      "sha256": "920a1db58ee30527bae48d0d1f45e47c8f17a9302b2dc743cf296228aa205a61",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_123_fd_c_bas_amp.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2005_1t_csv_microdatos",
+      "archivo": "2005trim1_csv.zip",
+      "sha256": "a9c7823dc60a8ce85478ab115409eeeacd35e6e4aaf604f3c4cbd8c802171a33",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2005trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2008_1t_csv_microdatos",
+      "archivo": "2008trim1_csv.zip",
+      "sha256": "a8a8c1917a5e083bdad9f6ddba29e7d9efd0b21cc8137aad7ed36dd63100ad94",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2008trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2012_1t_csv_microdatos",
+      "archivo": "2012trim1_csv.zip",
+      "sha256": "fea732fdf1c14349098a16a1d9c635a7621992c21b8688b3f26c7d2f2f0533b5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2012trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2014_1t_csv_microdatos",
+      "archivo": "2014trim1_csv.zip",
+      "sha256": "fbb779cab476cf97ccd7483cdf02b87c19b1315a3147ea1797db06ab356fcbd2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2014trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2016_1t_csv_microdatos",
+      "archivo": "2016trim1_csv.zip",
+      "sha256": "8e29abc983fadf367ef347b40806987d51ad412051b3684ac45fd91f4cadde5d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2016_2t_csv_microdatos",
+      "archivo": "2016trim2_csv.zip",
+      "sha256": "4aa9a8e2083378fa60aa965a2236bc81ca1a011c1a80cfb5907c462dc3f5a56f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2016_3t_csv_microdatos",
+      "archivo": "2016trim3_csv.zip",
+      "sha256": "9103423fdceceed4922d6fcd53dee9357c1fb9815854bd58314a726816d2cc28",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2016_4t_csv_microdatos",
+      "archivo": "2016trim4_csv.zip",
+      "sha256": "f5846e8416dbbdb0a907b3f2321e9607083a269878657225fd3c82c708465500",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2016trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2017_1t_csv_microdatos",
+      "archivo": "2017trim1_csv.zip",
+      "sha256": "945d848a236630474d1798cf39f5098a8e1f63162550d6728b354cd05b5a73a8",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2017_2t_csv_microdatos",
+      "archivo": "2017trim2_csv.zip",
+      "sha256": "bd58ed29a986e3f8b3642e6e6aa8ea7dbf7277116888cd60f799b562fd545066",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2017_3t_csv_microdatos",
+      "archivo": "2017trim3_csv.zip",
+      "sha256": "1c3c9ad09ab726b6b4546fdb86d68759749758b31d74a97718d4d665e0bb5973",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2017_4t_csv_microdatos",
+      "archivo": "2017trim4_csv.zip",
+      "sha256": "af96a2420779c1cdf82b49bb7ddd5b489771bb791938db9b799da6f8b43d3be4",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2017trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2018_1t_csv_microdatos",
+      "archivo": "2018trim1_csv.zip",
+      "sha256": "e078fbd23a6c62a91eb26070818d7c2f5ac2b3ed4f4af698be20a8e522a13d33",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2018_2t_csv_microdatos",
+      "archivo": "2018trim2_csv.zip",
+      "sha256": "2ca4002f7209b029a470caa3174353a2766ca9fc1f4e1ea3c87a063d1218c00f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2018_3t_csv_microdatos",
+      "archivo": "2018trim3_csv.zip",
+      "sha256": "7273d867ef6b9c5cad0264451b195f41606c6e1a9c84d1662de9139f563487c7",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2018_4t_csv_microdatos",
+      "archivo": "2018trim4_csv.zip",
+      "sha256": "9259fcb81747ebfad7fbbd75b9dc9a65825142bc10366c447f645489b3383774",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2018trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2019_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/2019trim1_csv.zip",
+      "sha256": "9337691044a70d935f3b7e6858730640a726ac5e37145d2dafe34cb9f77e7e89",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2019_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/2019trim2_csv.zip",
+      "sha256": "721bf45739241179cca3685c42e65a0270cbe02019602571ee79cc1a157a8d36",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2019_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/2019trim3_csv.zip",
+      "sha256": "6809243e8fa1bc4fe836ab2337b51b387f2bc4b9e28907b70ddcaf9fd67b584b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2019_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/2019trim4_csv.zip",
+      "sha256": "d91658be67f515a26f501fc130731e866b7c77c992ed91471217074f4f18ad58",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2019trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2020_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/2020trim1_csv.zip",
+      "sha256": "8f24f571dee610e9ab147c7f2a01ac2770fef016cd13d8428160550b833b176b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/2020trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2023_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2023_trim1_csv.zip",
+      "sha256": "ae627ebd3b749f15b5faf27fdc59dadb69a696a5f359d1faa7aae5eae856041c",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2023_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2023_trim2_csv.zip",
+      "sha256": "e2035d3a3e3d0789ee10fac875c792c5833fc90f7e1ccb9345e0690dd8c40eb5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2023_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2023_trim3_csv.zip",
+      "sha256": "cb91900ad406e1d7435cc51ed418866cbdd08808892d2dd60644516e82be9752",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2023_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2023_trim4_csv.zip",
+      "sha256": "24f15e1ab8ad942b479b32f491b9e2d8b640ac3c8e79dbea02e74baa78ae9d2e",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2023_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2024_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2024_trim1_csv.zip",
+      "sha256": "5ef594c06487cd277de1ae9f9b0846f9ba64dbd8d743c983002dcf431974d02b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2024_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2024_trim2_csv.zip",
+      "sha256": "13922f8902f587939145e0302ec8e6e5fa9fb0df4207229f7447deaaab96e285",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2024_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2024_trim3_csv.zip",
+      "sha256": "6594158c1a3f9732d9844061e46f95c0abe7ef9f8fe4f7605b72be31c3628ef3",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2024_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2024_trim4_csv.zip",
+      "sha256": "817f28d20a43fa4fed08195e62df58bf320b31c323a3049fe09b5194a1677305",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2024_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2025_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2025_trim1_csv.zip",
+      "sha256": "dddbb698e7f18f63bc256ece61ac0038a5ad062d42aca13390d88828fb27796e",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2025_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2025_trim2_csv.zip",
+      "sha256": "291db61afcc472a0933d2bebf46720cfd024df8912dc899d541d8109bd406722",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2025_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2025_trim3_csv.zip",
+      "sha256": "d2817a14201694e119a3fd6fcb8b8ed7619ea7e26cf8b353761a1ac1f23d6022",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_2025_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_2025_trim4_csv.zip",
+      "sha256": "e675b41bde4fb3c183a0abd067738109c6aaf30ed314bc9fc548669fb8a1565d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_2025_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_325_fd_c_bas_amp_pdf",
+      "archivo": "enoe_325_fd_c_bas_amp.pdf",
+      "sha256": "589b8e51cead1c3dbba5db68f4137aff23bbd9a1e1bd9c118e5f00fca148e9a2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/enoe_325_fd_c_bas_amp.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_ampliado_v5_pdf",
+      "archivo": "c_amp_v5.pdf",
+      "sha256": "4de904621507815e5b7c5af6262fe3202f5df4a0f3c4985d738d9f971dd70491",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_amp_v5.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_ampliado_v6a_pdf",
+      "archivo": "c_amp_v6a.pdf",
+      "sha256": "5e0cc786566fa6c891c53bb14f7e110ce205ff7da43c25a5f781d6b38218046c",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_amp_v6a.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_basico_v5_pdf",
+      "archivo": "c_bas_v5.pdf",
+      "sha256": "1ab575a4d098991cca2e5a5355b32eb1f91a24d7625ec1778164693532287a3f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_bas_v5.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_basico_v7_pdf",
+      "archivo": "c_bas_v7.pdf",
+      "sha256": "7ee25f114a493cd4136bb086f7fa3a2f6db1fe7300dc5839ec2a7de9c3efa698",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_bas_v7.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_sociodemografico_v4_pdf",
+      "archivo": "c_sdem_v4.pdf",
+      "sha256": "0c918e799a8ed1d3764b1e0a390a868138228cbec82b5aa723f4b3a2e2f2d00f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_sdem_v4.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_cuestionario_sociodemografico_v5a_pdf",
+      "archivo": "c_sdem_v5a.pdf",
+      "sha256": "e306c67a6551c08c3c4d65586a09cee1356e7017699c54deed6fdfe9c73708cf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/c_sdem_v5a.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_amp_v1_pdf",
+      "archivo": "fd_c_amp_v1.pdf",
+      "sha256": "cf408338e90516148a00a644921dd8b9fbbbb297d30b0008906d3020cb783828",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v1.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_amp_v2_pdf",
+      "archivo": "fd_c_amp_v2.pdf",
+      "sha256": "41257e6f04014146e0f9cdfc0d92bdcdd5c2c1b63bb8b5c9d289944ca0f71f79",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v2.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_amp_v3_pdf",
+      "archivo": "fd_c_amp_v3.pdf",
+      "sha256": "027d2ff97cc7cafcba99c4e9524fbf77254dfcb46dd7933880315466f17a39d1",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v3.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_amp_v4_pdf",
+      "archivo": "fd_c_amp_v4.pdf",
+      "sha256": "3a53af8acbf312f0cf9164c44ceab624a6b31949ce758d756e0ceb519124b9d7",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_amp_v4.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_bas_amp_15ymas_pdf",
+      "archivo": "fd_c_bas_amp_15ymas.pdf",
+      "sha256": "f2f6cc39d88a10c89a819727f371150e1981940fb162c5563338debee0b01224",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/doc/fd_c_bas_amp_15ymas.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_bas_amp_conapo_pdf",
+      "archivo": "fd_c_bas_amp_conapo.pdf",
+      "sha256": "b30dcfe76a5af601000c28d9f5101f26251ff83b948b722665871adb3ccdb5d2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_amp_conapo.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_bas_v1_pdf",
+      "archivo": "fd_c_bas_v1.pdf",
+      "sha256": "775f0f00ab5d247aef6b20e77bd6ec57ab81db50adae6a13646c3f82980ae8cc",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_v1.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_fd_c_bas_v2_pdf",
+      "archivo": "fd_c_bas_v2.pdf",
+      "sha256": "21e1d7c4316a63c1cae2dd8882b2a6e99b43567379b9c176a3e2781331561bbe",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/14ymas/doc/fd_c_bas_v2.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2020_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2020_trim3_csv.zip",
+      "sha256": "924e18a5fc1f4794cf5d04ac3b89fd3ab16d555626f91fe88e22ca097d04dad3",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2020_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2020_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2020_trim4_csv.zip",
+      "sha256": "5d6ce8a6dcc2cace4a1e6e5cbaf9d9c61ad7bbbfa3217ecc9cd2184e2093f6f3",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2020_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2021_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2021_trim1_csv.zip",
+      "sha256": "208c114079eb368201c281e1e84ce34ad1c885a738f63da4dad04e85bd2c0a52",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2021_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2021_trim2_csv.zip",
+      "sha256": "a9bfb1f1291217714fd27a0dc5d30ee39064ad99f637867808d445294a25b96b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2021_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2021_trim3_csv.zip",
+      "sha256": "853512291ddb62ea3e19caff5b008e39bddbc65f8cddd98fe8b5d36e75dec00d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2021_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2021_trim4_csv.zip",
+      "sha256": "1baabe0098ce5b1bdeeb4bba8eebe2d4b51eedae3745bc48dad1cd199b736a9b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2021_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2022_1t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2022_trim1_csv.zip",
+      "sha256": "5d2792afcac72a3e2c049701bcfeb8111a565d80aed099df5a9b4b5a495fb7d6",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim1_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2022_2t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2022_trim2_csv.zip",
+      "sha256": "19e194fbdcc70549db19b718c6581ec2fadce883e9683369424bf758f76b705a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim2_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2022_3t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2022_trim3_csv.zip",
+      "sha256": "fc47029e5b11943d3006929252e2d378c5f555bbaabe67d704a89c81878596e5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim3_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enoe_n_2022_4t_microdatos",
+      "archivo": "enoe_microdatos_post2019/enoe_n_2022_trim4_csv.zip",
+      "sha256": "1c22244fcd4a9f11625fa3cdb68d8c10f5143ba84c076b4e99a61ba822687e5d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enoe/15ymas/microdatos/enoe_n_2022_trim4_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encargoEG_ruptura_enoe_y_descriptores_pendientes_navegador",
+      "archivo": null,
+      "sha256": null,
+      "url": null,
+      "estado_acceso": "AUSENTE"
+    }
+  ],
+  "alcance": "26273 identidades; punto y soporte determinista; IC/CV/publicabilidad pendientes",
+  "punto": "sum(w*y)/sum(w);universo/códigos/ejes método humano+matriz",
+  "punto_suficiente_desde_fuente": true,
+  "ic": "D15:i_ola,orden marcoUPM,quantile,orden RNG no definidos",
+  "publicabilidad": "Pendiente95%réplicas válidas y CV; n/Kish/UPM sí calculables",
+  "propuesta_ic": "Olas cronológicas índice0;estratos/UPM texto lexicográfico Unicode;PCG64(42+i_ola);200réplicas;iterar réplica luego estrato;mh extracciones uniformes;factor multiplicidad;cuantil lineal tipo7;SDddof1;plan común por ola",
+  "accion": "Entregar sucesor punto parcial sin etiqueta publicable;firma previa a método inferencial nuevo",
+  "fuentes_matriz": [
+    {
+      "ruta": "data/enoe-olas-elegibles-preparacion-v1_0.tsv",
+      "sha256": "bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b"
+    },
+    {
+      "ruta": "data/enoe-reactivos-olas-v1_0.tsv",
+      "sha256": "735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463"
+    }
+  ]
+}

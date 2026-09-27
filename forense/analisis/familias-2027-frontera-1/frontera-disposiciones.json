@@ -1,0 +1,44 @@
+[
+  {
+    "familia": "ENSU-CAMPECHE-INSEGURIDAD",
+    "objetivo": "2027T4",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "oro": "2025T4",
+    "oro_sha256": "43b294091a6da33855498d0a7bd22134ada513796456b27b7bdcd30d55e00e94",
+    "p0": {
+      "1": 0.2683815316940736,
+      "2": 0.529225416499869
+    },
+    "se_taylor": {
+      "1": 0.03935014068206387,
+      "2": 0.05593500304140684
+    },
+    "singleton": {
+      "1": 0,
+      "2": 0
+    },
+    "decision": "NO-LANZAR-BAJO-CONTRATO-PROPUESTO",
+    "motivo": "Potencia insuficiente para banda5pp"
+  },
+  {
+    "familia": "ENOE-INFORMALIDAD",
+    "objetivo": "2027T4",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "oro": "2024T4",
+    "oro_sha256": "9174bad5645deff3f9f6b04b1a6c8a8dc6bc20983d16779e9db374aa7ad96258",
+    "p0": {
+      "1": 0.5395718673838116,
+      "2": 0.5515085438281366
+    },
+    "se_taylor": {
+      "1": null,
+      "2": null
+    },
+    "singleton": {
+      "1": 39,
+      "2": 39
+    },
+    "decision": "NO-LANZAR-BAJO-CONTRATO-PROPUESTO",
+    "motivo": "39 estratos singleton sin regla de inferencia acreditada"
+  }
+]

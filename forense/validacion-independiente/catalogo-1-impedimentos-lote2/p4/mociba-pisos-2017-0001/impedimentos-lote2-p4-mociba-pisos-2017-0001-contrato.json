@@ -1,0 +1,73 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR-NO-ADOPTADO",
+  "identidad_historica": "mociba-pisos-2017-0001",
+  "sucesor_contrato": "mociba-pisos-2017-0001-tolerancia-v3-propuesta",
+  "estimadores": 123,
+  "contenedor_testigo_sha256": "1ce19efe91c95106a5cd246cad621e05aef49e0118eedfe03a5f2d8d49245349",
+  "punto": {
+    "unidad": "proporcion [0,1]",
+    "abs": 1e-08,
+    "rel": 0,
+    "comparacion": "abs(a-b)<=1e-8; ambos finitos; estados/null exactos; nunca redondear antes"
+  },
+  "enteros": {
+    "unidad": "personas/UPM/estratos/replicas/estados",
+    "comparacion": "igualdad exacta de enteros; bool no es entero; nulo sólo contra nulo"
+  },
+  "denominador_ponderado": {
+    "unidad": "personas expandidas",
+    "abs": 1e-08,
+    "rel": 1e-12,
+    "comparacion": "abs(a-b)<=max(1e-8,1e-12*max(abs(a),abs(b))); finitos no negativos"
+  },
+  "ic": {
+    "estado": "CONTRATO-INFERENCIAL-SEPARADO-NO-AUTORIZA-COMPARACION-HISTORICA",
+    "documento": "../impedimentos-lote2-p4-contrato-inferencial-propuesto.md",
+    "extremos_abs_si_plan_identico": 1e-08,
+    "rel": 0,
+    "equivalencia_estadistica": "NO-DEFINIDA-NO-COMPARAR",
+    "gate": "firma previa de contrato y plan de ambos; si no existe igualdad documentada de plan, IC no evaluado, no imputar identidad por semilla"
+  },
+  "materializacion": "NO-EJECUTAR; firma tolerancia + acceso/disponibilidad + revisión semántica independientes",
+  "cohorte": "v1.1 y overlay vigentes; nueva cohorte sólo por acto; no 7045 ni 381 automático",
+  "fuentes_humanas": {
+    "contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/mociba-pisos-2017-0001/mociba-pisos-2017-0001-entradas-v2.tar.gz",
+    "sha256": "1ce19efe91c95106a5cd246cad621e05aef49e0118eedfe03a5f2d8d49245349",
+    "miembros": {
+      "metodo": {
+        "miembro": "metodo.md",
+        "sha256": "84a51411dc68921249d2a995add99e5a43f2b93b3d049b9fd22778eaeda721a2"
+      },
+      "estimandos": {
+        "miembro": "estimandos.tsv",
+        "sha256": "b9877515392627401806f8281ab2ee849d60330e10479b04cc5add36101f8ca8"
+      },
+      "insumos": {
+        "miembro": "insumos.json",
+        "sha256": "5ee66cd22721f072b65d8945bdb069ed8d8cd3c5e076627f4a0eabed272c8227"
+      }
+    }
+  },
+  "documentos_exactos": [
+    {
+      "id": "mociba2017-fd",
+      "sha256": "636f2df5f630bb0b894c20d7082628a91c626826528aead3c12880eff9179537",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_fd.xlsx",
+      "salida": "/tmp/astra6-c1-impedimentos-lote2-p4-documentos/mociba2017-fd.xlsx",
+      "tipo": "XLSX-FD-PUBLICO"
+    },
+    {
+      "id": "mociba2017-cuestionario",
+      "sha256": "856cb10f7b5d226757d0602b9998c07b029fdfed18a0ca8f10d65cbab6a45101",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_cuestionario.pdf",
+      "salida": "/tmp/astra6-c1-impedimentos-lote2-p4-documentos/mociba2017-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO"
+    }
+  ],
+  "revision_semantica_documental": "EJECUTADA: FD ola/tipo/variables y formulario ventana/filtros; informe ../impedimentos-lote2-p4-documentos-resueltos.json",
+  "pendientes_actuales": [
+    "firma tolerancia por contenido antes de comparar",
+    "acceso/disponibilidad microdatos separados de documento público",
+    "plan inferencial humano histórico ausente; IC no comparar"
+  ]
+}

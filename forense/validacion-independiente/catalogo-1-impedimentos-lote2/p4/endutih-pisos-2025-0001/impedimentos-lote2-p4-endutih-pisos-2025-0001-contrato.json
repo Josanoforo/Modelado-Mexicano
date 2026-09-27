@@ -1,0 +1,74 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR-NO-ADOPTADO",
+  "identidad_historica": "endutih-pisos-2025-0001",
+  "sucesor_contrato": "endutih-pisos-2025-0001-tolerancia-v3-propuesta",
+  "estimadores": 470,
+  "contenedor_testigo_sha256": "04f8fa20459a2d4cc945057359e84330b9d73a4b4abc430cef107ceb0ed780ea",
+  "punto": {
+    "unidad": "proporcion [0,1]",
+    "abs": 1e-08,
+    "rel": 0,
+    "comparacion": "abs(a-b)<=1e-8; ambos finitos; estados/null exactos; nunca redondear antes"
+  },
+  "enteros": {
+    "unidad": "personas/UPM/estratos/replicas/estados",
+    "comparacion": "igualdad exacta de enteros; bool no es entero; nulo sólo contra nulo"
+  },
+  "denominador_ponderado": {
+    "unidad": "personas expandidas",
+    "abs": 1e-08,
+    "rel": 1e-12,
+    "comparacion": "abs(a-b)<=max(1e-8,1e-12*max(abs(a),abs(b))); finitos no negativos"
+  },
+  "ic": {
+    "estado": "CONTRATO-INFERENCIAL-SEPARADO-NO-AUTORIZA-COMPARACION-HISTORICA",
+    "documento": "../impedimentos-lote2-p4-contrato-inferencial-propuesto.md",
+    "extremos_abs_si_plan_identico": 1e-08,
+    "rel": 0,
+    "equivalencia_estadistica": "NO-DEFINIDA-NO-COMPARAR",
+    "gate": "firma previa de contrato y plan de ambos; si no existe igualdad documentada de plan, IC no evaluado, no imputar identidad por semilla"
+  },
+  "materializacion": "NO-EJECUTAR; firma tolerancia + acceso/disponibilidad + revisión semántica independientes",
+  "cohorte": "v1.1 y overlay vigentes; nueva cohorte sólo por acto; no 7045 ni 381 automático",
+  "fuentes_humanas": {
+    "contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/endutih-pisos-2025-0001/endutih-pisos-2025-0001-entradas-v2.tar.gz",
+    "sha256": "04f8fa20459a2d4cc945057359e84330b9d73a4b4abc430cef107ceb0ed780ea",
+    "miembros": {
+      "metodo": {
+        "miembro": "metodo.md",
+        "sha256": "fbe5c69386007cd1463ce40199cc58a8148e601bad0dc8854aece1821c0b661f"
+      },
+      "estimandos": {
+        "miembro": "estimandos.tsv",
+        "sha256": "7d4e18e8d8a349e755e286786e045100590fd82ae126650097d66e87f41f75d7"
+      },
+      "insumos": {
+        "miembro": "insumos.json",
+        "sha256": "6b61909e42566dc41757d0ccea3ec167bea3c8ba38554afa6783c63b4bee04b2"
+      }
+    }
+  },
+  "documentos_exactos": [
+    {
+      "id": "endutih2025-fd",
+      "sha256": "d02caecea044fa5f5089760586e4f1fa6d91341a0462fe19fdc70caefab1a9ce",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/microdatos/fd_endutih2025.xlsx",
+      "salida": "/tmp/astra6-c1-impedimentos-lote2-p4-documentos/endutih2025-fd.xlsx",
+      "tipo": "XLSX-FD-PUBLICO"
+    },
+    {
+      "id": "endutih2025-cuestionario",
+      "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf",
+      "salida": "/tmp/astra6-c1-impedimentos-lote2-p4-documentos/endutih2025-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO"
+    }
+  ],
+  "revision_semantica_documental": "EJECUTADA: FD ola/tipo/variables y formulario ventana/filtros; informe ../impedimentos-lote2-p4-documentos-resueltos.json",
+  "pendientes_actuales": [
+    "firma tolerancia por contenido antes de comparar",
+    "acceso/disponibilidad microdatos separados de documento público",
+    "plan inferencial humano histórico ausente; IC no comparar",
+    "ENDUTIH2025 reserva vigente no levantada"
+  ]
+}

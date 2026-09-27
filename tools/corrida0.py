@@ -5057,6 +5057,41 @@ def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
     return {**vistas, "corridas": corridas, "resultados": resultados, "usos": usos}
 
 
+def _pospone_no_publicadas(vistas: dict, lote: set, pospone: set) -> dict:
+    """ACTO GEN2-TUBERIA-CI-TIEMPO-2 · P2: `--escribe --lote <trozo>
+    --pospone <resto>` publica el lote por TROZOS. Las filas de un CALC
+    pospuesto que NUNCA se publicaron se quedan fuera de esta escritura
+    (siguen ausentes de `corridas.tsv`, así que `lote_desde_asientos.py
+    --incluir-pendientes` las vuelve a ofrecer en el trozo siguiente): se
+    difieren, no se excluyen. Posponer algo YA publicado, o algo que
+    también está en el lote, es PARO -- trocear no retira evidencia (E.7).
+    Defecto que atrapa (run 36291122052, 27/sep/2026): con el lote entero
+    de 121 CALC el job moría a los 30 min y la base no avanzaba nunca; sin
+    posponer, el primer trozo publicaba de golpe los 121 sin su `verify`."""
+    if not pospone:
+        return vistas
+    choque = sorted(lote & pospone)
+    if choque:
+        raise ParoRegistro(f"POSPONE-EN-LOTE: {', '.join(choque)} está en "
+                           f"--lote y en --pospone a la vez")
+    publicadas = ({f["corrida_id"] for f in _leer_tsv_derivado(VISTA_CORRIDAS)}
+                  if VISTA_CORRIDAS.exists() else set())
+    ya = sorted({f["spec_id"] for f in vistas["corridas"]
+                 if _en_lote(f, pospone) and f["corrida_id"] in publicadas})
+    if ya:
+        raise ParoRegistro(f"POSPONE-PUBLICADA: {', '.join(ya)} ya está en "
+                           f"la vista publicada; posponer no la retira")
+    fuera = {f["corrida_id"] for f in vistas["corridas"] if _en_lote(f, pospone)}
+    resultados = [f for f in vistas["resultados"] if f["corrida_id"] not in fuera]
+    vivos = {f["resultado_id"] for f in resultados}
+    quitados = {f["resultado_id"] for f in vistas["resultados"]
+                if f["corrida_id"] in fuera} - vivos
+    return {**vistas,
+            "corridas": [f for f in vistas["corridas"] if f["corrida_id"] not in fuera],
+            "resultados": resultados,
+            "usos": [f for f in vistas["usos"] if f["resultado_id"] not in quitados]}
+
+
 def _referencia_valores_largos(vistas: dict, escribe: bool) -> dict:
     """ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-B: todo `valor` de
     más de 1 KB sale de `resultados.tsv` a `<CALC>/valores-vista/` y la celda lo
@@ -5072,7 +5107,8 @@ def _referencia_valores_largos(vistas: dict, escribe: bool) -> dict:
 
 
 def registro(escribe: bool = False, verifica: bool = False,
-             imprime: bool = True, lote=None, fuentes: bool = False) -> dict:
+             imprime: bool = True, lote=None, fuentes: bool = False,
+             pospone=None) -> dict:
     """FP-359: la fotocopiadora se desarma -- `escribe` por defecto es
     `False`. Escribir las tres vistas en disco exige el `True` explicito
     (`--escribe` en la CLI); sin el, esta funcion deriva, valida y --si
@@ -5094,6 +5130,8 @@ def registro(escribe: bool = False, verifica: bool = False,
         # que pisar salvo que el lote mismo lo autorice.
         if lote_autorizado:
             vistas = _acota_vistas_al_lote(vistas, lote_autorizado)
+        vistas = _pospone_no_publicadas(vistas, lote_autorizado,
+                                        _lote_autorizado(pospone))
         _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
         vistas = _referencia_valores_largos(vistas, escribe=True)
         from vista import normaliza_constantes_resultados
@@ -5150,7 +5188,8 @@ def cmd_registro(args) -> int:
         registro(escribe=getattr(args, "escribe", False),
                  verifica=getattr(args, "verifica", False),
                  lote=getattr(args, "lote", None),
-                 fuentes=getattr(args, "fuentes", False))
+                 fuentes=getattr(args, "fuentes", False),
+                 pospone=getattr(args, "pospone", None))
     except ParoRegistro as exc:
         print(f"PARO · {exc}", file=sys.stderr)
         print("no se escribio ninguna vista", file=sys.stderr)
@@ -5465,6 +5504,12 @@ def construye_parser() -> argparse.ArgumentParser:
                          "ninguna transicion de resultado_replay/contexto_replay "
                          "sobre una corrida ya publicada pasa: `--escribe` PARA "
                          "y lista los ids. No existe `--force`")
+    # ACTO GEN2-TUBERIA-CI-TIEMPO-2 · P2: publicación por trozos.
+    rg.add_argument("--pospone", action="append", metavar="CALC-A,CALC-B",
+                    help="con --escribe: CALC sellados AÚN NO publicados que "
+                         "se difieren al trozo siguiente (no se escriben ahora; "
+                         "siguen pendientes). PARA si alguno ya está publicado "
+                         "o también en --lote")
     rg.add_argument("--fuentes", action="store_true",
                     help="imprime de donde sale cada veredicto de replay "
                          "proyectado (asiento, fecha, entorno, alcance, nota) "

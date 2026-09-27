@@ -1,0 +1,95 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "regla_comun": "Sesión nueva recibe spec humana/cuestionario/FD y fuentes abiertas. Reconstruye padre con código propio; congela artefacto padre y SHA antes transformar. No consume valores esperados ni producto04. Comparador posterior tiene referencia histórica separada. Un paquete conjunto se prepara ahora; congelación padre sucede dentro de esa sesión, no espera resultados04.",
+  "incertidumbre": "q=1-p;ICq=[1-hi,1-lo]. Decimal sobre texto numérico propio padre. PadreICnull mantiene ICnull/D15. No invertir punto distinto de unidad/universo ni tratar ausencia como0. Convenciones bootstrap históricas faltantes permanecenD15; proponer marco texto lexicográfico,réplica luego estrato,cuantil lineal tipo7 requiere firma nueva y no equivale al congelado.",
+  "cadenas": [
+    {
+      "identidad": "encig-0001-complementos-derivado-0001",
+      "padre": "encig-0001",
+      "fuente_metodo": "#1185/entradas/encig-0001/metodo.md",
+      "pares": [
+        {
+          "derivado": "RESULT-ENCIGDER-A-Q",
+          "padre": "RESULT-ENCIG-MOR-A-P-SOL1",
+          "unidad": "persona18+",
+          "universo": "P8_3_1 en1,2;FAC_P18>0",
+          "y": "P8_3_1=1"
+        },
+        {
+          "derivado": "RESULT-ENCIGDER-B-PRE-SD-Q",
+          "padre": "RESULT-ENCIG-MOR-B-P-PRE-SD",
+          "unidad": "evento trámite SD",
+          "universo": "sec7×sec8 ID_TRA exacto;P8_4 en0,1;P7_3=1;FAC_TRA>0",
+          "y": "P8_4=1"
+        },
+        {
+          "derivado": "RESULT-ENCIGDER-B-DIG-SD-Q",
+          "padre": "RESULT-ENCIG-MOR-B-P-DIG-SD",
+          "unidad": "evento trámite SD",
+          "universo": "sec7×sec8 ID_TRA exacto;P8_4 en0,1;P7_3 en3,4,5;FAC_TRA>0",
+          "y": "P8_4=1"
+        },
+        {
+          "derivado": "RESULT-ENCIGDER-C-Q",
+          "padre": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+          "unidad": "evento trámite luz",
+          "universo": "N_TRA=1,P7_3 en1,2,4,5,6;FAC_TRA>0",
+          "y": "P7_3 en4,5"
+        }
+      ],
+      "transformacion": "q=1-p mismo recorte;no convierte canal físico en rechazo psicológico;sin deduplicar eventos",
+      "ic_padre": "UPM_DIS dentroEST_DIS;2000réplicas;PCG64seed20260909;faltan convenciones orden, no inventar históricamente"
+    },
+    {
+      "identidad": "encuci-0001-complemento-derivado-0001",
+      "padre": "encuci-0001",
+      "fuente_metodo": "#1185/entradas/encuci-0001/metodo.md",
+      "pares": [
+        {
+          "derivado": "RESULT-ENCUCIDER-A-Q",
+          "padre": "RESULT-ENCUCI-A-P-CUALQUIERA",
+          "unidad": "persona seleccionada",
+          "universo": "AlgúnAP5_16_1..10=1,AP5_17/18 ambos en1,2,FAC_SEL>0",
+          "y": "AP5_17=1 o AP5_18=1"
+        }
+      ],
+      "transformacion": "q=1-p;sin solicitud Y sin entrega bajoU_A, no población completa",
+      "ic_padre": "Método humano ENCUCI omite convención completa seed/rng/orden;D15IC;no completar de productor"
+    },
+    {
+      "identidad": "envipe-res0028-u4-derivado-0001",
+      "padre": "envipe-0001",
+      "fuente_metodo": "#1185/entradas/envipe-0001/metodo.md",
+      "pares": [
+        {
+          "derivado": "RESULT-ENVIPE-RES0028-Q-C2-U4",
+          "padre": "RESULT-ENVIPE-DEN-P-C2-U4",
+          "unidad": "persona U4",
+          "universo": "≥1delito U1:BPCOD05..15,BP1_20=2,BP1_23 en01..08;ID_PER enlaza tper_vic2 único,FAC_ELE>0",
+          "y": "max porpersona de indicadorBP1_23 en01,02,06,08 en delitosU1"
+        }
+      ],
+      "transformacion": "q=1-p:ningún delito elegibleC2;no confianza literal;no proporción por delito;no usar FAC_DEL",
+      "ic_padre": "UPM_DIS dentroEST_DIS;2000réplicas;PCG64seed20260909;IC limitado singleton;convenciones orden pendientes"
+    },
+    {
+      "identidad": "horizonte-via-derivados-0001-v1_1",
+      "padres": [
+        "enif-0001",
+        "enif-0002",
+        "tiene-ahorros-0001-v1_1"
+      ],
+      "fuentes_humanas": "Métodos1185 y AMAI propuesta de estaP1 para convención completa futura F/I",
+      "salidas": {
+        "RESULT-HVD-A-AMBAS-VIAS": "P(F)+P(I)-P(F∪I)",
+        "RESULT-HVD-A-SOLO-FORMAL": "P(F)-P(F∩I)",
+        "RESULT-HVD-A-SOLO-INFORMAL": "P(I)-P(F∩I)",
+        "RESULT-HVD-A-NO-AHORRA": "1-P(F∪I)",
+        "RESULT-HVD-A-HORIZONTE-NO-CORTO-NO-TRABAJA": "1-P(P4_10 en1,2|U_NT)"
+      },
+      "universos": "F=algúnP5_6_1..9=1;I=algúnP5_1_1..6=1;F,I,unión tienen mismo pesoFAC_PER y universo persona18+. U_NT=(P3_8=8 oP3_9=7),P4_10 en1..5,FAC_PER>0;no usarP3_13blanco como no trabaja.",
+      "guardias": "Verificar identidad1 de partición y valores[0,1] con Decimal sin forzar ni normalizar. Distinto universo/peso o falta padres => no estimable; no asumir independencia.",
+      "ic": "SIN-IC-PROPIO por contrato histórico inclusión-exclusión;no combinar extremos como IC de diferencia;accesoENIF pendienteP3"
+    }
+  ]
+}
