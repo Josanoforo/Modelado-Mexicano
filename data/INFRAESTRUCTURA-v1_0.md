@@ -1066,3 +1066,11 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ## Reports v2 · género, violencia ambiental y salud mental (`ACTO ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`)
 
 Tablas y productores independientes en `forense/analisis/reports-v2/genero-violencia-salud-1/genero/`, `violencia/` y `salud/`: decisiones por afirmación, cobertura de originales/mapa, evidencia y estados por identidad. Consumidores: tres homónimos en corpus/reports-v2 y `forense/analisis/reports-v2/genero-violencia-salud-1/indice-local.md`. Productor/verificador local `forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py`; deriva conteos desde decisiones explícitas, comprueba cifras y denominadores sin convertir todos los dígitos en estimaciones. No modifica el mapa, CALC ni índice global. ADR-260926-ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1-92f8-01.
+
+## GEN2-RECIBO-ASTRA6-1 · recibo de validación independiente C1
+
+| Tabla | Productor | Contenido | Consumidor | Límite |
+|---|---|---|---|---|
+| `forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv` | `python3 tools/recibo/comparaciones.py --lote <lote> --salida <carpeta>` | una fila por llave del lote: estado del recibo, componente, efecto, artefacto, causa, magnitudes, fila de catálogo v1.2 / piso v1.1, recomendación | CATALOGO-V1-3-1; recibos C1 siguientes | recibo, no adopción; lote 1 (ENDIREH) |
+| `…--ceguera.tsv` | ídem | rótulo de ceguera por paquete con evidencia a–e | recibos C1 siguientes | evidencia local, sin atestación externa |
+| `data/corrida0/validaciones-independientes.tsv` (filas añadidas) | a mano, por el acto | NO-PASA en 6 RESULT ENDIREH TABLA con ref y sha de su comparación | `corrida0 registro` (overlay) | no altera origen, rol ni aptitud |
