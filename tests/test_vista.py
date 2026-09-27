@@ -205,6 +205,19 @@ class ConstantesResultado(unittest.TestCase):
             with self.assertRaises(ValueError):
                 vista.restaura_constantes_resultado(fila, {"C1": {"constantes_resultados": texto}})
 
+    def test_migracion_de_filas_publicadas_fuera_del_lote(self):
+        import corrida0
+        original = self.fixture()
+        legado = {**original,
+                  "corridas": [corrida0._rellena_columnas_nuevas(f, ["corrida_id", "constantes_resultados"])
+                               for f in original["corridas"]],
+                  "resultados": [corrida0._rellena_columnas_nuevas(f, [*f, "constantes_corrida"])
+                                 for f in original["resultados"]]}
+        normal = vista.normaliza_constantes_resultados(legado)
+        corridas = {f["corrida_id"]: f for f in normal["corridas"]}
+        self.assertEqual([vista.restaura_constantes_resultado(f, corridas)
+                          for f in normal["resultados"]], original["resultados"])
+
 
 if __name__ == "__main__":
     unittest.main()

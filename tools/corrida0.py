@@ -5011,7 +5011,10 @@ def _rellena_columnas_nuevas(fila: dict, columnas: list[str]) -> dict:
     las columnas que la fila SÍ trae no se tocan -- sigue siendo la
     versión publicada, byte a byte, para todo lo que su header ya cubría."""
     faltantes = [c for c in columnas if c not in fila]
-    return {**fila, **{c: NO_DECLARADO for c in faltantes}} if faltantes else fila
+    # Estas dos columnas describen almacenamiento, no evidencia: el formato
+    # anterior no tenía constantes compactadas ni un mapa que restituir.
+    defaults = {"constantes_corrida": "", "constantes_resultados": "{}"}
+    return {**fila, **{c: defaults.get(c, NO_DECLARADO) for c in faltantes}} if faltantes else fila
 
 
 def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:

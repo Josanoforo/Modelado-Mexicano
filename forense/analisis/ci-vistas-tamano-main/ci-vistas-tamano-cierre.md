@@ -8,8 +8,10 @@ Ocho campos de texto pueden guardarse una vez por corrida si todas sus filas lle
 
 EJECUTADO: derivación sin verifica ni escribe, valor por referencia sin escribir, normalización y comparación exacta de cada diccionario completo antes/después de restaurar: 233428 filas idénticas. Texto que produciría el escritor: resultados.tsv 50787654 bytes (48.43 MiB), corridas.tsv 16516303 bytes (15.75 MiB). Constancia en ci-vistas-tamano-medicion.json. No es recálculo científico ni nuevo recibo independiente.
 
-EJECUTADO: tests/test_vista.py y tests/test_valor_por_referencia.py: 14 pasan, incluidos vacíos variables, Unicode, corrida única, idempotencia, los lectores y metadata inválida/ausente. Puerta rápida: 0 FAIL, 598 WARN, baseline VERDE, sin congelar baseline. git diff --check pasa. La guarda mantiene un margen limitado de tamaño; un crecimiento futuro puede exigir otra normalización, no aumentar el límite automáticamente.
+EJECUTADO: tests/test_vista.py y tests/test_valor_por_referencia.py: 15 pasan, incluidos vacíos variables, Unicode, corrida única, idempotencia, los lectores y metadata inválida/ausente. Puerta rápida: 0 FAIL, 598 WARN, baseline VERDE, sin congelar baseline. git diff --check pasa. La guarda mantiene un margen limitado de tamaño; un crecimiento futuro puede exigir otra normalización, no aumentar el límite automáticamente.
 
 El PR contiene la corrección revisable; la mesa decide la fusión. La publicación de vistas necesita ejecutar el canal sobre main con la corrección incorporada.
 
 Pruebas de integración EJECUTADAS: registro de lote estricto, linaje superado y overlay de validación independiente: 8 pasan y 2 subtests pasan.
+
+EJECUTADO también el lote exacto de 121 CALC del log fallido, conservando las filas publicadas ajenas mediante _acota_vistas_al_lote: 233428 filas se restituyen exactamente; resultados.tsv 50792947 bytes (48.44 MiB). La migración de columnas de almacenamiento anteriores usa vacío/{} y tiene regresión propia. No se invocó --escribe sobre derivados del repo.
