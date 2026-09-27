@@ -1,0 +1,21 @@
+{
+  "main_incorporado": "d4bc75437a11ef6cd07eba24618853e5a254e85d",
+  "pruebas_dirigidas": {
+    "ejecutadas": 12,
+    "estado": "PASS",
+    "comando": "python3 -m unittest discover -s forense/validacion-independiente/catalogo-1-reempaqueta-ventana/pruebas -q"
+  },
+  "reproduccion_contenedores": "5 hashes idénticos con comprobación de contenedor original y no sobrescritura distinta",
+  "gate_rapido": {
+    "estado": "0 FAIL",
+    "advertencias": 627,
+    "comando": "python3 tests/check.py --rapido"
+  },
+  "archivos_relevantes": {
+    "procedencia/mapa-ventanas.tsv": "1486a565cc628090be3112a6e097a2a65354dc14da95bf0d58040644e8785e3f",
+    "permisos/matriz-permisos.json": "568c0ad3bd66af5e2e3e8ad9557b905fe1610a76b5cf4e17bf1999e6a643ce1c",
+    "entrega-por-paquete.tsv": "c5436b92378b5c8321b7b3b9a6a5a4f13a1375e7d462f217af5b2d21efe5c0c6",
+    "herramientas/transporte_v1.py": "2391af2400bb9db7e9cb9604e0d5a9cc27c90a8d34742c5143a53f782bcab7eb",
+    "herramientas/materializar_ventana_v1.py": "559b330788efd2e36b4a141984cee9a8db166ae151ddf6984e8f1be59705b97e"
+  }
+}

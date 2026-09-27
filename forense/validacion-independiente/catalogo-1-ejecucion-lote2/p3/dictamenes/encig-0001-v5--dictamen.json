@@ -1,0 +1,116 @@
+{
+  "paquete": "encig-0001-v5",
+  "dictamen_utc": "2026-09-27T05:09:43.975418+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975"
+    ]
+  },
+  "original_sha256": "5e90daa92043f5171a7b82e286439f1b183e72f799c42dd9a3ae880962022624",
+  "commit_original": "26c684d16a5e0e9443a240587139343770212f56",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENCIG-MOR-A-P-SOL1",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {
+        "ic95_inf": {
+          "delta": 2.2548472403544073e-05,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.00028201640558039864,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENCIG-MOR-B-P-DIG-SD",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {
+        "ic95_inf": {
+          "delta": 0.0003755896244522633,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.00035580980972746423,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENCIG-MOR-B-P-PRE-SD",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {
+        "ic95_inf": {
+          "delta": 0.001340742151319227,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.001859646493104522,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {
+        "ic95_inf": {
+          "delta": -0.0005874286176904553,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": -0.0011313535518204798,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente"
+      ]
+    }
+  ]
+}

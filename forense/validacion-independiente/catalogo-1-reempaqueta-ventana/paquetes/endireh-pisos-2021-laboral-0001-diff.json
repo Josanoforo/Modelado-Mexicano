@@ -1,0 +1,84 @@
+{
+  "paquete": "endireh-pisos-2021-laboral-0001",
+  "original": "/home/pc0/mm-astra6-c1-reempaqueta-ventana-1/forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-laboral-0001/endireh-pisos-2021-laboral-0001-entradas.tar.gz",
+  "sha256_original": "c56fd015b88af8659d19e8f771a20bc81839500d51e28d1c5efd08b2a9fa6c6f",
+  "sucesor": "entradas/endireh-pisos-2021-laboral-0001/endireh-pisos-2021-laboral-0001-entradas-ventana-v1.tar.gz",
+  "sha256_sucesor": "a32351efd04157e2d24688990e1f9aeb40b525537e6bcf9d94bcb95f0670bd1e",
+  "identidades_originales": 100,
+  "identidades_sucesoras": 100,
+  "excluidas_por_alcance": [],
+  "miembros": [
+    {
+      "miembro": "encargo.md",
+      "sha256_original": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "sha256_sucesor": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estado": "IDENTICO"
+    },
+    {
+      "miembro": "endireh2021_cuestionario_a_pdf-semantica.json",
+      "sha256_original": null,
+      "sha256_sucesor": "faa793f13d4ff1a60e7cdb7e4e2c17fd5c247152cc5c2af2d36ac01c7cc62261",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "endireh2021_cuestionario_b_pdf-semantica.json",
+      "sha256_original": null,
+      "sha256_sucesor": "1085da4168fba65ef681da66bfc4ef3476142c09a7b3dd784f71a8cee12eae70",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "endireh2021_cuestionario_c_pdf-semantica.json",
+      "sha256_original": null,
+      "sha256_sucesor": "e2108ecff7e2e3254169837b216994eee4104279fb1015fbc26c09052144188e",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "endireh2021_fd_pdf-semantica.json",
+      "sha256_original": null,
+      "sha256_sucesor": "65041aad2b1d6f11efac5fd49b7539aa7959bf57058a3075614f792e47d68fa9",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "esquema.json",
+      "sha256_original": null,
+      "sha256_sucesor": "bab9a0edda055a9657cfdd4fe37bd4ef9f987b8368c5c0d5a92aa606a655ef66",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "estimandos.tsv",
+      "sha256_original": "49df7f05be614fc1a21142d3e181b90b09c3c2d9071f83f4e3f792a8943be1cc",
+      "sha256_sucesor": "72998f760fd66967ecef4be5b983163bb651d389eb47c2bca70e187e25d1e12b",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "faltantes.json",
+      "sha256_original": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "sha256_sucesor": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "estado": "IDENTICO"
+    },
+    {
+      "miembro": "insumos.json",
+      "sha256_original": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+      "sha256_sucesor": "d4d710d2f4da80c602b17656ab2d5b3083e5e2da3324d66394bdf7d18f076dcc",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "manifiesto.json",
+      "sha256_original": "30d35e427a0adc5cb2d5025e3ad56bc5c399d80ad7eca9043f137b5811667559",
+      "sha256_sucesor": "4df99c4429a9734f26a3daafeb22345049f6ea7ccbf230c41db497c43cf5a140",
+      "estado": "CAMBIO-TRANSPORTE"
+    },
+    {
+      "miembro": "metodo.md",
+      "sha256_original": "b12f54937658b5537c0ec53b87b4fb5cd6eee162c0e7fedc3dcec051fa7708c2",
+      "sha256_sucesor": "b12f54937658b5537c0ec53b87b4fb5cd6eee162c0e7fedc3dcec051fa7708c2",
+      "estado": "IDENTICO"
+    },
+    {
+      "miembro": "tolerancia.json",
+      "sha256_original": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "sha256_sucesor": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "estado": "IDENTICO"
+    }
+  ]
+}

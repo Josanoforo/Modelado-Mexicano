@@ -1,0 +1,875 @@
+[
+  [
+    "ESTRUCTURA DEL ARCHIVO DE EXPLOTACIÓN"
+  ],
+  [
+    "Encuesta Nacional Sobre la Dinámica de las Relaciones en los Hogares ENDIREH 2016"
+  ],
+  [
+    "ESTRUCTURA DEL ARCHIVO"
+  ],
+  [
+    "(1)",
+    "Número consecutivo de los campos."
+  ],
+  [
+    "(2)",
+    "Corresponde a la pregunta textual del instrumento de captación."
+  ],
+  [
+    "(3)",
+    "Código simbólico fácil de interpretar y de recordar."
+  ],
+  [
+    "(4)",
+    "Características del campo."
+  ],
+  [
+    "(5)",
+    "Símbolos convencionales, ya sea alfabético, numérico o iconográfico, asignados para facilitar la interpretación de una representación a otra."
+  ],
+  [
+    "(6)",
+    "Descripción de las opciones de respuesta de cada pregunta del instrumento de captación."
+  ],
+  [
+    "(7)",
+    "Es el número de caracteres que ocupa el campo."
+  ],
+  [
+    "Cons.",
+    "Pregunta",
+    "Mnemónico",
+    "Tipo",
+    "Rangos Válidos",
+    "Concepto",
+    "Long."
+  ],
+  [
+    "(1)",
+    "(2)",
+    "(3)",
+    "(4)",
+    "(5)",
+    "(6)",
+    "(7)"
+  ],
+  [
+    "Control de vivienda"
+  ],
+  [
+    1,
+    "ID_VIV",
+    "Caracter",
+    "01000001.01…3299999.99",
+    "Número de identificación de la vivienda",
+    10
+  ],
+  [
+    2,
+    "ID_MUJ",
+    "Caracter",
+    "01000001.01.01.01… 3299999.99.06.30",
+    "Número de identificación de la mujer elegida",
+    16
+  ],
+  [
+    3,
+    "UPM",
+    "Numérico",
+    "0100001…3299999",
+    7
+  ],
+  [
+    4,
+    "VIV_SEL",
+    "Numérico",
+    "01…99",
+    "Vivienda seleccionada",
+    2
+  ],
+  [
+    5,
+    "PROG",
+    "Caracter",
+    "001-999",
+    "Progresivo de vivienda",
+    3
+  ],
+  [
+    6,
+    "HOGAR",
+    "Numérico",
+    "1…6",
+    "Número de Hogar",
+    1
+  ],
+  [
+    7,
+    "CVE_ENT",
+    "Caracter",
+    "01-32",
+    "Catálogo de entidades",
+    2
+  ],
+  [
+    8,
+    "NOM_ENT",
+    "Caracter",
+    "Texto mínimo 3 caracteres",
+    100
+  ],
+  [
+    9,
+    "CVE_MUN",
+    "Caracter",
+    "001-999",
+    "Catálogo de municipios",
+    3
+  ],
+  [
+    10,
+    "NOM_MUN",
+    "Caracter",
+    "Texto mínimo 3 caracteres",
+    100
+  ],
+  [
+    "Número de renglón"
+  ],
+  [
+    11,
+    "N_REN",
+    "Numérico",
+    "01…30",
+    "2"
+  ],
+  [
+    "CODIGO DE RESULTADO VIVIENDA"
+  ],
+  [
+    12,
+    "COD_RES",
+    "Numérico",
+    "01,02",
+    "Código de resultado en la vivienda",
+    "2"
+  ],
+  [
+    "CODIGO DE RESULTADO DE LA  INDIVIDUAL "
+  ],
+  [
+    13,
+    "COD_RES_E",
+    "Numérico",
+    "1",
+    "Resultado de la entrevista individual",
+    1
+  ],
+  [
+    "II. CARACTERÍSTICAS SOCIODEMOGRÁFICAS DE RESIDENTES DE LA VIVIENDA"
+  ],
+  [
+    "Cons.",
+    "Pregunta",
+    "Mnemónico",
+    "Tipo",
+    "Rangos Válidos",
+    "Concepto",
+    "Long."
+  ],
+  [
+    "(1)",
+    "(2)",
+    "(3)",
+    "(4)",
+    "(5)",
+    "(6)",
+    "(7)"
+  ],
+  [
+    "2.1 Dígame el nombre de todas las personas que viven normalmente en esta vivienda (incluya a los niños chiquitos, ancianos y personas con discapacidad y trabajadores domésticos que duermen aquí), empezando por las personas del hogar 1, en primer lugar por la o el jefe y después las personas del hogar 2."
+  ],
+  [
+    14,
+    "NOMBRE",
+    "Alfanumérico",
+    "-",
+    "Nombre",
+    100
+  ],
+  [
+    "2.2. ¿Qué parentesco tiene  (NOMBRE) con la (el) jefa(e) del hogar?"
+  ],
+  [
+    15,
+    "PAREN",
+    "Numérico",
+    "1",
+    "Jefe(a)",
+    1
+  ],
+  [
+    "2",
+    "Esposo(a) o compañero(a)"
+  ],
+  [
+    "3",
+    "Hijo(a)"
+  ],
+  [
+    "4",
+    "Nieto(a)"
+  ],
+  [
+    "5",
+    "Yerno o nuera"
+  ],
+  [
+    "6",
+    "Hermano(a)"
+  ],
+  [
+    "7",
+    "Otros parientes"
+  ],
+  [
+    "8",
+    "No parientes"
+  ],
+  [
+    "9",
+    "Empleado(a) doméstico(a)"
+  ],
+  [
+    "2.3. ¿(NOMBRE) es:"
+  ],
+  [
+    16,
+    "SEXO",
+    "Numérico",
+    "1",
+    "Hombre",
+    1
+  ],
+  [
+    "2",
+    "Mujer"
+  ],
+  [
+    "2.4. ¿Cuántos años cumplidos tiene (NOMBRE)?"
+  ],
+  [
+    17,
+    "EDAD",
+    "Numérico",
+    "00",
+    "Menos de un año",
+    2
+  ],
+  [
+    "01,…,96",
+    "Años"
+  ],
+  [
+    "97",
+    "97 o más años"
+  ],
+  [
+    "98",
+    "Edad no especificada en personas de 15 años o más"
+  ],
+  [
+    "99",
+    "Edad no especificada"
+  ],
+  [
+    "2.5. La madre de (NOMBRE), ¿vive…"
+  ],
+  [
+    18,
+    "P2_5",
+    "Numérico",
+    "01,…,30",
+    "en esta vivienda? (ANOTE EL NÚMERO\nDEL RENGLÓN\nDONDE APARECE\nREGISTRADA ESTA\nPERSONA)",
+    2
+  ],
+  [
+    "96",
+    "en otra vivienda?"
+  ],
+  [
+    "97",
+    "falleció?"
+  ],
+  [
+    "98",
+    "No sabe"
+  ],
+  [
+    "99",
+    "No especificado"
+  ],
+  [
+    "2.6. El padre de (NOMBRE), ¿vive…"
+  ],
+  [
+    19,
+    "P2_6",
+    "Numérico",
+    "01,…,30",
+    "en esta vivienda? (ANOTE EL NÚMERO\nDEL RENGLÓN\nDONDE APARECE\nREGISTRADA ESTA\nPERSONA)",
+    2
+  ],
+  [
+    "96",
+    "en otra vivienda?"
+  ],
+  [
+    "97",
+    "falleció?"
+  ],
+  [
+    "98",
+    "No sabe"
+  ],
+  [
+    "99",
+    "No especificado"
+  ],
+  [
+    "2.7. ¿Hasta qué año o grado aprobó (NOMBRE) en la escuela?"
+  ],
+  [
+    20,
+    "NIV",
+    "Numérico",
+    "0",
+    "Ninguno",
+    2
+  ],
+  [
+    "1",
+    "Preescolar"
+  ],
+  [
+    "2",
+    "Primaria"
+  ],
+  [
+    "3",
+    "Secundaria"
+  ],
+  [
+    "4",
+    "Preparatoria o bachillerato"
+  ],
+  [
+    "5",
+    "Estudios técnicos o comerciales con primaria terminada"
+  ],
+  [
+    "6",
+    "Estudios técnicos o comerciales con secundaria terminada"
+  ],
+  [
+    "7",
+    "Estudios técnicos o comerciales con preparatoria terminada"
+  ],
+  [
+    "8",
+    "Normal con primaria o secundaria terminada"
+  ],
+  [
+    "9",
+    "Normal licenciatura"
+  ],
+  [
+    "10",
+    "Licenciatura o profesional"
+  ],
+  [
+    "11",
+    "Posgrado (Especialidad, Maestría o Doctorado)"
+  ],
+  [
+    "99",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    21,
+    "GRA",
+    "Numérico",
+    "0,…,8",
+    "GRADO",
+    1
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.8. (NOMBRE) ¿Sabe leer y escribir un recado?"
+  ],
+  [
+    22,
+    "P2_8",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "No"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.9. (NOMBRE) ¿Asiste actualmente a la escuela?"
+  ],
+  [
+    23,
+    "P2_9",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "No"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.10.  ¿De acuerdo con su cultura, (NOMBRE) se considera indígena?"
+  ],
+  [
+    24,
+    "P2_10",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "Sí, en parte"
+  ],
+  [
+    "3",
+    "No"
+  ],
+  [
+    "8",
+    "No sabe"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.11. ¿(NOMBRE) habla algún dialecto o lengua indígena?"
+  ],
+  [
+    25,
+    "P2_11",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "No"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.12. ¿(NOMBRE) habla también español?"
+  ],
+  [
+    26,
+    "P2_12",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "No"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.13. (NOMBRE) ¿Trabajó la semana pasada?"
+  ],
+  [
+    27,
+    "P2_13",
+    "Numérico",
+    "1",
+    "Sí",
+    1
+  ],
+  [
+    "2",
+    "No"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.14. ¿La semana pasada (NOMBRE)…"
+  ],
+  [
+    28,
+    "P2_14",
+    "Numérico",
+    "1",
+    "hizo o vendió algún producto?",
+    2
+  ],
+  [
+    "2",
+    "ayudó en algún negocio? (familiar o de otra persona)"
+  ],
+  [
+    "3",
+    "crió animales o cultivó algo? (en el terreno o en casa, para autoconsumo o venta)"
+  ],
+  [
+    "4",
+    "ofreció algún servicio por un pago? (cargó bolsas, lavó autos, cuidó niñas(os), etcétera)"
+  ],
+  [
+    "5",
+    "atendió su propio negocio?"
+  ],
+  [
+    "6",
+    "tenía trabajo, pero no trabajó? (por licencia, incapacidad o vacaciones)"
+  ],
+  [
+    "7",
+    "buscó trabajo?"
+  ],
+  [
+    "8",
+    "¿Es estudiante?"
+  ],
+  [
+    "9",
+    "¿Es jubilada(o) o pensionada(o)?"
+  ],
+  [
+    "10",
+    "¿Se dedica a los quehaceres de su hogar?"
+  ],
+  [
+    "11",
+    "¿Tiene alguna limitación física o mental que le impide trabajar?"
+  ],
+  [
+    "12",
+    "¿No trabajó?"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.15. ¿En su trabajo o negocio de la semana pasada (NOMBRE) fue…"
+  ],
+  [
+    29,
+    "P2_15",
+    "Numérico",
+    "1",
+    "empleado(a)?",
+    1
+  ],
+  [
+    "2",
+    "obrero(a)?"
+  ],
+  [
+    "3",
+    "jornalero(a) o peón?"
+  ],
+  [
+    "4",
+    "trabajador(a) por su cuenta (no contrata trabajadores/as)?"
+  ],
+  [
+    "5",
+    "patrón(a) o empleador(a) (contrata trabajadores/as)?"
+  ],
+  [
+    "6",
+    "trabajador(a) sin pago?"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "2.16. ¿Actualmente  (NOMBRE)…"
+  ],
+  [
+    30,
+    "P2_16",
+    "Numérico",
+    "1",
+    "vive con su pareja en unión libre?",
+    1
+  ],
+  [
+    "2",
+    "está separado(a)?"
+  ],
+  [
+    "3",
+    "está divorciado(a)?"
+  ],
+  [
+    "4",
+    "es viudo(a)?"
+  ],
+  [
+    "5",
+    "está casado(a)?"
+  ],
+  [
+    "6",
+    "está soltero(a)?"
+  ],
+  [
+    "9",
+    "No especificado"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "CODIGO"
+  ],
+  [
+    31,
+    "CODIGO",
+    "Numérico",
+    "0",
+    "Código asignado a la mujeres no seleccionada de 15 años y más",
+    1
+  ],
+  [
+    "1",
+    "Código asignado a la mujer seleccionada de 15 años y más"
+  ],
+  [
+    "b",
+    "b"
+  ],
+  [
+    "RENGLÓN DE LA MUJER ELEGIDA"
+  ],
+  [
+    32,
+    "REN_M_ELE",
+    "Numérico",
+    "01,…,30",
+    "Renglón de la mujer elegida",
+    "2"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "RENGLÓN DEL INFORMANTE ADECUADO"
+  ],
+  [
+    33,
+    "REN_INF_ADE",
+    "Numérico",
+    "01,…,30",
+    "Renglón del informante adecuado",
+    "2"
+  ],
+  [
+    "b",
+    "blanco"
+  ],
+  [
+    "SELECCIÓN DE LA MUJER"
+  ],
+  [
+    34,
+    "FN_DIA",
+    "Numérico",
+    "01,…,31,99,b",
+    "Día de levantamiento de la encuesta",
+    2
+  ],
+  [
+    35,
+    "FN_MES",
+    "Numérico",
+    "01,…,12,99,b",
+    "Mes de levantamiento de la encuesta",
+    2
+  ],
+  [
+    "Campos empleados para el diseño muestral"
+  ],
+  [
+    "Cons.",
+    "Pregunta",
+    "Mnemónico",
+    "Tipo",
+    "Códigos Válidos",
+    "Concepto",
+    "Long."
+  ],
+  [
+    "(1)",
+    "(2)",
+    "(3)",
+    "(4)",
+    "(5)",
+    "(6)",
+    "(7)"
+  ],
+  [
+    "Factor vivienda"
+  ],
+  [
+    36,
+    "Ponderador que se utiliza para estimar resultados de las preguntas que se refieren a las viviendas y la población en general.",
+    "FAC_VIV",
+    "Numérico",
+    "000001 … 999999",
+    6
+  ],
+  [
+    "Factor de la mujer elegida"
+  ],
+  [
+    37,
+    "Ponderador que se utiliza para estimar resultados de las preguntas que se refieren a las mujeres de 15 años y más.",
+    "FAC_MUJ",
+    "Numérico",
+    "000001 … 999999",
+    6
+  ],
+  [
+    "Dominio"
+  ],
+  [
+    38,
+    "DOMINIO",
+    "Alfanumérico",
+    "U",
+    "Urbano",
+    1
+  ],
+  [
+    "C",
+    "Complemento urbano"
+  ],
+  [
+    "R",
+    "Rural"
+  ],
+  [
+    "Estrato"
+  ],
+  [
+    39,
+    "ESTRATO",
+    "Numérico",
+    "1,…,4",
+    1
+  ],
+  [
+    "Estrato de diseño"
+  ],
+  [
+    40,
+    "Estrato de diseño muestral\n",
+    "EST_DIS",
+    "Numérico",
+    "0001 … 9998",
+    4
+  ],
+  [
+    "UPM"
+  ],
+  [
+    41,
+    "Unidad primaria de muestreo",
+    "UPM_DIS",
+    "Numérico",
+    "00001 … 99999",
+    5
+  ],
+  [
+    "Código para las mujeres elegibles"
+  ],
+  [
+    42,
+    "COD_M15",
+    "Numérico",
+    "1, b",
+    "Código asignado a las mujeres de 15 años y más",
+    1
+  ]
+]

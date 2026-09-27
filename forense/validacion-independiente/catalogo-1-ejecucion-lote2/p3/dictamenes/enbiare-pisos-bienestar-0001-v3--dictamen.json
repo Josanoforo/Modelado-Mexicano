@@ -1,0 +1,2101 @@
+{
+  "paquete": "enbiare-pisos-bienestar-0001-v3",
+  "dictamen_utc": "2026-09-27T05:10:59.916723+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "778bf88a2d42b9d3810371978ef88b6546b25f2923c12011786ac9657d1a4791",
+  "commit_original": "e83759f1454a8b04ba2b19a19cf1e5c1dc2b22cd",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "1 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "1 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "1 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "1 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "2 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "2 respuestas del dominio no determinadas por la especificación; no se cambia el denominador sin regla. Para CESD7, edad 98 y puntaje 5–8 requieren un corte etario no identificable."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Hay 7 adultos con EDAD=98 (edad no especificada); su pertenencia a este tramo no está determinada y no se especifica excluirlos del estimando. No se imputa tramo."
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    },
+    {
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-P",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "DIFERENCIA-DE-PUBLICABILIDAD",
+      "spec": "REQUIERE-DICTAMEN",
+      "motivo": "",
+      "notas": [
+        "punto: ausente en salida independiente",
+        "ic95_inf: ausente en salida independiente",
+        "ic95_sup: ausente en salida independiente"
+      ]
+    }
+  ]
+}

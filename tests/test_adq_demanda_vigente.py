@@ -114,6 +114,10 @@ def prueba_cli_compara_proyeccion():
 _ARCHIVOS_FUENTE = [
     "data/adq-investigacion.yaml",
     "data/corrida0/decisiones.tsv",
+    # GEN2-TUBERIA-CI-TIEMPO-2 (27/sep): `proyecta_elementos` lee corridas.tsv
+    # para el join (VISTA-NORMALIZADA-2); sin ella, toda fila normalizada
+    # revienta. Latente hasta el primer [deriva] normalizado (#1206).
+    "data/corrida0/corridas.tsv",
     "data/corrida0/demanda-resultados.tsv",
     "data/corrida0/resultados.tsv",
     "data/corrida0/usos.tsv",

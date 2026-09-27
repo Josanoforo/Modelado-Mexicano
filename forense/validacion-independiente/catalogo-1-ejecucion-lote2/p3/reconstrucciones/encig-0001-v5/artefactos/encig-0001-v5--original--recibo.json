@@ -1,0 +1,82 @@
+{
+  "paquete": "encig-0001",
+  "manifiesto_sha256": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+  "entradas": {
+    "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+    "estimandos.tsv": "9d5d3a583a0c347d89361521e399f142c9b088e53fd0df2ca4a16cb4772d9698",
+    "insumos.json": "5029e705b75f5041d01292cd31d79dbe5caaf839d54005552d9977f9479b2b1b",
+    "manifiesto.json": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+    "metodo.md": "a24d27d0a714d345ef73721feb587bdc0c098ae916859f337d5b164f21dac771",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "insumos": [
+    {
+      "id": "encig25_base_datos_csv",
+      "archivo": "encig25_base_datos_csv.zip",
+      "sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2025/microdatos/encig25_base_datos_csv.zip",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encig25_base_datos_csv/encig25_base_datos_csv.zip",
+      "sha256_observado": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12",
+      "bytes": 37624925
+    },
+    {
+      "id": "encig25_cuestionario_pdf",
+      "archivo": "gen2_corrupcion_fuente_general/encig25_cuestionario.pdf",
+      "sha256": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig25_cuestionario.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encig25_cuestionario_pdf/encig25_cuestionario.pdf",
+      "sha256_observado": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33",
+      "bytes": 2060955
+    },
+    {
+      "id": "encig25_estructura_base_datos_pdf",
+      "archivo": "encig25_estructura_base_datos.pdf",
+      "sha256": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2025/doc/encig25_estructura_base_datos.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encig25_estructura_base_datos_pdf/encig25_estructura_base_datos.pdf",
+      "sha256_observado": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2",
+      "bytes": 14820825
+    }
+  ],
+  "miembros_zip": [
+    {
+      "entrada": "encig2025_01_sec_11.csv",
+      "bytes": 16358928,
+      "sha256": "d1d03dfecf17ae936ff33b68aa203ce889c2128bbe644766dd94727e9658c79a"
+    },
+    {
+      "entrada": "encig2025_01_sec1_A_3_4_5_8_9_10.csv",
+      "bytes": 45770700,
+      "sha256": "fd5f1dce598c74ad59e731acdd9dec2bea0940f6791db5c4eb2275c57a6bf39e"
+    },
+    {
+      "entrada": "encig2025_02_residentes_sec_2.csv",
+      "bytes": 23557860,
+      "sha256": "14bb12ad3e5fdaec72130856d90567a1cbae0cdf2f4dfcfde635c66edfd7897d"
+    },
+    {
+      "entrada": "encig2025_03_sec_6.csv",
+      "bytes": 226361980,
+      "sha256": "9631cb727d15dea82e7d79013ef2c4320ea7d2f38521368e458bc3c79d840964"
+    },
+    {
+      "entrada": "encig2025_04_sec_7.csv",
+      "bytes": 41047002,
+      "sha256": "e97f217edfe00c3418ed36949893ae679da9b3753232bf0a5cc12bb45aa7b985"
+    },
+    {
+      "entrada": "encig2025_05_sec_8.csv",
+      "bytes": 230512788,
+      "sha256": "0fc619e609888f874551c58bfe0282e21bfa8b6d5541afa1c2afdac34e98af9b"
+    }
+  ],
+  "entorno": {
+    "python": "3.14.4",
+    "numpy": "2.3.5"
+  },
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false
+}

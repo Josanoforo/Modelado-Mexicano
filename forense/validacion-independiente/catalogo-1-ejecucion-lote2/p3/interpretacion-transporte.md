@@ -1,0 +1,11 @@
+# Interpretación declarada · transporte de salidas
+
+EJECUTADO: el primer recálculo real EDER congeló números y código antes de comparación. El encargo de entrada no prescribe nombres de columnas numéricas; el lanzador tampoco. La salida utiliza valor/ic_025/ic_975. El adaptador v1 congelado exige punto/ic95_inf/ic95_sup y rechazó la salida; se preservan el rechazo, original, hash y prueba portable.
+
+INTERPRETACIÓN-DECLARADA: se completa la comparación como dictamen separado por alias de nombres, sin modificar valores, tolerancias originales, entrada, reconstrucción ni adaptador. No se presenta el dictamen como ejecución exitosa del comparador v1. La antecedencia se acredita sobre los números originales, no sobre un archivo canónico creado después. Los IC emitidos independientemente sin referencia se declaran aparte. El gate EDER para lanzar restantes exige recibo, rechazo preservado y dictamen completo; una avería de transporte no invalida por sí misma el cálculo congelado ni exige nuevo intento numérico.
+
+PROPUESTO-POR-EJECUTOR: un adaptador sucesor que acepte ambos esquemas debe congelarse y probarse antes de otro lote. Este acto conserva v1 intacto. Esta interpretación no adopta resultados ni modifica el procedimiento estadístico.
+
+EJECUTADO: ENCIG utiliza p para el punto. El primer dictamen separado omitió ese alias y clasificó indebidamente sus cuatro puntos como ausentes; se conserva como diagnóstico de acoplamiento y lo sustituye --dictamen-v2.json. La corrección lee las mismas cadenas numéricas originales, sin recálculo ni cambio de tolerancia: cuatro puntos coinciden y cuatro IC discrepan. No es insuficiencia de spec del validador. ENCODAT usa ic95_inferior/ic95_superior vacíos y declara expresamente falta de receta en motivo_ic; sus 130 puntos coinciden y su incertidumbre no es reconstruible desde la entrega. Las revisiones de dictamen se seleccionan por número explícito, no por fecha de archivos.
+
+EJECUTADO: ENBIARE utiliza estimacion para el punto. Su primer dictamen separado no reconoció esa columna y no es dictamen final del punto; --dictamen-v2.json conserva la corrección de transporte. Distingue 126 puntos coincidentes de 54 declarados no reconstruibles por el propio validador; la incertidumbre faltante permanece como hallazgo humano. Los diagnósticos iniciales de alias no se usan como prueba D-15.
