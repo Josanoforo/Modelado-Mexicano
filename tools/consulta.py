@@ -81,10 +81,15 @@ def _linea(clave: str, fila: dict, campos: list[str]) -> str:
 def busca_tsv(ruta: Path, col: str, valor: str) -> tuple[dict | None, int]:
     """Primera fila con `col == valor`; salta comentarios `#` de cabecera."""
     n = 0
+    if ruta.name == "resultados.tsv":
+        from vista import corridas_por_id, restaura_constantes_resultado
+        corridas = corridas_por_id(ruta.with_name("corridas.tsv"))
     with ruta.open(encoding="utf-8", newline="") as fh:
         lineas = (l for l in fh if not l.startswith("#"))
         for fila in csv.DictReader(lineas, delimiter="\t"):
             n += 1
+            if ruta.name == "resultados.tsv":
+                fila = restaura_constantes_resultado(fila, corridas)
             if fila.get(col) == valor:
                 return fila, n
     return None, n

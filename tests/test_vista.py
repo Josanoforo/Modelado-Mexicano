@@ -144,5 +144,67 @@ class PruebaCaminoLinajeBajoDemanda(unittest.TestCase):
                           "la muestra deberia cubrir ambos origenes reales")
 
 
+class ConstantesResultado(unittest.TestCase):
+    def fixture(self):
+        return {"corridas": [{"corrida_id": "C1"}, {"corrida_id": "C2"}],
+                "resultados": [
+                    {"corrida_id": "C1", "resultado_id": "R1", "spec_id": "S1",
+                     "valor": "0.1", "sello": "SÍ", "validacion_ref": "",
+                     "delta_legacy": "NO-DECLARADO", "valor_legacy": ""},
+                    {"corrida_id": "C1", "resultado_id": "R2", "spec_id": "S1",
+                     "valor": "0.2", "sello": "SÍ", "validacion_ref": "informe.md",
+                     "delta_legacy": "NO-DECLARADO", "valor_legacy": "3"},
+                    {"corrida_id": "C2", "resultado_id": "R3", "spec_id": "S2",
+                     "valor": "0.3", "sello": "NO"}], "usos": []}
+
+    def test_roundtrip_celdas_vacias_variables_unicode_y_corrida_unica(self):
+        import copy
+        original = self.fixture()
+        antes = copy.deepcopy(original)
+        normal = vista.normaliza_constantes_resultados(original)
+        corridas = {f["corrida_id"]: f for f in normal["corridas"]}
+        self.assertEqual(original, antes)
+        self.assertEqual([vista.restaura_constantes_resultado(f, corridas)
+                          for f in normal["resultados"]], original["resultados"])
+        self.assertEqual(normal["resultados"][0]["validacion_ref"], "")
+        self.assertEqual(normal["resultados"][1]["validacion_ref"], "informe.md")
+        self.assertEqual(normal["resultados"][2]["spec_id"], "S2")
+        self.assertEqual(vista.normaliza_constantes_resultados(normal), normal)
+
+    def test_lectores_y_consulta_restituyen_los_campos(self):
+        import csv
+        import tempfile
+        import corrida0
+        import consulta
+        normal = vista.normaliza_constantes_resultados(self.fixture())
+        with tempfile.TemporaryDirectory() as d:
+            base = Path(d)
+            for nombre, filas in (("corridas", normal["corridas"]), ("resultados", normal["resultados"])):
+                campos = sorted({k for f in filas for k in f})
+                with (base / (nombre + ".tsv")).open("w", newline="") as fh:
+                    w = csv.DictWriter(fh, campos, delimiter="\t")
+                    w.writeheader()
+                    w.writerows(filas)
+            ruta = base / "resultados.tsv"
+            for lector in (vista._leer_tsv_derivado, corrida0._leer_tsv_derivado):
+                leidas = lector(ruta)
+                self.assertEqual(leidas[0]["spec_id"], "S1")
+                self.assertEqual(leidas[0]["delta_legacy"], "NO-DECLARADO")
+                self.assertEqual(leidas[0]["validacion_ref"], "")
+                self.assertEqual(leidas[1]["validacion_ref"], "informe.md")
+            fila, _ = consulta.busca_tsv(ruta, "resultado_id", "R2")
+            self.assertEqual(fila["sello"], "SÍ")
+            fila, _ = consulta.busca_tsv(ruta, "spec_id", "S1")
+            self.assertEqual(fila["resultado_id"], "R1")
+
+    def test_metadata_ausente_o_invalida_para_en_voz_alta(self):
+        fila = {"corrida_id": "C1", "spec_id": "", "constantes_corrida": "1"}
+        with self.assertRaises(ValueError):
+            vista.restaura_constantes_resultado(fila, {})
+        for texto in ('{"valor":"999"}', '{"spec_id":23}', '[]', '{'):
+            with self.assertRaises(ValueError):
+                vista.restaura_constantes_resultado(fila, {"C1": {"constantes_resultados": texto}})
+
+
 if __name__ == "__main__":
     unittest.main()

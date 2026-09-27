@@ -3159,7 +3159,7 @@ COLS_VISTA_CORRIDAS = [
     "tolerancia",
     "funciones_dependencia", "camino_linaje",
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
-    "fecha", "n_resultados", "resultados_ids", "input_ids",
+    "fecha", "n_resultados", "resultados_ids", "input_ids", "constantes_resultados",
     "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
     "fuente_replay",
     "sucesor", "entorno_requerido", "receta", "orden_causal",
@@ -3187,7 +3187,7 @@ COLS_VISTA_RESULTADOS = [
     "validacion_independiente", "validacion_ref", "alcance_validacion",
     "rol_evaluacion", "origen_numerico",
     "valor_legacy", "delta_legacy", "sello",
-    "depende_de", "sucesor", "n_usos",
+    "depende_de", "sucesor", "n_usos", "constantes_corrida",
 ]
 COLS_VALIDACIONES_INDEPENDIENTES = [
     "spec_id", "resultado_id", "validacion_independiente", "validacion_ref",
@@ -3219,7 +3219,13 @@ def _leer_tsv_derivado(ruta: Path) -> list[dict]:
     que `_escribe` pone antes de la fila de columnas."""
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
-    return list(csv.DictReader(lineas, delimiter="\t"))
+    filas = list(csv.DictReader(lineas, delimiter="\t"))
+    if ruta.name == "resultados.tsv":
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from vista import corridas_por_id, restaura_constantes_resultado
+        corridas = corridas_por_id(ruta.with_name("corridas.tsv"))
+        filas = [restaura_constantes_resultado(f, corridas) for f in filas]
+    return filas
 
 
 def _aplica_validaciones_independientes(filas: list[dict]) -> None:
@@ -5087,6 +5093,8 @@ def registro(escribe: bool = False, verifica: bool = False,
             vistas = _acota_vistas_al_lote(vistas, lote_autorizado)
         _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
         vistas = _referencia_valores_largos(vistas, escribe=True)
+        from vista import normaliza_constantes_resultados
+        vistas = normaliza_constantes_resultados(vistas)
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
@@ -5097,6 +5105,8 @@ def registro(escribe: bool = False, verifica: bool = False,
                 print(f"ESCRITO {_rel(ruta)}: {len(vistas[clave])} filas")
     elif imprime:
         vistas = _referencia_valores_largos(vistas, escribe=False)
+        from vista import normaliza_constantes_resultados
+        vistas = normaliza_constantes_resultados(vistas)
         for ruta, cols, clave in ((VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, "corridas"),
                                   (VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, "resultados"),
                                   (VISTA_USOS, COLS_VISTA_USOS, "usos")):
