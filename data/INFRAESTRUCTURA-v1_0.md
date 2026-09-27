@@ -1042,3 +1042,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ## ASTRA6-C2-ENIF-1 · tablas locales
 
 `forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.
+
+### GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2 · tablas editoriales sucesoras
+
+`forense/analisis/reports-v2/consumo-familia-2/<carril>/<carril>-juicios.json`: fuente de decisiones explícitas por registro y cláusula; productores por carril regeneran las tablas vivas, sin decidir dictámenes. `forense/analisis/reports-v2/consumo-familia-2/verificacion/`: control por RESULT/hash, cobertura mapa+v1, registro local de evidencia y regresiones materiales; índice local por comando, sin confundir registros con tesis únicas. Consumidores: los dos reports v2 y recibo local. No modifica vistas globales. ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01.
