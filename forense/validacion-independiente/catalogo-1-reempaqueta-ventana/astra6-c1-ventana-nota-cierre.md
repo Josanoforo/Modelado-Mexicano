@@ -115,3 +115,6 @@ finales. La reproducción completa mantiene los cinco hashes publicados.
 
 PR propio #1203: https://github.com/Josanoforo/Modelado-Mexicano/pull/1203.
 Recibo solicitado; pendiente, sin fusión ni revisión externa declarada.
+
+Corte final actualizado: main `c58810f1d9c4d87f37bcd5d251552da054dabb3b` (#1199 incorporado),
+actos ajenos intactos; gate tras CONSUMIDO:0 FAIL,601 WARN informativos.

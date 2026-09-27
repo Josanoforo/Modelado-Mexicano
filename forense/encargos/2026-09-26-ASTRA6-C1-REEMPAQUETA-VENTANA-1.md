@@ -213,7 +213,7 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 
 Preparación NO CIEGA ejecutada en PR #1203:
 https://github.com/Josanoforo/Modelado-Mexicano/pull/1203. Cinco sucesores
-documentales,859 ventanas demostradas (7672021 +922016), método/tolerancia
+documentales, 859 ventanas demostradas (767 ENDIREH2021 + 92 ENDIREH2016), método/tolerancia
 históricos intactos. Cero recálculos, comparación, validación o adopción.
 Cero identidades listas para lanzamiento: acceso futuro específico y
 aislación efectiva pendientes según NC propias01–04 y hoja de firma.

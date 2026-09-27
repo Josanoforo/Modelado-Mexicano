@@ -8,7 +8,7 @@
   "reproduccion_contenedores": "5 hashes idénticos con comprobación de contenedor original y no sobrescritura distinta",
   "gate_rapido": {
     "estado": "0 FAIL",
-    "advertencias": 600,
+    "advertencias": 601,
     "comando": "python3 tests/check.py --rapido"
   },
   "archivos_relevantes": {
