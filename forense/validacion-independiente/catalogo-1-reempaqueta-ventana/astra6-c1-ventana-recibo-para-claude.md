@@ -36,7 +36,7 @@ La reconstrucción documental del segundo comando debe conservar exactamente
 los hashes anteriores; nunca resellar históricos para hacerla pasar.
 Los comandos de extracción seguros por contenedor están en
 `entrega-por-paquete.tsv` y `comandos-materializacion-documental.sh`;
-no calculan ni abren raw. Diez pruebas dirigidas PASS y cinco contenedores
+no calculan ni abren raw. Doce pruebas dirigidas PASS y cinco contenedores
 reproducidos; la extracción a /tmp se probó realmente.
 
 PROPUESTO-POR-EJECUTOR: acceso futuro por las dos filas de

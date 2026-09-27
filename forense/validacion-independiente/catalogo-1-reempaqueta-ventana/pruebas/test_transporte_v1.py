@@ -79,6 +79,22 @@ class Transporte(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'hash cambiado'):
                 t.leer_tar(path)
 
+    def test_hash_contenedor_historico_cambiado(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'historico.tar.gz'
+            path.write_bytes(b'contenedor cambiado')
+            with self.assertRaisesRegex(ValueError, 'contenedor historico cambiado'):
+                t.crear(path, {}, {}, '0'*64)
+
+    def test_no_sobrescribe_sucesor_distinto(self):
+        with tempfile.TemporaryDirectory() as folder:
+            path = Path(folder) / 'sucesor.tar.gz'
+            t.escribir_tar(path, {'metodo.md': b'original'})
+            antes = path.read_bytes()
+            with self.assertRaisesRegex(ValueError, 'nueva version'):
+                t.escribir_tar(path, {'metodo.md': b'alterado'})
+            self.assertEqual(path.read_bytes(), antes)
+
 
 if __name__ == '__main__':
     unittest.main()

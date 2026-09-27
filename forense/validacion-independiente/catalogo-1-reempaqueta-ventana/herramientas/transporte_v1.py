@@ -101,10 +101,15 @@ def escribir_tar(path, data):
             m = tarfile.TarInfo(name)
             m.size, m.mtime, m.mode = len(b), 0, 0o644
             t.addfile(m, io.BytesIO(b))
-    path.write_bytes(gzip.compress(buf.getvalue(), mtime=0))
+    contenido = gzip.compress(buf.getvalue(), mtime=0)
+    if path.exists() and path.read_bytes() != contenido:
+        raise ValueError('sucesor existente distinto: requiere nueva version')
+    path.write_bytes(contenido)
 
 
-def crear(original_path, mapa, documentos):
+def crear(original_path, mapa, documentos, sha256_original=None):
+    if sha256_original is not None and sha(original_path.read_bytes()) != sha256_original:
+        raise ValueError('hash de contenedor historico cambiado')
     original = leer_tar(original_path)
     paquete = json.loads(original['manifiesto.json'])['paquete']
     nuevo = {k: original[k] for k in ('metodo.md', 'tolerancia.json', 'encargo.md')}
@@ -177,7 +182,9 @@ def main():
             content['insumos'] = [r for r in content['insumos'] if 'general_pdf' not in r['id']]
             records.append({'paquete': paquete, 'original': str(originals[0]), **content})
         config = records
-    audits = [crear(Path(c['original']), grouped[c['paquete']], c) for c in config]
+    fuentes = json.loads((BASE / 'procedencia/mapa-resumen.json').read_text())['paquetes']
+    hashes = {r['paquete']: r['sha256'] for r in fuentes}
+    audits = [crear(Path(c['original']), grouped[c['paquete']], c, hashes[c['paquete']]) for c in config]
     (BASE / 'paquetes' / 'transporte-v1.json').write_bytes(json_bytes(audits))
     print(json.dumps({a['paquete']: a['identidades_sucesoras'] for a in audits}))
 

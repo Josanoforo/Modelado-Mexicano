@@ -77,7 +77,7 @@ logístico, sin reconstrucción ni comparación. CONGELADO-SIN-REVELAR describe
 ese recibo, no garantiza el estado posterior. El lanzamiento futuro debe
 registrar cualquier revelación posterior y usar otro intento/sesión nueva.
 
-EJECUTADO: diez pruebas dirigidas de transporte; cinco contenedores
+EJECUTADO: doce pruebas dirigidas de transporte; cinco contenedores
 reproducidos con hashes iguales. Extracción documental real de los cinco
 tar a `/tmp/c1-ventana-documental-8r9wxq3u`, hashes/miembros y cobertura
 comprobados; rechazo de hash falso, reutilización y destino en worktree.
@@ -98,3 +98,17 @@ PROPUESTO-POR-EJECUTOR: `receta-sesion-futura.md`, prompt mínimo y comandos
 exactos documentales por paquete. Ninguno se pasa a un validador vivo.
 Solicitar recibo técnico real de Claude por el PR; no enviarlo por mensajes
 externos ni afirmar revisión obtenida. Mesa decide el acceso y fusiona.
+
+INTERPRETACIÓN-DECLARADA: los documentos de cierre usan nombres propios
+para evitar colisión T02 con otros actos; recibo local con nombre exacto
+`recibo-para-claude.md` en `/tmp/c1-ventana-mesa/`, fuera de entrada.
+El recibo versionado es `astra6-c1-ventana-recibo-para-claude.md`.
+Main final incorporado `414fcf7d8b0e2f4c92632c290011ed1b25cdf9d4`, merge
+posterior al commit de entrega; se conservaron los asientos ajenos de #1198.
+El gate de cierre detectó además tres colisiones de nombres propios y una
+copia redundante del transporte opaco, corregidas sin editar tests ni CI.
+
+EJECUTADO: el adaptador comprueba ahora también el hash de contenedor
+histórico contra la procedencia y rechaza sobrescribir un sucesor existente
+con bytes distintos. Dos pruebas adicionales protegen esos errores:12 PASS
+finales. La reproducción completa mantiene los cinco hashes publicados.
