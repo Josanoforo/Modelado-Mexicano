@@ -1,0 +1,59 @@
+{
+  "tabla_sha256": "fb9d2e3fdd80f876c16263e48b4e51a0787e6ab5f846814a6ff2294b41e24963",
+  "corte_base": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+  "seleccion_denominador": 425,
+  "historico_denominador": 36143,
+  "overlay_denominador": 43188,
+  "estados": {
+    "COINCIDE": 11,
+    "NO-RECALCULABLE-DESDE-SPEC": 312,
+    "DISCREPA": 10,
+    "NO-EVALUADO": 92
+  },
+  "punto": {
+    "COINCIDE": 275,
+    "NO-RECALCULABLE-DESDE-SPEC": 56,
+    "NO-EVALUADO": 92,
+    "DISCREPA": 2
+  },
+  "ic": {
+    "SIN-IC-DE-REFERENCIA": 10,
+    "NO-RECALCULABLE-DESDE-SPEC": 312,
+    "DISCREPA": 8,
+    "NO-EVALUADO": 92,
+    "COINCIDE": 3
+  },
+  "spec": {
+    "SUFICIENTE-PARA-RECONSTRUCCION": 13,
+    "INSUFICIENTE-PARA-PUNTO-E-IC": 54,
+    "INSUFICIENTE-PARA-IC": 256,
+    "RECONSTRUIDO-CON-CONVENCIONES-IC-NO-FIJADAS": 8,
+    "INSUFICIENTE": 2,
+    "PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 92
+  },
+  "comparador": {
+    "COMPARADOR-RECHAZADO": 332,
+    "NO-RECALCULABLE-DESDE-SPEC": 93
+  },
+  "identidades_con_dictamen": 333,
+  "identidades_con_dictamen_y_separacion": 333,
+  "puntos_coincidentes_con_separacion": 275,
+  "ic_coincidentes_con_separacion": 3,
+  "hallazgos_filas": 1040,
+  "consumidores_filas": 22,
+  "catalogo_c1_cerrado": false,
+  "adopcion": "NO-ADOPTADO",
+  "advertencia": "Conteos sobre selección; no representan tasa del catálogo. NO-EVALUADO IC por ausencia de referencia no equivale a igualdad ni a fracaso del punto.",
+  "apartadas_por_adenda": 92,
+  "ejecutables_segun_adenda": 333,
+  "pendientes_ejecutables": 0,
+  "diagnostico_apartadas": {
+    "NO-RECALCULABLE-DESDE-SPEC": 92
+  },
+  "limitacion_red": "NC-beee-08: contexto/archivos y transcript no acreditan bloqueo de red ni política egress; alcance observado, no aislamiento de red",
+  "estados_ejecutables": {
+    "COINCIDE": 11,
+    "NO-RECALCULABLE-DESDE-SPEC": 312,
+    "DISCREPA": 10
+  }
+}

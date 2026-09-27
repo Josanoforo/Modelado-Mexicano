@@ -1,0 +1,64 @@
+{
+  "paquete": "eder-0003-v4",
+  "dictamen_utc": "2026-09-27T05:03:53.130048+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975"
+    ]
+  },
+  "original_sha256": "e54a1a66344c8435f1eedc91ca6f49f609dcac8f59a1bd89d7b30c05e17eab45",
+  "commit_original": "58e4cb33ea7cbe3d8b8bf726d676fa357b23eaaf",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-EDER-UNION-A-P-DIRECTO",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    },
+    {
+      "llave": "RESULT-EDER-UNION-A-P-LIBRE",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    }
+  ]
+}

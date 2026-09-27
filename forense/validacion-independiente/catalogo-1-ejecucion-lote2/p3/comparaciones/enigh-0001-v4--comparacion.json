@@ -1,0 +1,35 @@
+{
+  "recibo": {
+    "paquete": "enigh-0001-v4",
+    "paquete_original": "enigh-0001",
+    "version_entrada": 4,
+    "paquete_sha256": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "sha256_manifiesto": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "sha256_contenedor": "1ca8d7b9654c09a0055b5edb9917b05ae279171a5339a2aa066dc68c0ec3b206",
+    "entrada_registrada_utc": "2026-09-27T05:12:58.576095+00:00",
+    "separacion_efectiva": true,
+    "session_id": "01a0e147-e285-7102-8966-2dd8d1c5dd96",
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enigh-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "reconstruccion_sha256": "d50ca4388f0e58a27daef47d623c5d3b7e221fee625d08a08713cf9b04d28270",
+    "commit_reconstruccion": "de98343f6a3b992c5c6d450c6136f34192084011",
+    "checkout_reconstruccion": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enigh-0001/trabajo/reconstruccion",
+    "ruta_reconstruccion_commit": "reconstruccion.tsv",
+    "congelacion_recibida_utc": "2026-09-27T05:16:57.011558+00:00",
+    "estado": "CONGELADO-SIN-REVELAR",
+    "congelado_antes_de_revelacion": true
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "contrato_sha256": "ad0a3b257306443da1286c2c7fe9df1e3e3453f1c4b3b2d48ebb23259d99e8ad",
+  "alcance": "Coincidencia numerica; publicabilidad, defecto conceptual y adopcion requieren adjudicacion separada.",
+  "resultados": [
+    {
+      "llave": "RESULT-ENIGH-A-P-COMPLEMENTO",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    }
+  ]
+}

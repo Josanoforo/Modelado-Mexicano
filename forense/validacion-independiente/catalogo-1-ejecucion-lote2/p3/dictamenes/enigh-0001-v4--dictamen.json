@@ -1,0 +1,40 @@
+{
+  "paquete": "enigh-0001-v4",
+  "dictamen_utc": "2026-09-27T05:16:57.521201+00:00",
+  "estado_comparador": "COMPARADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "d50ca4388f0e58a27daef47d623c5d3b7e221fee625d08a08713cf9b04d28270",
+  "commit_original": "de98343f6a3b992c5c6d450c6136f34192084011",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENIGH-A-P-COMPLEMENTO",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Identidad insuficiente: metodo.md define A recibe remesas (remesas > 0), pero la llave pide no_recibe_remesas, unidad VER-SPEC y celda vacía. No hay asignación explícita ni regla de complemento; no se infiere por el nombre."
+    }
+  ]
+}

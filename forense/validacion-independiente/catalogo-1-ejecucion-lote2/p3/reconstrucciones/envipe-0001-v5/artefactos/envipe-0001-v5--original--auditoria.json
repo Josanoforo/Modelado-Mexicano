@@ -1,0 +1,23 @@
+{
+  "filas_tmod_vic": 40280,
+  "filas_tper_vic2": 91182,
+  "delitos_U1": 20225,
+  "personas_U4": 13023,
+  "personas_C2_positivas": 3837,
+  "BP1_23_blanco_no_denunciados_todos": 130,
+  "BP1_23_blanco_no_denunciados_personales": 0,
+  "estratos_U4": 725,
+  "UPM_por_estrato_total_U4": 7830,
+  "estratos_UPM_unica": 83,
+  "enlaces_faltantes": 0,
+  "discrepancias_identidad_y_diseno": 0,
+  "bootstrap": {
+    "replicas": 2000,
+    "generador": "numpy.PCG64",
+    "semilla": 20260909,
+    "marco": "UPM observadas en U4, dentro de EST_DIS",
+    "orden": "replica primero; estrato y UPM lexicograficos",
+    "muestreo": "n_h extracciones uniformes con reemplazo por estrato",
+    "percentiles": "numpy.percentile, method=linear"
+  }
+}

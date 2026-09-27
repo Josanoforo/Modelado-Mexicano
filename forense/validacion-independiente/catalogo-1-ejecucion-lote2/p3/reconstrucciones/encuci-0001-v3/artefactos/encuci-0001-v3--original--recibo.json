@@ -1,0 +1,16 @@
+{
+  "paquete": "encuci-0001",
+  "version_entrada": 3,
+  "manifiesto_sha256": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+  "fuentes": [
+    "/entrada",
+    "/raw"
+  ],
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false,
+  "estados": {
+    "RECONSTRUIDO": 2,
+    "NO-RECALCULABLE-DESDE-SPEC": 1
+  },
+  "congelacion": "Código y números incluidos en el commit local; identificar con git rev-parse HEAD."
+}

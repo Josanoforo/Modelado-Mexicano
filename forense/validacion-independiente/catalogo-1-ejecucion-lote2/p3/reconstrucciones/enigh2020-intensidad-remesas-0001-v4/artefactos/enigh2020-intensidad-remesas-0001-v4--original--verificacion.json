@@ -1,0 +1,17 @@
+{
+  "resultado": "PASS",
+  "filas": 89006,
+  "receptores": 5240,
+  "verificaciones": [
+    "Hashes del código y números contra recibo",
+    "Seis llaves únicas reconstruidas",
+    "Puntos por CSV estándar y Decimal: diferencia absoluta <= 1e-10 (control numérico interno, no tolerancia de revelación)",
+    "Ausencia de exclusiones e incompatibilidades verificada fila por fila",
+    "2000 réplicas finitas y percentiles idénticos al TSV"
+  ],
+  "tolerancia_revelacion": {
+    "tipo": "determinista",
+    "abs": 0.0
+  },
+  "comparacion_con_resultados_esperados": "NO REALIZADA"
+}

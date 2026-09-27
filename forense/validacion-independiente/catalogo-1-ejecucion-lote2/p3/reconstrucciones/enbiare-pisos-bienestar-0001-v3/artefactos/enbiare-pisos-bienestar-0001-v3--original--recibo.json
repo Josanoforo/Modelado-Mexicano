@@ -1,0 +1,28 @@
+{
+  "manifiesto_ruta": "/entrada/manifiesto.json",
+  "manifiesto_sha256": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+  "fuentes_permitidas": [
+    "/entrada",
+    "/raw"
+  ],
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false,
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "estados": {
+    "RECONSTRUIDO": 126,
+    "NO-RECALCULABLE-DESDE-SPEC": 54
+  },
+  "alcance": "Razones puntuales identificadas; IC no determinados por la receta suministrada.",
+  "artefactos_sha256": {
+    "reconstruir.py": "bdfc6701c67445f316017feca9b5671e7abee5f9ccb3d6068e1559e2698cba39",
+    "reconstruccion.tsv": "778bf88a2d42b9d3810371978ef88b6546b25f2923c12011786ac9657d1a4791",
+    "auditoria.json": "4e4a5a43e14df278e5c8c4e93dadb3fac54091d8fb1dea0dba18456ba8c02f86",
+    "inventario.json": "2148ca3d1e67429a407016b4df0c0627c0b03ae138b42c5160c1c68869716d1d"
+  }
+}
