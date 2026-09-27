@@ -256,14 +256,11 @@ def _compara_head_origin_main(head: str, remoto: str) -> tuple[bool, str]:
 # ADENDA-1 P2: "o el árbol está sucio". Se exceptúan los derivados que el
 # propio canal escribe ANTES del tablero (mismo `git add` de verify.yml): en
 # CI ya están modificados cuando corre `--actualiza` y son justo lo que viaja.
-# README.md (#1198): `readme_derivado.py --escribe` corre DESPUÉS del tablero,
-# pero en la publicación por trozos el `git reset` tras `commit-tree` deja su
-# cambio del trozo K en el árbol cuando el tablero corre en el trozo K+1.
 DERIVADOS_DEL_CANAL = (
     "data/corrida0/corridas.tsv", "data/corrida0/resultados.tsv",
     "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
     "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
-    "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md", "README.md",
+    "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
 )
 
 
@@ -274,11 +271,48 @@ def _sucios_ajenos(porcelain: str) -> list[str]:
     return sorted(r for r in rutas if r not in DERIVADOS_DEL_CANAL and "/valores-vista/" not in r)
 
 
+# #1198: en la publicación por trozos, `git reset` tras `commit-tree` deja en
+# el árbol el README que `readme_derivado.py --escribe` reescribió en el trozo
+# anterior. Se autoriza SÓLO si el cambio contra HEAD se limita a los valores
+# `**<v>** <!-- deriva[...] -->` dentro del bloque TABLERO-DERIVADO: cualquier
+# otra edición del README (texto, comando de una marca, fuera del bloque) sigue
+# ensuciando el árbol.
+README = "README.md"
+BLOQUE_README = ("<!-- TABLERO-DERIVADO:BEGIN -->", "<!-- TABLERO-DERIVADO:END -->")
+VALOR_DERIVA = re.compile(r"\*\*[^*\n]+\*\* (<!-- deriva\[[A-Za-z_]+\]: .+? -->)")
+
+
+def _readme_solo_valores_derivados(antes: str | None, despues: str | None) -> bool:
+    """¿`despues` difiere de `antes` sólo en valores deriva[] del bloque? Puro."""
+    if antes is None or despues is None:
+        return False
+    ini, fin = BLOQUE_README
+
+    def partes(t):
+        a, b = t.find(ini), t.find(fin)
+        if a < 0 or b < a or t.count(ini) != 1 or t.count(fin) != 1:
+            return None
+        return t[:a], VALOR_DERIVA.sub(r"\1", t[a:b]), t[b:]
+    pa, pd = partes(antes), partes(despues)
+    return pa is not None and pa == pd
+
+
+def _readme_autorizado() -> bool:
+    r = subprocess.run(["git", "show", f"HEAD:{README}"], capture_output=True, text=True)
+    try:
+        despues = open(README, encoding="utf-8").read()
+    except OSError:
+        return False
+    return _readme_solo_valores_derivados(r.stdout if r.returncode == 0 else None, despues)
+
+
 def _es_origin_main_limpio() -> tuple[bool, str]:
     ok, motivo = _compara_head_origin_main(sh("git rev-parse HEAD"), sh("git rev-parse -q --verify origin/main"))
     if not ok:
         return ok, motivo
     sucios = _sucios_ajenos(sh("git status --porcelain --untracked-files=no"))
+    if README in sucios and _readme_autorizado():
+        sucios.remove(README)
     if sucios:
         return False, f"árbol sucio fuera de los derivados del canal: {', '.join(sucios[:5])}"
     return True, ""

@@ -13,6 +13,7 @@ Corre sola:
     python3 tests/test_tablero_programa.py
 """
 import os
+import re
 import sys
 import tempfile
 
@@ -313,11 +314,90 @@ def prueba_sucios_ajenos():
     afirma(TP._sucios_ajenos("") == [], "árbol limpio no tiene sucios")
     afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\nM  docs/tablero.md") == [],
            "los derivados del canal no cuentan como suciedad")
-    # #1198: el README del trozo anterior queda en el árbol tras `git reset`.
-    afirma(TP._sucios_ajenos(" M README.md\n M data/corrida0/usos.tsv") == [],
-           "README.md (readme_derivado del trozo anterior) es derivado del canal")
     afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\n M tools/x.py") == ["tools/x.py"],
            "un archivo ajeno sí ensucia el árbol")
+
+
+def prueba_readme_solo_valores_derivados():
+    """#1198: README.md sólo se tolera sucio si cambian valores deriva[] del bloque."""
+    M = "<!-- deriva[N]: python3 tools/corrida0.py status -->"
+    base = f"# T\n\n<!-- TABLERO-DERIVADO:BEGIN -->\n**300** {M} corridas\n<!-- TABLERO-DERIVADO:END -->\n\nfin\n"
+    f = TP._readme_solo_valores_derivados
+    afirma(f(base, base.replace("**300**", "**320**")), "cambiar el valor del bloque se autoriza")
+    afirma(not f(base, base.replace("fin", "fin editado")), "editar fuera del bloque no se autoriza")
+    afirma(not f(base, base.replace(" corridas", " corridas y más")), "editar texto del bloque no se autoriza")
+    afirma(not f(base, base.replace("status -->", "status | x -->")), "cambiar el comando de la marca no se autoriza")
+    afirma(not f(base, base.replace("<!-- TABLERO-DERIVADO:END -->", "")), "quitar la marca END no se autoriza")
+    afirma(not f(None, base), "README ausente en HEAD no se autoriza")
+
+
+def _publica_trozo(lote, padre):
+    """Réplica mínima del paso de verify.yml: deriva, guarda del tablero, commit-tree, reset."""
+    import subprocess as sp
+    with open("data/corrida0/corridas.tsv", "a") as fh:
+        fh.writelines(f"{c}\n" for c in lote)
+    n = sum(1 for _ in open("data/corrida0/corridas.tsv")) - 1
+    ok, motivo = TP._es_origin_main_limpio()
+    if not ok:
+        return None, motivo
+    with open("forense/tablero/TABLERO-PROGRAMA.md", "w") as fh:
+        fh.write(f"corridas={n}\n")
+    t = open("README.md").read()
+    open("README.md", "w").write(re.sub(r"\*\*\d+\*\*", f"**{n}**", t, count=1))
+    sp.run(["git", "add", "--", "data/corrida0/corridas.tsv", "forense/tablero/TABLERO-PROGRAMA.md", "README.md"], check=True)
+    arbol = sp.run(["git", "write-tree"], capture_output=True, text=True, check=True).stdout.strip()
+    sp.run(["git", "reset", "-q"], check=True)
+    return sp.run(["git", "commit-tree", arbol, "-p", padre, "-m", "[deriva] trozo"],
+                  capture_output=True, text=True, check=True).stdout.strip(), ""
+
+
+def _repo_canal(tmp):
+    import subprocess as sp
+    os.makedirs(os.path.join(tmp, "o"))
+    sp.run(["git", "init", "-q", "--bare", "-b", "main", os.path.join(tmp, "o")], check=True)
+    w = os.path.join(tmp, "w")
+    sp.run(["git", "clone", "-q", os.path.join(tmp, "o"), w], check=True, capture_output=True)
+    os.chdir(w)
+    for k, v in (("user.name", "t"), ("user.email", "t@t")):
+        sp.run(["git", "config", k, v], check=True)
+    os.makedirs("data/corrida0"); os.makedirs("forense/tablero")
+    open("data/corrida0/corridas.tsv", "w").write("calc\n")
+    open("forense/tablero/TABLERO-PROGRAMA.md", "w").write("corridas=0\n")
+    open("README.md", "w").write("# T\n<!-- TABLERO-DERIVADO:BEGIN -->\n**0** <!-- deriva[N_corridas_selladas]: c --> corridas\n<!-- TABLERO-DERIVADO:END -->\nfin\n")
+    sp.run(["git", "add", "-A"], check=True)
+    sp.run(["git", "commit", "-qm", "base"], check=True)
+    sp.run(["git", "push", "-q", "origin", "HEAD:main"], check=True, capture_output=True)
+    sp.run(["git", "fetch", "-q", "origin", "main"], check=True)
+    return sp.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip()
+
+
+def prueba_dos_trozos_consecutivos():
+    """#1198: dos trozos seguidos con tablero y README; el segundo no se niega
+    por el README del primero, y las tablas del último trozo son idénticas a
+    las de una publicación de un solo trozo con el mismo lote."""
+    import subprocess as sp
+    previo = os.getcwd()
+    lista = ["data/corrida0/corridas.tsv", "forense/tablero/TABLERO-PROGRAMA.md", "README.md"]
+    try:
+        with tempfile.TemporaryDirectory() as tmp:
+            head = _repo_canal(os.path.join(tmp, "a"))
+            p1, m1 = _publica_trozo(["CALC-1", "CALC-2"], head)
+            afirma(p1 is not None, f"trozo 1 se publica ({m1})")
+            p2, m2 = _publica_trozo(["CALC-3"], p1)
+            afirma(p2 is not None, f"trozo 2 no se niega por el README del trozo 1 ({m2})")
+            afirma(sp.run(["git", "rev-parse", "HEAD"], capture_output=True, text=True).stdout.strip() == head,
+                   "HEAD no se mueve entre trozos")
+            dos = {r: sp.run(["git", "show", f"{p2}:{r}"], capture_output=True, text=True).stdout for r in lista}
+            # README editado a mano fuera del bloque: la guarda vuelve a negar.
+            open("README.md", "a").write("edición ajena\n")
+            ok, motivo = TP._es_origin_main_limpio()
+            afirma(not ok and "README.md" in motivo, f"edición ajena del README se niega ({motivo})")
+            head_b = _repo_canal(os.path.join(tmp, "b"))
+            p, m = _publica_trozo(["CALC-1", "CALC-2", "CALC-3"], head_b)
+            uno = {r: sp.run(["git", "show", f"{p}:{r}"], capture_output=True, text=True).stdout for r in lista}
+            afirma(dos == uno, "tablas, tablero y README de dos trozos == un trozo con el mismo lote")
+    finally:
+        os.chdir(previo)
 
 
 def prueba_gen2_rotula_en_arbol():
@@ -361,12 +441,14 @@ def main():
     prueba_render_determinista()
     prueba_sucios_ajenos()
     prueba_gen2_rotula_en_arbol()
+    prueba_readme_solo_valores_derivados()
+    prueba_dos_trozos_consecutivos()
     if FAILS:
         print(f"FALLÓ ({len(FAILS)}):")
         for m in FAILS:
             print(f"  · {m}")
         return 1
-    print("OK -- test_tablero_programa.py: 16 pruebas, 0 fallos")
+    print("OK -- test_tablero_programa.py: 18 pruebas, 0 fallos")
     return 0
 
 
