@@ -1,0 +1,22 @@
+{
+  "cobertura_leida": 685,
+  "grupos": {
+    "ambitos_externos: desconocidos vs negativos y denominador conocido": 535,
+    "edad_60+: filtros de edad distintos; adjudicar código con FD de esta ola": 36,
+    "pareja_reciente: condicionamiento por vida conocida distinto": 62,
+    "instituciones: solicitantes vs afectadas, cambia estimando": 6,
+    "permisos: filtro CP4_1 distinto": 34,
+    "denuncia_externa: columnas 1/5 vs 1–4 y elegibilidad distintas": 10,
+    "edad_60+: inclusión de EDAD 98/99 no especificada en productor; FD 2021": 2
+  },
+  "publicabilidad_enlace": 11,
+  "contrastes_raw": "ver c1-puntos-p2-final.json",
+  "interaccion_sintetica": -0.07575757575757575,
+  "nacionales2021": "ver contrastes-raw2021-v4.tsv",
+  "hashes_fuentes": {
+    "efectos-discrepancias.tsv": "052b680ad6780afa3a9edbd2a1257245a9efd465cda9b558c1f4eba2ed9d08a4",
+    "dictamenes-publicabilidad.tsv": "f0f12de850fd99ee8acfffb06369f2192043aa58d22b1d80173853842a875005",
+    "discrepancias-2011.md": "980ec07ce53794bb50c23c529c3402e6550678d1f5690fa45418228620104b06",
+    "discrepancias-nofisica.md": "4c5a5b829944ed429e91823fc59fbe94d2374897b8c7383770fbeaaa949e91c9"
+  }
+}

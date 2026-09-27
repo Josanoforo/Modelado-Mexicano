@@ -1,0 +1,22 @@
+--- a/sucesor-2011/spec.md
++++ b/sucesor-2011/spec.md
+@@ -15,3 +15,19 @@
+ Cortes univariados nacional, edad 15–29/30–44/45–59/60+, escolaridad 00 ninguna, 01–03/05 básica, 04/06/07 media, 08/09 superior; localidad U/R, situación A/B/C y entidad 01–32. IC percentil 2.5–97.5 de 200 réplicas de todas las UPM dentro de estrato, incluidas UPM de contribución cero, semilla 20260923. Publicable n conocido ≥100, ≥5 UPM, ancho IC ≤0.20 y CV ≤0.30 si p>0; suprimidas sin punto ni réplicas. Razones e instituciones solo nacional. Réplicas agregadas sin identificadores.
+ 
+ Manifiesto `endireh_2011_bd_endireh_2011_csv`, SHA recalculado `8ece557b2ac1d78dc0bfdee1d8f9743b2da1e44184be340d22967d60b10d52e5`; FD XLS `b038c66d69bce990d9bd71cfc76dd19b5320532b3bba4efbb083b8b1ddc4755e`. Cuestionarios A/B/C SHA `de9e6614564df6e36b86de7e6f9274d191546793da4f121876232ababb53ed2f`, `a6dca2905108ba78bc82f88b535c5e5c54a519edc6228fe04781e6b781c68d52`, `2bcc0e7a90e487ec37f6f760da3b5dad406d168737fcf577572bfecb2ebe4d1e`. Import efectivo `numpy==2.3.5`; resto biblioteca estándar y medidor autocontenido.
++
++## Contrato del sucesor · PROPUESTO-POR-EJECUTOR
++
++Este cuerpo se crea en un CALC nuevo, con referencia al sello histórico; no autoriza run ni adopción por este diagnóstico. Congelar juntos spec, código propio, inputs y guardias después de firma de contenido.
++
++Edad: cortes etarios solo EDAD15..97;97 significa97 o más,98 y99 no tienen corte observado. Desacoplar elegibilidad global de etiqueta de edad. Opción propuesta para nacional:15..97 y98;99 requiere evidencia independiente de15+ o decisión expresa de excluir. Esta opción no está adoptada y su diferencia respecto del universo histórico se debe reportar para TODAS las celdas, incluidos nacionales y cortes no etarios. Mantener pesos FAC y respuestas conocidas; no imputar desconocidos a cero. No llamar a la reconstrucción original corregida ni validada retroactivamente.
++
++Externos: conservar positivo cuando existe coincidencia observada; declarar negativo de hecho solo cuando existe respuesta válida y ninguna casilla no vacía desconocida. Blanco de segunda casilla opcional no equivale al código99. Código12 agresor desconocido es respuesta válida del FD. Coincidencia de vida positiva mantiene vida=1; reciente=0 requiere casillas completas conocidas o blanco opcional, aunque vida=1. Reciente=1 observado se conserva pese otra casilla desconocida. Unión negativa requiere12 hechos clasificables negativos. Ventana reciente: aportar4 cuando vida4; calcular la unión reciente con su denominador propio, aunque vida agregada sea desconocida; registrar respuestas fuera de salto como auditoría de consistencia.
++
++Permisos C: únicamente CP4_1=1/2 de TSolter1; CP7_1 de TSolter2 conserva recodificación1 sí,2/3 no,4/5/9/blanco fuera. Llevar first al clasificador; no buscar CP4_1 en segunda tabla.
++
++Denuncia externa: hechos1..9 con2.6=1; para cada solicitud2.10_j institucional01..09 enlazar los dos resultados2.12_(2j-1),2.12_(2j). Denuncia positiva si algún resultado1; negativa entre resultados válidos2..8; otros desconocidos. No agregar resultados de solicitud familiar o sin autoridad. Separar selección columnas de vínculo institucional en los contrastes.
++
++Instituciones: decisión de mesa requerida. Recomendación: conservar estimando histórico como composición entre solicitantes, renombrado explícitamente, y ofrecer otro CALC con frecuencia entre afectadas si mesa lo solicita. El primer denominador es violencia=1 y alguna ayuda=1 con respuesta conocida de institución; el segundo violencia=1 con respuesta conocida de institución. El patch alternativa afectadas solo se aplica tras firma que seleccione ese segundo estimando. Nunca elegir por cercanía a la cifra anterior.
++
++Intervalos y publicabilidad: no cambiar umbrales ni declarar equivalencia; coordinar contrato de marco/RNG con sesión02. Este encargo solo entrega universo/punto y receta. Después de firma: preflight sintético y control de invariantes, run únicamente CALC nuevo, comparación por identidad y deltas/denominadores para toda la tabla; circuito de recibo y mesa adopta/retiro. Sello viejo intacto.

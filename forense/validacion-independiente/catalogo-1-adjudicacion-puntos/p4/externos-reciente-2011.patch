@@ -1,0 +1,29 @@
+--- a/sucesor-2011/medidor.py
++++ b/sucesor-2011/medidor.py
+@@ -179,10 +179,14 @@
+     paired = [(r.get(f"{prefix}{field}_{i}_{j}", "").strip(),
+                r.get(f"{prefix}2_9_{i}_{j}", "").strip()) for j in (1, 2)]
+     matched = [recent for value, recent in paired if value in codes]
++    valid = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16"} if field == "2_7" else {"01", "02", "03", "04", "05", "06", "07", "08", "09"}
++    complete = (any(value in valid for value, _ in paired)
++                and all(value in valid | {""} for value, _ in paired))
+     if matched:
+-        return 1, _union_binary(matched)
+-    valid = {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16"} if field == "2_7" else {"01", "02", "03", "04", "05", "06", "07", "08", "09"}
+-    if any(value in valid for value, _ in paired):
++        recent = _union_binary(matched)
++        # Vida positiva no acredita ausencia reciente si otra casilla es desconocida.
++        return 1, None if recent == 0 and not complete else recent
++    if complete:
+         return 0, 0
+     return None, None
+ 
+@@ -249,7 +253,7 @@
+         life = _freq(life_vals)
+         recent = [("4" if v == "4" else second.get(f"{prefix}6_3_{i}")) for i, v in zip(nums, life_vals)]
+         base[f"pareja_{group}_vida"] = life
+-        base[f"pareja_{group}_desde_octubre_2010"] = _freq(recent) if life is not None else None
++        base[f"pareja_{group}_desde_octubre_2010"] = _freq(recent)
+     violence = base["pareja_alguna_vida"]
+     help_prefix, count = ("CP6_4_", 6) if state == "C" else (prefix + "6_5_", 6)
+     institution = [second.get(help_prefix + str(i)) for i in range(1, count + 1)]
