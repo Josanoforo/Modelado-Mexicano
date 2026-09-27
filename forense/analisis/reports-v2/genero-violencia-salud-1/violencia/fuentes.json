@@ -1,0 +1,63 @@
+[
+  {
+    "id": "NARCO",
+    "url": "https://arxiv.org/pdf/1507.01287",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "pp.3–9: Data and methods, findings, limitations",
+    "estado": "LEIDO-CUERPO-DIRIGIDO",
+    "clase": "(a)",
+    "alcance": "Lenguaje Twitter asociado a ciudades mexicanas 2010–2012; usuarios no población representativa. No causalidad, residencia ni roles de exposición validados.",
+    "actualizacion": "histórica; relectura dirigida a mecanismo"
+  },
+  {
+    "id": "IEP",
+    "url": "https://www.visionofhumanity.org/maps/mexico-peace-index/",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "Key Findings from the Mexico Peace Index 2026, línea economic impact",
+    "estado": "LEIDO-RESUMEN-PRIMARIO",
+    "clase": "(a) agregado modelado",
+    "alcance": "Corrige atribución de indicador; no se leyó reporte económico completo ni se conservan costos como cantidad firme.",
+    "actualizacion": "2026 dirigida al error central"
+  },
+  {
+    "id": "ENVIPE-OFICIAL",
+    "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2024/ENVIPE/ENVIPE_24.pdf",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "pp.19–26, percepción, actividades y confianza",
+    "estado": "LEIDO-CUERPO-DIRIGIDO",
+    "clase": "(a)",
+    "alcance": "Percepción nacional adulta; cambio de actividades durante 2023; no efecto causal exclusivo en no víctimas.",
+    "actualizacion": "ola abierta 2024; 2026 excluida"
+  },
+  {
+    "id": "ENCIG",
+    "url": "https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig23_cuestionario.pdf",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "sección A y III, pp.3–4",
+    "estado": "LEIDO-CUESTIONARIO-DIRIGIDO",
+    "clase": "(a)",
+    "alcance": "Solo localización de reactivos. No negar toda batería desde A.1.",
+    "actualizacion": "2023"
+  },
+  {
+    "id": "ENCIG-RESULTADOS",
+    "url": "https://www.inegi.org.mx/contenidos/programas/encig/2023/doc/encig2023_principales_resultados.pdf",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "pp.3–4,212 y270 (numeración impresa): universo, confianza actores, resumen de corrupción; PDF obtenido por curl y pdftotext tras fallos web",
+    "estado": "LEIDO-CUERPO-DIRIGIDO",
+    "clase": "(a)",
+    "alcance": "Coteja familia, vecinos, policía, partidos y percepción corrupción. Nacional urbano 18+ en ciudades de 100 mil habitantes y más; no transferencia causal a red íntima.",
+    "actualizacion": "2023 abierta, fuente primaria consolidada",
+    "sha256": "c999ac6385434acb19674641c801820316a3d474f086425454ef1cdaf5d455c5"
+  },
+  {
+    "id": "MARE",
+    "url": "https://www.sciencedirect.com/science/article/pii/S2667193X21000636",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "editor y PDF del equipo investigador, fetch falló",
+    "estado": "SIN-FETCH-COMPLETO",
+    "clase": "(c) Brasil",
+    "alcance": "No se usa resultado como hecho ni se hereda lectura ajena.",
+    "actualizacion": "pendiente adquisición"
+  }
+]

@@ -1,0 +1,33 @@
+{
+  "report": "corpus/reports-v2/Salud_Mental_en_México__Prevalencia__Estigma_y_la_Brecha_entre_Necesidad_y_Atención.md",
+  "mapa_filas": 39,
+  "afirmaciones": 106,
+  "afirmaciones_aclaracion": "Registros editoriales: filas mapa compuestas, cláusulas divididas y fuera mapa; no tesis únicas. Correspondencias de reiteraciones en cobertura.",
+  "dictamenes": {
+    "MATIZA": 36,
+    "SIN-CIFRA": 68,
+    "ROMPE": 2
+  },
+  "cifras": 16,
+  "fuentes": 7,
+  "reglas": 3,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/salud/verifica.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/salud/verifica.py",
+    "--check",
+    "--self-test"
+  ],
+  "cobertura_lineas": 322,
+  "reservas": [
+    "EDR PROVISIONAL firma ABIERTA, vista reciente ausente; no tasa ni contraste tasa original",
+    "ENEP resumen primario, no foto actual",
+    "DOF mandato y transitorio verificados; no ejecución ni presupuesto futuro total",
+    "Migración lectura parcial, no cantidades firmes ni causalidad",
+    "Literatura no leída retirada; no adquisición microdato",
+    "Revisión editorial POR EJECUTOR; revisión externa solicitada por responsable"
+  ]
+}
