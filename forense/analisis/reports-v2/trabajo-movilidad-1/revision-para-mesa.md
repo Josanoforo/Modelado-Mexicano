@@ -13,3 +13,7 @@ Todas las ROMPE, cifras principales y mecanismos centrales se detallan en los ex
 La apertura incidental del reporte público ENIGH2024_RR.pdf en las piezas de clase media y movilidad se declara como exposición de una fuente reservada. No se incorpora dato ni conclusión de ese documento. Mesa debe adjudicar la incidencia; no se presume autorización retroactiva ni levantamiento de reserva.
 
 Circuito: solicitar recibo en el PR a GEN2-RECIBO-ASTRA-PRODUCTO-N. Claude revisa; mesa decide adopción de propuestas y fusión. El ejecutor no concede recibo ni firma por mesa.
+
+## Corrección dirigida de PR #1181
+
+MOV-034a pasa a MATIZA: el original reconoce ascensos, no se infiere mejora temporal. MOV-EX02 pasa a MATIZA para descripción educativa; MOV-EX02-C queda SIN-CIFRA para efecto causal económico y cambio temporal. Se solicita recibo de Claude sobre el HEAD corregido, incluidos estos juicios y [adjudicación con alcance de exposición](adjudicacion-exposicion.md). Retirar la fuente no restablece ceguera ni concede autorización retroactiva. La revisión y adjudicación no están obtenidas.

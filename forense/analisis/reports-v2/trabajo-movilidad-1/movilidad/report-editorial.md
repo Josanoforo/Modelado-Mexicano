@@ -5,8 +5,8 @@ Corte documental: 26 de septiembre de 2026. Reescritura editorial de las tesis d
 ## Resumen ejecutivo
 
 1. **Sólido:** origen y destino de recursos económicos están asociados. En ESRU-EMOVI 2023, |CIFRA:q1_persiste| de quienes tuvieron origen en el quintil inferior permanece allí, y |CIFRA:q1_asciende| alcanza el superior. Son probabilidades condicionadas por origen, no tasas de pobreza monetaria. [CEEY 2025, p.6](https://ceey.org.mx/wp-content/uploads/2025/07/PRESENTACION-Informe-de-Movilidad-Socia-en-Mexico-2025.pdf).
-2. **Malinterpretado:** movilidad limitada no significa movilidad cancelada ni destino individual inevitable. La cancelación literal contradice el ascenso observado (MOV-034a, ROMPE).
-3. **Malinterpretado:** que la escolaridad adulta dependa de la parental no demuestra que estudiar haya dejado de ser un canal de ascenso. La ausencia literal de ese canal se rompe; su efecto causal neto no queda estimado (MOV-EX02).
+2. **Matizado:** el original ya reconoce ascensos desde el quintil inferior y propone comparar una ola posterior. «Movilidad cancelada» es una expresión excesiva para movilidad limitada y desigual; la existencia de ascensos no demuestra mejora temporal (MOV-034a, MATIZA).
+3. **Matizado:** el ascenso educativo respecto a los padres describe movilidad educativa, distinta de movilidad económica (MOV-EX02, MATIZA). No demuestra que estudiar cause ascenso económico ni refuta que la educación haya perdido eficacia como canal. Ese efecto causal y su cambio temporal quedan SIN-CIFRA sin evidencia compatible (MOV-EX02-C).
 4. **Reserva:** se retiran las cifras y conclusiones sobre Gini e ingreso del reporte público ENIGH2024, leído pese a la reserva. Las filas MOV-004, MOV-005 y MOV-038a quedan SIN-CIFRA por restricción del proyecto. No se adjudica aquí reducción de desigualdad ni brecha de ingreso.
 5. **Útil:** ingreso, posición relativa, escolaridad y percepción de mejora requieren indicadores separados. Una persona puede mejorar respecto de sus padres y conservar una posición baja relativa.
 6. **Malinterpretado:** la cifra original sobre persistencia de pobreza por ingresos tiene condicionamiento disputado entre cuerpo y presentación del emisor. Se retira de los hechos firmes; no se invierte automáticamente para “corregirla”.
@@ -109,7 +109,7 @@ La disputa de condicionamiento del indicador de pobreza de CEEY permanece materi
 - **¿Qué cambia con rural, indígena y popular?** Oferta de servicios, territorio, régimen institucional y categorías de autoadscripción requieren análisis propio; no rellenar cruces ausentes ni homogeneizar.
 - **¿Qué parece psicológico y puede ser incentivo?** Rechazar crédito, posponer formación o no solicitar ascenso puede depender de precio, elegibilidad y cuidados; hipótesis sometida a falsador.
 - **¿Evidencia débil e intuición fuerte?** Envidia, narcocultura causal, creencia contemporánea y dominio del esfuerzo/contactos no están identificados. Se retiran proporciones no cotejadas.
-- **¿Lectura simplista peligrosa?** Imputar capacidad por tono, inevitabilidad por origen o culpa individual a cuidadoras. Los dos ROMPE corrigen absolutismos, no niegan desigualdad.
+- **¿Lectura simplista peligrosa?** Imputar capacidad por tono, inevitabilidad por origen o culpa individual a cuidadoras. Las correcciones MATIZA conservan los ascensos ya reconocidos sin convertirlos en mejora temporal ni en efecto causal económico de estudiar.
 - **¿Estado del corpus escrito a mano?** Conteos y filas provienen del productor y lectores CSV/JSON; firma por identidad, sello y consulta se verifican sin editar derivados.
 - **¿Deuda asumida que caducó?** Los nuevos pisos MMSI permiten describir educación y percepción; no mantienen la afirmación vieja de que no existe medición alguna. No resuelven quintiles ni adopción.
 - **¿Contadores modificados?** Ninguna corrida ni adopción; los conteos editoriales se derivan y no se suman al contador del programa.

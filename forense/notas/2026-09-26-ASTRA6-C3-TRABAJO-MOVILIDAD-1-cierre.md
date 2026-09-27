@@ -19,3 +19,7 @@ PENDIENTE: revisión humana de tesis centrales y recibo independiente, solicitad
 Verificaciones y corte de integración final: forense/analisis/reports-v2/trabajo-movilidad-1/verificaciones.md. El ejecutor no fusiona.
 
 EJECUTADO: entrega y solicitud de recibo por [PR #1181](https://github.com/Josanoforo/Modelado-Mexicano/pull/1181). Sin fusión ni revisión independiente atribuida.
+
+## Corrección dirigida posterior sobre PR #1181
+
+Los dos ROMPE de movilidad sustituyeron el significado del original; se corrigen a MATIZA y se añade una cláusula causal SIN-CIFRA, sin cambio de cifras. Conteos vigentes y pruebas dirigidas en el expediente local. Exposición directa clase/movilidad e indirecta del integrador declarada en adjudicacion-exposicion.md; retirada no restablece ceguera ni concede autorización retroactiva. Solicitar recibo de Claude sobre el HEAD corregido; no adjudicado ni fusionado aquí.

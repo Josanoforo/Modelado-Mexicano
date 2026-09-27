@@ -4,15 +4,15 @@ EJECUTADO: productor y verificador mecánicos con ocho mutaciones materiales rec
 
 | Objeto dirigido | Revisión y decisión |
 |---|---|
-| MOV-034a ROMPE | “Movilidad cancelada” literal contradice ascenso Q1→Q5 publicado CEEY; no afirma incremento temporal ni causalidad. |
-| MOV-EX02 ROMPE | “Educación ya no es motor” se rompe solamente en lectura de ausencia literal de tránsito educativo desde origen bajo; el retorno causal de educación permanece no identificado. |
+| MOV-034a MATIZA | El original ya reconoce ascensos y propone comparación posterior. Expresión excesiva: movilidad limitada y desigual; existencia de ascensos no demuestra mejora temporal. |
+| MOV-EX02 MATIZA / MOV-EX02-C SIN-CIFRA | Movilidad educativa respecto a padres se separa de movilidad económica. Ascenso educativo no prueba efecto causal de estudiar ni refuta pérdida de eficacia; efecto y cambio temporal sin evidencia compatible. |
 | MOV-037 SIN-CIFRA | PDF primario CEEY2025 descargado desde enlace oficial Drive, SHA ba57a707210c2295b5b138fc310ca10b34fbcd1ae19f7f34c57b084f7653c758. Leídos cuerpo p.55, nota p.56, presentación p.12. Dirección del condicional discordante; se protege exclusión en ambos sentidos. No se modifica mapa ni se adopta una “corrección” firme. |
 | Gini con/sin transferencias | EXCLUIDO-RESERVA: se preserva testimonio de lectura INEGI23/25 p.10, pero ninguna cifra/conclusión o soporte se utiliza. |
 | MMSI educativo | Ocho puntos usados con respectivos IC y n por RESULT exacto; hash resultados y spec validado contra sello. No sumar mestiza/blanca ni convertir escala autorreportada en genética. |
 | MMSI percepción | Mejora percibida y educación no son el mismo desenlace. No construir transición quintil desde marginales. Intervalos educativos y percepción no convierten contraste en causa. |
 | Firma MMSI | consulta.py fp: ABIERTA; no piso adoptado. consulta.py resultados/corrida: NO-ENCONTRADO en vistas; fallback declarado por RESULT en objeto sellado, sin editar derivados. |
 | Mecanismo origen/cuidado/finanzas | Fuentes primarias 2025–26 dirigidas, canales compatibles y rivales explícitos; intervención requiere oferta y contrafactual. |
-| Cobertura | 38 filas de mapa y 33 líneas materiales cubiertas con lector CSV y correspondencias explícitas; 82 registros por cláusula, de ellos26 fuera de mapa. Tras corrección de reserva: 3 CONFIRMA,24 MATIZA,53 SIN-CIFRA,2 ROMPE;2 cifras externas activas. No se confunde cobertura de líneas con tesis únicas independientes. |
+| Cobertura | 38 filas de mapa y 33 líneas materiales cubiertas con lector CSV y correspondencias explícitas; Conteos vigentes derivados en conteos.json; se añade una cláusula causal separada vinculada al mismo pasaje original. Dos cifras externas activas; ninguna ROMPE en esta pieza tras corrección de mesa. No se confunde cobertura de líneas con tesis únicas independientes. |
 | Reglas | Tres reglas PROPUESTO-POR-EJECUTOR, consumidores/falsadores/límites explícitos; no parámetros numéricos, adopción ni edición de motor. |
 
 Comandos propios:
@@ -32,3 +32,7 @@ Reservas: exposición pública ENIGH2024 declarada, fuente excluida, adjudicaci�
 La afirmación anterior de no haber abierto una ola reservada queda corregida: no se abrió microdato, pero sí se leyó en web el reporte público ENIGH2024_RR.pdf, también cubierto por reserva. Lectura2026-09-26 de páginas2,10,12 y búsquedas de Gini/ingreso por sexo. URL exacta, contenido y alcance permanecen en contrato.json; fuentes.json preserva el testimonio como EXCLUIDA-RESERVA. Ninguna retroautorización. Adjudicación de mesa PENDIENTE; root amplía NC02.
 
 Se eliminan del producto las cifras Gini y toda conclusión o soporte derivado de esa fuente. MOV-004,005,038a pasan a SIN-CIFRA por restricción del proyecto; sin evidencia independiente autorizada. Los historiales de cifras originales en la tabla siguen siendo inventario de contenido retirado, nunca evidencia usada. El verificador rechaza el ID INEGI2025 en ledger o como soporte editorial. La revisión anterior de Gini queda EXCLUIDA, no válida.
+
+## Corrección solicitada por mesa sobre PR #1181
+
+Los juicios anteriores de MOV-034a y MOV-EX02 sustituían el significado del original: tratar ascensos ya reconocidos como cancelación literal y usar transición educativa como refutación de eficacia económica. Se retiran ambos ROMPE; la cláusula causal se separa. Las autopruebas rechazan restaurar esos ROMPE y sustituir movilidad educativa por causalidad económica. La exposición reservada permanece declarada; retirar contenido no restablece ceguera ni concede autorización retroactiva. Solicitar recibo de Claude sobre el HEAD corregido, incluidos estos juicios y la adjudicación de exposición.

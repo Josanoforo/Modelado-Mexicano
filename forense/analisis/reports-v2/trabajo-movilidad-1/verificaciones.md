@@ -13,3 +13,9 @@ EJECUTADO / corrección de integración: movilidad retiró toda cifra, conclusi�
 LEÍDO: origin/main avanzó de 1eeb8552 a 3aacda232b3b03f158950738f31aa4ea509d3162 (#1177 adquisición); diff de cinco archivos, sin modificación de pisos ni firmas del lote. El corte editorial se conserva; el cierre incorpora ese avance antes de su gate final.
 
 EJECUTADO sobre merge bcdc75bf1ce935929616ad5843c21d53a2cf5911 con origin/main3aacda23 incorporado: verificador propio con autopruebas VERDE; `python3 tests/check.py --rapido`: 0 FAIL. Cinco WARN propios corresponden a las dos FP y tres NC ABIERTAS de esta entrega, declaradas y sin adjudicación automática. No se reparan fallos heredados T06/T08 ni se modifica baseline/CI. El cuerpo recibido trae un salto blanco final: se preserva verbatim; añadir el cierre A.14 evita convertir esa diferencia cosmética en reescritura del sello.
+
+## Corrección dirigida solicitada sobre PR #1181
+
+EJECUTADO: productor de movilidad --write --self-test pasa 16 mutaciones; siete nuevas protegen las dos sustituciones de significado en decisiones y prosa, sin expansión de auditoría. Conteos vigentes de movilidad desde conteos.json: {"registros_editoriales": 83, "filas_mapa": 38, "registros_fuera_mapa": 27, "lineas_materiales_cubiertas": 33, "tesis_editoriales_por_clausula": 83, "resultados_punto_usados": 8, "resultados_con_ic_n": 32, "cifras_externas": 2, "reglas": 3, "CONFIRMA": 3, "MATIZA": 26, "ROMPE": 0, "SIN-CIFRA": 54}. Una cláusula causal adicional conserva localizador y original compartidos, sin contarla como observación independiente. Sellos, reservas y CI sin modificación. Históricos anteriores describen su HEAD, no el corregido.
+
+EJECUTADO para esta corrección: verificador conjunto --regenera --autoprueba VERDE, sin diferencias; gate rápido 0 FAIL, 581 WARN (mismos pendientes FP/NC declarados); git diff --check sin errores. Solicitud de recibo se actualizará en el PR con el hash del commit corregido; no recibo concedido.

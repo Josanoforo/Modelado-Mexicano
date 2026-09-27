@@ -25,11 +25,31 @@ def sha(p): return hashlib.sha256(p.read_bytes()).hexdigest()
 def dump(d): return json.dumps(d,ensure_ascii=False,indent=2)+'\n'
 def tab(rows):
  b=io.StringIO(); w=csv.DictWriter(b,fieldnames=list(rows[0]),delimiter='\t',lineterminator='\n'); w.writeheader(); w.writerows(rows); return b.getvalue()
+def validate_report_meaning(text):
+ # Rechazar las dos formulaciones erróneas del HEAD anterior, también en prosa.
+ assert 'La cancelación literal contradice el ascenso observado' not in text, 'refutación de cero ascensos que el original no sostuvo'
+ assert 'La ausencia literal de ese canal se rompe' not in text, 'ascenso educativo como refutación de eficacia económica'
+ assert 'la existencia de ascensos no demuestra mejora temporal' in text, 'límite temporal omitido'
+ assert 'No demuestra que estudiar cause ascenso económico ni refuta' in text, 'límite causal económico omitido'
+
+def validate_corrected_meaning(editorial):
+ # Corrección de mesa: conservar el significado original, no refutar sustitutos.
+ rows={r['id']:r for r in editorial}
+ limited=rows['MOV-034a']
+ assert limited['dictamen']=='MATIZA', 'ascensos ya reconocidos no refutan cancelación literal'
+ assert limited['dimension_juicio']=='movilidad económica descriptiva; cambio temporal no identificado', 'ascenso observado no identifica mejora temporal'
+ educational=rows['MOV-EX02']
+ assert educational['dictamen']=='MATIZA' and educational['dimension_juicio']=='movilidad educativa descriptiva', 'movilidad educativa no refuta eficacia económica de estudiar'
+ causal=rows['MOV-EX02-C']
+ assert causal['dictamen']=='SIN-CIFRA' and causal['dimension_juicio']=='efecto causal económico y cambio temporal no identificados', 'efecto causal o cambio temporal sin evidencia compatible'
+ assert causal['original']==educational['original'] and causal['razon_sin_cifra'], 'cláusula causal sin correspondencia o límite'
+
 def validate(editorial,coverage,ledger,ext,contract):
  assert sha(ROOT/contract['original'])==contract['original_sha256'], 'original cambiado'
  assert sha(ROOT/contract['mapa'])==contract['mapa_sha256'], 'mapa cambiado'
  maps={r['id_afirmacion'] for r in csv.DictReader(open(ROOT/contract['mapa']),delimiter='\t') if r['report']==contract['original']}
  assert {r['mapa_id'] for r in editorial if r['mapa_id']}==maps,'cobertura mapa incompleta'
+ validate_corrected_meaning(editorial)
  ids={r['id'] for r in editorial}; assert len(ids)==len(editorial),'id duplicado'
  assert all(r['dictamen'] in ['CONFIRMA','MATIZA','ROMPE','SIN-CIFRA'] and r['razon'] and r['evidencia'] for r in editorial),'juicio incompleto'
  lines=(ROOT/contract['original']).read_text().splitlines()
@@ -73,9 +93,10 @@ def produce():
   rr={kind:results[stem+'-'+kind] for kind in ['P','IC-LO','IC-HI','N']}
   own.append(dict(etiqueta=label,result_id=rid,calc=contract['calc'],valor=rr['P'],ic_lo=rr['IC-LO'],ic_hi=rr['IC-HI'],n=rr['N'],result_ic_lo=stem+'-IC-LO',result_ic_hi=stem+'-IC-HI',result_n=stem+'-N',unidad='proporción ponderada persona25-64',denominador='NivEsc_Inf ∈1–7 válidos' if 'EDUCACION' in suffix else 'Per_SitEco ∈1,2,3 válidos',estimando='educación superior NivEsc_Inf=7' if 'EDUCACION' in suffix else 'mejora percibida, no transición quintil',ola='MMSI2016',fuente='(a) primaria México',estado=contract['estado'],firma=contract['firma'],firma_estado='ABIERTA',hash_resultados=seal['resultados.json'],hash_spec=seal['spec.yaml'],registro='consulta.py + objeto sellado por identidad' if q.returncode==1 else 'consulta.py + cotejo sello',prospectividad='RETROSPECTIVA descriptiva'))
  validate(ed,cover,own,ext,contract)
- count=Counter(r['dictamen'] for r in ed)
+ count=Counter({k:0 for k in ['CONFIRMA','MATIZA','ROMPE','SIN-CIFRA']});count.update(r['dictamen'] for r in ed)
  counts=dict(registros_editoriales=len(ed),filas_mapa=len({r['mapa_id'] for r in ed if r['mapa_id']}),registros_fuera_mapa=sum(not r['mapa_id'] for r in ed),lineas_materiales_cubiertas=len(cover),tesis_editoriales_por_clausula=len(ed),resultados_punto_usados=len(own),resultados_con_ic_n=len(own)*4,cifras_externas=len(ext),reglas=len(read('reglas.json')),**count)
  template=(BASE/'report-editorial.md').read_text()
+ validate_report_meaning(template)
  assert not re.search(r'\d+(?:[.,]\d+)?\s*(?:%|pesos|millones|centavos)',template),'cifra factual cruda: usar ledger'
  lookup={r['clave']:r for r in ext}
  def replace(m):
@@ -108,11 +129,21 @@ def selftest(args):
  bad=copy.deepcopy(ext);bad[0]['fuente']='SIN-FUENTE';cases.append((ed,cover,own,bad,contract))
  bad=copy.deepcopy(ext);bad[0]['fuente']='INEGI2025';cases.append((ed,cover,own,bad,contract))
  bad=copy.deepcopy(ext);bad[0]['universo']='pobreza actual';cases.append((ed,cover,own,bad,contract))
+ # Sustituciones de significado que originaron la corrección de PR #1181.
+ for identity in ['MOV-034a','MOV-EX02']:
+  bad=copy.deepcopy(ed); next(r for r in bad if r['id']==identity)['dictamen']='ROMPE';cases.append((bad,cover,own,ext,contract))
+ for identity,dimension in [('MOV-034a','mejora temporal identificada'),('MOV-EX02','efecto causal económico identificado')]:
+  bad=copy.deepcopy(ed);next(r for r in bad if r['id']==identity)['dimension_juicio']=dimension;cases.append((bad,cover,own,ext,contract))
+ bad=copy.deepcopy(ed);next(r for r in bad if r['id']=='MOV-EX02-C')['dictamen']='CONFIRMA';cases.append((bad,cover,own,ext,contract))
  for case in cases:
   try: validate(*case)
   except AssertionError: pass
   else: raise AssertionError('mutación material no detectada')
- print('AUTOPRUEBAS materiales:',len(cases),'rechazadas; no validación independiente')
+ for wrong in ['La cancelación literal contradice el ascenso observado','La ausencia literal de ese canal se rompe']:
+  try: validate_report_meaning((BASE/'report-editorial.md').read_text()+'\n'+wrong)
+  except AssertionError: pass
+  else: raise AssertionError('sustitución de significado en prosa no detectada')
+ print('AUTOPRUEBAS materiales:',len(cases)+2,'rechazadas; no validación independiente')
 
 def main():
  p=argparse.ArgumentParser();p.add_argument('--write',action='store_true');p.add_argument('--check',action='store_true');p.add_argument('--self-test',action='store_true');a=p.parse_args()

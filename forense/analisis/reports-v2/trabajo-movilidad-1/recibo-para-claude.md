@@ -15,3 +15,7 @@ PROPUESTO-POR-EJECUTOR: reglas y consumidores posibles en cada report, con condi
 PENDIENTE: revisión humana de tesis centrales y todas las ROMPE; recibo técnico independiente GEN2-RECIBO-ASTRA-PRODUCTO-N; adopción de propuestas y adjudicación de exposición incidental. Se solicita por el circuito de mesa en el PR, sin enviar mensajes externos. Este archivo es paquete de solicitud, nunca recibo concedido por su autor. El ejecutor no fusiona.
 
 EJECUTADO: entrega y solicitud de recibo por [PR #1181](https://github.com/Josanoforo/Modelado-Mexicano/pull/1181). Sin fusión ni revisión independiente atribuida.
+
+## Corrección dirigida de PR #1181
+
+MOV-034a pasa a MATIZA: el original reconoce ascensos, no se infiere mejora temporal. MOV-EX02 pasa a MATIZA para descripción educativa; MOV-EX02-C queda SIN-CIFRA para efecto causal económico y cambio temporal. Se solicita recibo de Claude sobre el HEAD corregido, incluidos estos juicios y [adjudicación con alcance de exposición](adjudicacion-exposicion.md). Retirar la fuente no restablece ceguera ni concede autorización retroactiva. La revisión y adjudicación no están obtenidas.

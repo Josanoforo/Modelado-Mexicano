@@ -5,7 +5,7 @@ Conteos derivados de decisiones explícitas. Los registros de procedencia pueden
 | Pieza | Registros | CONFIRMA | MATIZA | ROMPE | SIN-CIFRA |
 |---|---:|---:|---:|---:|---:|
 | [trabajo](../../../../corpus/reports-v2/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md) | 147 | 2 | 49 | 2 | 94 |
-| [movilidad](../../../../corpus/reports-v2/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md) | 82 | 3 | 24 | 2 | 53 |
+| [movilidad](../../../../corpus/reports-v2/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md) | 83 | 3 | 26 | 0 | 54 |
 | [clase](../../../../corpus/reports-v2/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md) | 61 | 1 | 15 | 4 | 41 |
 
 Cada pieza tiene fuente editorial, tabla razonada, trazas cuantitativas y verificador propio. Las ROMPE no se infieren de ausencia de evidencia. La adopción se verifica por firma; los pisos ENOE/MMSI nuevos se rotulan provisionales.
