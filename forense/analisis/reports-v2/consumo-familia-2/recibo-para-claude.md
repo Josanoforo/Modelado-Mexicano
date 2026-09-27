@@ -29,3 +29,7 @@ EJECUTADO: entrega en [PR #1179](https://github.com/Josanoforo/Modelado-Mexicano
 EJECUTADO: origin/main avanzó a `3aacda23` (#1177, adquisición/estado de investigación ajenos a consumo-familia) durante CI. Merge local `04fe3c5eb42cc76a70507aade237b9fbc169cb17` sin conflictos; conserva entradas ajenas de INFRAESTRUCTURA. No cambian mapa, RESULT, firmas, v1 ni reports del lote. Corte editorial de fuentes/juicios sigue `1eeb8552`; corte de integración es `3aacda23`.
 
 EJECUTADO sobre el merge final: ambos productores --check REPRODUCE, control local sin errores y nueve mutaciones rechazadas; `tests/check.py --rapido` exit 0, cero FAIL. La suite completa contra baseline pasó antes de este avance y su evidencia no se presenta como ejecución sobre el merge nuevo. CI del último push vuelve a juzgar la suite completa. No se modifica baseline ni se reparan fallos ajenos.
+
+## Sync y CI · continuación solicitada
+
+EJECUTADO: fetch de origin/main `8f4b2419`, incorporado por merge `6d8f4052`. Único conflicto en INFRAESTRUCTURA resuelto conservando ambas entradas (consumo/familia y género/violencia/salud). No modifica dictámenes, fuentes ni cuerpos sellados. Productores REPRODUCE; control local sin errores y nueve mutaciones rechazadas; gate rápido exit 0, cero FAIL. El HEAD anterior `c2fa3c91` tenía todos los checks de CI verdes (run 36283554762); se consulta nuevamente CI del push sincronizado, sin extrapolar ese verde al nuevo HEAD.
