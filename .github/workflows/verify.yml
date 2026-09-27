@@ -372,12 +372,8 @@ jobs:
     # de derivados a medias (registro del lote de 61 CALC: ~6 min, tras ~3
     # de guardias huérfanas). Con 10 min el canal no publica nunca.
     timeout-minutes: 30
-    # La publicación abre un PR de derivados y despacha su verificación.
-    # Nunca empuja a main: la regla de protección exige el check `check`.
-    permissions:
-      contents: write
-      pull-requests: write
-      actions: write
+    # GEN2-TUBERIA-CI-TIEMPO-2 · P1: la publicación se fue al job `derivados`;
+    # `guardias` ya no escribe (hereda `contents: read` del workflow).
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
         # El remoto sin credenciales rechazaba la publicación. La rama
@@ -447,6 +443,102 @@ jobs:
           print(f"ASTRA5 U4: {total} pruebas sintéticas verdes")
           PY
 
+  # ACTO GEN2-TUBERIA-CI-TIEMPO-2 · P1 (27/sep/2026). La derivación de vistas
+  # sale de `guardias` a este job propio, FUERA de `needs` de `check`: el
+  # check requerido conserva su nombre y todos sus tests; sólo deja de esperar
+  # la publicación. Defecto que atrapa (run 36291122052, 27/sep): `suite` 3m17s,
+  # `adicionales` 3m34s, pero `guardias` moría a los 30 min en este paso con un
+  # lote de 121 CALC, `check` salía rojo en main sin un solo test rojo, y como
+  # el run se cortaba la base no avanzaba y el lote crecía con cada merge.
+  # P2: el lote se publica por TROZOS (`lote_desde_asientos.py --trozo`,
+  # `registro --pospone`): cada trozo es un commit `[deriva]` en la rama del
+  # PR; lo que no cupo sigue pendiente (ausente de corridas.tsv) y el run
+  # siguiente lo retoma. Ningún CALC se salta ni se excluye (E.7).
+  # Disparo: push a main (no `[deriva]`), `workflow_dispatch` sobre main y el
+  # `schedule` nocturno de `on:` (03:00 UTC−6).
+  # Un PR creado o fusionado con GITHUB_TOKEN no dispara workflows: el drenaje
+  # no se auto-encadena, por eso existen el nocturno y el disparo manual.
+  derivados:
+    if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || github.event_name == 'schedule' || (github.event_name == 'push' && !startsWith(github.event.head_commit.message, '[deriva]'))) }}
+    runs-on: ubuntu-latest
+    # 30 min (TABLERO-EN-CANAL-1, se conserva). Con el presupuesto de abajo
+    # no debería tocarse; si lo toca, los trozos ya empujados quedan en la
+    # rama del PR y el run siguiente continúa desde lo pendiente.
+    timeout-minutes: 30
+    # Un solo derivador a la vez sobre main: dos en paralelo publicarían el
+    # mismo trozo en dos PR. En cola, nunca cancelado (cancelarlo es el
+    # defecto que este job existe para cerrar).
+    concurrency:
+      group: derivados-main
+      cancel-in-progress: false
+    # La publicación abre un PR de derivados y despacha su verificación.
+    # Nunca empuja a main: la regla de protección exige el check `check`.
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+      issues: write
+    env:
+      # Tamaño del trozo y presupuesto (declarados, encargo §6). Medido 27/sep
+      # en réplica sin corpus: registro base ≈158 s; `verify` mediana ≈8 s por
+      # CALC, cola larga (CALC-ENOE-PISOS-0003: 311 s) ⇒ un trozo de 20 ≈
+      # 5–10 min. No se ABRE un trozo nuevo pasados 15 min: el último termina
+      # antes del tope de 30. Caben ≈2–3 trozos (40–60 CALC) por run.
+      TROZO: "20"
+      PRESUPUESTO_S: "900"
+    steps:
+      - name: Checkout sin marketplace (repo público — cero descargas de action)
+        # El remoto sin credenciales rechazaba la publicación. La rama
+        # temporal del PR automático usa el GITHUB_TOKEN del job; main
+        # conserva su protección y nunca recibe un push directo.
+        # Antes fallaba con `fatal: could not read Username for
+        # 'https://github.com'` -- el remoto se agregaba sin credenciales
+        # (sin `actions/checkout`, D-23, no hay token inyectado por
+        # default) y `contents: write` (arriba) nunca se tradujo en una
+        # credencial git real. Se configura el extraheader de
+        # autorización con `GITHUB_TOKEN` (mismo mecanismo que usa
+        # `actions/checkout` internamente) una sola vez aquí; fetch y push
+        # del resto del job lo heredan del `.git/config` local sin tocar
+        # la URL del remoto.
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          git config "http.https://github.com/.extraheader" "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GITHUB_TOKEN" | base64 -w0)"
+          if [ -n "${{ github.event.pull_request.number }}" ]; then
+            REF="+refs/pull/${{ github.event.pull_request.number }}/merge:refs/remotes/origin/ci"
+          else
+            REF="+${{ github.ref }}:refs/remotes/origin/ci"
+          fi
+          # ACTO MOTOR-LINAJE-1 (21/sep/2026) · P4 / D-23: fetch COMPLETO,
+          # no `--depth=1`. NC-0402 y NC-0397 clasificaban
+          # `tests/test_motor_holdout.py` y
+          # `tests/test_celda_d_piloto_consumidor.py` como
+          # FALLA-DE-VERDAD; en clon completo dan 6/6 y 9/9. La causa
+          # era este clon superficial: pinan firmas contra el commit
+          # de sello y no hay historia que leer a profundidad 1. Una
+          # herramienta de verificacion no verifica un arbol que ella
+          # misma mutilo (D-23).
+          git -c protocol.version=2 fetch -q --no-tags origin "$REF"
+          git checkout -q refs/remotes/origin/ci
+          git log -1 --format="HEAD=%H %s"
+
+      - name: Intérprete del runner (crudo, para que quede en el log)
+        run: python3 -VV
+
+      - name: Instala dependencias (requirements.txt — explícito, nunca lo que traiga el runner)
+        run: |
+          # GEN2-TUBERIA-RENDIMIENTO-1 P4: uv (medido 12.9 s -> 1.3 s en venv limpio).
+          # /usr no es escribible en el runner: venv de uv (con los paquetes del
+          # sistema visibles) primero en PATH para los pasos siguientes.
+          python3 -m pip install -q uv
+          python3 -m uv venv --system-site-packages "$RUNNER_TEMP/venv"
+          echo "$RUNNER_TEMP/venv/bin" >> "$GITHUB_PATH"
+          python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt numpy pytest pytest-xdist
+
+      # (Historia del paso cuando vivía en `guardias`.)
       # ACTO GEN2-TUBERIA-EFICIENCIA-1 · P4 (21/sep/2026), firma de mesa
       # El registro escribe las vistas de corridas y resultados pedidas
       # para el piloto 4; la tabla de citas selladas acompaña esos resultados
@@ -467,89 +559,144 @@ jobs:
       # ADENDA-1 P0: además del push, `workflow_dispatch` sobre main (mesa lo
       # dispara a mano: Actions → «Verificación del corpus» → Run workflow →
       # rama main). Sin `before`, el lote cae a sólo pendientes (abajo).
-      - name: Deriva vistas y abre PR automático verificado (push o disparo manual sobre main)
-        if: ${{ github.ref == 'refs/heads/main' && (github.event_name == 'workflow_dispatch' || (github.event_name == 'push' && !startsWith(github.event.head_commit.message, '[deriva]'))) }}
+      - name: Deriva vistas por trozos y abre PR automático verificado
         env:
           ANTES: ${{ github.event.before }}
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
+          T0=$SECONDS
+          # P4 · primera línea del log: tamaño del lote pendiente y guardia de
+          # crecimiento (avisa y abre NC automática; nunca falla el check).
+          PEND="$(python3 tools/lote_desde_asientos.py --incluir-pendientes --csv 2>/dev/null)"
+          N_PEND=$(printf '%s' "$PEND" | tr ',' '\n' | grep -c . || true)
+          LINEA="$(python3 tools/ci_guardias.py --crecimiento-lote "$N_PEND" | head -n 1)"
+          echo "$LINEA"
+          echo "$LINEA" >> "$GITHUB_STEP_SUMMARY"
+          python3 tools/ci_guardias.py --crecimiento-lote "$N_PEND" | tail -n +2
+          case "$LINEA" in
+            *CRECE)
+              TITULO="NC automática · LOTE-PENDIENTE sobre el umbral (GEN2-TUBERIA-CI-TIEMPO-2 P4)"
+              if [ -z "$(gh issue list --state open --search "$TITULO in:title" --json number --jq '.[0].number' 2>/dev/null)" ]; then
+                gh issue create --title "$TITULO" --body "$LINEA · run ${{ github.run_id }} · el job \`derivados\` drena por trozos de $TROZO; si el lote no baja en el run siguiente, es NC (razón DIFERIDO-A: GEN2-TUBERIA-CI-TIEMPO-3)." || echo "no se pudo abrir la NC automática (no bloquea)"
+              fi ;;
+          esac
           # Dos pasadas: `emitidas_sin_evaluar` sale de c2_compuesto.emisiones(),
           # que lee las RESERVADA del TSV ya publicado; con el TSV viejo la
           # primera da 206 emitidas y la segunda el punto fijo (174).
           python3 tools/marcador_segmento.py --escribe
           python3 tools/marcador_segmento.py --escribe
-          if [ -n "${ANTES:-}" ] && git cat-file -e "$ANTES" 2>/dev/null; then
-            LOTE="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --incluir-pendientes --csv)"
-          else
-            echo "sin base previa accesible: se recuperan sólo asientos pendientes"
-            LOTE="$(python3 tools/lote_desde_asientos.py --incluir-pendientes --csv)"
-          fi
-          if [ -n "$LOTE" ]; then
-            echo "lote derivado: $LOTE"
-            python3 tools/corrida0.py registro --verifica --escribe --lote "$LOTE" 2> /tmp/registro-derivado.err || {
-              tail -n 80 /tmp/registro-derivado.err
-              exit 1
-            }
-          fi
-          python3 tools/resuelve_citas.py tabla --escribe
-          # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · P1/COMMIT-A y ACTO
-          # GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: guarda de tamaño
-          # ANTES de commitear -- un GH001 silencioso en este paso es una
-          # publicación perdida (§8 del encargo, "Guarda en CI" protege:
-          # borrar). Falla a 50 MB (firma de mesa, encargo -2 §2: "ningún
-          # archivo derivado vuelve a superar 50 MB") desde que
-          # `camino_linaje` salió de `resultados.tsv` por derivación bajo
-          # demanda en vez de vivir en la vista (COMMIT-B, cardinalidad
-          # medida 1.0). Antes de COMMIT-B este guardia toleraba hasta
-          # 100 MB con aviso a 50; ese régimen de transición ya cerró.
-          # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-B: la guarda cubre
-          # también cada `valores-vista/*` (el `valor` > 1 KB que salió de
-          # resultados.tsv). Se queda en 50 MB: el puente a 100 que el encargo
-          # preveía (COMMIT-A) no hizo falta -- A y B viajan en el mismo PR, y
-          # con B la vista re-derivada mide 28.9 MB (medido 24/sep, lote de CI).
-          for f in data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv $(find data/corrida0 -path '*/valores-vista/*' -type f); do
-            [ -f "$f" ] || continue
-            BYTES=$(stat -c%s "$f")
-            MB=$((BYTES / 1024 / 1024))
-            if [ "$BYTES" -gt $((50 * 1024 * 1024)) ]; then
-              echo "GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB de la firma de mesa (GEN2-TUBERIA-VISTA-NORMALIZADA-2 §2 + COMMIT-B de -3)." >&2
-              exit 1
-            fi
-          done
-          # ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 (24/sep/2026), P1: único
-          # productor del tablero. Va DESPUÉS de la guarda de tamaño de
-          # VISTA-NORMALIZADA-2 (decisión de dirección 24/sep, comunicada a
-          # mesa sin objeción). `git fetch -q origin main` resuelve el ref
-          # `origin/main` en este checkout -- el checkout de este job sólo
-          # trae `refs/remotes/origin/ci` (arriba), y el guardián de P2 en
-          # `tablero_programa.py` exige que ese ref resuelva y coincida con
-          # HEAD antes de escribir; sin este fetch se negaría siempre aquí
-          # también. HEAD no se movió desde el checkout (el commit `[deriva]`
-          # es más abajo), así que coincide con `origin/main` sin necesitar
-          # `--permitir-rama`.
+          # `origin/main` se resuelve UNA vez: el guardián del tablero exige
+          # HEAD == origin/main, así que HEAD no se mueve en todo el job. Cada
+          # trozo se publica con `commit-tree` sobre la rama del PR; el árbol
+          # de trabajo acumula los derivados (sucio sólo en derivados, que el
+          # guardián acepta).
           git fetch -q origin main
-          python3 tools/tablero_programa.py --actualiza
-          # Las cifras de `corrida0 status` en README.md se mueven con esta
-          # misma derivación (tests/test_readme_derivado.py); viven en un
-          # bloque TABLERO-DERIVADO que --solo-derivados acepta.
-          python3 tools/readme_derivado.py --escribe
-          find data/corrida0 -path '*/valores-vista/*' -type f -print0 | xargs -0 -r git add --
-          git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md README.md
-          if git diff --cached --quiet; then
-            echo "sin diff derivado -- nada que publicar"
-            exit 0
-          fi
           git config user.name "gen2-derivador"
           git config user.email "gen2-derivador@users.noreply.github.com"
           BRANCH="derivados/auto-${{ github.run_id }}"
-          git switch -c "$BRANCH"
-          git commit -q -m "[deriva] vistas tras $(git rev-parse --short HEAD)"
-          git push origin "HEAD:refs/heads/$BRANCH"
-          gh pr create --base main --head "$BRANCH" \
-            --title "[deriva] vistas generadas tras ${{ github.sha }}" \
-            --body "Derivado por comandos del job guardias. Lote mecánico: $LOTE. Solo archivos con cabecera DERIVADO. Requiere check y fusión de mesa; ninguna adjudicación cambia."
-          gh workflow run verify.yml --ref "$BRANCH"
+          PADRE="$(git rev-parse HEAD)"
+          PR=""
+          K=0
+          while :; do
+            K=$((K + 1))
+            if [ "$K" = 1 ] && [ -n "${ANTES:-}" ] && git cat-file -e "$ANTES" 2>/dev/null; then
+              PARTES="$(python3 tools/lote_desde_asientos.py "$ANTES" HEAD --incluir-pendientes --trozo "$TROZO" --csv)"
+            else
+              PARTES="$(python3 tools/lote_desde_asientos.py --incluir-pendientes --trozo "$TROZO" --csv)"
+            fi
+            LOTE="$(printf '%s\n' "$PARTES" | sed -n 1p)"
+            RESTO="$(printf '%s\n' "$PARTES" | sed -n 2p)"
+            QUEDAN=$(printf '%s' "$RESTO" | tr ',' '\n' | grep -c . || true)
+            echo "trozo $K: $LOTE"
+            echo "trozo $K: quedan $QUEDAN pendientes"
+            if [ -n "$LOTE" ]; then
+              POSPONE=()
+              [ -n "$RESTO" ] && POSPONE=(--pospone "$RESTO")
+              python3 tools/corrida0.py registro --verifica --escribe --lote "$LOTE" "${POSPONE[@]}" 2> /tmp/registro-derivado.err || {
+                tail -n 80 /tmp/registro-derivado.err
+                exit 1
+              }
+            fi
+            python3 tools/resuelve_citas.py tabla --escribe
+            # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-2 · P1/COMMIT-A y ACTO
+            # GEN2-TUBERIA-VISTA-NORMALIZADA-3 · COMMIT-B: guarda de tamaño
+            # ANTES de commitear -- un GH001 silencioso en este paso es una
+            # publicación perdida (§8 del encargo, "Guarda en CI" protege:
+            # borrar). Falla a 50 MB (firma de mesa, encargo -2 §2: "ningún
+            # archivo derivado vuelve a superar 50 MB") desde que
+            # `camino_linaje` salió de `resultados.tsv` por derivación bajo
+            # demanda en vez de vivir en la vista (COMMIT-B, cardinalidad
+            # medida 1.0). Antes de COMMIT-B este guardia toleraba hasta
+            # 100 MB con aviso a 50; ese régimen de transición ya cerró.
+            # ACTO GEN2-TUBERIA-VISTA-NORMALIZADA-4 · COMMIT-B: la guarda cubre
+            # también cada `valores-vista/*` (el `valor` > 1 KB que salió de
+            # resultados.tsv). Se queda en 50 MB: el puente a 100 que el encargo
+            # preveía (COMMIT-A) no hizo falta -- A y B viajan en el mismo PR, y
+            # con B la vista re-derivada mide 28.9 MB (medido 24/sep, lote de CI).
+            for f in data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/usos.tsv $(find data/corrida0 -path '*/valores-vista/*' -type f); do
+              [ -f "$f" ] || continue
+              BYTES=$(stat -c%s "$f")
+              MB=$((BYTES / 1024 / 1024))
+              if [ "$BYTES" -gt $((50 * 1024 * 1024)) ]; then
+                echo "GUARDA-TAMANO: $f es ${MB} MB, sobre el límite de 50 MB de la firma de mesa (GEN2-TUBERIA-VISTA-NORMALIZADA-2 §2 + COMMIT-B de -3)." >&2
+                exit 1
+              fi
+            done
+            # ACTO GEN2-TUBERIA-TABLERO-EN-CANAL-1 (24/sep/2026), P1: único
+            # productor del tablero. Va DESPUÉS de la guarda de tamaño de
+            # VISTA-NORMALIZADA-2 (decisión de dirección 24/sep, comunicada a
+            # mesa sin objeción). `git fetch -q origin main` resuelve el ref
+            # `origin/main` en este checkout -- el checkout de este job sólo
+            # trae `refs/remotes/origin/ci` (arriba), y el guardián de P2 en
+            # `tablero_programa.py` exige que ese ref resuelva y coincida con
+            # HEAD antes de escribir; sin este fetch se negaría siempre aquí
+            # también. HEAD no se movió desde el checkout (el commit `[deriva]`
+            # es más abajo), así que coincide con `origin/main` sin necesitar
+            # `--permitir-rama`.
+            # GEN2-TUBERIA-CI-TIEMPO-2 · corrección post-merge (run 36297122285):
+            # el tablero hace `git fetch` de todas las ramas, así que si main
+            # avanzó durante el job el guardián se niega en el trozo siguiente.
+            # Esa negativa, y sólo esa, no tumba el trozo: se publica sin
+            # tablero y el run del push que movió main lo produce.
+            if ! python3 tools/tablero_programa.py --actualiza 2> /tmp/tablero.err; then
+              cat /tmp/tablero.err >&2
+              grep -q "!= origin/main" /tmp/tablero.err || exit 1
+              echo "trozo $K: main avanzó durante el job; tablero no se regenera en este trozo"
+            fi
+            # Las cifras de `corrida0 status` en README.md se mueven con esta
+            # misma derivación (tests/test_readme_derivado.py); viven en un
+            # bloque TABLERO-DERIVADO que --solo-derivados acepta.
+            python3 tools/readme_derivado.py --escribe
+            find data/corrida0 -path '*/valores-vista/*' -type f -print0 | xargs -0 -r git add --
+            git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md README.md
+            ARBOL="$(git write-tree)"
+            git reset -q
+            if [ "$ARBOL" != "$(git rev-parse "$PADRE^{tree}")" ]; then
+              PADRE="$(git commit-tree "$ARBOL" -p "$PADRE" -m "[deriva] trozo $K tras $(git rev-parse --short HEAD): $(printf '%s' "$LOTE" | tr ',' '\n' | grep -c . || true) CALC, quedan $QUEDAN")"
+              git push -q origin "$PADRE:refs/heads/$BRANCH"
+              if [ -z "$PR" ]; then
+                PR="$(gh pr create --base main --head "$BRANCH" \
+                  --title "[deriva] vistas generadas tras ${{ github.sha }}" \
+                  --body "Derivado por comandos del job derivados (GEN2-TUBERIA-CI-TIEMPO-2), por trozos de $TROZO CALC: un commit por trozo. Solo archivos con cabecera DERIVADO. Requiere check; ninguna adjudicación cambia.")"
+                echo "PR: $PR"
+              fi
+              # Cada trozo empujado queda verificado por su propio run; el
+              # grupo de concurrencia de la rama cancela el anterior.
+              gh workflow run verify.yml --ref "$BRANCH"
+            else
+              echo "trozo $K: sin diff derivado"
+            fi
+            if [ -z "$RESTO" ]; then
+              echo "LOTE-PENDIENTE al cerrar el job: 0"
+              break
+            fi
+            if [ $((SECONDS - T0)) -ge "$PRESUPUESTO_S" ]; then
+              echo "presupuesto de ${PRESUPUESTO_S}s agotado: quedan $QUEDAN; el run siguiente (push, nocturno o manual) continúa"
+              echo "LOTE-PENDIENTE al cerrar el job: $QUEDAN" >> "$GITHUB_STEP_SUMMARY"
+              break
+            fi
+          done
 
   # ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 (21/sep/2026). `corrida0 preflight` sobre
   # los CALC SIN SELLO que este cambio añade o toca — y sólo sobre ésos.

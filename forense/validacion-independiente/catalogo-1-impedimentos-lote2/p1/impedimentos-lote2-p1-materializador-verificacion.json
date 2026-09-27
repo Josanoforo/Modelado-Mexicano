@@ -1,0 +1,22 @@
+{
+  "codigo_sha256": "4f76088d8c047c286ab3d4d9b3fe9c3f3398fe01a80a874913bf8c269e0b41c3",
+  "controles": [
+    {
+      "destino": "/home/pc0/astra6-c1-impedimentos-lote2-b-punto",
+      "rechazo": "Destino ya existe",
+      "exit_code": 1
+    },
+    {
+      "destino": "/tmp/impedimentos-lote2-p1-control-destino/enlace/bloqueado",
+      "rechazo": "Enlace en destino",
+      "exit_code": 1
+    },
+    {
+      "estado": "MATERIALIZADO-PUNTO-PARCIAL",
+      "archivos": 6,
+      "copias_hash_iguales": true
+    }
+  ],
+  "validadores_ejecutados": false,
+  "resultados_calculados": false
+}

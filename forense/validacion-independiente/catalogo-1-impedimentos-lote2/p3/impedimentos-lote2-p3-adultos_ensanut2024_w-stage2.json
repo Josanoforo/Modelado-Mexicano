@@ -1,0 +1,73 @@
+{
+  "schema": "custodia-proyeccion-v1",
+  "approved": false,
+  "status": "PROPUESTO-POR-EJECUTOR",
+  "code_sha256": "f9ecd196c087380e53d5cf2709272c44bdae20405049e550d750ca01bc02bae3",
+  "compiler_sha256": "94b9317bc1b2a74394a23a35a09780c6222406f3bf0800e30d1871ddec19790b",
+  "source_sha256": "0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4",
+  "mode": "real",
+  "custodian_uid": null,
+  "analyst_uid": null,
+  "signer": "mesa humana: clave a aprovisionar fuera del contrato",
+  "signer_key_sha256": null,
+  "act": "ASTRA6-C1-IMPEDIMENTOS-LOTE2-P3-fb50",
+  "max_archive_bytes": 2147483648,
+  "max_member_bytes": 1073741824,
+  "publication_authorized": false,
+  "operation": "project",
+  "purpose": "C1 ENSANUT2024 tabla adultos_ensanut2024_w; conductas delimitadas DEPRESION-CESD7,IDEACION-SUICIDA-ADULTOS,DX-DIABETES,DX-HIPERTENSION,FUMA-ACTUAL,ALCOHOL-12M,ALCOHOL-EXCESIVO-30D",
+  "table_proposals": [
+    {
+      "logical_table": "adultos_ensanut2024_w.dta",
+      "documented_filename": "adultos_ensanut2024_w.dta",
+      "filename_evidence": "Selector propuesto stem oficial + .dta; no acredita todavía nombre ZIP; compilador exige coincidencia exacta y única, sin adaptación",
+      "columns": [
+        "FOLIO_I",
+        "FOLIO_INT",
+        "ponde_f",
+        "est_sel",
+        "upm",
+        "estrato",
+        "sexo",
+        "edad",
+        "a0211",
+        "a0212",
+        "a0213",
+        "a0214",
+        "a0215",
+        "a0216",
+        "a0217",
+        "a1211",
+        "a0301",
+        "a0401",
+        "a1301",
+        "a1308",
+        "a1311",
+        "a1312"
+      ],
+      "purpose": "DEPRESION-CESD7,IDEACION-SUICIDA-ADULTOS,DX-DIABETES,DX-HIPERTENSION,FUMA-ACTUAL,ALCOHOL-12M,ALCOHOL-EXCESIVO-30D",
+      "format": "dta",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "adultos_ensanut2024_w.csv"
+    }
+  ],
+  "members": {},
+  "archive_inventory": [],
+  "inventory_document_sha256": null,
+  "inventory_contract_sha256": null,
+  "packages": [
+    "ensanut-0001",
+    "ensanut-pisos-salud-0001"
+  ],
+  "reservation_overrides": {},
+  "semantic_pending": [],
+  "human_signature": {
+    "reference": null,
+    "body_sha256": null,
+    "literal": null,
+    "scope": "project",
+    "verified_by_custodian": false,
+    "reservation_scopes": []
+  }
+}

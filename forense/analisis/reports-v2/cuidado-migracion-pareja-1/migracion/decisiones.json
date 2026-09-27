@@ -1,0 +1,999 @@
+[
+  {
+    "id": "ASTRA5-U0-MIGR-001-monto2025",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-001"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L54 (mapa de evidencia)",
+    "original": "Monto anual recibido2025",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "No boletín anual exacto leído; retiro monto firme.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-001-variacion",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-001"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L54 (mapa de evidencia)",
+    "original": "Variación2025 frente2024",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "No serie y versiones cotejadas; retiro variación.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-001-record",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-001"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L54 (mapa de evidencia)",
+    "original": "Primera contracción desde2013",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Serie histórica no leída; retiro récord.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-001-operaciones",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-001"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L54 (mapa de evidencia)",
+    "original": "Número y caída de operaciones",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Operaciones son transacciones, no hogares; retiro cantidades sin serie.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-001-promedio",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-001"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L54 (mapa de evidencia)",
+    "original": "Envío promedio",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Promedio requiere monto/operaciones comparables; retiro cantidad.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-002",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-002"
+    ],
+    "localizador": "L12 (resumen ejecutivo); L55 (mapa de evidencia)",
+    "original": "Las remesas equivalen a ~3.4% del PIB en 2025 (Banco de Mexico; Banco BASE; Bloomberg).",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Razón requiere numerador Banxico y PIB nominal comparable; no se sustituye por ENIGH.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-003",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-003"
+    ],
+    "localizador": "L13",
+    "original": "La caida obedece a factores estructurales y coyunturales combinados: desaceleracion del empleo en EU, envejecimiento/asentamiento de la comunidad migrante y miedo a deportaciones. No es un cambio 'cultural' en la disposicion a enviar.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Empleo, stock y amenaza son rivales compatibles; no hay descomposición causal.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-004",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-004"
+    ],
+    "localizador": "L13",
+    "original": "Desaceleracion del empleo en EU: 2.0 millones de empleos creados en 2024 frente a solo 584,000 en 2025, segun BLS/BBVA Research.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "CES anual exacto no leído; empleo estadounidense agregado no estima empleo mexicano.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-005",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-005"
+    ],
+    "localizador": "L14; L56 (mapa); L78 (Patron 2)",
+    "original": "Las remesas son fundamentalmente un fondo salarial de transferencia familiar destinado al consumo (alimentacion, vestido, salud, vivienda, educacion), no un motor autonomo de desarrollo. Tratarlas como panacea de desarrollo es un error extendido.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Ingreso recibido y gasto financiado difieren; educación también inversión; retirar panacea y consumo exclusivo.",
+    "evidencia": [
+      "R1",
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-006",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-006"
+    ],
+    "localizador": "L14",
+    "original": "ENIGH construye la variable 'remesas' (#51) como suma de ingresos.ing_tri cuando la clave es p041: 'ingresos provenientes de otros paises'; ENIGH tambien construye 'transf_hog' (#53, transferencias de otros hogares) y 'bene_gob' (#52).",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "restricción del proyecto",
+    "juicio": "No abrir ni actualizar ENIGH2024; monto por hogar no identifica uso de cada peso.",
+    "evidencia": [
+      "R1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-007",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-007"
+    ],
+    "localizador": "L15; L57 (mapa)",
+    "original": "Debe separarse el efecto psicologico en el migrante (duelo migratorio; sindrome de Ulises solo en casos extremos) del efecto en la familia que se queda (duelo ambiguo, ansiedad, reorganizacion de roles). Son fenomenos distintos con causas distintas.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Separar unidades origen/destino; Ulises se conserva como marco importado sin diagnóstico/prevalencia.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-008",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-008"
+    ],
+    "localizador": "L16; L58 (mapa); L44 (marco conceptual); L86-87 (Patron 5)",
+    "original": "La 'cultura de la migracion' (Kandel y Massey) es real en regiones tradicionales, pero se sobreinterpreta: es en gran medida adaptacion racional acumulada (redes + expectativa de retorno economico), no un rasgo esencial 'del mexicano'.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Resumen de autores muestra aspiraciones regionales; cultura y cálculo económico no se excluyen ni hay prueba tercera generación.",
+    "evidencia": [
+      "K1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-009",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-009"
+    ],
+    "localizador": "L17",
+    "original": "ENADID 2023, tabla TMIGRANTE, pregunta P4.13: 'Cuando (NOMBRE) se fue la ultima vez, ¿que tipo de documento llevaba?' — proxy de estatus documental de salida del migrante del hogar.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "falta de ejecución",
+    "juicio": "Documento al salir no equivale a estatus vigente; sin corrida utilizable de este estimando.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-010",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-010"
+    ],
+    "localizador": "L17; L59 (mapa)",
+    "original": "El estatus migratorio (documentado vs. indocumentado) modula todo: ansiedad, posibilidad de circularidad, planeacion e identidad. La indocumentacion convierte la frontera en trampa unidireccional y alimenta la ansiedad cronica.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Retirar modula todo/trampa universal; temor no limitado a indocumentados.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-011",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-011"
+    ],
+    "localizador": "L18",
+    "original": "ENADID 2023, TMIGRANTE, preguntas 4.16-4.20: estado de residencia en EUA, lugar de residencia al retorno, fecha de retorno, causa del retorno ('le deportaron (regresaron)' es una de las opciones de causa) y residencia actual.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "falta de ejecución",
+    "juicio": "Retorno informado por hogar no mide consumo/identidad; flujo no stock.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-012",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-012"
+    ],
+    "localizador": "L18; L60 (mapa); L81 (Patron 3)",
+    "original": "La migracion de retorno cambia consumo e identidad: los retornados traen 'remesas sociales' (gustos, normas, practicas, expectativas) y enfrentan reintegracion dificil, especialmente los deportados sin planeacion ni documentos mexicanos.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Transferencia de prácticas es mecanismo propuesto; no cambio universal ni cuantificado.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-013",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-013"
+    ],
+    "localizador": "L19",
+    "original": "ENADID 2023, THOGAR, variables 'migra_ho' (Condicion de migracion internacional en el hogar) y 'edad_jefe' (Edad de la (el) jefa(e) del hogar) son co-observables en el mismo registro de hogar.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "falta de ejecución",
+    "juicio": "Coobservación hogar no efecto de emigración masculina ni autonomía.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-014",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-014"
+    ],
+    "localizador": "L19; L61 (mapa)",
+    "original": "La emigracion masculina produce hogares de jefatura femenina de facto; el efecto sobre las mujeres es ambivalente (sobrecarga + posibilidad de autonomia/empoderamiento), no univoco.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Carga y autonomía pueden coexistir; no hay efecto nacional identificado.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-015",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-015"
+    ],
+    "localizador": "L20; L62 (mapa)",
+    "original": "Los ninos que se quedan muestran mayor sintomatologia depresiva y 'duelo ambiguo', pero el efecto depende de la calidad del cuidado sustituto, la comunicacion y las remesas; no es un traumatismo automatico.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Yucatán aporta percepciones cualitativas; no prevalencia nacional de depresión, trauma ni efecto aislado.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-016-preocupacion",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-016"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Adultos con hijos preocupados por ICE",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Tabla específica no leída; no sustituir denominador con WBNS todos adultos.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-016-mixto",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-016"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Percepción de aumento de síntomas infantiles familias mixtas",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Percepción adulta no diagnóstico infantil; tabla específica no leída.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-016-ciudadanos",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-016"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Percepción de aumento de síntomas familias ciudadanas",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Tabla específica no leída; no comparar con otra población.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-017-stock",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-017"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Niños ciudadanos con progenitor indocumentado",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Stock demográfico sin documento exacto leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-017-escenario",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-017"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Niños que podrían enfrentar detención de ambos padres",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Escenario no evento realizado; fuente específica no leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-017-evento",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-017"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Menores ya afectados por detención parental",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Conteo de afectados requiere periodo y unicidad, no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-017-origen",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-017"
+    ],
+    "localizador": "L21 (resumen); L84 (Patron 4)",
+    "original": "Proporción de origen mexicano",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Denominador de afectados no todos niños mexicanos; fuente exacta no leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-018",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-018"
+    ],
+    "localizador": "L21; L63 (mapa)",
+    "original": "La deportacion y la separacion familiar en hogares de estatus mixto tienen consecuencias psicologicas documentadas en ninos ciudadanos estadounidenses (ansiedad, depresion, TEPT).",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Percepción adulta no diagnóstico infantil; daño plausible requiere evaluación específica.",
+    "evidencia": [
+      "U1",
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-019",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-019"
+    ],
+    "localizador": "L22; L64 (mapa)",
+    "original": "El desplazamiento forzado interno por violencia criminal se disparo en 2024 (al menos 28,900 personas, +129% frente a 2023) y es un fenomeno distinto de la emigracion economica.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Desplazamiento interno distinto; informe exacto de conteo no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-020",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-020"
+    ],
+    "localizador": "L23; L65 (mapa)",
+    "original": "La 'paradoja del inmigrante' (mejores resultados de salud en primera generacion que se erosionan con la aculturacion) es robusta en varios indicadores pero no debe leerse como que la asimilacion 'enferma' mecanicamente.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "No desenlace/cohorte definido; no transportar paradoja hispana a México ni aculturación causal.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-021",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-021"
+    ],
+    "localizador": "L24",
+    "original": "El impuesto federal estadounidense de 1% a remesas en efectivo (efectivo, giros, cheques de caja), vigente desde el 1 de enero de 2026, deriva del 'One Big Beautiful Bill' y exime las transferencias digitales y bancarias.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "IRS confirma impuesto según instrumento de fondeo; no equivalencia digital exento o marca fintech.",
+    "evidencia": [
+      "I1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-022",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-022"
+    ],
+    "localizador": "L24",
+    "original": "El impuesto de 1% a remesas esta acelerando la digitalizacion y bancarizacion, ventaja para fintech (Felix Pago, Remitly, Bitso) frente a Western Union/MoneyGram, que senalaron el impuesto como factor de riesgo.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "falta de ejecución",
+    "juicio": "Efecto sobre adopción digital y ventaja de proveedores no identificado.",
+    "evidencia": [
+      "I1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-023-contratos",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-023"
+    ],
+    "localizador": "L25; L128 (comparacion internacional)",
+    "original": "Contratos braceros",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Contratos repetibles no personas; fuente primaria histórica no leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-023-personas",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-023"
+    ],
+    "localizador": "L25; L128 (comparacion internacional)",
+    "original": "Trabajadores braceros",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Personas únicas requieren deduplicación de contratos; fuente no leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-023-mayor",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-023"
+    ],
+    "localizador": "L25; L128 (comparacion internacional)",
+    "original": "Mayor programa temporal",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Comparación universal sin universo histórico comparable; se retira ranking.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-024",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-024"
+    ],
+    "localizador": "L25; L119-134 (tabla comparacion internacional)",
+    "original": "Lo distintivamente Mexico-EU: frontera terrestre compartida, circularidad historica, herencia bracero y comunidades transnacionales consolidadas por generaciones; distinto de Filipinas (Estado exportador de mano de obra, 'bagong bayani') y del Triangulo Norte (peso del desplazamiento por violencia de pandillas).",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Frontera contextualiza corredor; sin comparación válida no afirmar circularidad sin paralelo ni ranking.",
+    "evidencia": [
+      "K1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-025",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-025"
+    ],
+    "localizador": "L26",
+    "original": "La literatura sobrerrepresenta a poblaciones del centro-occidente, urbanas y documentadas, y subrepresenta la migracion indigena (oaxaquena, mixteca) con logicas comunitarias distintas, y el desplazamiento forzado.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "imposibilidad justificada",
+    "juicio": "Subrepresentación exige universo bibliográfico; esta lectura incluye localidad maya, no prueba sesgo global.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-026",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-026"
+    ],
+    "localizador": "L68 (mapa); L158 (mitos)",
+    "original": "'El migrante abandona a su familia': estigma; la migracion suele ser estrategia familiar de provision, no abandono. Recae injustamente sobre las madres transnacionales.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Ausencia no demuestra abandono; tampoco remesa demuestra vínculo afectivo funcional.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-027",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-027"
+    ],
+    "localizador": "L125 (tabla comparacion internacional)",
+    "original": "Narrativa heroica del migrante: Mexico Debil/ambivalente; Triangulo Norte Debil; Filipinas Fuerte ('nuevos heroes', 'bagong bayani'), acunada por Corazon Aquino en 1988; generico Variable.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "instrumento inadecuado",
+    "juicio": "Débil/fuerte narrativa sin escala ni corpus comparable; atribución histórica no cotejada.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-028",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-028"
+    ],
+    "localizador": "L32-L46",
+    "original": "Marco conceptual: transnacionalismo (Glick-Schiller), remesas sociales (Levitt), familias transnacionales/maternidad a distancia (Hondagneu-Sotelo, Dreby), duelo migratorio/sindrome de Ulises (Achotegui), cadenas globales de cuidado (Hochschild), redes y causalidad acumulativa (Massey, Durand), critica a marcos anglosajones de asimilacion/aculturacion (Gordon, Berry).",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Marcos como hipótesis; no Hofstede/GLOBE/país promedio ni prevalencia de constructos importados.",
+    "evidencia": [
+      "Y1",
+      "K1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-029",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-029"
+    ],
+    "localizador": "L81 (Patron 3)",
+    "original": "Segun MATT, ~40% de los mexicanos que regresaron carecia de un documento que probara su nacionalidad.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Retirar porcentaje MATT sin documento exacto y selección.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-030",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-030"
+    ],
+    "localizador": "L81 (Patron 3)",
+    "original": "Estudios etnograficos recientes (SciELO 2024-2025) documentan tres modos de reintegracion del migrante retornado: adaptativa, restaurativa y transformativa; el retornado se percibe cambiado y renegocia su lugar en el hogar y la comunidad.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "SciELO no es referencia específica; retirar tipología atribuida sin artículo.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-031",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-031"
+    ],
+    "localizador": "L91-L100",
+    "original": "Pesos declarados de las causas de la migracion: economia/estructura (ALTO), redes migratorias (ALTO), politica migratoria de EEUU (ALTO y creciente), violencia (CRECIENTE), adaptacion racional (TRANSVERSAL), cultura/guiones (MENOR), instituciones (MEDIO).",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Retirar pesos alto/menor/creciente: no modelo comparativo identificador.",
+    "evidencia": [
+      "K1",
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-032",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-032"
+    ],
+    "localizador": "L104-L113",
+    "original": "Segmentacion explicita: region de origen, clase social, edad, genero, escolaridad/urbanizacion, religiosidad, generacion migratoria, grado de exposicion global.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Ejes sirven para investigar, no perfiles demostrados de todos los segmentos.",
+    "evidencia": [
+      "Y1",
+      "U1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-033",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-033"
+    ],
+    "localizador": "L106",
+    "original": "En 2025, Chiapas, Guanajuato y Guerrero encabezaron los estados de origen de deportados.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Ranking de eventos de repatriación no verificado; no personas únicas.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-034",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-034"
+    ],
+    "localizador": "L122",
+    "original": "Remesas como % del PIB: Mexico ~3.4% (2025); El Salvador y Honduras historicamente ~20-24%; Guatemala ~15-19%; Filipinas ~8-9%; generico: India ~3%; Marruecos ~7%.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Ratios de años/denominadores distintos retirados; no ranking internacional.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-035-global",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-035"
+    ],
+    "localizador": "L132",
+    "original": "Costo global de envío histórico",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Promedio mundial no oferta corredor México-EU; documento exacto no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-035-digital",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-035"
+    ],
+    "localizador": "L132",
+    "original": "Costos digital frente no digital",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Selección de corredores/proveedores puede explicar diferencia; no efecto causal.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-036-antiguedad",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-036"
+    ],
+    "localizador": "L128",
+    "original": "Antigüedad promedio stock mexicano",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Stock de residentes no remitentes activos; documento exacto no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-036-ciclo",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-036"
+    ],
+    "localizador": "L128",
+    "original": "Duración ciclo de remitir",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Supuesto de ciclo sin cohorte longitudinal leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-036-salida",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-036"
+    ],
+    "localizador": "L128",
+    "original": "Tasa anual de cese de remesas",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Remitentes cesantes requieren denominador longitudinal no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-036-entrada",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-036"
+    ],
+    "localizador": "L128",
+    "original": "Tasa anual de entrada de remitentes",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Nuevos remitentes y stock tienen denominadores distintos; no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-037",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-037"
+    ],
+    "localizador": "L138-L150",
+    "original": "Implicaciones aplicadas: productos fintech que bancaricen al receptor, servicios de reintegracion/revalidacion de credenciales para retornados, salud mental diferenciada por fenomeno, comunicacion que ni romantiza ni patologiza, fortalecimiento de 'Mexico te abraza' y respuesta al desplazamiento forzado interno.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Propuestas condicionadas sin eficacia demostrada ni parámetros de motor.",
+    "evidencia": [
+      "Y1",
+      "U1",
+      "I1"
+    ],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-038-centros",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-038"
+    ],
+    "localizador": "L150",
+    "original": "Centros de atención al inicio2026",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Comunicados de fechas distintas no comparables; documento exacto no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-038-capacidad",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-038"
+    ],
+    "localizador": "L150",
+    "original": "Capacidad diaria por centro",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Capacidad anunciada no atención ni cobertura efectiva; documento exacto no leído.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-039",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-039"
+    ],
+    "localizador": "L150",
+    "original": "Una respuesta al desplazamiento forzado interno, que 'carece de ley federal especifica' pese a su magnitud record en 2024.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "No sostener ausencia de ley vigente sin DOF actualizado; aprobación una cámara insuficiente.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-040",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-040"
+    ],
+    "localizador": "L160",
+    "original": "'El deportado es criminal/fracasado': estigma sin base; analisis de datos federales (Deportation Data Project, Washington Post) muestran que la mayoria de arrestados por ICE en 2025 no tenia antecedentes penales.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "No convertir arrestados en deportados ni antecedentes en culpabilidad; tabla DDP no leída.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-041",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-041"
+    ],
+    "localizador": "L162",
+    "original": "'Las deportaciones de Trump 2.0 batieron records': matizable; fuentes (Quinto Elemento Lab; NYT) indican que en terminos anuales Biden deporto a mas mexicanos que el primer ano de Trump 2.0; lo nuevo es el discurso criminalizante, las redadas internas y el clima de miedo.",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Año fiscal/calendario y remoción/retorno distintos; comparación administraciones retirada.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-042-pew",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-042"
+    ],
+    "localizador": "L194 (CAVEATS)",
+    "original": "Stock indocumentados estimado Pew",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Edición/fecha no emparejada; cantidad retirada.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-042-mpi",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-042"
+    ],
+    "localizador": "L194 (CAVEATS)",
+    "original": "Stock indocumentados estimado MPI",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Edición/fecha no emparejada; cantidad retirada.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-MIGR-042-diferencia",
+    "mapa_ids": [
+      "ASTRA5-U0-MIGR-042"
+    ],
+    "localizador": "L194 (CAVEATS)",
+    "original": "Diferencia por método y tendencia compartida",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Sin series fechadas no atribuir diferencia solo al método ni confirmar tendencia.",
+    "evidencia": [],
+    "destino": "report §1–11; tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-01",
+    "mapa_ids": [],
+    "localizador": "L84 Patrón 4 (evidencia en contra)",
+    "original": "No aplica a documentados/ciudadanos.",
+    "dictamen": "ROMPE",
+    "razon_sin_cifra": "",
+    "juicio": "WBNS 2025 reporta preocupación también entre familias enteramente ciudadanas y sin indocumentados; refuta exclusión, no demuestra diagnóstico.",
+    "evidencia": [
+      "U1"
+    ],
+    "destino": "§4 patrón amenaza",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-02",
+    "mapa_ids": [],
+    "localizador": "L74 Patrón 1",
+    "original": "El núcleo psicológico no es choque cultural sino separación.",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "No comparación de dimensiones que jerarquice núcleo; separación y adaptación pueden coexistir.",
+    "evidencia": [
+      "Y1"
+    ],
+    "destino": "§4 patrón separación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-03",
+    "mapa_ids": [],
+    "localizador": "L126 tabla internacional",
+    "original": "Leve recuperación de remesas mexicanas2026",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Serie parcial2026 no leída ni periodo emparejado; retiro recuperación firme.",
+    "evidencia": [],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-04",
+    "mapa_ids": [],
+    "localizador": "L126 tabla internacional",
+    "original": "Crecimiento Triángulo Norte cercano veinte por ciento2025",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Agregado de países sin ponderación, moneda y ventana comunes; no lectura de series primarias.",
+    "evidencia": [],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-05",
+    "mapa_ids": [],
+    "localizador": "L128 comparación internacional",
+    "original": "Filipinas sin circularidad y México circularidad sin paralelo",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "No comparación de trayectorias con definiciones comunes; conservar frontera como contexto sin exclusión universal.",
+    "evidencia": [
+      "K1"
+    ],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-06",
+    "mapa_ids": [],
+    "localizador": "L44 y Patrón5",
+    "original": "Cultura migratoria se debilita a tercera generación",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "no comparabilidad",
+    "juicio": "Generación en destino no cohorte escolar de origen; resumen K1 no prueba ese declive.",
+    "evidencia": [
+      "K1"
+    ],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-07",
+    "mapa_ids": [],
+    "localizador": "L34–38 marcos",
+    "original": "Remesas sociales siempre cambian prácticas y maternidad recibe más estigma que paternidad",
+    "dictamen": "SIN-CIFRA",
+    "razon_sin_cifra": "adquisición pendiente",
+    "juicio": "Cláusulas requieren estudios identificados de cambio de práctica y escala/comparación de estigma; no usar marcos como medición.",
+    "evidencia": [],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  },
+  {
+    "id": "MIG-EXTRA-08",
+    "mapa_ids": [],
+    "localizador": "L96 y auditoría5",
+    "original": "Mantener vínculos funciona como seguro económico ante shocks",
+    "dictamen": "MATIZA",
+    "razon_sin_cifra": "",
+    "juicio": "Mecanismo compatible; R1 ingreso no prueba cobertura del shock, reciprocidad ni protección efectiva.",
+    "evidencia": [
+      "R1"
+    ],
+    "destino": "§2–7, tabla por afirmación",
+    "revision_manual": true
+  }
+]

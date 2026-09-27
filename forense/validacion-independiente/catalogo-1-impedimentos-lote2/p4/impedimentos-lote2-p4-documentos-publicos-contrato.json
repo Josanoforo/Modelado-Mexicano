@@ -1,0 +1,95 @@
+{
+  "estado": "DOCUMENTOS-PUBLICOS-NO-MICRODATOS",
+  "documentos": [
+    {
+      "id": "endutih2023-fd",
+      "ruta_fuente": "data/raw/endutih2023/FD_ENDUTIH2023.xlsx",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "0f78146a6d61b0b5cd4d84056aa77e0f1bf1b25a9a126e8813215eada4da62c2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/microdatos/FD_ENDUTIH2023.xlsx",
+      "ola": 2023,
+      "instrumento": "endutih"
+    },
+    {
+      "id": "endutih2024-fd",
+      "ruta_fuente": "data/raw/endutih2024/fd_endutih2024.xlsx",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "ecdf95924b0b31e2593fdfabe69cf88ecbc5c90a40b3fa3caa9f8427147a96de",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2024/microdatos/fd_endutih2024.xlsx",
+      "ola": 2024,
+      "instrumento": "endutih"
+    },
+    {
+      "id": "endutih2025-fd",
+      "ruta_fuente": "data/raw/endutih2025/fd_endutih2025.xlsx",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "d02caecea044fa5f5089760586e4f1fa6d91341a0462fe19fdc70caefab1a9ce",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/microdatos/fd_endutih2025.xlsx",
+      "ola": 2025,
+      "instrumento": "endutih"
+    },
+    {
+      "id": "mociba2016-fd",
+      "ruta_fuente": "data/raw/mociba2016/mociba2016_fd.xlsx",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "bf54150e6b7ed408390c2f2d392177a071bde236e5efeea2a17e72c95c33f5c0",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_fd.xlsx",
+      "ola": 2016,
+      "instrumento": "mociba"
+    },
+    {
+      "id": "mociba2017-fd",
+      "ruta_fuente": "data/raw/mociba2017/mociba2017_fd.xlsx",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "636f2df5f630bb0b894c20d7082628a91c626826528aead3c12880eff9179537",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_fd.xlsx",
+      "ola": 2017,
+      "instrumento": "mociba"
+    },
+    {
+      "id": "mociba2016-cuestionario",
+      "ruta_fuente": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-mociba2016-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_cuestionario.pdf",
+      "ola": 2016,
+      "instrumento": "mociba"
+    },
+    {
+      "id": "mociba2017-cuestionario",
+      "ruta_fuente": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-mociba2017-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "856cb10f7b5d226757d0602b9998c07b029fdfed18a0ca8f10d65cbab6a45101",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_cuestionario.pdf",
+      "ola": 2017,
+      "instrumento": "mociba"
+    },
+    {
+      "id": "endutih2023-cuestionario",
+      "ruta_fuente": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2023-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf",
+      "ola": 2023,
+      "instrumento": "endutih"
+    },
+    {
+      "id": "endutih2025-cuestionario",
+      "ruta_fuente": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2025-cuestionario.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf",
+      "ola": 2025,
+      "instrumento": "endutih"
+    },
+    {
+      "id": "endutih2024-cuestionario",
+      "ruta_fuente": "data/raw/endutih2024/CENDUTIH2024.pdf",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "95514c5fe0a000bfaf29062a9cf9225ec64674dbb83df6a44a3dceda13187800",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2024/doc/CENDUTIH2024.pdf",
+      "ola": 2024,
+      "instrumento": "endutih"
+    }
+  ]
+}

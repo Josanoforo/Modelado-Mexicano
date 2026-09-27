@@ -1,0 +1,72 @@
+=== FASE A · INSPECCIÓN (dry-run, nunca escribe) ===
+
+GIT
+  HEAD: 67f484bce3c0843c0e2f16e43cdc7afdd15331a5 'ASTRA6-C1-IMPEDIMENTOS-LOTE2: contratos por 48 identidades y custodia probada'
+  origin/main: 11602de8e375c10b90807d1b74e088f6b9e99c8b
+  HEAD deriva de origin/main: True
+  Ramas remotas presentes (≠ main): ['claude/new-session-7p7kao', 'claude/new-session-7teewr', 'claude/new-session-8zcdo3', 'claude/new-session-9r01b0', 'claude/new-session-iil5g9', 'codex/astra6-c1-adjudicacion-puntos-1', 'codex/astra6-c1-impedimentos-lote2', 'codex/astra6-c1-incertidumbre-spec-1', 'codex/astra6-c1-reempaqueta-ventana-1', 'codex/astra6-c1-validacion-lote2-1', 'codex/astra6-c2-frontera-1', 'codex/astra6-c3-cuidado-migracion-pareja-1', 'codex/astra6-c3-dinero-tecnologia-conocimiento-1', 'codex/astra6-revision-tanda2', 'codex/astra6-tanda3-archivo', 'derivados/2026-09-26', 'origin']
+    fuente: `git for-each-ref refs/remotes/origin` (RESPALDO: `ls-remote` no respondió, rc=128) — refleja el último `fetch` de este clon, no necesariamente el remoto de ahora
+    NOTA: una rama presente no implica PR abierto ni trabajo sin fusionar.
+
+ADR
+  Real numérico (espacio CERRADO, D-2): 593
+  Candidato de RAÍZ DE ACTO (P-C, vigente): ADR-260926-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01 -- 0-bis: fb5061d92a7713c8878fe04157a202df01c32fc7
+  ⚠ el rótulo derivado de la RAMA no trae `GEN2` -- la gramática de dos épocas (RE_ADR_NUEVA) exige `ADR-<AAMMDD>-GEN2…`; si el rótulo real del acto (el del encargo) sí lo trae, acuña con ESE, no con el derivado de la rama (best-effort, ver `inspeccion_rotulo`)
+  Candidato numérico histórico (ya NO se acuña, informativo): 594
+  ¿Candidato ya redactado en alguna rama remota accesible?
+    claude/new-session-7p7kao: NO
+    claude/new-session-7teewr: NO
+    claude/new-session-8zcdo3: NO
+    claude/new-session-9r01b0: NO
+    claude/new-session-iil5g9: NO
+    codex/astra6-c1-adjudicacion-puntos-1: NO
+    codex/astra6-c1-impedimentos-lote2: NO
+    codex/astra6-c1-incertidumbre-spec-1: NO
+    codex/astra6-c1-reempaqueta-ventana-1: NO
+    codex/astra6-c1-validacion-lote2-1: NO
+    codex/astra6-c2-frontera-1: NO
+    codex/astra6-c3-cuidado-migracion-pareja-1: NO
+    codex/astra6-c3-dinero-tecnologia-conocimiento-1: NO
+    codex/astra6-revision-tanda2: NO
+    codex/astra6-tanda3-archivo: NO
+    derivados/2026-09-26: NO
+    origin: NO-VERIFICABLE (objetos no accesibles localmente sin fetch)
+
+FP
+  Máximo: 409
+  Filas ABIERTA (12): FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05, FP-260923-GEN2-FRONT-1-4296-01, FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01, FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03, FP-260926-GEN2-ASTRA6-C1-PAQUETES-2-9c9e-01, FP-260927-GEN2-RECIBO-ASTRA6-1-beee-01, FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02, FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-01, FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-02, FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-03, FP-260926-GEN2-ASTRA6-C1-IMPEDIMENTOS-LOTE2-fb50-04
+
+CELDAS_VALIDADAS (P3 de ACTO GEN2-TUBERIA-METRICA-RECTORA-1)
+  celdas_validadas: 219 → 219 (Δ0) @ 67f484bc
+  -> pega esta línea en la cabecera del ADR de este acto (D-16, con SHA)
+
+GOBERNANZA (conteos)
+  ADR reales: 593
+  Cabecera declara: 593 (canon/gobernanza-v1_15.md, 1 ancla(s))
+  L0 declara: 593 (canon/estado-programa-v1_17.md, 1 ancla(s))
+  Tabla estado declara: 593 (canon/estado-programa-v1_17.md, 1 ancla(s))
+  Reconciliación necesaria: ninguna (ya coinciden)
+
+RÓTULO DEL ACTO (best-effort, derivado de la rama actual)
+  Rama: 'codex/astra6-c1-impedimentos-lote2' -> esperado: ASTRA6-C1-IMPEDIMENTOS-LOTE2
+  ¿Ya en canon/registro-rotulos.tsv?: SI
+
+## CONSUMIDO
+  Encargo: forense/encargos/2026-09-26-ASTRA6-C1-IMPEDIMENTOS-LOTE2-ACTA-EJECUCION.md -> PRESENTE
+
+A.14 · NO-CORRIDO / RESERVAS (informativo, no deriva ADR)
+  NO-CORRIDO-AUSENTE: no (o el encargo aún no llega a ## CONSUMIDO)
+  forense/no-corrido.tsv existe: SI
+  NC-HUÉRFANA: ninguna
+
+COLA SINCRONIZADA (D2b)
+  Ninguna copia de cola/ abierta con su homonimo archivado ya CONSUMIDO.
+
+REQUIERE JUICIO HUMANO (siempre, este tool no lo hace)
+  - Redactar el texto del ADR (motivo, incisos, qué cierra/abre)
+  - Insertar la anotación nueva en L0 (antes de la anterior)
+  - Decidir el significado de un rótulo nuevo (que_significa/donde_vive)
+  - Firmar filas de FP
+  - Decisiones de mesa sobre pendientes
+  - Un T25 nuevo en la suite (rótulo pelado): decidir prefijo o censarlo
+  - Fusionar/aprobar el PR

@@ -1,0 +1,32 @@
+[
+  {
+    "llave": "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50",
+    "dominio": "FAMILIA_CUIDADOS",
+    "instrumento": "ENIGH",
+    "ola": "2020",
+    "conducta": "participacion_ge50_remesas",
+    "eje": "nacional",
+    "segmento": "hogares receptores",
+    "unidad": "proporcion",
+    "punto": "0.17493196298684244",
+    "ic95_inf": "0.16148540155502708",
+    "ic95_sup": "0.18796139188320338",
+    "naturaleza_ic": "IC95-BOOTSTRAP-UPM-EN-ESTRATO",
+    "temporalidad": "RETROSPECTIVA",
+    "origen_piso": "NUEVO",
+    "estado_adopcion": "ADOPTADO",
+    "alcance": "DESCRIPTIVO-DE-OLA",
+    "firma_fp": "decisiones.tsv:CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+    "result_id": "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50",
+    "celda": "",
+    "calc": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+    "oferta_exclusion": "NO-APLICA",
+    "reserva": "describe hogares e ingreso por remesas; no mide gasto ni efecto causal",
+    "evidencia_id": "R1",
+    "denominador": "hogares receptores con remesas>0 e ingreso corriente válido>0; ponderador factor de hogar; ENIGH2020",
+    "localizador_report": "§3 tabla y §4 patrón remesas",
+    "validacion": "PENDIENTE-DE-EJECUCION C1 lote2; no afectado por discrepancias lote1",
+    "hash_catalogo": "2592df41cd2b76e211a69ad4ed4fc760cca41e4989f653922ad501a8cf715d4c",
+    "hash_resultados": "78ff9315ab1b86b0829272c3c3b68912aab7eca19a6a75bc0a4405520da4f60a"
+  }
+]

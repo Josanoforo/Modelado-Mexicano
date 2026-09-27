@@ -1,0 +1,74 @@
+[
+  {
+    "id": "EXT_NOUSO",
+    "punto": 16.9,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ total",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_NOSABE",
+    "punto": 9.5,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ total",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_URBANO",
+    "punto": 86.9,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ dominio urbano",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_RURAL",
+    "punto": 68.5,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ dominio rural",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_HOG_ALTO",
+    "punto": 84.4,
+    "unidad": "porcentaje",
+    "denominador": "hogares por entidad",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_HOG_CHIAPAS",
+    "punto": 50.7,
+    "unidad": "porcentaje",
+    "denominador": "hogares por entidad",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  }
+]

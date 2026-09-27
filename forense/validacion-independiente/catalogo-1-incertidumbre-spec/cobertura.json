@@ -1,0 +1,22 @@
+{
+  "denominador_lote": 3371,
+  "cobertura_union": 2683,
+  "ejes": {
+    "IC": 1873,
+    "publicabilidad": 11,
+    "spec": 799
+  },
+  "intersecciones_exclusivas": {
+    "IC": 1873,
+    "publicabilidad": 11,
+    "spec": 799
+  },
+  "fuera_del_encargo": 688,
+  "primer_intento_preservado": true,
+  "validacion_ciega": false,
+  "fuentes_sha256": {
+    "tabla-estimadores.tsv": "a207d450a23da8f23660b7a765a4aab1aa6fe2a8ac9bfee490f4a6d6e4d7f76a",
+    "hallazgos-spec.tsv": "2ce649f371cd9cd97915a0b17f69af0b308dd853dccf2773fb77f5db46c806e3",
+    "dictamenes-publicabilidad.tsv": "f0f12de850fd99ee8acfffb06369f2192043aa58d22b1d80173853842a875005"
+  }
+}

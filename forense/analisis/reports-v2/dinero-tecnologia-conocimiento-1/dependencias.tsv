@@ -1,0 +1,4 @@
+dependencia	objeto_leido	corte	consumidor	condicion_de_revision	estado
+1184	forense/validacion-independiente/catalogo-1-ejecucion-lote1/dictamenes-publicabilidad.tsv; comparaciones/*.json; resumen-efectos.json	11602de8e	evidencia por identidad de cada pieza	Cruzar llave RESULT, alias y CALC/linaje antes de usar una cifra; si coincide un defecto material, reservar esa conclusión	LEÍDO / cruce dirigido por pieza
+01	ASTRA6-C1-ADJUDICACION-PUNTOS-1	11602de8e	cifras propias y sus inferencias	Adjudicación fusionada posterior que afecte llave o linaje de evidencia consumida obliga a corrección específica	SUCESOR PENDIENTE AL CORTE; C3 NO ESPERA
+02	ASTRA6-C1-INCERTIDUMBRE-SPEC-1	11602de8e	intervalos y publicabilidad	Adjudicación fusionada posterior que cambie universo/IC/publicabilidad del objeto consumido obliga a corregir texto dependiente	SUCESOR PENDIENTE AL CORTE; C3 NO ESPERA

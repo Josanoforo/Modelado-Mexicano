@@ -1,0 +1,39 @@
+{
+  "estado": "DIAGNOSTICO-HISTORICO-ABIERTO",
+  "ola": "2025T4",
+  "archivo_sha256": "317ed14f2f2f43c9f8280e491f7592d0cf95a0392aaa641b66822569444b121c",
+  "grupos": {
+    "1": {
+      "p0": 0.2683815316940736,
+      "numerador_ponderado": 93714.0,
+      "denominador_ponderado": 349182.0,
+      "n": 122,
+      "n_eff_kish": 101.05842219980485,
+      "se_taylor": 0.03935014068206387,
+      "estratos": 3,
+      "upm": 60,
+      "singleton": [],
+      "excluidos_blanco": 0,
+      "banda": [
+        0.2183815316940736,
+        0.31838153169407357
+      ]
+    },
+    "2": {
+      "p0": 0.529225416499869,
+      "numerador_ponderado": 214168.0,
+      "denominador_ponderado": 404682.0,
+      "n": 143,
+      "n_eff_kish": 115.1989119672647,
+      "se_taylor": 0.05593500304140684,
+      "estratos": 3,
+      "upm": 60,
+      "singleton": [],
+      "excluidos_blanco": 0,
+      "banda": [
+        0.479225416499869,
+        0.579225416499869
+      ]
+    }
+  }
+}

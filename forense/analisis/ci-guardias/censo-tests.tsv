@@ -68,6 +68,7 @@ tests/test_celdas_validadas_monotonia.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya 
 tests/test_celdas_validadas_spec.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_censo_derivado.py	script	NO	(ninguna)	NO	0.4	FALLA-DE-VERDAD	· censo-estimabilidad-coeficientes-v1_2.md en disco no coincide con lo que el derivador produce ahora mismo -- fue editado a mano o quedó desactualizado; regenerar con `tools/censo_estimabilidad.py --write`
 tests/test_check_parallel.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_ci_tiempo_2.py	script	NO	(ninguna)	NO	2.2	CORRE-EN-CI	exit 0 sin corpus
 tests/test_cierre_acto.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_cifras_sin_result.py	script	NO	(ninguna)	NO	0.7	CORRE-EN-CI	exit 0 sin corpus
 tests/test_clasifica_pr.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py

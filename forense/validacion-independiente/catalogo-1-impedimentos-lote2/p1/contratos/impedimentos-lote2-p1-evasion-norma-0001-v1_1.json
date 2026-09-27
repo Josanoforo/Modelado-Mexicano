@@ -1,0 +1,37 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "evasion-norma-0001-v1_1",
+  "estimadores_historicos": 2,
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/evasion-norma-0001-v1_1/evasion-norma-0001-v1_1-entradas-v3.tar.gz",
+  "sha256_original": "871fa15a1d84981b9a812d31b50cb8b6d11060f02f02177c2344ef640300c612",
+  "fuente_humana": "forense/prereg-caja/ENVIPE-EVASION-NORMA-spec-v1_0.md §1 sin cifras observadas",
+  "sha256_fuente_humana": "69605ea4c355b480acef91fe2419ac6b6223468e71e528e2769097b12817cefa",
+  "insumos_fuente": [
+    {
+      "id": "envipe2025_csv",
+      "archivo": "envipe2025_csv.zip",
+      "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "envipe2025_fd_pdf",
+      "archivo": "fd_envipe2025.pdf",
+      "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/doc/fd_envipe2025.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "envipe2025_csv",
+  "miembro_literal": "tmod_vic_envipe2025/conjunto_de_datos/conjunto_de_datos_tmod_vic_envipe2025.csv",
+  "unidad": "DELITO",
+  "universo": "tmod_vic_envipe2025 con BP1_20 en1,2 y FAC_DEL finito>0; sin recorte BPCOD no registrado",
+  "y": "1 si BP1_20=2 yBP1_23 en04,05,06,08;0 en resto universo por fórmula conjunta congelada; contar BP1_23 no válido/NSNR por separado",
+  "punto": "sum(FAC_DEL*y)/sum(FAC_DEL);cumple=sum(FAC_DEL*(1-y))/sum(FAC_DEL) contado directamente;partición suma1 por universo común",
+  "inferencia_propuesta": "Marco de tabla completo con FAC_DEL>0 yEST_DIS/UPM_DIS texto presentes;UPM fuera dominio aportan0;10000réplicas;PCG64(42);estratos/UPM lexicográficos;para réplica luego estrato mh extracciones uniformes con reemplazo;factor multiplicidad;cuantiles lineales tipo7 0.025/0.975;singleton aporta0 contado con limitación;réplica sin denominador=>ICnull;sin diseño en filas usadas=>puntos conservados ICnull. Requiere firma nueva porque rng/orden/percentil históricos incompletos.",
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "limite_semantico": "Mide no denunciar junto con razón declarada, no evasión legal general;cumple significa ausencia evento compuesto, incluye otras razones/denuncia/NSNR, no acredita cumplimiento normativo;no cambiar llave para ocultarlo",
+  "accion": "Dos puntos reconstructibles desde fórmula humana;ICD15 mantenido;contratoinferencial nuevo completo propuesto;PDF módulo exacto ya autorizado",
+  "faltante_historico": "D15 convenciones bootstrap completas;firma contrato nuevo antes inferencia;etiqueta semántica no demuestra cumplimiento legal"
+}

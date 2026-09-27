@@ -1,0 +1,92 @@
+{
+  "status": "PROPUESTO-POR-EJECUTOR; NO-AUTORIZADO",
+  "source_refs": {
+    "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p2/p2-propuesta-autorizaciones.md": "bcd2af5e313ff35c46278d47f1df8172e2697bcbc6c7a68f701e6d4894503692",
+    "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p3/p3-propuesta-ensanut2024.md": "41f77bae39e19e01f09b0375e930eb167cab777e2905a0b34dd0c92325fdb627",
+    "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p3/p3-disponibilidad-recibo.md": "d705f85a80e6b89181957e76e0005238d22c65f7b8f64dde7ed90211d0042dc2"
+  },
+  "contracts": [
+    {
+      "id": "enif2024-sin-credito",
+      "source_sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+      "stage1_file": "impedimentos-lote2-p3-enif2024-sin-credito-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-enif2024-sin-credito-stage2.json",
+      "packages": [
+        "enif-0001",
+        "enif-0002",
+        "tiene-ahorros-0001-v1_1",
+        "dinero-familiares-vejez-0001-v1_1",
+        "horizonte-via-derivados-0001-v1_1",
+        "enif-persistencia-ic-calibrado-0001"
+      ]
+    },
+    {
+      "id": "enif2024-amai-aparte",
+      "source_sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+      "stage1_file": "impedimentos-lote2-p3-enif2024-amai-aparte-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-enif2024-amai-aparte-stage2.json",
+      "packages": [
+        "amai-nse-enif-2024-0001"
+      ]
+    },
+    {
+      "id": "enut2024-ar-reserva",
+      "source_sha256": "25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba",
+      "stage1_file": "impedimentos-lote2-p3-enut2024-ar-reserva-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-enut2024-ar-reserva-stage2.json",
+      "packages": [
+        "enut-0001"
+      ]
+    },
+    {
+      "id": "adultos_ensanut2024_w",
+      "source_sha256": "0fa8f4436fa427cc23d1d43164d449462c09eb787cb45ad20961576cb095a6c4",
+      "stage1_file": "impedimentos-lote2-p3-adultos_ensanut2024_w-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-adultos_ensanut2024_w-stage2.json",
+      "packages": [
+        "ensanut-0001",
+        "ensanut-pisos-salud-0001"
+      ]
+    },
+    {
+      "id": "integrantes_ensanut2024_w_icb",
+      "source_sha256": "20a9fae339da3fa3fc6ce20e81b6b1cf32375b40baf5a876d760a15f01ec6aa9",
+      "stage1_file": "impedimentos-lote2-p3-integrantes_ensanut2024_w_icb-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-integrantes_ensanut2024_w_icb-stage2.json",
+      "packages": [
+        "ensanut-0001",
+        "ensanut-pisos-salud-0001"
+      ]
+    },
+    {
+      "id": "utilizadores_ensanut2024_w",
+      "source_sha256": "b40a4dce264e657026b4046b07047031437a224182e373d27dde4a5e0360a563",
+      "stage1_file": "impedimentos-lote2-p3-utilizadores_ensanut2024_w-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-utilizadores_ensanut2024_w-stage2.json",
+      "packages": [
+        "ensanut-0001",
+        "ensanut-pisos-salud-0001"
+      ]
+    },
+    {
+      "id": "adolescentes_ensanut2024_w",
+      "source_sha256": "47251c90bd411e6d8c6f12dd5761ff928341eee310fe9dd5ba0c841e83e2bb27",
+      "stage1_file": "impedimentos-lote2-p3-adolescentes_ensanut2024_w-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-adolescentes_ensanut2024_w-stage2.json",
+      "packages": [
+        "ensanut-0001",
+        "ensanut-pisos-salud-0001"
+      ]
+    },
+    {
+      "id": "endireh2021-pareja",
+      "source_sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+      "stage1_file": "impedimentos-lote2-p3-endireh2021-pareja-stage1.json",
+      "stage2_file": "impedimentos-lote2-p3-endireh2021-pareja-stage2.json",
+      "packages": [
+        "endireh-pisos-2021-pareja-fisica-0004",
+        "endireh-pisos-2021-pareja-fisica-bc-0001"
+      ]
+    }
+  ]
+}

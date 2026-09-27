@@ -1,0 +1,432 @@
+[
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-001",
+    "localizador": "L17; corrección de alcance L94",
+    "texto_vigente": "83.1% de la población de 6+ usó internet en 2024; del 16.9% que no usa, 9.5% ‘no sabe usarlo’; el report lo interpreta como barrera de alfabetización, no de actitud.",
+    "componente_contrastable": "Uso de internet en tres meses (P7_1) y distribución de motivo principal de no uso (P7_2); proporciones separadas con denominadores explícitos.",
+    "limite_inferencial": "Autorreporte de motivo único no identifica causa estructural ni preferencia latente; no autoriza inferencia específica sobre población indígena sin diseño representativo. 9.5% exige comprobar si el denominador publicado es toda la población o solo no usuarios.",
+    "gen2_existente": "#1085 MAIN 579462b33914c91094b66637233063583331e825: RESULT-ENDUTIH-PISOS-2024-TABLA / CALC-ENDUTIH-PISOS-2024-0001 / resultados SHA 4c0a3b05b6ecef3e9d7e760163cc6a6691ceaf384fa522e620bbe9b663088c25; cotejo por reactivo en cotejo-result-endutih-v1_0.tsv.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Datos, FD, cuestionario y diseño 2024 registrados en manifiesto; hashes físicos documentales coinciden. P7_1 y P7_2 tienen universos distintos."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-002",
+    "localizador": "L6 TL;DR; L17 hallazgo 3; L94 patrón 3",
+    "texto_vigente": "9.5% no sabe usar internet; el report lo expresa como parte del 16.9% que no usa internet.",
+    "componente_contrastable": "Proporción de todas las personas elegidas 6+ con P7_1=2 y P7_2=2; entre no usuarios el cociente publicado es aproximadamente 9.5/16.9=56.2%, sujeto a redondeo.",
+    "limite_inferencial": "P7_2 es motivo principal autodeclarado, no test de habilidad ni efecto causal de alfabetización. El 9.5% publicado NO es proporción condicional entre no usuarios; el RESULT #1085 no incluye P7_2=2.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3: P7_1 TOTAL; P7_2=2 no estimado en ese CALC.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cuestionario, FD, diseño y dato en main; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. Gráfica 1 suma 9.5+2.8+1.8+1.6+1.2=16.9 puntos de la población 6+; no hay RESULT P7_2=2."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-003",
+    "localizador": "L17 hallazgo 3; L94 patrón 3; L120 segmentación",
+    "texto_vigente": "86.9% de personas urbanas y 68.5% rurales usaron internet en 2024.",
+    "componente_contrastable": "P7_1=1 ponderado por FAC_PER, cruzado con DOMINIO=U/R de tic_2024_usuarios.",
+    "limite_inferencial": "DOMINIO urbano/rural no equivale a extremos TLOC_1/TLOC_4 de RESULT #1085; brecha descriptiva no identifica oferta, habilidad ni población indígena.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3: TLOC_1/TLOC_4, SIN RESULT DOMINIO=U/R.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Documentos/dato en main y dominio FD comprobado; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. RESULT #1085 solo contrasta tamaños de localidad <2500 y 100000+, no el corte U/R exacto."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-004",
+    "localizador": "L17 hallazgo 3; L94 patrón 3",
+    "texto_vigente": "84.4% de hogares en Ciudad de México y Sonora tienen internet, frente a 50.7% en Chiapas en 2024.",
+    "componente_contrastable": "P4_4=1 conexión a internet en el hogar, ponderado por FAC_HOG y cruzado con CVE_ENT 09/26/07.",
+    "limite_inferencial": "Hogar no es persona usuaria; acceso doméstico no prueba uso, calidad, asequibilidad, habilidad ni pertenencia indígena.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3 solo persona P7_1/P7_2; NO mide P4_4 hogares.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cuestionario p.5, FD hoja hogares y dato en main; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. Comunicado p.1 publica 84.4/84.4/50.7; sin RESULT #1085 de hogares."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-005",
+    "localizador": "L94 patrón 3; INEGI comunicado 57/25 p.2",
+    "texto_vigente": "2.8% de todas las personas de 6+ no usó internet y declaró como motivo principal «no le interesa o no lo necesita» (gráfica 1 del comunicado; report menciona la categoría).",
+    "componente_contrastable": "P7_1=2 y P7_2=3 sobre todas las personas 6+; distinguir la proporción condicional P7_2=3 entre no usuarios.",
+    "limite_inferencial": "Respuesta única autodeclarada no mide el efecto causal de recursos, interés o cobertura; cifra publicada usa total 6+, RESULT #1085 usa solo no usuarios.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3: P7_2=3, 16.5484% de no usuarios, universo no usuarios 6+.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Documentos/dato ENDUTIH 2024 en main; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. RESULT #1085 mide 16.5484% de no usuarios condicionado a P7_1=2, no los 2.8% del total 6+ sin derivación explícita."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-006",
+    "localizador": "L94 patrón 3; INEGI comunicado 57/25 p.2",
+    "texto_vigente": "1.8% de todas las personas de 6+ no usó internet y declaró como motivo principal «falta de recursos económicos» (gráfica 1 del comunicado; report menciona la categoría).",
+    "componente_contrastable": "P7_1=2 y P7_2=4 sobre todas las personas 6+; distinguir la proporción condicional P7_2=4 entre no usuarios.",
+    "limite_inferencial": "Respuesta única autodeclarada no mide el efecto causal de recursos, interés o cobertura; cifra publicada usa total 6+, RESULT #1085 usa solo no usuarios.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3: P7_2=4, 10.7694% de no usuarios, universo no usuarios 6+.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Documentos/dato ENDUTIH 2024 en main; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. RESULT #1085 mide 10.7694% de no usuarios condicionado a P7_1=2, no los 1.8% del total 6+ sin derivación explícita."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-007",
+    "localizador": "L6 TL;DR; L17 hallazgo 3; L94 patrón 3",
+    "texto_vigente": "La brecha digital es un techo estructural de adopción; el report atribuye parte de la no utilización a falta de acceso y evita llamarla resistencia cultural.",
+    "componente_contrastable": "P7_1=2 y P7_2=1 sobre todas las personas 6+; distinguir la proporción condicional P7_2=1 entre no usuarios.",
+    "limite_inferencial": "El comunicado publica 1.6 puntos del total 6+ por falta de acceso, y RESULT #1085 mide 9.29% de no usuarios P7_2=1; ninguno identifica causalidad de oferta ni explica toda la brecha.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3: P7_2=1, 9.2939% de no usuarios, universo no usuarios 6+.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Documentos/dato ENDUTIH 2024 en main; INEGI comunicado 57/25 pp.1-2; SHA256 e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81; https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/endutih/ENDUTIH_24.pdf. RESULT #1085 mide 9.2939% de no usuarios condicionado a P7_1=2, no los 1.6% del total 6+ sin derivación explícita."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-008",
+    "localizador": "L94 patrón 3; L120 segmentación explícita",
+    "texto_vigente": "El uso de internet cae a 71% en 55-64 años y 42.1% en personas de 65 años o más.",
+    "componente_contrastable": "P7_1=1 entre personas elegidas 6+ con EDAD 55-64 o 65-97 (97 agrupa 97+; excluir 98 no especificada), FAC_PER y diseño.",
+    "limite_inferencial": "EDAD y P7_1 describen uso por edad, sin identificar preferencia, habilidad ni efecto causal de generación o envejecimiento.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3 nacional/TLOC; SIN RESULT EDAD 55-64 o 65+.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cuestionario, FD, diseño y dato 2024 en main; FD tic_2024_usuarios filas 11-13/101/458; 71% y 42.1% requieren RESULT por edad, no aparecen en #1085."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-009",
+    "localizador": "L121 segmentación explícita",
+    "texto_vigente": "En 2024 usaron internet 84.1% de hombres y 82.3% de mujeres; el report la califica como brecha leve.",
+    "componente_contrastable": "P7_1=1 por SEXO=1 hombre/2 mujer entre personas elegidas 6+, ponderado por FAC_PER con diseño.",
+    "limite_inferencial": "Diferencia descriptiva no identifica causas ni describe diversidad de género fuera de las dos categorías del cuestionario.",
+    "gen2_existente": "RESULT #1085 MAIN 579462b3 nacional/TLOC; SIN RESULT SEXO=1/2.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cuestionario, FD, diseño y dato 2024 en main; FD tic_2024_usuarios filas 101/458/476-477; 84.1/82.3 requieren RESULT por SEXO, no aparecen en #1085."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-010",
+    "localizador": "L94 patrón 3; L121 segmentación",
+    "texto_vigente": "El analfabetismo indígena es 19% frente a 2.8% de población no indígena y 24.2% entre mujeres indígenas, atribuido a ENADID 2023.",
+    "componente_contrastable": "Proporción ponderada P3_23=2 (no sabe leer y escribir un recado) entre residentes habituales de 15+ por P3_12=1 autoadscripción indígena frente a P3_12=2 y, entre autoadscritas, SEXO=2.",
+    "limite_inferencial": "P3_12 autoadscripción no equivale a habla de lengua indígena P3_19; alfabetismo no mide habilidad de usar internet. Las tasas 19/2.8/24.2 aún no tienen RESULT con ese corte 15+ y definición.",
+    "gen2_existente": "SIN RESULT para P3_12×P3_23 por edad/sexo al corte; ENDUTIH #1085 no mide alfabetismo ni autoadscripción.",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cuestionario, FD, diseño muestral (registrado por #1094 con el mismo SHA leído por U0) y dato ENADID 2023 con id en main y SHA físicos coincidentes. Preguntas exactas y universo 15+ definidos como contraste; no se validan las tasas publicadas."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-011",
+    "localizador": "L13,L5 TL;DR",
+    "texto_vigente": "el gobierno es la unica institucion en desconfianza segun el Edelman Trust Barometer 2025 Mexico, con 47%; las empresas encabezan con 67%",
+    "componente_contrastable": "Proporcion de adultos mexicanos que confian (top-2-box escala de 9, TRU_INS) en gobierno vs empresas, Edelman Trust Barometer 2025 Mexico, muestra online",
+    "limite_inferencial": "Muestra online (no representa offline/rural); no observa mecanismo de adopcion tecnologica individual, solo nivel agregado de confianza institucional",
+    "gen2_existente": "ninguna corrida con este payload (u0mf --busca edelman: 0 de 1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario identificado (Edelman Trust Barometer 2025, informe global + pagina pais Mexico) y su cifra confirmada por fuente oficial edelman.com el 23/sep/2026; falta registrar el PDF en manifiesto con sha256 y extraer el bloque TRU_INS con universo/ponderacion exactos."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-012",
+    "localizador": "L13,L88 Patron 1",
+    "texto_vigente": "Nu Mexico supero los 13 millones de clientes (16 de octubre de 2025)... 14% de la poblacion adulta y 23% de las personas bancarizadas... 78% vive fuera de las grandes ciudades y mas del 60% pertenece a hogares de ingresos bajos y medios-bajos",
+    "componente_contrastable": "Numero de clientes registrados de Nu Mexico (empresa fintech) a fecha de corte, auto-reportado por la empresa; no es encuesta poblacional",
+    "limite_inferencial": "Cifra empresarial auto-reportada (no auditada independientemente en este lote); clientes no equivale a usuarios activos; no identifica causa de adopcion a nivel individual",
+    "gen2_existente": "ninguna corrida con este payload (u0mf --busca 'nu mexico': 0/1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario (comunicado oficial Nu Mexico/Nubank) identificado y contenido confirmado el 23/sep/2026; falta registrar el comunicado en manifiesto con sha256. No hay instrumento de encuesta que mida el mecanismo (ver tecnologia-003)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-013",
+    "localizador": "L13",
+    "texto_vigente": "La desconfianza en el gobierno no impidio la adopcion de tecnologia financiera privada. Lo que movio la aguja fue utilidad + inclusion + diseno, no confianza institucional.",
+    "componente_contrastable": "Atribucion causal de que factor (utilidad/inclusion/diseno vs confianza institucional) explica la decision individual de adoptar fintech privada",
+    "limite_inferencial": "La evidencia disponible son dos series agregadas de fuentes distintas (confianza Edelman y clientes Nu) en fechas distintas sin dato pareado a nivel de persona; coexistencia agregada no identifica mecanismo individual",
+    "gen2_existente": "ninguna corrida con este componente (es interpretacion, no cifra con payload_id)",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Los instrumentos recorridos (ENIF 2012/2015/2018/2021/2024, ENDUTIH 2023/2024/2025) no preguntan simultaneamente confianza institucional y motivo de adopcion de fintech en la misma persona; u0busca -q confia en internet|confianza en internet|confianza en la tecnologia -> 0 aciertos; u0busca -q banca movil|app de banco|billetera digital|monedero electronico -> 12 aciertos (uso de banca movil ENDUTIH 2023/2024/2025, sin motivo/confianza pareada). No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-014",
+    "localizador": "L15,L6 TL;DR",
+    "texto_vigente": "Los mexicanos distinguen entre confianza en el algoritmo y confianza en la institucion que lo despliega. Adoptan algoritmos de empresas privadas mientras resisten los del Estado. No es tecnofobia: es desconfianza dirigida a un actor especifico.",
+    "componente_contrastable": "Si, para una misma persona, la disposicion a usar una tecnologia varia segun el operador (privado vs Estado) manteniendo funcion/riesgo constantes",
+    "limite_inferencial": "Es inferencia por contraste de casos distintos (fintech privada vs CURP biometrica estatal), no medicion pareada en la misma persona con la misma tecnologia bajo dos operadores",
+    "gen2_existente": "ninguna corrida con este componente",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Ningun instrumento recorrido pregunta, para la misma tecnologia, la disposicion de uso variando solo el operador (privado/Estado). u0busca -q identidad digital|biometric -> 1 acierto (MOCIBA2025 P2_2, medida de seguridad usada, no pareo tecnologia-operador); u0busca -q banca movil... -> 12 aciertos de uso sin contraparte estatal comparable. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-015",
+    "localizador": "L19",
+    "texto_vigente": "el 70% respondio estar emocionado, ubicandonos en la quinta posicion, detras de lideres como China (80%)",
+    "componente_contrastable": "Proporcion de adultos online <75 anos en Mexico que declaran sentirse emocionados con productos/servicios que usan IA, Ipsos AI Monitor 2024",
+    "limite_inferencial": "Muestra online <75 anos (sesgo hacia poblacion conectada/urbana); autorreporte de emocion declarada, no conducta observada",
+    "gen2_existente": "ninguna corrida con este payload (u0mf --busca ipsos: 0/1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario identificado (Ipsos AI Monitor 2024, PDF publico) y cifra 70%/5 lugar confirmada el 23/sep/2026 desde fuente oficial ipsos.com; falta registrar el PDF en manifiesto con sha256 y extraer universo/ponderacion exactos de la muestra mexicana."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-016",
+    "localizador": "L19",
+    "texto_vigente": "el 66% ya usa herramientas de IA (Ipsos/Google 'Our Life with AI', datos 2025)",
+    "componente_contrastable": "Proporcion de mexicanos que declaran ya usar herramientas de IA, estudio Ipsos/Google Our Life with AI 2025",
+    "limite_inferencial": "Ola distinta a AI Monitor 2024 (universo/pregunta pueden no ser comparables); no verificado documento primario en este lote (presupuesto web agotado)",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Cierre bajo regla 4: no se comprobo el documento primario 'Ipsos/Google Our Life with AI 2025' en esta pasada -- presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada. u0mf --busca ipsos -> 0/1680 (el corpus no tiene ningun producto Ipsos registrado). EXISTENCIA-NO-COMPROBADA tras 1 consulta de corpus; 0 consultas WebSearch posibles (presupuesto de sesion agotado antes de esta fila); 2 intentos de WebFetch a URLs conjeturadas de ipsos.com (sin buscador disponible) devolvieron 404, por lo que tampoco se confirmo por esa via."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-017",
+    "localizador": "L19",
+    "texto_vigente": "coexiste con nerviosismo (52% en 2026)",
+    "componente_contrastable": "Proporcion de mexicanos que declaran nerviosismo ante la IA, encuesta 2026 (fuente no identificada por el report en el pasaje)",
+    "limite_inferencial": "Fuente no identificada por nombre/autor en el propio report; posible tercera ola distinta a las dos anteriores",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Cierre bajo regla 4: el report no nombra la fuente de '52% en 2026' y no se pudo identificar en esta pasada -- presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada. EXISTENCIA-NO-COMPROBADA tras 0 consultas nuevas posibles (no hay nombre de encuestadora/instrumento en el propio texto del report que permita una busqueda de corpus dirigida distinta de la ya hecha en tecnologia-016/018)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-018",
+    "localizador": "L19",
+    "texto_vigente": "el entusiasmo declarado esta correlacionado con el optimismo economico regional... El 'entusiasmo mexicano por la IA' es un artefacto parcial de patron regional y de muestras online, no un rasgo distintivamente mexicano.",
+    "componente_contrastable": "Si el nivel de entusiasmo declarado por pais correlaciona con un indice de optimismo economico regional en la misma ola Ipsos AI Monitor 2024 (32 paises)",
+    "limite_inferencial": "Requiere la tabla comparativa entre paises del mismo documento Ipsos (no extraida en este lote); es correlacion ecologica entre paises, no inferencia causal individual",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Correccion de defecto de validacion (CON-ADQUISICION sin id|sha ni URL/DOI primario): se deja identificado el emisor y titulo exactos citados por el propio report -- Ipsos, 'AI Monitor 2024' (32 paises) -- pero NO se logro confirmar URL/DOI ni id de manifiesto en esta pasada: presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada; u0mf --busca ipsos -> 0/1680; 2 intentos de WebFetch a URLs conjeturadas de ipsos.com devolvieron 404 (sin buscador disponible para hallar la URL real). EXISTENCIA-NO-COMPROBADA tras estos 3 intentos (1 de corpus + 2 WebFetch); el documento sigue sin confirmarse formalmente, aunque el propio report lo cita con emisor y titulo precisos."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-019",
+    "localizador": "L21; también Apuestas_Conductuales_sobre_el_Consumidor_Mexica L105-L111 (ASTRA5-U0-APUEST-029 fusionada)",
+    "texto_vigente": "21.8 millones de cuentas fueron registradas en CoDi hasta septiembre de 2025, pero la mayoria permanecen inactivas, con solo 17.8 millones de transacciones acumuladas en seis anos (promedio de 875 pesos por operacion)",
+    "componente_contrastable": "Numero acumulado de cuentas validadas y operaciones en el esquema CoDi (Banxico/SPEI), y proporcion de cuentas activas vs registradas",
+    "limite_inferencial": "La cifra exacta de sept-2025 es posterior a la ultima edicion registrada en el corpus (Informe Anual IdMF 2024, datos de 2024); la trayectoria y el patron de baja actividad SI estan documentados en el corpus con cifras propias",
+    "gen2_existente": "ninguna corrida con estos payloads (sin CALC GEN2 sobre CoDi en corrida0/corridas.tsv)",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "El instrumento (informe regulatorio oficial Banxico IdMF + cuadros SIE CF881-885) esta identificado, registrado en manifiesto con sha256, y se cito texto literal via u0pdf con pagina exacta que corrobora tanto el crecimiento de cuentas validadas (6.8M en 2020, 12M en 2021) como el patron de baja actividad mensual (cuadro A.10 2023) que sostiene 'la mayoria permanecen inactivas'. La cifra puntual de sept-2025 requiere la edicion 2025 o los cuadros SIE actualizados (identificados en manifiesto pero no extraidos en este lote)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-020",
+    "localizador": "L21",
+    "texto_vigente": "Fracaso por friccion, miedo al SAT, informalidad y preferencia por efectivo/SPEI. No fue rechazo ideologico al Estado: fue desconfianza racional (miedo fiscal) + falta de utilidad marginal sobre SPEI.",
+    "componente_contrastable": "Motivo declarado de no uso/no activacion de CoDi (miedo fiscal, friccion, preferencia por efectivo) a nivel de persona",
+    "limite_inferencial": "Ningun instrumento recorrido pregunta directamente el motivo de no uso de CoDi; la atribucion a miedo al SAT es inferencia del report, no dato de encuesta",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "u0busca -q codi -> 2066 aciertos con texto, ninguno es pregunta de motivo de uso/no uso de CoDi (son coincidencias por subcadena 'codi' en variables no relacionadas, p.ej. ENNVIH 'CODIGO ESTADO'); no se identifico en ENIF 2012/2015/2018/2021/2024 ni ENDUTIH una pregunta que mida miedo fiscal o motivo de no uso de CoDi. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-021",
+    "localizador": "L23",
+    "texto_vigente": "SPEI, en cambio, es infraestructura estatal ampliamente adoptada. El contraste CoDi/SPEI dentro del mismo emisor (Banxico) prueba que confianza en el Estado no explica la adopcion; la explican la utilidad sin friccion y la ausencia de costo o riesgo percibido.",
+    "componente_contrastable": "Volumen de operaciones SPEI (transferencias entre usuarios finales) frente al volumen CoDi en el mismo periodo y emisor",
+    "limite_inferencial": "La cifra de volumen SPEI esta EN-CORPUS y confirma ampliamente adoptada en sentido de volumen transaccional; la interpretacion causal es inferencia del report sin instrumento que mida confianza+uso en la misma persona (ver tecnologia-014)",
+    "gen2_existente": "ninguna corrida con este payload",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Cita literal del Informe Anual IdMF 2024 (Banxico, registrado en manifiesto con sha256) confirma que SPEI movio 5,337 millones de operaciones de usuarios finales en 2024 (+57.6% anual), ordenes de magnitud por encima de las cuentas CoDi (miles activas mensuales, tecnologia-011); sostiene el componente descriptivo 'SPEI ampliamente adoptado'. La interpretacion causal del por que no tiene instrumento pareado."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-022",
+    "localizador": "L23",
+    "texto_vigente": "confianza en el Estado no explica la adopcion; la explican la utilidad sin friccion y la ausencia de costo o riesgo percibido",
+    "componente_contrastable": "Atribucion causal del contraste de volumen SPEI vs CoDi a utilidad sin friccion en vez de confianza en el Estado",
+    "limite_inferencial": "Es inferencia por contraste de dos productos del mismo emisor sin variable de confianza medida a nivel de persona; no hay diseno que aisle confianza de utilidad",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Ningun instrumento recorrido mide, para la misma persona, confianza en el Estado y eleccion SPEI-vs-CoDi con motivo declarado. u0busca -q codi (2066 aciertos, sin reactivo relevante); u0mf --busca spei -> 20/1680 (todas fuentes Banxico administrativas, sin encuesta de percepcion). No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-023",
+    "localizador": "L25",
+    "texto_vigente": "Los mexicanos prefieren atencion humana en servicio al cliente (una encuesta de 2025 concluyo que 'el factor humano seguira siendo el mas confiable y deseado por los mexicanos'), pero aceptan algoritmos sin intermediario en tareas estructuradas (pagos, navegacion).",
+    "componente_contrastable": "Preferencia declarada por atencion humana vs algoritmica segun tipo de tarea (alto riesgo/ambiguo vs estructurado)",
+    "limite_inferencial": "El report no identifica autor, casa encuestadora ni instrumento de la 'encuesta de 2025'; sin ficha metodologica no se puede fijar universo/muestra",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Cierre bajo regla 4: el report cita la conclusion entre comillas sin nombrar autor/casa encuestadora/instrumento de la 'encuesta de 2025'; no se pudo identificar en esta pasada -- presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada. EXISTENCIA-NO-COMPROBADA tras 0 consultas web nuevas posibles; no hay termino de corpus especifico que buscar sin nombre de fuente."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-024",
+    "localizador": "L27",
+    "texto_vigente": "El gobierno digital de identidad (Llave MX, CURP biometrica) gatillo resistencia organizada... decretos 2025",
+    "componente_contrastable": "Existencia, fecha y contenido normativo del decreto que crea la CURP biometrica como documento de identificacion obligatorio",
+    "limite_inferencial": "Confirma la existencia y contenido del acto normativo; no mide por si mismo la conducta de resistencia poblacional (fila aparte)",
+    "gen2_existente": "ninguna (u0mf --busca curp -> 0/1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario oficial (DOF, dominio gob.mx) leido y citado textualmente el 23/sep/2026; existencia e identidad confirmadas (titulo, fecha, articulos reformados). Falta registrarlo en manifiesto con sha256; el cotejo de 'gatillo resistencia organizada' es afirmacion de conducta, ver filas aparte."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-025",
+    "localizador": "L27",
+    "texto_vigente": "el Poder Judicial (amparos; la SCJN admitio revisar la constitucionalidad de la reforma de 2025)",
+    "componente_contrastable": "Existencia de al menos un amparo admitido y de una revision de constitucionalidad por la SCJN sobre la reforma CURP biometrica",
+    "limite_inferencial": "Confirmado que existen amparos (un juzgado de distrito otorgo al menos uno en ago-2025) y que la SCJN tiene en tramite una revision; el numero de expediente exacto no se fijo en este lote (posible confusion con el expediente AR 39/2022, anterior a la reforma de jul-2025)",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Se mantiene MEDIBLE-CON-ADQUISICIÓN (regla 2): la EXISTENCIA del litigio (amparo otorgado ago-2025, tramite de revision de constitucionalidad ante la SCJN) esta corroborada de forma convergente por multiples fuentes de prensa independientes en la primera pasada (Infobae, cronista.com), lo que la distingue de un rumor sin respaldo; lo que NO esta comprobado es el DOCUMENTO PRIMARIO oficial (el expediente/acuerdo exacto de la SCJN) -- el candidato hallado en la primera pasada (Amparo en Revision 39/2022) es anterior a la reforma de jul-2025 y no debe citarse sin verificacion directa. presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada en esta pasada, por lo que no fue posible verificar en scjn.gob.mx el numero de expediente correcto; u0mf --busca scjn -> 0/1680 (el Poder Judicial no tiene documentos propios en el corpus)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-026",
+    "localizador": "L27",
+    "texto_vigente": "sociedad civil digital (R3D, Articulo 19)... se apoya en desconfianza racional: fugas de datos previas, miedo a vigilancia y exclusion",
+    "componente_contrastable": "Existencia y contenido del posicionamiento publico de R3D (y mencion de Articulo 19) contra la CURP biometrica/Plataforma Unica de Identidad",
+    "limite_inferencial": "Confirma existencia y contenido del posicionamiento de UNA organizacion (R3D) fechado; no mide cuantas personas comparten esa posicion ni la distribucion social de la resistencia",
+    "gen2_existente": "ninguna (u0mf --busca r3d -> 0/1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario (comunicado oficial de R3D) leido y citado textualmente el 23/sep/2026; falta registrarlo en manifiesto con sha256. La mencion de Articulo 19 en el report no se verifico con un comunicado propio de esa organizacion en este lote (solo aparece referida en fuentes secundarias que agrupan a ambas)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-027",
+    "localizador": "L27 (contexto ampliado Patron 2, L91)",
+    "texto_vigente": "La filtracion de credenciales de Llave CDMX (mayo 2024) expuso a los 6.3 millones de usuarios registrados del sistema de la ADIP... el titular de la ADIP, Eduardo Clark, nego una vulneracion del sistema.",
+    "componente_contrastable": "Existencia de un incidente de seguridad reportado en Llave CDMX en mayo-2024 y su escala declarada, y la respuesta oficial (ADIP)",
+    "limite_inferencial": "Los hechos tecnicos del incidente estan en disputa entre prensa especializada y la propia ADIP (que nego vulneracion); no se identifico un comunicado oficial primario de la ADIP en este lote",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Se mantiene MEDIBLE-CON-ADQUISICIÓN (regla 2): la EXISTENCIA del incidente de mayo-2024 en Llave CDMX esta corroborada de forma convergente por multiples fuentes de prensa especializada en la primera pasada (Excelsior, Publimetro, TecNetOne), incluida la respuesta oficial atribuida al titular de la ADIP (Eduardo Clark, negando vulneracion). Lo que NO esta comprobado es el COMUNICADO OFICIAL primario de la ADIP -- u0mf --busca adip -> 0/1680 (la ADIP no tiene documentos propios en el corpus) y presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada, por lo que no fue posible buscar adip.cdmx.gob.mx en esta pasada."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-028",
+    "localizador": "L27",
+    "texto_vigente": "La resistencia se concentra en elites informadas y se apoya en desconfianza racional",
+    "componente_contrastable": "Distribucion social (por nivel educativo/urbanidad/clase) de quienes se oponen activamente a la CURP biometrica, frente a quienes la tramitaran sin oposicion",
+    "limite_inferencial": "Los actos documentales identifican quien se pronuncia (organizaciones, litigantes puntuales) pero no miden la distribucion poblacional de la actitud; 'elites informadas' es caracterizacion del report sin encuesta de actitud pareada",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Ningun instrumento de encuesta recorrido pregunta actitud/oposicion hacia la CURP biometrica o identidad digital estatal por segmento social. u0busca -q identidad digital|biometric -> 1 acierto con texto (MOCIBA2025 P2_2, sobre uso de datos biometricos como medida de SEGURIDAD PERSONAL, no sobre confianza en el Estado); u0mf --busca curp/adip/r3d/scjn -> 0 en todos. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-029",
+    "localizador": "L29,L100 Patron 5",
+    "texto_vigente": "18.9% de trabajadores mexicanos estan en alto riesgo de automatizacion (vs 12% promedio OCDE); la exposicion a IA generativa es de 32% urbano vs 21% rural; estados manufactureros mas expuestos (Coahuila 28.1%, Aguascalientes 23.7%, Yucatan 23.1%)",
+    "componente_contrastable": "Proporcion de trabajadores mexicanos en alto riesgo de automatizacion (indice de tareas automatizables), y desglose urbano/rural y por entidad",
+    "limite_inferencial": "Es un indice de riesgo MODELADO a partir de tareas de la ocupacion (no desplazamiento observado); exposicion a IA generativa es indicador distinto de riesgo de automatizacion y no deben promediarse",
+    "gen2_existente": "ninguna (u0mf --busca ocde -> 0/1680)",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Documento primario identificado (informe OCDE 2024, pais Mexico) con titulo y editorial exactos; la pagina oficial oecd.org devolvio 403 al intento de acceso directo en este lote, por lo que la cifra se confirma por convergencia de multiples fuentes que citan el mismo informe (incluida una reproduccion en portal de gobierno estatal) pero no se leyo el PDF primario byte a byte. Falta registrar el documento en manifiesto con sha256."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-030",
+    "localizador": "L29,L100",
+    "texto_vigente": "no hay evidencia fuerte de actitudes sistematicas de trabajadores o sindicatos mexicanos frente a la IA... el riesgo no es 'revuelta anti-IA' sino polarizacion silenciosa",
+    "componente_contrastable": "Actitud/accion sindical organizada frente a IA/automatizacion; el report mismo declara este vacio",
+    "limite_inferencial": "El propio report reconoce ausencia de evidencia; es afirmacion negativa sobre el estado del conocimiento, no una medicion",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Los instrumentos recorridos (ENDUTIH, ENIF, ENOE) no capturan accion colectiva sindical frente a IA; el propio report declara el vacio explicitamente. Registro de acciones sindicales requeriria fuente administrativa distinta (STPS, boletines de huelgas) no recorrida en este lote. u0busca -q automatizacion|robot -> 0 aciertos con texto. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-031",
+    "localizador": "L31",
+    "texto_vigente": "WhatsApp es la capa de confianza y el canal transaccional dominante... comercio conversacional, el cobro con links de pago (Mercado Pago) y la atencion al cliente via WhatsApp Business API",
+    "componente_contrastable": "Proporcion de usuarios de internet que usan WhatsApp/mensajeria instantanea, ENDUTIH",
+    "limite_inferencial": "ENDUTIH mide USO de WhatsApp/mensajeria y de banca movil por separado; no mide 'capa de confianza' como mecanismo, ni uso especifico para comercio conversacional o cobro con links de pago",
+    "gen2_existente": "RESULT-ENDUTIH-PISOS-2024-TABLA (#1085) mide P7_1 (uso de internet), no P7_16_6/P8_13_1 (WhatsApp/mensajeria); RESULT de otro componente: sin contraste directo",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "El uso BASE de WhatsApp/mensajeria instantanea esta en un instrumento con payload_id real en manifiesto (endutih2024_bd_dbf_zip) y texto literal citado via u0busca (P7_16_6, P8_13_1); no se abrio microdato. El componente 'capa de confianza'/mecanismo causal de adopcion via WhatsApp NO esta en este instrumento -- ver tecnologia-025 (hipotesis)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-032",
+    "localizador": "L78 Mapa de evidencia (HIPOTESIS RAZONABLE); contradice tier SOLIDO usado en G-10 (L31/hallazgo 10)",
+    "texto_vigente": "WhatsApp como 'capa de confianza' que reduce friccion de adopcion [HIPOTESIS RAZONABLE, plausible sin evidencia conductual directa mexicana]",
+    "componente_contrastable": "Si el uso previo de WhatsApp para comunicacion personal (confianza interpersonal) PREDICE causalmente la adopcion posterior de un servicio comercial/pago sobre ese canal",
+    "limite_inferencial": "El propio report reconoce 'sin experimentos conductuales mexicanos que lo prueben causalmente' (L175); es mecanismo hipotetico, no medido",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "El propio report clasifica este mecanismo como HIPOTESIS RAZONABLE sin evidencia conductual directa (L78, L103, L175), pese a que el hallazgo 10 (L31) lo presenta como SOLIDO -- contradiccion interna de tier que senalo al supervisor. Ningun instrumento recorrido mide el mecanismo causal 'confianza interpersonal en WhatsApp -> adopcion de servicio comercial'. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-033",
+    "localizador": "L80-83 Mapa de evidencia (NARRATIVA POPULAR); L103 Patron 6",
+    "texto_vigente": "Cifra de penetracion de WhatsApp '91%' citada por blogs comerciales sin fuente primaria clara; La cifra de '91% de penetracion' proviene de blogs comerciales y debe tratarse como aproximacion no verificada.",
+    "componente_contrastable": "Proporcion de la poblacion/usuarios de internet mexicanos que usan WhatsApp (penetracion)",
+    "limite_inferencial": "El report mismo indica que la unica fuente de 91% son blogs comerciales, no un documento oficial/primario; regla del lote prohibe prensa/blogs como fuente primaria",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "v1.1: texto de pregunta verificado en inventario data/inventario-fd-v1_1.tsv (endutih2024:P7_16_6); cubre: PARCIAL"
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-034",
+    "localizador": "L80-82 Mapa de evidencia (NARRATIVA POPULAR); duplicado en Caveats Mitos 1 y 3 (L162, L164)",
+    "texto_vigente": "El mexicano es tecnofobo/desconfiado por cultura. / El entusiasmo mexicano por la IA refleja apertura cultural especial. [NARRATIVA POPULAR: circula pero debil o no verificada]",
+    "componente_contrastable": "Atribucion de la conducta tecnologica mexicana a un rasgo cultural esencialista (cultura mexicana), en vez de a utilidad/estructura/instituciones",
+    "limite_inferencial": "Es un enunciado esencialista de cultura nacional que el propio report refuta con la evidencia de G-01/G-02/G-04; firewall de SS3 del proyecto contra romantizar/patologizar por cultura",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Tal como esta formulada, es un constructo esencialista de nivel nacional que ningun instrumento individual puede operacionalizar directamente y que las instrucciones del proyecto (SS3) prohiben tratar como conducta de bloque homogeneo; el propio report la usa como narrativa a REFUTAR (Caveats Mitos 1 y 3), no como hallazgo propio. Sus componentes empiricos ya estan dictaminados en filas separadas (adopcion selectiva por operador: tecnologia-004; entusiasmo IA como artefacto regional: tecnologia-010)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-035",
+    "localizador": "L62 Mapa de evidencia (EVIDENCIA FUERTE)",
+    "texto_vigente": "70M+ usuarios fintech (Asociacion FinTech Mexico)",
+    "componente_contrastable": "Numero de usuarios de servicios fintech en Mexico, segun la Asociacion FinTech Mexico",
+    "limite_inferencial": "No se identifico ni confirmo el documento primario en este lote (presupuesto web agotado); usuarios puede incluir duplicados entre plataformas",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Se mantiene MEDIBLE-CON-ADQUISICIÓN: el EMISOR esta identificado con razonable certeza (Asociacion FinTech Mexico, organizacion gremial que publica anualmente un 'Mapa Fintech' con cifras de usuarios), pero no se confirmo la edicion/URL exacta que sostiene '70M+ usuarios'. Intento de WebFetch a https://www.fintechmexico.org/mapa-fintech (URL conjeturada, sin buscador disponible) devolvio HTTP 404. presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada. EXISTENCIA-NO-COMPROBADA tras 2 intentos (u0mf + 1 WebFetch) para la edicion/cifra especifica, aunque el emisor como tal es una organizacion real y conocida (no se declara EXISTENCIA-NO-COMPROBADA del emisor, solo del documento/edicion exacta)."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-036",
+    "localizador": "L66 Mapa de evidencia",
+    "texto_vigente": "confianza baja en instituciones democraticas (Latinobarometro 2024: fuerzas armadas 43%, policia 41%, presidente 37%, partidos 17%)",
+    "componente_contrastable": "Proporcion de mexicanos que declaran confianza (mucha/algo) en fuerzas armadas, policia, presidente y partidos politicos, Latinobarometro 2024",
+    "limite_inferencial": "Es dominio CONFIANZA/POLITICA, no TECNOLOGIA; se usa aqui solo como contexto de baja confianza institucional general",
+    "gen2_existente": "sin corrida propia localizada para este cruce especifico en este lote; ver RESULTS-ASTRA5.md para otras corridas LAPOP/INE de U3 (no son el mismo instrumento)",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "El instrumento (Latinobarometro 2024, cuestionario y microdato Stata) esta registrado en manifiesto con sha256, no reservado; es el mismo instrumento que RESULTS-ASTRA5.md senala para U3 (Latinobarometro 2024: fuerzas armadas 43%, policia 41%, presidente 37%, partidos 17% coinciden literalmente con las cifras del report tecnologico). U0 no abrio microdato en este lote; U3 es propietario natural de la extraccion con reactivo/pagina exactos."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-037",
+    "localizador": "L74 Mapa de evidencia (EVIDENCIA MEDIA)",
+    "texto_vigente": "Automatizacion empresarial (dato de una fuente: El Economista reporta 70% de empresas mexicanas automatizando con IA en 2026).",
+    "componente_contrastable": "Proporcion de empresas mexicanas que declaran estar automatizando procesos con IA en 2026",
+    "limite_inferencial": "El report mismo senala 'dato de una fuente' y la fuente es prensa (El Economista), no el estudio primario que El Economista reporta",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Cierre bajo regla 4: la unica fuente que el report cita es un medio de prensa (El Economista); el estudio primario detras de la nota no se identifico en esta pasada -- presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada; u0mf --busca 'el economista' -> 2/1680, ambos de Banxico (series SPEI/CoDi), sin relacion con automatizacion empresarial. EXISTENCIA-NO-COMPROBADA tras 1 consulta de corpus; 0 consultas WebSearch posibles."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-038",
+    "localizador": "L33",
+    "texto_vigente": "India (Aadhaar/UPI) y Brasil (Pix) lograron adopcion masiva de infraestructura digital publica en contextos de desigualdad, mediante diseno abierto, gratuidad, obligatoriedad de participacion de bancos y paciencia estrategica. Mexico ha carecido de esa combinacion en pagos (CoDi)...",
+    "componente_contrastable": "Si el diseno institucional (gratuidad, obligatoriedad bancaria, apertura) explica causalmente la diferencia de adopcion entre Pix/UPI y CoDi",
+    "limite_inferencial": "Comparacion entre tres paises con series/unidades y contextos distintos; no hay diseno cuasi-experimental que aisle el efecto del diseno institucional de otras diferencias; afirmacion sobre India/Brasil no es evidencia sobre residentes en Mexico (procedencia c)",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "La afirmacion causal compara tres paises sin un diseno que aisle el efecto del diseno de politica de otros factores (regulacion, tamano de economia informal, historia bancaria); no es conducta observable en los instrumentos mexicanos recorridos, y las series de India/Brasil no se verificaron en este lote (fuera de presupuesto web). El componente Mexico-CoDi de esta comparacion SI esta dictaminado en tecnologia-011/012."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-039",
+    "localizador": "L35",
+    "texto_vigente": "El 50% de los medicos realizo teleconsultas en 2024 y el mercado de salud online alcanzo 1,600 millones de USD en 2024.",
+    "componente_contrastable": "Proporcion de medicos mexicanos que realizaron teleconsulta en 2024 (unidad medico, no paciente); tamano de mercado de salud online (unidad monetaria, no persona)",
+    "limite_inferencial": "Dos unidades distintas (medico y mercado en USD) que no deben promediarse ni tratarse como una sola cifra; ninguna es persona/hogar tal como cubren las encuestas de este corpus",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Los instrumentos recorridos en este lote son encuestas de HOGARES (ENDUTIH, ENIF, MOCIBA); ninguno muestrea medicos ni mide tamano de mercado. u0busca -q telemedicina|consulta medica a distancia|teleconsulta -> 0 aciertos con texto. Este componente ya esta enrutado por la propia ficha de lectura (12) a ASTRA5-MESA-SALUD como adquisicion dirigida de salud, fuera del perimetro de encuestas de hogar de este lote. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-040",
+    "localizador": "L37",
+    "texto_vigente": "Es plausible -pero no probado con datos conductuales directos mexicanos- que la alta confianza en la red cercana funcione como mecanismo de difusion. Es hipotesis generadora, no hallazgo establecido.",
+    "componente_contrastable": "Si la confianza interpersonal en la red cercana (familia/amigos) predice la adopcion tecnologica posterior via recomendacion",
+    "limite_inferencial": "El propio report declara que no hay datos conductuales directos mexicanos; es hipotesis generadora explicita",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "El propio report la etiqueta como hipotesis sin evidencia conductual directa; ningun instrumento recorrido (encuestas transversales de hogar) tiene diseno longitudinal de red social que mida difusion de adopcion tecnologica. No se identifico instrumento tras este recorrido; no equivale a imposibilidad universal -- un panel/red longitudinal SI podria medirlo."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-041",
+    "localizador": "L39",
+    "texto_vigente": "Latinoamerica es la region mas desconfiada del mundo segun el World Values Survey citado por Latinobarometro 2024... Atribuir la conducta tecnologica a una cultura mexicana especifica es un error; es adaptacion racional a instituciones que efectivamente fallan.",
+    "componente_contrastable": "Si el nivel de confianza interpersonal/institucional mexicano se ubica dentro del rango latinoamericano (no distintivo) al comparar mismas preguntas y ola entre paises",
+    "limite_inferencial": "Requiere comparar Mexico contra paises pares con la MISMA pregunta y ano; el report cita 'WVS citado por Latinobarometro' de forma indirecta, mezclando dos instrumentos distintos",
+    "gen2_existente": "sin corrida propia localizada para esta comparacion entre paises en este lote",
+    "dictamen": "MEDIBLE-EN-CORPUS",
+    "dictamen_razon": "Ambos instrumentos (WVS ola 7 Mexico, Latinobarometro 2024) estan registrados en manifiesto con sha256, no reservados. El componente comparativo es propio del dominio CONFIANZA/POLITICA (ASTRA5-U3), no de TECNOLOGIA; esta fila enlaza el hallazgo del report tecnologico a esos instrumentos ya identificados, sin duplicar trabajo."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-042",
+    "localizador": "L41",
+    "texto_vigente": "'Baja confianza institucional = rechazo a la IA' es falso. La evidencia conductual lo refuta. Confundir ambas cosas llevaria a estrategias de despliegue equivocadas.",
+    "componente_contrastable": "Si el nivel de confianza institucional agregado predice el nivel de adopcion/actitud hacia IA a nivel individual",
+    "limite_inferencial": "Sintesis que recombina las filas de Edelman (tecnologia-001), Nu Mexico (tecnologia-002) e Ipsos AI Monitor (tecnologia-007/010); su parte empirica ya esta en esas filas",
+    "gen2_existente": "ninguna",
+    "dictamen": "NO-MEDIBLE-POR-DISEÑO",
+    "dictamen_razon": "Veredicto/sintesis que solo recombina filas ya dictaminadas (tecnologia-001 Edelman, tecnologia-002 Nu Mexico, tecnologia-007/010 Ipsos AI Monitor); su componente empirico ya esta en esas filas. Lo nuevo es una atribucion de ausencia de relacion causal a nivel individual sin contrafactual ni diseno de identificacion en los instrumentos recorridos."
+  },
+  {
+    "id_afirmacion": "ASTRA5-U0-TEC-043",
+    "localizador": "L88 Patron 1",
+    "texto_vigente": "Mercado Pago crece en paralelo: alcanzo 72 millones de usuarios activos mensuales de fintech (+29% interanual) en el 3T de 2025 -cifra agregada de Brasil, Mexico y Argentina... con mas de 1.5 millones de lineas de credito activas en Mexico.",
+    "componente_contrastable": "Usuarios activos mensuales de Mercado Pago (agregado Brasil+Mexico+Argentina) y lineas de credito activas especificas de Mexico",
+    "limite_inferencial": "El propio report declara en sus Vacios de datos (L176) que NO existe cifra oficial publica reciente de usuarios de Mercado Pago SOLO Mexico; no debe leerse como usuarios mexicanos",
+    "gen2_existente": "ninguna",
+    "dictamen": "MEDIBLE-CON-ADQUISICIÓN",
+    "dictamen_razon": "Se mantiene MEDIBLE-CON-ADQUISICIÓN: el propio report ya declara en sus 'Vacios de datos' (L176) que no existe cifra oficial de usuarios de Mercado Pago solo-Mexico; el 72M es explicitamente agregado de 3 paises y no debe usarse como cifra mexicana (esto no cambia). El reporte trimestral 3T-2025 de Mercado Libre a inversionistas es un documento de tipo obligatorio para una empresa publica (NASDAQ: MELI) por lo que su EXISTENCIA es de alta certeza institucional, pero no se confirmo la URL/pagina exacta con el dato de 1.5M de lineas de credito en Mexico -- u0mf --busca 'mercado libre'/'mercadolibre' -> 0/1680 en ambos casos; presupuesto WebSearch de la sesion agotado (200/200) antes de llegar a esta fila; sin nuevas consultas WebSearch posibles en esta segunda pasada."
+  }
+]
