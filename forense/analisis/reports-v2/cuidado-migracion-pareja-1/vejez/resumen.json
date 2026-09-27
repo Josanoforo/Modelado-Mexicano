@@ -1,0 +1,27 @@
+{
+  "report": "corpus/reports-v2/Vejez_y_Cuidado_Intergeneracional_en_México__El_Debilitamiento_del_Seguro_Familiar.md",
+  "registros": 129,
+  "mapa_filas": 38,
+  "fuentes_leidas": 3,
+  "dictamenes": {
+    "CONFIRMA": 1,
+    "MATIZA": 42,
+    "ROMPE": 1,
+    "SIN-CIFRA": 85
+  },
+  "cifras": 7,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py",
+    "--check"
+  ],
+  "self_test": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py",
+    "--self-test"
+  ]
+}
