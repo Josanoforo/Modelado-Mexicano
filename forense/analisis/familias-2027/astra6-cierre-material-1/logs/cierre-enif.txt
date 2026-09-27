@@ -1,0 +1,8 @@
+verify CALC-FAMILIA-2027-ENIF-ORO-0002: exit=0; VERIFY: REPRODUCE   (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
+verify CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001: exit=0; VERIFY: REPRODUCE   (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
+verify CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001: exit=0; VERIFY: REPRODUCE   (CONTEXTO=IDENTICO · RESULTADO=REPRODUCE)
+32 passed in 1.86s
+FAIL: inventario discordante: /home/pc0/mm-astra6-c2-cierre-material-1/data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/__pycache__/medidor.cpython-314.pyc
+FAIL: inventario discordante: /home/pc0/mm-astra6-c2-cierre-material-1/data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/__pycache__/medidor.cpython-314.pyc
+FAIL: inventario discordante: /home/pc0/mm-astra6-c2-cierre-material-1/data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/__pycache__/medidor.cpython-314.pyc
+CIERRE: INCOMPLETO

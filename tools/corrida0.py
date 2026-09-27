@@ -2839,6 +2839,52 @@ def _verifica_sello(d: Path) -> tuple[str, str]:
         sello = json.loads(sello_json.read_text(encoding="utf-8"))
     except (OSError, ValueError) as exc:
         return "NO-COINCIDE", f"sello.json ilegible: {exc}"
+    if sello.get("tipo") == "EMISION-PROSPECTIVA-SIN-R":
+        # ASTRA6-C2-ENVIPE-1: recibo de emisión, no ejecución evaluada.
+        # Su mapa de hashes es `archivos`; los metadatos no son rutas.
+        # No se resella ni se excluye del control de inmutabilidad.
+        try:
+            if not d.name.startswith("CALC-FAMILIA-2027-ENVIPE-"):
+                raise ValueError("tipo de emisión fuera de su perímetro")
+            hashes = sello["archivos"]
+            if not isinstance(hashes, dict) or not hashes:
+                raise ValueError("mapa de hashes ausente")
+            relativos = {str((d / n).relative_to(RAIZ))
+                         for n in ("spec.yaml", "emision.json")}
+            if not relativos <= hashes.keys():
+                raise ValueError("spec/emisión no cubiertas")
+            if not {"commit1-hashes.json", "commit1-extension-hashes.json"} <= {Path(n).name for n in hashes}:
+                raise ValueError("snapshots de código no cubiertos")
+            if sello["estado"] != "SELLADO-INTERNAMENTE" or sello["atestacion_externa"] is not None:
+                raise ValueError("estado de atestación no respaldado por este formato")
+            for campo in ("commit1", "commit1_complemento"):
+                if not re.fullmatch(r"[0-9a-f]{40}", sello[campo]):
+                    raise ValueError("commit inválido")
+
+            def valida_hash(nombre, esperado):
+                path = RAIZ / nombre
+                if (not isinstance(esperado, str) or
+                        not re.fullmatch(r"[0-9a-f]{64}", esperado) or
+                        not path.resolve().is_relative_to(RAIZ.resolve()) or
+                        _sha256_archivo(path) != esperado):
+                    raise ValueError(f"hash no coincide: {nombre}")
+
+            for nombre, esperado in hashes.items():
+                valida_hash(nombre, esperado)
+                if Path(nombre).name in ("commit1-hashes.json", "commit1-extension-hashes.json"):
+                    congelados = json.loads((RAIZ / nombre).read_text(encoding="utf-8"))
+                    if not isinstance(congelados, dict) or not congelados:
+                        raise ValueError("snapshot de código vacío")
+                    for fuente, sha_fuente in congelados.items():
+                        valida_hash(fuente, sha_fuente)
+            emision = json.loads((d / "emision.json").read_text(encoding="utf-8"))
+            if ("R_futura" not in emision or emision["R_futura"] is not None or
+                    emision.get("retadores") != [] or
+                    emision.get("estado") != "SELLADO-INTERNAMENTE"):
+                raise ValueError("emisión con R futura/retador/estado no autorizado")
+            return "COINCIDE", "emisión sin R: sello, archivos y código congelado coinciden"
+        except (OSError, ValueError, TypeError, KeyError) as exc:
+            return "NO-COINCIDE", f"emisión prospectiva inválida: {exc}"
     for nombre, sha_declarado in sello.items():
         real = _sha256_archivo(d / nombre)
         if real != sha_declarado:
@@ -3113,7 +3159,7 @@ COLS_VISTA_CORRIDAS = [
     "tolerancia",
     "funciones_dependencia", "camino_linaje",
     "spec_yaml_sha256", "script_path", "script_blob_sha256", "codigo_commit",
-    "fecha", "n_resultados", "resultados_ids", "input_ids",
+    "fecha", "n_resultados", "resultados_ids", "input_ids", "constantes_resultados",
     "input_sha256_efectivos", "sello", "resultado_replay", "contexto_replay",
     "fuente_replay",
     "sucesor", "entorno_requerido", "receta", "orden_causal",
@@ -3141,7 +3187,7 @@ COLS_VISTA_RESULTADOS = [
     "validacion_independiente", "validacion_ref", "alcance_validacion",
     "rol_evaluacion", "origen_numerico",
     "valor_legacy", "delta_legacy", "sello",
-    "depende_de", "sucesor", "n_usos",
+    "depende_de", "sucesor", "n_usos", "constantes_corrida",
 ]
 COLS_VALIDACIONES_INDEPENDIENTES = [
     "spec_id", "resultado_id", "validacion_independiente", "validacion_ref",
@@ -3173,7 +3219,13 @@ def _leer_tsv_derivado(ruta: Path) -> list[dict]:
     que `_escribe` pone antes de la fila de columnas."""
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
-    return list(csv.DictReader(lineas, delimiter="\t"))
+    filas = list(csv.DictReader(lineas, delimiter="\t"))
+    if ruta.name == "resultados.tsv":
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from vista import corridas_por_id, restaura_constantes_resultado
+        corridas = corridas_por_id(ruta.with_name("corridas.tsv"))
+        filas = [restaura_constantes_resultado(f, corridas) for f in filas]
+    return filas
 
 
 def _aplica_validaciones_independientes(filas: list[dict]) -> None:
@@ -4959,7 +5011,10 @@ def _rellena_columnas_nuevas(fila: dict, columnas: list[str]) -> dict:
     las columnas que la fila SÍ trae no se tocan -- sigue siendo la
     versión publicada, byte a byte, para todo lo que su header ya cubría."""
     faltantes = [c for c in columnas if c not in fila]
-    return {**fila, **{c: NO_DECLARADO for c in faltantes}} if faltantes else fila
+    # Estas dos columnas describen almacenamiento, no evidencia: el formato
+    # anterior no tenía constantes compactadas ni un mapa que restituir.
+    defaults = {"constantes_corrida": "", "constantes_resultados": "{}"}
+    return {**fila, **{c: defaults.get(c, NO_DECLARADO) for c in faltantes}} if faltantes else fila
 
 
 def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
@@ -5041,6 +5096,8 @@ def registro(escribe: bool = False, verifica: bool = False,
             vistas = _acota_vistas_al_lote(vistas, lote_autorizado)
         _para_si_pisa_replay(vistas["corridas"], lote_autorizado)
         vistas = _referencia_valores_largos(vistas, escribe=True)
+        from vista import normaliza_constantes_resultados
+        vistas = normaliza_constantes_resultados(vistas)
         _escribe(VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, vistas["corridas"])
         _escribe(VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, vistas["resultados"])
         _escribe(VISTA_USOS, COLS_VISTA_USOS, vistas["usos"])
@@ -5051,6 +5108,8 @@ def registro(escribe: bool = False, verifica: bool = False,
                 print(f"ESCRITO {_rel(ruta)}: {len(vistas[clave])} filas")
     elif imprime:
         vistas = _referencia_valores_largos(vistas, escribe=False)
+        from vista import normaliza_constantes_resultados
+        vistas = normaliza_constantes_resultados(vistas)
         for ruta, cols, clave in ((VISTA_CORRIDAS, COLS_VISTA_CORRIDAS, "corridas"),
                                   (VISTA_RESULTADOS, COLS_VISTA_RESULTADOS, "resultados"),
                                   (VISTA_USOS, COLS_VISTA_USOS, "usos")):

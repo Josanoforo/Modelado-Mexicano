@@ -1,0 +1,85 @@
+=== FASE A · INSPECCIÓN (dry-run, nunca escribe) ===
+
+GIT
+  HEAD: 9c9eedfee69e7703f7533bf30baa3a43d080619c 'ASTRA6-C1-PAQUETES-2: archiva cuerpo autorizado y sello'
+  origin/main: 1eeb855272b933642177e3f32d51adc89f1009a0
+  HEAD deriva de origin/main: True
+  Ramas remotas presentes (≠ main): ['astra6-c3-consumo-familia-1', 'censo/2026-09-26', 'claude/determined-brahmagupta-4ykgmt', 'claude/new-session-7p7kao', 'claude/wonderful-thompson-12bycz', 'codex/adq-2026-09-26-130002', 'codex/astra6-c1-paquetes-2', 'codex/astra6-c2-encig-1', 'codex/astra6-c2-enif-1', 'codex/astra6-c3-consumo-familia-2', 'codex/astra6-c3-genero-violencia-salud-1', 'codex/astra6-c3-trabajo-movilidad-1', 'derivados/2026-09-26', 'origin']
+    fuente: `git for-each-ref refs/remotes/origin` (RESPALDO: `ls-remote` no respondió, rc=128) — refleja el último `fetch` de este clon, no necesariamente el remoto de ahora
+    NOTA: una rama presente no implica PR abierto ni trabajo sin fusionar.
+
+ADR
+  Real numérico (espacio CERRADO, D-2): 593
+  Candidato de RAÍZ DE ACTO (P-C, vigente): ADR-260926-ASTRA6-C1-PAQUETES-2-9c9e-01 -- 0-bis: 9c9eedfee69e7703f7533bf30baa3a43d080619c
+  ⚠ el rótulo derivado de la RAMA no trae `GEN2` -- la gramática de dos épocas (RE_ADR_NUEVA) exige `ADR-<AAMMDD>-GEN2…`; si el rótulo real del acto (el del encargo) sí lo trae, acuña con ESE, no con el derivado de la rama (best-effort, ver `inspeccion_rotulo`)
+  Candidato numérico histórico (ya NO se acuña, informativo): 594
+  ¿Candidato ya redactado en alguna rama remota accesible?
+    astra6-c3-consumo-familia-1: NO
+    censo/2026-09-26: NO
+    claude/determined-brahmagupta-4ykgmt: NO
+    claude/new-session-7p7kao: NO
+    claude/wonderful-thompson-12bycz: NO
+    codex/adq-2026-09-26-130002: NO
+    codex/astra6-c1-paquetes-2: NO
+    codex/astra6-c2-encig-1: NO
+    codex/astra6-c2-enif-1: NO
+    codex/astra6-c3-consumo-familia-2: NO
+    codex/astra6-c3-genero-violencia-salud-1: NO
+    codex/astra6-c3-trabajo-movilidad-1: NO
+    derivados/2026-09-26: NO
+    origin: NO-VERIFICABLE (objetos no accesibles localmente sin fetch)
+
+FP
+  Máximo: 409
+  Filas ABIERTA (18): FP-260921-GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1-3d56-01, FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05, FP-260923-GEN2-FRONT-1-4296-01, FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-01, FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03, FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01, FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01, FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-02, FP-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-1-edf7-01, FP-260926-GEN2-ASTRA6-C2-ENVIPE-1-7045-01, FP-260926-GEN2-COLA-LOTE-1-3a49-01, FP-260926-GEN2-COLA-LOTE-1-3a49-02, FP-260926-GEN2-COLA-LOTE-1-3a49-03, FP-260926-GEN2-COLA-LOTE-1-3a49-04, FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01, FP-260926-ASTRA6-C3-SOCIAL-1-5803-01, FP-260926-GEN2-ASTRA6-C2-ENIF-1-cca0-01, FP-260926-GEN2-RECIBO-ASTRA6-N-996b-01
+
+CELDAS_VALIDADAS (P3 de ACTO GEN2-TUBERIA-METRICA-RECTORA-1)
+  celdas_validadas: 219 → 219 (Δ0) @ 9c9eedfe
+  -> pega esta línea en la cabecera del ADR de este acto (D-16, con SHA)
+
+GOBERNANZA (conteos)
+  ADR reales: 593
+  Cabecera declara: 593 (canon/gobernanza-v1_15.md, 1 ancla(s))
+  L0 declara: 593 (canon/estado-programa-v1_17.md, 1 ancla(s))
+  Tabla estado declara: 593 (canon/estado-programa-v1_17.md, 1 ancla(s))
+  Reconciliación necesaria: ninguna (ya coinciden)
+
+RÓTULO DEL ACTO (best-effort, derivado de la rama actual)
+  Rama: 'codex/astra6-c1-paquetes-2' -> esperado: ASTRA6-C1-PAQUETES-2
+  ¿Ya en canon/registro-rotulos.tsv?: AUSENTE
+  RÓTULO: ASTRA6-C1-PAQUETES-2 · registro: AUSENTE · requiere humano: que_significa = ? · donde_vive = ?
+
+## CONSUMIDO
+  Encargo: forense/encargos/2026-09-26-ASTRA6-C1-PAQUETES-2.md -> AUSENTE
+
+A.14 · NO-CORRIDO / RESERVAS (informativo, no deriva ADR)
+  NO-CORRIDO-AUSENTE: no (o el encargo aún no llega a ## CONSUMIDO)
+  forense/no-corrido.tsv existe: SI
+  NC-HUÉRFANA: ninguna
+
+SUITE
+  Comando: python3 tests/check.py --rapido (tope=60s)
+  Código: 1 -- ROJO
+  Últimas líneas:
+      FAIL (2)
+    ────────────────────────────────────────────────────────────────────────
+      · T02: 2
+          nombre normalizado colisiona: forense/purga-privacidad/LEEME.md · forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p4/LEEME.md
+          nombre normalizado colisiona: data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json · forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p4/resumen.json
+    ════════════════════════════════════════════════════════════════════════
+      2 FAIL · 576 WARN
+    ════════════════════════════════════════════════════════════════════════
+
+COLA SINCRONIZADA (D2b)
+  Ninguna copia de cola/ abierta con su homonimo archivado ya CONSUMIDO.
+
+REQUIERE JUICIO HUMANO (siempre, este tool no lo hace)
+  - Redactar el texto del ADR (motivo, incisos, qué cierra/abre)
+  - Insertar la anotación nueva en L0 (antes de la anterior)
+  - Decidir el significado de un rótulo nuevo (que_significa/donde_vive)
+  - Firmar filas de FP
+  - Decisiones de mesa sobre pendientes
+  - Un T25 nuevo en la suite (rótulo pelado): decidir prefijo o censarlo
+  - Fusionar/aprobar el PR
+/home/pc0/mm-astra6-c1-paquetes-2/tools/cierre_acto.py:24: SyntaxWarning: "\`" is an invalid escape sequence. Such sequences will not work in the future. Did you mean "\\`"? A raw string is also an option.
+  la fila `| **\`gobernanza\`** | \`gobernanza-v1.15.md\` | N ADR, protocolo

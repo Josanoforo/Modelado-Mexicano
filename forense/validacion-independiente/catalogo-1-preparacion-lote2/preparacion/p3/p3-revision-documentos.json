@@ -1,0 +1,2309 @@
+{
+  "eder-0003": {
+    "sha256_manifiesto": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+    "sha256_contenedor": "6c2a9e4e94c2f8a532c4478cb738aad24d1749e7f70901345d1b494b454f0aae",
+    "version_entrada": 4,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-eder2017-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "e4958e0cbc982439f9dc341b7a68ac1cd6f284c6f1da7a057f0989e623f3fc28",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "EDER",
+          "ola": "2017",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "eder_2017_eder2017_bases_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "eder_2017_eder2017_fd",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "EDER",
+          "ola": "2017"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD PDF122p, encabezados/tablas/codificación; cuestionario12p sección6.3; metodo v4 líneas1-50 sin historia, universo/primer código/ramas/ponderador/bootstrap.",
+      "metodo_rango_leido": [
+        1,
+        50
+      ]
+    }
+  },
+  "enbiare-pisos-bienestar-0001": {
+    "sha256_manifiesto": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+    "sha256_contenedor": "d13b4276f273dadd5a3581e0262c7370ca884e6c68d2c40f1320ef8b090ee592",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enbiare2021-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENBIARE",
+          "ola": "2021",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enbiare2021_bd_csv_zip",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "INTERPRETACIÓN-DECLARADA: misión C1 olas históricas abiertas; programa con única ola en manifiesto actual (ENBIARE2021 / ENFIH2019), no serie con ola posterior reservada. MEMORIA §1 reserva última ola de programas con historia."
+        },
+        {
+          "id": "enbiare2021_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENBIARE",
+          "ola": "2021"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD39p estructura de archivos y códigos; cuestionario23p ítems PA1/PA5/PB1/PB2/PD2/PD3/PG6/PG7; método47líneas tabla12conductas/cortes/ejes/NS y bootstrap.",
+      "metodo_rango_leido": [
+        1,
+        47
+      ]
+    }
+  },
+  "encig-0001": {
+    "sha256_manifiesto": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+    "sha256_contenedor": "6ffcf8d66e78da936152ff94989246bd8e28fabd48265144c1e013f274a983bb",
+    "version_entrada": 5,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "encig25_base_datos_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "encig25_cuestionario_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENCIG",
+          "ola": "2025"
+        },
+        {
+          "id": "encig25_estructura_base_datos_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENCIG",
+          "ola": "2025"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "Cuestionario24p secciones7/8, FD72p tablas/códigos/llaves/ponderadores; método v5§3.1-3.7 definición A_SOLANY,B_SD,Cy soporte/bootstrap. Documento diseño muestral extra no entregado.",
+      "metodo_rango_leido": [
+        1,
+        108
+      ]
+    }
+  },
+  "encuci-0001": {
+    "sha256_manifiesto": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+    "sha256_contenedor": "ca501109446afd1454cb019f60b62e46a0a9650382b882d213c2176463fe6f48",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-encuci2020-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENCUCI",
+          "ola": "2020",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "encuci2020_bd_dbf",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "encuci2020_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENCUCI",
+          "ola": "2020"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD61p tablas/códigos/llaves/diseño; cuestionario26p AP5_17/18 y AP7_3; método v3 codificaciónA_OR y B, universos, bootstrap y NS.",
+      "metodo_rango_leido": [
+        1,
+        59
+      ]
+    }
+  },
+  "endireh-pisos-2021-pareja-fisica-0004": {
+    "sha256_manifiesto": "2b83c4494f54e54d22958689a089c908d62592311c9f0136f276e280b47061f4",
+    "sha256_contenedor": "d77124a0700747eecdda1c5004224ad81e4e14c1ab064cc1a046d1d050ebce16",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "endireh2021_bd_csv_zip",
+          "tipo": "raw",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_a_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_b_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_c_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_general_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_fd_pdf",
+          "tipo": "fd",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "CuestionariosA45p/B42p/C38p/general7p formularios; FD733p estructura/códigos ID_PER/FAC_MUJ/EST_DIS/P14_1/P14_3 (texto32945,33492); método físico completo; raw2021 última ola sin apertura verificada.",
+      "metodo_rango_leido": [
+        1,
+        19
+      ],
+      "faltantes": [
+        "BLOQUEADO-POR-ACCESO: ENDIREH2021 última ola sin firma de apertura/proyección para sesión nueva; proponer columnas P14_1_1..9,P14_3_1..9,ID_PER,FAC_MUJ,EST_DIS,UPM_DIS,CVE_ENT,DOMINIO,instrumento y TSDem EDAD/NIV mediante guardia."
+      ]
+    }
+  },
+  "endireh-pisos-2021-pareja-fisica-bc-0001": {
+    "sha256_manifiesto": "54ba7e5c2fa253dca5f350762096ec4ec60cb72a835288c063bdccc319814e82",
+    "sha256_contenedor": "6b64540751e27457b9ff0fbd1ed5205ec36560f2c3364ae77ac00dadf9f6eeb3",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "endireh2021_bd_csv_zip",
+          "tipo": "raw",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_a_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_b_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_c_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_cuestionario_general_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        },
+        {
+          "id": "endireh2021_fd_pdf",
+          "tipo": "fd",
+          "instrumento": "ENDIREH",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "v2.16 E.6 y MEMORIA §1 última ola; documentación oficial pública",
+          "revision": "Formulario vacío / diccionario de variables; no valores observados."
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "CuestionariosA45p/B42p/C38p/general7p formularios; FD733p estructura/códigos ID_PER/FAC_MUJ/EST_DIS/P14_1/P14_3 (texto32945,33492); método físico completo; raw2021 última ola sin apertura verificada.",
+      "metodo_rango_leido": [
+        1,
+        11
+      ],
+      "faltantes": [
+        "BLOQUEADO-POR-ACCESO: ENDIREH2021 última ola sin firma de apertura/proyección para sesión nueva; proponer columnas P14_1_1..9,P14_3_1..9,ID_PER,FAC_MUJ,EST_DIS,UPM_DIS,CVE_ENT,DOMINIO,instrumento y TSDem EDAD/NIV mediante guardia."
+      ]
+    }
+  },
+  "enfih-0001": {
+    "sha256_manifiesto": "e534af31eb51017cb3a9067ab4491a4683b69e0c6d4a3d5fd259a21537604b9e",
+    "sha256_contenedor": "bb2d1be51b3aeeb566972952c18141122e663de2dadc9aa72ba427b85411ffe6",
+    "version_entrada": 4,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enfih2019-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "3ff9b6f89cc47c995b86dfb831d6ea557448ff051c621adc2d6f20e9cfe33bd4",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENFIH",
+          "ola": "2019",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enfih2019_bd_csv_zip",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "INTERPRETACIÓN-DECLARADA: misión C1 olas históricas abiertas; programa con única ola en manifiesto actual (ENBIARE2021 / ENFIH2019), no serie con ola posterior reservada. MEMORIA §1 reserva última ola de programas con historia."
+        },
+        {
+          "id": "enfih2019_fd_xlsx",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENFIH",
+          "ola": "2019"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FDxlsx16hojas estructura/códigos, TConcentradora camposC_AFORE/FAC_HOG/EDIS/UPM_DIS; cuestionario36p AFORE; método v4 líneas1-40 0/1,NS,universo,ponderador/bootstrap.",
+      "metodo_rango_leido": [
+        1,
+        40
+      ]
+    }
+  },
+  "enigh-0001": {
+    "sha256_manifiesto": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "sha256_contenedor": "1ca8d7b9654c09a0055b5edb9917b05ae279171a5339a2aa066dc68c0ec3b206",
+    "version_entrada": 4,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2022-hogares.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENIGH",
+          "ola": "2022",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        },
+        {
+          "archivo": "cuestionario-enigh2022-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENIGH",
+          "ola": "2022",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enigh2022_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2022_descripcion_base_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas",
+          "instrumento": "ENIGH",
+          "ola": "2022"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD2022PDF262p camposremesas/ing_cor/factor/est_dis/upm sin distribuciones, cuestionarioshogar22p/mayores30p; para2020 FD266p propio camposremesas (texto13216),factor/est_dis y mayores31p. Nota técnica con resultados y FDENDUTIH ajeno fueron excluidos. Método22v4 sin ensayoB; método20v4 estadísticos/domain/NS/bootstrap.",
+      "metodo_rango_leido": [
+        1,
+        18
+      ]
+    }
+  },
+  "enigh2020-intensidad-remesas-0001": {
+    "sha256_manifiesto": "86930854bc4451c70f64649af52450caa6e8b16582fd7b9596b55cf5b0a62b10",
+    "sha256_contenedor": "1feff57faf7abb71b390d0077c8f0eb8dd4c7aef5aa339b5e8abe5ca3b828456",
+    "version_entrada": 4,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2020-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4537be6df7642d209f84a89a41fe5560964b5594685d879972ee64250d6161e",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia",
+          "instrumento": "ENIGH",
+          "ola": "2020",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        },
+        {
+          "archivo": "fd-enigh2020-oficial.pdf",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-documentos-adquiridos.json; revisión P3 documental propia2020",
+          "instrumento": "ENIGH",
+          "ola": "2020",
+          "revision_p3": "Encabezado instrumento/ola, formulario o FD; revisión de campos/ítems específicos anotada en revision_humana."
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enigh2016_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2018_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2020_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD2022PDF262p camposremesas/ing_cor/factor/est_dis/upm sin distribuciones, cuestionarioshogar22p/mayores30p; para2020 FD266p propio camposremesas (texto13216),factor/est_dis y mayores31p. Nota técnica con resultados y FDENDUTIH ajeno fueron excluidos. Método22v4 sin ensayoB; método20v4 estadísticos/domain/NS/bootstrap.",
+      "metodo_rango_leido": [
+        1,
+        59
+      ]
+    }
+  },
+  "envipe-0001": {
+    "sha256_manifiesto": "5e43d9c13edbfcaa4545d51614a9211884bd9e498162826bbee98ef6f16189e9",
+    "sha256_contenedor": "03a508fb4bbf4f8d8155446b1277e5b4e8b4a978bcca666c39c3db30bcb7b994",
+    "version_entrada": 5,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "envipe2025_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        },
+        {
+          "id": "envipe2025_cuest_principal_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        },
+        {
+          "id": "envipe2025_cuest_modulo_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD98p estructura/códigos/FAC_DEL/EST_DIS/UPM_DIS; cuestionario principal12p+modulo8p BP1_20/BP1_23/BP2_1. Método0001v5 U1/U3/U4+bootstrap/denominadores sin historia; segurov4 tablaCON/SIN y complementos contados sin RES. ENVIPE2025 abierta según memoria.",
+      "metodo_rango_leido": [
+        1,
+        44
+      ]
+    }
+  },
+  "envipe-denuncia-seguro-0001": {
+    "sha256_manifiesto": "399f2afec89565dacc9bacfa60b4cb4a53a20fcdd2f9ff581fd327243d614bbd",
+    "sha256_contenedor": "f97d81bd90a97e1737887230807a6897d85427624fd3f5da74b6d01ad2d4a356",
+    "version_entrada": 4,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "envipe2025_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        },
+        {
+          "id": "envipe2025_cuest_principal_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        },
+        {
+          "id": "envipe2025_cuest_modulo_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas",
+          "instrumento": "ENVIPE",
+          "ola": "2025"
+        }
+      ],
+      "ejecutor": "P3 preparación no ciega",
+      "revision_humana": "FD98p estructura/códigos/FAC_DEL/EST_DIS/UPM_DIS; cuestionario principal12p+modulo8p BP1_20/BP1_23/BP2_1. Método0001v5 U1/U3/U4+bootstrap/denominadores sin historia; segurov4 tablaCON/SIN y complementos contados sin RES. ENVIPE2025 abierta según memoria.",
+      "metodo_rango_leido": [
+        1,
+        34
+      ]
+    }
+  },
+  "encodat-pisos-sustancias-0001": {
+    "sha256_contenedor": "b5e989a658d224686e4f7bd321b9ea60c8d5cb926932b8c21757ca0a31b0c613",
+    "sha256_manifiesto": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        }
+      ],
+      "metodo": "Lectura humana completa método/conductas: universos, llaves, códigos, escuela, diseño/bootstrap. Sin productores ni valores raw.",
+      "insumos": [
+        {
+          "id": "encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos; ENCODAT2016 anterior a raw2025 manifiesto",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                           ENCUESTA NACIONAL DE ADICCIONES 2016      "
+        },
+        {
+          "id": "encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos; ENCODAT2016 anterior a raw2025 manifiesto",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                          ENCUESTA NACIONAL DE ADICCIONES 2016       "
+        },
+        {
+          "id": "encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos; ENCODAT2016 anterior a raw2025 manifiesto"
+        },
+        {
+          "id": "encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENCODAT",
+          "ola": "2016",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos; ENCODAT2016 anterior a raw2025 manifiesto"
+        }
+      ]
+    }
+  },
+  "ensanut-pisos-salud-0001": {
+    "sha256_contenedor": "ea01751b5b847f2f579a09a336ebdf66040bdb1684e36c8f841c9642daaa7aab",
+    "sha256_manifiesto": "80fdd1024e336ff30f4c34b519f1d631b11c2c47d6234b0ce4740c9448336338",
+    "version_entrada": 3,
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "fd-ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "9a42c3f24374a879a9b0159d84f8f8b3aad70f9aeb3695a901ef7ea4776f2d6d",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "bc5644aadf3a968d75a558de5f9bb606bc7fa900e833803083adbb0eb8702356",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "e69deaed57acd21538418e49cfd5c8fe9fd99ceba7e7a5c112cd1e334b5d1b80",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "cd6e42d58246a47b7e2c0acd7a6c6af5a30413221efc084df4ec01649bcd8fce",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "9b19f4d847d2637c1aabeaf3c2ab1b67920934c33f84fb6cf3b455e6843fe6fa",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "7d96597a819f042e02910df1a196e1a7021533b552f11f760882f2a0134aee63",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "ca61bebe6dd338924f8b52419411cccd1df51daab71b09980ff1abc74c459b17",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2022__util2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "91272bc9cb4b31fc46ef60f615d688a0ac35da3b61afb0829d3ef25bd2600a58",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "ecefc3638a60b16a09ce5237e4e36028cc8248c2dd803ab0cf19b63e811feb53",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "f8d5433d751b12443124f61fbfd53f324bda83c78a11258a40ba3645dc2b83bc",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "24feb8c8e4090f4b811a671cedc0ecf479e4a51d095cb8e557118e82ecc61a6f",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "93e956666cb3b7e51410a8a766a20ef6335a8fd042a7068138e218aa15bafcad",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut2024-integrantes-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "d7d227be3b363e00e873dacffad3d36b8c5fd34b39477e611b1e7c32a48daa70",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut2024-adolescentes-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "135aab4ef7079ae4a9f908e172fe8be81d5d76c9ccf8a5c38c26a3961a40d233",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut2024-adultos-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "fe31b8af8a08bcf6bc2ae641fc93be3676e4066b2783bed2f65e1303568da59d",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        },
+        {
+          "archivo": "fd-ensanut2024-utilizadores-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "6a2ba742321922d4e47b8cc4afa18e2a731bda09f0b5e8b6bf28e4241c302549",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "revision": "Variables/Valores etiquetas/tipos/códigos; sin microdatos/frecuencias."
+        }
+      ],
+      "metodo": "Lectura humana completa método/conductas: universos, llaves, códigos, escuela, diseño/bootstrap. Sin productores ni valores raw.",
+      "insumos": [
+        {
+          "id": "1_vfinal_cuestionario_hogar_ensanut_2024_etiquetas_cuestionarios",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                     Encuesta Nacional de Salud                               y Nutri"
+        },
+        {
+          "id": "2_vfinal_cuestionario_nios_0_a_9_ensanut_2024_etiquetas_cuestionarios",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                  Encuesta Nacional de Salud                           y Nutrición (E"
+        },
+        {
+          "id": "3_vfinal_cuestionario_adolescentes_ensanut_2024_etiquetas_cuestionarios",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    ENCUESTA NACIONAL DE SALUD Y NUTRICIÓN                           "
+        },
+        {
+          "id": "4_vfinal_cuestionario_adultos_ensanut_2024_etiquetas_cuestionarios",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    Encuesta Nacional de Salud                              y Nutrici"
+        },
+        {
+          "id": "5_vfinal_cuestionario_utilizadores_ensanut_2024_etiquetas_cuestionarios",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                       Encuesta Nacional de Salud                                 y N"
+        },
+        {
+          "id": "actividad_fisica_ensanut2024_w_adultos_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                Encuesta Nacional de Salud y Nutrición                    (ENSANUT CONTINUA 2024)    "
+        },
+        {
+          "id": "actividad_fisica_ensanut2024_w_ni_os_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;              Encuesta Nacional de Salud y Nutrición                  (ENSANUT CONTINUA 2024) Cuestio"
+        },
+        {
+          "id": "adolescentes_ensanut2024_w_stata_stata__v2026_09_01",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "adultos_ensanut2024_w_stata_stata__v2026_09_01",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "antropometria_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                           Encuesta Nacional de Salud                                "
+        },
+        {
+          "id": "ensanut_2021__cuestionario_de_hogar_ensanut_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                              Encuesta Nacional de Salud                             "
+        },
+        {
+          "id": "ensanut_2021__ensaantro21_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                   Encuesta Nacional de Salud y Nutrición                            "
+        },
+        {
+          "id": "ensanut_2021__ensadol2021_entrega_w_14_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                          Encuesta Nacional de Salud y Nutrición (ENSANUT)                           "
+        },
+        {
+          "id": "ensanut_2021__ensadol2021_entrega_w_14_12_2021_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2021__ensadul2021_entrega_w_15_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                          Encuesta Nacional de Salud               y Nutrición (ENSANUT) Continua 202"
+        },
+        {
+          "id": "ensanut_2021__ensadul2021_entrega_w_15_12_2021_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2021__ensamen2021_entrega_w_14_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                          Encuesta Nacional de Salud                                 "
+        },
+        {
+          "id": "ensanut_2021__ensasangre21_entrega_w_integrada_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                  Encuesta Nacional de Salud                            y Nutrición ("
+        },
+        {
+          "id": "ensanut_2021__etiquetado2021_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                   Encuesta Nacional de Salud y Nutrición                            "
+        },
+        {
+          "id": "ensanut_2021__frecadul2021_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                      Encuesta Nacional de Salud y Nutrición Continua"
+        },
+        {
+          "id": "ensanut_2021__freces2021_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                     Encuesta Nacional de Salud y Nutrición Continua "
+        },
+        {
+          "id": "ensanut_2021__frecpr2021_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                               Encuesta Nacional de Salud y Nutrición Continua 2021  "
+        },
+        {
+          "id": "ensanut_2021__integrantes_ensanut2021_w_12_01_2022_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2021__lactancia2021_entrega_w_17_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                   Encuesta Nacional de Salud y Nutrición Continua 2021                              "
+        },
+        {
+          "id": "ensanut_2021__util2021_entrega_w_14_12_2021_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    Encuesta Nacional de Salud                         y Nutrición (E"
+        },
+        {
+          "id": "ensanut_2021__util2021_entrega_w_14_12_2021_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2022__cuestionario_fca_escolares_ensanut_2022_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                          Encuesta Nacional de Salud y Nutrición     "
+        },
+        {
+          "id": "ensanut_2022__cuestionario_fca_preescolares_ensanut_2022_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                       Encuesta Nacional de Salud y Nutrición        "
+        },
+        {
+          "id": "ensanut_2022__cuestionario_hogar_ensanut_2022_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    Encuesta Nacional de Salud                              y Nutrici"
+        },
+        {
+          "id": "ensanut_2022__cuestionario_r24hrs_ensanut_2022_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                               Encuesta Nacional de Salud y Nutrición                                "
+        },
+        {
+          "id": "ensanut_2022__ensaantro2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                           Encuesta Nacional de Salud                                "
+        },
+        {
+          "id": "ensanut_2022__ensadol2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                     ENCUESTA NACIONAL DE SALUD Y NUTRICIÓN                          "
+        },
+        {
+          "id": "ensanut_2022__ensadol2022_entrega_w_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2022__ensadul2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                     Encuesta Nacional de Salud                              y Nutric"
+        },
+        {
+          "id": "ensanut_2022__ensadul2022_entrega_w_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2022__ensafisica2022_adultos_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;               Encuesta Nacional de Salud y Nutrición                   (ENSANUT CONTINUA 2022)      "
+        },
+        {
+          "id": "ensanut_2022__ensafisica2022_menores_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;              Encuesta Nacional de Salud y Nutrición                  (ENSANUT CONTINUA 2022) Cuestio"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_ad2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                        Encuesta Nacional de Salud y Nutrición       "
+        },
+        {
+          "id": "ensanut_2022__ensalact2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                Encuesta Nacional de Salud y Nutrición                               "
+        },
+        {
+          "id": "ensanut_2022__ensamen2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                  Encuesta Nacional de Salud                           y Nutrición (E"
+        },
+        {
+          "id": "ensanut_2022__ensaplomo2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                     Encuesta Nacional de Salud y Nutrición                         (ENSANUT CONTINUA"
+        },
+        {
+          "id": "ensanut_2022__formato_muestras_sangre_ensanut_2022_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                        Encuesta Nacional de Salud                                   "
+        },
+        {
+          "id": "ensanut_2022__integrantes_ensanut2022_w_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2022__util2022_entrega_w_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                       Encuesta Nacional de Salud                                 y N"
+        },
+        {
+          "id": "ensanut_2022__util2022_entrega_w_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2023__actividad_fisica_w_adultos_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                Encuesta Nacional de Salud y Nutrición                    (ENSANUT CONTINUA 2023)    "
+        },
+        {
+          "id": "ensanut_2023__actividad_fisica_w_ninos_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;              Encuesta Nacional de Salud y Nutrición                  (ENSANUT CONTINUA 2023) Cuestio"
+        },
+        {
+          "id": "ensanut_2023__adolescentes_ensanut2023_w_n_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    ENCUESTA NACIONAL DE SALUD Y NUTRICIÓN                           "
+        },
+        {
+          "id": "ensanut_2023__adolescentes_ensanut2023_w_n_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2023__adultos_ensanut2023_w_n_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                     Encuesta Nacional de Salud                              y Nutric"
+        },
+        {
+          "id": "ensanut_2023__adultos_ensanut2023_w_n_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2023__antropometria_hta_4mar24_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                            Encuesta Nacional de Salud                               "
+        },
+        {
+          "id": "ensanut_2023__cuestionario_fca_adol_adul_ensanut_2023_3jul23_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                          Encuesta Nacional de Salud y Nutrición     "
+        },
+        {
+          "id": "ensanut_2023__cuestionario_fca_escolares_ensanut_2023_3jul23_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                           Encuesta Nacional de Salud y Nutrición    "
+        },
+        {
+          "id": "ensanut_2023__cuestionario_fca_preescolares_ensanut_2023_3jul23_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                       Encuesta Nacional de Salud y Nutrición        "
+        },
+        {
+          "id": "ensanut_2023__cuestionario_r24hrs_ensanut_2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                               Encuesta Nacional de Salud y Nutrición                                "
+        },
+        {
+          "id": "ensanut_2023__cuestionario_utilizadores_ensanut_2023_final_8agosto2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                       Encuesta Nacional de Salud                                 y N"
+        },
+        {
+          "id": "ensanut_2023__ensanut2023_icb_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                        ÍNDICE DE BIENESTAR  Se construyó un índice de bienestar a pa"
+        },
+        {
+          "id": "ensanut_2023__etiquetado_w_2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                   Encuesta Nacional de Salud y Nutrición                            "
+        },
+        {
+          "id": "ensanut_2023__hogar_ensanut_2023_final_8agosto2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                     Encuesta Nacional de Salud                               y Nutri"
+        },
+        {
+          "id": "ensanut_2023__integrantes_ensanut2023_w_n_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2023__lactancia_w_2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    Encuesta Nacional de Salud y Nutrición                           "
+        },
+        {
+          "id": "ensanut_2023__menores_ensanut2023_w_n_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                  Encuesta Nacional de Salud                           y Nutrición (E"
+        },
+        {
+          "id": "ensanut_2023__plomo_w_2023_cuestionarios_pdf",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                   Encuesta Nacional de Salud y Nutrición                       (ENSANUT CONTINUA 202"
+        },
+        {
+          "id": "ensanut_2023__utilizadores_ensanut2023_w_n_stata_stata_zip",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "etiquetado_ensanut2924_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                   Encuesta Nacional de Salud y Nutrición                            "
+        },
+        {
+          "id": "formato_muestras_sangre_ensanut_2024_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                        -Encuesta Nacional de Salud                                  "
+        },
+        {
+          "id": "frec_adul_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                        Encuesta Nacional de Salud y Nutrición       "
+        },
+        {
+          "id": "frec_es_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                          Encuesta Nacional de Salud y Nutrición     "
+        },
+        {
+          "id": "frec_pr_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                                       Encuesta Nacional de Salud y Nutrición        "
+        },
+        {
+          "id": "integrantes_ensanut2024_w_icb_stata_stata__v2026_09_01",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "lactancia_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                                    Encuesta Nacional de Salud y Nutrición                           "
+        },
+        {
+          "id": "plomo_ensanut2024_w_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                   Encuesta Nacional de Salud y Nutrición                       (ENSANUT CONTINUA 202"
+        },
+        {
+          "id": "r24hrs_ensanut_2024_cuestionarios__v2026_09_01",
+          "tipo": "cuestionario",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Formulario público, título/ola y reactivos/saltos;                               Encuesta Nacional de Salud y Nutrición                                "
+        },
+        {
+          "id": "utilizadores_ensanut2024_w_stata_stata__v2026_09_01",
+          "tipo": "raw",
+          "instrumento": "ENSANUT",
+          "ola": "2024",
+          "estado_acceso": "RESERVADA",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada"
+        },
+        {
+          "id": "ensanut_2021__hogar_ensanut2021_w_14_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__ensamen2021_entrega_w_14_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__ensaantro21_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecpr2021_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecpr2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecpr2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecpr2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__freces2021_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__freces2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__freces2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__freces2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecadul2021_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecadul2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecadul2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__frecadul2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__etiquetado2021_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__lactancia2021_entrega_w_17_12_2021_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2021__ensasangre21_entrega_w_integrada_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2021",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__hogar_ensanut2022_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensanut2022_icb_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensamen2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__util2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensaantro2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_pr2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_pr2022_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_pr2022_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_pr2022_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_es2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_es2022_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_es2022_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_es2022_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_ad2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_ad2022_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_ad2022_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafrec_ad2022_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_entrega_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_alim_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_desc_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_obte_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_sup_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec_r2022_entrega_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec_r2022_alim_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec_r2022_desc_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec_r2022_obte_w_mod_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensarec2022_sup_w_mod_catalogo_xlsx___de_24_horas_suplementos",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensalact2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafisica2022_menores_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensafisica2022_adultos_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__ensaplomo2022_entrega_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2022__proteina_n_y_s_papel_filtro_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2022",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__hogar_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__ensanut2023_icb_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__menores_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__antropometria_hta_4mar24_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_pr_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_pr_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_pr_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_pr_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_es_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_es_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_es_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_es_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_adul_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_ad_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_ad_tor_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__frec_ad_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_alim_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_desc_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_obte_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_rev_rec_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_rev_alim_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_rev_desc_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_rev_obte_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__rec24h_rev_sup_w_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__lactancia_w_2023_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__actividad_fisica_w_ninos_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__actividad_fisica_w_adultos_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__plomo_w_2023_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        },
+        {
+          "id": "ensanut_2023__etiquetado_w_2023_catalogo_xlsx",
+          "tipo": "fd",
+          "instrumento": "ENSANUT",
+          "ola": "2023",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "MISIÓN históricos2021–2023; E6 última ola2024 reservada",
+          "revision": "Catálogo documental, hojas ['Variables', 'Valores']; variables/tipos/códigos; no datos"
+        }
+      ],
+      "faltantes": [
+        "BLOQUEADO-POR-ACCESO: cuatro tablas ENSANUT2024 reservadas E6; propuesta p3-propuesta-ensanut2024.md no adoptada. Conductas11 reglas: cualquier conducta adolescente adicional requiere dictamen propio; no inventar desde CALC hermana."
+      ]
+    }
+  }
+}

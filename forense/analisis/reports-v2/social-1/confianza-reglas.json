@@ -1,0 +1,57 @@
+[
+  {
+    "id": "CONF-R1",
+    "si": "se interpreta confianza generalizada",
+    "entonces": "publicar pregunta, ola, escala y universo; no un nivel único intercambiable",
+    "porque": "WVS y Latinobarómetro son mediciones en periodos/diseños diferentes",
+    "tier_frecuencia": "fuerte descriptiva por instrumento",
+    "tier_mecanismo": "no identificado",
+    "falsador": "Un enlace validado en muestras comparables demuestra intercambiabilidad; sin enlace, regla acotada",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CONF-C42",
+      "CONF-C29"
+    ]
+  },
+  {
+    "id": "CONF-R2",
+    "si": "se diseña cooperación fuera de familia",
+    "entonces": "probar garantías y reputación verificables con precio y riesgo observados",
+    "porque": "gradiente relacional es compatible con reducción de incertidumbre pero también obligación/dependencia",
+    "tier_frecuencia": "fuerte gradiente WVS",
+    "tier_mecanismo": "hipótesis",
+    "falsador": "Igualar información/garantías sin cambio de conducta debilita mecanismo; mejora corrobora solo localmente",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CONF-C35",
+      "CONF-C32"
+    ]
+  },
+  {
+    "id": "CONF-R3",
+    "si": "se interpreta no adopción digital",
+    "entonces": "medir acceso, costo y oferta junto a confianza",
+    "porque": "el no uso no identifica rechazo psicológico",
+    "tier_frecuencia": "sin cifra local de efecto",
+    "tier_mecanismo": "hipótesis rival",
+    "falsador": "Oferta equivalente y garantías creíbles sin mejora de adopción debilitan esa explicación; si no refuta, alcance local",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CONF-DIG25"
+    ]
+  },
+  {
+    "id": "CONF-R4",
+    "si": "se evalúa confianza institucional",
+    "entonces": "separar experiencia, integridad e identidad política",
+    "porque": "son mecanismos rivales para el mismo marginal",
+    "tier_frecuencia": "fuerte descriptiva",
+    "tier_mecanismo": "media para viñetas, no mediación identificada",
+    "falsador": "Cambio exógeno de servicio sin cambio de confianza debilita experiencia; si mejora, corroboración acotada",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "CONF-OECD24",
+      "CONF-CARBON24"
+    ]
+  }
+]

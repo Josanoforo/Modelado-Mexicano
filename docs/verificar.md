@@ -8,7 +8,7 @@ title: Verificar
 
 ## Lectura rápida, sin microdatos
 
-Requisitos: Git, Python 3 y acceso a los archivos versionados del repo. Clona `https://github.com/Josanoforo/Modelado-Mexicano.git`, entra al directorio y ejecuta `python3 tools/corrida0.py status`. Compara las claves de salida con la [tabla del README](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md#estado-derivado). Abre la [nota del piloto de ahorro](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) y localiza sus CALC en [corrida0](https://github.com/Josanoforo/Modelado-Mexicano/tree/main/data/corrida0).
+Requisitos: Git, Python 3 y acceso a los archivos versionados del repo. Clona `https://github.com/Josanoforo/Modelado-Mexicano.git`, entra al directorio y ejecuta `python3 tools/corrida0.py status`. Compara las claves de salida con la [tabla de estado]({{ '/estado.html#estado-derivado' | relative_url }}). Abre la [nota del piloto de ahorro](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-16-GEN2-CELDA-D-PILOTO-1-cierre.md) y localiza sus CALC en [corrida0](https://github.com/Josanoforo/Modelado-Mexicano/tree/main/data/corrida0).
 
 El control de identidad sobre un CALC versionado puede hacerse con `sha256sum data/corrida0/<CALC-ID>/spec.yaml data/corrida0/<CALC-ID>/resultados.json data/corrida0/<CALC-ID>/sello.json` y cotejando los hashes declarados en la spec y el sello. `sha256sum` sólo abre esos tres artefactos nombrados; no accede a `data/raw`. El `sello.json` registra el contexto y los hashes. Esta inspección no equivale a volver a calcular el estimando.
 

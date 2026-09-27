@@ -1,0 +1,10 @@
+$ python3 tools/consulta.py result RESULT-ENOE-PISOS-TABLA
+exit=1 NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287
+$ python3 tools/consulta.py corrida CALC-ENOE-PARTICIPACION-2024T4-0001
+exit=1 NO-ENCONTRADO · data/corrida0/corridas.tsv · filas examinadas=326
+$ python3 tools/consulta.py result RESULT-ENOE-PARTICIPACION-2024T4-PARTICIPA-ECONOMICAMENTE-2024T4-SEXO-MUJER-P
+exit=1 NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287
+$ python3 tools/consulta.py fp FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01
+exit=0 FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01 · estado=FIRMADA · creado=2026-09-23 · firmada_en=24/sep/2026, verbatim, mesa (ADENDA-1 de GEN2-TRAMITE-FIRMAS-15, «formado con tus recomendaciones»): adopción como piso descriptivo retrospectivo (una de las o… · ejecutada_en=ADR-260924-GEN2-TRAMITE-FIRMAS-15-0c38-01 (enmienda); EJECUTA:GEN2-ADOPCION-BLOQUE-Y-PINES-2, aún no corre · qué_se_firma=¿Adopta mesa los pisos y el dictamen de límites ENOE de ASTRA5-U1 para consumo de los reports Trabajo, Mérito/Movilidad y Juventud? | NOTA (GEN2-TRAMITE-FIRMAS…
+$ python3 tools/consulta.py fp FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01
+exit=0 FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01 · estado=ABIERTA · creado=2026-09-26 · qué_se_firma=ADOPCION POR INSTRUMENTO (hoja única del acto), pisos por segmento de 9 CALC: ADOPTAR ENDISEG 2021, MMSI 2016, ENASEM 2021, ENVIPE 2024, ENOE 2024T4 · CON-RESE…

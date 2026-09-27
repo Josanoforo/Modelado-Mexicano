@@ -1,0 +1,44 @@
+[
+  {
+    "id": "TRABAJO-R1",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "analista compara contrato e informalidad",
+    "entonces": "mantener cantidades y denominadores separados",
+    "porque": "subordinados elegibles no equivalen a todos los ocupados",
+    "tier_frecuencia": "(a) ENOE nacional retrospectiva adoptada",
+    "tier_mecanismo": "regla de medición, no efecto psicológico",
+    "consumidor": "lector de reports/analista laboral",
+    "aplicabilidad": "mismas definiciones, ola y población del registro",
+    "falsador": "un contrato armonizado que defina exactamente el mismo universo y variable para ambas categorías",
+    "si_no_refuta": "alcance conservado, no causalidad acreditada",
+    "limite": "no determina preferencias"
+  },
+  {
+    "id": "TRABAJO-R2",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "se interpreta participación por sexo",
+    "entonces": "describir cuidado, horarios y oferta antes de atribuir preferencia",
+    "porque": "participación no identifica motivo",
+    "tier_frecuencia": "(a) ENOE 2024T4 PROVISIONAL NO ADOPTADA",
+    "tier_mecanismo": "no identificado",
+    "consumidor": "analista/planificación de empleos",
+    "aplicabilidad": "población 15+ y disponibilidad real",
+    "falsador": "diseño que varíe oportunidad y mida preferencias en la misma persona separando alternativas",
+    "si_no_refuta": "mecanismo sigue indeterminado",
+    "limite": "no fija cuánto corresponde a cada causa"
+  },
+  {
+    "id": "TRABAJO-R3",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "centro reporta horas largas y baja autonomía",
+    "entonces": "evaluar cargas, control y organización del trabajo antes de diagnosticar personalidad",
+    "porque": "son categorías de riesgo distintas de diagnóstico",
+    "tier_frecuencia": "(a) ENOE nacional; norma primaria sin prevalencia",
+    "tier_mecanismo": "propuesta evaluable; efecto no identificado",
+    "consumidor": "responsable del centro/analista de organización",
+    "aplicabilidad": "solo con medición pertinente dentro del centro",
+    "falsador": "comparación que cambie carga/control y mida exposición y resultados sin cambios atribuibles, con precisión suficiente",
+    "si_no_refuta": "acotada al centro; falsador débil si precisión insuficiente",
+    "limite": "no diagnostica salud ni promete reducción causal de burnout"
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "filas_A1_A2": 68540,
+  "llave_vacia": 0,
+  "sin_IV": 0,
+  "sin_TSDem": 0,
+  "excluidas_edad_factor": 0,
+  "codigos_edad_98_99_incluidos_por_regla_literal": 39,
+  "UPM_marco": 16846,
+  "estratos": 617,
+  "singletons": 2,
+  "filas_universo": 68540,
+  "estados": {
+    "RECONSTRUIDO": 138
+  },
+  "semilla": 20260923,
+  "replicas": 500,
+  "rng": "numpy.random.PCG64",
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+}

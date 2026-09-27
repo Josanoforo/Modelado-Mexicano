@@ -1,0 +1,30 @@
+{
+  "base_encargo": "4541b9f7e884b280e08014bf1f384fe0d1b7cd82",
+  "base_ejecucion": "1eeb855272b933642177e3f32d51adc89f1009a0",
+  "corte_cohorte_original": {
+    "commit": "4f125e709d3b3830078fe749c82068b3d55e6e70",
+    "catalogo": "canon/catalogo-del-mexicano-v1_1.tsv",
+    "sha256": "11e35bfc5b371f45aa3219f8f08c185bc00a299e891e6ddf498992c95951b6b7",
+    "filas": 36143,
+    "estimadores_unicos": 36143,
+    "calcs": 68,
+    "results": 1210,
+    "firmas_citadas": 36,
+    "afirmaciones": "NO-INTERCAMBIABLE-CON-ESTIMADORES; catálogo sin mapeo por afirmación"
+  },
+  "worktree": "/home/pc0/mm-astra6-c1-paquetes-2",
+  "rama": "codex/astra6-c1-paquetes-2",
+  "commit_0bis": "9c9eedfe",
+  "preparacion": "NO-CIEGA",
+  "recalculos_ejecutados": false,
+  "firma_existente": "forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md:3",
+  "adjuntos": "adjuntos/verificacion-adjuntos.json",
+  "guard_duplicado": {
+    "pr_search": "[]",
+    "rama_remota": "9c9eedfee69e7703f7533bf30baa3a43d080619c refs/heads/codex/astra6-c1-paquetes-2",
+    "worktree_propio_unico": true
+  },
+  "interpretacion_declarada": "Base avanzó de 4541b9f7 a 1eeb8552; cohorte original v1.1 se conserva. Adjuntos idénticos ya archivados: se referencian, no se duplican. Preparación no ciega, sin validadores.",
+  "main_incorporado": "8f4b241916efddc1343d4c6e86f8703b43d0f85f",
+  "commit_incorporacion_main": "3e4292f8e82407535e477387e05a661400a0bb41"
+}

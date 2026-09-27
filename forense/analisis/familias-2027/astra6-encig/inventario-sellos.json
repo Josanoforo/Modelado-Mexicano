@@ -1,0 +1,33 @@
+{
+  "estado": "SELLADO-INTERNAMENTE",
+  "atestacion_externa_verificada": 0,
+  "dependencia": "Mesa: integrar estos hashes y commits en siguiente manifiesto de sellos y obtener/verificar comprobante OTS; este PR no edita forense/sellos ni acredita envío.",
+  "commit_1": "0dbe658d8c3adf835c464837f03b79caf2bb7081",
+  "commit_2_digital": "ffa27143ecb80da729a2dbaa4f8efc90418aa9d7",
+  "commit_2_sol1": "ead0cfe75d5cf65be8dd0588ab5a2810820d1f65",
+  "archivos": {
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/medidor.py": "6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/sello.json": "df3543580794815cc299820324342521c064eca0be2970a7a8759a10b891ee96",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/resultados.json": "4e123aa0f0f68e3d6dc445124ce3be3dde86eb769da8efbb61e67f14e17d6b8c",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/ejecucion.json": "9ac1eb9a69095613b9d6b07c5b0e4ad54c70db845f1d56a13c87204f84db5209",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.md": "aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml": "092a04ef76fa96065e9d650cc26124fccd275ab22357a785a396d987df33f202",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/sello.sha256": "558ddebf7eccaa42f6ee7c12d8bba6967fc13bd8fc443e77ab94dc2b59c23024",
+    "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/tablas/replicas.json": "1990d496d10998a4ff74f9e8d89f669a2733462d7b0a5a41605bb72c89c1a3c8",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/medidor.py": "e6258c8d0683a9ebaa26fd45e156d804b72ca38972f393a193c4b2c1b7197997",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/sello.json": "8cfc4dcac94181577c9f86e06c184fef71af58cae1e9cc073c6f5cbb414a20dc",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/resultados.json": "b2f6123751cad9655e8a59b430335dc7708c1c61da9edef2cffbfdc01e92b627",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/ejecucion.json": "2bf9535290461454a90cf1568b8365e90f2ca08c5826cb29babfb4746cdc0ed1",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.md": "b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.yaml": "6ba8394ab83fd09cd1c6ccb0c478c39fb87dc795dcbb769640dabcc3ba352cdd",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/sello.sha256": "14c1678edd1be8abd8aa71e0c15007aeb128c4f56d1dd9c6e998de489f10c5f2",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/medidor.py": "e6258c8d0683a9ebaa26fd45e156d804b72ca38972f393a193c4b2c1b7197997",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/sello.json": "c01b6f9a10d91d61a175b57de4e18f96e5422ce8f43af049759dadeb58505ce9",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/resultados.json": "0bdbc4cd04f85717283331a0c9c1d0a37a17b652659b99bfaf658055435318cc",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/ejecucion.json": "1d0d6f6b60b4e57d769b3bed97fbc6a0d00b80499f506cb1b05b58d301aebf40",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/spec.md": "4d002205e709eb13563122983dfe36ee1904231f9646abf7618cde544fbe40d8",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/spec.yaml": "02bf7a536b160fc3565075fd97d421e1da42f8d93f9270df2cd5d3e81c22d5be",
+    "data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/sello.sha256": "9fea4352acc9f609041a123b7f990da721653fc723b3910a7c37ed6a82e30b12",
+    "forense/analisis/familias-2027/astra6-encig/commit-1-hashes.json": "d3a8aa0d35dd66ec753295d058687bc8a500196c46f3631963536ec4e15ed1dd"
+  }
+}

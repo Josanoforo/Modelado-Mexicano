@@ -1,0 +1,5 @@
+- **Universo:** `FILTRO_S9_1=2` (aplica el módulo de vejez) y `EDAD_V<71`
+- **Ponderador:** `FAC_PER` (columna confirmada en `TMODULO.csv`).
+- **Desenlace:** `P9_9_4='1'` ("dinero de familiares", entre las opciones de con qué piensa cubrir su vejez).
+- **Estimador de p:** proporción ponderada de `P9_9_4=1` sobre el universo, ponderando por `FAC_PER`.
+- **IC95:** bootstrap 10k réplicas, `seed=42` (ENIF no trae UPM/estrato de diseño verificado en este acto — mismo criterio declarado que las otras reglas; no se re-deriva PASO 0 completo de ENIF por estar fuera del perímetro de este acto, se declara el mismo default conservador).

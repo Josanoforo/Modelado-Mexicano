@@ -1,0 +1,45 @@
+[
+  {
+    "id": "REL-R1",
+    "si": "Servicio depende de preferencia espiritual",
+    "entonces": "Preguntar preferencia y ofrecer apoyo optativo",
+    "porque": "Afiliación no equivale a preferencia",
+    "tier_frecuencia": "(a) descriptivo GEN2",
+    "tier_mecanismo": "propuesta sin eficacia medida",
+    "falsador": "Experimento de diseño muestra daño o ninguna mejora en satisfacción/acceso frente a preguntar sólo afiliación",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "GEN2-01",
+      "GEN2-02"
+    ]
+  },
+  {
+    "id": "REL-R2",
+    "si": "Se usa flujo de peregrinos para servicios",
+    "entonces": "Conservar ventana y unidad del conteo",
+    "porque": "Afluencia no mide personas únicas ni prevalencia",
+    "tier_frecuencia": "(a) operativo auto-reportado",
+    "tier_mecanismo": "logística propuesta",
+    "falsador": "Conteo deduplicado cambia demanda por hora/territorio",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "REL-S5"
+    ]
+  },
+  {
+    "id": "REL-R3",
+    "si": "Se atribuye bienestar a religión",
+    "entonces": "Medir espiritualidad, coping, salud previa y apoyo separados",
+    "porque": "Selección y escalas solapadas pueden explicar asociación",
+    "tier_frecuencia": "(a) asociación clínica acotada",
+    "tier_mecanismo": "no identificado",
+    "falsador": "Diseño prospectivo mantiene relación con apoyo y salud comparables; sólo corroboración acotada",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "evidencia": [
+      "REL-S1",
+      "REL-S2",
+      "REL-S3",
+      "REL-S8"
+    ]
+  }
+]

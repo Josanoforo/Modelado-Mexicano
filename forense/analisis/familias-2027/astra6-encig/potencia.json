@@ -1,0 +1,2517 @@
+{
+  "estado": "ESCENARIOS-NO-EVALUACION-FUTURA",
+  "semilla": 26092603,
+  "simulaciones": 10000,
+  "replicas": 2000,
+  "banda": 0.02,
+  "correlacion_residual": 0.05508470280546991,
+  "pisos": {
+    "PAGO-DIGITAL": {
+      "p0": 0.6733930340661712,
+      "result_id": "RESULT-ENCIG-MOR-C-P-ADOPTA",
+      "source_sha256": "958b377fbe4483e08973e1e07e3f65aac97309b8aa7481dc2e024713b2e23885",
+      "sello_sha256": "9db7e8f292dc4acd43ee1107b00fe7e1c6097d6abaa3b8c78444107b6cbf58d7",
+      "calc_id": "CALC-ENCIG-0001"
+    },
+    "SOLICITUD-MORDIDA": {
+      "p0": 0.08511814556534456,
+      "result_id": "RESULT-ENCIG-MOR-A-P-SOL1",
+      "source_sha256": "958b377fbe4483e08973e1e07e3f65aac97309b8aa7481dc2e024713b2e23885",
+      "sello_sha256": "9db7e8f292dc4acd43ee1107b00fe7e1c6097d6abaa3b8c78444107b6cbf58d7",
+      "calc_id": "CALC-ENCIG-0001"
+    }
+  },
+  "escenarios": [
+    {
+      "shift": 0,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 1.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 0.0,
+          "informativa": 1.0
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 1.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 0.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 1.0,
+        "al_menos_un_desvio": 0.0,
+        "ambas_informativas": 1.0
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.9658,
+          "INDETERMINADO": 0.0342,
+          "DESVIO": 0.0,
+          "informativa": 0.9658
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 1.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 0.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.9658,
+        "al_menos_un_desvio": 0.0,
+        "ambas_informativas": 0.9658
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.9624,
+          "INDETERMINADO": 0.0376,
+          "DESVIO": 0.0,
+          "informativa": 0.9624
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 1.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 0.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.9624,
+        "al_menos_un_desvio": 0.0,
+        "ambas_informativas": 0.9624
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0294,
+          "INDETERMINADO": 0.9491,
+          "DESVIO": 0.0215,
+          "informativa": 0.050899999999999945
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0172,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0311,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.002,
+        "al_menos_un_desvio": 0.0513,
+        "ambas_informativas": 0.0036
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0215,
+          "INDETERMINADO": 0.9491,
+          "DESVIO": 0.0294,
+          "informativa": 0.050899999999999945
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0311,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0172,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0013,
+        "al_menos_un_desvio": 0.0446,
+        "ambas_informativas": 0.0036
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0376,
+          "DESVIO": 0.9624,
+          "informativa": 0.9624
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 0.9624
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0342,
+          "DESVIO": 0.9658,
+          "informativa": 0.9658
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 0.9658
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 1.0
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 1.0
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.8464,
+          "INDETERMINADO": 0.1363,
+          "DESVIO": 0.0173,
+          "informativa": 0.8637
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.9223,
+          "INDETERMINADO": 0.0473,
+          "DESVIO": 0.0304,
+          "informativa": 0.9527
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.8431,
+        "al_menos_un_desvio": 0.0319,
+        "ambas_informativas": 0.8591
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.6803,
+          "INDETERMINADO": 0.2541,
+          "DESVIO": 0.0656,
+          "informativa": 0.7459
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.7861,
+          "INDETERMINADO": 0.1029,
+          "DESVIO": 0.111,
+          "informativa": 0.8971
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.674,
+        "al_menos_un_desvio": 0.1141,
+        "ambas_informativas": 0.7365
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.6681,
+          "INDETERMINADO": 0.2554,
+          "DESVIO": 0.0765,
+          "informativa": 0.7445999999999999
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.7823,
+          "INDETERMINADO": 0.1015,
+          "DESVIO": 0.1162,
+          "informativa": 0.8985
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.6623,
+        "al_menos_un_desvio": 0.1202,
+        "ambas_informativas": 0.7349
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.3121,
+          "INDETERMINADO": 0.3918,
+          "DESVIO": 0.2961,
+          "informativa": 0.6082000000000001
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.4136,
+          "INDETERMINADO": 0.1758,
+          "DESVIO": 0.4106,
+          "informativa": 0.8242
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3021,
+        "al_menos_un_desvio": 0.4174,
+        "ambas_informativas": 0.5916
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.2958,
+          "INDETERMINADO": 0.3917,
+          "DESVIO": 0.3125,
+          "informativa": 0.6083000000000001
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.4106,
+          "INDETERMINADO": 0.1757,
+          "DESVIO": 0.4137,
+          "informativa": 0.8243
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.289,
+        "al_menos_un_desvio": 0.4237,
+        "ambas_informativas": 0.5917
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0762,
+          "INDETERMINADO": 0.2476,
+          "DESVIO": 0.6762,
+          "informativa": 0.7524
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.1157,
+          "INDETERMINADO": 0.0999,
+          "DESVIO": 0.7844,
+          "informativa": 0.9001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0724,
+        "al_menos_un_desvio": 0.7901,
+        "ambas_informativas": 0.743
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0652,
+          "INDETERMINADO": 0.2438,
+          "DESVIO": 0.691,
+          "informativa": 0.7562
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.1103,
+          "INDETERMINADO": 0.1005,
+          "DESVIO": 0.7892,
+          "informativa": 0.8995
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0622,
+        "al_menos_un_desvio": 0.7955,
+        "ambas_informativas": 0.7469
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0004,
+          "INDETERMINADO": 0.0103,
+          "DESVIO": 0.9893,
+          "informativa": 0.9897
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0007,
+          "INDETERMINADO": 0.0024,
+          "DESVIO": 0.9969,
+          "informativa": 0.9976
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0003,
+        "al_menos_un_desvio": 0.9969,
+        "ambas_informativas": 0.9896
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0003,
+          "INDETERMINADO": 0.0078,
+          "DESVIO": 0.9919,
+          "informativa": 0.9922
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0005,
+          "INDETERMINADO": 0.0016,
+          "DESVIO": 0.9979,
+          "informativa": 0.9984
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0001,
+        "al_menos_un_desvio": 0.998,
+        "ambas_informativas": 0.9919
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.5426,
+          "INDETERMINADO": 0.2499,
+          "DESVIO": 0.2075,
+          "informativa": 0.7501
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.6322,
+          "INDETERMINADO": 0.1004,
+          "DESVIO": 0.2674,
+          "informativa": 0.8996
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.5376,
+        "al_menos_un_desvio": 0.2715,
+        "ambas_informativas": 0.741
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.494,
+          "INDETERMINADO": 0.2437,
+          "DESVIO": 0.2623,
+          "informativa": 0.7563
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5762,
+          "INDETERMINADO": 0.1002,
+          "DESVIO": 0.3236,
+          "informativa": 0.8998
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.4888,
+        "al_menos_un_desvio": 0.3285,
+        "ambas_informativas": 0.7462
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.4886,
+          "INDETERMINADO": 0.2459,
+          "DESVIO": 0.2655,
+          "informativa": 0.7541
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5797,
+          "INDETERMINADO": 0.094,
+          "DESVIO": 0.3263,
+          "informativa": 0.906
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.483,
+        "al_menos_un_desvio": 0.3314,
+        "ambas_informativas": 0.7434
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.3544,
+          "INDETERMINADO": 0.2438,
+          "DESVIO": 0.4018,
+          "informativa": 0.7562
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.4274,
+          "INDETERMINADO": 0.0993,
+          "DESVIO": 0.4733,
+          "informativa": 0.9007000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3494,
+        "al_menos_un_desvio": 0.4778,
+        "ambas_informativas": 0.7468
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.347,
+          "INDETERMINADO": 0.2403,
+          "DESVIO": 0.4127,
+          "informativa": 0.7597
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.4235,
+          "INDETERMINADO": 0.1012,
+          "DESVIO": 0.4753,
+          "informativa": 0.8988
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3422,
+        "al_menos_un_desvio": 0.4802,
+        "ambas_informativas": 0.7501
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.2115,
+          "INDETERMINADO": 0.1943,
+          "DESVIO": 0.5942,
+          "informativa": 0.8057
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2628,
+          "INDETERMINADO": 0.0741,
+          "DESVIO": 0.6631,
+          "informativa": 0.9259
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.2078,
+        "al_menos_un_desvio": 0.6669,
+        "ambas_informativas": 0.7982
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.2047,
+          "INDETERMINADO": 0.1873,
+          "DESVIO": 0.608,
+          "informativa": 0.8127
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2602,
+          "INDETERMINADO": 0.0755,
+          "DESVIO": 0.6643,
+          "informativa": 0.9245
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.2013,
+        "al_menos_un_desvio": 0.669,
+        "ambas_informativas": 0.8046
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0441,
+          "INDETERMINADO": 0.0674,
+          "DESVIO": 0.8885,
+          "informativa": 0.9326
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0547,
+          "INDETERMINADO": 0.0284,
+          "DESVIO": 0.9169,
+          "informativa": 0.9716
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0424,
+        "al_menos_un_desvio": 0.9175,
+        "ambas_informativas": 0.9303
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0369,
+          "INDETERMINADO": 0.0648,
+          "DESVIO": 0.8983,
+          "informativa": 0.9352
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0531,
+          "INDETERMINADO": 0.0248,
+          "DESVIO": 0.9221,
+          "informativa": 0.9752
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0355,
+        "al_menos_un_desvio": 0.9241,
+        "ambas_informativas": 0.9318
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.9282,
+          "INDETERMINADO": 0.0718,
+          "DESVIO": 0.0,
+          "informativa": 0.9282
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 1.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 0.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.9282,
+        "al_menos_un_desvio": 0.0,
+        "ambas_informativas": 0.9282
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.4904,
+          "INDETERMINADO": 0.5096,
+          "DESVIO": 0.0,
+          "informativa": 0.49039999999999995
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.9953,
+          "INDETERMINADO": 0.0047,
+          "DESVIO": 0.0,
+          "informativa": 0.9953
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.489,
+        "al_menos_un_desvio": 0.0,
+        "ambas_informativas": 0.489
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.453,
+          "INDETERMINADO": 0.5466,
+          "DESVIO": 0.0004,
+          "informativa": 0.4534
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.9981,
+          "INDETERMINADO": 0.0019,
+          "DESVIO": 0.0,
+          "informativa": 0.9981
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.4525,
+        "al_menos_un_desvio": 0.0004,
+        "ambas_informativas": 0.4529
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0294,
+          "INDETERMINADO": 0.9491,
+          "DESVIO": 0.0215,
+          "informativa": 0.050899999999999945
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0172,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0311,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.002,
+        "al_menos_un_desvio": 0.0513,
+        "ambas_informativas": 0.0036
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0215,
+          "INDETERMINADO": 0.9491,
+          "DESVIO": 0.0294,
+          "informativa": 0.050899999999999945
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0311,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0172,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0013,
+        "al_menos_un_desvio": 0.0446,
+        "ambas_informativas": 0.0036
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0004,
+          "INDETERMINADO": 0.5466,
+          "DESVIO": 0.453,
+          "informativa": 0.4534
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0019,
+          "DESVIO": 0.9981,
+          "informativa": 0.9981
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.9986,
+        "ambas_informativas": 0.4529
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.5092,
+          "DESVIO": 0.4908,
+          "informativa": 0.4908
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0047,
+          "DESVIO": 0.9953,
+          "informativa": 0.9953
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.9967,
+        "ambas_informativas": 0.4894
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0004,
+          "DESVIO": 0.9996,
+          "informativa": 0.9996
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 0.9996
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 1.0
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.6084,
+          "INDETERMINADO": 0.3833,
+          "DESVIO": 0.0083,
+          "informativa": 0.6167
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.8771,
+          "INDETERMINADO": 0.1048,
+          "DESVIO": 0.0181,
+          "informativa": 0.8952
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.6017,
+        "al_menos_un_desvio": 0.0212,
+        "ambas_informativas": 0.6071
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.4494,
+          "INDETERMINADO": 0.519,
+          "DESVIO": 0.0316,
+          "informativa": 0.481
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.7077,
+          "INDETERMINADO": 0.2099,
+          "DESVIO": 0.0824,
+          "informativa": 0.7901
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.4318,
+        "al_menos_un_desvio": 0.0874,
+        "ambas_informativas": 0.4585
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.4401,
+          "INDETERMINADO": 0.5208,
+          "DESVIO": 0.0391,
+          "informativa": 0.47919999999999996
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.714,
+          "INDETERMINADO": 0.2032,
+          "DESVIO": 0.0828,
+          "informativa": 0.7968
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.4279,
+        "al_menos_un_desvio": 0.0897,
+        "ambas_informativas": 0.4602
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.1835,
+          "INDETERMINADO": 0.6501,
+          "DESVIO": 0.1664,
+          "informativa": 0.3499
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3334,
+          "INDETERMINADO": 0.3269,
+          "DESVIO": 0.3397,
+          "informativa": 0.6731
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.1686,
+        "al_menos_un_desvio": 0.3524,
+        "ambas_informativas": 0.3228
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.1621,
+          "INDETERMINADO": 0.6491,
+          "DESVIO": 0.1888,
+          "informativa": 0.3509
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3396,
+          "INDETERMINADO": 0.3267,
+          "DESVIO": 0.3337,
+          "informativa": 0.6733
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.1494,
+        "al_menos_un_desvio": 0.3486,
+        "ambas_informativas": 0.3238
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0386,
+          "INDETERMINADO": 0.4847,
+          "DESVIO": 0.4767,
+          "informativa": 0.5153
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0827,
+          "INDETERMINADO": 0.1975,
+          "DESVIO": 0.7198,
+          "informativa": 0.8025
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0318,
+        "al_menos_un_desvio": 0.7311,
+        "ambas_informativas": 0.4973
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0311,
+          "INDETERMINADO": 0.4738,
+          "DESVIO": 0.4951,
+          "informativa": 0.5262
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0818,
+          "INDETERMINADO": 0.2035,
+          "DESVIO": 0.7147,
+          "informativa": 0.7965
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0262,
+        "al_menos_un_desvio": 0.7317,
+        "ambas_informativas": 0.5044
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0003,
+          "INDETERMINADO": 0.0454,
+          "DESVIO": 0.9543,
+          "informativa": 0.9546
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0006,
+          "INDETERMINADO": 0.0064,
+          "DESVIO": 0.993,
+          "informativa": 0.9936
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0002,
+        "al_menos_un_desvio": 0.9936,
+        "ambas_informativas": 0.9539
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0002,
+          "INDETERMINADO": 0.0364,
+          "DESVIO": 0.9634,
+          "informativa": 0.9636
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0001,
+          "INDETERMINADO": 0.0057,
+          "DESVIO": 0.9942,
+          "informativa": 0.9943
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0001,
+        "al_menos_un_desvio": 0.9951,
+        "ambas_informativas": 0.9626
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.3672,
+          "INDETERMINADO": 0.4914,
+          "DESVIO": 0.1414,
+          "informativa": 0.5085999999999999
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5736,
+          "INDETERMINADO": 0.2004,
+          "DESVIO": 0.226,
+          "informativa": 0.7996
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3552,
+        "al_menos_un_desvio": 0.2328,
+        "ambas_informativas": 0.4899
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.3206,
+          "INDETERMINADO": 0.4981,
+          "DESVIO": 0.1813,
+          "informativa": 0.5019
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5208,
+          "INDETERMINADO": 0.1962,
+          "DESVIO": 0.283,
+          "informativa": 0.8038
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3084,
+        "al_menos_un_desvio": 0.2923,
+        "ambas_informativas": 0.4807
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.3245,
+          "INDETERMINADO": 0.485,
+          "DESVIO": 0.1905,
+          "informativa": 0.515
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5218,
+          "INDETERMINADO": 0.1947,
+          "DESVIO": 0.2835,
+          "informativa": 0.8053
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.3137,
+        "al_menos_un_desvio": 0.2922,
+        "ambas_informativas": 0.4956
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.2308,
+          "INDETERMINADO": 0.463,
+          "DESVIO": 0.3062,
+          "informativa": 0.5369999999999999
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3747,
+          "INDETERMINADO": 0.1977,
+          "DESVIO": 0.4276,
+          "informativa": 0.8023
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.2203,
+        "al_menos_un_desvio": 0.4354,
+        "ambas_informativas": 0.519
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.2242,
+          "INDETERMINADO": 0.4561,
+          "DESVIO": 0.3197,
+          "informativa": 0.5439
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3719,
+          "INDETERMINADO": 0.201,
+          "DESVIO": 0.4271,
+          "informativa": 0.7989999999999999
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.2146,
+        "al_menos_un_desvio": 0.4376,
+        "ambas_informativas": 0.5241
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.1339,
+          "INDETERMINADO": 0.3795,
+          "DESVIO": 0.4866,
+          "informativa": 0.6205
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2241,
+          "INDETERMINADO": 0.1538,
+          "DESVIO": 0.6221,
+          "informativa": 0.8462000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.1263,
+        "al_menos_un_desvio": 0.6291,
+        "ambas_informativas": 0.6059
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.1253,
+          "INDETERMINADO": 0.3762,
+          "DESVIO": 0.4985,
+          "informativa": 0.6238
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2259,
+          "INDETERMINADO": 0.1496,
+          "DESVIO": 0.6245,
+          "informativa": 0.8504
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.1186,
+        "al_menos_un_desvio": 0.6345,
+        "ambas_informativas": 0.6074
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0278,
+          "INDETERMINADO": 0.1484,
+          "DESVIO": 0.8238,
+          "informativa": 0.8516
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0456,
+          "INDETERMINADO": 0.0544,
+          "DESVIO": 0.9,
+          "informativa": 0.9456
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0248,
+        "al_menos_un_desvio": 0.9025,
+        "ambas_informativas": 0.8461
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0224,
+          "INDETERMINADO": 0.1377,
+          "DESVIO": 0.8399,
+          "informativa": 0.8623000000000001
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0446,
+          "INDETERMINADO": 0.0519,
+          "DESVIO": 0.9035,
+          "informativa": 0.9480999999999999
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0209,
+        "al_menos_un_desvio": 0.9079,
+        "ambas_informativas": 0.8565
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9996,
+          "DESVIO": 0.0004,
+          "informativa": 0.00039999999999995595
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.9934,
+          "INDETERMINADO": 0.0066,
+          "DESVIO": 0.0,
+          "informativa": 0.9934
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0004,
+        "ambas_informativas": 0.0004
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9988,
+          "DESVIO": 0.0012,
+          "informativa": 0.0011999999999999789
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.6062,
+          "INDETERMINADO": 0.3938,
+          "DESVIO": 0.0,
+          "informativa": 0.6062000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0012,
+        "ambas_informativas": 0.0005
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9977,
+          "DESVIO": 0.0023,
+          "informativa": 0.0022999999999999687
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.6727,
+          "INDETERMINADO": 0.3273,
+          "DESVIO": 0.0,
+          "informativa": 0.6727000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0023,
+        "ambas_informativas": 0.0009
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9785,
+          "DESVIO": 0.0215,
+          "informativa": 0.021499999999999964
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0172,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0311,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0513,
+        "ambas_informativas": 0.0016
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9706,
+          "DESVIO": 0.0294,
+          "informativa": 0.02939999999999998
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0311,
+          "INDETERMINADO": 0.9517,
+          "DESVIO": 0.0172,
+          "informativa": 0.04830000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0446,
+        "ambas_informativas": 0.002
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.8486,
+          "DESVIO": 0.1514,
+          "informativa": 0.15139999999999998
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.3273,
+          "DESVIO": 0.6727,
+          "informativa": 0.6727000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.7125,
+        "ambas_informativas": 0.1116
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.8339,
+          "DESVIO": 0.1661,
+          "informativa": 0.16610000000000003
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.3938,
+          "DESVIO": 0.6062,
+          "informativa": 0.6062000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.6661,
+        "ambas_informativas": 0.1062
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.2114,
+          "DESVIO": 0.7886,
+          "informativa": 0.7886
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 0.7886
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.1837,
+          "DESVIO": 0.8163,
+          "informativa": 0.8163
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.0,
+          "DESVIO": 1.0,
+          "informativa": 1.0
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 1.0,
+        "ambas_informativas": 0.8163
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9934,
+          "DESVIO": 0.0066,
+          "informativa": 0.00660000000000005
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.7111,
+          "INDETERMINADO": 0.2797,
+          "DESVIO": 0.0092,
+          "informativa": 0.7202999999999999
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0148,
+        "ambas_informativas": 0.0013
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.984,
+          "DESVIO": 0.016,
+          "informativa": 0.016000000000000014
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5223,
+          "INDETERMINADO": 0.43,
+          "DESVIO": 0.0477,
+          "informativa": 0.5700000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0563,
+        "ambas_informativas": 0.008
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9803,
+          "DESVIO": 0.0197,
+          "informativa": 0.01970000000000005
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.5411,
+          "INDETERMINADO": 0.4163,
+          "DESVIO": 0.0426,
+          "informativa": 0.5837
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.0532,
+        "ambas_informativas": 0.0093
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9296,
+          "DESVIO": 0.0704,
+          "informativa": 0.07040000000000002
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2094,
+          "INDETERMINADO": 0.5662,
+          "DESVIO": 0.2244,
+          "informativa": 0.43379999999999996
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.2448,
+        "ambas_informativas": 0.0506
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9164,
+          "DESVIO": 0.0836,
+          "informativa": 0.08360000000000001
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2227,
+          "INDETERMINADO": 0.5657,
+          "DESVIO": 0.2116,
+          "informativa": 0.4343
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.2376,
+        "ambas_informativas": 0.0578
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.7826,
+          "DESVIO": 0.2174,
+          "informativa": 0.21740000000000004
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0424,
+          "INDETERMINADO": 0.3911,
+          "DESVIO": 0.5665,
+          "informativa": 0.6089
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.5913,
+        "ambas_informativas": 0.1926
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.7537,
+          "DESVIO": 0.2463,
+          "informativa": 0.24629999999999996
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0475,
+          "INDETERMINADO": 0.4061,
+          "DESVIO": 0.5464,
+          "informativa": 0.5939
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.5798,
+        "ambas_informativas": 0.2129
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.279,
+          "DESVIO": 0.721,
+          "informativa": 0.721
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0002,
+          "INDETERMINADO": 0.0239,
+          "DESVIO": 0.9759,
+          "informativa": 0.9761
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.9774,
+        "ambas_informativas": 0.7195
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.2498,
+          "DESVIO": 0.7502,
+          "informativa": 0.7502
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0001,
+          "INDETERMINADO": 0.0253,
+          "DESVIO": 0.9746,
+          "informativa": 0.9747
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.9802,
+        "ambas_informativas": 0.7446
+      }
+    },
+    {
+      "shift": 0,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9298,
+          "DESVIO": 0.0702,
+          "informativa": 0.07020000000000004
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.4345,
+          "INDETERMINADO": 0.401,
+          "DESVIO": 0.1645,
+          "informativa": 0.599
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.1762,
+        "ambas_informativas": 0.0586
+      }
+    },
+    {
+      "shift": -0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.9047,
+          "DESVIO": 0.0953,
+          "informativa": 0.09530000000000005
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3833,
+          "INDETERMINADO": 0.403,
+          "DESVIO": 0.2137,
+          "informativa": 0.597
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.2273,
+        "ambas_informativas": 0.0823
+      }
+    },
+    {
+      "shift": 0.01,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.8932,
+          "DESVIO": 0.1068,
+          "informativa": 0.1068
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.3906,
+          "INDETERMINADO": 0.395,
+          "DESVIO": 0.2144,
+          "informativa": 0.605
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.2302,
+        "ambas_informativas": 0.0914
+      }
+    },
+    {
+      "shift": -0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.8289,
+          "DESVIO": 0.1711,
+          "informativa": 0.17110000000000003
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2739,
+          "INDETERMINADO": 0.3761,
+          "DESVIO": 0.35,
+          "informativa": 0.6239
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.3643,
+        "ambas_informativas": 0.1572
+      }
+    },
+    {
+      "shift": 0.02,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.8076,
+          "DESVIO": 0.1924,
+          "informativa": 0.19240000000000002
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.2766,
+          "INDETERMINADO": 0.3819,
+          "DESVIO": 0.3415,
+          "informativa": 0.6181
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.3579,
+        "ambas_informativas": 0.1763
+      }
+    },
+    {
+      "shift": -0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.6951,
+          "DESVIO": 0.3049,
+          "informativa": 0.30489999999999995
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.1593,
+          "INDETERMINADO": 0.303,
+          "DESVIO": 0.5377,
+          "informativa": 0.6970000000000001
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.552,
+        "ambas_informativas": 0.2908
+      }
+    },
+    {
+      "shift": 0.03,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.6716,
+          "DESVIO": 0.3284,
+          "informativa": 0.3284
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.161,
+          "INDETERMINADO": 0.3096,
+          "DESVIO": 0.5294,
+          "informativa": 0.6904
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.5496,
+        "ambas_informativas": 0.3082
+      }
+    },
+    {
+      "shift": -0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.3524,
+          "DESVIO": 0.6476,
+          "informativa": 0.6476
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.03,
+          "INDETERMINADO": 0.1145,
+          "DESVIO": 0.8555,
+          "informativa": 0.8855
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.8627,
+        "ambas_informativas": 0.6405
+      }
+    },
+    {
+      "shift": 0.05,
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "familias": {
+        "PAGO-DIGITAL": {
+          "COMPATIBLE": 0.0,
+          "INDETERMINADO": 0.3307,
+          "DESVIO": 0.6693,
+          "informativa": 0.6693
+        },
+        "SOLICITUD-MORDIDA": {
+          "COMPATIBLE": 0.0306,
+          "INDETERMINADO": 0.1145,
+          "DESVIO": 0.8549,
+          "informativa": 0.8855
+        }
+      },
+      "conjunta": {
+        "ambas_compatibles": 0.0,
+        "al_menos_un_desvio": 0.8631,
+        "ambas_informativas": 0.6611
+      }
+    }
+  ],
+  "mde": [
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.028,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.156,
+        "DESVIO": 0.844,
+        "informativa": 0.844
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0275,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1837,
+        "DESVIO": 0.8163,
+        "informativa": 0.8163
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.023,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1865,
+        "DESVIO": 0.8135,
+        "informativa": 0.8135
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0235,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1261,
+        "DESVIO": 0.8739,
+        "informativa": 0.8739
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0345,
+        "COMPATIBLE": 0.0331,
+        "INDETERMINADO": 0.1575,
+        "DESVIO": 0.8094,
+        "informativa": 0.8425
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.034,
+        "COMPATIBLE": 0.0281,
+        "INDETERMINADO": 0.1605,
+        "DESVIO": 0.8114,
+        "informativa": 0.8395
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.031,
+        "COMPATIBLE": 0.0967,
+        "INDETERMINADO": 0.0929,
+        "DESVIO": 0.8104,
+        "informativa": 0.9071
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0305,
+        "COMPATIBLE": 0.1013,
+        "INDETERMINADO": 0.0957,
+        "DESVIO": 0.803,
+        "informativa": 0.9043
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0425,
+        "COMPATIBLE": 0.0842,
+        "INDETERMINADO": 0.1148,
+        "DESVIO": 0.801,
+        "informativa": 0.8852
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.042,
+        "COMPATIBLE": 0.0806,
+        "INDETERMINADO": 0.1126,
+        "DESVIO": 0.8068,
+        "informativa": 0.8874
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0395,
+        "COMPATIBLE": 0.1405,
+        "INDETERMINADO": 0.0526,
+        "DESVIO": 0.8069,
+        "informativa": 0.9474
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 0.5,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0385,
+        "COMPATIBLE": 0.1465,
+        "INDETERMINADO": 0.0512,
+        "DESVIO": 0.8023,
+        "informativa": 0.9488
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.035500000000000004,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.18,
+        "DESVIO": 0.82,
+        "informativa": 0.8200000000000001
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.035,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1837,
+        "DESVIO": 0.8163,
+        "informativa": 0.8163
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.026000000000000002,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1865,
+        "DESVIO": 0.8135,
+        "informativa": 0.8135
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0265,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1681,
+        "DESVIO": 0.8319,
+        "informativa": 0.8319
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0405,
+        "COMPATIBLE": 0.0042,
+        "INDETERMINADO": 0.1901,
+        "DESVIO": 0.8057,
+        "informativa": 0.8099000000000001
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0395,
+        "COMPATIBLE": 0.004,
+        "INDETERMINADO": 0.1953,
+        "DESVIO": 0.8007,
+        "informativa": 0.8047
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.033,
+        "COMPATIBLE": 0.0466,
+        "INDETERMINADO": 0.1468,
+        "DESVIO": 0.8066,
+        "informativa": 0.8532
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.033,
+        "COMPATIBLE": 0.0475,
+        "INDETERMINADO": 0.1455,
+        "DESVIO": 0.807,
+        "informativa": 0.8545
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0485,
+        "COMPATIBLE": 0.0316,
+        "INDETERMINADO": 0.1647,
+        "DESVIO": 0.8037,
+        "informativa": 0.8352999999999999
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0475,
+        "COMPATIBLE": 0.0277,
+        "INDETERMINADO": 0.1671,
+        "DESVIO": 0.8052,
+        "informativa": 0.8329
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0415,
+        "COMPATIBLE": 0.0986,
+        "INDETERMINADO": 0.0963,
+        "DESVIO": 0.8051,
+        "informativa": 0.9037
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 1.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.041,
+        "COMPATIBLE": 0.0996,
+        "INDETERMINADO": 0.0969,
+        "DESVIO": 0.8035,
+        "informativa": 0.9031
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0505,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1968,
+        "DESVIO": 0.8032,
+        "informativa": 0.8032
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.05,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1837,
+        "DESVIO": 0.8163,
+        "informativa": 0.8163
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.032,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1865,
+        "DESVIO": 0.8135,
+        "informativa": 0.8135
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.0,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.033,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1681,
+        "DESVIO": 0.8319,
+        "informativa": 0.8319
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.054,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1962,
+        "DESVIO": 0.8038,
+        "informativa": 0.8038
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.053,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1923,
+        "DESVIO": 0.8077,
+        "informativa": 0.8077
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0375,
+        "COMPATIBLE": 0.0086,
+        "INDETERMINADO": 0.1882,
+        "DESVIO": 0.8032,
+        "informativa": 0.8118
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.01,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.038,
+        "COMPATIBLE": 0.0065,
+        "INDETERMINADO": 0.1886,
+        "DESVIO": 0.8049,
+        "informativa": 0.8114
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0605,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1997,
+        "DESVIO": 0.8003,
+        "informativa": 0.8003
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "PAGO-DIGITAL",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.059000000000000004,
+        "COMPATIBLE": 0.0,
+        "INDETERMINADO": 0.1993,
+        "DESVIO": 0.8007,
+        "informativa": 0.8007
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": -1,
+      "mde": {
+        "cambio": -0.0455,
+        "COMPATIBLE": 0.0452,
+        "INDETERMINADO": 0.1543,
+        "DESVIO": 0.8005,
+        "informativa": 0.8457
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    },
+    {
+      "familia": "SOLICITUD-MORDIDA",
+      "escala_ee": 2.0,
+      "sd_temporal_comun": 0.02,
+      "direccion": 1,
+      "mde": {
+        "cambio": 0.0455,
+        "COMPATIBLE": 0.0476,
+        "INDETERMINADO": 0.1515,
+        "DESVIO": 0.8009,
+        "informativa": 0.8485
+      },
+      "max_rejilla": 0.2,
+      "paso": 0.0005
+    }
+  ],
+  "fuentes": {
+    "replicas_sha256": "1990d496d10998a4ff74f9e8d89f669a2733462d7b0a5a41605bb72c89c1a3c8",
+    "pisos_sha256": "be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd",
+    "codigo_sha256": "91bad45cd2b1fc988869ff92313023eaf78429215ee43ebf7dcd530ce9b7cf53"
+  }
+}

@@ -1,0 +1,197 @@
+{
+  "PF": {
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+    "resultados_sha256": "2924630885c0577d76bb039a02d6ce039f09ecdd19c9a679aaae0d97df06c067",
+    "firma": "FP-260923-ASTRA5-U2-ENDIREH-6a2c-01",
+    "estado_firma": "FIRMADA",
+    "adopcion": "ADOPTADO-DESCRIPTIVO",
+    "spec_sha256": "09f606baef07e3ab66daa4d80a782012d4e8c6642e43ef023557868071c9a5bb"
+  },
+  "ENDISEG": {
+    "calc": "CALC-ENDISEG-PISOS-2021-0001",
+    "resultados_sha256": "2c8238a956e7e58975bb3d31f2ef513f09d87c2b71b475e8a73afedc298840a0",
+    "firma": "FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+    "estado_firma": "ABIERTA",
+    "adopcion": "PROVISIONAL-NO-ADOPTADO",
+    "spec_sha256": "e327cf2083a90edd1ca790018a58e49318b0b7607e7e93c7b6de781ab8343d02"
+  },
+  "PFVIDA": {
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+    "resultados_sha256": "2924630885c0577d76bb039a02d6ce039f09ecdd19c9a679aaae0d97df06c067",
+    "firma": "FP-260923-ASTRA5-U2-ENDIREH-6a2c-01",
+    "estado_firma": "FIRMADA",
+    "adopcion": "ADOPTADO-DESCRIPTIVO",
+    "spec_sha256": "09f606baef07e3ab66daa4d80a782012d4e8c6642e43ef023557868071c9a5bb",
+    "result": "RESULT-ENDIREH2021-PF-TABLA",
+    "selector": {
+      "eje": "nacional",
+      "categoria": "MX",
+      "ventana": "vida"
+    },
+    "denominador": "mujeres de 15+ A1/A2 con pareja actual y respuesta conocida",
+    "ventana": "vida",
+    "p": 0.15595318161116956,
+    "ic95": [
+      0.15200337721218393,
+      0.15994388374571195
+    ],
+    "n": 68540
+  },
+  "PFRECIENTE": {
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+    "resultados_sha256": "2924630885c0577d76bb039a02d6ce039f09ecdd19c9a679aaae0d97df06c067",
+    "firma": "FP-260923-ASTRA5-U2-ENDIREH-6a2c-01",
+    "estado_firma": "FIRMADA",
+    "adopcion": "ADOPTADO-DESCRIPTIVO",
+    "spec_sha256": "09f606baef07e3ab66daa4d80a782012d4e8c6642e43ef023557868071c9a5bb",
+    "result": "RESULT-ENDIREH2021-PF-TABLA",
+    "selector": {
+      "eje": "nacional",
+      "categoria": "MX",
+      "ventana": "desde_octubre_2020"
+    },
+    "denominador": "mujeres de 15+ A1/A2 con pareja actual y respuesta conocida",
+    "ventana": "desde_octubre_2020",
+    "p": 0.067628937365691,
+    "ic95": [
+      0.06463319802625273,
+      0.07036419836687849
+    ],
+    "n": 68537
+  },
+  "LGBT": {
+    "calc": "CALC-ENDISEG-PISOS-2021-0001",
+    "resultados_sha256": "2c8238a956e7e58975bb3d31f2ef513f09d87c2b71b475e8a73afedc298840a0",
+    "firma": "FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+    "estado_firma": "ABIERTA",
+    "adopcion": "PROVISIONAL-NO-ADOPTADO",
+    "spec_sha256": "e327cf2083a90edd1ca790018a58e49318b0b7607e7e93c7b6de781ab8343d02",
+    "result": "RESULT-ENDISEG-PISOS-2021-LGBT-2021-TOTAL-TODOS-P",
+    "ic_results": [
+      "RESULT-ENDISEG-PISOS-2021-LGBT-2021-TOTAL-TODOS-IC-LO",
+      "RESULT-ENDISEG-PISOS-2021-LGBT-2021-TOTAL-TODOS-IC-HI"
+    ],
+    "denominador": "persona seleccionada de 15+; diseño y respuesta admisibles; ENDISEG 2021",
+    "ventana": "2021",
+    "p": 0.05142683751150561,
+    "ic95": [
+      0.04842279249602927,
+      0.05425912761777263
+    ],
+    "n": 44178
+  },
+  "ORIENTACION": {
+    "calc": "CALC-ENDISEG-PISOS-2021-0001",
+    "resultados_sha256": "2c8238a956e7e58975bb3d31f2ef513f09d87c2b71b475e8a73afedc298840a0",
+    "firma": "FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+    "estado_firma": "ABIERTA",
+    "adopcion": "PROVISIONAL-NO-ADOPTADO",
+    "spec_sha256": "e327cf2083a90edd1ca790018a58e49318b0b7607e7e93c7b6de781ab8343d02",
+    "result": "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-TOTAL-TODOS-P",
+    "ic_results": [
+      "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-TOTAL-TODOS-IC-LO",
+      "RESULT-ENDISEG-PISOS-2021-ORIENTACION-NO-HETEROSEXUAL-2021-TOTAL-TODOS-IC-HI"
+    ],
+    "denominador": "persona seleccionada de 15+; diseño y respuesta admisibles; ENDISEG 2021",
+    "ventana": "2021",
+    "p": 0.047531046385636315,
+    "ic95": [
+      0.04463233367206972,
+      0.05021792282052049
+    ],
+    "n": 44178
+  },
+  "IDENTIDAD": {
+    "calc": "CALC-ENDISEG-PISOS-2021-0001",
+    "resultados_sha256": "2c8238a956e7e58975bb3d31f2ef513f09d87c2b71b475e8a73afedc298840a0",
+    "firma": "FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01",
+    "estado_firma": "ABIERTA",
+    "adopcion": "PROVISIONAL-NO-ADOPTADO",
+    "spec_sha256": "e327cf2083a90edd1ca790018a58e49318b0b7607e7e93c7b6de781ab8343d02",
+    "result": "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-TOTAL-TODOS-P",
+    "ic_results": [
+      "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-TOTAL-TODOS-IC-LO",
+      "RESULT-ENDISEG-PISOS-2021-IDENTIDAD-NO-CISGENERO-2021-TOTAL-TODOS-IC-HI"
+    ],
+    "denominador": "persona seleccionada de 15+; diseño y respuesta admisibles; ENDISEG 2021",
+    "ventana": "2021",
+    "p": 0.009345985794561595,
+    "ic95": [
+      0.008190402720069956,
+      0.010590484018401208
+    ],
+    "n": 44178
+  },
+  "TOTAL": {
+    "valor": "70.1",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina24",
+    "denominador": "mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "PSICO": {
+    "valor": "51.6",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina24",
+    "denominador": "mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "SEXUAL": {
+    "valor": "49.7",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina24",
+    "denominador": "mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "FISICA": {
+    "valor": "34.7",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina24",
+    "denominador": "mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "EDOMEX": {
+    "valor": "78.7",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina27",
+    "denominador": "mujeres de 15+ en Estado de México; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "CDMX": {
+    "valor": "76.2",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina27",
+    "denominador": "mujeres de 15+ en Ciudad de México; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "QRO": {
+    "valor": "75.2",
+    "unidad": "porcentaje",
+    "fuente": "INEGI-ENDIREH",
+    "localizador": "lámina27",
+    "denominador": "mujeres de 15+ en Querétaro; cualquier ámbito; vida",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  },
+  "PATERNIDAD": {
+    "valor": "cinco",
+    "unidad": "días laborables con goce de sueldo",
+    "fuente": "LFT",
+    "localizador": "art132 XXVII bis p36",
+    "denominador": "hombres trabajadores en relación cubierta por LFT; nacimiento o adopción",
+    "tipo": "FUENTE-PRIMARIA-EXTERNA",
+    "fecha_lectura": "2026-09-26"
+  }
+}

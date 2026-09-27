@@ -1,0 +1,42 @@
+[
+  {
+    "id": "RAND2025",
+    "url": "https://www.randstad.com.mx/sobre-nosotros/noticias/randstad-workmonitor-2025/",
+    "fecha_publicacion": "2025-01-23",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "datos globales; párrafo que distingue México del agregado global",
+    "tier": "(a) primaria México, encuesta privada, alcance de encuestados",
+    "hash_archivo_leido": "8f4c78e90821c6274abc7e54c2b001a85cd7ca6ea1143c422dc1d5aa9c1ac10e",
+    "metodo_extraccion": "regex país específico → salario y balance; sin trasladar agregado global",
+    "salario": 88,
+    "balance": 84,
+    "denominador": "Personas encuestadas por Randstad en México: importancia de factores para trabajo actual/futuro; no censo ni muestra nacional ENOE; ficha México n/ponderación no verificada en página."
+  },
+  {
+    "id": "RAND2026",
+    "url": "https://www.randstad.com.mx/noticias-rh/estudios/workmonitor-reporte-2026/",
+    "fecha_publicacion": "2026-01-22",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "pilares Liderazgo y Talento; página pública anterior al formulario",
+    "tier": "(a) primaria privada México; comunicado resumido",
+    "alcance": "Solo página pública leída mediante web; informe íntegro detrás de formulario no leído. No se usan sus cantidades ni se deriva cambio entre olas."
+  },
+  {
+    "id": "INEGI2025",
+    "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enoe/enoe2025_02.pdf",
+    "fecha_publicacion": "2025-02-25",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "pp. 1–3, definición PEA/PNEA y cuadro 1",
+    "tier": "(a) primaria México, encuesta probabilística ENOE; población 15+",
+    "alcance": "Lectura web dirigida a definiciones y denominadores de 2024T4 abierta; no literatura de preferencias ni salud; sin nueva cantidad externa."
+  },
+  {
+    "id": "NOM035",
+    "url": "https://sidof.segob.gob.mx/notas/docFuente/5541828",
+    "fecha_publicacion": "2018-10-23",
+    "fecha_lectura": "2026-09-26",
+    "localizador": "§7.2 control, autonomía, desarrollo, carga, jornada, familia, liderazgo",
+    "tier": "(a) documento normativo primario México; no encuesta",
+    "alcance": "Fuente histórica para categoría de riesgo, sin diagnóstico ni prevalencia ni asesoría de vigencia legal."
+  }
+]

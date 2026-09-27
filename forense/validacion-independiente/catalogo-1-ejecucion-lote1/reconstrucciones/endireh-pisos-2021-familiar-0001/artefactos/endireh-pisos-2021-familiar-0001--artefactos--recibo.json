@@ -1,0 +1,261 @@
+{
+  "manifiesto_sha256_recibido": "de73c528a563885a3b47c0ffa3a6e0c7792e10b6fce54609c5de00f59a5240d1",
+  "manifiesto_recibido": {
+    "paquete": "endireh-pisos-2021-familiar-0001",
+    "archivos": {
+      "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estimandos.tsv": "5631dc2b64c2a3c6b43c18e70266022a6c00aef2588c2cb009f071cdc953bc4a",
+      "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+      "metodo.md": "6095e4135ad2e983b660b525c60b4d64291bafc48d9c9becd870d43baff30fb2",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  },
+  "entradas": {
+    "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+    "estimandos.tsv": "5631dc2b64c2a3c6b43c18e70266022a6c00aef2588c2cb009f071cdc953bc4a",
+    "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+    "manifiesto.json": "de73c528a563885a3b47c0ffa3a6e0c7792e10b6fce54609c5de00f59a5240d1",
+    "metodo.md": "6095e4135ad2e983b660b525c60b4d64291bafc48d9c9becd870d43baff30fb2",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "insumos": [
+    {
+      "id": "endireh2021_bd_csv_zip",
+      "archivo": "endireh2021/bd_endireh_2021_csv.zip",
+      "sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/microdatos/bd_endireh_2021_csv.zip",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_bd_csv_zip.zip",
+      "sha256_recalculado": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+      "bytes": 78902567
+    },
+    {
+      "id": "endireh2021_cuestionario_a_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_a.pdf",
+      "sha256": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_a.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_a_pdf.pdf",
+      "sha256_recalculado": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+      "bytes": 2195532
+    },
+    {
+      "id": "endireh2021_cuestionario_b_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_b.pdf",
+      "sha256": "beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_b.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_b_pdf.pdf",
+      "sha256_recalculado": "beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689",
+      "bytes": 1176836
+    },
+    {
+      "id": "endireh2021_cuestionario_c_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_c.pdf",
+      "sha256": "793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_c.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_c_pdf.pdf",
+      "sha256_recalculado": "793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be",
+      "bytes": 1146041
+    },
+    {
+      "id": "endireh2021_cuestionario_general_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_general.pdf",
+      "sha256": "ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_general.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_general_pdf.pdf",
+      "sha256_recalculado": "ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a",
+      "bytes": 955790
+    },
+    {
+      "id": "endireh2021_diseno_muestral_pdf",
+      "archivo": "endireh2021/889463907183.pdf",
+      "sha256": "16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+      "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463907183.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_diseno_muestral_pdf.pdf",
+      "sha256_recalculado": "16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+      "bytes": 2242874
+    },
+    {
+      "id": "endireh2021_fd_pdf",
+      "archivo": "endireh2021/endireh2021_fd.pdf",
+      "sha256": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_fd.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_fd_pdf.pdf",
+      "sha256_recalculado": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180",
+      "bytes": 10369637
+    }
+  ],
+  "entradas_zip": [
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_FIN_ENTREV.csv",
+      "bytes": 20947583,
+      "crc32": "2d7db201"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_III.csv",
+      "bytes": 16366208,
+      "crc32": "645d02d4"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_IV.csv",
+      "bytes": 32325273,
+      "crc32": "0d307700"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_IX.csv",
+      "bytes": 44840569,
+      "crc32": "24f60c99"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_IX_2.csv",
+      "bytes": 29877442,
+      "crc32": "f0c1a62d"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_V.csv",
+      "bytes": 20902894,
+      "crc32": "9ac29f9e"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_VI.csv",
+      "bytes": 18304490,
+      "crc32": "5cf6ef0d"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_VII.csv",
+      "bytes": 45308495,
+      "crc32": "3b185001"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_VII_2.csv",
+      "bytes": 28901916,
+      "crc32": "a2f0ea06"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_VIII.csv",
+      "bytes": 48650482,
+      "crc32": "e959af9e"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_VIII_2.csv",
+      "bytes": 31670482,
+      "crc32": "6b2e798b"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_X.csv",
+      "bytes": 23258723,
+      "crc32": "24098f41"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XI.csv",
+      "bytes": 36995855,
+      "crc32": "238a3a52",
+      "sha256": "029bd8a4caaafa1b42e481fa3f243e9d24bf3752575e9f279cceefb1eaed36da"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XI_2.csv",
+      "bytes": 28277580,
+      "crc32": "fa784169"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XII.csv",
+      "bytes": 24763799,
+      "crc32": "b9e441b1"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XIII.csv",
+      "bytes": 28043970,
+      "crc32": "5e02e1cf"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XIII.I.csv",
+      "bytes": 36478810,
+      "crc32": "4823d2ea"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XIV.csv",
+      "bytes": 51515619,
+      "crc32": "2db502c6"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XIV_2.csv",
+      "bytes": 42538982,
+      "crc32": "508fd9ef"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XIX.csv",
+      "bytes": 19038270,
+      "crc32": "e26457f2"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XV.csv",
+      "bytes": 31287564,
+      "crc32": "49351b12"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XVI.csv",
+      "bytes": 23673044,
+      "crc32": "e779fdc9"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XVII.csv",
+      "bytes": 20396672,
+      "crc32": "a75697f0"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XVIII.csv",
+      "bytes": 23917487,
+      "crc32": "9e3fff1d"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_SEC_XX.csv",
+      "bytes": 20172715,
+      "crc32": "c21f0c1f"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TB_VD.csv",
+      "bytes": 19655618,
+      "crc32": "c1f3ccc4"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TSDem.csv",
+      "bytes": 84674491,
+      "crc32": "8a0d55ec",
+      "sha256": "3bb4e87373f8274aa9f2c99d700e0bc75868a3214646c15ee8f84409d7006f96"
+    },
+    {
+      "nombre": "bd_endireh_2021_csv/TVIV.csv",
+      "bytes": 21669131,
+      "crc32": "2e56c24c"
+    }
+  ],
+  "alcance": "Solo /entrada y /raw; sin consulta de resultados esperados ni contacto con preparador.",
+  "semilla": 20260923,
+  "replicas": 200,
+  "rng": "numpy.random.Generator(PCG64)",
+  "versiones": {
+    "python": "3.14.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3"
+  },
+  "auditoria": {
+    "filas_xi": 110127,
+    "filas_dem": 432746,
+    "elegibles": 110127,
+    "conocidas_elegibles": 110127,
+    "desconocidas_elegibles": 0,
+    "upm_marco": 17744,
+    "estratos": 617,
+    "singleton": 0
+  },
+  "estados": {
+    "RECONSTRUIDO": 50
+  }
+}

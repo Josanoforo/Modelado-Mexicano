@@ -173,6 +173,15 @@ def t02_duplicates():
     # diseño (`cmp` verificado al crear el congelado; `CONGELADO-v1_0.sha256`
     # registra el pin) -- mismo patrón de censo mecánico que `ADR-177`/`ADR-178`.
     EXCEPTED_HASH_GROUPS = (
+        # ACTO GEN2-TRAMITE-FIRMAS-20 (27/sep/2026): con cero FP de adopción ABIERTAS, los dos
+        # derivados de «pendientes de firma» quedan en solo cabecera (mismo esquema, por diseño).
+        frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
+                   "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv"}),
+        # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
+        # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-formal.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-horizonte.txt'}),
         frozenset({
             "forense/marco-candidatas-piloto-v1_0.tsv",
             "forense/prereg-duelo-v2/marco-congelado-piloto-v1_0.tsv",
@@ -214,6 +223,29 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # PR #1182: resumen de preflight sellado; identidad por expediente y acto.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/preflight-final/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json'}),
+        # Sync ENIF #1174 tras #1172: grupos exactos por instrumento; contenidos y sellos distintos.
+        frozenset({'forense/analisis/familias-2027/astra6-encig/calendario.md', 'forense/analisis/familias-2027/astra6-enif/calendario.md', 'forense/analisis/familias-2027/astra6-envipe/calendario.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/arranque.md', 'forense/analisis/familias-2027/astra6-enif/arranque.md', 'forense/analisis/familias-2027/astra6-envipe/arranque.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/inventario-sellos.json', 'forense/analisis/familias-2027/astra6-enif/inventario-sellos.json'}),
+        frozenset({'forense/analisis/familias-2027/astra6-encig/potencia.md', 'forense/analisis/familias-2027/astra6-enif/potencia.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-enif/contrato.md', 'forense/analisis/familias-2027/astra6-envipe/contrato.md'}),
+        frozenset({'forense/analisis/familias-2027/astra6-enif/ids-cierre.json', 'forense/analisis/familias-2027/astra6-envipe/ids-cierre.json'}),
+        frozenset({'tools/familias-2027/encig/cierre.py', 'tools/familias-2027/enif/cierre.py'}),
+        frozenset({'tools/familias-2027/encig/lector.py', 'tools/familias-2027/enif/lector.py'}),
+        # Sync #1172 con #1173: paquetes ENCIG/ENVIPE distintos; rutas congeladas y hashes propios.
+        frozenset({"forense/analisis/familias-2027/astra6-encig/calendario.md", "forense/analisis/familias-2027/astra6-envipe/calendario.md"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/arranque.md", "forense/analisis/familias-2027/astra6-envipe/arranque.md"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/potencia.json", "forense/analisis/familias-2027/astra6-envipe/potencia.json"}),
+        frozenset({"forense/analisis/familias-2027/astra6-encig/commit-1-hashes.json", "forense/analisis/familias-2027/astra6-envipe/commit1-hashes.json"}),
+        # ASTRA6-C2-ENVIPE-1: recibo exigido por nombre, evidencias de actos distintos.
+        frozenset({
+            "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-enif/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-cierre-material-1/recibo-para-claude.md",
+        }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
         # sus cuatro specs selladas (COMMIT-1), así que no se renombra.
@@ -232,6 +264,14 @@ def t02_duplicates():
             "forense/analisis/confianza-capital-social/lista-cerrada-P1.md",
             "forense/analisis/consumo-gasto/lista-cerrada-P1.md",
             "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+        }),
+        # ACTO GEN2-FRONT-3-PORTADA-1 (26/sep/2026): `gobierno/README.md` es la portada de la
+        # carpeta en GitHub (convención de nombre, contenido distinto), y `docs/informe.md` es el
+        # destino verbatim del botón «Leer el informe» del README firmado por dirección (§11).
+        frozenset({"README.md", "gobierno/README.md"}),
+        frozenset({
+            "docs/informe.md",
+            "forense/validaciones/GEN2-VALIDACION-R-ENVIPE-CSV-v1_0/INFORME.md",
         }),
         # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1 (25/sep/2026): lista cerrada P1 citada por ruta en la spec
         # sellada ENSU-SERIE-spec-v1_0.md (COMMIT-1); contenido distinto; con las tres anteriores en main
@@ -276,7 +316,10 @@ def t02_duplicates():
         # Los módulos de herramientas con paquete tienen identidad por ruta:
         # `pisos.py` e `__init__.py` pueden coexistir en dominios distintos.
         # El control por contenido sigue incluyendo todos los módulos.
-        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/")) and p.endswith(".py") else os.path.basename(p)
+        # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
+        nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/")):  # ASTRA6-C3: reports/recibos por lote, identidad por ruta.
+            nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
     for k, v in by_name.items():
@@ -1347,14 +1390,16 @@ def t19b_modelo_contador_14():
 #   escala del modelo -- ADR-57(a) excluye los tres β̂ marginales).
 # ───────────────────────────────────────────────────────────────
 def t19c_readme_derivadas():
-    r = os.path.join(ROOT, "README.md")
+    # GEN2-FRONT-3-PORTADA-1: la sección pasó de README.md a docs/estado.md
+    # (la portada no lleva tabla técnica); el contenido no cambió.
+    r = os.path.join(ROOT, "docs", "estado.md")
     if not os.path.exists(r):
-        fail("T19c", "no se pudo leer `README.md`")
+        fail("T19c", "no se pudo leer `docs/estado.md`")
         return
     s = read(r)
     m = re.search(r"^## Estado del modelo\b.*?(?=^## |\Z)", s, re.M | re.S)
     if not m:
-        fail("T19c", "README.md: no se encontró la sección `## Estado del modelo`")
+        fail("T19c", "docs/estado.md: no se encontró la sección `## Estado del modelo`")
         return
     bloque = m.group(0)
 
@@ -1376,22 +1421,22 @@ def t19c_readme_derivadas():
 
             mn = re.search(r"\*\*(\d+)\s*de\s*27\*\*\s*corridas del Hito D", bloque)
             if not mn:
-                fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+                fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                              "'**N de 27** corridas del Hito D'")
             elif int(mn.group(1)) != real_n:
-                fail("T19c", f"README.md declara {mn.group(1)} de 27 corridas del Hito D; "
+                fail("T19c", f"docs/estado.md declara {mn.group(1)} de 27 corridas del Hito D; "
                             f"el bloque append-only de {rel(h)} tiene {real_n} fichas con veredicto")
 
             md = re.search(r"—\s*\*\*([\dA-E·\s]+)\*\*", bloque)
             if not md:
-                fail("T19c", "README.md, `## Estado del modelo`: no se encontró el desglose por letra "
+                fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró el desglose por letra "
                              "(forma '**NLETRA·...**' tras un guion largo)")
             else:
                 declarado = dict((letra, int(n)) for n, letra in
                                   re.findall(r"(\d+)([A-E])", md.group(1)))
                 derivado = {k: v for k, v in letras.items() if v}
                 if declarado != derivado:
-                    fail("T19c", f"README.md declara desglose {declarado}; "
+                    fail("T19c", f"docs/estado.md declara desglose {declarado}; "
                                 f"derivado del bloque append-only: {derivado}")
 
     proc = os.path.join(ROOT, "milpa", "procedencia.yaml")
@@ -1409,19 +1454,19 @@ def t19c_readme_derivadas():
     # o la suite se pone roja otra vez.
     mcond = re.search(r"[Cc]ondicionales medidas\s*(\d+)\s*de\s*15", bloque)
     if not mcond:
-        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+        fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                      "'condicionales medidas N de 15'")
     elif int(mcond.group(1)) != real_medidas:
-        fail("T19c", f"README.md declara condicionales medidas {mcond.group(1)} de 15; "
+        fail("T19c", f"docs/estado.md declara condicionales medidas {mcond.group(1)} de 15; "
                     f"`grep -c 'clase: \"MEDIDO·PARCIAL\\|MEDIDO·NACIONAL' {rel(proc)}` da {real_medidas}")
 
     promovido = re.search(r"magnitud:\s*medid", ptxt, re.I) is not None
     mcoef = re.search(r"[Cc]oeficientes en escala del modelo\s*(\d+)\s*de\s*15", bloque)
     if not mcoef:
-        fail("T19c", "README.md, `## Estado del modelo`: no se encontró "
+        fail("T19c", "docs/estado.md, `## Estado del modelo`: no se encontró "
                      "'coeficientes en escala del modelo N de 15'")
     elif int(mcoef.group(1)) != 0 or promovido:
-        fail("T19c", f"README.md declara {mcoef.group(1)} de 15 coeficientes en escala; "
+        fail("T19c", f"docs/estado.md declara {mcoef.group(1)} de 15 coeficientes en escala; "
                     + ("`milpa/procedencia.yaml` promueve alguno a medido -- la cifra debe subir de 0"
                        if promovido else
                        "`milpa/procedencia.yaml` no sostiene un valor distinto de 0"))
@@ -2055,7 +2100,7 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
     # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
@@ -5181,7 +5226,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_16.md",
+    "canon/estado-programa-v1_17.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
     # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
@@ -7808,26 +7853,59 @@ def _repro_worker(strict, require_cableado):
     return FAILS, WARNS, SENAL, time.perf_counter() - started
 
 
+def _aislado_worker(nombre, strict, require_cableado):
+    """GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-D: un test pesado de solo lectura
+    en proceso nuevo (spawn), con el mismo contrato que `_repro_worker`."""
+    global STRICT, REQUIRE_CABLEADO
+    STRICT, REQUIRE_CABLEADO = strict, require_cableado
+    FAILS.clear()
+    WARNS.clear()
+    SENAL.clear()
+    started = time.perf_counter()
+    globals()[nombre]()
+    return FAILS, WARNS, SENAL, time.perf_counter() - started
+
+
+# GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-B/D (27/sep/2026). Medido en entorno
+# replicado del runner (PyYAML con libyaml, 4 CPU): de 8m22s de
+# `--baseline --parallel`, T32-quater 261 s, T32 151 s, T45 50 s, T35 49 s y
+# T36 18 s -- cada uno re-deriva el registro de corrida0 (~50 s) y corrían en
+# serie en el proceso principal. Defecto que evita: la cancelación del job
+# `suite` por tope de 10 min (26/sep). Cambia DÓNDE corren, no qué exigen:
+# se consumen en su posición original, igual que T35. Orden = más largo primero.
+_PESADOS_AISLADOS = ("t32_quater_pines_mesa", "t32_corrida0",
+                     "t45_legacy_desglose_suma", "t36_corredores_gen2")
+
+
 def _run_tests(tests, parallel=False):
-    # Sólo T35 sale del orden secuencial. Se consume en su posición original:
-    # baseline, orden de mensajes y T16 conservan el mismo contrato.
-    # spawn evita heredar módulos con rutas/estado parcheados por los fixtures.
+    # T35 y los `_PESADOS_AISLADOS` salen del orden secuencial. Se consumen en
+    # su posición original: baseline, orden de mensajes y T16 conservan el
+    # mismo contrato. spawn evita heredar módulos con rutas/estado parcheados
+    # por los fixtures.
     pool = None
     future = None
+    futuros = {}
     try:
         if parallel:
             if sum(fn is t35_repro for _, fn in tests) != 1:
                 raise ValueError("T35 debe aparecer exactamente una vez")
+            presentes = [n for n in _PESADOS_AISLADOS
+                         if any(getattr(fn, "__name__", None) == n
+                                and fn is globals().get(n) for _, fn in tests)]
             pool = ProcessPoolExecutor(
-                max_workers=1, mp_context=multiprocessing.get_context("spawn"))
+                max_workers=1 + len(presentes),
+                mp_context=multiprocessing.get_context("spawn"))
+            for n in presentes:
+                futuros[n] = pool.submit(_aislado_worker, n, STRICT, REQUIRE_CABLEADO)
             future = pool.submit(_repro_worker, STRICT, REQUIRE_CABLEADO)
         for name, fn in tests:
             before_f, before_w = len(FAILS), len(WARNS)
             started = time.perf_counter()
-            if parallel and fn is t35_repro:
+            if parallel and (fn is t35_repro or getattr(fn, "__name__", None) in futuros):
                 # result() propaga cancelación, excepción o muerte del worker.
                 # Nunca se interpreta ausencia de resultado como lista vacía.
-                fs, ws, signals, elapsed = future.result()
+                fut = future if fn is t35_repro else futuros[fn.__name__]
+                fs, ws, signals, elapsed = fut.result()
                 FAILS.extend(fs)
                 WARNS.extend(ws)
                 SENAL.extend(signals)
@@ -8324,7 +8402,7 @@ def t51_rotulos_par_unico():
 #   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
 #   se anota y se revisa.
 # ───────────────────────────────────────────────────────────────
-RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_16.md"
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_17.md"
 _T52_N_ANOTACIONES = 96
 _T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
 _T52_FILA_GOBERNANZA = (

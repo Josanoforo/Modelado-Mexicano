@@ -89,6 +89,42 @@ local.
 No reconstruyas el estado actual desde memoria, espejos o conversaciones
 anteriores cuando pueda consultarse directamente en el repositorio.
 
+## Lectura obligatoria de arranque
+
+Antes de explorar: `canon/MEMORIA-OPERATIVA.md` (≤ 80 líneas; régimen, herramientas, decisiones activas, «ya se intentó y no»).
+
+<!-- REGLAS-DE-LECTURA:INICIO (copia de canon/REGLAS-DE-LECTURA.md; test de igualdad tests/test_cableado_sesiones.py) -->
+## Reglas de lectura y herramientas (ACTO GEN2-TUBERIA-RENDIMIENTO-1, P1; fuente única desde GEN2-TUBERIA-CABLEADO-SESIONES-1)
+
+El contexto se gasta leyendo, no computando. Toda sesión:
+
+- `wc -l` antes de abrir; nunca `cat` ni lectura completa de un archivo de más de 200 líneas: `head -n`, `tail -n`, `sed -n 'a,bp'`, o Read con `offset`/`limit`.
+- `rg -c` (o `grep -c`) antes de listar coincidencias; `rg -l`, `rg --max-columns 160`.
+- `git diff --stat` antes de `git diff`; `git log --oneline -n N`, nunca `git log -p` sin ruta.
+- Tests: `pytest -q … | tail -n 20`; `python3 tests/check.py --rapido | tail -n 30`.
+- TSV grandes solo por lector CSV (`csv.DictReader` + `itertools.islice`), nunca por línea física; JSON por `jq`, YAML por `yq` (`yq '.[] | select(.id=="<id>")' data/manifiesto.yaml`).
+- Una fila, en una línea: `python3 tools/consulta.py result|corrida|celda|payload|fp|nc <id>`.
+
+**Derivados — se consultan, no se leen** (regenerados por comando; nunca `cat`):
+`data/corrida0/{corridas,resultados,usos,marcador-segmento}.tsv`, `data/corrida0/CALC-*/resultados.json`, `data/manifiesto.yaml`, `milpa/estimadores-por-segmento.yaml`, `data/curacion-universo/*.tsv`, `canon/L0/HISTORICO.md` (vista: `python3 tools/l0_vista.py`).
+
+**Se hace cumplir, no se aconseja.** En Claude Code, `tools/hook_lectura.py` (PreToolUse sobre Bash y Read) bloquea con salida 2: `cat`/`less`/Read sin rango sobre > 200 líneas, lectura completa de un derivado, `git log -p` sin ruta y `pytest` sin `-q`. Escape declarado: `# --permitir-lectura-completa` al final del comando Bash; queda registrado. Registro de cumplimiento: `forense/analisis/cableado/bloqueos.tsv`. Codex no ejecuta hooks: `tools/ci_guardias.py --ejecuta-huerfanos` marca WARN si el diff de la rama añade `cat` de un derivado.
+
+**Subagentes por pieza.** En un lote de ≥ 3 piezas, cada pieza corre en un subagente con perímetro propio y devuelve solo su tabla de resultado y su `git diff --stat`; el hilo principal ensambla, no relee. Ejemplo (Claude Code, herramienta Agent):
+`Agent(description="P2 de LOTE-X", prompt="Ejecuta solo la pieza P2 de forense/encargos/<encargo>.md. Perímetro: <rutas>. No edites fuera. Devuelve: tabla de resultado (≤ 15 filas) y git diff --stat. Nada más.")`
+En Codex: una tarea por pieza con el mismo perímetro y la misma forma de devolución.
+
+**Arranque.** Lee `canon/MEMORIA-OPERATIVA.md` antes de explorar. Clon parcial para sesiones de nube: `docs/sesiones.md`.
+<!-- REGLAS-DE-LECTURA:FIN -->
+
+## Cláusula de autonomía v1.0 (`3fbc487684b77b7f`)
+
+Citada por su id; texto leído de `forense/encargos/2026-09-24-GEN2-TUBERIA-RENDIMIENTO-1.md` §6:
+
+> 1. Discrepancias encargo↔repo las resuelve el ejecutor y las declara. 2. Firma con letra en choque e intención clara: INTERPRETACIÓN-DECLARADA, se sigue. 3. Lo redactable se redacta, rotulado PROPUESTO-POR-EJECUTOR, con fuente; mesa adopta al fusionar. 4. Bifurcación con opción recomendada: se ejecuta la recomendada. 5. PARO solo por D-19 estricta (dato reservado · sello · contador a mano/adoptar sin firma de contenido · procedimiento congelado · entorno). 6. Nunca: cifra tecleada, sello reescrito, reserva abierta, fuera de §9 sin declarar. 7. El «Hecho» no se rebaja; lo no alcanzado va a NO-CORRIDO.
+
+Reglas de Astra/Codex vigentes por firma: recibo de Claude obligatorio para toda rama que selle corridas o escriba en `canon/`; auto-merge solo `[deriva]`, `claude/encola-*`, `acto/gen2-tramite-*` (R(a), `FP-260923-GEN2-AUDITORIA-POST-HOC-ASTRA-1-39d2-01`, FIRMADA 24/sep).
+
 ## Perímetro
 
 Trabaja solo dentro del perímetro declarado por el encargo.

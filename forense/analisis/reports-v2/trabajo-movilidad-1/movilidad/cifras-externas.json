@@ -1,0 +1,22 @@
+[
+  {
+    "clave": "q1_persiste",
+    "valor": "50%",
+    "fuente": "CEEY2025",
+    "localizador": "p.6",
+    "unidad": "personas25-64",
+    "universo": "origen quintil inferior recursos económicos",
+    "estimando": "P(destinoQ1|origenQ1)",
+    "estado": "EXTERNA-PUBLICADA, no RESULT propio"
+  },
+  {
+    "clave": "q1_asciende",
+    "valor": "2%",
+    "fuente": "CEEY2025",
+    "localizador": "p.6",
+    "unidad": "personas25-64",
+    "universo": "origen quintil inferior recursos económicos",
+    "estimando": "P(destinoQ5|origenQ1)",
+    "estado": "EXTERNA-PUBLICADA, no RESULT propio"
+  }
+]

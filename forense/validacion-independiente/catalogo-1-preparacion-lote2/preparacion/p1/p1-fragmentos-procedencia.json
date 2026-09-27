@@ -1,0 +1,147 @@
+[
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-endireh2021-a-marco-bootstrap.md",
+    "sha256_fragmento": "fccbe8af077fe357b2853fb5f060b29ee8394b4750be17189183270a16d7284a",
+    "fuente": "data/corrida0/CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004/spec.md",
+    "sha256_fuente": "b20c36f441f9680607baf6f5519d13561615c66fa971de0c6538c9635be44c14",
+    "seleccion_fiel": "Línea3: desde remuestrea hasta Conserva..., excluir historia y resultados; se conserva norma remuestreo con aporte cero.",
+    "estado": "HUMANO-PREVIO-VERIFICADO-POR-ORDEN-DE-COMMITS",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "26f427a05d2d2a0ec42d722e63f51b4d2ec9539a",
+      "ultimo_commit_fuente": "26f427a05d2d2a0ec42d722e63f51b4d2ec9539a",
+      "sellos_metadatos": [
+        {
+          "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+          "sello_ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004/sello.json",
+          "primer_commit_sello": "7b18174c5969f0f356a18e76f6641ab752cf37d2",
+          "sha256_sello": "4de09138c1316c4d6e13a6f95db2dbf6154dd192b6e35a369893603220d53da7"
+        }
+      ],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTERIOR-A-COMMIT-DE-SELLO"
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-endireh2021-bc-diseno.md",
+    "sha256_fragmento": "39b0b6a379c4139439329a6736754bb2b5e193f4af0d867667efb0c64b1f8daf",
+    "fuente": "data/corrida0/CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001/spec.md",
+    "sha256_fuente": "11d49f2bbc3131bcef0d0197db1b14ea9e87806e97a39e84ec0e1e9eb0d3301a",
+    "seleccion_fiel": "Línea11: todo hasta Solo réplicas..., excluir última frase que contiene contraste observado GEN1.",
+    "estado": "HUMANO-PREVIO-VERIFICADO-POR-ORDEN-DE-COMMITS",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "c2be290b091f7cf5778c5bdea256147f6ecc81d1",
+      "ultimo_commit_fuente": "c2be290b091f7cf5778c5bdea256147f6ecc81d1",
+      "sellos_metadatos": [
+        {
+          "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001",
+          "sello_ruta": "data/corrida0/CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001/sello.json",
+          "primer_commit_sello": "a47bdc334729962ca73a71094eda6e75cf06c714",
+          "sha256_sello": "36ccd2d347323ec0c785da51bbae59e8915afd880b730aaa6b1de9ca5a361159"
+        }
+      ],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTERIOR-A-COMMIT-DE-SELLO"
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2024-dinero-familiares-definiciones.md",
+    "sha256_fragmento": "7817abe74a00b422f6f02ea676610bf4ae0106117f4f3390b2730fc530c9aabe",
+    "fuente": "forense/notas/2026-08-31-reglas-fase1-spec.md",
+    "sha256_fuente": "567cba5a819782bc040a2dbd36bd8828febcdd278aeca8ccf17657aa71832d3a",
+    "seleccion_fiel": "Líneas85–89; quitar cola de línea85 con N observado/referencia historial. IC describe bootstrap10k semilla42, no define muestreo ponderado exacto.",
+    "estado": "PREEXISTENTE-AL-CORTE",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "7f291de0d2245c586cde870369e9e71db9303c86",
+      "ultimo_commit_fuente": "26b8c82ea432994e64ba12177c52821ed8670f2c",
+      "sellos_metadatos": [
+        {
+          "calc": "CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1",
+          "sello_ruta": "data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/sello.json",
+          "primer_commit_sello": "25937a867f4e3e85b353ea5a3c0265e18f8296af",
+          "sha256_sello": "b9586ca8e41d042de895ad3258e119a8fedb68a35b2fa616e02ccc89ac8c381b"
+        }
+      ],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTECEDENCIA-AL-CALC-SUCESOR-VERIFICADA; ANTECEDENCIA-A-MEDICION-ORIGINAL-NO-VERIFICADA",
+      "reserva": "El sello comparado es sucesor técnico v1_1 de una medición original previa. Ser anterior a su sello no demuestra antecedencia a medición original. No elevar a HUMANO-PREVIO al recálculo original; documento de diseño de sucesor describe método original retrospectivamente."
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2024-dinero-familiares-diseno.md",
+    "sha256_fragmento": "8bfa1916c0f7314dda604fcd721ad9a597157111498f260f0ccfcbc18f1930df",
+    "fuente": "data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/spec.md",
+    "sha256_fuente": "e46cac7a2a717c93713ba2a5223383614bd7a2951e7a0f62deccc1347eb55746",
+    "seleccion_fiel": "Tabla líneas78–81: unidad, universo, ponderador y diseño; excluir script/n/punto/complemento. Bootstrap ponderado simple sin receta explícita: reserva visible.",
+    "estado": "PREEXISTENTE-AL-CORTE",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "fb43c8bab4106c3a66cfff50c364a6fa9809f692",
+      "ultimo_commit_fuente": "fb43c8bab4106c3a66cfff50c364a6fa9809f692",
+      "sellos_metadatos": [
+        {
+          "calc": "CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1",
+          "sello_ruta": "data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1/sello.json",
+          "primer_commit_sello": "25937a867f4e3e85b353ea5a3c0265e18f8296af",
+          "sha256_sello": "b9586ca8e41d042de895ad3258e119a8fedb68a35b2fa616e02ccc89ac8c381b"
+        }
+      ],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTECEDENCIA-AL-CALC-SUCESOR-VERIFICADA; ANTECEDENCIA-A-MEDICION-ORIGINAL-NO-VERIFICADA",
+      "reserva": "El sello comparado es sucesor técnico v1_1 de una medición original previa. Ser anterior a su sello no demuestra antecedencia a medición original. No elevar a HUMANO-PREVIO al recálculo original; documento de diseño de sucesor describe método original retrospectivamente."
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2021-piso-contrato.md",
+    "sha256_fragmento": "45dc590ceaf0688c2c5aed8f955db33c1d1681752b3c3112f82723a28e8c8b5f",
+    "fuente": "forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v2_0.md",
+    "sha256_fuente": "e9af9cdd4433cf68fcdc9cffb67cc5e7acdfe2f65310ce8396cd6182457ebca0",
+    "seleccion_fiel": "Líneas6–21: unidad/diseño/códigos/ejes/IC, sin historia ni valores observados.",
+    "estado": "PREEXISTENTE-AL-CORTE",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "e2d8d1674a982a5e3333843fff810e37cf5c979f",
+      "ultimo_commit_fuente": "e2d8d1674a982a5e3333843fff810e37cf5c979f",
+      "sellos_metadatos": [],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTECEDENCIA-NO-VERIFICADA",
+      "reserva": "No presentar como método anterior al resultado; existencia al corte y título preregistro no prueban antecedencia temporal. Requiere documento humano previo demostrado, sin reconstrucción desde código."
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2021-piso-posicional.md",
+    "sha256_fragmento": "e5ad2daec975d29092d4c110fad67d1d96818a1e08605414c358c2a78c4cbebb",
+    "fuente": "forense/prereg-caja/PISOS-ENIF2021-ejes-spec-v2_1.md",
+    "sha256_fuente": "38b38baa865a545ec347641591032d6bcf9160c9dad6f3c1ded9b228991ebfea",
+    "seleccion_fiel": "Líneas13–21: normas posicionales sucesoras, sin historia ni D9 observado.",
+    "estado": "HUMANO-PREVIO-VERIFICADO-POR-ORDEN-DE-COMMITS",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "262046606410e20ea445aac3119eafd0a0bd1e7d",
+      "ultimo_commit_fuente": "262046606410e20ea445aac3119eafd0a0bd1e7d",
+      "sellos_metadatos": [
+        {
+          "calc": "CALC-PISOS-ENIF2021-EJES-0003",
+          "sello_ruta": "data/corrida0/CALC-PISOS-ENIF2021-EJES-0003/sello.json",
+          "primer_commit_sello": "2d0a8b296d260b64759b9ad3e0d84a4fd25b61ad",
+          "sha256_sello": "795b960b5d23ea9a0ce801cd321f7537664d6c4f1ee9b0e3c59ae1f00524c707"
+        }
+      ],
+      "criterio": "Texto idéntico al corte y último commit fuente es ancestro estricto del primer commit sello de la corrida correspondiente; no se usan timestamps rebase como prueba.",
+      "veredicto": "ANTERIOR-A-COMMIT-DE-SELLO"
+    }
+  },
+  {
+    "fragmento": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-envipe-escolaridad-arbitro-previo.md",
+    "sha256_fragmento": "1842870ce0d5a5a9f7f94a46cfae49a51c1c7a8caac2d41fd0ef521b026e3f8a",
+    "fuente": "forense/notas/2026-09-02-MAESTRA35-L1-spec.md",
+    "sha256_fuente": "75831e2e5147c16c7ef1d6f66566e640bca1b99ea4c3b12cd128eddc91b84010",
+    "seleccion_fiel": "Tabla §1.2 líneas72–78 proyectada sólo columnas tramo y ENVIPE2025. Definición humana previa árbitro; no reconstrucción de código.",
+    "estado": "HUMANO-PREVIO-VERIFICADO-POR-ORDEN-DE-COMMITS",
+    "antecedencia": {
+      "commit_incorporacion_fuente": "e2dbd82692edf19abba92a4964f23c63ec254687",
+      "primer_commit_sello": "e78137e8d9a69fc201c14a7d8958a3af2eec6633",
+      "sello_ruta": "data/corrida0/CALC-PISOS-ENVIPE2024-EJES-0002/sello.json"
+    },
+    "remision_documental": [
+      "PISOS-ENVIPE2024-ejes-spec-v1_0.md líneas12–15: conversión acreditada NIV del árbitro",
+      "TRA-evade-norma-sxd12-spec-v1_0.md §0.3 líneas55–69: catálogo NIV2023/24/25 idéntico y mapeo humano mismo árbitro; fuente de alcance, no se presenta como previo2024 porque nació después."
+    ]
+  }
+]

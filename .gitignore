@@ -20,6 +20,8 @@ data/secretos.local.yaml
 .claude/*
 !.claude/commands/
 !.claude/settings.json
+# GEN2-TUBERIA-CABLEADO-SESIONES-1: hook SessionStart de memoria operativa.
+!.claude/hooks/
 .gitconfig
 .gitmodules
 .idea
