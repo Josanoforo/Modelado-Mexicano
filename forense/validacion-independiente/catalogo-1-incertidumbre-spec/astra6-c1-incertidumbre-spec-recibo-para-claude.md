@@ -28,3 +28,5 @@ Reservas materiales: cobertura nominal no acreditada; seis universos2011 pendien
 Gate final: `tests/check.py --rapido`,0FAIL597WARN. Los7WARN añadidos corresponden a4 firmas propuestas y3 reservas propias; los demás son heredados. Contadores de medición/adopción/celdas validadas sin cambio; sólo NC abiertas476→479. Main incorporado: `11602de8`, sin avances adicionales al cierre.
 
 PR de entrega: https://github.com/Josanoforo/Modelado-Mexicano/pull/1194 . Solicitud incluida en cuerpo; cierre local separado del cuerpo archivado.
+
+Sucesor tras revisión sobredf54ad05: auxiliar `p1/protocolo_v2.py`, congelación propia previa a18tests, incluida guarda antes de enumeración. Original y congelación inicial intactos. Ver `astra6-c1-pr1194-correccion-auxiliar-v2.md`; condiciones de preparación/acceso pendientes conservadas.
