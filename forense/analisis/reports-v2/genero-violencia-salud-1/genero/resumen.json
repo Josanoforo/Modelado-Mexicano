@@ -1,0 +1,32 @@
+{
+  "report": "corpus/reports-v2/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md",
+  "mapa_filas": 33,
+  "afirmaciones": 118,
+  "aclaracion": "Cláusulas editoriales; repeticiones y fuera mapa incluidos; no total de tesis independientes.",
+  "fuera_mapa": 43,
+  "dictamenes": {
+    "CONFIRMA": 8,
+    "MATIZA": 16,
+    "ROMPE": 1,
+    "SIN-CIFRA": 93
+  },
+  "cifras": 13,
+  "fuentes": 4,
+  "reglas": 3,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py",
+    "--check",
+    "--self-test"
+  ],
+  "reservas": [
+    "ENDISEG: sellado no adoptado, firma ABIERTA; cifra provisional.",
+    "Coeficientes Nuñez y estudios Arciniega/Castillo/Wheeler no leídos; cantidades retiradas.",
+    "No microdatos, reservas, recalculo ni revisión independiente externa.",
+    "Mayor velocidad actitudinal, jerarquías demográficas e impactos de intervenciones no identificados."
+  ]
+}

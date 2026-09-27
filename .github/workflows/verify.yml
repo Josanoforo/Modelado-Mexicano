@@ -14,7 +14,7 @@ name: Verificación del corpus
 #   1. CERO actions del marketplace. El repo es público: el checkout se hace
 #      con git plano, sin token y sin descargar nada de la CDN que falló.
 #      También sale actions/setup-python: ubuntu-latest ya trae Python 3.12.
-#   2. timeout-minutes: un job atascado muere en 10 min en vez de colgar 15
+#   2. timeout-minutes: un job atascado muere en su tope (suite y adicionales: 30 desde GEN2-TUBERIA-CI-TIEMPO-1) en vez de colgar
 #      y morir auto-cancelado, que es un estado que se lee como rojo.
 #
 # CORRECCIÓN (ACTO GEN2-E3-1 · READINESS-DEL-RUNNER, 8/sep/2026): el
@@ -47,7 +47,7 @@ permissions:
 jobs:
   suite:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
         run: |
@@ -88,7 +88,7 @@ jobs:
 
   adicionales:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 30
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
         run: |

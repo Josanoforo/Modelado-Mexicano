@@ -9,8 +9,16 @@
     "metodo": "entrevistas longitudinales; síntomas y valores autorreportados",
     "tier": "MEDIA para asociación; no identificación causal",
     "procedencia": "b",
-    "alcance": "Abstract primario PubMed recuperado: apoyo y referente asociados con menos síntomas; obligación sin asociación. PMC abierto bloqueado por recaptcha; no se afirma lectura integral.",
-    "fecha_consulta": "2026-09-26"
+    "alcance": "En esta tanda web.open PubMed devolvió cuerpo vacío; web.search recuperó abstract primario completo de ese PMID. Apoyo y referente asociados con menor sintomatología; obligación sin asociación. PMC4126584 bloqueado por reCAPTCHA. No se cotejó β −0.15 ni tablas completas.",
+    "fecha_consulta": "2026-09-26",
+    "estado_acceso_sucesor": "LEÍDO-RESUMEN-PRIMARIO",
+    "localizador": "PubMed PMID 23886552, Abstract: Methods/Results/Conclusions",
+    "periodo": "cuatro evaluaciones longitudinales durante ocho años; edades analizadas 12–22; artículo 2013",
+    "intentos": [
+      "https://pubmed.ncbi.nlm.nih.gov/23886552/",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC4126584/"
+    ],
+    "uso": "Corrección bibliográfica; no RESULT ni coeficiente propio; procedencia b, no frecuencia mexicana."
   },
   {
     "id": "F-GALAN",
@@ -24,7 +32,8 @@
     "procedencia": "a",
     "alcance": "Familismo atenúa asociación ansiedad-dificultades sociales; roles tradicionales la acentúan. Una fuente no probabilística, no frecuencia nacional.",
     "fecha_consulta": "2026-09-26",
-    "transporte": "comparación Italia corresponde a c, no se usa como frecuencia mexicana"
+    "transporte": "comparación Italia corresponde a c, no se usa como frecuencia mexicana",
+    "estado_acceso_sucesor": "NO-REVERIFICADA-EN-ESTA-TANDA; alcance heredado declarado, no certificación nueva"
   },
   {
     "id": "F-GUTIERREZ",
@@ -37,7 +46,8 @@
     "tier": "MEDIA mecanismo cualitativo local; ninguna frecuencia nacional",
     "procedencia": "a",
     "alcance": "Lealtad y silencio pueden facilitar ocultamiento y permanencia en violencia; selección penitenciaria limita transporte.",
-    "fecha_consulta": "2026-09-26"
+    "fecha_consulta": "2026-09-26",
+    "estado_acceso_sucesor": "NO-REVERIFICADA-EN-ESTA-TANDA; alcance heredado declarado, no certificación nueva"
   },
   {
     "id": "F-BRAVO",
@@ -50,7 +60,8 @@
     "tier": "MEDIA mecanismo local; ninguna frecuencia nacional",
     "procedencia": "a",
     "alcance": "Familia y pares facilitan ayuda; normas, género y estigma también retrasan ayuda formal. Resumen y secciones recuperadas en búsqueda; apertura DOI falló; no lectura integral.",
-    "fecha_consulta": "2026-09-26"
+    "fecha_consulta": "2026-09-26",
+    "estado_acceso_sucesor": "NO-REVERIFICADA-EN-ESTA-TANDA; alcance heredado declarado, no certificación nueva"
   },
   {
     "id": "F-YAN",
@@ -63,7 +74,8 @@
     "tier": "MEDIA asociación longitudinal; BAJA transporte",
     "procedencia": "b",
     "alcance": "Obligación familiar amortigua algunas asociaciones estrés-calidez; desenlace distinto de depresión. Resumen primario recuperado, no texto completo.",
-    "fecha_consulta": "2026-09-26"
+    "fecha_consulta": "2026-09-26",
+    "estado_acceso_sucesor": "BLOQUEADO-OPEN-PUBMED-RECAPTCHA; resumen heredado sin nueva certificación"
   },
   {
     "id": "F-CUIDADOS",
@@ -75,6 +87,7 @@
     "tier": "DOCUMENTAL; no evaluación de implementación",
     "procedencia": "a",
     "alcance": "Hoja de ruta para construir sistema; no prueba de cobertura universal ni demuestra inexistencia absoluta. Recuperado por búsqueda; apertura falló.",
-    "fecha_consulta": "2026-09-26"
+    "fecha_consulta": "2026-09-26",
+    "estado_acceso_sucesor": "NO-REVERIFICADA-EN-ESTA-TANDA; alcance heredado declarado, no certificación nueva"
   }
 ]
