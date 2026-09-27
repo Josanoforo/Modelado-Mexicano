@@ -1,0 +1,32 @@
+{
+  "estado": "EJECUTADO",
+  "comando": "python3 tests/check.py --rapido --baseline",
+  "main": "3aacda232b3b03f158950738f31aa4ea509d3162",
+  "main_fail": 0,
+  "rama_commit": "589f05e1",
+  "rama_fail": 5,
+  "introducidos": [
+    [
+      "T02",
+      "nombre normalizado colisiona: forense/analisis/astra5-genero-endireh/recibo-para-claude.md · forense/analisis/familias-2027/astra6-cierre-material-1/recibo-para-claude.md · forense/analisis/familias-2027/astra6-enif/recibo-para-claude.md · forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md"
+    ],
+    [
+      "T02",
+      "nombre normalizado colisiona: data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json · data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json · forense/analisis/familias-2027/astra6-cierre-material-1/preflight-final/resumen.json"
+    ],
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt · forense/analisis/familias-2027/astra6-enif/replay-oro.txt"
+    ],
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt · forense/analisis/familias-2027/astra6-enif/replay-formal.txt"
+    ],
+    [
+      "T02",
+      "contenido idéntico bajo nombres distintos: forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt · forense/analisis/familias-2027/astra6-enif/replay-horizonte.txt"
+    ]
+  ],
+  "clasificacion": "T02: colisiones de nombre y bytes idénticos de replay. No afectan estadísticas, identidad ni autorización; no heredados. No se modifica suite/CI ni se ocultan/borran testimonios.",
+  "impacto_material": "ninguno en estimación o contrato; gate rápido queda ROJO"
+}

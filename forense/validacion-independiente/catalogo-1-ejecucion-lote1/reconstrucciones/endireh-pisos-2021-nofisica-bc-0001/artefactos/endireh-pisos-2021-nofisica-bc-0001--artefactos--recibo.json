@@ -1,0 +1,103 @@
+{
+  "manifiesto_sha256": "bdb0b2ae1a01761795848a1fb8b69a002279622fe8a0b95f7a94992fe3c3dfc7",
+  "manifiesto_recibido": {
+    "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+    "archivos": {
+      "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estimandos.tsv": "4b124cc1d7f820a44e9ea37b2675cc0e679aa82ade18e82297297b9977bd4c04",
+      "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+      "metodo.md": "903d3c73a0438eed6176971150fde51fe2d11d77d34f23c30d623a439ff25268",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  },
+  "entradas_verificadas": {
+    "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+    "estimandos.tsv": "4b124cc1d7f820a44e9ea37b2675cc0e679aa82ade18e82297297b9977bd4c04",
+    "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+    "metodo.md": "903d3c73a0438eed6176971150fde51fe2d11d77d34f23c30d623a439ff25268",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "insumos": [
+    {
+      "id": "endireh2021_bd_csv_zip",
+      "archivo": "endireh2021/bd_endireh_2021_csv.zip",
+      "sha256": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/microdatos/bd_endireh_2021_csv.zip",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_bd_csv_zip.zip",
+      "sha256_recalculado": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_cuestionario_a_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_a.pdf",
+      "sha256": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_a.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_a_pdf.pdf",
+      "sha256_recalculado": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_cuestionario_b_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_b.pdf",
+      "sha256": "beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_b.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_b_pdf.pdf",
+      "sha256_recalculado": "beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_cuestionario_c_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_c.pdf",
+      "sha256": "793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_c.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_c_pdf.pdf",
+      "sha256_recalculado": "793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_cuestionario_general_pdf",
+      "archivo": "endireh2021/endireh2021_cuestionario_general.pdf",
+      "sha256": "ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_cuestionario_general.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_cuestionario_general_pdf.pdf",
+      "sha256_recalculado": "ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_diseno_muestral_pdf",
+      "archivo": "endireh2021/889463907183.pdf",
+      "sha256": "16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+      "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463907183.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_diseno_muestral_pdf.pdf",
+      "sha256_recalculado": "16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+      "verificacion_sha256": true
+    },
+    {
+      "id": "endireh2021_fd_pdf",
+      "archivo": "endireh2021/endireh2021_fd.pdf",
+      "sha256": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_fd.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta_recibida": "/raw/endireh2021_fd_pdf.pdf",
+      "sha256_recalculado": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180",
+      "verificacion_sha256": true
+    }
+  ],
+  "resultados_esperados_accedidos": false,
+  "revelacion_solicitada": false,
+  "alcance": "Solo /entrada y /raw; no se buscaron reservas ni resultados.",
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "semilla": 20260923,
+  "replicas": 200,
+  "rng": "numpy.random.Generator(PCG64)",
+  "autopruebas": "Reglas de unión, desconocidos, salto 14.3 y actos AB: aprobadas"
+}

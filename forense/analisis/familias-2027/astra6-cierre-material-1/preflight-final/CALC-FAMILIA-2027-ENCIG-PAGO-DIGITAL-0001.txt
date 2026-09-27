@@ -1,0 +1,23 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001   (data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+              arbol                  = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+              origin/main            = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+  [UNICOS] ids de resultados: 3 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/medidor.py
+              script_blob_sha256 = e6258c8d0683a9ebaa26fd45e156d804b72ca38972f393a193c4b2c1b7197997
+  inputs declarados: 1
+    [COINCIDE] IN-ENCIG-PISOS  origen=repo  ruta=forense/analisis/familias-2027/astra6-encig/pisos.json
+              sha256 real     = be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+              sha256 declarado= be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"apertura": "UNICA-COMPARTIDA", "autorizacion_futura": "NO-OTORGADA", "familia": "PAGO-DIGITAL", "lector_sha256": "6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30", "olas_objetivo": ["encig_2027"], "reglas_normativas_ruta": "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml", "result_emision": "RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-P0", "result_origen": "RESULT-ENCIG-MOR-C-P-ADOPTA"}
+  [DECLARADO] tolerancia = {"abs": 1e-12, "tipo": "absoluta"}
+  [DECLARADO] seed       = {'aplica': False}
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO

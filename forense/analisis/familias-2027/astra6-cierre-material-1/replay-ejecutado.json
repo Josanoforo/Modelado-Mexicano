@@ -1,0 +1,267 @@
+{
+  "estado": "EJECUTADO",
+  "commit": "3f92bd860323d1367be5197b3c0a3c115e7e43c9",
+  "entorno": "CAJA",
+  "numpy": "2.3.5",
+  "yaml": "6.0.3",
+  "raws_verificados": {
+    "envipe2025_csv": {
+      "archivo": "envipe2025_csv.zip",
+      "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    },
+    "encig25_base_datos_csv": {
+      "archivo": "encig25_base_datos_csv.zip",
+      "sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+    },
+    "enif_2024_enif_2024_bd_csv": {
+      "archivo": "enif_2024_bd_csv.zip",
+      "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039"
+    }
+  },
+  "comandos": [
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENIF-ORO-0002"
+      ],
+      "exit_code": 1,
+      "segundos": 3.417638063430786,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENIF-ORO-0002.txt",
+      "sha256": "933c1d74bffa83da777f25c430fceb3effef66377458f409313ab3118a211048",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENIF-ORO-0002"
+      ],
+      "exit_code": 0,
+      "segundos": 3.864985942840576,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt",
+      "sha256": "4f9b0a84b9d81b1a2b4f39809359b906851ee84747d2f5faaf85bd9b64bf83ea",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001"
+      ],
+      "exit_code": 1,
+      "segundos": 0.15044283866882324,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt",
+      "sha256": "55152dcf3ecab75346ba00290ace05eafbb33e7c65204435a8864f3edada163a",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001"
+      ],
+      "exit_code": 0,
+      "segundos": 0.09442806243896484,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt",
+      "sha256": "f697a95fce5596d23812afc33f1ae012477b91c73853be04d799b03a33467d6a",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001"
+      ],
+      "exit_code": 1,
+      "segundos": 0.1506955623626709,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt",
+      "sha256": "f8275656ad2a673a1cee09fcf7c3e8de9bff48ebedfecaaf2c813d6eca1c2cf8",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001"
+      ],
+      "exit_code": 0,
+      "segundos": 0.0994424819946289,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt",
+      "sha256": "d7398e7ff882e6ead219511949c2a8c47e072e8af7f01a6b1b2dd02a77f0342e",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-ENCIG-AUX-FAMILIAS-2027-0001"
+      ],
+      "exit_code": 1,
+      "segundos": 3.365039110183716,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-ENCIG-AUX-FAMILIAS-2027-0001.txt",
+      "sha256": "bdbe15d6a77cc15243697096c0200196a3621fdc91e4e131ba1658aaaf137a87",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-ENCIG-AUX-FAMILIAS-2027-0001"
+      ],
+      "exit_code": 0,
+      "segundos": 5.2706568241119385,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-ENCIG-AUX-FAMILIAS-2027-0001.txt",
+      "sha256": "6ae186ca90b81f572113e9476345eee881f1d54636d1409c9ac601b7ba5ec35c",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001"
+      ],
+      "exit_code": 1,
+      "segundos": 0.14938688278198242,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001.txt",
+      "sha256": "89bc0093ae561dd8a2c58d6960d0693bb606eb26a831ab5075960efd659caedf",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001"
+      ],
+      "exit_code": 0,
+      "segundos": 0.12794780731201172,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001.txt",
+      "sha256": "d42efc2e2dc67d52bbf5cd2315b658f1005ef45f792ce457a0f5a1894d29db99",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001"
+      ],
+      "exit_code": 1,
+      "segundos": 0.15167474746704102,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001.txt",
+      "sha256": "ffb34a2716aa8b39fe3fb154b73a02f72129870646581a59784a37b649751656",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001"
+      ],
+      "exit_code": 0,
+      "segundos": 0.12743258476257324,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001.txt",
+      "sha256": "ad176277b51926cd004f690be4c97b2f14b7eda3f03c62c7a6f86c2705384f4b",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4"
+      ],
+      "exit_code": 1,
+      "segundos": 0.13972067832946777,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4.txt",
+      "sha256": "87f153115128d77eab62edfe2cc4135266b2c0364e53c9b6ed123a3d09d53dd7",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4"
+      ],
+      "exit_code": 2,
+      "segundos": 0.08571648597717285,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4.txt",
+      "sha256": "c7cd45f8deac87207d917891ae9f29d2f4e893228939b1734ba8c15ce1d2c8e0",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "preflight",
+        "CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA"
+      ],
+      "exit_code": 1,
+      "segundos": 0.13806843757629395,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/preflight-CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA.txt",
+      "sha256": "dcecaaf8a99c1c1c24282fceebeaae81bde6bdbef96254752b18c10a70170d33",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/corrida0.py",
+        "verify",
+        "CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA"
+      ],
+      "exit_code": 2,
+      "segundos": 0.0883188247680664,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA.txt",
+      "sha256": "ef6c30babac313f3c7ac4ca5b8b5f81682c601ada0e5df5c69817b5aee330d66",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/familias-2027/enif/cierre.py",
+        "--verifica"
+      ],
+      "exit_code": 1,
+      "segundos": 6.282307147979736,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/cierre-enif.txt",
+      "sha256": "2abb20895ac3b0034fc1c58f3b2f13a1307770ba71db5fb06b06a74c0b7d470c",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/familias-2027/encig/cierre.py",
+        "--verifica"
+      ],
+      "exit_code": 1,
+      "segundos": 9.898918390274048,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/cierre-encig.txt",
+      "sha256": "98ed204e5ceec994c9020e8f2d81dc21fc4f3d9aa8cdce690630f994255edc6a",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    },
+    {
+      "comando": [
+        "/tmp/astra6-c2-cierre-venv/bin/python",
+        "tools/familias-2027/envipe/cierre.py",
+        "--verifica"
+      ],
+      "exit_code": 0,
+      "segundos": 3.2711970806121826,
+      "log": "forense/analisis/familias-2027/astra6-cierre-material-1/logs/cierre-envipe.txt",
+      "sha256": "902d5bb3d7f158af490032493106f4fb60665cf7d1d969c30d13a95d6af72931",
+      "alcance": "histórico abierto o emisión; nunca evaluación de R futura"
+    }
+  ]
+}

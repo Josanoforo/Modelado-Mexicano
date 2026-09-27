@@ -7,7 +7,12 @@
     "poblacion": "Consumidores en México, segmentos de poder de compra de la encuesta comercial",
     "metodo": "Encuesta; síntesis pública leída; no se recuperó el cuestionario completo",
     "procedencia": "(a)",
-    "alcance": "Calidad y precio declarados y preferencia física; no identifica elasticidad ni causalidad; consulta 2026-09-26"
+    "alcance": "Calidad y precio declarados y preferencia física; no identifica elasticidad ni causalidad; consulta 2026-09-26",
+    "estado_acceso": "LEÍDO",
+    "localizador": "Síntesis primaria, secciones Big on bricks and mortar y Quality, price and sustainability; líneas web 228–263",
+    "periodo_leido": "2024; fecha publicación 2024-03-04; fecha campo no localizada",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "fuente primaria externa; no RESULT ni refutación numérica mexicana"
   },
   {
     "id": "MK2012",
@@ -17,7 +22,12 @@
     "poblacion": "Consumidores de CDMX, Monterrey, Puebla y Querétaro; campo noviembre 2011",
     "metodo": "Encuesta presencial de gastos, concentrada en bienes de consumo rápido; documento primario leído pp.2-5",
     "procedencia": "(a)",
-    "alcance": "Historia urbana; satisfacción condicional entre quienes cambiaron; no panel ni población nacional actual; consulta 2026-09-26"
+    "alcance": "Historia urbana; satisfacción condicional entre quienes cambiaron; no panel ni población nacional actual; consulta 2026-09-26",
+    "estado_acceso": "LEÍDO",
+    "localizador": "PDF primario pp.2–5, nota1 y pasajes de cambio/satisfacción/marca privada",
+    "periodo_leido": "Campo noviembre2011; publicación agosto2012; cuota privada contextual 2012",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "fuente primaria externa; no RESULT ni refutación numérica mexicana"
   },
   {
     "id": "MK2023",
@@ -27,7 +37,12 @@
     "poblacion": "Respondentes Mexico Consumer Sentiment Survey 2023",
     "metodo": "Encuesta comercial; resumen y descripción de gráfica leídos",
     "procedencia": "(a)",
-    "alcance": "Trading down declarado; no comparable automáticamente con preguntas de 2011; consulta 2026-09-26"
+    "alcance": "Trading down declarado; no comparable automáticamente con preguntas de 2011; consulta 2026-09-26",
+    "estado_acceso": "LEÍDO",
+    "localizador": "Página primaria texto e imagen descrita, líneas web 9–19; fuente Mexico2023 Consumer Sentiment Survey",
+    "periodo_leido": "2023; cambios últimos doce meses; comparación2021 no homogénea con2011",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "fuente primaria externa; no RESULT ni refutación numérica mexicana"
   },
   {
     "id": "MK2025",
@@ -35,9 +50,14 @@
     "autor": "Agustín Gutiérrez, Bruno Furtado, José Ricardo Cota, Julio Rodríguez, Aaron Braiman y Andrea Biancardi; McKinsey/Kantar",
     "fecha": "2025-01-22",
     "poblacion": "Sector de alimentos minorista mexicano",
-    "metodo": "Investigación comercial con Kantar; síntesis pública leída, enlace a PDF volvió a página",
+    "metodo": "Resumen público leído; documento completo no obtenido; metodología no acreditada",
     "procedencia": "(a)",
-    "alcance": "Prioridad de valor, crecimiento marca privada y formatos descuento; no cifra nacional de mecanismo, no PDF leído; consulta 2026-09-26"
+    "alcance": "Valor, formatos descuento frente a comercio tradicional y crecimiento e-commerce; crecimiento/cuota marca privada NO acreditado por resumen",
+    "estado_acceso": "LEÍDO-PARCIAL",
+    "localizador": "Resumen público primario líneas4–8; texto completo McKinsey Direct no obtenido por este agente",
+    "periodo_leido": "Publicado2025-01-22; título2024; periodo detallado no acreditado desde resumen",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "fuente primaria externa; no RESULT ni refutación numérica mexicana"
   },
   {
     "id": "MK2026",
@@ -47,6 +67,26 @@
     "poblacion": "Encuesta de consumidores de grocery y panel de recibos estadounidense; no encuesta mexicana",
     "metodo": "Encuesta marzo 2026 y panel Numerator; sección precios/marca privada leída",
     "procedencia": "(c)",
-    "alcance": "Hipótesis importada: transparencia y calidad de marca privada pueden importar; no transporta frecuencia ni efectos a México; consulta 2026-09-26"
+    "alcance": "Hipótesis importada: transparencia y calidad de marca privada pueden importar; no transporta frecuencia ni efectos a México; consulta 2026-09-26",
+    "estado_acceso": "LEÍDO",
+    "localizador": "Página primaria introducción, secciones valor/marca privada y notas de encuestas/panel",
+    "periodo_leido": "Encuesta marzo2026; panel hogares estadounidenses2024–2025",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "fuente primaria externa; no RESULT ni refutación numérica mexicana"
+  },
+  {
+    "id": "VM2022",
+    "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2021.809101/full",
+    "autor": "Andrea Velandia-Morales, Rosa Rodríguez-Bailón y Rocío Martínez",
+    "fecha": "2022-01-07",
+    "poblacion": "Voluntarios reclutados en sur de España/redes; no muestra mexicana",
+    "metodo": "Dos experimentos preregistrados sobre desigualdad percibida; Andalucía ficticia y Bimboola",
+    "procedencia": "(c)",
+    "alcance": "Mecanismo experimental importado; resultado del estudio2 depende escala y no tiene efecto principal en conspicuo; no valida compensación poblacional mexicana",
+    "estado_acceso": "LEÍDO",
+    "localizador": "Afiliación; Study1 Participants/Procedure; Study2 Participants/Results y Table4; discusión",
+    "periodo_leido": "Publicación2022; fechas de campo no recuperadas",
+    "consulta": "2026-09-26",
+    "tipo_evidencia": "corrección de procedencia y alcance experimental; no RESULT ni refutación numérica mexicana"
   }
 ]

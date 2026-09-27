@@ -1,0 +1,87 @@
+{
+  "manifiesto_sha256": "a78bf4a6fb8d215c3fc7932f062f752c06d5a3f590ab236eb6ed524b5196171d",
+  "manifiesto_recibido": {
+    "paquete": "endireh-pisos-2011-modulos-0001",
+    "archivos": {
+      "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estimandos.tsv": "6f85a5fb85fce761193453013fe0e541979ed4ebeeb3d116bc044306503c7f4a",
+      "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "insumos.json": "cbc8d5041b43c2a46e6c61b8a9a606fc169e42ca34ef412572588d02dd5340b2",
+      "metodo.md": "bbe6b52b50520492fbe3cb7f95d4b00494e02331aac773fb0fbf9a81e82f49d8",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  },
+  "entradas_sha256": {
+    "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+    "estimandos.tsv": "6f85a5fb85fce761193453013fe0e541979ed4ebeeb3d116bc044306503c7f4a",
+    "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "insumos.json": "cbc8d5041b43c2a46e6c61b8a9a606fc169e42ca34ef412572588d02dd5340b2",
+    "manifiesto.json": "a78bf4a6fb8d215c3fc7932f062f752c06d5a3f590ab236eb6ed524b5196171d",
+    "metodo.md": "bbe6b52b50520492fbe3cb7f95d4b00494e02331aac773fb0fbf9a81e82f49d8",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "insumos": [
+    {
+      "entrada_recibida": {
+        "id": "endireh2011_cuestionario_a_pdf",
+        "archivo": "endireh2011/endireh11_m_unidas.pdf",
+        "sha256": "de9e6614564df6e36b86de7e6f9274d191546793da4f121876232ababb53ed2f",
+        "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_unidas.pdf",
+        "estado_acceso": "COINCIDE"
+      },
+      "ruta_efectiva": "/raw/endireh2011_cuestionario_a_pdf.pdf",
+      "sha256_calculado": "de9e6614564df6e36b86de7e6f9274d191546793da4f121876232ababb53ed2f",
+      "hash_verificado": true
+    },
+    {
+      "entrada_recibida": {
+        "id": "endireh2011_cuestionario_b_pdf",
+        "archivo": "endireh2011/endireh11_m_alg_vez_unida.pdf",
+        "sha256": "a6dca2905108ba78bc82f88b535c5e5c54a519edc6228fe04781e6b781c68d52",
+        "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_alg_vez_unida.pdf",
+        "estado_acceso": "COINCIDE"
+      },
+      "ruta_efectiva": "/raw/endireh2011_cuestionario_b_pdf.pdf",
+      "sha256_calculado": "a6dca2905108ba78bc82f88b535c5e5c54a519edc6228fe04781e6b781c68d52",
+      "hash_verificado": true
+    },
+    {
+      "entrada_recibida": {
+        "id": "endireh2011_cuestionario_c_pdf",
+        "archivo": "endireh2011/endireh11_m_solteras.pdf",
+        "sha256": "2bcc0e7a90e487ec37f6f760da3b5dad406d168737fcf577572bfecb2ebe4d1e",
+        "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/endireh11_m_solteras.pdf",
+        "estado_acceso": "COINCIDE"
+      },
+      "ruta_efectiva": "/raw/endireh2011_cuestionario_c_pdf.pdf",
+      "sha256_calculado": "2bcc0e7a90e487ec37f6f760da3b5dad406d168737fcf577572bfecb2ebe4d1e",
+      "hash_verificado": true
+    },
+    {
+      "entrada_recibida": {
+        "id": "endireh_2011_bd_endireh_2011_csv",
+        "archivo": "endireh2011/bd_endireh_2011_csv.zip",
+        "sha256": "8ece557b2ac1d78dc0bfdee1d8f9743b2da1e44184be340d22967d60b10d52e5",
+        "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2011/microdatos/bd_endireh_2011_csv.zip",
+        "estado_acceso": "COINCIDE"
+      },
+      "ruta_efectiva": "/raw/endireh_2011_bd_endireh_2011_csv.zip",
+      "sha256_calculado": "8ece557b2ac1d78dc0bfdee1d8f9743b2da1e44184be340d22967d60b10d52e5",
+      "hash_verificado": true
+    },
+    {
+      "entrada_recibida": {
+        "id": "endireh_2011_fd_endireh11",
+        "archivo": "endireh2011/fd_endireh11.xls",
+        "sha256": "b038c66d69bce990d9bd71cfc76dd19b5320532b3bba4efbb083b8b1ddc4755e",
+        "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2011/doc/fd_endireh11.xls",
+        "estado_acceso": "COINCIDE"
+      },
+      "ruta_efectiva": "/raw/endireh_2011_fd_endireh11.xls",
+      "sha256_calculado": "b038c66d69bce990d9bd71cfc76dd19b5320532b3bba4efbb083b8b1ddc4755e",
+      "hash_verificado": true
+    }
+  ],
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false
+}

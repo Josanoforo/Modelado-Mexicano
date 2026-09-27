@@ -1,0 +1,46 @@
+{
+  "commit": "fb8bb2a85b52f6669b30d6f3ddf9485622e3b16b",
+  "estado": "EJECUTADO-LIMPIO; bloqueos por inmutabilidad o emisión sin ejecución, no preflight VERDE para run",
+  "calcs": [
+    {
+      "calc": "CALC-ENCIG-AUX-FAMILIAS-2027-0001",
+      "exit_code": 1,
+      "sha256": "d45b2751240c38671ebfa577f5a00f77833e94c5c126fcd8352d54d4018faa0a"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001",
+      "exit_code": 1,
+      "sha256": "69ba18e44326db91d9bd975348524b833acc60fe7d7b6dcaeef0bbab3b9e5547"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001",
+      "exit_code": 1,
+      "sha256": "3f504bab449dca134ac8752436602ec2c1b77b155675af9ab0a3ea9fc75d40a3"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001",
+      "exit_code": 1,
+      "sha256": "3f34fcf7321e15057e94bfa1d373c96f8a62cbc3434f9f7249e3a5c02447ff07"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001",
+      "exit_code": 1,
+      "sha256": "51eb81fa81c3b76c97c2911d0814f9eefccdce6d4d3301ad77018c5f9d545212"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENIF-ORO-0002",
+      "exit_code": 1,
+      "sha256": "0313c6ce310effcd5f0a60057b1fa02617ee9f1912b18bed6877a6591226e8aa"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4",
+      "exit_code": 1,
+      "sha256": "deaaaa362e3653a3348d6ce3597511411b396482bd6947a9155748bfc8057817"
+    },
+    {
+      "calc": "CALC-FAMILIA-2027-ENVIPE-EVASION-NORMA",
+      "exit_code": 1,
+      "sha256": "bda9cb89003c6ae0393a13f94312701362ddff66a36f07b15d4274ba016fc3a5"
+    }
+  ]
+}
