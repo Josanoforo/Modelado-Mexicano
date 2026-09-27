@@ -3014,6 +3014,9 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-RECIBO-ASTRA6-2, 27/sep/2026: `E2`/`E5`/`E7` son letras de la hoja de firmas de
+    # GEN2-TRAMITE-NC-DECISIONES-1, citadas en el encargo verbatim (A.3), no rótulos de acto.
+    "forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2.md",
     # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1, 25/sep/2026: `E1`/`E2`/`E3` son las tres ERAS de
     # cuestionario ENSU (2013-15, 2016-20, 2021-25) de la lista cerrada y la spec sellada (COMMIT-1),
     # no rótulos de acto; los dos archivos están congelados y no se editan.
