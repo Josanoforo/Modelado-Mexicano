@@ -4,7 +4,7 @@ EJECUTADO: tres reports completos, decisiones editoriales explícitas, tablas y 
 
 | Pieza | Filas mapa | Registros | CONFIRMA | MATIZA | ROMPE | SIN-CIFRA | Cifras trazadas |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| dinero | 35 | 92 | 1 | 23 | 5 | 63 | 11 |
+| dinero | 35 | 94 | 1 | 24 | 5 | 64 | 11 |
 | tecnologia | 43 | 130 | 7 | 42 | 7 | 74 | 9 |
 | conocimiento | 39 | 134 | 5 | 28 | 2 | 99 | 8 |
 
@@ -25,3 +25,5 @@ Recibo independiente de Claude y aceptación de contenido: DECISIÓN-DE-MESA-PEN
 ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1 ejecutado por este worktree y su PR propio. Firma de misión reutilizada desde el archivo de lanzamiento y encargos precedentes; no duplicada. Verificaciones finales y commit de corte en verificaciones.md.
 
 PR propio: https://github.com/Josanoforo/Modelado-Mexicano/pull/1196 · revisión/recibo solicitados en el cuerpo del PR. Commit de producto `cc59f0e43`; el sucesor registra únicamente número del PR y este asiento. No fusión ni revisión independiente obtenida.
+
+Corrección posterior en #1196 por instrucción de mesa: FIN-022 y FIN-029 separados por objeto. La hipótesis indulgencia–riesgo no se refuta; tampoco se rompe la no equivalencia ingreso–disposición a pagar. ROMPE se limita a las lecturas país→persona y sobreprecio→valoración identificada en registros separados. Se regeneran decisiones, tabla y prosa de dinero; tecnología y conocimiento conservan sus bytes.

@@ -4,7 +4,7 @@ Conteos derivados de decisiones editoriales explícitas. Registros de cobertura 
 
 | Pieza | Registros | Filas mapa | CONFIRMA | MATIZA | ROMPE | SIN-CIFRA | Cifras |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| dinero | 92 | 35 | 1 | 23 | 5 | 63 | 11 |
+| dinero | 94 | 35 | 1 | 24 | 5 | 64 | 11 |
 | tecnologia | 130 | 43 | 7 | 42 | 7 | 74 | 9 |
 | conocimiento | 134 | 39 | 5 | 28 | 2 | 99 | 8 |
 
