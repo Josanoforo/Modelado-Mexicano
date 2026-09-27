@@ -1,0 +1,166 @@
+{
+  "ENEP_VIDA": {
+    "id": "ENEP_VIDA",
+    "fuente": "ENEP",
+    "valor": "28.6%",
+    "unidad": "porcentaje",
+    "denominador": "población urbana 18-65 no institucionalizada",
+    "periodo": "vida",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENEP_ANUAL": {
+    "id": "ENEP_ANUAL",
+    "fuente": "ENEP",
+    "valor": "13.9%",
+    "unidad": "porcentaje",
+    "denominador": "población urbana 18-65 no institucionalizada",
+    "periodo": "últimos 12 meses",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENEP_MES": {
+    "id": "ENEP_MES",
+    "fuente": "ENEP",
+    "valor": "5.8%",
+    "unidad": "porcentaje",
+    "denominador": "población urbana 18-65 no institucionalizada",
+    "periodo": "últimos 30 días",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "DEMORA_ANIMO": {
+    "id": "DEMORA_ANIMO",
+    "fuente": "DEMORA",
+    "valor": "14 años",
+    "unidad": "mediana",
+    "denominador": "personas con trastorno del ánimo que hicieron contacto",
+    "periodo": "inicio a primer contacto",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "DEMORA_ANSIEDAD": {
+    "id": "DEMORA_ANSIEDAD",
+    "fuente": "DEMORA",
+    "valor": "30 años",
+    "unidad": "mediana",
+    "denominador": "personas con trastorno de ansiedad que hicieron contacto",
+    "periodo": "inicio a primer contacto",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "DEMORA_SUSTANCIAS": {
+    "id": "DEMORA_SUSTANCIAS",
+    "fuente": "DEMORA",
+    "valor": "10 años",
+    "unidad": "mediana",
+    "denominador": "personas con trastorno sustancias que hicieron contacto",
+    "periodo": "inicio a primer contacto",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "CONTACTO_ANIMO": {
+    "id": "CONTACTO_ANIMO",
+    "fuente": "DEMORA",
+    "valor": "69.9%",
+    "unidad": "probabilidad acumulada",
+    "denominador": "casos trastorno ánimo",
+    "periodo": "por edad 50",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "CONTACTO_ANSIEDAD": {
+    "id": "CONTACTO_ANSIEDAD",
+    "fuente": "DEMORA",
+    "valor": "53.2%",
+    "unidad": "probabilidad acumulada",
+    "denominador": "casos trastorno ansiedad",
+    "periodo": "por edad 50",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "CONTACTO_SUSTANCIAS": {
+    "id": "CONTACTO_SUSTANCIAS",
+    "fuente": "DEMORA",
+    "valor": "22.1%",
+    "unidad": "probabilidad acumulada",
+    "denominador": "casos trastorno sustancias",
+    "periodo": "por edad 50",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENS22_TOTAL": {
+    "id": "ENS22_TOTAL",
+    "fuente": "ENS22",
+    "valor": "16.7%",
+    "unidad": "porcentaje tamizaje",
+    "denominador": "personas 20+",
+    "periodo": "semana previa, ola 2022",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENS22_JOVEN": {
+    "id": "ENS22_JOVEN",
+    "fuente": "ENS22",
+    "valor": "11.3%",
+    "unidad": "porcentaje tamizaje",
+    "denominador": "personas 20-59",
+    "periodo": "semana previa, ola 2022",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENS22_MAYOR": {
+    "id": "ENS22_MAYOR",
+    "fuente": "ENS22",
+    "valor": "38.3%",
+    "unidad": "porcentaje tamizaje",
+    "denominador": "personas 60+",
+    "periodo": "semana previa, ola 2022",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENS25_MUJER": {
+    "id": "ENS25_MUJER",
+    "fuente": "ENS25",
+    "valor": "20.4%",
+    "unidad": "porcentaje tamizaje",
+    "denominador": "mujeres 20+ con información",
+    "periodo": "semana previa, olas agrupadas 2023-2024",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "ENS25_HOMBRE": {
+    "id": "ENS25_HOMBRE",
+    "fuente": "ENS25",
+    "valor": "10.9%",
+    "unidad": "porcentaje tamizaje",
+    "denominador": "hombres 20+ con información",
+    "periodo": "semana previa, olas agrupadas 2023-2024",
+    "tipo": "EXTERNA-PRIMARIA",
+    "estado": "PUBLICADA-NO-RESULT"
+  },
+  "EDR_2015": {
+    "id": "EDR_2015",
+    "fuente": "EDR",
+    "result": "RESULT-EDR-SUICIDIO-PISOS-G-2015-SUICIDIOS-CIE",
+    "calc": "CALC-EDR-SUICIDIO-PISOS-0001",
+    "unidad": "conteo defunciones",
+    "denominador": "no aplica: conteo, no tasa poblacional",
+    "periodo": "2015 año registro",
+    "tipo": "RESULT",
+    "estado": "PROVISIONAL-NO-ADOPTADO",
+    "hash_resultados": "c39a931e574edb63032663479ff00a9aa4db4d0e10b03b4e953fb716ce977b74"
+  },
+  "EDR_2023": {
+    "id": "EDR_2023",
+    "fuente": "EDR",
+    "result": "RESULT-EDR-SUICIDIO-PISOS-G-2023-SUICIDIOS-CIE",
+    "calc": "CALC-EDR-SUICIDIO-PISOS-0001",
+    "unidad": "conteo defunciones",
+    "denominador": "no aplica: conteo, no tasa poblacional",
+    "periodo": "2023 año registro",
+    "tipo": "RESULT",
+    "estado": "PROVISIONAL-NO-ADOPTADO",
+    "hash_resultados": "c39a931e574edb63032663479ff00a9aa4db4d0e10b03b4e953fb716ce977b74"
+  }
+}

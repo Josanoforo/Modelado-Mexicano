@@ -1,0 +1,103 @@
+{
+  "genero": {
+    "report": "corpus/reports-v2/Reconfiguración_de_los_Guiones_de_Género_en_México__Masculinidades__Feminidades_y_Violencia_a_través_de_Clase__Generación_y_Región.md",
+    "mapa_filas": 33,
+    "afirmaciones": 118,
+    "aclaracion": "Cláusulas editoriales; repeticiones y fuera mapa incluidos; no total de tesis independientes.",
+    "fuera_mapa": 43,
+    "dictamenes": {
+      "CONFIRMA": 8,
+      "MATIZA": 16,
+      "ROMPE": 1,
+      "SIN-CIFRA": 93
+    },
+    "cifras": 13,
+    "fuentes": 4,
+    "reglas": 3,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py",
+      "--check",
+      "--self-test"
+    ],
+    "reservas": [
+      "ENDISEG: sellado no adoptado, firma ABIERTA; cifra provisional.",
+      "Coeficientes Nuñez y estudios Arciniega/Castillo/Wheeler no leídos; cantidades retiradas.",
+      "No microdatos, reservas, recalculo ni revisión independiente externa.",
+      "Mayor velocidad actitudinal, jerarquías demográficas e impactos de intervenciones no identificados."
+    ]
+  },
+  "violencia": {
+    "report": "corpus/reports-v2/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+    "mapa_filas": 50,
+    "afirmaciones": {
+      "registros": 140,
+      "nota": "Cláusulas con correspondencias; reiteraciones vinculadas, no tesis independientes; dos fusionadas incluidas",
+      "fuera_mapa": 17
+    },
+    "dictamenes": {
+      "MATIZA": 25,
+      "CONFIRMA": 9,
+      "SIN-CIFRA": 104,
+      "ROMPE": 2
+    },
+    "cifras": 9,
+    "fuentes": 6,
+    "fuentes_efectivamente_leidas": 5,
+    "reglas": 3,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/violencia/verifica.py",
+      "--write"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/violencia/verifica.py",
+      "--check",
+      "--self-test"
+    ],
+    "reservas": [
+      "ENVIPE adopción específica no hallada en vista: provisional, no piso catálogo",
+      "ENSU firma ABIERTA y hábitos No aplica; primeras olas sexo no completamente comparadas",
+      "Fuentes con fetch incompleto no sostienen cifras",
+      "No lectura microdato/ENVIPE2026/EDR2024; revisión externa solicitada"
+    ]
+  },
+  "salud": {
+    "report": "corpus/reports-v2/Salud_Mental_en_México__Prevalencia__Estigma_y_la_Brecha_entre_Necesidad_y_Atención.md",
+    "mapa_filas": 39,
+    "afirmaciones": 106,
+    "afirmaciones_aclaracion": "Registros editoriales: filas mapa compuestas, cláusulas divididas y fuera mapa; no tesis únicas. Correspondencias de reiteraciones en cobertura.",
+    "dictamenes": {
+      "MATIZA": 36,
+      "SIN-CIFRA": 68,
+      "ROMPE": 2
+    },
+    "cifras": 16,
+    "fuentes": 7,
+    "reglas": 3,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/salud/verifica.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/genero-violencia-salud-1/salud/verifica.py",
+      "--check",
+      "--self-test"
+    ],
+    "cobertura_lineas": 322,
+    "reservas": [
+      "EDR PROVISIONAL firma ABIERTA, vista reciente ausente; no tasa ni contraste tasa original",
+      "ENEP resumen primario, no foto actual",
+      "DOF mandato y transitorio verificados; no ejecución ni presupuesto futuro total",
+      "Migración lectura parcial, no cantidades firmes ni causalidad",
+      "Literatura no leída retirada; no adquisición microdato",
+      "Revisión editorial POR EJECUTOR; revisión externa solicitada por responsable"
+    ]
+  }
+}

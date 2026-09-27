@@ -1,0 +1,14 @@
+{
+  "corte": "1eeb855272b933642177e3f32d51adc89f1009a0",
+  "original": "corpus/reports/Salud_Mental_en_México__Prevalencia__Estigma_y_la_Brecha_entre_Necesidad_y_Atención.md",
+  "original_sha256": "fb2ddd662f703e8a6752a3dc690bf992741aaaa67c1bdbbf89905aca245a1f18",
+  "mapa": "canon/mapa-dominios-v1_1.tsv",
+  "mapa_sha256": "1e3b06565ac399fccc81942ec33604f5994b2c4b6c91d132d2fbcb3499e4b1ec",
+  "fecha_lectura": "2026-09-26",
+  "calcs": [
+    "CALC-EDR-SUICIDIO-PISOS-0001"
+  ],
+  "firma_edr": "FP-260926-GEN2-COLA-LOTE-1-3a49-03",
+  "estado_edr": "ABIERTA",
+  "consulta_vista": "tools/consulta.py result/corrida no encuentra EDR reciente; consulta por identidad en sellado y firma, sin editar derivados"
+}

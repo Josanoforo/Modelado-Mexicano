@@ -1,0 +1,20 @@
+{
+  "fecha_lectura": "2026-09-26",
+  "fuentes": [
+    {"id":"INEGI-ENDIREH","clase":"a","url":"https://www.inegi.org.mx/contenidos/programas/endireh/2021/doc/endireh2021_presentacion_ejecutiva.pdf","localizador":"láminas impresas 19,24,26,27; PDF índices 18,23,25,26","leido":"Diseño, definición de prevalencia, resultados generales, comparación 2016 y entidades.","limite":"Tabulado externo oficial, no RESULT del proyecto; cambios en batería digital afectan comparación."},
+    {"id":"LFT","clase":"a","url":"https://www.diputados.gob.mx/LeyesBiblio/pdf/LFT.pdf","localizador":"artículo 132 encabezado p33 y XXVII bis p36; PDF índices 32 y 35; última reforma indicada 14-05-2026","leido":"Encabezado obligaciones de personas empleadoras y fracción del permiso de paternidad.","limite":"Obligación legal para relación cubierta por LFT; no frecuencia de uso, cumplimiento o cobertura informal."},
+    {"id":"SC-H2025","clase":"a","url":"https://arxiv.org/html/2507.22592v1","localizador":"§3.1.3, §3.2.1, §4 Relationship-Level, §5, §7 Step 1","leido":"Población final, selección, modelo, asociación reparto/autonomía y limitación transversal explícita.","limite":"Preprint 2025; mujeres de 15+ con hijos casadas/unidas con varón; selección/imputación; asociación no causal y no generalizable a toda mujer."},
+    {"id":"MST2025","clase":"a (México) y c (comparación/marco)","url":"https://arxiv.org/pdf/2508.08166","localizador":"pp1–5 (índices 0–4), resumen, introducción y §2 datos","leido":"Ingresos relativos, robustez reportada, trabajo doméstico y mecanismos rivales; Intercensal 2015 y comparación Brasil/Panamá.","limite":"Preprint 2025; parejas con ambos ingresos laborales positivos y edades de 18 a 65; discontinuidad de distribución no efecto causal puro de normas; no usa CALC Intercensal vetado del proyecto."},
+    {"id":"NUNEZ-NO-LEIDO","clase":"b","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC5102330/","localizador":"abstract de búsqueda; apertura integral devuelve reCAPTCHA (tres intentos, incluido EuropePMC)","leido":"NO: sólo metadatos/abstract, excluido como evidencia firme.","limite":"Coeficientes del v1 retirados; no presentar como literatura efectivamente leída."}
+  ],
+  "cantidades_externas": {
+    "TOTAL":{"valor":"70.1","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina24","denominador":"mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida"},
+    "PSICO":{"valor":"51.6","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina24","denominador":"mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida"},
+    "SEXUAL":{"valor":"49.7","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina24","denominador":"mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida"},
+    "FISICA":{"valor":"34.7","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina24","denominador":"mujeres de 15+ residentes en viviendas particulares; cualquier ámbito; vida"},
+    "EDOMEX":{"valor":"78.7","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina27","denominador":"mujeres de 15+ en Estado de México; cualquier ámbito; vida"},
+    "CDMX":{"valor":"76.2","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina27","denominador":"mujeres de 15+ en Ciudad de México; cualquier ámbito; vida"},
+    "QRO":{"valor":"75.2","unidad":"porcentaje","fuente":"INEGI-ENDIREH","localizador":"lámina27","denominador":"mujeres de 15+ en Querétaro; cualquier ámbito; vida"},
+    "PATERNIDAD":{"valor":"cinco","unidad":"días laborables con goce de sueldo","fuente":"LFT","localizador":"art132 XXVII bis p36","denominador":"hombres trabajadores en relación cubierta por LFT; nacimiento o adopción"}
+  }
+}

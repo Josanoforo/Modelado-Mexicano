@@ -1046,3 +1046,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ### GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2 · tablas editoriales sucesoras
 
 `forense/analisis/reports-v2/consumo-familia-2/<carril>/<carril>-juicios.json`: fuente de decisiones explícitas por registro y cláusula; productores por carril regeneran las tablas vivas, sin decidir dictámenes. `forense/analisis/reports-v2/consumo-familia-2/verificacion/`: control por RESULT/hash, cobertura mapa+v1, registro local de evidencia y regresiones materiales; índice local por comando, sin confundir registros con tesis únicas. Consumidores: los dos reports v2 y recibo local. No modifica vistas globales. ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01.
+
+## Reports v2 · género, violencia ambiental y salud mental (`ACTO ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`)
+
+Tablas y productores independientes en `forense/analisis/reports-v2/genero-violencia-salud-1/genero/`, `violencia/` y `salud/`: decisiones por afirmación, cobertura de originales/mapa, evidencia y estados por identidad. Consumidores: tres homónimos en corpus/reports-v2 y `forense/analisis/reports-v2/genero-violencia-salud-1/indice-local.md`. Productor/verificador local `forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py`; deriva conteos desde decisiones explícitas, comprueba cifras y denominadores sin convertir todos los dígitos en estimaciones. No modifica el mapa, CALC ni índice global. ADR-260926-ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1-92f8-01.
