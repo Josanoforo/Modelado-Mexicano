@@ -20,6 +20,8 @@ PROPUESTO: hoja-firma-frontera.md ofrece disposición y objeto/hash exactos; las
 
 ## CONSUMIDO
 
-ASTRA6-C2-FRONTERA-1: ejecución sucesora del cuerpo único archivado por#1191. PR propio y recibo-para-claude.md registran entrega; la fusión y la decisión de contenido pertenecen a mesa. Sin adopción ni revisión independiente autoafirmada.
+ASTRA6-C2-FRONTERA-1: ejecución sucesora del cuerpo único archivado por#1191. PR propio y frontera-recibo-para-claude.md registran entrega; la fusión y la decisión de contenido pertenecen a mesa. Sin adopción ni revisión independiente autoafirmada.
 
 Entrega: [PR#1195](https://github.com/Josanoforo/Modelado-Mexicano/pull/1195), rama codex/astra6-c2-frontera-1; recibo independiente solicitado en el cuerpo del PR, no concedido.
+
+INTERPRETACIÓN-DECLARADA de nombre: el recibo exigido se entrega como frontera-recibo-para-claude.md para cumplir la unicidad de archivos CLI; T02 del commit completo detectó colisión del nombre genérico. Se conservaron contenido y función, actualizando enlaces propios sin tocar testimonios ajenos.
