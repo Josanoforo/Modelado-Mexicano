@@ -1,0 +1,79 @@
+{
+  "alcance": "Búsqueda de marcadores en inputs safe, no monitor de egreso ni prueba ausencia conexión",
+  "sesiones": [
+    {
+      "paquete": "endireh-pisos-2016-pareja-fisica-0002-v2",
+      "constancia_sha256": "5b792201c937cf11a1245df969cbf8f8331d71295b0b59fb4e99ef29e825138c",
+      "comandos": 10,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "enbiare-pisos-bienestar-0001-v3",
+      "constancia_sha256": "ba116ef829a9372e484d73469ab026e3d282a49d8b7d1ab76e5da68f768547ef",
+      "comandos": 15,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "eder-0003-v4",
+      "constancia_sha256": "59c35328034cef2f48a3716b5329502e1b8ce98359bf7f461f23975bdf37453e",
+      "comandos": 12,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "enfih-0001-v4",
+      "constancia_sha256": "da818d3ec9308bd9ad87172e7ead16efa2db6d1c4125ecc43b732ca6b61c1f50",
+      "comandos": 11,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "envipe-0001-v5",
+      "constancia_sha256": "696ed17e63a660b6e9f70980a262816eccd6e2e1e8e8dc2b3b35362e72abdc96",
+      "comandos": 14,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "encuci-0001-v3",
+      "constancia_sha256": "8a8c9f3ab5cb7bae512fff64f9d345394a2031898a1b47a7b2a5dba50cc467ab",
+      "comandos": 15,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "encodat-pisos-sustancias-0001-v3",
+      "constancia_sha256": "ebf8c129d4ff70c546feba3db4896b41afaf786caa2368127a0bcedb23245199",
+      "comandos": 12,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "enigh-0001-v4",
+      "constancia_sha256": "205bce822a1a569101c304323c9acb34e5749a4959f6396abb7fba0089c65f3d",
+      "comandos": 9,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "envipe-denuncia-seguro-0001-v4",
+      "constancia_sha256": "b600536771434c2394f3f396f1ec6a1051f6fddc164252ce2afe7ad478a67627",
+      "comandos": 16,
+      "marcadores_red": []
+    },
+    {
+      "paquete": "encig-0001-v5",
+      "constancia_sha256": "3329b034a8ee55d39b15fa20f2362ab7eb661b62a1ace287be846bb782a4e2eb",
+      "comandos": 14,
+      "marcadores_red": [
+        {
+          "timestamp": "2026-09-27T05:06:36.671Z",
+          "marcadores": [
+            "requests"
+          ]
+        }
+      ]
+    },
+    {
+      "paquete": "enigh2020-intensidad-remesas-0001-v4",
+      "constancia_sha256": "a257756f961a2bd609607130efeda169f6f3f411c100267a451fbd9ffb6dc6b2",
+      "comandos": 12,
+      "marcadores_red": []
+    }
+  ],
+  "lectura_dirigida": "Único marcador requests en ENCIG es variable local de filas estimandos.tsv (requests=list(csv.DictReader(...))), no cliente HTTP. No se observan comandos dirigidos a red en los inputs archivados de once sesiones. No acredita ausencia de egreso."
+}

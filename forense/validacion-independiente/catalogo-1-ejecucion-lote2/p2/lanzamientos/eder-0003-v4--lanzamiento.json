@@ -1,0 +1,22 @@
+{
+  "paquete": "eder-0003-v4",
+  "intento": 2,
+  "paquete_original": "eder-0003",
+  "version_entrada": 4,
+  "sha256_manifiesto": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+  "paquete_sha256": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+  "sha256_contenedor": "6c2a9e4e94c2f8a532c4478cb738aad24d1749e7f70901345d1b494b454f0aae",
+  "entrada_registrada_utc": "2026-09-27T04:58:25.631592+00:00",
+  "separacion_efectiva": true,
+  "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+  "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/eder-0003--intento2",
+  "launcher_sha256": "a766b2b4d4b6d08e9e004e6990983e34d876519e5c36dd76796c75482cd890d1",
+  "estado": "TERMINADO",
+  "intento_previo_preservado": "intentos/eder-0003-v4--intento1.json",
+  "motivo_reintento": "Fallo infraestructura API/routing antes de ejecución; sin números ni exposición a esperados",
+  "exit_code": 0,
+  "finalizacion_utc": "2026-09-27T05:01:33.293390+00:00",
+  "session_id": "01a0e13a-9074-77a3-bde1-612e3d9f110e",
+  "log_local": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/eder-0003--intento2/lanzamiento.log",
+  "log_sha256": "73d93b100b5e54de01b4c15b40e07a7c08dbbbed9bad178f1a190ade7baed40e"
+}

@@ -1,0 +1,607 @@
+[
+  {
+    "paquete_original": "eder-0003",
+    "paquete_sucesor": "eder-0003-v4",
+    "version_entrada": 4,
+    "calc": "CALC-EDER-0003",
+    "estimadores": 2,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "eder_2017_eder2017_bases_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3",
+        "sha256_actual": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+      },
+      {
+        "id": "eder_2017_eder2017_fd",
+        "estado": "COINCIDE",
+        "sha256_esperado": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541",
+        "sha256_actual": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541"
+      }
+    ],
+    "sha256_contenedor": "6c2a9e4e94c2f8a532c4478cb738aad24d1749e7f70901345d1b494b454f0aae",
+    "sha256_manifiesto": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+    "original_sha256_contenedor": "fc4245c212ced2a67492c79c30b06f084351206db5ca2a66b5d30b4e503f7451",
+    "original_sha256_manifiesto": "72327863f1b3ec253d7a4a2694114caf6ad280fdfd15cdc2502d02ce778b56a7",
+    "version": "v4",
+    "insumos": [
+      {
+        "id": "eder_2017_eder2017_bases_csv",
+        "archivo": "raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+        "sha256": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3"
+      },
+      {
+        "id": "eder_2017_eder2017_fd",
+        "archivo": "raw/eder_2017_eder2017_fd/eder2017_fd.pdf",
+        "sha256": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/eder-0003",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.225741+00:00"
+  },
+  {
+    "paquete_original": "enbiare-pisos-bienestar-0001",
+    "paquete_sucesor": "enbiare-pisos-bienestar-0001-v3",
+    "version_entrada": 3,
+    "calc": "CALC-ENBIARE-PISOS-BIENESTAR-0001",
+    "estimadores": 180,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "enbiare2021_bd_csv_zip",
+        "estado": "COINCIDE",
+        "sha256_esperado": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+        "sha256_actual": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354"
+      },
+      {
+        "id": "enbiare2021_fd_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9",
+        "sha256_actual": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9"
+      }
+    ],
+    "sha256_contenedor": "d13b4276f273dadd5a3581e0262c7370ca884e6c68d2c40f1320ef8b090ee592",
+    "sha256_manifiesto": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+    "original_sha256_contenedor": "f8da07914808d301a3501d8773d83de83b6f0a8e0af5b1691596c7090d75c4eb",
+    "original_sha256_manifiesto": "fe6c7836bf0035d69004a9292b127e3fc523abf80a947c94032558e9060bc1ca",
+    "version": "v3",
+    "insumos": [
+      {
+        "id": "enbiare2021_bd_csv_zip",
+        "archivo": "raw/enbiare2021_bd_csv_zip/enbiare_2021_base_de_datos_csv.zip",
+        "sha256": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354"
+      },
+      {
+        "id": "enbiare2021_fd_pdf",
+        "archivo": "raw/enbiare2021_fd_pdf/enbiare_2021_fd.pdf",
+        "sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enbiare-pisos-bienestar-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.259500+00:00"
+  },
+  {
+    "paquete_original": "encig-0001",
+    "paquete_sucesor": "encig-0001-v5",
+    "version_entrada": 5,
+    "calc": "CALC-ENCIG-0001",
+    "estimadores": 4,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "encig25_base_datos_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12",
+        "sha256_actual": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      },
+      {
+        "id": "encig25_cuestionario_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33",
+        "sha256_actual": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33"
+      },
+      {
+        "id": "encig25_estructura_base_datos_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2",
+        "sha256_actual": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2"
+      }
+    ],
+    "sha256_contenedor": "6ffcf8d66e78da936152ff94989246bd8e28fabd48265144c1e013f274a983bb",
+    "sha256_manifiesto": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+    "original_sha256_contenedor": "8220eedab90fb252a927072803530701afd7016b6c369537b76947e8b41022d6",
+    "original_sha256_manifiesto": "34b05c4f0f2a27b7e93183cc529100720d9c243c9bd7126108f0cdb24648d302",
+    "version": "v5",
+    "insumos": [
+      {
+        "id": "encig25_base_datos_csv",
+        "archivo": "raw/encig25_base_datos_csv/encig25_base_datos_csv.zip",
+        "sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12"
+      },
+      {
+        "id": "encig25_cuestionario_pdf",
+        "archivo": "raw/encig25_cuestionario_pdf/encig25_cuestionario.pdf",
+        "sha256": "807196d6aba5ee584fcc3710b6f01c6a43970b91c7f3c380f68109a4bd16bd33"
+      },
+      {
+        "id": "encig25_estructura_base_datos_pdf",
+        "archivo": "raw/encig25_estructura_base_datos_pdf/encig25_estructura_base_datos.pdf",
+        "sha256": "09e1b19bcb165979406865360bfdec95a9767640c58565b64d405ceb04e623a2"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/encig-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.379184+00:00"
+  },
+  {
+    "paquete_original": "encodat-pisos-sustancias-0001",
+    "paquete_sucesor": "encodat-pisos-sustancias-0001-v3",
+    "version_entrada": 3,
+    "calc": "CALC-ENCODAT-PISOS-SUSTANCIAS-0001",
+    "estimadores": 130,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a",
+        "sha256_actual": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a"
+      },
+      {
+        "id": "encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2",
+        "sha256_actual": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip",
+        "estado": "COINCIDE",
+        "sha256_esperado": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781",
+        "sha256_actual": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip",
+        "estado": "COINCIDE",
+        "sha256_esperado": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346",
+        "sha256_actual": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346"
+      }
+    ],
+    "sha256_contenedor": "b5e989a658d224686e4f7bd321b9ea60c8d5cb926932b8c21757ca0a31b0c613",
+    "sha256_manifiesto": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+    "original_sha256_contenedor": "cb6c1e387d3cf1eed9f8a515682163674e8a07e9ce990ca84e3c0e0263d01a12",
+    "original_sha256_manifiesto": "ce8e19f13e92e07c035ddc70ee98914c475bf63a7bb1bf24b691ab1c1a9b11fc",
+    "version": "v3",
+    "insumos": [
+      {
+        "id": "encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf",
+        "archivo": "raw/encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf/cuestionario_encodat_hogar_2016_2017.Cuestionarios.pdf",
+        "sha256": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a"
+      },
+      {
+        "id": "encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf",
+        "archivo": "raw/encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf/cuestionario_encodat_individual_2016_2017.Cuestionarios.pdf",
+        "sha256": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip",
+        "archivo": "raw/encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip/ENCODAT_2016_2017_Hogar.stata.stata.zip",
+        "sha256": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781"
+      },
+      {
+        "id": "encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip",
+        "archivo": "raw/encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip/ENCODAT_2016_2017_Individual.stata.stata.zip",
+        "sha256": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/encodat-pisos-sustancias-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.462795+00:00"
+  },
+  {
+    "paquete_original": "encuci-0001",
+    "paquete_sucesor": "encuci-0001-v3",
+    "version_entrada": 3,
+    "calc": "CALC-ENCUCI-0001",
+    "estimadores": 3,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "encuci2020_bd_dbf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+        "sha256_actual": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+      },
+      {
+        "id": "encuci2020_fd_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+        "sha256_actual": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638"
+      }
+    ],
+    "sha256_contenedor": "ca501109446afd1454cb019f60b62e46a0a9650382b882d213c2176463fe6f48",
+    "sha256_manifiesto": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+    "original_sha256_contenedor": "9c9277ef6345e6bfb95e5a6dc681cb02b2d7e0777ed87a0f459752efb0a0dc6c",
+    "original_sha256_manifiesto": "204c077e0ccd01449119c6251133466e2a70d598312af952c05ccb6c665f1564",
+    "version": "v3",
+    "insumos": [
+      {
+        "id": "encuci2020_bd_dbf",
+        "archivo": "raw/encuci2020_bd_dbf/BD_ENCUCI2020_dbf.zip",
+        "sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+      },
+      {
+        "id": "encuci2020_fd_pdf",
+        "archivo": "raw/encuci2020_fd_pdf/FD_ENCUCI2020.pdf",
+        "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/encuci-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.498914+00:00"
+  },
+  {
+    "paquete_original": "endireh-pisos-2016-pareja-fisica-0002",
+    "paquete_sucesor": "endireh-pisos-2016-pareja-fisica-0002-v2",
+    "version_entrada": 2,
+    "calc": "CALC-ENDIREH-PISOS-2016-PAREJA-FISICA-0002",
+    "estimadores": 92,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "endireh2016_cuestionario_a_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64",
+        "sha256_actual": "0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64"
+      },
+      {
+        "id": "endireh2016_cuestionario_b_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d",
+        "sha256_actual": "fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d"
+      },
+      {
+        "id": "endireh2016_cuestionario_c_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e",
+        "sha256_actual": "a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e"
+      },
+      {
+        "id": "endireh2016_cuestionario_general_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac",
+        "sha256_actual": "b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac"
+      },
+      {
+        "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10",
+        "sha256_actual": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10"
+      }
+    ],
+    "sha256_contenedor": "2a10840b5638e22bb733de9f57990e052fe7b5398ab98474a32ea0c64c1f56df",
+    "sha256_manifiesto": "911a6cae94ec87b374c99f5049629d61528ce56dca3538f9c2e09e2079f62ccf",
+    "original_sha256_contenedor": "8e2af4d0101d67bf407b71b3547adf590d54d1ed68c977b763993d16f0145aac",
+    "original_sha256_manifiesto": "562da5f362a225df0e0da84ee84747796c680c430086f2f4a34a2b3d2c3b06cd",
+    "version": "v2",
+    "insumos": [
+      {
+        "id": "endireh2016_cuestionario_a_pdf",
+        "archivo": "raw/endireh2016_cuestionario_a_pdf/endireh2016_cuestionario_a.pdf",
+        "sha256": "0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64"
+      },
+      {
+        "id": "endireh2016_cuestionario_b_pdf",
+        "archivo": "raw/endireh2016_cuestionario_b_pdf/endireh2016_cuestionario_b.pdf",
+        "sha256": "fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d"
+      },
+      {
+        "id": "endireh2016_cuestionario_c_pdf",
+        "archivo": "raw/endireh2016_cuestionario_c_pdf/endireh2016_cuestionario_c.pdf",
+        "sha256": "a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e"
+      },
+      {
+        "id": "endireh2016_cuestionario_general_pdf",
+        "archivo": "raw/endireh2016_cuestionario_general_pdf/endireh2016_cuestionario_general.pdf",
+        "sha256": "b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac"
+      },
+      {
+        "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+        "archivo": "raw/endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv/bd_mujeres_endireh2016_sitioinegi_csv.zip",
+        "sha256": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/endireh-pisos-2016-pareja-fisica-0002",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.718976+00:00"
+  },
+  {
+    "paquete_original": "enfih-0001",
+    "paquete_sucesor": "enfih-0001-v4",
+    "version_entrada": 4,
+    "calc": "CALC-ENFIH-0001",
+    "estimadores": 2,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "enfih2019_bd_csv_zip",
+        "estado": "COINCIDE",
+        "sha256_esperado": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5",
+        "sha256_actual": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
+      },
+      {
+        "id": "enfih2019_fd_xlsx",
+        "estado": "COINCIDE",
+        "sha256_esperado": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1",
+        "sha256_actual": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1"
+      }
+    ],
+    "sha256_contenedor": "bb2d1be51b3aeeb566972952c18141122e663de2dadc9aa72ba427b85411ffe6",
+    "sha256_manifiesto": "e534af31eb51017cb3a9067ab4491a4683b69e0c6d4a3d5fd259a21537604b9e",
+    "original_sha256_contenedor": "1f44f077cc3dd795c7dacc58c63279c7eecf898a8d55f883c6f39e42b84c21a5",
+    "original_sha256_manifiesto": "9188de7e1d33bbc56952d9b66adaf390f78b5fab7341f73e1cf7f896392dd147",
+    "version": "v4",
+    "insumos": [
+      {
+        "id": "enfih2019_bd_csv_zip",
+        "archivo": "raw/enfih2019_bd_csv_zip/enfih_2019_base_de_datos_csv.zip",
+        "sha256": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5"
+      },
+      {
+        "id": "enfih2019_fd_xlsx",
+        "archivo": "raw/enfih2019_fd_xlsx/enfih_2019_fd.xlsx",
+        "sha256": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enfih-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:30.766367+00:00"
+  },
+  {
+    "paquete_original": "enigh-0001",
+    "paquete_sucesor": "enigh-0001-v4",
+    "version_entrada": 4,
+    "calc": "CALC-ENIGH-0001",
+    "estimadores": 1,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "enigh2022_nc_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06",
+        "sha256_actual": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+      },
+      {
+        "id": "enigh2022_descripcion_base_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+        "sha256_actual": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c"
+      }
+    ],
+    "sha256_contenedor": "1ca8d7b9654c09a0055b5edb9917b05ae279171a5339a2aa066dc68c0ec3b206",
+    "sha256_manifiesto": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "original_sha256_contenedor": "641824d3e5a21383df48b6f78aa87a703fd58ddf98271ed03315bdb2d0abe2f5",
+    "original_sha256_manifiesto": "6d16a938deeeb70c089e11d31ee1308c9477acb2aaf4c83d3f7199034854ad09",
+    "version": "v4",
+    "insumos": [
+      {
+        "id": "enigh2022_nc_csv",
+        "archivo": "raw/enigh2022_nc_csv/enigh2022_nc_csv.zip",
+        "sha256": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+      },
+      {
+        "id": "enigh2022_descripcion_base_pdf",
+        "archivo": "raw/enigh2022_descripcion_base_pdf/enigh2022_descripcion_base_pdf.pdf",
+        "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enigh-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:31.011483+00:00"
+  },
+  {
+    "paquete_original": "enigh2020-intensidad-remesas-0001",
+    "paquete_sucesor": "enigh2020-intensidad-remesas-0001-v4",
+    "version_entrada": 4,
+    "calc": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "enigh2016_nc_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1",
+        "sha256_actual": "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1"
+      },
+      {
+        "id": "enigh2018_nc_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636",
+        "sha256_actual": "5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636"
+      },
+      {
+        "id": "enigh2020_nc_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4",
+        "sha256_actual": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+      }
+    ],
+    "sha256_contenedor": "1feff57faf7abb71b390d0077c8f0eb8dd4c7aef5aa339b5e8abe5ca3b828456",
+    "sha256_manifiesto": "86930854bc4451c70f64649af52450caa6e8b16582fd7b9596b55cf5b0a62b10",
+    "original_sha256_contenedor": "64ccb47614cecaf8308bb1c134497b29f5ab8124c4815280729c04e84025bee3",
+    "original_sha256_manifiesto": "50b4789248884a6bf83c55553b8fef07b57be7691decc2e3e961f433f8b0406a",
+    "version": "v4",
+    "insumos": [
+      {
+        "id": "enigh2016_nc_csv",
+        "archivo": "raw/enigh2016_nc_csv/enigh2016_nc_csv.zip",
+        "sha256": "95e30780dfff83305fd1293945a0a5ed04c4e4daed4b0d45b66343db09e8eca1"
+      },
+      {
+        "id": "enigh2018_nc_csv",
+        "archivo": "raw/enigh2018_nc_csv/enigh2018_nc_csv.zip",
+        "sha256": "5026cd951c109ac01c466aa22066beb7c6cbdcf7ecfc213967bd961d1243d636"
+      },
+      {
+        "id": "enigh2020_nc_csv",
+        "archivo": "raw/enigh2020_nc_csv/enigh2020_nc_csv.zip",
+        "sha256": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/enigh2020-intensidad-remesas-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:31.300890+00:00"
+  },
+  {
+    "paquete_original": "envipe-0001",
+    "paquete_sucesor": "envipe-0001-v5",
+    "version_entrada": 5,
+    "calc": "CALC-ENVIPE-0001",
+    "estimadores": 1,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "envipe2025_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+        "sha256_actual": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+      },
+      {
+        "id": "envipe2025_fd_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+        "sha256_actual": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad"
+      },
+      {
+        "id": "envipe2025_cuest_principal_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228",
+        "sha256_actual": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228"
+      },
+      {
+        "id": "envipe2025_cuest_modulo_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27",
+        "sha256_actual": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27"
+      }
+    ],
+    "sha256_contenedor": "03a508fb4bbf4f8d8155446b1277e5b4e8b4a978bcca666c39c3db30bcb7b994",
+    "sha256_manifiesto": "5e43d9c13edbfcaa4545d51614a9211884bd9e498162826bbee98ef6f16189e9",
+    "original_sha256_contenedor": "482b4f2bff42dc9d7b5a185016d9fb1ba75ff03adda7164c7749da840294e744",
+    "original_sha256_manifiesto": "7df66db94795359b89eb88ed55ba13885d04020540336c46a72446b908c3e16d",
+    "version": "v5",
+    "insumos": [
+      {
+        "id": "envipe2025_csv",
+        "archivo": "raw/envipe2025_csv/envipe2025_csv.zip",
+        "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+      },
+      {
+        "id": "envipe2025_fd_pdf",
+        "archivo": "raw/envipe2025_fd_pdf/fd_envipe2025.pdf",
+        "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad"
+      },
+      {
+        "id": "envipe2025_cuest_principal_pdf",
+        "archivo": "raw/envipe2025_cuest_principal_pdf/cuest_principal_envipe2025.pdf",
+        "sha256": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228"
+      },
+      {
+        "id": "envipe2025_cuest_modulo_pdf",
+        "archivo": "raw/envipe2025_cuest_modulo_pdf/cuest_modulo_envipe2025.pdf",
+        "sha256": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/envipe-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:31.356727+00:00"
+  },
+  {
+    "paquete_original": "envipe-denuncia-seguro-0001",
+    "paquete_sucesor": "envipe-denuncia-seguro-0001-v4",
+    "version_entrada": 4,
+    "calc": "CALC-ENVIPE-DENUNCIA-SEGURO-0001",
+    "estimadores": 4,
+    "estado": "MATERIALIZADO-SIN-RECALCULO",
+    "impedimentos": [],
+    "disponibilidad": [
+      {
+        "id": "envipe2025_csv",
+        "estado": "COINCIDE",
+        "sha256_esperado": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+        "sha256_actual": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+      },
+      {
+        "id": "envipe2025_fd_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+        "sha256_actual": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad"
+      },
+      {
+        "id": "envipe2025_cuest_principal_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228",
+        "sha256_actual": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228"
+      },
+      {
+        "id": "envipe2025_cuest_modulo_pdf",
+        "estado": "COINCIDE",
+        "sha256_esperado": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27",
+        "sha256_actual": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27"
+      }
+    ],
+    "sha256_contenedor": "f97d81bd90a97e1737887230807a6897d85427624fd3f5da74b6d01ad2d4a356",
+    "sha256_manifiesto": "399f2afec89565dacc9bacfa60b4cb4a53a20fcdd2f9ff581fd327243d614bbd",
+    "original_sha256_contenedor": "b58cf9bf4f0b9740c9fa6a18ea23398ea2113f6ee97aac7ecb5105b6a7a1ffcb",
+    "original_sha256_manifiesto": "78a17b3f34363947c6dc476100c80abd6e62d0666e992ada4ec55daf8e7a4e8f",
+    "version": "v4",
+    "insumos": [
+      {
+        "id": "envipe2025_csv",
+        "archivo": "raw/envipe2025_csv/envipe2025_csv.zip",
+        "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+      },
+      {
+        "id": "envipe2025_fd_pdf",
+        "archivo": "raw/envipe2025_fd_pdf/fd_envipe2025.pdf",
+        "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad"
+      },
+      {
+        "id": "envipe2025_cuest_principal_pdf",
+        "archivo": "raw/envipe2025_cuest_principal_pdf/cuest_principal_envipe2025.pdf",
+        "sha256": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228"
+      },
+      {
+        "id": "envipe2025_cuest_modulo_pdf",
+        "archivo": "raw/envipe2025_cuest_modulo_pdf/cuest_modulo_envipe2025.pdf",
+        "sha256": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27"
+      }
+    ],
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/ejecucion-lote2-20260926/envipe-denuncia-seguro-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "separacion_efectiva": true,
+    "revalidado_utc": "2026-09-27T04:55:31.416540+00:00"
+  }
+]

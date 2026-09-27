@@ -1,0 +1,2 @@
+llave	calc	result_id	celda	instrumento	ola	conducta	eje	segmento	unidad	naturaleza_ic	estado	estimacion	ic_inferior	ic_superior	motivo
+RESULT-ENIGH-A-P-COMPLEMENTO	CALC-ENIGH-0001	RESULT-ENIGH-A-P-COMPLEMENTO		ENIGH	2022	no_recibe_remesas	regla	familia.seguro.volatilidad_ausencia_estado	VER-SPEC	SIN-IC-IDENTIFICADO	NO-RECALCULABLE-DESDE-SPEC				Identidad insuficiente: metodo.md define A recibe remesas (remesas > 0), pero la llave pide no_recibe_remesas, unidad VER-SPEC y celda vacía. No hay asignación explícita ni regla de complemento; no se infiere por el nombre.

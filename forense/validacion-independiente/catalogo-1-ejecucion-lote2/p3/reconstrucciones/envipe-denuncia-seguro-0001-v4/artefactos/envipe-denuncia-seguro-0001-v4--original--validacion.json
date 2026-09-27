@@ -1,0 +1,19 @@
+{
+  "conteos_decimal_verificados": [
+    "RESULT-ENVIPE-SEG-CON-P-DENUNCIA",
+    "RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA",
+    "RESULT-ENVIPE-SEG-SIN-P-DENUNCIA",
+    "RESULT-ENVIPE-SEG-SIN-P-NO-DENUNCIA"
+  ],
+  "repeticion_identica": true,
+  "hashes_salidas": {
+    "reconstruccion.tsv": "d82c4e762ec6bd8e95077768d1fbf4ac9d724dcd56d143838077a55580c5e4ca",
+    "replicas.tsv": "02ad1fc175b9a69b1b27fbc825fa987257cf341e69b972393de092c581baa5ba",
+    "diagnostico.json": "4e019d545816352bc9a4b4a1a895806b9a05bfcf9eef48ddc947ae4e73b74403",
+    "recibo.json": "eefd2241f43ca39544c940d4e79658d941fba12fb3a5933db79195e33fe9a4a5",
+    "inventario_insumos.json": "bd45d87f3effb0af6b58f7a7a1f24300b849a08a10de942559992d28e10192f1",
+    "inventario_zip.json": "0ac969186279f4c15551137f66fc5b841d55b2f18c489cf26cc2dd42f6c7e2e8"
+  },
+  "replicas_en_rango": 2000,
+  "comparacion_con_resultados_esperados": false
+}

@@ -3,6 +3,7 @@
 import argparse
 from datetime import datetime, timezone
 import hashlib
+import gzip
 import json
 from pathlib import Path
 import subprocess
@@ -41,16 +42,24 @@ def receive(package, checkout, reconstruction, includes):
     (destination / (package + '--recibo.json')).write_text(json.dumps(receipt, ensure_ascii=False, indent=2) + '\n')
     (destination / (package + '--reconstruccion.tsv')).write_bytes(content)
     inventory = {}
+    mapping = {}
     for name in includes:
         source = Path(name)
         assert not source.is_absolute() and '..' not in source.parts
         assert not {'raw', 'documentacion', '.git'} & set(source.parts)
         assert source.suffix.lower() in {'.py', '.r', '.sh', '.md', '.tsv', '.json'}, 'Allowlist de artefactos agregados'
-        target = destination / 'artefactos' / source.parent / (package + '--' + source.name)
+        target = destination / 'artefactos' / source.parent / (package + '--original--' + source.name)
         target.parent.mkdir(parents=True, exist_ok=True)
-        target.write_bytes(subprocess.check_output(['git', 'show', commit + ':' + name], cwd=checkout))
-        inventory[name] = sha(target)
+        content = subprocess.check_output(['git', 'show', commit + ':' + name], cwd=checkout)
+        if source.suffix == '.tsv' or (source.suffix == '.json' and content.count(b'\n') > 200):
+            target = target.with_suffix(source.suffix + '.gz')
+            target.write_bytes(gzip.compress(content, mtime=0))
+        else:
+            target.write_bytes(content)
+        inventory[name] = hashlib.sha256(content).hexdigest()
+        mapping[name] = str(target.relative_to(destination))
     (destination / (package + '--artefactos-sha256.json')).write_text(json.dumps(inventory, indent=2) + '\n')
+    (destination / (package + '--rutas-originales.json')).write_text(json.dumps(mapping, ensure_ascii=False, indent=2) + '\n')
     proof = destination / (package + '--prueba-commit.json')
     command = ['python3', str(ROOT / 'tools/validacion/astra6_lote1/prueba_commit.py'), 'generar',
                '--checkout', str(checkout), '--commit', commit, '--ruta', relative]

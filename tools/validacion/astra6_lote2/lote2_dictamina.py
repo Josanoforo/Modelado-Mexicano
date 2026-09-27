@@ -10,12 +10,12 @@ import math
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[3]
 BASE=ROOT/'forense/validacion-independiente/catalogo-1-ejecucion-lote2'
-ALIASES={'punto':('punto','valor'),'ic95_inf':('ic95_inf','ic_025'),'ic95_sup':('ic95_sup','ic_975')}
+ALIASES={'punto':('punto','valor','p','estimacion'),'ic95_inf':('ic95_inf','ic_025','ic95_inferior'),'ic95_sup':('ic95_sup','ic_975','ic95_superior')}
 def rows(p):
     opener=gzip.open if str(p).endswith('.gz') else open
     with opener(p,'rt',newline='') as f:return list(csv.DictReader(f,delimiter='\t'))
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
-def dictamina(package):
+def dictamina(package, revision=''):
     contract=json.loads((BASE/'p1/contrato-adaptador-v1.json').read_text())
     freeze=json.loads((BASE/'p1/congelacion-adaptador-v1.json').read_text())
     assert sha(BASE/'p1/contrato-adaptador-v1.json')==freeze['contrato_sha256']
@@ -62,8 +62,8 @@ def dictamina(package):
         publication='AMBOS-SIN-CIFRA' if not expected_fields and not any(r.get(a,'') for a in ALIASES['punto']) else 'CIFRA-EMITIDA' if 'punto' in fields else 'DIFERENCIA-DE-PUBLICABILIDAD'
         out.append(dict(llave=key,estado=state,campos=fields,publicabilidad=publication,spec='SUFICIENTE-PARA-RECONSTRUCCION' if complete and fields else 'REQUIERE-DICTAMEN',motivo=r.get('motivo',''),notas=notes))
     destination=BASE/'p3/dictamenes';destination.mkdir(exist_ok=True)
-    with (destination/(package+'--dictamen.json')).open('x') as f:
+    with (destination/(package+'--dictamen'+revision+'.json')).open('x') as f:
         json.dump({'paquete':package,'dictamen_utc':datetime.now(timezone.utc).isoformat(),'estado_comparador':received['estado'], 'alcance':'Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.', 'alias_transporte':ALIASES, 'original_sha256':received['reconstruccion_sha256'],'commit_original':received['commit_reconstruccion'],'tolerancia':tolerance,'resultados':out},f,ensure_ascii=False,indent=2);f.write('\n')
     print(package,len(out),{s:sum(r['estado']==s for r in out) for s in {r['estado'] for r in out}})
 if __name__=='__main__':
-    import sys;dictamina(sys.argv[1])
+    import sys;dictamina(sys.argv[1],sys.argv[2] if len(sys.argv)>2 else '')

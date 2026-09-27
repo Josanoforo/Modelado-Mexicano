@@ -1,0 +1,39 @@
+{
+  "manifiesto_sha256": "399f2afec89565dacc9bacfa60b4cb4a53a20fcdd2f9ff581fd327243d614bbd",
+  "entradas": [
+    {
+      "archivo": "encargo.md",
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "bytes": 380
+    },
+    {
+      "archivo": "estimandos.tsv",
+      "sha256": "d368e14fa8b2fe85154297df861f4bf2d12c4b556caf53003e43aff80ec2a5e6",
+      "bytes": 841
+    },
+    {
+      "archivo": "insumos.json",
+      "sha256": "d77e571697340e909b6aad2855305a8aa815299b2c624b6e5caba83942b8ec76",
+      "bytes": 1236
+    },
+    {
+      "archivo": "metodo.md",
+      "sha256": "cb92fa3a98ecdeaf0903e9a9189f48d7fe780739f98916e17ccb1cdd68b73603",
+      "bytes": 1768
+    },
+    {
+      "archivo": "tolerancia.json",
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "bytes": 41
+    }
+  ],
+  "resultados_esperados_accedidos": false,
+  "revelacion_solicitada": false,
+  "estimandos_separadores_escapados": false,
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  }
+}

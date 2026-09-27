@@ -1,0 +1,90 @@
+{
+  "paquete": "encuci-0001-v3",
+  "dictamen_utc": "2026-09-27T05:14:40.128906+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "8f80d95fa276e0749cc152d3464541cd0309bf02b3b931f8a664a98477683542",
+  "commit_original": "44f4a5ab8159ffaf7ea38578730daa2cbf51141e",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENCUCI-A-P-CUALQUIERA",
+      "estado": "DISCREPA",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        },
+        "ic95_inf": {
+          "delta": 0.000490901397377827,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 3.369146371812182e-05,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENCUCI-B-P-RUR-AGR",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Identidad contradictoria: llave/result_id y conducta indican rural; segmento indica agravio_urbano; celda vacía y sin regla de precedencia. No se asigna ninguna celda a esta identidad."
+    },
+    {
+      "llave": "RESULT-ENCUCI-B-P-URB-AGR",
+      "estado": "DISCREPA",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        },
+        "ic95_inf": {
+          "delta": 0.00027250519571178633,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": -0.0003155711899374969,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    }
+  ]
+}

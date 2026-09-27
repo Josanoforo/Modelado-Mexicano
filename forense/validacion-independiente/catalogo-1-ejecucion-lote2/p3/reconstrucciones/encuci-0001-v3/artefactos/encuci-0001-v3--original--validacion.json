@@ -1,0 +1,18 @@
+{
+  "resultado": "PASS",
+  "repeticion_byte_a_byte": true,
+  "sumas_directas_decimal": true,
+  "errores_absolutos": {
+    "RESULT-ENCUCI-A-P-CUALQUIERA": "1.07826085249E-17",
+    "RESULT-ENCUCI-B-P-URB-AGR": "9.0636987329E-18"
+  },
+  "sin_cifras_para_identidad_ambigua": true,
+  "hashes_salidas": {
+    "reconstruccion.tsv": "8f80d95fa276e0749cc152d3464541cd0309bf02b3b931f8a664a98477683542",
+    "celdas_metodo.tsv": "4563be252880c1d775d4349b8343d9be81a54bed1e2427a15f00800fdab03265",
+    "auditoria.json": "c0e9c7090bff8d2efdea7198d2304fb9a20fffb7e30d07d9ee2736e4dc5e0691",
+    "inventario.json": "2df642548906c9e4e7cdafc6b411776d38316b9ea9a66c7eb3f3bff33d8de450",
+    "recibo.json": "982b3974967bb1c5724a2ee0ba3f8a584aa87ace8dea29c0d34d80cee8bb7480"
+  },
+  "comparacion_con_resultados_esperados": false
+}

@@ -1,0 +1,69 @@
+{
+  "identidades": 425,
+  "entradas_recibidas": 11,
+  "estados": {
+    "COINCIDE": 11,
+    "NO-RECALCULABLE-DESDE-SPEC": 312,
+    "DISCREPA": 10,
+    "NO-EVALUADO": 92
+  },
+  "punto": {
+    "COINCIDE": 275,
+    "NO-RECALCULABLE-DESDE-SPEC": 56,
+    "NO-EVALUADO": 92,
+    "DISCREPA": 2
+  },
+  "ic": {
+    "SIN-IC-DE-REFERENCIA": 10,
+    "NO-RECALCULABLE-DESDE-SPEC": 312,
+    "DISCREPA": 8,
+    "NO-EVALUADO": 92,
+    "COINCIDE": 3
+  },
+  "publicabilidad": {
+    "CIFRA-EMITIDA": 277,
+    "NO-DETERMINADA": 56,
+    "APARTADA-POR-DEFECTO-DE-PAQUETE": 92
+  },
+  "spec": {
+    "SUFICIENTE-PARA-RECONSTRUCCION": 13,
+    "INSUFICIENTE-PARA-PUNTO-E-IC": 54,
+    "INSUFICIENTE-PARA-IC": 256,
+    "RECONSTRUIDO-CON-CONVENCIONES-IC-NO-FIJADAS": 8,
+    "INSUFICIENTE": 2,
+    "PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 92
+  },
+  "cobertura_numerica_ciega": 277,
+  "denominador_lote": 425,
+  "ejecutables_por_adenda": 333,
+  "apartadas_por_adenda": 92,
+  "denominador_historico": 36143,
+  "denominador_overlay": 43188,
+  "cobertura_lote": 0.6517647058823529,
+  "cobertura_historico": 0.0076640013280579915,
+  "cobertura_overlay": 0.006413818653329628,
+  "denominadores_fuente": {
+    "corte": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+    "estado": "PREPARACION-NO-CIEGA; SIN-RECALCULO",
+    "historico_denominador": 36143,
+    "overlay_denominador": 43188,
+    "seleccion_denominador": 425,
+    "seleccion_en_overlay": 425,
+    "seleccion_fuera_overlay": 0,
+    "overlay_nuevas": 7045,
+    "paquetes": 11,
+    "raw_distintos": 13,
+    "grupos_raw_compartidos": 1,
+    "validacion_ciega_lote2": 0,
+    "consumidores_filas": 22,
+    "catalogo": "canon/catalogo-del-mexicano-v1_2.tsv",
+    "fuentes_sha256": {
+      "forense/validacion-independiente/catalogo-1/universo.tsv": "3bfc0700fd2ca5d8649ebc85933507ce9074e0ff4cb70725406be606d5187382",
+      "canon/catalogo-del-mexicano-v1_2.tsv": "2592df41cd2b76e211a69ad4ed4fc760cca41e4989f653922ad501a8cf715d4c",
+      "forense/validacion-independiente/catalogo-1-preparacion-lote2/astra6-c1-lote2-entrega-59.tsv": "75b1febc3adb8840a9dde0f99344dd30113040cc06233f387005a7a096716e48",
+      "data/corrida0/usos.tsv": "ea3513e3459fc9a96be0f407a9910bdc87e8dc93de155ff0879526047ae45eeb"
+    }
+  },
+  "C1_cerrado": false,
+  "alcance": "Selección por preparación, sin inferencia de tasa representativa global; dependencia por instrumento/ola."
+}
