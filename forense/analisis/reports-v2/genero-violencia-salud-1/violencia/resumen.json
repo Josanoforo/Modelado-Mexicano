@@ -1,0 +1,36 @@
+{
+  "report": "corpus/reports-v2/El_Efecto_Ambiental_de_la_Violencia_Crónica_en_México__Cómo_el_Miedo_Reorganiza_la_Conducta_Psicológica_de_la_Población.md",
+  "mapa_filas": 50,
+  "afirmaciones": {
+    "registros": 140,
+    "nota": "Cláusulas con correspondencias; reiteraciones vinculadas, no tesis independientes; dos fusionadas incluidas",
+    "fuera_mapa": 17
+  },
+  "dictamenes": {
+    "MATIZA": 25,
+    "CONFIRMA": 9,
+    "SIN-CIFRA": 104,
+    "ROMPE": 2
+  },
+  "cifras": 9,
+  "fuentes": 6,
+  "fuentes_efectivamente_leidas": 5,
+  "reglas": 3,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/violencia/verifica.py",
+    "--write"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/genero-violencia-salud-1/violencia/verifica.py",
+    "--check",
+    "--self-test"
+  ],
+  "reservas": [
+    "ENVIPE adopción específica no hallada en vista: provisional, no piso catálogo",
+    "ENSU firma ABIERTA y hábitos No aplica; primeras olas sexo no completamente comparadas",
+    "Fuentes con fetch incompleto no sostienen cifras",
+    "No lectura microdato/ENVIPE2026/EDR2024; revisión externa solicitada"
+  ]
+}

@@ -1046,3 +1046,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ## ASTRA6-C1-PAQUETES-2 · entradas sucesoras
 
 `forense/validacion-independiente/catalogo-1-preparacion-lote2/`: contenedores sucesores con versión explícita en `entradas/`, mapas y verificaciones no entregables en `preparacion/`. La correspondencia de P4 conserva los 59 paquetes de v1.1 y excluye los nueve de sesión01; delta v1.2 aparte. El comando `python3 tools/validacion/astra6_paquetes_lote2.py` comprueba hashes, identidad de estimandos, entradas, revisión semántica y disponibilidad sin leer productores ni esperados. Ninguna tabla registra recálculo, coincidencia o adopción.
+
+## Reports v2 · género, violencia ambiental y salud mental (`ACTO ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`)
+
+Tablas y productores independientes en `forense/analisis/reports-v2/genero-violencia-salud-1/genero/`, `violencia/` y `salud/`: decisiones por afirmación, cobertura de originales/mapa, evidencia y estados por identidad. Consumidores: tres homónimos en corpus/reports-v2 y `forense/analisis/reports-v2/genero-violencia-salud-1/indice-local.md`. Productor/verificador local `forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py`; deriva conteos desde decisiones explícitas, comprueba cifras y denominadores sin convertir todos los dígitos en estimaciones. No modifica el mapa, CALC ni índice global. ADR-260926-ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1-92f8-01.
