@@ -196,3 +196,14 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Por qué | Impacto | Sucesor |
+|---|---|---|---|
+| Recepción independiente de los tres reports y adopción de reglas propuestas | DECISIÓN-DE-MESA-PENDIENTE | No acredita aceptación independiente ni adopción; entrega editorial ejecutada | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-01 |
+| Adjudicación de exposición documental a PDF público ENADID2023 antes de reconocer reserva específica | DECISIÓN-DE-MESA-PENDIENTE | Fuente excluida; no se consume cantidad reservada ni se acredita ausencia de apertura | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-02 |
+
+## CONSUMIDO
+
+EJECUTADO por [PR #1197](https://github.com/Josanoforo/Modelado-Mexicano/pull/1197), rama `codex/astra6-c3-cuidado-migracion-pareja-1`, corte editorial/main incorporado `11602de8e375c10b90807d1b74e088f6b9e99c8b`. Tres reports, decisiones explícitas, fuentes y productores locales; recibo en `forense/analisis/reports-v2/cuidado-migracion-pareja-1/recibo-para-claude.md`. No fusionado, no adoptado, no recepción independiente acreditada. Incidente ENADID2023 declarado; fuente excluida y adjudicación pendiente. Cuerpo recibido conserva su prefijo y hash original; el SHA256SUMS de lanzamiento describe ese cuerpo recibido, no el apéndice posterior.

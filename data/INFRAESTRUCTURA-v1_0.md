@@ -1075,6 +1075,10 @@ Tablas y productores independientes en `forense/analisis/reports-v2/genero-viole
 | `…--ceguera.tsv` | ídem | rótulo de ceguera por paquete con evidencia a–e | recibos C1 siguientes | evidencia local, sin atestación externa |
 | `data/corrida0/validaciones-independientes.tsv` (filas añadidas) | a mano, por el acto | NO-PASA en 6 RESULT ENDIREH TABLA con ref y sha de su comparación | `corrida0 registro` (overlay) | no altera origen, rol ni aptitud |
 
+## ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1 · tablas editoriales por pieza
+
+Fuentes de juicio explícitas en `forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/`, `migracion/` y `pareja/`; productores locales derivan correspondencias originales/mapa, dictámenes y registros de cifras. `forense/analisis/reports-v2/cuidado-migracion-pareja-1/verifica_lote.py` ensambla/verifica índice local y hashes desde resúmenes de cada pieza. Consumidores: tres homónimos en corpus/reports-v2, recibo y revisión de reglas propuestas. No altera el mapa ni vistas globales. ADR-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-01.
+
 ## Reports v2 · dinero, tecnología y conocimiento (`ACTO ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1`)
 
 Decisiones, cobertura y evidencia por pieza en `forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/{dinero,tecnologia,conocimiento}/`. Productor/verificador `forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/verifica_lote.py` regenera tablas y el índice local desde juicios explícitos; comprueba trazabilidad, cobertura, denominadores y reservas sin decidir dictámenes por rangos. Consumidores: los tres homónimos en corpus/reports-v2, índice local y recibo. Sin cambios en mapa, sellos, catálogo, motor ni índice global. ADR-260926-ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1-9df0-01.

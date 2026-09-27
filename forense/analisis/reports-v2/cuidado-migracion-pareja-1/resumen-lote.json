@@ -1,0 +1,92 @@
+{
+  "vejez": {
+    "report": "corpus/reports-v2/Vejez_y_Cuidado_Intergeneracional_en_México__El_Debilitamiento_del_Seguro_Familiar.md",
+    "registros": 129,
+    "mapa_filas": 38,
+    "fuentes_leidas": 3,
+    "dictamenes": {
+      "CONFIRMA": 1,
+      "MATIZA": 42,
+      "ROMPE": 0,
+      "SIN-CIFRA": 86
+    },
+    "cifras": 7,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py",
+      "--check"
+    ],
+    "self_test": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/vejez/genera.py",
+      "--self-test"
+    ]
+  },
+  "migracion": {
+    "report": "corpus/reports-v2/Psychology_of_Mexico-US_Migration__Identity__Family__Aspiration__and_Wellbeing_in_2025.md",
+    "registros": 68,
+    "mapa_filas": 42,
+    "dictamenes": {
+      "SIN-CIFRA": 48,
+      "MATIZA": 19,
+      "ROMPE": 1
+    },
+    "cifras": 1,
+    "fuentes_leidas": 4,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py",
+      "--check"
+    ],
+    "self_test": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py",
+      "--self-test"
+    ]
+  },
+  "pareja": {
+    "report": "corpus/reports-v2/Elegir__Cortejar_y_Amar_en_el_México_de_Hoy__Díada_de_Pareja__Apps_de_Citas_y_Cambio_en_los_Guiones_de_Género.md",
+    "registros": 76,
+    "mapa_filas": 46,
+    "clausulas_descompuestas": 18,
+    "fuera_mapa": 12,
+    "pasajes": 131,
+    "dictamenes": {
+      "SIN-CIFRA": 48,
+      "CONFIRMA": 2,
+      "MATIZA": 24,
+      "ROMPE": 2
+    },
+    "cifras": 1,
+    "cifras_externas": 9,
+    "fuentes_leidas": 7,
+    "reglas": 4,
+    "comando_generar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/pareja/producir.py"
+    ],
+    "comando_verificar": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/pareja/producir.py",
+      "--check"
+    ],
+    "self_test": [
+      "python3",
+      "forense/analisis/reports-v2/cuidado-migracion-pareja-1/pareja/producir.py",
+      "--self-test"
+    ],
+    "reservas": [
+      "sin eficacia aplicada ni causalidad acreditada",
+      "no validación independiente EDER en loteC1",
+      "cantidades y escalas no cotejadas retiradas por afirmación"
+    ]
+  }
+}

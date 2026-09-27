@@ -1,0 +1,15 @@
+{"estado": "PASS", "mutaciones_detectadas": ["cobertura", "denominador", "veto-sin-punto", "cifra-sin-fuente", "fuente-no-leida"]}
+PASS: cuatro mutaciones materiales rechazadas
+RECHAZA: cifra externa inventada
+RECHAZA: cifra diferente de sellado
+RECHAZA: primera unión convertida en actual
+RECHAZA: selección juvenil borrada
+RECHAZA: condicional étnico invertido
+RECHAZA: pasaje omitido
+RECHAZA: fila mapa omitida
+RECHAZA: porcentaje sin registro
+RECHAZA: proporción sin registro
+RECHAZA: conteo sin registro
+RECHAZA: veto consumido
+SELF-TEST OK: errores materiales rechazados
+VERDE: lote producido/verificado

@@ -1,0 +1,50 @@
+[
+  {
+    "id": "P-R1",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "consumidor": "formularios atención/consulta",
+    "si": "requiere primera unión",
+    "entonces": "preguntar historia separada del estado actual",
+    "driver": "coherencia estimando",
+    "tier_frecuencia": "FUERTE descriptivo conRESULT-EDER-UNION-A-P-LIBRE",
+    "tier_mecanismo": "sin identificación causal",
+    "falsador": "instrumento demuestra equivalencia de ambos campos en soporte específico",
+    "limite": "no conducta futura; población20–54 alguna vez unidaEDER2017"
+  },
+  {
+    "id": "P-R2",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "consumidor": "analista violencia/escuela",
+    "si": "cita noviazgo juvenil",
+    "entonces": "declarar selección, ventana y sexo",
+    "driver": "coherencia población",
+    "tier_frecuencia": "fuente externa(a), sinFUERTE GEN2",
+    "tier_mecanismo": "sin causalidad/eficacia",
+    "falsador": "fuente primaria estima explícitamente universo general",
+    "limite": "selección solteras nunca cohabitantes"
+  },
+  {
+    "id": "P-R3",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "consumidor": "producto digital",
+    "si": "mide actividad usuarios",
+    "entonces": "mantener denominador de usuarios y medir exposición antes de segmentar",
+    "driver": "selección/oferta",
+    "tier_frecuencia": "indicio comercial(a)",
+    "tier_mecanismo": "HIPÓTESIS",
+    "falsador": "muestra representativa diseño público observa conectados/no conectados",
+    "limite": "no infiere clase social individual"
+  },
+  {
+    "id": "P-R4",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "consumidor": "comunicación inclusiva",
+    "si": "reporta identidad/etnia",
+    "entonces": "comprobar sentido de la probabilidad condicional",
+    "driver": "definición estimando",
+    "tier_frecuencia": "fuente externa(a)",
+    "tier_mecanismo": "sin causalidad",
+    "falsador": "tabla primaria estima denominador inverso",
+    "limite": "no conducta sexual por identidad"
+  }
+]

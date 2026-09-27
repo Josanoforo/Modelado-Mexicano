@@ -1,0 +1,86 @@
+[
+  {
+    "llaves": [
+      "RESULT-EDER-UNION-A-P-LIBRE"
+    ],
+    "alias": [
+      "RES-0043",
+      "familia.union.libre"
+    ],
+    "linaje": "CALC-EDER-0003, distinto de ENADID situación actual",
+    "consumida": true,
+    "veto": false,
+    "c1": "sin coincidencias de llave/calc en recibo3371, NO-EVALUADO-EN-LOTE1",
+    "defecto": "ningún defecto C1 señalado para esta identidad; IC catálogo no identificado y no consumido",
+    "efecto": "no atribuir validación independiente; no sustituir estado actual",
+    "conclusiones": [
+      "resumen1",
+      "patrón1",
+      "P-R1"
+    ],
+    "corte": "11602de8"
+  },
+  {
+    "llaves": [
+      "RESULT-ENDIREH2021-NF-BC-TABLA#494",
+      "RESULT-ENDIREH2021-NF-BC-TABLA#543"
+    ],
+    "alias": [
+      "ayuda_bc edad60+",
+      "denuncia_bc edad60+"
+    ],
+    "linaje": "CALC-ENDIREH-PISOS-2021-NOFISICA-BC-0001",
+    "consumida": false,
+    "veto": false,
+    "c1": "DISCREPA punto; ACOTAR en recibo",
+    "defecto": "EDAD98/99 no especificada admitida en corte60+; exclusión/inclusión global requiere sucesor",
+    "efecto": "reserva de cifra/alcance para ese corte; no extensión automática a noviazgo solteras15–24",
+    "conclusiones": [
+      "auditoría C1",
+      "no13.6 autoridad universal"
+    ],
+    "corte": "11602de8"
+  },
+  {
+    "llaves": [
+      "RESULT-ENDIREH2011-MOD-TABLA#1656",
+      "RESULT-ENDIREH2011-MOD-TABLA#1657",
+      "RESULT-ENDIREH2011-MOD-TABLA#1658",
+      "RESULT-ENDIREH2011-MOD-TABLA#1659",
+      "RESULT-ENDIREH2011-MOD-TABLA#1660",
+      "RESULT-ENDIREH2011-MOD-TABLA#1661"
+    ],
+    "alias": [
+      "pareja_institucion01–06"
+    ],
+    "linaje": "CALC-ENDIREH-PISOS-2011-MODULOS-0001",
+    "consumida": false,
+    "veto": false,
+    "c1": "PROPONER-SUSPENDER en recibo postmerge",
+    "defecto": "spec entre afectadas, productor entre solicitantes de ayuda",
+    "efecto": "no transportar a no reconocimiento ni a tasa de ayuda de todas las víctimas",
+    "conclusiones": [
+      "patrón4",
+      "auditoría denominadores"
+    ],
+    "corte": "11602de8"
+  },
+  {
+    "llaves": [
+      "Intercensal2015"
+    ],
+    "alias": [
+      "piso nacional migración"
+    ],
+    "linaje": "payloadEstadoMéxico",
+    "consumida": false,
+    "veto": true,
+    "c1": "firmaTRAMITE-FIRMAS-20 A6",
+    "defecto": "soloEstadoMéxico no población nacional",
+    "efecto": "ninguna cifra de migración ni guiones de pareja se sostiene con este objeto",
+    "conclusiones": [
+      "migración SIN-CIFRA"
+    ],
+    "corte": "11602de8"
+  }
+]
