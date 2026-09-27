@@ -47,6 +47,7 @@ tools/corrida0.py	`corrida0` -- CLI del registro GEN2 (PLAN-FINAL-GEN2 v2.0, B-1
 tools/crosswalk_tablas_fd.py	Publica el crosswalk de tablas entre el payload y su descriptor (FD).
 tools/delta_comparacion.py	Comparacion explicita y reproducible entre dos valores identificados.
 tools/delta_pin_superado.py	Delta del pin de un `resultado_id` íntegramente superado — por comando.
+tools/deriva_cifras.py	Derivador de cifras compartido para documentos del programa.
 tools/deriva_diferidas_fp172.py	Deriva, para cada variable_id EXISTE-SATISFACE de data/cruce-inverso-v1_1.tsv,
 tools/deriva_resumen.py	Construye el resumen fechado del universo sin confundir adquisición e inspección.
 tools/deriva_serie_envipe_completa.py	Deriva la vista anual 2010–2024 de p(C1,U1) desde RESULT sellados.
@@ -83,6 +84,7 @@ tools/genera_f5_sin_fugas_spec.py	Genera/verifica la lista cerrada de inputs de 
 tools/genera_pdf_one_pager.py	Genera docs/one-pager.pdf desde docs/one-pager.md.
 tools/genera_specs_envipe_serie_completa.py	Genera las ocho caras mecánicas del preregistro ENVIPE-SERIE-COMPLETA.
 tools/genera_tabla_piso.py	Deriva canon/tabla-de-piso-v1_0.tsv desde canon/catalogo-del-mexicano-v1_0.tsv.
+tools/genera_tabla_piso_v1_1.py	Deriva canon/tabla-de-piso-v1_1.tsv desde canon/catalogo-del-mexicano-v1_2.tsv.
 tools/hook_lectura.py	Hook PreToolUse (Bash|Read) que hace cumplir las reglas de lectura.
 tools/informe_pilotos.py	Cifras de los tres pilotos para el informe del programa -- ACTO GEN2-MARCADOR-E-INFORME-1 · P4.
 tools/integra_banxico_producto_dano.py	Actualiza sólo la relación Banxico de N34 con la medición sellada.
