@@ -54,3 +54,7 @@ No corrige specs ni cifras. Sucesores: CATALOGO-V1-3-1 aplica las filas a acotar
 | §1.1 contenido de `/raw` y red del sandbox | NO-VERIFICABLE-AQUÍ — requiere la caja de Astra (NC-…-08) | el rótulo de ceguera descansa en el transcript para la red | RECIBO-ASTRA6-2 |
 | «Hecho»: `replay-evidencia.tsv` con `validacion_independiente` | SUSTITUIDO-POR:GEN2-RECIBO-ASTRA6-1 — asentado en `data/corrida0/validaciones-independientes.tsv` (el TSV citado no tiene esa columna); absorbe los 6 RESULT con cifra; quedan sin asiento COM/ESC/LAB (NO-HECHA, por NC-…-01) | ninguno sobre la vista | ninguno |
 | «Hecho»: `check.py --baseline` VERDE | NO-VERIFICABLE-AQUÍ — la sesión corre `--rapido` (P-A); el CI del PR es el juez de la suite completa | ver CI del PR | CI del PR |
+
+## CONSUMIDO
+
+Consumido por el PR #1192 (rama `claude/new-session-iil5g9`; 0-bis `beeecf2c`, cascada `0ce2b948`). ADR `ADR-260927-GEN2-RECIBO-ASTRA6-1-beee-01`; nota `forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md`. Sin adendas.
