@@ -34,11 +34,22 @@ on:
   merge_group:
     types: [ checks_requested ]
   workflow_dispatch:
+  # GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-C: línea base completa cada noche,
+  # 03:00 hora de México (UTC-6) = 09:00 UTC. El derivador de `guardias`
+  # no corre en schedule (su `if` exige push o workflow_dispatch).
+  schedule:
+    - cron: '0 9 * * *'
 
 # Un run vivo por PR: los re-lanzamientos cancelan al anterior en vez de
 # apilarse en una cola degradada.
+# GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-C: en `main` (push/schedule) ya NO se
+# cancela el run en curso. Medido el 27/sep: el run del merge de #1177
+# (36282734145) murió a los 19 min con `guardias` en "Deriva vistas" porque
+# el merge de #1180 lo canceló, y `check` quedó rojo en main sin ningún test
+# rojo. En push/schedule el grupo es el run_id (único): nadie lo cancela.
+# `cancel-in-progress` sigue en true (lo fija tests/test_check_parallel.py).
 concurrency:
-  group: verify-${{ github.event.pull_request.number || github.ref }}
+  group: verify-${{ github.event.pull_request.number || ((github.event_name == 'push' || github.event_name == 'schedule') && github.run_id) || github.ref }}
   cancel-in-progress: true
 
 permissions:
