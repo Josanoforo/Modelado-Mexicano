@@ -56,3 +56,13 @@ Propio: `forense/firmas-pendientes.tsv`, `no-corrido.tsv`, nota, L0, cascada. Aj
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No adopta en consumidor. Sucesores: `GEN2-CATALOGO-V1-3-1` + informe v1.5 (cierre semanal 2), SELLO-EXTERNO-2 (B2), la siguiente sesión de Astra C2 (B1, B3, B4, B5).
+
+## NO-CORRIDO / RESERVAS
+
+- **P1 · B1 sobre ad01-01** — DECISIÓN-DE-MESA-PENDIENTE: la hoja de CIERRE-MATERIAL-1 trae además el control ENIF, la identidad ENCIG y el singleton ENVIPE; el texto firmado de B1 no los nombra, así que no se infieren firmados · impacto: COMMIT-3 ENIF y la activación ENVIPE siguen sin control recibido · sucesor: MISION-ASTRA-6 C2 / siguiente trámite (NC-260927-GEN2-TRAMITE-FIRMAS-20-96f9-01).
+- **P3 · E (8914-03)** — NO-VERIFICABLE-AQUÍ: sin gh ni herramienta para editar metadatos del repo · impacto: la tarjeta del repo no cambia; ningún contador · sucesor: FP-260926-GEN2-FRONT-3-PORTADA-1-8914-03, de mesa (NC-260927-GEN2-TRAMITE-FIRMAS-20-96f9-02).
+- **P1 · A6 VETO Intercensal 2015** — DIFERIDO-A:GEN2-CATALOGO-V1-3-1: `decisiones.tsv` queda fuera de §9 · impacto: `status` no refleja el veto hasta ese acto · sucesor: GEN2-CATALOGO-V1-3-1 (NC-260927-GEN2-TRAMITE-FIRMAS-20-96f9-03).
+
+## CONSUMIDO
+
+CONSUMIDO en PR #1190 (ADR-260927-GEN2-TRAMITE-FIRMAS-20-96f9-01; nota `forense/notas/2026-09-27-GEN2-TRAMITE-FIRMAS-20-nota.md`).
