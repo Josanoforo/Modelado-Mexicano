@@ -1,0 +1,44 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-tra-m-03-v3",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-tra-m-03-v3/r-tra-m-03-v3-entradas-v2.tar.gz",
+  "sha256_original": "bdef1ac6e043ad6c8ea918f692d96fe762de4528cdc9105188d90d7cb98d2a1b",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "encig_2013_encig13_base_datos_dbf",
+      "archivo": "encig2013/encig13_base_datos_dbf.zip",
+      "sha256": "48d29d560d3836309af61c4a82d46d8338d58ecb9d14d04ffc947c1e087caf1a",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2013/microdatos/encig13_base_datos_dbf.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encig_2013_encig13_descripcion_archivos",
+      "archivo": "encig2013/encig13_descripcion_archivos.pdf",
+      "sha256": "12edd629b8a88c4c4ef9e344f821758db88a34c5d5f6c7fa9a2eabc8ed2119c7",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encig/2013/doc/encig13_descripcion_archivos.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "encig_2013_encig13_base_datos_dbf",
+  "tabla": "Encig2013_01_viv_sec_1_3_4_5_8_9.DBF",
+  "variable": "P8_3",
+  "peso": "FAC_P18",
+  "estrato": "EST_DIS",
+  "upm": "UPM_DIS",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#TRA-M-03",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "persona18+",
+  "universo": "FAC_P18>0 finito y reactivo válido1,2;blanco fuera;roster2013 no se filtra adicionalmente",
+  "y": "1 si P8_3=1;0 si2;9/blanco fuera",
+  "miembro_literal": "Encig2013_01_viv_sec_1_3_4_5_8_9.DBF",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "48d29d560d3836309af61c4a82d46d8338d58ecb9d14d04ffc947c1e087caf1a"
+}

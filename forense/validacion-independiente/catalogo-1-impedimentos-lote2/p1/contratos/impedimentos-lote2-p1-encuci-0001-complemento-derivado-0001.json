@@ -1,0 +1,28 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "encuci-0001-complemento-derivado-0001",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/encuci-0001-complemento-derivado-0001/encuci-0001-complemento-derivado-0001-entradas-v2.tar.gz",
+  "sha256_original": "409361ade5023c2d8159f4d9be92a786a88f4698718123792d46303bde30f829",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "encuci2020_bd_dbf",
+      "archivo": "BD_ENCUCI2020_dbf.zip",
+      "sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+      "url": "https://www.inegi.org.mx/programas/encuci/2020/",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "encuci2020_fd_pdf",
+      "archivo": "FD_ENCUCI2020.pdf",
+      "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+      "url": "https://www.inegi.org.mx/programas/encuci/2020/",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "cadena": "impedimentos-lote2-p1-cadenas-humanas.json",
+  "accion": "Preparar paquete conjunto padre→transformación; congelar reconstrucción propia padre antes derivar;no consumir valores04;ENIF accesoP3"
+}

@@ -1,0 +1,29 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "amai-nse-enif-2024-0001",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/amai-nse-enif-2024-0001/amai-nse-enif-2024-0001-entradas-v3.tar.gz",
+  "sha256_original": "81317e4a253c738c6b47328caf857a4dd74a6ff4ab25c6faec11aef167914fbb",
+  "estimadores_historicos": 49,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "enif2024_cuestionario_pdf",
+      "archivo": "enif_2024_cuestionario.pdf",
+      "sha256": "32e37cc13da38691dee20fbffcef3637aeb87b8dac194e64f83bebed8b57ef8b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/doc/enif_2024_cuestionario.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enif2024_fd_xlsx",
+      "archivo": "enif_2024_fd.xlsx",
+      "sha256": "17e2ad86ce9e4fd5783ee54e9b51ee436b934e002d5736b82094070c74a25db2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_fd.xlsx",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "contrato_amai": "impedimentos-lote2-p1-amai-propuesto.md",
+  "accion": "Firma por contrato nuevo completo componentes/conductas/inferencia;ENIF AMAI apertura aparteP3",
+  "faltante_historico": "D15 por referencias helpers;comparaciones AMAI publicadas quedan fuera del paquete ciego"
+}

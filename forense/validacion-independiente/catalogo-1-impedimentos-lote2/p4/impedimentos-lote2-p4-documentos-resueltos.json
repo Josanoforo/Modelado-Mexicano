@@ -1,0 +1,865 @@
+{
+  "estado": "EJECUTADO-DOCUMENTOS-EXACTOS-TRANSPORTADOS",
+  "custodia": "/tmp/astra6-c1-impedimentos-lote2-p4-documentos",
+  "recibo_sha256": "62e5fb33812ea5bb1864be657514329ee0a29913f755d288b22a2fd143994d2b",
+  "fuentes": [
+    {
+      "id": "endutih2023-fd",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "0f78146a6d61b0b5cd4d84056aa77e0f1bf1b25a9a126e8813215eada4da62c2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/microdatos/FD_ENDUTIH2023.xlsx",
+      "ola": 2023,
+      "instrumento": "endutih",
+      "bytes": 140760
+    },
+    {
+      "id": "endutih2024-fd",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "ecdf95924b0b31e2593fdfabe69cf88ecbc5c90a40b3fa3caa9f8427147a96de",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2024/microdatos/fd_endutih2024.xlsx",
+      "ola": 2024,
+      "instrumento": "endutih",
+      "bytes": 155075
+    },
+    {
+      "id": "endutih2025-fd",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "d02caecea044fa5f5089760586e4f1fa6d91341a0462fe19fdc70caefab1a9ce",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/microdatos/fd_endutih2025.xlsx",
+      "ola": 2025,
+      "instrumento": "endutih",
+      "bytes": 162469
+    },
+    {
+      "id": "mociba2016-fd",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "bf54150e6b7ed408390c2f2d392177a071bde236e5efeea2a17e72c95c33f5c0",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_fd.xlsx",
+      "ola": 2016,
+      "instrumento": "mociba",
+      "bytes": 149330
+    },
+    {
+      "id": "mociba2017-fd",
+      "tipo": "XLSX-FD-PUBLICO",
+      "sha256": "636f2df5f630bb0b894c20d7082628a91c626826528aead3c12880eff9179537",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_fd.xlsx",
+      "ola": 2017,
+      "instrumento": "mociba",
+      "bytes": 115580
+    },
+    {
+      "id": "mociba2016-cuestionario",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_cuestionario.pdf",
+      "ola": 2016,
+      "instrumento": "mociba",
+      "bytes": 842837
+    },
+    {
+      "id": "mociba2017-cuestionario",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "856cb10f7b5d226757d0602b9998c07b029fdfed18a0ca8f10d65cbab6a45101",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_cuestionario.pdf",
+      "ola": 2017,
+      "instrumento": "mociba",
+      "bytes": 782750
+    },
+    {
+      "id": "endutih2023-cuestionario",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf",
+      "ola": 2023,
+      "instrumento": "endutih",
+      "bytes": 1324703
+    },
+    {
+      "id": "endutih2025-cuestionario",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf",
+      "ola": 2025,
+      "instrumento": "endutih",
+      "bytes": 1247893
+    },
+    {
+      "id": "endutih2024-cuestionario",
+      "tipo": "PDF-CUESTIONARIO-PUBLICO",
+      "sha256": "95514c5fe0a000bfaf29062a9cf9225ec64674dbb83df6a44a3dceda13187800",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2024/doc/CENDUTIH2024.pdf",
+      "ola": 2024,
+      "instrumento": "endutih",
+      "bytes": 1385429
+    }
+  ],
+  "revision_semantica_por_documento": [
+    {
+      "documento": "endutih2023-fd",
+      "hojas": [
+        "Indice",
+        "tic_2023_viviendas",
+        "tic_2023_hogares",
+        "tic_2023_residentes",
+        "tic_2023_usuarios",
+        "tic_2023_usuarios2",
+        "Diagrama Entidad - Relación_img"
+      ],
+      "variables": {
+        "UPM": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 40,
+          "texto": "o | P4_7_2 | Alfanumérico | 1 | ¨ | UPM | Alfanumérico | 7 | o | P6_8_3 | Alfanumérico | 1 | o | P8_13_3 | Alfanumérico | 1"
+        },
+        "VIV_SEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 41,
+          "texto": "o | P4_7_3 | Alfanumérico | 1 | ¨ | VIV_SEL | Alfanumérico | 2 | 1 | o | P6_8_4 | Alfanumérico | 1 | o | P8_13_4 | Alfanumérico | 1"
+        },
+        "P1_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 14,
+          "texto": "o | P4_1_4 | Alfanumérico | 1 | o | P1_1 | Alfanumérico | 1 | o | P6_2_1 | Alfanumérico | 1 | o | P8_2A | Alfanumérico | 100"
+        },
+        "UPM_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 228,
+          "texto": "o | UPM_DIS | Alfanumérico | 5"
+        },
+        "EST_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 229,
+          "texto": "o | EST_DIS | Alfanumérico | 3"
+        },
+        "TLOC": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 231,
+          "texto": "o | TLOC | Alfanumérico | 1"
+        },
+        "ENT": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 237,
+          "texto": "o | ENT | Alfanumérico | 2"
+        },
+        "HOGAR": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 42,
+          "texto": "o | P4_7_4 | Alfanumérico | 1 | ¨ | HOGAR | Alfanumérico | 2 | o | P6_8_5 | Alfanumérico | 1 | o | P8_13_5 | Alfanumérico | 1"
+        },
+        "NUM_REN": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 43,
+          "texto": "o | P4_7_5 | Alfanumérico | 1 | ¨ | NUM_REN | Alfanumérico | 2 | o | P6_8_6 | Alfanumérico | 1 | o | P8_13_6 | Alfanumérico | 1"
+        },
+        "SEXO": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 234,
+          "texto": "o | SEXO | Alfanumérico | 1"
+        },
+        "EDAD": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 96,
+          "texto": "o | P5_13_4 | Alfanumérico | 1 | o | P7_11_3 | Alfanumérico | 1 | o | EDAD | Numérico | 2"
+        },
+        "NIVEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 235,
+          "texto": "o | NIVEL | Alfanumérico | 2"
+        },
+        "P7_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 56,
+          "texto": "o | P5_7_1 | Alfanumérico | 1 | o | P3_11 | Alfanumérico | 1 | o | P7_1 | Alfanumérico | 1 | o | P8_16_6 | Alfanumérico | 1"
+        },
+        "P7_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 57,
+          "texto": "o | P5_7_2 | Alfanumérico | 1 | o | P3_12 | Alfanumérico | 1 | o | P7_2 | Alfanumérico | 1 | o | P8_16_7 | Alfanumérico | 1"
+        },
+        "P7_10_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 84,
+          "texto": "o | P5_8_7 | Alfanumérico | 1 | o | P7_10_2 | Alfanumérico | 1 | o | P10_7 | Alfanumérico | 1"
+        },
+        "P7_12_3": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 101,
+          "texto": "o | P5_13_9 | Alfanumérico | 1 | o | P7_12_3 | Alfanumérico | 1"
+        },
+        "P7_35_4": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 217,
+          "texto": "o | P7_35_4 | Alfanumérico | 1"
+        },
+        "FAC_PER": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 227,
+          "texto": "o | FAC_PER | Numérico | 20"
+        },
+        "P8_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 12,
+          "texto": "o | P4_1_2 | Alfanumérico | 1 | ¨ | UPM | Alfanumérico | 7 | 1 | o | EDAD | Numérico | 2 | 1 | o | P8_1 | Alfanumérico | 1"
+        },
+        "P8_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 13,
+          "texto": "o | P4_1_3 | Alfanumérico | 1 | ¨ | VIV_SEL | Alfanumérico | 2 | o | P6_1 | Alfanumérico | 1 | o | P8_2 | Alfanumérico | 1"
+        },
+        "P10_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 74,
+          "texto": "o | P5_9_4 | Numérico | 4 | o | P7_8_4 | Alfanumérico | 1 | o | P10_1 | Alfanumérico | 1"
+        },
+        "P10_5": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 81,
+          "texto": "o | P5_8_6 | Alfanumérico | 1 | o | P7_9_2 | Alfanumérico | 1 | o | P10_5 | Alfanumérico | 1"
+        }
+      },
+      "dictamen": "FD exacto por ola; reactivos/diseño documentados, sin registros observados"
+    },
+    {
+      "documento": "endutih2024-fd",
+      "hojas": [
+        "Indice",
+        "tic_2024_viviendas",
+        "tic_2024_hogares",
+        "tic_2024_residentes",
+        "tic_2024_usuarios",
+        "tic_2024_usuarios2",
+        "tc_cve_catalogo_entidad",
+        "Diagrama Entidad - Relación_img"
+      ],
+      "variables": {
+        "UPM": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 40,
+          "texto": "o | P4_7_3 | Varchar | 1 | ¨ | UPM | Varchar | 7 | o | P6_8_4 | Varchar | 1 | o | P8_13_2 | Varchar | 1"
+        },
+        "VIV_SEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 41,
+          "texto": "o | P4_7_4 | Varchar | 1 | ¨ | VIV_SEL | Varchar | 2 | 1 | o | P6_8_5 | Varchar | 1 | o | P8_13_3 | Varchar | 1"
+        },
+        "P1_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 14,
+          "texto": "o | P4_1_4 | Varchar | 1 | o | P1_1 | Varchar | 1 | o | P6_2_1 | Varchar | 1 | o | P8_2 | Varchar | 1"
+        },
+        "UPM_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 227,
+          "texto": "o | UPM_DIS | Varchar | 5"
+        },
+        "EST_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 228,
+          "texto": "o | EST_DIS | Varchar | 3"
+        },
+        "TLOC": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 230,
+          "texto": "o | TLOC | Varchar | 1"
+        },
+        "CVE_ENT": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 236,
+          "texto": "o | CVE_ENT | Varchar | 2"
+        },
+        "HOGAR": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 42,
+          "texto": "o | P4_7_5 | Varchar | 1 | ¨ | HOGAR | Varchar | 2 | o | P6_8_6 | Varchar | 1 | o | P8_13_4 | Varchar | 1"
+        },
+        "NUM_REN": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 43,
+          "texto": "o | P4_7A | Varchar | 100 | ¨ | NUM_REN | Varchar | 2 | o | P6_8_7 | Varchar | 1 | o | P8_13_5 | Varchar | 1"
+        },
+        "SEXO": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 233,
+          "texto": "o | SEXO | Varchar | 1"
+        },
+        "EDAD": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 46,
+          "texto": "o | P5_1 | Varchar | 1 | 1 | o | EDAD | Numeric | 2 | o | P6_8_10 | Varchar | 1 | o | P8_13_8 | Varchar | 1"
+        },
+        "NIVEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 234,
+          "texto": "o | NIVEL | Varchar | 2"
+        },
+        "P7_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 55,
+          "texto": "o | P5_7_1 | Varchar | 1 | o | P3_10 | Varchar | 1 | o | P7_1 | Varchar | 1 | o | P8_16_4 | Varchar | 1"
+        },
+        "P7_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 56,
+          "texto": "o | P5_7_2 | Varchar | 1 | o | P3_11 | Varchar | 1 | o | P7_2 | Varchar | 1 | o | P8_16_5 | Varchar | 1"
+        },
+        "P7_10_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 83,
+          "texto": "o | P5_8_7 | Varchar | 1 | o | P7_10_2 | Varchar | 1 | o | P10_5A | Varchar | 100"
+        },
+        "P7_12_3": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 100,
+          "texto": "o | P5_13_9 | Varchar | 1 | o | P7_12_3 | Varchar | 1 | o | CVEGEO | Varchar | 2"
+        },
+        "P7_35_4": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 216,
+          "texto": "o | P7_35_4 | Varchar | 1"
+        },
+        "FAC_PER": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 226,
+          "texto": "o | FAC_PER | Numeric | 6"
+        },
+        "P8_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 13,
+          "texto": "o | P4_1_3 | Varchar | 1 | ¨ | VIV_SEL | Varchar | 2 | o | P6_1 | Varchar | 1 | o | P8_1 | Varchar | 1"
+        },
+        "P8_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 14,
+          "texto": "o | P4_1_4 | Varchar | 1 | o | P1_1 | Varchar | 1 | o | P6_2_1 | Varchar | 1 | o | P8_2 | Varchar | 1"
+        },
+        "P10_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 75,
+          "texto": "o | P5_11_4 | Varchar | 1 | o | P7_8_6 | Varchar | 1 | o | P10_1 | Varchar | 1"
+        },
+        "P10_5": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 82,
+          "texto": "o | P5_10_6 | Varchar | 1 | o | P7_10_1 | Varchar | 1 | o | P10_5 | Varchar | 1"
+        }
+      },
+      "dictamen": "FD exacto por ola; reactivos/diseño documentados, sin registros observados"
+    },
+    {
+      "documento": "endutih2025-fd",
+      "hojas": [
+        "Indice",
+        "tic_2025_viviendas",
+        "tic_2025_hogares",
+        "tic_2025_residentes",
+        "tic_2025_usuarios",
+        "tic_2025_usuarios2",
+        "tc_cve_catalogo_entidad",
+        "Diagrama Entidad - Relación_img"
+      ],
+      "variables": {
+        "UPM": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 40,
+          "texto": "o | P4_7_3 | Varchar | 1 | ¨ | UPM | Varchar | 7 | o | P6_6_5 | Varchar | 1 | o | P8_13_2 | Varchar | 1"
+        },
+        "VIV_SEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 41,
+          "texto": "o | P4_7_4 | Varchar | 1 | ¨ | VIV_SEL | Varchar | 2 | 1 | o | P6_6_6 | Varchar | 1 | o | P8_13_3 | Varchar | 1"
+        },
+        "P1_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 14,
+          "texto": "o | P4_1_4 | Varchar | 1 | o | P1_1 | Varchar | 1 | o | P6A_2_1 | Varchar | 1 | o | P8_2 | Varchar | 1"
+        },
+        "UPM_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 235,
+          "texto": "o | UPM_DIS | Varchar | 5"
+        },
+        "EST_DIS": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 236,
+          "texto": "o | EST_DIS | Varchar | 3"
+        },
+        "TLOC": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 238,
+          "texto": "o | TLOC | Varchar | 1"
+        },
+        "CVE_ENT": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 244,
+          "texto": "o | CVE_ENT | Varchar | 2"
+        },
+        "HOGAR": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 42,
+          "texto": "o | P4_7_5 | Varchar | 1 | ¨ | HOGAR | Varchar | 2 | o | P6_6_7 | Varchar | 1 | o | P8_13_4 | Varchar | 1"
+        },
+        "NUM_REN": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 43,
+          "texto": "o | P4_7A | Varchar | 100 | ¨ | NUM_REN | Varchar | 2 | o | P6_6A | Varchar | 100 | o | P8_13_5 | Varchar | 1"
+        },
+        "SEXO": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 241,
+          "texto": "o | SEXO | Varchar | 1"
+        },
+        "EDAD": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 46,
+          "texto": "o | P5_1 | Varchar | 1 | 1 | o | EDAD | Numeric | 2 | o | P6_7_3 | Varchar | 1 | o | P8_13_8 | Varchar | 1"
+        },
+        "NIVEL": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 242,
+          "texto": "o | NIVEL | Varchar | 2"
+        },
+        "P7_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 59,
+          "texto": "o | P5_7_5 | Varchar | 1 | o | UPM_DIS | Varchar | 5 | o | P7_1 | Varchar | 1 | o | P8_16_8 | Varchar | 1"
+        },
+        "P7_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 60,
+          "texto": "o | P5_8_1 | Varchar | 1 | o | EST_DIS | Varchar | 3 | o | P7_2 | Varchar | 1 | o | P8_16_9 | Varchar | 1"
+        },
+        "P7_10_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 90,
+          "texto": "o | P5_12_2 | Varchar | 1 | o | P7_10_2 | Varchar | 1 | o | P11_1_2 | Varchar | 1"
+        },
+        "P7_12_3": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 107,
+          "texto": "o | TLOC | Varchar | 1 | n | 1 | TC_CVE_CATALOGO_ENTIDAD | 1 | n | o | P7_12_3 | Varchar | 1 | o | TLOC | Varchar | 1"
+        },
+        "P7_35_4": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 224,
+          "texto": "o | P7_35_4 | Varchar | 1"
+        },
+        "FAC_PER": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 234,
+          "texto": "o | FAC_PER | Numeric | 6"
+        },
+        "P8_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 13,
+          "texto": "o | P4_1_3 | Varchar | 1 | ¨ | VIV_SEL | Varchar | 2 | o | P6A_1 | Varchar | 1 | o | P8_1 | Varchar | 1"
+        },
+        "P8_2": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 14,
+          "texto": "o | P4_1_4 | Varchar | 1 | o | P1_1 | Varchar | 1 | o | P6A_2_1 | Varchar | 1 | o | P8_2 | Varchar | 1"
+        },
+        "P10_1": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 75,
+          "texto": "o | P5_11_4 | Varchar | 1 | o | P7_6A | Varchar | 100 | o | P10_1 | Varchar | 1"
+        },
+        "P10_5": {
+          "hoja": "Diagrama Entidad - Relación_img",
+          "fila": 82,
+          "texto": "o | P5_10_6 | Varchar | 1 | o | P7_8_6 | Varchar | 1 | o | P10_5 | Varchar | 1"
+        }
+      },
+      "dictamen": "FD exacto por ola; reactivos/diseño documentados, sin registros observados"
+    },
+    {
+      "documento": "mociba2016-fd",
+      "hojas": [
+        "ÍNDICE",
+        "MOD_2016_CIBERACOSO",
+        "DIAGRAMA ENTIDAD - RELACIÓN"
+      ],
+      "variables": {
+        "UPM_DIS": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 7,
+          "texto": "Tciberacoso | 1 | UPM de diseño muestral | UPM_DIS | 5 | Alfanumérico | [1-18591] | UPM de diseño muestral"
+        },
+        "VIV_SEL": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 8,
+          "texto": "2 | Vivienda seleccionada | VIV_SEL | 2 | Alfanumérico | [01-43] | Vivienda seleccionada"
+        },
+        "HOGAR": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 9,
+          "texto": "3 | Hogar | HOGAR | 1 | Alfanumérico | [1-6] | Número de Hogar en la vivienda"
+        },
+        "P1_1": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 11,
+          "texto": "5 | 1. En los últimos doce meses, sin contar publicidad, extorsiones o\ninstituciones bancarias ¿ha vivido alguna de las siguientes situaciones\npor celular o Internet? | P1_1 | 1 | Alfanumérico | [1-2], 9 | 1 Sí"
+        },
+        "P7_1_1": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 54,
+          "texto": "11 | 7. A consecuencia de la situación que vivió, ¿qué acciones tomó? | P7_1_1 | 1 | Alfanumérico | [1-2], b | 1 Sí"
+        },
+        "P7_1_6A": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 69,
+          "texto": "16 | Denunciar o informar ante: | P7_1_6A | 1 | Alfanumérico | [1-2], b | 1 Sí"
+        },
+        "P1_10": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 722,
+          "texto": "167 | 1. En los últimos doce meses, sin contar publicidad, extorsiones o\ninstituciones bancarias ¿ha vivido alguna de las siguientes situaciones\npor celular o Internet? | P1_10 | 1 | Alfanumérico | [1-2], 9 | 1 Sí"
+        },
+        "P4_10": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 739,
+          "texto": "170 | 4. ¿Durante cuánto tiempo sucedió? | P4_10 | 1 | Alfanumérico | [1-6], b | 1 Una semana o menos"
+        },
+        "P7_10_2": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 768,
+          "texto": "174 | Ignorar la situación | P7_10_2 | 1 | Alfanumérico | [1-2], b | 1 Sí"
+        },
+        "FAC_MOCIBA": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 860,
+          "texto": "200 | Factor de Expansión | FAC_MOCIBA | 5 | Numérico | [19-18686] | Factor de Expansión Mociba"
+        },
+        "EST_DIS": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 862,
+          "texto": "201 | Estrato de diseño muestral | EST_DIS | 3 | Alfanumérico | [1-410] | Estrato de diseño muestral"
+        },
+        "ENT": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 864,
+          "texto": "202 | Entidad | ENT | 2 | Alfanumérico | [01-32] | Entidad"
+        },
+        "SEXO": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 916,
+          "texto": "204 | 3.3 (NOMBRE) es hombre (NOMBRE) es mujer | SEXO | 1 | Alfanumérico | [1-2] | 1 Hombre"
+        },
+        "EDAD": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 918,
+          "texto": "205 | 3.4 ¿Cuántos años cumplidos tiene (NOMBRE)? | EDAD | 2 | Alfanumérico | [12-97] | 12-96 Años cumplidos"
+        },
+        "NIVEL": {
+          "hoja": "MOD_2016_CIBERACOSO",
+          "fila": 920,
+          "texto": "206 | 3.6 ¿Hasta qué año o grado aprobó (NOMBRE) en la escuela? | NIVEL | 2 | Alfanumérico | [00-12], 99, b | 00 Ninguno"
+        }
+      },
+      "dictamen": "FD exacto por ola; reactivos/diseño documentados, sin registros observados"
+    },
+    {
+      "documento": "mociba2017-fd",
+      "hojas": [
+        "ÍNDICE",
+        "MOD_2017_CIBERACOSO",
+        "DIAGRAMA ENTIDAD - RELACIÓN"
+      ],
+      "variables": {
+        "UPM_DIS": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 7,
+          "texto": "MOC_2017_CIBERACOSO | 1 | UPM de diseño muestral | UPM_DIS | 5 | Alfanumérico | [2-19914] | UPM de diseño muestral"
+        },
+        "VIV_SEL": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 8,
+          "texto": "2 | Vivienda seleccionada | VIV_SEL | 2 | Alfanumérico | [01-40] | Vivienda seleccionada"
+        },
+        "HOGAR": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 9,
+          "texto": "3 | Hogar | HOGAR | 1 | Alfanumérico | [1-5] | Número de Hogar en la vivienda"
+        },
+        "P4_01": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 33,
+          "texto": "13 | 4. De junio de 2016 a la fecha, dígame si ¿por teléfono celular o Internet alguien… | P4_01 | 1 | Alfanumérico | [1-2], 9 | 1 Sí"
+        },
+        "P4_10": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 492,
+          "texto": "139 | 4. De junio de 2016 a la fecha, dígame si ¿por teléfono celular o Internet alguien… | P4_10 | 1 | Alfanumérico | [1-2], 9 | 1 Sí"
+        },
+        "P10_1": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 543,
+          "texto": "153 | 10. ¿Qué medidas ha tomado ante la(s) situación(es) que vivió (vive)? | P10_1 | 1 | Alfanumérico | [1-2], b | 1 Sí"
+        },
+        "P10_5": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 555,
+          "texto": "157 | Denunciar ante el ministerio, policía o el proveedor del servicio | P10_5 | 1 | Alfanumérico | [1-2], b | 1 Sí"
+        },
+        "FAC_MOCIBA": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 575,
+          "texto": "163 | Factor de Expansión Mociba | FAC_MOCIBA | 5 | Alfanumérico | [43-76515] | Factor de Expansión Mociba"
+        },
+        "EST_DIS": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 576,
+          "texto": "164 | Estrato de diseño muestral | EST_DIS | 3 | Alfanumérico | [1-587] | Estrato de diseño muestral"
+        },
+        "ENT": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 578,
+          "texto": "165 | Entidad | ENT | 2 | Alfanumérico | [01-32] | Entidad"
+        },
+        "SEXO": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 630,
+          "texto": "167 | 3.4 (NOMBRE) es hombre (NOMBRE) es mujer | SEXO | 1 | Alfanumérico | [1-2] | 1 Hombre"
+        },
+        "EDAD": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 632,
+          "texto": "168 | 3.5 ¿Cuántos años cumplidos tiene (NOMBRE)? | EDAD | 2 | Alfanumérico | [12-59] | 12-59 Años cumplidos"
+        },
+        "NIVEL": {
+          "hoja": "MOD_2017_CIBERACOSO",
+          "fila": 633,
+          "texto": "169 | 3.8 ¿Hasta qué año o grado aprobó (NOMBRE) en la escuela? | NIVEL | 2 | Alfanumérico | [00-11], 99, b | 00 Ninguno"
+        }
+      },
+      "dictamen": "FD exacto por ola; reactivos/diseño documentados, sin registros observados"
+    },
+    {
+      "documento": "mociba2016-cuestionario",
+      "titulo": "                                                       MÓDULO SOBRE CIBERACOSO (MOCIBA) 2016\n                                                                   Para persona elegida de 12 años y más\n\n\nDATOS DE IDENTIFICACIÓN\n\n\n    UPM                                         NÚMERO DE VIVIENDA SELECCIONADA                              HOGAR          DE        EN LA VIVIENDA\n\n\nNOMBRE DE LA PERSONA ELEGIDA:_____________________________________________________________                               NÚ",
+      "terminos_lineas": {
+        "12 años": [
+          2
+        ],
+        "doce meses": [
+          43
+        ],
+        "Policía": [
+          145
+        ],
+        "Bloquear": [
+          133
+        ]
+      },
+      "dictamen": "formulario vacío exacto; ventanas/filtros/acciones localizados; no resultados"
+    },
+    {
+      "documento": "mociba2017-cuestionario",
+      "titulo": "                                                                                        MÓDULO SOBRE CIBERACOSO (MOCIBA) 2017\n                                                                     Para persona elegida de 12 a 59 años de edad que use Internet en cualquier dispositivo\n\n CONFIDENCIALIDAD                                                                                                            OBLIGATORIEDAD\n  Conforme a las disposiciones del Artículo 37, párrafo primero, de la Ley de",
+      "terminos_lineas": {
+        "12 a 59": [
+          2
+        ],
+        "junio de 2016": [
+          49,
+          69
+        ],
+        "proveedor": [
+          144
+        ],
+        "Bloquear": [
+          36,
+          140
+        ]
+      },
+      "dictamen": "formulario vacío exacto; ventanas/filtros/acciones localizados; no resultados"
+    },
+    {
+      "documento": "endutih2023-cuestionario",
+      "titulo": "                                                Encuesta Nacional sobre Disponibilidad y Uso de\n                                                 Tecnologías de la Información en los Hogares\n                                                               (ENDUTIH) 2023\n\n                                                                                                          CUESTIONARIO\n\n\n                                                                                                              ",
+      "terminos_lineas": {
+        "15 años": [
+          955
+        ],
+        "tres meses": [
+          367,
+          769,
+          816,
+          897,
+          941,
+          981,
+          1005,
+          1044,
+          1053,
+          1320,
+          1414,
+          1422,
+          1459,
+          1654
+        ],
+        "7.10": [
+          941
+        ],
+        "7.1": [
+          873,
+          941,
+          981,
+          1005,
+          1044,
+          1047,
+          1053,
+          1097,
+          1789
+        ],
+        "8.1": [
+          1422,
+          1506,
+          1535,
+          1548,
+          1572,
+          1590,
+          1623,
+          1789
+        ]
+      },
+      "dictamen": "formulario vacío exacto; ventanas/filtros/acciones localizados; no resultados"
+    },
+    {
+      "documento": "endutih2025-cuestionario",
+      "titulo": "                                 Encuesta Nacional sobre Disponibilidad y Uso de\n                                  Tecnologías de la Información en los Hogares\n                                                 (Endutih) 2025\n                                                                                                                             TR\n                                                                                                                               A\n                   ",
+      "terminos_lineas": {
+        "15 años": [
+          1181
+        ],
+        "tres meses": [
+          378,
+          922,
+          930,
+          969,
+          982,
+          994,
+          1002,
+          1083,
+          1088,
+          1130,
+          1162,
+          1169,
+          1215,
+          1221,
+          1256,
+          1278,
+          1593,
+          1702,
+          1706,
+          1744,
+          1753,
+          1795,
+          1837,
+          1882,
+          1919,
+          1934,
+          1945,
+          2133,
+          2141
+        ],
+        "7.10": [
+          1162
+        ],
+        "7.1": [
+          1040,
+          1162,
+          1169,
+          1215,
+          1221,
+          1256,
+          1269,
+          1278,
+          1326,
+          2228
+        ],
+        "8.1": [
+          1706,
+          1795,
+          1821,
+          1837,
+          1867,
+          1882,
+          1919,
+          2228
+        ]
+      },
+      "dictamen": "formulario vacío exacto; ventanas/filtros/acciones localizados; no resultados"
+    },
+    {
+      "documento": "endutih2024-cuestionario",
+      "titulo": "                                      Encuesta Nacional sobre Disponibilidad y Uso de\n                                       Tecnologías de la Información en los Hogares\n                                                     (ENDUTIH) 2024\n\n                                                                                                                                                       TR\n                                                                                                           ",
+      "terminos_lineas": {
+        "15 años": [
+          1163
+        ],
+        "tres meses": [
+          408,
+          883,
+          887,
+          924,
+          948,
+          970,
+          986,
+          1054,
+          1064,
+          1109,
+          1145,
+          1152,
+          1185,
+          1228,
+          1235,
+          1252,
+          1256,
+          1577,
+          1691,
+          1695,
+          1732,
+          1797,
+          1839,
+          1883,
+          1927,
+          1952
+        ],
+        "7.10": [
+          1145
+        ],
+        "7.1": [
+          1027,
+          1145,
+          1152,
+          1185,
+          1228,
+          1235,
+          1239,
+          1246,
+          1252,
+          1256,
+          1299,
+          2117
+        ],
+        "8.1": [
+          1695,
+          1797,
+          1823,
+          1839,
+          1869,
+          1883,
+          1927,
+          2117
+        ]
+      },
+      "dictamen": "formulario vacío exacto; ventanas/filtros/acciones localizados; no resultados"
+    }
+  ],
+  "limites": [
+    "ningún ZIP/DBF real leído ni hasheado",
+    "ENDUTIH2025 FD/cuestionario públicos no levantan reserva",
+    "revisión documental no acredita disponibilidad microdato ni contrato de IC",
+    "sin comparación de resultados"
+  ]
+}

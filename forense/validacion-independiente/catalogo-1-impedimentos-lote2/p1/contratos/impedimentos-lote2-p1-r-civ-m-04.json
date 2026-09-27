@@ -1,0 +1,44 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-civ-m-04",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-civ-m-04/r-civ-m-04-entradas-v2.tar.gz",
+  "sha256_original": "49ab7382affbc81cdeba003ceb152bd05ef565026282112206ec08be7d606224",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "envipe_2015_bd_envipe2015_dbf",
+      "archivo": "envipe2015/bd_envipe2015_dbf.zip",
+      "sha256": "6c2fcb165a179b0ca5e7d956a3673b375d26309be5a4748eabc31545add66a8d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2015/microdatos/bd_envipe2015_dbf.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "envipe_2015_fd_envipe2015",
+      "archivo": "envipe2015/fd_envipe2015.pdf",
+      "sha256": "1042ab57b015e6de72d92184f44cfa4b1cca2ad54ceb6d60573e6800fc1c858b",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2015/doc/fd_envipe2015.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "envipe_2015_bd_envipe2015_dbf",
+  "tabla": "TMod_Vic",
+  "variable": "BP1_23",
+  "peso": "FAC_DEL",
+  "estrato": "EST_DIS",
+  "upm": "UPM_DIS",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#CIV-M-04",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "delito",
+  "universo": "Todos tipos delito; BP1_23 válido01..09 y peso finito positivo; sin filtro adicional BP1_20",
+  "y": "1 si BP1_23 en01,02,06;0 si03,04,05,07,08,09;99/blanco fuera",
+  "miembro_literal": "TMod_Vic.dbf",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "6c2fcb165a179b0ca5e7d956a3673b375d26309be5a4748eabc31545add66a8d"
+}
