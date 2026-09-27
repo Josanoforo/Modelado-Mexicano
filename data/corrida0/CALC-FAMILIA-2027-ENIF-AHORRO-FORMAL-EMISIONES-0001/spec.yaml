@@ -1,0 +1,45 @@
+calc_id: CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001
+spec_md: spec.md
+spec_md_sha256: a02c8146472931bb9a7d1c8c30a8e18df36262f0e13fe37dccda44d896a914d2
+script: data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/medidor.py
+script_sha256_congelado: 95db1f503d15a0d83f26105eef69c69d447c74e5a12914738694517ff258438c
+etiquetas:
+  generacion: GEN2
+  tipo: PROSPECTIVA-EMISION-SIN-R
+  cuenta_gen2: 'NO'
+  rotulo: PROSPECTIVA
+inputs:
+- id: CALC-ENIF-0001
+  origen: repo
+  ruta: data/corrida0/CALC-ENIF-0001/resultados.json
+  sha256: 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6
+  sello_sha256: 0c90801873c91ac109219fbe3bf88632fc6aa8a6bcef637f9876398e95f76de6
+variables:
+- archivo: resultados.json
+  variable: RESULT-ENIF-AHO-B-P-FORMAL-P
+  rol: piso inmutable
+universo: proporción sobre U_B; no microdatos
+filtros: NO-APLICA
+ponderador: NO-APLICA
+transformacion: verbatim del RESULT sellado
+estimando: piso fijo histórico para una ola objetivo, sin evaluación futura
+dependencias_materiales: []
+seed:
+  aplica: false
+  motivo: determinista
+parametros:
+  replicas: 2000
+  banda: 0.02
+  min_n: 10000
+  min_estratos: 150
+  min_upm: 1000
+  futuro_ids: null
+  R_futura: null
+  agrupacion: NACIONAL
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+resultados:
+- id: RESULT-FAMILIA-ENIF-AHORRO-FORMAL-PISO-P
+  tipo: proporcion
+  unidad: proporción
