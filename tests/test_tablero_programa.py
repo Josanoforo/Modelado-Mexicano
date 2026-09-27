@@ -313,6 +313,9 @@ def prueba_sucios_ajenos():
     afirma(TP._sucios_ajenos("") == [], "árbol limpio no tiene sucios")
     afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\nM  docs/tablero.md") == [],
            "los derivados del canal no cuentan como suciedad")
+    # #1198: el README del trozo anterior queda en el árbol tras `git reset`.
+    afirma(TP._sucios_ajenos(" M README.md\n M data/corrida0/usos.tsv") == [],
+           "README.md (readme_derivado del trozo anterior) es derivado del canal")
     afirma(TP._sucios_ajenos(" M data/corrida0/usos.tsv\n M tools/x.py") == ["tools/x.py"],
            "un archivo ajeno sí ensucia el árbol")
 

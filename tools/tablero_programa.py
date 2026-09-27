@@ -256,11 +256,14 @@ def _compara_head_origin_main(head: str, remoto: str) -> tuple[bool, str]:
 # ADENDA-1 P2: "o el árbol está sucio". Se exceptúan los derivados que el
 # propio canal escribe ANTES del tablero (mismo `git add` de verify.yml): en
 # CI ya están modificados cuando corre `--actualiza` y son justo lo que viaja.
+# README.md (#1198): `readme_derivado.py --escribe` corre DESPUÉS del tablero,
+# pero en la publicación por trozos el `git reset` tras `commit-tree` deja su
+# cambio del trozo K en el árbol cuando el tablero corre en el trozo K+1.
 DERIVADOS_DEL_CANAL = (
     "data/corrida0/corridas.tsv", "data/corrida0/resultados.tsv",
     "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
     "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
-    "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
+    "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md", "README.md",
 )
 
 
