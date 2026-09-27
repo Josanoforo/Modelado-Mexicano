@@ -33,6 +33,11 @@ Uso:
         # la misma lista, una sola línea separada por comas -- lista para
         # `--lote`
     python3 tools/lote_desde_asientos.py <antes> <despues> --json
+    python3 tools/lote_desde_asientos.py --incluir-pendientes --trozo 20 --csv
+        # ACTO GEN2-TUBERIA-CI-TIEMPO-2 · P2: DOS líneas -- la 1.ª es el
+        # trozo (los primeros N del lote, mismo orden), la 2.ª el resto,
+        # que `registro --pospone` difiere sin publicar. Nada se descarta:
+        # trozo + resto == lote.
 """
 from __future__ import annotations
 
@@ -161,6 +166,15 @@ def lote_pendiente(cwd: Path | None = None,
             "examinados": len(candidatos)}
 
 
+def parte_en_trozo(calc_ids: list[str], n: int) -> tuple[list[str], list[str]]:
+    """GEN2-TUBERIA-CI-TIEMPO-2 · P2: `(trozo, resto)`, con
+    `trozo + resto == calc_ids` siempre. `n <= 0` es error: un trozo vacío
+    no avanza la base y un bucle sobre él no termina."""
+    if n <= 0:
+        raise ValueError(f"--trozo debe ser > 0 (dio {n})")
+    return list(calc_ids[:n]), list(calc_ids[n:])
+
+
 def main(argv=None) -> int:
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n", 1)[0])
     ap.add_argument("antes", nargs="?", help="ref/commit ANTES del push")
@@ -170,7 +184,11 @@ def main(argv=None) -> int:
     ap.add_argument("--csv", action="store_true",
                     help="una línea, separada por comas -- lista para --lote")
     ap.add_argument("--json", action="store_true")
+    ap.add_argument("--trozo", type=int, metavar="N",
+                    help="con --csv: línea 1 = primeros N, línea 2 = resto")
     args = ap.parse_args(argv)
+    if args.trozo is not None and not args.csv:
+        ap.error("--trozo va con --csv")
 
     if bool(args.antes) != bool(args.despues):
         ap.error("indica ambos refs o ninguno")
@@ -178,6 +196,7 @@ def main(argv=None) -> int:
         ap.error("indica dos refs o --incluir-pendientes")
     salida = lote_desde_diff(args.antes, args.despues) if args.antes else {
         "calc_ids": [], "descartados": [], "examinados": 0}
+    pendientes = {"calc_ids": []}
     if args.incluir_pendientes:
         pendientes = lote_pendiente()
         salida["calc_ids"] = list(dict.fromkeys(
@@ -187,6 +206,17 @@ def main(argv=None) -> int:
 
     if args.json:
         print(json.dumps(salida, ensure_ascii=False, indent=2))
+    elif args.csv and args.trozo is not None:
+        # Un CALC del diff que YA está publicado no queda pendiente si se
+        # difiere (no volvería a salir): va siempre en el trozo. Sólo los
+        # pendientes se trocean.
+        pend = set(pendientes["calc_ids"])
+        fijos = [c for c in salida["calc_ids"] if c not in pend]
+        trozo, resto = parte_en_trozo(
+            [c for c in salida["calc_ids"] if c in pend], args.trozo)
+        trozo = fijos + trozo
+        print(",".join(trozo))
+        print(",".join(resto))
     elif args.csv:
         print(",".join(salida["calc_ids"]))
     else:

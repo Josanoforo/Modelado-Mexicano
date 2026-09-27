@@ -1,0 +1,32 @@
+--- a/sucesor-2021/medidor.py
++++ b/sucesor-2021/medidor.py
+@@ -41,9 +41,19 @@
+         age = int(value)
+     except (ValueError, TypeError):
+         return None
+-    if age < 15 or age > 120:
++    if age < 15 or age > 97:
+         return None
+     return "15-29" if age < 30 else "30-44" if age < 45 else "45-59" if age < 60 else "60+"
++
++
++def _eligible_age(value):
++    # PROPUESTO: FD 98 acredita 15+; 99 no acredita edad mínima.
++    # Requiere firma de universo nacional antes de ejecutar sucesor.
++    try:
++        age = int(value)
++    except (ValueError, TypeError):
++        return False
++    return 15 <= age <= 98
+ 
+ 
+ def _school_group(value):
+@@ -187,7 +197,7 @@
+                     weight = float(r["FAC_MUJ"])
+                 except (ValueError, KeyError):
+                     continue
+-                if age_group is None or not np.isfinite(weight) or weight <= 0:
++                if not _eligible_age(age) or not np.isfinite(weight) or weight <= 0:
+                     continue
+                 if not r.get("EST_DIS") or not r.get("UPM_DIS"):
+                     continue

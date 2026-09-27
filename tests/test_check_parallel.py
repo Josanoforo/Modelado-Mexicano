@@ -103,8 +103,22 @@ class WorkflowGate(unittest.TestCase):
         # siguiente acto. Derivado, la propiedad que asegura es mas fuerte:
         # TODO job del workflow (menos el gate) es requerido, lleva su variable
         # y ningun estado distinto de `success` lo deja pasar.
-        requeridos = sorted(set(workflow['jobs']) - {'check'})
+        #
+        # Excepción única y nombrada (ACTO GEN2-TUBERIA-CI-TIEMPO-2, P1,
+        # 27/sep/2026): `derivados` PUBLICA, no verifica -- escribe vistas en
+        # un PR `[deriva]` que tiene su propio `check`. Mientras vivió dentro
+        # de `guardias`, su corte a los 30 min dejaba `check` rojo en main sin
+        # ningún test rojo (run 36291122052). Se aserta que sigue fuera del
+        # gate Y que sólo corre sobre main: si alguien le mete una
+        # verificación y la corre en PR, este test lo ve.
+        fuera_del_gate = {'derivados'}
+        requeridos = sorted(set(workflow['jobs']) - {'check'} - fuera_del_gate)
         self.assertEqual(sorted(gate['needs']), requeridos)
+        derivados = workflow['jobs']['derivados']
+        self.assertNotIn('derivados', gate['needs'])
+        self.assertIn("github.ref == 'refs/heads/main'", derivados['if'])
+        for evento in ('workflow_dispatch', 'schedule', 'push'):
+            self.assertIn("'%s'" % evento, derivados['if'])
         self.assertEqual(gate['if'], '${{ always() }}')
         self.assertIs(workflow['concurrency']['cancel-in-progress'], True)
         step = gate['steps'][0]

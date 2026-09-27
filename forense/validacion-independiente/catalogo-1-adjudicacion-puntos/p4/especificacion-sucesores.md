@@ -1,0 +1,11 @@
+# P4 · PROPUESTO-POR-EJECUTOR
+
+Los patches son diffs sobre copias nuevas del código/spec históricos: no se aplican al productor sellado. `edad-permisos-2011.patch`, `externos-reciente-2011.patch` y `denuncia-enlace-2011.patch` se combinan en sucesor2011; `edad-permisos-2021.patch` en sucesor2021 (solo edad). Los dos `spec-sucesor-*.patch` fijan reglas y decisiones de universo. `institucion-afectadas-alternativa.patch` es alternativa EXCLUYENTE a conservar composición entre solicitantes, requiere firma de estimando. Las propuestas responden a evidenciaE1..C1-PUNTOS-E7 deP1; contrafactualesP2 no son adopción.
+
+La restricción de edad nacional99 está pendiente de decisión de contenido: EDAD99 sola no acredita15+, pero el módulo entrevistado podría acreditarlo. El patch ofrece exclusión explícita, no concluye que esa sea la única regla válida. Antes de ejecutar firmar inclusión/exclusión global y reportar su efecto; separar ese cambio del defecto demostrado en los cortes etarios.
+
+Receta: copiar el CALC histórico a una identidad nueva sin resultados/sellos heredados, aplicar solo los patches seleccionados, fijar contrato y hashes en COMMIT1; probar los casos sintéticosP2 y comprobación de patches local. No ejecutar productor histórico. Coordinar marco/IC con sesión02 y congelar contrato antes de ejecución. Reportar toda celda expuesta y comparación de denominadores, no solo685 discrepantes. Mesa firma ejecución y posteriormente adopción/retiro mediante recibo. No hay permiso de ejecutar sucesor en esta misión.
+
+Revisión P1/P4: denuncia exige además hecho2.6=1 por cada solicitud enlazada; datos de solicitud/resultados fuera de un hecho positivo quedan fuera. CP4_1 se obtiene de first/TSolter1 y el caller transmite first. EDAD98 se conserva globalmente con corte etario nulo; EDAD99 se excluye solo como opción propuesta pendiente de firma. `comprobacion-patches.py` aplica diffs a copias temporales y prueba funciones aisladas porAST con sintéticos; no importa ni ejecuta run de un productor.
+
+Corrección material de externos: la completitud también condiciona un negativo reciente cuando existe coincidencia positiva de vida. Casilla99 concurrente conserva reciente desconocido si las coincidencias observadas tienen2; un positivo reciente1 se conserva.
