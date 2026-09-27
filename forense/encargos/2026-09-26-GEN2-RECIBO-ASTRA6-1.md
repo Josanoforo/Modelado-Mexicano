@@ -41,3 +41,16 @@ Propio: nota, `tools/recibo/comparaciones.py` + test, `forense/replay-evidencia.
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No corrige specs ni cifras. Sucesores: CATALOGO-V1-3-1 aplica las filas a acotar/suspender que mesa firme; sucesores de spec por causa; RECIBO-ASTRA6-2 para el siguiente PR de Astra **antes** de fusionarlo.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| §1.4 «Una NC por spec agrupada por causa; propuesta de sucesor de spec» — 767 de las 799 | DIFERIDO-A:ASTRA6-C1-REEMPAQUETA-VENTANA-1 — no son D-15: la ventana está en el RESULT sellado y en el catálogo; faltó en `estimandos.tsv` (NC-260927-GEN2-RECIBO-ASTRA6-1-beee-01) | 767 identidades sin validación; COM/ESC/LAB quedan NO-HECHA | ASTRA6-C1-REEMPAQUETA-VENTANA-1 |
+| §1.4 — 32 D-15 genuinas (recodificación NIV 31, identidad contradictoria 1) | DIFERIDO-A:GEN2-SPEC-ENDIREH2021-ESCOLARIDAD-1 / GEN2-SPEC-ENDIREH2021-AYUDA-2 — el acto no corrige specs (§10) (NC-…-02, -03) | 32 celdas sin corroboración | GEN2-SPEC-ENDIREH2021-ESCOLARIDAD-1 · GEN2-SPEC-ENDIREH2021-AYUDA-2 |
+| §1.2 «por causa» de las 685 | DIFERIDO-A:GEN2-CONTRAFACTUAL-ENDIREH2011-1 — `comparacion.json` no trae causa; hipótesis del ejecutor sin contrafactual → CAUSA-NO-DETERMINABLE (NC-…-04) | causas reportadas como hipótesis | GEN2-CONTRAFACTUAL-ENDIREH2011-1 |
+| §1.2 estado de los 1 873 IC con efecto | DIFERIDO-A:GEN2-METODO-COMPARACION-INFERENCIAL-1 — la única tolerancia preexistente es de replay; no se inventa otra (NC-…-06, -07) | ningún IC corroborado ni refutado | GEN2-METODO-COMPARACION-INFERENCIAL-1 |
+| §1.3 aplicar SOSTENER/ACOTAR/SUSPENDER al catálogo | DECISIÓN-DE-MESA-PENDIENTE — FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02; catálogo ajeno (NC-…-05) | 7 cifras siguen publicadas sin rótulo | CATALOGO-V1-3-1 |
+| §1.1 contenido de `/raw` y red del sandbox | NO-VERIFICABLE-AQUÍ — requiere la caja de Astra (NC-…-08) | el rótulo de ceguera descansa en el transcript para la red | RECIBO-ASTRA6-2 |
+| «Hecho»: `replay-evidencia.tsv` con `validacion_independiente` | SUSTITUIDO-POR:GEN2-RECIBO-ASTRA6-1 — asentado en `data/corrida0/validaciones-independientes.tsv` (el TSV citado no tiene esa columna); absorbe los 6 RESULT con cifra; quedan sin asiento COM/ESC/LAB (NO-HECHA, por NC-…-01) | ninguno sobre la vista | ninguno |
+| «Hecho»: `check.py --baseline` VERDE | NO-VERIFICABLE-AQUÍ — la sesión corre `--rapido` (P-A); el CI del PR es el juez de la suite completa | ver CI del PR | CI del PR |

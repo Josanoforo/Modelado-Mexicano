@@ -1,0 +1,3 @@
+# ADR-260927-GEN2-RECIBO-ASTRA6-1-beee-01
+
+ACTO GEN2-RECIBO-ASTRA6-1: recibo post-merge de #1184, #1185 y #1189 (MISION-ASTRA-6, C1). #1184/#1185 RECIBIDO-POST-MERGE-CON-NC, #1189 RECIBIDO-POST-MERGE. Lote 1: ceguera CIEGA-POR-SEPARACIÓN 9/9; 1 876 puntos coinciden a 1e-10, 1 873 IC no comparables bajo tolerancia de replay, 685 puntos discrepan (7 > 1 pp), 11 publicabilidad, 799 sin recálculo (767 por empaquetado, 32 D-15). Propone suspender 7 filas del catálogo y acotar 689 (FP-…-02). NO-PASA asentado en 6 RESULT. Cero mediciones y adopciones. Ver `forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/nota-recibo.md`.

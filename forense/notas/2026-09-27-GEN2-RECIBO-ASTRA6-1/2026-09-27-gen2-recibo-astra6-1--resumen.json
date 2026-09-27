@@ -1,0 +1,233 @@
+{
+ "lote": "forense/validacion-independiente/catalogo-1-ejecucion-lote1",
+ "llaves": 3371,
+ "sin_estado": 0,
+ "comparacion_sha_casa": {
+  "endireh-pisos-2011-modulos-0001": true,
+  "endireh-pisos-2021-ayuda-0001": true,
+  "endireh-pisos-2021-comunitaria-0001": true,
+  "endireh-pisos-2021-decisiones-0001": true,
+  "endireh-pisos-2021-discriminacion-0001": true,
+  "endireh-pisos-2021-escolar-0001": true,
+  "endireh-pisos-2021-familiar-0001": true,
+  "endireh-pisos-2021-laboral-0001": true,
+  "endireh-pisos-2021-nofisica-bc-0001": true
+ },
+ "artefacto_comparador_dentro_recomputado_distinto": 0,
+ "por_estado_componente": {
+  "DISCREPA|IC": 1873,
+  "DISCREPA|PUNTO": 685,
+  "DISCREPA|PUBLICABILIDAD": 11,
+  "COINCIDE|PUNTO+IC": 3,
+  "NO-RECALCULABLE-DESDE-SPEC|SPEC": 799
+ },
+ "por_paquete": {
+  "endireh-pisos-2011-modulos-0001": {
+   "DISCREPA|IC": 1202,
+   "DISCREPA|PUNTO": 683,
+   "DISCREPA|PUBLICABILIDAD": 6,
+   "COINCIDE|PUNTO+IC": 3
+  },
+  "endireh-pisos-2021-ayuda-0001": {
+   "DISCREPA|IC": 116,
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 1
+  },
+  "endireh-pisos-2021-comunitaria-0001": {
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 100
+  },
+  "endireh-pisos-2021-decisiones-0001": {
+   "DISCREPA|IC": 138
+  },
+  "endireh-pisos-2021-discriminacion-0001": {
+   "DISCREPA|IC": 258,
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 23,
+   "DISCREPA|PUBLICABILIDAD": 5
+  },
+  "endireh-pisos-2021-escolar-0001": {
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 96
+  },
+  "endireh-pisos-2021-familiar-0001": {
+   "DISCREPA|IC": 50
+  },
+  "endireh-pisos-2021-laboral-0001": {
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 100
+  },
+  "endireh-pisos-2021-nofisica-bc-0001": {
+   "NO-RECALCULABLE-DESDE-SPEC|SPEC": 479,
+   "DISCREPA|IC": 109,
+   "DISCREPA|PUNTO": 2
+  }
+ },
+ "puntos_por_hipotesis": {
+  "ambitos_externos": 535,
+  "edad_60+": 38,
+  "pareja_reciente": 62,
+  "instituciones": 6,
+  "permisos": 34,
+  "denuncia_externa": 10
+ },
+ "puntos_por_paquete_hipotesis": {
+  "endireh-pisos-2011-modulos-0001|ambitos_externos": 535,
+  "endireh-pisos-2011-modulos-0001|edad_60+": 36,
+  "endireh-pisos-2011-modulos-0001|pareja_reciente": 62,
+  "endireh-pisos-2011-modulos-0001|instituciones": 6,
+  "endireh-pisos-2011-modulos-0001|permisos": 34,
+  "endireh-pisos-2011-modulos-0001|denuncia_externa": 10,
+  "endireh-pisos-2021-nofisica-bc-0001|edad_60+": 2
+ },
+ "puntos_abs_delta": {
+  "<=0.0001": 419,
+  "<=0.001": 241,
+  "<=0.01": 18,
+  ">0.05": 6,
+  "<=0.05": 1
+ },
+ "ic_delta_rel_ancho": {
+  "<=0.05": 597,
+  "<=0.1": 808,
+  "<=0.25": 431,
+  "<=0.01": 34,
+  ">0.25": 3
+ },
+ "ic_artefacto": {
+  "TOLERANCIA-DE-REPLAY-SOBRE-IC-ALEATORIO": 1873
+ },
+ "recomendacion": {
+  "SOSTENER": 1876,
+  "ACOTAR": 689,
+  "PROPONER-SUSPENDER": 7,
+  "SOSTENER-SIN-CORROBORACION": 799
+ },
+ "spec_por_causa": {
+  "endireh-pisos-2021-ayuda-0001|D15-IDENTIDAD-CONTRADICTORIA": 1,
+  "endireh-pisos-2021-comunitaria-0001|PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 100,
+  "endireh-pisos-2021-discriminacion-0001|D15-RECODIFICACION-AUSENTE": 23,
+  "endireh-pisos-2021-escolar-0001|PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 96,
+  "endireh-pisos-2021-laboral-0001|PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 100,
+  "endireh-pisos-2021-nofisica-bc-0001|PAQUETE-SIN-IDENTIDAD-DE-VENTANA": 471,
+  "endireh-pisos-2021-nofisica-bc-0001|D15-RECODIFICACION-AUSENTE": 8
+ },
+ "publicabilidad": [
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#1919",
+   "cv_sellado": "0.2918155436079572",
+   "ancho_ic_sellado": "0.011952921429748175",
+   "margen_publicabilidad": "0.027281521306809314",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3351,
+   "fila_piso_v1_1": 3351,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#1993",
+   "cv_sellado": "0.29728520722616936",
+   "ancho_ic_sellado": "0.010969670828325232",
+   "margen_publicabilidad": "0.009049309246102108",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3377,
+   "fila_piso_v1_1": 3377,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#2039",
+   "cv_sellado": "0.26866734286191063",
+   "ancho_ic_sellado": "0.013538252887783514",
+   "margen_publicabilidad": "0.10444219046029787",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3393,
+   "fila_piso_v1_1": 3393,
+   "recomendacion": "PROPONER-SUSPENDER"
+  },
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#2067",
+   "cv_sellado": "0.2901564926134901",
+   "ancho_ic_sellado": "0.0258320969443484",
+   "margen_publicabilidad": "0.03281169128836636",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3410,
+   "fila_piso_v1_1": 3410,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#2082",
+   "cv_sellado": "0.29264211902814113",
+   "ancho_ic_sellado": "0.016466254490382814",
+   "margen_publicabilidad": "0.024526269906196184",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3415,
+   "fila_piso_v1_1": 3415,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2011-MOD-TABLA#606",
+   "cv_sellado": "0.11008271785544434",
+   "ancho_ic_sellado": "0.19474033761203113",
+   "margen_publicabilidad": "0.026298311939844388",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 3909,
+   "fila_piso_v1_1": 3909,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2021-DIS-TABLA#220",
+   "cv_sellado": "0.2962053060292976",
+   "ancho_ic_sellado": "0.01979392168266373",
+   "margen_publicabilidad": "0.012648979902341225",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 6780,
+   "fila_piso_v1_1": 6780,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2021-DIS-TABLA#221",
+   "cv_sellado": "0.2981999627858802",
+   "ancho_ic_sellado": "0.01870509506846202",
+   "margen_publicabilidad": "0.006000124047066032",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 6781,
+   "fila_piso_v1_1": 6781,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2021-DIS-TABLA#228",
+   "cv_sellado": "0.2919049489895736",
+   "ancho_ic_sellado": "0.01718108576749441",
+   "margen_publicabilidad": "0.026983503368088007",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 6786,
+   "fila_piso_v1_1": 6786,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2021-DIS-TABLA#296",
+   "cv_sellado": "0.2914005878673692",
+   "ancho_ic_sellado": "0.021329848864524253",
+   "margen_publicabilidad": "0.028664707108769227",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 6829,
+   "fila_piso_v1_1": 6829,
+   "recomendacion": "ACOTAR"
+  },
+  {
+   "llave": "RESULT-ENDIREH2021-DIS-TABLA#315",
+   "cv_sellado": "0.29243729426039905",
+   "ancho_ic_sellado": "0.01541881550383113",
+   "margen_publicabilidad": "0.02520901913200313",
+   "banda_mc": "0.1002509414234171",
+   "fila_catalogo_v1_2": 6845,
+   "fila_piso_v1_1": 6845,
+   "recomendacion": "ACOTAR"
+  }
+ ],
+ "ceguera": {
+  "endireh-pisos-2011-modulos-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-ayuda-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-comunitaria-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-decisiones-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-discriminacion-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-escolar-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-familiar-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-laboral-0001": "CIEGA-POR-SEPARACION",
+  "endireh-pisos-2021-nofisica-bc-0001": "CIEGA-POR-SEPARACION"
+ }
+}
