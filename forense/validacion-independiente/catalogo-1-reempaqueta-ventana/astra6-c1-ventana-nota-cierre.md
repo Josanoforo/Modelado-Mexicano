@@ -112,3 +112,6 @@ EJECUTADO: el adaptador comprueba ahora también el hash de contenedor
 histórico contra la procedencia y rechaza sobrescribir un sucesor existente
 con bytes distintos. Dos pruebas adicionales protegen esos errores:12 PASS
 finales. La reproducción completa mantiene los cinco hashes publicados.
+
+PR propio #1203: https://github.com/Josanoforo/Modelado-Mexicano/pull/1203.
+Recibo solicitado; pendiente, sin fusión ni revisión externa declarada.

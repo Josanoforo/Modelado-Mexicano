@@ -49,3 +49,6 @@ Solicito revisar identidad exacta, límites del diff, contaminación de
 contenido, permisos y distinción entre transporte y validación. Mesa
 puede recibir el transporte y resolver las propuestas de acceso sin
 adoptar resultados estadísticos. No fusionar por ejecutor.
+
+PR propio #1203: https://github.com/Josanoforo/Modelado-Mexicano/pull/1203.
+Recibo solicitado; pendiente, sin fusión ni revisión externa declarada.
