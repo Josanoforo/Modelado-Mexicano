@@ -1,0 +1,5 @@
+# ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01
+
+**ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01** · ACTO GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2, 26/sep/2026. Corrección editorial sucesora de #1173 y respuesta a #1178: juicios explícitos por afirmación y cláusula, separación de gasto/regiones y mecanismo, retiro de cinco falsas refutaciones por ausencia y corrección bibliográfica primaria separada de cifras propias. Productores y verificador local en `forense/analisis/reports-v2/consumo-familia-2/`; historial y evidencia anterior preservados. Cero mediciones, cero adopciones; C1 y nuevo recibo externo pendientes. Encargo `forense/encargos/2026-09-26-ASTRA6-C3-CONSUMO-FAMILIA-2.md`, 0-bis `9d282dd3`, firma «Acordado» ya en lanzamiento #1166, sin nuevo asiento. PROPUESTO-POR-EJECUTOR: hoja editorial corregida, FP propia; no modifica catálogo ni motor. Nota y recibo nuevos en el perímetro local, sin fusión por ejecutor.
+
+Resultado, verificación y reservas: `forense/analisis/reports-v2/consumo-familia-2/cierre.md` y `forense/analisis/reports-v2/consumo-familia-2/recibo-para-claude.md`.

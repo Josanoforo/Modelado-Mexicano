@@ -385,13 +385,152 @@
     "ic_calibrado": []
   },
   {
+    "id": "CONS-GASTO-TOTAL",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-TOTAL-TODOS-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 1287,
+    "valor": 13321.60430554842,
+    "unidad": "pesos corrientes mensuales por hogar",
+    "periodo": "2022",
+    "denominador": "hogares con gasto monetario válido; segmento TOTAL/TODOS",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      13118.746128,
+      13560.744678
+    ],
+    "ic_calibrado": []
+  },
+  {
+    "id": "CONS-INTERNET-NL",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-19-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 563,
+    "valor": 0.10725155318560253,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/19",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.092212,
+      0.122652
+    ],
+    "ic_calibrado": [
+      0.021446,
+      0.397066
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-BC",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-02-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 495,
+    "valor": 0.07166992292045819,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/02",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.059155,
+      0.0838
+    ],
+    "ic_calibrado": [
+      0.013849,
+      0.297952
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-CHIH",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-08-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 519,
+    "valor": 0.07690482496338522,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/08",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.065644,
+      0.088438
+    ],
+    "ic_calibrado": [
+      0.014968,
+      0.313548
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-CDMX",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-09-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 523,
+    "valor": 0.10293241204937743,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/09",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.086947,
+      0.122166
+    ],
+    "ic_calibrado": [
+      0.020441,
+      0.386854
+    ]
+  },
+  {
+    "id": "CONS-INTERNET-CHIAPAS",
+    "tipo": "propia",
+    "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+    "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-07-P",
+    "tabla": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+    "fila": 515,
+    "valor": 0.017253759372540357,
+    "unidad": "proporción de hogares",
+    "periodo": "2022",
+    "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/07",
+    "transformacion": "identidad",
+    "hash_sello": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1",
+    "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+    "ic": [
+      0.012242,
+      0.022458
+    ],
+    "ic_calibrado": [
+      0.003128,
+      0.089437
+    ]
+  },
+  {
     "id": "CONS-QUAL",
     "tipo": "externa",
     "fuente_id": "RB2024",
     "valor": 2,
     "unidad": "ratio declarado superior a",
     "periodo": "2024",
-    "denominador": "importancia declarada de calidad frente a precio, todos los segmentos de poder de compra encuestados"
+    "denominador": "importancia declarada de calidad frente a precio, todos los segmentos de poder de compra encuestados",
+    "estado_verificacion": "LEÍDO EN FUENTE PRIMARIA",
+    "localizador": "Síntesis primaria, secciones Big on bricks and mortar y Quality, price and sustainability; líneas web 228–263",
+    "fecha_consulta": "2026-09-26",
+    "alcance": "Cifra externa histórica en universo de la fuente; no RESULT ni medición nueva del proyecto"
   },
   {
     "id": "CONS-FISICO",
@@ -400,7 +539,11 @@
     "valor": 90,
     "unidad": "porcentaje aproximado",
     "periodo": "2024",
-    "denominador": "consumidores de la encuesta; preferencia por tiendas físicas"
+    "denominador": "consumidores de la encuesta; preferencia por tiendas físicas",
+    "estado_verificacion": "LEÍDO EN FUENTE PRIMARIA",
+    "localizador": "Síntesis primaria, secciones Big on bricks and mortar y Quality, price and sustainability; líneas web 228–263",
+    "fecha_consulta": "2026-09-26",
+    "alcance": "Cifra externa histórica en universo de la fuente; no RESULT ni medición nueva del proyecto"
   },
   {
     "id": "CONS-TRADE2011",
@@ -409,7 +552,11 @@
     "valor": 4,
     "unidad": "porcentaje",
     "periodo": "2011",
-    "denominador": "respondentes referidos en pasaje alimentario p.2; cambio a marca más barata últimos doce meses"
+    "denominador": "respondentes referidos en pasaje alimentario p.2; cambio a marca más barata últimos doce meses",
+    "estado_verificacion": "LEÍDO EN FUENTE PRIMARIA",
+    "localizador": "PDF primario pp.2–5, nota1 y pasajes de cambio/satisfacción/marca privada",
+    "fecha_consulta": "2026-09-26",
+    "alcance": "Cifra externa histórica en universo de la fuente; no RESULT ni medición nueva del proyecto"
   },
   {
     "id": "CONS-PRIVADA2011",
@@ -418,7 +565,11 @@
     "valor": 5,
     "unidad": "porcentaje aproximado de ventas retail",
     "periodo": "2011-2012",
-    "denominador": "ventas retail, contexto histórico citado p.3; no proporción de consumidores"
+    "denominador": "ventas retail, contexto histórico citado p.3; no proporción de consumidores",
+    "estado_verificacion": "LEÍDO EN FUENTE PRIMARIA",
+    "localizador": "PDF primario pp.2–5, nota1 y pasajes de cambio/satisfacción/marca privada",
+    "fecha_consulta": "2026-09-26",
+    "alcance": "Cifra externa histórica en universo de la fuente; no RESULT ni medición nueva del proyecto"
   },
   {
     "id": "CONS-TRADE2023",
@@ -427,6 +578,10 @@
     "valor": 23,
     "unidad": "porcentaje",
     "periodo": "2023",
-    "denominador": "respondentes que declaran trading down en la canasta, no población nacional ponderada acreditada"
+    "denominador": "respondentes que declaran trading down en la canasta, no población nacional ponderada acreditada",
+    "estado_verificacion": "LEÍDO EN FUENTE PRIMARIA",
+    "localizador": "Página primaria texto e imagen descrita, líneas web 9–19; fuente Mexico2023 Consumer Sentiment Survey",
+    "fecha_consulta": "2026-09-26",
+    "alcance": "Cifra externa histórica en universo de la fuente; no RESULT ni medición nueva del proyecto"
   }
 ]

@@ -1,0 +1,30 @@
+{
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "semilla": 20260923,
+  "replicas": 200,
+  "rng": "Generator(PCG64)",
+  "uniones": {
+    "A": {
+      "mujeres": 87169,
+      "sin_demografia": 0
+    },
+    "B": {
+      "mujeres": 27203,
+      "sin_demografia": 0
+    },
+    "C": {
+      "mujeres": 38264,
+      "sin_demografia": 0
+    }
+  },
+  "diseno": {
+    "estratos": 574,
+    "upm": 16910,
+    "upm_sin_mujeres_modulos": 20,
+    "estratos_una_upm": 0
+  },
+  "llaves": 1894,
+  "fuente_marco_upm": "TViviend: todas las UPM observadas"
+}

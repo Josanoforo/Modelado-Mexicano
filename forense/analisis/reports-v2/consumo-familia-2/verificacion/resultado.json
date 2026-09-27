@@ -1,0 +1,765 @@
+{
+  "errores": [],
+  "conteos": [
+    {
+      "report": "consumo",
+      "afirmaciones": 213,
+      "mapa": 38,
+      "cifras": 28,
+      "fuentes": 6
+    },
+    {
+      "report": "familia",
+      "afirmaciones": 120,
+      "mapa": 51,
+      "cifras": 9,
+      "fuentes": 6
+    }
+  ],
+  "mutaciones_rechazadas": [
+    "ASTRA5-U0-FAM-022",
+    "ASTRA5-U0-FAM-045",
+    "FAM-FUERA-L187",
+    "FAM-FUERA-L189",
+    "FAM-FUERA-L193",
+    "L086-BANCARIZACION",
+    "L086-ESTRUCTURA",
+    "CONS024-CAUSAL",
+    "externa-inaccesible"
+  ],
+  "evidencia_consultada": [
+    {
+      "id": "CONS-INTERNET",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.06902559930381484,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+      "ic": [
+        0.06646,
+        0.071809
+      ],
+      "ic_calibrado": [
+        0.017334,
+        0.237593
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 659,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-CONEXION",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-CONEX-INTERNET-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.6059492137445875,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+      "ic": [
+        0.601232,
+        0.61087
+      ],
+      "ic_calibrado": [
+        0.430324,
+        0.757893
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 859,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-COND",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-SI-CONEXION-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.10059492888406688,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares con conexión; segmento TOTAL/TODOS",
+      "ic": [
+        0.096408,
+        0.104865
+      ],
+      "ic_calibrado": [
+        0.032675,
+        0.270255
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 759,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-EFECTIVO",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-EFECTIVO-EN-GASTO-DIRECTO-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.8125769688192422,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto directo G1; segmento TOTAL/TODOS",
+      "ic": [
+        0.800206,
+        0.822682
+      ],
+      "ic_calibrado": [
+        0.771299,
+        0.847874
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 4471,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-ALIMENTOS",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.37681558826627515,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto monetario agregado; segmento TOTAL/TODOS",
+      "ic": [
+        0.373267,
+        0.380147
+      ],
+      "ic_calibrado": [
+        0.34458,
+        0.41018
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1615,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-CONVENIENCIA",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-CONVENIENCIA-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.01622010296327464,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+      "ic": [
+        0.015537,
+        0.016931
+      ],
+      "ic_calibrado": [
+        0.014816,
+        0.017755
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1915,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-ABARROTES",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-ABARROTES-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.27843969218434655,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+      "ic": [
+        0.274678,
+        0.28206
+      ],
+      "ic_calibrado": [
+        0.258368,
+        0.299441
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1815,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-SUPER",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-CANAL-SUPER-MEMBRESIA-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.1616993758832774,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto alimentario para el hogar; segmento TOTAL/TODOS",
+      "ic": [
+        0.156903,
+        0.167247
+      ],
+      "ic_calibrado": [
+        0.142766,
+        0.182609
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 2443,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-TARJETA",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-TIENE-TARJETA-CREDITO-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.2962677997619976,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+      "ic": [
+        0.290867,
+        0.301928
+      ],
+      "ic_calibrado": [
+        0.258609,
+        0.336918
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 4271,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-TARJETA-COND",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-USA-TARJETA-ALIMENTOS-SI-TIENE-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.22998700108870937,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares con tarjeta; segmento TOTAL/TODOS",
+      "ic": [
+        0.220392,
+        0.239573
+      ],
+      "ic_calibrado": [
+        0.178582,
+        0.290947
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 4371,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-FIADO",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-FIADO-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.08486548353422592,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento TOTAL/TODOS",
+      "ic": [
+        0.082357,
+        0.087675
+      ],
+      "ic_calibrado": [
+        0.06327,
+        0.112943
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 3543,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-D01",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-DECIL-D01-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.008077227788688792,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento DECIL/D01",
+      "ic": [
+        0.005974,
+        0.010762
+      ],
+      "ic_calibrado": [
+        0.001551,
+        0.040942
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 435,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-D10",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-DECIL-D10-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.21777949349395986,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento DECIL/D10",
+      "ic": [
+        0.204054,
+        0.231405
+      ],
+      "ic_calibrado": [
+        0.051629,
+        0.58743
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 471,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-ALIMENTOS-D01",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-DECIL-D01-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.5109678800394367,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto monetario agregado; segmento DECIL/D01",
+      "ic": [
+        0.502688,
+        0.518177
+      ],
+      "ic_calibrado": [
+        0.48293,
+        0.538937
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1391,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-ALIMENTOS-D10",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-PART-ALIMENTOS-2022-DECIL-D10-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.2832636232723902,
+      "unidad": "participación del gasto, razón de totales",
+      "periodo": "2022",
+      "denominador": "gasto monetario agregado; segmento DECIL/D10",
+      "ic": [
+        0.272962,
+        0.294296
+      ],
+      "ic_calibrado": [
+        0.25956,
+        0.308231
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1427,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-GASTO-CDMX",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-ENTIDAD-09-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 19632.54453245953,
+      "unidad": "pesos corrientes mensuales por hogar",
+      "periodo": "2022",
+      "denominador": "hogares con gasto monetario válido; segmento ENTIDAD/09",
+      "ic": [
+        17587.417916,
+        22252.716239
+      ],
+      "ic_calibrado": [],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1151,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-GASTO-CHIAPAS",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-ENTIDAD-07-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 8647.627775312192,
+      "unidad": "pesos corrientes mensuales por hogar",
+      "periodo": "2022",
+      "denominador": "hogares con gasto monetario válido; segmento ENTIDAD/07",
+      "ic": [
+        8239.034815,
+        9057.214981
+      ],
+      "ic_calibrado": [],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1143,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-GASTO-TOTAL",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-MEDIA-GASTO-MON-MENSUAL-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 13321.60430554842,
+      "unidad": "pesos corrientes mensuales por hogar",
+      "periodo": "2022",
+      "denominador": "hogares con gasto monetario válido; segmento TOTAL/TODOS",
+      "ic": [
+        13118.746128,
+        13560.744678
+      ],
+      "ic_calibrado": [],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 1287,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-NL",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-19-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.10725155318560253,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/19",
+      "ic": [
+        0.092212,
+        0.122652
+      ],
+      "ic_calibrado": [
+        0.021446,
+        0.397066
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 563,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-BC",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-02-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.07166992292045819,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/02",
+      "ic": [
+        0.059155,
+        0.0838
+      ],
+      "ic_calibrado": [
+        0.013849,
+        0.297952
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 495,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-CHIH",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-08-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.07690482496338522,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/08",
+      "ic": [
+        0.065644,
+        0.088438
+      ],
+      "ic_calibrado": [
+        0.014968,
+        0.313548
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 519,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-CDMX",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-09-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.10293241204937743,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/09",
+      "ic": [
+        0.086947,
+        0.122166
+      ],
+      "ic_calibrado": [
+        0.020441,
+        0.386854
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 523,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "CONS-INTERNET-CHIAPAS",
+      "result_id": "RESULT-ENIGH-CONSUMO-PISOS-HOG-COMPRA-INTERNET-2022-ENTIDAD-07-P",
+      "calc": "CALC-ENIGH-CONSUMO-PISOS-0002",
+      "valor": 0.017253759372540357,
+      "unidad": "proporción de hogares",
+      "periodo": "2022",
+      "denominador": "hogares del universo con respuesta válida; segmento ENTIDAD/07",
+      "ic": [
+        0.012242,
+        0.022458
+      ],
+      "ic_calibrado": [
+        0.003128,
+        0.089437
+      ],
+      "fuente": "forense/analisis/consumo-gasto/tabla-pisos-consumo-v1_0.tsv",
+      "fila": 515,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-CON-RESERVA-DE-ANCHO; FP-260925-GEN2-CONSUMO-Y-GASTO-PISOS-1-2d37-01; no consumidor nuevo",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "d4f5f2fbd7cce9ca2fd54d23e8e2eb79c77284ba05113330566e9f3553da83a1"
+    },
+    {
+      "id": "FAM-C01",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-AMPLIADO-2018-SEXO-JEFE-HOMBRE-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.20847768211553921,
+      "unidad": "hogar",
+      "periodo": "2018",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.204636,
+        0.212405
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 28,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C02",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-AMPLIADO-2018-SEXO-JEFE-MUJER-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.3242320756221664,
+      "unidad": "hogar",
+      "periodo": "2018",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.317518,
+        0.330996
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 31,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C03",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-AMPLIADO-2009-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.2388134109286379,
+      "unidad": "hogar",
+      "periodo": "2009",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.234551,
+        0.243274
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 44,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C04",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-AMPLIADO-2018-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.2404992477583198,
+      "unidad": "hogar",
+      "periodo": "2018",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.237019,
+        0.243806
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 46,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C05",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-UNIPERSONAL-2009-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.09623745209079163,
+      "unidad": "hogar",
+      "periodo": "2009",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.093242,
+        0.099413
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 179,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C06",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-HOGAR-UNIPERSONAL-2018-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.11741713128652798,
+      "unidad": "hogar",
+      "periodo": "2018",
+      "denominador": "hogares con clasificación válida; restringido por sexo del jefe si aplica",
+      "ic": [
+        0.114643,
+        0.120188
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 181,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C07",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-JOVEN-25-34-HIJO-DEL-JEFE-2009-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.3188205635808746,
+      "unidad": "persona",
+      "periodo": "2009",
+      "denominador": "personas de 25–34 años con parentesco observado",
+      "ic": [
+        0.310536,
+        0.326661
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 248,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C08",
+      "result_id": "RESULT-ENADID-FAMILIA-HOGARES-JOVEN-25-34-HIJO-DEL-JEFE-2018-TOTAL-TODOS-P",
+      "calc": "CALC-ENADID-FAMILIA-HOGARES-0001",
+      "valor": 0.3328973388007727,
+      "unidad": "persona",
+      "periodo": "2018",
+      "denominador": "personas de 25–34 años con parentesco observado",
+      "ic": [
+        0.326895,
+        0.339333
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 250,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "51d8ad9fb49a64e53c560316f818567a73d4144230da0fa89fed72f64cee8ee4"
+    },
+    {
+      "id": "FAM-C09",
+      "result_id": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-P",
+      "calc": "CALC-ENASIC-CUIDADOS-VEJEZ-0001",
+      "valor": 0.6835549286454388,
+      "unidad": "cuidador principal asociado a persona 60+",
+      "periodo": "2022",
+      "denominador": "personas 60+ con cuidador principal del hogar identificado",
+      "ic": [
+        0.635985,
+        0.727407
+      ],
+      "ic_calibrado": null,
+      "fuente": "forense/analisis/familia-migracion/tabla-pisos-familia-migracion-v1_0.tsv",
+      "fila": 857,
+      "cuenta_gen2": "SI",
+      "estado_adopcion": "ADOPTADO-POR-FIRMA-FIRMAS-19; ejecución GEN2-CATALOGO-V1-2-1",
+      "registro_local": "derivado del sellado, no registro global vigente",
+      "consulta": "NO-ENCONTRADO: registro derivado no contiene este RESULT; cotejo directo de sellado por control legado",
+      "sha256_resultados_json": "8a4d5820e1e451c1eb11db3fb0a5d76039f0a4bdca71e8301e76f837bf9c0115"
+    }
+  ],
+  "alcance": "Trazabilidad y regresiones materiales; no certificación independiente ni recálculo C1. Filas, identidades del mapa, líneas v1 y cláusulas no son tesis únicas."
+}

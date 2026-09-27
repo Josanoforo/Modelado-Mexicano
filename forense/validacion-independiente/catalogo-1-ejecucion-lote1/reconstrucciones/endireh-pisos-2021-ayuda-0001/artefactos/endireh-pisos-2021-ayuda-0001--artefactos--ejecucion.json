@@ -1,0 +1,26 @@
+{
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "semilla": 20260923,
+  "replicas": 500,
+  "rng": "numpy.random.Generator(PCG64)",
+  "orden": "estratos y UPM ordenados lexicográficamente; sort=True; matriz B por n_h",
+  "percentiles": "numpy.quantile method=linear",
+  "cv": "sd de réplicas ddof=1 / punto",
+  "filas_A1_A2": 68540,
+  "edad_invalida": 0,
+  "union_positiva": 24972,
+  "union_negativa": 43568,
+  "union_desconocida": 0,
+  "upm": 16846,
+  "estratos": 617,
+  "singleton": 2,
+  "llaves": 117,
+  "estados": {
+    "RECONSTRUIDO": 116,
+    "NO-RECALCULABLE-DESDE-SPEC": 1
+  },
+  "primera_ejecucion_numerica": true,
+  "sin_resultados_esperados": true
+}

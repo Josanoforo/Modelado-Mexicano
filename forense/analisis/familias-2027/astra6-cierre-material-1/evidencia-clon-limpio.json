@@ -1,0 +1,12 @@
+{
+  "estado": "EJECUTADO",
+  "clon": "/tmp/astra6-c2-clon-limpio",
+  "commit_verificado": "589f05e1",
+  "comando": "python3 tools/familias-2027/cierre-material-1/verifica_cierre_material.py --verifica --hoja --pruebas --evidencia",
+  "raw_montado": false,
+  "caches_requeridos": false,
+  "git_status_despues": "",
+  "exit_code": 0,
+  "salida": ".......................                                                  [100%]\n23 passed in 0.81s\nINVENTARIO: VERDE; 231 archivos efectivos, identidad COMMIT-1/enmienda intacta\nCONTROL-SUCESOR: VERDE; 18 identidades propuestas\n6 familias con emisiones congeladas para 3 olas futuras; 0 con atestación externa verificada; fechas no confirmadas o ventanas esperadas. 5 con soporte histórico; 0 autorizadas para apertura hoy.\nEVIDENCIA-HISTORICA: ACREDITADA; no atestación ni evaluación futura\n",
+  "sha256_salida": "418c113a979fae5e16ef089b1c22c39333f800f74db637ae783b3491a6b8e9cb"
+}

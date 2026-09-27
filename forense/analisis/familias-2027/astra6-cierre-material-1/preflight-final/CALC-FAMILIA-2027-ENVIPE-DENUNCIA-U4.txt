@@ -1,0 +1,19 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4   (data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4/spec.yaml
+  [NO-EJECUTABLE] spec_md_sha256
+              declarado en spec.yaml = (ninguno)
+              arbol                  = None
+              origin/main            = NO-EN-MAIN
+  [UNICOS] ids de resultados: 0 declarados
+  [UNICOS] ids de inputs: 0 declarados
+  [EXISTE] script tools/familias-2027/envipe/ejecuta.py
+              script_blob_sha256 = 9b36c008f429257335be71e145ef70cbb4e52bb3dfd5a1cdd9c0d3ab9aa54b38
+  inputs declarados: 0
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = (ninguna))
+  [DECLARADO] parametros = null
+  [DECLARADO] tolerancia = {}
+  [DECLARADO] seed       = None
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4/sello.json]
+
+PRE-FLIGHT: BLOQUEADO spec_sin_spec_md spec_sin_spec_md_sha256 spec_sin_inputs spec_sin_parametros spec_sin_seed spec_sin_tolerancia spec_sin_resultados ausente=data/corrida0/CALC-FAMILIA-2027-ENVIPE-DENUNCIA-U4/spec.md tolerancia_sin_tipo seed_no_declarado campo_sustantivo_ausente=variables campo_sustantivo_ausente=universo campo_sustantivo_ausente=filtros campo_sustantivo_ausente=ponderador campo_sustantivo_ausente=transformacion campo_sustantivo_ausente=estimando campo_sustantivo_ausente=parametros campo_sustantivo_ausente=seed campo_sustantivo_ausente=dependencias_materiales campo_sustantivo_ausente=resultados campo_sustantivo_ausente=tolerancia calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO

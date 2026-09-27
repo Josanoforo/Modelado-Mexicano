@@ -1,0 +1,23 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001   (data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = a02c8146472931bb9a7d1c8c30a8e18df36262f0e13fe37dccda44d896a914d2
+              arbol                  = a02c8146472931bb9a7d1c8c30a8e18df36262f0e13fe37dccda44d896a914d2
+              origin/main            = a02c8146472931bb9a7d1c8c30a8e18df36262f0e13fe37dccda44d896a914d2
+  [UNICOS] ids de resultados: 1 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/medidor.py
+              script_blob_sha256 = 95db1f503d15a0d83f26105eef69c69d447c74e5a12914738694517ff258438c
+  inputs declarados: 1
+    [COINCIDE] CALC-ENIF-0001  origen=repo  ruta=data/corrida0/CALC-ENIF-0001/resultados.json
+              sha256 real     = 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6
+              sha256 declarado= 2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"R_futura": null, "agrupacion": "NACIONAL", "banda": 0.02, "futuro_ids": null, "min_estratos": 150, "min_n": 10000, "min_upm": 1000, "replicas": 2000}
+  [DECLARADO] tolerancia = {"abs": 1e-10, "tipo": "flotante"}
+  [DECLARADO] seed       = {'aplica': False, 'motivo': 'determinista'}
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO

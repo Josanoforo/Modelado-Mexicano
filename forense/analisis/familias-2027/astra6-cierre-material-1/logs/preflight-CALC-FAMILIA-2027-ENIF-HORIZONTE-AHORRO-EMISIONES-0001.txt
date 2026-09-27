@@ -1,0 +1,27 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001   (data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = e19c13db37e1593ba531585b1e82670cfcfa31ce3ad65866a43f2eb99af106f0
+              arbol                  = e19c13db37e1593ba531585b1e82670cfcfa31ce3ad65866a43f2eb99af106f0
+              origin/main            = e19c13db37e1593ba531585b1e82670cfcfa31ce3ad65866a43f2eb99af106f0
+  [UNICOS] ids de resultados: 1 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/medidor.py
+              script_blob_sha256 = 5dde6340f0d1c584d1a6f7c18eaab868f98b5c4909ba0c68326aa4f42a01b6b7
+  inputs declarados: 1
+    [COINCIDE] CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1  origen=repo  ruta=data/corrida0/CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1/resultados.json
+              sha256 real     = 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+              sha256 declarado= 16a03f136bf70db92ad0031230e1e5191f317f32c0e9181c18a9be61109364bd
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"R_futura": null, "agrupacion": "NACIONAL", "banda": 0.02, "futuro_ids": null, "min_estratos": 150, "min_n": 10000, "min_upm": 1000, "replicas": 2000}
+  [DECLARADO] tolerancia = {"abs": 1e-10, "tipo": "flotante"}
+  [DECLARADO] seed       = {'aplica': False, 'motivo': 'determinista'}
+  [SUCIO] git status --porcelain (4 lineas)
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.json
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.tsv
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/logs/
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/producto.txt
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO working_tree_dirty=SI calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO
