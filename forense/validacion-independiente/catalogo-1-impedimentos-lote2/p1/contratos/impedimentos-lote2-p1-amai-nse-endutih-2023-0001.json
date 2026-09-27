@@ -1,0 +1,43 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "amai-nse-endutih-2023-0001",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/amai-nse-endutih-2023-0001/amai-nse-endutih-2023-0001-entradas-v3.tar.gz",
+  "sha256_original": "2267e07dccdd59b43a79878a4e061d565f187ed654f68d1ed78b2c23e3ddf1bc",
+  "estimadores_historicos": 30,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "endutih_2023_endutih2023_bd_dbf",
+      "archivo": "endutih2023/endutih2023_bd_dbf.zip",
+      "sha256": "29d195082796c2692bfeb688348de3ed792848781ff7575f91b7da68119f9696",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/microdatos/endutih2023_bd_dbf.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "endutih_2023_fd_endutih2023",
+      "archivo": "endutih2023/FD_ENDUTIH2023.xlsx",
+      "sha256": "0f78146a6d61b0b5cd4d84056aa77e0f1bf1b25a9a126e8813215eada4da62c2",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/microdatos/FD_ENDUTIH2023.xlsx",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enigh2022_nc_csv",
+      "archivo": "enigh2022_nc_csv.zip",
+      "sha256": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/datosabiertos/conjunto_de_datos_enigh_ns_2022_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enigh2022_descripcion_base_pdf",
+      "archivo": "enigh2022_descripcion_base_pdf.pdf",
+      "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+      "url": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463910626.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "contrato_amai": "impedimentos-lote2-p1-amai-propuesto.md",
+  "accion": "Firma por contrato nuevo completo componentes/conductas/inferencia;ENIF AMAI apertura aparteP3",
+  "faltante_historico": "D15 por referencias helpers;comparaciones AMAI publicadas quedan fuera del paquete ciego"
+}

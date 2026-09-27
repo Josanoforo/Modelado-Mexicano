@@ -1,0 +1,999 @@
+[
+  {
+    "id": "ASTRA5-U0-PAREJA-001",
+    "mapa_id": "ASTRA5-U0-PAREJA-001",
+    "afirmacion": "La edad promedio al matrimonio subió a 34.1 años en hombres (desde 29.8 en 2013) y 31.3 años en mujeres (desde 26.9 en 2013), según la Estadística de Matrimonios (EMAT) 2022 del INEGI, que registró 507,052 matrimonios.",
+    "localizador": "L5",
+    "dictamen": "SIN-CIFRA",
+    "razon": "EMAT2022 edad y conteo no cotejados aquí; retirar valores hasta lectura del comunicado específico.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-002",
+    "mapa_id": "ASTRA5-U0-PAREJA-002",
+    "afirmacion": "La tasa de nupcialidad cayó de 7.2 matrimonios por cada mil habitantes de 18+ en 2014 a 5.6 en 2023 (INEGI, EMAT 2023, comunicado 572/24).",
+    "localizador": "L5",
+    "dictamen": "CONFIRMA",
+    "razon": "EMAT2023 comunicado572/24 p1: descenso de tasa por población18+; eventos registrados, no probabilidad individual.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-EMAT"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-003",
+    "mapa_id": "ASTRA5-U0-PAREJA-003",
+    "afirmacion": "17.8% de la población de 15+ vive en unión libre (ENOE, tercer trimestre 2023); 36.9% casados, 33.1% solteros; entre 15-29: 72.7% soltero, 17% unión libre, 8.3% casado.",
+    "localizador": "L5-L82",
+    "dictamen": "SIN-CIFRA",
+    "razon": "ENOE2023T3 no ejecutada para estado conyugal en este carril; no sustituir porcentajes por EDER primera unión.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-004",
+    "mapa_id": "ASTRA5-U0-PAREJA-004",
+    "afirmacion": "Los mexicanos no dejan de emparejarse: retrasan y desformalizan. [síntesis del hallazgo: 'desinstitucionalización', no desaparición]",
+    "localizador": "L5",
+    "dictamen": "MATIZA",
+    "razon": "La caída de registros no prueba retraso de primera unión ni permanencia del emparejamiento; EDER observa primera unión retrospectiva.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "R-EDER",
+      "F-COHAB"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-005",
+    "mapa_id": "ASTRA5-U0-PAREJA-005",
+    "afirmacion": "Existe una unión libre 'tradicional' de raíz histórica colonial e indígena, propia de sectores populares, y una 'moderna' que crece en clases medias urbanas como ensayo pre-matrimonial o alternativa ideológica.",
+    "localizador": "L7-L98",
+    "dictamen": "MATIZA",
+    "razon": "Pérez Amador distingue transiciones por educación/cohorte; no clasifica individuos como tradicionales o modernos por región, ni identifica ideología.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-COHAB",
+      "F-DISOL"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-006",
+    "mapa_id": "ASTRA5-U0-PAREJA-006",
+    "afirmacion": "22.3% de quienes han usado estas plataformas está hoy buscando pareja mediante una app, equivalente a 8.6 millones de usuarios activos, con una frecuencia de uso que subió a 2.7 veces por semana (vs. 2.4 el año previo).",
+    "localizador": "L9",
+    "dictamen": "MATIZA",
+    "razon": "CIU2026 nota primaria contiene cifras, pero no publica aquí muestra/ponderación. Se retienen solo como estimación comercial de quienes alguna vez usaron apps.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-APPS"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-007",
+    "mapa_id": "ASTRA5-U0-PAREJA-007",
+    "afirmacion": "El 95.2% de los internautas (99.3 millones) conoce estas plataformas...reconocimiento de marca 87.4% Tinder, 62.8% Bumble, 47.3% Facebook Parejas...sólo ~28.9% de los internautas tiene cuenta activa...sólo 29% la califica como buena.",
+    "localizador": "L112-L118",
+    "dictamen": "MATIZA",
+    "razon": "CIU2026 respalda reconocimiento de marcas; cuenta activa28.9 y evaluación29 no identificadas en esta edición. No mezclar ediciones.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-APPS"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-008",
+    "mapa_id": "ASTRA5-U0-PAREJA-008",
+    "afirmacion": "Statista/Profeco (Tinder 72.7% de preferencia, Bumble 68.2%, muy por encima de Grindr, Badoo y Happn). Instagram (50.9%) y WhatsApp (47.2%) superan a las apps de citas (41.3%) como medio de ligue.",
+    "localizador": "L114",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Preferencia Statista/Profeco y medios de ligue carecen aquí de encuesta primaria leída y denominador uniforme.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-009",
+    "mapa_id": "ASTRA5-U0-PAREJA-009",
+    "afirmacion": "El matrimonio igualitario es nacional desde 2022 (último estado en reformar su código civil: Tamaulipas, 26 de octubre de 2022).",
+    "localizador": "L15",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Cronología estatal no cotejada con decreto primario; evitar consejo jurídico actual y conservar inclusión de parejas diversas como propuesta.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-010",
+    "mapa_id": "ASTRA5-U0-PAREJA-010",
+    "afirmacion": "La población LGBT+ es 5.1% de los mayores de 15 años (~5 millones, según ENDISEG 2021 del INEGI, comunicado 340/22: 2.1 millones de hombres y 2.9 millones de mujeres, con 67.5% entre 15 y 29 años).",
+    "localizador": "L15",
+    "dictamen": "MATIZA",
+    "razon": "ENDISEG2021 p4/6 respalda prevalencia autorreportada15+ y composición por edad; autorreconocimiento no equivale a incidencia ni conducta sexual.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDISEG"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-011",
+    "mapa_id": "ASTRA5-U0-PAREJA-011",
+    "afirmacion": "La población LGBT+...más escolarizada (62% con media superior o superior, vs. 46.4% de la población no LGBT+); 64.9% está soltera, 16.7% en unión libre y 13.9% casada...El 11% de la población que se autoidentifica indígena y 3.9% de las personas afrodescendientes se reconocen LGBT+...concentración en Estado de México (490 mil), CDMX (311 mil) y Veracruz (308 mil).",
+    "localizador": "L156-L162",
+    "dictamen": "MATIZA",
+    "razon": "Descomponer composición escolar/conyugal/territorial y etnicidad: el original invierte el denominador étnico.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDISEG"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-012",
+    "mapa_id": "ASTRA5-U0-PAREJA-012",
+    "afirmacion": "En 2023 se registraron 6,606 matrimonios entre personas del mismo sexo.",
+    "localizador": "L156",
+    "dictamen": "CONFIRMA",
+    "razon": "EMAT2023 p1/5 registra eventos entre contrayentes del mismo sexo; no enumera parejas existentes ni identidades de género.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-EMAT"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-013",
+    "mapa_id": "ASTRA5-U0-PAREJA-013",
+    "afirmacion": "Con datos de la ENDIREH 2021 analizados por Rodríguez-Hernández, Castillo-Viveros y Esquivel-Santoveña (Psychology, Society & Education, 2023, n=7,140 mujeres de 15-24 años), 20.2% vivió al menos una agresión de su pareja en el último año: 19.9% emocional, 2.7% física, 2.0% sexual.",
+    "localizador": "L11",
+    "dictamen": "MATIZA",
+    "razon": "Artículo2023 método p71 y tabla2 p72 selecciona solteras15–24 alguna vez con pareja y nunca cohabitantes; no todas las mujeres de esas edades. Resumen inglés discrepa del cuerpo.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-014",
+    "mapa_id": "ASTRA5-U0-PAREJA-014",
+    "afirmacion": "La ENDIREH 2021 estima además que 39.9% de las mujeres de 15+ ha sufrido violencia de pareja a lo largo de la vida, y que solo 13.6% de quienes la sufrieron acudió a una autoridad.",
+    "localizador": "L11",
+    "dictamen": "MATIZA",
+    "razon": "Separar prevalencia oficial alguna vez de solicitud institucional; comunicado485/22 respalda prevalencia pero no se localizó13.6 como autoridad en el denominador del original.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDIREH"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-016",
+    "mapa_id": "ASTRA5-U0-PAREJA-016",
+    "afirmacion": "El centro-occidente (Guanajuato, Jalisco, Zacatecas, Aguascalientes) sigue ~90% católico; Chiapas es el estado menos católico (54%); Chiapas 32.5% protestante-evangélica, Tabasco 27.1%.",
+    "localizador": "L176",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Porcentajes religiosos estatales no cotejados; no convertir afiliación en guion de pareja.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-017",
+    "mapa_id": "ASTRA5-U0-PAREJA-017",
+    "afirmacion": "La secularización es sobre todo urbana; en ciudades medianas y zonas rurales el catolicismo sigue estructurando el guion de pareja.",
+    "localizador": "L13",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Distribución religiosa no identifica secularización urbana ni conducta de pareja individual; requiere enlace de variables.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-018",
+    "mapa_id": "ASTRA5-U0-PAREJA-018",
+    "afirmacion": "Los 'mitos del amor romántico' ... siguen operando y se asocian a mayor tolerancia a la violencia, sobre todo en hombres jóvenes; pero la aceptación explícita de esos mitos está bajando en cohortes universitarias.",
+    "localizador": "L17",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Faltan instrumento local y serie comparable sobre aceptación de mitos; asociación y descenso generacional son cláusulas distintas sin contraste leído.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-019",
+    "mapa_id": "ASTRA5-U0-PAREJA-019",
+    "afirmacion": "El marianismo (autosacrificio, autosilenciamiento, pilar espiritual/familiar) y el machismo tradicional (dominancia, supresión emocional) coexisten con el caballerismo (responsabilidad, conexión emocional). En la díada actual estos guiones se negocian y erosionan de forma desigual por clase y escolaridad.",
+    "localizador": "L19",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No se leyó validación mexicana longitudinal que mida erosión del marianismo/machismo/caballerismo; etiquetas heurísticas sin tasa nacional.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-020",
+    "mapa_id": "ASTRA5-U0-PAREJA-020",
+    "afirmacion": "La evidencia psicométrica mexicana (Escala Multidimensional de Celos, EMUCE) separa componentes emocionales/de inseguridad de conductas de control; los celos como control, no como emoción, son los que predicen violencia.",
+    "localizador": "L21",
+    "dictamen": "MATIZA",
+    "razon": "Distinguir emoción de control ayuda a definir conducta; psicometría no demuestra exclusividad ni predicción causal de violencia.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-021",
+    "mapa_id": "ASTRA5-U0-PAREJA-021",
+    "afirmacion": "En 52% de los matrimonios de 2022 ambos cónyuges trabajaban y en 53% ambos tenían la misma escolaridad (INEGI).",
+    "localizador": "L23",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Homogamia escolar y doble trabajo de contrayentes2022 no cotejados; tampoco prueban poder doméstico.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-022",
+    "mapa_id": "ASTRA5-U0-PAREJA-022",
+    "afirmacion": "La mayor escolaridad y las actitudes igualitarias de género son factores protectores frente a la violencia en el noviazgo.",
+    "localizador": "L23",
+    "dictamen": "MATIZA",
+    "razon": "Tabla3 artículo2023 encuentra asociaciones con escolaridad/actitudes; diseño transversal no demuestra que cambiarlas prevenga violencia.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-023",
+    "mapa_id": "ASTRA5-U0-PAREJA-023",
+    "afirmacion": "El monitoreo, la revisión de redes y el control vía celular son las conductas más frecuentes [de violencia digital de pareja].",
+    "localizador": "L25",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Frecuencia nacional de monitoreo/revisión digital no identificada en instrumento primario leído de pareja. MOCIBA no sustituye agresor pareja.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-024",
+    "mapa_id": "ASTRA5-U0-PAREJA-024",
+    "afirmacion": "[Las conductas de monitoreo/control digital] se justifican bajo creencias románticas de 'amor = vigilancia', especialmente en jóvenes intensamente conectados.",
+    "localizador": "L25",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Justificación amor=vigilancia exige reactivo conjunto con conducta y muestra definida; no se deduce de uso de teléfono.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-025",
+    "mapa_id": "ASTRA5-U0-PAREJA-025",
+    "afirmacion": "Las apps reconfiguran el cortejo hacia lógicas de mercado y aceleran el desacople entre sexo, romance y matrimonio, pero la evidencia mexicana representativa sobre efectos en la calidad de las relaciones es escasa; la mayoría de datos provienen de consultoras de mercado, no de estudios académicos.",
+    "localizador": "L27",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Efecto de apps sobre separación sexo/romance/matrimonio requiere comparación temporal/contrafactual; nota CIU es descriptiva.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-026",
+    "mapa_id": "ASTRA5-U0-PAREJA-026",
+    "afirmacion": "Grindr y las apps LGBT+ cumplen función de seguridad e infraestructura de sociabilidad en contextos hostiles, además de encuentro sexual; pero también concentran riesgos (extorsión, violencia, exposición de menores).",
+    "localizador": "L29",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Funciones protectoras y riesgos Grindr no cuantificados por muestra primaria leída; conservar hipótesis contrapuestas sin generalizar.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-027",
+    "mapa_id": "ASTRA5-U0-PAREJA-027",
+    "afirmacion": "'El mexicano es esencialmente celoso/infiel/machista'. Es un cliché esencialista. Los datos muestran variación enorme por clase, generación, región y escolaridad; los patrones son adaptaciones a estructuras... más que rasgos nacionales fijos.",
+    "localizador": "L31",
+    "dictamen": "MATIZA",
+    "razon": "No hay soporte para esencia nacional; tampoco está estimada la supremacía causal de estructura frente a guion. Variación observada no identifica origen.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO",
+      "F-COHAB"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-028",
+    "mapa_id": "ASTRA5-U0-PAREJA-028",
+    "afirmacion": "'3 de cada 10 jóvenes sufren violencia en el noviazgo (UNAM)' ... proviene de una declaración divulgativa (boletín UNAM-DGCS-108, del Centro de Investigaciones y Estudios de Género, 14 feb 2024), sin encuesta ni metodología publicada.",
+    "localizador": "L33",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Boletín divulgativo y metodología específica no leídos; no certificar cifra general ni etiquetar falsa una declaración sin cotejo.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-029",
+    "mapa_id": "ASTRA5-U0-PAREJA-029",
+    "afirmacion": "El mismo boletín atribuye erróneamente los porcentajes clásicos (76% psicológica) a '2021' cuando corresponden a la ENVINOV 2007 del IMJUVE.",
+    "localizador": "L33",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No se leyó ENVINOV original junto al boletín UNAM; retirar atribución y corrección cuantitativa firme.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-030",
+    "mapa_id": "ASTRA5-U0-PAREJA-030",
+    "afirmacion": "el rango 25-29 sigue concentrando la mayoría de bodas, con incremento en 30-34 y 35-39. ... abolición del matrimonio infantil (de 48,275 casos con menores en 2013 a 32 en 2022).",
+    "localizador": "L84;L88",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Descomponer concentración25–29, crecimiento30–39 y matrimonios menores; EMAT2022 histórico no cotejado, mayoría no igual a grupo modal.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-031",
+    "mapa_id": "ASTRA5-U0-PAREJA-031",
+    "afirmacion": "Causas plausibles: más años de escolaridad, prioridad a la estabilidad laboral, encarecimiento de la vida, secularización, autonomía femenina, abolición del matrimonio infantil.",
+    "localizador": "L88",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Lista causal plausible no identifica pesos de escolaridad/costos/religión ni efecto de prohibición en calendario de primera unión.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-032",
+    "mapa_id": "ASTRA5-U0-PAREJA-032",
+    "afirmacion": "la ENADID 2018 muestra que las uniones libres presentan 3.4 veces más separaciones que los matrimonios.",
+    "localizador": "L98",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Razón3.4 sin tabla/denominador comparable leído; Quilodrán2025 distingue duración, cohorte y tipo de disolución, no avala razón universal.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [
+      "F-DISOL"
+    ],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-033",
+    "mapa_id": "ASTRA5-U0-PAREJA-033",
+    "afirmacion": "Implicaciones: la política pública debe reconocer derechos patrimoniales en uniones de hecho; no asumir el matrimonio como default.",
+    "localizador": "L108",
+    "dictamen": "MATIZA",
+    "razon": "Reconocer trayectorias es propuesta de diseño; derechos concretos dependen jurisdicción, no se adopta reforma ni receta legal aquí.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "R-EDER"
+    ],
+    "naturaleza": "propuesta",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-034",
+    "mapa_id": "ASTRA5-U0-PAREJA-034",
+    "afirmacion": "Causas: penetración de smartphones y datos, urbanización, huella de la pandemia, cambio en guiones de género (Bumble = la mujer inicia la conversación en matches heterosexuales).",
+    "localizador": "L120",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Pandemia, conectividad y política Bumble no identifican efecto sobre conducta; versión de producto cambia y no se cotejó documentación vigente.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-035",
+    "mapa_id": "ASTRA5-U0-PAREJA-035",
+    "afirmacion": "Un estudio escolar de Mexicanos Primero y Fundación Naná (feb 2025) reporta que 'una de cada 4 mujeres de 15 a 19 años que ha tenido pareja ha experimentado violencia en su relación'.",
+    "localizador": "L130",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Estudio2025 escolar no leído; no transportar a todas las jóvenes ni usar coherencia numérica como validación.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-036",
+    "mapa_id": "ASTRA5-U0-PAREJA-036",
+    "afirmacion": "algunos estudios de muestras universitarias reportan bidireccionalidad (los hombres también son víctimas), pero la severidad, el daño y el desenlace letal son marcadamente asimétricos.",
+    "localizador": "L132",
+    "dictamen": "MATIZA",
+    "razon": "ENDIREH solo recoge mujeres; no identifica bidireccionalidad ni comparación de severidad por sexo en díadas. Diferenciar encuestas y registro letal.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO",
+      "F-ENDIREH"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-037",
+    "mapa_id": "ASTRA5-U0-PAREJA-037",
+    "afirmacion": "según el Boletín N°4 de la CEPAL 'Violencia feminicida en cifras' (24 nov 2025), en 2024 ocurrieron 852 feminicidios en México —uno cada 10 horas en promedio, tasa de 1.3 por 100 mil mujeres— y 'la mayoría de las muertes de mujeres por razón de género se produce a manos de las parejas'.",
+    "localizador": "L134",
+    "dictamen": "SIN-CIFRA",
+    "razon": "CEPAL2025 no leída aquí; retirar conteo/tasa y atribución a pareja, que requiere vínculo del perpetrador en registro.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-038",
+    "mapa_id": "ASTRA5-U0-PAREJA-038",
+    "afirmacion": "Causas: guion romántico (celos=amor), machismo tradicional, dependencia económica, normalización cultural, impunidad institucional.",
+    "localizador": "L136",
+    "dictamen": "MATIZA",
+    "razon": "Historia familiar y actitudes son correlatos medidos; dependencia e impunidad son rivales compatibles sin descomposición causal.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-039",
+    "mapa_id": "ASTRA5-U0-PAREJA-039",
+    "afirmacion": "El estudio intracultural de Calderón-Pérez, Flores-Galaz y Rivera-Aragón (2018, CDMX y Colima) halló que los hombres tienden a la infidelidad sexual independientemente de su orientación, mientras factores como enojo, desconfianza e intriga estructuran la reacción celosa.",
+    "localizador": "L146",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Estudio intracultural no leído; no atribuir infidelidad a todos los hombres u orientaciones desde muestra local.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-040",
+    "mapa_id": "ASTRA5-U0-PAREJA-040",
+    "afirmacion": "las Premisas Histórico-Socio-Culturales (PHSC) rigen normas y creencias sobre la pareja; se han medido y actualizado, mostrando en adolescentes un desplazamiento hacia mayor individualismo ('pensar en uno mismo', 'ser feliz'), tendencia que Díaz-Loving (2019) documenta.",
+    "localizador": "L44 (también L69,L171,L178)",
+    "dictamen": "SIN-CIFRA",
+    "razon": "PHSC y tendencia adolescente carecen aquí de serie primaria comparable leída; conservar como pregunta longitudinal.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-041",
+    "mapa_id": "ASTRA5-U0-PAREJA-041",
+    "afirmacion": "Migración/transnacional: parejas separadas por la migración a EE.UU.; remesas y guiones biculturales; los más de 10 millones de mexicanos en EE.UU. sostienen relaciones y familias transnacionales.",
+    "localizador": "L183",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Stock de nacidos en México residentesEEUU no cuenta parejas transnacionales ni prueba guiones igualitarios transmitidos.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "descripción",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-042",
+    "mapa_id": "ASTRA5-U0-PAREJA-042",
+    "afirmacion": "Malinterpretado desde marcos anglosajones: aplicar el guion 'dating' estadounidense o marcos Hofstede/GLOBE/honor-dignidad-face sin crítica borra la especificidad de clase y la doble raíz de la cohabitación.",
+    "localizador": "L188-L191",
+    "dictamen": "MATIZA",
+    "razon": "Marcos importados requieren equivalencia de medición y comparador; las transiciones mexicanas no se deducen de puntajes nacionales Hofstede.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-COHAB",
+      "F-DISOL"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-043",
+    "mapa_id": "ASTRA5-U0-PAREJA-043",
+    "afirmacion": "Apps y producto: diseñar para uso intermitente y multi-app...seguridad como feature central...no heteronormalizar el diseño...segmentar: el mercado real es urbano y de clase media.",
+    "localizador": "L195-L199",
+    "dictamen": "MATIZA",
+    "razon": "CIU describe multiapp sin identificar clase social; seguridad/inclusión son propuestas evaluables y no éxito probado del producto.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-APPS",
+      "F-ENDISEG"
+    ],
+    "naturaleza": "propuesta",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-044",
+    "mapa_id": "ASTRA5-U0-PAREJA-044",
+    "afirmacion": "Salud sexual: Usar las apps como canal de prevención (VIH/ITS, PrEP), sobre todo en HSH vía Grindr...Integrar educación sexual laica frente a los residuos de 'virtud/castidad' del marianismo.",
+    "localizador": "L201-L203",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Apps como canal preventivo es propuesta; no se leyó intervención mexicana que pruebe efectividad ni dominio nacional Grindr.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "propuesta",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-045",
+    "mapa_id": "ASTRA5-U0-PAREJA-045",
+    "afirmacion": "Prevención de violencia en el noviazgo: Intervención escolar temprana...Trabajar la brecha entre vivir violencia y reconocerla (solo 13.6% busca ayuda)...Adoptar programas basados en evidencia...validados en población hispana.",
+    "localizador": "L205-L208",
+    "dictamen": "MATIZA",
+    "razon": "Prevención orientada a conductas es propuesta a evaluar; sin eficacia local probada ni inferencia de no reconocimiento desde no denuncia.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "propuesta",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-046",
+    "mapa_id": "ASTRA5-U0-PAREJA-046",
+    "afirmacion": "Comunicación / política pública: Mensajes segmentados por clase y región, no dirigidos a un 'mexicano promedio'. Corregir la desinformación estadística (evitar cifras divulgativas sin fuente, como el '3 de cada 10' mal atribuido).",
+    "localizador": "L210-L212",
+    "dictamen": "MATIZA",
+    "razon": "Comunicar universos/segmentos evita generalización; no justifica estereotipos de región/clase ni certificar refutación del boletín sin cotejo.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-APPS",
+      "F-COHAB"
+    ],
+    "naturaleza": "propuesta",
+    "revision_manual": true
+  },
+  {
+    "id": "ASTRA5-U0-PAREJA-047",
+    "mapa_id": "ASTRA5-U0-PAREJA-047",
+    "afirmacion": "Cultura (guiones): marianismo/machismo residuales...Estructura: desigualdad, dependencia económica femenina...Adaptación racional: unión libre como estrategia ante los costos del matrimonio...Ciclo generacional...Exposición internacional: apps globales, redes, migración transnacional y remesas transmiten guiones igualitarios.",
+    "localizador": "L166-L172",
+    "dictamen": "MATIZA",
+    "razon": "Separar cinco mecanismos: hipótesis de guion, estructura y adaptación; ni cohorte ni exposición internacional identifican causalidad.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-COHAB",
+      "F-DISOL",
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "asociación/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-C003-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-003",
+    "afirmacion": "Estado conyugal total15+",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "ENOE2023T3 no calculada, no reemplazada por EDER.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C003-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-003",
+    "afirmacion": "Estado conyugal15–29",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Universo juvenil distinto de total; requiere ejecución propia.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C007-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-007",
+    "afirmacion": "Reconocimiento de marca",
+    "localizador": "cláusula de padre",
+    "dictamen": "MATIZA",
+    "razon": "Nota CIU2026 primaria respalda reconocimiento, no adopción poblacional.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-APPS"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C007-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-007",
+    "afirmacion": "Cuenta activa28.9 y buena experiencia29",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No cotejados en edición2026 leída.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C011-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-011",
+    "afirmacion": "Composición escolar/conyugal/territorial LGBT+",
+    "localizador": "cláusula de padre",
+    "dictamen": "MATIZA",
+    "razon": "ENDISEG mide composición de autorreconocimiento, no efectos de orientación.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDISEG"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C011-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-011",
+    "afirmacion": "11% indígenas y3.9% afro se reconocenLGBT+",
+    "localizador": "cláusula de padre",
+    "dictamen": "ROMPE",
+    "razon": "ENDISEG p7: denominador es poblaciónLGBTI+, entre ella11% indígena y3.9% afro; invertirlo cambia estimando.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDISEG"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C013-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-013",
+    "afirmacion": "Prevalencia20.2 y19.9/2.7/2.0",
+    "localizador": "cláusula de padre",
+    "dictamen": "MATIZA",
+    "razon": "Tabla2 y método seleccionan solteras nunca cohabitantes alguna vez con pareja; resumen inglés19.9 discrepa.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C013-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-013",
+    "afirmacion": "Todas las mujeres15–24 como población de20.2",
+    "localizador": "cláusula de padre",
+    "dictamen": "ROMPE",
+    "razon": "Método excluye sin pareja y casadas, viudas, divorciadas, cohabitantes o excohabitantes. El denominador general es incorrecto.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-NOVIAZGO"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C014-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-014",
+    "afirmacion": "39.9 violencia pareja alguna vez",
+    "localizador": "cláusula de padre",
+    "dictamen": "MATIZA",
+    "razon": "Comunicado485/22 mide ámbito pareja/ventana de vida; no equivalente a noviazgo reciente.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-ENDIREH"
+    ],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C014-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-014",
+    "afirmacion": "13.6 acudió autoridad entre toda violencia pareja",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No se localizó estimando en comunicado; no inferir no reconocimiento.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C018-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-018",
+    "afirmacion": "Mitos asociados con tolerancia",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Falta fuente primaria local leída.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C018-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-018",
+    "afirmacion": "Aceptación de mitos baja en cohortes",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No hay serie comparable leída.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C030-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-030",
+    "afirmacion": "25–29 mayoría de bodas",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Grupo modal no necesariamente mayoría; falta tabla2022 cotejada.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C030-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-030",
+    "afirmacion": "Crecimiento30–39",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Falta serie con composición constante.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C030-c",
+    "mapa_id": "ASTRA5-U0-PAREJA-030",
+    "afirmacion": "Matrimonio infantil descenso48275 a32",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Cifra2022 y2013 no cotejada; prohibición no identificada como causa.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C037-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-037",
+    "afirmacion": "852/tasa1.3/equivalencia10h",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Registro CEPAL no leído; no promediar con encuesta.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C037-b",
+    "mapa_id": "ASTRA5-U0-PAREJA-037",
+    "afirmacion": "Mayoría de muertes por parejas",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Se necesita vínculo del agresor en población de referencia.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-C047-a",
+    "mapa_id": "ASTRA5-U0-PAREJA-047",
+    "afirmacion": "Remesas transmiten guiones igualitarios",
+    "localizador": "cláusula de padre",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Transferencia monetaria no observa transmisión normativa.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "descripción/asociación",
+    "revision_manual": true,
+    "descompone": true
+  },
+  {
+    "id": "P-X01",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Cambio religioso nacional y cantidades de católicos",
+    "localizador": "L13",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Censo2020 cifras originales no cotejadas aquí; no usar v2 de religión como fuente primaria.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X02",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Escalas machismo/caballerismo dimensiones y correlatos",
+    "localizador": "L42",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Arciniega2008 diáspora no leído; no validar dimensiones automáticamente en México.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X03",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Marianismo cinco subescalas/revalidación454",
+    "localizador": "L43",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Castillo2010 y validación mexicana no leídos; se retira n y afirmación de validación.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X04",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Cohabitación único arreglo disponible para mismo sexo",
+    "localizador": "L96",
+    "dictamen": "SIN-CIFRA",
+    "razon": "La cronología y otros arreglos no cotejados; excluir absoluto.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X05",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Convergencia reciente de disolución",
+    "localizador": "L100",
+    "dictamen": "MATIZA",
+    "razon": "Quilodrán2025 advierte que indicios recientes no acreditan tendencia consolidada.",
+    "sin_cifra_razon": "",
+    "evidencia": [
+      "F-DISOL"
+    ],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X06",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Ella más estudios20.2% matrimonios2022",
+    "localizador": "L179",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No cotejado comunicado2022; tampoco mide negociación doméstica.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X07",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Evangélicos con guion más conservador",
+    "localizador": "L182",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Afiliación no observa actitud específica; requiere encuesta conjunta.",
+    "sin_cifra_razon": "instrumento inadecuado",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X08",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Singularidad mexicana guadalupana y comparación ChileUruguay",
+    "localizador": "L188",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No comparación homogénea primaria leída; retirar excepcionalismo.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X09",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "México equiparable a Brasil por tasa feminicidio",
+    "localizador": "L189",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Definiciones legales/registros no cotejados; comparabilidad no garantizada.",
+    "sin_cifra_razon": "no comparabilidad",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X10",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Prevención escolar alto retorno social",
+    "localizador": "L231",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No evaluación de costo/efectividad mexicana leída; propuesta sin retorno probado.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X11",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Foco rural implicaría guiones más rígidos/apps marginales",
+    "localizador": "L241",
+    "dictamen": "SIN-CIFRA",
+    "razon": "No inferir conducta local de residencia; requieren muestra y reactivos.",
+    "sin_cifra_razon": "falta de ejecución",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  },
+  {
+    "id": "P-X12",
+    "mapa_id": "FUERA-DEL-MAPA",
+    "afirmacion": "Grindr uso sexual Chiapas y México destacado crímenes odio",
+    "localizador": "L160",
+    "dictamen": "SIN-CIFRA",
+    "razon": "Estudio/registros no leídos; no transportar estudio local ni ranking sin cobertura.",
+    "sin_cifra_razon": "adquisición pendiente",
+    "evidencia": [],
+    "naturaleza": "descripción/mecanismo",
+    "revision_manual": true
+  }
+]

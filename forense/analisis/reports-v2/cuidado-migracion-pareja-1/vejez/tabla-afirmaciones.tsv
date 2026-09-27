@@ -1,0 +1,130 @@
+id	mapa_id	localizador	afirmacion	dictamen	razon_sin_cifra	motivo	evidencia	revision_manual
+V-001-01	ASTRA5-U0-VEJEZ-001	L12	Cruce del reemplazo en 2016	SIN-CIFRA	adquisición pendiente	No se verificó una serie primaria que sostenga el año de cruce y TGF; no sustituir natalidad registrada por fecundidad.		True
+V-001-02	ASTRA5-U0-VEJEZ-001	L12	TGF 2024 de 1.89 y mínimo histórico	SIN-CIFRA	adquisición pendiente	No se verificó una serie primaria que sostenga el año de cruce y TGF; no sustituir natalidad registrada por fecundidad.		True
+V-002-01	ASTRA5-U0-VEJEZ-002	L12	Proporción60+ 2018 de12.3%	SIN-CIFRA	restricción del proyecto	La conducta PERSONA-60MAS en ENADID2023 está reservada por lista P1; publicación pública no habilita su consumo. La comparación no se adopta.		True
+V-002-02	ASTRA5-U0-VEJEZ-002	L12	Proporción60+ 2023 de14.7%	SIN-CIFRA	restricción del proyecto	La conducta PERSONA-60MAS en ENADID2023 está reservada por lista P1; publicación pública no habilita su consumo. La comparación no se adopta.		True
+V-003-01	ASTRA5-U0-VEJEZ-003	L12	CONAPO2025 17.1M y12.8%	SIN-CIFRA	adquisición pendiente	No se leyó proyección primaria y no se mezclan proyección y encuesta; tampoco se acredita el cruce de cohortes.		True
+V-003-02	ASTRA5-U0-VEJEZ-003	L12	Proyección2030 de15%	SIN-CIFRA	adquisición pendiente	No se leyó proyección primaria y no se mezclan proyección y encuesta; tampoco se acredita el cruce de cohortes.		True
+V-003-03	ASTRA5-U0-VEJEZ-003	L12	Mayores superan menores15 en2030	SIN-CIFRA	adquisición pendiente	No se leyó proyección primaria y no se mezclan proyección y encuesta; tampoco se acredita el cruce de cohortes.		True
+V-003-04	ASTRA5-U0-VEJEZ-003	L12	Envejecer antes de enriquecerse como comparación	SIN-CIFRA	adquisición pendiente	No se leyó proyección primaria y no se mezclan proyección y encuesta; tampoco se acredita el cruce de cohortes.		True
+V-004-01	ASTRA5-U0-VEJEZ-004	L12	Esperanza vida2024 75.5 y recuperación	SIN-CIFRA	adquisición pendiente	Esperanza de vida requiere tabla de mortalidad con año y población.		True
+V-005-01	ASTRA5-U0-VEJEZ-005	L14	82% hogares con mayores nucleares/ampliados	SIN-CIFRA	falta de ejecución	No hay RESULT directo del Censo2020 sobre los tres estimandos; el tamaño medio no mide multigeneracionalidad.		True
+V-005-02	ASTRA5-U0-VEJEZ-005	L14	Tamaño medio3.4	SIN-CIFRA	falta de ejecución	No hay RESULT directo del Censo2020 sobre los tres estimandos; el tamaño medio no mide multigeneracionalidad.		True
+V-005-03	ASTRA5-U0-VEJEZ-005	L14	28% hogares multigeneracionales	SIN-CIFRA	falta de ejecución	No hay RESULT directo del Censo2020 sobre los tres estimandos; el tamaño medio no mide multigeneracionalidad.		True
+V-006-01	ASTRA5-U0-VEJEZ-006	L14	16.8% hogares unipersonales con mayores	MATIZA		No equiparar porcentaje de hogares con proporción de personas mayores: explicitar ambos denominadores; valores retirados por falta de tabla directa.		True
+V-006-02	ASTRA5-U0-VEJEZ-006	L14	Conversión a1.8M personas solas	MATIZA		No equiparar porcentaje de hogares con proporción de personas mayores: explicitar ambos denominadores; valores retirados por falta de tabla directa.		True
+V-007-01	ASTRA5-U0-VEJEZ-007	L14;L4;L44-L48	Familismo como pilar del cuidado	MATIZA		Corresidencia y ayuda no identifican preferencia ni seguro eficaz. Oferta y guion son mecanismos rivales, no jerarquía probada.	VEJ-M1	True
+V-007-02	ASTRA5-U0-VEJEZ-007	L14;L4;L44-L48	Ausencia de elección libre	MATIZA		Corresidencia y ayuda no identifican preferencia ni seguro eficaz. Oferta y guion son mecanismos rivales, no jerarquía probada.	VEJ-M1	True
+V-007-03	ASTRA5-U0-VEJEZ-007	L14;L4;L44-L48	Adaptación ante falla institucional	MATIZA		Corresidencia y ayuda no identifican preferencia ni seguro eficaz. Oferta y guion son mecanismos rivales, no jerarquía probada.	VEJ-M1	True
+V-007-04	ASTRA5-U0-VEJEZ-007	L14;L4;L44-L48	Seguro familiar como hipótesis	MATIZA		Corresidencia y ayuda no identifican preferencia ni seguro eficaz. Oferta y guion son mecanismos rivales, no jerarquía probada.	VEJ-M1	True
+V-008-01	ASTRA5-U0-VEJEZ-008	L16;L88;L98	Cuidadora mayoritariamente mujer	CONFIRMA		R-MUJER confirma mayoría femenina del proveedor principal entre receptores60+ con cuidador del hogar pareado; confirma solo esta descripción condicionada, no un perfil modal nacional completo.	R-MUJER;R-HIJA;R-CONYUGE	True
+V-008-02	ASTRA5-U0-VEJEZ-008	L16;L88;L98	Edad modal mayor50	MATIZA		ENASIC sostiene feminización y parentesco entre receptores con cuidador en hogar; no edad modal ni14h/día ni74% sin apoyo nacional.	R-MUJER;R-HIJA;R-CONYUGE	True
+V-008-03	ASTRA5-U0-VEJEZ-008	L16;L88;L98	Hija o cónyuge como parentesco	MATIZA		ENASIC sostiene feminización y parentesco entre receptores con cuidador en hogar; no edad modal ni14h/día ni74% sin apoyo nacional.	R-MUJER;R-HIJA;R-CONYUGE	True
+V-008-04	ASTRA5-U0-VEJEZ-008	L16;L88;L98	14h diarias	MATIZA		ENASIC sostiene feminización y parentesco entre receptores con cuidador en hogar; no edad modal ni14h/día ni74% sin apoyo nacional.	R-MUJER;R-HIJA;R-CONYUGE	True
+V-008-05	ASTRA5-U0-VEJEZ-008	L16;L88;L98	74% sin terceros	MATIZA		ENASIC sostiene feminización y parentesco entre receptores con cuidador en hogar; no edad modal ni14h/día ni74% sin apoyo nacional.	R-MUJER;R-HIJA;R-CONYUGE	True
+V-009-01	ASTRA5-U0-VEJEZ-009	L87-L94	67.8% participa cuidados	SIN-CIFRA	restricción del proyecto	ENUT2024 reparto_hogar×sexo_edad reservado; total doméstico/cuidados/voluntario no es cuidado de mayores.		True
+V-009-02	ASTRA5-U0-VEJEZ-009	L87-L94	Mujeres39.7h y hombres18.2h	SIN-CIFRA	restricción del proyecto	ENUT2024 reparto_hogar×sexo_edad reservado; total doméstico/cuidados/voluntario no es cuidado de mayores.		True
+V-009-03	ASTRA5-U0-VEJEZ-009	L87-L94	Brecha21.5h	SIN-CIFRA	restricción del proyecto	ENUT2024 reparto_hogar×sexo_edad reservado; total doméstico/cuidados/voluntario no es cuidado de mayores.		True
+V-010-01	ASTRA5-U0-VEJEZ-010	L16;L5;L92	Estructura primaria	MATIZA		La provisión pública es condición a examinar; no hay diseño para ordenar estructura y marianismo causalmente.	VEJ-M1	True
+V-010-02	ASTRA5-U0-VEJEZ-010	L16;L5;L92	Guion asigna cuidado a mujer	MATIZA		La provisión pública es condición a examinar; no hay diseño para ordenar estructura y marianismo causalmente.	VEJ-M1	True
+V-011-01	ASTRA5-U0-VEJEZ-011	L89	8 billones2024	SIN-CIFRA	adquisición pendiente	Cuenta satélite valora insumo no remunerado, no pago ni precio del cuidado gerontológico; fuente exacta no leída.		True
+V-011-02	ASTRA5-U0-VEJEZ-011	L89	Aporte mujer82339	SIN-CIFRA	adquisición pendiente	Cuenta satélite valora insumo no remunerado, no pago ni precio del cuidado gerontológico; fuente exacta no leída.		True
+V-011-03	ASTRA5-U0-VEJEZ-011	L89	Aporte hombre34695	SIN-CIFRA	adquisición pendiente	Cuenta satélite valora insumo no remunerado, no pago ni precio del cuidado gerontológico; fuente exacta no leída.		True
+V-012-01	ASTRA5-U0-VEJEZ-012	L90	98.4% mujeres en establecimientos	SIN-CIFRA	adquisición pendiente	No hay fuente primaria leída para establecimientos; no equivale a cuidador informal de un mayor.		True
+V-013-01	ASTRA5-U0-VEJEZ-013	L18;L96-L99	Rango Zarit14.5–66	SIN-CIFRA	adquisición pendiente	No leídos artículos locales originales; heterogeneidad de escala y muestra impide prevalencia nacional. Actualización VEJ-M1 contextual, no sustitución.	VEJ-M1	True
+V-013-02	ASTRA5-U0-VEJEZ-013	L18;L96-L99	Obregón48.2 intensa	SIN-CIFRA	adquisición pendiente	No leídos artículos locales originales; heterogeneidad de escala y muestra impide prevalencia nacional. Actualización VEJ-M1 contextual, no sustitución.	VEJ-M1	True
+V-013-03	ASTRA5-U0-VEJEZ-013	L18;L96-L99	Guanajuato85.6 sin sobrecarga	SIN-CIFRA	adquisición pendiente	No leídos artículos locales originales; heterogeneidad de escala y muestra impide prevalencia nacional. Actualización VEJ-M1 contextual, no sustitución.	VEJ-M1	True
+V-013-04	ASTRA5-U0-VEJEZ-013	L18;L96-L99	Dependencia condiciona carga	SIN-CIFRA	adquisición pendiente	No leídos artículos locales originales; heterogeneidad de escala y muestra impide prevalencia nacional. Actualización VEJ-M1 contextual, no sustitución.	VEJ-M1	True
+V-014-01	ASTRA5-U0-VEJEZ-014	L18;L98	ISSSTE52% síndrome	SIN-CIFRA	adquisición pendiente	No leída publicación ISSSTE; tres síntomas distintos no son diagnóstico nacional.		True
+V-014-02	ASTRA5-U0-VEJEZ-014	L18;L98	ISSSTE36% depresión	SIN-CIFRA	adquisición pendiente	No leída publicación ISSSTE; tres síntomas distintos no son diagnóstico nacional.		True
+V-014-03	ASTRA5-U0-VEJEZ-014	L18;L98	ISSSTE98% ansiedad	SIN-CIFRA	adquisición pendiente	No leída publicación ISSSTE; tres síntomas distintos no son diagnóstico nacional.		True
+V-015-01	ASTRA5-U0-VEJEZ-015	L20;L6	Monto6400 y aumento200	SIN-CIFRA	adquisición pendiente	No leídas reglas y padrón2026; no inferir cobertura efectiva de universalidad normativa.		True
+V-015-02	ASTRA5-U0-VEJEZ-015	L20;L6	Cobertura14M65+	SIN-CIFRA	adquisición pendiente	No leídas reglas y padrón2026; no inferir cobertura efectiva de universalidad normativa.		True
+V-015-03	ASTRA5-U0-VEJEZ-015	L20;L6	Universalidad constitucional	SIN-CIFRA	adquisición pendiente	No leídas reglas y padrón2026; no inferir cobertura efectiva de universalidad normativa.		True
+V-016-01	ASTRA5-U0-VEJEZ-016	L22	3de10 contributiva	MATIZA		Retirar cifras contributivas sin estudio original; informalidad es vía plausible, no efecto causal exclusivo.		True
+V-016-02	ASTRA5-U0-VEJEZ-016	L22	2de10 mujeres	MATIZA		Retirar cifras contributivas sin estudio original; informalidad es vía plausible, no efecto causal exclusivo.		True
+V-016-03	ASTRA5-U0-VEJEZ-016	L22	41.5 hombres25.4 mujeres	MATIZA		Retirar cifras contributivas sin estudio original; informalidad es vía plausible, no efecto causal exclusivo.		True
+V-016-04	ASTRA5-U0-VEJEZ-016	L22	40% cotiza	MATIZA		Retirar cifras contributivas sin estudio original; informalidad es vía plausible, no efecto causal exclusivo.		True
+V-016-05	ASTRA5-U0-VEJEZ-016	L22	Consecuencia directa informalidad	MATIZA		Retirar cifras contributivas sin estudio original; informalidad es vía plausible, no efecto causal exclusivo.		True
+V-017-01	ASTRA5-U0-VEJEZ-017	L24;L6	Congelamiento Senado desde2020	SIN-CIFRA	adquisición pendiente	Estado legislativo temporal no verificado contra texto primario; no prolongar congelamiento por memoria.		True
+V-017-02	ASTRA5-U0-VEJEZ-017	L24;L6	Reforma marzo2024 sin recursos	SIN-CIFRA	adquisición pendiente	Estado legislativo temporal no verificado contra texto primario; no prolongar congelamiento por memoria.		True
+V-018-01	ASTRA5-U0-VEJEZ-018	L24	Demanda mayores15veces infancia	SIN-CIFRA	instrumento inadecuado	Demanda potencial no equivale necesidad funcional ni cuidados recibidos; multiplicador sin unidades comparables se retira.		True
+V-019-01	ASTRA5-U0-VEJEZ-019	L26	Satisfacción88.3% personas mayores	SIN-CIFRA	falta de ejecución	Boletín ENASEM2021 leído: población general53+; no localizado88.3 con denominador60+, por tanto no conservar.	VEJ-E1	True
+V-020-01	ASTRA5-U0-VEJEZ-020	L26	39.8% soledad60+	SIN-CIFRA	falta de ejecución	No localizado tabulado/reactivo60+ que confirme39.8%; ausencia no refuta el porcentaje.	VEJ-E1	True
+V-020-02	ASTRA5-U0-VEJEZ-020	L26	Equivalencia10.3M	SIN-CIFRA	no comparabilidad	El porcentaje corresponde a ENASEM2021 y la población CONAPO citada en L12 a2025; no comparten base temporal. El absoluto permanece sin confirmar hasta recuperar población, año y denominador compatibles; esa multiplicación no sostiene ROMPE.	VEJ-E1	True
+V-021-01	ASTRA5-U0-VEJEZ-021	L28;L116	Remesas con soledad rural	SIN-CIFRA	adquisición pendiente	No leídos originales etnográficos; contacto/remesa/residencia no sustituyen acompañamiento. Retener como pregunta.		True
+V-021-02	ASTRA5-U0-VEJEZ-021	L28;L116	Silencio sobre enfermedades	SIN-CIFRA	adquisición pendiente	No leídos originales etnográficos; contacto/remesa/residencia no sustituyen acompañamiento. Retener como pregunta.		True
+V-021-03	ASTRA5-U0-VEJEZ-021	L28;L116	Remesas compran privacidad	SIN-CIFRA	adquisición pendiente	No leídos originales etnográficos; contacto/remesa/residencia no sustituyen acompañamiento. Retener como pregunta.		True
+V-022-01	ASTRA5-U0-VEJEZ-022	L28;L117	Vulnerabilidad no concentra en alta migración	SIN-CIFRA	adquisición pendiente	No leído estudio municipal original; inferencia ecológica no identificaría efecto individual.		True
+V-022-02	ASTRA5-U0-VEJEZ-022	L28;L117	Migración no monocausal abandono	SIN-CIFRA	adquisición pendiente	No leído estudio municipal original; inferencia ecológica no identificaría efecto individual.		True
+V-023-01	ASTRA5-U0-VEJEZ-023	L30	841 médicos2022	SIN-CIFRA	adquisición pendiente	No leer evento como registro vigente del Consejo; cociente nacional no es carga real por médico.		True
+V-023-02	ASTRA5-U0-VEJEZ-023	L30	15.1M mayores	SIN-CIFRA	adquisición pendiente	No leer evento como registro vigente del Consejo; cociente nacional no es carga real por médico.		True
+V-023-03	ASTRA5-U0-VEJEZ-023	L30	17mil pacientes por geriatra	SIN-CIFRA	adquisición pendiente	No leer evento como registro vigente del Consejo; cociente nacional no es carga real por médico.		True
+V-024-01	ASTRA5-U0-VEJEZ-024	L30	850 certificados	SIN-CIFRA	adquisición pendiente	Registro CONACEM y estándar de dotación no leídos; cifras de distinto año no promediables.		True
+V-024-02	ASTRA5-U0-VEJEZ-024	L30	Más15mil mayores por geriatra	SIN-CIFRA	adquisición pendiente	Registro CONACEM y estándar de dotación no leídos; cifras de distinto año no promediables.		True
+V-024-03	ASTRA5-U0-VEJEZ-024	L30	Meta2770	SIN-CIFRA	adquisición pendiente	Registro CONACEM y estándar de dotación no leídos; cifras de distinto año no promediables.		True
+V-025-01	ASTRA5-U0-VEJEZ-025	L32	PEA mujer46 hombre74.6 diciembre2024	SIN-CIFRA	adquisición pendiente	ENOE mensual exige documento y universo; participación general no mide sustitución de tiempo de cuidado.		True
+V-025-02	ASTRA5-U0-VEJEZ-025	L32	Brecha28.6	SIN-CIFRA	adquisición pendiente	ENOE mensual exige documento y universo; participación general no mide sustitución de tiempo de cuidado.		True
+V-026-01	ASTRA5-U0-VEJEZ-026	L32	55.9 informalidad ocupadas marzo2025	SIN-CIFRA	adquisición pendiente	Sin boletín primario de la ola citada; no usar ola futura para corregir esta cifra.		True
+V-027-01	ASTRA5-U0-VEJEZ-027	L34	Economía plateada28% PIB	MATIZA		Falta método para participación en PIB. Rechazar su uso como parámetro, sin declarar falsa una cantidad no verificada.		True
+V-027-02	ASTRA5-U0-VEJEZ-027	L34	Cautela ante marketing	MATIZA		Falta método para participación en PIB. Rechazar su uso como parámetro, sin declarar falsa una cantidad no verificada.		True
+V-028-01	ASTRA5-U0-VEJEZ-028	L36	Familismo desprotegido ingreso medio	MATIZA		Tipología importada útil como pregunta; no hay comparación armonizada que pruebe singularidad mexicana o equivalencia Japón.	VEJ-M1	True
+V-028-02	ASTRA5-U0-VEJEZ-028	L36	Semejanza Europa sur y Japón pre2000	MATIZA		Tipología importada útil como pregunta; no hay comparación armonizada que pruebe singularidad mexicana o equivalencia Japón.	VEJ-M1	True
+V-029-01	ASTRA5-U0-VEJEZ-029	L124	3.9M pobreza2022	SIN-CIFRA	adquisición pendiente	Sin medición primaria65+ pobreza2022 leída; ranking estatal no es tasa de necesidad funcional.		True
+V-029-02	ASTRA5-U0-VEJEZ-029	L124	49.8% concentra seis entidades	SIN-CIFRA	adquisición pendiente	Sin medición primaria65+ pobreza2022 leída; ranking estatal no es tasa de necesidad funcional.		True
+V-029-03	ASTRA5-U0-VEJEZ-029	L124	Sur mayor pobreza	SIN-CIFRA	adquisición pendiente	Sin medición primaria65+ pobreza2022 leída; ranking estatal no es tasa de necesidad funcional.		True
+V-030-01	ASTRA5-U0-VEJEZ-030	L65;L158	Demencia7–8%60+	SIN-CIFRA	instrumento inadecuado	Batería cognitiva y reporte de familiar fallecido no diagnostican demencia; proyección requiere modelo externo.	VEJ-E1	True
+V-030-02	ASTRA5-U0-VEJEZ-030	L65;L158	1.3M diagnosticados	SIN-CIFRA	instrumento inadecuado	Batería cognitiva y reporte de familiar fallecido no diagnostican demencia; proyección requiere modelo externo.	VEJ-E1	True
+V-030-03	ASTRA5-U0-VEJEZ-030	L65;L158	Triplicación2050	SIN-CIFRA	instrumento inadecuado	Batería cognitiva y reporte de familiar fallecido no diagnostican demencia; proyección requiere modelo externo.	VEJ-E1	True
+V-031-01	ASTRA5-U0-VEJEZ-031	L142-L147;L6	Uruguay Ley19353	SIN-CIFRA	no comparabilidad	No leídas normas/series armonizadas de Uruguay/Japón; no usar comparación numérica ni temporal como argumento probado.		True
+V-031-02	ASTRA5-U0-VEJEZ-031	L142-L147;L6	Japón Kaigo2000	SIN-CIFRA	no comparabilidad	No leídas normas/series armonizadas de Uruguay/Japón; no usar comparación numérica ni temporal como argumento probado.		True
+V-031-03	ASTRA5-U0-VEJEZ-031	L142-L147;L6	Japón1.8%PIB2023	SIN-CIFRA	no comparabilidad	No leídas normas/series armonizadas de Uruguay/Japón; no usar comparación numérica ni temporal como argumento probado.		True
+V-031-04	ASTRA5-U0-VEJEZ-031	L142-L147;L6	AL20%65+2055	SIN-CIFRA	no comparabilidad	No leídas normas/series armonizadas de Uruguay/Japón; no usar comparación numérica ni temporal como argumento probado.		True
+V-031-05	ASTRA5-U0-VEJEZ-031	L142-L147;L6	Transición mitad tiempo Europa y mitad PIB	SIN-CIFRA	no comparabilidad	No leídas normas/series armonizadas de Uruguay/Japón; no usar comparación numérica ni temporal como argumento probado.		True
+V-032-01	ASTRA5-U0-VEJEZ-032	L91;L132	Brecha indígena27.3h	SIN-CIFRA	restricción del proyecto	ENUT2024 reservado; proyección por entidad tampoco verificada. No inferir brecha indígena de muestra electrónica.		True
+V-032-02	ASTRA5-U0-VEJEZ-032	L91;L132	Edomex/CDMX21%2030	SIN-CIFRA	restricción del proyecto	ENUT2024 reservado; proyección por entidad tampoco verificada. No inferir brecha indígena de muestra electrónica.		True
+V-033-01	ASTRA5-U0-VEJEZ-033	L108;L164	Jalisco primera ley2024	SIN-CIFRA	adquisición pendiente	No normas estatales primarias ni evaluación de programas leídas; existencia no equivale acceso efectivo.		True
+V-033-02	ASTRA5-U0-VEJEZ-033	L108;L164	CDMX/NL/Edomex sistemas	SIN-CIFRA	adquisición pendiente	No normas estatales primarias ni evaluación de programas leídas; existencia no equivale acceso efectivo.		True
+V-033-03	ASTRA5-U0-VEJEZ-033	L108;L164	Casa por Casa/Juárez pilotos	SIN-CIFRA	adquisición pendiente	No normas estatales primarias ni evaluación de programas leídas; existencia no equivale acceso efectivo.		True
+V-034-01	ASTRA5-U0-VEJEZ-034	L162;L109	647mil remunerados	SIN-CIFRA	adquisición pendiente	Sin tabulado fuente/denominador ocupacional; costo mensual no es universal.		True
+V-034-02	ASTRA5-U0-VEJEZ-034	L162;L109	90% mujeres	SIN-CIFRA	adquisición pendiente	Sin tabulado fuente/denominador ocupacional; costo mensual no es universal.		True
+V-034-03	ASTRA5-U0-VEJEZ-034	L162;L109	Cuidadora10121mes	SIN-CIFRA	adquisición pendiente	Sin tabulado fuente/denominador ocupacional; costo mensual no es universal.		True
+V-035-01	ASTRA5-U0-VEJEZ-035	L110	SNC1.4%PIB	SIN-CIFRA	adquisición pendiente	Sin estimación SHCP leída; no convertir supuesto fiscal en presupuesto recomendado.		True
+V-036-01	ASTRA5-U0-VEJEZ-036	L156-L171	Tamizaje/respiro	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-02	ASTRA5-U0-VEJEZ-036	L156-L171	Formación geriatría100año y duplicación5años	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-03	ASTRA5-U0-VEJEZ-036	L156-L171	Centros día/domicilio	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-04	ASTRA5-U0-VEJEZ-036	L156-L171	Ruta0.2–0.3%PIB	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-05	ASTRA5-U0-VEJEZ-036	L156-L171	Dos ciclos sin presupuesto	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-06	ASTRA5-U0-VEJEZ-036	L156-L171	Pensión/formalización	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-036-07	ASTRA5-U0-VEJEZ-036	L156-L171	Producto/RH/mercado segmentado	MATIZA		Propuestas separadas de eficacia; retirar metas sin base y financiar evaluación de accesibilidad y desenlaces.	R-MUJER	True
+V-037-01	ASTRA5-U0-VEJEZ-037	L79;L81	28% multigeneracional	SIN-CIFRA	no comparabilidad	Hogares totales y hogares con mayores son universos distintos; no leído estudio chileno.		True
+V-037-02	ASTRA5-U0-VEJEZ-037	L79;L81	Chile reducción mitad1982–2017	SIN-CIFRA	no comparabilidad	Hogares totales y hogares con mayores son universos distintos; no leído estudio chileno.		True
+V-038-01	ASTRA5-U0-VEJEZ-038	L136	Escolaridad mujer11.5 hombre8.0	SIN-CIFRA	restricción del proyecto	ENASEM2024 ola más reciente; actualización pública no levanta reserva. Se elimina cifra.		True
+V-EX-01		L81	Urbanidad causa más corresidencia por vivienda	MATIZA		Costo de vivienda es rival plausible; no hay identificación ni comparación urbano/rural aquí.		True
+V-EX-02		L81	Discapacidad rural no aumenta corresidencia como urbano	SIN-CIFRA	falta de ejecución	falta de ejecución: falta estudio original y universo comparable.		True
+V-EX-03		L91	Ranking brechas Chiapas/Veracruz/Oaxaca/Guerrero/Michoacán/CDMX	SIN-CIFRA	restricción del proyecto	restricción del proyecto: ENUT2024 no consumida.		True
+V-EX-04		L101	Bajo NSE y múltiples dependientes aumentan riesgo	MATIZA		Priorizar evaluación de carga, sin atribuir tasa o efecto causal nacional.		True
+V-EX-05		L124	Historia corporativa de seguridad social	SIN-CIFRA	adquisición pendiente	adquisición pendiente: no fuente histórica primaria leída.		True
+V-EX-06		L128	Educación/urbanización asociados menor soledad	SIN-CIFRA	falta de ejecución	falta de ejecución: asociación no calculada en universo declarado.		True
+V-EX-07		L133	Pobres familia/pensión; ricos compran cuidado	MATIZA		No fijar conducta por clase; medir capacidad, oferta y elección por separado.		True
+V-EX-08		L134	60–74 activos;75+ dependientes	MATIZA		Edad es segmento, no criterio diagnóstico individual; medir capacidad funcional.		True
+V-EX-09		L135	Mujeres más pobres/dependientes/cuidadoras	MATIZA		ENASIC sostiene cuidadora mujer entre receptores elegibles; no prueba pobreza o dependencia por sexo.		True
+V-EX-10		L137	Rural mayor soledad efectiva	SIN-CIFRA	falta de ejecución	falta de ejecución: ENASIC no tiene localidad utilizable en este CALC.		True
+V-EX-11		L138	Religiosidad sin evidencia segmentada	SIN-CIFRA	falta de ejecución	falta de ejecución: espiritualidad en conveniencia2025 no identifica religiosidad nacional.		True
+V-EX-12		L140	Exposición global y apps aplican minoría urbana	MATIZA		Muestra electrónica no permite determinar tamaño nacional de exclusión digital.		True
+V-EX-13		L142	Pensión como rasgo distintivo mexicano	MATIZA		No declarar exclusiva sin comparación armonizada.		True
+V-EX-14		L147	Independencia puede patologizar corresidencia	MATIZA		Evaluar autonomía decisional y suficiencia del cuidado, no ideal residencial importado.		True
+V-EX-15		L159	Formación geriátrica garantiza alto impacto bajo costo	MATIZA		Eficacia y costo no establecidos; recomendación con evaluación.		True
+V-EX-16		L164	5R como intervención eficaz	MATIZA		Es marco de organización, no estimación de beneficio.		True
+V-EX-17		L173	Licencias/conciliación laboral	MATIZA		Propuesta evaluable, no efecto probado ni estado legal actualizado.		True
+V-EX-18		L185	Zarit/CESD no validadas rural/indígena	SIN-CIFRA	adquisición pendiente	adquisición pendiente: no estudios de validación leídos; no afirmar invalidez general.		True
+V-EX-19		L188	Hijos cuidan menos que antes	SIN-CIFRA	falta de ejecución	falta de ejecución: requerir panel comparable, no cortes residenciales.		True
+V-EX-20		L191	Dar dinero basta o familia elimina necesidad estatal	MATIZA		No son conclusiones justificadas por observables financieros y familiares.		True
+V-EX-21		L26	Soledad/aislamiento se asocian depresión y deterioro cognitivo	SIN-CIFRA	adquisición pendiente	adquisición pendiente: falta estudio específico longitudinal y definición de los tres desenlaces.		True
+V-EX-22		L80	Hogares unipersonales de mayores crecen	SIN-CIFRA	no comparabilidad	no comparabilidad: un corte no identifica tendencia comparable.		True
+V-EX-23		L96	Cuidado informal produce estrés crónico	MATIZA		Se conserva como mecanismo compatible; no daño causal universal identificado.		True
+V-EX-24		L125	Cuidado persiste con recursos y matiza adaptación	SIN-CIFRA	falta de ejecución	falta de ejecución: requiere recursos/oferta comparables y cuidado observado.		True
+V-EX-25		L147	Japón Meiji hijo mayor responsable y encuestas tensión causaron reforma	SIN-CIFRA	adquisición pendiente	adquisición pendiente: no texto legal ni evaluación histórica primaria leídos.		True
+V-EX-26		L147	Seguro japonés transfirió deber hijas/nueras a servicios	SIN-CIFRA	adquisición pendiente	adquisición pendiente: no evaluación de sustitución y distribución leída.		True
+V-EX-27		L160	Médicos familiares/enfermería como alternativa de atención	MATIZA		Propuesta evaluable; no equivalencia de eficacia ni dotación garantizada.		True
+V-EX-28		L167	Mujeres acceden a pensión solo por viudez	SIN-CIFRA	falta de ejecución	falta de ejecución: no distribución de fuente/derecho propio/derivado calculada.		True

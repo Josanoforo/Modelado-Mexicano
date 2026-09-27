@@ -1,0 +1,26 @@
+{
+  "report": "corpus/reports-v2/Psychology_of_Mexico-US_Migration__Identity__Family__Aspiration__and_Wellbeing_in_2025.md",
+  "registros": 68,
+  "mapa_filas": 42,
+  "dictamenes": {
+    "SIN-CIFRA": 48,
+    "MATIZA": 19,
+    "ROMPE": 1
+  },
+  "cifras": 1,
+  "fuentes_leidas": 4,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py",
+    "--check"
+  ],
+  "self_test": [
+    "python3",
+    "forense/analisis/reports-v2/cuidado-migracion-pareja-1/migracion/produce.py",
+    "--self-test"
+  ]
+}

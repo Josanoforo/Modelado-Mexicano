@@ -1,0 +1,65 @@
+estado: PROPUESTO-POR-EJECUTOR
+familia: ENSU-CAMPECHE-INSEGURIDAD
+ola_futura: 2027T4
+oro: 2025T4
+oro_id: ensu2025_bd_csv_zip
+oro_sha256: 317ed14f2f2f43c9f8280e491f7592d0cf95a0392aaa641b66822569444b121c
+universo: Persona seleccionada de 18 años o más en CD01 San Francisco de Campeche
+agrupacion:
+- SEXO
+filtro_geografico:
+  CD: '01'
+desenlace: BP1_1
+numerador:
+- 2
+denominador:
+- 1
+- 2
+- 9
+ids:
+  CALC: null
+  RESULT: null
+  COMMIT1: null
+  COMMIT2: null
+p0: proporcion ponderada del oro 2025T4 por SEXO; algoritmo fijado antes de oro
+banda_absoluta: 0.05
+alfa_familiar: 0.05
+comparaciones: 2
+retador: null
+campos_obligatorios:
+- ID_PER
+- CD
+- SEXO
+- EDAD
+- BP1_1
+- FAC_SEL
+- EST_DIS
+- UPM_DIS
+codigos:
+  SEXO:
+  - 1
+  - 2
+  BP1_1:
+  - 1
+  - 2
+  - 9
+  EDAD_min: 18
+  EDAD_max: 99
+diseno:
+  peso: FAC_SEL
+  estrato:
+  - CD
+  - EST_DIS
+  upm: UPM_DIS
+  fpc: null
+  varianza: Taylor ultimate cluster con centrado dentro de estrato; sin correccion
+    finita; singleton bloquea inferencia
+regla_parada: Cambio de texto, universo, area CD01, categorias o significado del ponderador
+  detiene comparabilidad; alias solo por adaptacion documentada aprobada antes de
+  COMMIT1
+reserva: 2027T4 entra RESERVADA; este borrador no autoriza abrirla
+fuentes:
+- forense/analisis/seguridad-ensu/lista-cerrada-P1.md
+- https://www.inegi.org.mx/contenidos/programas/ensu/doc/ensu_fd_2025_pdf.zip
+comparacion_primaria: cambio fisico d=R-p0 IC conjunto oro+futuro con sensibilidad
+  dependencia; fuera banda si IC no intersecta±.05

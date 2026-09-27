@@ -1,0 +1,107 @@
+[
+  {
+    "id": "Q1",
+    "fuente": "PISA-MEX-2022",
+    "denominador": "estudiante escolarizado elegible 15 años",
+    "escala": "puntos en escala PISA; medias por dominio",
+    "plantilla": "En PISA 2022 México, las medias fueron {media_matematicas} puntos en matemáticas, {media_lectura} en lectura y {media_ciencias} en ciencias.",
+    "hechos": [
+      "media_matematicas",
+      "media_lectura",
+      "media_ciencias"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q2",
+    "fuente": "PISA-MEX-2022",
+    "denominador": "muestra escolar; población total 15 años para cobertura",
+    "escala": "n y porcentaje de cobertura, no porcentaje de bajo desempeño",
+    "plantilla": "Participaron {estudiantes_muestra} estudiantes de {escuelas} escuelas; la cobertura estimada fue {cobertura_cohorte} de la cohorte total de 15 años.",
+    "hechos": [
+      "estudiantes_muestra",
+      "escuelas",
+      "cobertura_cohorte"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q3",
+    "fuente": "ENPECYT-2017",
+    "denominador": "persona de 18 años o más en localidades de 100000 habitantes o más",
+    "escala": "porcentaje de adultos urbanos; interés muy grande/grande/moderado",
+    "plantilla": "En adultos de 18 años o más de localidades de 100000 habitantes o más, {interes_al_menos_moderado} declaró interés al menos moderado en inventos, descubrimientos científicos o tecnología en ENPECYT 2017.",
+    "hechos": [
+      "interes_al_menos_moderado"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q4",
+    "fuente": "ENPECYT-2017",
+    "denominador": "adultos urbanos del diseño ENPECYT2017",
+    "escala": "porcentaje acuerdo/muy acuerdo; discrepancia documental explícita",
+    "plantilla": "El apoyo a mayor inversión pública figura como {inversion_texto} en el texto y {inversion_numeralia} en la numeralia del mismo boletín; la discrepancia interna impide fingir precisión única.",
+    "hechos": [
+      "inversion_texto",
+      "inversion_numeralia"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q5",
+    "fuente": "ENPECYT-2017",
+    "denominador": "adultos urbanos de ENPECYT2017",
+    "escala": "porcentaje que califica con 10; no promedio ni mucha/algo confianza",
+    "plantilla": "La máxima calificación de respetabilidad para investigadores fue elegida por {investigador_respetabilidad10} de adultos urbanos; no es una estimación de toda la confianza en científicos.",
+    "hechos": [
+      "investigador_respetabilidad10"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q6",
+    "fuente": "EAG-MEX-2025",
+    "denominador": "trabajadores de 25–64 años por logro; bachillerato como base",
+    "escala": "porcentaje prima salarial observada respecto base; comparador OCDE",
+    "plantilla": "La nota EAG 2025 informa una prima salarial observada de terciaria frente a bachillerato de {prima_terciaria_mexico} en México y {prima_terciaria_ocde} en el promedio OCDE entre trabajadores de 25–64 años; no identifica efecto causal.",
+    "hechos": [
+      "prima_terciaria_mexico",
+      "prima_terciaria_ocde"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q7",
+    "fuente": "EAG-MEX-2025",
+    "denominador": "población económicamente activa 25–34 por logro; cada nivel su denominador",
+    "escala": "porcentajes desempleados entre activos; no toda cohorte",
+    "plantilla": "En activos de 25–34 años, la nota EAG 2025 registra desempleo de {desempleo_sin_bachillerato} sin bachillerato, {desempleo_bachillerato} con bachillerato/postsecundaria no terciaria y {desempleo_terciaria} con terciaria; son asociaciones, no calidad del empleo ni retorno individual.",
+    "hechos": [
+      "desempleo_sin_bachillerato",
+      "desempleo_bachillerato",
+      "desempleo_terciaria"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  },
+  {
+    "id": "Q8",
+    "fuente": "DNR-MEX-2026",
+    "denominador": "respondente del panel online de noticias México; no todos habitantes",
+    "escala": "porcentaje confianza global; cambio en puntos porcentuales, no porcentaje relativo",
+    "plantilla": "En el panel online de noticias de México, DNR 2026 registra confianza global de {confianza_noticias}, con cambio interanual de {cambio_interanual}; no es una tasa entre toda la población mexicana.",
+    "hechos": [
+      "confianza_noticias",
+      "cambio_interanual"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA"
+  }
+]

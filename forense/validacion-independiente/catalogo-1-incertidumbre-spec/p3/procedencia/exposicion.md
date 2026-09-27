@@ -1,0 +1,9 @@
+# Procedencia y exposición · fuera de entrada · 26/sep/2026
+
+Sesión documental NO CIEGA, HEAD11602de8e375c10b90807d1b74e088f6b9e99c8b en /home/pc0/mm-astra6-c1-incertidumbre-spec-1, rama codex/astra6-c1-incertidumbre-spec-1, estado limpio al arrancar. AGENTS y memoria leídos; no validadores, recálculos, microdato ni tests ejecutados. No se modifican sellos o catálogo.
+
+Fuentes humanas: métodos23sep en spec.md y extracción archivada26sep; cuestionarios ENDIREH2021 y FD edición2022 por hashes autorizados de insumos; catálogo humano publicado v1.2 commit eef15c97 (26sep), columna reserva literal por llave exacta, firmaFP260923-ASTRA5-U2-ENDIREH-6a2c-01 adoptada24sep; recibo27sep como avance posterior. Firma y recibo no sustituyen prueba de contenido: el mapa767 se obtuvo sólo de reserva publicada. Catálogo es producto derivado publicado bajo firma: demuestra identidad publicada; no convierte resultados del código en especificación humana previa a la primera ejecución. Tabla799 conserva ambos alcances explícitos.
+
+Exposición efectiva: resumen-lote1, hallazgos-spec, tabla-estimadores y nota-recibo27sep fueron leídos; la nota incluye cifras reveladas. Una consulta inicial del catálogo imprimió inadvertidamente la fila completa de COM#0, con punto e IC publicados; consultas posteriores proyectaron sólo llave/reserva/firma/estado. No se usaron valores, orden de filas, número de celda ni cercanía para asignar horizonte o bins. No se abrió medidor.py/resultados.json. Todo conocimiento de salidas queda registrado aquí y no viaja en entradas/.
+
+Preexistencia: firma6a2c01 registrada FIRMADA24sep; no duplicada ni ejecutada. Recibo27sep ya dictaminó767 empaquetado/32D15, y esta pieza lo consume:767 tienen mapa literal publicado demostrable;31 composición educativa ausente y1contradicción leyes requieren contrato nuevo. NO-RECALCULABLE original799 se conserva. Ningún intento nuevo realizado.
