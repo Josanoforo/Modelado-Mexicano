@@ -1,0 +1,102 @@
+[
+  {
+    "paquete": "eder-0003",
+    "archivo_v2": "entradas/eder-0003/eder-0003-entradas-v3.tar.gz",
+    "sha256_v2": "47da46bf865f209ddb551d184c7ea1f27f31da99b1e219d8727b45647b35127d",
+    "archivo_v3": "entradas/eder-0003/eder-0003-entradas-v4.tar.gz",
+    "sha256_v3": "6c2a9e4e94c2f8a532c4478cb738aad24d1749e7f70901345d1b494b454f0aae",
+    "procedencia": [
+      {
+        "ruta": "forense/prereg-caja/EDER-UNION-LIBRE-spec-v1_0.md",
+        "secciones": [
+          "catálogo tablas LIBRE/DIRECTO y tipado",
+          "2.1 universo sin referencia censo",
+          "2.2 estimando",
+          "2.3 desde Bootstrap hasta precedente",
+          "2.4 sólo definición cohortes"
+        ],
+        "supresiones": "censos de L7, historia, controles y precedente singleton"
+      }
+    ]
+  },
+  {
+    "paquete": "encig-0001",
+    "archivo_v2": "entradas/encig-0001/encig-0001-entradas-v3.tar.gz",
+    "sha256_v2": "2bd74cc1e01160c47f83813f6e60b1663b2ee4d673399a0fb85afb7376d6bd40",
+    "archivo_v3": "entradas/encig-0001/encig-0001-entradas-v4.tar.gz",
+    "sha256_v3": "995d5861f86c6ad2edf35d124aa25a1e55451a92729e696356d1f8f25bbfcbaa",
+    "procedencia": [
+      {
+        "ruta": "forense/prereg-caja/ENCIG-MORDIDA-spec-v1_0.md",
+        "secciones": [
+          "3.1–3.7"
+        ],
+        "supresiones": "columnas consumidores, contexto base/_r2, lecciónFP201 y ranura histórica; normas completas conservadas"
+      }
+    ]
+  },
+  {
+    "paquete": "encuci-0001",
+    "archivo_v2": "entradas/encuci-0001/encuci-0001-entradas-v2.tar.gz",
+    "sha256_v2": "21ec6683c0c590b79dd032fd9a63c20719824673eebd13bd43505f56f3963cba",
+    "archivo_v3": "entradas/encuci-0001/encuci-0001-entradas-v3.tar.gz",
+    "sha256_v3": "ca501109446afd1454cb019f60b62e46a0a9650382b882d213c2176463fe6f48",
+    "procedencia": [
+      {
+        "ruta": "data/corrida0/CALC-ENCUCI-0001/spec.md",
+        "secciones": [
+          "Qué mide hasta párrafo comparación GEN1 excluido"
+        ],
+        "supresiones": "contexto GEN1/FP201/nombre de función; normas de código/universos/diseño preservadas"
+      }
+    ]
+  },
+  {
+    "paquete": "enfih-0001",
+    "archivo_v2": "entradas/enfih-0001/enfih-0001-entradas-v3.tar.gz",
+    "sha256_v2": "e2305025033d98fc44a9437bdf6a3196caf570649cc70df109c69fa7e1c480c9",
+    "archivo_v3": "entradas/enfih-0001/enfih-0001-entradas-v4.tar.gz",
+    "sha256_v3": "bb2d1be51b3aeeb566972952c18141122e663de2dadc9aa72ba427b85411ffe6",
+    "procedencia": [
+      {
+        "ruta": "forense/prereg-caja/ENFIH-AFORE-spec-v1_0.md",
+        "secciones": [
+          "1.4 primera cláusula0/1 y guarda soporte",
+          "2.1 universo",
+          "2.2 estimando",
+          "2.3 desde EDIS/UPM hasta2.4"
+        ],
+        "supresiones": "V_AFORE monto observado, controles GEN1 y historia de intervalo previo"
+      }
+    ]
+  },
+  {
+    "paquete": "envipe-0001",
+    "archivo_v2": "entradas/envipe-0001/envipe-0001-entradas-v3.tar.gz",
+    "sha256_v2": "916df4de60ac3798531bb246d905ee5eae31e55cd7c4f505a744fb39e315f7f5",
+    "archivo_v3": "entradas/envipe-0001/envipe-0001-entradas-v4.tar.gz",
+    "sha256_v3": "ff1cc1e65a5db329a161675ecdfa040095691a40b0bb9228b5f980ab2aa51576",
+    "procedencia": [
+      {
+        "ruta": "data/corrida0/CALC-ENVIPE-0001/spec.md",
+        "secciones": [
+          "Qué mide hasta Control positivo externo excluido"
+        ],
+        "supresiones": "identificador GEN1 y cláusula históricaFP201; todas las normas U1/U3/U4/C1/C2 preservadas"
+      }
+    ]
+  },
+  {
+    "paquete": "envipe-denuncia-seguro-0001",
+    "archivo_v2": "entradas/envipe-denuncia-seguro-0001/envipe-denuncia-seguro-0001-entradas-v3.tar.gz",
+    "sha256_v2": "05aaf74c1ecc00bb6bb1eea87c5a8d8abe34825a3bf317598e7a7fca0dde0299",
+    "archivo_v3": "entradas/envipe-denuncia-seguro-0001/envipe-denuncia-seguro-0001-entradas-v4.tar.gz",
+    "sha256_v3": "f97d81bd90a97e1737887230807a6897d85427624fd3f5da74b6d01ad2d4a356",
+    "procedencia": [
+      {
+        "ruta": "data/corrida0/CALC-ENVIPE-DENUNCIA-SEGURO-0001/spec.md",
+        "supresiones": "columna releva/historia encargo/inventario; normas explícitas permanecen"
+      }
+    ]
+  }
+]

@@ -1,0 +1,2288 @@
+[
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "ruta": "forense/prereg-caja/AMAI-NSE-spec-v1_0.md",
+    "sha256": "4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde",
+    "rangos": [
+      [
+        7,
+        25
+      ],
+      [
+        31,
+        43
+      ],
+      [
+        49,
+        49
+      ],
+      [
+        53,
+        53
+      ]
+    ],
+    "supresiones": "distribución porcentual pública, productor y referencias de validación"
+  },
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "documento_adquirido": {
+      "nombre": "p1-endutih2023-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2023-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf",
+      "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+      "bytes": 1324703,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 15,
+      "titulo_verificado": "Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (ENDUTIH) 2023 CUESTIONARIO MU",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-endutih2023-cuestionario.pdf"
+  },
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/amai-nse-endutih-2023-0001/amai-nse-endutih-2023-0001-entradas.tar.gz",
+    "sha256_original": "db6e61e121c08558e18f048dad7fd2c4f6ab98029674f31ce02879e376825b86",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "amai-nse-enif-2024-0001",
+    "ruta": "forense/prereg-caja/AMAI-NSE-spec-v1_0.md",
+    "sha256": "4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde",
+    "rangos": [
+      [
+        7,
+        25
+      ],
+      [
+        31,
+        43
+      ],
+      [
+        49,
+        49
+      ],
+      [
+        53,
+        53
+      ]
+    ],
+    "supresiones": "distribución porcentual pública, productor y referencias de validación"
+  },
+  {
+    "paquete": "amai-nse-enif-2024-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "amai-nse-enif-2024-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/amai-nse-enif-2024-0001/amai-nse-enif-2024-0001-entradas.tar.gz",
+    "sha256_original": "dd4932eaa43a403afd30d9d60b8a58cc494d424ad61670e5935241e183e4055c",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "ruta": "forense/prereg-caja/AMAI-NSE-spec-v1_0.md",
+    "sha256": "4599051bcde619d4c7b38b56ebc6d50e24d0d1d497afb0271b80239fd2a62fde",
+    "rangos": [
+      [
+        7,
+        25
+      ],
+      [
+        31,
+        43
+      ],
+      [
+        49,
+        49
+      ],
+      [
+        53,
+        53
+      ]
+    ],
+    "supresiones": "distribución porcentual pública, productor y referencias de validación"
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-hogares.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-hogares.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_hogares.pdf",
+      "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+      "bytes": 1663837,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 22,
+      "titulo_verificado": "www.inegi.org.mx MÉXICO NOMBRE Y FIRMA DEL SUPERVISOR NOMBRE Y FIRMA DEL ENTREVISTADOR NOMBRE______________________________________________",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-hogares.pdf"
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-mayores.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-mayores.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_personas_mayores.pdf",
+      "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+      "bytes": 1872313,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 30,
+      "titulo_verificado": "E N C I A L CO NF I D y prestarán apoyo a las mismas.” veracidad y oportunidad, los datos e informes que les soliciten las au- Informantes del Sistema a las Unidades en término",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-mayores.pdf"
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/amai-nse-enigh-2022-0001/amai-nse-enigh-2022-0001-entradas.tar.gz",
+    "sha256_original": "0d4d3542b2b1dd8f07472b372e66665bc6df6dc9b9e2db157a0cb9f8f67b1a50",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "b-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "b-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-hogares.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-hogares.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_hogares.pdf",
+      "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+      "bytes": 1663837,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 22,
+      "titulo_verificado": "www.inegi.org.mx MÉXICO NOMBRE Y FIRMA DEL SUPERVISOR NOMBRE Y FIRMA DEL ENTREVISTADOR NOMBRE______________________________________________",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-hogares.pdf"
+  },
+  {
+    "paquete": "b-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2020-mayores.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2020-mayores.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2020/doc/enigh2020_ns_cuest_personas_mayores.pdf",
+      "sha256": "b4537be6df7642d209f84a89a41fe5560964b5594685d879972ee64250d6161e",
+      "bytes": 1173747,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 31,
+      "titulo_verificado": "www.inegi.org.mx MÉXICO INSTITUTO NACIONAL DE ESTADÍSTICA Y GEOGRAFÍA NOMBRE Y FIRMA DEL SUPERVISOR",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2020-mayores.pdf"
+  },
+  {
+    "paquete": "b-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-mayores.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-mayores.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_personas_mayores.pdf",
+      "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+      "bytes": 1872313,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 30,
+      "titulo_verificado": "E N C I A L CO NF I D y prestarán apoyo a las mismas.” veracidad y oportunidad, los datos e informes que les soliciten las au- Informantes del Sistema a las Unidades en término",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-mayores.pdf"
+  },
+  {
+    "paquete": "b-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/b-0001/b-0001-entradas.tar.gz",
+    "sha256_original": "a53d4e9e031d7ced2f38c43f9d8977af89d5de76e86576a0a5edfe639356cf04",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "f58a186d693cdd01f76be3f0f8da91ca670ec76a53b08cdda7a15f7fbbd7fa96",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "857d038f30d2cf2b8887b21ae2d22e0c008f4d11f9098be12defa527f50d19be",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "8c684b897ac8e0a3b475b5add20cdb276995e17ba79e89ddc4f214a57caec5ce",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 10,
+        "sha256": "9ef8b0daa06ca8c3177c5a53cabf2b7b86ee4a044e3298e7ef5f3ad24e6913dc",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 12,
+        "sha256": "76db7d80f3a593ba52a3e67c0eaac5a440e5b49516ab0e72aaec44fc47e5c246",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2024-dinero-familiares-definiciones.md",
+    "sha256": "7817abe74a00b422f6f02ea676610bf4ae0106117f4f3390b2730fc530c9aabe",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2024-dinero-familiares-diseno.md",
+    "sha256": "8bfa1916c0f7314dda604fcd721ad9a597157111498f260f0ccfcbc18f1930df",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/dinero-familiares-vejez-0001-v1_1/dinero-familiares-vejez-0001-v1_1-entradas.tar.gz",
+    "sha256_original": "0c858ccca92ee2a97564885bc224a3ef98d34bf8997e3a31573162a0d26a04f2",
+    "supresiones": [
+      {
+        "parrafo": 6,
+        "sha256": "464e6b92a7f30cf1944e78c0bc0b831fff553b2043034caeb555824577e959e3",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "9db1d08ae4fa7c6a4166d1d71e727b84d566ba7a4468d5599f0e3e6a8fa73810",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "fa0667ac137a907d76e93583b3469fedc2aefe3964592be044f6557d9590b95c",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 11,
+        "sha256": "3193f47fc1f2f2360147bcaeeba70fe082adea045b49c9359f58694b8ce04840",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 15,
+        "sha256": "593e8f110e7f718a02f0c113443850c8e3ad4f3abb5f291de1843894835c9161",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 22,
+        "sha256": "0f2b10ca5bfdd2bd4978646da74976b0eae949e76c0d02b558228bf627f3d118",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 29,
+        "sha256": "031a7f10249b62205d40347727c0446f3d647930cfd916a8269dfe4453f10064",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 45,
+        "sha256": "2ce490b729df2fe1fd756b917ea5d1edf63b55125dd836ed2d4ff2bf7f11aba2",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 47,
+        "sha256": "45ff91be543bce413c7adb87f544bd8fc128fd57b01b632704eb49f76973bbe6",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 48,
+        "sha256": "89a906524b599d2a42d072746549ba4ecc7c45aa4175890f7d96ca8b42107ebe",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 50,
+        "sha256": "326fbcec9452a06438d1d2094d31df57373f3395936786d9589c774fff5ed75f",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 53,
+        "sha256": "8bc225729e30ccfca5eb83703cd5c82c9b2ac23782376efd690504bda45c26dc",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 65,
+        "sha256": "33f49148b1f4b7caf4e71d86edd5badd99652ed4f74acc06c2fc08e455694c9b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 66,
+        "sha256": "ebc6f5c8e4124fd9b0495811b8ddf226b4f12bcbe53504ac1f712137589830e4",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 69,
+        "sha256": "bb511c3f9eeb5ecad3e380e7c2257875be899f9a731b6aaed945ffd8697c7c03",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 71,
+        "sha256": "c1b47c06a47b7f12bdd7a84502eb7dff1c1cae2ff52ce3df84a3cfbcf6921cdb",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "eder-0003",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "eder-0003",
+    "documento_adquirido": {
+      "nombre": "p1-eder2017-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-eder2017-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/eder/2017/doc/eder2017_cuestionario.pdf",
+      "sha256": "e4958e0cbc982439f9dc341b7a68ac1cd6f284c6f1da7a057f0989e623f3fc28",
+      "bytes": 1184609,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 12,
+      "titulo_verificado": "ENCUESTA NACIONAL DE LOS HOGARES (ENH) Encuesta Demográfica Retrospectiva 2017 (EDER) Folio 2017 Resultado de entrevista del Módulo Fecha Hora de inicio Hora de término CONFIDENCI",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-eder2017-cuestionario.pdf"
+  },
+  {
+    "paquete": "eder-0003",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/eder-0003/eder-0003-entradas.tar.gz",
+    "sha256_original": "fc4245c212ced2a67492c79c30b06f084351206db5ca2a66b5d30b4e503f7451",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "3301c76f573442322ad095477ae63e201e394ea44325ca67c37e5a5092e2b3a3",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "c90db0a0026c5ecbb1cd0d5196f689fc87ccffdd35840e48a1231c62a39391a4",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "4bfe7f36ccd039e35931073cb434e86f520235d7fd5c763f5c6da802c6b4cd74",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "5b766717c2491d71dd35268850d8fc1ccbef98c390022ec867e810d1ae823f9d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 20,
+        "sha256": "8bbff286c4cb65de6a2d07c92bdbfa480922fb6973bd75ace6c4058b0e0fd539",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 26,
+        "sha256": "7f0671c6ab89cdeb9dce878fbec4c443b2daa0444676a56b0f728d257edacddc",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 29,
+        "sha256": "859c10516d0508c553a9a27f3f362acb80f3a19e781cee3bd8c8d097269caaa3",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 39,
+        "sha256": "76bb49630fa0905ee75216fc70eb2e48c26793679b965ae54daa5ba180f6b86d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 43,
+        "sha256": "d95d0cf36cbccded2166c517d65d67b3018dab34a45a728225e7ac1fd4902717",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 44,
+        "sha256": "3c37bc706da4670495a4be6b680a9a9231640924754f30223bf3dc67b2369ae2",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 45,
+        "sha256": "589b8e85e104890742f7280ff09304a1001b2b51fd427cd37db7106fa7caa31a",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 46,
+        "sha256": "6ae92abadff3366e65da7da259319b56c9fc66378d46b8f589bae085c04c7ae4",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "ruta": "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+    "rangos": [
+      [
+        88,
+        104
+      ]
+    ],
+    "sha256": "ac569691c772971788bbb78d48ad25a48dfc35b027c0c3ad3d2ffaac9a3aa33f"
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enbiare2021-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enbiare2021-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enbiare/2021/doc/enbiare_2021_cuestionario.pdf",
+      "sha256": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+      "bytes": 1078126,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 23,
+      "titulo_verificado": "Encuesta Nacional de Bienestar Autorreportado 2021 (ENBIARE) 1. DATOS DE IDENTIFICACIÓN 2. CONTROL DE LA VIVIENDA ENTIDAD____________________________________________ UPM......................................................... MUN",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enbiare2021-cuestionario.pdf"
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enbiare-pisos-bienestar-0001/enbiare-pisos-bienestar-0001-entradas.tar.gz",
+    "sha256_original": "f8da07914808d301a3501d8773d83de83b6f0a8e0af5b1691596c7090d75c4eb",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "65303027551c714350497d720b0f9cde6f422d87ae0a7113d3739ac55a7c8a57",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "encig-0001",
+    "ruta": "data/corrida0/CALC-ENCIG-0001/spec.md",
+    "sha256": "e7eaa10403612fd85f412016f0ab651bd2370c9d18d89ee4574e18dbbcb11232",
+    "rangos": [
+      [
+        19,
+        30
+      ],
+      [
+        34,
+        35
+      ],
+      [
+        38,
+        43
+      ],
+      [
+        45,
+        46
+      ],
+      [
+        50,
+        52
+      ],
+      [
+        56,
+        62
+      ]
+    ],
+    "supresiones": "historial GEN1, precedente llave y comparación ENVIPE; controles y cifras excluidos"
+  },
+  {
+    "paquete": "encig-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "encig-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/encig-0001/encig-0001-entradas.tar.gz",
+    "sha256_original": "8220eedab90fb252a927072803530701afd7016b6c369537b76947e8b41022d6",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "fb1854f9c544f06916e73f1e6588af8fdb92cb965934910673080b153cda408e",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "5b01fe08e103ed98b4e4e92448f84e4164da572e37bf3c508f17d0b53360f5a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "encig-0001-complementos-derivado-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "encig-0001-complementos-derivado-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/encig-0001-complementos-derivado-0001/encig-0001-complementos-derivado-0001-entradas.tar.gz",
+    "sha256_original": "fc69feb32636e5fcf8c390e30d7eeadbc8f48357d0a707fbf92964e955245a4d",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "9d27c1726e007a28d16ea07af0fa1295e9100cc05ab71d8409b195c18959c795",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "c43d94aeb636b420bb58cc4ba29060549651a414e4afbfd32f9188e15fca0b75",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 16,
+        "sha256": "a829dd9007279e5d9c3fa594b2e191e454c70b5740dee22dc02100450732ee48",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 35,
+        "sha256": "3479b3ead9ea64679017c8236e4c84399908f58eabc5cbcf24fac83ebd03e5ef",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "ruta": "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+    "rangos": [
+      [
+        68,
+        79
+      ]
+    ],
+    "sha256": "ac569691c772971788bbb78d48ad25a48dfc35b027c0c3ad3d2ffaac9a3aa33f"
+  },
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/encodat-pisos-sustancias-0001/encodat-pisos-sustancias-0001-entradas.tar.gz",
+    "sha256_original": "cb6c1e387d3cf1eed9f8a515682163674e8a07e9ce990ca84e3c0e0263d01a12",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "aae2dec30526bbf051bb2ed82c2c7a08d99062ad71fed42559b0a45649ff3303",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "encuci-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "encuci-0001",
+    "documento_adquirido": {
+      "nombre": "p1-encuci2020-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encuci2020-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encuci/2020/doc/cuest_general_encuci2020.pdf",
+      "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+      "bytes": 1156397,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 26,
+      "titulo_verificado": "Encuesta Nacional de Cultura Cívica (ENCUCI) 2020 Cuestionario General I. DATOS DE IDENTIFICACIÓN II. CONTROL DE LA VIVIENDA UPM ...................................... ENTIDAD",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-encuci2020-cuestionario.pdf"
+  },
+  {
+    "paquete": "encuci-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/encuci-0001/encuci-0001-entradas.tar.gz",
+    "sha256_original": "9c9277ef6345e6bfb95e5a6dc681cb02b2d7e0777ed87a0f459752efb0a0dc6c",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "1773fd897a2930b2981b46d6021e9766454267f7f6aaecf34169482460926661",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "8c3d0462687d23a4c2785b18588dccf8bf2b58065661ec14c35352d173ec4a7c",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "f5b719b0d117cc87ce198fb93e37eb6cfd70d5173d118aee07584028e9271f57",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 15,
+        "sha256": "52c99058696516ad11799eca78887da23b3ba90373473bd68a077601da08747b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 16,
+        "sha256": "6591f15e597f57ffa46594250c575f7757257b9f89cc081bfd35e7ddc7634e17",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "encuci-0001-complemento-derivado-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "encuci-0001-complemento-derivado-0001",
+    "documento_adquirido": {
+      "nombre": "p1-encuci2020-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encuci2020-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encuci/2020/doc/cuest_general_encuci2020.pdf",
+      "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+      "bytes": 1156397,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 26,
+      "titulo_verificado": "Encuesta Nacional de Cultura Cívica (ENCUCI) 2020 Cuestionario General I. DATOS DE IDENTIFICACIÓN II. CONTROL DE LA VIVIENDA UPM ...................................... ENTIDAD",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-encuci2020-cuestionario.pdf"
+  },
+  {
+    "paquete": "encuci-0001-complemento-derivado-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/encuci-0001-complemento-derivado-0001/encuci-0001-complemento-derivado-0001-entradas.tar.gz",
+    "sha256_original": "4f41bfa5c2ee83418bc44ec5bbd672f6aff2f4e1c4852e7de1f9b55eb9270e2c",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "214b53fd4e64c60f498d947e17ec53313d9d204fe3399a8f13be74d4cd7b9bac",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "c43d94aeb636b420bb58cc4ba29060549651a414e4afbfd32f9188e15fca0b75",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "41ad5b9d5c1ae71d339bbb1666e0c39194a07e76a9d0e81de94106e2d8f18c66",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 16,
+        "sha256": "6a264eb3b0b1705505c0b7c2695907411673c37e21362a333994b8c0dee6aa22",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 26,
+        "sha256": "3479b3ead9ea64679017c8236e4c84399908f58eabc5cbcf24fac83ebd03e5ef",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "id": "endireh2006_tabulados_cuestionarios_pdf",
+    "pagina_fisica": [
+      153,
+      173
+    ],
+    "salida": "cuestionario-general-mc.md",
+    "tipo": "texto pdftotext -layout",
+    "sha256_fuente": "6a3ae3b23f0b0241b536e2fb1ec7de08b25af5d43318ec35a2fa379f6a965a55"
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "id": "endireh2006_tabulados_cuestionarios_pdf",
+    "pagina_fisica": [
+      175,
+      190
+    ],
+    "salida": "cuestionario-md.md",
+    "tipo": "texto pdftotext -layout",
+    "sha256_fuente": "6a3ae3b23f0b0241b536e2fb1ec7de08b25af5d43318ec35a2fa379f6a965a55"
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "id": "endireh2006_tabulados_cuestionarios_pdf",
+    "pagina_fisica": [
+      191,
+      195
+    ],
+    "salida": "cuestionario-ms.md",
+    "tipo": "texto pdftotext -layout",
+    "sha256_fuente": "6a3ae3b23f0b0241b536e2fb1ec7de08b25af5d43318ec35a2fa379f6a965a55"
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2006-modulos-0002/endireh-pisos-2006-modulos-0002-entradas.tar.gz",
+    "sha256_original": "20d4b80c3ead3bbef975a7fccade26eb0a77d413e39f8d66ecb7b74d3f7e95df",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "b4f5d29c788ba5c687cacd2aaae6e9976792426d29c0ca89b1f2f3a424c01d23",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 15,
+        "sha256": "4071be14965b70c122067c7418569a64d5860660accee055ef8d4738b791a490",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 16,
+        "sha256": "590302ff3b0a6118f9cb564f8374301d12dbec2c3b39db74844fc99328f4cc84",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 17,
+        "sha256": "6eee53224998785f6e4063cdb94a47bc80361308f3b77d5dcca171d9556e4885",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-discriminacion-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-discriminacion-0001",
+    "fd_documental": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endireh2016-fd.xlsx",
+    "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/fd_endireh2016.xlsx",
+    "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9"
+  },
+  {
+    "paquete": "endireh-pisos-2016-discriminacion-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2016-discriminacion-0001/endireh-pisos-2016-discriminacion-0001-entradas.tar.gz",
+    "sha256_original": "62bba15f88a63f04989e5656fd9ccd58a3270b4c458312072807976d58bb4777",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "b7b235fc805bdd0f1e28ea5b7b0a029f870862ca8b78c5654e4ff1c873a87ec2",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "fd_documental": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endireh2016-fd.xlsx",
+    "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/fd_endireh2016.xlsx",
+    "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9"
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2016-pareja-fisica-0002/endireh-pisos-2016-pareja-fisica-0002-entradas.tar.gz",
+    "sha256_original": "8e2af4d0101d67bf407b71b3547adf590d54d1ed68c977b763993d16f0145aac",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "f7dc112d13dae01d3d0cce62be7e4e4079343e56e363d266c0d5420579be8105",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-restantes-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2016-restantes-0001",
+    "fd_documental": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endireh2016-fd.xlsx",
+    "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/fd_endireh2016.xlsx",
+    "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9"
+  },
+  {
+    "paquete": "endireh-pisos-2016-restantes-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2016-restantes-0001/endireh-pisos-2016-restantes-0001-entradas.tar.gz",
+    "sha256_original": "2a11511feac61eb449cf128f08c313fab9c16631be8f3bab4b2c75e40dbd123e",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "6b3b27760f0ae3b6500c36c1ccd9763b6980fd06f153e644cb9e336e4975de73",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 12,
+        "sha256": "86e3c42b1a47268d41247fbaf6c9a3b9482c4c8e3084bc1728b6e5a34042a34d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 15,
+        "sha256": "bfb695060cccb2ce3f19b86dc8f5ccad631efe3de52c8146fbca6aefb8995fe7",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-0004",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-0004",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-endireh2021-a-marco-bootstrap.md",
+    "sha256": "fccbe8af077fe357b2853fb5f060b29ee8394b4750be17189183270a16d7284a",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-0004",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-pareja-fisica-0004/endireh-pisos-2021-pareja-fisica-0004-entradas.tar.gz",
+    "sha256_original": "7f88ca2498ce5d8769f146e50998426470783c7cb4e9a14bc8cb22cc406b8c68",
+    "supresiones": [
+      {
+        "parrafo": 10,
+        "sha256": "507a517f8fdcdfbc61bbd66a25c6480bc82e3a1efccbad496cefa98259f69785",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-bc-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-bc-0001",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-endireh2021-bc-diseno.md",
+    "sha256": "39b0b6a379c4139439329a6736754bb2b5e193f4af0d867667efb0c64b1f8daf",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-bc-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-pareja-fisica-bc-0001/endireh-pisos-2021-pareja-fisica-bc-0001-entradas.tar.gz",
+    "sha256_original": "705b69abf4391b39caaf3658af3dab64b79f4cd61aa0deee0cfa339abfc565ae",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "d831f4c4d616e3bab2848865f73af360d9a6d5f40d8c8a317f9ab59273d28549",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2023-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2023-0001",
+    "documento_adquirido": {
+      "nombre": "p1-endutih2023-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2023-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf",
+      "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+      "bytes": 1324703,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 15,
+      "titulo_verificado": "Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (ENDUTIH) 2023 CUESTIONARIO MU",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-endutih2023-cuestionario.pdf"
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2023-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-empleo-15mas-2023-0001/endutih-empleo-15mas-2023-0001-entradas.tar.gz",
+    "sha256_original": "c736ff66967febd7be0b7f20348870e57b8acadaa881f37280f481d6933d60fc",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "a854f758d20dcd990b8e883a0ab51a4d15850ef2acf96129ac40eeac8235af67",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "31a9d049f36a768db61c8c7a440744b7f7c553664bd8e67acab6cd1051e4c58f",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "f791df6d9c26b03c88a0444f469b82356ca3564567a53382003f2f9c5db29f07",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2024-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2024-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-empleo-15mas-2024-0001/endutih-empleo-15mas-2024-0001-entradas.tar.gz",
+    "sha256_original": "5f52f2e013583c6fe4f2564cd2fe0fb88df5b44b67fadf288576dc417832f070",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "a854f758d20dcd990b8e883a0ab51a4d15850ef2acf96129ac40eeac8235af67",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "31a9d049f36a768db61c8c7a440744b7f7c553664bd8e67acab6cd1051e4c58f",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "f791df6d9c26b03c88a0444f469b82356ca3564567a53382003f2f9c5db29f07",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2025-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2025-0001",
+    "documento_adquirido": {
+      "nombre": "p1-endutih2025-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2025-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf",
+      "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+      "bytes": 1247893,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 17,
+      "titulo_verificado": "Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (Endutih) 2025 TR A CUESTIONARIO 1. DATOS DE IDENTIFICACIÓN",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-endutih2025-cuestionario.pdf"
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2025-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-empleo-15mas-2025-0001/endutih-empleo-15mas-2025-0001-entradas.tar.gz",
+    "sha256_original": "3b61fe1d3a32ffbc697576fa51cb3af537171fa1facb7e7834c986590342bac2",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "a854f758d20dcd990b8e883a0ab51a4d15850ef2acf96129ac40eeac8235af67",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "31a9d049f36a768db61c8c7a440744b7f7c553664bd8e67acab6cd1051e4c58f",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "f791df6d9c26b03c88a0444f469b82356ca3564567a53382003f2f9c5db29f07",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-pisos-2023-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-pisos-2023-0001",
+    "documento_adquirido": {
+      "nombre": "p1-endutih2023-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2023-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2023/doc/CENDUTIH2023.pdf",
+      "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+      "bytes": 1324703,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 15,
+      "titulo_verificado": "Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (ENDUTIH) 2023 CUESTIONARIO MU",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-endutih2023-cuestionario.pdf"
+  },
+  {
+    "paquete": "endutih-pisos-2023-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-pisos-2023-0001/endutih-pisos-2023-0001-entradas.tar.gz",
+    "sha256_original": "18a61407446c537b6a62fb87b31acf06623a2b13381780a330b143aac583b6c9",
+    "supresiones": [
+      {
+        "parrafo": 9,
+        "sha256": "2a3a747a6ca9ec7ea1fdfbf90b94ac149acaaf2b4e6c2277d601a487ae8fc153",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-pisos-2024-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-pisos-2024-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-pisos-2024-0001/endutih-pisos-2024-0001-entradas.tar.gz",
+    "sha256_original": "e8c742165fba36f47830424957101f4d03a358a5a6761c9d14711af9201c0656",
+    "supresiones": [
+      {
+        "parrafo": 9,
+        "sha256": "2a3a747a6ca9ec7ea1fdfbf90b94ac149acaaf2b4e6c2277d601a487ae8fc153",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "endutih-pisos-2025-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "endutih-pisos-2025-0001",
+    "documento_adquirido": {
+      "nombre": "p1-endutih2025-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-endutih2025-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endutih/2025/doc/CENDUTIH2025.pdf",
+      "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+      "bytes": 1247893,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 17,
+      "titulo_verificado": "Encuesta Nacional sobre Disponibilidad y Uso de Tecnologías de la Información en los Hogares (Endutih) 2025 TR A CUESTIONARIO 1. DATOS DE IDENTIFICACIÓN",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-endutih2025-cuestionario.pdf"
+  },
+  {
+    "paquete": "endutih-pisos-2025-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/endutih-pisos-2025-0001/endutih-pisos-2025-0001-entradas.tar.gz",
+    "sha256_original": "0e8ea6d8791860c8ad2539b65ceb137e0ce56367e15023e53b4f15902f3ea978",
+    "supresiones": [
+      {
+        "parrafo": 9,
+        "sha256": "2a3a747a6ca9ec7ea1fdfbf90b94ac149acaaf2b4e6c2277d601a487ae8fc153",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enfih-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enfih-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enfih2019-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enfih2019-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enfih/2019/doc/enfih_2019_cuestionario.pdf",
+      "sha256": "3ff9b6f89cc47c995b86dfb831d6ea557448ff051c621adc2d6f20e9cfe33bd4",
+      "bytes": 1262902,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 36,
+      "titulo_verificado": "Encuesta Nacional sobre las Finanzas de los Hogares (ENFIH) 2019 CUESTIONARIO 1. DATOS DE IDENTIFICACIÓN 2. NÚMERO DE UPM Y VIVIENDA SELECCIONADA Número de UPM ................. Entidad__________________________________________",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enfih2019-cuestionario.pdf"
+  },
+  {
+    "paquete": "enfih-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enfih-0001/enfih-0001-entradas.tar.gz",
+    "sha256_original": "1f44f077cc3dd795c7dacc58c63279c7eecf898a8d55f883c6f39e42b84c21a5",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "a8ce7a14ce1de76f234e2b41a509cc943d5a038c77644a24f59e30de3c151815",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 5,
+        "sha256": "fb1854f9c544f06916e73f1e6588af8fdb92cb965934910673080b153cda408e",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "312605dc20249b9e6a9d3cbf1fc794fc2eb38e6eb79b6da04823809ec502ff96",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enif-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enif-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enif-0001/enif-0001-entradas.tar.gz",
+    "sha256_original": "a1f573755b35600160e69e192a6fb3de10d76089f4520c5a0f4d7c3263097c32",
+    "supresiones": [
+      {
+        "parrafo": 63,
+        "sha256": "6dafe5970b6aafc0bd3558571910a1eb8d97f57f8edb99279ad8091ddf41a556",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "enif-0002",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enif-0002",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enif-0002/enif-0002-entradas.tar.gz",
+    "sha256_original": "6611337f2c34f0f72fb411d8043138aad11c696e49c6944cbdaa53a2e247c69b",
+    "supresiones": [
+      {
+        "parrafo": 12,
+        "sha256": "edc4f76b34e14ec71588a08d98833ad5052ce497295393f07de2300b976cc757",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2021-piso-contrato.md",
+    "sha256": "45dc590ceaf0688c2c5aed8f955db33c1d1681752b3c3112f82723a28e8c8b5f",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "fragmento_p1": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/fragmentos/p1-enif2021-piso-posicional.md",
+    "sha256": "e5ad2daec975d29092d4c110fad67d1d96818a1e08605414c358c2a78c4cbebb",
+    "revision": "P2 texto humano leído sin datos observados; definiciones vejez sólo primeras4 líneas"
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enif-persistencia-ic-calibrado-0001/enif-persistencia-ic-calibrado-0001-entradas.tar.gz",
+    "sha256_original": "c181f460ab74c23cf2839eb40e835f76b2b405de86e8bda2dcb4751f9b6588be",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "enigh-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enigh-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-hogares.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-hogares.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_hogares.pdf",
+      "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+      "bytes": 1663837,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 22,
+      "titulo_verificado": "www.inegi.org.mx MÉXICO NOMBRE Y FIRMA DEL SUPERVISOR NOMBRE Y FIRMA DEL ENTREVISTADOR NOMBRE______________________________________________",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-hogares.pdf"
+  },
+  {
+    "paquete": "enigh-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2022-mayores.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2022-mayores.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2022/doc/enigh2022_ns_cuest_personas_mayores.pdf",
+      "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+      "bytes": 1872313,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 30,
+      "titulo_verificado": "E N C I A L CO NF I D y prestarán apoyo a las mismas.” veracidad y oportunidad, los datos e informes que les soliciten las au- Informantes del Sistema a las Unidades en término",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2022-mayores.pdf"
+  },
+  {
+    "paquete": "enigh-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enigh-0001/enigh-0001-entradas.tar.gz",
+    "sha256_original": "641824d3e5a21383df48b6f78aa87a703fd58ddf98271ed03315bdb2d0abe2f5",
+    "supresiones": [],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "ruta": "data/corrida0/CALC-ENIGH2022-INTENSIDAD-REMESAS-0001/spec.md",
+    "sha256": "e3e845dbc94b6834594f4aeeb4ea1e3d475ecf15ef3d47e8e3228d27a7e7195c",
+    "secciones": [
+      "Universo y dominios",
+      "Cinco estadísticos principales",
+      "Incertidumbre"
+    ],
+    "supresiones": [
+      "de 90,102 hogares ",
+      "control contra CALC-ENIGH-0001"
+    ]
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "documento_adquirido": {
+      "nombre": "p1-mociba2016-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-mociba2016-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_cuestionario.pdf",
+      "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+      "bytes": 842837,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 4,
+      "titulo_verificado": "MÓDULO SOBRE CIBERACOSO (MOCIBA) 2016 Para persona elegida de 12 años y más DATOS DE IDENTIFICACIÓN UPM NÚMERO DE VIVIENDA SELECCIONADA HOGAR DE EN LA VIVIENDA NOMBRE DE LA PERSONA ELEGIDA:_____________________________________________________________ NÚMERO DE RENGLÓN CONFIDENCIALIDAD OB",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-mociba2016-cuestionario.pdf"
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enigh2016-intensidad-remesas-0001/enigh2016-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_original": "58c58f36e55cbca344613ad253985e081e8b2cf405c306dae9821ca76c6a43ba",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "ruta": "data/corrida0/CALC-ENIGH2022-INTENSIDAD-REMESAS-0001/spec.md",
+    "sha256": "e3e845dbc94b6834594f4aeeb4ea1e3d475ecf15ef3d47e8e3228d27a7e7195c",
+    "secciones": [
+      "Universo y dominios",
+      "Cinco estadísticos principales",
+      "Incertidumbre"
+    ],
+    "supresiones": [
+      "de 90,102 hogares ",
+      "control contra CALC-ENIGH-0001"
+    ]
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "documentos_agregados": [
+      "cc1_inegi_enigh_2018__enigh18_descripcion_calculo_r"
+    ]
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enigh2018-intensidad-remesas-0001/enigh2018-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_original": "bc8eb55a44d2fd2443c6144f8067b534271107016e50e9fe2d9ba9ee301f3730",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "ruta": "data/corrida0/CALC-ENIGH2022-INTENSIDAD-REMESAS-0001/spec.md",
+    "sha256": "e3e845dbc94b6834594f4aeeb4ea1e3d475ecf15ef3d47e8e3228d27a7e7195c",
+    "secciones": [
+      "Universo y dominios",
+      "Cinco estadísticos principales",
+      "Incertidumbre"
+    ],
+    "supresiones": [
+      "de 90,102 hogares ",
+      "control contra CALC-ENIGH-0001"
+    ]
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "documentos_agregados": [
+      "cc1_inegi_enigh_2020__enigh2020_ns_descripcion_calculo_r"
+    ]
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "documento_adquirido": {
+      "nombre": "p1-encuci2020-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-encuci2020-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/encuci/2020/doc/cuest_general_encuci2020.pdf",
+      "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+      "bytes": 1156397,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 26,
+      "titulo_verificado": "Encuesta Nacional de Cultura Cívica (ENCUCI) 2020 Cuestionario General I. DATOS DE IDENTIFICACIÓN II. CONTROL DE LA VIVIENDA UPM ...................................... ENTIDAD",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-encuci2020-cuestionario.pdf"
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "documento_adquirido": {
+      "nombre": "p1-enigh2020-mayores.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-enigh2020-mayores.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2020/doc/enigh2020_ns_cuest_personas_mayores.pdf",
+      "sha256": "b4537be6df7642d209f84a89a41fe5560964b5594685d879972ee64250d6161e",
+      "bytes": 1173747,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 31,
+      "titulo_verificado": "www.inegi.org.mx MÉXICO INSTITUTO NACIONAL DE ESTADÍSTICA Y GEOGRAFÍA NOMBRE Y FIRMA DEL SUPERVISOR",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-enigh2020-mayores.pdf"
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enigh2020-intensidad-remesas-0001/enigh2020-intensidad-remesas-0001-entradas.tar.gz",
+    "sha256_original": "64ccb47614cecaf8308bb1c134497b29f5ab8124c4815280729c04e84025bee3",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "ruta": "data/enoe-reactivos-olas-v1_0.tsv",
+    "sha256": "735615561ecdc27b6ad511c399b6176a80cfa35f66f26e9a8215279bfce16463",
+    "extraccion": "completa: matriz documental previa sin observados"
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "ruta": "data/enoe-olas-elegibles-preparacion-v1_0.tsv",
+    "sha256": "bead9676b166040dba4bc6ec29047d173ad710d92d77dfea1f807874a3f1b35b",
+    "extraccion": "completa: matriz documental previa sin observados"
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "ruta": "forense/prereg-caja/ENOE-PISOS-spec-v1_2.md",
+    "sha256": "00d4cea867363f72c95555e7c2a89788bddd26862dc68d63d0ae36f383dd617a",
+    "rangos": [
+      [
+        28,
+        107
+      ],
+      [
+        127,
+        127
+      ],
+      [
+        143,
+        144
+      ]
+    ],
+    "supresiones_textuales": [
+      "referencia v1.0 omitía y logs de ejecución"
+    ]
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enoe-pisos-0003/enoe-pisos-0003-entradas.tar.gz",
+    "sha256_original": "8f2e1a7feec8d77f529587ce59f8d6fb53bdb476c45bae8ac2219957d82f4609",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "ensanut-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "ensanut-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/ensanut-0001/ensanut-0001-entradas.tar.gz",
+    "sha256_original": "700405d438df5d3c5b0a08fc0ad4df631166108ef14e0f5a4165a6d3a17deccc",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "ruta": "forense/analisis/salud-bienestar/lista-cerrada-P1.md",
+    "rangos": [
+      [
+        35,
+        49
+      ]
+    ],
+    "sha256": "ac569691c772971788bbb78d48ad25a48dfc35b027c0c3ad3d2ffaac9a3aa33f"
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "documentos_agregados": [
+      "ensanut_2021__hogar_ensanut2021_w_14_12_2021_catalogo_xlsx",
+      "ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx",
+      "ensanut_2021__ensamen2021_entrega_w_14_12_2021_catalogo_xlsx",
+      "ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx",
+      "ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx",
+      "ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx",
+      "ensanut_2021__ensaantro21_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecpr2021_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecpr2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecpr2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecpr2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__freces2021_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__freces2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__freces2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__freces2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecadul2021_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecadul2021_frec_alimentos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecadul2021_frec_tortillas_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__frecadul2021_frec_suplementos_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__etiquetado2021_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__lactancia2021_entrega_w_17_12_2021_catalogo_xlsx",
+      "ensanut_2021__ensasangre21_entrega_w_integrada_catalogo_xlsx",
+      "ensanut_2022__hogar_ensanut2022_w_catalogo_xlsx",
+      "ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx",
+      "ensanut_2022__ensanut2022_icb_catalogo_xlsx",
+      "ensanut_2022__ensamen2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__util2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensaantro2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_pr2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_pr2022_rec_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_pr2022_tor_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_pr2022_sup_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_es2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_es2022_rec_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_es2022_tor_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_es2022_sup_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_ad2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_ad2022_rec_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_ad2022_tor_w_catalogo_xlsx",
+      "ensanut_2022__ensafrec_ad2022_sup_w_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_entrega_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_alim_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_desc_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_obte_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_sup_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec_r2022_entrega_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec_r2022_alim_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec_r2022_desc_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec_r2022_obte_w_mod_catalogo_xlsx",
+      "ensanut_2022__ensarec2022_sup_w_mod_catalogo_xlsx___de_24_horas_suplementos",
+      "ensanut_2022__ensalact2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafisica2022_menores_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensafisica2022_adultos_entrega_w_catalogo_xlsx",
+      "ensanut_2022__ensaplomo2022_entrega_w_catalogo_xlsx",
+      "ensanut_2022__proteina_n_y_s_papel_filtro_catalogo_xlsx",
+      "ensanut_2023__hogar_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__ensanut2023_icb_catalogo_xlsx",
+      "ensanut_2023__menores_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx",
+      "ensanut_2023__antropometria_hta_4mar24_catalogo_xlsx",
+      "ensanut_2023__frec_pr_w_catalogo_xlsx",
+      "ensanut_2023__frec_pr_rec_w_catalogo_xlsx",
+      "ensanut_2023__frec_pr_tor_w_catalogo_xlsx",
+      "ensanut_2023__frec_pr_sup_w_catalogo_xlsx",
+      "ensanut_2023__frec_es_w_catalogo_xlsx",
+      "ensanut_2023__frec_es_rec_w_catalogo_xlsx",
+      "ensanut_2023__frec_es_tor_w_catalogo_xlsx",
+      "ensanut_2023__frec_es_sup_w_catalogo_xlsx",
+      "ensanut_2023__frec_adul_w_catalogo_xlsx",
+      "ensanut_2023__frec_ad_rec_w_catalogo_xlsx",
+      "ensanut_2023__frec_ad_tor_w_catalogo_xlsx",
+      "ensanut_2023__frec_ad_sup_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_alim_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_desc_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_obte_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_sup_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_rev_rec_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_rev_alim_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_rev_desc_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_rev_obte_w_catalogo_xlsx",
+      "ensanut_2023__rec24h_rev_sup_w_catalogo_xlsx",
+      "ensanut_2023__lactancia_w_2023_catalogo_xlsx",
+      "ensanut_2023__actividad_fisica_w_ninos_catalogo_xlsx",
+      "ensanut_2023__actividad_fisica_w_adultos_catalogo_xlsx",
+      "ensanut_2023__plomo_w_2023_catalogo_xlsx",
+      "ensanut_2023__etiquetado_w_2023_catalogo_xlsx"
+    ]
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/ensanut-pisos-salud-0001/ensanut-pisos-salud-0001-entradas.tar.gz",
+    "sha256_original": "c7e4c41635775e5cd0947441e6cbf9ec5f7823e0ee811a2f3da316fdd5192db5",
+    "supresiones": [
+      {
+        "parrafo": 6,
+        "sha256": "73d9e052b440360a0c8c5f5a0a6a7ef6b314b0b4af6dc407038657103ab6897b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 12,
+        "sha256": "57f8ae6e844444cba4945b58beefa3b12e3c3563a3b09c0ed5f33e3555cdbcf0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "enut-0001",
+    "ruta": "data/corrida0/CALC-ENUT-0001/spec.md",
+    "rangos": [
+      [
+        16,
+        28
+      ],
+      [
+        43,
+        49
+      ]
+    ],
+    "sha256": "b14a52f76559af4d1d3b231f46f83a4d057205737e4066e2ef4b4de2d89e723a"
+  },
+  {
+    "paquete": "enut-0001",
+    "ruta": "forense/prereg-caja/ENUT-CUIDADO-spec-v1_0.md",
+    "rangos": [
+      [
+        174,
+        182
+      ],
+      [
+        114,
+        118
+      ]
+    ],
+    "sha256": "6ee6cb62d5e7da6bf1fb750ec44fb25474cca7c8d37869d7faeab9ac6f6177bb"
+  },
+  {
+    "paquete": "enut-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "enut-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/enut-0001/enut-0001-entradas.tar.gz",
+    "sha256_original": "958b14602ac0314d69a77961c160d999c2e54835bd34ac1fd45282d444a0866b",
+    "supresiones": [
+      {
+        "parrafo": 7,
+        "sha256": "203dab3bdf8b2ebdb0629486474f73e77fc6fe03755d92cc699587c7566f31fc",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "envipe-0001",
+    "documentos_agregados": [
+      "envipe2025_cuest_principal_pdf",
+      "envipe2025_cuest_modulo_pdf"
+    ]
+  },
+  {
+    "paquete": "envipe-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/envipe-0001/envipe-0001-entradas.tar.gz",
+    "sha256_original": "482b4f2bff42dc9d7b5a185016d9fb1ba75ff03adda7164c7749da840294e744",
+    "supresiones": [
+      {
+        "parrafo": 5,
+        "sha256": "57e64cab6299ee0b54a8cac0843d44c473a74bd03333c98acd57ea9d82fb98d3",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 6,
+        "sha256": "a5faa99896c69dc7de34b532a719a613d0ab97afbde4be8f854e0e1cd1fa2644",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 7,
+        "sha256": "fe9519e300aa700f5d9c72e192e4baa1279a4435b4dda6d0d734e3fae30c7b4d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "4180ca480b7c4130a34a3dbf383e4ff34d7cbe6ecaed77f335f8e66517686ea7",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 11,
+        "sha256": "d76c987815d8ccee0a4087f459cfc5a37289ca36e849855147e48fa0c4e43b6e",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "envipe-denuncia-seguro-0001",
+    "documentos_agregados": [
+      "envipe2025_cuest_principal_pdf",
+      "envipe2025_cuest_modulo_pdf"
+    ]
+  },
+  {
+    "paquete": "envipe-denuncia-seguro-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/envipe-denuncia-seguro-0001/envipe-denuncia-seguro-0001-entradas.tar.gz",
+    "sha256_original": "b58cf9bf4f0b9740c9fa6a18ea23398ea2113f6ee97aac7ecb5105b6a7a1ffcb",
+    "supresiones": [],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "envipe-res0028-u4-derivado-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "envipe-res0028-u4-derivado-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/envipe-res0028-u4-derivado-0001/envipe-res0028-u4-derivado-0001-entradas.tar.gz",
+    "sha256_original": "eab7cacb2bb45022bff8db0de14c91e053676a622f1c21d8080529d6474e57bc",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "f62c152da6b5a9e558c6e296e875c3dde352d76908b1ea6b3f7bb611c144a129",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 32,
+        "sha256": "603bf5ca9a75dd97fcb74ae03b07fef78e7488f52a124211f87fa28c9875815d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "evasion-norma-0001-v1_1",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "evasion-norma-0001-v1_1",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/evasion-norma-0001-v1_1/evasion-norma-0001-v1_1-entradas.tar.gz",
+    "sha256_original": "0d917dd038448d35686d474540e79b9986fcba6916941e236661bef3fcb27f1f",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "horizonte-via-derivados-0001-v1_1",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "horizonte-via-derivados-0001-v1_1",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/horizonte-via-derivados-0001-v1_1/horizonte-via-derivados-0001-v1_1-entradas.tar.gz",
+    "sha256_original": "2be4dfe36d15e4940defe90f57728950ae9201592e261ca7aff0ecab53a1b6b0",
+    "supresiones": [
+      {
+        "todo": true,
+        "razon": "revisión semántica detectó resultados/historial/referencias productores"
+      }
+    ],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  },
+  {
+    "paquete": "mociba-pisos-2016-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "mociba-pisos-2016-0001",
+    "documento_adquirido": {
+      "nombre": "p1-mociba2016-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-mociba2016-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2016/doc/mociba2016_cuestionario.pdf",
+      "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+      "bytes": 842837,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 4,
+      "titulo_verificado": "MÓDULO SOBRE CIBERACOSO (MOCIBA) 2016 Para persona elegida de 12 años y más DATOS DE IDENTIFICACIÓN UPM NÚMERO DE VIVIENDA SELECCIONADA HOGAR DE EN LA VIVIENDA NOMBRE DE LA PERSONA ELEGIDA:_____________________________________________________________ NÚMERO DE RENGLÓN CONFIDENCIALIDAD OB",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-mociba2016-cuestionario.pdf"
+  },
+  {
+    "paquete": "mociba-pisos-2016-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/mociba-pisos-2016-0001/mociba-pisos-2016-0001-entradas.tar.gz",
+    "sha256_original": "5b25d5c960862e10bff8e91875ee8bc16512842813867d7fefee167e111d8c81",
+    "supresiones": [
+      {
+        "parrafo": 12,
+        "sha256": "2adfb6daac3f8f05bf392c28bc8b6acb19e2feaacea53c4038fb415ddd22d9b8",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "mociba-pisos-2017-0001",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "mociba-pisos-2017-0001",
+    "documento_adquirido": {
+      "nombre": "p1-mociba2017-cuestionario.pdf",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/preparacion/p1/documentos/p1-mociba2017-cuestionario.pdf",
+      "url": "https://www.inegi.org.mx/contenidos/programas/mociba/2017/doc/mociba2017_cuestionario.pdf",
+      "sha256": "856cb10f7b5d226757d0602b9998c07b029fdfed18a0ca8f10d65cbab6a45101",
+      "bytes": 782750,
+      "estado": "PDF-ADQUIRIDO",
+      "paginas": 4,
+      "titulo_verificado": "MÓDULO SOBRE CIBERACOSO (MOCIBA) 2017 Para persona elegida de 12 a 59 años de edad que use Internet en cualquier dispositivo CONFIDENCIALIDAD OBLIGATORIEDAD Conforme a las disposiciones del Artículo 37, párrafo primero, de la Ley del Sistema De acuerdo con el Artículo 45, párrafo primero, d",
+      "revision_humana": "Encabezados corresponden instrumento/ola; resultado entrevista es formulario vacío, no estimador. Sin encabezados de tabla de resultados observados. P2/P3 revisa cobertura reactivos antes entrega."
+    },
+    "salida": "cuestionario-mociba2017-cuestionario.pdf"
+  },
+  {
+    "paquete": "mociba-pisos-2017-0001",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/mociba-pisos-2017-0001/mociba-pisos-2017-0001-entradas.tar.gz",
+    "sha256_original": "ee68474303f826f38dc531ce50b85530e065655cdbc3044d82d70a10415d7713",
+    "supresiones": [
+      {
+        "parrafo": 12,
+        "sha256": "2adfb6daac3f8f05bf392c28bc8b6acb19e2feaacea53c4038fb415ddd22d9b8",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "pisos-envipe2024-ejes-0002",
+    "documentos_agregados": [
+      "envipe2024_cuest_principal_pdf",
+      "envipe2024_cuest_modulo_pdf"
+    ]
+  },
+  {
+    "paquete": "pisos-envipe2024-ejes-0002",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/pisos-envipe2024-ejes-0002/pisos-envipe2024-ejes-0002-entradas.tar.gz",
+    "sha256_original": "a3873ecfcb6520bd49ea380945c0ceec71add367207d2ab3125b56058f348e0e",
+    "supresiones": [
+      {
+        "parrafo": 3,
+        "sha256": "4936958ba55b91dc915b465f21b6d24edd408cb7b6dfa26cf24c9ff0ae1beb52",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 5,
+        "sha256": "4796d691481d7b11506272805fd427cb10605a9360a80df4248d123762b0b4a5",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-01",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-01",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-01/r-civ-m-01-entradas.tar.gz",
+    "sha256_original": "1845143cae19a6c322675bb9346d97eab6237123ab08588c6ea71e864cdd7083",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "ea28771d5cca2373c8a1ff2241deb4e97e3075e19f8997886ffc7907b445d11c",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 5,
+        "sha256": "0af2608aad09010fabecc83222cdc63c6bb093f2c7b8e7fe6d52e881083ced51",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 11,
+        "sha256": "8e2d7d1d43f2539d3fa7cf7f7a3e8a9aa674c4ed458692d7e9abb623b0f58403",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-02",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-02",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-02/r-civ-m-02-entradas.tar.gz",
+    "sha256_original": "29399c890d68cfa0e60501894d52f315c04af2d7c635a3ea885b9f077c7bfea3",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "71afb075577556a5b831a9b3131992adc785c2d5d353fd40eb3cfecdf3b82aa1",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 10,
+        "sha256": "8e2d7d1d43f2539d3fa7cf7f7a3e8a9aa674c4ed458692d7e9abb623b0f58403",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-04",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-04",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-04/r-civ-m-04-entradas.tar.gz",
+    "sha256_original": "1a959ef742e708a7387fc057ddac070b80205d9d8cd33098bc1fb4ca031e056c",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "6a34655d7b74ae913262de269a9dae9ec35b54e5babaf6801ab5bc16e5d5ecdb",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 10,
+        "sha256": "8e2d7d1d43f2539d3fa7cf7f7a3e8a9aa674c4ed458692d7e9abb623b0f58403",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-10",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-10",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-10/r-civ-m-10-entradas.tar.gz",
+    "sha256_original": "ef0ed474659bb20e58ef142a9840b24c78822d74f3e732a3526656ac4307af7b",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "e3f7bb7d42c19c828cce5cc4ba0fb491badb4b4435e9043fdde7445a06096cbe",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-12",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-12",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-12/r-civ-m-12-entradas.tar.gz",
+    "sha256_original": "6d95c78c53f268b1d1fc6b57c3d67507f0ce86e32920af42ab4e10bc7f9b03cf",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "e3f7bb7d42c19c828cce5cc4ba0fb491badb4b4435e9043fdde7445a06096cbe",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-civ-m-13",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-civ-m-13",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-civ-m-13/r-civ-m-13-entradas.tar.gz",
+    "sha256_original": "43cd5fcbd8ec6d042eb7ab902f8850af18ec6f11108cc9617bad96aff4a593e6",
+    "supresiones": [
+      {
+        "parrafo": 4,
+        "sha256": "e3f7bb7d42c19c828cce5cc4ba0fb491badb4b4435e9043fdde7445a06096cbe",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-din-m-01-v4",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-din-m-01-v4",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-din-m-01-v4/r-din-m-01-v4-entradas.tar.gz",
+    "sha256_original": "44260d13e1650113b86643243827ce50d1aad01dab60ac64eae14456be4abf09",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "67480f0289519aab31b48efa5886bae803433c2dd5996d5666cadbfcb2ab2bc2",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "87721a0b6691d06942165a681cfde0764678c1921036bb407e3b238a805ec110",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "a665686d662b95f66f28b306b5f8d79edb295efc0a82cb619ed8c794fd25ad72",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-fam-m-01-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-fam-m-01-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-fam-m-01-v3/r-fam-m-01-v3-entradas.tar.gz",
+    "sha256_original": "cdc9aca7e725bcce39cb658aa64ee2d449a3f661d9608577d9c93e3b446217a8",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "c87cbef70ed59fe29e6002017a62ca2e1ffd08d9b4b54a70b49d5b5fc033e70f",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "81b3d4ded6c59a3f5063ed283d9ebc7cfd68d16fc0aa3d2eebecf39a20aacc5e",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 10,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-fam-m-05-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-fam-m-05-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-fam-m-05-v3/r-fam-m-05-v3-entradas.tar.gz",
+    "sha256_original": "d9646dfc7d59bd7d2b6c041e2360e9b5c45962c8eda2dec9960a7301196bb954",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "d0f534ac4eae0204a9d7f3bb4da4067362742dabfb1665b67b3f00bd2f5cc9f5",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "a154f6ae0239d4b6596101683729dab8e6b50de0d384c631e817394850fdd339",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-fam-m-06-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-fam-m-06-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-fam-m-06-v3/r-fam-m-06-v3-entradas.tar.gz",
+    "sha256_original": "ec99015313d0abe3b11ed681c031dab8873e06188162a7a0113f44510fc18464",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "88d1b1e04d5f5453d083ad84d984c12db3bd1176b0695e7af1e3dfb7baa9a365",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "8bc9b5b5eccc1bfe0fb61d6be5f65de6ebb0e97e42171d453e556b3f4791f69c",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-fam-m-07-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-fam-m-07-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-fam-m-07-v3/r-fam-m-07-v3-entradas.tar.gz",
+    "sha256_original": "87b930ec8dc73f43d78770f47a2f991192c6cbffe7853d601e5917ce31c6417a",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "830f98da8a01c86b10e964d97d5ea5a5251ed68eef7e5f85035eddb34690c05d",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "29ecfea52355fe7dfe6074279ca4193ec1f5943617c192ccefcf181d513f1727",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-tra-m-02-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-tra-m-02-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-tra-m-02-v3/r-tra-m-02-v3-entradas.tar.gz",
+    "sha256_original": "d09784eec4bb74920dd1e01aa336dd3fe5873a9486aff928292f2276276c3b2d",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "854b4417e40c373e843b67af3b9b9d530d1e761b928d2de61f389b23e49c3101",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "233e33899f7a3b5ce4370433437384c90effa2ddffe83d7db41780a9f718d0a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-tra-m-03-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-tra-m-03-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-tra-m-03-v3/r-tra-m-03-v3-entradas.tar.gz",
+    "sha256_original": "39e90941c45f408e5309f4e057bae8ee6c3bc9b91160bed530507a1a43eeb960",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "3d38a1e9c1dda8b4034ba43d8ae3553d617485c40d019ff5605965f9a9972d33",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "b6c82d4b1843e3369bec39d44f1f90ce4fda881425ba2aea80f7555e0549a1a1",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 10,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "r-tra-m-07-v3",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "r-tra-m-07-v3",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/r-tra-m-07-v3/r-tra-m-07-v3-entradas.tar.gz",
+    "sha256_original": "f70a1f9e59d64dbad206028b7e04b9b2cd64fd85a8d9fe9a73f04c25597ab912",
+    "supresiones": [
+      {
+        "parrafo": 2,
+        "sha256": "d2d514c55ea465eb0b7fadeeb0e39a2091979e2d9e11c342a2cdf0d7a0ed7fbe",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 3,
+        "sha256": "f825768e2f73fe1a4610ad9300493565d1020fffcd2b58f00e969a516894413e",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 4,
+        "sha256": "efaa2edb805e92b48ca9df2c0741b4e71e6a5cfa912d668bd09da3682e550920",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 8,
+        "sha256": "7991e7b6ad911e9f0ec739dab9d62fe1d5587e837f09a3b3cdc6308ed330c41b",
+        "razon": "historial, referencia productor o contexto comparativo"
+      },
+      {
+        "parrafo": 9,
+        "sha256": "c81aedb5367a786e5a50ee530e196fca295b47d98e280943d7ae976c903068a0",
+        "razon": "historial, referencia productor o contexto comparativo"
+      }
+    ],
+    "insumo_retendido_en_preparacion": []
+  },
+  {
+    "paquete": "tiene-ahorros-0001-v1_1",
+    "documentos_agregados": []
+  },
+  {
+    "paquete": "tiene-ahorros-0001-v1_1",
+    "original_contenedor": "forense/validacion-independiente/catalogo-1/paquetes/tiene-ahorros-0001-v1_1/tiene-ahorros-0001-v1_1-entradas.tar.gz",
+    "sha256_original": "6be42431cf683ab6b9ec56c32f206f227038955e3e988bef4024b7963bfdfb45",
+    "supresiones": [],
+    "insumo_retendido_en_preparacion": [
+      {
+        "id": "enif_2024_enif_2024_bd_csv",
+        "archivo": "enif_2024_bd_csv.zip",
+        "sha256": "00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enif/2024/microdatos/enif_2024_bd_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    ]
+  }
+]

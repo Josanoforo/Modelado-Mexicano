@@ -1,0 +1,227 @@
+LIMPIA-ARBOL · REPORTE (nunca escribe)
+  A · worktrees vivos: 114   [git worktree list --porcelain]
+      /home/pc0/Modelado-Mexicano  rama=refs/heads/claude/new-session-7p7kao
+      /home/pc0/Modelado-Mexicano/.claude/worktrees/agent-a336d4013203d5b8e  rama=refs/heads/worktree-agent-a336d4013203d5b8e
+      /home/pc0/Modelado-Mexicano/.claude/worktrees/agent-a4bfc83ec0ab5c141  rama=refs/heads/fork/pisos2-din
+      /home/pc0/Modelado-Mexicano/.claude/worktrees/agent-a7d8e527ae88b7feb  rama=refs/heads/worktree-agent-a7d8e527ae88b7feb
+      /home/pc0/Modelado-Mexicano/.claude/worktrees/agent-a9facc03b479266d6  rama=refs/heads/worktree-agent-a9facc03b479266d6
+      /home/pc0/Modelado-Mexicano/.claude/worktrees/agent-ac636173160dee079  rama=refs/heads/fork/pisos2-tra
+      /home/pc0/mm-adq-2026-09-26  rama=refs/heads/codex/adq-2026-09-26-130002
+      /home/pc0/mm-adq-astra-theta-1  rama=refs/heads/codex/adq-astra-theta-1
+      /home/pc0/mm-adq-astra5-u5-20260923  rama=refs/heads/codex/adq-astra5-u5-20260923
+      /home/pc0/mm-adquiere-envipe2026-enigh2024-1  rama=refs/heads/acto/gen2-adquiere-envipe2026-enigh2024-1
+      /home/pc0/mm-arbitro-marginales-1  rama=refs/heads/acto/gen2-arbitro-marginales-1
+      /home/pc0/mm-arbitro-marginales-2  rama=refs/heads/acto/gen2-arbitro-marginales-2
+      /home/pc0/mm-astra-encig-1  rama=refs/heads/codex/astra-encig-1
+      /home/pc0/mm-astra-envipe-1  rama=refs/heads/codex/astra-interaccion-dinamica-1
+      /home/pc0/mm-astra-sp-adq  rama=refs/heads/codex/adq-astra-theta-salud-1
+      /home/pc0/mm-astra-theta-1  rama=refs/heads/codex/astra-theta-1
+      /home/pc0/mm-astra3-encig-persistencia-1  rama=refs/heads/codex/astra3-encig-persistencia-1
+      /home/pc0/mm-astra3-enif-formalidad-error-1  rama=refs/heads/codex/astra3-enif-formalidad-error-1
+      /home/pc0/mm-astra3-enif-oferta-1  rama=refs/heads/codex/astra3-enif-oferta-1
+      /home/pc0/mm-astra4-anexo-informe-1  rama=refs/heads/codex/astra4-anexo-informe-1
+      /home/pc0/mm-astra4-catalogo-1  rama=refs/heads/codex/astra4-catalogo-1
+      /home/pc0/mm-astra4-escritor-consumo-1  rama=refs/heads/codex/astra4-escritor-consumo-1
+      /home/pc0/mm-astra4-familias-prospectivas-1  rama=refs/heads/codex/astra4-familias-prospectivas-1
+      /home/pc0/mm-astra4-region-1  rama=refs/heads/codex/astra4-region-1
+      /home/pc0/mm-astra4-relevo-1  rama=refs/heads/codex/astra4-relevo-sucesor-1
+      /home/pc0/mm-astra5-documentos-dirigidos-1  rama=refs/heads/codex/astra5-documentos-dirigidos-1
+      /home/pc0/mm-astra5-enif-diseno-1  rama=refs/heads/codex/astra5-enif-diseno-1
+      /home/pc0/mm-astra5-enut2024-docs-1  rama=refs/heads/codex/astra5-enut2024-docs-1
+      /home/pc0/mm-astra5-envipe2025-diseno-1  rama=refs/heads/codex/astra5-envipe2025-diseno-1
+      /home/pc0/mm-astra5-genero-endireh-1  rama=refs/heads/codex/astra5-genero-endireh-1
+      /home/pc0/mm-astra5-genero-endireh-sucesor-1  rama=refs/heads/codex/astra5-genero-endireh-sucesor-1
+      /home/pc0/mm-astra5-mapa-dominios-1  rama=refs/heads/codex/astra5-mapa-dominios-1
+      /home/pc0/mm-astra5-politica-1  rama=refs/heads/claude/astra5-politica-completar-1
+      /home/pc0/mm-astra5-tecnologia-1  rama=refs/heads/codex/astra5-tecnologia-1
+      /home/pc0/mm-astra5-trabajo-enoe-1  rama=refs/heads/codex/astra5-trabajo-enoe-1
+      /home/pc0/mm-astra6-c1-paquetes-1  rama=refs/heads/codex/astra6-c1-paquetes-1
+      /home/pc0/mm-astra6-c1-paquetes-2  rama=refs/heads/codex/astra6-c1-paquetes-2
+      /home/pc0/mm-astra6-c1-validacion-lote1-1  rama=refs/heads/codex/astra6-c1-validacion-lote1-1
+      /home/pc0/mm-astra6-c2-cierre-material-1  rama=refs/heads/codex/astra6-c2-cierre-material-1
+      /home/pc0/mm-astra6-c2-encig-1  rama=refs/heads/codex/astra6-c2-encig-1
+      /home/pc0/mm-astra6-c2-enif-1  rama=refs/heads/codex/astra6-c2-enif-1
+      /home/pc0/mm-astra6-c2-envipe-1  rama=refs/heads/codex/astra6-c2-envipe-1
+      /home/pc0/mm-astra6-c3-consumo-familia-1  rama=refs/heads/astra6-c3-consumo-familia-1
+      /home/pc0/mm-astra6-c3-consumo-familia-2  rama=refs/heads/codex/astra6-c3-consumo-familia-2
+      /home/pc0/mm-astra6-c3-genero-violencia-salud-1  rama=refs/heads/codex/astra6-c3-genero-violencia-salud-1
+      /home/pc0/mm-astra6-c3-social-1  rama=refs/heads/astra6-c3-social-1
+      /home/pc0/mm-astra6-c3-trabajo-movilidad-1  rama=refs/heads/codex/astra6-c3-trabajo-movilidad-1
+      /home/pc0/mm-c2-restringido  rama=refs/heads/acto/gen2-din-lote-c2-restringido-1
+      /home/pc0/mm-censo-2026-09-21  rama=refs/heads/censo/2026-09-21
+      /home/pc0/mm-ci-canal-derivados-verde  rama=refs/heads/acto/ci-canal-derivados-verde
+      /home/pc0/mm-ci-derivados-fix  rama=refs/heads/claude/ci-canal-derivados-auto
+      /home/pc0/mm-codex-adq-2026-09-21  rama=refs/heads/codex/adq-2026-09-21
+      /home/pc0/mm-cola-lote-1  rama=refs/heads/acto/gen2-cola-lote-1
+      /home/pc0/mm-corpus-integridad-1  rama=refs/heads/acto/gen2-corpus-integridad-y-respaldo-1
+      /home/pc0/mm-corpus-respaldo-ejecucion-1  rama=refs/heads/acto/gen2-corpus-respaldo-ejecucion-1
+      /home/pc0/mm-derivados-2026-09-21  rama=refs/heads/derivados/2026-09-21
+      /home/pc0/mm-determined-brahmagupta-4ykgmt  rama=refs/heads/claude/determined-brahmagupta-4ykgmt
+      /home/pc0/mm-din-credito-escolaridad-2  rama=refs/heads/acto/gen2-din-credito-escolaridad-2
+      /home/pc0/mm-enif-persistencia-ic-calibrado-1  rama=refs/heads/claude/gen2-enif-persistencia-ic-calibrado-1
+      /home/pc0/mm-ensu-serie-1  rama=refs/heads/gen2-seguridad-ensu-serie-1
+      /home/pc0/mm-enut-nucleo-celdas  rama=refs/heads/acto/gen2-enut-nucleo-celdas-1
+      /home/pc0/mm-enut-pisos-serie  rama=refs/heads/acto/gen2-enut-pisos-y-serie-1
+      /home/pc0/mm-gen2-38-investigacion  rama=refs/heads/adq/2026-09-23-gen2-38-investigacion
+      /home/pc0/mm-gen2-astra5-u5-adquisicion-1  rama=refs/heads/acto/gen2-astra5-u5-adquisicion-1
+      /home/pc0/mm-gen2-celda-d-piloto-4-encogida-1  rama=refs/heads/acto/gen2-celda-d-piloto-4-encogida-1
+      /home/pc0/mm-gen2-ci-derivados-pr-1  rama=refs/heads/acto/gen2-ci-pines-derivados-1
+      /home/pc0/mm-gen2-clase-amai-1  rama=refs/heads/acto/gen2-clase-amai-1
+      /home/pc0/mm-gen2-clase-amai-2  rama=refs/heads/acto/gen2-clase-amai-2
+      /home/pc0/mm-gen2-cola-completa-1  rama=refs/heads/acto/gen2-cola-completa-1
+      /home/pc0/mm-gen2-confianza-pisos-1  rama=refs/heads/acto/gen2-confianza-religiosidad-capital-social-pisos-1
+      /home/pc0/mm-gen2-consumo-y-gasto-pisos-1  rama=refs/heads/acto/gen2-consumo-y-gasto-pisos-1
+      /home/pc0/mm-gen2-contadores-consumo-2  rama=refs/heads/acto/gen2-contadores-consumo-2-punto-fijo
+      /home/pc0/mm-gen2-corpus-completo-1  rama=refs/heads/acto/gen2-corpus-completo-1
+      /home/pc0/mm-gen2-din-credito-comparabilidad-texto-1  rama=refs/heads/acto/gen2-din-credito-comparabilidad-texto-1
+      /home/pc0/mm-gen2-din-credito-historia-1  rama=refs/heads/acto/gen2-din-credito-historia-1
+      /home/pc0/mm-gen2-din-credito-k2-historia-run-1  rama=refs/heads/acto/gen2-din-credito-k2-historia-run-1
+      /home/pc0/mm-gen2-din-credito-pisos-1870-run-1  rama=refs/heads/acto/gen2-din-credito-pisos-1870-run-1
+      /home/pc0/mm-gen2-din-credito-pisos-enif2021-1  rama=refs/heads/acto/gen2-din-credito-pisos-enif2021-1
+      /home/pc0/mm-gen2-din-credito-prediccion-2024-commit-1  rama=refs/heads/acto/gen2-din-credito-prediccion-2024-commit-1
+      /home/pc0/mm-gen2-din-credito-prediccion-2024-commit-2-3  rama=refs/heads/acto/gen2-din-credito-prediccion-2024-commit-2-3
+      /home/pc0/mm-gen2-din-lote-enif2024-commit-1  rama=refs/heads/acto/gen2-din-lote-enif2024-commit-1
+      /home/pc0/mm-gen2-din-lote-enif2024-commit-2-3  rama=refs/heads/acto/gen2-din-lote-enif2024-commit-2-3
+      /home/pc0/mm-gen2-din-lote-enif2024-secundaria-1  rama=refs/heads/acto/gen2-din-lote-enif2024-secundaria-1
+      /home/pc0/mm-gen2-donde-cambio-el-mexicano-1  rama=refs/heads/acto/gen2-donde-cambio-el-mexicano-1
+      /home/pc0/mm-gen2-duelo-encig2025-cierre-1  rama=refs/heads/acto/gen2-duelo-encig2025-cierre-1
+      /home/pc0/mm-gen2-duelo-envipe2026-commit-1  rama=refs/heads/acto/gen2-duelo-envipe2026-commit-1
+      /home/pc0/mm-gen2-duelo-envipe2026-congela-1  rama=refs/heads/acto/gen2-duelo-envipe2026-congela-1
+      /home/pc0/mm-gen2-duelo-envipe2026-ejecucion-1  rama=refs/heads/acto/gen2-duelo-envipe2026-ejecucion-1
+      /home/pc0/mm-gen2-duelo-envipe2026-marginales-2  rama=refs/heads/acto/gen2-duelo-envipe2026-marginales-2
+      /home/pc0/mm-gen2-encig-pisos-gen2-1  rama=refs/heads/acto/gen2-encig-pisos-gen2-1
+      /home/pc0/mm-gen2-encig-serie-y-tendencia-1  rama=refs/heads/acto/gen2-encig-serie-y-tendencia-1
+      /home/pc0/mm-gen2-enigh2024-duelo-commit-2-3  rama=refs/heads/acto/gen2-enigh2024-duelo-commit-2-3
+      /home/pc0/mm-gen2-enigh2024-serie-y-commit-1  rama=refs/heads/acto/gen2-enigh2024-serie-y-commit-1
+      /home/pc0/mm-gen2-familia-cuidados-y-migracion-pisos-1  rama=refs/heads/acto/gen2-familia-cuidados-y-migracion-pisos-1
+      /home/pc0/mm-gen2-front-1  rama=refs/heads/acto/gen2-front-1
+      /home/pc0/mm-gen2-limpieza-ramas-locales-4-cierre-fp402  rama=refs/heads/acto/gen2-limpieza-ramas-locales-4-cierre-fp402
+      /home/pc0/mm-gen2-limpieza-ramas-locales-5  rama=refs/heads/acto/gen2-limpieza-ramas-locales-5
+      /home/pc0/mm-gen2-limpieza-ramas-locales-6  rama=refs/heads/acto/gen2-limpieza-ramas-locales-6
+      /home/pc0/mm-gen2-pendientes-caja-1  rama=refs/heads/claude/gen2-pendientes-caja-1
+      /home/pc0/mm-gen2-pisos-gen2-2  rama=refs/heads/acto/gen2-pisos-gen2-2
+      /home/pc0/mm-gen2-replay-no-verificados-1  rama=refs/heads/acto/gen2-replay-no-verificados-1
+      /home/pc0/mm-gen2-salud-y-bienestar-pisos-1  rama=refs/heads/acto/gen2-salud-y-bienestar-pisos-1
+      /home/pc0/mm-gen2-tuberia-ci-medicion-1  rama=refs/heads/acto/gen2-tuberia-ci-medicion-1
+      /home/pc0/mm-piloto-3-v12  rama=refs/heads/acto/gen2-celda-d-piloto-3-commit-1-v1_2
+      /home/pc0/mm-piloto3-c23  rama=refs/heads/acto/gen2-celda-d-piloto-3-commit-2-3-v1_2
+      /home/pc0/mm-piloto3-c23-v13  rama=refs/heads/acto/gen2-celda-d-piloto-3-commit-2-3-v1_3
+      /home/pc0/mm-piloto3-v13  rama=refs/heads/acto/gen2-celda-d-piloto-3-commit-1-v1_3
+      /home/pc0/mm-tramite-2026-09-23  rama=refs/heads/claude/tramite-2026-09-23
+      /home/pc0/mm-tramite-2026-09-24  rama=refs/heads/claude/tramite-2026-09-24
+      /home/pc0/mm-validacion-independiente-lote-1  rama=refs/heads/acto/gen2-validacion-independiente-lote-1
+      /home/pc0/mm-validacion-independiente-pilotos-1  rama=refs/heads/acto/gen2-validacion-independiente-pilotos-1
+      /tmp/astra5-enoe-verify-42997895  rama=(detached)
+      /tmp/p4-auto-pr-check  rama=(detached)
+      /tmp/p4-postmerge-ci-1036  rama=(detached)
+  B · ramas locales ya fusionadas a origin/main y vivas: 108   [git merge-base --is-ancestor <rama> origin/main]
+      acto/ci-canal-derivados-verde
+      acto/gen2-adquiere-envipe2026-enigh2024-1
+      acto/gen2-arbitro-marginales-1
+      acto/gen2-arbitro-marginales-2
+      acto/gen2-astra5-u5-adquisicion-1
+      acto/gen2-celda-d-piloto-3-commit-1-v1_2
+      acto/gen2-celda-d-piloto-3-commit-1-v1_3
+      acto/gen2-celda-d-piloto-3-commit-2-3-v1_2
+      acto/gen2-celda-d-piloto-3-commit-2-3-v1_3
+      acto/gen2-celda-d-piloto-4-encogida-1
+      acto/gen2-ci-derivados-pr-1
+      acto/gen2-ci-pines-derivados-1
+      acto/gen2-clase-amai-1
+      acto/gen2-clase-amai-2
+      acto/gen2-cola-completa-1
+      acto/gen2-cola-lote-1
+      acto/gen2-confianza-religiosidad-capital-social-pisos-1
+      acto/gen2-consumo-y-gasto-pisos-1
+      acto/gen2-contadores-consumo-2-punto-fijo
+      acto/gen2-corpus-completo-1
+      acto/gen2-corpus-integridad-y-respaldo-1
+      acto/gen2-corpus-respaldo-ejecucion-1
+      acto/gen2-din-credito-comparabilidad-texto-1
+      acto/gen2-din-credito-escolaridad-2
+      acto/gen2-din-credito-historia-1
+      acto/gen2-din-credito-k2-historia-run-1
+      acto/gen2-din-credito-pisos-1870-run-1
+      acto/gen2-din-credito-pisos-enif2021-1
+      acto/gen2-din-credito-prediccion-2024-commit-1
+      acto/gen2-din-credito-prediccion-2024-commit-2-3
+      acto/gen2-din-lote-c2-restringido-1
+      acto/gen2-din-lote-enif2024-commit-1
+      acto/gen2-din-lote-enif2024-commit-2-3
+      acto/gen2-din-lote-enif2024-secundaria-1
+      acto/gen2-donde-cambio-el-mexicano-1
+      acto/gen2-duelo-encig2025-cierre-1
+      acto/gen2-duelo-envipe2026-commit-1
+      acto/gen2-duelo-envipe2026-congela-1
+      acto/gen2-duelo-envipe2026-ejecucion-1
+      acto/gen2-duelo-envipe2026-marginales-2
+      acto/gen2-encig-pisos-gen2-1
+      acto/gen2-encig-serie-y-tendencia-1
+      acto/gen2-enigh2024-duelo-commit-2-3
+      acto/gen2-enigh2024-serie-y-commit-1
+      acto/gen2-enut-nucleo-celdas-1
+      acto/gen2-enut-pisos-y-serie-1
+      acto/gen2-familia-cuidados-y-migracion-pisos-1
+      acto/gen2-front-1
+      acto/gen2-limpieza-ramas-locales-4-cierre-fp402
+      acto/gen2-limpieza-ramas-locales-5
+      acto/gen2-limpieza-ramas-locales-6
+      acto/gen2-pisos-gen2-2
+      acto/gen2-replay-no-verificados-1
+      acto/gen2-salud-y-bienestar-pisos-1
+      acto/gen2-tuberia-ci-medicion-1
+      acto/gen2-validacion-independiente-lote-1
+      acto/gen2-validacion-independiente-pilotos-1
+      adq/2026-09-23-gen2-38-investigacion
+      astra6-c3-consumo-familia-1
+      astra6-c3-social-1
+      censo/2026-09-21
+      claude/astra5-politica-completar-1
+      claude/ci-canal-derivados-auto
+      claude/gen2-enif-persistencia-ic-calibrado-1
+      claude/gen2-pendientes-caja-1
+      claude/tramite-2026-09-23
+      claude/tramite-2026-09-24
+      codex/adq-2026-09-21
+      codex/adq-astra-theta-1
+      codex/adq-astra-theta-salud-1
+      codex/adq-astra5-u5-20260923
+      codex/astra-encig-1
+      codex/astra-interaccion-dinamica-1
+      codex/astra-theta-1
+      codex/astra3-encig-persistencia-1
+      codex/astra3-enif-formalidad-error-1
+      codex/astra3-enif-oferta-1
+      codex/astra4-anexo-informe-1
+      codex/astra4-catalogo-1
+      codex/astra4-escritor-consumo-1
+      codex/astra4-familias-prospectivas-1
+      codex/astra4-region-1
+      codex/astra4-relevo-1
+      codex/astra4-relevo-sucesor-1
+      codex/astra5-documentos-dirigidos-1
+      codex/astra5-enif-diseno-1
+      codex/astra5-enut2024-docs-1
+      codex/astra5-envipe2025-diseno-1
+      codex/astra5-genero-endireh-1
+      codex/astra5-genero-endireh-sucesor-1
+      codex/astra5-mapa-dominios-1
+      codex/astra5-politica-1
+      codex/astra5-tecnologia-1
+      codex/astra5-trabajo-enoe-1
+      codex/astra6-c1-paquetes-1
+      codex/astra6-c1-validacion-lote1-1
+      codex/astra6-c2-encig-1
+      codex/astra6-c2-enif-1
+      codex/astra6-c2-envipe-1
+      derivados/2026-09-21
+      fork/pisos2-din
+      fork/pisos2-tra
+      gen2-seguridad-ensu-serie-1
+      worktree-agent-a336d4013203d5b8e
+      worktree-agent-a4bfc83ec0ab5c141
+      worktree-agent-a7d8e527ae88b7feb
+      worktree-agent-a9facc03b479266d6
+      worktree-agent-ac636173160dee079
+  C · base: HEAD esta 0 commits detras de origin/main (al_dia=SI)   [git rev-list --count HEAD..origin/main]
+  D · ramas remotas sin PR abierto -> fuera_de_politica: NO-VERIFICABLE-SIN-GH -- `gh pr list` no disponible en este entorno   [gh pr list --state open --json headRefName --limit 1000]

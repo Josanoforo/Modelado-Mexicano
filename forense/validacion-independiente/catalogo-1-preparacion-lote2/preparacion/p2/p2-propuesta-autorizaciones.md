@@ -1,0 +1,18 @@
+# Propuesta concreta de aperturas parciales C1
+
+PROPUESTO-POR-EJECUTOR; no constituye autorización ni adopción. No se ejecutó ninguna proyección ni se abrió miembro raw reservado.
+
+ENUT: levantar exclusivamente para nueva sesión C1 `enut2024_bd_csv` (SHA256 `25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba`) el cruce reparto_hogar×sexo_edad preservado por FP-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-bda6-02. Campos exactos: `tvar_crea.csv`: LLAVEHOG, SEXO, EDAD, EST_DIS, UPM_DIS, CUID_ESP_INT_HOG_CON_CP, CUID_INT_0A5_CON_CP, CUID_INT_6A14_CON_CP, CUID_INT_60MAS_CON_CP; `tsdem.csv`: LLAVEHOG, FAC_HOG; `thogar.csv`: LLAVEHOG, FAC_HOG. Efecto: reconstruir sólo A-R y comprobar igualdad del factor por hogar, con esquema humano de IC2000 PCG64(20260915). No entrega TMODULO ni otros cruces. Las ramas sensibilidad no necesarias para la única llave del corte quedan fuera.
+
+ENIF: autorizar una proyección para C1 de `enif_2024_enif_2024_bd_csv` (SHA256 `00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039`) para estos paquetes: ENIF-0001, ENIF-0002, TIENE-AHORROS-0001-v1_1, DINERO-FAMILIARES-VEJEZ-0001-v1_1 componentes AMAI-NSE-ENIF-2024-0001, HORIZONTE-VIA-DERIVADOS-0001-v1_1 y ENIF-PERSISTENCIA-IC-CALIBRADO-0001. La proyección de acceso de los dos últimos no resuelve sus contratos/encadenamiento humano; sus resultados exigen padres reconstruidos y sellados primero. Campos exactos propuestos por tabla documental:
+
+- TMODULO: LLAVEMOD, LLAVEHOG, EDAD_V, SEXO, FAC_PER, EST_DIS, UPM_DIS, P3_8, P3_9, P3_10, P3_13, P4_10, P5_1_1, P5_1_2, P5_1_3, P5_1_4, P5_1_5, P5_1_6, P5_6_1, P5_6_2, P5_6_3, P5_6_4, P5_6_5, P5_6_6, P5_6_7, P5_6_8, P5_6_9, P5_20, P5_23, FILTRO_S9_1, P9_9_4.
+- TVIVIENDA: LLAVEVIV, P0_1, P0_3, P0_4_1, P0_4_1A, P0_4_2, P0_4_2A.
+- THOGAR: LLAVEHOG, LLAVEVIV, FAC_HOG, EST_DIS, UPM_DIS, P2_8.
+- TSDEM: LLAVEHOG, PAREN, NIV. `NIVEL` y `GRADO` de la propuesta inicial NO aparecen en TSDEM del FD2024; se excluyen. La construcción AMAI de escolaridad requiere dictamen humano de mapeo de NIV antes de declararse recalculable.
+
+Efecto: reconstrucción ciega descriptiva de ahorro, horizonte, ayuda familiar y componentes NSE; ninguna sección de crédito. No resuelve ENIF-persistencia sin contrato de pisos/armonización. La lista se verificó documentalmente contra las cuatro hojas del FD2024, sin abrir raw. La firma confirma exclusivamente estos nombres. Si al congelar la herramienta algún nombre difiere, se detiene ese campo/paquete y se propone una adenda explícita; no se amplía ni renombra automáticamente lo firmado. Todos los campos no enumerados siguen reservados. No usar comodines ni autorizar ZIP completo.
+
+Herramienta sucesora propuesta: `tools/validacion/astra6_proyeccion_autorizada.py`, congelada antes de ejecución, recibe archivo de autorización con firma/insumo/SHA256/miembro/columnas exactas; verifica que todas las columnas están en FD y en la allowlist firmada; selecciona sólo esas columnas con lector de proyección, sin registrar valores de otros campos; escribe CSV/FD reducido y sus hashes. Guardia de rechazo ante cualquier columna adicional, miembro no permitido, autorización ausente o SHA discordante; prueba con ZIP sintético que contiene columnas trampa y valores centinela. Si el lector no puede separar sin exponer campos reservados, conserva BLOQUEADO-POR-ACCESO y requiere proyección previa de custodio autorizado.
+
+Firma recomendada a mesa: «Autorizo exclusivamente los insumos/miembros/columnas enumerados para nuevas sesiones C1 y la herramienta de separación congelada y probada; ninguna reserva adicional se levanta, ningún resultado se adopta y la comparación ocurre después de sellar reconstrucciones propias». Firma ENUT y ENIF son separables.

@@ -1,0 +1,2075 @@
+[
+  {
+    "paquete": "amai-nse-endutih-2023-0001",
+    "calc": "CALC-AMAI-NSE-ENDUTIH-2023-0001",
+    "estimadores": 30,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "CONTRATO-PARCIAL: referencias de validación publicadas AMAI quedan fuera; falta contrato ciego para esos estimandos. Conductas ENIF/ENDUTIH remiten helpers; no completar desde ellos."
+    ],
+    "sha256": "bb431f4e4d6d0b9259fb0c93bddf4c9144a4725c10d8c9cf32ff5dd354b6a2ea",
+    "archivo": "entradas/amai-nse-endutih-2023-0001/amai-nse-endutih-2023-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "2267e07dccdd59b43a79878a4e061d565f187ed654f68d1ed78b2c23e3ddf1bc",
+    "sha256_manifiesto": "bb431f4e4d6d0b9259fb0c93bddf4c9144a4725c10d8c9cf32ff5dd354b6a2ea",
+    "original_sha256_contenedor": "db6e61e121c08558e18f048dad7fd2c4f6ab98029674f31ce02879e376825b86",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-endutih2023-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "AMAI §4 contiene construcción de componentes y donación ENDUTIH; §5 define ENIGH remesas, pero conductas ENIF/ENDUTIH remiten helpers. Extraer sólo componentes; buscar specs humanas de cada conducta, nunca helpers. ENIGH puede resolver método con §1/§4/§5 y tablas documentales; ENIF/ENDUTIH no dar por completados.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "amai-nse-enif-2024-0001",
+    "calc": "CALC-AMAI-NSE-ENIF-2024-0001",
+    "estimadores": 49,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado.",
+      "CONTRATO-PARCIAL: referencias de validación publicadas AMAI quedan fuera; falta contrato ciego para esos estimandos. Conductas ENIF/ENDUTIH remiten helpers; no completar desde ellos."
+    ],
+    "sha256": "57fb7734ad2fd524722d7411a110746026b2c9d8ce66bf4dcc001c41efc3e144",
+    "archivo": "entradas/amai-nse-enif-2024-0001/amai-nse-enif-2024-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "81317e4a253c738c6b47328caf857a4dd74a6ff4ab25c6faec11aef167914fbb",
+    "sha256_manifiesto": "57fb7734ad2fd524722d7411a110746026b2c9d8ce66bf4dcc001c41efc3e144",
+    "original_sha256_contenedor": "dd4932eaa43a403afd30d9d60b8a58cc494d424ad61670e5935241e183e4055c",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "AMAI §4 contiene construcción de componentes y donación ENDUTIH; §5 define ENIGH remesas, pero conductas ENIF/ENDUTIH remiten helpers. Extraer sólo componentes; buscar specs humanas de cada conducta, nunca helpers. ENIGH puede resolver método con §1/§4/§5 y tablas documentales; ENIF/ENDUTIH no dar por completados.",
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "amai-nse-enigh-2022-0001",
+    "calc": "CALC-AMAI-NSE-ENIGH-2022-0001",
+    "estimadores": 3,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "METHODO: componentes por instrumento remiten a tablas externas; identificar y extraer tablas humanas, nunca helpers.",
+      "CONTRATO-PARCIAL: referencias de validación publicadas AMAI quedan fuera; falta contrato ciego para esos estimandos. Conductas ENIF/ENDUTIH remiten helpers; no completar desde ellos."
+    ],
+    "sha256": "795264e1e742991665f359f2828a155a3e4ea39e82c7283402bcbcfe4c11b30e",
+    "archivo": "entradas/amai-nse-enigh-2022-0001/amai-nse-enigh-2022-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "2d29205a16c40a8f265b9816e919f737470144d6486a138f72b4e39743263a9f",
+    "sha256_manifiesto": "795264e1e742991665f359f2828a155a3e4ea39e82c7283402bcbcfe4c11b30e",
+    "original_sha256_contenedor": "0d4d3542b2b1dd8f07472b372e66665bc6df6dc9b9e2db157a0cb9f8f67b1a50",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2022-hogares.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "cuestionario-enigh2022-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "AMAI §4 contiene construcción de componentes y donación ENDUTIH; §5 define ENIGH remesas, pero conductas ENIF/ENDUTIH remiten helpers. Extraer sólo componentes; buscar specs humanas de cada conducta, nunca helpers. ENIGH puede resolver método con §1/§4/§5 y tablas documentales; ENIF/ENDUTIH no dar por completados.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "b-0001",
+    "calc": "CALC-B-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "SELECTOR: spec remite al productor para el algoritmo temporal; requiere spec humana completa del selector."
+    ],
+    "sha256": "9e66e587c50c67897110dcf4bec6f5bd0ebdd5ed8c28aae322724045d9f46d95",
+    "archivo": "entradas/b-0001/b-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "ce16c30fd966281a51668fd9967570b231c9aa24eb1f8538df48e917cdbe502e",
+    "sha256_manifiesto": "9e66e587c50c67897110dcf4bec6f5bd0ebdd5ed8c28aae322724045d9f46d95",
+    "original_sha256_contenedor": "a53d4e9e031d7ced2f38c43f9d8977af89d5de76e86576a0a5edfe639356cf04",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2022-hogares.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "cuestionario-enigh2020-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4537be6df7642d209f84a89a41fe5560964b5594685d879972ee64250d6161e",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "cuestionario-enigh2022-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "B-REMESAS-spec-v1_0.md §2 conserva entradas y fechas pero selector sigue remitido a tools/baseline_temporal.py; B-MARCO-spec-v1_0.md hereda mismo selector. No existe algoritmo humano completo en los dos contratos examinados.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "dinero-familiares-vejez-0001-v1_1",
+    "calc": "CALC-DINERO-FAMILIARES-VEJEZ-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION: dos fuentes humanas previas definen bootstrap ponderado simple10k seed42 sin mecanismo exacto de selección/ponderación. Dictamen D-15 del validador; no leer implementación."
+    ],
+    "sha256": "60439fe8e588d2bdf53b077720e7f72f7024671a18aa889a97127e9de0edf9aa",
+    "archivo": "entradas/dinero-familiares-vejez-0001-v1_1/dinero-familiares-vejez-0001-v1_1-entradas-v3.tar.gz",
+    "sha256_contenedor": "f42c473ca9f84f077390d5fd89e1963f4a4ea1f2d1095cdc9efffdf60fe6965f",
+    "sha256_manifiesto": "60439fe8e588d2bdf53b077720e7f72f7024671a18aa889a97127e9de0edf9aa",
+    "original_sha256_contenedor": "0c858ccca92ee2a97564885bc224a3ef98d34bf8997e3a31573162a0d26a04f2",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "eder-0003",
+    "calc": "CALC-EDER-0003",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+    "archivo": "entradas/eder-0003/eder-0003-entradas-v4.tar.gz",
+    "sha256_contenedor": "6c2a9e4e94c2f8a532c4478cb738aad24d1749e7f70901345d1b494b454f0aae",
+    "sha256_manifiesto": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+    "original_sha256_contenedor": "fc4245c212ced2a67492c79c30b06f084351206db5ca2a66b5d30b4e503f7451",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-eder2017-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "e4958e0cbc982439f9dc341b7a68ac1cd6f284c6f1da7a057f0989e623f3fc28",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "eder_2017_eder2017_bases_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "eder_2017_eder2017_fd",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "calc": "CALC-ENBIARE-PISOS-BIENESTAR-0001",
+    "estimadores": 180,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+    "archivo": "entradas/enbiare-pisos-bienestar-0001/enbiare-pisos-bienestar-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "d13b4276f273dadd5a3581e0262c7370ca884e6c68d2c40f1320ef8b090ee592",
+    "sha256_manifiesto": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+    "original_sha256_contenedor": "f8da07914808d301a3501d8773d83de83b6f0a8e0af5b1691596c7090d75c4eb",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enbiare2021-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enbiare2021_bd_csv_zip",
+          "tipo": "raw",
+          "estado_acceso": "POR-VERIFICAR-AUTORIZACION",
+          "autorizacion": null
+        },
+        {
+          "id": "enbiare2021_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Extraer tabla del instrumento de lista-cerrada-P1, conservando texto/códigos/universo; excluir contexto con tamaño observado. Método localizado, suficiencia de descriptor pendiente.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "encig-0001",
+    "calc": "CALC-ENCIG-0001",
+    "estimadores": 4,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+    "archivo": "entradas/encig-0001/encig-0001-entradas-v5.tar.gz",
+    "sha256_contenedor": "6ffcf8d66e78da936152ff94989246bd8e28fabd48265144c1e013f274a983bb",
+    "sha256_manifiesto": "bd9dcb8de02534aaa333b3d8e65d9c0f2fb819084854b7396e4e4319eebec55c",
+    "original_sha256_contenedor": "8220eedab90fb252a927072803530701afd7016b6c369537b76947e8b41022d6",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "encig25_base_datos_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "encig25_cuestionario_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "encig25_estructura_base_datos_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario.",
+      "FD ya está identificado en insumos como encig25_estructura_base_datos_pdf: resolver faltante de clasificación sin adquirir otro documento."
+    ],
+    "version_entrada": 5
+  },
+  {
+    "paquete": "encig-0001-complementos-derivado-0001",
+    "calc": "CALC-ENCIG-0001-COMPLEMENTOS-DERIVADO-0001",
+    "estimadores": 4,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "ENCADENADO-CIEGO: reconstruir y sellar primero los puntos/IC del padre desde metodo-padre.md; aplicar transformación humana al valor propio, nunca al productor original. Dictamen conjunto pendiente."
+    ],
+    "sha256": "c9206f94700c32a0b9dc60014f481d4774d044e27e7630ff6df4c85fe6fc6369",
+    "archivo": "entradas/encig-0001-complementos-derivado-0001/encig-0001-complementos-derivado-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "d4ae1b5ebdd46d55eefbd9705f4837d306ff55d6cde7ae7fbfeb310406fa1081",
+    "sha256_manifiesto": "c9206f94700c32a0b9dc60014f481d4774d044e27e7630ff6df4c85fe6fc6369",
+    "original_sha256_contenedor": "fc69feb32636e5fcf8c390e30d7eeadbc8f48357d0a707fbf92964e955245a4d",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "calc": "CALC-ENCODAT-PISOS-SUSTANCIAS-0001",
+    "estimadores": 130,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+    "archivo": "entradas/encodat-pisos-sustancias-0001/encodat-pisos-sustancias-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "b5e989a658d224686e4f7bd321b9ea60c8d5cb926932b8c21757ca0a31b0c613",
+    "sha256_manifiesto": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+    "original_sha256_contenedor": "cb6c1e387d3cf1eed9f8a515682163674e8a07e9ce990ca84e3c0e0263d01a12",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e"
+        },
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0"
+        },
+        {
+          "archivo": "fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Extraer tabla del instrumento de lista-cerrada-P1, conservando texto/códigos/universo; excluir contexto con tamaño observado. Método localizado, suficiencia de descriptor pendiente.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "encuci-0001",
+    "calc": "CALC-ENCUCI-0001",
+    "estimadores": 3,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+    "archivo": "entradas/encuci-0001/encuci-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "ca501109446afd1454cb019f60b62e46a0a9650382b882d213c2176463fe6f48",
+    "sha256_manifiesto": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+    "original_sha256_contenedor": "9c9277ef6345e6bfb95e5a6dc681cb02b2d7e0777ed87a0f459752efb0a0dc6c",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-encuci2020-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "encuci2020_bd_dbf",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "encuci2020_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "encuci-0001-complemento-derivado-0001",
+    "calc": "CALC-ENCUCI-0001-COMPLEMENTO-DERIVADO-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "ENCADENADO-CIEGO: reconstruir y sellar primero los puntos/IC del padre desde metodo-padre.md; aplicar transformación humana al valor propio, nunca al productor original. Dictamen conjunto pendiente."
+    ],
+    "sha256": "06a428eefd64cf0582015645a97df6296c0368cc19a73ca64e4cb0634301fedc",
+    "archivo": "entradas/encuci-0001-complemento-derivado-0001/encuci-0001-complemento-derivado-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "409361ade5023c2d8159f4d9be92a786a88f4698718123792d46303bde30f829",
+    "sha256_manifiesto": "06a428eefd64cf0582015645a97df6296c0368cc19a73ca64e4cb0634301fedc",
+    "original_sha256_contenedor": "4f41bfa5c2ee83418bc44ec5bbd672f6aff2f4e1c4852e7de1f9b55eb9270e2c",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-encuci2020-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2006-modulos-0002",
+    "calc": "CALC-ENDIREH-PISOS-2006-MODULOS-0002",
+    "estimadores": 1324,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "DEFECTO-CONCEPTUAL: spec declara P7_4 anual MC/MD; cuestionario MD pregunta después de separación. Dictamen del validador requerido; no corregir contrato congelado."
+    ],
+    "sha256": "e27a28b00f421ccdb1549a7b746068447300f019ada81a58ef30991cd11ce82c",
+    "archivo": "entradas/endireh-pisos-2006-modulos-0002/endireh-pisos-2006-modulos-0002-entradas-v2.tar.gz",
+    "sha256_contenedor": "6b889b53bd21c59a4ea5439d6a2171e3874e1ce33534f4c6fe2aa9842b332343",
+    "sha256_manifiesto": "e27a28b00f421ccdb1549a7b746068447300f019ada81a58ef30991cd11ce82c",
+    "original_sha256_contenedor": "20d4b80c3ead3bbef975a7fccade26eb0a77d413e39f8d66ecb7b74d3f7e95df",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario.",
+      "P2 localiza cuestionarios físicos153–173 MC/general,175–190 MD,191–195 MS; MD P7_4 páginas184–185 pregunta después de separarse, método declara último año. No corregir contrato congelado; dictamen sobre alcance temporal previo a entregar como completo."
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2016-discriminacion-0001",
+    "calc": "CALC-ENDIREH-PISOS-2016-DISCRIMINACION-0001",
+    "estimadores": 296,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: agrupación escolaridad ninguna/básica/media/superior carece códigos→categorías en contrato propio. Fuente hermana pareja92 contiene bins pero P1 no encontró remisión contractual común; no se transfiere ni altera método congelado. Dictamen validador y acto humano explícito pendientes."
+    ],
+    "sha256": "fa32447698c9c6c76a9cb1a5992f12d58a7354e2679863dd108e3bdd0af7d5f0",
+    "archivo": "entradas/endireh-pisos-2016-discriminacion-0001/endireh-pisos-2016-discriminacion-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "ebe8ea40f6b7e52c138c3271abff5b5b3b3c1b661b116c0b2cc8fe5b94ca9d27",
+    "sha256_manifiesto": "fa32447698c9c6c76a9cb1a5992f12d58a7354e2679863dd108e3bdd0af7d5f0",
+    "original_sha256_contenedor": "62bba15f88a63f04989e5656fd9ccd58a3270b4c458312072807976d58bb4777",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "fd-endireh2016.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9",
+          "revision": "P2 revisión26hojas esquema/códigos; TSDem,TB_SEC_III,TB_SEC_VII,FACTORES,ID_MUJ"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "endireh2016_cuestionario_a_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_b_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_c_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_general_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: FD2016 oficial XLSX obtenido por URL exacta y hash, 26 hojas de estructura por tabla. P2 incorpora; P3 revisa cuestionarios/método y aislamiento; causa FD resuelta sin tocar manifiesto común.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "calc": "CALC-ENDIREH-PISOS-2016-PAREJA-FISICA-0002",
+    "estimadores": 92,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "911a6cae94ec87b374c99f5049629d61528ce56dca3538f9c2e09e2079f62ccf",
+    "archivo": "entradas/endireh-pisos-2016-pareja-fisica-0002/endireh-pisos-2016-pareja-fisica-0002-entradas-v2.tar.gz",
+    "sha256_contenedor": "2a10840b5638e22bb733de9f57990e052fe7b5398ab98474a32ea0c64c1f56df",
+    "sha256_manifiesto": "911a6cae94ec87b374c99f5049629d61528ce56dca3538f9c2e09e2079f62ccf",
+    "original_sha256_contenedor": "8e2af4d0101d67bf407b71b3547adf590d54d1ed68c977b763993d16f0145aac",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "fd-endireh2016.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9",
+          "revision": "P2 revisión26hojas esquema/códigos; TSDem,TB_SEC_III,TB_SEC_VII,FACTORES,ID_MUJ"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "endireh2016_cuestionario_a_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_b_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_c_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_general_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: FD2016 oficial XLSX obtenido por URL exacta y hash, 26 hojas de estructura por tabla. P2 incorpora; P3 revisa cuestionarios/método y aislamiento; causa FD resuelta sin tocar manifiesto común.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2016-restantes-0001",
+    "calc": "CALC-ENDIREH-PISOS-2016-RESTANTES-0001",
+    "estimadores": 1618,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: agrupación escolaridad ninguna/básica/media/superior carece códigos→categorías en contrato propio. Fuente hermana pareja92 contiene bins pero P1 no encontró remisión contractual común; no se transfiere ni altera método congelado. Dictamen validador y acto humano explícito pendientes."
+    ],
+    "sha256": "683f154b6bcc544c112ef950ae1e9f7a84570ace01878b9db767fa9435b8e0dd",
+    "archivo": "entradas/endireh-pisos-2016-restantes-0001/endireh-pisos-2016-restantes-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "8393d9912d34882e5a4bba337a3e6b425fe87ace6ad29cd5d18889ac3ce8e11e",
+    "sha256_manifiesto": "683f154b6bcc544c112ef950ae1e9f7a84570ace01878b9db767fa9435b8e0dd",
+    "original_sha256_contenedor": "2a11511feac61eb449cf128f08c313fab9c16631be8f3bab4b2c75e40dbd123e",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "fd-endireh2016.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9",
+          "revision": "P2 revisión26hojas esquema/códigos; TSDem,TB_SEC_III,TB_SEC_VII,FACTORES,ID_MUJ"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "endireh2016_cuestionario_a_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_b_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_c_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh2016_cuestionario_general_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        },
+        {
+          "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENDIREH2016"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: FD2016 oficial XLSX obtenido por URL exacta y hash, 26 hojas de estructura por tabla. P2 incorpora; P3 revisa cuestionarios/método y aislamiento; causa FD resuelta sin tocar manifiesto común.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-0004",
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004",
+    "estimadores": 92,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "2b83c4494f54e54d22958689a089c908d62592311c9f0136f276e280b47061f4",
+    "archivo": "entradas/endireh-pisos-2021-pareja-fisica-0004/endireh-pisos-2021-pareja-fisica-0004-entradas-v3.tar.gz",
+    "sha256_contenedor": "d77124a0700747eecdda1c5004224ad81e4e14c1ab064cc1a046d1d050ebce16",
+    "sha256_manifiesto": "2b83c4494f54e54d22958689a089c908d62592311c9f0136f276e280b47061f4",
+    "original_sha256_contenedor": "7f88ca2498ce5d8769f146e50998426470783c7cb4e9a14bc8cb22cc406b8c68",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "endireh-pisos-2021-pareja-fisica-bc-0001",
+    "calc": "CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-BC-0001",
+    "estimadores": 94,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "54ba7e5c2fa253dca5f350762096ec4ec60cb72a835288c063bdccc319814e82",
+    "archivo": "entradas/endireh-pisos-2021-pareja-fisica-bc-0001/endireh-pisos-2021-pareja-fisica-bc-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "6b64540751e27457b9ff0fbd1ed5205ec36560f2c3364ae77ac00dadf9f6eeb3",
+    "sha256_manifiesto": "54ba7e5c2fa253dca5f350762096ec4ec60cb72a835288c063bdccc319814e82",
+    "original_sha256_contenedor": "705b69abf4391b39caaf3658af3dab64b79f4cd61aa0deee0cfa339abfc565ae",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2023-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2023-0001",
+    "estimadores": 46,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "33eaa138cf24579979c764a5234aa156dc48477856ef18cc1a2184107ee7dad1",
+    "archivo": "entradas/endutih-empleo-15mas-2023-0001/endutih-empleo-15mas-2023-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "de5f81f8ec271b0301867bd3629a7345b528f5ab3dabe41a746b55c269954ed8",
+    "sha256_manifiesto": "33eaa138cf24579979c764a5234aa156dc48477856ef18cc1a2184107ee7dad1",
+    "original_sha256_contenedor": "c736ff66967febd7be0b7f20348870e57b8acadaa881f37280f481d6933d60fc",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-endutih2023-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2024-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2024-0001",
+    "estimadores": 46,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "f9a2f9b34c9c7545d073571bd89b00b11f7aeb8c66dbc8f1bf41993cef6a7e35",
+    "archivo": "entradas/endutih-empleo-15mas-2024-0001/endutih-empleo-15mas-2024-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "cec39b79d23960478f5c0af7f3a31d4fe45c4b567288aaab9691bd1b3ff0bbe4",
+    "sha256_manifiesto": "f9a2f9b34c9c7545d073571bd89b00b11f7aeb8c66dbc8f1bf41993cef6a7e35",
+    "original_sha256_contenedor": "5f52f2e013583c6fe4f2564cd2fe0fb88df5b44b67fadf288576dc417832f070",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "endutih-empleo-15mas-2025-0001",
+    "calc": "CALC-ENDUTIH-EMPLEO-15MAS-2025-0001",
+    "estimadores": 46,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "4dfda7c4a2ef59263b9a545a69267601c85d4e25a6b41dc9b75a758aff31f29e",
+    "archivo": "entradas/endutih-empleo-15mas-2025-0001/endutih-empleo-15mas-2025-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "9bfa0f54eca38b88d3c98e90db7e9c3a9952905817ae2e8e18e10d57959f38e5",
+    "sha256_manifiesto": "4dfda7c4a2ef59263b9a545a69267601c85d4e25a6b41dc9b75a758aff31f29e",
+    "original_sha256_contenedor": "3b61fe1d3a32ffbc697576fa51cb3af537171fa1facb7e7834c986590342bac2",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-endutih2025-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endutih-pisos-2023-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2023-0001",
+    "estimadores": 470,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "2da718999733a2289f427f65931c7ced34ddfdf5847bbb63e7ecb73d8bcbc6f3",
+    "archivo": "entradas/endutih-pisos-2023-0001/endutih-pisos-2023-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "dd3012d5183ebbefa0c269fe760aba4b3c3526c7ba0ae3679f6d0d6cc5157fde",
+    "sha256_manifiesto": "2da718999733a2289f427f65931c7ced34ddfdf5847bbb63e7ecb73d8bcbc6f3",
+    "original_sha256_contenedor": "18a61407446c537b6a62fb87b31acf06623a2b13381780a330b143aac583b6c9",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-endutih2023-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "488f67837ba03ec24bf04d530b82357e8949589d506229ca1b77ef08842bb053",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "endutih-pisos-2024-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2024-0001",
+    "estimadores": 470,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "9464c17fbfef1db660bfd7719c0c76694678dfb317ac564368129f76c9b1c828",
+    "archivo": "entradas/endutih-pisos-2024-0001/endutih-pisos-2024-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "eff7d531a8723480e9c1cbaac7014555b040eaee343ae6b6e37aaa0a4e1f6ae4",
+    "sha256_manifiesto": "9464c17fbfef1db660bfd7719c0c76694678dfb317ac564368129f76c9b1c828",
+    "original_sha256_contenedor": "e8c742165fba36f47830424957101f4d03a358a5a6761c9d14711af9201c0656",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "endutih-pisos-2025-0001",
+    "calc": "CALC-ENDUTIH-PISOS-2025-0001",
+    "estimadores": 470,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "3943c28e594f2a4c7358921f2e9b6b96108434a09aab0b12c86a0684b656cea2",
+    "archivo": "entradas/endutih-pisos-2025-0001/endutih-pisos-2025-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "04f8fa20459a2d4cc945057359e84330b9d73a4b4abc430cef107ceb0ed780ea",
+    "sha256_manifiesto": "3943c28e594f2a4c7358921f2e9b6b96108434a09aab0b12c86a0684b656cea2",
+    "original_sha256_contenedor": "0e8ea6d8791860c8ad2539b65ceb137e0ce56367e15023e53b4f15902f3ea978",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-endutih2025-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f41a818c7fc9f9d4425949e0a2a19af8cdb2b61518452c4e85cb0aa6e22078aa",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "enfih-0001",
+    "calc": "CALC-ENFIH-0001",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "e534af31eb51017cb3a9067ab4491a4683b69e0c6d4a3d5fd259a21537604b9e",
+    "archivo": "entradas/enfih-0001/enfih-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "bb2d1be51b3aeeb566972952c18141122e663de2dadc9aa72ba427b85411ffe6",
+    "sha256_manifiesto": "e534af31eb51017cb3a9067ab4491a4683b69e0c6d4a3d5fd259a21537604b9e",
+    "original_sha256_contenedor": "1f44f077cc3dd795c7dacc58c63279c7eecf898a8d55f883c6f39e42b84c21a5",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enfih2019-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "3ff9b6f89cc47c995b86dfb831d6ea557448ff051c621adc2d6f20e9cfe33bd4",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enfih2019_bd_csv_zip",
+          "tipo": "raw",
+          "estado_acceso": "POR-VERIFICAR-AUTORIZACION",
+          "autorizacion": null
+        },
+        {
+          "id": "enfih2019_fd_xlsx",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enif-0001",
+    "calc": "CALC-ENIF-0001",
+    "estimadores": 8,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "3ae89656b42d7c4b9a06c93b3667eb4cc4953b580e4ce533b97dce543eb82982",
+    "archivo": "entradas/enif-0001/enif-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "f2c996123418bc699ad7e7b48ae4c47ca00ace37efc5156f071f6495ea1961b8",
+    "sha256_manifiesto": "3ae89656b42d7c4b9a06c93b3667eb4cc4953b580e4ce533b97dce543eb82982",
+    "original_sha256_contenedor": "a1f573755b35600160e69e192a6fb3de10d76089f4520c5a0f4d7c3263097c32",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "enif-0002",
+    "calc": "CALC-ENIF-0002",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "f84d6fc5a98964bfd5a9453c83f7f8d7f6f979df9444242754f71b9d8d90082e",
+    "archivo": "entradas/enif-0002/enif-0002-entradas-v3.tar.gz",
+    "sha256_contenedor": "60a3ec7bdf52cfde8c31206ac1b9c4524fe95fda549666206946bb0f3d792dbc",
+    "sha256_manifiesto": "f84d6fc5a98964bfd5a9453c83f7f8d7f6f979df9444242754f71b9d8d90082e",
+    "original_sha256_contenedor": "6611337f2c34f0f72fb411d8043138aad11c696e49c6944cbdaa53a2e247c69b",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "enif-persistencia-ic-calibrado-0001",
+    "calc": "CALC-ENIF-PERSISTENCIA-IC-CALIBRADO-0001",
+    "estimadores": 32,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado.",
+      "METODO-PARCIAL: fórmula calibrado extraída fielmente; faltan reconstrucción independiente de pisos humanos y controles excluidos por valor esperado."
+    ],
+    "sha256": "4bc046eb911cd1796cf6954ece71480af960d64e64337a4519701ead5dc02815",
+    "archivo": "entradas/enif-persistencia-ic-calibrado-0001/enif-persistencia-ic-calibrado-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "676bafb443c42426edac8c682ab127526c6561750ef820f28e3bed88d6f2cab7",
+    "sha256_manifiesto": "4bc046eb911cd1796cf6954ece71480af960d64e64337a4519701ead5dc02815",
+    "original_sha256_contenedor": "c181f460ab74c23cf2839eb40e835f76b2b405de86e8bda2dcb4751f9b6588be",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "enigh-0001",
+    "calc": "CALC-ENIGH-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "archivo": "entradas/enigh-0001/enigh-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "1ca8d7b9654c09a0055b5edb9917b05ae279171a5339a2aa066dc68c0ec3b206",
+    "sha256_manifiesto": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+    "original_sha256_contenedor": "641824d3e5a21383df48b6f78aa87a703fd58ddf98271ed03315bdb2d0abe2f5",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2022-hogares.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "cuestionario-enigh2022-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enigh2022_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2022_descripcion_base_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enigh2016-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2016-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "BLOQUEADO-POR-ACCESO-DOCUMENTAL: cuestionario exacto2016 no obtenido P1; URLs oficiales ensayadas devolvieron HTML2002263bytes. Reintentar índice oficial2016, sin sustituirlo con ola2022."
+    ],
+    "sha256": "c35bd2f631d580806f0eac1ee5fd95fc08bbd338732c94d1de66353cf81e41b6",
+    "archivo": "entradas/enigh2016-intensidad-remesas-0001/enigh2016-intensidad-remesas-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "21d72ea2cab684bfc1454636375bf5b33f2190fdc241ab963f69c56622c1dd6c",
+    "sha256_manifiesto": "c35bd2f631d580806f0eac1ee5fd95fc08bbd338732c94d1de66353cf81e41b6",
+    "original_sha256_contenedor": "58c58f36e55cbca344613ad253985e081e8b2cf405c306dae9821ca76c6a43ba",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-mociba2016-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "fd-enigh2016-descripcion-oficial.pdf",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-documentos-adquiridos.json",
+          "sha256": "148819b9f760c63fc83d6083c3f7468347f5123a5f8b40ca72ba4b50a6a84a8d"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enigh2018-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2018-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "5150bfe87eebea2820429943ba94f1d81a95a162a3153fe984c2c6656b071915",
+    "archivo": "entradas/enigh2018-intensidad-remesas-0001/enigh2018-intensidad-remesas-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "85f3219d8d94ea716d7d5e9aa9b5fc572f7f634405fff2762f3cf3a7c7990254",
+    "sha256_manifiesto": "5150bfe87eebea2820429943ba94f1d81a95a162a3153fe984c2c6656b071915",
+    "original_sha256_contenedor": "bc8eb55a44d2fd2443c6144f8067b534271107016e50e9fe2d9ba9ee301f3730",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2018-mayores-oficial.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-documentos-adquiridos.json",
+          "sha256": "2d96095e9b68f797feebcb0136c25d4b83e3511306772c061c3f092ee121a4ca"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enigh2020-intensidad-remesas-0001",
+    "calc": "CALC-ENIGH2020-INTENSIDAD-REMESAS-0001",
+    "estimadores": 6,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "86930854bc4451c70f64649af52450caa6e8b16582fd7b9596b55cf5b0a62b10",
+    "archivo": "entradas/enigh2020-intensidad-remesas-0001/enigh2020-intensidad-remesas-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "1feff57faf7abb71b390d0077c8f0eb8dd4c7aef5aa339b5e8abe5ca3b828456",
+    "sha256_manifiesto": "86930854bc4451c70f64649af52450caa6e8b16582fd7b9596b55cf5b0a62b10",
+    "original_sha256_contenedor": "64ccb47614cecaf8308bb1c134497b29f5ab8124c4815280729c04e84025bee3",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [
+        {
+          "archivo": "cuestionario-enigh2020-mayores.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "b4537be6df7642d209f84a89a41fe5560964b5594685d879972ee64250d6161e",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        },
+        {
+          "archivo": "fd-enigh2020-oficial.pdf",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-documentos-adquiridos.json; revisión P3 documental propia2020"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "enigh2016_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2018_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        },
+        {
+          "id": "enigh2020_nc_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: documentos y olas históricas abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "enoe-pisos-0003",
+    "calc": "CALC-ENOE-PISOS-0003",
+    "estimadores": 26273,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "METODO-PARCIAL: semilla PCG64(42+i_ola) no fija explícitamente base del índice i_ola ni orden del marco UPM. Dictamen D-15 por sesión nueva; no completar desde código."
+    ],
+    "sha256": "9edf9b80145a00ab540547ca3b4ef5a2424e79617da31831b95d5d4a6689c8cb",
+    "archivo": "entradas/enoe-pisos-0003/enoe-pisos-0003-entradas-v3.tar.gz",
+    "sha256_contenedor": "42d4b8792a70e4ed3d674ef2f1f819718d2e4298c7943391091180b1c2acd166",
+    "sha256_manifiesto": "9edf9b80145a00ab540547ca3b4ef5a2424e79617da31831b95d5d4a6689c8cb",
+    "original_sha256_contenedor": "8f2e1a7feec8d77f529587ce59f8d6fb53bdb476c45bae8ac2219957d82f4609",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Método humano existente contiene 13 conductas, universo, códigos, diseño, ejes, supresión y bootstrap. Incorporar matriz data/enoe-reactivos-olas-v1_0.tsv y data/enoe-olas-elegibles-preparacion-v1_0.tsv como extracción de texto/código/universo/era; retirar referencia al encargo no-payload de insumos. No falta raw: único AUSENTE es encargoEG_ruptura_enoe_y_descriptores_pendientes_navegador, sin archivo/hash/url. Acceso documental se resuelve eliminando referencia administrativa; revisión de matriz y método aún requerida."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "ensanut-0001",
+    "calc": "CALC-ENSANUT-0001",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: fuentes humanas examinadas3: CALC-ENSANUT-0001/spec.md, S7-L17-spec-v1_1.md, lista-cerrada-P1.md. Definen menciones/personas, razones logísticas, ponde_f y estrato/est_sel/upm; ninguna define algoritmo IC primario (remuestreo, réplicas, RNG/semilla y tratamiento UPM única). S7-L17 especifica criterios IC95 pero no algoritmo. Solicitar contrato humano previo exacto o dictamen D15; no extraer desde productor."
+    ],
+    "sha256": "12291af9c55590f06908b07287eaa4ffbc56f2cb0502999d170e9a75137b1b5d",
+    "archivo": "entradas/ensanut-0001/ensanut-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "f7d5380ae10685afa3ccc5bdd720c1ae384f9ca935a8fa457180a5a4f79798aa",
+    "sha256_manifiesto": "12291af9c55590f06908b07287eaa4ffbc56f2cb0502999d170e9a75137b1b5d",
+    "original_sha256_contenedor": "700405d438df5d3c5b0a08fc0ad4df631166108ef14e0f5a4165a6d3a17deccc",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "fd-ensanut2024-adultos-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "fe31b8af8a08bcf6bc2ae641fc93be3676e4066b2783bed2f65e1303568da59d"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "ensanut-pisos-salud-0001",
+    "calc": "CALC-ENSANUT-PISOS-SALUD-0001",
+    "estimadores": 668,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "80fdd1024e336ff30f4c34b519f1d631b11c2c47d6234b0ce4740c9448336338",
+    "archivo": "entradas/ensanut-pisos-salud-0001/ensanut-pisos-salud-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "ea01751b5b847f2f579a09a336ebdf66040bdb1684e36c8f841c9642daaa7aab",
+    "sha256_manifiesto": "80fdd1024e336ff30f4c34b519f1d631b11c2c47d6234b0ce4740c9448336338",
+    "original_sha256_contenedor": "c7e4c41635775e5cd0947441e6cbf9ec5f7823e0ee811a2f3da316fdd5192db5",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "fd-ensanut_2021__integrantes_ensanut2021_w_12_01_2022_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "9a42c3f24374a879a9b0159d84f8f8b3aad70f9aeb3695a901ef7ea4776f2d6d"
+        },
+        {
+          "archivo": "fd-ensanut_2021__ensadol2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "bc5644aadf3a968d75a558de5f9bb606bc7fa900e833803083adbb0eb8702356"
+        },
+        {
+          "archivo": "fd-ensanut_2021__ensadul2021_entrega_w_15_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "e69deaed57acd21538418e49cfd5c8fe9fd99ceba7e7a5c112cd1e334b5d1b80"
+        },
+        {
+          "archivo": "fd-ensanut_2021__util2021_entrega_w_14_12_2021_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "cd6e42d58246a47b7e2c0acd7a6c6af5a30413221efc084df4ec01649bcd8fce"
+        },
+        {
+          "archivo": "fd-ensanut_2022__integrantes_ensanut2022_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "9b19f4d847d2637c1aabeaf3c2ab1b67920934c33f84fb6cf3b455e6843fe6fa"
+        },
+        {
+          "archivo": "fd-ensanut_2022__ensadol2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "7d96597a819f042e02910df1a196e1a7021533b552f11f760882f2a0134aee63"
+        },
+        {
+          "archivo": "fd-ensanut_2022__ensadul2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "ca61bebe6dd338924f8b52419411cccd1df51daab71b09980ff1abc74c459b17"
+        },
+        {
+          "archivo": "fd-ensanut_2022__util2022_entrega_w_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "91272bc9cb4b31fc46ef60f615d688a0ac35da3b61afb0829d3ef25bd2600a58"
+        },
+        {
+          "archivo": "fd-ensanut_2023__integrantes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "ecefc3638a60b16a09ce5237e4e36028cc8248c2dd803ab0cf19b63e811feb53"
+        },
+        {
+          "archivo": "fd-ensanut_2023__adolescentes_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "f8d5433d751b12443124f61fbfd53f324bda83c78a11258a40ba3645dc2b83bc"
+        },
+        {
+          "archivo": "fd-ensanut_2023__adultos_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "24feb8c8e4090f4b811a671cedc0ecf479e4a51d095cb8e557118e82ecc61a6f"
+        },
+        {
+          "archivo": "fd-ensanut_2023__utilizadores_ensanut2023_w_n_catalogo_xlsx.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "93e956666cb3b7e51410a8a766a20ef6335a8fd042a7068138e218aa15bafcad"
+        },
+        {
+          "archivo": "fd-ensanut2024-integrantes-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "d7d227be3b363e00e873dacffad3d36b8c5fd34b39477e611b1e7c32a48daa70"
+        },
+        {
+          "archivo": "fd-ensanut2024-adolescentes-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "135aab4ef7079ae4a9f908e172fe8be81d5d76c9ccf8a5c38c26a3961a40d233"
+        },
+        {
+          "archivo": "fd-ensanut2024-adultos-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "fe31b8af8a08bcf6bc2ae641fc93be3676e4066b2783bed2f65e1303568da59d"
+        },
+        {
+          "archivo": "fd-ensanut2024-utilizadores-catalogo.xlsx",
+          "tipo": "fd",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "fuente": "p1-catalogos-salud-entrega.json",
+          "sha256": "6a2ba742321922d4e47b8cc4afa18e2a731bda09f0b5e8b6bf28e4241c302549"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Extraer tabla del instrumento de lista-cerrada-P1, conservando texto/códigos/universo; excluir contexto con tamaño observado. Método localizado, suficiencia de descriptor pendiente.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "enut-0001",
+    "calc": "CALC-ENUT-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "BLOQUEADO-POR-ACCESO: ENUT2024 reparto_hogar×sexo_edad sigue reservado; FP-260922-GEN2-LECTURAS-DE-MESA-Y-ROTULOS-1-bda6-02 no autoriza entregar ZIP a nueva sesión. Método limpio disponible para dictamen."
+    ],
+    "sha256": "0f17098693a3751fba0073a9bfbef374c39d03759f8393aec18e1d35f63519c0",
+    "archivo": "entradas/enut-0001/enut-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "319546f55378d6f4a4d68f34d31890a6b488a603b602ee6fb0a78bb5d9c18874",
+    "sha256_manifiesto": "0f17098693a3751fba0073a9bfbef374c39d03759f8393aec18e1d35f63519c0",
+    "original_sha256_contenedor": "958b14602ac0314d69a77961c160d999c2e54835bd34ac1fd45282d444a0866b",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Extraer ENUT método sin N observado del documento mixto, mapa de supresiones fuera de entrada; P2 materializa extracción."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "envipe-0001",
+    "calc": "CALC-ENVIPE-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "5e43d9c13edbfcaa4545d51614a9211884bd9e498162826bbee98ef6f16189e9",
+    "archivo": "entradas/envipe-0001/envipe-0001-entradas-v5.tar.gz",
+    "sha256_contenedor": "03a508fb4bbf4f8d8155446b1277e5b4e8b4a978bcca666c39c3db30bcb7b994",
+    "sha256_manifiesto": "5e43d9c13edbfcaa4545d51614a9211884bd9e498162826bbee98ef6f16189e9",
+    "original_sha256_contenedor": "482b4f2bff42dc9d7b5a185016d9fb1ba75ff03adda7164c7749da840294e744",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "envipe2025_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_cuest_principal_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_cuest_modulo_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 5
+  },
+  {
+    "paquete": "envipe-denuncia-seguro-0001",
+    "calc": "CALC-ENVIPE-DENUNCIA-SEGURO-0001",
+    "estimadores": 4,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [],
+    "sha256": "399f2afec89565dacc9bacfa60b4cb4a53a20fcdd2f9ff581fd327243d614bbd",
+    "archivo": "entradas/envipe-denuncia-seguro-0001/envipe-denuncia-seguro-0001-entradas-v4.tar.gz",
+    "sha256_contenedor": "f97d81bd90a97e1737887230807a6897d85427624fd3f5da74b6d01ad2d4a356",
+    "sha256_manifiesto": "399f2afec89565dacc9bacfa60b4cb4a53a20fcdd2f9ff581fd327243d614bbd",
+    "original_sha256_contenedor": "b58cf9bf4f0b9740c9fa6a18ea23398ea2113f6ee97aac7ecb5105b6a7a1ffcb",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "envipe2025_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_cuest_principal_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        },
+        {
+          "id": "envipe2025_cuest_modulo_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "canon/MEMORIA-OPERATIVA.md §1: ENCIG2025/ENVIPE2025 abiertas"
+        }
+      ]
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 4
+  },
+  {
+    "paquete": "envipe-res0028-u4-derivado-0001",
+    "calc": "CALC-ENVIPE-RES0028-U4-DERIVADO-0001",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "ENCADENADO-CIEGO: reconstruir y sellar primero los puntos/IC del padre desde metodo-padre.md; aplicar transformación humana al valor propio, nunca al productor original. Dictamen conjunto pendiente."
+    ],
+    "sha256": "98043189b3388ec56eda36001acc68d07addd1e8c6e491fa3449f1e866cc2021",
+    "archivo": "entradas/envipe-res0028-u4-derivado-0001/envipe-res0028-u4-derivado-0001-entradas-v3.tar.gz",
+    "sha256_contenedor": "6354f32772d053821c7184eb94d3cf2d6187fa40eb54b989e7dc5ca6a875debc",
+    "sha256_manifiesto": "98043189b3388ec56eda36001acc68d07addd1e8c6e491fa3449f1e866cc2021",
+    "original_sha256_contenedor": "eab7cacb2bb45022bff8db0de14c91e053676a622f1c21d8080529d6474e57bc",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "evasion-norma-0001-v1_1",
+    "calc": "CALC-EVASION-NORMA-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "METODO-PARCIAL: tabla humana previa fija universo, desenlace y plan; algoritmo de IC completo remite a función. No reconstruir desde código."
+    ],
+    "sha256": "a27eafe8dd3cfe69449deb18ac28952c0778a394cf3725cafe6810d0a19c13a5",
+    "archivo": "entradas/evasion-norma-0001-v1_1/evasion-norma-0001-v1_1-entradas-v3.tar.gz",
+    "sha256_contenedor": "871fa15a1d84981b9a812d31b50cb8b6d11060f02f02177c2344ef640300c612",
+    "sha256_manifiesto": "a27eafe8dd3cfe69449deb18ac28952c0778a394cf3725cafe6810d0a19c13a5",
+    "original_sha256_contenedor": "0d917dd038448d35686d474540e79b9986fcba6916941e236661bef3fcb27f1f",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "horizonte-via-derivados-0001-v1_1",
+    "calc": "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "estimadores": 5,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado.",
+      "METODO-PARCIAL: complementariedad/inclusión-exclusión requieren padres reconstruidos ciegamente; entregar encadenado tras sus sellos propios, sin leer productores o puntos originales."
+    ],
+    "sha256": "0b99966016449c471738c16fe87a86262f65074e7c4c5792ff46b4c49bcb9191",
+    "archivo": "entradas/horizonte-via-derivados-0001-v1_1/horizonte-via-derivados-0001-v1_1-entradas-v3.tar.gz",
+    "sha256_contenedor": "6002fa387609b46d7e634ab06a44e369e211032c306ad67f33e866e5f9cd380a",
+    "sha256_manifiesto": "0b99966016449c471738c16fe87a86262f65074e7c4c5792ff46b4c49bcb9191",
+    "original_sha256_contenedor": "2be4dfe36d15e4940defe90f57728950ae9201592e261ca7aff0ecab53a1b6b0",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  },
+  {
+    "paquete": "mociba-pisos-2016-0001",
+    "calc": "CALC-MOCIBA-PISOS-2016-0001",
+    "estimadores": 126,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "46012c62381d48dcd7019ab02f59a92d69a30ac0f510a4eef1bad390af54dc09",
+    "archivo": "entradas/mociba-pisos-2016-0001/mociba-pisos-2016-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "27d8ba1dae64b5f9f70cb35e7703c07b71b171b5515c8299489cbe5d28f5313b",
+    "sha256_manifiesto": "46012c62381d48dcd7019ab02f59a92d69a30ac0f510a4eef1bad390af54dc09",
+    "original_sha256_contenedor": "5b25d5c960862e10bff8e91875ee8bc16512842813867d7fefee167e111d8c81",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-mociba2016-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "bc074b3464050a0d5b3b81863677b2ed639f59fe6c051730f3310cbf8caa4d3f",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "mociba-pisos-2017-0001",
+    "calc": "CALC-MOCIBA-PISOS-2017-0001",
+    "estimadores": 123,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "TOLERANCIA: falta tolerancia absoluta numérica previa; no se inventa al comparar."
+    ],
+    "sha256": "57503e57373ae1735364acfa25b6605bcddca90702da597eb3c8d02c8501afff",
+    "archivo": "entradas/mociba-pisos-2017-0001/mociba-pisos-2017-0001-entradas-v2.tar.gz",
+    "sha256_contenedor": "1ce19efe91c95106a5cd246cad621e05aef49e0118eedfe03a5f2d8d49245349",
+    "sha256_manifiesto": "57503e57373ae1735364acfa25b6605bcddca90702da597eb3c8d02c8501afff",
+    "original_sha256_contenedor": "ee68474303f826f38dc531ce50b85530e065655cdbc3044d82d70a10415d7713",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [
+        {
+          "archivo": "cuestionario-mociba2017-cuestionario.pdf",
+          "tipo": "cuestionario",
+          "estado": "REVISADO-SIN-FILTRACIONES",
+          "sha256": "856cb10f7b5d226757d0602b9998c07b029fdfed18a0ca8f10d65cbab6a45101",
+          "revision": "P1 encabezados/formulario vacío; P2 páginas por tipo e ítems de familia"
+        }
+      ],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "EJECUTADO: documento oficial descargado y hash verificado en documentos_adquiridos; P2 incorpora bytes, P3 verifica cobertura exacta. HTML200 conserva impedimento de URL específico y no es documento.",
+      "PROPUESTO-POR-EJECUTOR: fijar antes de revelar objetivos tolerancia absoluta 1e-8 en escala nativa para puntos deterministas y conteos enteros exactos. Para IC bootstrap exigir mismo plan de réplicas/semilla con definición humana suficiente y tolerancia 1e-8; si no hay identidad de plan declarar equivalencia estadística con contrato propio previo, sin ajustar por diferencias. Es nuevo y pendiente de adopción; no se presenta como tolerancia previa.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "pisos-envipe2024-ejes-0002",
+    "calc": "CALC-PISOS-ENVIPE2024-EJES-0002",
+    "estimadores": 15,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "DEFECTO-CONCEPTUAL/IDENTIDAD-PENDIENTE-DICTAMEN: estimandos SAFE sellados contienen ola2025 en las15 filas, método e insumos son2024. Preservados ambos testigos sin cambiar cohorte. Dictamen validador y nuevo acto catálogo necesarios; apertura no resuelve identidad."
+    ],
+    "sha256": "f706965310acb2ac62f038064c578dce741a19bf367a30f9239597d62e24b42b",
+    "archivo": "entradas/pisos-envipe2024-ejes-0002/pisos-envipe2024-ejes-0002-entradas-v2.tar.gz",
+    "sha256_contenedor": "c1b6c782d0ceb077da5eed6b9429afb1fd9d4a4cac6ec143edf841c82de6c0cd",
+    "sha256_manifiesto": "f706965310acb2ac62f038064c578dce741a19bf367a30f9239597d62e24b42b",
+    "original_sha256_contenedor": "a3873ecfcb6520bd49ea380945c0ceec71add367207d2ab3125b56058f348e0e",
+    "revision_semantica": {
+      "estado": "REVISADO-SIN-FILTRACIONES",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": [
+        {
+          "id": "envipe2024_csv",
+          "tipo": "raw",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENVIPE2024"
+        },
+        {
+          "id": "envipe2024_fd_pdf",
+          "tipo": "fd",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENVIPE2024"
+        },
+        {
+          "id": "envipe2024_cuest_principal_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENVIPE2024"
+        },
+        {
+          "id": "envipe2024_cuest_modulo_pdf",
+          "tipo": "cuestionario",
+          "estado_acceso": "ABIERTO",
+          "autorizacion": "Misión C1: olas históricas abiertas ENVIPE2024"
+        }
+      ]
+    },
+    "acciones": [
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ],
+    "antecedente_escolaridad": "preparacion/p1/fragmentos/p1-envipe-escolaridad-arbitro-previo.md: códigos00/01/02hasta básica;03sec;04–07media;08/09superior;99blanco fuera. No corrige discordancia ola."
+  },
+  {
+    "paquete": "r-civ-m-01",
+    "calc": "CALC-R-CIV-M-01",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "c820e97dbc147775c76b2fdf1544fa3db03cbb1142a439c035a14f2f1116b08d",
+    "archivo": "entradas/r-civ-m-01/r-civ-m-01-entradas-v2.tar.gz",
+    "sha256_contenedor": "f6710aed1b0de57d9a1d05c8adea8c908c9200e0bb4039c96c1388e8efaba181",
+    "sha256_manifiesto": "c820e97dbc147775c76b2fdf1544fa3db03cbb1142a439c035a14f2f1116b08d",
+    "original_sha256_contenedor": "1845143cae19a6c322675bb9346d97eab6237123ab08588c6ea71e864cdd7083",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-civ-m-02",
+    "calc": "CALC-R-CIV-M-02",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "a3f5c063af9bcb7fe9c9ceddadc6a1c8edd641579c1702a4997ce7ef0b4e0cc2",
+    "archivo": "entradas/r-civ-m-02/r-civ-m-02-entradas-v2.tar.gz",
+    "sha256_contenedor": "6956b8381f1fd62cd6f787bea7eb470a628115b50c12e9ed941906115a21ad68",
+    "sha256_manifiesto": "a3f5c063af9bcb7fe9c9ceddadc6a1c8edd641579c1702a4997ce7ef0b4e0cc2",
+    "original_sha256_contenedor": "29399c890d68cfa0e60501894d52f315c04af2d7c635a3ea885b9f077c7bfea3",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-civ-m-04",
+    "calc": "CALC-R-CIV-M-04",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "04e5516561d0962497e58ada954a4d13727e7cc0c7613aeff933f7b42b027645",
+    "archivo": "entradas/r-civ-m-04/r-civ-m-04-entradas-v2.tar.gz",
+    "sha256_contenedor": "49ab7382affbc81cdeba003ceb152bd05ef565026282112206ec08be7d606224",
+    "sha256_manifiesto": "04e5516561d0962497e58ada954a4d13727e7cc0c7613aeff933f7b42b027645",
+    "original_sha256_contenedor": "1a959ef742e708a7387fc057ddac070b80205d9d8cd33098bc1fb4ca031e056c",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-civ-m-10",
+    "calc": "CALC-R-CIV-M-10",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "f9fa3b11ca6b5984775d27eb7ddcff03108740086d0c15582d87205759e2533c",
+    "archivo": "entradas/r-civ-m-10/r-civ-m-10-entradas-v2.tar.gz",
+    "sha256_contenedor": "389cb482ddad93916a6148b5e6f280c3b254bda1879cfec24ccb1a11488fb63d",
+    "sha256_manifiesto": "f9fa3b11ca6b5984775d27eb7ddcff03108740086d0c15582d87205759e2533c",
+    "original_sha256_contenedor": "ef0ed474659bb20e58ef142a9840b24c78822d74f3e732a3526656ac4307af7b",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-civ-m-12",
+    "calc": "CALC-R-CIV-M-12",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "41d643fd3180facf0a2f5d34b863f67802877a5c846700772df6fd15900b6e6b",
+    "archivo": "entradas/r-civ-m-12/r-civ-m-12-entradas-v2.tar.gz",
+    "sha256_contenedor": "30e43a37aedee386a882b563ef59774b5bc39cce6b5e14bdfd605bae6fbeb3fb",
+    "sha256_manifiesto": "41d643fd3180facf0a2f5d34b863f67802877a5c846700772df6fd15900b6e6b",
+    "original_sha256_contenedor": "6d95c78c53f268b1d1fc6b57c3d67507f0ce86e32920af42ab4e10bc7f9b03cf",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-civ-m-13",
+    "calc": "CALC-R-CIV-M-13",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "69250dc498f2e07ce31f171538aa0f722ac2c7b45739206ba849e4cb3bac1f54",
+    "archivo": "entradas/r-civ-m-13/r-civ-m-13-entradas-v2.tar.gz",
+    "sha256_contenedor": "7e72125181f4cfebc5d6f9fb4e26f2aaff7792a6dd8761ed64a4a56e5d48d82f",
+    "sha256_manifiesto": "69250dc498f2e07ce31f171538aa0f722ac2c7b45739206ba849e4cb3bac1f54",
+    "original_sha256_contenedor": "43cd5fcbd8ec6d042eb7ab902f8850af18ec6f11108cc9617bad96aff4a593e6",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-din-m-01-v4",
+    "calc": "CALC-R-DIN-M-01-v4",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "b0e85ba75a393db681ec1e0761dab3e132e9f6b80c094a736426b95027ea7e2c",
+    "archivo": "entradas/r-din-m-01-v4/r-din-m-01-v4-entradas-v2.tar.gz",
+    "sha256_contenedor": "42f13b7086ccada83bce40a029a875b42572f4ff391ae311d316546c20cf8307",
+    "sha256_manifiesto": "b0e85ba75a393db681ec1e0761dab3e132e9f6b80c094a736426b95027ea7e2c",
+    "original_sha256_contenedor": "44260d13e1650113b86643243827ce50d1aad01dab60ac64eae14456be4abf09",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-fam-m-01-v3",
+    "calc": "CALC-R-FAM-M-01-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "d4f39631f72e99c2cf210ba5b01a9b388945b0a7eeae2c350a4327df46ea23d8",
+    "archivo": "entradas/r-fam-m-01-v3/r-fam-m-01-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "3d256453f1b7ace6d25f1f70e5a9cd3e0950de9b94d659b6978767196bd7a39c",
+    "sha256_manifiesto": "d4f39631f72e99c2cf210ba5b01a9b388945b0a7eeae2c350a4327df46ea23d8",
+    "original_sha256_contenedor": "cdc9aca7e725bcce39cb658aa64ee2d449a3f661d9608577d9c93e3b446217a8",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada."
+    ]
+  },
+  {
+    "paquete": "r-fam-m-05-v3",
+    "calc": "CALC-R-FAM-M-05-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "c92f890ad6217f2b080e46c980571f1ef908f46d12955b7c4ff5105d9f886dc7",
+    "archivo": "entradas/r-fam-m-05-v3/r-fam-m-05-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "aabb63b18bd805a52dbeceb518573d44d16184d73659fd6c2ee1908462f83775",
+    "sha256_manifiesto": "c92f890ad6217f2b080e46c980571f1ef908f46d12955b7c4ff5105d9f886dc7",
+    "original_sha256_contenedor": "d9646dfc7d59bd7d2b6c041e2360e9b5c45962c8eda2dec9960a7301196bb954",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-fam-m-06-v3",
+    "calc": "CALC-R-FAM-M-06-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "8167c9e48ee48a350c88396b228c975af48728ad2058a530885dbfa97455814f",
+    "archivo": "entradas/r-fam-m-06-v3/r-fam-m-06-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "dc257651e6293193eaef26439858c5bb4d7a415520b7547d039da4f6f5ddded0",
+    "sha256_manifiesto": "8167c9e48ee48a350c88396b228c975af48728ad2058a530885dbfa97455814f",
+    "original_sha256_contenedor": "ec99015313d0abe3b11ed681c031dab8873e06188162a7a0113f44510fc18464",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-fam-m-07-v3",
+    "calc": "CALC-R-FAM-M-07-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "59a50225dae2cd62ff90cd1ba851cda500fdbb9775174ab65a3536bdba7bd7c5",
+    "archivo": "entradas/r-fam-m-07-v3/r-fam-m-07-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "c7d2d434df4e48e2decbab3eb3e3435acd6201b7af986e521f31c03f9014bf48",
+    "sha256_manifiesto": "59a50225dae2cd62ff90cd1ba851cda500fdbb9775174ab65a3536bdba7bd7c5",
+    "original_sha256_contenedor": "87b930ec8dc73f43d78770f47a2f991192c6cbffe7853d601e5917ce31c6417a",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-tra-m-02-v3",
+    "calc": "CALC-R-TRA-M-02-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "2c787b94e34acb6d982a38b2ae2e5080c36b32cdbe053f01cbd5f3fd24b4b688",
+    "archivo": "entradas/r-tra-m-02-v3/r-tra-m-02-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "1d26c552cd865adbd77767cb4c358508ce80d04d9368a9c31b092f99fe884600",
+    "sha256_manifiesto": "2c787b94e34acb6d982a38b2ae2e5080c36b32cdbe053f01cbd5f3fd24b4b688",
+    "original_sha256_contenedor": "d09784eec4bb74920dd1e01aa336dd3fe5873a9486aff928292f2276276c3b2d",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-tra-m-03-v3",
+    "calc": "CALC-R-TRA-M-03-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "FD: no hay descriptor identificado entre las entradas.",
+      "CUESTIONARIO: no hay cuestionario identificado entre las entradas.",
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "dbd2cc8642bd04226a786690995069b69bc3a3d14e1fe04353e2206b870b5487",
+    "archivo": "entradas/r-tra-m-03-v3/r-tra-m-03-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "bdef1ac6e043ad6c8ea918f692d96fe762de4528cdc9105188d90d7cb98d2a1b",
+    "sha256_manifiesto": "dbd2cc8642bd04226a786690995069b69bc3a3d14e1fe04353e2206b870b5487",
+    "original_sha256_contenedor": "39e90941c45f408e5309f4e057bae8ee6c3bc9b91160bed530507a1a43eeb960",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "r-tra-m-07-v3",
+    "calc": "CALC-R-TRA-M-07-v3",
+    "estimadores": 1,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "NO-RECALCULABLE-DESDE-SPEC-PREPARACION/D15: falta fórmula algoritmo EE/IC primaria completamente humana. Fuentes examinadas P1: codificacion-R-v1_2.tsv, espec-R-ciega-v1_2.tsv y madres FAM-v2/CIV; madre R-ENVIPE-SERIE-DBF-spec-v1_0.md §6 líneas275+ remite EE conglomerado último a código/tests/svystat. No se abrió productor ni se completó desde éste. Solicitar contrato humano exacto por árbitro/universo antes recálculo."
+    ],
+    "sha256": "9237dd4585a5469521ef10f7a9a85c0d1db0c205d7b2b6a855297ab626e883ed",
+    "archivo": "entradas/r-tra-m-07-v3/r-tra-m-07-v3-entradas-v2.tar.gz",
+    "sha256_contenedor": "8e5b1edfe2ce5d30136ac2bd54a2a26340ffaccce025e5e1adeb9b25a4138e4d",
+    "sha256_manifiesto": "9237dd4585a5469521ef10f7a9a85c0d1db0c205d7b2b6a855297ab626e883ed",
+    "original_sha256_contenedor": "f70a1f9e59d64dbad206028b7e04b9b2cd64fd85a8d9fe9a73f04c25597ab912",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "Codificación previa localiza universo, variable, peso, estrato y UPM por celda. CIV madre §6 líneas275–288 remite EE/IC a tests/svystat.py sin fórmula; FAM madre v2 sólo anuncia EE/IC sin algoritmo. No reconstruir desde productor. Dictamen del validador debe separar punto calculable de incertidumbre no especificada.",
+      "Examinar supresiones registradas por procedencia, recuperar sólo instrucciones humanas anteriores; referencias al productor y valores objetivo no son método. Mantener extracción parcial hasta demostrar suficiencia.",
+      "Añadir documento exacto por ola/tipo desde candidatos cuya identidad coincide; si no existe cuestionario/FD exacto, adquirirlo de portal oficial del instrumento y registrar hash. Un FD de otra ola no sustituye ni completa cuestionario."
+    ]
+  },
+  {
+    "paquete": "tiene-ahorros-0001-v1_1",
+    "calc": "CALC-TIENE-AHORROS-0001-v1_1",
+    "estimadores": 2,
+    "estado_preparacion": "PENDIENTE-VERIFICACION-P3",
+    "faltantes": [
+      "RESERVA-ENIF2024-CREDITO: el ZIP completo no es entregable; falta proyección de columnas abiertas mediante procedimiento autorizado."
+    ],
+    "sha256": "55ce130ccf1a1330d5d4902d90fd4fad406e899e56e10698a722ad0d89453b3a",
+    "archivo": "entradas/tiene-ahorros-0001-v1_1/tiene-ahorros-0001-v1_1-entradas-v3.tar.gz",
+    "sha256_contenedor": "d07887fc7a68a7b2886f37ca67ffe58b3cbd5e4c1fec75f8cae782dc8bf5115a",
+    "sha256_manifiesto": "55ce130ccf1a1330d5d4902d90fd4fad406e899e56e10698a722ad0d89453b3a",
+    "original_sha256_contenedor": "6be42431cf683ab6b9ec56c32f206f227038955e3e988bef4024b7963bfdfb45",
+    "revision_semantica": {
+      "estado": "PENDIENTE-P3",
+      "documentos": [],
+      "metodo": "REVISADO-SIN-FILTRACIONES",
+      "insumos": []
+    },
+    "acciones": [
+      "No abrir ZIP ENIF2024 completo. Requiere autorización por tabla/columna y proyector que lea únicamente campos explícitamente abiertos; §5 AMAI afirma no tocar crédito pero no equivale a autorización del ZIP ni whitelist completa. Preparar propuesta de columnas a partir de spec/cuestionario, sin reservar campos implícitamente."
+    ],
+    "version_entrada": 3
+  }
+]
