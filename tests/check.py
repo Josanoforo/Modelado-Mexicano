@@ -318,7 +318,7 @@ def t02_duplicates():
         # El control por contenido sigue incluyendo todos los módulos.
         # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
-        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "forense/encargos/fuentes/ASTRA6-tanda4-20260927/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
             nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
@@ -3036,6 +3036,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-25-GEN2-RELEVO-CONSUMIDORES-3.md",
     "forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md",
     "canon/L0/ADR-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-01.md",
+    # ACTO GEN2-TRAMITE-NC-DECISIONES-1, 27/sep/2026: la hoja de firmas (P4)
+    # cita `M05` y `M23` del catálogo de momentos al redactar la decisión A1
+    # (NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-03) -- mismos ids de fila de
+    # `milpa/catalogo-momentos-v0_1.tsv` ya censados arriba, no un rótulo de
+    # acto nuevo.
+    "forense/analisis/nc-decisiones/hoja-2026-09-27.md",
     # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
     # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
     "forense/analisis/astra-theta/seleccion.md",
