@@ -1,6 +1,8 @@
 # La familia mexicana como sistema psicológico: apoyo, obligaciones y condiciones de elección
 
-Versión v2 · corte `2c646cba93eebc9189a8135a5369bb45e8d29b89` · 26/sep/2026. Síntesis editorial propuesta; cero mediciones y cero reglas adoptadas por este lote. El v1 permanece intacto. Tabla exhaustiva y cifras: [carril familia](../../forense/analisis/reports-v2/consumo-familia-1/familia/familia-afirmaciones.json). Sus filas del mapa y su complemento por párrafo se superponen: son registros de cobertura, no conteo de tesis independientes. Los textos numéricos del v1 se conservan allí como objetos auditados, nunca como cifras ratificadas.
+Versión v2 · corte `1eeb855272b933642177e3f32d51adc89f1009a0` · 26/sep/2026. Síntesis editorial propuesta; cero mediciones y cero reglas adoptadas por este lote. El v1 permanece intacto. Tabla exhaustiva y cifras: [carril familia](../../forense/analisis/reports-v2/consumo-familia-1/familia/familia-afirmaciones.json). Sus filas del mapa y su complemento por párrafo se superponen: son registros de cobertura, no conteo de tesis independientes. Los textos numéricos del v1 se conservan allí como objetos auditados, nunca como cifras ratificadas.
+
+La revisión sucesora distingue corrección bibliográfica de refutación numérica. Las comparaciones de singularidad afectiva y compadrazgo de v1 quedan **SIN-CIFRA**, porque falta instrumento/corpus comparativo; retirarlas del argumento no prueba que sean falsas. Los juicios por cláusula y la fuente explícita están en [familia-juicios.json](../../forense/analisis/reports-v2/consumo-familia-2/familia/familia-juicios.json). El [productor](../../forense/analisis/reports-v2/consumo-familia-2/familia/familia-genera.py) reproduce la tabla viva sin decidir dictámenes.
 
 ## 1. Resumen ejecutivo
 
@@ -8,11 +10,11 @@ La familia debe estudiarse simultáneamente como vínculo, red de recursos y lug
 
 1. **Sólido descriptivo:** los hogares ampliados conservan aproximadamente el mismo peso entre las olas abiertas de ENADID consideradas. Esto impide narrar una expansión multigeneracional generalizada a partir de casos urbanos.
 2. **Sólido descriptivo:** crece la proporción de hogares unipersonales en ese periodo. Hogar unipersonal no equivale a aislamiento social ni a pérdida de apoyo.
-3. **Sólido descriptivo:** aumenta moderadamente la proporción de jóvenes adultos que son hijos del jefe del hogar. Ese estimando no es edad de emancipación ni historia de retorno.
+3. **Sólido descriptivo:** el punto estimado de jóvenes adultos hijos del jefe es mayor en la segunda ola. No se calculó aquí un intervalo de la diferencia; no se adjudica cambio estadístico. Ese estimando no es edad de emancipación ni historia de retorno.
 4. **Sólido descriptivo:** la ampliación del hogar es más frecuente con jefatura femenina. Jefatura femenina no significa mujer sola ni identifica por sí misma necesidad económica.
 5. **Sólido acotado:** ENASIC muestra predominio femenino entre cuidadores principales de mayores con cuidador del hogar identificado. No describe a todos los cuidadores nacionales.
 6. **Malinterpretado:** composición, corresidencia, apoyo percibido y familismo son variables diferentes. Ningún piso residencial valida una escala de valores.
-7. **Malinterpretado:** el resumen de v1 atribuyó al familismo referencial ausencia de protección, contradiciendo su propio marco. Zeiders et al. vincularon apoyo y referente con menos síntomas; obligación no mostró asociación en ese estudio de origen mexicano en Estados Unidos. Es asociación, no efecto clínico nacional. [Fuente primaria](https://pubmed.ncbi.nlm.nih.gov/23886552/).
+7. **Malinterpretado:** el resumen de v1 atribuyó al familismo referencial ausencia de protección, contradiciendo su propio marco. Zeiders et al. vincularon apoyo y referente con menos síntomas; obligación no mostró asociación en ese estudio de origen mexicano en Estados Unidos. En esta tanda se leyó el abstract primario mediante búsqueda PubMed (Methods/Results/Conclusions); la apertura directa devolvió cuerpo vacío y PMC pidió reCAPTCHA. Se conserva ROMPE únicamente para la atribución bibliográfica de ausencia de asociación del referente: no se ratifica el coeficiente del v1 ni se exige RESULT a esta fuente externa. Es asociación, no efecto clínico nacional. [Fuente primaria](https://pubmed.ncbi.nlm.nih.gov/23886552/).
 8. **Malinterpretado:** obligación sin asociación en un desenlace no significa obligación siempre perjudicial. Yan et al. encuentran amortiguación de algunas asociaciones entre estrés y calidez materna en inmigrantes mexicanas; no midieron el mismo desenlace. [Estudio longitudinal, resumen](https://pubmed.ncbi.nlm.nih.gov/40991777/).
 9. **Útil:** apoyo y barreras pueden coexistir. Las investigaciones mexicanas recientes permiten preguntar quién ayuda, quién limita y en qué situación.
 10. **Útil:** comparar México con Italia mediante medidas compartidas es más informativo que jerarquizar supuestas intensidades emocionales nacionales.
@@ -35,15 +37,19 @@ El tier de **frecuencia** es alto para descripciones nacionales de las olas abie
 |---|---|---|
 | Hogares ampliados / hogares clasificables | 2009: 23.9 % [CIFRA:FAM-C03]; 2018: 24.0 % [CIFRA:FAM-C04] | Estabilidad aproximada, no crecimiento general del familismo |
 | Hogares unipersonales / hogares clasificables | 2009: 9.6 % [CIFRA:FAM-C05]; 2018: 11.7 % [CIFRA:FAM-C06] | Cambio de composición; no erosión medida de apoyo |
-| Hijos del jefe / personas de 25–34 años | 2009: 31.9 % [CIFRA:FAM-C07]; 2018: 33.3 % [CIFRA:FAM-C08] | Más corresidencia con ese parentesco; no edad de salida |
+| Hijos del jefe / personas de 25–34 años | 2009: 31.9 % [CIFRA:FAM-C07]; 2018: 33.3 % [CIFRA:FAM-C08] | Punto mayor de corresidencia con ese parentesco; contraste de diferencia pendiente, no edad de salida |
 | Hogares ampliados por sexo del jefe | 2018: hombres 20.8 % [CIFRA:FAM-C01]; mujeres 32.4 % [CIFRA:FAM-C02] | Asociación descriptiva de jefatura y composición |
 | Cuidadora principal mujer / mayores con cuidador principal del hogar identificado | 2022: 68.4 % [CIFRA:FAM-C09] | Universo específico; no porcentaje de todos los cuidadores |
+
+Los intervalos individuales en cifras.json permiten valorar precisión de cada ola/subgrupo; no son un intervalo de la diferencia, y la separación u overlap no sustituye un contraste con diseño y comparabilidad declarados. Las lecturas de estabilidad y cambio aquí describen los puntos estimados.
 
 Cada marcador apunta a [cifras.json](../../forense/analisis/reports-v2/consumo-familia-1/familia/familia-cifras.json): CALC, RESULT, fila de la tabla sellada, valor en proporción, intervalos, periodo, denominador, transformación y SHA-256 del archivo de resultados. ENADID usa `CALC-ENADID-FAMILIA-HOGARES-0001`; ENASIC, `CALC-ENASIC-CUIDADOS-VEJEZ-0001`. No se reabrieron microdatos.
 
 La nota temática original decía cero adopciones; ese estado caducó. Las FP `FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-01` y `-02` están FIRMADA, por FIRMAS-19, con ejecución remitida a GEN2-CATALOGO-V1-2-1. Se distingue esta adopción por instrumento de la publicación de la vista: `tools/consulta.py result` no encuentra todavía los RESULT consultados en la vista derivada. La referencia se resuelve por la tabla sellada y su hash; no se inventa una fila en el registro ni se actualiza el productor ajeno. Adopción no acredita validación ciega de C1 ni acierto futuro.
 
-La actualización dirigida usa fuentes primarias: (a) investigación en México; (b) diáspora mexicana; (c) marcos/comparaciones importados. No es revisión sistemática. [Fuentes y alcance de recuperación](../../forense/analisis/reports-v2/consumo-familia-1/familia/familia-fuentes.json) registra qué se abrió y qué sólo se recuperó como resumen. No se consultaron tabulados de olas reservadas.
+Las cifras externas del v1 permanecen retiradas: no se cotejaron aquí sus valores, denominadores y periodos; el recibo anterior no las certifica. Esta reserva incluye horas y proporciones universales de cuidado, edad de salida, retornos, salarios, vivienda, actividad juvenil, violencia, empresas, perfiles y rankings. Los valores propios conservados proceden de los RESULT y sus hashes; esta tanda no recalcula sus estimandos.
+
+La actualización dirigida usa fuentes primarias: (a) investigación en México; (b) diáspora mexicana; (c) marcos/comparaciones importados. No es revisión sistemática. [Fuentes y alcance de recuperación](../../forense/analisis/reports-v2/consumo-familia-1/familia/familia-fuentes.json) registra qué se abrió y qué sólo se recuperó como resumen. La nueva consulta verifica el abstract de Zeiders; las demás fuentes mantienen alcance heredado explícito, sin nueva certificación de acceso. Yan devolvió reCAPTCHA en la apertura de esta tanda. No se consultaron tabulados de olas reservadas.
 
 ## 4. Patrones, evidencia favorable y rival
 
@@ -55,7 +61,7 @@ A favor del apoyo están esa asociación y el estudio longitudinal de Zeiders. E
 
 ### La convivencia cambia sin revelar automáticamente sus causas
 
-Los pisos residenciales muestran que la estabilidad del hogar ampliado puede coexistir con más hogares unipersonales y más jóvenes hijos del jefe. No hay contradicción: los denominadores difieren. La evolución podría incluir educación prolongada, restricciones de vivienda, retraso de unión, cohortes, acceso a empleo, preferencias o cambios de composición demográfica.
+Los pisos residenciales muestran que la puntos semejantes de hogares ampliados pueden coexistir con mayor proporción estimada de hogares unipersonales y un punto mayor de jóvenes hijos del jefe; el contraste estadístico entre olas queda pendiente. No hay contradicción: los denominadores difieren. La evolución podría incluir educación prolongada, restricciones de vivienda, retraso de unión, cohortes, acceso a empleo, preferencias o cambios de composición demográfica.
 
 El v1 sostenía vivienda como causa suficiente y cultura como racionalización. El v2 MATIZA esa atribución: sin diseño identificador no adjudica explicación. Un panel con historia residencial y shocks de oferta, ingresos y preferencias permitiría separar permanencia, primera salida y retorno. Si una mejora de acceso residencial alterara corresidencia manteniendo preferencias comparables, fortalecería el mecanismo material; persistencia por sí sola no probaría preferencia cultural.
 
@@ -75,7 +81,7 @@ El v2 conserva el problema de apoyo ambivalente y elimina rankings mundiales de 
 
 ### Redes rituales, autonomía y decisiones económicas
 
-Compadrazgo y reciprocidad permiten formular preguntas sobre apoyo fuera del hogar. No hay aquí fuente cotejada que pruebe singularidad mundial, cobertura actual o compensación demográfica. El v2 retira esos superlativos. Medir red, recursos efectivamente recibidos y comparación con otros lazos sería más informativo que inferir función desde nombre del parentesco.
+Compadrazgo y reciprocidad permiten formular preguntas sobre apoyo fuera del hogar. No hay aquí fuente cotejada que pruebe singularidad mundial, cobertura actual o compensación demográfica. El v2 retira esos superlativos de la prosa afirmativa y los registra SIN-CIFRA por falta de comparación, sin refutarlos. Medir red, recursos efectivamente recibidos y comparación con otros lazos sería más informativo que inferir función desde nombre del parentesco.
 
 En carrera, ahorro, marketing y vivienda se mantienen propuestas de estudiar decisión compartida; se retiran porcentajes, tasas de éxito y predicciones de fracaso no cotejadas. La influencia familiar debe preguntarse para cada decisión y contrastarse con acceso, precio y compra efectiva. La consulta a un pariente puede ser información útil, presión o requisito de financiamiento: idéntica conducta observada no identifica idéntico mecanismo.
 
@@ -126,6 +132,8 @@ Lo conservado es la separación de apoyo y obligación, la descripción de arreg
 **Sesgo urbano/importado:** se retiraron lógicas regionales sin evidencia; las fuentes clínicas y universitarias no describen campo/indígenas/populares. El foco rural exige oferta, trayectorias y redes propias; etnicidad no se usa como rasgo hereditario. Las muestras estadounidenses llevan (b), no equivalencia nacional. Los marcos internacionales llevan (c); la parte mexicana de comparación es (a).
 
 **Incentivos racionales:** compartir vivienda, aportar cuidado y consultar decisiones pueden ser estrategias de recursos y riesgo. **Evidencia débil/intución fuerte:** autoridad vitalicia, deuda emocional universal, abandono de carrera, compadrazgo singular y efectos de política no conservan magnitudes o causalidad. **Lectura peligrosa:** convertir cuidado femenino observado en deber, silencio en consentimiento o norma de cercanía en diagnóstico.
+
+**Revisión por afirmación:** se revisaron todas las filas del mapa y los párrafos complementarios. La cobertura y los dictámenes por registro son derivados; las superposiciones no se contabilizan como tesis nuevas. El productor no infiere categorías desde palabras, líneas ni ausencia de RESULT: reproduce la fuente de juicios. Zeiders tiene tipo `correccion_bibliografica`; sus cláusulas distinguen atribución refutada, coeficiente no cotejado y alcance observacional. Las comparaciones internacionales sin contraste tienen SIN-CIFRA, sin derrotas por ausencia.
 
 **Estado del corpus:** selección de filas, cobertura y cifras se derivó con CSV/JSON del corte; no se inventó ausencia de datos desde el fallo de una vista. La tabla registra fuentes pendientes, universos, cambio editorial y razones SIN-CIFRA. La deuda de adopción de los pisos caducó con FIRMAS-19; validación ciega y publicación derivada no se dan por cumplidas. La búsqueda de literatura es dirigida, no exhaustiva; fuentes no abiertas completamente están declaradas.
 

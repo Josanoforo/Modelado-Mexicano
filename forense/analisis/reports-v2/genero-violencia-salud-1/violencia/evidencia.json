@@ -1,0 +1,166 @@
+{
+  "inputs": {
+    "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json": "40bb5bc35a5454d8cf3ccd12d2bdedca95a91061c0c565e9bc7e0dad19589080",
+    "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/sello.json": "c20a1436a49dba53c207307db535efe384f813d4148fd02bfe8bdff7d21686c4",
+    "data/corrida0/CALC-ENSU-PISOS-0001/resultados.json": "5b3ae6f7cf40297775e2facb86af61e14d37ec74eebb98ab5a7fefd3b71531a9",
+    "data/corrida0/CALC-ENSU-PISOS-0001/sello.json": "eb2e5eb8f7bdde77bcc9515f708a6bad1bf6e822cd620ae7c1c5b45d5ef54734",
+    "data/corrida0/CALC-ENSU-SERIE-0001/resultados.json": "cd6de0f16bbda4d017b3de498d3b4aec080ed79d4915d6074507f0ab55b1af70",
+    "data/corrida0/CALC-ENSU-SERIE-0001/sello.json": "45ea144282dd341f62b1cffacb45ff7483e41662d945f7f7ce6918236ce88e2c",
+    "forense/prereg-caja/COLA-ENVIPE-PERCEPCION-spec-v1_0.md": "d9c98a591f9c766ee94b70e3dc18a1590ff028f5fc6da2ae73e1bec47ffda84c",
+    "forense/prereg-caja/ENSU-SERIE-spec-v1_0.md": "4415b85737b0403ccd1f67059cb81196d922ea8b81d8614a306beabecddd9774"
+  },
+  "adopcion": {
+    "CALC-ENVIPE-PERCEPCION-2024-0001": {
+      "estado": "PROVISIONAL",
+      "razon": "No encontrado en vista corrida; ninguna decisión por esta identidad en decisiones.tsv; spec uso_motor NO-ADOPTA-NADA. Se evita promover desde presencia."
+    },
+    "CALC-ENSU-PISOS-0001": {
+      "estado": "PROVISIONAL",
+      "fp": "FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01",
+      "estado_firma": "ABIERTA"
+    }
+  },
+  "consultas": [
+    "python3 tools/consulta.py corrida CALC-ENVIPE-PERCEPCION-2024-0001: NO-ENCONTRADO, 326 filas examinadas",
+    "CSV decisiones.tsv por ENVIPE-PERCEPCION-2024: no coincidencias por identidad",
+    "CSV firmas-pendientes.tsv FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01: ABIERTA",
+    "CSV catalogo-del-mexicano-v1_2.tsv por identidad ENVIPE-PERCEPCION-2024/ENSU: sin filas adoptadas de esos CALC"
+  ],
+  "quantities": [
+    {
+      "id": "Q01",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-TOTAL-TODOS-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Inseguridad del estado",
+      "ola": "2024",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q02",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-HOMBRE-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Inseguridad del estado, hombres",
+      "ola": "2024",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q03",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-ESTADO-INSEGURO-2024-SEXO-MUJER-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Inseguridad del estado, mujeres",
+      "ola": "2024",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q04",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-HOMBRE-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Inseguridad al caminar, hombres",
+      "ola": "2024",
+      "denominador": "Respuestas muy seguro/seguro/inseguro/muy inseguro; No aplica y NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q05",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-INSEGURO-CAMINAR-DE-NOCHE-2024-SEXO-MUJER-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Inseguridad al caminar, mujeres",
+      "ola": "2024",
+      "denominador": "Respuestas muy seguro/seguro/inseguro/muy inseguro; No aplica y NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q06",
+      "calc": "CALC-ENVIPE-PERCEPCION-2024-0001",
+      "result_id": "RESULT-ENVIPE-PERCEPCION-2024-DEJO-PERMITIR-MENORES-SALIR-SOLOS-2024-TOTAL-TODOS-P",
+      "archivo": "data/corrida0/CALC-ENVIPE-PERCEPCION-2024-0001/resultados.json",
+      "label": "Dejó permitir menores solos, actividad durante 2023",
+      "ola": "2024",
+      "denominador": "Respuestas sí/no aplicables; No aplica y NS/NR fuera",
+      "poblacion": "Persona elegida 18–97 nacional",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q07",
+      "calc": "CALC-ENSU-PISOS-0001",
+      "result_id": "RESULT-ENSU-PISOS-C01-INSEG-CIUDAD-2025T3-TOTAL-TODOS-P",
+      "archivo": "data/corrida0/CALC-ENSU-PISOS-0001/resultados.json",
+      "label": "Inseguridad de vivir en ciudad",
+      "ola": "2025T3",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona seleccionada 18+ áreas urbanas ENSU",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q08",
+      "calc": "CALC-ENSU-PISOS-0001",
+      "result_id": "RESULT-ENSU-PISOS-C01-INSEG-CIUDAD-2025T3-SEXO-HOMBRE-P",
+      "archivo": "data/corrida0/CALC-ENSU-PISOS-0001/resultados.json",
+      "label": "Inseguridad de vivir en ciudad, hombres",
+      "ola": "2025T3",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona seleccionada 18+ áreas urbanas ENSU",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    },
+    {
+      "id": "Q09",
+      "calc": "CALC-ENSU-PISOS-0001",
+      "result_id": "RESULT-ENSU-PISOS-C01-INSEG-CIUDAD-2025T3-SEXO-MUJER-P",
+      "archivo": "data/corrida0/CALC-ENSU-PISOS-0001/resultados.json",
+      "label": "Inseguridad de vivir en ciudad, mujeres",
+      "ola": "2025T3",
+      "denominador": "Respuestas seguro/inseguro; NS/NR fuera",
+      "poblacion": "Persona seleccionada 18+ áreas urbanas ENSU",
+      "unidad": "persona",
+      "estado": "PROVISIONAL",
+      "temporalidad": "RETROSPECTIVA",
+      "tier_frecuencia": "(a) descriptivo con diseño",
+      "tier_mecanismo": "SIN-IDENTIFICACION"
+    }
+  ]
+}

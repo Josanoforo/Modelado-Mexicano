@@ -1,0 +1,17 @@
+id	tipo	fuente	valor	unidad	denominador	periodo	estado	calc	result	hash_resultados
+ENEP_VIDA	EXTERNA-PRIMARIA	ENEP	28.6%	porcentaje	población urbana 18-65 no institucionalizada	vida	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENEP_ANUAL	EXTERNA-PRIMARIA	ENEP	13.9%	porcentaje	población urbana 18-65 no institucionalizada	últimos 12 meses	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENEP_MES	EXTERNA-PRIMARIA	ENEP	5.8%	porcentaje	población urbana 18-65 no institucionalizada	últimos 30 días	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+DEMORA_ANIMO	EXTERNA-PRIMARIA	DEMORA	14 años	mediana	personas con trastorno del ánimo que hicieron contacto	inicio a primer contacto	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+DEMORA_ANSIEDAD	EXTERNA-PRIMARIA	DEMORA	30 años	mediana	personas con trastorno de ansiedad que hicieron contacto	inicio a primer contacto	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+DEMORA_SUSTANCIAS	EXTERNA-PRIMARIA	DEMORA	10 años	mediana	personas con trastorno sustancias que hicieron contacto	inicio a primer contacto	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+CONTACTO_ANIMO	EXTERNA-PRIMARIA	DEMORA	69.9%	probabilidad acumulada	casos trastorno ánimo	por edad 50	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+CONTACTO_ANSIEDAD	EXTERNA-PRIMARIA	DEMORA	53.2%	probabilidad acumulada	casos trastorno ansiedad	por edad 50	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+CONTACTO_SUSTANCIAS	EXTERNA-PRIMARIA	DEMORA	22.1%	probabilidad acumulada	casos trastorno sustancias	por edad 50	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENS22_TOTAL	EXTERNA-PRIMARIA	ENS22	16.7%	porcentaje tamizaje	personas 20+	semana previa, ola 2022	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENS22_JOVEN	EXTERNA-PRIMARIA	ENS22	11.3%	porcentaje tamizaje	personas 20-59	semana previa, ola 2022	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENS22_MAYOR	EXTERNA-PRIMARIA	ENS22	38.3%	porcentaje tamizaje	personas 60+	semana previa, ola 2022	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENS25_MUJER	EXTERNA-PRIMARIA	ENS25	20.4%	porcentaje tamizaje	mujeres 20+ con información	semana previa, olas agrupadas 2023-2024	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+ENS25_HOMBRE	EXTERNA-PRIMARIA	ENS25	10.9%	porcentaje tamizaje	hombres 20+ con información	semana previa, olas agrupadas 2023-2024	PUBLICADA-NO-RESULT	NO-APLICA	NO-APLICA	NO-APLICA
+EDR_2015	RESULT	EDR	6425	conteo defunciones	no aplica: conteo, no tasa poblacional	2015 año registro	PROVISIONAL-NO-ADOPTADO	CALC-EDR-SUICIDIO-PISOS-0001	RESULT-EDR-SUICIDIO-PISOS-G-2015-SUICIDIOS-CIE	c39a931e574edb63032663479ff00a9aa4db4d0e10b03b4e953fb716ce977b74
+EDR_2023	RESULT	EDR	9072	conteo defunciones	no aplica: conteo, no tasa poblacional	2023 año registro	PROVISIONAL-NO-ADOPTADO	CALC-EDR-SUICIDIO-PISOS-0001	RESULT-EDR-SUICIDIO-PISOS-G-2023-SUICIDIOS-CIE	c39a931e574edb63032663479ff00a9aa4db4d0e10b03b4e953fb716ce977b74
