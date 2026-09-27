@@ -12,7 +12,7 @@ Un benchmark auditable de cómo se comporta el mexicano, medido con microdato of
 
 ## La prueba
 
-**6 evaluaciones** <!-- deriva: rg -c '^\| Pilot|^\| Duelo|^\| Lote' README.md --> selladas antes de comparar contra el árbitro de la ola, sobre dinero, trámites, seguridad y gobierno digital. Los retadores evaluados no superaron los criterios de superioridad fijados en esas comparaciones; esto no declara equivalencia ni se extiende a modelos nunca evaluados.
+**6 evaluaciones** <!-- deriva: rg -c '^\| Pilot|^\| Duelo|^\| Lote' docs/estado.md --> selladas antes de comparar contra el árbitro de la ola, sobre dinero, trámites, seguridad y gobierno digital. Los retadores evaluados no superaron los criterios de superioridad fijados en esas comparaciones; esto no declara equivalencia ni se extiende a modelos nunca evaluados.
 
 | Evaluación | Ola | Dictamen |
 |---|---|---|
@@ -23,20 +23,21 @@ Un benchmark auditable de cómo se comporta el mexicano, medido con microdato of
 | Duelo de ola nueva | ENVIPE 2026 | `NADIE-VENCE` |
 | Duelo de candidatos | ENCIG 2025 | `FALSADOR-DÉBIL` agregado |
 
-Detalle y cierre de cada una en el [README](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/README.md#la-prueba).
+Detalle y cierre de cada una en el [estado y prueba]({{ '/estado.html#la-prueba' | relative_url }}).
 
 ## Estado del corte
 
 | Objeto | Valor |
 |---|---:|
-| Corridas selladas | 246 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
-| RESULT GEN2 sellados | 66 582 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
-| RESULT GEN2 adoptados (piso publicado) | 72 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
+| Corridas selladas | 287 <!-- deriva: python3 tools/corrida0.py status | rg '^N_corridas_selladas=' --> |
+| RESULT GEN2 sellados | 175 097 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_sellados=' --> |
+| RESULT GEN2 adoptados (piso publicado) | 81 <!-- deriva: python3 tools/corrida0.py status | rg '^N_resultados_gen2_adoptados_activos=' --> |
 | Celdas validadas (contador rector) | 219 <!-- deriva: python3 tools/corrida0.py status | rg '^celdas_validadas=' --> |
 | Reports de evidencia en el corpus | 31 <!-- deriva: rg --files corpus/reports -g '*.md' | wc -l --> |
-| Áreas de consulta con estimador adoptado (de 5 en el catálogo) | 4 <!-- deriva: python3 -c "import csv;print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_0.tsv'),delimiter='\t')}))" --> |
+| Áreas de consulta con estimador adoptado | 10 <!-- deriva: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(len({r['area_consulta'] for r in csv.DictReader(open('canon/tabla-de-piso-v1_1.tsv'),delimiter='\t')}))" --> |
+| Estimadores adoptados en el catálogo v1.2 (= filas de la tabla de piso) | 43 188 <!-- deriva: python3 tools/genera_tabla_piso_v1_1.py | rg '^filas_adoptadas=' --> |
 
-El catálogo completo tiene 1 537 filas de estimando/segmento/ola; la mayoría es piso histórico de contexto o propuesta sin adopción, no estimador vigente. La [tabla de piso](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_0.tsv) filtra las 72 adoptadas — ésa es la línea que el [reto público]({{ '/reto.html' | relative_url }}) invita a vencer.
+El [catálogo del mexicano v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_2.md) contiene solo estimadores adoptados por firma de mesa citada por id; la [tabla de piso v1.1](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_1.tsv) los proyecta con sus hashes — ésa es la línea que el [reto público]({{ '/reto.html' | relative_url }}) invita a vencer. La fila «RESULT GEN2 adoptados» cuenta otra cosa: los RESULT que hoy consume el motor (`corrida0 status`).
 
 ## Qué obtiene cada audiencia
 

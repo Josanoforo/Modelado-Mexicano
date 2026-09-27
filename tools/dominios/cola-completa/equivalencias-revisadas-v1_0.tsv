@@ -1,0 +1,5 @@
+# tools/dominios/cola-completa/equivalencias-revisadas-v1_0.tsv -- ACTO GEN2-COLA-COMPLETA-1 (P-C)
+# Adjudicación humana de las filas CANDIDATO-POR-NOMBRE de no-encontrado-revision-v1_0.tsv (2 de 611; las otras 609 son SIN-PROGRAMA y quedan con su texto).
+id_afirmacion	programa_candidato	adjudicacion	razon
+ASTRA5-U0-EMOC-009	CCPV	NO-CASA	El texto cita los censos de 1895, 2010 y 2020 como serie histórica; el corpus tiene CCPV 1990, 1995, 2000, 2005, 2010 y 2020 (tabla-final-v1_0.tsv, fila INEGI·CCPV) pero no 1895: la afirmación descansa en la serie larga, que no está en corpus.
+ASTRA5-U0-RELIG-025	CCPV	NO-CASA	El texto cita el Censo General de Población de 1930 y 1940 (Dirección General de Estadística); esas olas no están en corpus (CCPV en corpus: 1990, 1995, 2000, 2005, 2010, 2020 — tabla-final-v1_0.tsv).

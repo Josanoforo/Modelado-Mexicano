@@ -1,0 +1,43 @@
+PRE-FLIGHT CALC-FAMILIA-2027-ENIF-ORO-0002   (data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/spec.yaml
+  [NO-EN-MAIN] spec_md_sha256
+              declarado en spec.yaml = ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967
+              arbol                  = ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967
+              origin/main            = NO-EN-MAIN
+  [UNICOS] ids de resultados: 13 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py
+              script_blob_sha256 = 35bb694684281072a8634061abd76b537a11d86dd1134467e472a2eb01f20cfb
+  inputs declarados: 1
+    [COINCIDE] enif_2024_enif_2024_bd_csv  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra6-c2-enif-1/data/raw/enif_2024_bd_csv.zip
+              sha256 esperado = 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+              sha256 actual   = 00e4b0b42775276b2da236a5bba8c64dc5a92c289908a4727dec93dc7684f039
+              tamano          = 3131148
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"R_futura": null, "agrupacion": "NACIONAL", "banda": 0.02, "futuro_ids": null, "min_estratos": 150, "min_n": 10000, "min_upm": 1000, "numpy_cuantiles": "numpy.quantile method=linear (default); firma de versi\u00f3n en ejecucion.json", "pisos_autenticados_futuro": "PISOS_HASH en c\u00f3digo congelado, no p0 del caller", "replicas": 2000, "tablas_serializacion": {"POTENCIA": "tablas/potencia.json", "REPLICAS": "tablas/replicas.json", "formato": "JSON UTF-8 compacto sort_keys=True allow_nan=False con LF final"}, "terminales_potencia": "r\u00e9plicas ausentes: escenarios=[], mde80=[null,null], correlaci\u00f3n=null; varianza marginal cero: correlaci\u00f3n=null"}
+  [DECLARADO] tolerancia = {"abs": 1e-10, "tipo": "flotante"}
+  [DECLARADO] seed       = {'aplica': True, 'valor': 20260926, 'rng': 'numpy.random.default_rng PCG64'}
+  [LIMPIO] git status --porcelain (0 lineas)
+  [SIN-SELLO-PREVIO] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.json]
+  [AVISO] spec_md_no_esta_en_origin_main -- primera corrida de una spec aun no fusionada; se DECLARA, no se da por fusionada
+
+PRE-FLIGHT: VERDE
+
+RUN CALC-FAMILIA-2027-ENIF-ORO-0002
+  corrida_id     = CALC-FAMILIA-2027-ENIF-ORO-0002--e2612b9ceac1
+  git_commit     = e2612b9ceac14998898a6b706ae992450c239b84
+  script         = data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/medidor.py
+  script_blob_sha256 = 35bb694684281072a8634061abd76b537a11d86dd1134467e472a2eb01f20cfb
+  spec_yaml_sha256   = aae22e3b29b67a938e57550daefe3076aa105539eb71696b9910ff77f64fb3cc
+  spec_md_sha256     = ef26abb7412c109ea3ac00f339a90d9d115500e5732660389d79075144cd5967
+  exit_code      = 0
+  resultado_ids  = ['RESULT-FAMILIA-ENIF-ORO-AMBAS-P', 'RESULT-FAMILIA-ENIF-ORO-AUDITORIA', 'RESULT-FAMILIA-ENIF-ORO-ESTRATOS', 'RESULT-FAMILIA-ENIF-ORO-FORMAL-P', 'RESULT-FAMILIA-ENIF-ORO-INFORMAL-P', 'RESULT-FAMILIA-ENIF-ORO-MASA', 'RESULT-FAMILIA-ENIF-ORO-N', 'RESULT-FAMILIA-ENIF-ORO-POTENCIA', 'RESULT-FAMILIA-ENIF-ORO-REPLICAS', 'RESULT-FAMILIA-ENIF-ORO-SOPORTE', 'RESULT-FAMILIA-ENIF-ORO-UNICAS', 'RESULT-FAMILIA-ENIF-ORO-UNION-P', 'RESULT-FAMILIA-ENIF-ORO-UPM']
+  sello cubre    = ['ejecucion.json', 'medidor.py', 'resultados.json', 'spec.yaml']
+  escritos: data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/ejecucion.json · data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/resultados.json · data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.sha256
+  sella_sha256 exit=0 SELLADO
+fuente=/home/pc0/mm-astra6-c2-enif-1/data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.json
+sidecar=/home/pc0/mm-astra6-c2-enif-1/data/corrida0/CALC-FAMILIA-2027-ENIF-ORO-0002/sello.sha256
+sha256=e80ab72d72492c2e51048d6d7f7921d6a62f0a8c79ef9124b0b9fb90ab1db153
+  [COINCIDE] sello nuevo -- sello y todos los archivos que cubre coinciden

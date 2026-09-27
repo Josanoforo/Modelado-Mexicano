@@ -1,0 +1,226 @@
+[
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-P",
+    "valor": 0.399234693877551
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-N",
+    "valor": 1568
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-IC-LO",
+    "valor": 0.3732556226624584
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ORG-RELIGIOSA-2019-TOTAL-TODOS-IC-HI",
+    "valor": 0.4240693640757908
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-P",
+    "valor": 0.2918537524053881
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-N",
+    "valor": 1559
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-IC-LO",
+    "valor": 0.2718061204859012
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-ASOC-PADRES-2019-TOTAL-TODOS-IC-HI",
+    "valor": 0.31194587679639096
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-P",
+    "valor": 0.13584183673469388
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-N",
+    "valor": 1568
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-IC-LO",
+    "valor": 0.11712662067456839
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-TOTAL-TODOS-IC-HI",
+    "valor": 0.15582866518564867
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-P",
+    "valor": 0.3087378640776699
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-N",
+    "valor": 1545
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-IC-LO",
+    "valor": 0.2759067357512953
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-AYUDO-RESOLVER-PROBLEMA-COMUNIDAD-2006-TOTAL-TODOS-IC-HI",
+    "valor": 0.34324499030381384
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-P",
+    "valor": 0.1687041564792176
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-N",
+    "valor": 409
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-IC-LO",
+    "valor": 0.12693763281679044
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-HASTA-PRIMARIA-IC-HI",
+    "valor": 0.21212341437632135
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-P",
+    "valor": 0.1084070796460177
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-N",
+    "valor": 452
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-IC-LO",
+    "valor": 0.0811454538793284
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SECUNDARIA-IC-HI",
+    "valor": 0.1384349173553719
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+    "valor": 0.1291866028708134
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-N",
+    "valor": 418
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-IC-LO",
+    "valor": 0.0960591133004926
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-MEDIA-SUPERIOR-IC-HI",
+    "valor": 0.16331697296619202
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-P",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-P",
+    "valor": 0.1444043321299639
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-N",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-N",
+    "valor": 277
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-IC-LO",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-IC-LO",
+    "valor": 0.1027641683824524
+  },
+  {
+    "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-IC-HI",
+    "returncode": 1,
+    "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+    "fallback": "Consulta puntual resultados.json en CALC sellado: RESULT-LAPOP-PISOS-CS-ASISTE-COMITE-MEJORAS-2019-ESCOLARIDAD-SUPERIOR-IC-HI",
+    "valor": 0.18971237120660922
+  }
+]

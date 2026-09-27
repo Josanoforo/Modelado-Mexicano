@@ -116,7 +116,20 @@ class WorkflowGate(unittest.TestCase):
         var = {job: job.upper().replace('-', '_') + '_RESULT' for job in requeridos}
         self.assertEqual(step['env'], {var[j]: ref(j) for j in requeridos})
         states = ('success', 'failure', 'cancelled', 'skipped', '', 'unexpected')
-        for combo in itertools.product(states, repeat=len(requeridos)):
+        # Seis jobs daban 6**6 = 46,656 shells y agotaban el timeout de CI
+        # después de que la suite ya había pasado (#1170). La compuerta es
+        # una conjunción: cubrimos cada máscara de jobs no exitosos con cada
+        # estado, y cada par de estados mixtos, sin el producto exponencial.
+        combos = {('success',) * len(requeridos)}
+        for mask in itertools.product((False, True), repeat=len(requeridos)):
+            for state in states[1:]:
+                combos.add(tuple(state if bad else 'success' for bad in mask))
+        for i, j in itertools.combinations(range(len(requeridos)), 2):
+            for a, b in itertools.product(states[1:], repeat=2):
+                combo = ['success'] * len(requeridos)
+                combo[i], combo[j] = a, b
+                combos.add(tuple(combo))
+        for combo in sorted(combos):
             entorno = dict(zip(requeridos, combo))
             with self.subTest(**entorno):
                 run = subprocess.run(['bash', '-c', step['run']], env={

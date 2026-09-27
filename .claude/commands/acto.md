@@ -89,6 +89,8 @@ el objetivo sigue alcanzable, resuélvelo, síguele y decláralo.
     Reporta:  ruta absoluta  ·  `git log -1 --format="%h %s"`  ·  `git status`
     Si clonas en la nube: clon parcial por la receta de `docs/sesiones.md` §1
     (`GEN2-TUBERIA-RENDIMIENTO-1`), e instalación con `uv` (§2).
+    Antes de explorar: lee `canon/MEMORIA-OPERATIVA.md` (≤ 80 líneas; el hook
+    de arranque imprime sus 15 primeras; `GEN2-TUBERIA-CABLEADO-SESIONES-1`).
     ⚠️ No arranques desde el home. Si el cliente avisa "launched in your
     home directory", cámbiate al clon antes de nada.
 
@@ -364,7 +366,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    redacta el ejecutor — el tool no entiende semántica de ADR.
 3. **L0, histórica y por fragmentos** (`ACTO
    GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1`, 21/sep/2026, P-A/P-B). La ÚNICA
-   FUENTE DE ESTADO vigente es `canon/estado-programa-v1_16.md`
+   FUENTE DE ESTADO vigente es `canon/estado-programa-v1_17.md`
    (`v1_13`/`v1_12` retiradas del árbol por `T01`, ver `ADR-497`; `v1_15`
    NO retirada — `ACTO GEN2-ESTADO-V16-1`, 23/sep/2026, la deja intacta
    en el árbol por encargo explícito); su
@@ -392,7 +394,7 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
    mismo trato que la `L0`: las 96 anotaciones existentes y esa fila
    quedan **HISTÓRICAS** con su hash fijado (`T52`), y la anotación del
    acto **va sólo** a `canon/L0/<ADR-raíz>.md`. **Un cierre estándar no
-   modifica `canon/estado-programa-v1_16.md`** — compruébalo con
+   modifica `canon/estado-programa-v1_17.md`** — compruébalo con
    `git status` antes de empujar; si el archivo sale modificado, lo que
    escribiste va al fragmento.
 4. **`registro-rotulos`.** `canon/registro-rotulos.tsv`: censa el rótulo

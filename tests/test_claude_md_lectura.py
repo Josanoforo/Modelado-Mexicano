@@ -14,6 +14,11 @@ VISTAS = r"(corridas|resultados|usos|marcador-segmento)\.(tsv|json)|manifiesto\.
 _RE_CAT = re.compile(r"\bcat\s+[^\s|;&`]*(" + VISTAS + r")\b")
 
 
+# Encargo verbatim (A.3) que pide el `cat` como intento deliberado de bloqueo
+# del hook (P7 de GEN2-TUBERIA-CABLEADO-SESIONES-1); no instruye leerlo.
+_EXENTOS = {"2026-09-26-GEN2-TUBERIA-CABLEADO-SESIONES-1.md"}
+
+
 def _archivos():
     yield RAIZ / "CLAUDE.md"
     yield from (RAIZ / ".claude").rglob("*.md")
@@ -23,6 +28,10 @@ def _archivos():
 
 def test_claude_md_tiene_reglas_de_lectura():
     texto = (RAIZ / "CLAUDE.md").read_text(encoding="utf-8")
+    # GEN2-TUBERIA-CABLEADO-SESIONES-1: las reglas viven en
+    # canon/REGLAS-DE-LECTURA.md y CLAUDE.md las importa con @ruta.
+    for imp in re.findall(r"@(canon/[\w./-]+\.md)", texto):
+        texto += (RAIZ / imp).read_text(encoding="utf-8")
     for clave in ("## Reglas de lectura", "wc -l", "tools/consulta.py",
                   "git diff --stat", "se consultan, no se leen"):
         assert clave in texto, clave
@@ -31,7 +40,7 @@ def test_claude_md_tiene_reglas_de_lectura():
 def test_ningun_md_instruye_cat_de_una_vista():
     hallazgos = []
     for ruta in _archivos():
-        if not ruta.is_file():
+        if not ruta.is_file() or ruta.name in _EXENTOS:
             continue
         for n, linea in enumerate(ruta.read_text(encoding="utf-8").splitlines(), 1):
             if _RE_CAT.search(linea):

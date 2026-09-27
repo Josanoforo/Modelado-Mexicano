@@ -1,0 +1,24 @@
+..................................................                       [100%]
+50 passed in 0.16s
+
+OK codigo-specs-congelados
+OK inventario-sellos
+OK orden-COMMIT-1-2
+OK preflight:CALC-ENCIG-AUX-FAMILIAS-2027-0001
+OK verify:CALC-ENCIG-AUX-FAMILIAS-2027-0001
+OK preflight:CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001
+OK verify:CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001
+OK preflight:CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001
+OK verify:CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001
+OK guardias-fronteras-mutacion-conducto
+OK piso-historico-sellado
+OK oro-punto:PAGO-DIGITAL
+OK oro-vector:PAGO-DIGITAL
+OK emision-sin-R-futura:PAGO-DIGITAL
+OK oro-punto:SOLICITUD-MORDIDA
+OK oro-vector:SOLICITUD-MORDIDA
+OK emision-sin-R-futura:SOLICITUD-MORDIDA
+OK potencia-escenarios-MDE
+OK calendario-estado-y-fuente
+OK atestacion-dependencia-declarada
+{"estado": "VERDE", "familias_emisiones_congeladas": 2, "olas_futuras": 1, "atestacion_externa_verificada": 0, "calendario": "VENTANA-ESPERADA-2028-Q2", "recibo_claude": "PENDIENTE"}

@@ -509,12 +509,12 @@ def derivar_indicadores() -> dict[str, dict]:
     # curado deja de escribir la version a mano -- cita esta clave.
     _ivig = re.compile(r"instrucciones-proyecto-v(\d+)(?:_(\d+))?\.md$")
     _ivers = []
-    for f in glob.glob("instrucciones-proyecto-v*.md"):
+    for f in glob.glob("gobierno/instrucciones-proyecto-v*.md"):  # GEN2-FRONT-3-PORTADA-1: la vigente vive en gobierno/
         m = _ivig.search(os.path.basename(f))
         if m:
             _ivers.append((int(m.group(1)), int(m.group(2) or 0)))
     put("instrucciones_vigentes", f"v{max(_ivers)[0]}.{max(_ivers)[1]}" if _ivers else None,
-        "ls instrucciones-proyecto-v*.md | version maxima (mayor, menor), sin sufijo -HISTORIA/-DELTA")
+        "ls gobierno/instrucciones-proyecto-v*.md | version maxima (mayor, menor), sin sufijo -HISTORIA/-DELTA")
     put("para_v2_13_entradas", int(sh("grep -c 'PARA-v2.13' forense/hallazgos.md") or 0), "grep -c 'PARA-v2.13' forense/hallazgos.md", "v2.13 se entrega con >=3")
     put("hallazgos_entradas", int(sh("grep -c '^- \\*\\*2026' forense/hallazgos.md") or 0), "grep -c '^- **2026' forense/hallazgos.md")
     put("reports_tematicos", len(glob.glob("corpus/reports/*.md")), "ls corpus/reports/*.md | wc -l")

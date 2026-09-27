@@ -1,0 +1,1223 @@
+[
+  {
+    "id": "CONF-C01",
+    "tipo": "propia",
+    "valor": 0.22061855670103092,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONGRESO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 22.1
+  },
+  {
+    "id": "CONF-C02",
+    "tipo": "propia",
+    "valor": 0.31024930747922436,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONGRESO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 31.0
+  },
+  {
+    "id": "CONF-C03",
+    "tipo": "propia",
+    "valor": 0.23858214042263123,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2019",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2019-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONGRESO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2019-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-CONGRESO-2019-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 23.9
+  },
+  {
+    "id": "CONF-C04",
+    "tipo": "propia",
+    "valor": 0.46102598267821454,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-FFAA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 46.1
+  },
+  {
+    "id": "CONF-C05",
+    "tipo": "propia",
+    "valor": 0.5428380187416332,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-FFAA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 54.3
+  },
+  {
+    "id": "CONF-C06",
+    "tipo": "propia",
+    "valor": 0.4424202992843201,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2019",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2019-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-FFAA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2019-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-FFAA-2019-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 44.2
+  },
+  {
+    "id": "CONF-C07",
+    "tipo": "propia",
+    "valor": 0.26490066225165565,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-GOBIERNO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 26.5
+  },
+  {
+    "id": "CONF-C08",
+    "tipo": "propia",
+    "valor": 0.3402684563758389,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-GOBIERNO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-GOBIERNO-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 34.0
+  },
+  {
+    "id": "CONF-C09",
+    "tipo": "propia",
+    "valor": 0.5767963085036256,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-IGLESIA-CATOLICA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 57.7
+  },
+  {
+    "id": "CONF-C10",
+    "tipo": "propia",
+    "valor": 0.6075446724023825,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-IGLESIA-CATOLICA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 60.8
+  },
+  {
+    "id": "CONF-C11",
+    "tipo": "propia",
+    "valor": 0.4156431803490627,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2019",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2019-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-IGLESIA-CATOLICA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2019-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-IGLESIA-CATOLICA-2019-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 41.6
+  },
+  {
+    "id": "CONF-C12",
+    "tipo": "propia",
+    "valor": 0.18975705843729482,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-JUSTICIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 19.0
+  },
+  {
+    "id": "CONF-C13",
+    "tipo": "propia",
+    "valor": 0.20965608465608465,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-JUSTICIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-JUSTICIA-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 21.0
+  },
+  {
+    "id": "CONF-C14",
+    "tipo": "propia",
+    "valor": 0.42424242424242425,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-MEDIOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 42.4
+  },
+  {
+    "id": "CONF-C15",
+    "tipo": "propia",
+    "valor": 0.46437994722955145,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-MEDIOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 46.4
+  },
+  {
+    "id": "CONF-C16",
+    "tipo": "propia",
+    "valor": 0.2532299741602067,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2019",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2019-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-MEDIOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2019-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIA-MEDIOS-2019-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 25.3
+  },
+  {
+    "id": "CONF-C17",
+    "tipo": "propia",
+    "valor": 0.634703196347032,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2004",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2004-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIANZA-INTERPERSONAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2004-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2004-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 63.5
+  },
+  {
+    "id": "CONF-C18",
+    "tipo": "propia",
+    "valor": 0.6581865622961514,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2006",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2006-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIANZA-INTERPERSONAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2006-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2006-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 65.8
+  },
+  {
+    "id": "CONF-C19",
+    "tipo": "propia",
+    "valor": 0.540327868852459,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2019",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001",
+    "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2019-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIANZA-INTERPERSONAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "cc45f30179e78cbbc3a09c0c3b41b3d122170fc393d9be93385638d37baf850c",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2019-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LAPOP-PISOS-CS-CONFIANZA-INTERPERSONAL-2019-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-04",
+    "valor_publicado": 54.0
+  },
+  {
+    "id": "CONF-C20",
+    "tipo": "propia",
+    "valor": 0.32657925359673,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-CONGRESO-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONGRESO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-CONGRESO-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-CONGRESO-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 32.7
+  },
+  {
+    "id": "CONF-C21",
+    "tipo": "propia",
+    "valor": 0.5845717446138122,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-FFAA-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-FFAA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-FFAA-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-FFAA-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 58.5
+  },
+  {
+    "id": "CONF-C22",
+    "tipo": "propia",
+    "valor": 0.3812181885709832,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-GOBIERNO-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-GOBIERNO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-GOBIERNO-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-GOBIERNO-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 38.1
+  },
+  {
+    "id": "CONF-C23",
+    "tipo": "propia",
+    "valor": 0.5464004057309502,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-IGLESIA-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-IGLESIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-IGLESIA-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-IGLESIA-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 54.6
+  },
+  {
+    "id": "CONF-C24",
+    "tipo": "propia",
+    "valor": 0.4631249337038844,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-INSTITUCION-ELECTORAL-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-INSTITUCION-ELECTORAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-INSTITUCION-ELECTORAL-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-INSTITUCION-ELECTORAL-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 46.3
+  },
+  {
+    "id": "CONF-C25",
+    "tipo": "propia",
+    "valor": 0.24604840436924358,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PARTIDOS-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-PARTIDOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PARTIDOS-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PARTIDOS-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 24.6
+  },
+  {
+    "id": "CONF-C26",
+    "tipo": "propia",
+    "valor": 0.3397030560813291,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PODER-JUDICIAL-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-PODER-JUDICIAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PODER-JUDICIAL-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PODER-JUDICIAL-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 34.0
+  },
+  {
+    "id": "CONF-C27",
+    "tipo": "propia",
+    "valor": 0.31075010001221887,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-POLICIA-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-POLICIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-POLICIA-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-POLICIA-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 31.1
+  },
+  {
+    "id": "CONF-C28",
+    "tipo": "propia",
+    "valor": 0.5126272651972266,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PRESIDENTE-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-PRESIDENTE",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PRESIDENTE-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIA-PRESIDENTE-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 51.3
+  },
+  {
+    "id": "CONF-C29",
+    "tipo": "propia",
+    "valor": 0.3126212131203533,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2023",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-LATINOBAROMETRO-PISOS-2023-0001",
+    "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIANZA-INTERPERSONAL-2023-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIANZA-INTERPERSONAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "0db9ee6d0e150a908425d39be7aa76958efb9db069f0a03161186436ce3d1038",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-LATINOBAROMETRO-PISOS-2023-CONFIANZA-INTERPERSONAL-2023-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-LATINOBAROMETRO-PISOS-2023-CONFIANZA-INTERPERSONAL-2023-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-02",
+    "valor_publicado": 31.3
+  },
+  {
+    "id": "CONF-C30",
+    "tipo": "propia",
+    "valor": 0.1456895781123948,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-CONGRESO-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONGRESO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-CONGRESO-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-CONGRESO-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 14.6
+  },
+  {
+    "id": "CONF-C31",
+    "tipo": "propia",
+    "valor": 0.43011418831834064,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-CONOCIDOS-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-CONOCIDOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-CONOCIDOS-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-CONOCIDOS-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 43.0
+  },
+  {
+    "id": "CONF-C32",
+    "tipo": "propia",
+    "valor": 0.13110532911685885,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-DESCONOCIDOS-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-DESCONOCIDOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-DESCONOCIDOS-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-DESCONOCIDOS-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 13.1
+  },
+  {
+    "id": "CONF-C33",
+    "tipo": "propia",
+    "valor": 0.5068517560839358,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-EJERCITO-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-EJERCITO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-EJERCITO-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-EJERCITO-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 50.7
+  },
+  {
+    "id": "CONF-C34",
+    "tipo": "propia",
+    "valor": 0.2023744450075385,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-ELECCIONES-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-ELECCIONES",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-ELECCIONES-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-ELECCIONES-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 20.2
+  },
+  {
+    "id": "CONF-C35",
+    "tipo": "propia",
+    "valor": 0.9189203888545514,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-FAMILIA-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-FAMILIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-FAMILIA-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-FAMILIA-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 91.9
+  },
+  {
+    "id": "CONF-C36",
+    "tipo": "propia",
+    "valor": 0.1745197063640433,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-GOBIERNO-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-GOBIERNO",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-GOBIERNO-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-GOBIERNO-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 17.5
+  },
+  {
+    "id": "CONF-C37",
+    "tipo": "propia",
+    "valor": 0.618102621157858,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-IGLESIAS-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-IGLESIAS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-IGLESIAS-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-IGLESIAS-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 61.8
+  },
+  {
+    "id": "CONF-C38",
+    "tipo": "propia",
+    "valor": 0.11331639888375693,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-PARTIDOS-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-PARTIDOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-PARTIDOS-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-PARTIDOS-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 11.3
+  },
+  {
+    "id": "CONF-C39",
+    "tipo": "propia",
+    "valor": 0.21342151639303938,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-POLICIA-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-POLICIA",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-POLICIA-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-POLICIA-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 21.3
+  },
+  {
+    "id": "CONF-C40",
+    "tipo": "propia",
+    "valor": 0.22488724026303594,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-TRIBUNALES-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-TRIBUNALES",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-TRIBUNALES-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-TRIBUNALES-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 22.5
+  },
+  {
+    "id": "CONF-C41",
+    "tipo": "propia",
+    "valor": 0.4971889676616124,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIA-VECINOS-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIA-VECINOS",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIA-VECINOS-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIA-VECINOS-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 49.7
+  },
+  {
+    "id": "CONF-C42",
+    "tipo": "propia",
+    "valor": 0.10516653233294247,
+    "unidad": "proporción de personas adultas 18+ con respuesta válida",
+    "periodo": "2018",
+    "transformacion": "p ponderada; porcentaje publicado = 100*p; redondeo a 1 decimal",
+    "calc": "CALC-WVS-PISOS-2018-0001",
+    "result": "RESULT-WVS-PISOS-2018-CONFIANZA-INTERPERSONAL-2018-TOTAL-TODOS-P",
+    "fila": {
+      "conducta": "CONFIANZA-INTERPERSONAL",
+      "eje": "TOTAL",
+      "categoria": "TODOS"
+    },
+    "hash": "8cb60c4b3fece60f3d4e2c4646bf8dc5c2c3b706723b7696af8284d6302238c8",
+    "estado": "ADOPTADO-POR-FIRMA; disponibilidad de vista pendiente",
+    "fuente_id": "CONF-RESULT",
+    "prospectividad": "RETROSPECTIVA",
+    "consulta": {
+      "result": "RESULT-WVS-PISOS-2018-CONFIANZA-INTERPERSONAL-2018-TOTAL-TODOS-P",
+      "comando": "python3 tools/consulta.py result RESULT-WVS-PISOS-2018-CONFIANZA-INTERPERSONAL-2018-TOTAL-TODOS-P",
+      "salida": "NO-ENCONTRADO · data/corrida0/resultados.tsv · filas examinadas=65287",
+      "exit_code": 1,
+      "fallback": "extracción por clave del JSON sellado"
+    },
+    "firma_fp": "FP-260925-GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1-ac7b-01",
+    "valor_publicado": 10.5
+  },
+  {
+    "id": "CONF-E01",
+    "valor": 87.4,
+    "unidad": "personas 18+ en localidades 100 mil+",
+    "periodo": "2023",
+    "transformacion": "mucha o algo de confianza en familiares",
+    "fuente_id": "CONF-ENCIG",
+    "tipo": "externa",
+    "estado": "PUBLICADO-PRIMARIO; no RESULT",
+    "calc": null,
+    "result": null,
+    "fila": null,
+    "hash": null,
+    "prospectividad": "RETROSPECTIVA"
+  },
+  {
+    "id": "CONF-E02",
+    "valor": 54,
+    "unidad": "personas adultas urbanas",
+    "periodo": "2023",
+    "transformacion": "respuestas 6–10 de escala 0–10 sobre gobierno federal",
+    "fuente_id": "CONF-OECD25",
+    "tipo": "externa",
+    "estado": "PUBLICADO-PRIMARIO; no RESULT",
+    "calc": null,
+    "result": null,
+    "fila": null,
+    "hash": null,
+    "prospectividad": "RETROSPECTIVA"
+  },
+  {
+    "id": "CONF-E03",
+    "valor": 27,
+    "unidad": "personas adultas urbanas",
+    "periodo": "2023",
+    "transformacion": "probabilidad percibida de político rechazando favor por empleo privado; NO rechazo de soborno",
+    "fuente_id": "CONF-OECD24",
+    "tipo": "externa",
+    "estado": "PUBLICADO-PRIMARIO; no RESULT",
+    "calc": null,
+    "result": null,
+    "fila": null,
+    "hash": null,
+    "prospectividad": "RETROSPECTIVA"
+  }
+]
