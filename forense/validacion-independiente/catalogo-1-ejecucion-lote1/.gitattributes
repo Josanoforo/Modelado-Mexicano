@@ -1,0 +1,2 @@
+# Preservar bytes de TSV congelados y campos finales vacíos.
+*.tsv -text whitespace=-blank-at-eol

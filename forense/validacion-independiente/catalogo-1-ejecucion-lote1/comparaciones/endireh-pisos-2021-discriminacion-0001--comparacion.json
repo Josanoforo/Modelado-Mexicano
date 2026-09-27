@@ -1,0 +1,5068 @@
+{
+  "recibo": {
+    "paquete": "endireh-pisos-2021-discriminacion-0001",
+    "paquete_sha256": "74368d05e50f32d8c988a1187313736c94baf05d5fbfc830d677ead23307c26b",
+    "sha256_contenedor": "162dc454c8958b31111e8fdb3c1f29ecb92643ed54341d83406dd9d79ed1f0fe",
+    "entrada_registrada_utc": "2026-09-27T00:36:30.455634+00:00",
+    "separacion_efectiva": true,
+    "session_id": "01a0e04a-c49b-7321-ab5a-2a89cc6f5bec",
+    "directorio_aislado": "/home/pc0/astra6-c1-aislado/tanda2-endireh-pisos-2021-discriminacion-0001",
+    "prueba_separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.\n",
+    "reconstruccion_sha256": "28540e7db5003dcc49fa7a8c45416aaee0d971a78c3883a5fa07ecf975e0853d",
+    "commit_reconstruccion": "98c76066230a4afda6838a2efe433d4b44df81b1",
+    "checkout_reconstruccion": "/home/pc0/astra6-c1-aislado/tanda2-endireh-pisos-2021-discriminacion-0001/trabajo/reconstruccion",
+    "ruta_reconstruccion_commit": "reconstruccion.tsv",
+    "congelacion_recibida_utc": "2026-09-27T00:42:10.317716+00:00",
+    "estado": "CONGELADO-SIN-REVELAR",
+    "congelado_antes_de_revelacion": true
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "alcance": "Coincidencia numérica; no acredita validez del estimando ni adopción.",
+  "resultados": [
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#0",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006625440104025132,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00010528898050093938,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#1",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006689038489736537,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0008002441463784982,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#10",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005911901542405562,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00025254332091169396,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#100",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009030866631600104,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005480153419287342,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#101",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00028070247303911555,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 4.9055832523556275e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#102",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001098579875327646,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0002899377411594156,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#103",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006145838342370841,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0003681118002044001,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#104",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0001463668827434289,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00016136300686746957,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#105",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#106",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#107",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#108",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#109",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008087607853783235,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006409933244197058,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#11",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0003860172375686824,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -9.759905943858282e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#110",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0015868659411101549,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006747318374570738,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#111",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0010439659044433267,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -6.259419015292034e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#112",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007455143342356696,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000424726288945243,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#113",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0027536484701478625,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002465193424399853,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#114",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0022730553834710843,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003197206340452105,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#115",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00062997618108461,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0013492193994686513,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#116",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007431831994983429,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -1.2040527518325517e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#117",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00202293588484442,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0018325454741126845,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#118",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0016892727992098011,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007895039205673277,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#119",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009388480881046546,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0007156232300002396,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#12",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009020730925036469,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 4.566589183671588e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#120",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005500983314896818,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0015034656035498584,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#121",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0017015279399789779,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004432353315604806,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#122",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0038501035303709075,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0013973330687729324,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#123",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00027785477645373563,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0017904273283872035,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#124",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0023028560396457717,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0008620910383859287,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#125",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00026197766234575814,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002430643097800944,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#126",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00237537468975358,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00011461005184556367,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#127",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002550586002607075,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001430005353928565,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#128",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002922110888953916,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0015810787511375823,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#129",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008250350823819502,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0015055097706739087,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#13",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005640377568267713,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0014792933988374557,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#130",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009152339960724967,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0026335549838034517,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#131",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006466737207430628,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0021427060224861183,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#132",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00029967870337864466,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001443833131638178,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#133",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005742947028429604,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002500832286810195,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#134",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0015886876775438458,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0004483903159470254,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#135",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0022579506777571645,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00044849915782620153,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#136",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0019942172645561473,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0015038662900291322,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#137",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0011979723442641643,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0012592604315809358,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#138",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002243377729532689,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0010079820018973756,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#139",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000999906644025439,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00422473962475621,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#14",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0002054947693002629,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0017709214152742542,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#140",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0011213479337282145,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -3.558367250636185e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#141",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001422384529087703,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0010033546014587835,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#142",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006001345657005996,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0003559646109488196,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#143",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018563545991072683,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0026337007818119096,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#144",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018318466853019105,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006026071499459912,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#145",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002536926444296095,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00043686350076543867,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#146",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009892296948836865,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0014618641571001179,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#147",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0018221474981298252,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0011332406303493497,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#148",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006504790027189247,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -5.369479816948186e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#149",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006514603486629383,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0016801309285205887,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#15",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001977336050531242,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -4.559181278004226e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#150",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 3.8353878385653795e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004990473994320246,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#151",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00021092126615686324,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006335753389396862,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#152",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004605174317269256,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00034251119033801986,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#156",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#157",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#158",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#159",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00014616386371054182,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00010240936660387695,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#16",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0015992006025584982,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001045710834037955,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#160",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00023415154863526064,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006148956784861048,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#161",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000356293485712025,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0010235309020817582,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#162",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 8.1828126796437e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005515439230285579,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#164",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00042756606108941553,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00030064311181201425,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#166",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000816126103839146,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0018105198382320775,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#168",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00045589473053029086,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0018868598317812596,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#17",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003106592391891698,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019604443106478117,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#171",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00014647882027833334,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0008204299481844,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#172",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0018728818064095917,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006756546012330125,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#173",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000951983439024931,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011055715135188451,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#175",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00074063243157922,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0018223350320749898,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#176",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0018493316811288886,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0003874847086101571,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#178",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -7.219611417176586e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003875614007047029,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#18",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0011771615954804387,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011406391919703412,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#180",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009688375532068243,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0048117184807402735,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#181",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 8.221090342479254e-06,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009930166074103783,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#182",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001224018086739883,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0003913421344070994,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#183",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00010061486712417515,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0027669182908446888,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#184",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.003006086858160121,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0027419099028954674,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#185",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00048348283155880134,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0026700788627326,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#186",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0022290496959216245,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0013302831087275667,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#188",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00018764282192393344,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006549428164463814,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#189",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001098988580543369,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.005214206289229278,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#19",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0035521948433076544,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0028667877078421555,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#191",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0023338167852779493,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0021339039808521143,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#192",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000994687282110305,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0014839464347445666,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#193",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0013416774832597667,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0016032454714899058,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#194",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007456548044645489,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005173740854176323,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#196",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0014567687320841613,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.003594981398261997,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#198",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0013635563614069115,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0029087451460355143,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#2",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009098043097997693,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0002607264085047467,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#20",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0016931620423453891,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0016550318483176812,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#200",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0004771231708970078,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.000277457938472548,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#201",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00011663492296705782,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 2.9324839830657118e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#202",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001203992033486409,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00024444345243854887,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#203",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00010956010978731712,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00023335206473797457,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#206",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#207",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#208",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#209",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00011084515411784526,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000389490973284428,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#21",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00031425939852216395,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004160551660068873,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#210",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00015904889872278907,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0004192388447531621,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#211",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00011708184105090925,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011959413341084205,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#212",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0003239818460517123,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00030702831828673116,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#214",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 9.49861014934092e-06,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019209195946235935,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#216",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005840847061343787,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000844453115662197,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#218",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00029016045870682017,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00241769518331765,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#22",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0016902017172322759,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0024102355163200806,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#220",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#221",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#222",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0011877274428695461,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005898334123047994,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#223",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009001159816280739,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00037872924367358257,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#225",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009046883524324069,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00011210837238653792,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#227",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.002176726013725396,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002853102245138135,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#228",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#23",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001540918692470833,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00042314563040680986,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#230",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008237524553907222,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011486128141342672,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#231",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001304738571729927,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0017892783587528452,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#232",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003290365276588762,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001328607560656607,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#233",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0010636092142175986,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -4.198535170953088e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#234",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0028350041222264324,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004779786866994748,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#235",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0011402533826750088,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005168437918146931,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#236",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006956809856433731,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0001987801729277268,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#238",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00085738829239684,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0011099726818123677,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#239",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005957679165782236,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019480869307306123,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#24",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0016724400849238569,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019474586607047262,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#240",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006197741942631906,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0029991164118077715,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#241",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0031405394925120254,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -1.4599682804587732e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#242",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006903433782848509,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00036469478155801843,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#243",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007638581323713735,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0016441663151213134,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#244",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.002582935834694681,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.000429613669889424,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#246",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002824268093253951,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0011197065340488657,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#247",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0010827917307896576,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0015499749771953064,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#248",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008011044038974124,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0003933045449886416,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#249",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005724448402274537,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0001332165838415153,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#25",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00226657146902276,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0003917454170243584,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#250",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00042442362603531403,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0001581235106702314,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#251",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007210898334891903,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 9.410507460680048e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#252",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000691281787496216,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00045444777651925533,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#253",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006052246956477847,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005654640242694717,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#256",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#257",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#258",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#259",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 8.14477830214412e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006565785950235284,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#26",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018153713848658645,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005437504359581402,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#260",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00011989574377000052,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0003019745333431925,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#261",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001831129359255862,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00044031328805324045,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#262",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00023844820851107,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006280904508412632,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#264",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0016838080699641891,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0008254213521339017,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#266",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00011352770345963124,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0025083377082310634,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#27",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0014629192455289652,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0018799346176178178,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#278",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -9.16162967400623e-06,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 5.0111058267680864e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#28",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001881042922108958,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004911223737125575,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#280",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0004043279998352852,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0036306935354510975,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#281",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00023408649000568327,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002285225076152829,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#286",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001426099102267031,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011668219657988976,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#29",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0009539239571707339,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0011898497573907402,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#296",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#3",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00023339171644948253,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001508054447771849,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#30",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003004469920615746,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002503105661049873,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#300",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007758296836154407,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 1.7166810119886855e-06,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#301",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006151384639426008,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004189383152105805,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#302",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000515000354386938,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001648742057748974,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#303",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00042178718322060695,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0011932793026700333,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#306",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#307",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#308",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#309",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00068828850669439,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0003910960282754103,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#31",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0014371989462659135,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007582679726543806,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#310",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001691574462552789,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0002318033638971373,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#311",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005859862620447125,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0010177680932959218,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#312",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004093399068656467,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0008569142802201182,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#314",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009395816415562891,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005040690691973937,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#315",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#316",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001400760938524783,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0026938133470705075,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#318",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.003074365554060106,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0018714023899336074,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#319",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006268023087589135,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001983116339921799,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#32",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00017512899385942887,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0005827287685881422,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#320",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008075059583858776,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00043127516358814483,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#321",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.003642572925249589,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0012959591716159569,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#322",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0031874088147872473,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009251200583651892,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#323",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0015566474355617928,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0024448089505277257,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#324",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0011184622427246015,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 5.873632973880244e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#325",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0035464768864534348,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0019410769716832338,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#326",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002857955562610641,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002759420649372228,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#327",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0015976243302142298,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0012490102432910072,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#328",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007253736601231103,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0018345414698038784,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#329",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 6.597637814189858e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0016127106472380685,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#33",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00117148336869358,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001471030834469908,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#330",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0022015915537833344,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.005584768274606286,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#331",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -8.643598028559851e-06,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0012483542194427627,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#332",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0008090601267953385,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.003691883184914299,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#333",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0014978466737220891,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -8.393974166816948e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#334",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.005213080972270447,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.005904373326583834,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#335",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005482547602307479,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0016966237696332265,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#336",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018759274435603164,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00048090170112200653,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#337",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00031765829162674723,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006965152090146198,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#338",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007712067492278742,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0028109143404298903,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#339",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004608517871259925,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.005613777331551897,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#34",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0002156021157656493,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0025297133703590102,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#340",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.002311056133812387,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0001550894026259922,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#341",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001451681546902315,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00012667148778264248,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#342",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0014299097069505953,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0032032940033017016,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#343",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.001261081081478592,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00024938288752172216,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#344",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0013650498501276767,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0020298531452540847,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#345",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0030085138966873416,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002276369698788451,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#346",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.004660872087837303,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0021329957397082655,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#347",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0022785708661141775,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002713614245711385,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#348",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0016734078273930135,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.000567709357151662,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#349",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0017802273874992537,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00036059360938591606,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#35",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0003769369001409492,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0003360283611246462,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#36",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.001975357376557463,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0013711464583390093,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#37",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0018566900907757353,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00012052247153017392,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#38",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0019130415335150766,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00042192926009362863,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#39",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00014372096183504213,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0013532642428040753,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#4",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.000423934311903601,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006171782222293351,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#40",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.003585483446549312,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007542424413202048,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#41",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.003252203124243472,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0043033447167935696,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#42",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001313812354033772,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.002607248139565796,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#43",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00180796096002242,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.005220541637168202,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#44",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0014787326507138404,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00040332755283678523,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#45",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007919357622257345,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006160986473962848,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#46",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0013384335211970855,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.004011611008401,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#47",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005114501959783482,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0022078205387385114,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#48",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005850933829584029,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006071226216462083,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#49",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.002095725491073501,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0008478974116975166,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#5",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#50",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -3.5307270016500525e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00012417896218006388,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#51",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 5.1958155076449464e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0003044479776241997,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#52",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007152158769645235,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00014411655741375373,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#53",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002046130931954715,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 4.03198956202451e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#54",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -3.9919591373289987e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005536375557263296,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#56",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#57",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#58",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#59",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -6.375584833818657e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00041516545737244753,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#6",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#60",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00011629886764121314,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0004457728227025594,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#61",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004667209336252764,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007197003298512056,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#62",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00018009680982366758,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 1.983066055911281e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#63",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0005772987817840684,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006615157281306197,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#64",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000758118263278703,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 2.112193439606641e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#65",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0002309603771673734,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001408557150031079,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#66",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0004473508636025983,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -3.097498128692977e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#67",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0005943567339509355,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0015604914392342469,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#68",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007417023435044579,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006460777337800108,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#69",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000933292809482178,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00039616506414705266,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#7",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#70",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0006921442382615845,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0006800370158890935,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#71",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003824487758070233,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004113879881739897,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#72",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00031589514388514345,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0016417975775631297,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#73",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 5.7363842349000826e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0008313982482962279,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#74",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001224949815175,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00037626498813987663,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#75",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.002377963544157903,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.005063084227582136,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#76",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0010128507855279613,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0009009785888452887,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#77",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0008752604777837215,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0002640427100255652,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#78",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000289981900440028,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0007066202738879347,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#79",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0007106409033327821,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001239876244453944,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#8",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "efecto": "NO-DETERMINADO"
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#80",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00042143125921957625,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002062589477969782,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#81",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0006458821875251625,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0006054168423607204,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#82",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0007017408310942101,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.001401639726218571,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#83",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00029177725270316396,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00027267810464942296,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#84",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.000925651312284571,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00072113104450525,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#85",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0004377282501903824,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -8.298253844120709e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#86",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0012008291416006449,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00031837746130745914,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#87",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -7.187030148009515e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 3.5866458961669734e-05,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#88",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0003768679701260467,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.00030911999599568876,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#89",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0011107018332876042,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0004790252820082788,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#9",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0001961751052061561,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0005082770398266989,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#90",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00019065985683301007,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.002486638660525807,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#91",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.0009338826992209594,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0027648653454858813,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#92",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00012072874421310137,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.00019809336116780735,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#93",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -8.961946450632488e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0002986142323841215,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#94",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00017663467264837987,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0007758006776424839,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#95",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -8.732912940076151e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0031059940029391567,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#96",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.0001694829932403323,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.0015217512820159054,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#97",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": 0.00013563866111414302,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": 0.001681970711362852,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#98",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -0.00046964306791761126,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0010286770027623585,
+          "dentro": false
+        }
+      }
+    },
+    {
+      "llave": "RESULT-ENDIREH2021-DIS-TABLA#99",
+      "estado": "DISCREPA",
+      "efecto": "incertidumbre",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true
+        },
+        "ic95_inf": {
+          "delta": -3.4059617077566474e-05,
+          "dentro": false
+        },
+        "ic95_sup": {
+          "delta": -0.0008989815233925655,
+          "dentro": false
+        }
+      }
+    }
+  ]
+}

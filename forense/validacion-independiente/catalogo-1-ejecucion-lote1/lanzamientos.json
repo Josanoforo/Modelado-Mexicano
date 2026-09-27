@@ -1,0 +1,21 @@
+[
+  {
+    "intento": 1,
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "session_id": "01a0e03e-e24a-7653-9f12-bc6d74c60670",
+    "separacion": "SEPARACION-EFECTIVA: solo /entrada /raw /work; sin clon, reservas ajenas ni historial.",
+    "exit_code": 1,
+    "motivo": "API inaccesible dentro de sandbox y host de code-mode ausente; ninguna reconstrucción",
+    "directorio": "/home/pc0/astra6-c1-aislado/tanda2-lote-01"
+  },
+  {
+    "intento": 2,
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "session_id": "01a0e03f-eb51-7221-a460-da426236cdae",
+    "directorio": "/home/pc0/astra6-c1-aislado/tanda2-lote-01-intento2",
+    "launcher": "tools/validacion/astra6_lote1/lanza.sh",
+    "estado": "SALIDA-CONGELADA-Y-COMPARADA",
+    "exit_code_launcher": 2,
+    "motivo_exit": "Codex terminó y creó commit; al retornar el shell detectó EOF en launcher editado durante ejecución. Salida original conservada y replay posterior idéntico."
+  }
+]

@@ -1,0 +1,40 @@
+{
+  "sha256_manifiesto_recibido": "e8a13d0d4e8658525cf9b88fc02f976b7fac8fe44b1ad88f247dff63a4cf3f2b",
+  "manifiesto_recibido": {
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "archivos": {
+      "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estimandos.tsv": "3751155d83eb757b2c43a92047887e84152ad751ca1640a135343e0ea10e3050",
+      "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+      "metodo.md": "c109c694216b5b8835b4915515a1afdd4e2f7d813ffc3cf5859cb3ee9baba937",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  },
+  "sha256_raw": {
+    "raw/endireh2021_bd_csv_zip.zip": "e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e",
+    "raw/endireh2021_cuestionario_a_pdf.pdf": "d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1",
+    "raw/endireh2021_cuestionario_b_pdf.pdf": "beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689",
+    "raw/endireh2021_cuestionario_c_pdf.pdf": "793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be",
+    "raw/endireh2021_cuestionario_general_pdf.pdf": "ab83a03312ec74facd6edd6034e5f37c5af29514b2718bf9e2744a5763a80e3a",
+    "raw/endireh2021_diseno_muestral_pdf.pdf": "16d023f62b69942d3ffe3646817a2406d942bacc6461b3389913ecd7cd367692",
+    "raw/endireh2021_fd_pdf.pdf": "5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180"
+  },
+  "semilla": 20260923,
+  "replicas": 200,
+  "rng": "NumPy Generator PCG64",
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "filas_ix": 110127,
+  "mujeres_marco": 110127,
+  "upm": 17744,
+  "estratos": 617,
+  "estratos_singleton": 0,
+  "conocidas": {
+    "vida": 110127,
+    "reciente": 110114
+  },
+  "celdas_publicables": 100,
+  "llaves_sin_horizonte": 100
+}

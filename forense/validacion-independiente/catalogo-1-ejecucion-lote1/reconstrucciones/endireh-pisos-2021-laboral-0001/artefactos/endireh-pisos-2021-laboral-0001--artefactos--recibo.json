@@ -1,0 +1,54 @@
+{
+  "rotulo": "REIMPLEMENTACIÓN-INDEPENDIENTE-NO-CIEGA",
+  "alcance_rotulo": "No se certifica aislamiento del entorno. Solo se leyeron entradas y raw; no se buscaron reservas ni resultados esperados.",
+  "sha256_manifiesto_recibido": "30d35e427a0adc5cb2d5025e3ad56bc5c399d80ad7eca9043f137b5811667559",
+  "manifiesto_recibido": {
+    "paquete": "endireh-pisos-2021-laboral-0001",
+    "archivos": {
+      "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+      "estimandos.tsv": "49df7f05be614fc1a21142d3e181b90b09c3c2d9071f83f4e3f792a8943be1cc",
+      "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+      "metodo.md": "b12f54937658b5537c0ec53b87b4fb5cd6eee162c0e7fedc3dcec051fa7708c2",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  },
+  "entradas_recibidas": [
+    {
+      "archivo": "/entrada/encargo.md",
+      "sha256": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de"
+    },
+    {
+      "archivo": "/entrada/estimandos.tsv",
+      "sha256": "49df7f05be614fc1a21142d3e181b90b09c3c2d9071f83f4e3f792a8943be1cc"
+    },
+    {
+      "archivo": "/entrada/faltantes.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "archivo": "/entrada/insumos.json",
+      "sha256": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde"
+    },
+    {
+      "archivo": "/entrada/manifiesto.json",
+      "sha256": "30d35e427a0adc5cb2d5025e3ad56bc5c399d80ad7eca9043f137b5811667559"
+    },
+    {
+      "archivo": "/entrada/metodo.md",
+      "sha256": "b12f54937658b5537c0ec53b87b4fb5cd6eee162c0e7fedc3dcec051fa7708c2"
+    },
+    {
+      "archivo": "/entrada/tolerancia.json",
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  ],
+  "revelacion_solicitada": false,
+  "resultados_esperados_consultados": false,
+  "python": "3.14.4",
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "rng": "numpy.random.Generator(PCG64)",
+  "semilla": 20260923,
+  "replicas": 200
+}
