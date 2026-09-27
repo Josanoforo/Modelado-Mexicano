@@ -1,0 +1,16 @@
+{
+  "tipo": "ENMIENDA-DE-CABLEADO-VERIFICACION",
+  "commit_1": "0dbe658d8c3adf835c464837f03b79caf2bb7081",
+  "afecta_medidor": false,
+  "razon": "Preflight rechaza correctamente CALC ya sellado; el verificador confundía ese único bloqueo de inmutabilidad con falta de preflight. Corrección del cierre, no del estimando, umbral, universo, remuestreo ni código del lector. La entrada futura reconoce hashes de este cableado actualizado. CALC futuros de evaluación aún sin ejecucion.json. Ningún sello ni testigo previo reescrito.",
+  "archivos": {
+    "tools/familias-2027/encig/cierre.py": {
+      "anterior": "958c2cf4013f240c9a2b196d998da339e65b7791f063654c9987cc44c5efc37a",
+      "actual": "3f1989c2596cd9382355e5b8e69b6dcd4a4b67843b0d5e830fc8c128adf4bd48"
+    },
+    "tools/familias-2027/encig/evaluar.py": {
+      "anterior": "0937368eee9af23bd43908264a4eeca06aaa27231900640cce239324e44accb7",
+      "actual": "143cd5b45182108061ff9d841b3cc4efb77191eae4b92b54005be715d21ea8eb"
+    }
+  }
+}

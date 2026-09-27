@@ -1,0 +1,19 @@
+# Criterios del recibo GEN2-RECIBO-ASTRA6-N (PROPUESTO-POR-EJECUTOR: la plantilla GEN2-RECIBO-ASTRA-PRODUCTO-N no existe en el repo; se redacta desde la línea 4 del encargo, la sección «Recibo» de la MISION (línea 60) y la ADENDA-1)
+
+Fuentes en el repo (rama claude/wonderful-thompson-12bycz, clon /home/user/Modelado-Mexicano):
+- forense/encargos/2026-09-26-GEN2-RECIBO-ASTRA6-N.md (el encargo del recibo; §1 trae criterios C1/C2/C3)
+- forense/encargos/fuentes/ASTRA6-mision-20260926/{MISION-ASTRA-6-integridad-y-frontera.md, MISION-ASTRA-6-ADENDA-1.md, PROPUESTA-ASTRA-6-PARA-CLAUDE-2026-09-26.md}
+- Encargo propio del PR: forense/encargos/2026-09-26-ASTRA6-<CARRIL>-<X>-1.md (en origin/main).
+- Instrucciones: instrucciones-proyecto-v2_16.md (E.2, E.6, D-22, §3, §4).
+
+## Seis criterios comunes (veredicto por criterio: CUMPLE / CUMPLE-CON-NC / NO-CUMPLE / NO-VERIFICADO, con comando y salida cruda recortada)
+K1 · Cifras con RESULT. Toda cifra PROPIA sobre México en archivos nuevos (md/tsv/json de análisis, reports, notas) se traza a un RESULT-*/CALC sellado (verifica existencia: data/corrida0/CALC-*/sello.json, `python3 tools/consulta.py result <id>`). Años, n bibliográficos y cifras de literatura NO exigen RESULT pero sí fuente. Cifra propia sin RESULT = DEVOLVER (MISION «Recibo»). Reporta cuántas cifras muestreaste y cuántas trazaste.
+K2 · Etiquetas y sellos. PROSPECTIVA/RETROSPECTIVA rotuladas donde aplique; sellos nuevos válidos (sello.json/sello.sha256 casan con archivos); ningún sello existente reescrito (git diff --numstat: 0 líneas borradas en data/corrida0/*/sello*, ejecucion.json, resultados.json existentes); `python3 tools/verifica_sidecars.py` sin FAIL nuevo; cuenta_gen2 no puesta a mano; ninguna adopción (decisiones.tsv, milpa/ intactos).
+K3 · Perímetro. Archivos tocados ⊂ perímetro del encargo propio del PR + perímetro de cierre D-21 (ADR/L0/gobernanza append, registro-rotulos, no-corrido, firmas-pendientes append, INFRAESTRUCTURA, censo-tests, replay-evidencia si el carril lo autoriza). Prohibido: CI (.github/), tablero, derivados (data/corrida0/{corridas,resultados,usos,marcador-segmento}.tsv), motor, manifiesto, catálogo, objetos de CIERRE-SEMANAL-1 / PRODUCTO-CONSULTA-1, corpus/reports/ (v1). tests/check.py editado = explicar por qué (D-21: test nuevo entra como huérfano sin editar check.py).
+K4 · Olas. Ninguna ola reservada leída: inputs por id contra data/manifiesto.yaml (usa yq/grep por id, no cat); reservadas: ENVIPE 2026, ENCO, último periodo publicado de ENOE/ENSU/de todo programa con historia, ENIGH 2024 fuera de seis columnas AMAI. Ninguna ola futura (2027) inexistente como input.
+K5 · §3 México. Evidencia (a)/(b)/(c) etiquetada; no confunde estructura con cultura; firewall genético; módulo de auditoría con preguntas [v2.16] donde el artefacto afirma algo sobre México (reports, specs); sin apartados vacíos. Para C2 aplica solo a specs/hojas.
+K6 · Suite. `python3 tests/check.py --baseline` sobre el merge local PR+origin/main. Si `git merge-tree --write-tree origin/main <head>` da conflicto: lista los archivos en conflicto, marca K6 NO-VERIFICADO sobre el merge y corre check.py --baseline sobre el HEAD del PR solo (declarándolo así). Antes: `pip install -q -r requirements.txt pytest`. Corre también los tests propios del PR con `python3 -m pytest -q <test> | tail -n 20`.
+
+## Criterios del carril: los de §1 del encargo del recibo (C2 o C3), uno por viñeta, cada uno con comando.
+
+## Recomendación: FUSIONAR / FUSIONAR-CON-NC / DEVOLVER con la lista exacta de lo que falta (DEVOLVER si: cifra propia sin RESULT, ola reservada leída, sello reescrito, adopción, orden COMMIT-1→COMMIT-2 roto, NO-EVALUADO presentado como validación, conflicto no resuelto NO es DEVOLVER por sí solo: es condición para mesa). Defectos que Astra no abrió como NC → lista de NC propuestas (qué · por qué con token A.14 · impacto · sucesor).

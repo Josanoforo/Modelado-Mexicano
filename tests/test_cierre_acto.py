@@ -46,7 +46,7 @@ def afirma(cond, msg):
 
 def _fixture(tmp, adr_reales, cabecera_declara, l0_declara, tabla_declara=None):
     """Construye un mini-árbol con canon/gobernanza-v1_15.md (N ADR reales,
-    cabecera declarando `cabecera_declara`) y canon/estado-programa-v1_16.md
+    cabecera declarando `cabecera_declara`) y canon/estado-programa-v1_17.md
     (L0 declarando `l0_declara`, tabla de nombres estables declarando
     `tabla_declara` -- default: igual a `l0_declara`, para no tener que
     tocar cada llamada existente). Sin git real -- cierre_acto sólo
@@ -79,7 +79,7 @@ def _fixture(tmp, adr_reales, cabecera_declara, l0_declara, tabla_declara=None):
         + "cabecera de estado\n\n" * 55 +  # empuja L0 más allá de la línea 1, no crítico
         f"**L0 · Gobierno — completo y al día.** {l0_declara} ADR *(`ADR-{l0_declara}` (anotación previa) · texto)*\n"
     )
-    with open(os.path.join(canon, "estado-programa-v1_16.md"), "w", encoding="utf-8") as f:
+    with open(os.path.join(canon, "estado-programa-v1_17.md"), "w", encoding="utf-8") as f:
         f.write(estado)
 
     return tmp

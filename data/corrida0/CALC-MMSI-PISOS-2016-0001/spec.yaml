@@ -1,0 +1,3170 @@
+# CALC-MMSI-PISOS-2016-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-MMSI-PISOS-2016-0001
+spec_md: ../../../forense/prereg-caja/COLA-MMSI-PISOS-spec-v1_0.md
+spec_md_sha256: fa8b7224a5865c9cf4b991edf63d79a85472386ba28a1a4bd7e47eeba4652a69
+script: data/corrida0/CALC-MMSI-PISOS-2016-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-COLA-COMPLETA-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-COLA-COMPLETA-1
+  encargo: forense/encargos/2026-09-26-GEN2-COLA-COMPLETA-1.md
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; RETROSPECTIVO; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2/3/4, regla 6, E.6, §3, §4, C4 de FIRMAS-16 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  olas: MMSI 2016 (unica ola del modulo en corpus; se abre, E.6)
+inputs:
+- id: mmsi2016_bd_csv_zip
+  origen: manifiesto
+  sha256: c37656bfcc7cc29be7295eec9a2b999b55a2adbf10630b3616da82290c9bfde1
+  funcion: DATO
+  nota: mmsi2016_bases_csv.zip
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, lee_csv_zip (GEN2-SALUD-Y-BIENESTAR-PISOS-1) ejecutados desde
+    estos bytes
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lectura .dta/.sav con filtro de pais, recodificacion, ejes, diseno, ids (GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1)
+    ejecutados desde estos bytes
+variables:
+- archivo: MMSI_2016.csv
+  variable: NivEsc_Inf
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: DivOcu_Act
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: Per_SitEco
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: P1_1
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: P1_2
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: P10_1
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: P10_2
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: P10_3
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: tam_loc_ENH
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: Factor_Per
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: est_dis_ENH
+  rol: reactivo o diseno
+- archivo: MMSI_2016.csv
+  variable: upm_ENH
+  rol: reactivo o diseno
+universo: Persona informante de 25-64 anos (P1_2), MMSI 2016; Factor_Per>0, est_dis_ENH y upm_ENH no vacios.
+filtros: 'Un eje a la vez; nunca cruces. Recodificacion por texto de pregunta: spec humana §2.'
+ponderador: Factor_Per
+transformacion: bin(col, UNO, CERO); todo otro codigo fuera (spec humana §2).
+estimando: Pisos por segmento MMSI 2016 de 5 conductas (educacion superior, ocupacion directiva, mejora
+  socioeconomica percibida) con ejes de tono de piel y origen autoadscrito como marcador de trato; ola
+  unica
+seed:
+  aplica: true
+  valor: 20260927
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  diseno: UPM upm_ENH dentro de estrato est_dis_ENH
+  ola: '2016'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-MMSI-PISOS-2016-G-FILAS-LEIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-MMSI-PISOS-2016-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-MMSI-PISOS-2016-G-FILAS-25-64
+  tipo: entero
+  unidad: filas
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-25-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-35-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-45-54-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-EDAD-55-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-A-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-B-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-C-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-D-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-F-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-H-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-I-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-J-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TONO-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-A-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-F-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TONO-TRAMO-H-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-INDIGENA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-MESTIZA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-BLANCA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-ORIGEN-AUTOADSCRITO-OTRA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-SI-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-LENGUA-INDIGENA-NO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-2016-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-25-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-35-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-45-54-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-EDAD-55-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-A-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-B-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-C-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-D-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-F-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-H-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-I-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-J-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TONO-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-A-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-F-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TONO-TRAMO-H-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-INDIGENA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-MESTIZA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-BLANCA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-ORIGEN-AUTOADSCRITO-OTRA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-SI-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-LENGUA-INDIGENA-NO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-MUJER-2016-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-25-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-35-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-45-54-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-EDAD-55-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-A-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-B-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-C-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-D-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-F-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-H-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-I-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-J-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TONO-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-A-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-F-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TONO-TRAMO-H-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-INDIGENA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-MESTIZA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-BLANCA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-ORIGEN-AUTOADSCRITO-OTRA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-SI-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-LENGUA-INDIGENA-NO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-EDUCACION-SUPERIOR-HOMBRE-2016-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-25-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-35-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-45-54-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-EDAD-55-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-A-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-B-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-C-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-D-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-F-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-H-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-I-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-J-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TONO-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-A-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-F-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TONO-TRAMO-H-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-BLANCA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-ORIGEN-AUTOADSCRITO-OTRA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-SI-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-LENGUA-INDIGENA-NO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-OCUPACION-DIRECTIVA-2016-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-25-34-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-35-44-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-45-54-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-EDAD-55-64-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-A-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-B-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-C-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-D-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-F-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-H-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-I-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-J-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TONO-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-A-E-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-F-G-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TONO-TRAMO-H-K-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-NEGRA-MULATA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-INDIGENA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-MESTIZA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-BLANCA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-ORIGEN-AUTOADSCRITO-OTRA-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-SI-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-LENGUA-INDIGENA-NO-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-MMSI-PISOS-2016-PERCIBE-MEJORA-SOCIOECONOMICA-2016-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-MMSI-PISOS-2016-G-DISENO
+  tipo: texto
+  unidad: etiqueta de diseño
+- id: RESULT-MMSI-PISOS-2016-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-MMSI-PISOS-2016-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-MMSI-PISOS-2016-G-INPUT-MOTOR-PISOS-CONFIANZA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-MMSI-PISOS-2016-G-INPUT-RECETA-PISOS-SALUD-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-MMSI-PISOS-2016-G-OLA-UNICA
+  tipo: texto
+  unidad: declaración

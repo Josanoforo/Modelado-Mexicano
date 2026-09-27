@@ -8,12 +8,13 @@ title: Catálogo
 
 El [directorio de reports](https://github.com/Josanoforo/Modelado-Mexicano/tree/main/corpus/reports) lista los documentos de evidencia. Cada report puede tocar varios temas; su cantidad no mide la cantidad de dominios con RESULT.
 
-El catálogo vigente es el **[catálogo del mexicano v1.1](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_1.md)** ([tabla TSV](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_1.tsv)): solo estimadores adoptados por firma citada por id, con RESULT sellado, y la cobertura de los reports del corpus recalculada por comando. La v1.0 queda como histórico. `MEDIDO` requiere un RESULT sellado y `EN-MEDICIÓN` un acto y propietario identificables; las dudas no se rotulan `NO-MEDIBLE-POR-DISEÑO`.
+El catálogo vigente es el **[catálogo del mexicano v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_2.md)** ([tabla TSV](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_2.tsv)): solo estimadores adoptados por firma citada por id, con RESULT sellado, y la cobertura de los reports del corpus recalculada por comando. La [v1.1](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_1.md) y la v1.0 quedan como histórico. `MEDIDO` requiere un RESULT sellado y `EN-MEDICIÓN` un acto y propietario identificables; las dudas no se rotulan `NO-MEDIBLE-POR-DISEÑO`.
 
 | Pieza | Estado de publicación en este corte |
 |---|---|
 | Reports del corpus | Disponibles en el repositorio |
-| Catálogo de estimandos y segmentos | [v1.1](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_1.md) (sucede a v1.0) |
+| Catálogo de estimandos y segmentos | [v1.2](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/catalogo-del-mexicano-v1_2.md) (sucede a v1.1) |
+| Tabla de piso para el reto | [v1.1](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/tabla-de-piso-v1_1.tsv): solo lo adoptado, con NSE y región donde existen |
 | Eje regional v1.0 | [Disponible](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/canon/eje-regional-v1_0.md): propuesta retrospectiva sin adopción; ENIF usa seis regiones oficiales y ENCIG/ENVIPE entidades de residencia; cobertura parcial de conductas y olas |
 | Trabajo ENOE | [Pisos y persistencia descriptiva disponibles](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/notas/2026-09-23-ASTRA5-U1-TRABAJO-ENOE-cierre.md): CALC sellados, retrospectivos, sin adopción ni IC predictivo calibrado |
 | Tecnología ENDUTIH y MOCIBA | [Pisos disponibles](https://github.com/Josanoforo/Modelado-Mexicano/blob/main/forense/analisis/dominios/tecnologia/cierre-comun.md): ENDUTIH 2023–2025 y MOCIBA 2015–2017, retrospectivos, sin adopción ni IC predictivo calibrado; universos distintos |
