@@ -17,3 +17,5 @@ PROPUESTO-POR-EJECUTOR: recibir la hoja corregida para integración editorial fu
 [Verificación regenerada](verificacion/resultado.json) · [índice local](indice-consumo-familia-2.md) · [reservas](reservas.md) · [recibo solicitado](recibo-para-claude.md) · [reglas propuestas](hoja-reglas-propuestas.md).
 
 EJECUTADO: gate final `tests/check.py --baseline --parallel` termina exit 0, LÍNEA BASE VERDE sin FAIL nuevos; detalle en [verificaciones](verificaciones.md). Permanecen fallos heredados ajenos. Los productores y el control local pasan; CI no es certificación sustantiva ni recibo independiente.
+
+EJECUTADO: entrega en [PR #1179](https://github.com/Josanoforo/Modelado-Mexicano/pull/1179). Corte de corrección `70b1f094` incorpora main `1eeb8552`; cierre posterior solo añade registro de PR/CONSUMIDO y constancias. No fusionado. Solicitud de revisión independiente en el cuerpo del PR, sin mensajes externos.

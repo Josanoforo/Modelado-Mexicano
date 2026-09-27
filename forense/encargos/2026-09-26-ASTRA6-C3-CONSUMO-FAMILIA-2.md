@@ -187,3 +187,15 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Razón | Impacto | Sucesor |
+|---|---|---|---|
+| Nuevo recibo técnico independiente de Claude | NO-VERIFICABLE-AQUÍ: esta sesión corrige y solicita la revisión por el PR; no puede suplir al revisor | La entrega no se presenta como recibida, aceptada o adoptada | GEN2-RECIBO-ASTRA-PRODUCTO-N (circuito de mesa) |
+| Validación numérica independiente de RESULT | DIFERIDO-A:ASTRA6-C1; se cotejan registro y hash, sin recálculo de microdato | La coincidencia de trazabilidad no valida por sí sola el estimando | ASTRA6-C1 |
+| Coeficientes y cifras históricas externas retiradas del v1 sin fuente efectivamente accesible | NO-VERIFICABLE-AQUÍ: el abstract o resumen leído no acredita magnitudes ausentes | No se publican esas magnitudes como afirmaciones verificadas | Lectura primaria de texto/tablas en nuevo recibo |
+
+## CONSUMIDO
+
+Ejecutado en [PR #1179](https://github.com/Josanoforo/Modelado-Mexicano/pull/1179), sobre corte main `1eeb8552`, corrección `70b1f094` y extracto de gate `ebd162b1`. Resultado sustantivo y reservas en `forense/analisis/reports-v2/consumo-familia-2/cierre.md`; nuevo recibo solicitado por circuito de mesa en el PR. No fusionado por ejecutor, sin adopción ni revisión independiente atribuida. El hash de cuerpo del archivo original se conserva.
