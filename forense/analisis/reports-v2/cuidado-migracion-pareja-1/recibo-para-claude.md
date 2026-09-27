@@ -30,3 +30,11 @@ Solicitud por circuito de mesa en este PR: recibo independiente de Claude sobre 
 Las restricciones de instrumentos, población y fuentes se conservan en las tablas de cada pieza. SIN-CIFRA no significa ROMPE. No se abrieron ENUT2024, ENIGH2024, ENASEM2024 ni otras olas reservadas para rellenar lagunas. Ningún CI verde sustituye esta revisión sustantiva.
 
 REPORTADO: [incidente de exposición documental ENADID2023](incidente-reserva.md), sin reproducir cantidades reservadas. No hay autorización retroactiva. Su adjudicación y la recepción de la pieza vejez quedan específicamente pendientes; los controles técnicos no resuelven esa decisión.
+
+## Entrega
+
+EJECUTADO: [PR #1197](https://github.com/Josanoforo/Modelado-Mexicano/pull/1197), con solicitud de recibo en su cuerpo y sin mensajes externos. Primer commit de producto `59c9ae55`. Origin/main final incorporado `11602de8`; cero commits pendientes. El PR se abrió en borrador durante el último gate; su estado final se verifica al cierre.
+
+EJECUTADO posterior al apéndice CONSUMIDO: productor conjunto --check PASS, gate rápido exit 0 sin FAIL y verificación de sidecars sin FAIL. Origin/main reconsultado permanece `11602de8`, cero commits pendientes de incorporación. CONTADOR consultado por herramienta en contador-corte.txt; ninguna adopción/medición nueva.
+
+EJECUTADO: suite final `tests/check.py --baseline --parallel` exit 0, LÍNEA BASE VERDE sin FAIL nuevos. Persisten tres FAIL heredados (T06/T08 del corpus original); no se reparan ni se modifica baseline. [Salida de adjudicación](gate-final.txt). Productores y gate rápido posterior al apéndice pasan; esto no resuelve las reservas de contenido o el incidente.

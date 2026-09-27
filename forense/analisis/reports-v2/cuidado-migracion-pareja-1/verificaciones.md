@@ -11,3 +11,5 @@ CONTADOR: `python3 tools/corrida0.py status` al cierre, [salida cruda](contador-
 Corte editorial y main incorporado: `11602de8e375c10b90807d1b74e088f6b9e99c8b`, fetch final con cero commits pendientes de incorporación. Los gates verifican consistencia del producto; no adjudican el incidente de exposición documental ni acreditan recepción independiente.
 
 EJECUTADO: prefijos corregidos y búsqueda del regex exacto T25 sin coincidencias locales; productores regenerados, --check PASS. Gate rápido final sin FAIL. La última suite completa corre sobre la corrección total, sin modificar baseline.
+
+EJECUTADO: suite final `tests/check.py --baseline --parallel` exit 0, LÍNEA BASE VERDE sin FAIL nuevos. Persisten tres FAIL heredados (T06/T08 del corpus original); no se reparan ni se modifica baseline. [Salida de adjudicación](gate-final.txt). Productores y gate rápido posterior al apéndice pasan; esto no resuelve las reservas de contenido o el incidente.
