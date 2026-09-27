@@ -38,3 +38,20 @@ Propio: `.github/workflows/verify.yml`, `tests/check.py` (solo inventario/caché
 
 ## 10 · LO QUE NO HACE · SUCESORES
 No cambia qué se verifica. Sucesor: `-2` si el nocturno revela un FAIL que el PR no vio (se abre NC y se ajusta el mapa ruta→tests).
+
+## NO-CORRIDO / RESERVAS
+
+| qué (del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| COMMIT-C: PR corre `--rapido` + ci_guardias + pytest afectados (mapa ruta→tests) + `T-REPRO --lote`; merge_group igual | SUSTITUIDO-POR:GEN2-TUBERIA-CI-TIEMPO-1/COMMIT-D — la línea base completa, medida en 4m50s, corre en todo evento; absorbe el objetivo de tiempo y no deja huérfano nada | ninguno | GEN2-TUBERIA-CI-TIEMPO-2 si pasa de 8 min |
+| COMMIT-D: inventario cacheado / `git ls-files` | DIFERIDO-A:GEN2-TUBERIA-CI-TIEMPO-2 — globs medidos ≈2.9 s; D-14 | ninguno | GEN2-TUBERIA-CI-TIEMPO-2 |
+| COMMIT-D: `pytest -n auto` en adicionales y línea base | SUSTITUIDO-POR:GEN2-TUBERIA-CABLEADO-SESIONES-1 — guardias ya usa `-n auto`; adicionales no invoca pytest; línea base usa spawn | ninguno | SIN-ASIGNAR |
+| COMMIT-D: `actions/cache` | DECISIÓN-DE-MESA-PENDIENTE — verify.yml declara cero actions del marketplace; uv mide 2–5 s; recomendación: no | ninguno | SIN-ASIGNAR |
+| «Hecho»: run de push a main < 25 min y primer nocturno citados | NO-VERIFICABLE-AQUÍ — existen solo tras el merge de mesa | sin cita hasta el merge | GEN2-TUBERIA-CI-TIEMPO-2 o trámite |
+| Bajar el piso T32-quater (≈4 min) cacheando `_filas_registro` | FUERA-DE-PERÍMETRO — `tools/corrida0.py` es ajeno; pieza de GEN2-TUBERIA-CI-TIEMPO-2 | la suite no baja de ≈4 min | GEN2-TUBERIA-CI-TIEMPO-2 |
+
+Filas `NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01..06` en `forense/no-corrido.tsv`.
+
+## CONSUMIDO
+
+Consumido por Josanoforo/Modelado-Mexicano#1186 (COMMIT-A, fusionado) y Josanoforo/Modelado-Mexicano#1187 (COMMIT-C, COMMIT-D y cierre). ADR `ADR-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01`; nota `forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md`.

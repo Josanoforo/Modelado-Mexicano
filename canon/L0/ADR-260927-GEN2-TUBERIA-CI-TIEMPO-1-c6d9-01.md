@@ -1,0 +1,3 @@
+# ADR-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01 · la suite vuelve a caber en el tope
+
+EJECUTADO: topes de `suite`/`adicionales` a 30 (#1186); perfil de la suite: el cuello es la re-derivación del registro de corrida0 (≈50 s × 5 tests en serie), no los globs (≈3 s). T32, T32-quater, T45 y T36 pasan a procesos spawn junto a T35: `check.py --baseline --parallel` 8m22s → 4m05s en réplica del runner, con salida idéntica. `verify.yml`: nocturno 09:00 UTC; en `main` el grupo de concurrencia es el run_id, así un merge ya no cancela el run en curso (causa medida de los `check` rojos en main). Ningún test se borra, salta ni relaja; el check requerido sigue siendo `check`. Cero mediciones, cero adopciones. Nota: `forense/notas/nota-2026-09-27-gen2-tuberia-ci-tiempo-1.md`.
