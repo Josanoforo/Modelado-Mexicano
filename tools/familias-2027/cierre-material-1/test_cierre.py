@@ -41,6 +41,7 @@ def test_mutacion_hash_ajeno_rechazado(tmp_path, inventario, rel):
         dest = tmp_path/name;dest.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(ROOT/name, dest)
     target = tmp_path/AREA_REL/'inventario-portable.json'
+    target.parent.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(AREA/'inventario-portable.json', target)
     (tmp_path/rel).write_bytes((tmp_path/rel).read_bytes()+b'\nMUTACION\n')
     with pytest.raises(ValueError, match='HASH-DISCORDANTE'):

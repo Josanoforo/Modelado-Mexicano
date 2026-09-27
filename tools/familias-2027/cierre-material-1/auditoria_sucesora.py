@@ -4,11 +4,14 @@ No sustituye la firma de COMMIT-3 ni es sandbox para Python hostil. Se aplica
 al código autenticado, cargado antes del contexto, en un proceso de una tarea.
 """
 import ast
+import codecs
 import contextlib
 import hashlib
 import os
 from pathlib import Path
 import sys
+import numpy as np
+import numpy.ma
 
 
 def audita(codigo, sha_esperado):
@@ -38,6 +41,11 @@ class RutasExactas:
     El caller confiable acredita los inputs y pasa archivos concretos, no dirs.
     """
     def __init__(self, lecturas, escrituras=(), directorios=()):
+        # Dependencias de los ZIP y CSV; se cargan antes de cerrar las rutas.
+        for nombre in ('cp437', 'utf-8-sig', 'latin-1'):
+            codecs.lookup(nombre)
+        np.quantile(np.array([0., 1.]), [.025, .975])
+        np.random.default_rng(1).multinomial(2, [.5, .5], size=1)
         self.lecturas = {Path(p).resolve() for p in lecturas}
         self.escrituras = {Path(p).absolute() for p in escrituras}
         self.directorios = {Path(p).absolute() for p in directorios}
