@@ -42,3 +42,13 @@ Propio: `.github/workflows/verify.yml` (solo el paso de resumen del nocturno y s
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No cambia qué verifica la suite ni su línea base; no corre la suite en el tablero; no cierra `749c-03` (G1, espera firma) ni implementa G1/H1/H2/H5; no toca `nc_por_clase.py` (PENDIENTES-2). Sucesores: `GEN2-TUBERIA-RESUMEN-SUITE-2` o `CI-TIEMPO-3` con G1/H5 cuando FIRMAS-21 los asiente; el tablero del siguiente corte lee el resumen. Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-27-GEN2-TUBERIA-RESUMEN-SUITE-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1: primera publicación de `suite-resumen.tsv` por run nocturno o `workflow_dispatch` (run_id) y `tablero_programa.py --actualiza` mostrándolo | NO-VERIFICABLE-AQUÍ — `resumen-suite` sólo corre sobre main tras el merge | el tablero no lee la suite hasta el primer nocturno tras el merge | primer run nocturno tras el merge · `NC-260927-GEN2-TUBERIA-RESUMEN-SUITE-1-6127-01` |
+
+## CONSUMIDO
+
+PR #1224 (`ADR-260927-GEN2-TUBERIA-RESUMEN-SUITE-1-6127-01`; nota `forense/notas/nota-2026-09-27-gen2-tuberia-resumen-suite-1.md`).
