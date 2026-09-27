@@ -235,6 +235,7 @@ tests/test_relevo_encuci_f2.py	script	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEO
 tests/test_relevo_motor34_derivados.py	pytest	NO	(ninguna)	NO	0.5	CORRE-EN-CI	exit 0 sin corpus
 tests/test_relevo_remesas_f3.py	script	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEOUT>40s
 tests/test_renderiza_pagina.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
+tests/test_resumen_suite.py	script	NO	(ninguna)	NO	1.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_runner_l_completa.py	script	NO	(ninguna)	NO	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutas_sin_candidato.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
 tests/test_rutinas.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
