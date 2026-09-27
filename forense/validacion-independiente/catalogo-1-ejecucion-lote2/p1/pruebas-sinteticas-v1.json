@@ -1,0 +1,32 @@
+{
+  "solo_sinteticos": true,
+  "esperados_numericos_leidos": false,
+  "pruebas": [
+    {
+      "prueba": "hash-equivocado",
+      "estado": "RECHAZADO-CORRECTAMENTE",
+      "detalle": "Identidad/hash/version incorrecta: sha256_contenedor"
+    },
+    {
+      "prueba": "version-desconocida",
+      "estado": "RECHAZADO-CORRECTAMENTE",
+      "detalle": "Identidad/hash/version incorrecta: version_entrada"
+    },
+    {
+      "prueba": "sin-congelacion",
+      "estado": "RECHAZADO-CORRECTAMENTE",
+      "detalle": "Salida sin congelacion"
+    },
+    {
+      "prueba": "llaves-repetidas",
+      "estado": "RECHAZADO-CORRECTAMENTE",
+      "detalle": "Llaves repetidas"
+    },
+    {
+      "prueba": "llaves-ausentes",
+      "estado": "RECHAZADO-CORRECTAMENTE",
+      "detalle": "Llaves ausentes o extras"
+    }
+  ],
+  "tolerancias_originales_identicas": 11
+}
