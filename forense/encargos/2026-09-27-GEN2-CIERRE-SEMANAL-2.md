@@ -46,3 +46,13 @@ Propio: `canon/{catalogo-del-mexicano-v1_3.*, tabla-de-piso-v1_2.tsv, informe-pr
 
 ## 10 · LO QUE NO HACE · SUCESORES · AUDITORÍA · CIERRE
 No mide; no adopta lo no firmado; no abre el CALC sucesor de las 7 suspendidas (lo nombra por llave); no publica en Zenodo ni crea el tag (mesa, con la receta); no toca la columna de oferta de ahorro (`dea2-03`, sigue con su sucesor). Sucesores: v1.4 / v1.6 / v1.19 en el siguiente corte; el CALC sucesor de instituciones 2011 (caja, spec nueva con el denominador de la spec humana); FIRMAS-21. Módulo de auditoría v2.16 en catálogo e informe (afirman sobre México), con las dos preguntas [v2.16]: qué cifra es PROSPECTIVA y cuál RETROSPECTIVA; qué unidad tiene cada cifra. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto al pie. Adendas: `2026-09-27-GEN2-CIERRE-SEMANAL-2-ADENDA-N.md`, selladas al recibirse, citadas solo aquí.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** desagregación por celda de las tablas ENIGH de Firma M, prometida por v1.2 para v1.3 · **por qué:** DIFERIDO-A:catálogo v1.4 · **impacto:** las 6 tablas siguen fuera del catálogo como filas; su adopción por Firma M sigue vigente · **sucesor:** catálogo del mexicano v1.4 · `NC-260927-GEN2-CIERRE-SEMANAL-2-facd-01`
+- **qué:** que la suspensión de las 7 filas de beee-02 se vea en `status` · **por qué:** NO-VERIFICABLE-AQUÍ. `status` veta por RESULT (`tools/corrida0.py:5335`), y las 7 son celdas de `RESULT-ENDIREH2011-MOD-TABLA`; vetar la tabla arrastraría celdas SOSTENER · **impacto:** `vetados_por_decision` no cuenta la suspensión; el catálogo v1.3 y la tabla de piso v1.2 sí · **sucesor:** CALC sucesor de instituciones 2011 (caja) · `NC-260927-GEN2-CIERRE-SEMANAL-2-facd-02`
+- **qué:** dictamen trimestral de ENSU-SERIE en `canon/donde-cambio-el-mexicano` · **por qué:** DIFERIDO-A:siguiente corte · **impacto:** el informe v1.5 §C no incluye ENSU · **sucesor:** SIN-ASIGNAR · `NC-260927-GEN2-CIERRE-SEMANAL-2-facd-03`
+
+## CONSUMIDO
+
+Ejecutado por PR #1227 (`ADR-260927-GEN2-CIERRE-SEMANAL-2-facd-01`; nota `forense/notas/2026-09-27-GEN2-CIERRE-SEMANAL-2-cierre.md`). Sin adendas.
