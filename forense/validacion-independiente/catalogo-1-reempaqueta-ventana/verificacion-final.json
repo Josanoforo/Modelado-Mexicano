@@ -1,5 +1,5 @@
 {
-  "main_incorporado": "c58810f1d9c4d87f37bcd5d251552da054dabb3b",
+  "main_incorporado": "d4bc75437a11ef6cd07eba24618853e5a254e85d",
   "pruebas_dirigidas": {
     "ejecutadas": 12,
     "estado": "PASS",
@@ -8,7 +8,7 @@
   "reproduccion_contenedores": "5 hashes idénticos con comprobación de contenedor original y no sobrescritura distinta",
   "gate_rapido": {
     "estado": "0 FAIL",
-    "advertencias": 601,
+    "advertencias": 627,
     "comando": "python3 tests/check.py --rapido"
   },
   "archivos_relevantes": {

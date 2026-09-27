@@ -118,3 +118,11 @@ Recibo solicitado; pendiente, sin fusión ni revisión externa declarada.
 
 Corte final actualizado: main `c58810f1d9c4d87f37bcd5d251552da054dabb3b` (#1199 incorporado),
 actos ajenos intactos; gate tras CONSUMIDO:0 FAIL,601 WARN informativos.
+
+Sincronización autorizada 27/sep/2026: main `d4bc75437a11ef6cd07eba24618853e5a254e85d`
+incorporado mediante merge `f6c813fb`, sin conflictos, sin esperar #1209
+por instrucción posterior de mesa.12 pruebas PASS, cinco hashes de
+contenedores intactos, catálogo fuente con hash idéntico; gate rápido
+0 FAIL/627 WARN. FP propias de acceso siguen ABIERTA. Evidencia1194
+permanece fijada al commit citado; los contratos nuevos incorporados en
+main no sustituyen las entradas históricas de este transporte.
