@@ -1,0 +1,69 @@
+{
+  "corte": "ee496e825e286014b18c79e7fa700f39c42e980d",
+  "evidencia_1194": "df54ad05258ea36c77b9efda44a839e250174d1a",
+  "tabla_1194_sha256": "b53ef8b778b406fc9c0781c1643ec6aaea501c05ab6168978db80920ba9ef42d",
+  "catalogo_sha256": "2592df41cd2b76e211a69ad4ed4fc760cca41e4989f653922ad501a8cf715d4c",
+  "catalogo_columna": "reserva",
+  "paquetes": [
+    {
+      "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+      "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/endireh-pisos-2016-pareja-fisica-0002/endireh-pisos-2016-pareja-fisica-0002-entradas-v2.tar.gz",
+      "sha256": "2a10840b5638e22bb733de9f57990e052fe7b5398ab98474a32ea0c64c1f56df",
+      "identidades_originales": 92,
+      "identidades_mapeadas": 92
+    },
+    {
+      "paquete": "endireh-pisos-2021-comunitaria-0001",
+      "ruta": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-comunitaria-0001/endireh-pisos-2021-comunitaria-0001-entradas.tar.gz",
+      "sha256": "9261eeb9b8ca7e95f66ee57b271f53e9fe6a08feff85377306126025a5e04d0b",
+      "identidades_originales": 100,
+      "identidades_mapeadas": 100
+    },
+    {
+      "paquete": "endireh-pisos-2021-escolar-0001",
+      "ruta": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-escolar-0001/endireh-pisos-2021-escolar-0001-entradas.tar.gz",
+      "sha256": "5e33677ef0904bcca544f450cdbbe6969f0884f86f606944cf3429ddd4d1be7a",
+      "identidades_originales": 96,
+      "identidades_mapeadas": 96
+    },
+    {
+      "paquete": "endireh-pisos-2021-laboral-0001",
+      "ruta": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-laboral-0001/endireh-pisos-2021-laboral-0001-entradas.tar.gz",
+      "sha256": "c56fd015b88af8659d19e8f771a20bc81839500d51e28d1c5efd08b2a9fa6c6f",
+      "identidades_originales": 100,
+      "identidades_mapeadas": 100
+    },
+    {
+      "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+      "ruta": "forense/validacion-independiente/catalogo-1/paquetes/endireh-pisos-2021-nofisica-bc-0001/endireh-pisos-2021-nofisica-bc-0001-entradas.tar.gz",
+      "sha256": "37e0d9f4c235d915557f635c2ac9409e9cbf87d97d115ff4362589641ba304d9",
+      "identidades_originales": 590,
+      "identidades_mapeadas": 471
+    }
+  ],
+  "filas": 859,
+  "llaves_distintas": 859,
+  "excluidas": 119,
+  "conteos": {
+    "endireh-pisos-2016-pareja-fisica-0002": {
+      "vida": 46,
+      "desde_octubre_2015": 46
+    },
+    "endireh-pisos-2021-comunitaria-0001": {
+      "vida": 50,
+      "desde_octubre_2020": 50
+    },
+    "endireh-pisos-2021-escolar-0001": {
+      "vida": 50,
+      "desde_octubre_2020": 46
+    },
+    "endireh-pisos-2021-laboral-0001": {
+      "vida": 50,
+      "desde_octubre_2020": 50
+    },
+    "endireh-pisos-2021-nofisica-bc-0001": {
+      "vida_relacion": 242,
+      "desde_octubre_2020": 229
+    }
+  }
+}
