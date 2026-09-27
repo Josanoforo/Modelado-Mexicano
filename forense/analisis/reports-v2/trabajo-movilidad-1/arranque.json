@@ -19,5 +19,12 @@
     }
   ],
   "firma_existente": "forense/encargos/fuentes/ASTRA6-lanzamiento-20260926/00-LEEME-LANZAMIENTO.md:3",
-  "interpretacion": "NUBE/CLI describe carril documental sin microdato; no se conecta ni abre corpus físico. Sonda de red restringida se reintenta con autorización."
+  "interpretacion": "INTERPRETACIÓN-DECLARADA: NUBE/CLI identifica el carril documental con fuentes públicas, sin microdatos. La herramienta no clasifica sin variable de nube aun con red permitida y corpus no montado; esa indeterminación no convierte el acto editorial en apertura de datos. No se enlaza corpus ni se abre microdato.",
+  "firma_entorno": {
+    "entorno_derivado": "INDETERMINADO",
+    "red_escalada": "PERMITIDA http_code=200",
+    "corpus_montado": false,
+    "archivos_examinados": 0,
+    "variable": "sin_variable"
+  }
 }
