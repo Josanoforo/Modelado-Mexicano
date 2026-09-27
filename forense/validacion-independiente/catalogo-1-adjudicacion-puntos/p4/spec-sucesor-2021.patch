@@ -1,0 +1,14 @@
+--- a/sucesor-2021/spec.md
++++ b/sucesor-2021/spec.md
+@@ -11,3 +11,11 @@
+ Unidad mujer; `TB_SEC_XIV.csv`, razones en `TB_SEC_XIV_2.csv` por `ID_PER`; edad y escolaridad `TSDem.csv` por `ID_PER`. `FAC_MUJ` sin normalizar, `EST_DIS`, `UPM_DIS`. Ejes univariados: nacional, edad 15–29/30–44/45–59/60+, escolaridad ninguna/básica/media superior/superior, localidad U/C/R, instrumento A1/A2/B1/B2/C1, entidad 01–32. IC percentil 2.5–97.5 de 200 réplicas UPM dentro de estrato con UPM de contribución cero, semilla 20260923. Publicable: n conocido ≥100, ≥5 UPM con casos, ancho IC ≤0.20, CV ≤0.30 si p>0. Suprimidas sin valor ni réplicas. Instituciones y razones solo nacional. Réplicas agregadas por celda, sin microdatos o identificadores públicos.
+ 
+ Manifiesto `endireh2021_bd_csv_zip`; SHA recalculado `e4f1e7b1898cc53b3126ed959a9089091afd2ffdd1439911f5419e6c99c6037e`. FD SHA `5c30a3f7f88123ca672f1042ec3b5c37cc1d7989f07fd23ecbf088cca6dda180`; A/B/C cuestionarios SHA `d2de0f03b8d347b298f7355312953d772a94edf21443bded042dd2a2ec487ae1`, `beffe06a96a58d3b028539f419d28b5d9d325bbd0ee70f576e06e2608d63e689`, `793a87dfa9757b135accd2ed27f75f7b9575e8de24003b63d93cb31d24f277be`. Import efectivo `numpy==2.3.5`; resto biblioteca estándar y medidor autocontenido.
++
++## Contrato del sucesor · PROPUESTO-POR-EJECUTOR
++
++Este cuerpo se crea en un CALC nuevo, con referencia al sello histórico; no autoriza run ni adopción por este diagnóstico. Congelar juntos spec, código propio, inputs y guardias después de firma de contenido.
++
++Edad: cortes etarios solo EDAD15..97;97 significa97 o más,98 y99 no tienen corte observado. Desacoplar elegibilidad global de etiqueta de edad. Opción propuesta para nacional:15..97 y98;99 requiere evidencia independiente de15+ o decisión expresa de excluir. Esta opción no está adoptada y su diferencia respecto del universo histórico se debe reportar para TODAS las celdas, incluidos nacionales y cortes no etarios. Mantener pesos FAC y respuestas conocidas; no imputar desconocidos a cero. No llamar a la reconstrucción original corregida ni validada retroactivamente.
++
++Intervalos y publicabilidad: no cambiar umbrales ni declarar equivalencia; coordinar contrato de marco/RNG con sesión02. Este encargo solo entrega universo/punto y receta. Después de firma: preflight sintético y control de invariantes, run únicamente CALC nuevo, comparación por identidad y deltas/denominadores para toda la tabla; circuito de recibo y mesa adopta/retiro. Sello viejo intacto.

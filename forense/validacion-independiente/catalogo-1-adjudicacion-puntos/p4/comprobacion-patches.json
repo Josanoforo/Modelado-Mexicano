@@ -1,0 +1,155 @@
+{
+  "modo": "COPIAS-TEMPORALES-FUNCIONES-AST-SINTETICOS",
+  "raw_leido": false,
+  "productor_importado_o_run": false,
+  "originales_sha256": {
+    "2011/medidor.py": "7e6a573d65851827dac40bdc5ed7247967d9ac30f129486ac2a83aae237f1635",
+    "2011/spec.md": "e7326eeb5e02ef37b4fecd355b2a578532a9edef7dd61796452b27664a2bb3c9",
+    "2021/medidor.py": "1fc4766dc3df6bcb07c6c1472a19953b67f88809d3df70ea0a9ca0615a02a1d3",
+    "2021/spec.md": "ae27d5d972002908ff72eb028e50eda8cde5cdb565ae8475a3a5483fdf5c7f0f"
+  },
+  "patches": [
+    {
+      "patch": "edad-permisos-2011.patch",
+      "sha256": "5e4e394356c9644a8363f5b7b1622391b8bfcc1cbe98b2f4bec8be9d44972bf1",
+      "resultado": "patching file sucesor-2011/medidor.py"
+    },
+    {
+      "patch": "externos-reciente-2011.patch",
+      "sha256": "83751fff402a10243cc8c1e6b3760d3af31b5f11083fbb006aaeb55229f980a3",
+      "resultado": "patching file sucesor-2011/medidor.py\nHunk #1 succeeded at 189 (offset 10 lines).\nHunk #2 succeeded at 263 (offset 10 lines)."
+    },
+    {
+      "patch": "denuncia-enlace-2011.patch",
+      "sha256": "3f05aa9710041ea8ed975198d7e469071bc7a66c84e27bcffb82126d02cb3ec6",
+      "resultado": "patching file sucesor-2011/medidor.py\nHunk #1 succeeded at 229 (offset 14 lines)."
+    },
+    {
+      "patch": "spec-sucesor-2011.patch",
+      "sha256": "71c48392efbbd8825f09e983cac1bac664e3dc4a08a50a7d2a330d96ba5b9e5d",
+      "resultado": "patching file sucesor-2011/spec.md"
+    },
+    {
+      "patch": "edad-permisos-2021.patch",
+      "sha256": "36a699669916e58093421e21eab2c7d7e0c1f3f14143ae2c825085495b71dbba",
+      "resultado": "patching file sucesor-2021/medidor.py"
+    },
+    {
+      "patch": "spec-sucesor-2021.patch",
+      "sha256": "6d9b84e96192aef221ebce5563c06c1cba8d09ca924c463b5289ab14db6eb467",
+      "resultado": "patching file sucesor-2021/spec.md"
+    }
+  ],
+  "casos": [
+    {
+      "caso": "2011: edad97 pertenece60+",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2011: edad98 elegible global sin corte",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2011: edad99 excluida opcion propuesta",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2021: edad97 pertenece60+",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2021: edad98 elegible global sin corte",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2021: edad99 excluida opcion propuesta",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos:99 impide negativo",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos: blanco opcional permite negativo",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos:12 es codigo valido",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos: coincidencia positiva conservada",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos: vida positiva reciente desconocida con99tiempo1",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos: vida positiva reciente desconocida con99tiempo2",
+      "estado": "PASS"
+    },
+    {
+      "caso": "externos: reciente positivo preservado pese99",
+      "estado": "PASS"
+    },
+    {
+      "caso": "permisos:nunca relacion excluida desde first",
+      "estado": "PASS"
+    },
+    {
+      "caso": "permisos:relacion anterior incluida",
+      "estado": "PASS"
+    },
+    {
+      "caso": "permisos:caller pasa first",
+      "estado": "PASS"
+    },
+    {
+      "caso": "reciente: ventana clasificable con vida desconocida",
+      "estado": "PASS"
+    },
+    {
+      "caso": "denuncia:columna4 segunda solicitud incluida",
+      "estado": "PASS"
+    },
+    {
+      "caso": "denuncia:respuesta familiar no cuenta",
+      "estado": "PASS"
+    },
+    {
+      "caso": "denuncia:resultado fuera de hecho positivo excluido",
+      "estado": "PASS"
+    },
+    {
+      "caso": "denuncia:columna5 no consumida",
+      "estado": "PASS"
+    },
+    {
+      "caso": "instituciones:alternativa aplica sobre composicion",
+      "estado": "PASS"
+    },
+    {
+      "caso": "instituciones:estimandos distintos afectados sin ayuda",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2011/medidor.py: original intacto",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2011/spec.md: original intacto",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2021/medidor.py: original intacto",
+      "estado": "PASS"
+    },
+    {
+      "caso": "2021/spec.md: original intacto",
+      "estado": "PASS"
+    }
+  ],
+  "total_pass": 27,
+  "limite": "Sinteticos verifican reglas y composicion; no estiman magnitudes raw ni firman universo nacional99/estimando institucional."
+}
