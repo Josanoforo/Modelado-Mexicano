@@ -31,6 +31,7 @@ import resuelve_cita as RC  # noqa: E402
 
 MAX_RAIZ = 12
 FAILS: list[str] = []
+EXAMINADOS = {"citas_md": 0, "docs": 0, "enlaces_relativos": 0}  # A.13: el OK declara su universo
 CITA = re.compile(
     r"(?<![\w/.-])((?:instrucciones-proyecto-v|propuesta-|PROPUESTA-|revision-)[\w.\-]+?\.md(?:\.sha256)?|requirements-dev\.txt)(?![\w.-])")
 ENLACE = re.compile(r"\[[^\]]*\]\(([^)\s]+)\)")
@@ -77,6 +78,7 @@ def prueba_citas_selladas_resuelven():
         for p in (RAIZ / base).rglob("*.md"):
             examinados += 1
             citados.update(CITA.findall(p.read_text(encoding="utf-8", errors="replace")))
+    EXAMINADOS["citas_md"] = examinados
     if examinados == 0:
         _falla("citas", "0 archivos examinados en canon/ y forense/ (A.13)")
         return
@@ -95,6 +97,8 @@ def _enlaces_rotos(path: Path) -> list[str]:
         if destino.startswith(("http:", "https:", "#", "{{", "mailto:")):
             continue
         destino = destino.split("#", 1)[0]
+        if destino:
+            EXAMINADOS["enlaces_relativos"] += 1
         if destino and not (path.parent / destino).exists():
             rotos.append(f"{path.relative_to(RAIZ)}: {destino}")
     return rotos
@@ -102,6 +106,7 @@ def _enlaces_rotos(path: Path) -> list[str]:
 
 def prueba_enlaces_relativos():
     docs = [RAIZ / "README.md", RAIZ / "CONTRIBUTING.md"] + sorted((RAIZ / "docs").rglob("*.md"))
+    EXAMINADOS["docs"] = len(docs)
     rotos = [r for p in docs for r in _enlaces_rotos(p)]
     if rotos:
         _falla("enlaces", f"{len(rotos)} rotos de {len(docs)} documentos: {rotos}")
@@ -136,7 +141,9 @@ def main() -> int:
         for x in FAILS:
             print("FAIL", x)
         return 1
-    print(f"OK test_portada: raíz {len(archivos_raiz())} archivos, índice {len(RC.tabla())} filas, enlaces sin rotos")
+    print(f"OK test_portada: raíz {len(archivos_raiz())} archivos, índice {len(RC.tabla())} filas "
+          f"+ {len(RC.comandos())} comandos reubicados; citas en {EXAMINADOS['citas_md']} .md de canon/+forense/; "
+          f"{EXAMINADOS['enlaces_relativos']} enlaces relativos en {EXAMINADOS['docs']} documentos, 0 rotos")
     return 0
 
 
