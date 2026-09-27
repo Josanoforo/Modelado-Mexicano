@@ -1,0 +1,768 @@
+{
+  "paquete": "endireh-pisos-2016-pareja-fisica-0002-v2",
+  "dictamen_utc": "2026-09-27T05:14:39.118031+00:00",
+  "estado_comparador": "COMPARADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "8e3c31423537ccdbd4712eab917591b5b38011715a3d87f87fc616ff35de52a7",
+  "commit_original": "eb3ccb61d960798e5e8da8512e098745ed12ea57",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#0",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#1",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#10",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#11",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#12",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#13",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#14",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#15",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#16",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#17",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#18",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#19",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#2",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#20",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#21",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#22",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#23",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#24",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#25",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#26",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#27",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#28",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#29",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#3",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#30",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#31",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#32",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#33",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#34",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#35",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#36",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#37",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#38",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#39",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#4",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#40",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#41",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#42",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#43",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#44",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#45",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#46",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#47",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#48",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#49",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#5",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#50",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#51",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#52",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#53",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#54",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#55",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#56",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#57",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#58",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#59",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#6",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#60",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#61",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#62",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#63",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#64",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#65",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#66",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#67",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#68",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#69",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#7",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#70",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#71",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#72",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#73",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#74",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#75",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#76",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#77",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#78",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#79",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#8",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#80",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#81",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#82",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#83",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#84",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#85",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#86",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#87",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#88",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#89",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#9",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#90",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    },
+    {
+      "llave": "RESULT-ENDIREH2016-PF-TABLA#91",
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "campos": {},
+      "publicabilidad": "NO-DETERMINADA",
+      "spec": "INSUFICIENTE",
+      "motivo": "Falta asignación explícita llave→ventana: el método define P13_1 y P13_3, pero estimandos.tsv no identifica la ventana; no se infiere del índice celda ni del orden."
+    }
+  ]
+}

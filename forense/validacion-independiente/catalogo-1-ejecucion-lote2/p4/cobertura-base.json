@@ -1,0 +1,22 @@
+{
+  "corte": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+  "estado": "PREPARACION-NO-CIEGA; SIN-RECALCULO",
+  "historico_denominador": 36143,
+  "overlay_denominador": 43188,
+  "seleccion_denominador": 425,
+  "seleccion_en_overlay": 425,
+  "seleccion_fuera_overlay": 0,
+  "overlay_nuevas": 7045,
+  "paquetes": 11,
+  "raw_distintos": 13,
+  "grupos_raw_compartidos": 1,
+  "validacion_ciega_lote2": 0,
+  "consumidores_filas": 22,
+  "catalogo": "canon/catalogo-del-mexicano-v1_2.tsv",
+  "fuentes_sha256": {
+    "forense/validacion-independiente/catalogo-1/universo.tsv": "3bfc0700fd2ca5d8649ebc85933507ce9074e0ff4cb70725406be606d5187382",
+    "canon/catalogo-del-mexicano-v1_2.tsv": "2592df41cd2b76e211a69ad4ed4fc760cca41e4989f653922ad501a8cf715d4c",
+    "forense/validacion-independiente/catalogo-1-preparacion-lote2/astra6-c1-lote2-entrega-59.tsv": "75b1febc3adb8840a9dde0f99344dd30113040cc06233f387005a7a096716e48",
+    "data/corrida0/usos.tsv": "ea3513e3459fc9a96be0f407a9910bdc87e8dc93de155ff0879526047ae45eeb"
+  }
+}

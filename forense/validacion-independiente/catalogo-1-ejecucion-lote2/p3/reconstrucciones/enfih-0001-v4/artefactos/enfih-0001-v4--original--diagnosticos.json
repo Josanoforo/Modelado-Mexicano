@@ -1,0 +1,37 @@
+{
+  "filas_originales": 17765,
+  "filas_elegibles": 17765,
+  "filas_excluidas": 0,
+  "soporte_C_AFORE": [
+    "0",
+    "1"
+  ],
+  "suma_pesos": 36644680.0,
+  "numerador_si": 19733244.0,
+  "numerador_no": 16911436.0,
+  "A_SUMA_UNO": 1.0,
+  "A_METODO_IC": "BOOTSTRAP-UPM-DENTRO-EDIS",
+  "estratos": 407,
+  "upm_por_estrato_total": 3270,
+  "estratos_upm_unica": 0,
+  "perfiles_anchos": {
+    "EDIS": {
+      "3": 17765
+    },
+    "UPM_DIS": {
+      "7": 17765
+    }
+  },
+  "B_P": 0.5400909603898933,
+  "B_DELTA_VS_A": 0.0015886730183021225,
+  "B_rotulo": "Sensibilidad de universo: H_PPAL == 1; secundaria",
+  "B_filas": 17386,
+  "replicas": 2000,
+  "semilla": 20260915,
+  "generador": "numpy.PCG64",
+  "percentiles": [
+    2.5,
+    97.5
+  ],
+  "interpolacion": "linear"
+}

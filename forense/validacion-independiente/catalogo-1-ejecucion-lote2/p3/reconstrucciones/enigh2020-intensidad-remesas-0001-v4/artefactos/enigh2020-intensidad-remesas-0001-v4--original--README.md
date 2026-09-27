@@ -1,0 +1,15 @@
+# Reconstrucción independiente ENIGH 2020
+
+Se reconstruyeron las seis llaves de la entrada, sin resultados esperados, sin consultas al preparador ni acceso de red. La asignación utiliza literalmente `conducta`, `ola` e `instrumento` de estimandos.tsv y las variables nombradas en metodo.md. No se infieren otras identidades. Las olas 2016 y 2018 se verificaron e inventariaron, pero no se utilizan en estimandos de 2020.
+
+Ejecución: `python3 reconstruir.py` y luego `python3 verificar.py`, con /entrada y /raw montados en sus ubicaciones originales. Versiones en recibo.json. Las salidas son reconstruccion.tsv, diagnosticos.json, replicas.tsv y recibo.json. verificacion.json documenta la comprobación independiente con aritmética Decimal. Los valores son proporciones en escala 0–1 o pesos trimestrales del concentrado, sin conversiones adicionales.
+
+La documentación local fd-enigh2020-oficial.pdf identifica en concentradohogar #23 ing_cor (página impresa 185), #47 transfer y #51 remesas (página impresa 188): ing_cor incluye transfer, transfer incluye remesas y remesas suma ingresos.ing_tri de clave P041. El cuestionario para mayores identifica P041 como ingresos provenientes de otros países. Se consultaron estas entradas humanas; sus hashes se guardan en el recibo, sin incorporar PDFs ni sus extracciones al repositorio.
+
+Se conservaron las 89.006 filas para formar el diseño, con claves de hogar únicas. Hay 5.240 receptores, masa expandida 1.564.957, y el dominio de participación coincide con ellos: no hay exclusiones de ingreso ni incompatibilidades remesas > ingreso + 0,01. El marco tiene 558 estratos y 10.118 pares estrato-UPM; ningún estrato tiene una sola UPM. Las contribuciones fuera del dominio son cero. Las identidades de diseño mantienen sus ceros iniciales y nunca se convierten a números.
+
+El bootstrap implementa 2.000 réplicas PCG64, semilla 20260916, muestreo de n_h UPM con reemplazo en cada estrato. Se explicitan en el recibo el orden lexicográfico y el consumo del generador, así como percentiles lineales. Estas convenciones no están completamente fijadas en metodo.md: con tolerancia absoluta cero, no puede garantizarse coincidencia bit a bit con otra implementación independiente. Los números quedan congelados según estas convenciones, sin ajustar contra resultados ajenos. Si existieran estratos con UPM única aportarían variación cero, sin afirmar una cota inferior del intervalo.
+
+`estado` usa RECONSTRUIDO cuando contiene cifras; `motivo` está disponible para filas sin cifras. La marca de incompatibilidad del método se reserva en `estado_diagnostico` para no reemplazar los estados exigidos por el encargo. No se calcularon IC para las tres llaves rotuladas SIN-IC-IDENTIFICADO.
+
+`entradas/` conserva las entradas textuales originales. `inventario_zip.json` conserva los nombres, tamaños y CRC de todos los miembros de los ZIP; `recibo.json` conserva los SHA-256 de todos los archivos recibidos y del miembro utilizado. Los insumos originales permanecen fuera del commit. El commit es la congelación previa a revelación; no se solicita revelación y el trabajo termina en esa fase.

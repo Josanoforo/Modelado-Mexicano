@@ -1,0 +1,94 @@
+{
+  "archivos": [
+    {
+      "ruta": "/entrada/conductas.md",
+      "sha256": "11511c9b29b957fbf576ea1f65600b2c9c3ed6b038d6e62d66856c1c7c335704",
+      "bytes": 1310,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/entrada/cuestionario-enbiare2021-cuestionario.pdf",
+      "sha256": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+      "bytes": 1078126,
+      "incluido_en_commit": false
+    },
+    {
+      "ruta": "/entrada/encargo.md",
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "bytes": 380,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/entrada/estimandos.tsv",
+      "sha256": "082f20e74a5704b2354439e8f00a6baa73b22098bdfb156061506260ae3470c5",
+      "bytes": 47085,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/entrada/insumos.json",
+      "sha256": "2a8f8f58b94713cc8c0854fec059348c5f126ec99eb5f26f927a6c2cf864abe8",
+      "bytes": 655,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/entrada/metodo.md",
+      "sha256": "4fb1b19a136e66ffefe75d746e3b56f7735cd4ff56ef4e79499cabfb7531bdf6",
+      "bytes": 2859,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/entrada/tolerancia.json",
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "bytes": 41,
+      "incluido_en_commit": true
+    },
+    {
+      "ruta": "/raw/enbiare2021_bd_csv_zip/enbiare_2021_base_de_datos_csv.zip",
+      "sha256": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+      "bytes": 5684658,
+      "incluido_en_commit": false,
+      "entrada": {
+        "id": "enbiare2021_bd_csv_zip",
+        "archivo": "enbiare2021/enbiare_2021_base_de_datos_csv.zip",
+        "sha256": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_base_de_datos_csv.zip",
+        "estado_acceso": "COINCIDE"
+      }
+    },
+    {
+      "ruta": "/raw/enbiare2021_fd_pdf/enbiare_2021_fd.pdf",
+      "sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9",
+      "bytes": 997663,
+      "incluido_en_commit": false,
+      "entrada": {
+        "id": "enbiare2021_fd_pdf",
+        "archivo": "enbiare2021/enbiare_2021_fd.pdf",
+        "sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9",
+        "url": "https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_fd.pdf",
+        "estado_acceso": "COINCIDE"
+      }
+    }
+  ],
+  "entradas_zip": [
+    {
+      "entrada": "THOGAR.csv",
+      "bytes": 2671035,
+      "sha256": "9ce2880aedc8e720a6da9e77973d3b855c9a830179b78e8c63a37a63f40bb42a"
+    },
+    {
+      "entrada": "TSDEM.csv",
+      "bytes": 11473757,
+      "sha256": "8ca1dd29b1ed91cff557866c0af5954321a30e0773d80872f43d72f6f9f5085c"
+    },
+    {
+      "entrada": "TVIVIENDA.csv",
+      "bytes": 3450823,
+      "sha256": "c2e979c1fa5f0766de8b94884b4a5766a29026a0998baa7be0e5ad185b76e715"
+    },
+    {
+      "entrada": "TENBIARE.csv",
+      "bytes": 37222592,
+      "sha256": "7acaaa3c9cd593c0d67111763d9369cb694bb61640d8b0aa55e5e8fecbf33e7d"
+    }
+  ]
+}

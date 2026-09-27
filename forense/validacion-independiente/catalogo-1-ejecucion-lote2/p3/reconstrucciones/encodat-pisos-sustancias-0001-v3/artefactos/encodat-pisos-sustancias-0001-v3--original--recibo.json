@@ -1,0 +1,104 @@
+{
+  "manifiesto_sha256": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+  "entrada": [
+    {
+      "archivo": "conductas.md",
+      "sha256": "5993fc17d9a537da9c1279ce691162fa05066d9582361098bb72007328bbeb6f"
+    },
+    {
+      "archivo": "encargo.md",
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+    },
+    {
+      "archivo": "estimandos.tsv",
+      "sha256": "25c506079f86efa922ac694d3277dd9393b7404543512b2f29ca7ea0c8a082c5"
+    },
+    {
+      "archivo": "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+      "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e"
+    },
+    {
+      "archivo": "fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+      "sha256": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b"
+    },
+    {
+      "archivo": "fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+      "sha256": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0"
+    },
+    {
+      "archivo": "insumos.json",
+      "sha256": "86ef19cd642ea388da1f8b6036e11c4690f56bc17eacb09f2bd49909eefdee95"
+    },
+    {
+      "archivo": "metodo.md",
+      "sha256": "5f0084a7a966223923bd048cebbd5ca32a3c466ab6e9c1d686386d24b63661de"
+    },
+    {
+      "archivo": "tolerancia.json",
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  ],
+  "insumos": [
+    {
+      "id": "encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf",
+      "archivo": "ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/cuestionario_encodat_hogar_2016_2017.Cuestionarios.pdf",
+      "sha256": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a",
+      "url": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encodat_2016_2017__cuestionario_encodat_hogar_2016_2017_cuestionarios_pdf/cuestionario_encodat_hogar_2016_2017.Cuestionarios.pdf",
+      "sha256_observado": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a"
+    },
+    {
+      "id": "encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf",
+      "archivo": "ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/cuestionario_encodat_individual_2016_2017.Cuestionarios.pdf",
+      "sha256": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2",
+      "url": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encodat_2016_2017__cuestionario_encodat_individual_2016_2017_cuestionarios_pdf/cuestionario_encodat_individual_2016_2017.Cuestionarios.pdf",
+      "sha256_observado": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2"
+    },
+    {
+      "id": "encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip",
+      "archivo": "ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información sobre el hogar/ENCODAT_2016_2017_Hogar.stata.stata.zip",
+      "sha256": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781",
+      "url": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip/ENCODAT_2016_2017_Hogar.stata.stata.zip",
+      "sha256_observado": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781",
+      "entradas_zip": [
+        {
+          "nombre": "ENCODAT_2016_2017_Hogar.dta",
+          "sha256": "e44876452f274a9c779b187f2eadf3849d2ab38a7edee3e210663ee47e76c52e",
+          "bytes": 42450457
+        }
+      ]
+    },
+    {
+      "id": "encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip",
+      "archivo": "ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.stata.stata.zip",
+      "sha256": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346",
+      "url": "https://encuestas.insp.mx/repositorio/encuestas/ENCODAT2016/descargas.php",
+      "estado_acceso": "COINCIDE",
+      "ruta_local": "/raw/encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip/ENCODAT_2016_2017_Individual.stata.stata.zip",
+      "sha256_observado": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346",
+      "entradas_zip": [
+        {
+          "nombre": "ENCODAT_2016_2017_Individual.dta",
+          "sha256": "c2f2cee443ad049c3cbb1743ae48bf17200ae466cab88a542751ef9bfe81ac34",
+          "bytes": 1212525348
+        }
+      ]
+    }
+  ],
+  "sin_revelacion": true,
+  "entorno": {
+    "python": "3.14.4",
+    "pandas": "2.3.3",
+    "numpy": "2.3.5"
+  },
+  "salidas_sha256": {
+    "reconstruccion.tsv": "326746aa22be92d73f440942c8f329e5331e9ceffe93d3ef577492c20f860d59",
+    "reconstruir.py": "07df2f84ce7fba073fa94f1ab30586e066eaa529c91654019f6c987d52391bba",
+    "auditoria.json": "8aa45b8c746f366d0c311d2ed7ad8a41e33b448dc4dbb2a997232dafca566377"
+  }
+}

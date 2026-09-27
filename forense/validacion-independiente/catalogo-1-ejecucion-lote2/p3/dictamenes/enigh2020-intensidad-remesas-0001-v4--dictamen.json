@@ -1,0 +1,152 @@
+{
+  "paquete": "enigh2020-intensidad-remesas-0001-v4",
+  "dictamen_utc": "2026-09-27T05:18:18.825417+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "2345036a768b4e50802be4175c244eef3af17bb57f47ddfc96e602e4f767fd64",
+  "commit_original": "88d46c5c82b9cfd2c0eac2c32af05642e24a13da",
+  "tolerancia": {
+    "tipo": "determinista",
+    "abs": 0.0
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENIGH20-REMINT-PARTICIPACION-AGREGADA",
+      "estado": "DISCREPA",
+      "campos": {
+        "punto": {
+          "delta": -4.440892098500626e-16,
+          "dentro": false,
+          "columna_original": "valor"
+        },
+        "ic95_inf": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENIGH20-REMINT-PARTICIPACION-GE50",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        },
+        "ic95_inf": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENIGH20-REMINT-PARTICIPACION-MEDIA-HOGAR",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        },
+        "ic95_inf": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENIGH20-REMINT-PREVALENCIA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENIGH20-REMINT-REMESAS-MEDIA",
+      "estado": "DISCREPA",
+      "campos": {
+        "punto": {
+          "delta": -1.8189894035458565e-12,
+          "dentro": false,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENIGH20-REMINT-REMESAS-MEDIANA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    }
+  ]
+}

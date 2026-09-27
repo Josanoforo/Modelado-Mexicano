@@ -1,0 +1,68 @@
+{
+  "manifiesto_sha256": "5e43d9c13edbfcaa4545d51614a9211884bd9e498162826bbee98ef6f16189e9",
+  "entradas": {
+    "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+    "estimandos.tsv": "61b04891091a159c964549473f0c07b147cc2dbb0aff20a8a1b4a7d39abf02be",
+    "insumos.json": "d77e571697340e909b6aad2855305a8aa815299b2c624b6e5caba83942b8ec76",
+    "metodo.md": "e7da7f8deb79679dbdf829778289b537844768dc42980278399a8487ec939baa",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "insumos": [
+    {
+      "id": "envipe2025_csv",
+      "archivo": "envipe2025_csv.zip",
+      "sha256": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/datosabiertos/conjunto_de_datos_ENVIPE_2025_csv.zip",
+      "estado_acceso": "COINCIDE",
+      "ruta": "/raw/envipe2025_csv/envipe2025_csv.zip",
+      "sha256_observado": "8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa",
+      "bytes": 17600019,
+      "coincide": true
+    },
+    {
+      "id": "envipe2025_fd_pdf",
+      "archivo": "fd_envipe2025.pdf",
+      "sha256": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/doc/fd_envipe2025.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta": "/raw/envipe2025_fd_pdf/fd_envipe2025.pdf",
+      "sha256_observado": "83fe02467b661d64e8638d882b242b0e534b8383e683a3fcbeadd66ead777fad",
+      "bytes": 2284580,
+      "coincide": true
+    },
+    {
+      "id": "envipe2025_cuest_principal_pdf",
+      "archivo": "cuest_principal_envipe2025.pdf",
+      "sha256": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/doc/cuest_principal_envipe2025.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta": "/raw/envipe2025_cuest_principal_pdf/cuest_principal_envipe2025.pdf",
+      "sha256_observado": "a3e08bd496cefd75b17265828a4a9edade0ddbac467a4d71363488d13a8f7228",
+      "bytes": 1264383,
+      "coincide": true
+    },
+    {
+      "id": "envipe2025_cuest_modulo_pdf",
+      "archivo": "cuest_modulo_envipe2025.pdf",
+      "sha256": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2025/doc/cuest_modulo_envipe2025.pdf",
+      "estado_acceso": "COINCIDE",
+      "ruta": "/raw/envipe2025_cuest_modulo_pdf/cuest_modulo_envipe2025.pdf",
+      "sha256_observado": "21df38610b21c481382dfb05cf8061e87216d97557c665b2e6e50aacaa216d27",
+      "bytes": 930409,
+      "coincide": true
+    }
+  ],
+  "resultados_esperados_accedidos": false,
+  "revelacion_solicitada": false,
+  "versiones": {
+    "python": "3.14.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3"
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "estado": "RECONSTRUIDO"
+}

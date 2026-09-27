@@ -1,0 +1,50 @@
+{
+  "manifiesto_sha256": "911a6cae94ec87b374c99f5049629d61528ce56dca3538f9c2e09e2079f62ccf",
+  "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+  "entradas": "/entrada",
+  "insumos": "/raw",
+  "resultados_esperados_accedidos": false,
+  "revelacion_solicitada": false,
+  "asignacion_de_identidad_inferida": false,
+  "fase": "congelación anterior a revelación",
+  "entorno": {
+    "python": "3.14.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3"
+  },
+  "bootstrap": {
+    "replicas": 500,
+    "semilla": 20260923,
+    "generador": "PCG64",
+    "orden": "EST_DIS, UPM_DIS lexicográfico; por estrato, 500 multinomiales",
+    "percentil": "lineal",
+    "desviacion_estandar_ddof": 1
+  },
+  "salidas_sha256": {
+    "reconstruir.py": "4301c67cbe87bfcc9468f74f89d5ee2545ea4ef5a612d8977ef0c16278f455f2",
+    "reconstruccion.tsv": "8e3c31423537ccdbd4712eab917591b5b38011715a3d87f87fc616ff35de52a7",
+    "calculos_por_ventana.tsv": "505989a019556987bb9493bba9762d127230956214737a939c085a338bce0283",
+    "replicas_agregadas.tsv": "8339cc13c61ce22c797d7f32b525e265a83f62d730039c4aae4cb27ea630059b",
+    "inventario.json": "5668cb142dbc518cc673854fcd3079631d596e402025f82aeb29275f248c3d00",
+    "auditoria.json": "3fbd2c66b01a2ea9dbed038dac964196f49af04678d83af1a7b25e90b563c93f"
+  },
+  "resumen": {
+    "filas_modulo": 111256,
+    "filas_tsdem": 451548,
+    "filas_A1_A2": 72855,
+    "excluidas_factor_edad": 0,
+    "elegibles": 72855,
+    "upm_marco": 17174,
+    "estratos": 619,
+    "estratos_singleton": 1,
+    "conocidas_P13_1": 72854,
+    "conocidas_P13_3": 72854,
+    "celdas_calculadas": 92,
+    "celdas_publicables": 92,
+    "replicas_agregadas": 46000,
+    "llaves": 92,
+    "estados": {
+      "NO-RECALCULABLE-DESDE-SPEC": 92
+    }
+  }
+}

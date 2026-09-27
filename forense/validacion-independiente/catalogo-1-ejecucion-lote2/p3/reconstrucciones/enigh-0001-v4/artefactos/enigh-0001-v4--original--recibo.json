@@ -1,0 +1,89 @@
+{
+  "manifiesto_sha256": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+  "fase": "CONGELACION-PRE-REVELACION",
+  "resultados_esperados_accedidos": false,
+  "solicitudes_al_preparador": 0,
+  "entradas": [
+    {
+      "ruta": "/entrada/manifiesto.json",
+      "bytes": 734,
+      "sha256": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+      "sha256_declarado": null
+    },
+    {
+      "ruta": "/entrada/cuestionario-enigh2022-hogares.pdf",
+      "bytes": 1663837,
+      "sha256": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+      "sha256_declarado": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f"
+    },
+    {
+      "ruta": "/entrada/cuestionario-enigh2022-mayores.pdf",
+      "bytes": 1872313,
+      "sha256": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+      "sha256_declarado": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c"
+    },
+    {
+      "ruta": "/entrada/encargo.md",
+      "bytes": 380,
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "sha256_declarado": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+    },
+    {
+      "ruta": "/entrada/estimandos.tsv",
+      "bytes": 270,
+      "sha256": "58b0be62e8748e6f02a653f15fa16e2c7c6a62076c8c9f55c97571cd0862b8a9",
+      "sha256_declarado": "58b0be62e8748e6f02a653f15fa16e2c7c6a62076c8c9f55c97571cd0862b8a9"
+    },
+    {
+      "ruta": "/entrada/insumos.json",
+      "bytes": 680,
+      "sha256": "f78f79fdc8d2015ad526a66b10ccf3d5905e56e5c32699cfd5b140c99eacae43",
+      "sha256_declarado": "f78f79fdc8d2015ad526a66b10ccf3d5905e56e5c32699cfd5b140c99eacae43"
+    },
+    {
+      "ruta": "/entrada/metodo.md",
+      "bytes": 708,
+      "sha256": "5004df8fa26d6a972159595a7a2f045ad202a60ef06f9e2d48eabdc924676d9b",
+      "sha256_declarado": "5004df8fa26d6a972159595a7a2f045ad202a60ef06f9e2d48eabdc924676d9b"
+    },
+    {
+      "ruta": "/entrada/tolerancia.json",
+      "bytes": 41,
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "sha256_declarado": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    {
+      "ruta": "/raw/enigh2022_nc_csv/enigh2022_nc_csv.zip",
+      "bytes": 90030937,
+      "sha256": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06",
+      "sha256_declarado": "3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06"
+    },
+    {
+      "ruta": "/raw/enigh2022_descripcion_base_pdf/enigh2022_descripcion_base_pdf.pdf",
+      "bytes": 2906552,
+      "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+      "sha256_declarado": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c"
+    }
+  ],
+  "miembro_usado": {
+    "archivo": "/raw/enigh2022_nc_csv/enigh2022_nc_csv.zip",
+    "nombre": "conjunto_de_datos_concentradohogar_enigh2022_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh2022_ns.csv",
+    "sha256": "b499ac9b6182f81d1aa0b719bebd8a74af6df27dbd7c7ad843f9797381b74752"
+  },
+  "validacion": {
+    "hogares": 90102,
+    "estratos": 560,
+    "upm_por_estrato_total": 10211,
+    "estratos_upm_unica": 0
+  },
+  "entorno": {
+    "python": "3.14.4",
+    "numpy": "2.3.5"
+  },
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "motor_familia_a": "Implementado; no ejecutado sobre raw porque no tiene llave identificada",
+  "estimandos_con_cifras": 0
+}
