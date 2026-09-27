@@ -1,0 +1,13 @@
+{
+  "gate_comando": "python3 tests/check.py --baseline --rapido",
+  "gate_FAIL": 0,
+  "gate_WARN": 591,
+  "gate_sha256": "8b5bbc8d8552eb0200b92e7b425b8827fc4c1088e3d08c99f8c556a6e66eaf03",
+  "gate_log_local": "/tmp/astra6-adjudicacion-gate-recibo.log",
+  "baseline": "VERDE; sin cambios a tests/baseline.json",
+  "verificacion_propia": "PASS 685/685 y5480aristas,22 hashesfuentes",
+  "sinteticos": 27,
+  "corte_main": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+  "adopciones_ejecutadas": 0,
+  "raw_incorporado": false
+}
