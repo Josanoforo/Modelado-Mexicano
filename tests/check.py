@@ -173,6 +173,10 @@ def t02_duplicates():
     # diseño (`cmp` verificado al crear el congelado; `CONGELADO-v1_0.sha256`
     # registra el pin) -- mismo patrón de censo mecánico que `ADR-177`/`ADR-178`.
     EXCEPTED_HASH_GROUPS = (
+        # ACTO GEN2-TRAMITE-FIRMAS-20 (27/sep/2026): con cero FP de adopción ABIERTAS, los dos
+        # derivados de «pendientes de firma» quedan en solo cabecera (mismo esquema, por diseño).
+        frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
+                   "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv"}),
         # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
         # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
         frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
