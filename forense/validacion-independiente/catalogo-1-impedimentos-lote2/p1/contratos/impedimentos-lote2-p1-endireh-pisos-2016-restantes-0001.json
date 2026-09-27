@@ -1,0 +1,51 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "endireh-pisos-2016-restantes-0001",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/endireh-pisos-2016-restantes-0001/endireh-pisos-2016-restantes-0001-entradas-v2.tar.gz",
+  "sha256_original": "8393d9912d34882e5a4bba337a3e6b425fe87ace6ad29cd5d18889ac3ce8e11e",
+  "estimadores_historicos": 1618,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "endireh2016_cuestionario_a_pdf",
+      "archivo": "endireh2016/endireh2016_cuestionario_a.pdf",
+      "sha256": "0e66af1203f5455725c9a453925559b9390cb293e5c73d0956890c2d82834f64",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_a.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "endireh2016_cuestionario_b_pdf",
+      "archivo": "endireh2016/endireh2016_cuestionario_b.pdf",
+      "sha256": "fa475c79e188a0e2290d64cb119439d87eb42994ed97df6f776c465932b9155d",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_b.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "endireh2016_cuestionario_c_pdf",
+      "archivo": "endireh2016/endireh2016_cuestionario_c.pdf",
+      "sha256": "a0ded4e2caeaeca9f74cfbd8a318b4cf2d39f3e30f5748b56c707fa2888e568e",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_c.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "endireh2016_cuestionario_general_pdf",
+      "archivo": "endireh2016/endireh2016_cuestionario_general.pdf",
+      "sha256": "b2b6b8c08d2bf0918e5b86df22627368c5d953a5832965d5d1ef1a2810be63ac",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/doc/endireh2016_cuestionario_general.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv",
+      "archivo": "endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip",
+      "sha256": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10",
+      "url": "https://www.inegi.org.mx/contenidos/programas/endireh/2016/microdatos/bd_mujeres_endireh2016_sitioinegi_csv.zip",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "documentos": "impedimentos-lote2-p1-documentos-verificados.json",
+  "bins": "../p2/impedimentos-lote2-p2-endireh-pisos-2016-restantes-0001-spec-propuesta.md",
+  "accion": "Cuestionarios exactos2016 y FD26hojas recuperados;binsP2 propios firmables;sin traslado hermana",
+  "faltante_historico": "Bins y convenciones inferenciales requieren firma; documento no basta para declarar LISTO"
+}

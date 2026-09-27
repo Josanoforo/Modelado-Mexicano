@@ -1,0 +1,44 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-civ-m-01",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-civ-m-01/r-civ-m-01-entradas-v2.tar.gz",
+  "sha256_original": "f6710aed1b0de57d9a1d05c8adea8c908c9200e0bb4039c96c1388e8efaba181",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "envipe_2012_base_de_datos_envipe_2012_dbf",
+      "archivo": "envipe2012/base_de_datos_envipe_2012_dbf.zip",
+      "sha256": "d7caa74ea4264d59fecfc1d1959824051adfe43613514e2e5ca22f24f31548f5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2012/microdatos/base_de_datos_envipe_2012_dbf.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "envipe_2012_fd_envipe2012",
+      "archivo": "envipe2012/fd_envipe2012.xls",
+      "sha256": "dcca5373391cbcee1529c78ab4fd46a172321e77502b624f87061679b25e7a99",
+      "url": "https://www.inegi.org.mx/contenidos/programas/envipe/2012/doc/fd_envipe2012.xls",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "envipe_2012_base_de_datos_envipe_2012_dbf",
+  "tabla": "TMod_Vic",
+  "variable": "BP1_23",
+  "peso": "FAC_DEL",
+  "estrato": "EST",
+  "upm": "UPM",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#CIV-M-01",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "delito",
+  "universo": "Todos tipos delito; BP1_23 válido01..09 y peso finito positivo; sin filtro adicional BP1_20",
+  "y": "1 si BP1_23 en01,02,06;0 si03,04,05,07,08,09;99/blanco fuera",
+  "miembro_literal": "Tmod_Vic.DBF",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "d7caa74ea4264d59fecfc1d1959824051adfe43613514e2e5ca22f24f31548f5"
+}
