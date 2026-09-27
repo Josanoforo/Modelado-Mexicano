@@ -196,3 +196,11 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Razón | Impacto | Sucesor |
+|---|---|---|---|
+| Recibo técnico y revisión humana de tesis | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no los acredita | No acredita revisión independiente ni adopción de reglas | forense/analisis/reports-v2/genero-violencia-salud-1/recibo-para-claude.md |
+
+Productos ejecutados; revisión humana y recibo externo pendientes. Límites por afirmación en resumen-lote.json. No se afirma recepción ni adopción.
