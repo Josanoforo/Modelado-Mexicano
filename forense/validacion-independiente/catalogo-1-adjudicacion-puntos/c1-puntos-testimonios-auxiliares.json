@@ -1,0 +1,27 @@
+{
+  "motivo": "Salidas auxiliares anteriores idénticas conservadas por ruta original dentro del tar; no se cambian bytes para cumplir T02",
+  "raw": false,
+  "archivos": [
+    {
+      "ruta_original": "p2/contrastes-raw2011-v2.tsv",
+      "sha256": "f5f960006fcc18e3f66eca292d8bce9ef369f6f72d5980e98735af46e4588223",
+      "bytes": 441650
+    },
+    {
+      "ruta_original": "p2/contrastes-raw2011.tsv",
+      "sha256": "f5f960006fcc18e3f66eca292d8bce9ef369f6f72d5980e98735af46e4588223",
+      "bytes": 441650
+    },
+    {
+      "ruta_original": "p2/contrastes-raw2021-v3.tsv",
+      "sha256": "9a9af4a958cb1a20536f3e362a4f169603143ed19ec2216a16981e9623df0a3b",
+      "bytes": 26250
+    },
+    {
+      "ruta_original": "p2/denuncia-factorial2011.tsv",
+      "sha256": "8334c92d13655eb4627dc598ba2c02a1bf7f7b7f8b80b66099bc79dcce0c597e",
+      "bytes": 254
+    }
+  ],
+  "sha256_archive": "4f5c5b042d1f3c074e4fa344404f632928baf2fac073560acf7b4e5f1737d2ec"
+}

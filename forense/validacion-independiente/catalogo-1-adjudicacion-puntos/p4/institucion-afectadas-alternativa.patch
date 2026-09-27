@@ -1,0 +1,11 @@
+--- a/sucesor-2011/medidor.py
++++ b/sucesor-2011/medidor.py
+@@ -256,7 +256,7 @@
+     help_ = _union_binary(institution) if violence == 1 else None
+     base["pareja_ayuda_institucional"] = help_
+     for i in range(1, count + 1):
+-        base[f"pareja_institucion_{i:02d}"] = _binary(second.get(help_prefix + str(i))) if help_ == 1 else None
++        base[f"pareja_institucion_{i:02d}"] = _binary(second.get(help_prefix + str(i))) if violence == 1 else None
+     if state == "C":
+         base["pareja_informo_familia"] = _binary(second.get("CP6_4_7")) if violence == 1 else None
+         reason_source, reason_prefix = second, "CP6_7_"
