@@ -1,0 +1,4 @@
+# Conserva bytes/CRLF y campos finales vacíos de tablas diagnósticas con hash.
+*.tsv -text whitespace=-blank-at-eol,cr-at-eol
+# El espacio de contexto en diffs unificados es sintaxis, incluido en hashes.
+*.patch whitespace=-blank-at-eol
