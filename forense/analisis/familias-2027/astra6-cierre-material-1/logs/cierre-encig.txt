@@ -1,0 +1,110 @@
+PRE-FLIGHT CALC-ENCIG-AUX-FAMILIAS-2027-0001   (data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001)
+  [COMMITEADO] data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+              arbol                  = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+              origin/main            = aa090b6b4619b9b43906116db0478308125f33229086561a412accb651eac76b
+  [UNICOS] ids de resultados: 17 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/medidor.py
+              script_blob_sha256 = 6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30
+  inputs declarados: 1
+    [COINCIDE] encig25_base_datos_csv  origen=manifiesto  raiz=data_raw
+              ruta_absoluta   = /home/pc0/mm-astra6-c2-cierre-material-1/data/raw/encig25_base_datos_csv.zip
+              sha256 esperado = 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+              sha256 actual   = 47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12
+              tamano          = 37624925
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"banda": 0.02, "calc_id": "CALC-ENCIG-AUX-FAMILIAS-2027-0001", "fraccion_replicas": 0.95, "min_estratos": 100, "min_n": 10000, "min_replicas": 1000, "min_upm": 1000, "modo": "HISTORICO-ABIERTO", "payload_sha256": "47daf2f732366ad842b7f60c784be9d61db68a00ae1a693980ec6a683e0d9e12", "replicas": 2000, "residuo_max": {"PAGO-DIGITAL": 0.01, "SOLICITUD-MORDIDA": 0.02}, "seed": 20260926}
+  [DECLARADO] tolerancia = {"abs": 1e-12, "tipo": "absoluta"}
+  [DECLARADO] seed       = {'aplica': True, 'valor': 20260926, 'rng': 'PCG64'}
+  [SUCIO] git status --porcelain (4 lineas)
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.json
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.tsv
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/logs/
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/producto.txt
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO working_tree_dirty=SI calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO
+
+PRE-FLIGHT CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001   (data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+              arbol                  = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+              origin/main            = b6a13eb08e7dff4c7130fe603fc303142445bab166aec0489d34f07d5a380518
+  [UNICOS] ids de resultados: 3 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/medidor.py
+              script_blob_sha256 = e6258c8d0683a9ebaa26fd45e156d804b72ca38972f393a193c4b2c1b7197997
+  inputs declarados: 1
+    [COINCIDE] IN-ENCIG-PISOS  origen=repo  ruta=forense/analisis/familias-2027/astra6-encig/pisos.json
+              sha256 real     = be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+              sha256 declarado= be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"apertura": "UNICA-COMPARTIDA", "autorizacion_futura": "NO-OTORGADA", "familia": "PAGO-DIGITAL", "lector_sha256": "6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30", "olas_objetivo": ["encig_2027"], "reglas_normativas_ruta": "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml", "result_emision": "RESULT-FAMILIA-2027-ENCIG-PAGO-DIGITAL-P0", "result_origen": "RESULT-ENCIG-MOR-C-P-ADOPTA"}
+  [DECLARADO] tolerancia = {"abs": 1e-12, "tipo": "absoluta"}
+  [DECLARADO] seed       = {'aplica': False}
+  [SUCIO] git status --porcelain (4 lineas)
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.json
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.tsv
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/logs/
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/producto.txt
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO working_tree_dirty=SI calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO
+
+PRE-FLIGHT CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001   (data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001)
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/spec.md
+  [COMMITEADO] data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/spec.yaml
+  [EN-MAIN-COINCIDE] spec_md_sha256
+              declarado en spec.yaml = 4d002205e709eb13563122983dfe36ee1904231f9646abf7618cde544fbe40d8
+              arbol                  = 4d002205e709eb13563122983dfe36ee1904231f9646abf7618cde544fbe40d8
+              origin/main            = 4d002205e709eb13563122983dfe36ee1904231f9646abf7618cde544fbe40d8
+  [UNICOS] ids de resultados: 3 declarados
+  [UNICOS] ids de inputs: 1 declarados
+  [EXISTE] script data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/medidor.py
+              script_blob_sha256 = e6258c8d0683a9ebaa26fd45e156d804b72ca38972f393a193c4b2c1b7197997
+  inputs declarados: 1
+    [COINCIDE] IN-ENCIG-PISOS  origen=repo  ruta=forense/analisis/familias-2027/astra6-encig/pisos.json
+              sha256 real     = be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+              sha256 declarado= be0ff97b1b260d42ef69f6e06f7432cd2e24a371ab8250978d8e42716c6011dd
+  [ENDURECIDO] esquema de spec   (etiquetas.generacion = GEN2)
+  [DECLARADO] parametros = {"apertura": "UNICA-COMPARTIDA", "autorizacion_futura": "NO-OTORGADA", "familia": "SOLICITUD-MORDIDA", "lector_sha256": "6a891a2cf43a7e4469e26864b01266f020b7b488ff0d4f179bdd174457d92c30", "olas_objetivo": ["encig_2027"], "reglas_normativas_ruta": "data/corrida0/CALC-ENCIG-AUX-FAMILIAS-2027-0001/spec.yaml", "result_emision": "RESULT-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-P0", "result_origen": "RESULT-ENCIG-MOR-A-P-SOL1"}
+  [DECLARADO] tolerancia = {"abs": 1e-12, "tipo": "absoluta"}
+  [DECLARADO] seed       = {'aplica': False}
+  [SUCIO] git status --porcelain (4 lineas)
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.json
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/hoja-comun.tsv
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/logs/
+              | ?? forense/analisis/familias-2027/astra6-cierre-material-1/producto.txt
+  [SELLO_COINCIDE] sello previo   [python3 tools/sella_sha256.py --verifica data/corrida0/CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001/sello.json]
+
+PRE-FLIGHT: BLOQUEADO working_tree_dirty=SI calc_ya_sellado=CALC-INMUTABLE-YA-SELLADO
+
+..................................................                       [100%]
+50 passed in 0.22s
+
+OK codigo-specs-congelados
+OK inventario-sellos
+OK orden-COMMIT-1-2
+FAIL preflight:CALC-ENCIG-AUX-FAMILIAS-2027-0001
+OK verify:CALC-ENCIG-AUX-FAMILIAS-2027-0001
+FAIL preflight:CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001
+OK verify:CALC-FAMILIA-2027-ENCIG-PAGO-DIGITAL-0001
+FAIL preflight:CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001
+OK verify:CALC-FAMILIA-2027-ENCIG-SOLICITUD-MORDIDA-0001
+OK guardias-fronteras-mutacion-conducto
+OK piso-historico-sellado
+OK oro-punto:PAGO-DIGITAL
+OK oro-vector:PAGO-DIGITAL
+OK emision-sin-R-futura:PAGO-DIGITAL
+OK oro-punto:SOLICITUD-MORDIDA
+OK oro-vector:SOLICITUD-MORDIDA
+OK emision-sin-R-futura:SOLICITUD-MORDIDA
+OK potencia-escenarios-MDE
+OK calendario-estado-y-fuente
+OK atestacion-dependencia-declarada
+{"estado": "INCOMPLETO", "familias_emisiones_congeladas": 2, "olas_futuras": 1, "atestacion_externa_verificada": 0, "calendario": "VENTANA-ESPERADA-2028-Q2", "recibo_claude": "PENDIENTE"}

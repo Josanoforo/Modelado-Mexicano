@@ -1,0 +1,26 @@
+{
+  "tipo": "REIMPLEMENTACIÓN-INDEPENDIENTE",
+  "fecha_utc": "2026-09-27T00:36:11.270418+00:00",
+  "manifiesto_sha256": "4236b29e657345fd38871a756e316ca3b6c70f32f111450e988a7cac4192b2e3",
+  "lista_entradas_manifiesto": {
+    "encargo.md": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+    "estimandos.tsv": "d6711b9dd141c8809a80d844b4bbbca09e151f56958a63ad36fa03c4eb0418ab",
+    "faltantes.json": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+    "insumos.json": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+    "metodo.md": "e0facbb4bfbb3d94cea9d4e5a5a2e58ecddb541cb03cc0e5d856938276000b3b",
+    "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  "fuentes_recibidas": [
+    "/entrada",
+    "/raw"
+  ],
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false,
+  "contacto_con_preparador": false,
+  "acceso_a_clon_comparacion_reservas": "No observado ni utilizado; no se exploraron reservas. No se certifica aislamiento del sistema fuera de las fuentes usadas.",
+  "primera_ejecucion_numerica_conservada": true,
+  "llaves": 117,
+  "reconstruidas": 116,
+  "sin_cifras_por_conflicto_identidad": 1,
+  "congelacion": "Commit de Git posterior a este recibo y anterior a cualquier revelación; SHA256SUMS cubre archivos salvo sí mismo y .git."
+}

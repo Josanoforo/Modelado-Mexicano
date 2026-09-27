@@ -57,6 +57,66 @@ VISTA_RESULTADOS = CORRIDAS / "resultados.tsv"
 # se editan juntos, nunca uno sin el otro.
 CAMPOS_MOVIDOS_A_CORRIDA = ("tolerancia", "funciones_dependencia", "fuente_replay")
 
+# Textos que pueden repetirse por RESULT. Solo se compactan cuando son
+# exactamente constantes dentro de la corrida; las excepciones quedan inline.
+CAMPOS_CONSTANTES_RESULTADO = (
+    "spec_id", "sello", "validacion_ref", "alcance_validacion",
+    "rol_evaluacion", "validacion_independiente", "valor_legacy", "delta_legacy",
+)
+
+
+@functools.lru_cache(maxsize=1024)
+def _constantes_resultados(texto: str) -> dict:
+    valores = json.loads(texto or "{}")
+    if (not isinstance(valores, dict)
+            or any(k not in CAMPOS_CONSTANTES_RESULTADO or not isinstance(v, str)
+                   for k, v in valores.items())):
+        raise ValueError("constantes_resultados inválidas")
+    return valores
+
+
+def restaura_constantes_resultado(fila: dict, corridas: dict[str, dict]) -> dict:
+    completa = {k: v for k, v in fila.items() if k != "constantes_corrida"}
+    marca = fila.get("constantes_corrida", "")
+    if not marca:
+        return completa
+    if marca != "1":
+        raise ValueError("marca constantes_corrida inválida")
+    corrida = corridas.get(fila.get("corrida_id"), {})
+    constantes = _constantes_resultados(corrida.get("constantes_resultados") or "{}")
+    if not constantes:
+        raise ValueError("resultado normalizado sin constantes de su corrida")
+    return {**completa, **{k: v for k, v in constantes.items() if fila.get(k) == ""}}
+
+
+def normaliza_constantes_resultados(vistas: dict) -> dict:
+    """Representación reversible; no cambia estimandos, valores ni estados.
+
+    La celda vacía hereda un texto de corridas.tsv únicamente si el mapa lo
+    declara. Un campo variable permanece íntegro, incluso si incluye vacíos.
+    """
+    corridas = {f["corrida_id"]: f for f in vistas["corridas"]}
+    filas = [restaura_constantes_resultado(f, corridas) for f in vistas["resultados"]]
+    candidatos, cantidades = {}, {}
+    for fila in filas:
+        cid = fila["corrida_id"]
+        cantidades[cid] = cantidades.get(cid, 0) + 1
+        comunes = candidatos.setdefault(cid, {k: fila.get(k) for k in CAMPOS_CONSTANTES_RESULTADO})
+        for k in tuple(comunes):
+            if comunes[k] != fila.get(k):
+                del comunes[k]
+    ids = {f["corrida_id"] for f in vistas["corridas"]}
+    mapas = {cid: {k: v for k, v in comunes.items()
+                   if isinstance(v, str) and v and cantidades[cid] > 1}
+             for cid, comunes in candidatos.items() if cid in ids}
+    return {**vistas,
+            "corridas": [{**f, "constantes_resultados": json.dumps(mapas.get(f["corrida_id"], {}),
+                             ensure_ascii=False, separators=(",", ":"))}
+                         for f in vistas["corridas"]],
+            "resultados": [{**f, **dict.fromkeys(mapas.get(f["corrida_id"], {}), ""),
+                             "constantes_corrida": "1" if mapas.get(f["corrida_id"]) else ""}
+                           for f in filas]}
+
 SIN_OFERTA_EN_VISTA = "SIN-OFERTA-EN-VISTA"
 
 
@@ -125,7 +185,11 @@ def _deriva_camino_linaje(fila: dict,
 def _leer_tsv_derivado(ruta: Path) -> list[dict]:
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
-    return list(csv.DictReader(lineas, delimiter="\t"))
+    filas = list(csv.DictReader(lineas, delimiter="\t"))
+    if ruta.name == "resultados.tsv":
+        corridas = corridas_por_id(ruta.with_name("corridas.tsv"))
+        filas = [restaura_constantes_resultado(f, corridas) for f in filas]
+    return filas
 
 
 def corridas_por_id(ruta: Path = VISTA_CORRIDAS) -> dict[str, dict]:
@@ -162,7 +226,7 @@ def join_resultado(fila_resultado: dict, corridas: dict[str, dict],
     (`_linajes_cache`, un solo calculo de toda la oferta la primera vez
     que hace falta). Sin oferta que lo cubra (calc_id fuera del
     `_dirs_calc()` actual): `SIN-OFERTA-EN-VISTA`."""
-    completa = dict(fila_resultado)
+    completa = restaura_constantes_resultado(fila_resultado, corridas)
     corrida = corridas.get(fila_resultado.get("corrida_id"), {})
     for campo in CAMPOS_MOVIDOS_A_CORRIDA:
         if campo not in completa:

@@ -173,6 +173,15 @@ def t02_duplicates():
     # diseño (`cmp` verificado al crear el congelado; `CONGELADO-v1_0.sha256`
     # registra el pin) -- mismo patrón de censo mecánico que `ADR-177`/`ADR-178`.
     EXCEPTED_HASH_GROUPS = (
+        # ACTO GEN2-TRAMITE-FIRMAS-20 (27/sep/2026): con cero FP de adopción ABIERTAS, los dos
+        # derivados de «pendientes de firma» quedan en solo cabecera (mismo esquema, por diseño).
+        frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
+                   "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv"}),
+        # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
+        # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-formal.txt'}),
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-HORIZONTE-AHORRO-EMISIONES-0001.txt', 'forense/analisis/familias-2027/astra6-enif/replay-horizonte.txt'}),
         frozenset({
             "forense/marco-candidatas-piloto-v1_0.tsv",
             "forense/prereg-duelo-v2/marco-congelado-piloto-v1_0.tsv",
@@ -214,6 +223,8 @@ def t02_duplicates():
     # la colisión de nombre con otro acto. Son evidencias distintas, con
     # contenido distinto; la ruta del recibo ya está citada en el cierre.
     EXCEPTED_NAME_GROUPS = (
+        # PR #1182: resumen de preflight sellado; identidad por expediente y acto.
+        frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/preflight-final/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-C-9ecb5c61/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-D-d800e103/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-A-7baf278d/resumen.json', 'data/curacion-registro/expedientes-produccion/t0-89f4c3a49c00c0e1/ESP-OPACA-B-d13ec4fe/resumen.json'}),
         # Sync ENIF #1174 tras #1172: grupos exactos por instrumento; contenidos y sellos distintos.
         frozenset({'forense/analisis/familias-2027/astra6-encig/calendario.md', 'forense/analisis/familias-2027/astra6-enif/calendario.md', 'forense/analisis/familias-2027/astra6-envipe/calendario.md'}),
         frozenset({'forense/analisis/familias-2027/astra6-encig/arranque.md', 'forense/analisis/familias-2027/astra6-enif/arranque.md', 'forense/analisis/familias-2027/astra6-envipe/arranque.md'}),
@@ -233,6 +244,7 @@ def t02_duplicates():
             "forense/analisis/astra5-genero-endireh/recibo-para-claude.md",
             "forense/analisis/familias-2027/astra6-envipe/recibo-para-claude.md",
             "forense/analisis/familias-2027/astra6-enif/recibo-para-claude.md",
+            "forense/analisis/familias-2027/astra6-cierre-material-1/recibo-para-claude.md",
         }),
         # ACTO GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1 (25/sep/2026): misma forma de
         # acto que #1124, lista cerrada propia con contenido distinto; la ruta está citada por
@@ -7841,26 +7853,59 @@ def _repro_worker(strict, require_cableado):
     return FAILS, WARNS, SENAL, time.perf_counter() - started
 
 
+def _aislado_worker(nombre, strict, require_cableado):
+    """GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-D: un test pesado de solo lectura
+    en proceso nuevo (spawn), con el mismo contrato que `_repro_worker`."""
+    global STRICT, REQUIRE_CABLEADO
+    STRICT, REQUIRE_CABLEADO = strict, require_cableado
+    FAILS.clear()
+    WARNS.clear()
+    SENAL.clear()
+    started = time.perf_counter()
+    globals()[nombre]()
+    return FAILS, WARNS, SENAL, time.perf_counter() - started
+
+
+# GEN2-TUBERIA-CI-TIEMPO-1 · COMMIT-B/D (27/sep/2026). Medido en entorno
+# replicado del runner (PyYAML con libyaml, 4 CPU): de 8m22s de
+# `--baseline --parallel`, T32-quater 261 s, T32 151 s, T45 50 s, T35 49 s y
+# T36 18 s -- cada uno re-deriva el registro de corrida0 (~50 s) y corrían en
+# serie en el proceso principal. Defecto que evita: la cancelación del job
+# `suite` por tope de 10 min (26/sep). Cambia DÓNDE corren, no qué exigen:
+# se consumen en su posición original, igual que T35. Orden = más largo primero.
+_PESADOS_AISLADOS = ("t32_quater_pines_mesa", "t32_corrida0",
+                     "t45_legacy_desglose_suma", "t36_corredores_gen2")
+
+
 def _run_tests(tests, parallel=False):
-    # Sólo T35 sale del orden secuencial. Se consume en su posición original:
-    # baseline, orden de mensajes y T16 conservan el mismo contrato.
-    # spawn evita heredar módulos con rutas/estado parcheados por los fixtures.
+    # T35 y los `_PESADOS_AISLADOS` salen del orden secuencial. Se consumen en
+    # su posición original: baseline, orden de mensajes y T16 conservan el
+    # mismo contrato. spawn evita heredar módulos con rutas/estado parcheados
+    # por los fixtures.
     pool = None
     future = None
+    futuros = {}
     try:
         if parallel:
             if sum(fn is t35_repro for _, fn in tests) != 1:
                 raise ValueError("T35 debe aparecer exactamente una vez")
+            presentes = [n for n in _PESADOS_AISLADOS
+                         if any(getattr(fn, "__name__", None) == n
+                                and fn is globals().get(n) for _, fn in tests)]
             pool = ProcessPoolExecutor(
-                max_workers=1, mp_context=multiprocessing.get_context("spawn"))
+                max_workers=1 + len(presentes),
+                mp_context=multiprocessing.get_context("spawn"))
+            for n in presentes:
+                futuros[n] = pool.submit(_aislado_worker, n, STRICT, REQUIRE_CABLEADO)
             future = pool.submit(_repro_worker, STRICT, REQUIRE_CABLEADO)
         for name, fn in tests:
             before_f, before_w = len(FAILS), len(WARNS)
             started = time.perf_counter()
-            if parallel and fn is t35_repro:
+            if parallel and (fn is t35_repro or getattr(fn, "__name__", None) in futuros):
                 # result() propaga cancelación, excepción o muerte del worker.
                 # Nunca se interpreta ausencia de resultado como lista vacía.
-                fs, ws, signals, elapsed = future.result()
+                fut = future if fn is t35_repro else futuros[fn.__name__]
+                fs, ws, signals, elapsed = fut.result()
                 FAILS.extend(fs)
                 WARNS.extend(ws)
                 SENAL.extend(signals)

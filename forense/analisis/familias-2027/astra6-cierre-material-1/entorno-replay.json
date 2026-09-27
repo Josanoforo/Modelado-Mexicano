@@ -1,0 +1,18 @@
+{
+  "estado": "EJECUTADO",
+  "entorno": "CAJA",
+  "corpus": "/home/pc0/mm-corpus/raw",
+  "archivos_examinados": 511,
+  "python": "Python 3.14.4",
+  "dependencias": {
+    "numpy": "2.3.5",
+    "pandas": "2.3.3",
+    "pyreadstat": "1.3.6",
+    "scipy": "1.16.3",
+    "PyYAML": "6.0.3",
+    "pytest": "9.1.1"
+  },
+  "venv": "/tmp/astra6-c2-cierre-venv",
+  "aislamiento": "venv --without-pip --system-site-packages; distribución CAJA heredada de solo lectura, versiones cotejadas; sin instalación/cambio global",
+  "obstaculo_resuelto": "ensurepip ausente; venv sin pip usó las dependencias congeladas existentes"
+}

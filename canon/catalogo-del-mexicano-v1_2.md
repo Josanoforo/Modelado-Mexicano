@@ -81,7 +81,6 @@ Contadores que mueve este acto: «estimadores en catálogo con RESULT» (43 188 
 
 | id | objeto | estado de la FP |
 |---|---|---|
-| `FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01` | `CALC-ENSU-PISOS-0001;CALC-ENSU-SERIE-0001` | ABIERTA |
 
 `SIN-FP-CITABLE`: RESULT con consumo activo que el contador de adoptados cuenta por la etiqueta de su propia spec (E.2), pero sin FP firmada, sin fila de mesa en `decisiones.tsv` para su CALC y sin firma de encargo en su pin. El catálogo no les inventa firma. La firma `FP-260925-GEN2-CATALOGO-V1-1-1-afe1-01` (FIRMADA, opción a) los hace entrar en v1.2 citándola.
 

@@ -1,0 +1,103 @@
+{
+  "supresiones_reclasificadas": 11,
+  "estados_dictamen": {
+    "DISCREPA": 2569,
+    "COINCIDE": 3,
+    "NO-RECALCULABLE-DESDE-SPEC": 799
+  },
+  "evaluados": 3371,
+  "denominador_lote": 3371,
+  "denominador_universo": 36143,
+  "estados": {
+    "DISCREPA": 2558,
+    "NO-RECALCULABLE-DESDE-SPEC": 810,
+    "COINCIDE": 3
+  },
+  "causas": {
+    "SUPRIMIDO-POR-SPEC: incumple ancho IC<=0.20 o CV<=0.30; punto y réplicas no publicados": 6,
+    "Identidad contradictoria: metodo.md dice desconocía servicios; P14_22_14 en FD p. 632 y cuestionario A 14.22 dice no sabía que existían leyes para sancionar la violencia. No se asigna equivalencia semántica.": 1,
+    "D-15: identidad no contiene horizonte vida/reciente; pares eje/segmento duplicados sin correspondencia de índices en spec": 100,
+    "Falta correspondencia explícita NIV -> ninguno/basica/media_superior/superior; no se adivina recodificación.": 23,
+    "Estimación suprimida por regla de publicación de spec: CV >0.30": 5,
+    "Identidad temporal ausente: metodo.md define vida y reciente, pero estimandos.tsv no asigna periodo a la llave; celda no tiene regla semantica documentada.": 96,
+    "Identidad incompleta: la llave/celda no indica ventana vida o reciente; metodo.md no define esa correspondencia. No se infiere por orden ni ordinal.": 100,
+    "Falta ventana 14.1/14.3 en la identidad; celda y llave son identificadores opacos, sin correspondencia documentada.": 471,
+    "Falta recodificación NIV/GRA a ninguno/basica/media_superior/superior (preescolar, estudios técnicos y normal); no se infiere.": 8
+  },
+  "commit_sin_verificacion_de_objeto": [],
+  "paquetes": [
+    {
+      "paquete": "endireh-pisos-2011-modulos-0001",
+      "estimadores": 1894,
+      "estados": {
+        "DISCREPA": 1891,
+        "COINCIDE": 3
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-ayuda-0001",
+      "estimadores": 117,
+      "estados": {
+        "DISCREPA": 116,
+        "NO-RECALCULABLE-DESDE-SPEC": 1
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-comunitaria-0001",
+      "estimadores": 100,
+      "estados": {
+        "NO-RECALCULABLE-DESDE-SPEC": 100
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-decisiones-0001",
+      "estimadores": 138,
+      "estados": {
+        "DISCREPA": 138
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-discriminacion-0001",
+      "estimadores": 286,
+      "estados": {
+        "DISCREPA": 263,
+        "NO-RECALCULABLE-DESDE-SPEC": 23
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-escolar-0001",
+      "estimadores": 96,
+      "estados": {
+        "NO-RECALCULABLE-DESDE-SPEC": 96
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-familiar-0001",
+      "estimadores": 50,
+      "estados": {
+        "DISCREPA": 50
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-laboral-0001",
+      "estimadores": 100,
+      "estados": {
+        "NO-RECALCULABLE-DESDE-SPEC": 100
+      }
+    },
+    {
+      "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+      "estimadores": 590,
+      "estados": {
+        "NO-RECALCULABLE-DESDE-SPEC": 479,
+        "DISCREPA": 111
+      }
+    }
+  ],
+  "recalculados_por_llave": 2561,
+  "punto_coincide": 1876,
+  "punto_discrepa": 685,
+  "solo_discrepa_ic": 1873,
+  "cobertura_numerica_lote": 0.759715218036191,
+  "cobertura_numerica_universo": 0.07085742744099825
+}

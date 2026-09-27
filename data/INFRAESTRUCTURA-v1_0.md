@@ -1043,6 +1043,26 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 
 `forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.
 
+## ASTRA6-C1-PAQUETES-2 · entradas sucesoras
+
+`forense/validacion-independiente/catalogo-1-preparacion-lote2/`: contenedores sucesores con versión explícita en `entradas/`, mapas y verificaciones no entregables en `preparacion/`. La correspondencia de P4 conserva los 59 paquetes de v1.1 y excluye los nueve de sesión01; delta v1.2 aparte. El comando `python3 tools/validacion/astra6_paquetes_lote2.py` comprueba hashes, identidad de estimandos, entradas, revisión semántica y disponibilidad sin leer productores ni esperados. Ninguna tabla registra recálculo, coincidencia o adopción.
+
+## ASTRA6-C3-TRABAJO-MOVILIDAD-1 · tablas locales
+
+| Tabla | Productor | Contenido | Consumidor | Límite |
+|---|---|---|---|---|
+| `forense/analisis/reports-v2/trabajo-movilidad-1/{trabajo,movilidad}/decisiones.json` y `clase/editorial.json`; TSV propios por pieza | Juicio editorial explícito y productor propio | Afirmación/cláusula, correspondencia original/mapa, razón, dictamen y evidencia | Tres reports v2 y verificador local | Registros de cobertura pueden solaparse; no conteo de tesis únicas por líneas |
+| `forense/analisis/reports-v2/trabajo-movilidad-1/*/{cifras,evidencia,cifras-externas,fuentes}.json` según pieza | Consulta por identidad y lectura primaria pública | RESULT/CALC/registro/hash/firma/denominador, fuentes/localizadores y límites | Productores y revisión solicitada | Fusión distinta de adopción; provisional rotulado; fuentes reservadas excluidas |
+| `forense/analisis/reports-v2/trabajo-movilidad-1/entrega.json` y `indice-local.md` | `python3 forense/analisis/reports-v2/trabajo-movilidad-1/verifica_lote.py --regenera` | Conteos desde decisiones y hashes de artefactos | Recibo local/PR | Índice local; no cambia catálogo, mapa ni índice global |
+
+### ASTRA6 C2 cierre material · sucesores propios
+
+`forense/analisis/familias-2027/astra6-cierre-material-1/{inventario-portable.json,hoja-comun.json,hoja-comun.tsv,matriz-nc-1178.tsv,paquete-control-hashes.json}`: identidad de contratos/drivers/enmienda, hoja de familias derivada y estados de NC; lector/verificador `tools/familias-2027/cierre-material-1/verifica_cierre_material.py`. Históricos y specs congeladas permanecen intactos; control sucesor propuesto y COMMIT-3 cerrado.
+
+### GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2 · tablas editoriales sucesoras
+
+`forense/analisis/reports-v2/consumo-familia-2/<carril>/<carril>-juicios.json`: fuente de decisiones explícitas por registro y cláusula; productores por carril regeneran las tablas vivas, sin decidir dictámenes. `forense/analisis/reports-v2/consumo-familia-2/verificacion/`: control por RESULT/hash, cobertura mapa+v1, registro local de evidencia y regresiones materiales; índice local por comando, sin confundir registros con tesis únicas. Consumidores: los dos reports v2 y recibo local. No modifica vistas globales. ADR-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01.
+
 ## Reports v2 · género, violencia ambiental y salud mental (`ACTO ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`)
 
 Tablas y productores independientes en `forense/analisis/reports-v2/genero-violencia-salud-1/genero/`, `violencia/` y `salud/`: decisiones por afirmación, cobertura de originales/mapa, evidencia y estados por identidad. Consumidores: tres homónimos en corpus/reports-v2 y `forense/analisis/reports-v2/genero-violencia-salud-1/indice-local.md`. Productor/verificador local `forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py`; deriva conteos desde decisiones explícitas, comprueba cifras y denominadores sin convertir todos los dígitos en estimaciones. No modifica el mapa, CALC ni índice global. ADR-260926-ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1-92f8-01.

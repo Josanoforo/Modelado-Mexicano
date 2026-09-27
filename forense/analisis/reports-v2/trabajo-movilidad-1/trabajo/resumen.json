@@ -1,0 +1,33 @@
+{
+  "pieza": "trabajo",
+  "report": "corpus/reports-v2/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md",
+  "decisiones": "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/decisiones.json",
+  "cifras": "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/cifras.json",
+  "reglas": "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/reglas.json",
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/producir.py",
+    "--verificar",
+    "--autoprueba"
+  ],
+  "comando_producir": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/producir.py"
+  ],
+  "conteos": {
+    "filas_mapa": 57,
+    "registros_editoriales": 147,
+    "tesis_distintas": 142,
+    "parrafos_originales_cubiertos": 51,
+    "registros_meta_excluidos_tesis": 3,
+    "repeticiones_semanticas": 2,
+    "cantidades_trazadas": 7,
+    "reglas_propuestas": 3,
+    "por_dictamen_registros": {
+      "MATIZA": 49,
+      "SIN-CIFRA": 94,
+      "CONFIRMA": 2,
+      "ROMPE": 2
+    }
+  }
+}
