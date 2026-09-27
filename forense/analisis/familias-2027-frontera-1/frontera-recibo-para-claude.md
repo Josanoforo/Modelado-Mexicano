@@ -24,3 +24,5 @@ ENOE conserva punto y SE nula por39 estratos singleton del marco completo; no se
 Se solicita por el circuito de mesa en el PR un recibo independiente sobre selección, comparabilidad, lectores, oros, potencia y disposición propuesta. Las correcciones y cualquier aceptación se documentan como sucesores; no se afirma recibo concedido. NC/FP propias71cf conservan pendientes y objetos de firma. La secuencia real con gates está en secuencia-y-calendario.md. Corte en frontera-corte-final.json; resultado y NO-CORRIDO/CONSUMIDO en frontera-cierre.md.
 
 Entrega: [PR#1195](https://github.com/Josanoforo/Modelado-Mexicano/pull/1195), rama codex/astra6-c2-frontera-1; recibo independiente solicitado en el cuerpo del PR, no concedido.
+
+EJECUTADO, corrección solicitada en#1195: la decisión exige ambos grupos y escenarios completos, SE válidos y ningún bloqueo; cota conjunta nula ante familia parcial. Regresiones y evidencia en frontera-correccion-grupos.md. La recomendación actual de no lanzar ambos contratos permanece igual.

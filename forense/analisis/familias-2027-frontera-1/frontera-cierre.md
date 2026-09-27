@@ -25,3 +25,5 @@ ASTRA6-C2-FRONTERA-1: ejecución sucesora del cuerpo único archivado por#1191. 
 Entrega: [PR#1195](https://github.com/Josanoforo/Modelado-Mexicano/pull/1195), rama codex/astra6-c2-frontera-1; recibo independiente solicitado en el cuerpo del PR, no concedido.
 
 INTERPRETACIÓN-DECLARADA de nombre: el recibo exigido se entrega como frontera-recibo-para-claude.md para cumplir la unicidad de archivos CLI; T02 del commit completo detectó colisión del nombre genérico. Se conservaron contenido y función, actualizando enlaces propios sin tocar testimonios ajenos.
+
+EJECUTADO, corrección solicitada en#1195: la decisión exige ambos grupos y escenarios completos, SE válidos y ningún bloqueo; cota conjunta nula ante familia parcial. Regresiones y evidencia en frontera-correccion-grupos.md. La recomendación actual de no lanzar ambos contratos permanece igual.
