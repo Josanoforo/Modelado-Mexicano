@@ -1,0 +1,20 @@
+[
+  {
+    "pieza": "P5 · Atestación externa",
+    "razon": "DIFERIDO-A:SIN-ASIGNAR: siguiente circuito de sellos de mesa; no hay comprobante de envío ni OTS.",
+    "impacto": "Cero familias atestiguadas externamente; conservar estado SELLADO-INTERNAMENTE.",
+    "sucesor": "SIN-ASIGNAR; circuito de mesa manifiesto de sellos y OTS"
+  },
+  {
+    "pieza": "Cierre · recibo técnico de Claude",
+    "razon": "DIFERIDO-A:SIN-ASIGNAR: revisión real GEN2-RECIBO-ASTRA-PRODUCTO-N solicitada en PR.",
+    "impacto": "Entrega no aceptada ni fusionada hasta recibo real.",
+    "sucesor": "SIN-ASIGNAR; GEN2-RECIBO-ASTRA-PRODUCTO-N por mesa"
+  },
+  {
+    "pieza": "P4/P5 · activación y fecha ENIF futura",
+    "razon": "DIFERIDO-A:SIN-ASIGNAR: fecha oficial no confirmada; adquisición futura y cotejo antes de apertura compartida.",
+    "impacto": "Una ola condicional; ninguna evaluación futura ni fecha inventada.",
+    "sucesor": "SIN-ASIGNAR; adquisición/COMMIT-3 ENIF futuro por mesa"
+  }
+]

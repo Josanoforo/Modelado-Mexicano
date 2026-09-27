@@ -1,0 +1,377 @@
+# CALC-ENASEM-ESCOLARIDAD-2021-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ENASEM-ESCOLARIDAD-2021-0001
+spec_md: ../../../forense/prereg-caja/COLA-ENASEM-ESCOLARIDAD-spec-v1_0.md
+spec_md_sha256: 6bfa89b04fc21511323ca66ce1ee94e0796f58a1436ce39cda262b5968b8697c
+script: data/corrida0/CALC-ENASEM-ESCOLARIDAD-2021-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-COLA-COMPLETA-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-COLA-COMPLETA-1
+  encargo: forense/encargos/2026-09-26-GEN2-COLA-COMPLETA-1.md
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; RETROSPECTIVO; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2/3/4, regla 6, E.6, §3, §4, C4 de FIRMAS-16 (encargo §2, verbatim)
+  unidad_transferencia: PERSONA
+  olas: 2021 abierta; 2024 RESERVADA (E.6), no es input
+inputs:
+- id: enasem2021_bd_csv_zip
+  origen: manifiesto
+  sha256: 68b8f7ecbd55c2e857cb7449a3ead2b6edc2c87398d45667296d84b7c76db730
+  funcion: DATO
+  nota: enasem_2021_bd_csv.zip
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, lee_csv_zip (GEN2-SALUD-Y-BIENESTAR-PISOS-1) ejecutados desde
+    estos bytes
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lectura .dta/.sav con filtro de pais, recodificacion, ejes, diseno, ids (GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1)
+    ejecutados desde estos bytes
+variables:
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: YRSCHOOL
+  rol: reactivo o diseno
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: SEX_21
+  rol: reactivo o diseno
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: AGE_21
+  rol: reactivo o diseno
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: FACTORI_21
+  rol: reactivo o diseno
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: EST_DIS_21
+  rol: reactivo o diseno
+- archivo: SECT_A_C_D_E_PC_F_H_I_2021.csv
+  variable: UPM_DIS_21
+  rol: reactivo o diseno
+universo: Persona entrevistada de 50+ (AGE_21>=50), ENASEM 2021; FACTORI_21>0, EST_DIS_21 y UPM_DIS_21
+  no vacios.
+filtros: 'Un eje a la vez; nunca cruces. Recodificacion por texto de pregunta: spec humana §2.'
+ponderador: FACTORI_21 (factor individual transversal 2021)
+transformacion: bin(col, UNO, CERO); todo otro codigo fuera (spec humana §2).
+estimando: Proporcion sin escolaridad y con 6 anos o menos de escolaridad por sexo y edad; 2024 RESERVADA
+seed:
+  aplica: true
+  valor: 20260930
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  diseno: UPM UPM_DIS_21 dentro de estrato EST_DIS_21
+  ola: '2021'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-FILAS-LEIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-FILAS-50-MAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-50-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SIN-ESCOLARIDAD-2021-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-50-59-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-60-69-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-70-79-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-SEIS-ANOS-O-MENOS-2021-EDAD-80-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-DISENO
+  tipo: texto
+  unidad: etiqueta de diseño
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-INPUT-MOTOR-PISOS-CONFIANZA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-INPUT-RECETA-PISOS-SALUD-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-ENASEM-ESCOLARIDAD-2021-G-OLA-ABIERTA
+  tipo: texto
+  unidad: declaración

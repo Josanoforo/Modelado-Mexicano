@@ -1,0 +1,31 @@
+# Cierre · ASTRA6-C3-SOCIAL-1
+
+**EJECUTADO.** Se entregan tres reports v2 íntegros, con Bloque B, auditoría, tesis revisadas, evidencia a favor/en contra, mecanismos rivales, segmentación y falsadores. Cubren 604 registros de afirmación (113 entradas del mapa), 139 registros cuantitativos y 10 propuestas. Los registros de v1/mapa se solapan; no son un denominador de corroboración independiente. Cero mediciones, cero adopciones y cero apertura de microdatos.
+
+**LEÍDO.** El resultado permite retener el gradiente relacional de confianza sin convertirlo en una transferencia de confianza, describir participación comunitaria sin identificarla con asociacionismo formal, y separar afiliación, importancia y práctica religiosa. Los mecanismos quedan como hipótesis donde falta identificación. Las cifras de encuestas con años y casas distintas no estiman por separado cambio temporal ni efecto de instrumento. Las comparaciones de edad no separan cohorte de ciclo de vida.
+
+**EJECUTADO.** El [índice local](../analisis/reports-v2/social-1/social-indice.md) permite revisar cobertura, dictámenes y fuentes por report. Los originales, el mapa, catálogo, CALC, sellos, motor y derivados no se alteran. La [hoja de reglas](../analisis/reports-v2/social-1/social-hoja-reglas.md) propone contenido para el catálogo sucesor, con frecuencia y mecanismo separados; `FP-260926-ASTRA6-C3-SOCIAL-1-5803-01` queda ABIERTA. No se adopta por la firma de autorización del encargo.
+
+**EJECUTADO.** Worktree `/home/pc0/mm-astra6-c3-social-1`, rama `astra6-c3-social-1`; HEAD de arranque y corte `2c646cba93eebc9189a8135a5369bb45e8d29b89`, estado limpio, base actualizada por fetch. No había rama remota ni PR abierto para este objeto. PR abiertos consultados al arranque: #1168, #1167, #1164; perímetros ajenos respetados. La diferencia con SHA de redacción `34949751` es avance de main y no reabre objetivo ni firmas.
+
+**EJECUTADO.** Encargo reutilizado de #1166, commit archivador `43cfbdf7`, cuerpo y sidecar conservados; los tres hashes embebidos coinciden. Se creó un commit de corte de ejecución `58032b66` y la herramienta `cierre_acto.py` deriva `ADR-260926-ASTRA6-C3-SOCIAL-1-5803-01`. INTERPRETACIÓN-DECLARADA: el 0-bis de archivo ya existe y no se repite; la raíz de la cascada propia deriva del primer commit de ejecución de esta rama según herramienta vigente. No se duplica asiento de firma.
+
+**EJECUTADO.** Entorno editorial sin microdato: variable `sin_variable`, sonda autorizada HTTP200, corpus NO, archivos examinados0. El comando inicial dentro del sandbox devolvió HTTP000/INDETERMINADO; la sonda con red autorizada confirmó acceso público. No se infiere plataforma NUBE sólo de esas señales: se ejecuta exclusivamente síntesis editorial sobre registros agregados del repo y literatura pública, sin enlazar ni abrir raíz de datos.
+
+**LEÍDO.** Premisa actualizada: las FP ac7b-01..04 ya están FIRMADA al corte, aunque la nota de medición anterior decía cero adopciones en ese acto. Se cita el estado vigente, no el estado histórico de la nota. Las vistas de RESULT están rezagadas: `consulta.py` devolvió NO-ENCONTRADO, pero los mismos IDs están en JSON sellado y tabla temática. Se conserva consulta fallida y extracción puntual por clave/hash/firma; no se llamó ausencia del dato ni se re-midió.
+
+**EJECUTADO.** Literatura dirigida primaria 2025–26 y marcos necesarios, por afirmación. Los registros `*-fuentes.json` dicen población, método, URL, etiqueta (a)/(b)/(c) y alcance de lectura. Recuperación parcial, resumen indexado y acceso fallido se distinguen de lectura completa. No se abrió publicación o tabulado de olas reservadas LB2024, PEW2025 ni LAPOP2023. La crítica a la literatura del v1 no equivale a un censo de toda literatura existente.
+
+**EJECUTADO.** `python3 forense/analisis/reports-v2/social-1/verifica_lote.py --prueba-mutacion`: VERDE, cero errores. Protege el defecto real del v1, cifra WVS atribuida sin procedencia suficiente, al exigir trazabilidad; no decide verdad de la tesis. Verifica mapa y cobertura de líneas, igualdad TSV/JSON, cifras selladas y externas, firmas y referencias. Las pruebas por mutación rechazan fuente ausente y estado vetado. Evidencia [social-verificacion.txt](../analisis/reports-v2/social-1/social-verificacion.txt).
+
+**EJECUTADO.** `python3 tests/check.py --rapido --baseline`: VERDE, cero FAIL nuevos; WARN informativos existentes y de propuestas abiertas. El control T02 rechazó los nombres idénticos v1/v2 y el nombre obligatorio del recibo. Corrección adyacente D-21 de dos líneas: identidad por ruta para reports y artefactos locales de reports-v2. Mantiene el control de contenido idéntico, no edita workflows, baselines ni productores centrales. El corte se renombró a `social-corte.json` para evitar colisión auxiliar. Los TSV locales citan campos vacíos para conservar el esquema sin blancos al final. Evidencia [social-pruebas-rapidas.txt](../analisis/reports-v2/social-1/social-pruebas-rapidas.txt).
+
+**LEÍDO.** Reservas materiales: retrospectividad; diseños parciales e IC según instrumento; denominación WVS con base válida restringida; unidades poblacionales/edades de encuestas y censo no intercambiables; evidencia reciente localizada no transportada a todo México. C1 pendiente, sin confundir replay con validación independiente. Un hallazgo material posterior debe corregir sólo sus afirmaciones afectadas. SIN-CIFRA conserva razón, no implica imposibilidad universal ni refutación.
+
+**PROPUESTO.** Claude recibe por circuito de mesa el [recibo solicitado](../analisis/reports-v2/social-1/recibo-para-claude.md); no se inventa un recibo obtenido ni se envía mensaje externo. Recomendación: revisar tesis y denominadores, recibir las propuestas útiles y mantenerlas como hipótesis; alternativa: aceptar sólo reports y devolver reglas concretas. Mesa decide adopción y fusión. No fusionar por esta sesión.
+
+## NO-CORRIDO / RESERVAS
+
+| Qué | Por qué | Impacto | Sucesor |
+|---|---|---|---|
+| Recibo técnico de Claude | DECISIÓN-DE-MESA-PENDIENTE: se solicita por el circuito de mesa; este archivo no lo acredita | No se autoriza integración humana del PR ni adopción de reglas por esta sesión | forense/analisis/reports-v2/social-1/recibo-para-claude.md |

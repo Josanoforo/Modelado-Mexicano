@@ -54,7 +54,8 @@ _PATRON = re.compile(r"^instrucciones-proyecto-v(\d+)(?:_(\d+))?\.md$")
 
 def _version_mas_alta(raiz: Path) -> str:
     candidatos = []
-    for p in raiz.glob("instrucciones-proyecto-v*.md"):
+    # GEN2-FRONT-3-PORTADA-1: la vigente vive en gobierno/; las viejas, en archivo/.
+    for p in (raiz / "gobierno").glob("instrucciones-proyecto-v*.md"):
         if "-HISTORIA" in p.name or "-DELTA" in p.name:
             continue
         m = _PATRON.match(p.name)
@@ -62,7 +63,7 @@ def _version_mas_alta(raiz: Path) -> str:
             continue
         mayor = int(m.group(1))
         menor = int(m.group(2)) if m.group(2) else 0
-        candidatos.append(((mayor, menor), p.name))
+        candidatos.append(((mayor, menor), f"gobierno/{p.name}"))
     if not candidatos:
         raise AssertionError("ningun instrucciones-proyecto-v*.md vigente en el arbol")
     candidatos.sort()
@@ -71,7 +72,7 @@ def _version_mas_alta(raiz: Path) -> str:
 
 def _archivo_citado_en_claude_md(raiz: Path) -> str:
     texto = (raiz / "CLAUDE.md").read_text(encoding="utf-8")
-    m = re.search(r"instrucciones-proyecto-v[\w.]+\.md", texto)
+    m = re.search(r"(?:gobierno/)?instrucciones-proyecto-v[\w.]+\.md", texto)
     if not m:
         raise AssertionError("CLAUDE.md no cita ningun instrucciones-proyecto-v*.md")
     return m.group(0)

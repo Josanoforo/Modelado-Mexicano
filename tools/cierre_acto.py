@@ -22,9 +22,9 @@ cambios en el árbol no escribe nada la segunda vez.
 Tercer contador (`ACTO AUTOMATIZA-2-B · CIERRA-TERCER-CONTADOR`,
 `forense/encargos/2026-09-07-AUTOMATIZA-2-B-CIERRA-TERCER-CONTADOR.md`):
 la fila `| **\`gobernanza\`** | \`gobernanza-v1.15.md\` | N ADR, protocolo
-de cambio |` de `canon/estado-programa-v1_16.md` §0 es una tercera cita
+de cambio |` de `canon/estado-programa-v1_17.md` §0 es una tercera cita
 viva del mismo número, que ya requirió recifrado manual repetido antes de
-esta pieza. `canon/estado-programa-v1_16.md` se lee UNA vez y se escribe
+esta pieza. `canon/estado-programa-v1_17.md` se lee UNA vez y se escribe
 UNA vez: las sustituciones de `L0` y de la tabla se aplican en secuencia
 sobre el mismo buffer en memoria, nunca en dos ciclos independientes de
 read/write.
@@ -72,7 +72,7 @@ def _ruta_gobernanza(raiz):
 
 
 def _ruta_estado(raiz):
-    return os.path.join(raiz, "canon", "estado-programa-v1_16.md")
+    return os.path.join(raiz, "canon", "estado-programa-v1_17.md")
 
 
 def _ruta_registro_rotulos(raiz):
@@ -459,8 +459,8 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     print("GOBERNANZA (conteos)")
     print(f"  ADR reales: {gob['adr_real']}")
     print(f"  Cabecera declara: {gob['cabecera_declara']} (canon/gobernanza-v1_15.md, {gob['cabecera_anclas']} ancla(s))")
-    print(f"  L0 declara: {gob['l0_declara']} (canon/estado-programa-v1_16.md, {gob['l0_anclas']} ancla(s))")
-    print(f"  Tabla estado declara: {gob['tabla_declara']} (canon/estado-programa-v1_16.md, {gob['tabla_anclas']} ancla(s))")
+    print(f"  L0 declara: {gob['l0_declara']} (canon/estado-programa-v1_17.md, {gob['l0_anclas']} ancla(s))")
+    print(f"  Tabla estado declara: {gob['tabla_declara']} (canon/estado-programa-v1_17.md, {gob['tabla_anclas']} ancla(s))")
     reconciliar = []
     if gob["cabecera_anclas"] == 1 and gob["cabecera_declara"] != gob["adr_real"]:
         reconciliar.append(f"gobernanza {gob['cabecera_declara']}→{gob['adr_real']}")
@@ -591,7 +591,7 @@ def fase_b_aplica(raiz=RAIZ):
     reconciliarlos era exactamente lo que producía el choque de merges que
     este acto existe para cerrar. `--aplica` sigue sincronizando la cola
     (independiente de los tres contadores, ver ACTO GEN2-T9 P4(i)) y ya no
-    toca `canon/gobernanza-v1_15.md` ni `canon/estado-programa-v1_16.md`
+    toca `canon/gobernanza-v1_15.md` ni `canon/estado-programa-v1_17.md`
     -- verificable con `git status` tras correrlo (criterio de "hecho" 4
     del encargo)."""
     adr_real = EC.adr_max(raiz)

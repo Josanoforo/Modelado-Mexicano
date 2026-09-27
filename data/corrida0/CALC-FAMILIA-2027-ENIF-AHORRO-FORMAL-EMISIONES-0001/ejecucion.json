@@ -1,0 +1,99 @@
+{
+ "corrida_id": "CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001--f4776e156e5c",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "cuenta_gen2": "NO",
+  "generacion": "GEN2",
+  "rotulo": "PROSPECTIVA",
+  "tipo": "PROSPECTIVA-EMISION-SIN-R"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-26T20:41:53Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 511,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "f4776e156e5cafa74689d08df2138a3fdf005c99",
+  "git_rama": "codex/astra6-c2-enif-1",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "f4776e156e5cafa74689d08df2138a3fdf005c99",
+ "input_ids": [
+  "CALC-ENIF-0001"
+ ],
+ "input_sha256": {
+  "CALC-ENIF-0001": "2a90c52e532e0c8f17ff87f31c70567f7810f337274f895f3a4623d08f4c57e6"
+ },
+ "parametros": {
+  "R_futura": null,
+  "agrupacion": "NACIONAL",
+  "banda": 0.02,
+  "futuro_ids": null,
+  "min_estratos": 150,
+  "min_n": 10000,
+  "min_upm": 1000,
+  "replicas": 2000
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-FAMILIA-ENIF-AHORRO-FORMAL-PISO-P"
+ ],
+ "script_blob_sha256": "95db1f503d15a0d83f26105eef69c69d447c74e5a12914738694517ff258438c",
+ "script_path": "data/corrida0/CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "motivo": "determinista"
+ },
+ "spec_id": "CALC-FAMILIA-2027-ENIF-AHORRO-FORMAL-EMISIONES-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "a02c8146472931bb9a7d1c8c30a8e18df36262f0e13fe37dccda44d896a914d2",
+ "spec_yaml_sha256": "ce65ed856cd8351773c1c5ff536900fb860cc228bb04d138c5fa865d2fda50d3",
+ "tolerancia": {
+  "abs": 1e-10,
+  "tipo": "flotante"
+ }
+}

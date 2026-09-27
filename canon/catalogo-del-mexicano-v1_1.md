@@ -122,7 +122,7 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Psicología de la Juventud Mexicana Contemporánea  Gen Z y Millennials  | `JUVENTUD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 29 (4 / 14 / 11) |
 | Psicología del Consumidor Mexicano  Patrones  Contradicciones y Estrat | `CONSUMO` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 81 (3 / 42 / 36) |
 | Psicología del Trabajo en México  Un Mapa Basado en Evidencia | `TRABAJO` | **MEDIDO** | 26273 | 0 | 85 (13 / 48 / 24) |
-| Psychology of Mexico-US Migration  Identity  Family  Aspiration  and W | `MIGRACION` | **EN-MEDICIÓN** | 0 | 1 | 58 (5 / 29 / 24) |
+| Psychology of Mexico-US Migration  Identity  Family  Aspiration  and W | `MIGRACION` | **EN-MEDICIÓN** | 0 | 2 | 58 (5 / 29 / 24) |
 | Reconfiguración de los Guiones de Género en México  Masculinidades  Fe | `GENERO` | **MEDIDO** | 6887 | 0 | 47 (7 / 26 / 14) |
 | Religiosidad y Psicología del Mexicano Contemporáneo  Moral  Afrontami | `RELIGIOSIDAD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 39 (5 / 25 / 9) |
 | Report 26  The Contemporary Mexican and Knowledge  Expertise  Educatio | `CONOCIMIENTO` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 15 / 11) |

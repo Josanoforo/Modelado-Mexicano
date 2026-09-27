@@ -1,0 +1,79 @@
+[
+  {
+    "id": "CONF-ENCIG",
+    "autor": "INEGI",
+    "fecha": "2024-03-20",
+    "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2024/EstSegPub/ENCIG_23.pdf",
+    "poblacion": "México, personas 18+ en localidades de 100 mil+ habitantes; levantamiento 2023",
+    "metodo": "Encuesta probabilística; mucha/algo de confianza; comunicado pp. 1,3,17",
+    "tier": "(a)",
+    "tesis": "Gradiente entre familiares e instituciones, corrige familia nuclear vs familiares",
+    "lectura": "PDF público leído pp. 1–3 y 17; no microdato"
+  },
+  {
+    "id": "CONF-OECD25",
+    "autor": "OECD",
+    "fecha": "2025",
+    "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2025/06/government-at-a-glance-2025-country-notes_9de36e82/mexico_9ec6b765/d77b42c9-en.pdf",
+    "poblacion": "Adultos urbanos México, datos de confianza 2023",
+    "metodo": "Nota primaria de resultados; escala 0–10; p.1",
+    "tier": "(a)",
+    "tesis": "Alta confianza federal en escala OCDE contradice confianza institucional universalmente baja",
+    "lectura": "PDF leído; publicación 2025 no significa levantamiento 2025"
+  },
+  {
+    "id": "CONF-OECD24",
+    "autor": "OECD",
+    "fecha": "2024-07-10",
+    "url": "https://www.oecd.org/en/publications/oecd-survey-on-drivers-of-trust-in-public-institutions-2024-results-country-notes_a8004759-en/mexico_14d321b0-en.html",
+    "poblacion": "Adultos urbanos México, septiembre/octubre 2023",
+    "metodo": "Encuesta presencial INEGI; escala 0–10; preguntas hipotéticas integridad",
+    "tier": "(a)",
+    "tesis": "El 27% v1 pregunta por favor político a cambio de empleo privado, no funcionario que rechaza soborno",
+    "lectura": "Secciones Trust in public institutions y Perceptions leídas"
+  },
+  {
+    "id": "CONF-OECDLAC25",
+    "autor": "OECD",
+    "fecha": "2025",
+    "url": "https://www.oecd.org/en/publications/oecd-survey-on-drivers-of-trust-in-public-institutions-in-latin-america-and-the-caribbean-2025-results_ea3385cf-en/full-report/overview_a7ba6ef6.html",
+    "poblacion": "México urbano 2023 y países LAC con periodos diferentes",
+    "metodo": "México presencial INEGI; otros países mayormente panel online con cuotas",
+    "tier": "(a) componente mexicano / (c) comparación regional",
+    "tesis": "Impide leer brechas como cultura nacional o evolución; fecha de publicación no es ola mexicana",
+    "lectura": "Overview, método y marco leídos; no se extraen tabulados de olas reservadas"
+  },
+  {
+    "id": "CONF-DIG25",
+    "autor": "Daoudi, Gainous y colaboradores",
+    "fecha": "2025-02-24",
+    "url": "https://doi.org/10.1108/OIR-06-2023-0296",
+    "poblacion": "Estudio mundial; no se verificó estimación México separada",
+    "metodo": "Gallup y V-Dem, análisis observacional de moderación",
+    "tier": "(c)",
+    "tesis": "Consumo digital puede erosionar confianza según contexto; no prueba reemplazo de familia por redes en jóvenes mexicanos",
+    "lectura": "Resumen del editor Emerald recuperado en búsqueda; texto completo no leído"
+  },
+  {
+    "id": "CONF-CARBON24",
+    "autor": "Dragana Davidovic (confirmación de autora en publicación propia enlazada, https://www.linkedin.com/posts/dragana-davidovic-a752a3120_does-corruption-shape-attitudes-towards-carbon-activity-7204413849154838528-8Bb2)",
+    "fecha": "2024-06",
+    "url": "https://doi.org/10.1016/j.erss.2024.103493",
+    "poblacion": "Participantes en México y Suecia; no representatividad nacional establecida en resumen",
+    "metodo": "Experimento de encuesta con viñetas aleatorias de corrupción; mediadores medidos después",
+    "tier": "(a) muestra mexicana / (c) transporte Suecia",
+    "tesis": "Señal de corrupción cambia apoyo fiscal climático; no identifica ciclo mutuamente causal de corrupción real y confianza",
+    "lectura": "Resumen primario del editor recuperado; acceso directo retornó error; no texto completo"
+  },
+  {
+    "id": "CONF-RESULT",
+    "autor": "Repositorio Modelado Mexicano",
+    "fecha": "2026-09-26",
+    "url": "data/corrida0/CALC-WVS-PISOS-2018-0001/sello.json",
+    "poblacion": "Adultos mexicanos 18+ según cada spec WVS, Latinobarómetro y LAPOP",
+    "metodo": "Resultados sellados consultados por clave, sin microdato",
+    "tier": "(a)",
+    "tesis": "Pisos descriptivos adoptados; no validación causal ni ciega",
+    "lectura": "JSON por claves y consultas registradas en confianza-consultas.json"
+  }
+]

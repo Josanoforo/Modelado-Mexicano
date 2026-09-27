@@ -95,3 +95,6 @@ data/corrida0/decisiones.tsv merge=union
 # conservarlos en el blob y al extraer un checkout limpio (PR #1087).
 data/enoe-reactivos-olas-v1_0.tsv -text whitespace=cr-at-eol
 data/enoe-olas-elegibles-preparacion-v1_0.tsv -text whitespace=cr-at-eol
+
+# ACTO GEN2-TUBERIA-CABLEADO-SESIONES-1 (D-21): registro del hook de lectura, solo se apendan filas.
+forense/analisis/cableado/bloqueos.tsv merge=union

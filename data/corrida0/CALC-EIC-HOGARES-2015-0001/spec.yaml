@@ -1,0 +1,3155 @@
+# CALC-EIC-HOGARES-2015-0001 -- contrato ejecutable de la spec humana (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-EIC-HOGARES-2015-0001
+spec_md: ../../../forense/prereg-caja/COLA-EIC-HOGARES-spec-v1_0.md
+spec_md_sha256: 87c94f28872a3dc0aad2068d3db7f3ef2eaa8abf464ecf26e7bc270fdd05fc73
+script: data/corrida0/CALC-EIC-HOGARES-2015-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+- pyreadstat
+etiquetas:
+  generacion: GEN2
+  uso_motor: NO-ADOPTA-NADA
+  cuenta_gen2: SI
+  adopta: 'NO'
+  cuenta_gen2_nota: 'CONTADOR del encargo GEN2-COLA-COMPLETA-1 (cuenta_gen2: SI, adopta: NO)'
+  fuente_acto: GEN2-COLA-COMPLETA-1
+  encargo: forense/encargos/2026-09-26-GEN2-COLA-COMPLETA-1.md
+  tipo: PISO-POR-SEGMENTO-DESDE-MICRODATO
+  agrupacion: UNA-SOLA-VARIABLE
+  marca: DESCRIPTIVO -- pisos por segmento; RETROSPECTIVO; nada se evalua contra R en este CALC
+  firmas: F-ASTRA-5-2/3/4, regla 6, E.6, §3, §4, C4 de FIRMAS-16 (encargo §2, verbatim)
+  unidad_transferencia: HOGAR
+  olas: Intercensal 2015 (unica ola del instrumento); Censo 2020 RESERVADO (E.6), no es input
+inputs:
+- id: eic2015_nacional_csv
+  origen: manifiesto
+  sha256: efcb4cb1d782d718a49b4ea5c2d995aecac92d950884305e88a9819c2fa422f8
+  funcion: DATO
+  nota: eic2015_nacional_csv.zip
+- id: receta_pisos_salud
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: marginales, bootstrap, resumen, lee_csv_zip (GEN2-SALUD-Y-BIENESTAR-PISOS-1) ejecutados desde
+    estos bytes
+- id: motor_pisos_confianza
+  origen: repo
+  ruta: tools/dominios/confianza/motor_pisos.py
+  sha256: 7d0494f43052e0ea39ce0baf5f6505ccf889b386cfa3c0775b0dbdfb56ef958e
+  funcion: CODIGO
+  nota: lectura .dta/.sav con filtro de pais, recodificacion, ejes, diseno, ids (GEN2-CONFIANZA-RELIGIOSIDAD-CAPITAL-SOCIAL-PISOS-1)
+    ejecutados desde estos bytes
+variables:
+- archivo: TR_VIVIENDA15.CSV
+  variable: TIPOHOG
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: JEFE_SEXO
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: TAMLOC
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: ENT
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: FACTOR
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: ESTRATO
+  rol: reactivo o diseno
+- archivo: TR_VIVIENDA15.CSV
+  variable: UPM
+  rol: reactivo o diseno
+universo: Vivienda particular habitada con tipo de hogar conocido (TIPOHOG 1,2,3,5,6), Encuesta Intercensal
+  2015; FACTOR>0, ESTRATO y UPM no vacios.
+filtros: 'Un eje a la vez; nunca cruces. Recodificacion por texto de pregunta: spec humana §2.'
+ponderador: FACTOR (vivienda)
+transformacion: bin(col, UNO, CERO); todo otro codigo fuera (spec humana §2).
+estimando: Distribucion de tipo de hogar (ampliado, nuclear, unipersonal; ampliado entre familiares) por
+  sexo de la jefatura, tamano de localidad y entidad; ola unica; CCPV 2020 RESERVADO
+seed:
+  aplica: true
+  valor: 20260929
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposicion dentro de estrato; singleton de certeza; percentiles 2.5/97.5;
+    bloques de 50; contrato conservador
+  diseno: UPM UPM dentro de estrato ESTRATO
+  ola: '2015'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-EIC-HOGARES-2015-G-FILAS-LEIDAS
+  tipo: entero
+  unidad: filas
+- id: RESULT-EIC-HOGARES-2015-G-FILAS-DISENO-VALIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-EIC-HOGARES-2015-G-FILAS-TIPOHOG-CONOCIDO
+  tipo: entero
+  unidad: filas
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-JEFATURA-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-15MIL-49999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-15MIL-49999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-15MIL-49999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-15MIL-49999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-15MIL-49999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-50MIL-99999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-50MIL-99999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-50MIL-99999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-50MIL-99999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-50MIL-99999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-11-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-12-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-13-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-14-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-15-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-16-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-17-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-18-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-19-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-20-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-21-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-22-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-23-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-24-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-25-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-26-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-27-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-28-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-30-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-31-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-2015-ENTIDAD-32-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-JEFATURA-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-15MIL-49999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-15MIL-49999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-15MIL-49999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-15MIL-49999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-15MIL-49999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-50MIL-99999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-50MIL-99999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-50MIL-99999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-50MIL-99999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-50MIL-99999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-11-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-12-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-13-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-14-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-15-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-16-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-17-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-18-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-19-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-20-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-21-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-22-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-23-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-24-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-25-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-26-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-27-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-28-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-30-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-31-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-NUCLEAR-2015-ENTIDAD-32-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-JEFATURA-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-15MIL-49999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-15MIL-49999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-15MIL-49999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-15MIL-49999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-15MIL-49999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-50MIL-99999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-50MIL-99999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-50MIL-99999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-50MIL-99999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-50MIL-99999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-11-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-12-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-13-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-14-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-15-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-16-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-17-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-18-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-19-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-20-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-21-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-22-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-23-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-24-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-25-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-26-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-27-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-28-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-30-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-31-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-UNIPERSONAL-2015-ENTIDAD-32-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TOTAL-TODOS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-HOMBRE-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-MUJER-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-JEFATURA-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-MENOS-2500-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-MENOS-2500-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-MENOS-2500-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-MENOS-2500-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-MENOS-2500-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-2500-14999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-2500-14999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-2500-14999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-2500-14999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-2500-14999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-15MIL-49999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-15MIL-49999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-15MIL-49999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-15MIL-49999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-15MIL-49999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-50MIL-99999-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-50MIL-99999-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-50MIL-99999-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-50MIL-99999-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-50MIL-99999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-100MIL-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-100MIL-MAS-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-100MIL-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-100MIL-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-TAMLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-01-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-01-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-01-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-01-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-02-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-02-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-02-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-02-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-03-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-03-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-03-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-03-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-04-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-04-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-04-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-04-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-05-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-05-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-05-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-05-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-06-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-06-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-06-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-06-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-07-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-07-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-07-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-07-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-08-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-08-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-08-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-08-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-09-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-09-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-09-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-09-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-10-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-10-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-10-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-10-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-11-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-11-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-11-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-11-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-11-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-12-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-12-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-12-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-12-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-12-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-13-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-13-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-13-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-13-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-13-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-14-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-14-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-14-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-14-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-14-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-15-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-15-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-15-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-15-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-15-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-16-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-16-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-16-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-16-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-16-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-17-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-17-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-17-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-17-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-17-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-18-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-18-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-18-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-18-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-18-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-19-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-19-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-19-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-19-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-19-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-20-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-20-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-20-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-20-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-20-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-21-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-21-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-21-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-21-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-21-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-22-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-22-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-22-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-22-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-22-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-23-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-23-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-23-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-23-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-23-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-24-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-24-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-24-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-24-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-24-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-25-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-25-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-25-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-25-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-25-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-26-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-26-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-26-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-26-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-26-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-27-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-27-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-27-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-27-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-27-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-28-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-28-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-28-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-28-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-28-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-29-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-29-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-30-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-30-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-30-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-30-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-30-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-31-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-31-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-31-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-31-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-31-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-32-P
+  tipo: proporcion
+  unidad: proporción ponderada
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-32-EE
+  tipo: flotante
+  unidad: error estándar bootstrap
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-32-IC-LO
+  tipo: proporcion
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-32-IC-HI
+  tipo: proporcion
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-EIC-HOGARES-2015-HOGAR-AMPLIADO-ENTRE-FAMILIARES-2015-ENTIDAD-32-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-EIC-HOGARES-2015-G-DISENO
+  tipo: texto
+  unidad: etiqueta de diseño
+- id: RESULT-EIC-HOGARES-2015-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-EIC-HOGARES-2015-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-EIC-HOGARES-2015-G-INPUT-MOTOR-PISOS-CONFIANZA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-EIC-HOGARES-2015-G-INPUT-RECETA-PISOS-SALUD-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-EIC-HOGARES-2015-G-OLA-UNICA
+  tipo: texto
+  unidad: declaración

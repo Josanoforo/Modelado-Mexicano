@@ -1,0 +1,31 @@
+{
+  "estado": "EJECUTADO",
+  "corte": "2c646cba93eebc9189a8135a5369bb45e8d29b89",
+  "producto": "report completo Bloque B, auditoría y tabla exhaustiva",
+  "cobertura": {
+    "mapa": 38,
+    "unidades_v1": 121
+  },
+  "dictamenes": {
+    "CONFIRMA": 2,
+    "SIN-CIFRA": 47,
+    "MATIZA": 106,
+    "ROMPE": 4
+  },
+  "reservas": [
+    "Ningún microdato ni tabulado reservado abierto",
+    "PEW 2026 discrepancia campo2024 vs ola2025, excluido preventivamente"
+  ],
+  "lectura_parcial": [
+    "REL-S2 resumen, no PDF",
+    "REL-S3 resumen primario, no artículo íntegro",
+    "REL-S4/5/8/10 extractos primarios indexados; open falló",
+    "ENCREER gráficos dinámicos no cotejados"
+  ],
+  "no_corrido": [
+    "Sin validación ciega; sólo reuso sellado",
+    "Sin recalcular Censo/ITER ni cifras propias",
+    "Sin cotejar fuentes antiguas no recuperadas: se conservan dictámenes SIN-CIFRA con razón"
+  ],
+  "sucesor": "Recibo sustantivo Claude; adquisición de tablas históricas o estudios citados, y diseños de mecanismos/eficacia fuera de este lote"
+}
