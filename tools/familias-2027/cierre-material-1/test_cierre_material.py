@@ -13,7 +13,7 @@ import pytest
 import yaml
 
 from auditoria_sucesora import RutasExactas, audita
-from cierre import ROOT, AREA, AREA_REL, verifica, sha, valida_raws
+from verifica_cierre_material import ROOT, AREA, AREA_REL, verifica, sha, valida_raws, verifica_control
 
 
 def carga(nombre, path):
@@ -82,6 +82,21 @@ def test_input_raw_mutado_y_ruta_ajena(tmp_path):
     entradas['HISTORICO']['archivo'] = '../escape.zip'
     with pytest.raises(ValueError,match='RUTA-INPUT-AJENA'):
         valida_raws(tmp_path, entradas)
+
+
+def test_control_no_es_su_propio_testigo(tmp_path):
+    source = AREA/'paquete-control-hashes.json'
+    original = source.read_bytes()
+    control = json.loads(original)
+    for rel in control['archivos']:
+        p = tmp_path/rel;p.parent.mkdir(parents=True,exist_ok=True)
+        shutil.copyfile(ROOT/rel,p)
+    dest = tmp_path/AREA_REL/source.name;dest.write_bytes(original)
+    verifica_control(tmp_path,esperado=sha(original))
+    rel = 'tools/familias-2027/cierre-material-1/auditoria_sucesora.py'
+    (tmp_path/rel).write_text('CONTROL-MUTADO')
+    with pytest.raises(ValueError,match='CONTROL-HASH-DISCORDANTE'):
+        verifica_control(tmp_path,esperado=sha(original))
 
 
 @pytest.mark.parametrize('operacion', ['read_bytes','read_text','write_bytes','write_text','open','builtin'])

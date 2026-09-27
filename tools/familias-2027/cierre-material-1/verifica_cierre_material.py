@@ -125,6 +125,20 @@ def verifica(root=ROOT, inv=None, esperado=None):
     return inv
 
 
+def verifica_control(root=ROOT, esperado=None):
+    rel = AREA_REL+'/paquete-control-hashes.json'
+    raw = (root/rel).read_bytes()
+    if esperado is None:
+        esperado = sha(git('show', 'HEAD:'+rel))
+    if sha(raw) != esperado:
+        raise ValueError('CONTROL-MUTADO')
+    obj = json.loads(raw)
+    for p, expected in obj['archivos'].items():
+        if sha(ruta(root,p).read_bytes()) != expected:
+            raise ValueError('CONTROL-HASH-DISCORDANTE: '+p)
+    print('CONTROL-SUCESOR: VERDE;', len(obj['archivos']), 'identidades propuestas')
+
+
 def resultados(cid):
     return json_leer(ROOT/'data/corrida0'/cid/'resultados.json')['resultados']
 
@@ -199,7 +213,7 @@ def hoja(inv):
     with (AREA/'hoja-comun.tsv').open('w') as out:
         fields = ['familia','ola','unidad','p0','result_id','estado','soporte_acreditado',
                   'contrato','contrato_sha256','driver','driver_sha256','calendario','estado_emision','atestacion','pendiente']
-        writer = csv.DictWriter(out,fieldnames=fields,delimiter='\t',extrasaction='ignore')
+        writer = csv.DictWriter(out,fieldnames=fields,delimiter='\t',lineterminator='\n',extrasaction='ignore')
         writer.writeheader();writer.writerows(filas)
     texto = (f"{resumen['N']} familias con emisiones congeladas para {resumen['M']} olas futuras; "
              f"{resumen['K']} con atestación externa verificada; fechas no confirmadas o ventanas esperadas. "
@@ -262,7 +276,7 @@ def valida_raws(carpeta, entradas):
 
 def pruebas():
     proc = subprocess.run([sys.executable,'-m','pytest','-q',
-                           'tools/familias-2027/cierre-material-1/test_cierre.py'],cwd=ROOT)
+                           'tools/familias-2027/cierre-material-1/test_cierre_material.py'],cwd=ROOT)
     if proc.returncode:
         raise ValueError('PRUEBAS-MATERIALES-FALLAN')
 
@@ -303,6 +317,11 @@ def verifica_replay():
     text = (AREA/'logs/cierre-envipe.txt').read_text()
     if 'ORO-HISTORICO: REPRODUCE' not in text or 'CIERRE: PASS' not in text:
         raise ValueError('CIERRE-ENVIPE-NO-REPRODUCE')
+    final = json_leer(AREA/'preflight-final/resumen.json')
+    for item in final['calcs']:
+        raw = (AREA/'preflight-final'/(item['calc']+'.txt')).read_bytes()
+        if sha(raw) != item['sha256'] or b'working_tree_dirty' in raw or b'SELLO_COINCIDE' not in raw:
+            raise ValueError('PREFLIGHT-FINAL-DISCORDANTE')
     print('EVIDENCIA-HISTORICA: ACREDITADA; no atestación ni evaluación futura')
 
 
@@ -315,12 +334,13 @@ if __name__ == '__main__':
     p.add_argument('--pruebas',action='store_true')
     p.add_argument('--preflight-final',action='store_true')
     p.add_argument('--evidencia',action='store_true')
-    p.add_argument('--inventario-sha256',help='ancla entregada por mesa para paquete sin Git')
+    p.add_argument('--inventario-sha256',help='ancla independiente entregada; cotejo COMMIT-1 requiere historia Git')
     a = p.parse_args()
     if a.prepara:
         prepara()
     if a.verifica or a.hoja or a.replay:
         inv = verifica(esperado=a.inventario_sha256)
+        verifica_control()
         if a.hoja:
             hoja(inv)
         if a.replay:

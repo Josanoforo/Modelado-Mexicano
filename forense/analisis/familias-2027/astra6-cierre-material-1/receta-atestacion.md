@@ -5,7 +5,7 @@ EJECUTADO: inventario-portable.json es sucesor aditivo de los inventarios ENIF/E
 En un clon limpio con historia, ejecutar:
 
 ```bash
-python3 tools/familias-2027/cierre-material-1/cierre.py --verifica --hoja --pruebas --evidencia
+python3 tools/familias-2027/cierre-material-1/verifica_cierre_material.py --verifica --hoja --pruebas --evidencia
 ```
 
 El comando autentica el inventario contra su blob entregado en Git, compara todos los archivos, coteja COMMIT-1 con la enmienda y prueba rutas/hash/REF. Para transportar a mesa: el clon y su historia (o un bundle de la rama) más inventario-portable.json, inventario-portable.sha256 y paquete-control-hashes.json. La historia de COMMIT-1 es testigo independiente requerido por la verificación; una carpeta sin Git no basta. En CAJA, montar data/raw y comprobar los tres ids del inventario. No ejecutar `--replay` si replay-ejecutado.json ya existe; se conserva la primera evidencia.
