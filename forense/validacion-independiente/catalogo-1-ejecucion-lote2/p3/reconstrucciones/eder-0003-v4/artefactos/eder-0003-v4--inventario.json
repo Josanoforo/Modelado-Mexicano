@@ -1,0 +1,98 @@
+[
+  {
+    "ruta": "/entrada/cuestionario-eder2017-cuestionario.pdf",
+    "bytes": 1184609,
+    "sha256": "e4958e0cbc982439f9dc341b7a68ac1cd6f284c6f1da7a057f0989e623f3fc28",
+    "sha256_declarado": "e4958e0cbc982439f9dc341b7a68ac1cd6f284c6f1da7a057f0989e623f3fc28"
+  },
+  {
+    "ruta": "/entrada/encargo.md",
+    "bytes": 380,
+    "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+    "sha256_declarado": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+  },
+  {
+    "ruta": "/entrada/estimandos.tsv",
+    "bytes": 398,
+    "sha256": "8b2f98bba2fc5ae4f1d2536cfd80201f148190fbae251435040c4a77c5efdd77",
+    "sha256_declarado": "8b2f98bba2fc5ae4f1d2536cfd80201f148190fbae251435040c4a77c5efdd77"
+  },
+  {
+    "ruta": "/entrada/insumos.json",
+    "bytes": 613,
+    "sha256": "17a19e649c1d3f58ce26638641a7c979a19c537e60ce5a9c0de4db80ae5fa75c",
+    "sha256_declarado": "17a19e649c1d3f58ce26638641a7c979a19c537e60ce5a9c0de4db80ae5fa75c"
+  },
+  {
+    "ruta": "/entrada/manifiesto.json",
+    "bytes": 627,
+    "sha256": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+    "sha256_declarado": null
+  },
+  {
+    "ruta": "/entrada/metodo.md",
+    "bytes": 2583,
+    "sha256": "e4cae07af88fb1793af83fb0dd8c98f06636de0a2ec367e1aa5a8d685d70485d",
+    "sha256_declarado": "e4cae07af88fb1793af83fb0dd8c98f06636de0a2ec367e1aa5a8d685d70485d"
+  },
+  {
+    "ruta": "/entrada/tolerancia.json",
+    "bytes": 41,
+    "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+    "sha256_declarado": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+  },
+  {
+    "ruta": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "bytes": 13313736,
+    "sha256": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3",
+    "entrada": {
+      "id": "eder_2017_eder2017_bases_csv",
+      "archivo": "eder2017/eder2017_bases_csv.zip",
+      "sha256": "bcc7eb90c2d016976fd8ba24528ce614bf4db0c29a1e3e0cf674bdfb024de0e3",
+      "url": "https://www.inegi.org.mx/contenidos/programas/eder/2017/microdatos/eder2017_bases_csv.zip",
+      "estado_acceso": "COINCIDE"
+    }
+  },
+  {
+    "ruta": "/raw/eder_2017_eder2017_fd/eder2017_fd.pdf",
+    "bytes": 2201081,
+    "sha256": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541",
+    "entrada": {
+      "id": "eder_2017_eder2017_fd",
+      "archivo": "eder2017/eder2017_fd.pdf",
+      "sha256": "dd4d93114a38e80192bbc29a4a4ab7fba6e4bce0067ecfcdbb4540ada5890541",
+      "url": "https://www.inegi.org.mx/contenidos/programas/eder/2017/doc/eder2017_fd.pdf",
+      "estado_acceso": "COINCIDE"
+    }
+  },
+  {
+    "archivo": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "miembro": "persona.csv",
+    "bytes": 12412670,
+    "sha256": "fbfb067c8ebd6072b71956046b3ebd3ebee2805d3be0d9ba442e820e8d79a043"
+  },
+  {
+    "archivo": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "miembro": "vivienda.csv",
+    "bytes": 5708665,
+    "sha256": "fed4b0ae3a9426fade6ffeedcdc4dcf4f425fb58ce7e35c08697b8b7e39ee8c7"
+  },
+  {
+    "archivo": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "miembro": "antecedentes.csv",
+    "bytes": 3690653,
+    "sha256": "1120e657d1af1a0a59ac6305a7355dfb543c3dd718322dc4402b89d10b434d20"
+  },
+  {
+    "archivo": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "miembro": "historiavida.csv",
+    "bytes": 400713759,
+    "sha256": "d896df7e7e5394b27669027af3f2431c90717621e550051b4140c89d270ad433"
+  },
+  {
+    "archivo": "/raw/eder_2017_eder2017_bases_csv/eder2017_bases_csv.zip",
+    "miembro": "hogar.csv",
+    "bytes": 862735,
+    "sha256": "f57e41e795bde3aa82fd825eefdfe8ecfd81a42930aa883956e7d8050361308a"
+  }
+]

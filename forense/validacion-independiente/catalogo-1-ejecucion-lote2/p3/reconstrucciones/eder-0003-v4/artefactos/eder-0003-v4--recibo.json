@@ -1,0 +1,27 @@
+{
+  "paquete": "eder-0003",
+  "version_entrada": 4,
+  "manifiesto_ruta": "/entrada/manifiesto.json",
+  "manifiesto_sha256": "f099944c6196e451dc1777c63983edaa9b465473892c94baef6d76743263d1fa",
+  "entradas_permitidas": [
+    "/entrada",
+    "/raw"
+  ],
+  "resultados_esperados_consultados": false,
+  "revelacion_solicitada": false,
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "entorno": {
+    "python": "3.14.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3"
+  },
+  "artefactos_sha256": {
+    "reconstruir.py": "dceb3b793ac198bc1e49508091d38bef8cdd0bc55f352663cacbdfada2616b0b",
+    "reconstruccion.tsv": "e54a1a66344c8435f1eedc91ca6f49f609dcac8f59a1bd89d7b30c05e17eab45",
+    "diagnostico.json": "b9bd9d7f7417b1193506019f2ca2d7e118390d2497f37e83258b3a61074fbc9b",
+    "inventario.json": "311bd8070317eda64d74c0a6034ff1f6fff4ddc3628cf5c9b64cbbdaf71f2e4b"
+  }
+}
