@@ -15,7 +15,7 @@ Comandos ejecutados desde el worktree:
 ```bash
 python3 tools/entorno.py --arranque
 python3 tools/corrida0.py status
-python3 forense/validacion-independiente/catalogo-1-incertidumbre-spec/ensambla.py
+python3 forense/validacion-independiente/catalogo-1-incertidumbre-spec/astra6-c1-incertidumbre-spec-ensambla.py
 python3 forense/validacion-independiente/catalogo-1-incertidumbre-spec/p1/test_sinteticos.py
 python3 forense/validacion-independiente/catalogo-1-incertidumbre-spec/p2/deriva.py
 python3 tests/check.py --rapido
