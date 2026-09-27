@@ -1043,6 +1043,14 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 
 `forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.
 
+## ASTRA6-C3-TRABAJO-MOVILIDAD-1 · tablas locales
+
+| Tabla | Productor | Contenido | Consumidor | Límite |
+|---|---|---|---|---|
+| `forense/analisis/reports-v2/trabajo-movilidad-1/{trabajo,movilidad}/decisiones.json` y `clase/editorial.json`; TSV propios por pieza | Juicio editorial explícito y productor propio | Afirmación/cláusula, correspondencia original/mapa, razón, dictamen y evidencia | Tres reports v2 y verificador local | Registros de cobertura pueden solaparse; no conteo de tesis únicas por líneas |
+| `forense/analisis/reports-v2/trabajo-movilidad-1/*/{cifras,evidencia,cifras-externas,fuentes}.json` según pieza | Consulta por identidad y lectura primaria pública | RESULT/CALC/registro/hash/firma/denominador, fuentes/localizadores y límites | Productores y revisión solicitada | Fusión distinta de adopción; provisional rotulado; fuentes reservadas excluidas |
+| `forense/analisis/reports-v2/trabajo-movilidad-1/entrega.json` y `indice-local.md` | `python3 forense/analisis/reports-v2/trabajo-movilidad-1/verifica_lote.py --regenera` | Conteos desde decisiones y hashes de artefactos | Recibo local/PR | Índice local; no cambia catálogo, mapa ni índice global |
+
 ### ASTRA6 C2 cierre material · sucesores propios
 
 `forense/analisis/familias-2027/astra6-cierre-material-1/{inventario-portable.json,hoja-comun.json,hoja-comun.tsv,matriz-nc-1178.tsv,paquete-control-hashes.json}`: identidad de contratos/drivers/enmienda, hoja de familias derivada y estados de NC; lector/verificador `tools/familias-2027/cierre-material-1/verifica_cierre_material.py`. Históricos y specs congeladas permanecen intactos; control sucesor propuesto y COMMIT-3 cerrado.

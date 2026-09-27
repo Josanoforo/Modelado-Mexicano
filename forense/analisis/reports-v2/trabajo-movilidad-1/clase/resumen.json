@@ -1,0 +1,26 @@
+{
+  "pieza": "clase",
+  "report": "corpus/reports-v2/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+  "decisiones": "forense/analisis/reports-v2/trabajo-movilidad-1/clase/editorial.json",
+  "cifras": "forense/analisis/reports-v2/trabajo-movilidad-1/clase/cifras.json",
+  "reglas": "forense/analisis/reports-v2/trabajo-movilidad-1/clase/reglas.json",
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/productor.py",
+    "--verificar"
+  ],
+  "comando_producir": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/productor.py"
+  ],
+  "conteos": {
+    "MATIZA": 14,
+    "SIN-CIFRA": 39,
+    "ROMPE": 4,
+    "CONFIRMA": 1
+  },
+  "mapa": 43,
+  "fuera_mapa": 15,
+  "clausulas_hijas": 3,
+  "revision_humana": "SOLICITADA-NO-CONCEDIDA"
+}

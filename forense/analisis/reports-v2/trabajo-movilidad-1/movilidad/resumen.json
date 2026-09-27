@@ -1,0 +1,49 @@
+{
+  "pieza": "movilidad",
+  "report": "corpus/reports-v2/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md",
+  "decisiones": "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/decisiones.json",
+  "cifras": "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/cifras.json",
+  "reglas": "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/reglas.json",
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/producir.py",
+    "--check",
+    "--self-test"
+  ],
+  "comando_producir": [
+    "python3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/producir.py",
+    "--write"
+  ],
+  "conteos": {
+    "registros_editoriales": 83,
+    "filas_mapa": 38,
+    "registros_fuera_mapa": 27,
+    "lineas_materiales_cubiertas": 33,
+    "tesis_editoriales_por_clausula": 83,
+    "resultados_punto_usados": 8,
+    "resultados_con_ic_n": 32,
+    "cifras_externas": 2,
+    "reglas": 3,
+    "CONFIRMA": 3,
+    "MATIZA": 26,
+    "ROMPE": 0,
+    "SIN-CIFRA": 54
+  },
+  "revision_humana": "SOLICITADA, NO CONCEDIDA",
+  "exposicion_reserva": {
+    "estado": "EXPOSICION-PUBLICA-DECLARADA; ADJUDICACION-PENDIENTE",
+    "fuente": "INEGI2025",
+    "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2025/enigh/ENIGH2024_RR.pdf",
+    "ola": "ENIGH2024 reservada, incluidos comunicados, fuera de excepción seis columnas AMAI",
+    "lectura": "2026-09-26 web open y find 0.391 / 36 047; páginas2,10,12",
+    "contenido_expuesto": "Gini con/sin transferencias y series; ingreso monetario por sexo, tablas y metodología publicada; ninguna apertura microdato",
+    "accion": "Excluir fuente y todas sus cifras/conclusiones/soportes; preservar testimonio, no retroautorización",
+    "adjudicacion": "PENDIENTE DE MESA; root amplía NC02"
+  },
+  "reservas": [
+    "MMSI provisional sin adopción",
+    "condicionamiento CEEY pobreza disputado; sin cifra en ambas direcciones",
+    "Exposición pública ENIGH2024 declarada, fuente excluida, adjudicación pendiente"
+  ]
+}

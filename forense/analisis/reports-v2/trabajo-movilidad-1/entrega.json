@@ -1,0 +1,94 @@
+{
+  "corte_editorial": "1eeb855272b933642177e3f32d51adc89f1009a0",
+  "unidad_conteo": "registros editoriales; no tesis únicas ni pruebas independientes",
+  "piezas": [
+    {
+      "pieza": "trabajo",
+      "report": "corpus/reports-v2/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md",
+      "tabla": "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/decisiones.json",
+      "registros_editoriales": 147,
+      "dictamenes": {
+        "CONFIRMA": 2,
+        "MATIZA": 49,
+        "ROMPE": 2,
+        "SIN-CIFRA": 94
+      }
+    },
+    {
+      "pieza": "movilidad",
+      "report": "corpus/reports-v2/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md",
+      "tabla": "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/decisiones.json",
+      "registros_editoriales": 83,
+      "dictamenes": {
+        "CONFIRMA": 3,
+        "MATIZA": 26,
+        "SIN-CIFRA": 54
+      }
+    },
+    {
+      "pieza": "clase",
+      "report": "corpus/reports-v2/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md",
+      "tabla": "forense/analisis/reports-v2/trabajo-movilidad-1/clase/editorial.json",
+      "registros_editoriales": 61,
+      "dictamenes": {
+        "CONFIRMA": 1,
+        "MATIZA": 15,
+        "ROMPE": 4,
+        "SIN-CIFRA": 41
+      }
+    }
+  ],
+  "objetos_sha256": {
+    "corpus/reports-v2/El_Clasemediero_Mexicano__Identidad__Ansiedad_de_Estatus_y_el_Miedo_Racional_a_Caer.md": "fdae8a028f5cd849410190b223591caac0636163f933539a30e8f369e68c6bf8",
+    "corpus/reports-v2/Mérito__Movilidad_Social_y_Desigualdad_en_México__Actualización_2025-2026.md": "c3b6c11788269b323fefc87fcc8029db6205b1ad02291bf834eabbfa4421ef65",
+    "corpus/reports-v2/Psicología_del_Trabajo_en_México__Un_Mapa_Basado_en_Evidencia.md": "05b9722e835406120b5abfb988773f4dba148ca298c00358979e0821bc9b8ff8",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/adjudicacion-exposicion.md": "79dff32d5384d6395d1ab8a9669ec2facf88e0cb95d34bbf34b111ac2460a594",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/arranque.json": "aaa041abfbd44094f8102663bcf7fd96646b7c4125f09a6f1c9db2c1344e5cfb",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/afirmaciones.tsv": "3125c3a4ce835eb88963434465d0c469bc7d36903ce4b9650448d8aee12d3c04",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/cifras.json": "a539c227ca9b16f0644f97dc73855600f75fd57577d25372f373a6d1403597c4",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/cobertura.json": "4ebfa7457ee2dc1dc4f70c774ac68e7b1d17c0261949550062cb14de8775a56d",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/consultas.json": "f2f0dac6e6776f45b163fec3f6f0ca9de3488f4528a336d5a31971258e39f54e",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/editorial.json": "f8c39f4d46bf5b5850dbc69c9687d3da9a8b958af7d2fcc541176957aa43dc7b",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/evidencia.json": "c2fd08b2a2a1c1bbf02af3979edf3551b94186f7acab798cebbaea641834b1e1",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/fuentes.json": "42283739d28b79c4f9e5c67a69423e66d36c47aee2205ecf91d61ce2f3c79676",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/mapa-leido.json": "65b1613d0ce31342c5e7e457980b96b240bd3d668f43541ae8561ea2c355de3a",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/nota.md": "4b444c17ff2ce25a9ea55a88372f4b138abac9b7bebde58ac6df6054b8d0b661",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/productor.py": "333a5669524572de49d69235024a4a115a9862f61b561a3c5781375279d2ebc2",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/reglas.json": "9fd97cbf2c22260452dbf4bdce4d707570732dee35e725a39801f8828fc464b1",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/report.editorial.md": "d5d93c7d595474aba3e569e575581d02600ac56da32d9d1c232219d46832a73f",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/clase/resumen.json": "cebaceae0354ab5d94b3128abdef86b641355049b3e413da94584d15cc82f58d",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/correccion-1181.md": "7dbd999a1263bd8d99792dc2d5ff9bc15c34761a69306f16fd14636b3b4679c3",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/cifras-externas.json": "7d5109b87575624187f9729ed9085e8efabd4b36fcfeb3b9f221265595fafb16",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/cifras.json": "7e8e3a75c939914edf0b4b4d65437f10bb45abb05f90bd8024b640265af23078",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/cobertura.json": "94cb58bfb00d40de8e62d12901d3d9fe76d0462c6fe00817b2a45f38a836691d",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/conteos.json": "9697aa7580b557dbf9108ab0b0acffef98c219f9a73f9e5d118d93b47099416a",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/contrato.json": "b74e7a14baaf9fecda33c8d8fd0092ca8c8511c2e1fd7efa87c7fae3aaefacdc",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/decisiones.json": "f49e9896284c80e617c1f5d62eacbfc3f9f6e0a513c7f8528449e136e61ae79e",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/decisiones.tsv": "b389944c9b43f5af61dab9c13294d42e4a10b8821d17dab554b72b1c4f7571d4",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/fuentes.json": "f00aa1cce68c05f22e5d6510bd7b66eb701531b5e7b41a09bbc32e141e26fd69",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/producir.py": "9c0d68bb517ee33fc7e943914b68a4f65de254397503accd946066e2e297699b",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/reglas.json": "38a4abd830b68da6cc04f7902817bb9a256dba3dd9e5b0c7e385449c5c459882",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/report-editorial.md": "8a206d4554c3fc52ded76cd3490bca811f9790c842d645349e90ca2017a8fa11",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/resumen.json": "6c1accd47c102993fa61af56247b94cfab1c58c636f93c2253b75dda60ace404",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/revision-dirigida.md": "108351032baffc6eed3e726e9431f73b43195a36eda48e7f2fec0b7267205005",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/movilidad/trazas-consulta.json": "916daec3fcba5d49cd7c26c2226d8ad95b8b4f4effd793e6b535c654afec874e",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/recibo-para-claude.md": "26390835c874a7fd65a3b8e74461251a501b18e6fcd53fb7076939d5b0042c8e",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/revision-para-mesa.md": "1486d7419724e3d231f5168a88d1c847e33c4820f558f3b4fdfdaeb2d09aac9e",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/afirmaciones.tsv": "4ada241a22ecf84be66d00e7e34f8163705abd411dab2f65ed3813c83da8d33b",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/cifras.json": "a5014617fd3f8f08994e52767c575b38df740aa6169efbb158219f2d3a002cfc",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/consulta.txt": "cd864e1d70c9a88cd22cc8b88fa695ff746dc89aaebbd8398794c8212d27fe5a",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/coverage.json": "658f86409225f83b2de51b3b96f22407bcdbb6aab1afaa6439a33b8f21343f35",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/decisiones.json": "7def8c656e6c5e280343351d5b229e6ba6f8aeb4768d7d06f5bed8a2b7c04020",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/editorial.md": "652494ccacd6be4bfba1a51ad0d966906c656e2d2170f49365e671d65c881f89",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/fuentes.json": "b96543506677989e2cb8cd206d890e87dc3421b154c395b554743dce91292803",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/manifest.json": "032507c5c85691a3876674c12c376cf0b83d2ca64d2b1886fdc266919ff015e5",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/producir.py": "6f95a82866bc46d1c5da71dfdd351b1790719fa62301b51e05ca61d199cf90fe",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/reglas.json": "dff913de1e31d93c7fcf7ac7f2d7e52ea48775d670ae269294e4bdd6465c5b36",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/resumen.json": "dce47ba2948b070a6f8399965ca74ceb790910ffc0f07b78d26e2322691baebc",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/trabajo/revision-dirigida.md": "18f7bd4d7d73d9323debe6b0414fa73eecc0eeeb092f90ee79ff5f13ef7ef2ba",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/verifica_lote.py": "fe90d6458e34d72cb4032c15d895a03e02b37918a485e074c89040698e73b5cb",
+    "forense/analisis/reports-v2/trabajo-movilidad-1/verificaciones.md": "dfff4e1aa3d45b3c93e132d3d1bdbf29b294b0b99e3dec0b381123fad193666f"
+  },
+  "revision_humana": "SOLICITADA; no obtenida por este ejecutor",
+  "recibo_independiente": "SOLICITADO por circuito PR; no concedido"
+}

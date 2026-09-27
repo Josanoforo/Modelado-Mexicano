@@ -1,0 +1,41 @@
+[
+  {
+    "id": "MOV-R1",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "Se compara origen social con logro adulto",
+    "entonces": "Usar transición origen/destino del mismo índice y cohorte; no usar Gini como sustituto",
+    "porque": "Escalas y estimandos distintos",
+    "tier_frecuencia": "a, descripción nacional publicada",
+    "tier_mecanismo": "no identificado",
+    "consumidor": "lector/editor/modelo solo tras adopción",
+    "aplicabilidad": "instrumento retrospectivo y denominadores compatibles",
+    "falsador": "Instrumento validado demuestra enlace estable y calibrado entre ambos estimandos; sin enlace no convertir",
+    "limitacion": "No estima probabilidad individual futura"
+  },
+  {
+    "id": "MOV-R2",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "Se evalúa una barrera de promoción de personas cuidadoras",
+    "entonces": "Registrar oferta y uso de cuidados, costo, horas y elegibilidad antes de atribuir desinterés por carrera",
+    "porque": "Oferta y restricción de tiempo pueden producir el mismo comportamiento",
+    "tier_frecuencia": "a, CEEY2026 asociación retrospectiva",
+    "tier_mecanismo": "hipótesis plausible, no causal",
+    "consumidor": "RRHH/política de capacitación",
+    "aplicabilidad": "personas con responsabilidades de cuidado, ofertas comparables",
+    "falsador": "Apoyo efectivo aleatorizado no cambia acceso/formación/promoción y preferencias previas explican patrón; requiere potencia",
+    "limitacion": "No fija tamaño de efecto ni garantiza cambio"
+  },
+  {
+    "id": "MOV-R3",
+    "estado": "PROPUESTO-POR-EJECUTOR",
+    "si": "Una selección o promoción presenta brecha por tono u origen autoadscrito",
+    "entonces": "Auditar requisitos, exposición y evaluación comparable; no asignar ética ni capacidad por categoría",
+    "porque": "Gradientes educativos no separan trato, origen y región",
+    "tier_frecuencia": "a, MMSI provisional",
+    "tier_mecanismo": "no identificado",
+    "consumidor": "RRHH/evaluación de equidad",
+    "aplicabilidad": "clasificación voluntaria, desempeño y requisitos comparables",
+    "falsador": "Diseño con candidaturas equivalentes descarta trato desigual; entonces revisar canal educativo/territorial",
+    "limitacion": "Sin adopción del piso ni inferencia genética; no variable de decisión individual"
+  }
+]
