@@ -20,3 +20,7 @@ python3 forense/analisis/reports-v2/consumo-familia-1/verifica_lote.py --autopru
 El control verifica procedencia, cobertura, estados, valor exacto de los RESULT registrados y rechazo de referencias vetadas. No decide validez causal ni fuerza de una cita; la revisión sustantiva dirigida está en la nota y el recibo. Las cifras redondeadas en prosa se cotejaron con sus registros; el control no certifica una detección universal de toda magnitud escrita con palabras.
 
 [Reglas propuestas](hoja-reglas-propuestas.md) · [recibo para Claude](recibo-para-claude.md) · [arranque](arranque.md). C1 no bloquea este lote; una discrepancia material exige corregir sólo las afirmaciones afectadas. No se modifica índice global ni catálogo.
+
+## Sucesor editorial · 26/sep/2026
+
+La tabla y el verificador anteriores describen la primera entrega (#1173), devuelta por #1178; su lectura no acredita la corrección actual. [Índice y comprobación del sucesor](../consumo-familia-2/indice-consumo-familia-2.md), [hoja de reglas corregida](../consumo-familia-2/hoja-reglas-propuestas.md) y [nuevo recibo solicitado](../consumo-familia-2/recibo-para-claude.md). Los conteos vigentes se regeneran desde juicios explícitos y no se mantienen a mano aquí.
