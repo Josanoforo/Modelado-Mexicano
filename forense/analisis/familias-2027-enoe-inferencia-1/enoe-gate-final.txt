@@ -31,3 +31,5 @@ Gate rápido final tras corrección de nombres:
 Comando: python3 tests/check.py --rapido --baseline
 WARN heredados y estados abiertos no adjudican; FP/NC propias pendientes no son adopción.
 No suite completa local, no tanda extra CI ni prueba de capacidad predictiva futura.
+
+Cierre tools/cierre_acto.py --sin-suite --encargo ACTA: rc0, CONSUMIDO PRESENTE, NC-HUÉRFANA ninguna. Enlace PR#1222 añadido tras gate; sólo metadatos de entrega, sin cambio de cálculo.

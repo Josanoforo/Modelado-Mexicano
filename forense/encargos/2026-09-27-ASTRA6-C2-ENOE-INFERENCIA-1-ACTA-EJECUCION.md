@@ -23,3 +23,5 @@ Varianza total/potencia numérica bloqueadas con prueba e insumo oficial especí
 ## CONSUMIDO
 
 ASTRA6-C2-ENOE-INFERENCIA-1 ejecutado mediante producto en forense/analisis/familias-2027-enoe-inferencia-1/. Cuerpo fuente único intacto. PR propio se enlaza en recibo; la recepción independiente no se afirma obtenida y la mesa conserva fusión/adopción.
+
+Entrega propia: [PR#1222](https://github.com/Josanoforo/Modelado-Mexicano/pull/1222); sin fusión ni adopción.

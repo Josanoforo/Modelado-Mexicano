@@ -15,3 +15,5 @@ EJECUTADO: reproducción del diagnóstico en /tmp/enoe-auditoria-replay.json id�
 NO-VERIFICADO: certeza o interpretación oficial de UPM repetidas, varianza total de oro, precisión futura, dependencia temporal real, capacidad predictiva2027, recibo/adopción/atestación. NO-CORRIDO: cálculo numérico de potencia total o comparación de réplicas, por bloqueo demostrado y ausencia de réplicas oficiales; no tarea omitida. Sin tocar seis familias existentes ni COMMIT-3.
 
 EJECUTADO: primer gate rápido detectó cuatro colisiones T02 de nombres propios nuevos; se prefijaron enoe-auditoria.json, enoe_diagnostico.py, enoe-escenarios.tsv y enoe-potencia-decision.md. Sólo adaptación de nombres/referencias, sin cambiar método ni números; segundo gate evalúa la corrección. Intento previo conservado en enoe-gate-final.txt.
+
+Entrega: [PR#1222](https://github.com/Josanoforo/Modelado-Mexicano/pull/1222); recepción independiente solicitada en su cuerpo, no obtenida.

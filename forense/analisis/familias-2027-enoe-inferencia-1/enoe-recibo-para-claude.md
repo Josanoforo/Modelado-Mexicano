@@ -25,3 +25,5 @@ EJECUTADO: sintéticos y once pruebas de potencia pasan; replay coincide. Gate f
 PROPUESTO: mantener no lanzamiento, solicitar a INEGI estructura de selección/crosswalk de UPM y regla singleton/certeza o réplicas oficiales compatibles. Revisar el supuesto de unidades UPM reutilizadas entre estratos antes de atribuir independencia física. No escoger colapso por mejorar potencia.
 
 NO-VERIFICADO: revisión independiente, adopción y recibo; acierto futuro; regla oficial para singleton y códigos UPM repetidos. No se solicitan ni conceden automáticamente apertura, COMMIT-3 o cambio de bandas. La solicitud documental está redactada; no se ha enviado a terceros.
+
+Entrega: [PR#1222](https://github.com/Josanoforo/Modelado-Mexicano/pull/1222); recepción independiente solicitada en su cuerpo, no obtenida.
