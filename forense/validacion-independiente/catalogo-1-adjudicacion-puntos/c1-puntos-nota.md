@@ -30,7 +30,7 @@ LEÍDO: primeras reconstrucciones/efectos de #1184, productores y sellos histór
 
 ## Repetición y comprobaciones
 
-Sin raw: p1/adjudica.py; p3/traza.py; ensambla.py; p4/comprobacion-patches.py; verifica.py (todos bajo esta raíz). Con el corpus y alcance firmados: p2/raw2011-v3.py y p2/raw2021-v4.py, luego p2/consolida.py y demás ensamblaje. Extraer testimonios auxiliares a directorio temporal si se requieren; archiva-testimonios.py verifica y conserva sus hashes al cerrar un replay. Las recetas y hashes exactos están en recibo-para-claude.md y en los manifiestos.
+Sin raw: p1/adjudica.py; p3/traza.py; ensambla.py; p4/comprobacion-patches.py; verifica.py (todos bajo esta raíz). Con el corpus y alcance firmados: p2/raw2011-v3.py y p2/raw2021-v4.py, luego p2/consolida.py y demás ensamblaje. Extraer testimonios auxiliares a directorio temporal si se requieren; archiva-testimonios.py verifica y conserva sus hashes al cerrar un replay. Las recetas y hashes exactos están en c1-puntos-recibo-para-claude.md y en los manifiestos.
 
 ## NO-CORRIDO / RESERVAS
 
@@ -43,3 +43,5 @@ Gate pertinente: 0 FAIL, 591 WARN; baseline VERDE sin fallos nuevos ni cambios d
 ## CONSUMIDO
 
 Encargo ASTRA6-C1-ADJUDICACION-PUNTOS-1 ejecutado en sesión CLI responsable, PR #1199, commit sustantivo52099961. INTERPRETACIÓN-DECLARADA: el consumo se registra en esta nota dentro del perímetro; la fuente archivada por #1191 queda byte a byte intacta y conserva suSHA39de6723. Recibo solicitado en cuerpo del PR; no se obtuvo revisión independiente y no se fusionó. Pendiente únicamente el acto posterior de contenido descrito en hoja/FP.
+
+INTERPRETACIÓN-DECLARADA de nombre: recibo local se publica como c1-puntos-recibo-para-claude.md para cumplir archivo propio por pieza y evitar colisión con recibos previos del repo; mismo circuito/función y cuerpo preservado por historial, sin modificar el gate.
