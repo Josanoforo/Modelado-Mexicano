@@ -680,6 +680,16 @@ jobs:
                   --title "[deriva] vistas generadas tras ${{ github.sha }}" \
                   --body "Derivado por comandos del job derivados (GEN2-TUBERIA-CI-TIEMPO-2), por trozos de $TROZO CALC: un commit por trozo. Solo archivos con cabecera DERIVADO. Requiere check; ninguna adjudicación cambia.")"
                 echo "PR: $PR"
+                # Un solo [deriva] vivo (27/sep, #1206 y #1209): cada push a
+                # main abre el suyo sobre su propia base; los anteriores se
+                # quedan con el código de su base (rojos o en conflicto) y
+                # su contenido lo re-deriva este run desde el main vigente,
+                # porque lo no fusionado sigue pendiente. Se cierran como
+                # superados; ninguno trae nada que este no traiga.
+                for N in $(gh pr list --state open --limit 50 --json number,headRefName \
+                    --jq ".[] | select(.headRefName | startswith(\"derivados/auto-\")) | select(.headRefName != \"$BRANCH\") | .number"); do
+                  gh pr close "$N" --delete-branch --comment "Superado por $PR: el job derivados re-deriva desde el main vigente todo lo que este PR traía (lo no fusionado sigue pendiente)." || echo "no se pudo cerrar #$N (no bloquea)"
+                done
               fi
               # Cada trozo empujado queda verificado por su propio run; el
               # grupo de concurrencia de la rama cancela el anterior.
