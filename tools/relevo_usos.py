@@ -469,6 +469,9 @@ def _res_ids(texto: str) -> set[str]:
 
 
 def _lee_tsv(ruta: Path) -> list[dict]:
+    if ruta.name == "resultados.tsv":
+        from vista import _leer_tsv_derivado
+        return _leer_tsv_derivado(ruta)
     with ruta.open(encoding="utf-8") as fh:
         lineas = [l for l in fh if not l.startswith("#")]
     return list(csv.DictReader(lineas, delimiter="\t"))

@@ -1,0 +1,523 @@
+{
+  "consultado_utc": "2026-09-27 03:35:20 UTC",
+  "base_main": "57a3f2a4f55178d02d8b0e3c165502014ca48efa",
+  "alcance": "Metadatos GitHub; extractos de comentarios, no recibo independiente",
+  "prs": [
+    {
+      "comments": [],
+      "headRefOid": "5586b316369f9c11ffaf7f2f4b30a8b71bb1d811",
+      "mergeCommit": {
+        "oid": "bf7aadc91d0607beaf5ab4c2af39334917cf4172"
+      },
+      "mergedAt": "2026-09-27T01:59:50Z",
+      "number": 1179,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:41:11Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351838",
+          "name": "suite",
+          "startedAt": "2026-09-27T01:32:36Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:35:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351826",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T01:32:35Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:36:49Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351733",
+          "name": "guardias",
+          "startedAt": "2026-09-27T01:32:35Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:32:53Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351862",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T01:32:35Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:33:07Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351850",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T01:32:35Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:33:02Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108526351860",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T01:32:35Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:41:14Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36285847328/job/108527568213",
+          "name": "check",
+          "startedAt": "2026-09-27T01:41:12Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "ASTRA6-C3-CONSUMO-FAMILIA-2: corrige dictámenes sustantivos y fuentes",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1179"
+    },
+    {
+      "comments": [],
+      "headRefOid": "660e584d1ff709c86a00518abd535138a92c5fb0",
+      "mergeCommit": {
+        "oid": "6d02029c68abeb6095dd0a2edee495350d09dda0"
+      },
+      "mergedAt": "2026-09-27T00:50:16Z",
+      "number": 1180,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:50:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519015233",
+          "name": "suite",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:44:42Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519014924",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:43:51Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519014902",
+          "name": "guardias",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:41:32Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519014858",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:41:42Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519014915",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:41:36Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108519014886",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T00:41:11Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T00:50:09Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36283223148/job/108520278620",
+          "name": "check",
+          "startedAt": "2026-09-27T00:50:06Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "[ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1] Tres reports v2 con evidencia y dictámenes explícitos",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1180"
+    },
+    {
+      "comments": [],
+      "headRefOid": "62832424948a5d76ff7259ebf61be3b66730bc5f",
+      "mergeCommit": {
+        "oid": "b804165ba00ac338fcbede92086c74fe2686a7d3"
+      },
+      "mergedAt": "2026-09-27T02:29:33Z",
+      "number": 1181,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:29:20Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091586",
+          "name": "suite",
+          "startedAt": "2026-09-27T02:20:57Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:24:49Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091596",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T02:20:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:24:40Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091472",
+          "name": "guardias",
+          "startedAt": "2026-09-27T02:20:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:21:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091607",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T02:20:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:21:32Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091603",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T02:20:56Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:21:22Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108533091531",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T02:20:55Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:29:25Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36288250733/job/108534276438",
+          "name": "check",
+          "startedAt": "2026-09-27T02:29:22Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "[ASTRA6-C3-TRABAJO-MOVILIDAD-1] Tres reports v2 con dictámenes y evidencia trazable",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1181"
+    },
+    {
+      "comments": [
+        {
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1182#issuecomment-5851656842",
+          "createdAt": "2026-09-27T01:34:10Z",
+          "extracto": "VEREDICTO: NO-FUSIONAR\nRecuento (bloque 1 + once puntos): 2 BLOQUEA · 4 RESERVA · 1 NO-APLICA (5 PASA)\n\n<!-- MM-REVISA:v2 pr=1182 head=7f0c43707e68ef9087ba2899a4466f71f5830017 main=8f4b241916efddc1343d4c6e86f8703b43d0f85f body_sha256=7b0ec2c6dd242d8938872445d852a385528b4b6cca2f53b8af0947d06e6bdd4f -->\n\n**Identidades** (bloque 1.1 del runbook `/revisa`): `BASE` (merge-base) = `3aacda232b3b03f158950738f31aa4ea509d3162` · `HEAD` del PR = `7f0c43707e68ef9087ba2899a4466f71f5830017` · `tip` de `origin/main` = `8f4b241916efddc1343d4c6e86f8703b43d0f85f`. **`BASE` ≠ `tip`: main se movió bajo el PR** (de `3aacda23` a `8f4b241`, por el acto ya fusionado `ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`) — no es PARO, pero hace obligatoria la vista previa del merge, y el resultado no es limpio:\n\n```\n$ git merge-tr"
+        }
+      ],
+      "headRefOid": "70e7ea19484ca6225a5c276faac4f6953b2bd78a",
+      "mergeCommit": {
+        "oid": "201bcfe4971ab786d54a4715228b0f7ca8ed4889"
+      },
+      "mergedAt": "2026-09-27T02:11:32Z",
+      "number": 1182,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:11:21Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748934",
+          "name": "suite",
+          "startedAt": "2026-09-27T02:04:32Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:08:16Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748997",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T02:04:32Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:08:50Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748882",
+          "name": "guardias",
+          "startedAt": "2026-09-27T02:04:32Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:04:51Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748807",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T02:04:32Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:04:54Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748908",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T02:04:32Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:05:01Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108530748888",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T02:04:34Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T02:11:28Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36287436960/job/108531736034",
+          "name": "check",
+          "startedAt": "2026-09-27T02:11:24Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "ASTRA6 C2: cierre material de familias y control ENIF sucesor propuesto",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1182"
+    },
+    {
+      "comments": [
+        {
+          "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1184#issuecomment-5851578515",
+          "createdAt": "2026-09-27T01:20:43Z",
+          "extracto": "VEREDICTO: FUSIONABLE-CON-RESERVA\n0 BLOQUEA · 3 RESERVA · 1 NO-VERIFICADO · 2 NO-APLICA (de los once) · REVISA-CALC activado (ver abajo)\n\nBASE (merge-base): `3aacda232b3b03f158950738f31aa4ea509d3162` · HEAD del PR: `3effe0946ded320b48908559b6d1733b09e70102` · tip de `origin/main` usado: `6d02029c68abeb6095dd0a2edee495350d09dda0` · `git merge-tree --write-tree origin/main revisa-pr-1184` → exit=0 (merge limpio, sin conflictos).\n\n<!-- MM-REVISA:v2 pr=1184 head=3effe0946ded320b48908559b6d1733b09e70102 main=6d02029c68abeb6095dd0a2edee495350d09dda0 body_sha256=b9dbc25db0eb17f005669cb4a644cf2414435906488f1a321444c4cd92539173 -->\n\n## Hallazgos\n\n**1 · RESERVA (2.11 · NO-CORRIDO/RESERVAS).** El encargo archivado (`forense/encargos/2026-09-26-ASTRA6-C1-VALIDACION-LOTE1-1.md`) trae `## NO-CORRIDO / R"
+        }
+      ],
+      "headRefOid": "3effe0946ded320b48908559b6d1733b09e70102",
+      "mergeCommit": {
+        "oid": "2af4f29c8bc5af20bc03677896de03eb29718a78"
+      },
+      "mergedAt": "2026-09-27T02:13:59Z",
+      "number": 1184,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:13:47Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438716",
+          "name": "suite",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:09:12Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438680",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:09:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438663",
+          "name": "guardias",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:05:37Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438686",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:05:47Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438589",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:05:40Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108522438668",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T01:05:14Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T01:13:51Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36284458043/job/108523656567",
+          "name": "check",
+          "startedAt": "2026-09-27T01:13:49Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "C1 lote 1: nueve reconstrucciones independientes y diagnóstico de 3371 identidades",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1184"
+    },
+    {
+      "comments": [],
+      "headRefOid": "c9593f463dbef52904d48ad68dd7e4dbeedd3019",
+      "mergeCommit": {
+        "oid": "57a3f2a4f55178d02d8b0e3c165502014ca48efa"
+      },
+      "mergedAt": "2026-09-27T03:30:56Z",
+      "number": 1185,
+      "state": "MERGED",
+      "statusCheckRollup": [
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:30:17Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542019002",
+          "name": "suite",
+          "startedAt": "2026-09-27T03:26:02Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:30:23Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542019014",
+          "name": "adicionales",
+          "startedAt": "2026-09-27T03:26:38Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:29:04Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542019067",
+          "name": "guardias",
+          "startedAt": "2026-09-27T03:26:02Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:26:25Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542019048",
+          "name": "preflight-calc",
+          "startedAt": "2026-09-27T03:26:03Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:26:37Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542019045",
+          "name": "guardas-res",
+          "startedAt": "2026-09-27T03:26:03Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:26:29Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542018918",
+          "name": "enrutamiento-pr",
+          "startedAt": "2026-09-27T03:26:02Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        },
+        {
+          "__typename": "CheckRun",
+          "completedAt": "2026-09-27T03:30:28Z",
+          "conclusion": "SUCCESS",
+          "detailsUrl": "https://github.com/Josanoforo/Modelado-Mexicano/actions/runs/36291385793/job/108542619590",
+          "name": "check",
+          "startedAt": "2026-09-27T03:30:25Z",
+          "status": "COMPLETED",
+          "workflowName": "Verificación del corpus"
+        }
+      ],
+      "title": "ASTRA6-C1-PAQUETES-2: 59 sucesores, 11 preparados y 48 impedimentos explícitos",
+      "url": "https://github.com/Josanoforo/Modelado-Mexicano/pull/1185"
+    }
+  ]
+}
