@@ -1042,3 +1042,7 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 ## ASTRA6-C2-ENIF-1 · tablas locales
 
 `forense/analisis/familias-2027/astra6-enif/potencia.tsv`: familia × escala de incertidumbre × deriva temporal × cambio, probabilidades de tres dictámenes y ambas informativas. Derivada por `python3 tools/familias-2027/enif/cierre.py --deriva` desde RESULT sellado/REF autenticada del auxiliar0002. No sustituye vista ni marcador; no evalúa futuro. `inventario-sellos.json`: archivos/hashes/commits del lote para atestación por mesa, estado interno.
+
+## Reports v2 · género, violencia ambiental y salud mental (`ACTO ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1`)
+
+Tablas y productores independientes en `forense/analisis/reports-v2/genero-violencia-salud-1/genero/`, `violencia/` y `salud/`: decisiones por afirmación, cobertura de originales/mapa, evidencia y estados por identidad. Consumidores: tres homónimos en corpus/reports-v2 y `forense/analisis/reports-v2/genero-violencia-salud-1/indice-local.md`. Productor/verificador local `forense/analisis/reports-v2/genero-violencia-salud-1/verifica_lote.py`; deriva conteos desde decisiones explícitas, comprueba cifras y denominadores sin convertir todos los dígitos en estimaciones. No modifica el mapa, CALC ni índice global. ADR-260926-ASTRA6-C3-GENERO-VIOLENCIA-SALUD-1-92f8-01.
