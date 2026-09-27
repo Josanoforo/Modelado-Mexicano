@@ -1,0 +1,112 @@
+{
+  "enbiare-pisos-bienestar-0001": {
+    "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/enbiare-pisos-bienestar-0001/enbiare-pisos-bienestar-0001-entradas-v3.tar.gz",
+    "sha256": "d13b4276f273dadd5a3581e0262c7370ca884e6c68d2c40f1320ef8b090ee592",
+    "miembros_sha256": {
+      "conductas.md": "11511c9b29b957fbf576ea1f65600b2c9c3ed6b038d6e62d66856c1c7c335704",
+      "cuestionario-enbiare2021-cuestionario.pdf": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+      "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "estimandos.tsv": "082f20e74a5704b2354439e8f00a6baa73b22098bdfb156061506260ae3470c5",
+      "insumos.json": "2a8f8f58b94713cc8c0854fec059348c5f126ec99eb5f26f927a6c2cf864abe8",
+      "manifiesto.json": "65e0bd237ca23eef3f962f3467aef70830e1c3b7a34b7debb2a8d8f97fce6c65",
+      "metodo.md": "4fb1b19a136e66ffefe75d746e3b56f7735cd4ff56ef4e79499cabfb7531bdf6",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    "manifiesto": {
+      "paquete": "enbiare-pisos-bienestar-0001",
+      "version_entrada": 3,
+      "archivos": {
+        "conductas.md": "11511c9b29b957fbf576ea1f65600b2c9c3ed6b038d6e62d66856c1c7c335704",
+        "cuestionario-enbiare2021-cuestionario.pdf": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84",
+        "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+        "estimandos.tsv": "082f20e74a5704b2354439e8f00a6baa73b22098bdfb156061506260ae3470c5",
+        "insumos.json": "2a8f8f58b94713cc8c0854fec059348c5f126ec99eb5f26f927a6c2cf864abe8",
+        "metodo.md": "4fb1b19a136e66ffefe75d746e3b56f7735cd4ff56ef4e79499cabfb7531bdf6",
+        "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+      }
+    }
+  },
+  "encodat-pisos-sustancias-0001": {
+    "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/encodat-pisos-sustancias-0001/encodat-pisos-sustancias-0001-entradas-v3.tar.gz",
+    "sha256": "b5e989a658d224686e4f7bd321b9ea60c8d5cb926932b8c21757ca0a31b0c613",
+    "miembros_sha256": {
+      "conductas.md": "5993fc17d9a537da9c1279ce691162fa05066d9582361098bb72007328bbeb6f",
+      "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "estimandos.tsv": "25c506079f86efa922ac694d3277dd9393b7404543512b2f29ca7ea0c8a082c5",
+      "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
+      "fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b",
+      "fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0",
+      "insumos.json": "86ef19cd642ea388da1f8b6036e11c4690f56bc17eacb09f2bd49909eefdee95",
+      "manifiesto.json": "6c4c8f021d9c29e954179f76ce8f683624b1274ad43409e62a006c8ccd486884",
+      "metodo.md": "5f0084a7a966223923bd048cebbd5ca32a3c466ab6e9c1d686386d24b63661de",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    "manifiesto": {
+      "paquete": "encodat-pisos-sustancias-0001",
+      "version_entrada": 3,
+      "archivos": {
+        "conductas.md": "5993fc17d9a537da9c1279ce691162fa05066d9582361098bb72007328bbeb6f",
+        "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+        "estimandos.tsv": "25c506079f86efa922ac694d3277dd9393b7404543512b2f29ca7ea0c8a082c5",
+        "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
+        "fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b",
+        "fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0",
+        "insumos.json": "86ef19cd642ea388da1f8b6036e11c4690f56bc17eacb09f2bd49909eefdee95",
+        "metodo.md": "5f0084a7a966223923bd048cebbd5ca32a3c466ab6e9c1d686386d24b63661de",
+        "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+      }
+    }
+  },
+  "encuci-0001": {
+    "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/encuci-0001/encuci-0001-entradas-v3.tar.gz",
+    "sha256": "ca501109446afd1454cb019f60b62e46a0a9650382b882d213c2176463fe6f48",
+    "miembros_sha256": {
+      "cuestionario-encuci2020-cuestionario.pdf": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+      "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "estimandos.tsv": "dc958afc4e922d888e6f7b910c5ec28f8e2387c2058a2d6f54a3a776bac09b8d",
+      "insumos.json": "d56d791e511a564f8d1695767a1cf052ac0062024f9a04e2c2eaebdb5199ba34",
+      "manifiesto.json": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+      "metodo.md": "0e57cabc03fd9704aa5c784328f32aee07abb5300ed7ad39e41463ba34fc2e73",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    "manifiesto": {
+      "paquete": "encuci-0001",
+      "version_entrada": 3,
+      "archivos": {
+        "cuestionario-encuci2020-cuestionario.pdf": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+        "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+        "estimandos.tsv": "dc958afc4e922d888e6f7b910c5ec28f8e2387c2058a2d6f54a3a776bac09b8d",
+        "insumos.json": "d56d791e511a564f8d1695767a1cf052ac0062024f9a04e2c2eaebdb5199ba34",
+        "metodo.md": "0e57cabc03fd9704aa5c784328f32aee07abb5300ed7ad39e41463ba34fc2e73",
+        "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+      }
+    }
+  },
+  "enigh-0001": {
+    "ruta": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/enigh-0001/enigh-0001-entradas-v4.tar.gz",
+    "sha256": "1ca8d7b9654c09a0055b5edb9917b05ae279171a5339a2aa066dc68c0ec3b206",
+    "miembros_sha256": {
+      "cuestionario-enigh2022-hogares.pdf": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+      "cuestionario-enigh2022-mayores.pdf": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+      "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "estimandos.tsv": "58b0be62e8748e6f02a653f15fa16e2c7c6a62076c8c9f55c97571cd0862b8a9",
+      "insumos.json": "f78f79fdc8d2015ad526a66b10ccf3d5905e56e5c32699cfd5b140c99eacae43",
+      "manifiesto.json": "9c2686d9c643aa2c2342fde2a3a1a0fadae3bac30c878edfcab5ccf45e3a00eb",
+      "metodo.md": "5004df8fa26d6a972159595a7a2f045ad202a60ef06f9e2d48eabdc924676d9b",
+      "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    "manifiesto": {
+      "paquete": "enigh-0001",
+      "version_entrada": 4,
+      "archivos": {
+        "cuestionario-enigh2022-hogares.pdf": "6453d2af222ee4bd424aa3b34d2f5da68c00a01aba01d67657718a849e33cd5f",
+        "cuestionario-enigh2022-mayores.pdf": "f380c14246da047bd65ddeb609153532cbbbab573642091a71ceae248f53960c",
+        "encargo.md": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+        "estimandos.tsv": "58b0be62e8748e6f02a653f15fa16e2c7c6a62076c8c9f55c97571cd0862b8a9",
+        "insumos.json": "f78f79fdc8d2015ad526a66b10ccf3d5905e56e5c32699cfd5b140c99eacae43",
+        "metodo.md": "5004df8fa26d6a972159595a7a2f045ad202a60ef06f9e2d48eabdc924676d9b",
+        "tolerancia.json": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+      }
+    }
+  }
+}

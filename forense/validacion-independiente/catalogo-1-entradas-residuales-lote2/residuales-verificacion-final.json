@@ -1,0 +1,24 @@
+{
+  "base_main": "9536e5e2cff760a1866d7c3395395d9dbdd8bbd1",
+  "gate": {
+    "comando": "python3 tests/check.py --rapido --baseline",
+    "resultado": "VERDE: sin FAIL nuevos; 0 FAIL global",
+    "salida_sha256": "db20599d2a8b84a29ccfdf94b849f30006923bd5654081fcd3e37c1828f29ed3"
+  },
+  "producto": {
+    "p1": "PASS: 425 corte; 368 pares; union312; 56 puntos/312IC; diferencias2/8",
+    "p4": "PASS:4 contenedores/312identidades/40miembros; bytes reproducibles"
+  },
+  "git_diff_check": "PASS",
+  "recalculos": 0,
+  "historicos_modificados": [],
+  "no_ejecutado": [
+    "recalculo",
+    "verify CALC",
+    "microdatos",
+    "productores",
+    "CI adicional",
+    "recibo Claude",
+    "adopcion"
+  ]
+}

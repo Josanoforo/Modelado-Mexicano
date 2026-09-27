@@ -1,0 +1,14 @@
+{
+  "comandos": [
+    "python3 tools/validacion/astra6_entradas_residuales/p4.py",
+    "python3 tools/validacion/astra6_entradas_residuales/p4.py --verifica",
+    "python3 -m py_compile tools/validacion/astra6_entradas_residuales/p4.py"
+  ],
+  "resultado": "PASS",
+  "contenedores": 4,
+  "identidades": 312,
+  "miembros_verificados": 40,
+  "reconstruccion_bytes": "IDENTICA",
+  "cuestionarios_encodat_hash_manifiesto": "2/2",
+  "recalculos": 0
+}

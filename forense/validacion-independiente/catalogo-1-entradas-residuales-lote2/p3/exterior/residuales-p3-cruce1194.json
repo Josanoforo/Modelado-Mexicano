@@ -1,0 +1,20 @@
+{
+  "main_leido": "9536e5e2cff760a1866d7c3395395d9dbdd8bbd1",
+  "PR": 1194,
+  "estado": "VERSION-RECIBIDA-EN-REPO; PROPUESTA-NO-ADOPTADA",
+  "objetos": [
+    {
+      "ruta": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/p1/protocolo-propuesto.md",
+      "sha256": "26746feed14b93829eaf60656a71ff87057e8f7026d647a798d825564bf6c0f0"
+    },
+    {
+      "ruta": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/p1/protocolo_v2.py",
+      "sha256": "faa016ea5440cf940f3f9f47404a65969964fe963eba9c2bf44049da7c9f9ca3"
+    },
+    {
+      "ruta": "forense/validacion-independiente/catalogo-1-incertidumbre-spec/astra6-c1-pr1194-revision-recibida.md",
+      "sha256": "8cf154b0145dd0e2532f99eb2e74ec4cf47559a1a6c7d5e58e5c2b6eeb06c827"
+    }
+  ],
+  "compatibilidad": "Misma familia bootstrap empirico, marco completo con ceros, singleton no identificado, PCG64 semilla20260923, orden replica\u2192estrato, cuantil lineal. No cambia tolerancia. Extension medias no usa gate de proporciones."
+}

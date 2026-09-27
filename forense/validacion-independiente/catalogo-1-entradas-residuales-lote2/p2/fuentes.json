@@ -1,0 +1,53 @@
+[
+  {
+    "archivo": "forense/prereg-caja/SALUD-ENBIARE-PISOS-spec-v1_0.md",
+    "original": "forense/prereg-caja/SALUD-ENBIARE-PISOS-spec-v1_0.md",
+    "sha256": "18aa71044e27587d8e502d246a8d6811dee977464846dc82fbd0189c8ebb346d",
+    "fecha_humana": "2026-09-24",
+    "localizador": "§1–3",
+    "tipo": "FUENTE-COMPLETA-EXTERIOR-NO-ENTREGAR-A-CIEGOS",
+    "materializacion": "REFERENCIA-A-ORIGINAL-COMPLETO-EXISTENTE"
+  },
+  {
+    "archivo": "forense/prereg-caja/ENCUCI-MORDIDA-PROTESTA-spec-v1_0.md",
+    "original": "forense/prereg-caja/ENCUCI-MORDIDA-PROTESTA-spec-v1_0.md",
+    "sha256": "33add37841455a9da6402e2dce8c7edaaa33e8ecc9a94c3c5a9d44b10961a919",
+    "fecha_humana": "2026-09-09",
+    "localizador": "§3.5, tabla B-P-RUR-AGR",
+    "tipo": "FUENTE-COMPLETA-EXTERIOR-NO-ENTREGAR-A-CIEGOS",
+    "materializacion": "REFERENCIA-A-ORIGINAL-COMPLETO-EXISTENTE"
+  },
+  {
+    "archivo": "forense/prereg-caja/ENIGH-REMESAS-R51-spec-v1_0.md",
+    "original": "forense/prereg-caja/ENIGH-REMESAS-R51-spec-v1_0.md",
+    "sha256": "e58b3901cc49e25500b01df19752ba57e46e862b925141d7a9714a22fc9a59e0",
+    "fecha_humana": "2026-09-15",
+    "localizador": "§1.3, §2.1–2.2",
+    "tipo": "FUENTE-COMPLETA-EXTERIOR-NO-ENTREGAR-A-CIEGOS",
+    "materializacion": "REFERENCIA-A-ORIGINAL-COMPLETO-EXISTENTE"
+  },
+  {
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/fuentes/enbiare2021-fd.pdf",
+    "original": "https://www.inegi.org.mx/contenidos/programas/enbiare/2021/microdatos/enbiare_2021_fd.pdf",
+    "sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9",
+    "fecha_humana": "2021; manifiesto recuperado 2026-08-04; bytes restaurados 2026-09-27",
+    "localizador": "página PDF 6 EDAD; páginas PDF 17–18 PD2/PD3",
+    "tipo": "DESCRIPTOR-OFICIAL-COMPLETO"
+  },
+  {
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/fuentes/encuci2020-fd.pdf",
+    "original": "https://www.inegi.org.mx/contenidos/programas/encuci/2020/doc/FD_ENCUCI2020.pdf",
+    "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+    "fecha_humana": "Instrumento 2020/2022; bytes recuperados 2026-09-27",
+    "localizador": "Campos empleados para diseño muestral: DOMINIO U/C/R; SEC_4_5 AP4_3_2; SEC_6_7_8 AP7_3_5",
+    "tipo": "DESCRIPTOR-OFICIAL-COMPLETO"
+  },
+  {
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p2/fuentes/enigh2022-descriptor.pdf",
+    "original": "https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463910626.pdf",
+    "sha256": "7b0c4e6bd36ceb9eae7cc852fce5a38dbcf4f2da6b133d35df6b1443fc76836c",
+    "fecha_humana": "Instrumento 2020/2022; bytes recuperados 2026-09-27",
+    "localizador": "Tabla concentradohogar, variable #51 remesas",
+    "tipo": "DESCRIPTOR-OFICIAL-COMPLETO"
+  }
+]
