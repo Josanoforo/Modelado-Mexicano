@@ -168,3 +168,10 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+## NO-CORRIDO / RESERVAS
+
+No se abrió ni recalculó una ola reservada en esta corrección. No se obtuvo permiso documental para ENUT 2024, ENIF 2024 ni ENSU dic/2025; sus publicaciones y sus inferencias dependientes se retiraron de Tiempo. La exposición previa sigue declarada para adjudicación explícita; no se concedió permiso retroactivo. Recepción independiente, adopción de reglas y fusión siguen pendientes del circuito de mesa.
+
+## CONSUMIDO
+
+EJECUTADO como continuación de [PR #1242](https://github.com/Josanoforo/Modelado-Mexicano/pull/1242) en rama `codex/astra6-c3-salud-juventud-tiempo-1`, corrección `8a594361` desde HEAD revisado `15a581898bcec9e04914e253b466d2c3afc86860`; `origin/main` integrado hasta `3ac3ab7d32c640d0f0081339f77b4287c9f7bd10`. Report y tabla Tiempo corrigen dirección ENIF y excluyen publicaciones reservadas; Juventud separa citas originales, transporte y decisividad. Índice vigente: 137 decisiones, 9 ROMPE. Verificador local y gate rápido pasan (0 FAIL, 624 WARN). Producto y reservas en `forense/analisis/reports-v2/salud-juventud-tiempo-1/`; sidecar de este cuerpo permanece sin reescritura. No fusionado ni recibido por esta sesión.
