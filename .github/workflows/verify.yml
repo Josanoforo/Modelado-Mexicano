@@ -603,6 +603,46 @@ jobs:
                 gh issue create --title "$TITULO" --body "$LINEA · run ${{ github.run_id }} · el job \`derivados\` drena por trozos de $TROZO; si el lote no baja en el run siguiente, es NC (razón DIFERIDO-A: GEN2-TUBERIA-CI-TIEMPO-3)." || echo "no se pudo abrir la NC automática (no bloquea)"
               fi ;;
           esac
+          # ACTO GEN2-TUBERIA-3 · P2/P3 (FP-260928-GEN2-TUBERIA-3-f18c-01 (d),
+          # NC-260928-GEN2-TUBERIA-3-f18c-02): las vistas de demanda
+          # (demanda-corridas.tsv, demanda-resultados.tsv) tampoco viajaban
+          # por el canal: su última escritura en main fue #1186 (26/sep) y
+          # `status` sobre el árbol comprometido decía pendientes 158 donde
+          # `corrida0 demanda` decía 63. Se derivan UNA vez, ANTES de todo lo
+          # que las lee (marcador, registro, citas, tablero, README), y no
+          # por trozo: `demanda` lee sólo insumos versionados que este job no
+          # escribe (decisiones.tsv, demanda-dictamen, registro-res, milpa/,
+          # prereg, curación, manifiesto: sin red ni data/raw), es
+          # determinista (dos corridas, mismo sha256) y tarda ≈10 s. Si no
+          # puede derivar (p. ej. un slot sin número RES: falla en voz alta,
+          # D-23) el canal NO se detiene: restaura las vistas comprometidas,
+          # lo dice en el resumen y abre una NC automática; quedan como hoy.
+          if ! python3 tools/corrida0.py demanda > /tmp/demanda-derivada.out 2> /tmp/demanda-derivada.err; then
+            tail -n 40 /tmp/demanda-derivada.err >&2
+            git checkout -q -- data/corrida0/demanda-corridas.tsv data/corrida0/demanda-resultados.tsv
+            LINEA_DEM="DEMANDA-NO-DERIVADA · run ${{ github.run_id }} · corrida0 demanda falló; las vistas de demanda se publican como estaban"
+            echo "$LINEA_DEM"
+            echo "$LINEA_DEM" >> "$GITHUB_STEP_SUMMARY"
+            TITULO_DEM="NC automática · DEMANDA-NO-DERIVADA (GEN2-TUBERIA-3 P2)"
+            if [ -z "$(gh issue list --state open --search "$TITULO_DEM in:title" --json number --jq '.[0].number' 2>/dev/null)" ]; then
+              gh issue create --title "$TITULO_DEM" --body "$LINEA_DEM" || echo "no se pudo abrir la NC automática (no bloquea)"
+            fi
+          else
+            # Guardia de alineación (revisión adversarial de GEN2-TUBERIA-3): el
+            # dictamen se llavea por CORR, que es POSICIONAL; un slot nuevo antes
+            # de otros lo desalinea y `status` vuelve a subir pendientes por una
+            # razón espuria (medido: 158 contra 63). No detiene el canal: lo dice
+            # en el resumen y abre NC con dedupe.
+            if grep -q '^dictamen_alineado = NO' /tmp/demanda-derivada.out; then
+              LINEA_DIC="DICTAMEN-DESALINEADO · run ${{ github.run_id }} · $(grep '^dictamen_alineado' /tmp/demanda-derivada.out)"
+              echo "$LINEA_DIC"
+              echo "$LINEA_DIC" >> "$GITHUB_STEP_SUMMARY"
+              TITULO_DIC="NC automática · DICTAMEN-DESALINEADO (GEN2-TUBERIA-3 P3)"
+              if [ -z "$(gh issue list --state open --search "$TITULO_DIC in:title" --json number --jq '.[0].number' 2>/dev/null)" ]; then
+                gh issue create --title "$TITULO_DIC" --body "$LINEA_DIC" || echo "no se pudo abrir la NC automática (no bloquea)"
+              fi
+            fi
+          fi
           # Dos pasadas: `emitidas_sin_evaluar` sale de c2_compuesto.emisiones(),
           # que lee las RESERVADA del TSV ya publicado; con el TSV viejo la
           # primera da 206 emitidas y la segunda el punto fijo (174).
@@ -636,6 +676,15 @@ jobs:
               POSPONE=()
               [ -n "$RESTO" ] && POSPONE=(--pospone "$RESTO")
               python3 tools/corrida0.py registro --verifica --escribe --lote "$LOTE" "${POSPONE[@]}" 2> /tmp/registro-derivado.err || {
+                tail -n 80 /tmp/registro-derivado.err
+                exit 1
+              }
+            elif [ "$K" = 1 ] && ! git diff --quiet HEAD -- data/corrida0/demanda-corridas.tsv data/corrida0/demanda-resultados.tsv; then
+              # Sin CALC que registrar pero con la demanda re-derivada: refresca
+              # sólo las filas DEMANDA de corridas/resultados (los CORR son
+              # posicionales; si no, quedan incoherentes con demanda-*.tsv).
+              # `DEMANDA-REFRESCO` no nombra ningún CALC: congela todo lo publicado.
+              python3 tools/corrida0.py registro --escribe --lote DEMANDA-REFRESCO 2> /tmp/registro-derivado.err || {
                 tail -n 80 /tmp/registro-derivado.err
                 exit 1
               }
@@ -692,7 +741,7 @@ jobs:
             # bloque TABLERO-DERIVADO que --solo-derivados acepta.
             python3 tools/readme_derivado.py --escribe
             find data/corrida0 -path '*/valores-vista/*' -type f -print0 | xargs -0 -r git add --
-            git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md README.md docs/index.md
+            git add -- data/corrida0/corridas.tsv data/corrida0/resultados.tsv data/corrida0/pines-sellados-resueltos.tsv data/corrida0/usos.tsv data/corrida0/marcador-segmento.tsv milpa/estimadores-por-segmento.yaml forense/tablero/TABLERO-PROGRAMA.md docs/tablero.md README.md docs/index.md data/corrida0/demanda-corridas.tsv data/corrida0/demanda-resultados.tsv
             ARBOL="$(git write-tree)"
             git reset -q
             if [ "$ARBOL" != "$(git rev-parse "$PADRE^{tree}")" ]; then

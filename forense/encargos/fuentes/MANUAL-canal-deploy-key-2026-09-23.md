@@ -45,3 +45,7 @@ En **Actions**, el run del siguiente push a `main` muestra el paso «Re-deriva p
 
 ## Lo que este manual NO hace
 No activa la cola de fusión (D4): eso va en el mismo encargo, después de que `verify.yml` tenga `merge_group`, y se activa desde **Rulesets → main protegida → Require merge queue** en un segundo viaje. No cambia quién fusiona los PR que miden: sigues siendo tú.
+
+## Worktrees del derivador (ACTO GEN2-TUBERIA-3, P1)
+
+`tools/deriva_cron.sh` crea su worktree en `$DERIVA_WORKTREES_DIR` (por defecto `$HOME/worktrees`) y sus temporales por corrida en `$DERIVA_TMPDIR/run-<RUN_ID>` (por defecto `$HOME/deriva-tmp`); nunca en el tmpfs del sistema. Hace `git worktree prune` al abrir y al cerrar; al abrir, con el lock tomado, retira también los `modelado-deriva-*` de corridas muertas (kill duro) y los `run-*` ajenos. Un canal por directorio: dos clones deben separar `DERIVA_WORKTREES_DIR` y `DERIVA_TMPDIR`. Borra su worktree al terminar aunque falle; toda salida sin huella (PARO, commit rechazado, SIGTERM) guarda antes `status`, parche y no versionados en `forense/deriva-log/estado/evidencia-<RUN_ID>/` (si no se puede escribir la evidencia, avisa y borra igual). Esa evidencia no rota sola: se borra a mano cuando ya no hace falta.

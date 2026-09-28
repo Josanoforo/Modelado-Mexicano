@@ -1327,6 +1327,47 @@ def _construye_filas_demanda(asigna=None):
     return filas, ambiguas, crudo_tramite, crudo_proc
 
 
+def _lee_dictamen() -> dict | None:
+    """{(corrida_id, resultado_id | 'CORRIDA'): dictamen} de la vista del
+    dictamen, o None si no existe."""
+    vista = SALIDA / "demanda-dictamen-v1_0.tsv"
+    if not vista.exists():
+        return None
+    with vista.open(encoding="utf-8") as fh:
+        return {(d["corrida_id"], d["resultado_id"]): d["dictamen"].split(" ")[0]
+                for d in csv.DictReader((l for l in fh if not l.startswith("#")), delimiter="\t")}
+
+
+def _dictamen_desalineado(corridas_ids: list, pares: list) -> tuple[int, int, int] | None:
+    """ACTO GEN2-TUBERIA-3 · revision adversarial. El dictamen se llavea por
+    CORR, que es POSICIONAL: un slot nuevo antes de otros corre los CORR y el
+    dictamen deja de casar (medido 28/sep: 158 pendientes contra 63 cuando la
+    demanda comprometida iba atrasada respecto del dictamen). Devuelve
+    (pares de la demanda sin fila, corridas sin fila, filas del dictamen sin
+    demanda); (0, 0, 0) = alineado; None = no hay vista de dictamen."""
+    dic = _lee_dictamen()
+    if dic is None:
+        return None
+    llaves = {(cid, "CORRIDA") for cid in corridas_ids} | set(pares)
+    return (sum(1 for p in pares if p not in dic),
+            sum(1 for cid in corridas_ids if (cid, "CORRIDA") not in dic),
+            sum(1 for k in dic if k not in llaves))
+
+
+def _reduccion_por_dictamen(corridas_ids: list, pendientes: list) -> tuple[int, int]:
+    """ACTO GEN2-TUBERIA-3 · P3. UNICA fuente de la reduccion de la demanda por
+    dictamen (DEMANDA-DICTAMEN-1): la leen `demanda` y `status`, para que no
+    diverjan. Devuelve (corridas no requeridas, resultados pendientes cerrados).
+    Sin vista, cuenta como antes: (0, 0). Baja por dictamen citado, nunca por borrado."""
+    dic = _lee_dictamen()
+    if dic is None:
+        return 0, 0
+    no_req = sum(1 for cid in corridas_ids if dic.get((cid, "CORRIDA")) == "CORRIDA-NO-REQUERIDA")
+    cerrados = sum(1 for par in pendientes if dic.get(par, "").startswith(
+        ("YA-RELEVADO-GEN2", "NO-RELEVAR-", "SIN-ESTIMANDO-RECONSTRUIBLE", "DIFERIDO-A-FAMILIAS-2027")))
+    return no_req, cerrados
+
+
 def cmd_demanda(args) -> int:
     filas, ambiguas, crudo_tramite, crudo_proc = _construye_filas_demanda()
     decisiones = _lee_decisiones()
@@ -1380,17 +1421,19 @@ def cmd_demanda(args) -> int:
                        if _es_id_payload(f["payload_ids_legacy"])})
     # ACTO GEN2-DEMANDA-DICTAMEN-1: la demanda baja SOLO por dictamen citado
     # en la vista (nunca por borrado); sin vista, cuenta como antes.
-    vista = SALIDA / "demanda-dictamen-v1_0.tsv"
-    dic = {(d["corrida_id"], d["resultado_id"]): d["dictamen"].split(" ")[0] for d in csv.DictReader(
-        (l for l in vista.open(encoding="utf-8") if not l.startswith("#")), delimiter="\t")} if vista.exists() else {}
-    no_req = sum(1 for c in corridas if dic.get((c["corrida_id"], "CORRIDA")) == "CORRIDA-NO-REQUERIDA")
-    cerrados = sum(1 for f in filas if f["estado"] == "PENDIENTE" and dic.get((f["corrida_natural"], f["resultado_id"]), "").startswith(
-        ("YA-RELEVADO-GEN2", "NO-RELEVAR-", "SIN-ESTIMANDO-RECONSTRUIBLE", "DIFERIDO-A-FAMILIAS-2027")))
+    no_req, cerrados = _reduccion_por_dictamen(
+        [c["corrida_id"] for c in corridas],
+        [(f["corrida_natural"], f["resultado_id"]) for f in filas if f["estado"] == "PENDIENTE"])
     print(f"N_resultados_activos = {len(filas)}")
     print(f"N_corridas_requeridas = {len(corridas) - no_req}  (de apertura {len(corridas)}; no requeridas por dictamen {no_req})")
     print(f"N_resultados_pendientes = "
           f"{sum(1 for f in filas if f['estado'] == 'PENDIENTE') - cerrados}  (cerrados por dictamen {cerrados})")
     print(f"clausura_activa_de_payloads = {len(payloads)}")
+    desalineado = _dictamen_desalineado(
+        [c["corrida_id"] for c in corridas], [(f["corrida_natural"], f["resultado_id"]) for f in filas])
+    if desalineado is not None:
+        print(f"dictamen_alineado = {'SI' if not any(desalineado) else 'NO'}  (demanda sin fila de dictamen: "
+              f"{desalineado[0]} pares y {desalineado[1]} corridas; dictamen sin demanda: {desalineado[2]})")
     if decisiones:
         # ACTO GEN2-T9: `decisiones.tsv` dejo de ser la tabla de UNA firma
         # (FP-339) para ser la tabla de las firmas de mesa sobre objetos del
@@ -5009,6 +5052,17 @@ def _en_lote(fila: dict, lote: set) -> bool:
     return fila.get("corrida_id") in lote or fila.get("spec_id") in lote
 
 
+def _congelada(fila: dict, lote: set) -> bool:
+    """`_acota_vistas_al_lote` congela una fila publicada salvo que la autorice
+    el lote o sea de origen DEMANDA. Una fila DEMANDA no lleva evidencia de
+    replay que proteger (resultado_replay = contexto_replay = NO-CORRIDA) y su
+    CORR es POSICIONAL: congelarla por `corrida_id` deja corridas.tsv con el
+    conjunto de RES de la demanda vieja mientras resultados.tsv trae los
+    pares frescos (ACTO GEN2-TUBERIA-3, revision adversarial: 122 de 236 RES
+    apuntaban a una corrida cuya fila publicada no los listaba)."""
+    return not (_en_lote(fila, lote) or fila.get("origen") == "DEMANDA")
+
+
 def _rellena_columnas_nuevas(fila: dict, columnas: list[str]) -> dict:
     """Una fila PUBLICADA (leída byte a byte de un TSV en disco) puede venir
     de un header más viejo que `columnas`: el código le agregó una columna
@@ -5034,8 +5088,8 @@ def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
     se sustituye por su version PUBLICADA byte a byte, nunca por el
     recomputo fresco -- que puede haber cambiado por vigencia de OTRA
     corrida y disparar REPLAY-PISADO sin que nadie la nombrara (FP
-    7d98-01). Una fila nunca antes publicada, o en el lote, se escribe
-    fresca."""
+    7d98-01). Una fila nunca antes publicada, en el lote, o de origen
+    DEMANDA (`_congelada`) se escribe fresca."""
     def _publicadas(ruta: Path, clave) -> dict:
         return ({clave(f): f for f in _leer_tsv_derivado(ruta)}
                 if ruta.exists() else {})
@@ -5047,12 +5101,12 @@ def _acota_vistas_al_lote(vistas: dict, lote: set) -> dict:
                            lambda f: (f["resultado_id"], f["consumidor"], f["tipo_uso"]))
     corridas = [
         (_rellena_columnas_nuevas(pub_corr[f["corrida_id"]], COLS_VISTA_CORRIDAS)
-         if f["corrida_id"] in pub_corr else f) if not _en_lote(f, lote) else f
+         if f["corrida_id"] in pub_corr else f) if _congelada(f, lote) else f
         for f in vistas["corridas"]
     ]
     resultados = [
         (_rellena_columnas_nuevas(pub_res[(f["corrida_id"], f["resultado_id"])], COLS_VISTA_RESULTADOS)
-         if (f["corrida_id"], f["resultado_id"]) in pub_res else f) if not _en_lote(f, lote) else f
+         if (f["corrida_id"], f["resultado_id"]) in pub_res else f) if _congelada(f, lote) else f
         for f in vistas["resultados"]
     ]
     en_lote_res: dict[str, bool] = {}
@@ -5382,14 +5436,18 @@ def status(imprime: bool = True) -> dict:
     ids_vetados &= ids_sellados_gen2
     ids_pendientes -= ids_vetados
 
+    # ACTO GEN2-TUBERIA-3 · P3: misma reduccion por dictamen que `demanda`.
+    _no_req, _cerrados = _reduccion_por_dictamen(
+        [f["corrida_id"] for f in corridas if f["origen"] == "DEMANDA"],
+        [(f["corrida_id"], f["resultado_id"]) for f in activos if f["estado"] == "PENDIENTE"])
     c = {
-        "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA"),
+        "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA") - _no_req,
         "N_corridas_selladas": sum(1 for f in gen2(corridas)
                                    if f["origen"] == "OFERTA" and sellada(f)),
         "N_resultados_activos": len(activos),
         "N_resultados_sellados": sum(1 for f in gen2(resultados)
                                      if f["origen"] == "OFERTA" and sellada(f)),
-        "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE"),
+        "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE") - _cerrados,
         "dependencias_numericas_legacy_activas": sum(
             1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
         # ACTO GEN2-RELEVO-RECONCILIA-1 · P4. Desglose ADITIVO del contador

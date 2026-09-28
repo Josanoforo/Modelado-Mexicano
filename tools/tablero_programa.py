@@ -257,13 +257,18 @@ def _compara_head_origin_main(head: str, remoto: str) -> tuple[bool, str]:
 # ADENDA-1 P2: "o el árbol está sucio". Se exceptúan los derivados que el
 # propio canal escribe ANTES del tablero (mismo `git add` de verify.yml): en
 # CI ya están modificados cuando corre `--actualiza` y son justo lo que viaja.
+#
+# GEN2-TUBERIA-3 P2/P3: las dos vistas de demanda también las deriva y publica
+# el canal (antes de todo lo demás); `status` las lee, así que también entran a
+# la lista de vistas del árbol que se comparan contra HEAD (más abajo).
+VISTAS_DEMANDA = ("data/corrida0/demanda-corridas.tsv", "data/corrida0/demanda-resultados.tsv")
 DERIVADOS_DEL_CANAL = (
     "data/corrida0/corridas.tsv", "data/corrida0/resultados.tsv",
     "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
     "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
     "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
     "forense/tablero/TABLERO-CARRILES.md", "docs/tablero-carriles.html",  # GEN2-TABLERO-CARRILES-1
-)
+) + VISTAS_DEMANDA
 
 
 def _sucios_ajenos(porcelain: str) -> list[str]:
@@ -586,7 +591,7 @@ def derivar_indicadores() -> dict[str, dict]:
     # viajan en el PR [deriva]; en una sesión local, lo que re-derivó sin
     # publicar). Vacía = el valor en árbol es el publicado.
     put("vistas_arbol_distintas_de_head",
-        [r for r in DERIVADOS_DEL_CANAL[:5]
+        [r for r in DERIVADOS_DEL_CANAL[:5] + VISTAS_DEMANDA
          if subprocess.run(["git", "diff", "--quiet", "HEAD", "--", r]).returncode != 0],
         "git diff --quiet HEAD -- <vista> por cada vista de data/corrida0 que escribe el canal")
     for clave, valor in gen2.items():

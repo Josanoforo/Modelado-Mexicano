@@ -54,3 +54,11 @@ python3 -c "import yaml; print(hasattr(yaml, 'CSafeLoader'))"   # True
 - Una fila en una línea: `python3 tools/consulta.py result|corrida|celda|payload|fp|nc <id>`.
 - Reglas de lectura: `CLAUDE.md` § Reglas de lectura.
 - `rg`, `jq`, `yq` están en la imagen de nube y en la CI (`apt`).
+
+## 4 · Disco, no `/tmp` (ACTO GEN2-TUBERIA-3, P1/P5)
+
+`/tmp` puede ser un tmpfs en RAM (caja: 12 GB; el 28/sep amaneció al 100 % con 7.8 GB de swap por worktrees huérfanos y sesiones murieron).
+
+- Exporta `TMPDIR` a un directorio en disco antes de clonar o correr suites (caja de mesa: `/home/pc0/tmp`).
+- Al abrir y al cerrar una sesión: `git worktree prune` y `git worktree list` (cero prunables).
+- Un worktree con trabajo sin empujar se respalda antes de borrarse; el derivador del canal ya lo hace (`tools/deriva_cron.sh`, evidencia en `forense/deriva-log/estado/`).

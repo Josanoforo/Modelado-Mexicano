@@ -1462,8 +1462,11 @@ def _arbol_registro(res=None, corr=None, calcs=(), tramite=None, propuesta=None,
     previos = {k: getattr(C, k) for k in
                ("CORRIDAS", "DEMANDA_RESULTADOS", "DEMANDA_CORRIDAS",
                 "NO_CORRIDO_TSV", "TRAMITE", "PROCEDENCIA", "PROPUESTA",
-                "REPLAY_EVIDENCIA", "VALIDACIONES_INDEPENDIENTES")}
+                "REPLAY_EVIDENCIA", "VALIDACIONES_INDEPENDIENTES", "SALIDA")}
     C.CORRIDAS = tmp
+    # GEN2-TUBERIA-3 P3: `status` lee SALIDA/demanda-dictamen-v1_0.tsv (llave CORR
+    # posicional); sin esto el CORR-0001 del fixture casa con el dictamen REAL.
+    C.SALIDA = tmp
     C.DEMANDA_RESULTADOS = tmp / "demanda-resultados.tsv"
     C.DEMANDA_CORRIDAS = tmp / "demanda-corridas.tsv"
     C.NO_CORRIDO_TSV = tmp / "no-corrido.tsv"
