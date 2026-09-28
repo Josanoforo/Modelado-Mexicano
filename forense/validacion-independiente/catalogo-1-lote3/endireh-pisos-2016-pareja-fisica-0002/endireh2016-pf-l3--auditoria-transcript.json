@@ -1,0 +1,114 @@
+{
+  "campos_codigo": {
+    "P_fuera_de_ee49": [],
+    "TB_SEC_XIII": [
+      "CVE_ENT",
+      "DOMINIO",
+      "EST_DIS",
+      "FAC_MUJ",
+      "HOGAR",
+      "ID_MUJ",
+      "ID_VIV",
+      "N_REN",
+      "P13_1_1",
+      "P13_1_2",
+      "P13_1_3",
+      "P13_1_4",
+      "P13_1_5",
+      "P13_1_6",
+      "P13_1_7",
+      "P13_1_8",
+      "P13_1_9",
+      "P13_3_1",
+      "P13_3_2",
+      "P13_3_3",
+      "P13_3_4",
+      "P13_3_5",
+      "P13_3_6",
+      "P13_3_7",
+      "P13_3_8",
+      "P13_3_9",
+      "T_INSTRUM",
+      "UPM",
+      "UPM_DIS",
+      "VIV_SEL"
+    ],
+    "TSDem": [
+      "EDAD",
+      "NIV",
+      "SEXO"
+    ],
+    "read_csv_sin_usecols": []
+  },
+  "comandos_con_red": [],
+  "cwd": "/home/pc0/c1-lote3-rec/endireh-pisos-2016-pareja-fisica-0002",
+  "errores_de_herramienta": [
+    {
+      "error": "Permission for this tool use was denied. It requires approval, and this session has no approval surface — nobody can answer a permission prompt here — so it was denied automatically. The action was NOT performed; do not claim it succeeded, and do not retry it: this action, and anything else that req",
+      "id": "toolu_01Utng6bbji2Nu3BT3fXYjaL"
+    },
+    {
+      "error": "Permission for this tool use was denied. It requires approval, and this session has no approval surface — nobody can answer a permission prompt here — so it was denied automatically. The action was NOT performed; do not claim it succeeded, and do not retry it: this action, and anything else that req",
+      "id": "toolu_01XFFMZ3qiFkfGjqWmBGsC6T"
+    }
+  ],
+  "init": {
+    "claude_code_version": "2.1.283",
+    "cwd": "/home/pc0/c1-lote3-rec/endireh-pisos-2016-pareja-fisica-0002",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 29,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "por_herramienta": {
+    "Bash": 9,
+    "Grep": 5,
+    "Read": 12,
+    "Write": 3
+  },
+  "resultado": {
+    "duration_ms": 223172,
+    "is_error": false,
+    "num_turns": 30,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "cd paquete && python3 -c \"\nimport json\nfor f in ['fd2016-TB_SEC_XIII.json','fd2016-TSDem.json']:\n    d=json.load(open(f)); print(f,type(d), (list(d.keys()) if isinstance(d,dict) else len(d)))\n\" && head -c 3000 fd2016-TB_SEC_XIII.json; echo; head -c 2500 fd2016-TSDem.json",
+          "description": "Inspect FD JSON structure"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01Utng6bbji2Nu3BT3fXYjaL"
+      },
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport json\nr=json.load(open('salida/resultado.json')); d={x['llave']:x for x in json.load(open('salida/diagnostico.json'))['filas']}\nfor f in r['filas'][:3]+r['filas'][42:44]: print(f['llave'],f['punto'][:8],f['ic95_inf'][:8],f['ic95_sup'][:8],d[f['llave']]['n'],d[f['llave']]['upm_con_casos'],d[f['llave']]['replicas_descartadas_denominador_cero'])\nprint('min n',min(x['n'] for x in d.values()),'min upm',min(x['upm_con_casos'] for x in d.values()), 'max cv',max(float(x['cv']) for x in d.values()))\n\"",
+          "description": "Print aggregate summary of results"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01XFFMZ3qiFkfGjqWmBGsC6T"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 1.8001832000000006
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "b5623866-1e1a-4b9c-b5cc-0dddcabc245e",
+  "transcript": "forense/validacion-independiente/catalogo-1-lote3/endireh-pisos-2016-pareja-fisica-0002/reconstructora/transcript.jsonl",
+  "veredicto": {
+    "CAMPOS-DENTRO-DE-EE49": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

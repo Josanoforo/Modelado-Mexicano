@@ -1,0 +1,21 @@
+# salida cruda, 28/sep/2026, caja, tras mover los 2 PDF a data/raw/MOCIBA/ y editar sus 2 campos archivo:; mismo filtro de avisos ajenos
+Entorno de verificación: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+mociba_2021_cuestionario_pdf [data_raw]: COINCIDE -- sha256 y tamaño (847961 bytes) verificados contra data/manifiesto.yaml
+mociba_2022_cuestionario_pdf [data_raw]: COINCIDE -- sha256 y tamaño (1044877 bytes) verificados contra data/manifiesto.yaml
+
+Por raíz (sin colapsar):
+  data_raw: coincide=2 · no_coincide=0 · ausente=0 · sin_configurar=0 · fuera_de_perimetro=0
+
+Procedencia derivada, NO confirmada por el autor: 612 entrada(s) de 7198 en el manifiesto (cuenta el manifiesto completo, no solo lo verificado arriba):
+
+# CONTROL (mismo comando con el manifiesto de HEAD fa42a3c15, antes de la edición):
+Entorno de verificación: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+mociba_2021_cuestionario_pdf [data_raw]: AUSENTE -- forense/produccion/mociba-flujo-documental-1/documentos/mociba2021_cuestionario.pdf no está en la raíz 'data_raw' (no es un error: el payload no se commitea)
+mociba_2022_cuestionario_pdf [data_raw]: AUSENTE -- forense/produccion/mociba-flujo-documental-1/documentos/mociba2022_cuestionario.pdf no está en la raíz 'data_raw' (no es un error: el payload no se commitea)
+
+Por raíz (sin colapsar):
+  data_raw: coincide=0 · no_coincide=0 · ausente=2 · sin_configurar=0 · fuera_de_perimetro=0
+
+Procedencia derivada, NO confirmada por el autor: 612 entrada(s) de 7198 en el manifiesto (cuenta el manifiesto completo, no solo lo verificado arriba):

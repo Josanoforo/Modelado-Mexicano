@@ -1123,6 +1123,14 @@ Decisiones por afirmación y productores locales en `forense/analisis/reports-v2
 | `forense/analisis/obtencion-externa-1/bitacora-*.tsv` | `baja.py` (doble descarga, sha crudo y neutralizado, estructura, soft-404) | cada intento de descarga con código HTTP, `content_type`, los dos sha y el resultado | `registra_obtencion_externa.py`, que exige bitácora A.7 para registrar | el hash neutralizado de HTML quita `<script>`, inputs ocultos y el contador `<strong>n</strong>` del RNM; un sha crudo distinto con neutralizado igual es A.7 válido |
 | `forense/analisis/obtencion-externa-1/licencias-no-declaradas.tsv` | filtro del manifiesto: ids `oe1_*` cuya `licencia` dice `NO-DECLARADA-EN-ORIGEN` | 123 ids con `url_origen` y la licencia registrada | CORPUS-LICENCIAS (sucesor de la línea base `forense/analisis/corpus-licencias-1/sin-licencia-base.tsv`) | `tests/test_corpus_licencias.py` no reconoce este marcador (busca «no declarada» con espacio): la lista es la única vía por la que esos ids llegan a la cola |
 
+## `forense/validacion-independiente/catalogo-1-lote3/` — lote 3 de C1, reconstructor sin historial (`ACTO GEN2-ASTRA6-C1-LOTE-3`, 28/sep/2026)
+
+| tabla | cómo se produce | qué contiene | quién la consume | trampa |
+|---|---|---|---|---|
+| `forense/validacion-independiente/catalogo-1-lote3/dictamen-lote3.tsv` | `python3 forense/validacion-independiente/catalogo-1-lote3/asienta_lote3.py --escribe` (también hace append de 1 fila a `data/corrida0/validaciones-independientes.tsv`) | 404 llaves de lote 2 no resueltas (56 ⊂ 312, más 92): gate, estado de compare_v3, punto/IC dentro o fuera, dictamen ASTRA6-1 y motivo | CIERRE-SEMANAL-3 (catálogo v1.4), GEN2-ASTRA6-C1-LOTE-4 | re-correr `--escribe` duplica la fila de la vista (el script lo impide con assert) |
+| `forense/validacion-independiente/specs-insuficientes-v1_1.tsv` | a mano por el acto: v1_0 verbatim + 2 filas | faltas de spec con efecto observado en una reconstrucción ciega (EDAD=98; IC no reproducible bit a bit) | GEN2-SPECS-ADENDA-1, GEN2-METODO-COMPARACION-INFERENCIAL-1 | v1_0 sigue en el árbol; la vigente es la de número mayor |
+| `forense/validacion-independiente/catalogo-1-lote3/endireh-pisos-2016-pareja-fisica-0002/{entrada,reconstructora,comparacion}/` | `construye_referencia.py`, `audita_transcript.py`, `compare_v3.py`, `runtime.py freeze-export` | manifiesto de entrada, prompt, salida y transcript de la reconstructora, ancla, congelado (tar), referencia y comparación | auditoría de E.2 por `git log` | dos archivos de la salida van renombrados con prefijo `endireh2016-pf-l3--` por T02 (`MAPA-NOMBRES.md`) |
+
 ## `data/cache/` — caché Parquet del corpus: constancias, verificación y universo (`ACTO GEN2-CORPUS-CACHE-PARQUET-1`, 28/sep/2026)
 
 | tabla | cómo se produce | qué contiene | quién la consume | trampa |
