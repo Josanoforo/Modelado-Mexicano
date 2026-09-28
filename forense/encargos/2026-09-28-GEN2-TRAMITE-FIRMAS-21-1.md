@@ -44,3 +44,6 @@ No firma nada que mesa no haya firmado ya. No toca las 9 letras de ejecución aj
 
 ## NO-CORRIDO / RESERVAS
 - Ninguno.
+
+## CONSUMIDO
+PR #1273 (mismo branch/PR que GEN2-TRAMITE-INSTRUCCIONES-V217-1-ADENDA-1 -- la rama de esta sesión está fijada por el harness a un solo PR; ver nota en el cuerpo del PR). ADR `ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01`.
