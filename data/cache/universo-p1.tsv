@@ -1,0 +1,281 @@
+# DERIVADO por `python3 tools/corpus_loader.py universo` -- no editar a mano
+id	archivo	formato	tamano_bytes	bytes_tabulares	n_miembros	decision	motivo	citado_por	n_citas
+518939279mexico_lapop_final_2006_data_set_092906	Descargas Manuales/518939279mexico_lapop_final 2006 data set 092906.dta	dta	416557	416557	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+642348348mexico_2004_export_version	Descargas Manuales/642348348mexico 2004 export version.dta	dta	429746	429746	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,calc-sin-sello	3
+a6_sicee_participacion_nacional_1991_2024	A6_SICEE_INE_ELECCIONES/participacion_nacional_1991_2024.json	json	21139			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	2
+adolescentes_ensanut2024_w_stata_stata__v2026_09_01	ENSANUT2024-v2026-09-01/adolescentes_ensanut2024_w.stata.stata.zip	dta	772749	16575279	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+adultos_ensanut2024_w_stata_stata__v2026_09_01	ENSANUT2024-v2026-09-01/adultos_ensanut2024_w.stata.stata.zip	dta	4196284	105229288	1	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ccpv_2010__mc2010_01_dta	corpus-completo/inegi/ccpv/2010/MC2010_01_dta.zip	dta	7158944	134400942	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_02_dta	corpus-completo/inegi/ccpv/2010/MC2010_02_dta.zip	dta	10336884	179870502	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_03_dta	corpus-completo/inegi/ccpv/2010/MC2010_03_dta.zip	dta	3574754	62168862	3	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_04_dta	corpus-completo/inegi/ccpv/2010/MC2010_04_dta.zip	dta	6432811	118925406	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_05_dta	corpus-completo/inegi/ccpv/2010/MC2010_05_dta.zip	dta	18717058	351316590	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_06_dta	corpus-completo/inegi/ccpv/2010/MC2010_06_dta.zip	dta	7296403	129349710	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_07_dta	corpus-completo/inegi/ccpv/2010/MC2010_07_dta.zip	dta	87146776	1836511218	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_08_dta	corpus-completo/inegi/ccpv/2010/MC2010_08_dta.zip	dta	29008666	550337316	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_09_dta	corpus-completo/inegi/ccpv/2010/MC2010_09_dta.zip	dta	41183274	685753434	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_10_dta	corpus-completo/inegi/ccpv/2010/MC2010_10_dta.zip	dta	19752552	388985754	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_11_dta	corpus-completo/inegi/ccpv/2010/MC2010_11_dta.zip	dta	34811391	657012756	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_12_dta	corpus-completo/inegi/ccpv/2010/MC2010_12_dta.zip	dta	66525374	1374733368	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_13_dta	corpus-completo/inegi/ccpv/2010/MC2010_13_dta.zip	dta	33928207	634470156	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_14_dta	corpus-completo/inegi/ccpv/2010/MC2010_14_dta.zip	dta	66351384	1231510332	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_15_dta	corpus-completo/inegi/ccpv/2010/MC2010_15_dta.zip	dta	90794936	2313555919	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_16_dta	corpus-completo/inegi/ccpv/2010/MC2010_16_dta.zip	dta	52961087	1044158508	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_17_dta	corpus-completo/inegi/ccpv/2010/MC2010_17_dta.zip	dta	16669659	295515552	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_18_dta	corpus-completo/inegi/ccpv/2010/MC2010_18_dta.zip	dta	11480066	220698336	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_19_dta	corpus-completo/inegi/ccpv/2010/MC2010_19_dta.zip	dta	29759075	534931710	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_20_dta	corpus-completo/inegi/ccpv/2010/MC2010_20_dta.zip	dta	140767011	3035150472	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_21_dta	corpus-completo/inegi/ccpv/2010/MC2010_21_dta.zip	dta	94765515	1849651116	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_22_dta	corpus-completo/inegi/ccpv/2010/MC2010_22_dta.zip	dta	11354839	210562614	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_23_dta	corpus-completo/inegi/ccpv/2010/MC2010_23_dta.zip	dta	8020073	139001838	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_24_dta	corpus-completo/inegi/ccpv/2010/MC2010_24_dta.zip	dta	26808284	525782808	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_25_dta	corpus-completo/inegi/ccpv/2010/MC2010_25_dta.zip	dta	13358267	248161758	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_26_dta	corpus-completo/inegi/ccpv/2010/MC2010_26_dta.zip	dta	27661830	506402292	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_27_dta	corpus-completo/inegi/ccpv/2010/MC2010_27_dta.zip	dta	10687742	200785392	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_28_dta	corpus-completo/inegi/ccpv/2010/MC2010_28_dta.zip	dta	21794264	404103732	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_29_dta	corpus-completo/inegi/ccpv/2010/MC2010_29_dta.zip	dta	26867621	498393240	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_30_dta	corpus-completo/inegi/ccpv/2010/MC2010_30_dta.zip	dta	99794894	1970222244	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_31_dta	corpus-completo/inegi/ccpv/2010/MC2010_31_dta.zip	dta	41177346	767977200	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_ccpv_2010__mc2010_32_dta	corpus-completo/inegi/ccpv/2010/MC2010_32_dta.zip	dta	22355648	428722836	3	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_edr_2021__defunciones_base_datos_2021_dbf	corpus-completo/inegi/edr/2021/defunciones_base_datos_2021_dbf.zip	dbf	31035888	152121963	8	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_edr_2023__defunciones_base_datos_2023_dbf	corpus-completo/inegi/edr/2023/defunciones_base_datos_2023_dbf.zip	dbf	28755241	136525138	12	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_enadid_2009__base_datos_enadid09_dbf	corpus-completo/inegi/enadid/2009/base_datos_enadid09_dbf.zip	dbf	21875563	114749463	6	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_enadid_2014__base_datos_enadid14_dbf	corpus-completo/inegi/enadid/2014/base_datos_enadid14_dbf.zip	dbf	22146674	158752949	7	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_enigh_2016__enigh2016_ns_gastoshogar_csv	corpus-completo/inegi/enigh/2016/enigh2016_ns_gastoshogar_csv.zip	csv	38574529	374100032	1	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_enigh_2018__enigh2018_ns_gastoshogar_csv	corpus-completo/inegi/enigh/2018/enigh2018_ns_gastoshogar_csv.zip	csv	36260221	393767181	1	SE-CONVIERTE		calc-sellado	1
+cc1_inegi_enpecyt_2011__enpecyt2011_bd_dbf	corpus-completo/inegi/enpecyt/2011/enpecyt2011_bd_dbf.zip	dbf	2802817	5755919	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+cc1_inegi_enpecyt_2013__enpecyt2013_bd_dbf	corpus-completo/inegi/enpecyt/2013/enpecyt2013_bd_dbf.zip	dbf	3585139	6627880	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+cc1_inegi_enpecyt_2015__enpecyt2015_bd_dbf	corpus-completo/inegi/enpecyt/2015/enpecyt2015_bd_dbf.zip	dbf	688318	6190119	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+cc1_inegi_ensu_2013__ensu_bd_2013_dbf	corpus-completo/inegi/ensu/2013/ensu_bd_2013_dbf.zip	dbf	331179	5370728	6	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+cc1_inegi_ensu_2014__ensu_bd_2014_dbf	corpus-completo/inegi/ensu/2014/ensu_bd_2014_dbf.zip	dbf	597755	10895366	12	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+cc1_inegi_ensu_2015__ensu_bd_2015_dbf	corpus-completo/inegi/ensu/2015/ensu_bd_2015_dbf.zip	dbf	574741	8555829	12	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+cc1_inegi_ensu_2016__ensu_bd_2016_dbf	corpus-completo/inegi/ensu/2016/ensu_bd_2016_dbf.zip	dbf	4906100	105551090	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2017__ensu_bd_2017_dbf	corpus-completo/inegi/ensu/2017/ensu_bd_2017_dbf.zip	dbf	8158609	155556294	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2018__ensu_bd_2018_dbf	corpus-completo/inegi/ensu/2018/ensu_bd_2018_dbf.zip	dbf	9504089	168180279	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2019__ensu_bd_2019_dbf	corpus-completo/inegi/ensu/2019/ensu_bd_2019_dbf.zip	dbf	11034270	174905148	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2020__ensu_bd_2020_dbf	corpus-completo/inegi/ensu/2020/ensu_bd_2020_dbf.zip	dbf	9959831	203454243	10	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2021__ensu_bd_2021_csv	corpus-completo/inegi/ensu/2021/ensu_bd_2021_csv.zip	csv	11004900	114751139	9	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2022__ensu_bd_2022_csv	corpus-completo/inegi/ensu/2022/ensu_bd_2022_csv.zip	csv	15141553	155763972	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_ensu_2023__ensu_bd_2023_csv	corpus-completo/inegi/ensu/2023/ensu_bd_2023_csv.zip	csv	14925495	160776821	12	SE-CONVIERTE		calc-sellado	2
+cc1_inegi_mortalidad_2020__defunciones_base_datos_2020_dbf	corpus-completo/inegi/mortalidad/2020/defunciones_base_datos_2020_dbf.zip	dbf	32344612	147198341	8	SE-CONVIERTE		calc-sellado	1
+cide_cses2015_estatal_preelectoral	UNIVERSO-2026-09/CSES/cide_cses2015_estatal_preelectoral.sav	sav	2824566	2824566	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+cide_cses2015_nacional_poselectoral	UNIVERSO-2026-09/CSES/cide_cses2015_nacional_poselectoral.sav	sav	1864581	1864581	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+cide_cses2015_nacional_preelectoral	UNIVERSO-2026-09/CSES/cide_cses2015_nacional_preelectoral.sav	sav	2912016	2912016	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+conjunto_de_datos_encrige_2020_csv	UNIVERSO-2026-09/ENCRIGE/conjunto_de_datos_encrige_2020_csv.zip	zip	1630532			NO-SE-CONVIERTE	RESERVADA (h: ENCRIGE 2020)	calc-sellado	1
+eder_2017_eder2017_bases_csv	eder2017/eder2017_bases_csv.zip	csv	13313736	423388482	5	SE-CONVIERTE		calc-sellado,demanda	6
+eder_2017_eder2017_fd	eder2017/eder2017_fd.pdf	pdf	2201081			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+edr2015_2019_bd_dbf_zip	EDR/2015-2019/defunciones_generales_base_datos_2015_2019_dbf.zip	dbf	116617815	487767332	40	SE-CONVIERTE		calc-sellado	1
+edr2022_bd_dbf_zip	EDR/2022/defunciones_base_datos_2022_dbf.zip	dbf	25864505	143727005	12	SE-CONVIERTE		calc-sellado	1
+eic2015_nacional_csv	UNIVERSO-2026-09/INTERCENSAL2015/eic2015_nacional_csv.zip	csv	74659556	634398457	2	SE-CONVIERTE		calc-sellado	1
+emat2010_2014_bd_dbf_zip	EMAT/2010-2014/matrimonios_base_datos_2010_2014_dbf.zip	dbf	38074262	212451287	10	SE-CONVIERTE		calc-sellado	1
+emat2015_2019_bd_dbf_zip	EMAT/2015-2019/matrimonios_base_datos_2015_2019_dbf.zip	dbf	34286682	193351415	10	SE-CONVIERTE		calc-sellado	1
+emat2020_bd_dbf_zip	EMAT/2020/matrimonios_base_datos_2020_dbf.zip	dbf	4778981	25071519	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+emat2021_bd_dbf_zip	EMAT/2021/matrimonios_base_datos_2021_dbf.zip	dbf	6283059	33263175	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+emat2022_bd_dbf_zip	EMAT/2022/matrimonios_base_datos_2022_dbf.zip	dbf	5883816	37087011	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+emat2023_bd_dbf_zip	EMAT/2023/matrimonios_base_datos_2023_dbf.zip	dbf	5785435	36632007	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enadid2018_bd_csv_zip	ENADID/2018/base_datos_enadid18_csv.zip	csv	42389523	377430434	7	SE-CONVIERTE		calc-sellado	2
+enadid2023_base_datos_csv	base_datos_enadid23_csv.zip	csv	44922433	407795807	7	SE-CONVIERTE		calc-sellado,calc-sin-sello	5
+enadid2023_fd_xlsx	fd_enadid23.xlsx	xlsx	2085302			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	5
+enadid2023_hogar_cuestionario_pdf	hogar_enadid23.pdf	pdf	997178			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	5
+enasem2021_bd_csv_zip	enasem2021/enasem_2021_bd_csv.zip	csv	7438658	108811620	8	SE-CONVIERTE		calc-sellado	1
+enasic2022_bd_csv_zip	enasic2022/enasic_2022_bd_csv.zip	csv	2289078	31683947	6	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enbiare2021_bd_csv_zip	enbiare2021/enbiare_2021_base_de_datos_csv.zip	csv	5684658	54818207	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+encig2015_csv	encig2015_csv.zip	csv	13152080	297281577	4	SE-CONVIERTE		calc-sellado	1
+encig2017_csv	encig2017_csv.zip	csv	35027186	706935841	6	SE-CONVIERTE		calc-sellado	2
+encig2019_csv	encig2019_csv.zip	csv	32632044	734933922	6	SE-CONVIERTE		calc-sellado	3
+encig2021_csv	encig2021_csv.zip	csv	27752363	656640342	6	SE-CONVIERTE		calc-sellado,calc-sin-sello,demanda	11
+encig23_base_datos_csv	encig23_base_datos_csv.zip	csv	38309647	578690132	6	SE-CONVIERTE		calc-sellado,calc-sin-sello	14
+encig23_cuestionario_pdf	encig23_cuestionario.pdf	pdf	2015393			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	3
+encig23_estructura_base_datos_pdf	encig23_estructura_base_datos.pdf	pdf	3100802			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	3
+encig25_base_datos_csv	encig25_base_datos_csv.zip	csv	37624925	583609258	6	SE-CONVIERTE		calc-sellado,calc-sin-sello,demanda,familia2027,familia2027-analisis	13
+encig_2013_encig13_base_datos_dbf	encig2013/encig13_base_datos_dbf.zip	dbf	9621208	113240878	4	SE-CONVIERTE		calc-sellado,demanda	4
+encodat_2016_2017__encodat_2016_2017_hogar_stata_stata_zip	ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información sobre el hogar/ENCODAT_2016_2017_Hogar.stata.stata.zip	dta	1861215	42450457	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+encodat_2016_2017__encodat_2016_2017_individual_stata_stata_zip	ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.stata.stata.zip	dta	26877179	1212525348	1	SE-CONVIERTE		calc-sellado	1
+encrige2020_cuestionario	UNIVERSO-2026-09/ENCRIGE/encrige2020_cuestionario.pdf	pdf	1532744			NO-SE-CONVIERTE	RESERVADA (h: ENCRIGE 2020)	calc-sellado	1
+encuci2020_bd_dbf	BD_ENCUCI2020_dbf.zip	dbf	6913684	152384926	5	SE-CONVIERTE		calc-sellado,demanda	10
+encup_2012_base_datos_xlsx	encup_2012_base_datos_xlsx.xlsx	xlsx	4814178			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	2
+endireh2021_bd_csv_zip	endireh2021/bd_endireh_2021_csv.zip	csv	78902567	874454164	28	SE-CONVIERTE		calc-sellado,calc-sin-sello	13
+endireh_2006_bd_endireh_2006_csv	endireh2006/bd_endireh_2006_csv.zip	csv+dbf	25031008	318656226	17	SE-CONVIERTE		calc-sellado,calc-sin-sello	2
+endireh_2011_bd_endireh_2011_csv	endireh2011/bd_endireh_2011_csv.zip	csv	28241643	413417080	11	SE-CONVIERTE		calc-sellado	1
+endireh_2016_bd_mujeres_endireh2016_sitioinegi_csv	endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip	csv	100845928	1261027733	25	SE-CONVIERTE		calc-sellado,calc-sin-sello	4
+endiseg2021_bd_csv_zip	ENDISEG/2021/endiseg_2021_bd_csv.zip	csv	5120097	62260696	5	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+endutih2024_bd_dbf_zip	endutih2024/endutih2024_bd_dbf.zip	dbf	8823853	280481922	5	SE-CONVIERTE		calc-sellado	3
+endutih2024_cuestionario_pdf	endutih2024/CENDUTIH2024.pdf	pdf	1385429			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+endutih2024_fd_xlsx	endutih2024/fd_endutih2024.xlsx	xlsx	155075			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+endutih_2023_endutih2023_bd_dbf	endutih2023/endutih2023_bd_dbf.zip	dbf	9877009	275177596	5	SE-CONVIERTE		calc-sellado	3
+endutih_2023_fd_endutih2023	endutih2023/FD_ENDUTIH2023.xlsx	xlsx	140760			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+endutih_2025_endutih2025_bd_dbf	endutih2025/endutih2025_bd_dbf.zip	zip	9041121			NO-SE-CONVIERTE	RESERVADA (h: ENDUTIH 2025)	calc-sellado	3
+endutih_2025_fd_endutih2025	endutih2025/fd_endutih2025.xlsx	xlsx	162469			NO-SE-CONVIERTE	RESERVADA (h: ENDUTIH 2025)	calc-sellado	2
+enfih2019_bd_csv_zip	enfih2019/enfih_2019_base_de_datos_csv.zip	csv	4404049	50719760	16	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,demanda	7
+enfih2019_fd_xlsx	enfih2019/enfih_2019_fd.xlsx	xlsx	202396			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	5
+engasto2012_gasto_de_consumo_ajustado_dta	engasto2012/gasto_de_consumo_ajustado_dta.zip	dta	37585691	318690502	1	SE-CONVIERTE		calc-sellado	1
+engasto2012_hogar_dta	engasto2012/hogar_dta.zip	dta	1673532	11993251	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+engasto_2012_lugar_compra_dta	engasto2012/lugar_compra_dta.zip	dta	2006599	9917006	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+engasto_2012_vivienda_dta	engasto2012/vivienda_dta.zip	dta	1181477	10811853	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enif2018_csv	enif2018_csv.zip	csv	4450312	9334817	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,demanda	10
+enif2021_csv	enif2021_csv.zip	csv	2511357	23682241	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,calc-sin-sello	18
+enif2021_fd_zip	enif_2021_fd_pdf.zip	zip	1229311			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+enif2024_csv	enif2024_csv.zip	zip	3086077			NO-SE-CONVIERTE	RESERVADA (h: ENIF 2024 (reservas por módulo; módulo 7))	calc-sellado	13
+enif2024_fd_xlsx	enif_2024_fd.xlsx	xlsx	122271			NO-SE-CONVIERTE	RESERVADA (h: ENIF 2024 (reservas por módulo; módulo 7))	calc-sellado	1
+enif_2012_bases_enif2012_dbf	bases_enif2012_dbf.zip	dbf	527249	3794625	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	4
+enif_2015_enif_2015_bd_dbf	enif_2015_bd_dbf.zip	dbf	1312686	95436605	5	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	5
+enif_2021_enif_2021_bd_csv	enif_2021_bd_csv.zip	csv	1981657	23682241	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enif_2024_enif_2024_bd_csv	enif_2024_bd_csv.zip	zip	3131148			NO-SE-CONVIERTE	RESERVADA (h: ENIF 2024 (reservas por módulo; módulo 7))	calc-sellado,calc-sin-sello,demanda,familia2027,familia2027-analisis	22
+enigh2014_nc_csv	enigh2014_nc_csv.zip	csv	39555490	165223281	12	SE-CONVIERTE		calc-sellado	1
+enigh2016_nc_csv	enigh2016_nc_csv.zip	csv	40991826	303374606	14	SE-CONVIERTE		calc-sellado,demanda	11
+enigh2018_nc_csv	enigh2018_nc_csv.zip	csv	43339807	365449682	14	SE-CONVIERTE		calc-sellado,demanda	10
+enigh2020_nc_csv	enigh2020_nc_csv.zip	csv	93711908	755393825	17	SE-CONVIERTE		calc-sellado,demanda	10
+enigh2022_descripcion_base_pdf	enigh2022_descripcion_base_pdf.pdf	pdf	2906552			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	5
+enigh2022_nc_csv	enigh2022_nc_csv.zip	csv	90030937	895869746	17	SE-CONVIERTE		calc-sellado,calc-sin-sello,demanda	14
+enigh2022_nota_tecnica_pdf	enigh2022_nota_tecnica_pdf.pdf	pdf	1643661			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	5
+enigh2024_nc_csv	enigh2024_ns_csv.zip	zip	103139139			NO-SE-CONVIERTE	RESERVADA (m: ENIGH 2024)	calc-sellado	2
+ennvih1_2002_guia	ennvih/guiausuariov1.pdf	pdf	483275			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih1_2002_hogar_cb	ennvih/ehh02cb_all.zip	zip	2195863			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih1_2002_hogar_dta	ennvih/ehh02dta_all.zip	dta	17534918	175835808	137	SE-CONVIERTE		calc-sellado,calc-sin-sello,demanda	11
+ennvih1_2002_hogar_q	ennvih/ehh02q_all.zip	zip	3750632			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih1_2002_ponderador	ennvih/ehh02w_all.zip	dta	755310	3613298	11	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,calc-sin-sello	9
+ennvih2_2005_guia	ennvih/guiausuariov2.pdf	pdf	307528			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+ennvih2_2005_hogar_cb	ennvih/ehh05cb_all.zip	zip	1184711			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih2_2005_hogar_dta	ennvih/ehh05dta_all.zip	dta	20198874	267574270	147	SE-CONVIERTE		calc-sellado,demanda	4
+ennvih2_2005_hogar_q	ennvih/ehh05q_all.zip	zip	2913036			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih2_2005_ponderador_longitudinal	ennvih/ehh05lw_all.zip	dta	698559	3756140	11	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ennvih2_2005_ponderador_transversal	ennvih/ehh05w_all.zip	dta	759009	4506280	11	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+ennvih3_2009_factores_exp	ennvih/calculo-de-factores-de-expansion.pdf	pdf	337947			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+ennvih3_2009_guia	ennvih/guia_de_usuario_ennvih-3.pdf	pdf	774086			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+ennvih3_2009_hogar_cb	ennvih/ehh09cb_all.zip	zip	10077598			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih3_2009_hogar_dta	ennvih/ehh09dta_all.zip	dta	26376091	324925934	141	SE-CONVIERTE		calc-sellado,demanda	4
+ennvih3_2009_hogar_q	ennvih/ehh09q_all.zip	zip	6156032			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ennvih3_2009_ponderador_longitudinal	ennvih/ehh09lw_all.zip	dta	655349	4230306	11	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ennvih3_2009_ponderador_transversal	ennvih/ehh09w_all.zip	dta	876722	5729892	11	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enoe_2005_1t_csv_microdatos	2005trim1_csv.zip	csv	33534030	325018445	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2008_1t_csv_microdatos	2008trim1_csv.zip	csv	27278375	280926757	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2012_1t_csv_microdatos	2012trim1_csv.zip	csv	31269330	320904867	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2014_1t_csv_microdatos	2014trim1_csv.zip	csv	25134524	327983168	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2015_trim2_dbf	enoe_2015_trim2_dbf.zip	dbf	25280795	272101286	5	SE-CONVIERTE		calc-sellado	1
+enoe_2016_1t_csv_microdatos	2016trim1_csv.zip	csv	29867488	324962475	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2016_2t_csv_microdatos	2016trim2_csv.zip	csv	26779138	279496666	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2016_3t_csv_microdatos	2016trim3_csv.zip	csv	26452611	275750475	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2016_4t_csv_microdatos	2016trim4_csv.zip	csv	26466686	276488329	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2017_1t_csv_microdatos	2017trim1_csv.zip	csv	29455399	321623657	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2017_2t_csv_microdatos	2017trim2_csv.zip	csv	27024159	281259941	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2017_3t_csv_microdatos	2017trim3_csv.zip	csv	26498706	277164677	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2017_4t_csv_microdatos	2017trim4_csv.zip	csv	26664215	277701952	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2018_1t_csv_microdatos	2018trim1_csv.zip	csv	29646952	322453418	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2018_2t_csv_microdatos	2018trim2_csv.zip	csv	26835694	278616279	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2018_3t_csv_microdatos	2018trim3_csv.zip	csv	26606485	277694368	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2018_4t_csv_microdatos	2018trim4_csv.zip	csv	26724182	278168715	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2019_1t_microdatos	enoe_microdatos_post2019/2019trim1_csv.zip	csv	31269571	336245719	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2019_2t_microdatos	enoe_microdatos_post2019/2019trim2_csv.zip	csv	28592043	290382799	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2019_3t_microdatos	enoe_microdatos_post2019/2019trim3_csv.zip	csv	31116800	289254767	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2019_4t_microdatos	enoe_microdatos_post2019/2019trim4_csv.zip	csv	28058037	288281923	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2020_1t_microdatos	enoe_microdatos_post2019/2020trim1_csv.zip	csv	27350239	347916293	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2023_1t_microdatos	enoe_microdatos_post2019/enoe_2023_trim1_csv.zip	csv	37487716	413968651	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2023_2t_microdatos	enoe_microdatos_post2019/enoe_2023_trim2_csv.zip	csv	39500761	342277993	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2023_3t_microdatos	enoe_microdatos_post2019/enoe_2023_trim3_csv.zip	csv	40893331	341408599	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2023_4t_microdatos	enoe_microdatos_post2019/enoe_2023_trim4_csv.zip	csv	40681812	336675690	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2024_1t_microdatos	enoe_microdatos_post2019/enoe_2024_trim1_csv.zip	csv	37004177	389393686	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2024_2t_microdatos	enoe_microdatos_post2019/enoe_2024_trim2_csv.zip	csv	31773308	341131667	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2024_3t_microdatos	enoe_microdatos_post2019/enoe_2024_trim3_csv.zip	csv	43272328	338631145	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2024_4t_microdatos	enoe_microdatos_post2019/enoe_2024_trim4_csv.zip	csv	43410469	339480651	5	SE-CONVIERTE		calc-sellado,calc-sin-sello,familia2027-analisis	5
+enoe_2025_1t_microdatos	enoe_microdatos_post2019/enoe_2025_trim1_csv.zip	csv	40919680	389078190	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2025_2t_microdatos	enoe_microdatos_post2019/enoe_2025_trim2_csv.zip	csv	38752236	339204084	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2025_3t_microdatos	enoe_microdatos_post2019/enoe_2025_trim3_csv.zip	csv	40062680	349089634	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_2025_4t_microdatos	enoe_microdatos_post2019/enoe_2025_trim4_csv.zip	csv	43383478	348336266	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_fd_c_bas_amp_15ymas_pdf	fd_c_bas_amp_15ymas.pdf	pdf	4383629			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+enoe_n_2020_3t_microdatos	enoe_microdatos_post2019/enoe_n_2020_trim3_csv.zip	csv	19827422	237736830	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2020_4t_microdatos	enoe_microdatos_post2019/enoe_n_2020_trim4_csv.zip	csv	23007909	281809598	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2021_1t_microdatos	enoe_microdatos_post2019/enoe_n_2021_trim1_csv.zip	csv	24586788	314684478	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2021_2t_microdatos	enoe_microdatos_post2019/enoe_n_2021_trim2_csv.zip	csv	23887444	294642482	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2021_3t_microdatos	enoe_microdatos_post2019/enoe_n_2021_trim3_csv.zip	csv	32559052	337985362	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2021_4t_microdatos	enoe_microdatos_post2019/enoe_n_2021_trim4_csv.zip	csv	27117836	344672433	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2022_1t_microdatos	enoe_microdatos_post2019/enoe_n_2022_trim1_csv.zip	csv	27691497	368629903	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2022_2t_microdatos	enoe_microdatos_post2019/enoe_n_2022_trim2_csv.zip	csv	30537564	323799527	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2022_3t_microdatos	enoe_microdatos_post2019/enoe_n_2022_trim3_csv.zip	csv	29571337	314417097	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_2022_4t_microdatos	enoe_microdatos_post2019/enoe_n_2022_trim4_csv.zip	csv	29670618	314974995	5	SE-CONVIERTE		calc-sellado,calc-sin-sello	3
+enoe_n_diseno_muestral_pdf	enoe_n_diseno_muestral.pdf	pdf	1192674			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado,calc-sin-sello	3
+ensafi2023_bd_csv_zip	ensafi2023/ensafi_2023_bd_csv.zip	csv	5027338	40065899	4	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	3
+ensafi2023_cuestionario_pdf	ensafi2023/ensafi_2023_cuestionario.pdf	pdf	1182405			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ensafi2023_fd_xlsx_zip	ensafi2023/ensafi_2023_fd_xlsx.zip	zip	1108577			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+ensanut_2021__ensadol2021_entrega_w_14_12_2021_stata_stata_zip	ENSANUT/2021/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/ensadol2021_entrega_w_14_12_2021.stata.stata.zip	dta	746458	16158414	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2021__ensadul2021_entrega_w_15_12_2021_stata_stata_zip	ENSANUT/2021/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/ensadul2021_entrega_w_15_12_2021.stata.stata.zip	dta	4355747	93599918	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2021__integrantes_ensanut2021_w_12_01_2022_stata_stata_zip	ENSANUT/2021/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2021_w_12_01_2022.stata.stata.zip	dta	4974385	126731173	1	SE-CONVIERTE		calc-sellado	1
+ensanut_2021__util2021_entrega_w_14_12_2021_stata_stata_zip	ENSANUT/2021/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/util2021_entrega_w_14_12_2021.stata.stata.zip	dta	372955	5205232	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2022__ensadol2022_entrega_w_stata_stata_zip	ENSANUT/2022/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/ensadol2022_entrega_w.stata.stata.zip	dta	641325	12419177	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2022__ensadul2022_entrega_w_stata_stata_zip	ENSANUT/2022/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/ensadul2022_entrega_w.stata.stata.zip	dta	2958031	68384651	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2022__integrantes_ensanut2022_w_stata_stata_zip	ENSANUT/2022/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2022_w.stata.stata.zip	dta	2801004	64297354	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2022__util2022_entrega_w_stata_stata_zip	ENSANUT/2022/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/util2022_entrega_w.stata.stata.zip	dta	458424	6348505	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2023__adolescentes_ensanut2023_w_n_stata_stata_zip	ENSANUT/2023/01-Componente de SALUD/03-Cuestionario de salud de adolescentes (10 a 19 años)/adolescentes_ensanut2023_w_n.stata.stata.zip	dta	390110	8503816	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2023__adultos_ensanut2023_w_n_stata_stata_zip	ENSANUT/2023/01-Componente de SALUD/04-Cuestionario de salud de adultos (20 años o más)/adultos_ensanut2023_w_n.stata.stata.zip	dta	1871743	48074003	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2023__integrantes_ensanut2023_w_n_stata_stata_zip	ENSANUT/2023/01-Componente de SALUD/01-Cuestionario de hogar/02-Información sobre los residentes/integrantes_ensanut2023_w_n.stata.stata.zip	dta	1840361	56420552	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensanut_2023__utilizadores_ensanut2023_w_n_stata_stata_zip	ENSANUT/2023/01-Componente de SALUD/05-Cuestionario de utilizadores de servicios de salud/utilizadores_ensanut2023_w_n.stata.stata.zip	dta	241981	3325249	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ensu2024_bd_csv_zip	ENSU/2024/ensu_bd_2024_csv.zip	csv	15017962	166895128	12	SE-CONVIERTE		calc-sellado	2
+ensu2025_bd_csv_zip	ensu2025/ensu_bd_2025_csv.zip	csv	12332522	162741312	12	SE-CONVIERTE		calc-sellado,familia2027-analisis	3
+enut2009_bd_dbf	enut2009_bd_dbf.zip	dbf	5249774	43383963	7	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enut2014_bd_dbf	enut2014_bd_dbf.zip	dbf	5624461	58557313	14	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+enut2019_bd_csv	enut2019_bd_csv.zip	csv	11086174	179657239	8	SE-CONVIERTE		calc-sellado	1
+enut2024_bd_csv	enut2024_bd_csv.zip	csv	17934681	288052330	5	SE-CONVIERTE		calc-sellado,demanda	6
+enut2024_fd_xlsx	enut2024_fd.xlsx	xlsx	162690			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	4
+envipe2018_csv	envipe2018_csv.zip	csv	24337809	291289223	6	SE-CONVIERTE		calc-sellado	1
+envipe2019_csv	envipe2019_csv.zip	csv	19146940	318612134	6	SE-CONVIERTE		calc-sellado	1
+envipe2020_csv	envipe2020_csv.zip	csv	20253728	319735673	6	SE-CONVIERTE		calc-sellado	2
+envipe2021_csv	envipe2021_csv.zip	csv	22334244	273056368	6	SE-CONVIERTE		calc-sellado,demanda	3
+envipe2022_csv	envipe2022_csv.zip	csv	18858955	272634183	6	SE-CONVIERTE		calc-sellado	2
+envipe2023_csv	envipe2023_csv.zip	csv	17728995	271458986	6	SE-CONVIERTE		calc-sellado,demanda	14
+envipe2023_fd_pdf	fd_envipe2023.pdf	pdf	2980669			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+envipe2024_csv	envipe2024_csv.zip	csv	17837779	239302133	6	SE-CONVIERTE		calc-sellado,demanda	17
+envipe2024_fd_pdf	fd_envipe2024.pdf	pdf	3087144			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+envipe2025_csv	envipe2025_csv.zip	csv	17600019	248424587	6	SE-CONVIERTE		calc-sellado,calc-sin-sello,demanda,familia2027-analisis	22
+envipe2025_fd_pdf	fd_envipe2025.pdf	pdf	2284580			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+envipe2026_csv	envipe2026_csv.zip	zip	20258782			NO-SE-CONVIERTE	RESERVADA (m: ENVIPE 2026)	calc-sellado	3
+envipe_2011_base_de_datos_envipe_2011_dbf	envipe2011/base_de_datos_envipe_2011_dbf.zip	dbf	8956716	115955199	4	SE-CONVIERTE		calc-sellado	2
+envipe_2012_base_de_datos_envipe_2012_dbf	envipe2012/base_de_datos_envipe_2012_dbf.zip	dbf	10171572	108931007	4	SE-CONVIERTE		calc-sellado,demanda	5
+envipe_2013_bd_envipe13_dbf	envipe2013/bd_envipe13_dbf.zip	dbf	10433209	51940607	5	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,demanda	4
+envipe_2013_fd_envipe2013	envipe2013/fd_envipe2013.xlsx	xlsx	192702			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+envipe_2014_bd_envipe2014_dbf	envipe2014/bd_envipe2014_dbf.zip	dbf	11506651	81963934	6	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+envipe_2015_bd_envipe2015_dbf	envipe2015/bd_envipe2015_dbf.zip	dbf	15422694	92604723	6	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado,demanda	4
+envipe_2015_fd_envipe2015	envipe2015/fd_envipe2015.pdf	pdf	1852255			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+envipe_2016_bd_envipe2016_dbf	envipe2016/bd_envipe2016_dbf.zip	dbf	18625348	332571526	6	SE-CONVIERTE		calc-sellado	1
+envipe_2017_bd_envipe2017_dbf	envipe2017/bd_envipe2017_dbf.zip	dbf	18932534	424411465	6	SE-CONVIERTE		calc-sellado	1
+f00013084_wvs_wave_7_mexico_stata_v5_1	F00013084-WVS_Wave_7_Mexico_Stata_v5.1.zip	dta	412519	1932469	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+gen2_banxico_satisfaccion_usuarios_2019_2024_manual	GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_manual_2024.pdf	pdf	281206			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_banxico_satisfaccion_usuarios_2019_2024_microdatos	GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_2019_2024.xlsx	xlsx	5794893			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_banxico_satisfaccion_usuarios_2024_informe	GEN2_N34_PRODUCTO_DANO/banxico_satisfaccion_usuarios_informe_2024.pdf	pdf	1369127			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_encrige2020_diseno_muestral	GEN2_FUENTES_FINANCIERAS_20/encrige2020_diseno_muestral.pdf	pdf	1185888			NO-SE-CONVIERTE	RESERVADA (h: ENCRIGE 2020)	calc-sellado	1
+gen2_ensafi2023_diseno_muestral	GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_diseno_muestral.pdf	pdf	1540078			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_ensafi2023_presentacion_resultados	GEN2_FUENTES_FINANCIERAS_CONTINUACION/ensafi_2023_presentacion_resultados.pdf	pdf	1545505			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_federal_reserve_shed_2025_appendix_a_questionnaire	GEN2_N34_PRODUCTO_DANO/shed_2025_appendix_a.html	html	159382			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_federal_reserve_shed_2025_codebook	GEN2_N34_PRODUCTO_DANO/shed_2025_codebook.pdf	pdf	849070			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+gen2_federal_reserve_shed_2025_public_csv	GEN2_N34_PRODUCTO_DANO/shed_2025_public_csv.zip	csv	4676794	47807284	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+ine_conteos_censales_participacion_2024	ine_conteos_censales_participacion/DatosAbiertos_DECEyEC_ConteosCensales2024.zip	csv	82419841	688043730	32	SE-CONVIERTE		calc-sellado	1
+integrantes_ensanut2024_w_icb_stata_stata__v2026_09_01	ENSANUT2024-v2026-09-01/integrantes_ensanut2024_w_icb.stata.stata.zip	dta	3532861	106842264	1	SE-CONVIERTE		calc-sellado	1
+latinobarometro2023_bd_stata_zip	LATINOBAROMETRO/2023/latinobarometro-2023-stata-v1-0.zip	dta	4769261	12067267	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+mex_2021_lapop_americasbarometer_v1_2_w	Descargas Manuales/MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta	dta	1687348	1687348	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+mex_2023_lapop_americasbarometer_v1_0_w	Descargas Manuales/MEX_2023_LAPOP_AmericasBarometer_v1.0_w.dta	dta	1136219	1136219	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	3
+mexico_lapop_americasbarometer_2019_v1_0_w	Descargas Manuales/Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta	dta	832946	832946	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	5
+mmsi2016_bd_csv_zip	MMSI/2016/mmsi2016_bases_csv.zip	csv	2868676	14764449	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+mociba_2015_mociba2015_bd_dbf	mociba2015/mociba2015_bd_dbf.zip	dbf	2756809	284234490	1	SE-CONVIERTE		calc-sellado	1
+mociba_2015_mociba2015_fd	mociba2015/mociba2015_fd.xlsx	xlsx	292304			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+mociba_2016_mociba2016_bd_dbf	mociba2016/mociba2016_bd_dbf.zip	dbf	1251420	21641990	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+mociba_2016_mociba2016_fd	mociba2016/mociba2016_fd.xlsx	xlsx	149330			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+mociba_2017_mociba2017_bd_dbf	mociba2017/mociba2017_bd_dbf.zip	dbf	526927	6349480	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+mociba_2017_mociba2017_fd	mociba2017/mociba2017_fd.xlsx	xlsx	115580			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+motral2015_bases_datos_dbf	UNIVERSO-2026-09/MOTRAL/motral2015_bases_datos_dbf.zip	dbf	494654	2574312	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+motral2015_cuestionario	UNIVERSO-2026-09/MOTRAL/motral2015_cuestionario.pdf	pdf	1377117			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+motral2015_documento_metodologico	motral2015_documento_metodologico.pdf	pdf	1272155			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+motral2015_estructura_bd	motral2015_estructura_bd.pdf	pdf	1672971			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	1
+pew_gas_spring2013	UNIVERSO-2026-09/PEW/pew_gas_spring2013.zip	sav	5037202	31162275	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+pew_gas_spring2015	UNIVERSO-2026-09/PEW/pew_gas_spring2015.zip	sav	4775856	42954866	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+pew_gas_spring2017	UNIVERSO-2026-09/PEW/pew_gas_spring2017.zip	sav	9918716	39737699	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+pew_gas_spring2018	UNIVERSO-2026-09/PEW/pew_gas_spring2018.zip	sav	6269241	26122114	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+pew_gas_spring2023	UNIVERSO-2026-09/PEW/pew_gas_spring2023.zip	sav	3140716	14452155	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+pew_gas_spring2024	UNIVERSO-2026-09/PEW/pew_gas_spring2024.zip	csv+sav	10446810	85364448	2	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	2
+utilizadores_ensanut2024_w_stata_stata__v2026_09_01	ENSANUT2024-v2026-09-01/utilizadores_ensanut2024_w.stata.stata.zip	dta	397916	5197750	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	1
+wbes_mexico_2023_ddi_pdf	ddi-documentation-english_microdata-6453.pdf	pdf	958503			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+wbes_mexico_2023_ddi_xml	MEX_2023_WBES_v01_M.xml	xml	766584			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+wbes_mexico_2023_documentacion_zip	WBES_Mexico2023_Documentation.zip	zip	1265467			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+wbes_mexico_2023_microdato_dta_zip	WBES_Mexico2023_Data.zip	dta	517828	2944647	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	3
+wbes_sampling_note_consolidated_2022_pdf	WBES-Sampling-Note-Consolidated-2022.pdf	pdf	434649			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	2
+za6980_backgroundvar_mx	ZA6980_backgroundvar_mx.pdf	pdf	220092			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+za6980_q_mx	ZA6980_q_mx.pdf	pdf	247978			NO-SE-CONVIERTE	FORMATO-NO-TABULAR	calc-sellado	3
+za6980_v2_0_0_dta	ZA6980_v2-0-0.dta.zip	dta	3144289	30341248	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	3
+za6980_v2_0_0_sav	ZA6980_v2-0-0.sav.zip	sav	5278278	64788182	1	NO-SE-CONVIERTE	YA-PEQUEÑO (<100 MB tabulares)	calc-sellado	3

@@ -1,0 +1,7 @@
+# ACTO GEN2-CORPUS-CACHE-PARQUET-1: aquí sólo viven los registros versionados
+# (constancias.tsv, verificacion.tsv, universo-p1.tsv). Los Parquet viven junto
+# al corpus (`tools/corpus_loader.py::raiz_cache`), nunca en git (sin LFS).
+*/
+*.parquet
+*.parquet.tmp
+*.tsv.tmp
