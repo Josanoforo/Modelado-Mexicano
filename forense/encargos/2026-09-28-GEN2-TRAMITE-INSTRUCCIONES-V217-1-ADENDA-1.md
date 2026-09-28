@@ -10,3 +10,6 @@ Archivo propio, sellado al recibirse (A.3). Sustituye la P1 del encargo («redac
 
 ## Verificación que el acto añade al «hecho»
 `diff` entre el adjunto y `gobierno/instrucciones-proyecto-v2_17.md` vacío · todo rótulo de v2.16 (A.N, D-N, E.N, §N) presente en v2.17 (`grep -c` por rótulo ≥ 1) · la HISTORIA tiene «defecto:», «origen:» y «falsador:» para cada una de las 19 reglas.
+
+## NO-CORRIDO / RESERVAS
+- **qué:** P4 del encargo original, retomado por esta adenda sin cambios — «Commit 2 (mismo acto, tras la respuesta): ADR con la línea verbatim de mesa, `instrucciones_vigentes = v2.17`, retiro del delta del cuerpo v2.16». **por qué:** DECISIÓN-DE-MESA-PENDIENTE: ninguna línea «pegado `<fecha>`» llegó en esta sesión (la única línea de mesa recibida en este turno es la propia ADENDA-1, que sustituye P1, no un «pegado»). **impacto:** `instrucciones_vigentes` sigue en v2.16; v2.17, su HISTORIA y `gobierno/PEGAR-EN-PROYECTO-v2_17.md` quedan listos en `gobierno/pendiente-de-pegado/` y `gobierno/` con el texto verbatim de mesa, esperando la respuesta. **sucesor:** `GEN2-TRAMITE-INSTRUCCIONES-V217-2` (ya registrado en `canon/registro-rotulos.tsv`); `NC-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` (hereda, sin fila nueva: mismo bloqueador, misma razón); `FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` (hereda).
