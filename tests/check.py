@@ -3021,6 +3021,15 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-OBTENCION-EXTERNA-1, 28/sep/2026: `M09`/`M10`/`M14`/`M21`/`M22` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv (consumidores de cada solicitud); el encargo (verbatim, A.3) dice
+    # además «son E1 de mesa» por los registros con identidad — rótulo de mesa, no de acto.
+    "forense/encargos/2026-09-27-GEN2-OBTENCION-EXTERNA-1.md",
+    "forense/analisis/obtencion-externa-1/solicitudes/a-banxico-codi-tag-research.md",
+    "forense/analisis/obtencion-externa-1/solicitudes/b-iecm-copaco-sepcopp.md",
+    "forense/analisis/obtencion-externa-1/solicitudes/c-segob-mecanismo-incorporaciones.md",
+    "forense/analisis/obtencion-externa-1/solicitudes/e-fiu-delaney-microdato.md",
+    "forense/analisis/obtencion-externa-1/solicitudes/f-worldpanel-convenio.md",
     # ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1, 27/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv (mismos que GEN2-OBTENCION-PREVIA-1), no rótulos de acto.
     "forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md",

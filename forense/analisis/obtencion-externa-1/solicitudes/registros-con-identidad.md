@@ -1,6 +1,6 @@
-# Registros con identidad · E1 de mesa · sólo se listan
+# Registros con identidad · de mesa · sólo se listan
 
-Estado: LISTADO. Son E1 de mesa (§1-P4 del encargo): esta sesión no crea cuentas ni acepta términos. URL comprobadas hoy con `curl -sL -A <UA navegador> -w '%{http_code} %{size_download} %{url_effective}'` (27/sep/2026, caja).
+Estado: LISTADO. Son de mesa (§1-P4 del encargo: «registros con identidad»): esta sesión no crea cuentas ni acepta términos. URL comprobadas hoy con `curl -sL -A <UA navegador> -w '%{http_code} %{size_download} %{url_effective}'` (27/sep/2026, caja).
 
 | fuente | objeto que falta | estado en cola hoy | URL de registro / acceso (código hoy) |
 |---|---|---|---|

@@ -67,6 +67,8 @@ def neutro(p: Path) -> str:
     t = re.sub(rb"(?is)<script.*?</script>", b"", t)
     t = re.sub(rb"(?is)<input[^>]*type=.hidden.[^>]*>", b"", t)
     t = re.sub(rb"(?i)(nonce|csrf[-_a-z]*|token|__VIEWSTATE[a-z]*)=\"[^\"]*\"", b"", t)
+    # contador de visitas del RNM de INEGI («<strong>21164</strong>» → 21165 entre dos GET; 28/sep)
+    t = re.sub(rb"<strong>\d+</strong>", b"", t)
     t = re.sub(rb"\s+", b"", t)
     return hashlib.sha256(t).hexdigest()
 

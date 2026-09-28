@@ -126244,3 +126244,27 @@
     Oficial de la Federación el 20 de marzo de 2025»; líneas leídas con pdftotext.'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   raiz: data_raw
+
+- id: oe1_enve_2024_rnm_1058_catalogo_html
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · evidencia de acceso: ENVE 2024 microdato sólo
+    por Laboratorio (contrasta la lectura «vía abierta PROBABLE» de acceso-rnm.tsv de MAPA-INSTRUMENTOS-ALTERNOS-1)'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/1058
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/rnm/rnm_catalog_1058_enve2024.html
+  sha256: dfd7ae8ed07be3d584451e37289044d08284a87546842956a4314869bab1fc9a
+  tamano_bytes: 92020
+  formato: html (HTML; text/html; charset=UTF-8)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: sha crudo difiere entre descargas; hash neutralizado
+    idéntico fe1a65c7f0776b64…; estructura HTML; no abierto (sólo sha, tamaño y envoltura).
+    «Condición de acceso: Los microdatos de proyectos estadísticos en establecimientos no
+    están abiertos al público en general, tal procedimiento violentaría el principio de confidencialidad
+    establecido en la Ley. Sin embargo, […] el INEGI ofrece acceso indirecto mediante el Laboratorio
+    de microdatos/Procesamiento remoto.» Página de catálogo (metadatos de acceso), no dato.
+    A.7: sha crudo difiere entre las dos bajadas sólo por el contador de visitas del RNM (<strong>21164</strong>
+    → 21165); hash neutralizado idéntico. Primer intento registrado como FALLO-A7 en la bitácora
+    antes de identificar el campo.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw

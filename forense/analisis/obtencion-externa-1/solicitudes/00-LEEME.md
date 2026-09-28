@@ -22,7 +22,7 @@ Estado de todas: **PREPARADA, NO ENVIADA.** Las envía mesa (§2 del encargo: «
 | (d) | J. César Félix-Brasdefer (Indiana University) | correo | `d-felix-brasdefer-role-plays.md` |
 | (e) | Alejandro Miguel Delaney (tesis FIU 2021) | correo / FIU | `e-fiu-delaney-microdato.md` |
 | (f) | Worldpanel by Numerator México (antes Kantar Worldpanel) | formulario web | `f-worldpanel-convenio.md` |
-| (g) | Laboratorio de Microdatos INEGI | formulario LM | `g-inegi-lm-enaproce.md` (CONDICIONADA) |
-| E1 | LAPOP, WVS, EMOVI, Latinobarómetro | registro con identidad | `E1-registros-con-identidad.md` |
+| (g) | Laboratorio de Microdatos INEGI | formulario LM | `g-inegi-lm-enaproce.md` (ARCHIVADA-NO-NECESARIA tras MAPA #1255) |
+| registros | LAPOP, WVS, EMOVI, Latinobarómetro | registro con identidad | `registros-con-identidad.md` |
 
 Los datos del titular van entre corchetes `[…]`: los llena mesa. Nada de lo que aquí se pide requiere justificar el uso (LGTAIP); se explica igual porque acorta el trámite.
