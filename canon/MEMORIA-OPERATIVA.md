@@ -26,7 +26,9 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-26 · 141 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-27 · 143 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02 · CATALOGO-V1-3-1 · 27/09
+- FP-260927-GEN2-RECIBO-ASTRA6-1-beee-01 · Frase del informe v1.5; rótulo de ceguera del lote 1 · 27/09
 - FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 · adopción de pisos ENSU en el catálogo · 26/09
 - FP-260926-GEN2-RECIBO-ASTRA6-N-996b-01 · merge de #1170/#1172/#1173/#1174 (R(a) FIRMAS-15); v1.4 de specs FAMI… · 26/09
 - FP-260926-GEN2-FRONT-3-PORTADA-1-8914-02 · congelar (texto de portada) · 26/09
@@ -37,8 +39,6 @@
 - FP-260926-GEN2-COLA-LOTE-1-3a49-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
 - FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01 · adopción de los 9 pisos en el catálogo v1.2 · 26/09
 - FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-02 · adjudicación de incidente y uso de reports clase y movilidad; no auto… · 26/09
-- FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-01 · adopción de reglas; no bloquea propuesta editorial · 26/09
-- FP-260926-GEN2-ASTRA6-C3-CONSUMO-FAMILIA-2-9d28-01 · Adopción futura de contenido; no bloquea corrección de reports ni con… · 26/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa

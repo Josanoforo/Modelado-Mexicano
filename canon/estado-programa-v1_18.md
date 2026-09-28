@@ -1,4 +1,20 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
+### `estado` · **v1.18** · 27 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+
+> **Enmienda (27/sep/2026, `ACTO GEN2-CIERRE-SEMANAL-2`, P4).** Es el cierre del 27/sep. Son nuevas la cabecera y la **§18**. La cabecera v1.17, §0–§17 y las 96 anotaciones L0 se heredan **verbatim** de `v1.17`. `v1.17` sale del árbol por `T01` (fuente única) sin editarse, igual que en los cinco precedentes (`v1.12`–`v1.16`). Su historia se recupera por el SHA del commit de este acto que la retira.
+>
+> | | |
+> |---|---|
+> | **ARCHIVO** | `estado-programa-v1_18.md` |
+> | **REEMPLAZA A** | `estado-programa-v1_17.md`, retirada del árbol por T01 |
+> | **VERIFICAS ASÍ** | §0 lista `modelo` en **v4.0** (sin cambio) · §18 ata cada cifra a un comentario `comando:` que `tests/test_estado_derivado.py` re-ejecuta |
+> | **NOMBRE ESTABLE** | **`estado`** — cítalo así, nunca por nombre de archivo |
+
+---
+
+*Cabecera y cuerpo heredados de v1.17, sin editar:*
+
+# ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
 ### `estado` · **v1.17** · 26 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
 > **Enmienda (26/sep/2026, `ACTO GEN2-CIERRE-SEMANAL-1`, P3).** Cierre de la semana del 22 al 26 de septiembre: la cabecera es nueva y la **§17** también; la cabecera v1.16, §0–§16 y las 96 anotaciones L0 se heredan **verbatim** de `v1.16`. `v1.16` sale del árbol por `T01` (fuente única), sin editarse, igual que en los cuatro precedentes (`v1.12`–`v1.15`). Su historia se recupera por el SHA del commit de este acto que la retira.
@@ -1052,3 +1068,63 @@ celdas_emitidas_sin_r=16
 **Pendientes de mesa al corte.** Hay 4 FP ABIERTAS <!-- comando: python3 -c "import csv,sys;csv.field_size_limit(sys.maxsize);print(sum(r['estado'].startswith('ABIERTA') for r in csv.DictReader(open('forense/firmas-pendientes.tsv'),delimiter='\t')))" -->. `GEN2-SEGURIDAD-ENSU-SERIE-1` fusionó durante el acto (`PR #1162`); su adopción sigue ABIERTA. `GEN2-COLA-LOTE-1` sigue en curso. Las firmas de `GEN2-COLA-COMPLETA-1` (caja) van al siguiente corte.
 
 **Lo que este estado no puede afirmar.** Que el `[deriva]` fresco cambie alguna cifra de las vistas: no se ha fusionado. El conteo de PR con recibo Codex. El retiro de código de `g()`/`Theta.valor`: sigue sin correr (§15).
+
+## 18 · GEN2 · 27 de septiembre — el cierre asienta dos firmas de mesa y un veto
+
+Retrata; no opina. Cada cifra trae su comando.
+
+**Status íntegro de `python3 tools/corrida0.py status`** (27/sep, sobre la rama del acto; el único valor que este acto mueve es `N_resultados_gen2_vetados_por_decision`, de 4 a 813, por el veto firmado de Intercensal 2015):
+
+```
+N_corridas_requeridas=87
+N_corridas_selladas=300
+N_resultados_activos=211
+N_resultados_sellados=229292
+N_resultados_pendientes=211
+dependencias_numericas_legacy_activas=67
+legacy_activas_por_consumidor__motor=13
+legacy_activas_por_consumidor__procedencia=30
+legacy_activas_por_consumidor__catalogo_de_momentos=17
+legacy_activas_por_consumidor__marco_del_duelo=1
+legacy_activas_por_consumidor__celdas_D=6
+legacy_activas_por_consumidor__otro=0
+legacy_fuera_del_contador_por_firma__corte_pi=6
+legacy_fuera_del_contador_por_firma__historico_sin_relevo=54
+usos_retirados_por_firma__rol_historico=4
+relevadas_por_pin_de_mesa__i_CRUDO=14
+relevadas_por_pin_de_mesa__ii_CONDUCTA_GEN2=13
+relevadas_por_pin_de_mesa__iii_DERIVADO_DE_GEN2=0
+legacy_marco_M_por_campo__R=0
+legacy_marco_M_por_campo__M=1
+legacy_marco_M_por_campo__L=0
+legacy_marco_M_por_campo__AGREGADO=0
+legacy_marco_M_celdas_M_pendientes=DIN-M-01
+N_resultados_gen2_sellados=205587
+N_resultados_gen2_pendientes_adopcion=10
+N_resultados_gen2_vetados_por_decision=813
+N_resultados_gen2_adoptados_activos=81
+resultados_con_validacion_independiente=215
+diferencias_materiales=0
+no_corrido_abiertas=441
+replays_legacy_sellados=5
+corredores_envueltos_legacy=35
+celdas_validadas=219
+celdas_validadas_definicion_desde=38dd709
+celdas_validadas_prospectiva=20
+celdas_validadas_retrospectiva=59
+celdas_emitidas_sin_r=16
+# derivado de 458 corridas · 233428 resultados · 231 usos
+```
+<!-- comando: python3 tools/corrida0.py status -->
+
+**Los cuatro documentos del corte (nombres estables):**
+- `catálogo del mexicano` v1.3 (`canon/catalogo-del-mexicano-v1_3.md`): 63,706 estimadores con firma citada por id <!-- comando: python3 forense/analisis/informe-v1_5/cifra_v1_5.py cat:estimadores -->. De ellos, 7 están `SUSPENDIDA-POR-FIRMA` <!-- comando: python3 forense/analisis/informe-v1_5/cifra_v1_5.py cat_estado:SUSPENDIDA-POR-FIRMA --> y se conservan: suspender no es borrar.
+- `tabla de piso` v1.2 (`canon/tabla-de-piso-v1_2.tsv`) para `docs/reto.md`: las mismas filas y rótulos que el catálogo <!-- comando: python3 tools/genera_tabla_piso_v1_2.py | grep '^filas_adoptadas=' -->.
+- `informe-programa` v1.5: es v1.4 más la validación ciega, dónde cambió, la cobertura por dominio del mapa v1.1 y el legacy con su definición.
+- `estado` v1.18: este documento.
+
+**Firmas asentadas por este acto (A.12).**
+- `FP-260927-GEN2-RECIBO-ASTRA6-1-beee-01` y `-beee-02`: FIRMADA («Firmo Beee, las dos», 27/sep) <!-- comando: grep -c 'beee-0[12].*	FIRMADA	' forense/firmas-pendientes.tsv -->. `FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-17` queda CERRADA, cubierta por beee-02.
+- VETO de Intercensal 2015 (FIRMAS-20 A6): 809 filas `adopcion=VETADA-POR-DECISION` <!-- comando: python3 forense/analisis/informe-v1_5/cifra_v1_5.py vetados_eic -->.
+
+**Régimen operativo sin cambio respecto a §17.** Canal por PR. Cláusula de autonomía v1.0. Recibo de Codex obligatorio.

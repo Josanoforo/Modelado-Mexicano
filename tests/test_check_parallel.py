@@ -111,7 +111,10 @@ class WorkflowGate(unittest.TestCase):
         # ningún test rojo (run 36291122052). Se aserta que sigue fuera del
         # gate Y que sólo corre sobre main: si alguien le mete una
         # verificación y la corre en PR, este test lo ve.
-        fuera_del_gate = {'derivados'}
+        # Segunda (GEN2-TUBERIA-RESUMEN-SUITE-1, P1): `resumen-suite` publica
+        # el resumen del nocturno por su propio `[deriva]`; sólo sobre main.
+        fuera_del_gate = {'derivados', 'resumen-suite'}
+        self.assertIn("github.ref == 'refs/heads/main'", workflow['jobs']['resumen-suite']['if'])
         requeridos = sorted(set(workflow['jobs']) - {'check'} - fuera_del_gate)
         self.assertEqual(sorted(gate['needs']), requeridos)
         derivados = workflow['jobs']['derivados']
