@@ -3048,6 +3048,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # y `A1`…`I2`/`E2` son letras de la hoja NC-DECISIONES-1 (FP …f2e5-NN); encargo y adenda verbatim (A.3) y la hoja que los cita.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md",
+    # GEN2-TRAMITE-FIRMAS-21 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # (HOLDOUT, firma R01) y `M5` es «CSES Módulo 5» (CSES M5, firma R04); no son rótulos de acto.
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21.md",
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md",
+    "forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01.md",
     "forense/analisis/hoja-firmas-21/hoja-para-mesa-firmas-21.md",
     "canon/L0/ADR-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-01.md",  # M09–M23 momentos; M5 = CSES Módulo 5
     "forense/notas/nota-2026-09-28-gen2-tramite-hoja-firmas-21-1.md",
