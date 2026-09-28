@@ -185,4 +185,4 @@ No se ejecutaron mediciones nuevas ni se abrió ola reservada. Los tres homónim
 
 ## CONSUMIDO
 
-Este cuerpo fue preservado y sellado antes del cierre. Entrega editorial en `corpus/reports-v2/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md`, `corpus/reports-v2/INDICE.md` y `forense/analisis/reports-v2/sintesis-transcultural-1/`. Estado y reservas: `cierre.md`; solicitud de revisión independiente: `recibo-para-claude.md`. El producto no adopta reglas ni declara C3 completo.
+Este cuerpo fue preservado y sellado antes del cierre. Entrega editorial en `corpus/reports-v2/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md`, `corpus/reports-v2/INDICE.md` y `forense/analisis/reports-v2/sintesis-transcultural-1/`. Estado y reservas: `cierre.md`; solicitud de revisión independiente: `recibo-para-claude.md`. Publicado como [PR #1247](https://github.com/Josanoforo/Modelado-Mexicano/pull/1247), sin fusión ni recibo independiente atribuidos. El producto no adopta reglas ni declara C3 completo.

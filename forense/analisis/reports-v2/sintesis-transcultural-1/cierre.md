@@ -1,6 +1,6 @@
 # Cierre editorial · síntesis transcultural
 
-**EJECUTADO.** Report general v2 completo, tabla de afirmaciones, índice de los 31 originales, hoja de cuatro reglas candidatas y solicitud de recibo. El corte inicial `eda5bb9f` se refrescó por fast-forward a `a8c3e341` cuando #1243 y #1240 fusionaron siete reports; el texto general integra su precisión de Smith 2017. No se editó v1, mapa, catálogo, CALC, motor, manifiesto ni CI; cero mediciones, celdas y adopciones nuevas.
+**EJECUTADO.** [PR #1247](https://github.com/Josanoforo/Modelado-Mexicano/pull/1247) abierto, sin fusión ni recibo atribuidos. Report general v2 completo, tabla de afirmaciones, índice de los 31 originales, hoja de cuatro reglas candidatas y solicitud de recibo. El corte inicial `eda5bb9f` se refrescó por fast-forward a `a8c3e341` cuando #1243 y #1240 fusionaron siete reports; el texto general integra su precisión de Smith 2017. No se editó v1, mapa, catálogo, CALC, motor, manifiesto ni CI; cero mediciones, celdas y adopciones nuevas.
 
 | Producto | Resultado usable | Límite |
 |---|---|---|

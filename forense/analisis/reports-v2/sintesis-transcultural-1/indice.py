@@ -85,7 +85,7 @@ def verify_local():
         assert f'`{sha(original.read_bytes())}`' in relevant[0], original.name
     assert sum('| EN-MAIN |' in line for line in lines) == 24
     assert sum('EN-PR #' in line for line in lines) == 3
-    assert sum('| EN-PR-PROPIO (PR pendiente) |' in line for line in lines) == 1
+    assert sum('| EN-PR-PROPIO [#1247](https://github.com/Josanoforo/Modelado-Mexicano/pull/1247) |' in line for line in lines) == 1
     assert sum('| NO-ENTREGADO |' in line for line in lines) == 3
     own = next(line for line in lines if 'Psicología__Conducta_y_Sociedad' in line)
     own_table = ROOT / BASE / 'sintesis-transcultural-1/tabla-afirmaciones.tsv'
@@ -108,7 +108,10 @@ def main():
     committed = set(subprocess.check_output(
         ['git', 'ls-tree', '-r', '-z', '--name-only', 'HEAD', 'corpus/reports-v2'],
         cwd=ROOT).decode().split('\0'))
-    local_count = sum(f'corpus/reports-v2/{p.name}' in committed for p in originals)
+    main_committed = set(subprocess.check_output(
+        ['git', 'ls-tree', '-r', '-z', '--name-only', MAIN_REMOTE, 'corpus/reports-v2'],
+        cwd=ROOT).decode().split('\0'))
+    local_count = sum(f'corpus/reports-v2/{p.name}' in main_committed for p in originals)
     mapa_path = ROOT / 'canon/mapa-dominios-v1_1.tsv'
     mapa = list(csv.DictReader(mapa_path.open(), delimiter='\t'))
     mapa_by_report = {}
@@ -122,11 +125,10 @@ def main():
     assert len(config) == 28
     lines = [
         '# Índice de los 31 reports v1 y sus sucesores v2', '',
-        f'Corte local: `{subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()}` '
-        f'({local_count} homónimos registrados en HEAD). Consulta remota de main: `{MAIN_REMOTE}`; '
+        f'Corte consolidado de main: `{MAIN_REMOTE}` ({local_count} homónimos fusionados); '
         '#1243 ya fusionó cuatro homónimos después del corte eda5bb9. '
         '#1240 ya fusionó; #1242 sigue abierto por SHA y no es archivo consolidado. '
-        'El report general es propuesta de esta rama con PR pendiente. '
+        'El report general está propuesto en PR #1247. '
         'Los estados se refieren al main remoto indicado; los enlaces por SHA '
         'permiten consultar objetos ajenos a esta rama.', '',
         f'Fuente del cruce: [mapa v1.1](../../canon/mapa-dominios-v1_1.tsv), '
@@ -175,7 +177,7 @@ def main():
             audit = f'{len(map_ids)} / {max(0, len(rows)-len(map_ids))} [tabla]({table_link})'
             verdict = ' / '.join(str(counts[v]) for v in VERDICTS)
             status_link = (status if status == 'EN-MAIN' else
-                           'EN-PR-PROPIO (PR pendiente)' if ref == 'own' else
+                           f'EN-PR-PROPIO [#1247](https://github.com/{REPO}/pull/1247)' if ref == 'own' else
                            f'[EN-PR #{ref}](https://github.com/{REPO}/pull/{ref})')
             receipt_link = ('Solicitado; no obtenido' if ref == 'own' else
                             f'No verificado ([paquete]({receipt}))')
@@ -208,9 +210,9 @@ def main():
               'sobre filas del mapa mezcla desdoblamientos, reiteraciones y '
               'afirmaciones adicionales; no debe sumarse como hallazgos nuevos.', '',
               f'**Estado verificable:** {totals["EN-MAIN"]}/31 en main remoto '
-              f'({local_count}/31 en HEAD local); {totals["EN-PR"]}/31 '
+              f'al corte; {totals["EN-PR"]}/31 '
               f'en PR ajenos abiertos; {totals["EN-PR-PROPIO"]}/31 propuesto '
-              f'en esta rama con PR pendiente; {totals["NO-ENTREGADO"]}/31 sin entrega. '
+              f'en [PR #1247](https://github.com/{REPO}/pull/1247); {totals["NO-ENTREGADO"]}/31 sin entrega. '
               'El recibo de Claude para esta rama está solicitado, no obtenido. '
               'Los enlaces a paquetes de otros lotes no acreditan recepción. '
               'Ninguna regla editorial se declara adoptada por aparecer en una tabla '

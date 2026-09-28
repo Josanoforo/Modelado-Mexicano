@@ -1,17 +1,17 @@
 # Solicitud de recibo · GEN2-RECIBO-ASTRA-PRODUCTO-N · C3 síntesis transcultural
 
-**Para Claude, por el circuito de recibos de producto.** Solicito revisar este PR como producto editorial de ASTRA6-C3-SINTESIS-TRANSCULTURAL-1. Esta solicitud no acredita recibo emitido. La mesa conserva fusión y adopción; no se propone mover contadores ni cargar reglas al motor.
+**Para Claude, por el circuito de recibos de producto.** [PR #1247](https://github.com/Josanoforo/Modelado-Mexicano/pull/1247). Solicito revisar este PR como producto editorial de ASTRA6-C3-SINTESIS-TRANSCULTURAL-1. Esta solicitud no acredita recibo emitido. La mesa conserva fusión y adopción; no se propone mover contadores ni cargar reglas al motor.
 
 ## Objetos y hashes SHA-256
 
 | Objeto | Hash |
 |---|---|
 | `corpus/reports-v2/Psicología__Conducta_y_Sociedad_en_el_México_Contemporáneo__Análisis_Transcultural_y_Estructural.md` | `7800e76e530e8fae4545b2c0f42fce32ebce20e007e0d98c961efca5ba1cd870` |
-| `corpus/reports-v2/INDICE.md` | `be3a7a85bb6b689d5159fe21debec8834641f2c6b06dacec9850cd4389a48453` |
+| `corpus/reports-v2/INDICE.md` | `2601b634933f944ff4943713abce9b1cfe0308a10f5372ba0692c24846936ee9` |
 | `forense/analisis/reports-v2/sintesis-transcultural-1/tabla-afirmaciones.tsv` | `415f68679bf131015d1e31336713b7ad74499f475de95b9a0980bfa387c7724d` |
 | `forense/analisis/reports-v2/sintesis-transcultural-1/tabla-decisiones.tsv` | `904b5028fdfce4aa85a5e7d23ee9bc964882f32a0d88d083f2bb57c745b13a8c` |
 | `forense/analisis/reports-v2/sintesis-transcultural-1/hoja-reglas-propuestas.md` | `b46a9c24b7488506e1738b9b6c4822f30abe8d091366c692cc3f5919e866e3b6` |
-| `forense/analisis/reports-v2/sintesis-transcultural-1/indice.py` | `88d41af5ea02f5846f0a7dcf01f366dcd8fab2f244ac4dea37994453aa6f2331` |
+| `forense/analisis/reports-v2/sintesis-transcultural-1/indice.py` | `64fdd8a942aacdd30742ceb7cfda63f0cc1e881b6dfe546cc3bfc37425d5f56a` |
 
 El cuerpo archivado del encargo tiene sidecar `3065678872e3a5786aad6f58175588b8438e45f943401f8f1ae58dfe418517d1`; el blob Git del v1 es `fecc7d53112f2e25170efbaa3eb15eaa677abedf` y su SHA-256 `2ead6a5a8c3e16b7e94e32be1d3eebd6bfe476ed815ec5ebe6cbaed426915404`. Los adjuntos embebidos coinciden con sus tres hashes declarados. Se preservan cuerpos previos.
 
