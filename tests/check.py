@@ -3021,6 +3021,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1, 27/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv (mismos que GEN2-OBTENCION-PREVIA-1), no rótulos de acto.
+    "forense/encargos/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1.md",
+    "forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md",
+    "forense/analisis/mapa-instrumentos-alternos/lotes/AUDITORIA-LOTES.md",
+    "forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md",
+    "canon/L0/ADR-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01.md",
     # ACTO GEN2-OBTENCION-PREVIA-1, 28/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv y `M61` un reactivo de la solicitud al LM, no rótulos de acto.
     "canon/L0/ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01.md",

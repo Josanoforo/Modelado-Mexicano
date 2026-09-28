@@ -244,8 +244,12 @@ CAMPOS_CONOCIDOS = {
 ESTADOS_RESERVA = {
     "RESERVADA-NO-ABIERTA-NO-INDEXAR-L",
     "DOCUMENTACION-ESTRUCTURAL-NO-RESPUESTAS",
+    "RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR",
 }
 RAIZ_RESERVA = "reserva_respondentes"
+# FP-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-02 firmada (a): la etiqueta ENOE
+# 2026T1 de ASTRA5-U1 vive en data_raw (ausente = data_raw); no toca su guardia.
+RAICES_POR_ESTADO_RESERVA = {"RESERVADA-ASTRA5-U1-ULTIMA-OLA-CORPUS-NO-ABRIR": {None, "data_raw"}}
 
 
 def _es_documental(entrada):
@@ -299,7 +303,7 @@ def _validar_manifiesto_completo(entradas):
                     f"entrada '{entrada.get('id')}' tiene estado_reserva "
                     f"inválido: {estado_reserva!r}; valores permitidos: "
                     f"{sorted(ESTADOS_RESERVA)}")
-            if raiz != RAIZ_RESERVA:
+            if raiz not in RAICES_POR_ESTADO_RESERVA.get(estado_reserva, {RAIZ_RESERVA}):
                 raise ValueError(
                     f"entrada '{entrada.get('id')}' declara estado_reserva "
                     f"pero raiz={raiz!r}, debe ser {RAIZ_RESERVA!r}")
