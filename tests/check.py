@@ -3021,6 +3021,9 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-PISOS-DOMINIOS-Y-REGLAS-1 (28/sep/2026): `E1` es la celda «estrato 1 (Bajo)» de la variable ESTRATO de ENVIPE 2025 en la
+    # spec congelada (COMMIT-1 b7581b20); no es rótulo de acto. No se edita la spec tras COMMIT-1.
+    "forense/prereg-caja/PDR1-ENVIPE2025-spec-v1_0.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.
