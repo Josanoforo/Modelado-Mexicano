@@ -1,0 +1,3 @@
+# ADR-260927-GEN2-RECIBO-ASTRA6-2-627e-01
+
+ACTO GEN2-RECIBO-ASTRA6-2: recibo post-merge de trece PR de Codex (#1166, #1171, #1180, #1194–#1197, #1199, #1200, #1202, #1203, #1205, #1214). 4 RECIBIDO-POST-MERGE, 9 RECIBIDO-POST-MERGE-CON-NC, 0 PROPONER-REVERTIR. La ventana de #1203 se verifica por archivo (859 = 767 + 92); #1202 se re-deriva 275/2/56/92, con 130 COINCIDE dependientes de un alias posterior a la revelación. 2 NO-PASA asentados (ENIGH2020 remesas, tolerancia 0.0 de la spec). Hoja para mesa con 15 FP dictaminadas. 17 NC. Cero mediciones y adopciones. Ver `forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-2/nota-principal.md`.
