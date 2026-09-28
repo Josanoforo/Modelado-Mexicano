@@ -22,7 +22,7 @@ La fila en vista queda **NO-VERIFICABLE-AQUÍ**. `data/corrida0/corridas.tsv` en
 
 **Candidatos y comparación primaria.** No cambian respecto de v1.1: cada familia sellada declaró sus candidatos juntos con una sola comparación primaria en su COMMIT-1, y este acto no añade ninguno.
 
-**Atestación externa.** Manifiesto `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (sha256 `ff020b94…a6e0`, 578 filas) preparado; el `.ots` lo sube mesa (hoja §2).
+**Atestación externa.** Manifiesto `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (sha256-manifiesto (cuerpo, pie del TSV) ff020b94…a6e0; sha256 del archivo 31f57ff2…0fbd, el que cubre el .ots, 578 filas) atestiguado con OpenTimestamps el 28/sep por la sesión (firma de mesa en chat): `manifiesto-sellos-2026-09-28.tsv.ots`, pendiente de anclaje en Bitcoin (`ots upgrade`).
 
 ## Módulo de auditoría (v2.16)
 - **Unidad por instrumento.** La declara la spec humana de cada familia (columna `spec_humana_ruta`). Este acto no la re-deriva y no promedia unidades entre familias.

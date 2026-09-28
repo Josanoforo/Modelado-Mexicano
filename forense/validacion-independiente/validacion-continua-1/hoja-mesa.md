@@ -18,7 +18,7 @@
 
 ## 2 · Atestación externa (`.ots`)
 
-**Situación.** Quedó escrito `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (578 filas = 365 `sello.json` + 213 sidecars; sha256 `ff020b949040334957d47527252373a08a3896eac915ea8652f1cd5c3ff2a6e0`), que incluye las seis emisiones 2027 selladas. El manifiesto del 23/sep tenía 343 filas.
+**Situación.** Quedó escrito `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (578 filas = 365 `sello.json` + 213 sidecars; sha256-manifiesto (cuerpo, pie del TSV) ff020b94…a6e0; sha256 del archivo 31f57ff2…0fbd, el que cubre el .ots), que incluye las seis emisiones 2027 selladas. El manifiesto del 23/sep tenía 343 filas.
 
 **Receta de un minuto (SELLO-EXTERNO-2):**
 ```

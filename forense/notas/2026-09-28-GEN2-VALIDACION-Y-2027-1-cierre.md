@@ -21,7 +21,7 @@ Re-verificado de estado (A.17). `FP-260926-GEN2-ASTRA6-C1-PAQUETES-2-9c9e-01` (R
 - **Expediente** `forense/analisis/familias-2027/EXPEDIENTE-v1_2.md` + `familias-2027-estado-v1_2.tsv`: 8 filas · LISTA 5 · NO-LANZAR-TODAVIA 2 · SUSPENDIDA 1 (PAGO-DIGITAL, se dice y no se reactiva).
 - **Cinco de C2 re-verificadas.** spec 16/16 CASA, archivos del sello 43/43 COINCIDE, potencia existe, emisiones sin diff. La fila en vista queda NO-VERIFICABLE-AQUÍ porque la vista va por trozos y el control positivo también falta.
 - **ENOE-INFORMALIDAD y ENSU-CAMPECHE: PARO-PREMISA** (toca una firma de mesa). El encargo supone «contrato firmado (R27 (2))»; el texto verbatim de R27 (2) deja ENOE en NO-LANZAR-TODAVIA y pide firma propia para cualquier regla nueva, y ENSU-Campeche solo tiene `71cf-01` («recibir sin adoptar»). Sin COMMIT-1 ni emisión: congelarlas habría fijado un contrato no firmado (§7 d). Hoja §3.
-- **Manifiesto de sellos** `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (`python3 tools/sello_externo.py manifiesto --escribe --fecha 2026-09-28`): 578 filas, sha256 `ff020b949040334957d47527252373a08a3896eac915ea8652f1cd5c3ff2a6e0`. Está listo para el `.ots` de mesa (hoja §2, receta de un minuto).
+- **Manifiesto de sellos** `forense/sellos/manifiesto-sellos-2026-09-28.tsv` (`python3 tools/sello_externo.py manifiesto --escribe --fecha 2026-09-28`): 578 filas, sha256-manifiesto (cuerpo, pie del TSV) ff020b94…a6e0; sha256 del archivo 31f57ff2…0fbd, el que cubre el .ots. Está listo para el `.ots` de mesa (hoja §2, receta de un minuto).
 
 ## P4 · Conteos
 - Cifras validadas a ciegas esta semana: 0 (por dictamen: SOSTENER 0 · ACOTAR 0 · PROPONER-SUSPENDER 0 · SOSTENER-SIN-CORROBORACION 0 nuevos).
@@ -50,3 +50,14 @@ Re-verificado de estado (A.17). `FP-260926-GEN2-ASTRA6-C1-PAQUETES-2-9c9e-01` (R
 
 ## Módulo de auditoría (v2.16)
 Unidad por instrumento: cada paquete la hereda de su spec humana; este acto no produjo cifras. PROSPECTIVA y RETROSPECTIVA: las emisiones 2027 son PROSPECTIVAS y no hay ninguna RETROSPECTIVA nueva. Nada escrito a mano: todos los conteos salen de los comandos citados.
+
+## Continuación · firmas de mesa en el chat del acto (28/sep/2026, verbatim)
+
+Mensaje de mesa tras abrir el PR #1310: «Adelante, sigue corriendo el encargo, lo quiero completo, cualquier cosa de firmas o settings lo ajustamos».
+
+La sesión preguntó así: «Tomo tu mensaje como firma de mesa del acceso C1 para los 14 paquetes de P1 (olas abiertas) y lo copio verbatim a la nota. ¿Qué hago con el lote 4 (ENIF, ENUT y ENSANUT 2024)?». Mesa no objetó la primera frase y respondió lo siguiente:
+
+- **Lote 4 (FP f926-02):** «Opción 2, delimitada: acceso de C1 a ENIF 2024 solo en los módulos que ya tienen firma de apertura (m7 sigue reservado, R06) y a ENUT 2024 solo en los módulos abiertos por FP-bda6-02; verifica por id qué módulos son antes de armar el paquete y deja NO-LANZADO (gate ACCESO) lo que no tenga firma. ENSANUT 2024 sigue reservada: su paquete queda diferido hasta firma por escrito. Este texto es firma de mesa del 28/sep y va verbatim a la nota.»
+- **`.ots` (FP f926-03):** «Lo corro yo (Recomendado)».
+- **ENOE/ENSU (FP f926-04):** «1; deja lista la consulta a INEGI sobre el diseño de ENOE (C2-1 la redactó) como receta para que mesa la envíe con las solicitudes de mañana».
+- **Acceso P1 (FP f926-01):** firmado por el mensaje de arriba, con la interpretación declarada en la pregunta y sin objeción de mesa. Texto por paquete: columna `firma_que_lo_abre` de `gates-v1_3.tsv`.
