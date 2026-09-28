@@ -132,3 +132,19 @@ Patrones conservados: cuidado observado en la red familiar y mayoría femenina d
 [A1]: https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2023/ENASIC/ENASIC_23.pdf
 [VEJ-M1]: https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1610733/full
 [VEJ-E1]: https://mhasweb.org/resources/DOCUMENTS/Fact%20Sheet/Press%20Release/PRESS%20RELEASE%20July%202023%20-%20MHAS-ENASEM%20%26%20MEX-COG%202021.pdf
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (7 ids, 1 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENASIC-CUIDADOS-VEJEZ-0001` → unidad: HOGAR y PERSONA 60+ (nunca promediadas entre si)
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

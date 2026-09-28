@@ -161,3 +161,17 @@ Top patrones: constructos separados, educación asociada con ingresos, interés 
 [OCDE PISA México](https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/pisa-2022-results-volume-i-and-ii-country-notes_2fca04b9/mexico_515c0d35/519eaf88-en.pdf): ficha publicada en diciembre de 2023, pp.1–3 y 8, (a). [INEGI ENPECYT](https://en.www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/OtrTemEcon/ENPECYT2018_06.pdf): comunicado y nota técnica de junio de 2018, pp.1–3, 8, 14 y 16, (a). [OCDE EAG México](https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/mexico_3b36a6f6-en.html): septiembre de 2025, sección resultados educativos y salarios, (a). [Reuters México](https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/mexico): junio de 2026, confianza y alcance online, (a). Lectura dirigida de todas ellas: 26/sep/2026. No se asegura lectura completa de publicaciones extensas.
 
 El apéndice de acceso de Wellcome fue leído; el capítulo sustantivo falló. Artículos ENSANUT hallados por búsqueda fallaron al abrir por HTTP 403; el resumen del buscador no se adopta como artículo leído. El volumen PISA con tabla de rangos superó límite del lector; no se publica rango sustituto. Esta reserva de acceso no impide entregar el argumento sin esas magnitudes. [Fuentes y hechos](../../forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/conocimiento/fuentes.json) conserva fecha, URL, localizador y alcance; no se redistribuye texto primario.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->
