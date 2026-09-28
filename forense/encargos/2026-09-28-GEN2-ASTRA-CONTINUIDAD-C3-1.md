@@ -42,3 +42,9 @@ Propio: `forense/encargos/fuentes/ASTRA-TRANSFER-20260927/`, `corpus/reports-v2/
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No adopta reglas, no mide, no relanza reports, no recibe PR abiertos después de su 0-bis (`RECIBO-ASTRA6-5` si Codex vuelve), no decide el frente público. Sucesores: FIRMAS-21 (hoja de reglas y FP), el bloque de adopción de reglas con RESULT (mesa, por merge), reports v3 cuando haya cifras GEN2 nuevas. Módulo de auditoría v2.16: **sí**, en cada report corregido y en la nota (afirman sobre México): procedencia (a)/(b)/(c), unidad por cifra, PROSPECTIVA/RETROSPECTIVA, ¿qué parece psicológico y es incentivo?, ¿qué sería peligroso leído simplista? El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+- `NC-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01` · P0 «Archivar el transfer de Astra verbatim … los 8 miembros del zip» · PARO-PREMISA — el zip no llegó adjunto · P0 incompleto; líneas de memoria C1/ENOE quedan REPORTADAS · sucesor: mesa adjunta el zip.
+- `…-26bb-02` · P2 «toda cifra sin RESULT citado se etiqueta (a)/(b)/(c)» · DIFERIDO-A:reports v3 — declarado por report, no por cifra · sin impacto en canon (cifra sin sellado no entra) · reports v3.
+- `…-26bb-03` · P3 columnas de la hoja de reglas sin normalizar · DIFERIDO-A:FIRMAS-21 · leer cada regla en su fuente · FIRMAS-21.
+- `…-26bb-04` · P1 recibo previo al merge · NO-VERIFICABLE-AQUÍ — ya fusionados; citas externas sin red · ninguno · mesa lo anota.
