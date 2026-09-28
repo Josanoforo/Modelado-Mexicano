@@ -1,0 +1,18 @@
+# ADENDA-1 · ACTO GEN2-TRAMITE-INSTRUCCIONES-V217-1 · El cuerpo operativo v2.17 queda fijado por dirección en el archivo adjunto `PEGAR-EN-PROYECTO-v2_17.md`, que mesa pega en las instrucciones del proyecto; el acto no redacta otro cuerpo: archiva este verbatim como `gobierno/instrucciones-proyecto-v2_17.md`, con el sha que calcule al recibirlo, y deriva de él la HISTORIA y la PLANTILLA-ENCARGO v2.2
+
+Archivo propio, sellado al recibirse (A.3). Sustituye la P1 del encargo («redactar el cuerpo v2.17») por «archivar el cuerpo recibido»; P2, P3 y P4 no cambian. Razón (mesa, 28/sep): «las que están aquí no necesitan tanto detalle de cómo y dónde salieron porque de otra forma las conversaciones terminan por no leerlas» — el cuerpo del proyecto va sin orígenes ni delta; la HISTORIA (P2) lleva, por cada regla nueva y cambiada, el defecto real, la fecha, el PR y el falsador a tres meses, con la lista de origen de §3 del encargo como punto de partida.
+
+## Qué cambia para el acto
+- P1: `gobierno/instrucciones-proyecto-v2_17.md` = adjunto verbatim (un cambio de una letra lo hace otro texto: si el acto encuentra un error material, lo reporta como hallazgo y propone la corrección para v2.17.1; no lo edita).
+- P2: la HISTORIA documenta las 18 reglas nuevas o cambiadas del delta v2.16→v2.17 (§3 del encargo) y absorbe el delta v2.15→v2.16 del cuerpo anterior. Añade la regla número 19 que el cuerpo ya trae en §4 y §8: «una ola sin campo de reserva pero más reciente de un programa con historia se trata como no abierta hasta que mesa decida» (origen: hoja del mapa de instrumentos alternos, 27/sep).
+- P3: la plantilla v2.2 incorpora además la sección de opciones con costo para encargos que llevan decisión a mesa, el bloque «archivos que otro acto en vuelo toca», y quita cualquier campo de sha del chat.
+- P4: `PEGAR-EN-PROYECTO-v2_17.md` ya existe (es el adjunto); el acto solo espera la línea de mesa «pegado <fecha>» para el commit 2 (ADR, `instrucciones_vigentes = v2.17`). Si mesa ya pegó antes de que el acto abra, la línea de mesa en el chat de dirección se cita verbatim con fecha y basta.
+
+## Verificación que el acto añade al «hecho»
+`diff` entre el adjunto y `gobierno/instrucciones-proyecto-v2_17.md` vacío · todo rótulo de v2.16 (A.N, D-N, E.N, §N) presente en v2.17 (`grep -c` por rótulo ≥ 1) · la HISTORIA tiene «defecto:», «origen:» y «falsador:» para cada una de las 19 reglas.
+
+## NO-CORRIDO / RESERVAS
+- **qué:** P4 del encargo original, retomado por esta adenda sin cambios — «Commit 2 (mismo acto, tras la respuesta): ADR con la línea verbatim de mesa, `instrucciones_vigentes = v2.17`, retiro del delta del cuerpo v2.16». **por qué:** DECISIÓN-DE-MESA-PENDIENTE: ninguna línea «pegado `<fecha>`» llegó en esta sesión (la única línea de mesa recibida en este turno es la propia ADENDA-1, que sustituye P1, no un «pegado»). **impacto:** `instrucciones_vigentes` sigue en v2.16; v2.17, su HISTORIA y `gobierno/PEGAR-EN-PROYECTO-v2_17.md` quedan listos en `gobierno/pendiente-de-pegado/` y `gobierno/` con el texto verbatim de mesa, esperando la respuesta. **sucesor:** `GEN2-TRAMITE-INSTRUCCIONES-V217-2` (ya registrado en `canon/registro-rotulos.tsv`); `NC-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` (hereda, sin fila nueva: mismo bloqueador, misma razón); `FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` (hereda).
+
+## CONSUMIDO
+PR #1273 (rama `claude/new-session-ukfyju`; ADR `ADR-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-af11-01`).

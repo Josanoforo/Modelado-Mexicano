@@ -24,7 +24,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - (c) no gastar ninguno y medir con instrumentos que no son el momento («combinable» del mapa). Gana: la prueba sigue intacta. Cuesta: las respuestas quedan acotadas o indirectas
 - (d) convertir cada momento en familia 2027 con emisión sellada antes de la ola. Gana: la prueba se vuelve PROSPECTIVA. Cuesta: un expediente por momento y esperar a 2027
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección). Nota de ejecutor: A1 (b) y A2 (b) del mapa presuponen (a) o (b) para M05, M13, M19, M22 y M23.
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): (b) — gastar solo los que ninguna familia 2027 vaya a usar como R. Es la misma política que A1/A2 ya aplican de facto (R07/R08: M05, M13, M19, M22, M23), no cierra ninguna puerta que C2 no haya cerrado ya sola (hoy 0 menciones en 181 archivos), y cada spec que gaste un momento restante vuelve a correr el censo de C2 antes de hacerlo, por si cambió.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md (64 pares) y OBTENCION-PREVIA-1).
 
@@ -43,7 +43,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva
 - ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección).
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): ABIERTA-COMO-VISTA. Sus tabulados ya los usó #826 y R03/I1 (renglón propio) ya la plantea como apoyo descriptivo, no como R; declararla RESERVADA ahora fingiría una pureza que el propio corpus ya rompió.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: manifiesto leído por id en este acto (5 ids, 0 con campo); forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md).
 
@@ -62,7 +62,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva
 - ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección).
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): ABIERTA-COMO-VISTA. F5 ya la declaró EXPUESTA; tratarla como no vista contradiría esa declaración. Sirve de apoyo a R03/M22, nunca como R.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: manifiesto leído por id en este acto (5 ids, 0 con campo); forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md).
 
@@ -81,7 +81,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva
 - ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección).
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA. A diferencia de ENCRIGE 2020/ENVE 2024, nada indica que ya se haya visto o usado; M13 ya tiene vía alterna recomendada (CIDE-CSES 2015, A2/R08). Se abre solo si una spec concreta la necesita y no hay sustituto.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: manifiesto leído por id en este acto (3 ids, 0 con campo); forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md).
 
@@ -100,7 +100,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva
 - ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección).
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA. Sin exposición ni uso previo declarado; M12 queda «documentado sin fecha» en A2/R08. El recibo -2 (fb50-04) ya la trata como reservada — mismo criterio.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: manifiesto leído por id en este acto (2 ids, 0 con campo); forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md).
 
@@ -119,7 +119,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 - ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva
 - ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna
 
-**Recomendación.** ninguna del acto (el encargo la reserva a dirección).
+**Recomendación.** PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA, con el mismo criterio que las seis columnas AMAI de ENIGH 2024 (memoria operativa §1): se abre por módulo/columna solo cuando una spec concreta lo necesite, no en bloque. M12 no tiene fecha todavía en A2/R08.
 
 **Antes de firmar.** Requiere obtención previa: SI (hecha: manifiesto leído por id en este acto (6 ids, 0 con campo); forense/analisis/mapa-instrumentos-alternos/hoja-para-mesa-mapa-instrumentos-alternos.md).
 
