@@ -1,0 +1,232 @@
+# CALC-ALT-M23-ENSAFI2023-0001 -- cara mecánica de ALT-M23-ENSAFI2023-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M23-ENSAFI2023-0001
+spec_md: ../../../forense/prereg-caja/ALT-M23-ENSAFI2023-spec-v1_0.md
+spec_md_sha256: a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce
+script: data/corrida0/CALC-ALT-M23-ENSAFI2023-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO-CONTRASTE
+  dominio: dinero
+  ola: '2023'
+  momento: M23
+  holdout_gastado: M23
+  fila_mapa: 65
+inputs:
+- id: ensafi2023_bd_csv_zip
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M23-ENSAFI2023-spec-v1_0.md
+  sha256: a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce
+variables:
+- archivo: TMODULO.csv
+  variable: P6_1_1
+  rol: 6.1 ahorro informal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_1_3
+  rol: 6.1 ahorro informal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_1_4
+  rol: 6.1 ahorro informal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_1_5
+  rol: 6.1 ahorro informal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_1_6
+  rol: 6.1 ahorro informal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_01
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_02
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_03
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_04
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_05
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_06
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_07
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_08
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_09
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_2_10
+  rol: 6.2 producto formal Sí 1 / No 2
+- archivo: TMODULO.csv
+  variable: P6_3
+  rol: 6.3 ahorros en esas cuentas Sí 1 / No 2 (pase)
+- archivo: TMODULO.csv
+  variable: TLOC
+  rol: 'grupo: tamaño de localidad 1-4'
+- archivo: TMODULO.csv
+  variable: FAC_ELE
+  rol: ponderador
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: UPM
+universo: ENSAFI 2023, personas elegidas 18+ de TMODULO con FAC_ELE>0 y diseño
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: FAC_ELE
+transformacion: derivadas INFORMAL, TIENE_CUENTA, FORMAL, SOLO_INFORMAL (spec §construcción); proporción ponderada
+estimando: p(SOLO_INFORMAL), p(INFORMAL), p(FORMAL) nacional y por TLOC; contraste de definición frente a ENIF 2024; RETROSPECTIVA
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: ensafi2023_bd_csv_zip
+  tabla: TMODULO
+  hash_payload_sha256: c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: EST_DIS
+    upm:
+    - UPM_DIS
+    peso: FAC_ELE
+  universo_filtros: []
+  items:
+  - clave: solo_informal
+    variable: SOLO_INFORMAL
+    validos:
+    - 1
+    - 2
+    evento:
+    - 1
+  - clave: informal
+    variable: INFORMAL
+    validos:
+    - 1
+    - 2
+    evento:
+    - 1
+  - clave: formal
+    variable: FORMAL
+    validos:
+    - 1
+    - 2
+    evento:
+    - 1
+  grupos:
+  - clave: tloc
+    variable: TLOC
+    niveles:
+      100MIL-Y-MAS:
+      - 1
+      15MIL-A-99MIL:
+      - 2
+      2500-A-15MIL:
+      - 3
+      MENOS-2500:
+      - 4
+  cruces: []
+  diferencias: []
+  contrastes:
+  - clave: solo_informal_rural_menos_urbano
+    item: solo_informal
+    celda_a: tloc=MENOS-2500
+    celda_b: tloc=100MIL-Y-MAS
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M23-ENSAFI2023-FILAS
+  result_tabla: RESULT-ALT-M23-ENSAFI2023-TABLA
+  derivadas:
+  - nombre: INFORMAL
+    tipo: alguno
+    variables:
+    - P6_1_1
+    - P6_1_3
+    - P6_1_4
+    - P6_1_5
+    - P6_1_6
+    si:
+    - 1
+    'no':
+    - 2
+  - nombre: TIENE_CUENTA
+    tipo: alguno
+    variables:
+    - P6_2_01
+    - P6_2_02
+    - P6_2_03
+    - P6_2_04
+    - P6_2_05
+    - P6_2_06
+    - P6_2_07
+    - P6_2_08
+    - P6_2_09
+    - P6_2_10
+    si:
+    - 1
+    'no':
+    - 2
+  - nombre: FORMAL
+    tipo: y
+    componentes:
+    - variable: TIENE_CUENTA
+      verdad:
+      - 1
+      falso:
+      - 2
+    - variable: P6_3
+      verdad:
+      - 1
+      falso:
+      - 2
+  - nombre: SOLO_INFORMAL
+    tipo: y
+    componentes:
+    - variable: INFORMAL
+      verdad:
+      - 1
+      falso:
+      - 2
+    - variable: FORMAL
+      verdad:
+      - 2
+      falso:
+      - 1
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M23-ENSAFI2023-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M23-ENSAFI2023-TABLA
+  tipo: texto
+  unidad: 'JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo
