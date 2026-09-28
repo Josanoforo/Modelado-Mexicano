@@ -43,3 +43,11 @@ Propio: `forense/analisis/familias-2027/` (expediente, tsv, hoja), lectura de `f
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no abre, no sella, no envía consultas, no adopta, no recibe PR de Codex. Sucesores: `GEN2-TUBERIA-SELLO-EXTERNO-2` (cuando mesa entregue el `.ots`), FIRMAS-21 (hoja), y por familia el acto de apertura cuando llegue su ola 2027 (tres commits, E.6). Módulo de auditoría v2.16: sí en el expediente (afirma qué predecirá el programa sobre México en 2027): PROSPECTIVA por construcción, unidad por familia. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+- P2 · conteo singleton ENOE desde el diseño muestral — NO-VERIFICABLE-AQUÍ (nube sin data/raw; reproducido desde diagnostico/enoe-auditoria.json) · impacto: ninguno sobre el veredicto · sucesor: caja (NC-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01).
+- P1 · registro en la vista de las emisiones ENVIPE «selladas en disco, no registradas» — FUERA-DE-PERÍMETRO (job [deriva]) · sucesor: NC …-ba6c-02.
+- P1 · filas MOCIBA/ENSANUT del paquete frontera-1 — DECISIÓN-DE-MESA-PENDIENTE · sucesor: FP-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01 (NC …-ba6c-03).
+
+## CONSUMIDO
+PR #1260 (rama claude/new-session-nuji2a). ADR-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01.
