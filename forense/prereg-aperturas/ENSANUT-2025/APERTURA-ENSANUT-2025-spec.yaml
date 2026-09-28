@@ -1,0 +1,45 @@
+# Contrato ejecutable del expediente de apertura ENSANUT 2025 (D-15). NO CORRIDO: se congela
+# como COMMIT-1 de la apertura cuando mesa lo firme; el primer resultado que produzca es el que se reporta.
+apertura_id: APERTURA-ENSANUT-2025
+spec_md: APERTURA-ENSANUT-2025-spec-v1_0.md
+spec_md_sha256: ec3cc5ea7726aeacf6970fc76a6890dc094410f6215faf2274116580efd39f47
+script: forense/prereg-aperturas/ENSANUT-2025/medidor_apertura_ensanut_2025.py
+script_sha256: 9ade6ced57c79d001a98ac7921b7347168b588593a9819b97800088f07bb3d25
+guardia: forense/prereg-aperturas/guardia_apertura.py
+guardia_sha256: 02a04c1063483bc0441e41c41c02469b325eca2b1aad41f1ec41344f8a57efad
+prueba_mutacion: tests/test_prereg_aperturas.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: 'NO'
+  adopta: 'NO'
+  marca: PROSPECTIVA
+  unidad: PERSONA
+  agrupacion: UNA-SOLA-VARIABLE
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+contendiente:
+  calc: CALC-ENSANUT-PISOS-SALUD-0001
+  medidor_sha256: f334da45a248ccf6d4b812cef2b6108a6dbb3a76825f3af9d5bd9d648e13abe8
+  resultados_sha256: a2d6654d84c002179dc40eb1c01999f7351dd27be09c52b414d3151033537434
+  ola_piso: '2024'
+receta_repo:
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+inputs_reservados:
+- id: ensanut_2025__adultos_2025_w_stata_stata_zip
+  origen: manifiesto
+- id: ensanut_2025__integrantes_2025_w_stata_stata_zip
+  origen: manifiesto
+- id: ensanut_2025__utilizadores_2025_w_stata_stata_zip
+  origen: manifiesto
+- id: ensanut_2025__adolescentes_2025_w_stata_stata_zip
+  origen: manifiesto
+regla:
+  primaria: cobertura R en [lo, hi] del contendiente, IC de Wilson 95%
+  nominal: 0.95
+  z: 1.959964
+  vocabulario: [CALIBRADO, SUBCUBRE, SOBRECUBRE, NO-ESTIMABLE]
+  precedencia: NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  secundarias: [cobertura por conglomerado (conducta), MAE punto-vs-R]
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificacion ad hoc)
+seed:
+  aplica: false

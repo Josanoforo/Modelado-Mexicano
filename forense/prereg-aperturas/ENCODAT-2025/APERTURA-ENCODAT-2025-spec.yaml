@@ -1,0 +1,41 @@
+# Contrato ejecutable del expediente de apertura ENCODAT 2025 (D-15). NO CORRIDO: se congela
+# como COMMIT-1 de la apertura cuando mesa lo firme; el primer resultado que produzca es el que se reporta.
+apertura_id: APERTURA-ENCODAT-2025
+spec_md: APERTURA-ENCODAT-2025-spec-v1_0.md
+spec_md_sha256: cbb10e279e67435c6a366a3ef7aead5a051abab062220eb97d4f5f855243d0ec
+script: forense/prereg-aperturas/ENCODAT-2025/medidor_apertura_encodat_2025.py
+script_sha256: 14e757ca1eabfd97d78747ae5ebb149a6607c762a114c95eaf5d83afd5dba2ad
+guardia: forense/prereg-aperturas/guardia_apertura.py
+guardia_sha256: 02a04c1063483bc0441e41c41c02469b325eca2b1aad41f1ec41344f8a57efad
+prueba_mutacion: tests/test_prereg_aperturas.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: 'NO'
+  adopta: 'NO'
+  marca: PROSPECTIVA
+  unidad: PERSONA
+  agrupacion: UNA-SOLA-VARIABLE
+  fuente_acto: GEN2-APERTURAS-PREREGISTRADAS-1
+contendiente:
+  calc: CALC-ENCODAT-PISOS-SUSTANCIAS-0001
+  medidor_sha256: d2123bfb393dba0d770824d04a7ef66118544f6502d9347197b1e292cb882b9b
+  resultados_sha256: a905034448cd3631b5b541c8ebee0e57cff5aa826ef8d859da37fb7dfe54389d
+  ola_piso: '2016'
+receta_repo:
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+inputs_reservados:
+- id: encodat_2025__encodat_2025_adolescentes_adultos_stata_stata_zip
+  origen: manifiesto
+- id: encodat_2025__encodat_2025_hogar_stata_stata_zip
+  origen: manifiesto
+regla:
+  primaria: cobertura R en [lo, hi] del contendiente, IC de Wilson 95%
+  nominal: 0.95
+  z: 1.959964
+  vocabulario: [CALIBRADO, SUBCUBRE, SOBRECUBRE, NO-ESTIMABLE]
+  precedencia: NO-ESTIMABLE > SUBCUBRE > SOBRECUBRE > CALIBRADO
+  secundarias: [cobertura por conglomerado (conducta), MAE punto-vs-R]
+  columna_ausente_en_catalogo: NO-ESTIMABLE (sin recodificacion ad hoc)
+seed:
+  aplica: false
