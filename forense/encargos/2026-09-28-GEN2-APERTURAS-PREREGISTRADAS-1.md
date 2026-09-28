@@ -40,3 +40,7 @@ Propio: `forense/prereg-aperturas/` (nuevo), `data/corrida0/aperturas-pendientes
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No abre, no mide, no adopta, no pide firmas (la vista las muestra). Sucesores: cada apertura, cuando mesa firme o el código congelado la haga, como acto de un commit sobre su expediente; `APERTURAS-PREREGISTRADAS-2` cuando entren olas nuevas. Módulo de auditoría v2.16 en cada spec (afirman qué se medirá sobre México): PROSPECTIVA por construcción; unidad; segmentación. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-APERTURAS-PREREGISTRADAS-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- Ninguno.
