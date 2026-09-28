@@ -50,7 +50,7 @@ No fusiona, no revierte (propone), no adopta, no recibe PR abiertos después de 
 | Recibo PRE-MERGE de #1240 | SUSTITUIDO-POR:recibo POST-MERGE de este mismo acto — mesa fusionó en `a8c3e341` durante el recibo; absorbe todos los criterios; no queda nada huérfano salvo la oportunidad FIRMAS-20 D | FIRMAS-20 D incumplido para #1240 | FIRMAS-21 |
 | Fuentes externas de las muestras C3 (#1240, #1242, #1243) | NO-VERIFICABLE-AQUÍ — red denegada por política; verificadas por forma | MATIZA/ROMPE descansan en la lectura del ejecutor | NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-08 |
 | Replays en caja (#1222 oro, #1241 suite en 3.14.4, #1229 p4 bytes) | NO-VERIFICABLE-AQUÍ — nube sin data/raw ni el runtime fijado | se aceptan como reportados | NC 8c5c-01, -11, -13 |
-| Nombre de la hoja `hoja-para-mesa.md` (§1 P3) | PARO-PREMISA — no aplica como paro: colisión T02 por nombre normalizado; se renombró a `hoja-para-mesa-recibo-astra6-3.md` (logística, declarado) | ninguno | SIN-ASIGNAR |
+| Nombre de la hoja `hoja-para-mesa.md` (§1 P3) | NO-VERIFICABLE-AQUÍ — no es paro: logística; colisión T02 por nombre normalizado; se renombró a `hoja-para-mesa-recibo-astra6-3.md` (logística, declarado) | ninguno | SIN-ASIGNAR |
 | #1246 | DIFERIDO-A:GEN2-RECIBO-ASTRA6-4 — abierto después del 0-bis (y fusionado en `32b0d413` sin recibo) | sin recibo por ahora | GEN2-RECIBO-ASTRA6-4 |
 
 ## CONSUMIDO
