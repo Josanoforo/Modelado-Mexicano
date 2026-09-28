@@ -1,0 +1,28 @@
+# Cara mecánica de enmienda-firmas-c2-v1_0.md (acto GEN2-ASTRA6-C2-EJECUCION-1, 0-bis e897d3df).
+# Ningún parámetro de estimación vive aquí: estimando, universo, pesos, banda, semilla y
+# remuestreo siguen en la spec v1_3 y en el spec.yaml del CALC, intactos.
+version: '1.0'
+acto: GEN2-ASTRA6-C2-EJECUCION-1
+familias: ["ENIF-AHORRO-FORMAL", "ENIF-HORIZONTE-AHORRO"]
+firma:
+  mesa: '28/sep/2026 «firmado» — B4 las tres · E3 1 · E4 1'
+  fuente: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md
+  fuente_sha256: d633888be2d208423b8795d588884877141fb2e891b9c4e0f182c66e6223f83b
+  fp: ["FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06", "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14"]
+no_modifica: [prereg-caja spec v1_3, spec.yaml, resultados/emision, sello.json]
+no_autoriza_apertura: true
+control_commit3:
+  envoltura: tools/familias-2027/cierre-material-1/auditoria_sucesora.py
+  envoltura_sha256: 22ba13436cac5a9a851736b8867e41b0b5e2bf24e8746c348692b9a4c8d7fdd9
+  paquete_identidades: forense/analisis/familias-2027/astra6-cierre-material-1/paquete-control-hashes.json
+  paquete_identidades_sha256: a3d42c009d394d13498884011fc6585135504dc9fc037e147d8489a30285a9a1
+  paquete_n: 18
+  inventario: forense/analisis/familias-2027/astra6-cierre-material-1/inventario-portable.json
+  inventario_sha256: e5aae65643bdbacfd18846047edef697caf4a037dc32232eefe16822905958b5
+  inventario_n: 231
+  regla: 'COMMIT-3 ENIF ejecuta el lector futuro sólo dentro de la envoltura, en proceso propio; cualquier identidad DISCORDA/AUSENTE = PARO (g)'
+oferta_al_lado:
+  asignacion_de_mesa: 'ENIF ahorro (Recomendado) — 28/sep/2026, pregunta del acto'
+  spec_humana: forense/analisis/familias-2027/astra6-enif/DIN-OFERTA-EXCLUSION-ENIF2024-spec-v1_0.md
+  calc: CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001
+  rol: 'descriptivo al lado del marginal; no candidato, no retador, no entra al dictamen'

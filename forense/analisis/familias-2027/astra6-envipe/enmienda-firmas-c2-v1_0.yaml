@@ -1,0 +1,22 @@
+# Cara mecánica de enmienda-firmas-c2-v1_0.md (acto GEN2-ASTRA6-C2-EJECUCION-1, 0-bis e897d3df).
+# Ningún parámetro de estimación vive aquí: estimando, universo, pesos, banda, semilla y
+# remuestreo siguen en la spec v1_3 y en el spec.yaml del CALC, intactos.
+version: '1.0'
+acto: GEN2-ASTRA6-C2-EJECUCION-1
+familias: ["ENVIPE-DENUNCIA-U4", "ENVIPE-EVASION-NORMA"]
+firma:
+  mesa: '28/sep/2026 «firmado» — B4 las tres · E3 1 · E4 1'
+  fuente: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md
+  fuente_sha256: d633888be2d208423b8795d588884877141fb2e891b9c4e0f182c66e6223f83b
+  fp: ["FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06", "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-15"]
+no_modifica: [prereg-caja spec v1_3, spec.yaml, resultados/emision, sello.json]
+no_autoriza_apertura: true
+unidad_de_remuestreo:
+  codigo: tools/familias-2027/envipe/medidor.py
+  codigo_sha256: 78136e6793011d4ab2a94c5b026bd2d62012c1d642c74f54b2a0650b6e64dd8b
+  singleton_contribuyente: singleton_marco
+  definicion: 'estrato con una sola UPM en el marco completo tper_vic2 (medidor.py l.88-96, l.168-180)'
+  compuerta: 'singleton_marco > 0 -> NO-ESTIMABLE (medidor.py l.195-198); no se relaja tras R'
+  singleton_soporte: diagnostico
+  oro_historico_envipe2025: {estratos_marco: 746, upm_marco: 13742, singleton_marco: 0, fuente: forense/analisis/familias-2027/astra6-envipe/diagnostico.json, fuente_sha256: 7a4ef580a4934b7e852cf700ef815a0ceddc617bb63330b49c18797cb8c2c3c3}
+oferta_al_lado: 'asignada por mesa a ENIF ahorro; ENVIPE no añade medida nueva (ver md §4)'

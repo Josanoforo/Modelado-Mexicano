@@ -1,0 +1,23 @@
+# Cara mecánica de enmienda-firmas-c2-v1_0.md (acto GEN2-ASTRA6-C2-EJECUCION-1, 0-bis e897d3df).
+# Ningún parámetro de estimación vive aquí: estimando, universo, pesos, banda, semilla y
+# remuestreo siguen en la spec v1_3 y en el spec.yaml del CALC, intactos.
+version: '1.0'
+acto: GEN2-ASTRA6-C2-EJECUCION-1
+familias: ["ENCIG-SOLICITUD-MORDIDA"]
+firma:
+  mesa: '28/sep/2026 «firmado» — B4 las tres · E3 1 · E4 1'
+  fuente: forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md
+  fuente_sha256: d633888be2d208423b8795d588884877141fb2e891b9c4e0f182c66e6223f83b
+  fp: ["FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06", "FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14"]
+no_modifica: [prereg-caja spec v1_3, spec.yaml, resultados/emision, sello.json]
+no_autoriza_apertura: true
+reconocimiento_identidad:
+  inventario: forense/analisis/familias-2027/astra6-cierre-material-1/inventario-portable.json
+  inventario_corte: 1eeb855272b933642177e3f32d51adc89f1009a0
+  archivos:
+    - {ruta: tools/familias-2027/encig/evaluar.py, sha256: 143cd5b45182108061ff9d841b3cc4efb77191eae4b92b54005be715d21ea8eb}
+    - {ruta: tools/familias-2027/encig/cierre.py, sha256: 3f1989c2596cd9382355e5b8e69b6dcd4a4b67843b0d5e830fc8c128adf4bd48}
+    - {ruta: forense/analisis/familias-2027/astra6-encig/enmienda-verificacion.json, sha256: 22f9857ee05b238a560306e8c244f98cd590e4fe83785d8180af901e4c296a11}
+    - {ruta: forense/analisis/familias-2027/astra6-encig/enmienda-verificacion.md, sha256: a21345263b85a6a91ac6ef623edf5bd51b32c1a2d0bcd4dbb891e4a0be0f6295}
+  regla: 'COMMIT-3 ENCIG coteja estas identidades antes de ejecutar evaluar.py; DISCORDA = PARO (g)'
+  pago_digital: 'SUSPENDIDA (FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01); este reconocimiento no la reactiva'
