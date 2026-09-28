@@ -2,6 +2,7 @@
 # Una fila por CITA `RES`/`CORR` en la spec de un CALC SELLADO, resuelta contra la demanda del commit que fijo esa spec.
 # Lo escribe `python3 tools/resuelve_citas.py tabla --escribe`. Las specs NO se tocan: estan selladas.
 calc_id	spec	token	commit_spec	fecha_commit	llave_logica	numero_hoy	difiere_de_hoy
+CALC-ALT-M19-WVS2018-REPRO-0001	data/corrida0/CALC-ALT-M19-WVS2018-REPRO-0001/spec.yaml	RES-0194	a88343c88b0f11a0c0c90e7cb1a9d6e932c51b30	2026-09-28	catalogo-momentos::M19	RES-0194	NO
 CALC-DINERO-FAMILIARES-VEJEZ-0001	data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001/spec.yaml	CORR-0010	912bb4b7eb0e8832858132ad52deb62c56e1b057	2026-09-15	tramite::familia.apoyo.recibe_dinero_familiares::recibe_dinero_familiares_para_vejez;tramite::familia.apoyo.recibe_dinero_familiares::no_recibe_dinero_familiares_para_vejez	CORR-0010	NO
 CALC-DINERO-FAMILIARES-VEJEZ-0001	data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001/spec.yaml	CORR-0017	912bb4b7eb0e8832858132ad52deb62c56e1b057	2026-09-15	tramite::salud.vacunacion.disponible_ensanut2024::razon_no_vacunacion_logistica;tramite::salud.vacunacion.disponible_ensanut2024::razon_no_vacunacion_no_logistica	CORR-0017	NO
 CALC-DINERO-FAMILIARES-VEJEZ-0001	data/corrida0/CALC-DINERO-FAMILIARES-VEJEZ-0001/spec.yaml	RES-0033	912bb4b7eb0e8832858132ad52deb62c56e1b057	2026-09-15	tramite::familia.apoyo.recibe_dinero_familiares::recibe_dinero_familiares_para_vejez	RES-0033	NO
