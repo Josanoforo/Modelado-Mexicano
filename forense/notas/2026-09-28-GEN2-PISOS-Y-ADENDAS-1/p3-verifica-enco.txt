@@ -1,0 +1,28 @@
+# salida cruda, 28/sep/2026, caja; filtro declarado: se omiten las líneas de aviso '  <id> [descargas_mx|data_raw] (...)' que manifiesto.py imprime para entradas AJENAS a los ids pedidos (rg -v '^  [a-z0-9_]+ \[(descargas_mx|data_raw)\] ')
+$ python3 tests/manifiesto.py --verifica --id enco_* (4 ids)
+Entorno de verificación: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+enco_2025_junio_dbf_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO -- raíz histórica no inspeccionable (fuera de RAICES_ESCANEABLES)
+enco_2026_junio_dbf_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO -- raíz histórica no inspeccionable (fuera de RAICES_ESCANEABLES)
+enco_fd_v5_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO -- raíz histórica no inspeccionable (fuera de RAICES_ESCANEABLES)
+enco_manual_procedimientos_reservado [reserva_respondentes]: FUERA_DE_PERIMETRO -- raíz histórica no inspeccionable (fuera de RAICES_ESCANEABLES)
+
+Por raíz (sin colapsar):
+  reserva_respondentes: coincide=0 · no_coincide=0 · ausente=0 · sin_configurar=0 · fuera_de_perimetro=4
+
+
+$ python3 p3_verifica_enco.py (sin raíz)
+entradas raiz=reserva_respondentes con id enco_*: 4 · raiz_fisica=(no configurada)
+enco_2025_junio_dbf_reservado [reserva_respondentes] ENCO/2025-06/enco_2025_junio_dbf.zip: RAIZ-NO-CONFIGURADA 
+enco_2026_junio_dbf_reservado [reserva_respondentes] ENCO/2026-06/enco_2026_junio_dbf.zip: RAIZ-NO-CONFIGURADA 
+enco_fd_v5_reservado [reserva_respondentes] ENCO/documentacion/fd_enco_v5.pdf: RAIZ-NO-CONFIGURADA 
+enco_manual_procedimientos_reservado [reserva_respondentes] ENCO/documentacion/enco_manual_procedimientos.pdf: RAIZ-NO-CONFIGURADA 
+resumen: RAIZ-NO-CONFIGURADA=4 · archivos_examinados=0
+
+$ python3 p3_verifica_enco.py /home/pc0/mm-corpus/reservas-respondentes
+entradas raiz=reserva_respondentes con id enco_*: 4 · raiz_fisica=/home/pc0/mm-corpus/reservas-respondentes
+enco_2025_junio_dbf_reservado [reserva_respondentes] ENCO/2025-06/enco_2025_junio_dbf.zip: COINCIDE sha256=fd283a1afb034cf16064e75b39ffbe950985ada5658b0a1ade81dfb873a14c88 manifiesto=fd283a1afb034cf16064e75b39ffbe950985ada5658b0a1ade81dfb873a14c88 bytes=159172
+enco_2026_junio_dbf_reservado [reserva_respondentes] ENCO/2026-06/enco_2026_junio_dbf.zip: COINCIDE sha256=f1c10fb4f4c0c8c0f1cccf3cba874a57a238f3af0efbed73f34c19ca7a0ff5e0 manifiesto=f1c10fb4f4c0c8c0f1cccf3cba874a57a238f3af0efbed73f34c19ca7a0ff5e0 bytes=164273
+enco_fd_v5_reservado [reserva_respondentes] ENCO/documentacion/fd_enco_v5.pdf: COINCIDE sha256=850960594b27c6b5112c2dcf787ea946604827bcf6032146c1f40b74d1ee6e88 manifiesto=850960594b27c6b5112c2dcf787ea946604827bcf6032146c1f40b74d1ee6e88 bytes=16315
+enco_manual_procedimientos_reservado [reserva_respondentes] ENCO/documentacion/enco_manual_procedimientos.pdf: COINCIDE sha256=b07ceaec3a092e89e6b53e5f21711f7a9efe39c522d3508710580982302f2db2 manifiesto=b07ceaec3a092e89e6b53e5f21711f7a9efe39c522d3508710580982302f2db2 bytes=10673327
+resumen: COINCIDE=4 · archivos_examinados=4
