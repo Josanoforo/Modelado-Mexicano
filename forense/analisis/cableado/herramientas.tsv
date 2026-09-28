@@ -85,6 +85,7 @@ tools/genera_pdf_one_pager.py	Genera docs/one-pager.pdf desde docs/one-pager.md.
 tools/genera_specs_envipe_serie_completa.py	Genera las ocho caras mecánicas del preregistro ENVIPE-SERIE-COMPLETA.
 tools/genera_tabla_piso.py	Deriva canon/tabla-de-piso-v1_0.tsv desde canon/catalogo-del-mexicano-v1_0.tsv.
 tools/genera_tabla_piso_v1_1.py	Deriva canon/tabla-de-piso-v1_1.tsv desde canon/catalogo-del-mexicano-v1_2.tsv.
+tools/genera_tabla_piso_v1_2.py	Deriva canon/tabla-de-piso-v1_2.tsv desde canon/catalogo-del-mexicano-v1_3.tsv.
 tools/hook_lectura.py	Hook PreToolUse (Bash|Read) que hace cumplir las reglas de lectura.
 tools/informe_pilotos.py	Cifras de los tres pilotos para el informe del programa -- ACTO GEN2-MARCADOR-E-INFORME-1 · P4.
 tools/integra_banxico_producto_dano.py	Actualiza sólo la relación Banxico de N34 con la medición sellada.
@@ -151,6 +152,7 @@ tools/relevo_usos.py	`relevo-usos` -- ACTO GEN2-RELEVO-USOS-1 · cablea la ultim
 tools/renderiza_pagina.py	Renderiza páginas con el navegador real de la caja (Chrome/Edge de Windows, headless) y
 tools/resuelve_cita.py	Resuelve una cita por NOMBRE de archivo a su ruta actual, vía archivo/INDICE.md.
 tools/resuelve_citas.py	Resuelve una cita `RES-####` / `CORR-####` AL MOMENTO EN QUE SE ESCRIBIO.
+tools/resumen_suite.py	⟲ Resumen derivado de la suite completa (ACTO GEN2-TUBERIA-RESUMEN-SUITE-1 · P1).
 tools/rutas_sin_candidato.py	Clasifica el residual SIN-CANDIDATO sin inferir equivalencias científicas.
 tools/rutinas.py	Reglas deterministas compartidas por `/revisa`, `/despacha` y `/tramite`.
 tools/score_marco_m.py	Adaptador marco-M -> entrada de `forense/prereg-duelo-v2/scoring-adv1-m3.py`.
