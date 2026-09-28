@@ -177,6 +177,13 @@ def t02_duplicates():
         # derivados de «pendientes de firma» quedan en solo cabecera (mismo esquema, por diseño).
         frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
                    "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv"}),
+        # ACTO GEN2-CIERRE-SEMANAL-2 (27/sep/2026): v1.3 hereda los dos derivados por diseño —
+        # pendientes en solo cabecera y la misma vista de adoptados activos (81) que v1.2.
+        frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
+                   "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv",
+                   "forense/analisis/catalogo/v1_3/pendientes-de-firma-v1_3.tsv"}),
+        frozenset({"forense/analisis/catalogo/v1_2/adoptados-activos-v1_2.tsv",
+                   "forense/analisis/catalogo/v1_3/adoptados-activos-v1_3.tsv"}),
         # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
         # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
         frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
@@ -356,7 +363,8 @@ HISTORICOS = {
     # `2026-09-09-PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES-astra.md`. El
     # contenido citado existe en ambos casos; solo el basename pelado no
     # coincide.
-    "tramite.md",
+    # (`tramite.md` salió de aquí: GEN2-TUBERIA-RESUMEN-SUITE-1 P2 indexa
+    # `.claude/`; la limitación descrita arriba ya no aplica.)
     "PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md",
     # forense/curaduria-archivos.md §1 "SE VA"
     "estado-proyecto-psicologia-mexicano.md",
@@ -441,13 +449,8 @@ HISTORICOS = {
     # en texto que A.3 prohibe editar contra un nombre sin archivo real
     # detras, deliberadamente.
     "05-PANTALLAS-RUTINAS-CONFIGURACION.md",
-    # forense/encargos/2026-09-09-GEN2-REVISA-CALC.md (A.3, VERBATIM):
-    # cita "el bloque REVISA-CALC DENTRO DE `/revisa`" y "grep -n
-    # \"REVISA-CALC\" .claude/commands/revisa.md" -- `revisa.md` existe en
-    # `.claude/commands/revisa.md`, pero el glob recursivo de T03 no
-    # desciende a directorios ocultos como `.claude/` (mismo defecto de
-    # cobertura ya documentado arriba para `tramite.md`).
-    "revisa.md",
+    # (`revisa.md` salió de aquí por la misma razón que `tramite.md`:
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 P2.)
     # forense/notas/2026-09-09-PROPUESTA-FINAL-AUTOMATIZACIONES-
     # POSTCALCULOS-astra.md y forense/notas/2026-09-09-REVISION-
     # ADVERSARIAL-PR649-astra.md (ambos P0 de GEN2-REVISA-CALC, A.3):
@@ -588,6 +591,10 @@ def t03_dangling_refs():
     """Un documento que cita un archivo inexistente no obliga a nada."""
     existing = {os.path.basename(p) for p in
                 glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True)}
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 · P2: `**` no desciende a ocultos; `.claude/`
+    # entra explícito al índice de existentes (no a los documentos escaneados).
+    existing |= {os.path.basename(p) for p in
+                 glob.glob(os.path.join(ROOT, ".claude", "**", "*.*"), recursive=True)}
     for p in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
         if ".git" in p:
             continue
@@ -2100,7 +2107,7 @@ _T22_ARCHIVOS_CONOCIDOS = {
     # Insumos A.3 archivados verbatim por GEN2-CONTRATO-Y-TRAMITE-CLI-1;
     # las frases pendientes pertenecen a la firma histórica, no abren fila nueva.
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
-    "canon/estado-programa-v1_17.md",
+    "canon/estado-programa-v1_18.md",
     # ACTO GEN2-SENAL-1 (21/sep/2026), encargo archivado verbatim (A.3) y su
     # nota de cierre. Disparan `_T22_MARCADOR_PENDIENTE` por el patron
     # `requiere_decision.*true`, y lo disparan por NARRACION del cierre, no
@@ -3014,6 +3021,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-CIERRE-SEMANAL-2, 27/sep/2026: el encargo (verbatim, A.3) cita «la letra E6 de la
+    # hoja de NC-DECISIONES-1» — letra de hoja de firmas (FP-…-f2e5-17), no rótulo de acto.
+    "forense/encargos/2026-09-27-GEN2-CIERRE-SEMANAL-2.md",
+    # ACTO GEN2-RECIBO-ASTRA6-2, 27/sep/2026: `E2`/`E5`/`E7` son letras de la hoja de firmas de
+    # GEN2-TRAMITE-NC-DECISIONES-1, citadas en el encargo verbatim (A.3), no rótulos de acto.
+    "forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2.md",
     # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1, 25/sep/2026: `E1`/`E2`/`E3` son las tres ERAS de
     # cuestionario ENSU (2013-15, 2016-20, 2021-25) de la lista cerrada y la spec sellada (COMMIT-1),
     # no rótulos de acto; los dos archivos están congelados y no se editan.
@@ -5232,7 +5245,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/ENCARGO-GEN2-VOCABULARIO-v0_6-2026-09-17.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/cabecera-v1_14.md",
     "forense/encargos/insumos-gen2-contrato-y-tramite-2026-09-19/seccion-13.md",
-    "canon/estado-programa-v1_17.md",
+    "canon/estado-programa-v1_18.md",
     # ACTO GEN2-MARCADOR-REDISENO-1, 19/sep/2026: encargo archivado VERBATIM
     # (A.3), que no se edita para complacer un test (misma regla que rige
     # T25 en todo este bloque). Cita `M05` al describir P2: "`tramite.yaml:487`
@@ -8408,7 +8421,7 @@ def t51_rotulos_par_unico():
 #   apendicar aquí y `estado-programa` no vuelve a aparecer en un conflicto,
 #   se anota y se revisa.
 # ───────────────────────────────────────────────────────────────
-RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_17.md"
+RUTA_ESTADO_PROGRAMA = "canon/estado-programa-v1_18.md"
 _T52_N_ANOTACIONES = 96
 _T52_SHA_ANOTACIONES = "ebbfe58cdd53a8ee14ac77499034d30c063e8eab8dc2478149dafbefb387c50f"
 _T52_FILA_GOBERNANZA = (

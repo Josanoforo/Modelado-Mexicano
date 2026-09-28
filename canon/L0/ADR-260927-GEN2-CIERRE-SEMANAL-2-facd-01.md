@@ -1,0 +1,3 @@
+# ADR-260927-GEN2-CIERRE-SEMANAL-2-facd-01
+
+27/sep/2026 · `ACTO GEN2-CIERRE-SEMANAL-2` (NUBE; es `GEN2-CATALOGO-V1-3-1`). Cierre del 22 al 27/sep en cuatro documentos derivados por comando: catálogo del mexicano v1.3, tabla de piso v1.2, informe-programa v1.5 y estado v1.18 (v1.17 retirada por T01). Ejecuta FIRMAS-20 A1–A6 y asienta beee-01/02 («Firmo Beee, las dos»): 7 filas `SUSPENDIDA-POR-FIRMA` y 689 `ACOTADA`, sin tocar sellos. El veto de Intercensal 2015 va a `decisiones.tsv`, y `vetados_por_decision` pasa de 4 a 813. Cero mediciones. Receta del release `v2026.09.3`. Nota `forense/notas/2026-09-27-GEN2-CIERRE-SEMANAL-2-cierre.md`.

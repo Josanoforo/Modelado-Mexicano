@@ -1086,3 +1086,11 @@ Decisiones, cobertura y evidencia por pieza en `forense/analisis/reports-v2/dine
 ## ASTRA6-C2-ENOE-INFERENCIA-1 · diagnóstico agregado histórico
 
 Tablas propias en `forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/` y `potencia/enoe-escenarios.tsv`; productores `tools/familias-2027/enoe_inferencia_1/enoe_diagnostico.py` y `forense/analisis/familias-2027-enoe-inferencia-1/potencia/calcula_sucesor.py`. Consumidores: hoja ENOE y recibo de mesa del mismo acto. Mismo oro abierto2024T4; sin microdatos en tablas, sin RESULT ni adopción; incertidumbre no identificada no se transforma en potencia numérica. ADR-260927-GEN2-ASTRA6-C2-ENOE-INFERENCIA-1-310e-01.
+
+## `canon/catalogo-del-mexicano-v1_3.*`, `canon/tabla-de-piso-v1_2.tsv` y `forense/analisis/catalogo/v1_3/`: catálogo v1.3 y tabla de piso v1.2 (`ACTO GEN2-CIERRE-SEMANAL-2`, 27/sep/2026)
+
+| tabla | cómo se produce | qué contiene | quién la consume | trampa |
+|---|---|---|---|---|
+| `canon/catalogo-del-mexicano-v1_3.tsv` · `.md` | `python3 forense/analisis/catalogo/genera_catalogo_v1_3.py` (≈7 min: deriva la vista de `corrida0`). `--sin-registro` reutiliza `v1_3/adoptados-activos-v1_3.tsv` y `v1_3/status-v1_3.json`. La portada sale de `v1_3/plantilla-v1_3.md` | las columnas de v1.2 más `validacion_ciega` (rótulo del recibo ASTRA6-1 por llave) y `sucesor` | `docs/catalogo.md`, `tools/benchmark.py` (catálogo de N mayor), tabla de piso v1.2 | `SUSPENDIDA-POR-FIRMA` es una fila conservada que **no** es piso. `status` no la ve, porque veta por RESULT y no por celda |
+| `canon/tabla-de-piso-v1_2.tsv` | `python3 tools/genera_tabla_piso_v1_2.py --escribe` (sin flag solo cuenta; `--verifica` compara byte a byte) | las mismas filas y rótulos que el catálogo v1.3, con área de consulta, hashes y `eje_nse_o_region` (ahora `ENT` también cuenta como región) | `docs/reto.md`, `docs/one-pager.md` | v1.1 queda intacta con su propio generador |
+| `forense/analisis/informe-v1_5/cifra_v1_5.py` | solo lee | una cifra por clave para el informe v1.5, más la tabla de cobertura por dominio del mapa v1.1 | `canon/informe-programa-v1_5.md`, `canon/estado-programa-v1_18.md` §18 (comentarios `comando:`) | — |
