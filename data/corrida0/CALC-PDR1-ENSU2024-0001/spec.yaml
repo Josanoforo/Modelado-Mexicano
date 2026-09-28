@@ -1,0 +1,255 @@
+# CALC-PDR1-ENSU2024-0001 -- contrato ejecutable de forense/prereg-caja/PDR1-ENSU2024-spec-v1_0.md. COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENSU2024-0001
+spec_md: ../../../forense/prereg-caja/PDR1-ENSU2024-spec-v1_0.md
+spec_md_sha256: 3abf085f5291d2f8f9e98ebc76811218c9a1230dc75843df654a709a5ead9522
+script: data/corrida0/CALC-PDR1-ENSU2024-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  marca: RETROSPECTIVA
+  afirmacion: ASTRA5-U0-SANC-007
+  dominio: SANCION_SOCIAL
+inputs:
+- id: ensu2024_bd_csv_zip
+  origen: manifiesto
+  sha256: 97034a71d6b2e26d9e87cf5f0835d2004d12b5c92d8afe486bb73164038211f4
+  funcion: DATO
+  nota: ENSU 2024; sólo se lee ensu_bd_marzo_2024_csv.zip!ENSU_CB_0324.csv (2024T1)
+variables:
+- archivo: ENSU_CB_0324.csv
+  variable: BP1_5_1
+  rol: 'reactivo 1.5 llevar cosas de valor (FD marzo 2024 p.24): 1 Sí 2 No 3 No aplica 9 NS/NR'
+- archivo: ENSU_CB_0324.csv
+  variable: FAC_SEL
+  rol: ponderador persona 18+ (FD p.36)
+- archivo: ENSU_CB_0324.csv
+  variable: EST_DIS
+  rol: estrato de diseño (FD p.36), con CD
+- archivo: ENSU_CB_0324.csv
+  variable: UPM_DIS
+  rol: UPM de diseño (FD p.36)
+- archivo: ENSU_CB_0324.csv
+  variable: CD
+  rol: ciudad
+- archivo: ENSU_CB_0324.csv
+  variable: SEXO
+  rol: 1 Hombre 2 Mujer (FD p.22)
+- archivo: ENSU_CB_0324.csv
+  variable: EDAD
+  rol: años 18-96 (FD p.22)
+universo: Persona seleccionada 18+ de ENSU_CB_0324 con FAC_SEL>0 y EST_DIS/UPM_DIS no vacíos; ciudades ENSU (urbano).
+filtros: 'PRINCIPAL: denominador códigos 1,2 (No aplica y NS/NR fuera). CON-NSNR: 1,2,9. ORO: 1,2,3,9.'
+ponderador: FAC_SEL sin normalizar
+transformacion: y = 1{código 1}; razón de sumas ponderadas por celda; un eje a la vez (TOTAL, SEXO, EDAD).
+estimando: Proporción ponderada de personas 18+ que cambiaron hábitos respecto a llevar cosas de valor por temor al delito, 2024T1, con IC95 de diseño; dictamen B-bis contra 47.4%.
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposición dentro de estrato (CD+EST_DIS); singleton se remuestrea a sí mismo; percentiles 2.5/97.5
+  cifra_afirmacion: 0.474
+  cifra_fuente: canon/mapa-dominios-v1_1.tsv fila ASTRA5-U0-SANC-007 texto_vigente
+  umbral_matiza: 0.03
+  ola: 2024T1
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos exactos
+resultados:
+- id: RESULT-PDR1-ENSU2024-SANC007-G-FILAS-CB
+  tipo: entero
+  unidad: filas de ENSU_CB_0324
+- id: RESULT-PDR1-ENSU2024-SANC007-G-PERSONAS-DISENO-VALIDO
+  tipo: entero
+  unidad: personas con FAC_SEL>0, EST_DIS y UPM_DIS
+- id: RESULT-PDR1-ENSU2024-SANC007-G-P-NO-APLICA
+  tipo: proporcion
+  unidad: proporción ponderada del código sobre 1,2,3,9
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-NO-APLICA
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PDR1-ENSU2024-SANC007-G-P-NSNR
+  tipo: proporcion
+  unidad: proporción ponderada del código sobre 1,2,3,9
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-NSNR
+  tipo: entero
+  unidad: personas sin ponderar
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-FUERA-DE-CODIGOS
+  tipo: entero
+  unidad: personas con código fuera de 1,2,3,9 o blanco
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-UPM
+  tipo: entero
+  unidad: UPM de diseño (CD+EST_DIS+UPM_DIS)
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-ESTRATOS
+  tipo: entero
+  unidad: estratos (CD+EST_DIS)
+- id: RESULT-PDR1-ENSU2024-SANC007-G-N-ESTRATOS-SINGLETON
+  tipo: entero
+  unidad: estratos con una UPM
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-DICTAMEN
+  tipo: texto
+  unidad: CONFIRMA/MATIZA/ROMPE/NO-CONSTRUIBLE (B-bis spec §5)
+- id: RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-DICTAMEN
+  tipo: texto
+  unidad: CONFIRMA/MATIZA/ROMPE/NO-CONSTRUIBLE (B-bis spec §5)
+- id: RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-P
+  tipo: proporcion
+  unidad: proporción ponderada de personas 18+
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-IC-LO
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-IC-HI
+  tipo: proporcion
+  unidad: IC95 bootstrap de diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-N
+  tipo: entero
+  unidad: personas sin ponderar en el denominador
+- id: RESULT-PDR1-ENSU2024-SANC007-ORO-DICTAMEN
+  tipo: texto
+  unidad: CONFIRMA/MATIZA/ROMPE/NO-CONSTRUIBLE (B-bis spec §5)
+- id: RESULT-PDR1-ENSU2024-SANC007-DICTAMEN
+  tipo: texto
+  unidad: dictamen que manda (PRINCIPAL)
+- id: RESULT-PDR1-ENSU2024-SANC007-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-PDR1-ENSU2024-SANC007-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-PDR1-ENSU2024-SANC007-G-MIEMBRO
+  tipo: texto
+  unidad: miembro leído
