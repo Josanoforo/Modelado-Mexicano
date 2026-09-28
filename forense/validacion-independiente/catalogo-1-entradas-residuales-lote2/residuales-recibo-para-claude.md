@@ -21,3 +21,5 @@ LEÍDO: la firma Acordado vive en `forense/encargos/2026-09-26-ASTRA6-C1-PAQUETE
 Revisión solicitada: comprobar separación de contenidos, precedencia de definiciones restauradas, compatibilidad de propuestas IC con #1194, correspondencia exacta de las 312 llaves, hashes y estados de uso. Dictaminar recepción y recomendar aceptación o devolución; este acto no fusiona ni autoaprueba.
 
 EJECUTADO: `python3 tools/validacion/astra6_entradas_residuales/p1.py` PASS (368 pares, unión312); `python3 tools/validacion/astra6_entradas_residuales/p4.py --verifica` PASS (4 contenedores,312identidades,40miembros, bytes reproducibles); `git diff --cached --check` PASS; `python3 tests/check.py --rapido --baseline` VERDE, sin FAIL nuevos y 0 FAIL global. Gate documental, no evidencia científica. Detalle en `residuales-verificacion-final.json`.
+
+PR propio publicado: https://github.com/Josanoforo/Modelado-Mexicano/pull/1229. Recibo técnico solicitado en el cuerpo del PR, aún no obtenido; merge y firma de contratos pendientes.

@@ -21,3 +21,5 @@ La preparación cuenta con resultados conocidos y no se presenta como validació
 INTERPRETACIÓN-DECLARADA: el recibo solicitado se entrega como `residuales-recibo-para-claude.md`, con prefijo propio para evitar la colisión T02 de nombres normalizados. Conserva contenido y función de recibo, sin alterar actos anteriores.
 
 EJECUTADO: `python3 tools/validacion/astra6_entradas_residuales/p1.py` PASS (368 pares, unión312); `python3 tools/validacion/astra6_entradas_residuales/p4.py --verifica` PASS (4 contenedores,312identidades,40miembros, bytes reproducibles); `git diff --cached --check` PASS; `python3 tests/check.py --rapido --baseline` VERDE, sin FAIL nuevos y 0 FAIL global. Gate documental, no evidencia científica. Detalle en `residuales-verificacion-final.json`.
+
+PR propio publicado: https://github.com/Josanoforo/Modelado-Mexicano/pull/1229. Recibo técnico solicitado en el cuerpo del PR, aún no obtenido; merge y firma de contratos pendientes.
