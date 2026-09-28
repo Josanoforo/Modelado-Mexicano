@@ -3255,6 +3255,18 @@ def t_validacion_overlay_sucesor_por_resultado_y_hash():
     p = _paro_de(calcs=calcs, validaciones=[inexistente])
     _afirma("VALIDACION-OVERLAY-DESTINO" in p, caso,
             f"un destino ausente no paró: {p!r}")
+    p = _paro_de(calcs=calcs, validaciones=[asiento, dict(asiento)])
+    _afirma("VALIDACION-OVERLAY-DUPLICADA" in p, caso,
+            f"misma llave y misma ref no paró: {p!r}")
+    ref2 = "tools/corrida0.py"
+    otra = dict(asiento, validacion_independiente="CONCUERDA-NO-APROBADA",
+                validacion_ref=ref2, alcance_validacion="CIEGA",
+                evidencia_sha256=hashlib.sha256((RAIZ / ref2).read_bytes()).hexdigest())
+    with _arbol_registro(calcs=calcs, validaciones=[asiento, otra]):
+        vistas = C.registro(escribe=False, imprime=False)
+    fila = {f["resultado_id"]: f for f in vistas["resultados"]}["RESULT-P"]
+    _afirma((fila["validacion_ref"], fila["alcance_validacion"]) == (ref2, "CIEGA"),
+            caso, f"dos refs distintas no proyectaron la última: {fila}")
 
 
 def _repro_catalogo(fila_relevo: dict) -> str:

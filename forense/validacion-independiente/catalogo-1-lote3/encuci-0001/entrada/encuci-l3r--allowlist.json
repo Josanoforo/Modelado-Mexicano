@@ -1,0 +1,99 @@
+{
+  "paquete": "encuci-0001",
+  "identidad": {
+    "paquete": "encuci-0001",
+    "version_entrada": "residuales-documentales-v2",
+    "sha256_entrada": "1b7e98c5a2360cfa4f415340ba957227136fa15687d6ee4d5d28ed42fb278ce6"
+  },
+  "fuente_datos": {
+    "zip": "data/raw/BD_ENCUCI2020_dbf.zip",
+    "zip_sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+    "miembros": {
+      "ENCUCI_2020_SEC_4_5.dbf": "ENCUCI_2020_SEC_4_5.dbf",
+      "ENCUCI_2020_SEC_6_7_8.dbf": "ENCUCI_2020_SEC_6_7_8.dbf"
+    }
+  },
+  "campos_autorizados": {
+    "ENCUCI_2020_SEC_4_5.dbf": [
+      "ID_PER",
+      "AP4_3_2",
+      "FAC_SEL",
+      "EST_DIS",
+      "UPM_DIS",
+      "DOMINIO"
+    ],
+    "ENCUCI_2020_SEC_6_7_8.dbf": [
+      "ID_PER",
+      "AP7_3_5",
+      "FAC_SEL",
+      "EST_DIS",
+      "UPM_DIS",
+      "DOMINIO"
+    ]
+  },
+  "herramientas": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+  "autorizacion": [
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-03",
+    "FP-260927-GEN2-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1-1653-01",
+    "acceso C1 firmado por mesa 28/sep (ver FIRMAS-Y-ACCESO.md)"
+  ],
+  "input_files": [
+    {
+      "path": "paquete/CONTRATO-v3.md",
+      "sha256": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb"
+    },
+    {
+      "path": "paquete/FIRMAS-Y-ACCESO.md",
+      "sha256": "4b464cd99a8095e5719f4f457b9f2cc5f2fd3b2dbe914aa112e2b134bdf09877"
+    },
+    {
+      "path": "paquete/cuestionario-encuci2020-cuestionario.pdf",
+      "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0"
+    },
+    {
+      "path": "paquete/datos/ENCUCI_2020_SEC_4_5.dbf",
+      "sha256": "3c2bc01cae13b48ccb061e51ed316f748777d960b7224638a267f64dccfcf1cb"
+    },
+    {
+      "path": "paquete/datos/ENCUCI_2020_SEC_6_7_8.dbf",
+      "sha256": "ad9b3d3031beada8b79deecb94eb81722f86232b5429e1f7ffd72f8d58419105"
+    },
+    {
+      "path": "paquete/descriptor-encuci2020-fd.pdf",
+      "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638"
+    },
+    {
+      "path": "paquete/encuci-rural-restaurado.md",
+      "sha256": "8e7422ab4e1b84a83baf36a3ec2e22e23225ea9f083af8e7f272cc439c12cd4a"
+    },
+    {
+      "path": "paquete/esquema-identidades.tsv",
+      "sha256": "27e9d99d306ecf153d8c37d1b34e92084b36679f0fb50af59f7f128610bc1ddf"
+    },
+    {
+      "path": "paquete/esquema-salida-v2.md",
+      "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4"
+    },
+    {
+      "path": "paquete/residuales-p3-contrato-ic.md",
+      "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb"
+    },
+    {
+      "path": "paquete/residuales-p3-modulos-ic.md",
+      "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98"
+    },
+    {
+      "path": "paquete/spec-acceso-insumos.md",
+      "sha256": "d6cdf7dfea124990349c407981650bf44fb8a43deaef0306cbe59041ae011932"
+    }
+  ]
+}

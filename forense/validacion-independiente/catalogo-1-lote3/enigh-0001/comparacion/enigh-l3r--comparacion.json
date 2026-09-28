@@ -1,0 +1,49 @@
+{
+  "congelacion_sha256": "2c457b4b3c9c8e357aaf7bad851bdc54279bee2668b81c5930029deabb9855d2",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "enigh-0001",
+    "sha256_entrada": "b03e4c59c8a8a88b76d4021f189fca9073ce4cc9057d66ec1fbecbc3d5236c13",
+    "version_entrada": "residuales-documentales-v2"
+  },
+  "referencia_sha256": "8ab2f72357d0605d15e416aecc6da8606a2da9b814a69f3a030e73ebbaa2f666",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENIGH-A-P-COMPLEMENTO"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}

@@ -1,0 +1,133 @@
+{
+  "paquete": "enbiare-pisos-bienestar-0001",
+  "identidad": {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "version_entrada": "residuales-documentales-v2",
+    "sha256_entrada": "fc75485a4e49118eacfca104070214c86fa4071b75550234cfc05ffb69c9fbfe"
+  },
+  "fuente_datos": {
+    "zip": "data/raw/enbiare2021/enbiare_2021_base_de_datos_csv.zip",
+    "zip_sha256": "afe9013a4cc26538dfe81da686f0d09e756a7d0e2fc407cd22f596fd53c0f354",
+    "miembros": {
+      "TENBIARE.csv": "TENBIARE.csv",
+      "TSDEM.csv": "TSDEM.csv"
+    }
+  },
+  "campos_autorizados": {
+    "TENBIARE.csv": [
+      "FOLIO",
+      "VIV_SEL",
+      "HOGAR",
+      "N_REN",
+      "TLOC",
+      "FAC_ELE",
+      "EST_DIS",
+      "UPM_DIS",
+      "PA1",
+      "PA5",
+      "PD2_1",
+      "PD2_2",
+      "PD2_3",
+      "PD2_4",
+      "PD2_5",
+      "PD2_6",
+      "PD2_7",
+      "PD3_1",
+      "PD3_2",
+      "PB1_01",
+      "PB1_02",
+      "PB1_04",
+      "PB1_11",
+      "PB2_1",
+      "PB2_2",
+      "PG6",
+      "PG7"
+    ],
+    "TSDEM.csv": [
+      "FOLIO",
+      "VIV_SEL",
+      "HOGAR",
+      "N_REN",
+      "SEXO",
+      "EDAD",
+      "NIVEL"
+    ]
+  },
+  "herramientas": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+  "autorizacion": [
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-03",
+    "FP-260927-GEN2-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1-1653-01",
+    "acceso C1 firmado por mesa 28/sep (ver FIRMAS-Y-ACCESO.md)"
+  ],
+  "input_files": [
+    {
+      "path": "paquete/CONTRATO-v3.md",
+      "sha256": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb"
+    },
+    {
+      "path": "paquete/FIRMAS-Y-ACCESO.md",
+      "sha256": "2425ab4c02b073030936d256ad68ccc9b4cce8e918c0be375403b227ac3b0aa5"
+    },
+    {
+      "path": "paquete/cuestionario-enbiare2021-cuestionario.pdf",
+      "sha256": "bb37c96e245a5ecc880f71b0adf31dcb97a6f6304f38934a766da6978b8c2e84"
+    },
+    {
+      "path": "paquete/datos/TENBIARE.csv",
+      "sha256": "7acaaa3c9cd593c0d67111763d9369cb694bb61640d8b0aa55e5e8fecbf33e7d"
+    },
+    {
+      "path": "paquete/datos/TSDEM.csv",
+      "sha256": "8ca1dd29b1ed91cff557866c0af5954321a30e0773d80872f43d72f6f9f5085c"
+    },
+    {
+      "path": "paquete/descriptor-enbiare2021-fd.pdf",
+      "sha256": "8a79265d8c1f761d9f3043c2d4837a9366679314b97aaebd8d189c6bcbc716a9"
+    },
+    {
+      "path": "paquete/enbiare-edades-propuesta.md",
+      "sha256": "95f614a43f0cc01ea3caaeb59b1ecc59ca4328d351a6b91b2c6fb09c604dd67d"
+    },
+    {
+      "path": "paquete/enbiare-metodo-base.md",
+      "sha256": "9e642c6e16ffddae011b9afc03f0d6a66e4c78026d82aca17642a2cf34f36e09"
+    },
+    {
+      "path": "paquete/enbiare-ventanas-restauradas.md",
+      "sha256": "96a90828a7ee5ade5272f05fb9f02c75fe3573376966730784b374382eabb2d0"
+    },
+    {
+      "path": "paquete/esquema-identidades.tsv",
+      "sha256": "d78259f5a37a432c0156367cd490954e92080775ea2233a732aa8d7c08f7db8f"
+    },
+    {
+      "path": "paquete/esquema-salida-v2.md",
+      "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4"
+    },
+    {
+      "path": "paquete/residuales-p3-contrato-ic.md",
+      "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb"
+    },
+    {
+      "path": "paquete/residuales-p3-modulos-ic.md",
+      "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98"
+    },
+    {
+      "path": "paquete/spec-acceso-insumos.md",
+      "sha256": "4d7b62df6bb05d68dc261525a010771d6c03e26e964d262731a8c9d3e71b8390"
+    },
+    {
+      "path": "paquete/spec-conductas-base.md",
+      "sha256": "11511c9b29b957fbf576ea1f65600b2c9c3ed6b038d6e62d66856c1c7c335704"
+    }
+  ]
+}
