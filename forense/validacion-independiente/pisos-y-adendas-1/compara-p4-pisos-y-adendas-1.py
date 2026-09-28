@@ -11,7 +11,7 @@ CALCS = {"discriminacion": ("CALC-ENDIREH-PISOS-2021-DISCRIMINACION-0001", "RESU
 cmp_rows, dict_rows = [], []
 for c, (calc, rid) in CALCS.items():
     tabla = json.loads(json.loads((RAIZ / "data/corrida0" / calc / "resultados.json").read_text())["resultados"][rid])
-    rec = list(csv.DictReader(open(AQUI / c / "recalculo.tsv", encoding="utf-8"), delimiter="\t"))
+    rec = list(csv.DictReader(open(AQUI / c / f"recalculo-{c}.tsv", encoding="utf-8"), delimiter="\t"))
     fallas = []
     for r in rec:
         k = int(r["llave"].split("#")[1]); s = tabla[k]
