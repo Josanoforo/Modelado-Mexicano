@@ -359,6 +359,180 @@ def inspeccion_consumido(ruta_encargo):
     return {"ruta": ruta_encargo, "estado": "PRESENTE" if presente else "AUSENTE"}
 
 
+# ─────────────────────────────────────────────────────────────────
+# A.14 ampliada (v2.17.1) · cierre hacia atrás y rutas con sucesor real
+# (`ACTO GEN2-PENDIENTES-3` P1, 28/sep/2026, firma de mesa (b) del
+# encargo `forense/encargos/2026-09-28-GEN2-PENDIENTES-3.md` §2).
+#
+# Defecto real que atrapa (D-14): el libro llegó a 497 NC ABIERTAS con 75
+# cuyo sucesor ya había corrido sin dictaminarlas, y 117 cierres sin acto
+# declarado. Cada acto abría rutas hacia adelante; ninguno cerraba las que
+# lo nombraban. Dos reglas, las dos mecánicas y las dos hacen fallar la
+# cascada (código 1):
+#   (i)  CIERRE HACIA ATRÁS. Toda NC ABIERTA cuyo `sucesor` nombra a este
+#        acto queda FALTA-DICTAMEN hasta que el acto la dictamine:
+#          CERRADA  -> `estado=CERRADA`, `fecha_cierre` AAAA-MM-DD y
+#                      `cerrado_por` = `<RÓTULO> · CERRADA (producto: ruta · comando)`
+#                      (o `(diseño|firma|duplicada: cita)`, vocabulario de P2/P4)
+#                      o `<RÓTULO> · SIN-OBJETO (cita)`;
+#          SIGUE-ABIERTA -> su `sucesor` deja de nombrar a este acto y nombra
+#                      un encargo archivado o un acto en vuelo.
+#        Y toda fila que el acto pasó a CERRADA (contra origin/main) lleva
+#        `cerrado_por` y `fecha_cierre`.
+#   (ii) RUTAS CON SUCESOR REAL. Una NC NUEVA (id ausente en origin/main)
+#        con razón FUERA-DE-PERÍMETRO o DIFERIDO-A sólo entra si su
+#        `sucesor` nombra un encargo archivado (`forense/encargos/`, `cola/`
+#        incluida) o un acto en vuelo (encargo en una rama de origin). Si
+#        no, RUTA-SIN-SUCESOR: el acto la escribe como una línea en
+#        `forense/hallazgos.md`, no como NC.
+#
+# «Nombra», con frontera (misma regla que `nc_por_clase.resuelve`, P0 de
+# GEN2-TRAMITE-PENDIENTES-2): un token del `sucesor` nombra a un acto si es
+# su rótulo exacto, o un prefijo `<token>-` que resuelve a UN solo acto del
+# índice (`GEN2-E4` -> `GEN2-E4-LIMPIEZA-C2-PODA`; nunca `GEN2-E41`, y una
+# familia ambigua como `GEN2-TUBERIA` no nombra a nadie).
+# ─────────────────────────────────────────────────────────────────
+
+RAZONES_RUTA = ("FUERA-DE-PERÍMETRO", "DIFERIDO-A")
+_RE_TOKEN_ACTO = re.compile(r"(?<![A-Za-z0-9-])([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)+)(?![A-Za-z0-9])")
+_PREFIJOS_NO_ACTO = ("FP-", "NC-", "ADR-", "RES-", "CALC-", "PR-", "CORR-")
+_RE_DICTAMEN_CIERRE = re.compile(
+    r"(?:CERRADA \((?:producto|diseño|firma|duplicada): [^)]+\)|SIN-OBJETO \([^)]+\))")
+_RE_FECHA = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_RE_FECHA_ENCARGO = re.compile(r"^\d{4}-\d{2}-\d{2}-")
+_RE_ADENDA = re.compile(r"-ADENDA-\d+$")
+
+
+def rotulo_de_encargo(ruta):
+    """`forense/encargos/2026-09-28-GEN2-PENDIENTES-3.md` -> `GEN2-PENDIENTES-3`."""
+    base = os.path.basename(ruta)
+    base = base[:-3] if base.endswith(".md") else base
+    return _RE_ADENDA.sub("", _RE_FECHA_ENCARGO.sub("", base)).upper()
+
+
+def _rotulos_de_nombres(nombres):
+    return {rotulo_de_encargo(n) for n in nombres if n.endswith(".md")}
+
+
+def indice_actos(raiz=RAIZ, con_ramas=True):
+    """{rótulo: 'ARCHIVADO' | 'EN-VUELO:<rama>'} -- archivados = basenames de
+    `forense/encargos/**` en el árbol; en vuelo = encargos que existen en una
+    rama de origin y no en el árbol. Sin red: lee refs ya fetcheadas."""
+    idx = {}
+    for p in glob.glob(os.path.join(raiz, "forense", "encargos", "**", "*.md"), recursive=True):
+        idx[rotulo_de_encargo(p)] = "ARCHIVADO"
+    if con_ramas:
+        rc, out, _ = _corre(["git", "for-each-ref", "--format=%(refname:short)",
+                             "refs/remotes/origin"], raiz)
+        for rama in (out.split() if rc == 0 else []):
+            if rama in ("origin/main", "origin/HEAD", "origin") or rama.startswith("origin/derivados/"):
+                continue
+            rc2, ls, _ = _corre(["git", "ls-tree", "-r", "--name-only", rama,
+                                 "forense/encargos"], raiz)
+            if rc2 != 0:
+                continue
+            for r in _rotulos_de_nombres(ls.split("\n")):
+                idx.setdefault(r, f"EN-VUELO:{rama[len('origin/'):]}")
+    return idx
+
+
+def actos_nombrados(texto, indice):
+    """Rótulos del índice que `texto` nombra, con frontera (ver arriba)."""
+    out = set()
+    for tok in _RE_TOKEN_ACTO.findall(texto or ""):
+        if tok.startswith(_PREFIJOS_NO_ACTO):
+            continue
+        if tok in indice:
+            out.add(tok)
+            continue
+        cands = sorted(k for k in indice if k.startswith(tok + "-"))
+        if cands and len({k[len(tok) + 1:].split("-")[0] for k in cands}) == 1 and len(cands) == 1:
+            out.add(cands[0])
+    return out
+
+
+def lee_nc(texto):
+    """Filas de `forense/no-corrido.tsv` por línea física (el archivo no usa
+    comillas; el módulo csv lo corrompe al reescribir, y aquí sólo se lee)."""
+    lineas = [l for l in texto.split("\n") if l.strip()]
+    if not lineas:
+        return []
+    cab = lineas[0].split("\t")
+    return [dict(zip(cab, l.split("\t"))) for l in lineas[1:]]
+
+
+def dictamen_hacia_atras(rotulo, filas_head, filas_base, indice):
+    """(i). Devuelve {'falta': [(id, motivo)], 'dictaminadas': [(id, dictamen)]}."""
+    rotulo = rotulo.upper()
+    falta, hechas = [], []
+    base = {f.get("id"): f for f in (filas_base or [])}
+    for f in filas_head:
+        fid, estado = f.get("id", "?"), (f.get("estado") or "").strip()
+        nombra = rotulo in actos_nombrados(f.get("sucesor", ""), indice | {rotulo: "ESTE-ACTO"})
+        if estado == "ABIERTA" and nombra:
+            falta.append((fid, "ABIERTA y su sucesor nombra a este acto: dictamen CERRADA / "
+                               "SIGUE-ABIERTA (sucesor nuevo) / SIN-OBJETO"))
+            continue
+        b = base.get(fid)
+        paso_a_cerrada = estado == "CERRADA" and (b is None or (b.get("estado") or "").strip() != "CERRADA")
+        cp = (f.get("cerrado_por") or "").strip()
+        if paso_a_cerrada:
+            if cp in ("", "NO-APLICA") or not _RE_FECHA.match((f.get("fecha_cierre") or "").strip()):
+                falta.append((fid, "pasó a CERRADA sin `cerrado_por` o sin `fecha_cierre` AAAA-MM-DD"))
+            elif cp.upper().startswith(rotulo) and not _RE_DICTAMEN_CIERRE.search(cp):
+                falta.append((fid, "cerrada por este acto sin dictamen `CERRADA (producto|diseño|"
+                                   "firma|duplicada: …)` o `SIN-OBJETO (…)` en `cerrado_por`"))
+            else:
+                hechas.append((fid, "CERRADA"))
+        elif estado == "ABIERTA" and b is not None and rotulo in actos_nombrados(
+                b.get("sucesor", ""), indice | {rotulo: "ESTE-ACTO"}):
+            if actos_nombrados(f.get("sucesor", ""), indice):
+                hechas.append((fid, "SIGUE-ABIERTA"))
+            else:
+                falta.append((fid, "SIGUE-ABIERTA con un sucesor nuevo que no nombra encargo "
+                                   "archivado ni acto en vuelo"))
+    return {"falta": falta, "dictaminadas": hechas}
+
+
+def rutas_sin_sucesor(filas_head, filas_base, indice, rotulo_propio=None):
+    """(ii). NC nuevas con razón de ruta cuyo sucesor no nombra un encargo
+    archivado ni un acto en vuelo. Devuelve [(id, razón, sucesor)]."""
+    ids_base = {f.get("id") for f in (filas_base or [])}
+    malas = []
+    for f in filas_head:
+        if f.get("id") in ids_base:
+            continue
+        razon = (f.get("razon") or "").strip()
+        if not razon.startswith(RAZONES_RUTA):
+            continue
+        nombrados = actos_nombrados(f.get("sucesor", ""), indice)
+        nombrados.discard((rotulo_propio or "").upper())
+        if not nombrados:
+            malas.append((f.get("id", "?"), razon.split(":")[0], (f.get("sucesor") or "")[:120]))
+    return malas
+
+
+def inspeccion_nc_del_acto(ruta_encargo, raiz=RAIZ):
+    """Fase A de (i) y (ii) contra el árbol y `origin/main`. `rotulo` sale del
+    encargo; sin `--encargo` no hay acto que dictaminar y no se evalúa."""
+    res = {"rotulo": None, "falta": [], "dictaminadas": [], "rutas": [], "base": None}
+    if not ruta_encargo:
+        return res
+    res["rotulo"] = rotulo_de_encargo(ruta_encargo)
+    ruta_tsv = os.path.join(raiz, _RUTA_NO_CORRIDO_TSV)
+    if not os.path.exists(ruta_tsv):
+        return res
+    head = lee_nc(_leer(ruta_tsv))
+    rc, txt, _ = _corre(["git", "show", f"origin/main:{_RUTA_NO_CORRIDO_TSV}"], raiz)
+    base = lee_nc(txt) if rc == 0 else []
+    res["base"] = "origin/main" if rc == 0 else "NO-DERIVABLE (sin origin/main local)"
+    idx = indice_actos(raiz)
+    d = dictamen_hacia_atras(res["rotulo"], head, base, idx)
+    res["falta"], res["dictaminadas"] = d["falta"], d["dictaminadas"]
+    res["rutas"] = rutas_sin_sucesor(head, base, idx, res["rotulo"])
+    return res
+
+
 # Tope por defecto de `corre_baseline` -- P-A, ACTO GEN2-TUBERIA-CIERRE-RAPIDO-1
 # (21/sep/2026, firma de mesa §1(1)): la Fase A deja de correr la suite
 # completa -- la sesión verifica en segundos con el subconjunto rápido
@@ -407,6 +581,7 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     rotulo = inspeccion_rotulo(raiz)
     consumido = inspeccion_consumido(ruta_encargo)
     no_corrido = inspeccion_no_corrido(ruta_encargo, raiz)
+    nc_acto = inspeccion_nc_del_acto(ruta_encargo, raiz)
     suite = corre_baseline(raiz, timeout=baseline_timeout) if corre_suite else None
 
     print("=== FASE A · INSPECCIÓN (dry-run, nunca escribe) ===")
@@ -493,6 +668,22 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     else:
         print("  NC-HUÉRFANA: ninguna")
     print()
+    print("A.14 ampliada (v2.17.1) · CIERRE HACIA ATRÁS Y RUTAS (falla la cascada)")
+    if not nc_acto["rotulo"]:
+        print("  no evaluado: falta --encargo (el rótulo del acto sale de ahí)")
+    else:
+        print(f"  Acto: {nc_acto['rotulo']} · base: {nc_acto['base']}")
+        print(f"  Dictaminadas: {len(nc_acto['dictaminadas'])}")
+        print(f"  FALTA-DICTAMEN ({len(nc_acto['falta'])}): "
+              + ("ninguna" if not nc_acto["falta"] else ""))
+        for fid, motivo in nc_acto["falta"]:
+            print(f"    {fid}: {motivo}")
+        print(f"  RUTA-SIN-SUCESOR ({len(nc_acto['rutas'])}): "
+              + ("ninguna" if not nc_acto["rutas"] else
+                 "-> no entra al libro: una línea en forense/hallazgos.md"))
+        for fid, razon, suc in nc_acto["rutas"]:
+            print(f"    {fid} [{razon}] sucesor={suc!r}")
+    print()
     if suite is not None:
         cmd_txt = "python3 tests/check.py --rapido"
         print("SUITE")
@@ -535,7 +726,8 @@ def fase_a(raiz=RAIZ, ruta_encargo=None, corre_suite=True,
     print("  - Fusionar/aprobar el PR")
     return {"git": git, "adr": adr, "fp": fp, "celdas_validadas": cv,
             "gobernanza": gob, "rotulo": rotulo,
-            "consumido": consumido, "no_corrido": no_corrido, "suite": suite}
+            "consumido": consumido, "no_corrido": no_corrido, "nc_acto": nc_acto,
+            "suite": suite}
 
 
 # ─────────────────────────────────────────────────────────────────
@@ -824,13 +1016,31 @@ def main():
     ap.add_argument("--tope-suite", type=int, default=TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO,
                      help=f"tope en segundos para tests/check.py --rapido "
                           f"(default={TOPE_RAPIDO_SEGUNDOS_POR_DEFECTO})")
+    ap.add_argument("--nombran", default=None, metavar="RÓTULO",
+                     help="lista las NC ABIERTAS cuyo `sucesor` nombra a RÓTULO (con frontera) "
+                          "y sale -- el comando del cierre hacia atrás (A.14 v2.17.1)")
     a = ap.parse_args()
+
+    if a.nombran:
+        idx = indice_actos(RAIZ)
+        rot = a.nombran.upper()
+        filas = lee_nc(_leer(os.path.join(RAIZ, _RUTA_NO_CORRIDO_TSV)))
+        n = 0
+        for f in filas:
+            if (f.get("estado") or "").strip() == "ABIERTA" and rot in actos_nombrados(
+                    f.get("sucesor", ""), idx | {rot: "ESTE-ACTO"}):
+                n += 1
+                print(f"{f.get('id')}\t{(f.get('sucesor') or '')[:140]}")
+        print(f"# {n} NC ABIERTA nombran a {rot} ({len(filas)} filas examinadas)")
+        return 0
 
     if a.aplica:
         return fase_b_aplica()
     resultado = fase_a(ruta_encargo=a.encargo, corre_suite=not a.sin_suite,
                         baseline_timeout=a.tope_suite)
     if resultado["celdas_validadas"]["niega_cierre"]:
+        return 1
+    if resultado["nc_acto"]["falta"] or resultado["nc_acto"]["rutas"]:
         return 1
     return 0
 

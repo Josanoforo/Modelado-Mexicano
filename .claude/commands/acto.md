@@ -461,6 +461,21 @@ acto antes de escribir los `R` contamina la sesión que los va a producir.
     `## CONSUMIDO` sin esta sección, y `NC-HUÉRFANA` si una fila de
     `forense/no-corrido.tsv` no tiene sucesor resoluble — ninguno de los
     dos bloquea el commit por sí solo, pero se reporta antes de cerrar.
+10-bis. **Cierre hacia atrás y rutas con sucesor real** (A.14 v2.17.1,
+    `ACTO GEN2-PENDIENTES-3` P1, firma de mesa 28/sep/2026). Antes del
+    commit de `## NO-CORRIDO / RESERVAS`:
+    ```
+    python3 tools/cierre_acto.py --nombran <RÓTULO>          # NC ABIERTAS que te nombran
+    python3 tools/cierre_acto.py --encargo <encargo> --sin-suite
+    ```
+    Dictamina cada NC que te nombra: `estado=CERRADA` con `fecha_cierre` y
+    `cerrado_por` = `<RÓTULO> · CERRADA (producto: ruta · comando)` (o
+    `(diseño|firma|duplicada: cita)`) o `<RÓTULO> · SIN-OBJETO (cita)`; o
+    SIGUE-ABIERTA con un `sucesor` nuevo que nombre un encargo archivado o
+    un acto en vuelo. Tus NC nuevas con `FUERA-DE-PERÍMETRO`/`DIFERIDO-A`
+    nombran un sucesor archivado o en vuelo; si no puedes nombrarlo, van
+    como una línea a `forense/hallazgos.md`, no al libro. La Fase A sale
+    con código 1 (FALTA-DICTAMEN / RUTA-SIN-SUCESOR) hasta que cumplas.
 11. **`## CONSUMIDO`.** En un commit **posterior** sobre la misma rama,
     añade esta sección al final del encargo archivado en el paso 3,
     **después** de `## NO-CORRIDO / RESERVAS` (paso 10, nunca antes),
