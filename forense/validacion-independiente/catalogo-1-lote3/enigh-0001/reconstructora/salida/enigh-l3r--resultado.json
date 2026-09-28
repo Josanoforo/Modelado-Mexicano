@@ -1,0 +1,19 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "enigh-0001",
+    "version_entrada": "residuales-documentales-v2",
+    "sha256_entrada": "b03e4c59c8a8a88b76d4021f189fca9073ce4cc9057d66ec1fbecbc3d5236c13"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-ENIGH-A-P-COMPLEMENTO",
+      "unidad": "HOGAR",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.9543059004359491",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.9523228268069565",
+      "ic95_sup": "0.9562658520289236"
+    }
+  ]
+}
