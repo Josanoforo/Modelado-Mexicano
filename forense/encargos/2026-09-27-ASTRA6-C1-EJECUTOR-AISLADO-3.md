@@ -179,4 +179,4 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 
 ## CONSUMIDO
 
-Producto técnico y prueba sintética ejecutados en rama `codex/astra6-c1-ejecutor-v3-1`, base real de redacción `7748208614570a50a97c1ba830aee72a972185f9`, contrato fijado en `ea302f89`. PR propio pendiente de registrar al abrir. La recepción independiente queda pendiente; no hubo fusión propia, microdato, validación ciega real ni incremento de contador.
+Producto técnico y prueba sintética ejecutados en rama `codex/astra6-c1-ejecutor-v3-1`, base real de redacción `7748208614570a50a97c1ba830aee72a972185f9`, contrato fijado en `ea302f89`. PR #1241 abierto. La recepción independiente queda pendiente; no hubo fusión propia, microdato, validación ciega real ni incremento de contador.
