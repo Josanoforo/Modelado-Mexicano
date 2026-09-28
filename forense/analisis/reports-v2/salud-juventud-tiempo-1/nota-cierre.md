@@ -13,3 +13,5 @@
 **NO-VERIFICADO / NO-CORRIDO.** No hubo recálculo independiente de C1, contraste causal nuevo, evaluación prospectiva, recepción técnica de Claude, fusión ni adopción de reglas. Permanecen sin cifra las afirmaciones que requieren permiso de ola, adquisición primaria o comparadores adecuados. El contador consultado por `python3 tools/corrida0.py status` mostró 81 RESULT GEN2 adoptados activos en el corte de trabajo; este lote no creó RESULT ni movió una adopción. El recibo técnico y la decisión sobre los dos incidentes documentales corresponden al circuito de mesa/Claude.
 
 **Perímetro.** Solo los tres homónimos, este expediente, el archivo recibido con su sidecar y dos asientos propios de firmas. No se editó mapa, índice global, catálogo, CALC, sellos, manifiesto, motor, CI, derivados ni cuerpos históricos.
+
+**Entrega.** `origin/main` se integró hasta `3facfa9f3b39b36ac6585baf23aaecedb424d948`; sus cambios no afectaron las tres piezas. [PR #1242](https://github.com/Josanoforo/Modelado-Mexicano/pull/1242) quedó abierto para recibo independiente. El cierre `CONSUMIDO` se añadió solo al pie del encargo archivado, sin cambiar su cuerpo sellado.

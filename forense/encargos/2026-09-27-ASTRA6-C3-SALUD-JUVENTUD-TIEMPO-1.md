@@ -180,3 +180,10 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+## NO-CORRIDO / RESERVAS
+
+No se ejecutó recálculo independiente C1, adopción de reglas ni apertura autorizada de EDER 2025, ENADID 2023 o ENCODAT 2025. Dos consultas iniciales de extractos públicos se declararon y sus valores/inferencias se excluyeron del producto; adjudicación material en FP-260927-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1-b544-02. Recepción técnica y fusión siguen pendientes del circuito de mesa.
+
+## CONSUMIDO
+
+EJECUTADO en PR #1242 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1242), rama `codex/astra6-c3-salud-juventud-tiempo-1`, corte de redacción `7748208614570a50a97c1ba830aee72a972185f9`; `origin/main` integrado hasta `3facfa9f3b39b36ac6585baf23aaecedb424d948`. Tres reports completos y expediente en `forense/analisis/reports-v2/salud-juventud-tiempo-1/`. Gate local OK; `tests/check.py --rapido`: 0 FAIL, 624 WARN. Sidecar del cuerpo recibido preservado. No fusionado ni recibido por esta sesión; no hay adopción anticipada.
