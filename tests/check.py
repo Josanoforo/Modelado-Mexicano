@@ -3021,6 +3021,12 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-TABLERO-CARRILES-1 (28/sep/2026): tablero DERIVADO (bloque TABLERO-DERIVADO, lo reescribe
+    # el canal) que cita verbatim `qué_se_firma` de forense/firmas-pendientes.tsv y la `pieza` de
+    # forense/no-corrido.tsv; el primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1
+    # (FP …f2e5-12). Los rótulos que trae son de su fuente, no del tablero; censado por archivo
+    # porque el contenido cambia con cada [deriva].
+    "forense/tablero/TABLERO-CARRILES.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.

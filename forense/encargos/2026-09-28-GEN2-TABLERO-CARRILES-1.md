@@ -45,3 +45,9 @@ Propio: `tools/tablero_carriles.py` + test huérfano, `canon/crosswalk-carriles-
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no descarga, no cierra stoppers (los muestra con su sucesor). Sucesores: cada corte semanal lo regenera por el canal; `TABLERO-CARRILES-2` si mesa pide vistas nuevas tras usarlo una semana. Sin módulo de auditoría (no afirma sobre México: muestra el estado del programa). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-TABLERO-CARRILES-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué (verbatim del encargo) | por qué | impacto | sucesor |
+|---|---|---|---|
+| «el canal lo publica (un `[deriva]` con el tablero nuevo, run_id en la nota)» | DIFERIDO-A: primer run del job derivados tras el merge de mesa (el job corre en el push a `main`; antes del merge no hay run que citar) | el tablero regenera idéntico en la rama (`--verifica` CASA) pero ningún `[deriva]` lo ha publicado todavía | GEN2-TABLERO-CARRILES-2 o el `/tramite` siguiente asienta el run_id · `NC-260928-GEN2-TABLERO-CARRILES-1-e2eb-01` |

@@ -948,7 +948,7 @@ Todo número de arriba sale de estos archivos por `python3 tools/tablero_carrile
 | F5 | `data/cola-adquisicion-v1_0.tsv` | `e96592d42f57` | lee_tsv (salta líneas #) | 952 |
 | F6 | `data/manifiesto.yaml` | `f0ba373e1b1a` | manifiesto(): campos id y estado_reserva por línea | 7198 |
 | F7 | `forense/firmas-pendientes.tsv` | `9be839ca1cbd` | lee_tsv, estado ABIERTA* | 645 |
-| F8 | `forense/no-corrido.tsv` | `883210766dba` | lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO* | 1066 |
+| F8 | `forense/no-corrido.tsv` | `9e0446181c08` | lee_tsv, estado ABIERTA*, razón PARO-PREMISA*/PARO-ENTORNO* | 1067 |
 | F9 | `data/corrida0/demanda-dictamen-v1_0.tsv` | `59ab68b09e08` | lee_tsv, dictamen SIN-BASE-GEN2 / ESPERA-* | 341 |
 | F10 | `data/corrida0/validaciones-independientes.tsv` | `9adee7e2341b` | lee_tsv, join resultado_id → catálogo.result_id | 491 |
 | F11 | `forense/analisis/familias-2027/familias-2027-estado-v1_1.tsv` | `e8bfab28c374` | lee_tsv | 8 |
