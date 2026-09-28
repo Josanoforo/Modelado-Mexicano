@@ -59,3 +59,9 @@ Propio: `gobierno/instrucciones-proyecto-v2_17.md` (+ sidecar), `-HISTORIA.md`, 
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No cambia ninguna regla de contenido (§3), de medición (§4) ni E.1–E.3/E.6 salvo las adiciones del delta; no toca `CLAUDE.md` ni la memoria (los regenera `/tramite` después). Sucesores: `-2` si el commit 2 queda pendiente; `/tramite` para memoria y `CLAUDE.md` con v2.17. Sin módulo de auditoría. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-TRAMITE-INSTRUCCIONES-V217-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+- **qué:** P4, «Commit 2 (mismo acto, tras la respuesta): ADR con la línea verbatim de mesa, `instrucciones_vigentes = v2.17`, retiro del delta del cuerpo v2.16». **por qué:** DECISIÓN-DE-MESA-PENDIENTE: mesa contestó «Todavía no» al pegado (28/sep/2026). **impacto:** v2.16 sigue vigente; v2.17 y su HISTORIA quedan en `gobierno/pendiente-de-pegado/` (INTERPRETACIÓN-DECLARADA, ver ADR); `instrucciones_vigentes` no se mueve. **sucesor:** `GEN2-TRAMITE-INSTRUCCIONES-V217-2`; `NC-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01`; `FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01`.
+
+## CONSUMIDO
+PR #1265 (commit 1 y cascada; ADR-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01). Sin adendas.
