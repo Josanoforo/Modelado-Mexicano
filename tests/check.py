@@ -3026,6 +3026,9 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # encargo verbatim (A.3) y su fragmento L0.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md",
     "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01.md",
+    # GEN2-PISOS-Y-ADENDAS-1 (28/sep/2026): encargo verbatim (A.3) cita `M05` (momento de milpa/catalogo-momentos-v0_1.tsv,
+    # «M05 sobre ENCIG en unidad persona», letra A1 (b) pendiente) y `M09`–`M23` (HOLDOUT); no los mide.
+    "forense/encargos/2026-09-28-GEN2-PISOS-Y-ADENDAS-1.md",
     # GEN2-TRAMITE-HOJA-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # y `A1`…`I2`/`E2` son letras de la hoja NC-DECISIONES-1 (FP …f2e5-NN); encargo y adenda verbatim (A.3) y la hoja que los cita.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
