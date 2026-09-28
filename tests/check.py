@@ -3030,6 +3030,7 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/prereg-caja/MC2-ENIF2024-spec-v1_0.md",
     "forense/analisis/medicion-carriles-2/ENIF2024-dictamenes.tsv",
     "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-01.md",
+    "canon/L0/ADR-260928-GEN2-MEDICION-CARRILES-2-8fdf-02.md",
     # GEN2-TABLERO-CARRILES-1 (28/sep/2026): tablero DERIVADO (bloque TABLERO-DERIVADO, lo reescribe
     # el canal) que cita verbatim `qué_se_firma` de forense/firmas-pendientes.tsv y la `pieza` de
     # forense/no-corrido.tsv; el primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1
