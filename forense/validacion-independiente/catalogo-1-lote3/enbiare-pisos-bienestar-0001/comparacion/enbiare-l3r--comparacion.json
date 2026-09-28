@@ -1,0 +1,5794 @@
+{
+  "congelacion_sha256": "980645c2328d79a41d0b0eb8357c456d41bb2f88a5b7157be0d0254103d2ee7b",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "enbiare-pisos-bienestar-0001",
+    "sha256_entrada": "fc75485a4e49118eacfca104070214c86fa4071b75550234cfc05ffb69c9fbfe",
+    "version_entrada": "residuales-documentales-v2"
+  },
+  "referencia_sha256": "3b8378f0e66fea162517ed7232cd9d68567f7063aefbc476c5cda85770540a1e",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00023695420442940",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00094019692906664",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00049442509106644",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00030979396938280",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00008852139401011",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00006509860339083",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00118124062042460",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00074290300997692",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00018710911851039",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0006151088349071",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00095705310430623",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00048700402170378",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00003906468636085",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00027973921226456",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00022331179660102",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00038734198980028",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00043863960209891",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00006692969811783",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00012635702774258",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00006184261176536",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00001702556445301",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00069735429967499",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00023611617986674",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00060164895152717",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0013221926905737",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00068736934409577",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00081068050328482",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00026171960234682",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00043770310054239",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00010174616666156",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00007350767318966",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0003579157100282",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00071095828561540",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00069630767632913",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002768956116414",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0010952369399307",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0009982169628004",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0007759800603349",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0007681341008565",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.0003466426305418",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0005524484505539",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0005835487718204",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001564292648658",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00103247544903863",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0011002324067851",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0004321959137462",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00017067142594326",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00054968708277313",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00076954235874993",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002962005926780",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000341045714058",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002533994807304",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00028830274741842",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000556095911217",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00046130069385527",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0000389365962149",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000179214822695",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001849184463589",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0003227615282095",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0009727610305653",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00049116576065139",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00058323261374426",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0004020981280978",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0013169904341399",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0004165469094640",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003249960458232",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0004569113644364",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001425433225516",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0007449056670146",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0006293452087806",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.0000753888010018",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0010748322845158",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0004961130511078",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0010495269945226",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0009562189523413",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000808173328474",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0004162484849003",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002467193165881",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0005843203521980",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002875647478939",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0006509606548614",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000195309601163",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0008355751898099",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002726008393109",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.000131393648257",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001603891350242",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0013269760145691",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001800066610890",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0019099761401220",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0013441613002562",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0014257083423734",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000998549367422",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0001722133294671",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003717314009839",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000971912098147",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001964165526632",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000880928919473",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003307364485332",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0005479906109754",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002512699974949",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000599577720695",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.0000636852814849",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000251395583534",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001598878260816",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000899079776289",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002667713065548",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0006018543329944",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002791876377301",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000885682615846",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001663882230516",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000608833858914",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0000814036812073",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0000410987192002",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000314647859933",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002787421443136",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0004908394490665",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0006759360916590",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003303771336026",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0004343763546161",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0002139229204422",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0001843835652212",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0002898003042054",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0001001760803741",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0000392421510744",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00017726468609586",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00071656467148214",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00019392391064588",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00038159376637309",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00007829034886106",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00034613552298942",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0008703429540905",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00011301423791587",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.0001203608196514",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00099561909838830",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00029095395289513",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00024973359487767",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00002934054592468",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00026404003513608",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.00001025461484172",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00009263144374102",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00063458104992664",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.00003304556299486",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00014186165934782",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00103923983705114",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00002115808280978",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00021598132268300",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00005812659342617",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00002405253232440",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00008670984689066",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00015503963369046",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00007561509275833",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0006290378983162",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00021058407204447",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00003487163287649",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00069140929521134",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00054549141782861",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00105094049728762",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00127367429491688",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00033608807774907",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00128238725596641",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00006252862189476",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.00005061850512999",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00015551615180815",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00007188653944013",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "-0.00005295884127218",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "dentro": false,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_fila",
+        "estado_ic",
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "NO-RECALCULABLE-DESDE-SPEC",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0005506837936359",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0005452856508733",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003757270093210",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003669871933862",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002145957015979",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0010637902062580",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0010511720549234",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0008899643511728",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.0006854217568587",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "punto",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0006627100010825",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003798378754972",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002306924362838",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0001728643502394",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003020966299325",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0005597649526098",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0006095100098337",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001885020254315",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002347149992840",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003098656369949",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000012028139321",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0004941933112780",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002779891357467",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001485680338084",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0005273228851387",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003771433931438",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002564272954055",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003338540158435",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003371430785702",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0007500601734127",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0003828083705789",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000976978743790",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-P"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}

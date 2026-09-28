@@ -1,0 +1,4178 @@
+{
+  "congelacion_sha256": "95b0756dc35fd8caa0a1d6fc28a33b97507df05f7c98745c84618164ec56a7dc",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "sha256_entrada": "c8b50b5727b2317b589a970fabc1b678359afc49406748225044e0dedcbc0ec0",
+    "version_entrada": "residuales-documentales-v2"
+  },
+  "referencia_sha256": "edc6b31fb7259c255d2c9569cbb2dafa876e8b54d538a7287d85b6fa6131adb3",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00028545863615292",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00035989530578667",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0002636525090881",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0005184355805178",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00092428374581597",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000038028040382",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00025078780972144",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00119539899297666",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0004503263856981",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0011104815395089",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00007766920849827",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003640173171209",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0020376178465386",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0000369133988933",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0004047852376111",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0009676934330354",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011486552251156",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00059635022510847",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003314334203588",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-5.649523571E-7",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0004023419133003",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0004957937152348",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00060611562797294",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00014697613116906",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00081100867727752",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001957813048074",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00029812380894726",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00000963112466642",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0007436134069260",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00002743445328090",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00076165357889677",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00032944586360846",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0003968388982852",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00023856835765266",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00081577022502050",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0005479420024355",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00063190834149315",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00015440936241262",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00101047744011651",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00090277002232147",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00007126577967414",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0008611371012888",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00017625653698312",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00078712795297126",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00054841437754883",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0002729375327603",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00001732026969037",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00021851032007208",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00078506562706484",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0001953324328345",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00027406247338337",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00030592318008199",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002894753909566",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00021062898167658",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00032751551772685",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00098020899932917",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00042875239123588",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00008811315199766",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00033853791253131",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00111359349830126",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0006592932762869",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00068111492863827",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00039961980239281",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00063818611893855",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00046162165338881",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0003466239901826",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00032576244039737",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0000438563290930",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011909104123225",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00024493001257065",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00029924257488506",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00036727976665241",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.0002790278605803",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00045471582981610",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0001398724801892",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00013359126372765",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00031549631900790",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00031621298674613",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00094382705554470",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00026866268378262",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "4.4637306828E-7",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00110906043366376",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00062231153599470",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00002240914093288",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000044092168702316",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00090568879673621",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00018119972582745",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00003181517693666",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00003631749984509",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00020936325464780",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0010622010499909",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00017815388745641",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00029326835201970",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00042981854335331",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00104558934641935",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00029801084298189",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011839042970560",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00060748106107104",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00046905910348641",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00025438394761663",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00005756967554961",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00048817292981435",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00013517806319511",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00062095960141001",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000065455211404556",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00014615181424796",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011989912002599",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00001589303236109",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00010508921325861",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00014436422496681",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.001519086962113446",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003083206677964",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000085456610832004",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00024573425358717",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00010605972168982",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00028094144853596",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000581935112359713",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000756333899517320",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000438457389028562",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000146092386540066",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000130039246259696",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00036692216791618",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000007408308742976",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000251098305059665",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000275151023308416",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00031273880831270",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00001458278664102",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000287069610150496",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00001667274628694",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00016429713410604",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00070539856408963",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00089455084008243",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00030362922405323",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0003322930243448",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00002191647417786",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00002594149779360",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00013774694032197",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00023414597526328",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00022275631423036",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00016511324434107",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00010613598593754",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00025773300388477",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00136127073703436",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00027683460310735",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00037702397243286",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00036458999351621",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000220397523399546",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00015390767730940",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00050756777938248",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00089862702891035",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00024090900900888",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00012114444887122",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000037511212968604",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000330372788956766",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00004631717935337",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00040464547736889",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000183733571132374",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00056753491689622",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000168468602609894",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00000566838291099",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00027952505022215",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00032161359801114",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000080683793874595",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00020711455678354",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00032468266176874",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00040593630563039",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000235682754649994",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00064162463797304",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00024753407150983",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00051375198457428",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00014639917001681",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0001760393078145",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000049199339272785",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000154350426773011",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000451878097477105",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00016769530150650",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000028920779659245",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00003597311989676",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00022304347596274",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00005539984688950",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00014550392505769",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00010048847122541",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000276775100968725",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00058652473273004",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00019456677827314",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00037609384913171",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00092223266165300",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00023591735176096",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00001036706566502",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00004308917445556",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0000447596451919",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.0006839939737629",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00026063019467315",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00009837172896663",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00013679072232318",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00207265975145099",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00020476580552540",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00001537808454629",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00009037520691658",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00016859856126103",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00023970875364122",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00045502918078644",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0007917344387926",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00038744230691401",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00019789803340603",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00035551846331421",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00031062082322575",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00033217374771186",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000281445954384795",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00015965879615032",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00028949376484299",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00001278519514414",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000249199179544856",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00017484440473463",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00030632247735759",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00003573425370454",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011978393789562",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00015594124063247",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00009152378173802",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00019465892373038",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00083198584295887",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.0005718818061128",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00031828926694482",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00055654242065694",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000145701570093574",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00029294446311691",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00037946852365418",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00064710960927636",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.00026829508728268",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00023974816631983",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00004180896794097",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00025347408669181",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.00011079837201781",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00002681696680546",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000161864904797523",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000300710858968250",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000005017915334065",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000280567482452284",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000132727041406105",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000182167971710061",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000093024442808774",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.000066913206142335",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000378416658373914",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00045934338773392",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000130228142759863",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.00034664674418165",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000087651697716966",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000390061626068414",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000069722364992195",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000173998404239717",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000087319541894391",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.00002764477258259",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000135182401736712",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000369794323403085",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-0.000181359183075849",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0.000088814166393951",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000285180158467814",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000022157965076613",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.000022945375987468",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "-0.000019768704981347",
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-18",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}
