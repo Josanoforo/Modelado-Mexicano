@@ -45,3 +45,10 @@ Propio: `forense/analisis/hoja-firmas-21/` (hoja, tabla, adjunto archivado), not
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No firma, no asienta, no adopta, no cierra NC. Sucesores: dirección añade su recomendación a (a) y (b) y entrega la hoja a mesa; `GEN2-TRAMITE-FIRMAS-21` asienta lo firmado con las firmas verbatim; `GEN2-CALC-ALTERNOS-LOTE-1` (caja) se escribe con lo que mesa decida sobre HOLDOUT y reservas. Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+- `NC-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-01` · §3 adjunto HOJA-FIRMAS-21-v2 · NO-VERIFICABLE-AQUÍ (no llegó; letras tomadas de la hoja NC-DECISIONES-1) · impacto: línea de dirección por letra sin archivar · sucesor: dirección.
+- `NC-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-02` · P2 recomendación HOLDOUT y cinco olas · DIFERIDO-A:dirección · impacto: R01–R06 sin recomendación · sucesor: dirección → GEN2-TRAMITE-FIRMAS-21.
+
+## CONSUMIDO
+PR #1267 (ADR-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-01). Adendas: ADENDA-1 (`2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md`), incorporada como FIRMADA-EN-CHAT en `decisiones-21.tsv`.
