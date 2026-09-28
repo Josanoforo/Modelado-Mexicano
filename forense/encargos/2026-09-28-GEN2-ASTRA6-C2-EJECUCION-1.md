@@ -50,3 +50,7 @@ No abre olas 2027 ni reservadas, no adopta, no reactiva PAGO-DIGITAL, no firma c
 | «Hecho: … `corrida0 preflight` VERDE» por familia | NO-VERIFICABLE-AQUÍ — los cinco CALC ya están sellados: preflight BLOQUEADO por `CALC-INMUTABLE-YA-SELLADO`, y los dos de ENVIPE no siguen el esquema corrida0 (NC …ba6c-02). En su lugar: SELLO_COINCIDE 5/5. El único COMMIT-1 nuevo (oferta ENIF 2024) sí dio preflight VERDE. | ninguno | COMMIT-3 por familia (CALC nuevo con su propio preflight) |
 | medida de exclusión por oferta junto al marginal de **canal** (ENCIG-PAGO-DIGITAL) | DIFERIDO-A:reactivación de ENCIG-PAGO-DIGITAL — la familia está SUSPENDIDA; la de ahorro (ENIF) sí se midió | el marginal de canal no se publica mientras esté suspendida | FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01 |
 | `tests/test_din_oferta_enif2024.py` en CI | NO-VERIFICABLE-AQUÍ — corre en CAJA (14 passed); en CI se salta por NECESITA-DEPENDENCIA(numpy), fila copiada de `test_astra6_encig.py` | la guardia de mutación del CALC de oferta no la juzga el runner | FP-398 (dependencias del runner; FIRMADA, ejecución pendiente) |
+
+## CONSUMIDO
+
+Ejecutado por PR #1279 (rama `acto/gen2-astra6-c2-ejecucion-1`, ADR-260928-GEN2-ASTRA6-C2-EJECUCION-1-e897-01), 28/sep/2026. Adendas recibidas: ninguna. Decisiones de mesa de la sesión, verbatim, en `forense/notas/2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1-cierre.md` §1.
