@@ -42,3 +42,10 @@ Propio: `canon/reglas-contrastadas-v1_0.tsv`, `forense/analisis/reglas-y-result-
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No adopta, no mide, no edita reports ni motor, no valida prospectivamente. Sucesores: `GEN2-ADOPCION-REGLAS-BLOQUE-1` (mesa, por merge, con la hoja), reports v3 con las correcciones ROMPE, CALC de caja para las SIN-CIFRA con instrumento identificado. Módulo de auditoría v2.16 **sí** (la tabla afirma qué reglas sobre México tienen evidencia): procedencia por regla; unidad por cifra; ¿incentivo o psicología?; ¿clase media urbana?; PROSPECTIVA/RETROSPECTIVA (todo RETROSPECTIVO aquí). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-REGLAS-Y-RESULT-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+- **qué:** P2 «CALC de caja para las SIN-CIFRA con instrumento identificado» (7 reglas) · **por qué:** FUERA-DE-PERÍMETRO: acto de caja sucesor (cero microdato en NUBE) · **impacto:** el bloque candidato no crece · **sucesor:** CALC de caja (§10) · NC-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.
+- **qué:** P2 «una regla con SI condicional se contrasta contra el cruce» (6 MATIZA-SIN-CRUCE) · **por qué:** DIFERIDO-A:GEN2-ADOPCION-REGLAS-BLOQUE-1 · **impacto:** 6 reglas fuera del bloque · **sucesor:** GEN2-ADOPCION-REGLAS-BLOQUE-1 · NC-…-a3cc-02.
+
+## CONSUMIDO
+PR #1272 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1272) · ADR-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.
