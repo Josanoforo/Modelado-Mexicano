@@ -123393,3 +123393,2803 @@
     ARRANQUE).'
   entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
   raiz: data_raw
+
+- id: oe1_ecrige_cdmx_2019_datos_abiertos_csv
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ECRIGE-CDMX 2019 · conjunto de datos (datos abiertos)
+    público de la Encuesta de Calidad Regulatoria e Impacto Gubernamental en Empresas de la
+    Ciudad de México 2019
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encrige/2019/datosabiertos/ecrige_cdmx_2019_csv.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/ecrige-cdmx/ecrige_cdmx_2019_csv.zip
+  sha256: 45af8756588f8553f59018f70186831770fb7b313fd7b0cf34960331cc8c7dff
+  tamano_bytes: 1376029
+  formato: zip (ZIP-OK(370 miembros); application/x-zip-compressed)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(370 miembros); no abierto (sólo sha, tamaño y envoltura). A.7: dos descargas con
+    sha256 idéntico; ZIP-OK(370 miembros); ejemplos de nombre (envoltura, no abierto): ecrige_cdmx_2019_csv/conjunto_de_datos/conjunto_de_datos_III_evaluacion_de_servicios_cdmx_2019/0_indice_tablas_ecrige_2019.csv,
+    .../t3_1.csv. URL confirmada por JSON-LD del programa (https://www.inegi.org.mx/programas/encrige/2019/,
+    distribution/DataDownload). RNM catálogo 601, campo ''Condición de acceso'' (verbatim):
+    «Uso público. El acceso a los microdatos de la Encuesta de Calidad Regulatoria e Impacto
+    Gubernamental en Empresas de la Ciudad de México (ECRIGE-CDMX) 2019 es indirecto, mediante
+    el requerimiento de tabulados especiales. El usuario debe cubrir el costo de su generación.
+    Para solicitarlos debe acudir a cualquiera de los Centros de Consulta y Comercialización
+    o hacer su solicitud a través del siguiente vínculo: https://www.inegi.org.mx/programas/encrige/2019/#Microdatos.
+    Asimismo, cabe mencionar que además del requerimiento para la generación de tabulados
+    especiales, este vínculo permite acceder a la información de microdatos a través del Laboratorio
+    de microdatos para servidores públicos del Estado Mexicano, instituciones académicas o
+    de investigación y organismos internacionales.» Es decir: el microdato COMPLETO no es
+    de descarga directa (Laboratorio/tabulados especiales con costo); este zip de datos abiertos '
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ecrige_cdmx_2019_cuestionario_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ECRIGE-CDMX 2019 · cuestionario oficial de la
+    ECRIGE-CDMX 2019
+  url_origen: https://www.inegi.org.mx/contenidos/programas/encrige/2019/doc/ecrige_cdmx_2019_cuestionario.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/ecrige-cdmx/ecrige_cdmx_2019_cuestionario.pdf
+  sha256: a7f1e96ea5b98affad81b102b7f34e6ee6d59617fe608fcee471b8fe5d9c120f
+  tamano_bytes: 1128917
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK. La URL real (''ecrige_cdmx_2019_cuestionario.pdf'',
+    prefijo ECRIGE) sólo se localizó renderizando https://www.inegi.org.mx/programas/encrige/2019/
+    con Chrome real (tools/renderiza_pagina.py --espera 15000): la pestaña ''Documentación''
+    se auto-inicializa (inicializa=1 en pestanadata.js) y carga estos enlaces por JS. La URL
+    casi-idéntica listada estáticamente en RNM 601/related-materials (''encrige_cdmx_2019_cuestionario.pdf'',
+    prefijo ENCRIGE, con ''n'') es soft-404 de INEGI (HTTP 200, text/html, 2263 B, ''Página
+    no encontrada'') -- verificado con curl -D-, Last-Modified fijo de plantilla; el RNM trae
+    un enlace desactualizado.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2012_cuestionario_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2012 · cuestionario principal de la ola 2012
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2012/doc/cuestionario_enve12.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2012/cuestionario_enve12.pdf
+  sha256: 80da8d2a52729fd06edf5386a221d9635aea88fc1581822a58eccf5f31e72dba
+  tamano_bytes: 130932
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). URL localizada por render de
+    https://www.inegi.org.mx/programas/enve/2012/ (Chrome real, --espera 15000); patrones
+    cuestionario_principal_enve2012.pdf / cuestionario_enve2012.pdf / cuestionario_enve_2012.pdf
+    dieron soft-404 (200, 2263 B). A.7 OK, doble descarga sha idéntico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2014_cuestionario_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2014 · cuestionario principal de la ola 2014
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2014/doc/cuestionario_enve2014.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2014/cuestionario_enve2014.pdf
+  sha256: 949b5f95391aa1125b9a5ec8fdd04331d107e12c8668284b472085e15dddeec8
+  tamano_bytes: 4885281
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK, doble descarga sha idéntico;
+    probado directo (patrón cuestionario_enveAAAA.pdf, sin ''principal'', a diferencia de
+    2020/2022).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2016_conjunto_datos_csv
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2016 · conjunto de datos (datos abiertos)
+    de la ola 2016
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2016/datosabiertos/enve2016_csv.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2016/enve2016_csv.zip
+  sha256: 57111576edb8ea63d270aeb92e0f8de27eb360cdd52c3fdbdb40391b52127c59
+  tamano_bytes: 1436444
+  formato: zip (ZIP-OK(383 miembros); application/x-zip-compressed)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(383 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 OK, doble descarga
+    sha idéntico; ZIP-OK(383 miembros), ejemplos (envoltura, no abierto): 0_indice_tablas_enve2016.csv,
+    conjunto de datos/secI/1.1.csv.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2016_cuestionario_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2016 · cuestionario principal de la ola 2016
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2016/doc/cuestionario_enve2016.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2016/cuestionario_enve2016.pdf
+  sha256: 06cd6de3f348ef3c65f18add407d936845066abf6fc8a248eeb23568e7a474ca
+  tamano_bytes: 1178270
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK, doble descarga sha idéntico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2018_conjunto_datos_csv
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2018 · conjunto de datos (datos abiertos)
+    de la ola 2018 -- E.6: ola nueva de encuesta con historia, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2018/datosabiertos/conjunto_de_datos_enve_2018_csv.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2018/conjunto_de_datos_enve_2018_csv.zip
+  sha256: 8b5c7a5114d8b12f954d30fa5102d0b41120a6acc3ffb9307b62e43c40aafccd
+  tamano_bytes: 2315323
+  formato: zip (ZIP-OK(403 miembros); application/x-zip-compressed)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(403 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA (movido
+    a /home/pc0/mm-corpus/reservas-respondentes/), doble descarga sha idéntico; ZIP-OK(403
+    miembros), no listado por nombre ni abierto (regla de reserva).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2018_cuestionario_pdf
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2018 · cuestionario principal de la ola
+    2018 -- E.6: ola nueva, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2018/doc/cuestionario_enve2018.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2018/cuestionario_enve2018.pdf
+  sha256: b4ff37bf2a9a08574f8c9ca2f78d07a520e6b15bd7cdc34fc0949f13d30ece93
+  tamano_bytes: 957671
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA, doble descarga
+    sha idéntico. No leído (sólo formulario del instrumento, pero la ola completa nace reservada
+    por regla vigente).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2020_conjunto_datos_csv
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2020 · conjunto de datos (datos abiertos)
+    de la ola 2020 -- E.6: ola nueva, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2020/datosabiertos/conjunto_de_datos_enve_2020_csv.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2020/conjunto_de_datos_enve_2020_csv.zip
+  sha256: ff562968c181216f54587ca950c1cb484b99e6e9c545247c12ab0d4eabdd7f4b
+  tamano_bytes: 1590538
+  formato: zip (ZIP-OK(405 miembros); application/x-zip-compressed)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(405 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA, doble
+    descarga sha idéntico; ZIP-OK(405 miembros), no abierto.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2020_cuestionario_pdf
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2020 · cuestionario principal de la ola
+    2020 -- E.6: ola nueva, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2020/doc/cuestionario_principal_enve2020.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2020/cuestionario_principal_enve2020.pdf
+  sha256: 7811a4ead27724941664872f1d3c8cf0b1a3ea71c215d556e9400f8ae8f6c5fc
+  tamano_bytes: 980304
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA, doble descarga
+    sha idéntico. A partir de esta ola el nombre lleva ''principal'' (cuestionario_principal_enveAAAA.pdf).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2022_conjunto_datos_csv
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2022 · conjunto de datos (datos abiertos)
+    de la ola 2022 -- E.6: ola nueva, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2022/datosabiertos/conjunto_de_datos_enve_2022_csv.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2022/conjunto_de_datos_enve_2022_csv.zip
+  sha256: 8de74f8515103bd52ab8824baa35df03ab6d5d783cc05f6dda00ee269247b87d
+  tamano_bytes: 1662012
+  formato: zip (ZIP-OK(405 miembros); application/x-zip-compressed)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(405 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA, doble
+    descarga sha idéntico; ZIP-OK(405 miembros), no abierto.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2022_cuestionario_pdf
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2022 · cuestionario principal de la ola
+    2022 -- E.6: ola nueva, nace RESERVADA'
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2022/doc/cuestionario_principal_enve2022.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2022/cuestionario_principal_enve2022.pdf
+  sha256: 22d25b8cdcbcd26b6acaee533bc4faff116c9f1fb4a273284f1cd94aa53825ca
+  tamano_bytes: 1042058
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 OK-RESERVADA, doble descarga
+    sha idéntico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: reserva_respondentes
+  estado_reserva: RESERVADA-NO-ABIERTA-NO-INDEXAR-L
+
+- id: oe1_enve_2012_fd_xlsx
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2012 · descriptor de archivos (FD) de la
+    ola, PROPUESTO-POR-EJECUTOR
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2012/doc/fd_enve_2012_m.xlsx
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2012/fd_enve_2012_m.xlsx
+  sha256: 8a7d9c71a5a528f77382b0ebbcf1ea8902da6b0bee7dfe2c900ea70f4e4f1df2
+  tamano_bytes: 34745
+  formato: xlsx (ZIP-OK(15 miembros); application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(15 miembros); no abierto (sólo sha, tamaño y envoltura). Localizado en https://www.inegi.org.mx/programas/enve/2012/data/pestana/pestanadata.js
+    por el hilo principal. A.7 OK (ZIP-OK(15 miembros)).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_enve_2014_fd_xlsx
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ENVE 2014 · descriptor de archivos (FD) de la
+    ola, PROPUESTO-POR-EJECUTOR
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enve/2014/doc/fd_enve2014LabMD.xlsx
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P1, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P1/enve/2014/fd_enve2014LabMD.xlsx
+  sha256: 1156720672b3c0b462190c8083c1f26bdaec85d05e50fb4f3ad971a409924217
+  tamano_bytes: 84268
+  formato: xlsx (ZIP-OK(18 miembros); application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+  licencia: Términos de Libre Uso de la Información del INEGI (https://www.inegi.org.mx/inegi/terminos.html)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P1. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(18 miembros); no abierto (sólo sha, tamaño y envoltura). Localizado en https://www.inegi.org.mx/programas/enve/2014/data/pestana/pestanadata.js
+    por el hilo principal. A.7 OK (ZIP-OK(18 miembros)).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_zenodo_record_14991955_api_json
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(i) · JSON de metadata del registro Zenodo 14991955
+    (API), para verificar version y relacion con el articulo DOI 10.1038/s41597-025-04918-9
+  url_origen: https://zenodo.org/api/records/14991955
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/zenodo/record_14991955.json
+  sha256: 2fc48239af7f763a57542ea000310cd3032f337cc439bbaafd26dbf0f0a07657
+  tamano_bytes: 5197
+  formato: json (JSON-OK; application/json)
+  licencia: cc-by-4.0 (metadata.license.id de la API de Zenodo)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    JSON-OK; no abierto (sólo sha, tamaño y envoltura). metadata.version=static_v1; id=14991955;
+    conceptrecid=14991954; conceptdoi=10.5281/zenodo.14991954; 1 archivo declarado: brunocalderonh/The-Mexican-municipal-elections-electoral-precinct-level-database-Static_v1.zip,
+    size=739952144, checksum=md5:d1cbf7125ab6f2ffecf3d9f0e0ab125e -- COINCIDE EXACTO (tamano
+    y md5) con el ya registrado en data/manifiesto.yaml (id zenodo_electoral_precinct_level_mexico_municipal).
+    related_identifiers solo trae isSupplementTo hacia el repo GitHub del autor (rama Static_v1),
+    no un DOI directo al articulo -- la identidad con el articulo se confirma por titulo (ver
+    fila CROSSREF de abajo), no por related_identifiers.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_zenodo_record_14991955_versions_json
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(i) · confirmar si existe una version del dataset
+    posterior a static_v1 (14991955)
+  url_origen: https://zenodo.org/api/records/14991955/versions?allversions=true
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/zenodo/record_14991955_versions.json
+  sha256: b05921fbe7763624ef2c62733b44ca4d535a631b72abce17197678732dfcf948
+  tamano_bytes: 5349
+  formato: json (JSON-OK; application/json)
+  licencia: NO-DECLARADA-EN-ORIGEN (respuesta de API, no es un dataset)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    JSON-OK; no abierto (sólo sha, tamaño y envoltura). hits.hits tiene 1 solo elemento: id=14991955,
+    version=static_v1, doi=10.5281/zenodo.14991955, created=2025-03-08T05:26:53Z. NO hay version
+    posterior; la version en corpus ES la unica y la mas reciente. No se bajo nada adicional
+    porque no hay archivos distintos que bajar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_crossref_s41597_025_04918_9_json
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(i) · confirmar que el Zenodo 14991955 es la base
+    del articulo DOI s41597-025-04918-9
+  url_origen: https://api.crossref.org/works/10.1038/s41597-025-04918-9
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/zenodo/crossref_s41597-025-04918-9.json
+  sha256: b4ffe026c9f4be56ab22ca68a4f548a8aaa319a46ce56425f2f5108ba742f79a
+  tamano_bytes: 7731
+  formato: json (JSON-OK; application/json)
+  licencia: NO-DECLARADA-EN-ORIGEN (metadata bibliografica publica de Crossref)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    JSON-OK; no abierto (sólo sha, tamaño y envoltura). message.title=[''Electoral precinct-level
+    database for Mexican municipal elections''] -- IDENTICO al metadata.title del registro
+    Zenodo 14991955. container-title=Scientific Data; published 2025-04-07 (posterior al alta
+    del Zenodo record, 2025-03-08 -- orden consistente con dataset-antes-que-articulo). Conclusion
+    P2(i): el zip ya en corpus (sha256 8998b4dc..., md5 d1cbf712...) SI es la base del articulo
+    citado, en su unica version (static_v1), sin version posterior disponible.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_computos_2012_casillas_dip_pres_sen
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(ii) · base de computos distritales 2012 (eleccion
+    federal) a nivel CASILLA para diputados, presidente y senadores
+  url_origen: http://web.archive.org/web/20120801194802if_/http://www.ife.org.mx/documentos/proceso_2011-2012/documentos/BD-ComputosDistritales/datos_computos_2012_09072012_2015.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/ine/2012/datos_computos_2012_09072012_2015.zip
+  sha256: 9cad5d61a06aa2c2b1ceae614a2ead74d2e591bd031249a952899409326fd6ac
+  tamano_bytes: 12944941
+  formato: zip (ZIP-OK(18 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (www.ife.org.mx no resuelve hoy; no se localizo pagina
+    de terminos en el snapshot)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(18 miembros); no abierto (sólo sha, tamaño y envoltura). 18 miembros en el zip
+    (ZIP-OK): datos_computos_casillas_diputados.txt (12532282 B), datos_computos_casillas_presidente.txt
+    (12444483 B), datos_computos_casillas_senadores.txt (12518865 B), mas _res_*_candidatos/_partidos/_rp/_total_actas.txt
+    (agregados por distrito, no casilla) y catalogos de distritos. Primera linea (cabecera,
+    no fila de voto) de datos_computos_casillas_diputados.txt: ID_ESTADO|D_DISTRITO|SECCION|ID_CASILLA|TIPO_CASILLA|EXT_CONTIGUA|...
+    => NIVEL CASILLA confirmado. Dominio original www.ife.org.mx no responde (IFE fue reemplazado
+    por INE en 2014); recuperado via Wayback Machine, snapshot 2012-08-01. A.7: doble descarga
+    por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_computos_2015_diputados_lista_actas
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(ii) · base de computos distritales 2015 (eleccion
+    intermedia, solo diputados federales)
+  url_origen: http://web.archive.org/web/20210310215905if_/http://computos2015.ine.mx/20150613_0000-listaActas.tar.gz
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/ine/2015/20150613_0000-listaActas.tar.gz
+  sha256: efe2520b4250c19174bcf45469419c0e10748819750cab273dac84dbf1fe3113
+  tamano_bytes: 3123245
+  formato: gz (BINARIO/TEXTO; application/x-gzip)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). ADVERTENCIA DE FORMATO: pese
+    al nombre/extension .tar.gz que sirve el servidor, el contenido real es un archivo RAR
+    v4 (cabecera de bytes ''Rar!\x1a\x07\x00''; comando `file` lo confirma: ''RAR archive
+    data, v4, os: Win32'') -- mismo patron que la nota de memoria sobre .rar con extension
+    ajena. No hay backend unrar/7z/bsdtar instalado en esta caja para listar el directorio
+    central del RAR; se uso `strings` sobre el binario (solo nombres en claro dentro de los
+    bloques de cabecera, NO contenido de datos) y aparecen: LEEME.txt, Cat_Candidatos_Diputado.csv,
+    diputados.csv -- patron de nombre consistente con los demas anios (diputados.csv), pero
+    el nivel CASILLA/SECCION de este archivo especifico NO quedo confirmado por cabecera real
+    (RAR sin herramienta de listado en esta sesion). baja.py lo clasifico BINARIO/TEXTO (espera-tipo
+    any, no es FALLO). A.7: doble descarga, sha256 identico. Receta de verificacion pendiente:
+    extraer con 7-Zip y leer solo la primera linea de diputados.csv. · AUDITORÍA (hilo principal,
+    27/sep): cabecera `Rar!\x1a\x07\x00` = RAR v4; `tar.exe -tvf` de Windows lista 3 miembros
+    (LEEME.txt 6 648 B, Cat_Candidatos_Diputado.csv 184 777 B, diputados.csv 11 696 668 B),
+    rc=0: estructura RAR-OK(3 miembros), envoltura sin abrir.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_computos_2018_dip_pres_sen_casilla
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(ii) · base de computos distritales 2018 (diputaciones,
+    presidencia y senadurias) a nivel CASILLA
+  url_origen: http://web.archive.org/web/20260715194309if_/https://computos2018.ine.mx/20180708_2130_CW.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/ine/2018/20180708_2130_CW.zip
+  sha256: eac4a411017c4c338d407f2ac34cc089b89878225f189456c2b7a93cd098e4e9
+  tamano_bytes: 19149698
+  formato: zip (ZIP-OK(3 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(3 miembros); no abierto (sólo sha, tamaño y envoltura). 3 miembros de 1er nivel
+    (ZIP-OK): 20180708_2130_CW_diputaciones.zip (6336522 B), _presidencia.zip (6491567 B),
+    _senadurias.zip (6321011 B). Interior de diputaciones.zip: diputaciones.csv (32054894
+    B) + diputaciones_candidaturas_2018.csv (365991 B), sin LEEME. Se leyeron solo las primeras
+    7 lineas de diputaciones.csv (encabezado de metadatos + fila de totales nacionales + la
+    fila de nombres de campo; NINGUNA fila de casilla individual abierta): ''sep=|'' / ''DIPUTACIONES''
+    / hora de corte / fila de totales nacionales agregados / linea en blanco / linea de campos:
+    CLAVE_CASILLA|CLAVE_ACTA|ID_ESTADO|NOMBRE_ESTADO|ID_DISTRITO|NOMBRE_DISTRITO|SECCION|ID_CASILLA|TIPO_CASILLA|EXT_CONTIGUA|CASILLA|NUM_ACTA_IMPRESO|<partidos>|...
+    => NIVEL CASILLA confirmado. presidencia.zip y senadurias.zip no se abrieron (mismo productor
+    y convencion declarada por INE para todos los tipos de eleccion de ese mismo paquete).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_computos_2021_diputaciones_casilla
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(ii) · base de computos distritales 2021 (eleccion
+    intermedia, solo diputaciones) a nivel CASILLA
+  url_origen: http://web.archive.org/web/20260715194310if_/https://computos2021.ine.mx/20210611_1000_CW.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/ine/2021/20210611_1000_CW.zip
+  sha256: 6b7a4ad69795de301b9ace72e41e668834e0f2000341840aa10d5db1d576c456
+  tamano_bytes: 5956685
+  formato: zip (ZIP-OK(1 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(1 miembros); no abierto (sólo sha, tamaño y envoltura). 1 miembro (ZIP-OK): 20210611_1000_CW_diputaciones.zip
+    (5956469 B). Interior: diputaciones.csv (31695054 B) + diputaciones_candidaturas_2021.csv
+    (307284 B) + LEEME.txt (9818 B). LEEME.txt declara campos (leido, no filas de voto): CLAVE_CASILLA|CLAVE_ACTA|ID_ESTADO|NOMBRE_ESTADO|ID_DISTRITO|NOMBRE_DISTRITO|SECCION|ID_CASILLA|TIPO_CASILLA|EXT_CONTIGUA|CASILLA|NUM_ACTA_IMPRESO|<partidos>|VOTOS
+    NULOS|TOTAL_VOTOS_CALCULADOS|LISTA_NOMINAL_CASILLA|... => NIVEL CASILLA confirmado.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_conteos_censales_participacion_2009
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · Conteos Censales de Participacion Ciudadana,
+    eleccion federal 2009 (nivel municipal)
+  url_origen: https://ine.mx/wp-content/uploads/2022/04/DatosAbiertos_DECEyEC_ConteosCensales2009.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/conteos-censales/DatosAbiertos_DECEyEC_ConteosCensales2009.zip
+  sha256: e626e9528a91206c23fc8f96987e1a297db285e7cbc0fa1e37a18ed473ebf61c
+  tamano_bytes: 40203573
+  formato: zip (ZIP-OK(34 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (portal Datos Abiertos INE; descarga directa sin registro
+    ni clickwrap, mismo criterio que la ola 2024 ya en corpus)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(34 miembros); no abierto (sólo sha, tamaño y envoltura). 34 miembros en el zip
+    (ZIP-OK). Recuperado DIRECTAMENTE de ine.mx/wp-content/uploads/2022/04/ (NO de portal-pruebas.ine.mx:
+    ese host sigue sin resolver hoy 2026-09-27, ''CONNECT tunnel failed, response 502'').
+    Enlace localizado en la landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    (HTTP 200), junto con los enlaces de 2009/2012/2015/2018/2021/2024/PrisionPreventiva2024/VotoAnticipado2024/ConteosCensalesPJ2025.
+    La ola 2024 de este mismo tablero ya estaba en el corpus (id ine_conteos_censales_participacion_2024)
+    con nota previa de que 2009-2021 estaban caidas en portal-pruebas.ine.mx; hoy (2026-09-27)
+    esas 5 olas se sirven desde el host principal ine.mx y se recuperaron sin PARO. A.7: doble
+    descarga por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_conteos_censales_participacion_2012
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · Conteos Censales de Participacion Ciudadana,
+    eleccion federal 2012 (nivel municipal)
+  url_origen: https://ine.mx/wp-content/uploads/2022/04/DatosAbiertos_DECEyEC_ConteosCensales2012.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/conteos-censales/DatosAbiertos_DECEyEC_ConteosCensales2012.zip
+  sha256: 5999f86e21154138b904723cb5d55ebde9e108ac72872f2ff5695d9eb8fde9cd
+  tamano_bytes: 39515896
+  formato: zip (ZIP-OK(34 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (portal Datos Abiertos INE; descarga directa sin registro
+    ni clickwrap, mismo criterio que la ola 2024 ya en corpus)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(34 miembros); no abierto (sólo sha, tamaño y envoltura). 34 miembros en el zip
+    (ZIP-OK). Recuperado DIRECTAMENTE de ine.mx/wp-content/uploads/2022/04/ (NO de portal-pruebas.ine.mx:
+    ese host sigue sin resolver hoy 2026-09-27, ''CONNECT tunnel failed, response 502'').
+    Enlace localizado en la landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    (HTTP 200), junto con los enlaces de 2009/2012/2015/2018/2021/2024/PrisionPreventiva2024/VotoAnticipado2024/ConteosCensalesPJ2025.
+    La ola 2024 de este mismo tablero ya estaba en el corpus (id ine_conteos_censales_participacion_2024)
+    con nota previa de que 2009-2021 estaban caidas en portal-pruebas.ine.mx; hoy (2026-09-27)
+    esas 5 olas se sirven desde el host principal ine.mx y se recuperaron sin PARO. A.7: doble
+    descarga por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_conteos_censales_participacion_2015
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · Conteos Censales de Participacion Ciudadana,
+    eleccion federal 2015 (nivel municipal)
+  url_origen: https://ine.mx/wp-content/uploads/2022/04/DatosAbiertos_DECEyEC_ConteosCensales2015.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/conteos-censales/DatosAbiertos_DECEyEC_ConteosCensales2015.zip
+  sha256: 7435ac54a3a6aebf5d9c9466a064b320b64bf5ff8b4d8ae787bad898497341da
+  tamano_bytes: 42594136
+  formato: zip (ZIP-OK(34 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (portal Datos Abiertos INE; descarga directa sin registro
+    ni clickwrap, mismo criterio que la ola 2024 ya en corpus)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(34 miembros); no abierto (sólo sha, tamaño y envoltura). 34 miembros en el zip
+    (ZIP-OK). Recuperado DIRECTAMENTE de ine.mx/wp-content/uploads/2022/04/ (NO de portal-pruebas.ine.mx:
+    ese host sigue sin resolver hoy 2026-09-27, ''CONNECT tunnel failed, response 502'').
+    Enlace localizado en la landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    (HTTP 200), junto con los enlaces de 2009/2012/2015/2018/2021/2024/PrisionPreventiva2024/VotoAnticipado2024/ConteosCensalesPJ2025.
+    La ola 2024 de este mismo tablero ya estaba en el corpus (id ine_conteos_censales_participacion_2024)
+    con nota previa de que 2009-2021 estaban caidas en portal-pruebas.ine.mx; hoy (2026-09-27)
+    esas 5 olas se sirven desde el host principal ine.mx y se recuperaron sin PARO. A.7: doble
+    descarga por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_conteos_censales_participacion_2018
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · Conteos Censales de Participacion Ciudadana,
+    eleccion federal 2018 (nivel municipal)
+  url_origen: https://ine.mx/wp-content/uploads/2022/04/DatosAbiertos_DECEyEC_ConteosCensales2018.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/conteos-censales/DatosAbiertos_DECEyEC_ConteosCensales2018.zip
+  sha256: b20981a0aea1ac773e7bc0b54784bba7619346585ba3996744ad22458279dd8b
+  tamano_bytes: 43389665
+  formato: zip (ZIP-OK(34 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (portal Datos Abiertos INE; descarga directa sin registro
+    ni clickwrap, mismo criterio que la ola 2024 ya en corpus)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(34 miembros); no abierto (sólo sha, tamaño y envoltura). 34 miembros en el zip
+    (ZIP-OK). Recuperado DIRECTAMENTE de ine.mx/wp-content/uploads/2022/04/ (NO de portal-pruebas.ine.mx:
+    ese host sigue sin resolver hoy 2026-09-27, ''CONNECT tunnel failed, response 502'').
+    Enlace localizado en la landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    (HTTP 200), junto con los enlaces de 2009/2012/2015/2018/2021/2024/PrisionPreventiva2024/VotoAnticipado2024/ConteosCensalesPJ2025.
+    La ola 2024 de este mismo tablero ya estaba en el corpus (id ine_conteos_censales_participacion_2024)
+    con nota previa de que 2009-2021 estaban caidas en portal-pruebas.ine.mx; hoy (2026-09-27)
+    esas 5 olas se sirven desde el host principal ine.mx y se recuperaron sin PARO. A.7: doble
+    descarga por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_ine_conteos_censales_participacion_2021
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · Conteos Censales de Participacion Ciudadana,
+    eleccion federal 2021 (nivel municipal)
+  url_origen: https://ine.mx/wp-content/uploads/2022/04/DatosAbiertos_DECEyEC_ConteosCensales2021.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2a, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2a/conteos-censales/DatosAbiertos_DECEyEC_ConteosCensales2021.zip
+  sha256: 29bdfaaa33be5151c2ae8c8e406d8a27976006d11e6cbe201ac05cc04def4849
+  tamano_bytes: 44357326
+  formato: zip (ZIP-OK(34 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (portal Datos Abiertos INE; descarga directa sin registro
+    ni clickwrap, mismo criterio que la ola 2024 ya en corpus)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2a. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(34 miembros); no abierto (sólo sha, tamaño y envoltura). 34 miembros en el zip
+    (ZIP-OK). Recuperado DIRECTAMENTE de ine.mx/wp-content/uploads/2022/04/ (NO de portal-pruebas.ine.mx:
+    ese host sigue sin resolver hoy 2026-09-27, ''CONNECT tunnel failed, response 502'').
+    Enlace localizado en la landing https://ine.mx/transparencia/datos-abiertos/visualizacion-datos/conteos-censales-participacion/
+    (HTTP 200), junto con los enlaces de 2009/2012/2015/2018/2021/2024/PrisionPreventiva2024/VotoAnticipado2024/ConteosCensalesPJ2025.
+    La ola 2024 de este mismo tablero ya estaba en el corpus (id ine_conteos_censales_participacion_2024)
+    con nota previa de que 2009-2021 estaban caidas en portal-pruebas.ine.mx; hoy (2026-09-27)
+    esas 5 olas se sirven desde el host principal ine.mx y se recuperaron sin PARO. A.7: doble
+    descarga por baja.py, sha256 identico.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/538801/2020_01_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/538801_2020_01_Informe_estadistico.pdf
+  sha256: b5a2e1010de6d197e04408b106e14b904f17001b30ad8e1d576a7b91c2d6d43e
+  tamano_bytes: 2095037
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 538801_2020_01_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/577696/2020_02_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/577696_2020_02_Informe_estadistico.pdf
+  sha256: 6c8b49ca8a0aa64a1bb9b88d8ed16095c88917bc40af50b19b5ecc3f9f093073
+  tamano_bytes: 2235778
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 577696_2020_02_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/577697/2020_03_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/577697_2020_03_Informe_estadistico.pdf
+  sha256: 8cc6d68f669b627c2a3806a3064ffaf120489fa4aa118b536512446174ee937f
+  tamano_bytes: 2176388
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 577697_2020_03_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/577698/2020_04_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/577698_2020_04_Informe_estadistico.pdf
+  sha256: 0b2ac27460579dc0316329901642494459f92d95b390e222eb14e3c6c612a894
+  tamano_bytes: 650881
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 577698_2020_04_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/577699/2020_05_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/577699_2020_05_Informe_estadistico.pdf
+  sha256: 5cc5b598632cbf20ccf7456a7901abde4c3cd2decc64ea958dff7fd68ca6f4c4
+  tamano_bytes: 659671
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 577699_2020_05_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/577700/2020_06_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/577700_2020_06_Informe_estadistico.pdf
+  sha256: 6ef7202cff06515463bbfb77f9370ffff20b5095a6b9162f6126d3e7f0a83f26
+  tamano_bytes: 880298
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 577700_2020_06_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614666/2020_08_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614666_2020_08_Informe_estadistico.pdf
+  sha256: 0253b1a710c601048d6973c2a1ec680d70b6065f7c7b220c315e802d7ffce3b6
+  tamano_bytes: 528492
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614666_2020_08_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614667/2020_07_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614667_2020_07_Informe_estadistico.pdf
+  sha256: 45685cb7e7afe40d7ac8129d6b0b62f4b81661a41c896a5b53fbfe38041fa6fe
+  tamano_bytes: 821637
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614667_2020_07_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614668/2020_10_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614668_2020_10_Informe_estadistico.pdf
+  sha256: 59edcbecb3923097795010ea219d5c903be1c03e0b54d752605ea3bdc7bee092
+  tamano_bytes: 333844
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614668_2020_10_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614669/2020_09_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614669_2020_09_Informe_estadistico.pdf
+  sha256: 73e068061c1de512e120b64c5304cf581f6d5f0a792653f2d1a776bbc517d533
+  tamano_bytes: 528562
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614669_2020_09_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614670/2020_12_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614670_2020_12_Informe_estadistico.pdf
+  sha256: 571c1af4facfc7eabfed251f50698228fea1f29da40805b39766cadae6a448a8
+  tamano_bytes: 407896
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614670_2020_12_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2020_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2020-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/614671/2020_11_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/614671_2020_11_Informe_estadistico.pdf
+  sha256: 688aa70115ed3087bdabcbd6d9ff9b0bf21687f124bceefbde40792641af9fed
+  tamano_bytes: 407951
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 614671_2020_11_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/638241/2021_02_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/638241_2021_02_Informe_estadistico.pdf
+  sha256: 604fd0af20ee43dccdfd8b476d75f17c1a2510d69829f60b9bb0e85aaed56e09
+  tamano_bytes: 701086
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 638241_2021_02_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/638242/2021_01_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/638242_2021_01_Informe_estadistico.pdf
+  sha256: f35ea1a2d20c5c75ba3909a70ba9b8eee7cd8141585243790ea3cbeeff77eb83
+  tamano_bytes: 806750
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 638242_2021_01_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/638243/2021_03_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/638243_2021_03_Informe_estadistico.pdf
+  sha256: 440f1f822990c81d9f5a93ec169c5cd5f2b2a1bbfad285158f481133ba7a6d02
+  tamano_bytes: 745492
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 638243_2021_03_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/644669/2021_04_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/644669_2021_04_Informe_estadistico.pdf
+  sha256: a36893e862a9464eeb1f8750491208f3701bc0ceaa3241a43c7b8877ecf8cd36
+  tamano_bytes: 745635
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 644669_2021_04_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753266/2021_11_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753266_2021_11_Informe_estadistico.pdf
+  sha256: 1790974ef410425909c9a1d407ade37cdc8286baade2a9512985fdd73b722057
+  tamano_bytes: 605074
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753266_2021_11_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753267/2021_12_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753267_2021_12_Informe_estadistico.pdf
+  sha256: 50255dddfdc73603bee5be39ec2b3b6fb0fea010f6f158ca9c9ccae8df75107d
+  tamano_bytes: 605634
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753267_2021_12_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753268/2021_10_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753268_2021_10_Informe_estadistico.pdf
+  sha256: 85e42495d8461522c9d41a2304b0a6f170dad96e1d6ddb770cfc6e95c68938df
+  tamano_bytes: 604895
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753268_2021_10_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753269/2021_09_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753269_2021_09_Informe_estadistico.pdf
+  sha256: 064fdd57ba135e49ea5fa73092bc63eb568e7e257ef32908fb5374924da4f747
+  tamano_bytes: 605343
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753269_2021_09_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753270/2021_08_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753270_2021_08_Informe_estadistico.pdf
+  sha256: df31a8d12645d2418d9efad661f69e88e5ecd5d02a77e786570656762deaafdc
+  tamano_bytes: 605457
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753270_2021_08_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753271/2021_07_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753271_2021_07_Informe_estadistico.pdf
+  sha256: 7248f591e7f87d960f82ccc9f7d9af14a21cf2501ce53aec6d2b2ef641cd3d11
+  tamano_bytes: 606235
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753271_2021_07_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753272/2021_06_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753272_2021_06_Informe_estadistico.pdf
+  sha256: dc3ef297d1fd78ac0ea12f072412598b66717c8fe02da4bf9821a0db4e64e1a0
+  tamano_bytes: 608309
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753272_2021_06_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2021_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2021-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753273/2021_05_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753273_2021_05_Informe_estadistico.pdf
+  sha256: 5bfccfadce13a8bc943b314186b54a353f42e2fba1e2fcf0ded90c5cdc12c600
+  tamano_bytes: 614840
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753273_2021_05_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753274/2022_07_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753274_2022_07_Informe_estadistico.pdf
+  sha256: 4c40fb5b727688c69bdbfcc1c2189585f480f23ca91e32ec8675f54de6b4a427
+  tamano_bytes: 897509
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753274_2022_07_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753275/2022_06_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753275_2022_06_Informe_estadistico.pdf
+  sha256: d04eae24320a5cae96fb29f7314a7b3d82a6644876204560d7cf2e0dc82db373
+  tamano_bytes: 897549
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753275_2022_06_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753276/2022_05_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753276_2022_05_Informe_estadistico.pdf
+  sha256: 3d61c0d8a513e340514cdee4ed5c7edd94e065fc27df37f262e5faa1835168b2
+  tamano_bytes: 799472
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753276_2022_05_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753277/2022_04_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753277_2022_04_Informe_estadistico.pdf
+  sha256: 23060a2e09438c08abc3b982abeee50b40723e4b5c1a2b3140d195bc8a7e227b
+  tamano_bytes: 799760
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753277_2022_04_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753278/2022_03_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753278_2022_03_Informe_estadistico.pdf
+  sha256: 2a65fd8e44a3364513871861bc5117679a2e6592e5fd83b2bdfafaacdb9ae89f
+  tamano_bytes: 895266
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753278_2022_03_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753279/2022_02_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753279_2022_02_Informe_estadistico.pdf
+  sha256: e6d20d9dab324c3e525b2ce41d45fb7c9d052f5dd88aa34611d4d44648364fc4
+  tamano_bytes: 895416
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753279_2022_02_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/753280/2022_01_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/753280_2022_01_Informe_estadistico.pdf
+  sha256: 7ddb85bbeef1554b1df20007104aa9c3ed6cbb8c96019930d57d30932408cab7
+  tamano_bytes: 897517
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 753280_2022_01_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/759010/2022_08_Informe_estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/759010_2022_08_Informe_estadistico.pdf
+  sha256: 47f0c02e2108ce23343b7848f50d9bcaab6bb2bbf4c679a80fdbbfe75be4b0f9
+  tamano_bytes: 2934933
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 759010_2022_08_Informe_estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/813696/Informe_estadi_stico_diciembre_2022_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/813696_Informe_estadi_stico_diciembre_2022_f.pdf
+  sha256: 796ac6e07b44f02db9aa175f895135476562a69107b1d05415dfecddd573fc39
+  tamano_bytes: 868880
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 813696_Informe_estadi_stico_diciembre_2022_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/813697/Informe_estadi_stico_noviembre_2022_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/813697_Informe_estadi_stico_noviembre_2022_f.pdf
+  sha256: a42852751279252cc7c178fa639467e7e55947ba0db7c5489660ce90a5797003
+  tamano_bytes: 868005
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 813697_Informe_estadi_stico_noviembre_2022_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/813698/Informe_estadi_stico_octubre_2022_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/813698_Informe_estadi_stico_octubre_2022_f.pdf
+  sha256: 2df1a87d6e05e78b971db14a83af3ebc031922e77f60179c7d044408e2dbe1fa
+  tamano_bytes: 867282
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 813698_Informe_estadi_stico_octubre_2022_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2022_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2022-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/813699/Informe_estadi_stico_septiembre_2022_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/813699_Informe_estadi_stico_septiembre_2022_f.pdf
+  sha256: 3a0e0ea8d60b4374726a5806407cde6e0af5a896c546cf89d74b4b9b0de0a745
+  tamano_bytes: 866589
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 813699_Informe_estadi_stico_septiembre_2022_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858514/2023_06_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858514_2023_06_Informe_estadistico_f.pdf
+  sha256: dc62844cd38d5d15ae90339b82492bb56459b4c348e39038890c8c1b58e0bc2e
+  tamano_bytes: 1223228
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858514_2023_06_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858515/2023_05_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858515_2023_05_Informe_estadistico_f.pdf
+  sha256: 7e95a4bd09ba5e820fb8bb602c272b3c95947072673ee917112540c2fef108e8
+  tamano_bytes: 1222105
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858515_2023_05_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858516/2023_04_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858516_2023_04_Informe_estadistico_f.pdf
+  sha256: b76b8aff13ceee9ed9b763b0ad1d78372b185039b19c778d9056fae720eaaee9
+  tamano_bytes: 1220749
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858516_2023_04_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858517/2023_03_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858517_2023_03_Informe_estadistico_f.pdf
+  sha256: e573e65421e6e1c3f7df93fd3a1e82e88670c9b227d38cc6754318f4fe833b55
+  tamano_bytes: 1219547
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858517_2023_03_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858518/2023_02_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858518_2023_02_Informe_estadistico_f.pdf
+  sha256: b75eaf785c84b26bd412fccc5ed88e7c053214753c0184ae5ee29487d33a7431
+  tamano_bytes: 1217341
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858518_2023_02_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858519/2023_01_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858519_2023_01_Informe_estadistico_f.pdf
+  sha256: 018abc79c941fa6b0aacd704b2a588857fa4c46a7385b5fb0b19c196ff0059fb
+  tamano_bytes: 1206065
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858519_2023_01_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/858520/2023_07_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/858520_2023_07_Informe_estadistico_f.pdf
+  sha256: db5b5cadcd16247c6bad36330f0f6f04c659242f2cde6d715923318bb6f16423
+  tamano_bytes: 1175060
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 858520_2023_07_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/870208/2023_10_Informe_estadi_stico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/870208_2023_10_Informe_estadi_stico_f.pdf
+  sha256: 66b4fa7bc43fcd06c3a695e62ca4561c3bb8d7df8185b03dad2aac60e5bb69b1
+  tamano_bytes: 1179231
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 870208_2023_10_Informe_estadi_stico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/870209/2023_09_Informe_estadi_stico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/870209_2023_09_Informe_estadi_stico_f.pdf
+  sha256: 05c9bfe715d858b34ab11c7239b9e5a64cba0c5665efb06841c0d864173aaac9
+  tamano_bytes: 1177252
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 870209_2023_09_Informe_estadi_stico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/870210/2023_08_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/870210_2023_08_Informe_estadistico_f.pdf
+  sha256: 901403ac628e01002733a3dbbb5b983dd8f93b31c8063d81fdddd1e20bb76115
+  tamano_bytes: 1175952
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 870210_2023_08_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/876441/2023_11_Informe_estadistico_f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/876441_2023_11_Informe_estadistico_f.pdf
+  sha256: 2f89003faa7ae405a598afa2b11f451d1d2386f359e8e25f4cd3ceaa0957f89d
+  tamano_bytes: 1179416
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 876441_2023_11_Informe_estadistico_f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2023_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2023-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/895634/2023_12_Informe_estadi_stico__f.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/895634_2023_12_Informe_estadi_stico__f.pdf
+  sha256: dd56fef72c5e0f2f7a02fa6f7b5b7172a3c28b960a8680c7f46bb4956b8e7c9e
+  tamano_bytes: 1181441
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 895634_2023_12_Informe_estadi_stico__f.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2019_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2019-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936635/2019_02Informe_Estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936635_2019_02Informe_Estadistico.pdf
+  sha256: d0782d0828eb0009e791897716393302d365f27e136d8841cbb44b700f5f1e78
+  tamano_bytes: 1972492
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936635_2019_02Informe_Estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2019_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2019-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936636/2019_01_Informe_Estadistico_Enero.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936636_2019_01_Informe_Estadistico_Enero.pdf
+  sha256: 945e009ce8dc45cd367d8ffbb1bb1486db12fe17ce06d5afe364c205be8582a9
+  tamano_bytes: 1933284
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936636_2019_01_Informe_Estadistico_Enero.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936637/2018_11Informe_Estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936637_2018_11Informe_Estadistico.pdf
+  sha256: b01642433a68b4d74ece1e83e410cdc077040428edbe09ade04a5a5fa1023c31
+  tamano_bytes: 1904294
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936637_2018_11Informe_Estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936638/2018_10Informe_Estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936638_2018_10Informe_Estadistico.pdf
+  sha256: bbe7b2443e55044a7c49144f8537f1a480f5073ae51a280ae5fd18447fce9471
+  tamano_bytes: 1931045
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936638_2018_10Informe_Estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936639/2018_08_Informe_Estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936639_2018_08_Informe_Estadistico.pdf
+  sha256: d1db75379c142e19efe3adc7cc0e29cb5ce652bfae742d94926b35ff4787d2d2
+  tamano_bytes: 1890526
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936639_2018_08_Informe_Estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936640/2018_09_Informe_Estadistico_Septiembre.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936640_2018_09_Informe_Estadistico_Septiembre.pdf
+  sha256: 349164f13487b581715036e3357b5cbb626154861ab3df04e7d4ea944a4cc442
+  tamano_bytes: 1940520
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936640_2018_09_Informe_Estadistico_Septiembre.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936642/2018_07_Informe_Estadistico.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936642_2018_07_Informe_Estadistico.pdf
+  sha256: bbcc38bbee21f25221c2c302b16cbbaeaf5ea231efe741b5ce19abdc2f9d7545
+  tamano_bytes: 1900227
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936642_2018_07_Informe_Estadistico.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936643/2018_06_Informe_Estadistico_.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936643_2018_06_Informe_Estadistico_.pdf
+  sha256: 37bce3c9a85531e272ee4480c255cd242df0366d4a02c800b9f5de12eafb3ccc
+  tamano_bytes: 1875685
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936643_2018_06_Informe_Estadistico_.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2018_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2018-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936644/2018_05_Informe_Estadistic.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/936644_2018_05_Informe_Estadistic.pdf
+  sha256: f5ad9ba1edbf2db272b76be173bc062213802e78759a515c965a7faa74d526fe
+  tamano_bytes: 1882630
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936644_2018_05_Informe_Estadistic.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953304/09_2024_Informe_estadistico_septiembre.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953304_09_2024_Informe_estadistico_septiembre.pdf
+  sha256: 3c2fa0fd4cc788a6d83695cb2e1c69072667498cc995555c504a927bc7aea0b3
+  tamano_bytes: 1873660
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953304_09_2024_Informe_estadistico_septiembre.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953305/08_2024_Informe_estadistico_agosto.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953305_08_2024_Informe_estadistico_agosto.pdf
+  sha256: bb420093e6a94a7b0f8a348012404afc632bb82752235a9d185942d2372c16cc
+  tamano_bytes: 2474898
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953305_08_2024_Informe_estadistico_agosto.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953306/07_2024_Informe_estadistico_julio.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953306_07_2024_Informe_estadistico_julio.pdf
+  sha256: c075612d60c32334f687b7078e641d9ca8f5ac6b51404550700c5a63640cd842
+  tamano_bytes: 1427234
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953306_07_2024_Informe_estadistico_julio.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953309/06_2024_Informe_estadistico_junio.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953309_06_2024_Informe_estadistico_junio.pdf
+  sha256: 0489661650f8e70f4d78890c45c6d7782833dcc1cc1c7f5675d8fe09107d3a3a
+  tamano_bytes: 1423499
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953309_06_2024_Informe_estadistico_junio.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953310/05_2024_Informe_estadistico_mayo.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953310_05_2024_Informe_estadistico_mayo.pdf
+  sha256: ade9d4e4071a93dc3023d72812bb0f46027f2286fe86c634bc1d44478152dce7
+  tamano_bytes: 1420223
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953310_05_2024_Informe_estadistico_mayo.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953311/04_2024_Informe_estadistico_abril.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953311_04_2024_Informe_estadistico_abril.pdf
+  sha256: a1f0cd859c01dfac978323f20068ebf21580e02acf1cec31084ea84f7ca7c777
+  tamano_bytes: 1420467
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953311_04_2024_Informe_estadistico_abril.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953312/03_2024_Informe_estadistico_marzo.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953312_03_2024_Informe_estadistico_marzo.pdf
+  sha256: 7578ef79a20850529a49cb2c4aab18ca1cc14588c4470b7757c0137a5b756a0f
+  tamano_bytes: 1417389
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953312_03_2024_Informe_estadistico_marzo.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953313/02_2024_Informe_estadistico_febrero.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953313_02_2024_Informe_estadistico_febrero.pdf
+  sha256: daa0516640cc9bdac6c9f5d96738038398f4c73cc52f41a07ba19e9176f1262b
+  tamano_bytes: 1388589
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953313_02_2024_Informe_estadistico_febrero.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/953314/01_2024_Informe_estadistico_enero.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/953314_01_2024_Informe_estadistico_enero.pdf
+  sha256: 55740350bb737e00d5cbc2cbe429354d0f7f6227a7dbbe756828dfa151111417
+  tamano_bytes: 1385741
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 953314_01_2024_Informe_estadistico_enero.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/959394/10_2024_Informe_pagina_de_internet_octubre.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/959394_10_2024_Informe_pagina_de_internet_octubre.pdf
+  sha256: fdcc5d47a6f68f5d301f260d905d8ba9a319fe752e4bc1b4ab056410ebf66078
+  tamano_bytes: 1875388
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 959394_10_2024_Informe_pagina_de_internet_octubre.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/962701/11_2024_Informe_estadistico_noviembre.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/962701_11_2024_Informe_estadistico_noviembre.pdf
+  sha256: 104eda18d74d6c0766d241f76c239d29954789f47f087b01ee0030714a70ac0f
+  tamano_bytes: 1908034
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 962701_11_2024_Informe_estadistico_noviembre.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2024_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2024-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/969964/12_2024_Informe_estadistico_diciembre.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/969964_12_2024_Informe_estadistico_diciembre.pdf
+  sha256: 70880d61826c43835975bf9abcc8faad62813a476577f8d3a58b323c83287b90
+  tamano_bytes: 1876743
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 969964_12_2024_Informe_estadistico_diciembre.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_10
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-10
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042833/10_Informe_pagina_de_internet_octubre_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042833_10_Informe_pagina_de_internet_octubre_2025.pdf
+  sha256: aa7c5b14d8128ea8eb7d858d50a491d9fac2eed9f2f111098eeddd240dd4aa28
+  tamano_bytes: 2234419
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042833_10_Informe_pagina_de_internet_octubre_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_09
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-09
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042834/09_Informe_pagina_de_internet_septiembre_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042834_09_Informe_pagina_de_internet_septiembre_2025.pdf
+  sha256: 580a81529468341b54ff17db7a9795787f8f49d21caca784b29cbfc3b8b5578f
+  tamano_bytes: 2238241
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042834_09_Informe_pagina_de_internet_septiembre_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_08
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-08
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042835/08_Informe_pagina_de_internet_agosto_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042835_08_Informe_pagina_de_internet_agosto_2025.pdf
+  sha256: 2b54aec8bab6cba0b07a65ccd3793fe7129c9f75239413ce5f06ba5e0c5c902a
+  tamano_bytes: 2238015
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042835_08_Informe_pagina_de_internet_agosto_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042836/07_Informe_pagina_de_internet_julio_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042836_07_Informe_pagina_de_internet_julio_2025.pdf
+  sha256: 4d18f6b79ab09610c45ce456768f971e8eae78eb323fd07da49a4b824b1d5874
+  tamano_bytes: 2225677
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042836_07_Informe_pagina_de_internet_julio_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042837/06_Informe_pagina_de_internet_junio_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042837_06_Informe_pagina_de_internet_junio_2025.pdf
+  sha256: f3decd60847a9e6e59e3a5071ddd0188386b9c19a775297d6c1de1de04794019
+  tamano_bytes: 2235639
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042837_06_Informe_pagina_de_internet_junio_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042838/04_Informe_pagina_de_internet_abril_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042838_04_Informe_pagina_de_internet_abril_2025.pdf
+  sha256: db842cf5e62fb50cd63d30529b6579c47dcc6501212647f0dc28e2509c141b3e
+  tamano_bytes: 2238822
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042838_04_Informe_pagina_de_internet_abril_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042839/05_Informe_pagina_de_internet_mayo_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042839_05_Informe_pagina_de_internet_mayo_2025.pdf
+  sha256: 3b09b447bbf23c57baeaf5b7e1f3f1e75780babbb50416ba914f8d2c9d3b8111
+  tamano_bytes: 2228608
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042839_05_Informe_pagina_de_internet_mayo_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042840/03_Informe_pagina_de_internet_marzo_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042840_03_Informe_pagina_de_internet_marzo_2025.pdf
+  sha256: f90f68654db0b7045dc4f2c2febbc09806fef1de9b611446b887a10976ccb663
+  tamano_bytes: 2223417
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042840_03_Informe_pagina_de_internet_marzo_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042841/02_Informe_pagina_de_internet_febrero_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042841_02_Informe_pagina_de_internet_febrero_2025.pdf
+  sha256: 51c7af97261e8b33e9d1051f5a1c32044a1812baf7a3d75875ae38fe8ed11a0c
+  tamano_bytes: 2220537
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042841_02_Informe_pagina_de_internet_febrero_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1042842/01_Informe_pagina_de_internet_enero_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1042842_01_Informe_pagina_de_internet_enero_2025.pdf
+  sha256: b856555e7a3d3ecf92a6571c8bf64546fe16a06acd06114cf5975de59cf4d94e
+  tamano_bytes: 2230865
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1042842_01_Informe_pagina_de_internet_enero_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_12
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-12
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1057974/12_Informe_pagina_de_interner_diciembre_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1057974_12_Informe_pagina_de_interner_diciembre_2025.pdf
+  sha256: 1bb2e6f473acbccee8bc7d519e3f87b81445d415a49c1ecf96fd4b3f4650c754
+  tamano_bytes: 1716942
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1057974_12_Informe_pagina_de_interner_diciembre_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2025_11
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2025-11
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1058470/11_Informe_pagina_de_internet_noviembre_2025.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1058470_11_Informe_pagina_de_internet_noviembre_2025.pdf
+  sha256: 00d3a53e01f9b9fac6c4f4a404d68a5395a81864884da9c6a664d9c9da62ac22
+  tamano_bytes: 1712231
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1058470_11_Informe_pagina_de_internet_noviembre_2025.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_01
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-01
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1061685/01._Informe_mensual_enero_2026.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1061685_01._Informe_mensual_enero_2026.pdf
+  sha256: fc1f74f101d9acfcff72d3e54ca8dd30ace29e1b0a83816fb87d97479ec5c2b4
+  tamano_bytes: 1533040
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1061685_01._Informe_mensual_enero_2026.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_02
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-02
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1068434/02._Informe_mensual_febrero_2026.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1068434_02._Informe_mensual_febrero_2026.pdf
+  sha256: e11277c5638809f577f1af89aaab33978518595c89104d6e7d81bf0bc6c573a9
+  tamano_bytes: 2050185
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1068434_02._Informe_mensual_febrero_2026.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_03
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-03
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1076470/03._Informe_mensual_marzo_2026.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1076470_03._Informe_mensual_marzo_2026.pdf
+  sha256: f6f84f2cddded955b8fa64946d4865dce110b176fd558220dc4ea0d6cd498f03
+  tamano_bytes: 2046782
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1076470_03._Informe_mensual_marzo_2026.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_04
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-04
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1086158/04._Informe_mensual_abril_26.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1086158_04._Informe_mensual_abril_26.pdf
+  sha256: 6ed407fd3fe8154601375f6897619dd3247e8a0bd9a9688a5a435276093a7b08
+  tamano_bytes: 2057069
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1086158_04._Informe_mensual_abril_26.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_05
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-05
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1086159/05._Informe_mensual_mayo_26.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1086159_05._Informe_mensual_mayo_26.pdf
+  sha256: 61a293aa1bba511d79cfd529ce0a530715cf6d50ecaca7af7f3ec74767ac0692
+  tamano_bytes: 2068595
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1086159_05._Informe_mensual_mayo_26.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_06
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-06
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1096413/06__Informe_mensual_junio_2026.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1096413_06__Informe_mensual_junio_2026.pdf
+  sha256: 88bb7496f58921d70d320131b8a1ae1876812f8e1d930fe46a0d95f3230978eb
+  tamano_bytes: 2091905
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1096413_06__Informe_mensual_junio_2026.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_2026_07
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe estadístico
+    mensual 2026-07
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/1101595/07__Informe_mensual_julio_2026.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo-informes/1101595_07__Informe_mensual_julio_2026.pdf
+  sha256: c6cd1df7d652585707c88f741b9a1ea920b5aee83cd56b993bd9e55bccf361f1
+  tamano_bytes: 2260875
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 1101595_07__Informe_mensual_julio_2026.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_iecm_colonias_electorales_2019_csv
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · llave de colonia/unidad territorial para
+    empatar resultados de consultas (PROPUESTO-POR-EJECUTOR)
+  url_origen: https://datos.cdmx.gob.mx/dataset/04a1900a-0c2f-41ed-94dc-3d2d5bad4065/resource/03368e1e-f05e-4bea-ac17-58fc650f6fee/download
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/iecm/iecm_colonias_electorales_2019.csv
+  sha256: d565c5ce65cf14a2a10103d79708947c0552ef1430cd17238c93fff3f870dd99
+  tamano_bytes: 5358051
+  formato: csv (BINARIO/TEXTO; text/csv)
+  licencia: CC-BY-4.0-ESP (license_title del paquete CKAN de datos.cdmx.gob.mx)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). Organización instituto-electoral-de-la-ciudad-de-mexico
+    en datos.cdmx.gob.mx: 3 paquetes, todos geográficos. El url del recurso en CKAN apunta
+    a la IP interna 10.80.148.134; se bajó reescribiendo el host a datos.cdmx.gob.mx (misma
+    ruta /dataset/<id>/resource/<id>/download).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_iecm_colonias_2019_diccionario_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · llave de colonia/unidad territorial para
+    empatar resultados de consultas (PROPUESTO-POR-EJECUTOR)
+  url_origen: https://datos.cdmx.gob.mx/dataset/04a1900a-0c2f-41ed-94dc-3d2d5bad4065/resource/0282ffc5-8bba-4bd0-b867-4c7302f31e36/download
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/iecm/iecm_colonias_2019_diccionario.pdf
+  sha256: 4da84f29dea56503674fd155501744695ad80213a92ddb5469fc43244590f690
+  tamano_bytes: 42995
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: CC-BY-4.0-ESP (license_title del paquete CKAN de datos.cdmx.gob.mx)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Organización instituto-electoral-de-la-ciudad-de-mexico
+    en datos.cdmx.gob.mx: 3 paquetes, todos geográficos. El url del recurso en CKAN apunta
+    a la IP interna 10.80.148.134; se bajó reescribiendo el host a datos.cdmx.gob.mx (misma
+    ruta /dataset/<id>/resource/<id>/download).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_iecm_colonias_electorales_2022_shp_zip
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · llave de colonia/unidad territorial para
+    empatar resultados de consultas (PROPUESTO-POR-EJECUTOR)
+  url_origen: https://datos.cdmx.gob.mx/dataset/d8f83ce7-163d-4c2a-96e0-ae38d304c4a0/resource/e3bbadb4-f3de-4c52-b3f4-a4ffea4466a3/download
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/iecm/iecm_colonias_electorales_2022_shp.zip
+  sha256: 3c752131c0bcf3391fe402c8ead33c2056190659d39f70ce909e5c2fe985e80b
+  tamano_bytes: 1424886
+  formato: zip (ZIP-OK(5 miembros); application/zip)
+  licencia: CC-BY-4.0-ESP (license_title del paquete CKAN de datos.cdmx.gob.mx)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(5 miembros); no abierto (sólo sha, tamaño y envoltura). Organización instituto-electoral-de-la-ciudad-de-mexico
+    en datos.cdmx.gob.mx: 3 paquetes, todos geográficos. El url del recurso en CKAN apunta
+    a la IP interna 10.80.148.134; se bajó reescribiendo el host a datos.cdmx.gob.mx (misma
+    ruta /dataset/<id>/resource/<id>/download).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_iecm_colonias_2022_diccionario_xlsx
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P2(iii) · llave de colonia/unidad territorial para
+    empatar resultados de consultas (PROPUESTO-POR-EJECUTOR)
+  url_origen: https://datos.cdmx.gob.mx/dataset/d8f83ce7-163d-4c2a-96e0-ae38d304c4a0/resource/cee6dbd2-7225-4d5d-ac70-6a843e501325/download
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/iecm/iecm_colonias_2022_diccionario.xlsx
+  sha256: 6ab29df146b810598e2e1d7a84995e7c7096cf6dcba35d42b793804f433fa5fb
+  tamano_bytes: 8174
+  formato: xlsx (ZIP-OK(10 miembros); application/vnd.openxmlformats-officedocument.spreadsheetml.sheet)
+  licencia: CC-BY-4.0-ESP (license_title del paquete CKAN de datos.cdmx.gob.mx)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(10 miembros); no abierto (sólo sha, tamaño y envoltura). Organización instituto-electoral-de-la-ciudad-de-mexico
+    en datos.cdmx.gob.mx: 3 paquetes, todos geográficos. El url del recurso en CKAN apunta
+    a la IP interna 10.80.148.134; se bajó reescribiendo el host a datos.cdmx.gob.mx (misma
+    ruta /dataset/<id>/resource/<id>/download).'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_anual_2022
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe anual (PROPUESTO-POR-EJECUTOR:
+    enlazado en el mismo índice)'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/870207/ANUAL_Informe_estadi_stico_diciembre_2022.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo/870207_ANUAL_Informe_estadi_stico_diciembre_2022.pdf
+  sha256: 7ccdd4b237af7f50b0fff99bbbcae088b40b38970d863353264d9c2b1f2a3cf7
+  tamano_bytes: 879690
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 870207_ANUAL_Informe_estadi_stico_diciembre_2022.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_anual_2017
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe anual (PROPUESTO-POR-EJECUTOR:
+    enlazado en el mismo índice)'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936645/ANUAL_2017_Informe_de_Actividades_pdf.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo/936645_ANUAL_2017_Informe_de_Actividades_pdf.pdf
+  sha256: 9d403068d9858e75fbd1747943e8f8cf9f6224bddd15452bcc57c314b7ed9233
+  tamano_bytes: 2959358
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936645_ANUAL_2017_Informe_de_Actividades_pdf.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_anual_2016
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe anual (PROPUESTO-POR-EJECUTOR:
+    enlazado en el mismo índice)'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936646/ANUAL-2016.INFORMEpdf.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo/936646_ANUAL-2016.INFORMEpdf.pdf
+  sha256: 244691dfed7fe94b138d33a5c5f7e07d17370b48a06e034b5a7ab49dbe1188b0
+  tamano_bytes: 3278386
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936646_ANUAL-2016.INFORMEpdf.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_anual_2012_2013
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe anual (PROPUESTO-POR-EJECUTOR:
+    enlazado en el mismo índice)'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936647/ANUAL_2012-2013Informe_Actividades_Mecanismo.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo/936647_ANUAL_2012-2013Informe_Actividades_Mecanismo.pdf
+  sha256: 5f4e04b60f111786331a801be35dd6e0671bb375563445040fe8936ae2440542
+  tamano_bytes: 1021331
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936647_ANUAL_2012-2013Informe_Actividades_Mecanismo.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_mecanismo_informe_anual_2015
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P2(iv) · Mecanismo de Protección · informe anual (PROPUESTO-POR-EJECUTOR:
+    enlazado en el mismo índice)'
+  url_origen: https://www.gob.mx/cms/uploads/attachment/file/936648/ANAUL-2015Informe_de_actividades__.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P2b, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P2b/mecanismo/936648_ANAUL-2015Informe_de_actividades__.pdf
+  sha256: ea9a09576129ef03f6b1ab427223555356dc4a62ea8c55b8f522f0439882ca7f
+  tamano_bytes: 3782053
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (adjunto de gob.mx; no declara licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P2b. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). Índice: https://www.gob.mx/defensorasyperiodistas,
+    páginas «Informes Estadísticos Mensuales» y «Estadístico publicado mensualmente» renderizadas
+    con tools/renderiza_pagina.py (94 enlaces PDF únicos, todos bajados). Archivo 936648_ANAUL-2015Informe_de_actividades__.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_phillips2017_cps_replicacion_dta
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · autodefensas por
+    municipio 2013
+  url_origen: https://drive.google.com/uc?export=download&id=0B5mQMOVtNgQSVTMyZDBlZTNJVTg
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PHILLIPS-AUTODEFENSAS-2017/phillipsvigilantesCPS.dta
+  sha256: 9f11e673d84b8c42def0765f894d5c03fad9152af6ab27df60290c19057d9626
+  tamano_bytes: 489317
+  formato: dta (BINARIO/TEXTO; application/octet-stream)
+  licencia: NO-DECLARADA-EN-ORIGEN (sitio del autor, Google Drive)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo phillipsvigilantesCPS.dta.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_phillips2017_cps_replicacion_do
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14
+  url_origen: https://drive.google.com/uc?export=download&id=0B5mQMOVtNgQSeGpLRWpEZDA3Smc
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PHILLIPS-AUTODEFENSAS-2017/phillips_vigilantes_CPS.do
+  sha256: 941390333b160b6c1c1ec137734d66ab6e902e9a0ba0c012199743ddf77bcb05
+  tamano_bytes: 4005
+  formato: do (BINARIO/TEXTO; application/octet-stream)
+  licencia: NO-DECLARADA-EN-ORIGEN (sitio del autor, Google Drive)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo phillips_vigilantes_CPS.do.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_phillips2017_cps_apendice_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · documentación
+  url_origen: https://drive.google.com/uc?export=download&id=0B5mQMOVtNgQSdUhNeWZPd25Mc0k
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PHILLIPS-AUTODEFENSAS-2017/phillipsvigilantesCPSappendix.pdf
+  sha256: 1ce7370e6fb978c6056be213dede761a91098370afb2bde4b7439c1d4eb2db40
+  tamano_bytes: 1259250
+  formato: pdf (PDF-OK(%%EOF); application/octet-stream)
+  licencia: NO-DECLARADA-EN-ORIGEN (sitio del autor, Google Drive)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo phillipsvigilantesCPSappendix.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_delao2013_ajps_replicacion_zip
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · Progresa y conducta
+    electoral
+  url_origen: https://campuspress.yale.edu/anadelao/files/2010/11/Replication-files.zip
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/DELAO-AJPS2013/Replication-files.zip
+  sha256: 06c323226e4ea28ee8ef91a1d83e533f12c66af6e51c33f38d166fab1a2209c5
+  tamano_bytes: 28691
+  formato: zip (ZIP-OK(3 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (sitio de la autora, Yale CampusPress)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(3 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 ZIP-OK(3 miembros).
+    Archivo Replication-files.zip.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_delao2013_ajps_si_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · documentación
+  url_origen: https://campuspress.yale.edu/anadelao/files/2010/11/DeLaO_AJPS_SI2013.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/DELAO-AJPS2013/DeLaO_AJPS_SI2013.pdf
+  sha256: 36470f08af35ff56d164c39731e3c5c4ce0d93ee82c8b1b45219792c6592d332
+  tamano_bytes: 143556
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (sitio de la autora)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo DeLaO_AJPS_SI2013.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_imai2020_replica_figures_tar
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · archivos que faltaban
+    en el corpus
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330733
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/IMAI-KING-VELASCO-2020/figures.tar
+  sha256: 66883770511d2d59ce825fa13893ae0b2b0d2660c262ebae78b7c744cfccfb71
+  tamano_bytes: 28160
+  formato: tar (BINARIO/TEXTO; application/x-tar)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo figures.tar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_imai2020_replica_replicate_tar
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · archivos que faltaban
+    en el corpus
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330736
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/IMAI-KING-VELASCO-2020/replicate.tar
+  sha256: 30e8ec6efb638ba7e6c3ac5806d842b153f7d07787118ee2bafea820808dbb59
+  tamano_bytes: 11264
+  formato: tar (BINARIO/TEXTO; application/x-tar)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo replicate.tar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_imai2020_replica_tables_tar
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · plantilla de diseño para M14 · archivos que faltaban
+    en el corpus
+  url_origen: https://dataverse.harvard.edu/api/access/datafile/3330738
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/IMAI-KING-VELASCO-2020/tables.tar
+  sha256: ecac9783eb91f951d74da44076575d809f89ea658b162df30897d7542f979e3d
+  tamano_bytes: 8704
+  formato: tar (BINARIO/TEXTO; application/x-tar)
+  licencia: uso público; descarga directa sin registro ni clickwrap; términos del propietario
+    no leídos por este agente
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo tables.tar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_estudios_efectivo_2017_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre efectivo y
+    billetes (el estudio CoDi de Tag Research es la solicitud (a))
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/estudios-e-indicadores/%7B84C66232-7D0C-EC3B-2FD0-38642505DCD4%7D.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_efectivo_2017.pdf
+  sha256: d795e2b7171144d080e08b15b14f80ac4fd3d4f5ae711c1b410ce3620c99cedc
+  tamano_bytes: 4154109
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_efectivo_2017.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_ciesas_nueva_serie_billetes_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre billetes
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/d/%7B5998C959-039B-5123-51EF-A0B091A2AD96%7D.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_ciesas_nueva_serie_billetes_percepcion.pdf
+  sha256: 93570e71dd2bd0e5889d81dfcbbfcf69dd8cfaf354f822c0e22152af4458ecc6
+  tamano_bytes: 3083366
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_ciesas_nueva_serie_billetes_percepcion.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_estudios_efectivo_2018_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre efectivo y
+    billetes (el estudio CoDi de Tag Research es la solicitud (a))
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/estudios-e-indicadores/%7BE78EA1C4-B511-2E4D-2935-5DA0EA60AC0F%7D.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_efectivo_2018.pdf
+  sha256: 367386b90af3127ba42c0300eb53aece51cf0c7aa2dd437143c0e0d9588c2d71
+  tamano_bytes: 11454225
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_efectivo_2018.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_estudios_efectivo_2014_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre efectivo y
+    billetes (el estudio CoDi de Tag Research es la solicitud (a))
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/estudios-e-indicadores/%7BD71EA232-7DA2-E11C-AC28-15687869E4BD%7D.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_efectivo_2014.pdf
+  sha256: 79b32d0d565afe5fa7102b7c44c68760e06b3fadb45b63e20e3f1f5a656c7a6a
+  tamano_bytes: 8737501
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_efectivo_2014.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_profeco_qqp_diccionario_csv
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · proxy abierto para M09 · documentación
+  url_origen: https://datos.profeco.gob.mx/datos_abiertos/file.php?t=2de3505b2d37e7db72557a09262d95c7
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PROFECO-QQP/QQP_diccionario_dataset.csv
+  sha256: 40aa79a823dfe7a154661fee340853e99bd2f6f462c81c31c1f3dc97ebc330db
+  tamano_bytes: 1484
+  formato: csv (BINARIO/TEXTO; application/csv)
+  licencia: NO-DECLARADA-EN-ORIGEN (el archivo de metadatos no trae campo de licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo QQP_diccionario_dataset.csv.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_profeco_qqp_metadatos_csv
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · proxy abierto para M09 · documentación
+  url_origen: https://datos.profeco.gob.mx/datos_abiertos/file.php?t=42ed7dad4da507b9d536d9b737e7912d
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PROFECO-QQP/QQP_metadatos_dataset.csv
+  sha256: 798a1192ce50ac93e464a3975615d3aa1171303cc178e97ed60a7e97757849f1
+  tamano_bytes: 877
+  formato: csv (BINARIO/TEXTO; application/csv)
+  licencia: NO-DECLARADA-EN-ORIGEN (el archivo de metadatos no trae campo de licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO. Archivo QQP_metadatos_dataset.csv.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_profeco_qqp_2024_rar
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · proxy abierto para M09 · precios al menudeo por
+    establecimiento
+  url_origen: https://datos.profeco.gob.mx/datos_abiertos/file.php?t=2de3505b2d37e7db72557a09262d95c5
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PROFECO-QQP/QQP_2024.rar
+  sha256: 740e1498e9d7fae77a9b4d8c560e5c1feb61308e23721ecad64d981a745e2523
+  tamano_bytes: 96058666
+  formato: rar (BINARIO/TEXTO; application/x-rar)
+  licencia: NO-DECLARADA-EN-ORIGEN (el archivo de metadatos no trae campo de licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO · AUDITORÍA:
+    tar.exe -tvf lista 25 miembros, rc=0 → RAR-OK(25 miembros). Archivo QQP_2024.rar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_profeco_qqp_2025_rar
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · proxy abierto para M09 · precios al menudeo por
+    establecimiento
+  url_origen: https://datos.profeco.gob.mx/datos_abiertos/file.php?t=b9540b181657c2bc7735892091e81f96
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PROFECO-QQP/QQP_2025.rar
+  sha256: 41ca4cd962e696f9f19cca598566d11ce60b200e37b5a5ef46c3b6a1ae58dc59
+  tamano_bytes: 85141166
+  formato: rar (BINARIO/TEXTO; application/x-rar)
+  licencia: NO-DECLARADA-EN-ORIGEN (el archivo de metadatos no trae campo de licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    BINARIO/TEXTO; no abierto (sólo sha, tamaño y envoltura). A.7 BINARIO/TEXTO · AUDITORÍA:
+    tar.exe -tvf lista 25 miembros, rc=0 → RAR-OK(25 miembros). Archivo QQP_2025.rar.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_profeco_qqp_2026_zip
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · proxy abierto para M09 · precios al menudeo por
+    establecimiento
+  url_origen: https://datos.profeco.gob.mx/datos_abiertos/file.php?t=9d62040eae6dcc63e36b8ac821427647
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PROFECO-QQP/QQP_2026.zip
+  sha256: 172bd1a44c17ac35da36d8584bca710b4b85c100f861c5788fa291a6109a15a5
+  tamano_bytes: 195609305
+  formato: zip (ZIP-OK(15 miembros); application/zip)
+  licencia: NO-DECLARADA-EN-ORIGEN (el archivo de metadatos no trae campo de licencia)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    ZIP-OK(15 miembros); no abierto (sólo sha, tamaño y envoltura). A.7 ZIP-OK(15 miembros).
+    Archivo QQP_2026.zip.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_phillips2017_cps_articulo_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · conciliación del conteo de municipios (76 vs «más
+    de 70»)
+  url_origen: https://drive.google.com/uc?export=download&id=0B5mQMOVtNgQSWkZySE9manpBMnM
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/PHILLIPS-AUTODEFENSAS-2017/phillips_vigilantes_CPS_paper_sitio_autor.pdf
+  sha256: 5a2ac00908d25f9f3cb53f0f3891a9e365be6a5f6980924651e39a8e12fcd243
+  tamano_bytes: 470972
+  formato: pdf (PDF-OK(%%EOF); application/octet-stream)
+  licencia: © The Author(s) 2016, SAGE; copia alojada por el autor en su sitio; NO-DECLARADA-EN-ORIGEN
+    para reuso
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo phillips_vigilantes_CPS_paper_sitio_autor.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_jems47_6_ley_remesas_vigilantismo_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · JEMS 47(6) · verificar replicación (documentación)
+  url_origen: http://eprints.lse.ac.uk/101114/3/Family_remittances_and_vigilantism.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/JEMS-47-6/ley_ibarra_meseguer_2021_family_remittances_vigilantism_lse.pdf
+  sha256: 81e019303ae3b51ddc819eb05a533c4039be69e5eaa8ba12c88a536f30981837
+  tamano_bytes: 806626
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (repositorio LSE Research Online)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo ley_ibarra_meseguer_2021_family_remittances_vigilantism_lse.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_estudios_efectivo_2023_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre efectivo y
+    billetes (el estudio CoDi de Tag Research es la solicitud (a))
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/estudios-e-indicadores/%7BD3D520C4-F5B8-D842-B6E9-C9F7E444BE12%7D.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_efectivo_D3D520C4.pdf
+  sha256: 05f6cb56c261b69fc248e4a65b609e5ac90764809e21c80bdd52618b7f10b3cb
+  tamano_bytes: 7200081
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_efectivo_D3D520C4.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_banxico_estudios_efectivo_2015_pdf
+  usado_para: GEN2-OBTENCION-EXTERNA-1 P3 · estudios públicos de Banxico sobre efectivo y
+    billetes (el estudio CoDi de Tag Research es la solicitud (a))
+  url_origen: https://www.banxico.org.mx/billetes-y-monedas/estudios-e-indicadores/%7B8D9D6133-F6FE-FC0F-F822-566B68179907%7D.pdf
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude (Sonnet, lote P3, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P3/BANXICO-EFECTIVO/banxico_efectivo_8D9D6133.pdf
+  sha256: 00ffde2b765b80080146e53705b0ca5eb74f1bb816f5b7f8f33fe0557c759093
+  tamano_bytes: 2690198
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P3. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). A.7 PDF-OK(%%EOF). Archivo banxico_efectivo_8D9D6133.pdf.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
+
+- id: oe1_p4_lgtaip_dof_2025_03_20_pdf
+  usado_para: 'GEN2-OBTENCION-EXTERNA-1 P4 · evidencia de vía: autoridades garantes (art.
+    3-V), plazo de respuesta (art. 134), recurso (art. 144)'
+  url_origen: https://www.diputados.gob.mx/LeyesBiblio/pdf/LGTAIP.pdf
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente Claude (Sonnet, lote P4, supervisado por Opus 5.5) en CAJA, curl
+    directo (forense/analisis/obtencion-externa-1/baja.py)
+  archivo: obtencion-externa-1/P4/LGTAIP_DOF_2025-03-20.pdf
+  sha256: e81e23876bd08da81cb8392af7054f6187ad043ca8f965777b455f9d12554e8b
+  tamano_bytes: 749599
+  formato: pdf (PDF-OK(%%EOF); application/pdf)
+  licencia: NO-DECLARADA-EN-ORIGEN (texto legislativo; LFDA art. 14-VIII lo excluye de protección,
+    no verificado en la página)
+  nota: 'GEN2-OBTENCION-EXTERNA-1 P4. A.7: dos descargas con sha256 crudo idéntico; estructura
+    PDF-OK(%%EOF); no abierto (sólo sha, tamaño y envoltura). «Nueva Ley publicada en el Diario
+    Oficial de la Federación el 20 de marzo de 2025»; líneas leídas con pdftotext.'
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+  raiz: data_raw
