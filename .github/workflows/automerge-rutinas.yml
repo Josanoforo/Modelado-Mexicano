@@ -6,9 +6,16 @@ name: Auto-merge de rutinas
 #      commit del PR empieza por `[deriva]`;
 #   2. el workflow "Verificación del corpus" (job `suite`, check.py --baseline)
 #      terminó en éxito sobre ese mismo SHA;
-#   3. el diff del PR no toca `data/corrida0/CALC-*` ni `forense/prereg-caja/`
-#      (guardia por diff: un prefijo de rama correcto no basta si el contenido
-#      no lo es — lo que mide lo fusiona mesa, nunca esta rutina);
+#   3. el diff del PR no toca `forense/prereg-caja/`, y si NO es de clase
+#      `[deriva]` tampoco toca `data/corrida0/CALC-*` (guardia por diff: un
+#      prefijo de rama correcto no basta si el contenido no lo es — lo que
+#      mide a mano lo fusiona mesa, nunca esta rutina). Un `[deriva]` SÍ toca
+#      `CALC-*` por definición (es su única salida: sella y registra CALC ya
+#      producidos por otros actos) — corregido 28/sep/2026 (hallazgo: la
+#      guardia original bloqueaba el canal [deriva] entero desde el 23/sep,
+#      pese a que la condición 1 ya lo trata como rutina de confianza; cero
+#      `[deriva]` se fusionó en 5 días, ver forense/hallazgos.md);
+#      `forense/prereg-caja/` sigue vedado siempre, sin excepción de clase.
 #   4. el PR sigue abierto y mergeable en el momento de fusionar.
 # Cualquier PR que no cumpla las cuatro sigue exigiendo merge humano. Sin
 # actions de marketplace (mismo criterio que verify.yml): solo curl+jq contra
@@ -71,16 +78,18 @@ jobs:
           msg_commit="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
             "https://api.github.com/repos/${REPO}/commits/${SHA}" | jq -r '.commit.message' | head -1)"
           es_rutina="no"
+          origen=""
           case "$rama" in
-            claude/encola-*|acto/gen2-tramite-*) es_rutina="si" ;;
+            claude/encola-*|acto/gen2-tramite-*) es_rutina="si"; origen="rama" ;;
           esac
           case "$msg_commit" in
-            "[deriva]"*) es_rutina="si" ;;
+            "[deriva]"*) es_rutina="si"; origen="deriva" ;;
           esac
           echo "es_rutina=$es_rutina" >> "$GITHUB_OUTPUT"
-          echo "clase: rama=$rama commit=[$msg_commit] es_rutina=$es_rutina"
+          echo "origen=$origen" >> "$GITHUB_OUTPUT"
+          echo "clase: rama=$rama commit=[$msg_commit] es_rutina=$es_rutina origen=$origen"
 
-      - name: Condición 3 — guardia por diff (nunca CALC-* ni prereg-caja/, aunque el prefijo diga rutina)
+      - name: Condición 3 — guardia por diff (prereg-caja/ siempre vedado; CALC-* vedado salvo clase deriva)
         id: guardia
         if: steps.pr.outputs.numero != '' && steps.clase.outputs.es_rutina == 'si'
         run: |
@@ -96,19 +105,27 @@ jobs:
             todos="$todos"$'\n'"$(echo "$pagina" | jq -r '.[].filename')"
             [ "$n" -lt 100 ] && break
           done
-          toca_vedado="no"
+          toca_calc="no"
+          toca_prereg="no"
           while IFS= read -r f; do
             [ -z "$f" ] && continue
             case "$f" in
-              data/corrida0/CALC-*|forense/prereg-caja/*) toca_vedado="si" ;;
+              data/corrida0/CALC-*) toca_calc="si" ;;
+            esac
+            case "$f" in
+              forense/prereg-caja/*) toca_prereg="si" ;;
             esac
           done <<< "$todos"
-          echo "toca_vedado=$toca_vedado" >> "$GITHUB_OUTPUT"
-          echo "guardia: toca_vedado=$toca_vedado"
+          echo "toca_calc=$toca_calc" >> "$GITHUB_OUTPUT"
+          echo "toca_prereg=$toca_prereg" >> "$GITHUB_OUTPUT"
+          echo "guardia: toca_calc=$toca_calc toca_prereg=$toca_prereg"
 
       - name: Condición 4 + fusiona (squash) si las cuatro se cumplen
         id: fusiona
-        if: steps.pr.outputs.numero != '' && steps.clase.outputs.es_rutina == 'si' && steps.guardia.outputs.toca_vedado == 'no'
+        if: >-
+          steps.pr.outputs.numero != '' && steps.clase.outputs.es_rutina == 'si' &&
+          steps.guardia.outputs.toca_prereg == 'no' &&
+          (steps.guardia.outputs.toca_calc == 'no' || steps.clase.outputs.origen == 'deriva')
         run: |
           set -euo pipefail
           pr="$(curl -sS -H "Authorization: Bearer ${GH_TOKEN}" -H "Accept: application/vnd.github+json" \
