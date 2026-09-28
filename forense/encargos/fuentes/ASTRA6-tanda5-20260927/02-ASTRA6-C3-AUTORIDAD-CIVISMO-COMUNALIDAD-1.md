@@ -180,3 +180,14 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+## NO-CORRIDO / RESERVAS
+
+| Pendiente | Razón | Impacto | Sucesor |
+|---|---|---|---|
+| Recibo técnico independiente y decisión sobre reglas propuestas | DECISIÓN-DE-MESA-PENDIENTE | No se acredita recepción externa ni adopción por el ejecutor | `GEN2-RECIBO-ASTRA-PRODUCTO-N`; `FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01` |
+
+Las olas reservadas permanecieron sin abrir. Ninguna cifra o regla se adoptó por este cierre editorial.
+
+## CONSUMIDO
+
+EJECUTADO en el worktree `/home/pc0/mm-astra6-c3-autoridad-civismo-comunalidad-1`, raíz de archivo 0-bis `3a1f0be1`, producto `375d671d`, PR [#1240](https://github.com/Josanoforo/Modelado-Mexicano/pull/1240). Corte de entrada `7748208614570a50a97c1ba830aee72a972185f9`; integración posterior de `origin/main` `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5` sin conflicto en producto. Tres reports, tablas, índice local, hoja y recibo solicitado; no fusión ni autoaprobación. La firma de misión de Jonás sigue asentada en `forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md` §2 y no se duplica. El SHA-256 crudo del cuerpo recibido `8d84587787d00ba3fbeb479dcc749c6e83e47386f6afffa47ed3bb3bbe100124` permanece en el manifiesto de tanda5 y los bytes iniciales de este archivo son los de #1237.

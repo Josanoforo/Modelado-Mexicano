@@ -9,8 +9,10 @@ import subprocess
 HERE = Path(__file__).resolve().parent
 ROOT = HERE.parents[3]
 PIECES = ("autoridad", "civismo", "comunalidad")
-ENCARGO = Path("forense/encargos/2026-09-27-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1.md")
-CORTE = "3a1f0be1"
+ENCARGO = Path("forense/encargos/fuentes/ASTRA6-tanda5-20260927/02-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1.md")
+CORTE = "f0608c7b"
+ARCHIVO_INICIAL = "forense/encargos/2026-09-27-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1.md"
+MANIFIESTO = Path("forense/encargos/fuentes/ASTRA6-tanda5-20260927/ASTRA6-tanda5-SHA256SUMS.txt")
 ESTADOS = ("CONFIRMA", "MATIZA", "ROMPE", "SIN-CIFRA")
 
 
@@ -30,10 +32,14 @@ def preparar():
     original = subprocess.check_output(["git", "show", f"{CORTE}:{ENCARGO}"], cwd=ROOT)
     recibido = (ROOT / ENCARGO).read_bytes()
     if not recibido.startswith(original):
-        raise SystemExit("ERROR: cuerpo archivado difiere del commit 0-bis")
-    sidecar = (ROOT / (str(ENCARGO) + ".cuerpo.sha256")).read_text().split()[0]
-    if hashlib.sha256(original).hexdigest() != sidecar:
-        raise SystemExit("ERROR: SHA del cuerpo recibido")
+        raise SystemExit("ERROR: cuerpo canónico de tanda5 alterado")
+    if subprocess.check_output(["git", "show", f"3a1f0be1:{ARCHIVO_INICIAL}"], cwd=ROOT) != original:
+        raise SystemExit("ERROR: la fuente del 0-bis propio difiere del archivo canónico")
+    digest = hashlib.sha256(original).hexdigest()
+    if digest != "8d84587787d00ba3fbeb479dcc749c6e83e47386f6afffa47ed3bb3bbe100124":
+        raise SystemExit("ERROR: SHA crudo del cuerpo recibido")
+    if f"{digest}  {ENCARGO.name}" not in (ROOT / MANIFIESTO).read_text():
+        raise SystemExit("ERROR: falta SHA del encargo en manifiesto de tanda5")
 
     summaries = {}
     lines = [
