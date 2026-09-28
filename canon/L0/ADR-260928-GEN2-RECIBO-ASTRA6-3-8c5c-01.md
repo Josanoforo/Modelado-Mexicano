@@ -1,0 +1,3 @@
+# ADR-260928-GEN2-RECIBO-ASTRA6-3-8c5c-01
+
+ACTO GEN2-RECIBO-ASTRA6-3: recibo de diez PR de Codex. Siete post-merge (#1221, #1222, #1226, #1229, #1232, #1237, #1243) y tres previstos pre-merge; #1240 fusionó a mitad y pasó a post-merge, #1241 (86d9ece7) y #1242 (58bd0f71) quedaron pre-merge. Veredictos: 3 RECIBIDO-POST-MERGE, 5 RECIBIDO-POST-MERGE-CON-NC, 2 RECIBIDO-CON-NC, 0 PROPONER-REVERTIR. Hoja para mesa con 5 FP nuevas dictaminadas (1 TAL-CUAL, 4 CON-CAMBIO) y 3 decisiones sin id. 13 NC. #1246, posterior al 0-bis, va a RECIBO-ASTRA6-4. Cero mediciones y adopciones. Ver `forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-3/nota-principal-recibo-astra6-3.md`.
