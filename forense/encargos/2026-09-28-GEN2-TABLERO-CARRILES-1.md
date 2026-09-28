@@ -51,3 +51,7 @@ No mide, no adopta, no descarga, no cierra stoppers (los muestra con su sucesor)
 | qué (verbatim del encargo) | por qué | impacto | sucesor |
 |---|---|---|---|
 | «el canal lo publica (un `[deriva]` con el tablero nuevo, run_id en la nota)» | DIFERIDO-A: primer run del job derivados tras el merge de mesa (el job corre en el push a `main`; antes del merge no hay run que citar) | el tablero regenera idéntico en la rama (`--verifica` CASA) pero ningún `[deriva]` lo ha publicado todavía | GEN2-TABLERO-CARRILES-2 o el `/tramite` siguiente asienta el run_id · `NC-260928-GEN2-TABLERO-CARRILES-1-e2eb-01` |
+
+## CONSUMIDO
+
+Consumido por el PR #1300 (rama `claude/new-session-9hwjgo`), ACTO GEN2-TABLERO-CARRILES-1, ADR `ADR-260928-GEN2-TABLERO-CARRILES-1-e2eb-01`, nota `forense/notas/2026-09-28-GEN2-TABLERO-CARRILES-1-cierre.md`. Sin adendas.
