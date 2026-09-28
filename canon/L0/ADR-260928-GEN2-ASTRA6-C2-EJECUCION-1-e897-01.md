@@ -1,0 +1,3 @@
+# ADR-260928-GEN2-ASTRA6-C2-EJECUCION-1-e897-01
+
+28/sep/2026 · `ACTO GEN2-ASTRA6-C2-EJECUCION-1` (CAJA, 0-bis `e897d3df`, base `16ba3d02`). Se ejecutan las firmas de forma B4, E3-(1) y E4-(1) de C2 como enmiendas antes del COMMIT-3 (ENIF: control; ENCIG: identidad; ENVIPE: singleton = marco completo). FP `f2e5-06/-14/-15` pasan a FIRMADA. P2/P3 ya estaban sellados el 26/09: YA-HECHO, verificado, sin contendiente nuevo. La oferta de E4 va a ENIF ahorro (mesa): `CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001`, RETROSPECTIVA, dice que entre los adultos sin cuenta (0.3446) la razón es de OFERTA en 0.1037 [0.0917, 0.1162]. Expediente `familias-2027-estado-v1_1.tsv`: 5 LISTA (gate DATO-2027-AUSENTE), PAGO-DIGITAL suspendida, ENOE y ENSU NO-LANZAR-TODAVIA. celdas_validadas Δ0.

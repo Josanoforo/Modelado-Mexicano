@@ -677,7 +677,10 @@ def main() -> None:
                          "nota": "acto fusionado; FP de adopción no FIRMADA al cerrar: no entra (encargo §2)"})
 
     # ── oferta al lado de cada marginal de mercado (DINERO)
-    oferta_olas = sorted(d.name[-9:-5] for d in CORRIDA.glob("CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001"))
+    # Sólo la serie que describe el texto de abajo (DIN-OFERTA-EXCLUSION-ENIF-spec-v1_0): un CALC nuevo con el
+    # mismo prefijo no reescribe un catálogo publicado (GEN2-ASTRA6-C2-EJECUCION-1, oferta de cuenta ENIF 2024).
+    oferta_olas = sorted(d.name[-9:-5] for d in CORRIDA.glob("CALC-DIN-OFERTA-EXCLUSION-ENIF*-0001")
+                         if "DIN-OFERTA-EXCLUSION-ENIF-spec-v1_0.md" in (d / "spec.yaml").read_text())
     for r in rows.values():
         if r["dominio"] == "DINERO":
             r["oferta_exclusion"] = (

@@ -43,6 +43,7 @@ tools/construye_corpus_f5_v2.py	Construye el manifiesto del corpus F5 v2.0 sin m
 tools/consulta.py	`tools/consulta.py` -- una fila del repo en UNA linea, sin abrir la vista.
 tools/consulta_gen2.py	Consulta operativa del emisor GEN2 con contrato explícito.
 tools/control_motral2015_valoracion.py	Control independiente de tres hechos de CALC-MOTRAL2015-VALORACION-SS-0001.
+tools/corpus_loader.py	`tools/corpus_loader.py` -- caché columnar (Parquet) del corpus y su cargador único.
 tools/corrida0.py	`corrida0` -- CLI del registro GEN2 (PLAN-FINAL-GEN2 v2.0, B-1).
 tools/crosswalk_tablas_fd.py	Publica el crosswalk de tablas entre el payload y su descriptor (FD).
 tools/delta_comparacion.py	Comparacion explicita y reproducible entre dos valores identificados.

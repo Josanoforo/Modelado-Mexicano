@@ -29,19 +29,19 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-28 · 150 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-28 · 155 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02 · Gate CONTEXTO-NUEVO-ACREDITADO del lote 3 · 28/09
+- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01 · Gate CONTRATO-FIRMADO del lote 3 · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-28 · Un acto de tubería (posible pieza de GEN2-TUBERIA-CI-TIEMPO-2, que ya… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-27 · Dirección da de alta el encargo GEN2-ENCIG-CONFIANZA-PISOS-1 (o lo ag… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-25 · Un acto de tubería reescribe tools/estado_comun.py::lee_tablero para … · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-24 · Un acto de tubería (sucesor de GEN2-TUBERIA-PARSER-FP-1) amplía RE_FP… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23 · Con la opción firmada, un acto de canal (sucesor natural de GEN2-TUBE… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-19 · Designar sesión/acto dueño de forense/ejemplos/GEN2-*; ese acto re-se… · 28/09
+- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-15 · MISION-ASTRA-6 C2 fija la unidad de remuestreo en spec/código de ENVI… · 28/09
+- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14 · MISION-ASTRA-6 C2 (la siguiente sesión de C2) integra la envoltura de… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-11 · La herramienta de curación del manifiesto corrige las 24 entradas `en… · 28/09
 - FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-09 · Si mesa firma (a): cerrar NC-...-1269-02 citando el historial de Acti… · 28/09
-- FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02 · CATALOGO-V1-3-1 · 27/09
-- FP-260927-GEN2-RECIBO-ASTRA6-1-beee-01 · Frase del informe v1.5; rótulo de ceguera del lote 1 · 27/09
-- FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 · adopción de pisos ENSU en el catálogo · 26/09
-- FP-260926-GEN2-RECIBO-ASTRA6-N-996b-01 · merge de #1170/#1172/#1173/#1174 (R(a) FIRMAS-15); v1.4 de specs FAMI… · 26/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa

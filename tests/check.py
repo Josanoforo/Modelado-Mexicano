@@ -3032,6 +3032,18 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # GEN2-RELEVO-TRAMITE-CAJA-1 (28/sep/2026): encargo verbatim (A.3) cita `M05` (momento de milpa/catalogo-momentos-v0_1.tsv,
     # «ENVIPE 2025 árbitro de M05», §1 Reservas); no lo mide (cierra por PARO (f)).
     "forense/encargos/2026-09-28-GEN2-RELEVO-TRAMITE-CAJA-1.md",
+    # GEN2-ASTRA6-C2-EJECUCION-1 (28/sep/2026): `B4`, `E3` y `E4` son letras de la hoja NC-DECISIONES-1
+    # (FP …f2e5-06/-14/-15, asentadas FIRMADA por este acto); encargo verbatim (A.3), spec congelada del
+    # CALC de oferta (no se edita), enmiendas, expediente v1.1, hoja, nota y fragmento L0.
+    "forense/encargos/2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1.md",
+    "canon/L0/ADR-260928-GEN2-ASTRA6-C2-EJECUCION-1-e897-01.md",
+    "forense/analisis/familias-2027/astra6-enif/DIN-OFERTA-EXCLUSION-ENIF2024-spec-v1_0.md",
+    "forense/analisis/familias-2027/astra6-enif/enmienda-firmas-c2-v1_0.md",
+    "forense/analisis/familias-2027/astra6-encig/enmienda-firmas-c2-encig-v1_0.md",
+    "forense/analisis/familias-2027/astra6-envipe/enmienda-firmas-c2-envipe-v1_0.md",
+    "forense/analisis/familias-2027/EXPEDIENTE-v1_1.md",
+    "forense/analisis/familias-2027/hoja-c2-para-mesa-v1_1.md",
+    "forense/notas/2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1-cierre.md",
     # GEN2-TRAMITE-HOJA-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # y `A1`…`I2`/`E2` son letras de la hoja NC-DECISIONES-1 (FP …f2e5-NN); encargo y adenda verbatim (A.3) y la hoja que los cita.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
