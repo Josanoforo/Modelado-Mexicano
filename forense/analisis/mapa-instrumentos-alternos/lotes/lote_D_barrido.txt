@@ -1,0 +1,43 @@
+# Lote D - barrido de corpus con tools/busca_reactivos.py (--tablas todas --limite 60), 2026-09-27
+# Universo por corrida: 314256 identidades revisadas, 113780 con texto (fijo en todas las corridas de este barrido).
+
+## M09 (marca propia / precio bajo / sustituto)
+$ --palabra marca            -> 254 aciertos. Top3: ext:51841 envipe2022 TPer_Vic1.dta AP4_3_2 "vivir en ... MUNICIPIO" (ruido, "marca" no aparece: falso positivo por plegado); v1_2:103492 enif2024 P11_2_3 "le han marcado a su telefono..." (ruido, verbo marcar); v1_2:16045 censo2020 MUN "Municipio" (ruido). Ningun candidato semantico.
+$ --palabra "marca propia"   -> 0 aciertos.
+$ --palabra "precio mas bajo" -> 0 aciertos.
+$ --palabra sustituto        -> 0 aciertos.
+=> M09: NO-ENCONTRADO en todo el corpus revisado (314256 identidades, 113780 con texto).
+
+## M10/M21 (voz en el trabajo / retroalimentacion)
+$ --palabra jefe             -> 194 aciertos. Top3: ext:48013 ennvih2009 c_ls.dta ls05_1 "QUE PARENTESCO TIENE CON JEFE HOGAR" (jefe de hogar, no jefe laboral); v1_2:131709 envipe2014 TSDem PAREN "Jefe(a)" (parentesco hogar); v1_2:16057 censo2020 T_OC_DIR_J_M "trabajan...como funcionarios, directores o jefes" (conteo de personal, no voz). Ningun candidato de voz/desacuerdo laboral.
+$ --palabra supervisor       -> 14 aciertos. Top3: descargas_mx_v1_1:36465 "Supervisor code" (codigo de campo, metodologico); ext:21586 endireh2016 p7_15_4 "Le conto lo ocurrido a supervisor(a) o gerente de su trabajo?" (denuncia de un incidente, no voz/desacuerdo rutinaria); fd_ext:5860 "RFC del supervisor" (dato administrativo). Ningun candidato semantico.
+$ --palabra desacuerdo       -> 288 aciertos, revisados los primeros 60: ninguno con "trabajo/jefe/patron/laboral" en el texto.
+$ --palabra "queja en el trabajo"      -> 0 aciertos.
+$ --palabra retroalimentacion          -> 0 aciertos.
+$ --palabra "reconocimiento en publico" -> 0 aciertos.
+=> M10/M21: NO-ENCONTRADO en el corpus revisado; el hallazgo mas cercano (ENDIREH 2016 p7_15_4) es denuncia de un incidente a un superior, no voz/desacuerdo/reporte de errores rutinario.
+
+## M11 (patron / trato del jefe / lealtad)
+$ --palabra patron   -> 79 aciertos (encuci2020_fd_pdf ya reviso "patron(a) o empleador(a)" como categoria de posicion en el trabajo, sin item de trato/liderazgo). Top3 del barrido: filas de tipo "patron" como categoria ocupacional (POSICION EN EL TRABAJO) en varias encuestas de empleo; ninguna sobre trato/liderazgo/lealtad.
+$ --palabra "trato del jefe" -> 0 aciertos.
+$ --palabra lealtad          -> 0 aciertos.
+=> M11: NO-ENCONTRADO.
+
+## M12 (CoDi/DiMo/SPEI/transferencia electronica/pago con celular) fuera de ENIF
+$ --palabra CoDi (regex \bCoDi\b) -> 19 aciertos exactos (filtrando el falso positivo de "codigo"). Top3 fuera de ENIF: v1_2:97672 endutih2023 tic_2023_usuarios.DBF P7_32_6 "7.32 Su pago por Internet ha sido con... mediante sistema de Cobro Digital (CoDi)?"; v1_2:98150 endutih2024 P7_32_6 (misma pregunta, 2024); v1_2:98644 endutih2025 P7_32_6 (misma pregunta, 2025). Tambien enif2021/2024 P7_2/P7_3 (reservado).
+$ --palabra DiMo -> 6 aciertos, todos enif2024 (reservado): P7_2_2 "Conoce o ha escuchado de Dinero Movil o DiMo?"; P7_3_2 "Ha utilizado Dinero Movil o DiMo para realizar sus pagos?". Sin hallazgo fuera de ENIF.
+$ --palabra SPEI -> 0 aciertos.
+$ --palabra "transferencia electronica" -> 26 aciertos, todos enif2015/2021/2024 (reservado). Ninguno fuera de ENIF.
+$ --palabra "pago con celular" -> 0 aciertos.
+=> M12 fuera de ENIF: candidato fuerte = ENDUTIH 2023/2024/2025 P7_32_6 (uso de CoDi como metodo de pago por internet). No se encontro motivo de no-uso (desconfianza/SAT/friccion) en ningun instrumento del barrido.
+
+## M20 (rechazo indirecto codificado x asimetria de poder)
+$ --palabra rechazo    -> 1 acierto: ext:57263 Latinobarometro_2024 TOTRECH "Numero total de rechazos" (variable metodologica de tasa de rechazo de encuesta, no del constructo).
+$ --palabra "decir que no" -> 0 aciertos.
+$ --palabra negarse    -> 0 aciertos.
+=> M20: NO-ENCONTRADO en todo el corpus (314256 identidades revisadas). Unico hallazgo es ruido metodologico.
+
+## tanda / caja de ahorro fuera de ENSAFI/ENIF (M18/M23)
+$ --palabra tanda -> 127 aciertos. Top3 fuera de ENSAFI/ENIF: ext:34815 ennvih2002 iiib_cr.dta cr04 "PARTICIPADO TANDA" (etiqueta de variable Stata, sin texto de pregunta completo); ext:34816-34821 mismos archivo: "ID/MONTO APORTADO/RECIBIDO/RECIBIRA TANDA" (montos, no "con quien"); mismo patron se repite en ennvih2005 (cr04 etc.) y ennvih2009. Ninguna etiqueta muestra desglose por "con quien" (familiares/amigos/desconocidos) ni numero de ciclos ni incumplimiento; son solo etiquetas de variable Stata, no el cuestionario completo (ENNVIH no esta en S/txt, no se pudo leer el texto verbatim de la pregunta).
+$ --palabra "caja de ahorro" -> 85 aciertos. Top3 fuera de ENSAFI/ENIF: v1_2:99209 enfih2019 TMODULO P9_1_1 "9.1 Usted tiene dinero ahorrado en una caja de ahorro de conocidos o del trabajo?"; v1_2:99453 enfih2019 TVIVIENDA P4_43_1 "4.43 A las personas de este hogar les prestaron...en una caja de ahorro del trabajo o de conocidos?" (es prestamo, no ahorro); ext:33071 ennvih2002 ii_crh.dta crh01_1d "CAJA DE AHORROS GUARDA AHORROS MH" (etiqueta Stata).
+=> Candidatos utiles fuera de ENSAFI/ENIF: ENFIH 2019 (ahorro/deuda en caja de ahorro de conocidos o del trabajo) y ENNVIH 2002/2005/2009 (participacion en tanda, monto aportado/recibido) -- este ultimo solo a nivel de etiqueta de variable, sin cuestionario extraido para confirmar detalle de "con quien".

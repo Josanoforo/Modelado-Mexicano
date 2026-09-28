@@ -123394,6 +123394,57 @@
   entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
   raiz: data_raw
 
+- id: encrige2020_rnm691_ddi
+  usado_para: 'ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1 (27/sep/2026): XML DDI del RNM (catalogo
+    691) de ENCRIGE 2020 con nombre de variable, etiqueta, texto LITERAL de pregunta (qstnLit)
+    y categorias; documentacion estructural (FD), no respuestas. Sostiene las filas R03/M22
+    de canon/mapa-instrumentos-alternos-v1_0.tsv.'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/metadata/export/691/ddi
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl -sS; control negativo /metadata/export/999999/ddi
+    = 404)
+  archivo: inegi_rnm_ddi/encrige2020_rnm691_ddi.xml
+  sha256: 71e3624b35223017fbe7759b3f0a737d750302f665a5e33aa64d20efd225c783
+  tamano_bytes: 633565
+  formato: xml
+  licencia: Términos de Libre Uso de la Información del INEGI (por url_origen en inegi.org.mx;
+    mismo texto que envipe2025_rnm_ddi); la página del producto no se re-leyó aquí.
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enve2024_rnm1058_ddi
+  usado_para: 'ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1 (27/sep/2026): XML DDI del RNM (catalogo
+    1058) de ENVE 2024 con nombre de variable, etiqueta, texto LITERAL de pregunta (qstnLit)
+    y categorias; documentacion estructural (FD), no respuestas. Sostiene las filas R03/M22
+    de canon/mapa-instrumentos-alternos-v1_0.tsv.'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/metadata/export/1058/ddi
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl -sS; control negativo /metadata/export/999999/ddi
+    = 404)
+  archivo: inegi_rnm_ddi/enve2024_rnm1058_ddi.xml
+  sha256: 235ebd1ea5e33797d2f17a43d655446cd8fcd29fc0e7147dec8c8e2b59ea75d5
+  tamano_bytes: 566482
+  formato: xml
+  licencia: Términos de Libre Uso de la Información del INEGI (por url_origen en inegi.org.mx;
+    mismo texto que envipe2025_rnm_ddi); la página del producto no se re-leyó aquí.
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
+- id: enve2016_rnm227_ddi
+  usado_para: 'ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1 (27/sep/2026): XML DDI del RNM (catalogo
+    227) de ENVE 2016 con nombre de variable, etiqueta, texto LITERAL de pregunta (qstnLit)
+    y categorias; documentacion estructural (FD), no respuestas. Sostiene las filas R03/M22
+    de canon/mapa-instrumentos-alternos-v1_0.tsv.'
+  url_origen: https://www.inegi.org.mx/rnm/index.php/metadata/export/227/ddi
+  fecha_descarga: '2026-09-27'
+  descargado_por: agente, directamente de www.inegi.org.mx (curl -sS; control negativo /metadata/export/999999/ddi
+    = 404)
+  archivo: inegi_rnm_ddi/enve2016_rnm227_ddi.xml
+  sha256: d112827e291fc70799fb22b65c312b15d3bbe902604c26dc7ef55ea69829e00e
+  tamano_bytes: 673081
+  formato: xml
+  licencia: Términos de Libre Uso de la Información del INEGI (por url_origen en inegi.org.mx;
+    mismo texto que envipe2025_rnm_ddi); la página del producto no se re-leyó aquí.
+  entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
+
 - id: oe1_ecrige_cdmx_2019_datos_abiertos_csv
   usado_para: GEN2-OBTENCION-EXTERNA-1 P1 · ECRIGE-CDMX 2019 · conjunto de datos (datos abiertos)
     público de la Encuesta de Calidad Regulatoria e Impacto Gubernamental en Empresas de la
