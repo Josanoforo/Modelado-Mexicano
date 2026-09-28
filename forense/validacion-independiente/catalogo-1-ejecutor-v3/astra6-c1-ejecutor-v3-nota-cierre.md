@@ -8,7 +8,7 @@ LEÍDO: #1221, #1222 y #1229 están fusionados en el corte. Se conservan sin cam
 
 ## Producto
 
-EJECUTADO: contrato v3 fijado en `d3e9fcc2cad70b6ba0757dc9e215d5f87d4231bf` antes de las pruebas finales. Hashes de ese commit y de los artefactos exportados en el recibo. El mapeo v2→v3 conserva cifras, alias y tolerancias y falla si un estado es ambiguo. DENOMINADOR-CERO requiere dominio observado bajo spec suficiente; incertidumbre no identificada conserva el punto útil. Es `PROPUESTO-POR-EJECUTOR` hasta firma material; no reescribe v2.
+EJECUTADO: contrato v3 fijado en `ea302f89` antes de las pruebas finales. Hashes de ese commit y de los artefactos exportados en el recibo. El mapeo v2→v3 conserva cifras, alias y tolerancias y falla si un estado es ambiguo. DENOMINADOR-CERO requiere dominio observado bajo spec suficiente; incertidumbre no identificada conserva el punto útil. Es `PROPUESTO-POR-EJECUTOR` hasta firma material; no reescribe v2.
 
 ## Pruebas y alcance
 

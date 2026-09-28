@@ -2,7 +2,7 @@
 
 ## Identidad
 
-EJECUTADO: corte `7748208614570a50a97c1ba830aee72a972185f9`, worktree `/home/pc0/mm-astra6-c1-ejecutor-v3-1`, rama `codex/astra6-c1-ejecutor-v3-1`. Contrato v3 fijado antes de la prueba final en commit `d3e9fcc2cad70b6ba0757dc9e215d5f87d4231bf` (archivo `CONTRATO-v3.md`, validador `contract.py`). Encargo archivado con SHA-256 de bytes recibidos `5b9ad354e956482d8112d32c56e7325289ca5a85bf340bc9a9ae5c121296207b` y sello canónico `3278bb941a1bcddd7159ad86c87f41722d65fc22914b202a3f19a04d6706421c`. #1221, #1222 y #1229 son antecedentes leídos; sus objetos permanecen intactos.
+EJECUTADO: corte `7748208614570a50a97c1ba830aee72a972185f9`, worktree `/home/pc0/mm-astra6-c1-ejecutor-v3-1`, rama `codex/astra6-c1-ejecutor-v3-1`. Contrato v3 fijado antes de la prueba final en commit `ea302f89` (archivo `CONTRATO-v3.md`, validador `contract.py`). Encargo archivado con SHA-256 de bytes recibidos `5b9ad354e956482d8112d32c56e7325289ca5a85bf340bc9a9ae5c121296207b` y sello canónico `3278bb941a1bcddd7159ad86c87f41722d65fc22914b202a3f19a04d6706421c`. #1221, #1222 y #1229 son antecedentes leídos; sus objetos permanecen intactos.
 
 ## Qué recibe
 
