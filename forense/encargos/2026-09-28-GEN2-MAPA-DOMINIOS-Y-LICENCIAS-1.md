@@ -46,3 +46,7 @@ No mide, no adopta, no descarga microdato, no cambia el semáforo del tablero (l
 - **P2 · «licencia por portal con página de términos sellada … NO-DETERMINABLE con búsqueda citada»** (598 payloads) · NO-VERIFICABLE-AQUÍ — la red del entorno de nube deniega todos los portales (curl `000` en 14 hosts, incluido inegi.org.mx; WebFetch EGRESS_BLOCKED); sin página sellada no se escribe licencia (PARO c), y NO-DETERMINABLE afirmaría «la fuente no tiene términos» cuando lo que hay es «no pude alcanzar la fuente» (§2) · `payloads_sin_licencia` 598 → 598; «licencia vacía = 0» no se cumple · sin NC nueva: se reusa NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01, que sigue ABIERTA con la receta (red permitida o caja + una línea por portal en `aplica_licencias.py`).
 - **P1 · 66 afirmaciones que solo se unen a CALC sellados en disco sin fila en la vista** · reserva, no pieza omitida: rama prevista §5, rotuladas «sellado en disco, no registrado»; línea en `forense/hallazgos.md` · no cuentan como GEN2 existente (E.7) · sucesor: mapa v1.3, tras el registro del canal (`deriva_mapa_v1_2.py --escribe` re-corre tal cual).
 - **«`check.py --baseline` VERDE»** · NO-VERIFICABLE-AQUÍ — la sesión corre `--rapido` (0 FAIL · 467 WARN); la suite completa la juzga el CI del PR (P-A de /acto) · ninguno · CI del PR.
+
+## CONSUMIDO
+
+Ejecutado por PR #1312 (ADR-260928-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1-5024-01): P1 completo (mapa v1.2); P2 parcial (22 grafías; 598 sin licencia por red denegada, NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 sigue abierta); P3 completo.
