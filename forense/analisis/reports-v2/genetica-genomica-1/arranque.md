@@ -6,3 +6,7 @@
 - `python3 tools/entorno.py --arranque`: `ENTORNO-DERIVADO = INDETERMINADO`, sin microdato montado, red permitida y worktree válido. Interpretación declarada: este acto es documental CLI y no requiere CAJA ni abre microdatos. La ausencia de señal NUBE no autoriza a leer una ola; solo se consultan textos públicos, el mapa y material ya sellado permitido.
 - Reserva: no se busca ni abre extracto de ola de encuesta para este lote. La literatura genómica publicada y las normas oficiales se consultan como documentos públicos; cualquier fuente que reproduzca datos de una ola reservada se excluye hasta resolver instrumento, módulo y alcance. Datos genéticos individuales y segmentación de conducta por ascendencia quedan fuera.
 - Perímetro de escritura: dos homónimos `corpus/reports-v2/`, subárbol propio `forense/analisis/reports-v2/genetica-genomica-1/`, encargo archivado y nota de cierre. Cero cambios a CALC, mapa, catálogo, manifiesto, motor o CI.
+
+## Sincronización antes del PR
+
+`origin/main` avanzó de nuevo a `591e8436` (fusiones #1240, #1246 y #1241). La rama propia integró ese commit mediante merge normal, sin conflictos y sin importar objetos de PR aún abiertos como adopciones. Ningún homónimo de genética o genómica fue añadido por esos avances; los hashes de los dos reports propios permanecieron iguales. La comparación de baseline y el gate rápido se ejecutaron antes de ese merge, y el verificador local se repite después.

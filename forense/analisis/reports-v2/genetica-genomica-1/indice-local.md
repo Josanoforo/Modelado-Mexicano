@@ -1,6 +1,6 @@
 # Índice local · genética y genómica v2
 
-**Corte de producto:** `origin/main` `3ac3ab7d32c640d0f0081339f77b4287c9f7bd10`, integrado desde el corte inicial `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5`. Dos reportes completos, cero RESULT genético GEN2, cero celdas y cero adopciones.
+**Corte de producto:** inicial `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5`, redacción con `3ac3ab7d32c640d0f0081339f77b4287c9f7bd10` y sincronización de integración a `591e8436` antes del PR. No apareció homónimo de este lote en esos avances. Dos reportes completos, cero RESULT genético GEN2, cero celdas y cero adopciones.
 
 | Report v2 | Mapa v1 | Adiciones materiales | CONFIRMA | MATIZA | ROMPE | SIN-CIFRA |
 |---|---:|---:|---:|---:|---:|---:|

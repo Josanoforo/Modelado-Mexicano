@@ -29,6 +29,8 @@ git diff --check                                                              �
 
 **LEÍDO / reserva.** El verificador prueba identidad, trazas existentes, enlaces locales y actualidad de tabla/hash; no sustituye la revisión científica del significado de una fuente. No se abrió microdato reservado ni dataset genómico individual. Algunas cifras históricas del v1 y contratos, métodos comerciales o registros institucionales carecieron de fuente primaria recuperable: las afirmaciones se retiraron o acotaron sin convertir ausencia en refutación. La comparación causal universal entre estructura y genética sigue no identificada.
 
+**EJECUTADO / integración.** El commit editorial inicial se creó sobre `3ac3ab7d`. Antes de publicar, se integró `origin/main` `591e8436` por merge sin conflictos. No había homónimos nuevos de estos dos reports; producto y tabla conservan los hashes impresos. Este recibo describe el estado de la rama posterior al merge.
+
 **PROPUESTO-POR-EJECUTOR.** Siete reglas para consideración de mesa en la [hoja](hoja-reglas-propuestas.md), con consumidor, tier y falsador. Recomendación: recibir los reports como revisión editorial con sus límites y conservar reglas en propuesta hasta decisión de contenido. Este documento solicita `GEN2-RECIBO-ASTRA-PRODUCTO-N`; no acredita un recibo independiente ni autorización de fusión.
 
 ## NO-VERIFICADO / sucesor

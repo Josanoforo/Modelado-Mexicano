@@ -8,6 +8,8 @@
 
 **INTERPRETACIÓN-DECLARADA.** El encargo llegó con corte `eda5bb9f`; durante el arranque #1243 se fusionó y `origin/main` pasó a `3ac3ab7d`. El worktree incorporó ese avance antes del cierre; #1240, #1241 y #1242 seguían propuestas. `tools/entorno.py --arranque` devolvió `INDETERMINADO` sin microdato montado; como este acto es documental CLI, se usaron solo reportes, mapa, textos públicos y fuentes oficiales. No se interpretó como permiso de abrir olas.
 
+**EJECUTADO / sincronización de integración.** Antes del PR, `origin/main` avanzó otra vez a `591e8436`: #1240, #1246 y #1241 ya fusionados. Se integró por merge limpio, sin homónimos de este lote ni cambios en las conclusiones y hashes editoriales. El estado anterior de #1240/#1241 queda como observación de arranque, no como estado de cierre.
+
 **EJECUTADO.** El cuerpo del encargo se archivó como archivo nuevo y se selló con `tools/sella_sha256.py --cuerpo`; tres adjuntos embebidos igualaron sus SHA-256 impresos. Su cuerpo anterior a NO-CORRIDO/CONSUMIDO se conserva. `python3 forense/analisis/reports-v2/genetica-genomica-1/verifica.py` informó PASS. `python3 tests/check.py --baseline --parallel | tail -n 30` terminó exit 0 y sin FAIL nuevos frente a baseline; los avisos y defectos heredados fuera del perímetro no se repararon. `git diff --check` sin errores.
 
 ## NO-CORRIDO / límites
