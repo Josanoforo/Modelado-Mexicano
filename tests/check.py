@@ -3040,6 +3040,9 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/prereg-caja/ALT-M19-WVS2018-REPRO-spec-v1_0.md",
     "forense/prereg-caja/ALT-M22-ENVIPE2025-spec-v1_0.md",
     "forense/prereg-caja/ALT-M23-ENSAFI2023-spec-v1_0.md",
+    # GEN2-PISOS-DOMINIOS-Y-REGLAS-1 (28/sep/2026): `E1` es la celda «estrato 1 (Bajo)» de la variable ESTRATO de ENVIPE 2025 en la
+    # spec congelada (COMMIT-1 b7581b20); no es rótulo de acto. No se edita la spec tras COMMIT-1.
+    "forense/prereg-caja/PDR1-ENVIPE2025-spec-v1_0.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.

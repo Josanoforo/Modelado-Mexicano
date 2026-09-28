@@ -1,0 +1,2064 @@
+# CALC-PDR1-ENIGH2022-0001 -- contrato ejecutable (D-15). COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENIGH2022-0001
+spec_md: ../../../forense/prereg-caja/PDR1-ENIGH2022-spec-v1_0.md
+spec_md_sha256: 8b1b954bca847d64724db02c500eace5c2875d10b567289e0a2f06e7c8518914
+script: data/corrida0/CALC-PDR1-ENIGH2022-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  marca: RETROSPECTIVA
+  regla: RG-cc1c9ab8f1
+  olas: 2022 abierta (ya vista en CALC sellados); 2024 RESERVADA (E.6), no es input
+inputs:
+- id: enigh2022_nc_csv
+  origen: manifiesto
+  sha256: 3b2b0bc9c95323b470608113d2902ff3a832764367135f136270b4ce092c9e06
+  funcion: DATO
+  nota: ENIGH 2022 nueva serie CSV (concentradohogar, poblacion, gastospersona)
+- id: receta_pisos
+  origen: repo
+  ruta: tools/dominios/salud/pisos_diseno.py
+  sha256: b82a4fefbf073f247033f376b8bc34183a32db27de48f5d5cafd0d30bbc000c9
+  funcion: CODIGO
+  nota: receta común (num, bootstrap, resumen) ejecutada desde estos bytes, sin editar
+variables:
+- archivo: concentradohogar
+  variable: folioviv
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: foliohog
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: tam_loc
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: est_dis
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: upm
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: factor
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: sexo_jefe
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: edad_jefe
+  rol: llave, eje, diseño o denominador
+- archivo: concentradohogar
+  variable: ing_cor
+  rol: llave, eje, diseño o denominador
+- archivo: poblacion
+  variable: folioviv
+  rol: llave, universo (asis_esc=1) o privada (tipoesc=2)
+- archivo: poblacion
+  variable: foliohog
+  rol: llave, universo (asis_esc=1) o privada (tipoesc=2)
+- archivo: poblacion
+  variable: numren
+  rol: llave, universo (asis_esc=1) o privada (tipoesc=2)
+- archivo: poblacion
+  variable: asis_esc
+  rol: llave, universo (asis_esc=1) o privada (tipoesc=2)
+- archivo: poblacion
+  variable: tipoesc
+  rol: llave, universo (asis_esc=1) o privada (tipoesc=2)
+- archivo: gastospersona
+  variable: folioviv
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: foliohog
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: numren
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: clave
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: tipo_gasto
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: inscrip
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: colegia
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+- archivo: gastospersona
+  variable: gasto_tri
+  rol: llave o partida E001-E007 G1 con inscrip/colegia>0
+universo: Hogares de CONCENTRADOHOGAR con factor>0 y est_dis/upm no vacíos con al menos un integrante asis_esc=1 (POBLACION).
+filtros: 'PRIV: partida G1 de GASTOSPERSONA clave E001-E007 con inscrip>0 o colegia>0 de un numren con tipoesc=2. CARGA: hogares
+  PRIV con ing_cor>0.'
+ponderador: factor (hogar); CARGA con peso factor*ing_cor e y=gasto/ing_cor (razón de totales)
+transformacion: 'Por texto: spec §3-§4.'
+estimando: Proporción de hogares que pagan colegiatura/inscripción privada y carga sobre ingreso corriente, por decil x urbano/rural,
+  bloques I-IV/V-VIII/IX-X y diferencias con IC de diseño; dictamen B-bis §5.
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM con reposición dentro de estrato; singleton de certeza; percentiles 2.5/97.5; bloques de 50; contrato
+    conservador
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap determinista por semilla; mismo payload y sumas float64
+resultados:
+- id: RESULT-PDR1-ENIGH2022-G-HOGARES
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-HOGARES-DISENO-VALIDO
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-HOGARES-UNIVERSO
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-HOGARES-PRIV
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-HOGARES-ASIPRIV
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-FILAS-GP-COLEG
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-FILAS-GP-COLEG-PRIVADA
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-FILAS-GP-SIN-PERSONA
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-G-POB-SIN-HOGAR
+  tipo: entero
+  unidad: filas u hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TOTAL-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-URBANO-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-RURAL-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-TOTAL-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-URBANO-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-TODOS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D01-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D02-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D03-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D04-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D05-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D06-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D07-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D08-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D09-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D10-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B1-IV-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B2-VIII-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B3-X-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-ASIPRIV-RURAL-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-TODOS-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D01-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D02-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D03-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D04-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D05-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D06-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D07-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D08-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D09-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D10-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B1-IV-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B2-VIII-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B3-X-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-TOTAL-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-TODOS-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-TODOS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-TODOS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-TODOS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D01-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D01-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D01-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D01-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D02-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D02-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D02-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D02-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D03-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D03-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D03-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D03-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D04-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D04-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D04-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D04-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D05-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D05-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D05-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D05-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D06-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D06-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D06-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D06-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D07-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D07-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D07-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D07-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D08-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D08-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D08-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D08-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D09-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D09-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D09-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D09-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D10-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D10-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D10-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-D10-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B1-IV-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B1-IV-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B1-IV-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B1-IV-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B2-VIII-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B2-VIII-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B2-VIII-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B2-VIII-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B3-X-P
+  tipo: flotante
+  unidad: razón de totales gasto_tri colegiatura privada / ing_cor (hogares PRIV)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B3-X-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B3-X-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-CARGA-URBANO-B3-X-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-100MIL-MAS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-100MIL-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-100MIL-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-100MIL-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-15MIL-99MIL-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-15MIL-99MIL-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-15MIL-99MIL-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-15MIL-99MIL-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-2500-14999-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-2500-14999-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-2500-14999-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-2500-14999-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-MENOS-2500-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-MENOS-2500-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-MENOS-2500-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-TLOC-MENOS-2500-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-HOMBRE-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-HOMBRE-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-HOMBRE-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-HOMBRE-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-MUJER-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-MUJER-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-MUJER-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-SEXO-JEFE-MUJER-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-HASTA-29-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-HASTA-29-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-HASTA-29-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-HASTA-29-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-30-44-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-30-44-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-30-44-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-30-44-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-45-59-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-45-59-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-45-59-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-45-59-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-60-MAS-P
+  tipo: flotante
+  unidad: 'proporción ponderada de hogares (universo: hogares con integrante que asiste a la escuela)'
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-60-MAS-IC-LO
+  tipo: flotante
+  unidad: IC95 diseño, inferior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-60-MAS-IC-HI
+  tipo: flotante
+  unidad: IC95 diseño, superior
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-PRIV-EDAD-JEFE-60-MAS-N
+  tipo: entero
+  unidad: hogares sin ponderar
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-URBANO-B2-MENOS-B1-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-URBANO-B2-MENOS-B1-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-URBANO-B2-MENOS-B1-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-TOTAL-B2-MENOS-B1-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-TOTAL-B2-MENOS-B1-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-TOTAL-B2-MENOS-B1-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-RURAL-B2-MENOS-B1-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-RURAL-B2-MENOS-B1-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-PRIV-RURAL-B2-MENOS-B1-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-ASIPRIV-URBANO-B2-MENOS-B1-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-ASIPRIV-URBANO-B2-MENOS-B1-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-ASIPRIV-URBANO-B2-MENOS-B1-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-URBANO-B2-MENOS-B3-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-URBANO-B2-MENOS-B3-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-URBANO-B2-MENOS-B3-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-TOTAL-B2-MENOS-B3-P
+  tipo: flotante
+  unidad: diferencia de bloques, misma unidad
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-TOTAL-B2-MENOS-B3-IC-LO
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DIF-CARGA-TOTAL-B2-MENOS-B3-IC-HI
+  tipo: flotante
+  unidad: IC95 de la diferencia (mismas réplicas)
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENIGH2022-DICTAMEN-RG-cc1c9ab8f1
+  tipo: texto
+  unidad: vocabulario cerrado CONFIRMA|MATIZA|ROMPE|NO-CONSTRUIBLE
+- id: RESULT-PDR1-ENIGH2022-G-BOOTSTRAP-REPLICAS
+  tipo: entero
+  unidad: réplicas
+- id: RESULT-PDR1-ENIGH2022-G-SEED
+  tipo: entero
+  unidad: semilla
+- id: RESULT-PDR1-ENIGH2022-G-INPUT-RECETA-SHA256
+  tipo: texto
+  unidad: sha256
+- id: RESULT-PDR1-ENIGH2022-G-OLA-RESERVADA
+  tipo: texto
+  unidad: declaración
+- id: RESULT-PDR1-ENIGH2022-G-MOTIVO-NO-OBSERVABLE
+  tipo: texto
+  unidad: declaración

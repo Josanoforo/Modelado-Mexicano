@@ -1,0 +1,631 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENCUCI2020-0002
+spec_md: ../../../forense/prereg-caja/PDR1-ENCUCI2020-spec-v1_1.md
+spec_md_sha256: 151fa99128ee300ce664cb3dd68eb89d2dd37aa58c1db0a06a30113e2cf2c1c9
+script: data/corrida0/CALC-PDR1-ENCUCI2020-0002/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta"
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+
+sucede_a: {calc: CALC-PDR1-ENCUCI2020-0001, spec_md_sha256: 2f74a616086a58c486a1f0b1929f90bc15de1053f9c530e6905e6bfe80600d68, motivo: "VALOR-LARGO en run; ejecución descartada por el conducto sin valores vistos; único cambio: forma de salida"}
+
+inputs:
+  - {id: encuci2020_bd_dbf, origen: manifiesto}
+
+lectura_de_estructura_previa: "FD_ENCUCI2020.pdf (texto) y cabeceras de campo de SEC_4_5, SEC_6_7_8 y SD; ningún registro leído antes del COMMIT-1"
+
+variables:
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP4_9_1, rol: "4.9 inciso 1 líder político fuerte; 1-4 válidos, 9 fuera"}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP4_9_4, rol: "4.9 inciso 4 todos participen; 1-4 válidos, 9 fuera"}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP4_13, rol: "4.13 preferible para gobernar; 1-4 válidos, 9/blanco fuera"}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_1_4, rol: "5.1 inciso 4 confianza servidores públicos 00-10 texto; 99 fuera"}
+  - {archivo: ENCUCI_2020_SEC_4_5.dbf, variable: AP5_11, rol: "5.11 obediencia a la ley; 1-4 válidos, 9 fuera"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_9, rol: "6.9 ayuda(1)/derecho(2); 3,9 fuera"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_10, rol: "6.10 beneficiario =1"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP6_11, rol: "6.11 le pidieron algo a cambio =2 No"}
+  - {archivo: ENCUCI_2020_SEC_6_7_8.dbf, variable: AP7_15, rol: "7.15 voto secreto(1)/descubrible(2); 9 fuera"}
+  - {archivo: ENCUCI_2020_SD.dbf, variable: SEXO, rol: "segmento 1 hombre 2 mujer"}
+  - {archivo: ENCUCI_2020_SD.dbf, variable: EDAD, rol: "segmento 15-29/30-44/45-59/60+; 97-99 fuera del segmento"}
+  - {archivo: "SEC_4_5 y SEC_6_7_8", variable: "FAC_SEL, EST_DIS, UPM_DIS, DOMINIO, ID_PER", rol: "ponderador, diseño, segmento U/C/R, llave de unión con SD"}
+
+universo: "Persona seleccionada 15+, ENCUCI 2020 nacional; denominadores por celda en la spec humana §2; regla: AP6_10=1, AP6_11=2, AP6_9 en 1-2, AP7_15 en 1-2."
+filtros: "9/blanco/fuera de rango salen del denominador; nunca se imputan."
+ponderador: FAC_SEL sin normalizar
+transformacion: "Indicadores 0/1 por celda según códigos de la spec humana §2 (acuerdo=1/2; confianza alta=08-10; categorías AP5_11 y AP4_13; derecho=AP6_9==2; secreto=AP7_15==1); grupos de edad desde EDAD; unión con SD por ID_PER."
+estimando: "Proporciones ponderadas por celda con IC95 de diseño; descriptivo, asociativo, RETROSPECTIVO."
+dependencias_materiales: [numpy]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS sobre marco completo de cada tabla; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero
+  hash_medidor_sha256: ae459dee30c413ab6945256ff727c910844398d26d0f99f0c2eb282a0d3600ac
+  hash_payload_sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+  hash_prereg_sha256: 151fa99128ee300ce664cb3dd68eb89d2dd37aa58c1db0a06a30113e2cf2c1c9
+  hash_encargo_sha256: 0f3f0bdf5be8c0591ab1edd22fb77381ac67c8666b8a00fb5238bedd02f322ee
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR001-LIDER-FUERTE-ACUERDO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR002-PARTICIPAN-TODOS-ACUERDO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR003-CONFIA-SERVIDORES-8A10-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-CONJUNTA-LIDER-Y-PARTICIPACION-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR010-PARTICIPACION-DADO-LIDER-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-DESOBEDECER-INJUSTA-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-NINGUNA-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-OBEDECER-SIEMPRE-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-AP5_11-PEDIR-CAMBIO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-DIF-PEDIR-MENOS-OBEDECER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-DIF-PEDIR-MENOS-OBEDECER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR030-DIF-PEDIR-MENOS-OBEDECER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DEMOCRACIA-PREFERIBLE-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DIF-DEMOCRACIA-MENOS-NODEM, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DIF-DEMOCRACIA-MENOS-NODEM-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-DIF-DEMOCRACIA-MENOS-NODEM-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-AUTOR031-NO-DEMOCRATICO-O-INDIFERENTE-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-METODO-IC, tipo: texto, unidad: método inferencial efectivamente aplicable}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-CONJUNTA-DERECHO-Y-SECRETO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-DERECHO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-C, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-C-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-C-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-C-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-R, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-R-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-R-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-R-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-U, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-U-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-U-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-DOMINIO-U-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-15-29, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-15-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-15-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-15-29-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-30-44, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-30-44-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-30-44-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-30-44-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-45-59, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-45-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-45-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-45-59-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-60+, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-60+-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-60+-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-EDAD-60+-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-HOMBRE, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-HOMBRE-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-MUJER, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada (o diferencia) entre válidos, persona 15+ (segmento si -SEG-)", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENCUCI2020-RG67C8-SECRETO-SEG-SEXO-MUJER-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC45-JOIN-SD-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC45-N-ESTRATOS, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC45-N-FILAS, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC45-N-UPM, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC678-JOIN-SD-N, tipo: entero, unidad: "n no ponderado / conteo de filas"}
+  - {id: RESULT-PDR1-ENCUCI2020-SEC678-N-FILAS, tipo: entero, unidad: "n no ponderado / conteo de filas"}
