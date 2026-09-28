@@ -1,0 +1,104 @@
+{
+  "tipo": "SINTETICO-NO-CIEGO",
+  "pr_1221_head": "d8ef9f56ef80ec1cd7867779489beb0ce7e4cfe9",
+  "adaptador_sha256": "228d2897b0e2a85f3a64c107e4f0691ef26ff44086fbb87f9e03a92d14593fd2",
+  "contrato_sha256": "78a44e2ab1b8cb07c8374e3e3ef265fa827d0b3af291f0cf06089a4402c6f19d",
+  "escenarios": [
+    {
+      "cohorte": "ENBIARE",
+      "caso": "punto_sin_ic",
+      "filas": 180,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENBIARE",
+      "caso": "ic_calculado",
+      "filas": 180,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENBIARE",
+      "caso": "no_estimable",
+      "filas": 180,
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCODAT",
+      "caso": "punto_sin_ic",
+      "filas": 130,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCODAT",
+      "caso": "ic_calculado",
+      "filas": 130,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCODAT",
+      "caso": "no_estimable",
+      "filas": 130,
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCUCI",
+      "caso": "punto_sin_ic",
+      "filas": 1,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCUCI",
+      "caso": "ic_calculado",
+      "filas": 1,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENCUCI",
+      "caso": "no_estimable",
+      "filas": 1,
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENIGH",
+      "caso": "punto_sin_ic",
+      "filas": 1,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENIGH",
+      "caso": "ic_calculado",
+      "filas": 1,
+      "estado": "COINCIDE",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    },
+    {
+      "cohorte": "ENIGH",
+      "caso": "no_estimable",
+      "filas": 1,
+      "estado": "NO-RECALCULABLE-DESDE-SPEC",
+      "congelacion_verificada": true,
+      "comparacion_verificada": true
+    }
+  ]
+}
