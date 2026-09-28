@@ -1,0 +1,17 @@
+{
+  "report": "corpus/reports-v2/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md",
+  "registros": 59,
+  "mapa_filas": 30,
+  "dictamenes": {
+    "CONFIRMA": 1,
+    "MATIZA": 16,
+    "ROMPE": 1,
+    "SIN-CIFRA": 41
+  },
+  "cifras": {
+    "propias_result": 0,
+    "externas_en_prosa": "OCDE24 27% soborno: adultos urbanos de México, ola 2023, percepción 6–10 en escala 0–10"
+  },
+  "generar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/autoridad/produce_tabla.py",
+  "verificar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/autoridad/verifica.py"
+}
