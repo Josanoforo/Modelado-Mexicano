@@ -16,8 +16,10 @@ AQUI = Path(__file__).resolve().parent
 CALC = {"enbiare-pisos-bienestar-0001": "CALC-ENBIARE-PISOS-BIENESTAR-0001",
         "encodat-pisos-sustancias-0001": "CALC-ENCODAT-PISOS-SUSTANCIAS-0001",
         "encuci-0001": "CALC-ENCUCI-0001", "enigh-0001": "CALC-ENIGH-0001"}
+AB = {"enbiare-pisos-bienestar-0001": "enbiare-l3r", "encodat-pisos-sustancias-0001": "encodat-l3r",
+      "encuci-0001": "encuci-l3r", "enigh-0001": "enigh-l3r"}  # prefijo T02 de entrada/ (MAPA-NOMBRES-ENTRADA.md)
 paq, out = sys.argv[1], sys.argv[2]
-ident = json.loads((AQUI / paq / "entrada/identidad.json").read_text())
+ident = json.loads((AQUI / paq / "entrada" / f"{AB[paq]}--identidad.json").read_text())
 sell = json.loads((R / "data/corrida0" / CALC[paq] / "resultados.json").read_text())["resultados"]
 esq = Path("/home/pc0/c1-sucesores-rec") / paq / "paquete/esquema-identidades.tsv"
 filas = []

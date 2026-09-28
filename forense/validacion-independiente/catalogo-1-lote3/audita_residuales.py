@@ -14,9 +14,11 @@ import re
 import sys
 from pathlib import Path
 
+AB = {"enbiare-pisos-bienestar-0001": "enbiare-l3r", "encodat-pisos-sustancias-0001": "encodat-l3r",
+      "encuci-0001": "encuci-l3r", "enigh-0001": "enigh-l3r"}  # prefijo T02 de entrada/ (MAPA-NOMBRES-ENTRADA.md)
 PAQ, TRANSCRIPT, CWD, SALIDA, OUT = sys.argv[1:6]
 CWD = CWD.rstrip("/")
-ALLOW = json.loads((Path(__file__).resolve().parent / PAQ / "entrada/allowlist.json").read_text())
+ALLOW = json.loads((Path(__file__).resolve().parent / PAQ / "entrada" / f"{AB[PAQ]}--allowlist.json").read_text())
 AUT = {c for cs in ALLOW["campos_autorizados"].values() for c in cs}
 IDS = {"FOLIO", "VIV_SEL", "HOGAR", "N_REN", "ID_VIV", "ID_HOG", "ID_PER", "UPM", "ENT",
        "id_pers", "id_hogar", "folioviv", "foliohog", "ID_VIV_SEL"}
