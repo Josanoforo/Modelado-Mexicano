@@ -70,21 +70,44 @@ def es_cerrada(estado):
 
 
 def lee_tablero(raiz):
-    """(ruta, filas, n_lineas). TSV con cabecera, sin comillas -- el
+    """(ruta, filas, n_registros). TSV con cabecera, sin comillas -- el
     tablero se lee, no se parsea con `csv`, porque sus celdas ya traen
     comillas literales de firmas verbatim (semántica CSV cambiaría ese
     contenido). Movido sin reinterpretar desde
-    `tools/digesto_tramite.py::lee_tablero`."""
+    `tools/digesto_tramite.py::lee_tablero`.
+
+    H2 (hoja NC-DECISIONES-1, 28/sep/2026, firma de mesa b, ejecutado por
+    `ACTO GEN2-TUBERIA-Y-CURACION-1`): `n_registros` cuenta REGISTROS
+    LÓGICOS, no líneas físicas. Antes, una fila con firma verbatim que
+    trae un salto de línea real incrustado se partía en dos líneas
+    físicas -- el defecto medido: 464 líneas físicas de datos sobre 462
+    filas reales (+2: +1 por esa fila partida, +1 porque la cabecera
+    entraba en el conteo). Se preserva la razón original de no usar
+    `csv`: las líneas físicas se REÚNEN (join por `\\n`) hasta que el
+    número de columnas de la fila acumulada cuadra con la cabecera --
+    ninguna celda de este TSV trae un tab literal, así que contar tabs
+    basta para saber cuándo una fila lógica está completa."""
     ruta = os.path.join(raiz, "forense", "firmas-pendientes.tsv")
     if not os.path.exists(ruta):
         return ruta, None, 0
     with open(ruta, encoding="utf-8") as fh:
-        lineas = [l.rstrip("\n") for l in fh if l.strip()]
-    if not lineas:
+        crudas = [l.rstrip("\n") for l in fh if l.strip()]
+    if not crudas:
         return ruta, [], 0
-    cab = lineas[0].split("\t")
-    filas = [dict(zip(cab, l.split("\t"))) for l in lineas[1:]]
-    return ruta, filas, len(lineas)
+    cab = crudas[0].split("\t")
+    ncols = len(cab)
+    filas = []
+    acumulada = None
+    for l in crudas[1:]:
+        acumulada = l if acumulada is None else acumulada + "\n" + l
+        if acumulada.count("\t") >= ncols - 1:
+            filas.append(dict(zip(cab, acumulada.split("\t"))))
+            acumulada = None
+    if acumulada is not None:
+        # Fila final con menos columnas de las esperadas: se registra tal
+        # cual (nunca se descarta en silencio); zip() la deja corta.
+        filas.append(dict(zip(cab, acumulada.split("\t"))))
+    return ruta, filas, len(filas)
 
 
 def _corre(cmd, raiz, timeout=60):
