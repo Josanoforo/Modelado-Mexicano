@@ -221,11 +221,11 @@ def ruta_payload(pid: str) -> Path:
 #  (m) régimen vigente, canon/MEMORIA-OPERATIVA.md §1 «Reservas» (E.6: «toda ola
 #      nueva de una encuesta con historia nace RESERVADA»; firma sobre ENIGH 2024, #964)
 RESERVA_FUERA_DEL_MANIFIESTO = [
-    (r"encrige.*2020", "h: ENCRIGE 2020"),
-    (r"(^|_)(oe1_)?enve.*2024", "h: ENVE 2024"),
-    (r"cses.*(m5|modulo_?5|module_?5|2018)", "h: CSES Módulo 5"),
-    (r"endutih.*2025", "h: ENDUTIH 2025"),
-    (r"enif.*2024", "h: ENIF 2024 (reservas por módulo; módulo 7)"),
+    # ENCRIGE 2020 y ENVE 2024 salen: ABIERTA-COMO-VISTA (firma R02/R03,
+    # GEN2-TRAMITE-FIRMAS-21-ADENDA-1); describir y calibrar, nunca como R.
+    (r"cses.*(m5|modulo_?5|module_?5|2018)", "h→firmada R04 RESERVADA: CSES Módulo 5"),
+    (r"endutih.*2025", "h→firmada R05 RESERVADA: ENDUTIH 2025"),
+    (r"enif.*2024", "h→firmada R06 RESERVADA: ENIF 2024 (reservas por módulo; módulo 7)"),
     (r"envipe.*2026", "m: ENVIPE 2026"),
     (r"enigh.*2024", "m: ENIGH 2024"),
     (r"(^|_)enco(_|$)", "m: ENCO"),

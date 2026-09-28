@@ -44,4 +44,6 @@ Los cuatro números de dictamen cuentan **registros editoriales** de las tablas 
 
 **Estado verificable:** 31/31 en main al corte; 0/31 sin entrega. Cada fila enlaza el recibo de Claude de su PR (post-merge en #1240, #1242, #1243, #1246, #1247, #1251). Ninguna regla editorial se declara adoptada por aparecer en una tabla o por fusionarse un report. C3 completo exige los 31 homónimos fusionados, recibidos y sus controles.
 
+**Idioma (firma R52, GEN2-TRAMITE-FIRMAS-21):** el report de genómica (Mexican Population Genomics 2025-2026) se acepta en inglés en v2; se traduce en v3.
+
 **Receta de actualización:** ejecutar `python3 forense/analisis/reports-v2/sintesis-transcultural-1/indice.py` tras actualizar los SHAs de main/PR verificados y las fuentes de los tres pendientes. `python3 forense/analisis/reports-v2/sintesis-transcultural-1/indice.py --verify` comprueba el índice local sin red. Revisar el diff antes de publicar; la herramienta detiene la generación si cambia el universo o un esquema de dictamen.
