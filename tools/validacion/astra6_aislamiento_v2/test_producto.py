@@ -91,7 +91,8 @@ class IsolationTests(unittest.TestCase):
                         tar.addfile(entry, io.BytesIO(b"a"))
                         if kind == "duplicate": tar.addfile(entry, io.BytesIO(b"a"))
                 with self.assertRaises(ValueError):
-                    aislamiento.materialize_archive(archive, Path(dest) / "entry", [])
+                    aislamiento.materialize_archive(archive, Path(dest) / "entry",
+                        [{"path": "safe", "sha256": hashlib.sha256(b"a").hexdigest()}])
 
     def test_materialization_rejects_traversal_symlink_hash(self):
         with tempfile.TemporaryDirectory() as tmp:
