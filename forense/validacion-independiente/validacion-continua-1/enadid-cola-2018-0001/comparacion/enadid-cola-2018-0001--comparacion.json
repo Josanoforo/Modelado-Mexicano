@@ -1,0 +1,2918 @@
+{
+  "congelacion_sha256": "08b0b563aae32fec5cdfc215e78d50c419a0c335527a5e09b73d9a965a490d91",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "enadid-cola-2018-0001",
+    "sha256_entrada": "2907d439d3e41dc143848c606efdcce12b85fe3051d28be83afbcbfb56ac24fb",
+    "version_entrada": "validacion-continua-1"
+  },
+  "referencia_sha256": "1f33966e40710e0ec535c6cf2419807d469be0a842afe76706cdfc220848767d",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-01-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-02-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-03-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0.0",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-04-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-05-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-06-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-07-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-08-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-09-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-10-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-11-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-12-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-13-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-14-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-15-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-16-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-18-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-19-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-20-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-21-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-22-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-23-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-24-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-25-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-26-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-27-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-28-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-30-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-31-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-ENTIDAD-32-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-CON-MIGRANTE-VARON-2018-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-01-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-02-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-03-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-04-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-05-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-06-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-07-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-08-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-09-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-10-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-11-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-12-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-13-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-14-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-15-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-16-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-17-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-18-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-19-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-20-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-21-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-22-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-23-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-24-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-25-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-26-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-27-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-28-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-29-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-30-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-31-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-ENTIDAD-32-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-14",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TAMLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-13",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-JEFATURA-FEMENINA-SIN-MIGRANTE-VARON-2018-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-15-24-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-25-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-35-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-EDAD-45-54-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TAMLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-ENTRE-UNION-LIBRE-2018-TOTAL-TODOS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-15-24-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-25-34-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-35-44-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-EDAD-45-54-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-HASTA-PRIMARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-MEDIA-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SECUNDARIA-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-15",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-ESCOLARIDAD-SUPERIOR-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-100MIL-MAS-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-15MIL-99MIL-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-2500-14999-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TAMLOC-MENOS-2500-P"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENADID-COLA-2018-SEPARADA-O-DIVORCIADA-ENTRE-MATRIMONIO-2018-TOTAL-TODOS-P"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}

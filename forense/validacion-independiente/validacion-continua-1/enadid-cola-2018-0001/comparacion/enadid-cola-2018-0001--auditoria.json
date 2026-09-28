@@ -1,0 +1,43 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [
+    "edad",
+    "upm"
+  ],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/enadid-cola-2018-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 16,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "enadid-cola-2018-0001",
+  "resultado": {
+    "duration_ms": 179435,
+    "is_error": false,
+    "num_turns": 17,
+    "permission_denials": [],
+    "subtype": "success",
+    "total_cost_usd": 0.9220832
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "39d1047d-0662-4d81-aa11-11517ee9ba4e",
+  "veredicto": {
+    "CAMPOS-DENTRO": false,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}
