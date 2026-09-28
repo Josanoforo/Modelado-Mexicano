@@ -1,6 +1,5 @@
 nc_id	carril	dictamen	cita_o_razon
 NC-260926-GEN2-ASTRA6-C1-PAQUETES-1-6c30-02	C1	CERRADA	forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-2/pr-1166.md (recibo técnico de Claude de #1166, entregado por RECIBO-ASTRA6-2)
-NC-260926-GEN2-RECIBO-ASTRA6-N-996b-01	C2	AJENA	carril C2: la cierra ese acto (encargo §1 P2)
 NC-260926-GEN2-RECIBO-ASTRA6-N-996b-03	C2	AJENA	carril C2: la cierra ese acto (encargo §1 P2)
 NC-260926-GEN2-RECIBO-ASTRA6-N-996b-04	C2	AJENA	carril C2: la cierra ese acto (encargo §1 P2)
 NC-260926-GEN2-RECIBO-ASTRA6-N-996b-07	C1	CERRADA	forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-2/pr-1166.md (criterios C1 de #1166) y RECIBO-ASTRA6-2 P1 · #1171 (NC 627e-10..12): los dos recibos existen
@@ -34,7 +33,7 @@ NC-260927-GEN2-RECIBO-ASTRA6-2-627e-03	C1	SIGUE-ABIERTA	DIFERIDO-A:próximo trá
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-04	C1	SIGUE-ABIERTA	DIFERIDO-A:lote 3 de validación ciega — las 685 siguen sin validación ciega
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-05	C1	SIGUE-ABIERTA	DIFERIDO-A:SIN-ASIGNAR — ADR de ADJUDICACION-PUNTOS-1 en canon/L0: 0 archivos (ls canon/L0 | grep -ic ADJUDICACION-PUNTOS → 0); RECIBO-ASTRA6-3 no lo cerró
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-06	C1	SIGUE-ABIERTA	DIFERIDO-A:Astra — verifica.py sigue exigiendo diff limpio
-NC-260927-GEN2-RECIBO-ASTRA6-2-627e-07	C1	DECISIÓN	130 COINCIDE ENBIARE/ENCIG no ciegas: asentadas CONCUERDA-NO-APROBADA con rótulo NO-CIEGA-PENDIENTE (P1); mesa decide re-comparar o rotular → hoja P4 §c
+NC-260927-GEN2-RECIBO-ASTRA6-2-627e-07	C1	DECISIÓN	126 COINCIDE ENBIARE no ciegas (las 4 ENCIG ya tenían PASA de otra validación): asentadas CONCUERDA-NO-APROBADA con rótulo NO-CIEGA-PENDIENTE (P1); mesa decide re-comparar o rotular → hoja P4 §c
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-08	C1	DECISIÓN	2 NO-PASA ENIGH2020 remesas bajo tol 0.0 → hoja P4 §c
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-09	C1	SIGUE-ABIERTA	DIFERIDO-A:lote 3 de validación ciega — 119 NF fuera de -ventana-v1
 NC-260927-GEN2-RECIBO-ASTRA6-2-627e-10	C3	AJENA	carril C3: la cierra ese acto (encargo §1 P2)
@@ -48,7 +47,6 @@ NC-260927-GEN2-RECIBO-ASTRA6-2-627e-17	C3	AJENA	carril C3: la cierra ese acto (e
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-01	C1	SIGUE-ABIERTA	NO-VERIFICABLE-AQUÍ — suite v3 fijada a Python 3.14.4/NumPy 2.3.5; nube 3.11.15 sin numpy (tools/entorno.py)
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-02	C1	CERRADA	3 filas FP añadidas por este acto (FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01..03), texto en forense/analisis/astra-continuidad-c1/hoja-mesa-c1-v1_0.md §b
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-03	C1	DECISIÓN	broker → hoja P4 §a (FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02)
-NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-04	C3	AJENA	carril C3: la cierra ese acto (encargo §1 P2)
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-05	C3	AJENA	carril C3: la cierra ese acto (encargo §1 P2)
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-06	C3	AJENA	carril C3: la cierra ese acto (encargo §1 P2)
 NC-260928-GEN2-RECIBO-ASTRA6-3-8c5c-07	C3	AJENA	carril C3: la cierra ese acto (encargo §1 P2)

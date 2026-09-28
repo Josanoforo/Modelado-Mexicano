@@ -17,7 +17,7 @@ Entorno NUBE (hook: `ENTORNO-DERIVADO = NUBE`, corpus no montado, examinados 0).
 | Lote | Filas | Dictamen | Qué dicen |
 |---|---|---|---|
 | 1 | 3 (COM, LAB, ESC) | NO-PASA | 0 recalculadas de 100/100/96. Todas NO-RECALCULABLE por PAQUETE-SIN-IDENTIDAD-DE-VENTANA (beee-01). No se comparó nada; no es discrepancia |
-| 2 | 267 | CONCUERDA-NO-APROBADA | El punto coincide. El IC es NO-RECALCULABLE (256) o no tiene referencia (9), o coinciden punto e IC sin tolerancia por llave (2). **130 rotuladas NO-CIEGA-PENDIENTE** (ENBIARE 126 y ENCIG 4, NC 627e-07) |
+| 2 | 267 | CONCUERDA-NO-APROBADA | El punto coincide. El IC es NO-RECALCULABLE (256) o no tiene referencia (9), o coinciden punto e IC sin tolerancia por llave (2). **126 rotuladas NO-CIEGA-PENDIENTE**, todas ENBIARE (NC 627e-07). Las 4 ENCIG de esa NC ya tenían una fila PASA de otra validación (PARAMETROS-ACTIVOS), no entraron a este lote y no llevan el rótulo; la vista no admite una segunda fila |
 | 2 | 1 | NO-PASA | Punto coincide; IC discrepa (las otras 7 de ese tipo ya tenían fila) |
 
 Lote 2 re-derivado de `lote2-tabla-estimadores.tsv`: 425 filas. 92 apartadas por adenda, 56 no reconstruidas y 277 reconstruidas, de las cuales **275 coinciden en punto** (256+9+8+2). Así se confirma el [REPORTADO] de Astra. **Sin asiento:** las 56 no reconstruidas y las 92 apartadas, porque el vocabulario de la vista no tiene un estado para «no evaluado». También quedan fuera 9 llaves que ya tenían fila.
