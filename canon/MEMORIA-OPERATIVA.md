@@ -29,7 +29,10 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-27 · 143 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-28 · 145 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-15 · MISION-ASTRA-6 C2 fija la unidad de remuestreo en spec/código de ENVI… · 28/09
+- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14 · MISION-ASTRA-6 C2 (la siguiente sesión de C2) integra la envoltura de… · 28/09
+- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06 · FP-260926-GEN2-ASTRA6-C2-CIERRE-MATERIAL-1-ad01-01 se amplía (o se ab… · 28/09
 - FP-260927-GEN2-RECIBO-ASTRA6-1-beee-02 · CATALOGO-V1-3-1 · 27/09
 - FP-260927-GEN2-RECIBO-ASTRA6-1-beee-01 · Frase del informe v1.5; rótulo de ceguera del lote 1 · 27/09
 - FP-260926-GEN2-SEGURIDAD-ENSU-SERIE-1-5916-01 · adopción de pisos ENSU en el catálogo · 26/09
@@ -39,9 +42,6 @@
 - FP-260926-GEN2-COLA-LOTE-1-3a49-04 · adoptar (pisos 04 del acto; ninguna regla consumidora todavia) · 26/09
 - FP-260926-GEN2-COLA-LOTE-1-3a49-03 · adoptar (pisos 03 del acto; ninguna regla consumidora todavia) · 26/09
 - FP-260926-GEN2-COLA-LOTE-1-3a49-02 · adoptar (pisos 02 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260926-GEN2-COLA-LOTE-1-3a49-01 · adoptar (pisos 01 del acto; ninguna regla consumidora todavia) · 26/09
-- FP-260926-GEN2-COLA-COMPLETA-1-0d4a-01 · adopción de los 9 pisos en el catálogo v1.2 · 26/09
-- FP-260926-GEN2-ASTRA6-C3-TRABAJO-MOVILIDAD-1-ed83-02 · adjudicación de incidente y uso de reports clase y movilidad; no auto… · 26/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa
