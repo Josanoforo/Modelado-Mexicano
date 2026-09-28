@@ -1,0 +1,158 @@
+{
+ "corrida_id": "CALC-PDR1-ENSU2024-0001--1d5a88e81c62",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-PISOS-DOMINIOS-Y-REGLAS-1",
+  "afirmacion": "ASTRA5-U0-SANC-007",
+  "cuenta_gen2": "SI",
+  "cuenta_gen2_nota": "propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta",
+  "dominio": "SANCION_SOCIAL",
+  "generacion": "GEN2",
+  "marca": "RETROSPECTIVA",
+  "tipo": "PISO-DESCRIPTIVO-RETROSPECTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:51:37Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "1d5a88e81c62a326ce3f65f0056ff5b91f5932e7",
+  "git_rama": "acto/gen2-pisos-dominios-y-reglas-1-ensu2024",
+  "git_status": "LIMPIO",
+  "git_status_lineas": 0,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "7d7ba2640e983940dad1c21cd59cba14787a6140c6bfa07803431d05893e2444",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "1d5a88e81c62a326ce3f65f0056ff5b91f5932e7",
+ "input_ids": [
+  "ensu2024_bd_csv_zip"
+ ],
+ "input_sha256": {
+  "ensu2024_bd_csv_zip": "97034a71d6b2e26d9e87cf5f0835d2004d12b5c92d8afe486bb73164038211f4"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "cifra_afirmacion": 0.474,
+  "cifra_fuente": "canon/mapa-dominios-v1_1.tsv fila ASTRA5-U0-SANC-007 texto_vigente",
+  "metodo_ic": "bootstrap UPM con reposición dentro de estrato (CD+EST_DIS); singleton se remuestrea a sí mismo; percentiles 2.5/97.5",
+  "ola": "2024T1",
+  "umbral_matiza": 0.03
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-DICTAMEN",
+  "RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-N",
+  "RESULT-PDR1-ENSU2024-SANC007-CON-NSNR-TOTAL-TODOS-P",
+  "RESULT-PDR1-ENSU2024-SANC007-DICTAMEN",
+  "RESULT-PDR1-ENSU2024-SANC007-G-BOOTSTRAP-REPLICAS",
+  "RESULT-PDR1-ENSU2024-SANC007-G-FILAS-CB",
+  "RESULT-PDR1-ENSU2024-SANC007-G-MIEMBRO",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-ESTRATOS",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-ESTRATOS-SINGLETON",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-FUERA-DE-CODIGOS",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-NO-APLICA",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-NSNR",
+  "RESULT-PDR1-ENSU2024-SANC007-G-N-UPM",
+  "RESULT-PDR1-ENSU2024-SANC007-G-P-NO-APLICA",
+  "RESULT-PDR1-ENSU2024-SANC007-G-P-NSNR",
+  "RESULT-PDR1-ENSU2024-SANC007-G-PERSONAS-DISENO-VALIDO",
+  "RESULT-PDR1-ENSU2024-SANC007-G-SEED",
+  "RESULT-PDR1-ENSU2024-SANC007-ORO-DICTAMEN",
+  "RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-N",
+  "RESULT-PDR1-ENSU2024-SANC007-ORO-TOTAL-TODOS-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-DICTAMEN",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-18-29-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-30-44-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-45-59-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-EDAD-60-MAS-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-HOMBRE-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-SEXO-MUJER-P",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-IC-HI",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-IC-LO",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-N",
+  "RESULT-PDR1-ENSU2024-SANC007-PRINCIPAL-TOTAL-TODOS-P"
+ ],
+ "script_blob_sha256": "7c4c8bff605c31c6382b62f67fbde2f587d044994fbce9ac9a2ce0e8df52e753",
+ "script_path": "data/corrida0/CALC-PDR1-ENSU2024-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 42
+ },
+ "spec_id": "CALC-PDR1-ENSU2024-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "3abf085f5291d2f8f9e98ebc76811218c9a1230dc75843df654a709a5ead9522",
+ "spec_yaml_sha256": "73765aa0d6c652453869fdcacd267341f7819997e7a395e5625a8dd9ccb352bc",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "misma semilla y sumas deterministas; enteros/textos exactos",
+  "tipo": "flotante"
+ }
+}
