@@ -4,6 +4,8 @@ Solicito recibo técnico por el circuito de mesa del [PR #1240](https://github.c
 
 **Objetos.** Tres homónimos exactos de Autoridad, Civismo y Comunalidad en `corpus/reports-v2/`; expedientes `autoridad/`, `civismo/`, `comunalidad/` y archivos comunes de este lote. [Índice](indice-local.md), [resumen derivado](resumen-lote.json), [hashes SHA-256](hashes-producto.json), [cierre](cierre.md) y [hoja para mesa](hoja-firma.md). El encargo original tiene cuerpo inalterado en el archivo canónico de tanda5 (#1237); el 0-bis propio `3a1f0be1` conserva los mismos bytes en historial. El manifiesto de tanda5 fija el SHA crudo antes del pie de consumo.
 
+La continuación `ASTRA6-C3-CIERRE-1240-1` está archivada en `forense/encargos/2026-09-27-ASTRA6-C3-CIERRE-1240-1.md` (0-bis `28d69156`; SHA crudo del cuerpo recibido `99b3d6d4c09d85f1132c31a7b20afc9712a055e39a6b95ecf3e1fef7bd6cca27`). Su cierre añade la interpretación de las premisas vencidas y la revisión dirigida, sin duplicar los objetos editoriales.
+
 **Comandos desde raíz del repositorio:**
 
 ```sh

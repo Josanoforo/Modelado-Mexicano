@@ -29,3 +29,13 @@
 ## CONSUMIDO
 
 El encargo se ejecuta en este worktree y en el [PR #1240](https://github.com/Josanoforo/Modelado-Mexicano/pull/1240), sin fusión propia. El asiento `CONSUMIDO` está al pie del archivo recibido. La firma de misión de Jonás se cita desde el lanzamiento social existente, sin duplicarla.
+
+## Continuación · ASTRA6-C3-CIERRE-1240-1
+
+**INTERPRETACIÓN-DECLARADA.** La adenda de tanda6 describía `fcc6580a` y #1240 en draft, sin cierre ni recibo en el diff revisado. Al recibirla, este worktree `/home/pc0/mm-astra6-c3-autoridad-civismo-comunalidad-1`, rama `codex/astra6-c3-autoridad-civismo-comunalidad-1`, estaba limpio en `24a08d3a4d84132de2b1eda8d6c204e59f3cd6cc`; #1240 estaba abierto y listo para revisión, con ambos archivos en HEAD. Se descontaron P1 y P3 ya ejecutadas; no se reescribieron los tres reports.
+
+**Archivo nuevo.** El cuerpo de `forense/encargos/2026-09-27-ASTRA6-C3-CIERRE-1240-1.md` fue copiado byte por byte del archivo recibido, SHA-256 crudo `99b3d6d4c09d85f1132c31a7b20afc9712a055e39a6b95ecf3e1fef7bd6cca27`, en 0-bis `28d69156`. Su sidecar de cuerpo `9a514ca34cbb76d493043063bbbfd7f2292f8dccffaca457a66eb08f03724cd9` se creó antes del pie `CONSUMIDO` y no se regenera. Los tres adjuntos embebidos coincidieron con los SHA declarados.
+
+**Revisión dirigida.** Los siete registros ROMPE de las tres matrices siguen acotados: Autoridad rompe sólo la exclusividad de confianza interpersonal a partir de una muestra OCDE urbana; Civismo rompe la universalidad «sin broker» con LANGSTON25/FP-57 y la equivalencia conceptual informalidad–evasión, sin inferir voto individual; Comunalidad rompe dos inferencias, no las frecuencias subyacentes. Los dos RESULT de Civismo conservan delito `BPCOD=01` (robo total de vehículo), universos `U_CON`/`U_SIN`, proporción ponderada y carácter provisional; las decisiones `decisiones.tsv:93` y `:292` no autorizan adopción. No apareció defecto material que exigiera cambiar prosa o matrices. Esta revisión coteja el alcance de la evidencia ya documentada; no es una validación científica independiente.
+
+**Entrega.** Los comandos y límites siguen en [verificaciones](verificaciones.md) y [recibo](recibo-para-claude.md). El gate completo ya había dado exit 0 y línea base VERDE en el árbol integrado. La continuación comprueba archivo, objetos y verificadores dirigidos. #1240 queda para recepción técnica de Claude y decisión de mesa, sin fusión ni adopción propia.

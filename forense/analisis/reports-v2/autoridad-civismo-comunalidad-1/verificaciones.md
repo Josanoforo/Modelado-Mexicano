@@ -15,3 +15,9 @@
 El primer intento del gate tuvo 3 FAIL nuevos T25 en notas del lote por el identificador del momento 08 sin prefijo. Se corrigieron a «momento 08» con localizador `decisiones.tsv:292` y el segundo gate dio exit 0. No se editó `tests/check.py`, `tests/baseline.json` ni otro archivo para esconder el fallo. La semántica de ROMPE y mecanismos fue revisada manualmente en las piezas; estos controles automáticos no la sustituyen.
 
 La integración de #1237 trajo el cuerpo idéntico del encargo en un archivo canónico. Se eliminó del árbol final la copia creada por el 0-bis propio; la existencia y bytes de esa copia siguen verificables por Git. La primera corrida integrada se interrumpió al hallar una cita literal del identificador del momento 08 en esta misma nota; tras corregirla, T25 dirigido pasó y la corrida completa final terminó con exit 0.
+
+## Continuación de tanda6
+
+Se cotejó la copia de `03-ASTRA6-C3-CIERRE-1240-1.md` con `cmp -s` antes del pie y los SHA-256 de los tres adjuntos embebidos con sus valores declarados: coincidieron. `tools/sella_sha256.py --cuerpo --verifica` dio `SELLO_COINCIDE` tras añadir `NO-CORRIDO / RESERVAS` y `CONSUMIDO` al pie. Los tres verificadores de pieza y `verifica_lote.py --check` siguieron VERDE; `git diff --check` no reportó errores.
+
+`python3 tests/check.py --rapido` encontró primero un FAIL T34 porque el pie nuevo contenía `CONSUMIDO` sin `NO-CORRIDO / RESERVAS` previo. Se añadió la sección exigida fuera del cuerpo sellado y se repitió el gate rápido: exit 0, `0 FAIL · 624 WARN`; T25 y T34 sin FAIL. El gate completo anterior permanece registrado arriba; no se le atribuye la verificación de la adenda nueva.
