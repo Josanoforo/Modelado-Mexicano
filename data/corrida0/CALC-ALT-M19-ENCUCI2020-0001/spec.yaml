@@ -1,0 +1,165 @@
+# CALC-ALT-M19-ENCUCI2020-0001 -- cara mecánica de ALT-M19-ENCUCI2020-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M19-ENCUCI2020-0001
+spec_md: ../../../forense/prereg-caja/ALT-M19-ENCUCI2020-spec-v1_0.md
+spec_md_sha256: f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be
+script: data/corrida0/CALC-ALT-M19-ENCUCI2020-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO
+  dominio: confianza
+  ola: '2020'
+  momento: M19
+  holdout_gastado: M19
+  fila_mapa: 53
+inputs:
+- id: encuci2020_bd_dbf
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M19-ENCUCI2020-spec-v1_0.md
+  sha256: f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be
+variables:
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: AP5_1_1
+  rol: 'desenlace: confianza en la mayoría 00-10, evento >=8, 99 fuera'
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: AP5_1_2
+  rol: 'desenlace: confianza en conocidos 00-10, evento >=8, 99 fuera'
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: AP5_3_3
+  rol: 'grupo: confianza en policía 1-4 (5,9 fuera del grupo)'
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: DOMINIO
+  rol: 'grupo: U/C/R'
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: FAC_SEL
+  rol: ponderador
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: EST_DIS
+  rol: estrato
+- archivo: ENCUCI_2020_SEC_4_5.dbf
+  variable: UPM_DIS
+  rol: UPM
+universo: ENCUCI 2020, personas elegidas 15+ con FAC_SEL>0 y diseño; por reactivo código 00-10
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: FAC_SEL
+transformacion: indicadora >=8 por reactivo (ADR-64); diferencia pareada; contraste por confianza en policía
+estimando: p(AP5_1_1>=8), p(AP5_1_2>=8), su diferencia; por policía y DOMINIO; contraste; RETROSPECTIVA, descriptivo, proxy
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: encuci2020_bd_dbf
+  tabla: ENCUCI_2020_SEC_4_5
+  hash_payload_sha256: 0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: EST_DIS
+    upm:
+    - UPM_DIS
+    peso: FAC_SEL
+  universo_filtros: []
+  items:
+  - clave: confia_mayoria_sin_puente
+    variable: AP5_1_1
+    validos:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    evento: &id001
+    - 8
+    - 9
+    - 10
+    faltantes:
+    - 99
+  - clave: confia_conocidos_con_puente
+    variable: AP5_1_2
+    validos:
+    - 0
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    evento: *id001
+    faltantes:
+    - 99
+  grupos:
+  - clave: policia
+    variable: AP5_3_3
+    niveles:
+      CONFIA-POLICIA:
+      - 1
+      - 2
+      NO-CONFIA-POLICIA:
+      - 3
+      - 4
+  - clave: dominio
+    variable: DOMINIO
+    niveles:
+      URBANO:
+      - U
+      COMPLEMENTO-URBANO:
+      - C
+      RURAL:
+      - R
+  cruces:
+  - - policia
+    - dominio
+  diferencias:
+  - clave: puente_menos_sin_puente
+    a: confia_conocidos_con_puente
+    b: confia_mayoria_sin_puente
+  contrastes:
+  - clave: sin_puente_policia_confia_menos_no
+    item: confia_mayoria_sin_puente
+    celda_a: policia=CONFIA-POLICIA
+    celda_b: policia=NO-CONFIA-POLICIA
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M19-ENCUCI2020-FILAS
+  result_tabla: RESULT-ALT-M19-ENCUCI2020-TABLA
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M19-ENCUCI2020-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M19-ENCUCI2020-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo

@@ -1,0 +1,139 @@
+{
+  "llaves": {
+    "RESULT-ENCUCI-B-P-RUR-AGR": {
+      "celda": "B-P-RUR-AGR",
+      "segmento": "agravio_rural",
+      "unidad_observacion": "PERSONA",
+      "n_registros_SEC_6_7_8": 21519,
+      "n_registros_SEC_4_5": 21519,
+      "duplicados_ID_PER": {
+        "SEC_6_7_8": 0,
+        "SEC_4_5": 0,
+        "blancos": 0
+      },
+      "n_valido": 2050,
+      "peso_denominador": "7218794.0",
+      "peso_numerador": "663497.0",
+      "punto_suma_directa_orden_fisico": "0.09191244410077362",
+      "exclusiones_en_cascada_no_ponderadas": {
+        "registro_borrado_dbf": 0,
+        "peso_FAC_SEL_no_finito_o_no_positivo": 0,
+        "diseno_EST_DIS_UPM_DIS_ausente": 0,
+        "sin_pareja_en_SEC_4_5": 0,
+        "DOMINIO_fuera_de_UCR": 0,
+        "fuera_de_dominio_DOMINIO_U_o_C": 15603,
+        "AP4_3_2_blanco_9_u_otro": 20,
+        "fuera_de_dominio_AP4_3_2_igual_2": 3705,
+        "AP7_3_5_blanco_9_u_otro": 141
+      },
+      "exclusiones_en_cascada_ponderadas_FAC_SEL": {
+        "registro_borrado_dbf": "0.0",
+        "peso_FAC_SEL_no_finito_o_no_positivo": "0.0",
+        "diseno_EST_DIS_UPM_DIS_ausente": "0.0",
+        "sin_pareja_en_SEC_4_5": "0.0",
+        "DOMINIO_fuera_de_UCR": "0.0",
+        "fuera_de_dominio_DOMINIO_U_o_C": "75542722.0",
+        "AP4_3_2_blanco_9_u_otro": "52749.0",
+        "fuera_de_dominio_AP4_3_2_igual_2": "13013277.0",
+        "AP7_3_5_blanco_9_u_otro": "600041.0"
+      },
+      "nota_exclusiones": "cascada en el orden listado; registros sin peso valido no tienen suma ponderada (0.0 por construccion); las causas 'fuera_de_dominio_*' son filtros de la identidad, no faltantes",
+      "sin_pareja_SEC_4_5_sin_base": 0,
+      "DOMINIO_discrepante_entre_tablas_pareadas": 0,
+      "conteos_marginales_no_ponderados": {
+        "AP7_3_5": {
+          "2": 18506,
+          "1": 1748,
+          "None": 1198,
+          "9": 67
+        },
+        "AP4_3_2_pareados": {
+          "1": 11008,
+          "2": 10428,
+          "9": 83
+        },
+        "DOMINIO_678": {
+          "U": 10308,
+          "C": 5295,
+          "R": 5916
+        }
+      },
+      "n_filas_marco": 21519,
+      "n_upm_marco": 3096,
+      "n_estratos": 281,
+      "n_upm_conocidos": 314,
+      "n_singleton": 0,
+      "publicabilidad": {
+        "criterios": {
+          "n_conocidos>=100": true,
+          "n_upm_conocidos>=5": true,
+          "sin_replicas_no_estimables": true,
+          "ancho<=0.20": true,
+          "CV<=0.30": true
+        },
+        "ancho": "0.03662612874037478",
+        "cv": "0.10163275700775448",
+        "publicable_diagnostico": true,
+        "nota": "regla diagnostica del contrato P3; no acredita validez inferencial; no suprime la celda"
+      }
+    }
+  },
+  "decisiones": [
+    {
+      "decision": "Estado de salida para denominador cero: DENOMINADOR-CERO de v3 con motivo NO-ESTIMABLE-UNIVERSO-VACIO.",
+      "frase": "Denominador cero produce NO-ESTIMABLE-UNIVERSO-VACIO. (encuci-rural-restaurado.md) / DENOMINADOR-CERO | ... Spec suficiente; dominio observado con denominador cero. (CONTRATO-v3.md)"
+    },
+    {
+      "decision": "Formato de salida v3 con version=3, no v2, pese a que el punto remite a esquema-salida-v2.md.",
+      "frase": "Salida comparada: documento y filas exactamente según `esquema-salida-v2.md` (encuci-rural-restaurado.md); instrucción de sesión: donde difieran, rige CONTRATO-v3.md."
+    },
+    {
+      "decision": "Se calcula IC (estado_ic explícito) en lugar de SIN-IC, porque el contrato P3 está firmado (R26) con sha coincidente.",
+      "frase": "IC solo bajo contrato P3. (encuci-rural-restaurado.md); «Apruebo la receta IC sucesora ... solo como reproducibilidad diagnóstica» (FIRMAS-Y-ACCESO.md)"
+    },
+    {
+      "decision": "DOMINIO, FAC_SEL, EST_DIS y UPM_DIS se toman de SEC_6_7_8 (tabla base); de SEC_4_5 solo AP4_3_2 (DOMINIO de SEC_4_5 solo para contar discrepancias).",
+      "frase": "Usar `FAC_SEL` de SEC_6_7_8 (encuci-rural-restaurado.md); EST_DIS/UPM_DIS de tabla base; B: SEC_6_7_8 base unida a SEC_4_5 (residuales-p3-modulos-ic.md)"
+    },
+    {
+      "decision": "El marco de UPM se forma con todas las filas de SEC_6_7_8 con peso válido y diseño no vacío, incluidas las sin pareja en SEC_4_5 (contribuyen cero).",
+      "frase": "marco completo personas15+ con diseño antes de contacto, agravio o rural (residuales-p3-modulos-ic.md); Marco: todos los pares distintos (estrato,UPM) del universo base con ponderador finito positivo y diseño válido, antes de filtrar dominio o respuesta (residuales-p3-contrato-ic.md)"
+    },
+    {
+      "decision": "Diseño válido = EST_DIS y UPM_DIS no vacíos. Del valor crudo DBF solo se quita el relleno de ancho fijo a la derecha (campos C de 7 bytes para EST_DIS de 3); no se hace otro trim ni conversión a entero.",
+      "frase": "conservar bytes y ceros iniciales, no convertir a enteros ni rellenar ... sin trim implícito (residuales-p3-contrato-ic.md)"
+    },
+    {
+      "decision": "Exclusiones contadas en cascada: borrado DBF, peso, diseño, pareja, DOMINIO fuera de {U,C,R}, DOMINIO U/C, AP4_3_2 inválido, AP4_3_2=2, AP7_3_5 inválido. Se añaden conteos marginales.",
+      "frase": "sin pareja quedan fuera y se cuentan ... blancos/9 quedan fuera y se cuentan (encuci-rural-restaurado.md)"
+    },
+    {
+      "decision": "Códigos: se parsea el texto recortado como float; 1.0->1, 2.0->2; blanco, 9 y cualquier otro valor son inválidos.",
+      "frase": "Normalizar los códigos numéricos de reactivos, aceptando 1 y 1.000000000000000 como 1. Exigir AP7_3_5 y AP4_3_2 en {1,2} (encuci-rural-restaurado.md)"
+    },
+    {
+      "decision": "El punto se computa como (acumulación de X_hu en orden lexicográfico de pares)/(ídem Y_hu), con X_hu,Y_hu acumulados en orden físico de SEC_6_7_8; la suma directa por filas se reporta solo como diagnóstico.",
+      "frase": "sumas float64, totales por par en ese orden y acumulación de pares ordenados (residuales-p3-contrato-ic.md)"
+    },
+    {
+      "decision": "Réplica: X_r y Y_r como acumulación secuencial de float(M_rhu)*X_hu en orden lexicográfico de pares; M_rhu por conteo de índices sorteados.",
+      "frase": "Multiplicidad M_rhu determina X_r=sum(M_rhu X_hu),Y_r=sum(M_rhu Y_hu) (residuales-p3-contrato-ic.md)"
+    },
+    {
+      "decision": "Los estratos con una sola UPM (si existen) no bloquean el IC: estado_ic=CALCULADO y la marca IC-CON-UPM-UNICA-VARIANZA-NO-IDENTIFICADA va en tipo_incertidumbre del TSV. Decidido antes de ver cifras.",
+      "frase": "Singleton: se sortea a sí mismo, no se colapsa ni descarta ... Registrar cantidad y marcar IC-CON-UPM-UNICA-VARIANZA-NO-IDENTIFICADA (residuales-p3-contrato-ic.md) vs. Un bloqueo de inferencia se representa con NO-IDENTIFICADA (CONTRATO-v3.md)"
+    },
+    {
+      "decision": "Registros marcados como borrados en el DBF quedan fuera y se cuentan.",
+      "frase": "Filas sin diseño salen contadas (residuales-p3-contrato-ic.md); el FD no documenta registros borrados."
+    },
+    {
+      "decision": "Unión por ID_PER (no por UPM+VIV_SEL+R_SEL, llave primaria del FD). ID_PER = UPM+VIV_SEL+R_SEL según el FD; se leyó solo ID_PER.",
+      "frase": "Unir `SEC_6_7_8` con `SEC_4_5` por `ID_PER`, con llaves únicas (encuci-rural-restaurado.md)"
+    },
+    {
+      "decision": "hash_contrato = sha256 de residuales-p3-contrato-ic.md y residuales-p3-modulos-ic.md unidos por '+'; hash_entrada = sha256_entrada de la identidad; hash_entorno = sha256 de salida/entorno.txt.",
+      "frase": "columnas ... hash_contrato, hash_entrada, hash_entorno (residuales-p3-contrato-ic.md) — sin definición de contenido."
+    }
+  ]
+}

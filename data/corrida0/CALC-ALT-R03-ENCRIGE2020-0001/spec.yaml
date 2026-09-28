@@ -1,0 +1,92 @@
+# CALC-ALT-R03-ENCRIGE2020-0001 -- cara mecánica de ALT-R03-TABULADOS-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-R03-ENCRIGE2020-0001
+spec_md: ../../../forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md
+spec_md_sha256: f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6
+script: data/corrida0/CALC-ALT-R03-ENCRIGE2020-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: TABULADO-OFICIAL
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: EXTRACCION-DESCRIPTIVA-TABULADOS-OFICIALES
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  dominio: tramite
+  ola: '2020'
+  regla: R03+R08
+  holdout_gastado: NINGUNO
+  fila_mapa: R03-ENCRIGE
+inputs:
+- id: conjunto_de_datos_encrige_2020_csv
+  origen: manifiesto
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md
+  sha256: f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6
+variables: []
+universo: 'ENCRIGE 2020: unidades económicas que realizaron al menos un trámite o fueron sujetas a una inspección, 2020'
+filtros: filas de dominio declaradas en parametros.tablas
+ponderador: 'NO-REESTIMADO: estimaciones expandidas oficiales'
+transformacion: absolutos / denominador; control contra publicado
+estimando: proporción de unidades económicas por dominio e indicador; descriptivo, sin transferencia a persona
+precision: 'tabulados sin EE/CV/n: sin IC'
+seed:
+  aplica: false
+  valor: null
+  rng: NO-APLICA
+parametros:
+  payload_id: conjunto_de_datos_encrige_2020_csv
+  hash_payload_sha256: 06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a
+  encoding: latin-1
+  tablas:
+  - clave: t6_33
+    archivo: t6_33.csv
+    denominador: Total de unidades económicas que realizaron al menos un trámite o fueron sujetas a una inspección
+    dominios:
+    - Estados Unidos Mexicanos
+    - Micro
+    - Pequeña
+    - Mediana
+    - Grande
+    indicadores: &id001
+    - clave: PARTICIPACION
+      numerador: Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Absolutos
+      publicado: Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Tasa de prevalencia3
+      escala_publicado: 10000
+    - clave: CONOCIMIENTO-TERCEROS
+      numerador: Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Absolutos
+      publicado: Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Tasa de prevalencia2
+      escala_publicado: 10000
+    - clave: PERCEPCION
+      numerador: Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Absolutos
+      publicado: Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Tasa de prevalencia1
+      escala_publicado: 10000
+  - clave: t6_34
+    archivo: t6_34.csv
+    denominador: Total de unidades económicas que realizaron al menos un trámite o fueron sujetas a una inspección
+    dominios:
+    - Estados Unidos Mexicanos
+    - Comercio
+    - Industria
+    - Servicios
+    indicadores: *id001
+  tolerancia_formula: 5.0e-05
+  result_tabla: RESULT-ALT-R03-ENCRIGE2020-TABLA
+  result_control: RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA
+dependencias_materiales: []
+resultados:
+- id: RESULT-ALT-R03-ENCRIGE2020-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: proporción por (tabla, dominio, indicador)'
+- id: RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA
+  tipo: texto
+  unidad: PASA / FALLA
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: extracción determinista

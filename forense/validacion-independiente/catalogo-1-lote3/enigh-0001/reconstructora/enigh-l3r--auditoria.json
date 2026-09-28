@@ -1,0 +1,60 @@
+{
+  "comandos_con_red": [
+    {
+      "comando": "sha256sum * datos/* 2>/dev/null; head -1 datos/concentradohogar_enigh2022_ns.csv; wc -l datos/concentradohogar_enigh2022_ns.csv; cd ..; git log --oneline | head; ls -la",
+      "id": "toolu_019kTtsWYzdmHtAMtS1diV3d"
+    }
+  ],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/c1-sucesores-rec/enigh-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 17,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "enigh-0001",
+  "por_herramienta": {
+    "Bash": 10,
+    "Read": 4,
+    "Write": 3
+  },
+  "resultado": {
+    "duration_ms": 170790,
+    "is_error": false,
+    "num_turns": 18,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "cd /home/pc0/c1-sucesores-rec/enigh-0001 && time python3 salida/codigo/reconstruye.py && cat salida/resultado.json salida/diagnosticos-ic-v1.tsv && python3 -c \"import json;d=json.load(open('salida/diagnostico.json'));print(json.dumps(d['llaves'],indent=1,ensure_ascii=False))\"",
+          "description": "Run reconstruction and show outputs",
+          "timeout": 600000
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01KYG5M7foPrm5cryK7HUhgH"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 0.7760693999999999
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "ebc0b2ee-1375-4cfd-97fe-42e55f5045d6",
+  "tokens_reactivo_no_autorizados": [],
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": false,
+    "SOLO-OPUS": true
+  }
+}

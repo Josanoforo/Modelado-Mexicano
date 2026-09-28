@@ -1,0 +1,224 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENADID2023-0001
+spec_md: ../../../forense/prereg-caja/PDR1-ENADID2023-spec-v1_0.md
+spec_md_sha256: 38bb8dcff12e3c762e59a1b42a07ad6aa29c700f6428fc6d30a5117eb6271417
+script: data/corrida0/CALC-PDR1-ENADID2023-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta"
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  afirmacion: ASTRA5-U0-TEC-010
+  dominio: RURAL_INDIGENA
+  retrospectiva: SI
+
+inputs:
+  - {id: enadid2023_base_datos_csv, origen: manifiesto}
+
+variables:
+  - {archivo: TSDEM.csv, variable: SEXO, rol: "corte; 1 hombre, 2 mujer (FD TSDEM fila 58)"}
+  - {archivo: TSDEM.csv, variable: EDAD, rol: "universo 15..120 años cumplidos; 999 fuera (FD fila 60)"}
+  - {archivo: TSDEM.csv, variable: P3_12, rol: "eje; ¿(NOMBRE) se considera indígena de acuerdo con sus tradiciones o costumbres? 1 Sí 2 No; otro/blanco fuera (FD fila 153; cuestionario p.5)"}
+  - {archivo: TSDEM.csv, variable: P3_23, rol: "desenlace; ¿(NOMBRE) sabe leer y escribir un recado? 2 No = numerador; 1 Sí; 9 no especificado fuera (FD fila 323; cuestionario p.6)"}
+  - {archivo: TSDEM.csv, variable: T_LOC_UR, rol: "corte; 1 urbana 2 500+, 2 rural <2 500 (FD fila 412)"}
+  - {archivo: TSDEM.csv, variable: FAC_VIV, rol: "ponderador; factor de expansión (FD fila 410)"}
+  - {archivo: TSDEM.csv, variable: EST_DIS, rol: estrato de diseño opaco como texto}
+  - {archivo: TSDEM.csv, variable: UPM_DIS, rol: UPM de diseño opaca como texto}
+
+universo: >-
+  Residentes habituales (registros de TSDEM) de 15 a 120 años con SEXO en {1,2},
+  P3_12 en {1,2}, P3_23 en {1,2}, FAC_VIV positivo y EST_DIS/UPM_DIS no vacíos.
+filtros: >-
+  P3_23=9 (no especificado), P3_12 fuera de {1,2}, EDAD 999/no numérica o <15
+  quedan fuera del denominador; nada se reasigna.
+ponderador: FAC_VIV sin normalizar; razón de totales.
+transformacion: >-
+  analfabeta = (P3_23 == '2'); proporción ponderada por grupo P3_12 y dominio
+  (total, sexo, 4 grupos de edad, urbano/rural, sexo x edad); brecha = p(indígena) - p(no indígena).
+estimando: >-
+  Proporción ponderada de residentes 15+ que no saben leer y escribir un recado,
+  por autoadscripción indígena, con IC95 por bootstrap de diseño. Descriptivo, no causal.
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo (m de m) dentro de EST_DIS sobre el marco completo (toda UPM con FAC_VIV>0); percentiles 2.5/97.5
+  singleton: autorremuestreo; aporta varianza cero y se cuenta
+  cifras_afirmacion: {indigena: 0.19, no_indigena: 0.028, indigena_mujer: 0.242}
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos comparan exacto
+
+resultados:
+  - {id: RESULT-PDR1-ENADID2023-N-MARCO, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-UNIVERSO, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-IND, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-NOIND, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-IND-M, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-ESTRATOS, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-UPM, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-N-ESTRATOS-SINGLETON, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-REPLICAS, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-SEMILLA, tipo: entero, unidad: conteo}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-TOTAL, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-TOTAL-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-TOTAL-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-TOTAL, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-TOTAL-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-TOTAL-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-TOTAL, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-TOTAL-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-TOTAL-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-15_29, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-15_29-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-15_29-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-30_44, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-30_44-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-30_44-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-45_59, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-45_59-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-45_59-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-60M, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-60M-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-60M-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-URB, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-URB-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-URB-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-URB, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-URB-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-URB-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-URB, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-URB-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-URB-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-RUR, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-RUR-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-RUR-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-RUR, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-RUR-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-RUR-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-RUR, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-RUR-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-RUR-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-15_29, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-15_29-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-15_29-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-30_44, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-30_44-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-30_44-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-45_59, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-45_59-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-45_59-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-H-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-H-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-60M, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-60M-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-H-60M-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-15_29, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-15_29-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-15_29-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-15_29, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-15_29-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-15_29-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-30_44, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-30_44-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-30_44-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-30_44, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-30_44-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-30_44-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-45_59, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-45_59-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-45_59-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-45_59, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-45_59-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-45_59-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-IND-M-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-60M, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-60M-IC95INF, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-P-NOIND-M-60M-IC95SUP, tipo: proporcion, unidad: "proporción ponderada P3_23=2 en [0,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-60M, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-60M-IC95INF, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-BRECHA-M-60M-IC95SUP, tipo: flotante, unidad: "diferencia de proporciones indígena menos no indígena en [-1,1]", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENADID2023-CIFRA19-EN-IC, tipo: texto, unidad: "SI/NO/NA o dictamen B-bis"}
+  - {id: RESULT-PDR1-ENADID2023-CIFRA2_8-EN-IC, tipo: texto, unidad: "SI/NO/NA o dictamen B-bis"}
+  - {id: RESULT-PDR1-ENADID2023-CIFRA24_2-EN-IC, tipo: texto, unidad: "SI/NO/NA o dictamen B-bis"}
+  - {id: RESULT-PDR1-ENADID2023-DICTAMEN-BBIS, tipo: texto, unidad: "SI/NO/NA o dictamen B-bis"}

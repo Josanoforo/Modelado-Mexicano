@@ -1,0 +1,488 @@
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENUT2024-0001
+spec_md: ../../../forense/prereg-caja/PDR1-ENUT2024-spec-v1_0.md
+spec_md_sha256: f4a396d6f22e3a97c9e40ff1f27bd2c5861c57af856061aa1cde53c8fbf13c32
+script: data/corrida0/CALC-PDR1-ENUT2024-0001/medidor.py
+
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: "propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta"
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  temporalidad: RETROSPECTIVA
+
+inputs:
+  - {id: enut2024_bd_csv, origen: manifiesto}
+  - {id: enut2019_bd_csv, origen: manifiesto}
+
+lectura_de_estructura_previa: "FD enut2024_fd_xlsx (TMODULO, TVAR_CREA, TVIVIENDA), FD enut2019_fd_xlsx (TModulo), cuestionario enut2024 (texto) y cabeceras de tmodulo.csv/tvar_crea.csv/tsdem.csv (2024) y enut_2019/TMODULO.csv; ningún registro leído antes del COMMIT-1"
+
+variables:
+  - {archivo: tvar_crea.csv, variable: TRAB_NO_REM_VOL, rol: "trabajo no remunerado doméstico, de cuidados y voluntario (FD TVAR_CREA fila 35); blanco/no numérico = inválido"}
+  - {archivo: tvar_crea.csv, variable: TRAB_NO_REM_CON_CP, rol: "cuidado a integrantes del hogar con pasivos (fila 44); participación = >0"}
+  - {archivo: tvar_crea.csv, variable: ACTIV_PROD_CON_CP, rol: "tiempo total de trabajo (fila 28)"}
+  - {archivo: tvar_crea.csv, variable: MENOR10, rol: "1 = localidad de 1 a 9 999 hab. (fila 157)"}
+  - {archivo: tvar_crea.csv, variable: COND_IND, rol: "autoadscripción indígena 1 sí 2 no; 9 fuera (fila 164)"}
+  - {archivo: tmodulo.csv, variable: "P6_17_3, P6_17A_3_1..4", rol: "6.17 servicios gratuitos para la comunidad (tequio, faena...) 1 Sí 2 No; horas"}
+  - {archivo: tmodulo.csv, variable: "P6_21_1..4, P6_21A_i_1..4", rol: "6.21 convivencia (4 ítems) Sí/No y horas"}
+  - {archivo: tmodulo.csv, variable: "P6_22_1..6, P6_22A_i_1..4", rol: "6.22 entretenimiento/medios (6 ítems) Sí/No y horas"}
+  - {archivo: tmodulo.csv, variable: P4_1, rol: "4.1 habla lengua indígena 1 Sí 2 No"}
+  - {archivo: tmodulo.csv, variable: "SEXO, EDAD_V, TLOC", rol: "segmentos sexo, edad (12-17..60+), rural = TLOC 4"}
+  - {archivo: tmodulo.csv, variable: "FAC_PER, EST_DIS, UPM_DIS, LLAVEMOD", rol: "ponderador, estrato, UPM, llave 1:1 con tvar_crea"}
+  - {archivo: enut_2019/TMODULO.csv, variable: "P6_17_2, P4_1, TLOC, FAC_PER, EST_DIS, UPM_DIS", rol: "ola previa 2019 de 6.17 (mismo texto literal), base nacional"}
+
+universo: "Persona de 12+ en la tabla del módulo de la base nacional (ENUT 2024 tmodulo.csv; ENUT 2019 enut_2019/TMODULO.csv, sólo para 6.17)."
+filtros: "Variables creadas inválidas y códigos fuera de 1/2 salen del denominador (contados en DIAG-*), nunca se imputan; tiempo de ítem en blanco = 0; sin tope a 168 h."
+ponderador: FAC_PER sin normalizar
+transformacion: "Ver spec humana §1-§2: INT = E(h|h>0), MEDIA = E(h), PART = P(h>0) o P(Sí); brechas y diferencias a − b en la misma réplica."
+estimando: "Medias y proporciones ponderadas por celda con IC95 de diseño; descriptivo, RETROSPECTIVO; dictámenes por la regla B-bis §3 de la spec humana."
+dependencias_materiales: [numpy, pandas]
+
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap de UPM_DIS con reemplazo dentro de EST_DIS, un plan por ola; percentiles 2.5/97.5
+  singleton: autorremuestreo; varianza cero; contado en DIAG-N-ESTRATOS-UPM-UNICA
+  hash_medidor_sha256: 20fe5389cd48b4279fcd33f0c4301d524eaba11cc8309b49a83e0b9d80c3d6d0
+  hash_payload_sha256: "enut2024_bd_csv 25f35626464053441b367b24001d255dbca408b5f576e614e0e09ac58691c4ba; enut2019_bd_csv d3da76a02cdd36229ab8d744a951b18b545e261959d9b8f1ca1161591bd5856d"
+  hash_prereg_sha256: f4a396d6f22e3a97c9e40ff1f27bd2c5861c57af856061aa1cde53c8fbf13c32
+  hash_encargo_sha256: 0f3f0bdf5be8c0591ab1edd22fb77381ac67c8666b8a00fb5238bedd02f322ee
+
+seed: {aplica: true, valor: 42, rng: numpy.PCG64}
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros comparan exacto
+
+resultados:
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-12-17-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-12-17-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-12-17-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-12-17-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-12-17-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-12-17-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-12-17-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-12-17-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-12-17-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-12-17-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-12-17-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-12-17-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-18-29-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-18-29-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-30-39-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-30-39-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-30-39-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-30-39-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-30-39-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-30-39-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-30-39-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-30-39-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-30-39-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-30-39-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-30-39-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-30-39-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-40-59-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-40-59-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-40-59-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-40-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-40-59-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-40-59-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-40-59-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-40-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-40-59-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-40-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-40-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-40-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-60-MAS-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-60-MAS-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-RURAL-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-RURAL-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-RURAL-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-RURAL-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-RURAL-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-RURAL-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-URBANO-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-URBANO-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-URBANO-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-URBANO-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-URBANO-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-URBANO-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-PART-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MENOR10-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MENOR10-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-MAYOR10-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-MAYOR10-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-HABL-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-HABL-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-NOHABL-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-NOHABL-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CUID-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-CONV-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-MED-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-MUJER-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-MUJER-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-MUJER-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-HOMBRE-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-HOMBRE-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-HOMBRE-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-MUJER-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-MUJER-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-MUJER-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-MUJER-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HOMBRE-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HOMBRE-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HOMBRE-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HOMBRE-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-12-17-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-12-17-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-12-17-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-12-17-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-18-29-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-18-29-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-18-29-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-18-29-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-30-39-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-30-39-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-30-39-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-30-39-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-40-59-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-40-59-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-40-59-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-40-59-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-60-MAS-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-60-MAS-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-60-MAS-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-EDAD-60-MAS-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HABL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HABL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HABL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-HABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOHABL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOHABL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOHABL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-IND-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-IND-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-IND-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-IND-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOIND-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOIND-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOIND-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-NOIND-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-INT-NAC-P, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-INT-NAC-IC95-INF, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-INT-NAC-IC95-SUP, tipo: flotante, unidad: "media ponderada, horas/semana, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-INT-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MENOR10-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MENOR10-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MENOR10-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MENOR10-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MENOR10-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MENOR10-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MENOR10-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MENOR10-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MAYOR10-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MAYOR10-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MAYOR10-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-MAYOR10-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MAYOR10-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MAYOR10-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MAYOR10-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-MAYOR10-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-HABL-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-HABL-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-HABL-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-HABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-HABL-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-HABL-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-HABL-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-HABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-NOHABL-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-NOHABL-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-NOHABL-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-INT-BRECHA-SEXO-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-NOHABL-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-NOHABL-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-NOHABL-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TNR-MEDIA-BRECHA-SEXO-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-BRECHA-SEXO-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-BRECHA-SEXO-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-BRECHA-SEXO-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-INT-BRECHA-SEXO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-BRECHA-SEXO-P, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-BRECHA-SEXO-IC95-INF, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-BRECHA-SEXO-IC95-SUP, tipo: flotante, unidad: "diferencia de medias, horas/semana (mujer − hombre), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-TTT-MEDIA-BRECHA-SEXO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-RURAL-URBANO-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-RURAL-URBANO-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-RURAL-URBANO-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-RURAL-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-HABL-NOHABL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-HABL-NOHABL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-HABL-NOHABL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-HABL-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-IND-NOIND-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-IND-NOIND-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-IND-NOIND-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-COMUN-PART-DIF-IND-NOIND-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-FILAS-TMODULO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-FILAS-TVAR-CREA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-LLAVEMOD-DUPLICADAS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-SIN-PAREJA-TVAR, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-TNR-INVALIDOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-COMUN-FUERA-1-2, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-N-SIN-PONDERADOR, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NAC-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NAC-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NAC-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NAC-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-RURAL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-RURAL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-RURAL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-RURAL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-URBANO-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-URBANO-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-URBANO-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-HABL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-HABL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-HABL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-HABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NOHABL-P, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NOHABL-IC95-INF, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NOHABL-IC95-SUP, tipo: flotante, unidad: "proporción ponderada, persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-RURAL-URBANO-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-RURAL-URBANO-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-RURAL-URBANO-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-RURAL-URBANO-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-HABL-NOHABL-P, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-HABL-NOHABL-IC95-INF, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-HABL-NOHABL-IC95-SUP, tipo: flotante, unidad: "diferencia de proporciones ponderadas (a − b), persona 12+", permite_no_estimable: true}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-COMUN-PART-DIF-HABL-NOHABL-N, tipo: entero, unidad: "n no ponderado de la celda (persona 12+)"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-DIAG-FILAS-TMODULO, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-DIAG-COMUN-FUERA-1-2, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-DIAG-N-ESTRATOS, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-DIAG-N-UPM, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}
+  - {id: RESULT-PDR1-ENUT2024-OLA2019-DIAG-N-ESTRATOS-UPM-UNICA, tipo: entero, unidad: "conteo (filas/estratos/UPM) de diagnóstico"}

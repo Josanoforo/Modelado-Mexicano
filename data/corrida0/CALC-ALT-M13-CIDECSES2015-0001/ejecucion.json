@@ -1,0 +1,250 @@
+{
+ "corrida_id": "CALC-ALT-M13-CIDECSES2015-0001--582bf4124ee2",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyarrow": "25.0.1"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CALC-ALTERNOS-LOTE-1",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "dominio": "politica",
+  "fila_mapa": 32,
+  "generacion": "GEN2",
+  "holdout_gastado": "M13",
+  "marca_temporal": "RETROSPECTIVA",
+  "momento": "M13",
+  "ola": "2015",
+  "origen_numerico": "MICRODATO",
+  "retador": "NO",
+  "theta": "NO",
+  "tipo": "PISO-DESCRIPTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:59:03Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "582bf4124ee23a417bfeb6917e0d8eccf59bf363",
+  "git_rama": "acto/gen2-calc-alternos-lote-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "582bf4124ee23a417bfeb6917e0d8eccf59bf363",
+ "input_ids": [
+  "cide_cses2015_nacional_poselectoral",
+  "CORPUS-LOADER",
+  "SPEC-HUMANA"
+ ],
+ "input_sha256": {
+  "CORPUS-LOADER": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "SPEC-HUMANA": "ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3",
+  "cide_cses2015_nacional_poselectoral": "1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "contrastes": [
+   {
+    "celda_a": "concurrencia=CONCURRENTE",
+    "celda_b": "concurrencia=NO-CONCURRENTE",
+    "clave": "voto_conc_menos_no",
+    "item": "voto"
+   },
+   {
+    "celda_a": "concurrencia=CONCURRENTE",
+    "celda_b": "concurrencia=NO-CONCURRENTE",
+    "clave": "partido_importa_conc_menos_no",
+    "item": "partido_importa"
+   },
+   {
+    "celda_a": "concurrencia=CONCURRENTE",
+    "celda_b": "concurrencia=NO-CONCURRENTE",
+    "clave": "voto_influye_conc_menos_no",
+    "item": "voto_influye"
+   }
+  ],
+  "corpus_loader_sha256": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "cruces": [],
+  "diferencias": [],
+  "diseno": {
+   "estrato": "dominio",
+   "peso": "PONDFIN",
+   "upm": [
+    "upmmn"
+   ]
+  },
+  "grupos": [
+   {
+    "clave": "concurrencia",
+    "niveles": {
+     "CONCURRENTE": [
+      3,
+      4,
+      6,
+      9,
+      11,
+      12,
+      14,
+      15,
+      16,
+      17,
+      19,
+      22,
+      24,
+      26,
+      27,
+      31
+     ],
+     "NO-CONCURRENTE": [
+      1,
+      2,
+      5,
+      7,
+      8,
+      10,
+      13,
+      18,
+      20,
+      21,
+      23,
+      25,
+      28,
+      29,
+      30,
+      32
+     ]
+    },
+    "variable": "estado"
+   }
+  ],
+  "hash_payload_sha256": "1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80",
+  "items": [
+   {
+    "clave": "voto",
+    "evento": [
+     1
+    ],
+    "faltantes": [
+     3,
+     8,
+     9
+    ],
+    "validos": [
+     1,
+     2
+    ],
+    "variable": "p3"
+   },
+   {
+    "clave": "partido_importa",
+    "evento": [
+     4,
+     5
+    ],
+    "faltantes": [
+     8,
+     9
+    ],
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "variable": "p17"
+   },
+   {
+    "clave": "voto_influye",
+    "evento": [
+     4,
+     5
+    ],
+    "faltantes": [
+     8,
+     9
+    ],
+    "validos": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "variable": "p18"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "cide_cses2015_nacional_poselectoral",
+  "result_filas": "RESULT-ALT-M13-CIDECSES2015-FILAS",
+  "result_tabla": "RESULT-ALT-M13-CIDECSES2015-TABLA",
+  "tabla": "cide_cses2015_nacional_poselectoral",
+  "universo_filtros": []
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ALT-M13-CIDECSES2015-FILAS",
+  "RESULT-ALT-M13-CIDECSES2015-TABLA"
+ ],
+ "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+ "script_path": "data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260928
+ },
+ "spec_id": "CALC-ALT-M13-CIDECSES2015-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3",
+ "spec_yaml_sha256": "17908e8f8dceb1c93898f543b822b5e21f54165ee0a326ca3d4fd2b7664c4989",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "bootstrap fijado por semilla; sumas en orden fijo",
+  "tipo": "flotante"
+ }
+}

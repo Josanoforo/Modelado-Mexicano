@@ -1,0 +1,1180 @@
+{
+  "version": 3,
+  "identidad": {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "sha256_entrada": "c8b50b5727b2317b589a970fabc1b678359afc49406748225044e0dedcbc0ec0",
+    "version_entrada": "residuales-documentales-v2"
+  },
+  "filas": [
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24847902842815264",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.23568384077164803",
+      "ic95_sup": "0.26120344314402494"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5891869317173545",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5756882608745622",
+      "ic95_sup": "0.6024929741267335"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46444137158465376",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4525398635645825",
+      "ic95_sup": "0.4758537985656212"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3971000955625664",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38134307243691706",
+      "ic95_sup": "0.41315543354017564"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5858752102670348",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5650226801613981",
+      "ic95_sup": "0.6048303157579601"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5085424597681428",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.49543121085657527",
+      "ic95_sup": "0.5219080707165941"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.6650544385995373",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.6405034384194137",
+      "ic95_sup": "0.6883379607535557"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5129555436825062",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.5003169041217714",
+      "ic95_sup": "0.5252826880627894"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3923696670867088",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.37712608659340274",
+      "ic95_sup": "0.40713077072324383"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.46948129293961",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4560525990723547",
+      "ic95_sup": "0.4825406681478554"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.5853378806755253",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.572894635466159",
+      "ic95_sup": "0.5975360163410747"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3776152417008235",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.36777334732952016",
+      "ic95_sup": "0.38699182749751854"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.47791370858301896",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.46921659909271834",
+      "ic95_sup": "0.4864871601251998"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.13208476894442592",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12208434414480292",
+      "ic95_sup": "0.14247736983119674"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.40921916467660385",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3964974244907648",
+      "ic95_sup": "0.42330812288113207"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30781468701955217",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29740288353685473",
+      "ic95_sup": "0.31822425428693096"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2603234145961698",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2459629416777218",
+      "ic95_sup": "0.27591967607525264"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.4020208696884216",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.38238158387368976",
+      "ic95_sup": "0.4218288920096507"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.33907484574626545",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.32655705348797265",
+      "ic95_sup": "0.35173165614047297"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.469267401365436",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.44519280058680505",
+      "ic95_sup": "0.49344441336534"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.350711970075428",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.33883677298541404",
+      "ic95_sup": "0.3627749667417138"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24621703215512056",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.23391503886735066",
+      "ic95_sup": "0.25887976555368414"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30445528034506536",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.29101811768910557",
+      "ic95_sup": "0.3178526530954297"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.43155008743103784",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.4196264606686842",
+      "ic95_sup": "0.44467375539207116"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21340630275367903",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.20451843253366442",
+      "ic95_sup": "0.2224394204944393"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.3187365993020664",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3108452275486037",
+      "ic95_sup": "0.32663864407852117"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06847613275252158",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0604207437318075",
+      "ic95_sup": "0.07720886266572409"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.31281702955323615",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.30082239124185095",
+      "ic95_sup": "0.325077652617892"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.19349708375690697",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.18367444682998366",
+      "ic95_sup": "0.20386551727295366"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.18997833984876417",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.17627603793472948",
+      "ic95_sup": "0.20518468061647488"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2813216676507211",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.264609924310182",
+      "ic95_sup": "0.29775861407652887"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.24922740890606837",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.23747853059391738",
+      "ic95_sup": "0.26105888116849035"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.30748711093178155",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.28650321130405115",
+      "ic95_sup": "0.3295243033798472"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.23983850711379245",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.22977895749622385",
+      "ic95_sup": "0.2510882604029557"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17149531408904836",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1611385020862797",
+      "ic95_sup": "0.18236633292246635"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2186161882145411",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.20720632553355742",
+      "ic95_sup": "0.22955912911151313"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.32106557220150655",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.3097074838534208",
+      "ic95_sup": "0.33269603164845485"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.126592461194624",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1197094137656908",
+      "ic95_sup": "0.1336522927147717"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22061240085960687",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.21397907693978796",
+      "ic95_sup": "0.22780664988880162"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.12706118550045709",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.11080727372682672",
+      "ic95_sup": "0.14572992351012712"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17523517678919542",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16023147815601846",
+      "ic95_sup": "0.1903855966915295"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06632181361135521",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05555410636791878",
+      "ic95_sup": "0.07718796755194249"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05997677557144947",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04485641534154351",
+      "ic95_sup": "0.07742687604134961"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.15105940740220908",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13332193676030082",
+      "ic95_sup": "0.16892290945107874"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10830335222997517",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09368907171955408",
+      "ic95_sup": "0.12345832066386216"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.15333530590398742",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1323193018528812",
+      "ic95_sup": "0.17487322560473686"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1365891974507956",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12604312993359984",
+      "ic95_sup": "0.14733154488602265"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10332066955512502",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08227987908111603",
+      "ic95_sup": "0.12847616954820004"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11365198537202623",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09841960458880826",
+      "ic95_sup": "0.1293038628146325"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1545430728910618",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1420469878745362",
+      "ic95_sup": "0.16835095301211767"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09759392915744529",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08711069237004472",
+      "ic95_sup": "0.10845441103353999"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1290163167941341",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12039324299985005",
+      "ic95_sup": "0.13758038913176016"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.045945803728519155",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.032615237396910184",
+      "ic95_sup": "0.06020890901708853"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03432984399786921",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02767396780096316",
+      "ic95_sup": "0.04136396009604213"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04309261366723935",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03672611506092413",
+      "ic95_sup": "0.0499660498333632"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0536513184510057",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.037415569980396024",
+      "ic95_sup": "0.0707984078524643"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.037979850305385754",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.029559983011955934",
+      "ic95_sup": "0.04703034657061082"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03868835965550985",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03199179800355699",
+      "ic95_sup": "0.04594749598619377"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.021393170920324847",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0145096672417094",
+      "ic95_sup": "0.030336586166453468"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03841174633389309",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.032506156297042156",
+      "ic95_sup": "0.045113655778855906"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03478186732687561",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.027856392365395756",
+      "ic95_sup": "0.04267915902016585"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04433353965879806",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03522284591262656",
+      "ic95_sup": "0.05437297213494271"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0449692157259884",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03908367981001155",
+      "ic95_sup": "0.05136458004909276"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02524261395588608",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.02000357914788317",
+      "ic95_sup": "0.03121871586325223"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03881936030670084",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03453099377574062",
+      "ic95_sup": "0.04355499693516024"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06569195006754337",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05697644556395058",
+      "ic95_sup": "0.0760909981292785"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.14713584838047558",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1375131718128327",
+      "ic95_sup": "0.1571233696595986"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07330625857985337",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06753948706262221",
+      "ic95_sup": "0.07952198517871652"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08650353193672973",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0762454794479482",
+      "ic95_sup": "0.09749075728943131"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11858619903877479",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1078849317158233",
+      "ic95_sup": "0.12994420915070373"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11509883515839986",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10550748768357952",
+      "ic95_sup": "0.12551436843990663"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.12234279805913408",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10711432274605322",
+      "ic95_sup": "0.1376104795190946"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11910924398355835",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.11155587503505993",
+      "ic95_sup": "0.12674292990164193"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06702128675201023",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06073447054157417",
+      "ic95_sup": "0.07389078187634715"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08711941756073849",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07924036689807419",
+      "ic95_sup": "0.09436060242114859"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16218688217671776",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15378769141274728",
+      "ic95_sup": "0.1712594808368602"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04493758790465412",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.040745733102936624",
+      "ic95_sup": "0.049348448892781366"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10154737785385233",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09675794847750342",
+      "ic95_sup": "0.10649617697243101"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.029676360932292225",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.024396770641034356",
+      "ic95_sup": "0.03598982951672032"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06658256718716256",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05945726716126969",
+      "ic95_sup": "0.07426085504431118"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08372877707051224",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07747833032853413",
+      "ic95_sup": "0.09036339303183079"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06770146067891787",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.060075979954703415",
+      "ic95_sup": "0.07597856741752819"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08227463588211488",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07142909248539392",
+      "ic95_sup": "0.09356404237498439"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06738445900993113",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.060424365267660936",
+      "ic95_sup": "0.07564331144733882"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.09527284680350127",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08400757139726818",
+      "ic95_sup": "0.10758874893804134"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07863893004549212",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.07273978175876925",
+      "ic95_sup": "0.084750092956558"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04240384045184668",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03761812243531829",
+      "ic95_sup": "0.047649221812201076"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06645003159139419",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05913131551527949",
+      "ic95_sup": "0.07360593354116723"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06384855803042597",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.05877543275843496",
+      "ic95_sup": "0.06926548036964184"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07253930334414113",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0667413599226342",
+      "ic95_sup": "0.07825915776434132"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06835114692760248",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06434694567073647",
+      "ic95_sup": "0.07240025066477392"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.04887082528901912",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.043387440441694985",
+      "ic95_sup": "0.05497492330890081"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.22649399905820655",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.215552852867779",
+      "ic95_sup": "0.23788436152626694"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17728483701363518",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.16727868828429793",
+      "ic95_sup": "0.1868549379816398"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.16444335395164958",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.15303099920844268",
+      "ic95_sup": "0.17570138436145352"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21819421733951436",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2033453739907849",
+      "ic95_sup": "0.2325717928811173"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.21117086025503162",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1993466686382506",
+      "ic95_sup": "0.2230600230802882"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2133875947113728",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.19224755938287585",
+      "ic95_sup": "0.23487607269443464"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.208713125394155",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.19821028461248574",
+      "ic95_sup": "0.21884968334431115"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11637146330886305",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.10701963161653057",
+      "ic95_sup": "0.12567499872016719"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1424210000270343",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13279669602517738",
+      "ic95_sup": "0.152090867812504"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.2706521927445582",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.2594124821716662",
+      "ic95_sup": "0.28133543272910827"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08707539133906632",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08138360859665311",
+      "ic95_sup": "0.09270971405054487"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.17573376859296208",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.1688588138521579",
+      "ic95_sup": "0.18245717084382812"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0549581430126966",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.04779965474540231",
+      "ic95_sup": "0.06253898870698738"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.12919908558325247",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.12010537724344005",
+      "ic95_sup": "0.1380742416038469"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.06361104799661337",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.058172150983323206",
+      "ic95_sup": "0.06984731248107312"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.0712593756292607",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06243617896972272",
+      "ic95_sup": "0.08029937033763798"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10465383341683274",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0940981151124035",
+      "ic95_sup": "0.11530831706884763"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10010410214767794",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09093594473107298",
+      "ic95_sup": "0.10945984735623765"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.11249647073590373",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09766619433905908",
+      "ic95_sup": "0.1268998013954592"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.10544622540159167",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.09832438008147554",
+      "ic95_sup": "0.11237855597648495"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.05424517377141264",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.0488712522440116",
+      "ic95_sup": "0.05966391791665354"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.07497725806829877",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.06774742576779276",
+      "ic95_sup": "0.08167428482089825"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.1420285835846616",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.13385938863526958",
+      "ic95_sup": "0.15038534104688386"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.03818554914483775",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.03435869159506962",
+      "ic95_sup": "0.04229919011428532"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.08834056155117885",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.08371584811333639",
+      "ic95_sup": "0.09300967222076229"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.012947207408426373",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.009916717839949817",
+      "ic95_sup": "0.016772021381193873"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02066686273836762",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.016879475219788758",
+      "ic95_sup": "0.025041302617732474"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.02250782337373164",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.019245198488765335",
+      "ic95_sup": "0.026539419261795053"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.019217019437183246",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.015131579383784888",
+      "ic95_sup": "0.02383096464688469"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.023328711258773453",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.017948037334990757",
+      "ic95_sup": "0.02964476655741798"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.017778800907844",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013280650956628294",
+      "ic95_sup": "0.02365821084295988"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.030924714117061214",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.024194007345549204",
+      "ic95_sup": "0.03828418245883818"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.023666137050650685",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.020240472792584095",
+      "ic95_sup": "0.02755792877371521"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.014003793804764516",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.011267762240352041",
+      "ic95_sup": "0.01714839398642141"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01685127459459885",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.013699796886715998",
+      "ic95_sup": "0.02051804806636787"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.01928513226183546",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.016582031887916696",
+      "ic95_sup": "0.022321075545354854"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.021151604222379432",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.017666418306170446",
+      "ic95_sup": "0.024937281891069543"
+    },
+    {
+      "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+      "unidad": "proporcion",
+      "estado": "RECONSTRUIDO",
+      "punto": "0.020252295183151595",
+      "estado_ic": "CALCULADO",
+      "ic95_inf": "0.018012697773037732",
+      "ic95_sup": "0.022700867819470477"
+    }
+  ]
+}

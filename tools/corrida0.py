@@ -3298,13 +3298,16 @@ def _aplica_validaciones_independientes(filas: list[dict]) -> None:
                 f"{lector.fieldnames}; esperado {COLS_VALIDACIONES_INDEPENDIENTES}")
         asientos = list(lector)
 
-    vistos: set[tuple[str, str]] = set()
+    # Unicidad por (llave, validacion_ref): dos validaciones de una misma llave
+    # no se colapsan (firma de mesa 28/sep/2026, GEN2-C1-SUCESORES-Y-LOTE-3);
+    # la vista proyecta la ultima fila en orden de archivo.
+    vistos: set[tuple[str, str, str]] = set()
     for asiento in asientos:
         clave = (asiento["spec_id"], asiento["resultado_id"])
-        if clave in vistos:
+        if clave + (asiento["validacion_ref"],) in vistos:
             raise ParoRegistro(
                 f"VALIDACION-OVERLAY-DUPLICADA: {clave[0]}/{clave[1]}")
-        vistos.add(clave)
+        vistos.add(clave + (asiento["validacion_ref"],))
         estado = asiento["validacion_independiente"]
         if estado not in ESTADOS_VALIDACION_INDEPENDIENTE:
             raise ParoRegistro(

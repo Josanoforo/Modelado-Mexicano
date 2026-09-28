@@ -1,0 +1,49 @@
+{
+  "congelacion_sha256": "f2eea3d9045848dda0807ccb844bcb8dd4e76640bfe4a8c799a46e5eac515f3a",
+  "estado": "DISCREPA",
+  "identidad": {
+    "paquete": "encuci-0001",
+    "sha256_entrada": "1b7e98c5a2360cfa4f415340ba957227136fa15687d6ee4d5d28ed42fb278ce6",
+    "version_entrada": "residuales-documentales-v2"
+  },
+  "referencia_sha256": "0e2a09cf9cebe3b59eced6adf2050efc63d60bf71362d46eedc25e177a8585e2",
+  "resultados": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": false,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0E-17",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [
+        "estado_ic",
+        "ic95_inf",
+        "ic95_sup"
+      ],
+      "estado": "DISCREPA",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "SIN-IC",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "RESULT-ENCUCI-B-P-RUR-AGR"
+    }
+  ],
+  "tolerancia": {
+    "abs": "1e-10",
+    "rel": "0"
+  },
+  "tolerancia_sha256": "db9850b21bac2d51db71bbc2b1254a3083f04a68c2756fb74dfb25ed1c66fce5",
+  "version": 3
+}

@@ -160,6 +160,7 @@ tools/score_marco_m.py	Adaptador marco-M -> entrada de `forense/prereg-duelo-v2/
 tools/sella_sha256.py	tools/sella_sha256.py -- sella o verifica el sidecar sha256 de un
 tools/sello_externo.py	Manifiesto de sellos GEN2 y su atestación externa (D-a1..D-a6, GEN2-TUBERIA-SELLO-EXTERNO-1).
 tools/snapshot_motor_gen2.py	Construye el snapshot reproducible del emisor GEN2 explícito.
+tools/tablero_carriles.py	tablero_carriles.py -- TABLERO DE CARRILES: un carril por report del
 tools/tablero_programa.py	tablero_programa.py -- deriva los indicadores del TABLERO DEL PROGRAMA desde el
 tools/tablero_vista.py	tablero_vista.py -- vista visual del TABLERO DEL PROGRAMA, para leerse en diez segundos.
 tools/tasas_base_corresidencia_actual.py	ACTO MAESTRA33-C1 · RE-SPEC-CORRESIDENCIA — COMMIT-2

@@ -123,7 +123,7 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Confianza y Desconfianza en México  Anatomía Psicológica de una Socied | `CONFIANZA` | **MEDIDO** | 826 | 0 | 59 (20 / 24 / 15) |
 | El Clasemediero Mexicano  Identidad  Ansiedad de Estatus y el Miedo Ra | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 7 | 56 (4 / 41 / 11) |
 | El Efecto Ambiental de la Violencia Crónica en México  Cómo el Miedo R | `VIOLENCIA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (11 / 36 / 9) |
-| El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el | `TIEMPO` | **EN-MEDICIÓN** | 0 | 4 | 20 (4 / 6 / 10) |
+| El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el | `TIEMPO` | **EN-MEDICIÓN** | 0 | 5 | 20 (4 / 6 / 10) |
 | El México Rural e Indígena en sus Propios Términos  Comunalidad  Autor | `RURAL_INDIGENA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (7 / 30 / 19) |
 | Elegir  Cortejar y Amar en el México de Hoy  Díada de Pareja  Apps de  | `PAREJA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 32 (1 / 18 / 13) |
 | Genetica y Conducta del Mexicano Contemporaneo  Canal Individual vs  E | `GENETICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 38 (0 / 35 / 3) |
@@ -134,13 +134,13 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Mexican Population Genomics  2025-2026 Scientific and Market Opportuni | `GENOMICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 33 (0 / 27 / 6) |
 | Moral Emotions in Mexico  Declared Dignity  Relational Face  and Resid | `EMOCIONES_MORALES` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 18 / 8) |
 | Mérito  Movilidad Social y Desigualdad en México  Actualización 2025-2 | `MOVILIDAD` | **EN-MEDICIÓN** | 0 | 7 | 56 (4 / 41 / 11) |
-| Non-Family Social Capital in Mexico  Cooperation  Trust  and Collectiv | `CAPITAL_SOCIAL` | **MEDIDO** | 614 | 6 | 30 (9 / 8 / 13) |
+| Non-Family Social Capital in Mexico  Cooperation  Trust  and Collectiv | `CAPITAL_SOCIAL` | **MEDIDO** | 614 | 7 | 30 (9 / 8 / 13) |
 | Psicología Política y Comportamiento Cívico del Mexicano Contemporáneo | `POLITICA` | **MEDIDO** | 16 | 11 | 90 (20 / 42 / 28) |
 | Psicología  Conducta y Sociedad en el México Contemporáneo  Análisis T | `SINTESIS` | **SIN-AFIRMACIONES-EN-MAPA** | 0 | 0 | 0 (0 / 0 / 0) |
 | Psicología de la Juventud Mexicana Contemporánea  Gen Z y Millennials  | `JUVENTUD` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 29 (4 / 14 / 11) |
 | Psicología del Consumidor Mexicano  Patrones  Contradicciones y Estrat | `CONSUMO` | **MEDIDO** | 4470 | 0 | 81 (3 / 42 / 36) |
 | Psicología del Trabajo en México  Un Mapa Basado en Evidencia | `TRABAJO` | **MEDIDO** | 26273 | 0 | 85 (13 / 48 / 24) |
-| Psychology of Mexico-US Migration  Identity  Family  Aspiration  and W | `MIGRACION` | **MEDIDO** | 126 | 2 | 58 (5 / 29 / 24) |
+| Psychology of Mexico-US Migration  Identity  Family  Aspiration  and W | `MIGRACION` | **MEDIDO** | 126 | 3 | 58 (5 / 29 / 24) |
 | Reconfiguración de los Guiones de Género en México  Masculinidades  Fe | `GENERO` | **MEDIDO** | 6887 | 0 | 47 (7 / 26 / 14) |
 | Religiosidad y Psicología del Mexicano Contemporáneo  Moral  Afrontami | `RELIGIOSIDAD` | **MEDIDO** | 360 | 0 | 39 (5 / 25 / 9) |
 | Report 26  The Contemporary Mexican and Knowledge  Expertise  Educatio | `CONOCIMIENTO` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 26 (0 / 15 / 11) |

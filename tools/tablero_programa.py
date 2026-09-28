@@ -267,6 +267,7 @@ DERIVADOS_DEL_CANAL = (
     "data/corrida0/pines-sellados-resueltos.tsv", "data/corrida0/usos.tsv",
     "data/corrida0/marcador-segmento.tsv", "milpa/estimadores-por-segmento.yaml",
     "forense/tablero/TABLERO-PROGRAMA.md", "docs/tablero.md",
+    "forense/tablero/TABLERO-CARRILES.md", "docs/tablero-carriles.html",  # GEN2-TABLERO-CARRILES-1
 ) + VISTAS_DEMANDA
 
 
