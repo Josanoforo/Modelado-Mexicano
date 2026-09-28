@@ -1,0 +1,143 @@
+# CALC-ALT-M05-LAPOP2019-0001 -- cara mecánica de ALT-M05-LAPOP-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M05-LAPOP2019-0001
+spec_md: ../../../forense/prereg-caja/ALT-M05-LAPOP-spec-v1_0.md
+spec_md_sha256: c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d
+script: data/corrida0/CALC-ALT-M05-LAPOP2019-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO-ACTITUD
+  dominio: tramite
+  ola: '2019'
+  momento: M05
+  holdout_gastado: NINGUNO
+  fila_mapa: 12
+inputs:
+- id: mexico_lapop_americasbarometer_2019_v1_0_w
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M05-LAPOP-spec-v1_0.md
+  sha256: c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d
+variables:
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: exc18
+  rol: 'desenlace: justifica mordida {0,1}, evento 1'
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: ed
+  rol: 'grupo: años de educación 0..18'
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: ur
+  rol: 'grupo: urbano 1 / rural 2'
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: wt
+  rol: ponderador
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: estratopri
+  rol: estrato
+- archivo: Mexico LAPOP AmericasBarometer 2019 v1.0_W.dta
+  variable: upm
+  rol: UPM
+universo: LAPOP México 2018/19, estudio nacional cara a cara; personas con código sustantivo, peso>0 y diseño completo
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: wt
+transformacion: indicadora; proporción ponderada por celda; IC bootstrap UPM en estrato
+estimando: p(EXC18=Sí) nacional, por bandas de escolaridad, urbano/rural y cruce; ACTITUD, RETROSPECTIVA
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: mexico_lapop_americasbarometer_2019_v1_0_w
+  tabla: Mexico_LAPOP_AmericasBarometer_2019_v1.0_W
+  hash_payload_sha256: c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: estratopri
+    upm:
+    - upm
+    peso: wt
+  universo_filtros: []
+  items:
+  - clave: justifica_mordida
+    variable: exc18
+    validos:
+    - 0
+    - 1
+    evento:
+    - 1
+  grupos:
+  - clave: ed
+    variable: ed
+    niveles:
+      HASTA-6:
+      - 0
+      - 1
+      - 2
+      - 3
+      - 4
+      - 5
+      - 6
+      7-A-12:
+      - 7
+      - 8
+      - 9
+      - 10
+      - 11
+      - 12
+      13-O-MAS:
+      - 13
+      - 14
+      - 15
+      - 16
+      - 17
+      - 18
+  - clave: ur
+    variable: ur
+    niveles:
+      URBANO:
+      - 1
+      RURAL:
+      - 2
+  cruces:
+  - - ed
+    - ur
+  diferencias: []
+  contrastes:
+  - clave: exc18_rural_menos_urbano
+    item: justifica_mordida
+    celda_a: ur=RURAL
+    celda_b: ur=URBANO
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M05-LAPOP2019-FILAS
+  result_tabla: RESULT-ALT-M05-LAPOP2019-TABLA
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M05-LAPOP2019-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M05-LAPOP2019-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo

@@ -1,0 +1,140 @@
+# CALC-ALT-M05-LAPOP2021-0001 -- cara mecánica de ALT-M05-LAPOP-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M05-LAPOP2021-0001
+spec_md: ../../../forense/prereg-caja/ALT-M05-LAPOP-spec-v1_0.md
+spec_md_sha256: c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d
+script: data/corrida0/CALC-ALT-M05-LAPOP2021-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO-ACTITUD
+  dominio: tramite
+  ola: '2021'
+  momento: M05
+  holdout_gastado: NINGUNO
+  fila_mapa: 13
+inputs:
+- id: mex_2021_lapop_americasbarometer_v1_2_w
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M05-LAPOP-spec-v1_0.md
+  sha256: c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d
+variables:
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: exc18
+  rol: 'desenlace: justifica mordida {0,1}, evento 1'
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: pr3dnr
+  rol: 'grupo: castigo probable 1..4 (ALTO 3-4, BAJO 1-2)'
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: edr
+  rol: 'grupo: nivel educativo 0..3'
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: wt
+  rol: ponderador
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: estratopri
+  rol: estrato
+- archivo: MEX_2021_LAPOP_AmericasBarometer_v1.2_w.dta
+  variable: upm
+  rol: UPM
+universo: LAPOP México 2021, estudio nacional CATI a celulares; personas con código sustantivo, peso>0 y diseño completo por reactivo
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: wt
+transformacion: indicadora por reactivo; proporción ponderada por celda; IC bootstrap UPM en estrato; contraste pareado
+estimando: p(EXC18=Sí) nacional, por PR3DNR, por edr y cruce; contraste BAJO−ALTO; ACTITUD, RETROSPECTIVA, sin causalidad
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: mex_2021_lapop_americasbarometer_v1_2_w
+  tabla: MEX_2021_LAPOP_AmericasBarometer_v1.2_w
+  hash_payload_sha256: 153fb0f81acfffb41bbe247b7fce81159350e1fdfcb342a14bb034bcb7d95566
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: estratopri
+    upm:
+    - upm
+    peso: wt
+  universo_filtros: []
+  items:
+  - clave: justifica_mordida
+    variable: exc18
+    validos:
+    - 0
+    - 1
+    evento:
+    - 1
+  - clave: castigo_probable
+    variable: pr3dnr
+    validos:
+    - 1
+    - 2
+    - 3
+    - 4
+    evento:
+    - 3
+    - 4
+  grupos:
+  - clave: pr3
+    variable: pr3dnr
+    niveles:
+      ALTO:
+      - 3
+      - 4
+      BAJO:
+      - 1
+      - 2
+  - clave: edr
+    variable: edr
+    niveles:
+      BASICA-O-MENOS:
+      - 0
+      - 1
+      MEDIA:
+      - 2
+      SUPERIOR:
+      - 3
+  cruces:
+  - - pr3
+    - edr
+  diferencias: []
+  contrastes:
+  - clave: exc18_pr3_bajo_menos_alto
+    item: justifica_mordida
+    celda_a: pr3=BAJO
+    celda_b: pr3=ALTO
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M05-LAPOP2021-FILAS
+  result_tabla: RESULT-ALT-M05-LAPOP2021-TABLA
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M05-LAPOP2021-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M05-LAPOP2021-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo
