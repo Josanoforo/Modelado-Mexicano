@@ -1,6 +1,6 @@
 # ASTRA6-C2-ENOE-INFERENCIA-1 · acta de ejecución
 
-SHA de redacción del acto: `9536e5e2cff760a1866d7c3395395d9dbdd8bbd1`. Entorno: CAJA Ubuntu; no nube para raw. Estado: CONSUMIDO. Sesión responsable: rama `codex/astra6-c2-enoe-inferencia-1`. MODO ABIERTO para sucesor diagnóstico; históricos intactos.
+SHA de redacción del acto: `9536e5e2cff760a1866d7c3395395d9dbdd8bbd1`. Entorno: CAJA Ubuntu; no nube para raw. Estado: VIVO. Sesión responsable: rama `codex/astra6-c2-enoe-inferencia-1`. MODO ABIERTO para sucesor diagnóstico; históricos intactos.
 
 Cuerpo único: [03-ASTRA6-C2-ENOE-INFERENCIA-1.md](fuentes/ASTRA6-tanda4-20260927/03-ASTRA6-C2-ENOE-INFERENCIA-1.md), SHA256 `9684f4fa5f8f10a997e23da154133aad35bce73aeaa062d341f096a641202f0a`. Ya archivado por tanda4, no se copia ni modifica. Adjuntos embebidos verificados desde bytes, hashes en enoe-arranque.json. Firma de misión/adenda: asiento existente `forense/encargos/2026-09-26-ASTRA6-C2-ENIF-1.md` §2, Jonás 26/sep 12:07:56 «Acordado»; no se crea otra firma.
 
@@ -22,6 +22,8 @@ Varianza total/potencia numérica bloqueadas con prueba e insumo oficial especí
 
 ## CONSUMIDO
 
-ASTRA6-C2-ENOE-INFERENCIA-1 ejecutado mediante producto en forense/analisis/familias-2027-enoe-inferencia-1/. Cuerpo fuente único intacto. PR propio se enlaza en recibo; la recepción independiente no se afirma obtenida y la mesa conserva fusión/adopción.
+Estado: CONSUMIDO. ASTRA6-C2-ENOE-INFERENCIA-1 ejecutado mediante producto en `forense/analisis/familias-2027-enoe-inferencia-1/`. Cuerpo fuente único intacto. PR propio se enlaza en recibo; la recepción independiente no se afirma obtenida y la mesa conserva fusión/adopción.
 
 Entrega propia: [PR#1222](https://github.com/Josanoforo/Modelado-Mexicano/pull/1222); sin fusión ni adopción.
+
+REPARACIÓN DE ACTA (#1222): se restauró íntegro el cuerpo de 310e9d8a anterior al cierre; el cambio de estado VIVO → CONSUMIDO se registra únicamente aquí. Sin cambio de diagnóstico, puntos históricos ni escenarios de potencia.
