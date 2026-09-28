@@ -3021,6 +3021,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
+    # encargo verbatim (A.3) y su fragmento L0.
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01.md",
     # GEN2-PISOS-Y-ADENDAS-1 (28/sep/2026): encargo verbatim (A.3) cita `M05` (momento de milpa/catalogo-momentos-v0_1.tsv,
     # «M05 sobre ENCIG en unidad persona», letra A1 (b) pendiente) y `M09`–`M23` (HOLDOUT); no los mide.
     "forense/encargos/2026-09-28-GEN2-PISOS-Y-ADENDAS-1.md",
@@ -3049,6 +3054,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/analisis/mapa-instrumentos-alternos/lotes/AUDITORIA-LOTES.md",
     "forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md",
     "canon/L0/ADR-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01.md",
+    # ACTO GEN2-DEMANDA-DICTAMEN-1, 28/sep/2026: `M01`…`M23` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv (dictamen P4 de la demanda), no rótulos de acto.
+    "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md",
+    "forense/notas/2026-09-28-GEN2-DEMANDA-DICTAMEN-1-nota.md",
+    "canon/L0/ADR-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01.md",
     # ACTO GEN2-OBTENCION-PREVIA-1, 28/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv y `M61` un reactivo de la solicitud al LM, no rótulos de acto.
     "canon/L0/ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01.md",
