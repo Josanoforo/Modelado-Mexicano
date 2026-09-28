@@ -1,0 +1,13 @@
+# Source register · moral emotions
+
+Read cut: 27 September 2026. `(a)` Mexico residents; `(b)` diaspora; `(c)` imported framework. External figures are not project RESULTs.
+
+| ID | Primary source and URL/DOI | Population, method, locator | Scope used |
+|---|---|---|---|
+| M-SMITH17 | [Smith et al. 2017](https://www.scielo.org.mx/pdf/aip/v7n1/2007-4719-aip-7-01-2568.pdf), DOI `10.1016/j.aipprr.2017.03.001` | (a)/(c), university students across eight nations/nine samples; Mexico student sample; questionnaire on perceived national norms; Methods, Tables 1–3 | Perceived norms and within-sample correlations only; no personal value or behavior |
+| M-INEGI20 | [INEGI Census executive results](https://operacapacita.inegi.org.mx/Documentos/Demografico/sesiones/doc_12021/2_censo2020_principales_resultados_ejecutiva_eum.pdf), [Panorama de las religiones](https://www.inegi.org.mx/contenidos/productos/prod_serv/contenidos/espanol/bvinegi/productos/nueva_estruc/889463910404.pdf) | (a), census population religion affiliation; religion distribution table/entity tabulations | Affiliation change and geography, never felt guilt |
+| M-FELIX06 | [Félix-Brasdefer 2006](https://posgrado.unam.mx/linguistica/lecturas/MLA/Texto1-MLA-2015.pdf), DOI `10.1016/j.pragma.2006.05.004` | (a), male speakers in one Tlaxcala community, refusal interactions and verbal reports; Methods/results | Bounded relational speech pattern; motive not identified |
+| M-SALVADOR25 | [Salvador et al. 2025](https://sites.duke.edu/culturelab/files/2025/01/salvador-et-al-2025-self-enhancement-in-latin-america-is-it-linked-to-interdependence.pdf) | (a)/(c), multi-study self-enhancement/interdependence, including participants screened for Mexico residence; methods and discussion | Challenge to simple self-construal binary; not Mexican shame/guilt prevalence |
+| M-REL-V2 | [Project religiosity v2](../../../../../corpus/reports-v2/Religiosidad_y_Psicología_del_Mexicano_Contemporáneo__Moral__Afrontamiento__Consumo_e_Identidad_en_Transformación.md) | Project editorial product with adopted RESULT citations and denominators | Cross-check of affiliation/practice questions; no independent reception or direct guilt measure |
+
+The v1/map's diaspora gender studies and imported shame/guilt scales are retained as hypotheses with their population labels. Their full texts were not checked in this lot, so no new effect sizes or generalized clinical claims are derived. The 2025 directed update addresses self-construal; no located 2025–2026 primary source jointly estimates Mexican norm perception, emotion, behavior and sanction.

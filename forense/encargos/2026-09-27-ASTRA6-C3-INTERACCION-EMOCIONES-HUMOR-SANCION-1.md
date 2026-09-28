@@ -181,3 +181,10 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 7. **El «Hecho» se mide igual.** La autonomía no rebaja el criterio; lo que no se alcanzó va a NO-CORRIDO con razón y sucesor. Una nota que diga «PARO-PREMISA» por algo que §1–§4 cubren es un defecto del ejecutor, no del encargo.
 <!-- END CLAUSULA-AUTONOMIA-v1_0.md -->
 
+## NO-CORRIDO / RESERVAS
+
+Frecuencias nacionales de humor, emociones morales y sanción horizontal, y sus mecanismos causales, no se midieron: falta instrumento y diseño adecuados para estas afirmaciones. Recibo independiente de Claude y firma de las nueve reglas: pendientes del circuito de mesa. No se abrió microdato ni ola reservada. Detalle y sucesores en `forense/analisis/reports-v2/interaccion-emociones-humor-sancion-1/cierre.md`.
+
+## CONSUMIDO
+
+Este encargo produjo cuatro homónimos v2 y su expediente local en `forense/analisis/reports-v2/interaccion-emociones-humor-sancion-1/`. El cuerpo anterior a este encabezado conserva los bytes recibidos; el sello `.cuerpo.sha256` cubre su normalización según D-a1. Estado, límites, conteos y recibo solicitado constan en `cierre.md` y `recibo-para-claude.md` del expediente. Nueve reglas se proponen sin adopción. Cero mediciones y cero celdas validadas añadidas.
