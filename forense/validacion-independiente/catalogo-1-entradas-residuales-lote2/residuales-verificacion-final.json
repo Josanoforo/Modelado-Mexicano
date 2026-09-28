@@ -1,0 +1,35 @@
+{
+  "base_main": "9536e5e2cff760a1866d7c3395395d9dbdd8bbd1",
+  "gate": {
+    "comando": "python3 tests/check.py --rapido --baseline",
+    "resultado": "VERDE: 0 FAIL global; 620 WARN",
+    "salida_sha256": "71abcd33fa4f235bc1d1f0d4e6e2fe73350b836f3555585b54846b760d9c8bd7"
+  },
+  "producto": {
+    "p1": "PASS: 425 corte; 368 pares; union312; 56 puntos/312IC; diferencias2/8",
+    "p4": "PASS: 4 contenedores v2/312 identidades/40 miembros; bytes reproducibles; 12 circuitos sintéticos/936 filas frente a #1221 HEAD d8ef9f56",
+    "adaptador": "PASS: paquete→congelación→comparación, punto SIN-IC, IC CALCULADO, no recalculable desde spec; extras rechazados"
+  },
+  "git_diff_check": "PASS",
+  "recalculos": 0,
+  "historicos_modificados": [],
+  "no_ejecutado": [
+    "recalculo",
+    "verify CALC",
+    "microdatos",
+    "productores",
+    "CI adicional",
+    "recibo Claude",
+    "adopcion"
+  ],
+  "sincronizacion_main": {
+    "sha": "140b716db8f381efb2916667ba1be6ec8fe3e3e4",
+    "metodo": "git fetch origin + git merge origin/main",
+    "contrato_1221_integrado": true
+  },
+  "guardias_huerfanas": {
+    "comando": "python3 tools/ci_guardias.py --ejecuta-huerfanos",
+    "resultado": "ejecutados=106 saltados=111 fallidos=0",
+    "salida_sha256": "d8bdb978a0fb0a90b6236678cf3826fb306c45075bf84e6473d32ded937cb842"
+  }
+}

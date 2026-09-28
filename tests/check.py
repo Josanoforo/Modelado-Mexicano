@@ -3021,6 +3021,16 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-OBTENCION-PREVIA-1, 28/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv y `M61` un reactivo de la solicitud al LM, no rótulos de acto.
+    "canon/L0/ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01.md",
+    "forense/analisis/obtencion-previa-1/P1-A1-nota.md",
+    "forense/analisis/obtencion-previa-1/P2-A2-nota.md",
+    "forense/analisis/obtencion-previa-1/P4-I1-solicitud-LM.md",
+    "forense/notas/nota-2026-09-28-gen2-obtencion-previa-1.md",
+    "forense/encargos/2026-09-27-GEN2-OBTENCION-PREVIA-1.md",
+    "forense/analisis/obtencion-previa-1/P3-D1-nota.md",
+    "forense/analisis/obtencion-previa-1/P4-I1-nota.md",
     # ACTO GEN2-CIERRE-SEMANAL-2, 27/sep/2026: el encargo (verbatim, A.3) cita «la letra E6 de la
     # hoja de NC-DECISIONES-1» — letra de hoja de firmas (FP-…-f2e5-17), no rótulo de acto.
     "forense/encargos/2026-09-27-GEN2-CIERRE-SEMANAL-2.md",

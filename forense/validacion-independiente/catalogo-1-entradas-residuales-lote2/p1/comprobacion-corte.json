@@ -1,0 +1,27 @@
+{
+  "fuente": "forense/validacion-independiente/catalogo-1-ejecucion-lote2/lote2-tabla-estimadores.tsv",
+  "fuente_sha256": "fb9d2e3fdd80f876c16263e48b4e51a0787e6ab5f846814a6ff2294b41e24963",
+  "llaves_corte": 425,
+  "filas_llave_componente": 368,
+  "union_llaves": 312,
+  "componentes": {
+    "punto": 56,
+    "ic": 312
+  },
+  "interseccion_punto_ic": 56,
+  "por_instrumento_componente": {
+    "ENBIARE/punto": 54,
+    "ENBIARE/ic": 180,
+    "ENCODAT/ic": 130,
+    "ENCUCI/punto": 1,
+    "ENCUCI/ic": 1,
+    "ENIGH/punto": 1,
+    "ENIGH/ic": 1
+  },
+  "discrepancias_preservadas": {
+    "ic": 8,
+    "punto": 2
+  },
+  "microdatos_abiertos": false,
+  "productores_abiertos": false
+}
