@@ -10,6 +10,7 @@ import hashlib
 import io
 import json
 from pathlib import Path
+import re
 import socket
 import struct
 import tarfile
@@ -23,10 +24,54 @@ except ImportError:  # direct CLI invocation
 MAX_PROMPT = 1024 * 1024
 MAX_REQUEST = 96 * 1024 * 1024
 MAX_RESPONSE = 4 * 1024 * 1024
+RESPONSE_FIELDS = {"protocol", "request_id", "session_id", "new_session",
+                   "accepted_files", "tools", "provider", "model", "attestation", "response"}
+ATTESTATION_SCOPE = "broker-asserted-new-session-without-history-or-memory"
 
 
 def _sha(data):
     return hashlib.sha256(data).hexdigest()
+
+
+def _canonical(data):
+    return json.dumps(data, sort_keys=True, separators=(",", ":"),
+                      ensure_ascii=True, allow_nan=False).encode("utf-8")
+
+
+def _digest(value):
+    return isinstance(value, str) and re.fullmatch(r"[0-9a-f]{64}", value) is not None
+
+
+def _check_response(request, response):
+    if not isinstance(response, dict) or set(response) != RESPONSE_FIELDS:
+        raise ValueError("invalid broker response schema")
+    if response["protocol"] != request["protocol"] or response["request_id"] != request["request_id"]:
+        raise ValueError("broker response request mismatch")
+    if response["new_session"] is not True or not isinstance(response["session_id"], str) or not response["session_id"]:
+        raise ValueError("broker did not attest a new session")
+    for field in ("provider", "model"):
+        if not isinstance(response[field], str) or not response[field].strip():
+            raise ValueError("broker provider/model identity required")
+    attestation = response["attestation"]
+    if (not isinstance(attestation, dict) or set(attestation) != {"issuer", "scope"}
+            or not isinstance(attestation["issuer"], str) or not attestation["issuer"].strip()
+            or attestation["scope"] != ATTESTATION_SCOPE):
+        raise ValueError("broker attestation issuer and scope required")
+    allowed = [{"path": x["path"], "sha256": x["sha256"]} for x in request["files"]]
+    if response["accepted_files"] != allowed or response["tools"] != request["tools"]:
+        raise ValueError("broker accepted a different input/tool set")
+    code = response["response"]
+    if not isinstance(code, str) or not code or len(code.encode("utf-8")) > MAX_PROMPT:
+        raise ValueError("broker did not return bounded Python code")
+
+
+def make_receipt(request, response, archive_file, manifest_file):
+    """Preserve the exact request needed to verify the broker reply later."""
+    _check_response(request, response)
+    return {"request": request, "request_sha256": _sha(_canonical(request)),
+            "source_archive_sha256": _sha(Path(archive_file).read_bytes()),
+            "source_manifest_sha256": _sha(Path(manifest_file).read_bytes()),
+            "response": response}
 
 
 def prepare(bundle, prompt_file):
@@ -112,24 +157,42 @@ def prepare_source(archive_file, manifest_file, prompt_file):
     return request
 
 
-def assemble(archive_file, manifest_file, receipt_file, output):
+def assemble(archive_file, manifest_file, receipt_file, output, *, prompt_file,
+             expected_receipt_sha256):
+    if not _digest(expected_receipt_sha256):
+        raise ValueError("expected receipt SHA-256 required from outside receipt")
+    receipt_bytes = Path(receipt_file).read_bytes()
+    if _sha(receipt_bytes) != expected_receipt_sha256:
+        raise ValueError("receipt differs from external SHA-256")
     manifest, contents = read_source(archive_file, manifest_file)
-    receipt = json.loads(Path(receipt_file).read_text())
-    if set(receipt) != {"request_sha256", "source_archive_sha256", "source_manifest_sha256", "response"}:
+    receipt = json.loads(receipt_bytes)
+    if not isinstance(receipt, dict) or set(receipt) != {"request", "request_sha256", "source_archive_sha256", "source_manifest_sha256", "response"}:
         raise ValueError("invalid session receipt")
+    if not _digest(receipt["request_sha256"]) or not _digest(receipt["source_archive_sha256"]) or not _digest(receipt["source_manifest_sha256"]):
+        raise ValueError("invalid receipt SHA-256")
     if receipt["source_archive_sha256"] != _sha(Path(archive_file).read_bytes()) or receipt["source_manifest_sha256"] != _sha(Path(manifest_file).read_bytes()):
         raise ValueError("source changed since broker request")
-    response = receipt["response"]
-    expected_files = [{"path": path, "sha256": _sha(data)} for path, data in sorted(contents.items())]
+    request = receipt["request"]
+    if (not isinstance(request, dict) or set(request) != {"protocol", "request_id", "session", "prompt", "files", "tools", "max_response_bytes"}
+            or request["protocol"] != "astra6-blind-session-v1"
+            or not isinstance(request["request_id"], str)
+            or request["request_id"] != str(uuid.UUID(request["request_id"]))
+            or request["session"] != "new" or request["max_response_bytes"] != MAX_RESPONSE):
+        raise ValueError("invalid preserved request")
+    prompt_bytes = Path(prompt_file).read_bytes()
+    if not prompt_bytes or len(prompt_bytes) > MAX_PROMPT or request["prompt"] != prompt_bytes.decode("utf-8"):
+        raise ValueError("request prompt mismatch")
+    expected_files = [{"path": path, "sha256": _sha(data),
+                       "base64": base64.b64encode(data).decode("ascii")}
+                      for path, data in sorted(contents.items())]
     expected_tools = [{"name": "isolated_executor_v3", "input_manifest_sha256": receipt["source_manifest_sha256"]}]
-    if (not isinstance(response, dict) or set(response) != {"protocol", "request_id", "session_id", "new_session", "accepted_files", "tools", "response"}
-            or response["protocol"] != "astra6-blind-session-v1" or response["new_session"] is not True
-            or not isinstance(response["session_id"], str) or not response["session_id"]
-            or response["accepted_files"] != expected_files or response["tools"] != expected_tools):
-        raise ValueError("missing fresh-session attestation")
-    code = response.get("response")
-    if not isinstance(code, str) or not code or len(code.encode("utf-8")) > MAX_PROMPT:
-        raise ValueError("broker did not return bounded Python code")
+    if request["files"] != expected_files or request["tools"] != expected_tools:
+        raise ValueError("request differs from source files or tools")
+    if receipt["request_sha256"] != _sha(_canonical(request)):
+        raise ValueError("request SHA-256 mismatch")
+    response = receipt["response"]
+    _check_response(request, response)
+    code = response["response"]
     contents["reconstructor.py"] = code.encode("utf-8")
     target = Path(output)
     if target.exists() or target.is_symlink():
@@ -146,15 +209,19 @@ def assemble(archive_file, manifest_file, receipt_file, output):
     (target / "manifest.json").write_text(json.dumps(execution_manifest, sort_keys=True, separators=(",", ":")))
     provenance = {"source_archive_sha256": receipt["source_archive_sha256"],
                   "source_manifest_sha256": receipt["source_manifest_sha256"],
-                  "broker_receipt_sha256": _sha(Path(receipt_file).read_bytes()),
+                  "broker_receipt_sha256": expected_receipt_sha256,
+                  "request_sha256": receipt["request_sha256"],
+                  "request_id": request["request_id"],
                   "session_id": response["session_id"],
+                  "provider": response["provider"], "model": response["model"],
+                  "attestation": response["attestation"],
                   "execution_manifest_sha256": _sha((target / "manifest.json").read_bytes())}
     (target / "provenance.json").write_text(json.dumps(provenance, sort_keys=True, indent=2) + "\n")
     return provenance
 
 
 def send(request, socket_path, connection_factory=None):
-    encoded = json.dumps(request, sort_keys=True, separators=(",", ":")).encode()
+    encoded = _canonical(request)
     if len(encoded) > MAX_REQUEST:
         raise ValueError("request byte limit")
     factory = connection_factory or (lambda: socket.socket(socket.AF_UNIX, socket.SOCK_STREAM))
@@ -167,19 +234,7 @@ def send(request, socket_path, connection_factory=None):
         if not 0 < size <= MAX_RESPONSE:
             raise ValueError("broker response byte limit")
         response = json.loads(_read_exact(connection, size))
-    expected = {"protocol", "request_id", "session_id", "new_session", "accepted_files",
-                "tools", "response"}
-    if not isinstance(response, dict) or set(response) != expected:
-        raise ValueError("invalid broker response schema")
-    if response["protocol"] != request["protocol"] or response["request_id"] != request["request_id"]:
-        raise ValueError("broker response request mismatch")
-    if response["new_session"] is not True or not isinstance(response["session_id"], str) or not response["session_id"]:
-        raise ValueError("broker did not attest a new session")
-    allowed = [{"path": x["path"], "sha256": x["sha256"]} for x in request["files"]]
-    if response["accepted_files"] != allowed or response["tools"] != request["tools"]:
-        raise ValueError("broker accepted a different input/tool set")
-    if not isinstance(response["response"], str):
-        raise ValueError("broker response text required")
+    _check_response(request, response)
     return response
 
 
@@ -204,20 +259,23 @@ def main():
     assembly_parser = sub.add_parser("assemble")
     for name in ("source-archive", "source-manifest", "receipt", "output"):
         assembly_parser.add_argument("--" + name, required=True)
+    assembly_parser.add_argument("--prompt", required=True)
+    assembly_parser.add_argument("--expected-receipt-sha256", required=True)
     args = parser.parse_args()
     if args.action == "assemble":
-        print(json.dumps(assemble(args.source_archive, args.source_manifest, args.receipt, args.output), sort_keys=True))
+        print(json.dumps(assemble(args.source_archive, args.source_manifest, args.receipt, args.output,
+                                  prompt_file=args.prompt, expected_receipt_sha256=args.expected_receipt_sha256), sort_keys=True))
         return
     request = prepare_source(args.source_archive, args.source_manifest, args.prompt)
-    response = send(request, args.socket)
     output = Path(args.receipt)
     if output.exists() or output.is_symlink():
         raise ValueError("response destination must be new")
-    output.write_text(json.dumps({"request_sha256": _sha(json.dumps(request, sort_keys=True,
-                      separators=(",", ":")).encode()), "source_archive_sha256": _sha(Path(args.source_archive).read_bytes()),
-                      "source_manifest_sha256": _sha(Path(args.source_manifest).read_bytes()),
-                      "response": response}, indent=2, sort_keys=True) + "\n")
-    print(json.dumps({"session_id": response["session_id"], "receipt": str(output)}))
+    response = send(request, args.socket)
+    receipt = make_receipt(request, response, args.source_archive, args.source_manifest)
+    receipt_bytes = (json.dumps(receipt, indent=2, sort_keys=True, allow_nan=False) + "\n").encode("utf-8")
+    output.write_bytes(receipt_bytes)
+    print(json.dumps({"session_id": response["session_id"], "receipt": str(output),
+                      "receipt_sha256": _sha(receipt_bytes), "request_id": request["request_id"]}))
 
 
 if __name__ == "__main__":

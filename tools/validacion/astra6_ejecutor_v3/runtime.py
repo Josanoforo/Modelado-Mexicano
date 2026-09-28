@@ -363,8 +363,8 @@ def _extract(output_tar, manifest, output):
     return export
 
 
-def verify_export(output):
-    """Verify a frozen export again immediately before opening any reference."""
+def verify_export_consistency(output):
+    """Check an export's internal file hashes; this is not a trusted seal."""
     root = Path(output).absolute()
     if root.is_symlink() or root.resolve(strict=True) != root:
         raise ValueError("export root changed")
@@ -372,14 +372,17 @@ def verify_export(output):
     if manifest_file.is_symlink() or not manifest_file.is_file():
         raise ValueError("missing export manifest")
     manifest = json.loads(manifest_file.read_text())
-    if set(manifest) != {"version", "files", "input_manifest_sha256"} or manifest["version"] != 1 or not SHA.fullmatch(manifest["input_manifest_sha256"]):
+    if (not isinstance(manifest, dict) or set(manifest) != {"version", "files", "input_manifest_sha256"}
+            or manifest["version"] != 1 or not isinstance(manifest["input_manifest_sha256"], str)
+            or not SHA.fullmatch(manifest["input_manifest_sha256"]) or not isinstance(manifest["files"], list)):
         raise ValueError("invalid export manifest")
     expected = set()
     for item in manifest["files"]:
         if not isinstance(item, dict) or set(item) != {"path", "sha256", "bytes"}:
             raise ValueError("invalid export file record")
         relative = str(safe_path(item["path"]))
-        if relative in expected or not SHA.fullmatch(item["sha256"]) or not isinstance(item["bytes"], int) or item["bytes"] < 0:
+        if (relative in expected or not isinstance(item["sha256"], str) or not SHA.fullmatch(item["sha256"])
+                or type(item["bytes"]) is not int or item["bytes"] < 0):
             raise ValueError("invalid export file identity")
         expected.add(relative)
         path = root / relative
@@ -394,6 +397,76 @@ def verify_export(output):
     if actual != expected:
         raise ValueError("export has missing or extra files")
     return manifest
+
+
+def _package_identity(identity):
+    if (not isinstance(identity, dict) or set(identity) != {"paquete", "version_entrada", "sha256_entrada"}
+            or any(not isinstance(identity[key], str) or not identity[key] for key in identity)
+            or not SHA.fullmatch(identity["sha256_entrada"])):
+        raise ValueError("invalid package identity")
+    return identity
+
+
+def freeze_export(output, anchor_path, *, package_identity, expected_input_manifest_sha256):
+    """Commit an export to a separate, new anchor before revealing references.
+
+    The caller supplies the previously approved package identity and input
+    manifest hash. Neither is inferred from the mutable export directory.
+    The anchor itself must be retained by the trusted orchestrator.
+    """
+    identity = _package_identity(package_identity)
+    if not isinstance(expected_input_manifest_sha256, str) or not SHA.fullmatch(expected_input_manifest_sha256):
+        raise ValueError("invalid expected input manifest sha256")
+    root = Path(output).absolute()
+    anchor_path = Path(anchor_path).absolute()
+    if anchor_path.is_relative_to(root):
+        raise ValueError("anchor must be outside export directory")
+    manifest = verify_export_consistency(root)
+    if manifest["input_manifest_sha256"] != expected_input_manifest_sha256:
+        raise ValueError("export belongs to a different input manifest")
+    if "resultado.json" not in {item["path"] for item in manifest["files"]}:
+        raise ValueError("export lacks resultado.json")
+    result = json.loads((root / "resultado.json").read_text())
+    if not isinstance(result, dict) or result.get("identidad") != identity:
+        raise ValueError("result belongs to a different package")
+    if anchor_path.exists() or anchor_path.is_symlink() or anchor_path.parent.resolve(strict=True) != anchor_path.parent:
+        raise ValueError("anchor destination must be new, with real parent")
+    anchor = {"version": 1, "package_identity": dict(identity),
+              "input_manifest_sha256": expected_input_manifest_sha256,
+              "export_manifest_sha256": digest((root / "export-manifest.json").read_bytes())}
+    with anchor_path.open("x", encoding="utf-8") as stream:
+        json.dump(anchor, stream, sort_keys=True, separators=(",", ":"))
+        stream.write("\n")
+    anchor_path.chmod(0o400)
+    return anchor
+
+
+def verify_export(output, anchor):
+    """Verify export against the external anchor before opening a reference."""
+    root = Path(output).absolute()
+    anchor_path = Path(anchor).absolute()
+    if anchor_path.is_relative_to(root) or anchor_path.is_symlink() or not anchor_path.is_file():
+        raise ValueError("trusted anchor must be a separate regular file")
+    trusted = json.loads(anchor_path.read_text())
+    if (not isinstance(trusted, dict) or set(trusted) != {"version", "package_identity", "input_manifest_sha256", "export_manifest_sha256"}
+            or trusted["version"] != 1 or not isinstance(trusted["input_manifest_sha256"], str)
+            or not SHA.fullmatch(trusted["input_manifest_sha256"])
+            or not isinstance(trusted["export_manifest_sha256"], str)
+            or not SHA.fullmatch(trusted["export_manifest_sha256"])):
+        raise ValueError("invalid trusted anchor")
+    _package_identity(trusted["package_identity"])
+    manifest_file = root / "export-manifest.json"
+    if manifest_file.is_symlink() or not manifest_file.is_file() or digest(manifest_file.read_bytes()) != trusted["export_manifest_sha256"]:
+        raise ValueError("export manifest differs from trusted anchor")
+    manifest = verify_export_consistency(root)
+    if manifest["input_manifest_sha256"] != trusted["input_manifest_sha256"]:
+        raise ValueError("export input differs from trusted anchor")
+    if "resultado.json" not in {item["path"] for item in manifest["files"]}:
+        raise ValueError("export lacks resultado.json")
+    result = json.loads((root / "resultado.json").read_text())
+    if not isinstance(result, dict) or result.get("identidad") != trusted["package_identity"]:
+        raise ValueError("result package differs from trusted anchor")
+    return {"export": manifest, "anchor": trusted}
 
 
 def run(bundle, output, backend, image=None, timeout=60):
@@ -429,6 +502,14 @@ def main():
     run_parser.add_argument("--backend", choices=("namespace", "podman", "docker"), required=True)
     run_parser.add_argument("--image")
     run_parser.add_argument("--timeout", type=int, default=60)
+    freeze_parser = sub.add_parser("freeze-export")
+    freeze_parser.add_argument("--export", required=True)
+    freeze_parser.add_argument("--anchor", required=True)
+    freeze_parser.add_argument("--identity", required=True)
+    freeze_parser.add_argument("--input-manifest-sha256", required=True)
+    verify_parser = sub.add_parser("verify-export")
+    verify_parser.add_argument("--export", required=True)
+    verify_parser.add_argument("--anchor", required=True)
     child = sub.add_parser("_namespace_child")
     child.add_argument("--bundle", required=True)
     child.add_argument("--rootfs", required=True)
@@ -436,7 +517,16 @@ def main():
     try:
         if args.action == "_namespace_child":
             _namespace_child(args.bundle, args.rootfs)
-        result = build(args.archive, args.manifest, args.output) if args.action == "build" else run(args.bundle, args.output, args.backend, args.image, args.timeout)
+        if args.action == "build":
+            result = build(args.archive, args.manifest, args.output)
+        elif args.action == "run":
+            result = run(args.bundle, args.output, args.backend, args.image, args.timeout)
+        elif args.action == "freeze-export":
+            identity = json.loads(Path(args.identity).read_text())
+            result = freeze_export(args.export, args.anchor, package_identity=identity,
+                                   expected_input_manifest_sha256=args.input_manifest_sha256)
+        else:
+            result = verify_export(args.export, args.anchor)
         print(json.dumps(result, sort_keys=True))
         return 0
     except (OSError, ValueError, RuntimeError, tarfile.TarError, subprocess.CalledProcessError) as exc:

@@ -9,6 +9,7 @@ import hashlib
 import importlib.util
 import io
 import json
+import math
 from pathlib import Path
 import subprocess
 import sys
@@ -100,6 +101,13 @@ def digest(data):
     return hashlib.sha256(data).hexdigest()
 
 
+def anchor_export(runtime, export, manifest_path, identity, anchor_path):
+    manifest = json.loads(Path(manifest_path).read_text())
+    expected = digest(json.dumps(manifest, sort_keys=True, separators=(',', ':')).encode())
+    return runtime.freeze_export(export, anchor_path, package_identity=identity,
+                                 expected_input_manifest_sha256=expected)
+
+
 def fixture(base, extra_members=(), outside_secret=None, host_tcp_port=9):
     """A valid nonempty allowlist accompanies every TAR, including attacks."""
     script = RECONSTRUCTOR.replace('OUTSIDE_SECRET_PATH',
@@ -160,26 +168,47 @@ def write_evidence(target):
         if launched.returncode:
             raise RuntimeError(launched.stderr)
         export_dir = base / 'export'
-        runtime.verify_export(export_dir)
+        output = json.loads((export_dir / 'resultado.json').read_text())
+        anchor_path = base / 'export-anchor.json'
+        anchor_export(runtime, export_dir, manifest, output['identidad'], anchor_path)
+        runtime.verify_export(export_dir, anchor_path)
         export_manifest = json.loads((export_dir / 'export-manifest.json').read_text())
         canaries = json.loads((export_dir / 'canarios.json').read_text())
         if not all(canaries.values()):
             raise AssertionError(canaries)
-        output = json.loads((export_dir / 'resultado.json').read_text())
         spec = importlib.util.spec_from_file_location('contract_v3_evidence', CONTRACT)
         contract = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(contract)
         contract.validate(output)
-        reference = {'proporcion_A': {'punto': '0.75', 'estado_ic': 'CALCULADO'},
-                     'dominio_vacio': {'estado': 'DENOMINADOR-CERO'},
-                     'punto_sin_ic': {'punto': '0.75', 'estado_ic': 'NO-IDENTIFICADA'}}
+        # Expected values come from the synthetic fixture, independently of
+        # the candidate's output. The reference is written only after freeze.
+        standard_error = math.sqrt(1 / 3) / math.sqrt(3)
+        reference = {'version': 3, 'identidad': output['identidad'], 'filas': [
+            {'llave': 'proporcion_A', 'unidad': 'proporcion', 'estado': 'RECONSTRUIDO',
+             'punto': '0.75', 'estado_ic': 'CALCULADO',
+             'ic95_inf': str(0.75 - 1.96 * standard_error),
+             'ic95_sup': str(0.75 + 1.96 * standard_error)},
+            {'llave': 'dominio_vacio', 'unidad': 'proporcion', 'estado': 'DENOMINADOR-CERO',
+             'motivo': 'Dominio vacío bajo spec suficiente'},
+            {'llave': 'punto_sin_ic', 'unidad': 'proporcion', 'estado': 'RECONSTRUIDO',
+             'punto': '0.75', 'estado_ic': 'NO-IDENTIFICADA',
+             'motivo_ic': 'Diseño de réplicas no identificado'},
+        ]}
+        tolerance = base / 'tolerancia.json'
+        tolerance.write_text('{"abs":"1e-12","rel":"0"}\n')
+        if str(ROOT.parents[2]) not in sys.path:
+            sys.path.insert(0, str(ROOT.parents[2]))
+        from tools.validacion.astra6_ejecutor_v3 import compare_v3
+        frozen_sha = compare_v3.freeze(export_dir, anchor_path, tolerance, base / 'congelado')
         reference_bytes = (json.dumps(reference, sort_keys=True) + '\n').encode()
-        rows_by_key = {row['llave']: row for row in output['filas']}
-        if (set(rows_by_key) != set(reference) or
-            any(any(str(rows_by_key[key].get(field)) != str(value)
-                    for field, value in expected.items())
-                for key, expected in reference.items())):
-            raise AssertionError('synthetic reference differs')
+        reference_path = base / 'referencia.json'
+        reference_path.write_bytes(reference_bytes)
+        comparison = compare_v3.compare(base / 'congelado', frozen_sha,
+                                        reference_path, digest(reference_bytes))
+        if comparison['estado'] != 'COINCIDE' or any(
+                not all(item['dentro'] for item in row['campos'].values())
+                for row in comparison['resultados']):
+            raise AssertionError('full synthetic comparison differs')
         if (export_dir / 'no-autorizado.txt').exists():
             raise AssertionError('unlisted output was exported')
         original = export_dir / 'resultado.json'
@@ -188,7 +217,7 @@ def write_evidence(target):
         original.write_bytes(saved + b'altered')
         tamper_rejected = False
         try:
-            runtime.verify_export(export_dir)
+            runtime.verify_export(export_dir, anchor_path)
         except (ValueError, RuntimeError):
             tamper_rejected = True
         finally:
@@ -196,7 +225,7 @@ def write_evidence(target):
             original.chmod(0o444)
         if not tamper_rejected:
             raise AssertionError('post-seal alteration accepted')
-        runtime.verify_export(export_dir)
+        runtime.verify_export(export_dir, anchor_path)
         payload = io.BytesIO()
         with tarfile.open(fileobj=payload, mode='w') as tar:
             for row in export_manifest['files']:
@@ -229,6 +258,9 @@ def write_evidence(target):
             'resultado_original_validado_con_contrato_v3': True,
             'referencia_sintetica_sha256': digest(reference_bytes),
             'comparacion_referencia_sintetica': 'COINCIDE',
+            'congelacion_sha256': frozen_sha,
+            'ancla_exportacion_sha256': digest(anchor_path.read_bytes()),
+            'comparacion_componentes': comparison['resultados'],
             'alteracion_posterior_al_sello_rechazada': tamper_rejected,
             'tar_salida_truncado_rechazado': truncated_rejected,
             'canarios_desde_proceso_aislado': canaries,
@@ -271,12 +303,12 @@ class ExecutorE2E(unittest.TestCase):
 
             good = archive(files)
             module._extract(good, manifest, base / 'complete')
-            self.assertTrue(module.verify_export(base / 'complete'))
+            self.assertTrue(module.verify_export_consistency(base / 'complete'))
             target = base / 'complete' / 'resultado.json'
             target.chmod(0o644)
             target.write_bytes(target.read_bytes() + b'altered')
             with self.assertRaises((ValueError, RuntimeError)):
-                module.verify_export(base / 'complete')
+                module.verify_export_consistency(base / 'complete')
             with self.assertRaises((ValueError, RuntimeError, tarfile.TarError, EOFError)):
                 module._extract(archive({'resultado.json': files['resultado.json']}),
                                 manifest, base / 'missing')
@@ -333,6 +365,9 @@ class ExecutorE2E(unittest.TestCase):
     def test_namespace_science_boundary_and_export(self):
         with tempfile.TemporaryDirectory(prefix='astra6-v3-e2e-') as temp:
             base = Path(temp)
+            spec_runtime = importlib.util.spec_from_file_location('runtime_v3_e2e', RUNTIME)
+            runtime = importlib.util.module_from_spec(spec_runtime)
+            spec_runtime.loader.exec_module(runtime)
             secret = base / 'secreto-ficticio-externo'
             secret.write_text('SYNTHETIC-SECRET')
             archive, manifest = fixture(base, outside_secret=secret)
@@ -349,6 +384,9 @@ class ExecutorE2E(unittest.TestCase):
                 'outside_secret_denied', 'tcp_denied', 'udp_denied',
                 'extra_output_written'})
             output = json.loads((export / 'resultado.json').read_text())
+            anchor = base / 'export-anchor.json'
+            anchor_export(runtime, export, manifest, output['identidad'], anchor)
+            self.assertTrue(runtime.verify_export(export, anchor))
             spec = importlib.util.spec_from_file_location('contract_v3_e2e', CONTRACT)
             contract = importlib.util.module_from_spec(spec)
             spec.loader.exec_module(contract)

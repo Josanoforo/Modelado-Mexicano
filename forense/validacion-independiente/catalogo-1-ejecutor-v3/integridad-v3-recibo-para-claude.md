@@ -1,0 +1,7 @@
+# Recibo para Claude · integridad v3 · PR #1241
+
+EJECUTADO: continuación del PR #1241, rama `codex/astra6-c1-ejecutor-v3-1`, corte de main `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5`. Corrige tres defectos materiales de #1241: exportación sustituible con manifiesto rehecho, recibo ensamblable sin solicitud cotejada y comparación que omitía extremos IC. La [nota de cierre](integridad-v3-nota-cierre.md) da los comandos, hashes y salida por componente. El encargo nuevo conserva bytes originales y sello canónico; v2 y sellos anteriores no cambiaron.
+
+EJECUTADO: ancla externa obligatoria antes de referencia; recibo ligado a solicitud, prompt y hash externo; congelación invocable de artefactos y tolerancia; comparación de punto y ambos extremos IC. `evidencia-sintetica-integridad-v3.json` registra `run_id=7428fdea119d5fe6`, NumPy y 1328899 bytes de TSV desde el namespace real, seis canarios internos y resultado sintético COINCIDE por componentes. 15 tests dirigidos OK, incluidas las sustituciones y el IC erróneo. Gate rápido: **0 FAIL, 622 WARN**. Contador sin incremento.
+
+LEÍDO/PROPUESTO: recibir la corrección técnica y la ruta `LANZAMIENTO.md`; no declarar C1 ciego. El servicio de broker de proveedor sigue NO-VERIFICADO; su única ficha de provisión es `provision-broker-v3.md`. Los gates de contrato firmado y acceso autorizado son decisiones separadas. La recepción de Claude queda pendiente por `GEN2-RECIBO-ASTRA-PRODUCTO-N`; este recibo no equivale a aprobación, fusión ni adopción.
