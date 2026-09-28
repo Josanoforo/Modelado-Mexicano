@@ -3046,6 +3046,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/analisis/mapa-instrumentos-alternos/lotes/AUDITORIA-LOTES.md",
     "forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md",
     "canon/L0/ADR-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01.md",
+    # ACTO GEN2-DEMANDA-DICTAMEN-1, 28/sep/2026: `M01`…`M23` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv (dictamen P4 de la demanda), no rótulos de acto.
+    "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md",
+    "forense/notas/2026-09-28-GEN2-DEMANDA-DICTAMEN-1-nota.md",
+    "canon/L0/ADR-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01.md",
     # ACTO GEN2-OBTENCION-PREVIA-1, 28/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv y `M61` un reactivo de la solicitud al LM, no rótulos de acto.
     "canon/L0/ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01.md",
