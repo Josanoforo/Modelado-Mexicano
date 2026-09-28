@@ -50,3 +50,7 @@ No mide, no adopta, no abre reservadas, no cierra NC de actos en vuelo, no enví
 Ninguno.
 
 Este acto no abre NC (encargo, CABECERA). Límites declarados en `forense/notas/2026-09-28-GEN2-PENDIENTES-3-cierre.md` § Límites: cierres por producto muestreados (8 re-ejecutados), cuatro cierres que dependen de jobs de CI sin log leído, y P3 verificó existencia/sha/metadatos sin abrir bases. Lo que no se cerró queda con dueño de la lista cerrada (332 ABIERTA; 240 MESA, 43 EN-CURSO, 27 ADQUISICION, 18 APERTURA, 6 CAJA); lo irreversible y la bandeja del titular están en `forense/analisis/pendientes-3/hoja-mesa-pendientes-3.md`.
+
+## CONSUMIDO
+
+PR #1307 (`claude/gen2-pendientes-3`), ADR-260928-GEN2-PENDIENTES-3-6e2d-01.
