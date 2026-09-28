@@ -165,6 +165,37 @@ def actos_conocidos():
     return enc, notas
 
 
+def resuelve(nombre, indice):
+    """Clave del índice para un acto citado (P0 de GEN2-TRAMITE-PENDIENTES-2).
+
+    Modo exacto primero (el nombre completo del basename, comportamiento
+    original, no se quita). Si no casa, modo FRONTERA: una clave que empieza
+    por `nombre-` -- `GEN2-E4` <-> `GEN2-E4-LIMPIEZA-C2-PODA`, nunca `GEN2-E41`.
+    Defecto real que atrapa: NC-0012 citaba `GEN2-E4` y salía «encargo
+    NO-ENCONTRADO» con el encargo archivado.
+    Un prefijo que es FAMILIA y no acto (`GEN2-TUBERIA`, `GEN2-LOTE`: el
+    siguiente token difiere entre candidatos) es ambiguo y no resuelve.
+    """
+    if nombre in indice:
+        return nombre
+    cands = sorted(k for k in indice if k.startswith(nombre + "-"))
+    if len({k[len(nombre) + 1:].split("-")[0] for k in cands}) != 1:
+        return None
+    return cands[0]
+
+
+def estado_encargo(ruta):
+    """Tres estados que «encargo EXISTE» colapsaba: en `cola/` no corrió
+    (aunque diga SUPERADO-POR); archivado con `## CONSUMIDO`; archivado sin él."""
+    if "/cola/" in ruta.replace(os.sep, "/"):
+        return "EN-COLA"
+    try:
+        txt = open(ruta, encoding="utf-8").read()
+    except OSError:
+        return "ARCHIVADO-SIN-CONSUMIR"
+    return "CONSUMIDO" if re.search(r"^## CONSUMIDO", txt, re.M) else "ARCHIVADO-SIN-CONSUMIR"
+
+
 def clasifica(r, fps, enc, notas):
     """Prioridad explícita: una NC puede citar varias cosas, y el token debe
     decir QUÉ LA BLOQUEA HOY, no todo lo que menciona.
@@ -192,7 +223,7 @@ def clasifica(r, fps, enc, notas):
         det = " · ".join(f"{f}={fps.get(f, 'NO-ENCONTRADA-EN-EL-TABLERO')}" for f in citadas)
         # todas las FP citadas ya están firmadas: el bloqueador nominal cayó
         nombres = sorted(set(re.findall(r"GEN2-[A-Z0-9]+(?:-[A-Z0-9]+)*", texto.upper())))
-        corridos = [n for n in nombres if n in notas]
+        corridos = [n for n in nombres if resuelve(n, notas)]
         if corridos:
             return T_FUSIONADO, f"FP firmada(s) y acto {', '.join(corridos)} con nota de cierre", det
         return T_FUSIONADO, "todas las FP citadas están FIRMADAS; falta verificar el producto", det
@@ -202,20 +233,23 @@ def clasifica(r, fps, enc, notas):
     propio = (r.get("acto") or "").strip().upper()
     nombres = [n for n in nombres if n != propio]
     if nombres:
-        corridos = [n for n in nombres if n in notas]
-        pendientes = [n for n in nombres if n not in notas]
+        corridos = [n for n in nombres if resuelve(n, notas)]
+        pendientes = [n for n in nombres if not resuelve(n, notas)]
         if corridos and not pendientes:
             return (T_FUSIONADO, f"acto sucesor {', '.join(corridos)} tiene nota de cierre",
-                    " · ".join(f"{n} -> {os.path.basename(notas[n])}" for n in corridos))
+                    " · ".join(f"{n} -> {os.path.basename(notas[resuelve(n, notas)])}" for n in corridos))
         if corridos and pendientes:
             return (T_ACTO, f"parcial: corrió {', '.join(corridos)}; falta {', '.join(pendientes)}",
-                    " · ".join(f"{n}={'CORRIÓ' if n in notas else 'NO-CORRIÓ'}" for n in nombres))
-        existe = [n for n in pendientes if n in enc]
+                    " · ".join(f"{n}={'CORRIÓ' if resuelve(n, notas) else 'NO-CORRIÓ'}" for n in nombres))
+
+        def _enc(n):
+            k = resuelve(n, enc)
+            return f"encargo {estado_encargo(enc[k])}" if k else "encargo NO-ENCONTRADO"
+        existe = [n for n in pendientes if resuelve(n, enc)]
         return (T_ACTO,
                 f"espera {', '.join(pendientes)}"
                 + (f" (encargo EXISTE: {', '.join(existe)})" if existe else " (encargo NO-ENCONTRADO)"),
-                " · ".join(f"{n}={'encargo EXISTE' if n in enc else 'encargo NO-ENCONTRADO'}"
-                           for n in pendientes))
+                " · ".join(f"{n}={_enc(n)}" for n in pendientes))
 
     if not s or re.search(r"\bSIN-ASIGNAR\b", s, re.I):
         return T_SIN, "el campo `sucesor` lo declara SIN-ASIGNAR o está vacío", ""
