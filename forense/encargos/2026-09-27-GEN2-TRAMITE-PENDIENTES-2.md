@@ -74,3 +74,18 @@ PERÍMETRO DE CIERRE — permanente: test huérfano · asientos propios en la vi
 No hace: no mide, no adopta, no toca las NC de decisión de mesa ni las 20 sin sucesor (NC-DECISIONES-1), no arregla T03 de `check.py` ni añade `legacy_definicion_desde` a `status` ni publica el resumen nocturno de la suite (tubería, sucesor de CI-TIEMPO-2), no cierra la NC del canal `…-CONTADORES-CONSUMO-2-749c-03` (la cierra quien haga que el `[deriva]` publique el marcador), no asigna las 221 `ASIGNAR` (dirección), no escribe correos ni solicitudes (bandeja del titular).
 Sucesores: `GEN2-TUBERIA-RESUMEN-SUITE-1` (después de #1198: resumen nocturno de la suite en archivo, T03, `legacy_definicion_desde`) · FIRMAS-21 (hoja de NC-DECISIONES-1 más la hoja de este acto, si la hay) · el próximo inventario del tablero lee las clases de P0.
 Sin módulo de auditoría (no afirma nada sobre México). El cuerpo no lleva campos para rellenar ni líneas de estado; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto al pie. Adendas: archivo propio `2026-09-27-GEN2-TRAMITE-PENDIENTES-2-ADENDA-N.md`, sellado al recibirse, citado solo aquí.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| §3 ADJUNTOS · archivar TABLERO y PENDIENTES | NO-VERIFICABLE-AQUÍ · los adjuntos no llegaron a la sesión | ninguno (mapa, no fuente) | FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01 |
+| P1 · cierres retenidos NC-0085, ef6f-01, 9641-03 | DIFERIDO-A:FIRMAS-21 | no_corrido_abiertas no baja en 3 | FIRMAS-21 |
+| P1 · re-censo de tests (censo rancio) | FUERA-DE-PERÍMETRO · GEN2-TUBERIA-RESUMEN-SUITE-1 | NC de tests siguen abiertas | GEN2-TUBERIA-RESUMEN-SUITE-1 |
+| criterio 5 · `check.py --baseline` en sesión | NO-VERIFICABLE-AQUÍ · no terminó en 10 min | ninguno si CI verde | CI del PR #1252 |
+
+Filas NC: `NC-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01..03`.
+
+## CONSUMIDO
+
+PR #1252 (rama `claude/new-session-rd97rz`), ADR `ADR-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01`.
