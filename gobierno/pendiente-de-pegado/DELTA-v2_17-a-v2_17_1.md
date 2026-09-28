@@ -1,0 +1,9 @@
+DELTA v2.17 → v2.17.1 · A.14 ampliada (cierre hacia atrás y rutas con sucesor real)
+
+Estado: pendiente de pegado. El cuerpo v2.17 (`instrucciones-proyecto-v2_17.md`, en esta misma carpeta) NO se edita; este delta lo absorbe `GEN2-TRAMITE-INSTRUCCIONES-V217-2` en el cuerpo del proyecto cuando mesa lo pegue, y su origen pasa a la HISTORIA.
+
+Texto normativo (se añade al final de A.14):
+
+A.14 (v2.17.1) Al cerrar, todo acto obtiene por comando las NC ABIERTAS cuyo `sucesor` lo nombra (`python3 tools/cierre_acto.py --nombran <RÓTULO>`, nombre con frontera) y dictamina cada una: `CERRADA (producto: ruta · comando)` · `SIGUE-ABIERTA` con sucesor archivado nuevo · `SIN-OBJETO (cita)`; `cerrado_por` y `fecha_cierre` son obligatorios en toda fila que el acto cierre. Una NC con razón FUERA-DE-PERÍMETRO o DIFERIDO-A solo entra al libro si su `sucesor` nombra un encargo archivado (`forense/encargos/`, `cola/` incluida) o un acto en vuelo por rama; si no, es una línea en `forense/hallazgos.md`. `tools/cierre_acto.py --encargo <encargo>` falla la cascada (código 1) con FALTA-DICTAMEN o RUTA-SIN-SUCESOR.
+
+Origen (semilla para la HISTORIA): firma de mesa del 28/sep/2026 en el chat de dirección, verbatim en el encargo `forense/encargos/2026-09-28-GEN2-PENDIENTES-3.md` §2 (b): «al cerrar, todo acto dictamina las NC que lo nombran como sucesor; FUERA-DE-PERÍMETRO y DIFERIDO-A solo con sucesor archivado o en vuelo, si no, hallazgo de una línea». Defecto que atrapa (D-14): 497 NC ABIERTAS a `98f80cc7`, de ellas 75 con sucesor ya corrido sin dictamen y 222 sin dueño; 117 cierres sin acto declarado (inventario v4, `forense/analisis/pendientes-3/PENDIENTES-PROGRAMA-v4.md` §C y §M). Ejecutado por `ACTO GEN2-PENDIENTES-3` (P1): `tools/cierre_acto.py` (`inspeccion_nc_del_acto`, `--nombran`) y `tests/test_nc_cierre_hacia_atras.py`.
