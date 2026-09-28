@@ -1,0 +1,22 @@
+{
+  "report": "corpus/reports-v2/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md",
+  "registros": 60,
+  "mapa_filas": 49,
+  "adicionales_v1": 11,
+  "dictamenes": {
+    "CONFIRMA": 5,
+    "MATIZA": 21,
+    "ROMPE": 2,
+    "SIN-CIFRA": 32
+  },
+  "cifras": {
+    "result_propios": 0,
+    "externas_publicadas": 1,
+    "principal": "418 municipios SNI de Oaxaca, portal IEEPCO vigente consultado el 27/sep/2026"
+  },
+  "comandos": {
+    "generar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/comunalidad/productor.py",
+    "verificar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/comunalidad/verifica.py"
+  },
+  "estado": "PROPUESTO-POR-EJECUTOR; sin adopción ni microdato"
+}
