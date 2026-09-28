@@ -5205,6 +5205,40 @@ def _no_corrido_abiertas() -> int:
                if (f.get("estado") or "").strip() == "ABIERTA")
 
 
+# ACTO GEN2-TUBERIA-RESUMEN-SUITE-1 · P3. Marca de definicion del contador
+# legacy, hermana de `celdas_validadas_definicion_desde`. Se DERIVA del
+# historial (pickaxe sobre las dos lineas que definen hoy el contador: B3 de
+# FIRMAS-16 y H1-H3 de FIRMAS-18); la definicion vigente es la del commit mas
+# reciente de los dos. Un clon superficial cuyo borde es el que "introduce"
+# la linea no prueba nada: se dice en voz alta, no se adivina (D-23).
+_LEGACY_DEFINICION_MARCAS = (
+    "TIPOS_FUERA_DEL_CONTADOR]",
+    "_es_historico_sin_relevo(u, _marcados_h)",
+)
+
+
+def _legacy_definicion_desde() -> str:
+    try:
+        borde = set()
+        sh = subprocess.run(["git", "rev-parse", "--git-path", "shallow"], cwd=RAIZ,
+                            capture_output=True, text=True, check=True).stdout.strip()
+        if sh and (RAIZ / sh).exists():
+            borde = {l.strip() for l in (RAIZ / sh).read_text().splitlines() if l.strip()}
+        mejor = None
+        for marca in _LEGACY_DEFINICION_MARCAS:
+            out = subprocess.run(
+                ["git", "log", f"-S{marca}", "--reverse", "--format=%H %ct",
+                 "--", "tools/corrida0.py"],
+                cwd=RAIZ, capture_output=True, text=True, check=True).stdout.split()
+            if not out or out[0] in borde:
+                return "NO-VERIFICABLE-CLON-SUPERFICIAL"
+            if mejor is None or int(out[1]) > mejor[1]:
+                mejor = (out[0], int(out[1]))
+        return mejor[0][:7]
+    except (OSError, subprocess.CalledProcessError):
+        return "NO-VERIFICABLE-SIN-GIT"
+
+
 def _legacy_por_consumidor(usos_activos: list) -> dict:
     """Desglose aditivo de `dependencias_numericas_legacy_activas` por el
     ARCHIVO CONSUMIDOR que lee la cifra (ACTO GEN2-RELEVO-RECONCILIA-1, P4).
@@ -5401,6 +5435,7 @@ def status(imprime: bool = True) -> dict:
     _prosp, _retro = _CV.prospectividad_sub_cifras(_cv)
     c["celdas_validadas"] = _cv.get("total_celdas_validadas")
     c["celdas_validadas_definicion_desde"] = _CV.DEFINICION_DESDE
+    c["dependencias_numericas_legacy_definicion_desde"] = _legacy_definicion_desde()
     c["celdas_validadas_prospectiva"] = _prosp
     c["celdas_validadas_retrospectiva"] = _retro
     c["celdas_emitidas_sin_r"] = _CV.emitidas_sin_r(_cv)
