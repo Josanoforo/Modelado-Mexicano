@@ -3026,6 +3026,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     # encargo verbatim (A.3) y su fragmento L0.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md",
     "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01.md",
+    # GEN2-PISOS-Y-ADENDAS-1 (28/sep/2026): encargo verbatim (A.3) cita `M05` (momento de milpa/catalogo-momentos-v0_1.tsv,
+    # «M05 sobre ENCIG en unidad persona», letra A1 (b) pendiente) y `M09`–`M23` (HOLDOUT); no los mide.
+    "forense/encargos/2026-09-28-GEN2-PISOS-Y-ADENDAS-1.md",
+    # GEN2-RELEVO-TRAMITE-CAJA-1 (28/sep/2026): encargo verbatim (A.3) cita `M05` (momento de milpa/catalogo-momentos-v0_1.tsv,
+    # «ENVIPE 2025 árbitro de M05», §1 Reservas); no lo mide (cierra por PARO (f)).
+    "forense/encargos/2026-09-28-GEN2-RELEVO-TRAMITE-CAJA-1.md",
     # GEN2-ASTRA6-C2-EJECUCION-1 (28/sep/2026): `B4`, `E3` y `E4` son letras de la hoja NC-DECISIONES-1
     # (FP …f2e5-06/-14/-15, asentadas FIRMADA por este acto); encargo verbatim (A.3), spec congelada del
     # CALC de oferta (no se edita), enmiendas, expediente v1.1, hoja, nota y fragmento L0.
@@ -3047,6 +3053,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/notas/nota-2026-09-28-gen2-tramite-hoja-firmas-21-1.md",
     # GEN2-ASTRA-CONTINUIDAD-C2-1 (28/sep/2026): encargo verbatim (A.3) cita B4/E3/E4 de la hoja NC-DECISIONES-1 (FP …f2e5-06/14/15).
     "forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1.md",
+    # GEN2-TUBERIA-Y-CURACION-1 (28/sep/2026): encargo verbatim (A.3), §10 «no ejecuta
+    # B4/E3/E4 (C2) ni F3/F4/H4 (caja)» -- mismos rótulos pelados de la hoja NC-DECISIONES-1
+    # que ya censó GEN2-ASTRA-CONTINUIDAD-C2-1 arriba, citados aquí por otro acto que lee la
+    # misma hoja.
+    "forense/encargos/2026-09-28-GEN2-TUBERIA-Y-CURACION-1.md",
     # ACTO GEN2-OBTENCION-EXTERNA-1, 28/sep/2026: `M09`/`M10`/`M14`/`M21`/`M22` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv (consumidores de cada solicitud); el encargo (verbatim, A.3) dice
     # además «son E1 de mesa» por los registros con identidad — rótulo de mesa, no de acto.

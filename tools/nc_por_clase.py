@@ -78,8 +78,15 @@ FP = "forense/firmas-pendientes.tsv"
 # Ejercida por mutación y por gramática en `tests/test_tuberia_ids_union.py`,
 # con un id de CADA época pinado en el mismo caso — un patrón ensanchado
 # probado sólo contra ids viejos no prueba nada.
+#
+# ENSANCHE (firma de mesa H1-a, hoja NC-DECISIONES-1, 28/sep/2026, ejecutado
+# por `ACTO GEN2-TUBERIA-Y-CURACION-1`): D-24 nunca exigió el literal `GEN2-`
+# como primer segmento del RÓTULO; exigirlo dejaba ids reales (`ASTRA5-…`,
+# `ASTRA6-…`, `MOTOR-…`) sin clasificar como SIN-ASIGNAR en vez de
+# ESPERA-FIRMA. El literal `GEN2` se retira; el resto de la gramática
+# (fecha de 6 dígitos, `hhhh` en hex minúscula, `NN` de 2 dígitos) no cambia.
 # ─────────────────────────────────────────────────────────────────────
-RE_FP_NUEVA = r"FP-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
+RE_FP_NUEVA = r"FP-\d{6}(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
 RE_FP_VIEJA = r"FP-\d{1,3}(?![\d\-A-Za-z])"
 RE_FP = rf"(?:{RE_FP_NUEVA}|{RE_FP_VIEJA})"
 SALIDA = "forense/analisis/senal-1/nc-abiertas-por-clase.tsv"

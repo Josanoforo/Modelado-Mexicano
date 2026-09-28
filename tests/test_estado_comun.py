@@ -47,9 +47,9 @@ def prueba_lee_tablero_con_glosa():
             f.write("id\tqué_se_firma\testado\n")
             f.write('FP-01\tuna glosa con "comillas" literales\tABIERTA -- pendiente de mesa\n')
             f.write("FP-02\tsin glosa\tFIRMADA\n")
-        ruta_leida, filas, n_lineas = EC.lee_tablero(tmp)
+        ruta_leida, filas, n_registros = EC.lee_tablero(tmp)
         afirma(ruta_leida == ruta, f"ruta esperada {ruta}, fue {ruta_leida}")
-        afirma(n_lineas == 3, f"3 líneas (cabecera + 2 filas), fueron {n_lineas}")
+        afirma(n_registros == 2, f"2 REGISTROS lógicos (la cabecera no cuenta), fueron {n_registros}")
         afirma(len(filas) == 2, f"2 filas de dato, fueron {len(filas)}")
         afirma(filas[0]["id"] == "FP-01", filas[0])
         afirma('"comillas"' in filas[0]["qué_se_firma"],
@@ -60,9 +60,32 @@ def prueba_lee_tablero_con_glosa():
 
 def prueba_lee_tablero_ausente():
     with tempfile.TemporaryDirectory() as tmp:
-        ruta, filas, n_lineas = EC.lee_tablero(tmp)
+        ruta, filas, n_registros = EC.lee_tablero(tmp)
         afirma(filas is None, f"tablero ausente debe devolver filas=None, fue {filas!r}")
-        afirma(n_lineas == 0, n_lineas)
+        afirma(n_registros == 0, n_registros)
+
+
+def prueba_lee_tablero_salto_de_linea_incrustado():
+    """H2 (hoja NC-DECISIONES-1, 28/sep/2026): caso sintético con el defecto
+    real -- una firma verbatim con un salto de línea literal dentro de la
+    celda, que una lectura por línea física partiría en dos."""
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "forense"))
+        ruta = os.path.join(tmp, "forense", "firmas-pendientes.tsv")
+        with open(ruta, "w", encoding="utf-8") as f:
+            f.write("id\tqué_se_firma\testado\n")
+            f.write('FP-01\t"firmado\npor mesa el 21/sep"\tFIRMADA\n')
+            f.write("FP-02\tsin salto\tABIERTA\n")
+        ruta_leida, filas, n_registros = EC.lee_tablero(tmp)
+        afirma(n_registros == 2,
+               f"el salto de línea incrustado no debe partir la fila en dos: "
+               f"2 registros esperados, fueron {n_registros}")
+        afirma(len(filas) == 2, f"2 filas de dato, fueron {len(filas)}")
+        afirma(filas[0]["id"] == "FP-01", filas[0])
+        afirma("\n" in filas[0]["qué_se_firma"],
+               f"el salto de línea literal debe preservarse dentro de la celda: {filas[0]!r}")
+        afirma(filas[1]["id"] == "FP-02", filas[1])
+        afirma(EC.es_abierta(filas[1]["estado"]) is True, filas[1])
 
 
 def prueba_adr_max():
@@ -163,6 +186,7 @@ def main():
     prueba_es_abierta_tabla()
     prueba_lee_tablero_con_glosa()
     prueba_lee_tablero_ausente()
+    prueba_lee_tablero_salto_de_linea_incrustado()
     prueba_adr_max()
     prueba_adr_max_dos_epocas()
     prueba_adr_raiz_candidato()

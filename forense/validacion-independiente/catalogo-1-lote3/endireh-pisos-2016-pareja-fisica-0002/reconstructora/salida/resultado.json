@@ -1,0 +1,838 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+  "version_entrada": "c1-ventana-v1",
+  "sha256_entrada": "6ce9c8a5fdcef8473e666d9fae5b1851c31f899b06f67075f1a7fbe37222a555"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#0",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17256079059305057",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16818877778504385",
+   "ic95_sup": "0.17687618704921773"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#1",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14377111020446381",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13519846468024543",
+   "ic95_sup": "0.15227778388331953"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#10",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1803097785967356",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17261331295821358",
+   "ic95_sup": "0.18866642986521745"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#11",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17356904596003753",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16583612638399658",
+   "ic95_sup": "0.18039898761355835"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#12",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17185503749509656",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16742875153581616",
+   "ic95_sup": "0.1764279343615583"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#13",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19302812217329982",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17090697921656448",
+   "ic95_sup": "0.2150075778363307"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#14",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18786068250303",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16743297649925232",
+   "ic95_sup": "0.20606503871953788"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#15",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10771151124390628",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.09320653571547872",
+   "ic95_sup": "0.12343978165872736"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#16",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1015950482085466",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08817549366545388",
+   "ic95_sup": "0.11536874033777345"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#17",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15788917496061178",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14286869114016235",
+   "ic95_sup": "0.17373692960595494"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#18",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16545573670755748",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14885545157753236",
+   "ic95_sup": "0.18110112259866115"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#19",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15512661923808688",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13687006840425436",
+   "ic95_sup": "0.17381419735613066"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#2",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17262666474478527",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1656504580242729",
+   "ic95_sup": "0.1784285681241835"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#20",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14884621549151178",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1316479354274181",
+   "ic95_sup": "0.1652967014164609"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#21",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13472573186444403",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11980907666268834",
+   "ic95_sup": "0.15038301110346144"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#22",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17800879297371894",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.157617799100316",
+   "ic95_sup": "0.19994096140665205"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#23",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18192878054083716",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16428377913922482",
+   "ic95_sup": "0.2029003117621385"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#24",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.160231043828415",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14490402683215994",
+   "ic95_sup": "0.17619679199307817"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#25",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20347465522444855",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18336761143711047",
+   "ic95_sup": "0.22516399458633837"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#26",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20322479147316608",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18252627044916658",
+   "ic95_sup": "0.2207073594453627"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#27",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1717584786638817",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15390946954031928",
+   "ic95_sup": "0.18911887163963262"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#28",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21414056233215184",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19639480460744876",
+   "ic95_sup": "0.2364552557116452"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#29",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17985046089635068",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16407329567398155",
+   "ic95_sup": "0.196926838633183"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#3",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1906818096316949",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18320184535640988",
+   "ic95_sup": "0.19937604413311094"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#30",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19534780777221677",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1740407640503245",
+   "ic95_sup": "0.21352251083670973"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#31",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14567300866108193",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12818137654987818",
+   "ic95_sup": "0.16176844059037288"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#32",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11551668064565825",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10232717281965857",
+   "ic95_sup": "0.1301719317361976"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#33",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2129375825994865",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1930486265314573",
+   "ic95_sup": "0.23274768008721264"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#34",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19376535975737993",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17751393450015113",
+   "ic95_sup": "0.2083205511697051"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#35",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14970543377493345",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13410488737243131",
+   "ic95_sup": "0.16709901218923293"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#36",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1649418033153121",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14767292055461145",
+   "ic95_sup": "0.1856796618668521"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#37",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17257878831486545",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.15331873788265873",
+   "ic95_sup": "0.18984900156469825"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#38",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12596445521375152",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1105454894853594",
+   "ic95_sup": "0.13921375306813763"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#39",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10194694615614192",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08867541280603143",
+   "ic95_sup": "0.11478567966906306"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#4",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18551124332691493",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17335248382509616",
+   "ic95_sup": "0.1971037339826884"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#40",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20271158739297587",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1833235188405454",
+   "ic95_sup": "0.2204820403411511"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#41",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.11986935085257262",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.10226477869068415",
+   "ic95_sup": "0.13438463329803924"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#42",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20474504045377329",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18704372323700943",
+   "ic95_sup": "0.22406375568854395"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#43",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1823916138593565",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1657550039204138",
+   "ic95_sup": "0.20006106995942238"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#44",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19361138177313347",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17522563673686775",
+   "ic95_sup": "0.21292923417665924"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#45",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16550515570025162",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1492261597841988",
+   "ic95_sup": "0.18206384273686704"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#46",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08350309922422186",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08040626794927173",
+   "ic95_sup": "0.08633434942282124"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#47",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09520777457478614",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08886709775687446",
+   "ic95_sup": "0.10219239245511519"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#48",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08453865750454365",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07930738694318229",
+   "ic95_sup": "0.08923909289776256"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#49",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0760019952821053",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07071105767063844",
+   "ic95_sup": "0.0813084696838271"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#5",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.21135639218796706",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19388913494052046",
+   "ic95_sup": "0.22845209102282124"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#50",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07620631109264699",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06757388322105684",
+   "ic95_sup": "0.08563463632989347"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#51",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09171769427237939",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07967941521032719",
+   "ic95_sup": "0.10465338490147975"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#52",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09364927370115729",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0894846829622983",
+   "ic95_sup": "0.09744657338303951"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#53",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0744989029749039",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06825811435503706",
+   "ic95_sup": "0.08261164236288082"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#54",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04552097323166186",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.03924442514752449",
+   "ic95_sup": "0.05104387042156965"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#55",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08115003266151678",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07677979072259569",
+   "ic95_sup": "0.08511427338375319"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#56",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08822130331949919",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08209665001158264",
+   "ic95_sup": "0.09498478649746814"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#57",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08392185177028982",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07808536116909236",
+   "ic95_sup": "0.08987096365329088"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#58",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0826423219881439",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07939855526721237",
+   "ic95_sup": "0.08555670818180777"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#59",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10846623882447667",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.09017927513959875",
+   "ic95_sup": "0.12704238008216293"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#6",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19584678639148473",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1904516827103015",
+   "ic95_sup": "0.20142465017784422"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#60",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08541109929170018",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07130485474563686",
+   "ic95_sup": "0.09796258772732962"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#61",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04827522296857098",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.03813043295265793",
+   "ic95_sup": "0.05873715937335382"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#62",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.05161290322580645",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.042001652568323056",
+   "ic95_sup": "0.0611763184060634"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#63",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07029838988587019",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.057639780879420344",
+   "ic95_sup": "0.08304395377054093"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#64",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07078675347922991",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.060404977896133596",
+   "ic95_sup": "0.08158175572939672"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#65",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08797101540277664",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07407115351332326",
+   "ic95_sup": "0.10354753238355999"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#66",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.062069144765626014",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05228213778082438",
+   "ic95_sup": "0.07144005077663894"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#67",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06892659881543332",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05819310216505767",
+   "ic95_sup": "0.08052518906215922"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#68",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10122548275315228",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08627506839754814",
+   "ic95_sup": "0.11758217565842947"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#69",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08619382026107417",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07274643751498866",
+   "ic95_sup": "0.10018443909477609"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#7",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1404279722046232",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.13106557115646286",
+   "ic95_sup": "0.1489266432873225"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#70",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07441433234416875",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06307799198414137",
+   "ic95_sup": "0.08469702584315054"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#71",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08650815520476585",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0726037873134709",
+   "ic95_sup": "0.10109501553261109"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#72",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10332553784342259",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08884995471050224",
+   "ic95_sup": "0.1166711752250935"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#73",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09272813990080014",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07969237901065958",
+   "ic95_sup": "0.10554834643966421"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#74",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.10998038863998594",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.09538510581244568",
+   "ic95_sup": "0.1258516188076999"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#75",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08553052561592163",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0732614317156655",
+   "ic95_sup": "0.09812408473151918"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#76",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09646373417676331",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08220341056383576",
+   "ic95_sup": "0.1101935230568417"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#77",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08371432628141418",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07002790129901651",
+   "ic95_sup": "0.0955755900522095"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#78",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.04553670769072765",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.036618146987754306",
+   "ic95_sup": "0.056715040650280664"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#79",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.0979212740678773",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08505611478461143",
+   "ic95_sup": "0.11117034730237726"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#8",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.09174780188023353",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.08269825130799942",
+   "ic95_sup": "0.10025367954827312"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#80",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08925621431538677",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0778501016211268",
+   "ic95_sup": "0.10109003952675279"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#81",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07139981642807684",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06056462092613917",
+   "ic95_sup": "0.08303366320481846"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#82",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06941713953800098",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.05780710962041117",
+   "ic95_sup": "0.08123490394889689"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#83",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08239903714072659",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0696975621107441",
+   "ic95_sup": "0.09628193426413156"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#84",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.06165984981674971",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.051727913257911394",
+   "ic95_sup": "0.07226772416804544"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#85",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.054399262014999096",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04416530930909357",
+   "ic95_sup": "0.06426541375223421"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#86",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08925394201660383",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07832499013819709",
+   "ic95_sup": "0.10086058614810572"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#87",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.061503210342643534",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.04991112762702188",
+   "ic95_sup": "0.0720536041976555"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#88",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08671287898419279",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.0741879296342937",
+   "ic95_sup": "0.0994637087735638"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#89",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.08662881940516023",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.07451270264432183",
+   "ic95_sup": "0.10025873030063857"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#9",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.16854731745453305",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.162974428091425",
+   "ic95_sup": "0.17542034738758225"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#90",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07858736800564695",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06615258169607025",
+   "ic95_sup": "0.09078543661188167"
+  },
+  {
+   "llave": "RESULT-ENDIREH2016-PF-TABLA#91",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.07671660306118856",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.06610862315234298",
+   "ic95_sup": "0.0864813345248844"
+  }
+ ]
+}
