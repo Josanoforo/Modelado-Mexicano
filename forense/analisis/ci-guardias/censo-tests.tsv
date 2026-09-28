@@ -273,3 +273,4 @@ tests/test_catalogo_v1_3.py	script	NO	(ninguna)	NO	45.0	CORRE-EN-CI	Catálogo v1
 tests/test_no_corrido_estructura.py	pytest	NO		NO	0.1	CORRE-EN-CI	4 passed (GEN2-TRAMITE-PENDIENTES-2)
 tests/test_din_oferta_enif2024.py	pytest	NO	(ninguna)	NO	0.9	NECESITA-DEPENDENCIA(numpy)	E   ModuleNotFoundError: No module named 'numpy' (clasificación copiada de test_astra6_encig.py; en CAJA exit 0 sin corpus)
 tests/test_calc_alternos_lote1.py	pytest	NO	(ninguna)	NO	0.7	NECESITA-DEPENDENCIA(numpy)	E   ModuleNotFoundError: No module named 'numpy' (clasificación copiada de test_din_oferta_enif2024.py; en CAJA exit 0 sin corpus, 31 passed)
+tests/test_tablero_carriles.py	script	NO	(ninguna)	NO	18.1	CORRE-EN-CI	exit 0 sin corpus (GEN2-TABLERO-CARRILES-1)
