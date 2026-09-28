@@ -18,11 +18,15 @@ for name, expected in ORIGINALS.items():
     observed = subprocess.check_output(["git", "hash-object", str(source)], cwd=ROOT, text=True).strip()
     assert observed == expected, (name, observed)
 
-archive = ROOT / "forense/encargos/2026-09-27-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1.md"
-subprocess.run([sys.executable, "tools/sella_sha256.py", "--cuerpo", "--verifica", str(archive)],
-               cwd=ROOT, check=True, capture_output=True)
+for archive_name in (
+    "2026-09-27-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1.md",
+    "2026-09-27-ASTRA6-C3-CORRECCION-1242-1.md",
+):
+    archive = ROOT / "forense/encargos" / archive_name
+    subprocess.run([sys.executable, "tools/sella_sha256.py", "--cuerpo", "--verifica", str(archive)],
+                   cwd=ROOT, check=True, capture_output=True)
 
 for piece in ("salud", "juventud", "tiempo"):
     subprocess.run([sys.executable, str(HERE / piece / "verificar.py")], cwd=ROOT, check=True)
 subprocess.run([sys.executable, str(HERE / "producir_lote.py"), "--check"], cwd=ROOT, check=True)
-print("OK: tres identidades fuente, cuerpo archivado, controles por pieza e índice")
+print("OK: tres identidades fuente, dos cuerpos archivados, controles por pieza e índice")

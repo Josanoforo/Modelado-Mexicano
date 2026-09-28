@@ -20,9 +20,22 @@ def main():
     originals = [r['id_afirmacion'] for r in read(MAP)]
     assert len(ids) == len(set(ids)), 'identificadores duplicados'
     assert set(originals) <= set(ids), 'falta afirmación del mapa'
-    assert len(tab) == 37, 'cobertura esperada: 32 mapa + 5 extra'
+    assert len(tab) == 40, 'cobertura esperada: 32 mapa + 8 cláusulas adicionales'
     assert all(r['dictamen_v2'] in {'CONFIRMA','MATIZA','ROMPE','SIN-CIFRA'} for r in tab)
     assert all(r['razon_especifica'] and r['falsador_o_siguiente_prueba'] for r in tab)
+    by_id = {r['id']: r for r in tab}
+    # Revisión humana de L178–182 y L194: la cita, el transporte y la
+    # decisividad son cláusulas distintas, con dictamen explícito.
+    expected = {
+        'ASTRA5-U0-JUV-021': 'SIN-CIFRA',
+        'JUV-EXTRA-06': 'MATIZA',
+        'ASTRA5-U0-JUV-024': 'SIN-CIFRA',
+        'JUV-EXTRA-07': 'SIN-CIFRA',
+        'JUV-EXTRA-08': 'ROMPE',
+        'ASTRA5-U0-JUV-030': 'MATIZA',
+        'JUV-EXTRA-02': 'SIN-CIFRA',
+    }
+    assert {key: by_id[key]['dictamen_v2'] for key in expected} == expected
     report = REPORT.read_text()
     for section in ('Resumen ejecutivo','Marco y mapa','Patrones principales','Causas, estructura','Segmentación explícita','Comparación internacional','Implicaciones y mitos','Síntesis y reglas','Auditoría de rigor extremo'):
         assert section in report, f'falta sección: {section}'

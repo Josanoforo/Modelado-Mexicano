@@ -19,7 +19,7 @@ PIECES = (
      "Cortes y literatura primaria; inferencias de edad, periodo y cohorte auditadas"),
     ("Tiempo", "tiempo/afirmaciones.tsv", "dictamen_v2", 38,
      "El_Mexicano_y_el_Tiempo__Estructura__no_Cultura__en_la_Planeación_y_el_Compromiso_Temporal.md",
-     "Cuatro RESULT ENIF y tabulados externos identificados como tales; causalidad de formalización retirada"),
+     "Cuatro RESULT ENIF y tabulado ENOE histórico; publicaciones ENUT/ENIF/ENSU reservadas excluidas"),
 )
 ORDER = ("CONFIRMA", "MATIZA", "ROMPE", "SIN-CIFRA")
 
@@ -58,7 +58,10 @@ Cada pieza conserva su tabla de afirmaciones, productor y verificador en `salud/
 
 Las restricciones documentales, fuentes y límites figuran en los expedientes por pieza y en el [recibo](recibo-para-claude.md). La firma original «Acordado» está asentada en `forense/encargos/2026-09-26-ASTRA6-C3-CONSUMO-FAMILIA-1.md:26`; este lote la cita sin repetir el asiento.
 """
-    identity_paths = ["forense/encargos/2026-09-27-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1.md"]
+    identity_paths = [
+        "forense/encargos/2026-09-27-ASTRA6-C3-SALUD-JUVENTUD-TIEMPO-1.md",
+        "forense/encargos/2026-09-27-ASTRA6-C3-CORRECCION-1242-1.md",
+    ]
     identity_paths += [f"corpus/reports-v2/{item[4]}" for item in PIECES]
     identity_paths += [f"forense/analisis/reports-v2/salud-juventud-tiempo-1/{item[1]}" for item in PIECES]
     hashes = "ruta\tsha256\n" + "".join(

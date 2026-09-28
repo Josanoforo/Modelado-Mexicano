@@ -13,12 +13,12 @@ PREFIX = 'corpus/reports/El_Mexicano_y_el_Tiempo__'
 # id: dictamen editorial, razón concreta, ancla (RESULT o publicación primaria)
 J = {
  'ENOE-001': ('MATIZA','La tasa describe ocupados; no identifica cultura ni causa de planear.','RESULT-ENOE-PISOS-TABLA:empleo_informal/nacional/NAC'),
- 'TIME-001': ('MATIZA','Meta declarada y estabilidad de ingreso son variables diferentes; el agregado no estima dependencia causal.','ENIF2024-documento-conceptual'),
- 'TIME-002': ('MATIZA','Tabulado ENUT confirma agregado doméstico/cuidados/voluntariado; no mide tiempo de planear.','INEGI-ENUT2024-resultados'),
+ 'TIME-001': ('SIN-CIFRA','El tabulado externo de ola reservada se excluye; los RESULT de ahorro disponibles no miden metas ni estabilidad individual del ingreso.','restriccion-documental-ENIF2024'),
+ 'TIME-002': ('SIN-CIFRA','El tabulado externo de ola reservada se excluye; este producto no tiene RESULT autorizado de carga doméstica.','restriccion-documental-ENUT2024'),
  'TIME-003': ('SIN-CIFRA','ENIGH2024 reservada; la cifra territorial no es necesaria para inferir tiempo.','reserva-ENIGH2024'),
  'TIME-004': ('SIN-CIFRA','ENIGH2024 reservada; sin apertura ni sustitución.','reserva-ENIGH2024'),
  'TIME-005': ('SIN-CIFRA','ENIGH2024 reservada; sin apertura ni sustitución.','reserva-ENIGH2024'),
- 'TIME-006': ('MATIZA','Tener producto financiero no equivale a ahorrar ni a planear; formalización está seleccionada.','RESULT-ENIF-AHO-A-P-CORTO-CON-P'),
+ 'TIME-006': ('MATIZA','Colchón corto (<1 mes; P4_10 en {1,2}) es más frecuente SIN seguridad social que CON ella: menor resiliencia descriptiva SIN. Grupos seleccionados; no prueba efecto de formalizar, horizonte de metas ni puntualidad.','RESULT-ENIF-AHO-A-P-CORTO-CON-P;RESULT-ENIF-AHO-A-P-CORTO-SIN-P'),
  'TIME-007': ('SIN-CIFRA','Instrumento inadecuado para preferencia causal nacional frente a estabilidad individual.','ENIF2024/P4_10'),
  'TIME-008': ('MATIZA','La cifra del v1 tiene periodo y definición distintos del registro adoptado; se usa el estimando 2024T3 con denominador explícito.','RESULT-ENOE-PISOS-TABLA:empleo_informal/nacional/NAC'),
  'TIME-009': ('SIN-CIFRA','TIL urbana de otra ola no es comparable con informalidad nacional ni mide planeación.','ENOE-boletín-histórico'),
@@ -28,11 +28,11 @@ J = {
  'TIME-013': ('MATIZA','Uso lexicográfico plausible; compromiso y asistencia no se desprenden del significado.','Diccionario-del-español-de-México'),
  'TIME-014': ('ROMPE','Ausencia de vehículos confiables no está identificada como causa principal de falta de previsión.','RESULT-ENIF-AHO-B-P-FORMAL-P'),
  'TIME-015': ('SIN-CIFRA','Marco de escasez importado; mecanismo psicológico no medido conjuntamente en México.','Mullainathan-Shafir-2013'),
- 'TIME-016': ('MATIZA','ENSU acredita percepción urbana, no duración de planes futuros.','INEGI-ENSU2025-diciembre-p4'),
+ 'TIME-016': ('SIN-CIFRA','La presentación de la última ola reservada se excluye; no hay medición de duración de planes en este producto.','restriccion-documental-ENSU2025'),
  'TIME-017': ('SIN-CIFRA','Informe de desplazamiento primario no cotejado completo; retirar magnitud.','fuente-pendiente'),
  'TIME-018': ('MATIZA','Evitación podría medirse; racionalidad e horizonte futuro no se identifican desde percepción.','ENVIPE2021-AP4_4/AP4_10'),
- 'TIME-019': ('MATIZA','ENUT observa carga de trabajo, no minutos disponibles para planear.','INEGI-ENUT2024-resultados'),
- 'TIME-020': ('SIN-CIFRA','Agregados adicionales ENUT no reconstruidos por RESULT; no necesarios para tesis central.','INEGI-ENUT2024'),
+ 'TIME-019': ('SIN-CIFRA','La publicación de ola reservada se excluye; no se infiere disponibilidad individual ni planeación.','restriccion-documental-ENUT2024'),
+ 'TIME-020': ('SIN-CIFRA','La publicación de ola reservada se excluye; sus agregados no son evidencia de este producto.','restriccion-documental-ENUT2024'),
  'TIME-021': ('MATIZA','Hall/Hofstede son marcos importados, no medición individual nacional.','Hall1959/Hofstede'),
  'TIME-022': ('SIN-CIFRA','Puntaje nacional histórico sin muestra actual representativa; se retira.','Hofstede'),
  'TIME-023': ('MATIZA','Ensayo bancario aleatorizado identifica efecto de mensaje en clientes, no descuento temporal nacional.','DOI:10.1093/pnasnexus/pgad058'),
@@ -53,7 +53,7 @@ J = {
 }
 
 EXTRA = [
- ('T-EXTRA-01','L17','La cuenta de retiro y aportación voluntaria prueban falta de previsión','MATIZA','Tenencia y aportación son decisiones distintas; informe ENIF externo no identifica motivación.','INEGI-ENIF2024-resultados-p14'),
+ ('T-EXTRA-01','L17','La cuenta de retiro y aportación voluntaria prueban falta de previsión','SIN-CIFRA','La publicación externa de ola reservada se excluye; tenencia no demuestra motivación ni previsión.','restriccion-documental-ENIF2024'),
  ('T-EXTRA-02','L141','Inmediatez de Gen Z por pagos y TikTok','SIN-CIFRA','Edad y uso de medios no miden descuento temporal; cifras comerciales no verificadas.','instrumento-inadecuado'),
  ('T-EXTRA-03','L175-L188','Formalidad/exportación demuestra que las mismas personas planean','ROMPE','Comparación entre sectores seleccionados no sigue a las mismas personas.','selección-sin-panel'),
  ('T-EXTRA-04','L181','Falta a citas médicas causada por barreras materiales','SIN-CIFRA','El estudio acotado no identifica causalidad ni tasa nacional actual.','instrumento-inadecuado'),
@@ -62,6 +62,21 @@ EXTRA = [
  ('T-EXTRA-07','L139','Confianza interpersonal urbana implica racionalidad de no planear','ROMPE','Confianza en personas no equivale a garantía institucional ni prueba óptimo individual.','ENCOAP2023-distinto-reactivo'),
 ]
 
+# La columna de cita v1 conserva el localizador, pero no retranscribe
+# extractos de publicaciones reservadas en el producto corregido.
+REDACTED_V1 = {
+ 'TIME-001': 'El v1 sostiene que la estabilidad del ingreso determina el horizonte de planeación y usa la existencia de metas económicas de largo plazo como apoyo; extracto reservado omitido.',
+ 'TIME-002': 'El v1 atribuye a mujeres más trabajo no remunerado que a hombres, acentúa la brecha en localidades pequeñas e infiere menos tiempo para planear o comprometerse; extracto reservado omitido.',
+ 'TIME-003': 'El v1 usa la pobreza multidimensional de Chiapas como contexto territorial de la planeación; extracto reservado omitido.',
+ 'TIME-004': 'El v1 usa la pobreza multidimensional de Guerrero como contexto territorial de la planeación; extracto reservado omitido.',
+ 'TIME-005': 'El v1 usa la pobreza multidimensional de Oaxaca como contexto territorial de la planeación; extracto reservado omitido.',
+ 'TIME-006': 'El v1 afirma que trabajadores formales ahorran para el retiro y contratan seguros e hipotecas, y de ello infiere planeación a largo plazo causada por estabilidad; extracto reservado omitido.',
+ 'TIME-016': 'Afirmación v1 sobre percepción de inseguridad (texto histórico en v1; extracto reservado omitido)',
+ 'TIME-019': 'Afirmación v1 sobre carga de cuidados (texto histórico en v1; extracto reservado omitido)',
+ 'TIME-020': 'Afirmación v1 sobre uso del tiempo (texto histórico en v1; extracto reservado omitido)',
+ 'TIME-032': 'Afirmación v1 sobre emergencia financiera (texto histórico en v1; extracto reservado omitido)',
+}
+
 rows=[]
 with MAP.open(newline='') as f:
  for m in csv.DictReader(f,delimiter='\t'):
@@ -69,7 +84,7 @@ with MAP.open(newline='') as f:
   key=m['id_afirmacion'].removeprefix('ASTRA5-U0-')
   if key not in J: raise SystemExit(f'Falta decisión explícita: {key}')
   verdict,reason,source=J[key]
-  rows.append([m['id_afirmacion'],m['localizador'],m['texto_vigente'],m['dictamen'],verdict,reason,source])
+  rows.append([m['id_afirmacion'],m['localizador'],REDACTED_V1.get(key,m['texto_vigente']),m['dictamen'],verdict,reason,source])
 for id_,loc,claim,verdict,reason,source in EXTRA:
  rows.append([id_,loc,claim,'AUSENTE-DEL-MAPA',verdict,reason,source])
 if set(J)!={x[0].removeprefix('ASTRA5-U0-') for x in rows if x[0].startswith('ASTRA5-')}:
