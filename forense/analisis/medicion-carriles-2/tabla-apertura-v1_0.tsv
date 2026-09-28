@@ -1,0 +1,377 @@
+clase	id	dominio	instrumento	instrumento_texto	estado_c3	pieza_pdr1	decision_mc2
+afirmacion	ASTRA5-U0-APUEST-006	CONFIANZA	LAPOP	LAPOP/AmericasBarometer México 2004 y 2006 (módulo EXC)	SIN-C3		PENDIENTE-LAPOP
+afirmacion	ASTRA5-U0-APUEST-011	DINERO	ENIF	ENIF 2024, módulo 5 (TMODULO), variable P5_4_8/p5_4_8	SIN-C3		CITADO-E5:CALC-ENIF-FINTECH-0001 (nacional); segmentos en CALC-MC2-ENIF2024-0001
+afirmacion	ASTRA5-U0-APUEST-015	DINERO	ENIF	ENIF (todas las olas 2012-2024), módulo TMODULO, variable «No tiene historial crediticio» como razón de negación	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-APUEST-025	SALUD	ENSANUT	ENSANUT 2024, módulo «etiquetado» (cuestionario propio, no el TMODULO general)	SIN-C3		PENDIENTE-ENSANUT
+afirmacion	ASTRA5-U0-APUEST-030	DINERO	ENIF	ENIF 2021 y 2024, modulo TMODULO seccion 7 'Pagos', variables P7_1_1 y P7_1_2	SIN-C3		DIFERIDO-A:R06 (ENIF 2024 módulo 7 RESERVADO)
+afirmacion	ASTRA5-U0-APUEST-032	DINERO	ENIF	ENIF 2021 y 2024, módulo 7 (TMODULO), variables P7_2/p7_2_1 y p7_3_1	SIN-C3		DIFERIDO-A:R06 (ENIF 2024 módulo 7 RESERVADO)
+afirmacion	ASTRA5-U0-APUEST-048	DINERO	SIN-TOKEN	NBER Working Paper 33208 (rev.1), Chioda, Gertler, Higgins, Medina	SIN-C3		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-ASPIR-005	DINERO	SIN-TOKEN	enif2015 (ola 2015)	SIN-C3		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-AUTOR-001	AUTORIDAD	ENCUCI	ENCUCI 2020	MATIZA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-AUTOR-002	AUTORIDAD	ENCUCI	ENCUCI 2020	MATIZA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-AUTOR-003	AUTORIDAD	ENCUCI	ENCUCI 2020	MATIZA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-AUTOR-004	AUTORIDAD	SIN-TOKEN	World Values Survey ola 7, México 2018	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-AUTOR-010	AUTORIDAD	SIN-TOKEN	encuci2020	MATIZA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-AUTOR-021	AUTORIDAD	ITER	Censo de Población y Vivienda 2020 (ITER 2020, agregado por localidad/entidad)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-AUTOR-026	AUTORIDAD	SIN-TOKEN	latinobarometro2023	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-AUTOR-030	AUTORIDAD	SIN-TOKEN	encuci2020	SIN-CIFRA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-AUTOR-031	AUTORIDAD	SIN-TOKEN	encuci2020	SIN-CIFRA	P-ENCUCI2020	CITADO-E5:P-ENCUCI2020 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-CAPSOC-001	CAPITAL_SOCIAL	ENSAFI	ENSAFI 2023	SIN-CIFRA		PENDIENTE-ENSAFI
+afirmacion	ASTRA5-U0-CAPSOC-002	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	SIN-CIFRA		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CAPSOC-003	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	SIN-CIFRA		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CAPSOC-004	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-CAPSOC-005	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	SIN-CIFRA		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CAPSOC-006	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-CAPSOC-008	CONFIANZA	PEW	Pew Global Attitudes Survey, Spring 2025	SIN-CIFRA		PENDIENTE-PEW
+afirmacion	ASTRA5-U0-CAPSOC-012	CAPITAL_SOCIAL	ENUT	ENUT 2019 y ENUT 2024	SIN-CIFRA		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-CAPSOC-016	CAPITAL_SOCIAL	ENVIPE	ENVIPE 2019/2021/2023 (referencia al año anterior)	SIN-CIFRA		CITADO-E5:CALC-PDR1-ENVIPE2025-0001 (AP4_11_06)
+afirmacion	ASTRA5-U0-CAPSOC-017	VIOLENCIA	ENVIPE	ENVIPE 2023 (microdato/FD registrados en corpus, TMod_Vic)	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-CAPSOC-018	VIOLENCIA	ENVIPE	ENVIPE 2024 (microdato/FD registrados en corpus, TPer_Vic1)	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-CAPSOC-023	RELIGIOSIDAD	SIN-TOKEN	Censo de Poblacion y Vivienda 2020 (CAAS/CEU, tabulados agregados) y ENADIS 2022 (cuestionario, sin microdato en manifie	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-CAPSOC-030	CAPITAL_SOCIAL	LAPOP	LAPOP/AmericasBarometer Mexico (2004, 2006, 2019, 2021, 2023)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-CLASE-006	TRABAJO	ENOE	ENOE 2025 T4, cuestionario básico v7 (mismo instrumento que ASTRA5-U0-ENOE-001, ola distinta)	SIN-CIFRA		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-CLASE-012	MOVILIDAD	INEGI	INEGI, Módulo de Movilidad Social Intergeneracional (MMSI) 2016	SIN-CIFRA		PENDIENTE-INEGI
+afirmacion	ASTRA5-U0-CLASE-018	MOVILIDAD	ENBIARE	ENBIARE 2021 (Encuesta Nacional de Bienestar Autorreportado), INEGI	SIN-CIFRA		PENDIENTE-ENBIARE
+afirmacion	ASTRA5-U0-CLASE-019	MOVILIDAD	ENBIARE	ENBIARE 2021, INEGI	SIN-CIFRA		PENDIENTE-ENBIARE
+afirmacion	ASTRA5-U0-CLIENT-004	POLITICA	ENCUCI	ENCUCI 2020 (Encuesta Nacional de Cultura Cívica, INEGI)	SIN-C3		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CLIENT-010	POLITICA	ENCUCI	ENCUCI 2020 (Encuesta Nacional de Cultura Cívica, INEGI)	SIN-C3		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CLIENT-013	POLITICA	ENCUCI	ENCUCI 2020 (Encuesta Nacional de Cultura Cívica, INEGI)	SIN-C3		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-CLIENT-014	POLITICA	ENUT	ENUT 2019 y 2024; ENIF 2021 y 2024; ENASIC 2022; ENASEM 2024; ENSAFI 2023 (todos INEGI)	SIN-C3		NO-CONSTRUIBLE (conteo de registro administrativo; spec MC2-ENIF2024 §3)
+afirmacion	ASTRA5-U0-CONOC-007	TECNOLOGIA	ENDUTIH	ENDUTIH 2023 (INEGI/IFT)	MEDIBLE-EN-CORPUS;SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-CONOC-008	TECNOLOGIA	ENDUTIH	ENDUTIH 2023 (INEGI/IFT)	MEDIBLE-EN-CORPUS;SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-CONOC-029	TRABAJO	ENOE	ENOE 4T 2025 (INEGI); microdato ya en corpus	MEDIBLE-EN-CORPUS;SIN-CIFRA		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-CONS-010	DINERO	ENIF	ENIF 2024, pregunta 7.1 (P7_1_1)	SIN-C3		DIFERIDO-A:R06 (ENIF 2024 módulo 7 RESERVADO)
+afirmacion	ASTRA5-U0-CONS-011	DINERO	ENIF	ENIF 2012/2018/2021/2024, pregunta sobre tenencia de tarjeta de credito bancaria	SIN-C3		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-CONS-023	CONSUMO	ENIGH	ENIGH 2024 (INEGI), Reporte de resultados	SIN-C3		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-CONS-038	TECNOLOGIA	ENDUTIH	ENDUTIH (ola no especificada por el report; el corpus tiene 2023/2024/2025)	SIN-C3		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-CONS-039	DINERO	ENIF	ENIF 2024	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-CRFAC-001	DINERO	BANXICO	serie administrativa (no encuesta); Banxico 'IMOR de la cartera de credito al consumo por producto' (mensual, HTML ofici	SIN-C3		PENDIENTE-BANXICO
+afirmacion	ASTRA5-U0-CRFAC-002	DINERO	BANXICO	serie administrativa; Banxico 'IMOR consumo por producto' mensual y CNBV 040-1A-R16 (automotriz)	SIN-C3		PENDIENTE-BANXICO
+afirmacion	ASTRA5-U0-CRFAC-006	DINERO	BANXICO	Banxico, tabla 'Indices de morosidad del credito al sector privado no financiero', serie mensual ene-2016 a mar-2026, ba	SIN-C3		PENDIENTE-BANXICO
+afirmacion	ASTRA5-U0-CRPOP-037	DINERO	ENSAFI	ENSAFI 2023 (INEGI), encuesta nacional, levantamiento 2023	SIN-C3		PENDIENTE-ENSAFI
+afirmacion	ASTRA5-U0-CRPOP-056	DINERO	ENIF	encuesta de hogares; ENIF 2012 y 2015 (INEGI), variable p5_1_5/p5_1_4 '¿ahorró en una tanda?'	SIN-C3		MEDIDO:ROMPE (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-DUEL-001	DUELO	SIN-TOKEN	CED/C/MEX/A.34/D/1, decisión adoptada en 30º período 9-19/mar/2026, distribuida 17/abr/2026; párrafos 33-37 y 122-123	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-DUEL-002	DUELO	SIN-TOKEN	CED/C/MEX/A.34/D/1, decisión adoptada en 30º período 9-19/mar/2026, distribuida 17/abr/2026; párrafos 33-37 y 122-123	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-DUEL-003	DUELO	SIN-TOKEN	CED/C/MEX/A.34/D/1, decisión adoptada en 30º período 9-19/mar/2026, distribuida 17/abr/2026; párrafos 33-37 y 122-123	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-EMOC-017	CONFIANZA	WVS	World Values Survey (WVS) ola 7, Mexico, 2018.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-EMOC-018	CONFIANZA	LATINOBAROMETRO	Latinobarometro, Mexico, ola 2024.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-EMOC-019	CONFIANZA	LATINOBAROMETRO	Latinobarometro, Mexico, olas 2023 y 2024 (serie iniciada en 1995 segun la nota de prensa).	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-EMOC-026	VIOLENCIA	ENDIREH	ENDIREH 2016 (bd_mujeres) y ENDIREH 2006, INEGI.	SIN-CIFRA		PENDIENTE-ENDIREH
+afirmacion	ASTRA5-U0-EMOC-027	FAMILIA_CUIDADOS	ENASIC	ENASIC 2022, INEGI.	SIN-CIFRA		PENDIENTE-ENASIC
+afirmacion	ASTRA5-U0-EMOC-028	SALUD_MENTAL	ENBIARE	ENBIARE (Encuesta Nacional de Bienestar Autorreportado) 2021; ENASEM 2018/2021/2024, INEGI/MHAS.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-EMOC-029	RELIGIOSIDAD	ENCUCI	Encuesta Nacional de Cultura Civica (ENCUCI) 2020, INEGI.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-ENOE-001	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-ENOE-002	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-ENOE-003	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FAM-007	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-FAM-008	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-FAM-017	DINERO	ENIF	ENIF 2012/2015/2018/2021/2024 (participacion en tanda y tenencia de cuenta, presentes en todas las olas revisadas)	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FAM-034	DINERO	ENIGH	ENIGH 2024 (nueva serie) u olas previas; en manifiesto con cuestionarios de hogares/gastos/negocios	SIN-C3		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FAM-036	DINERO	ENIGH	ENIGH (multiples olas en manifiesto, incl. 2024)	SIN-C3		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FAM-037	RURAL_INDIGENA	INEGI	candidato: INEGI Censo 2020 (poblacion indigena) + CONEVAL (medicion de pobreza)	SIN-C3		PENDIENTE-INEGI
+afirmacion	ASTRA5-U0-FAM-039	GENERO	ENUT	ENUT 2024 (mismo instrumento que familia-007/008, modulo de cuidado + condicion de actividad + deseo de trabajar)	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-FAM-040	VIOLENCIA	ENDIREH	ENDIREH 2021 (componentes fisica 15.60% y no-fisica 38.27% ya medidos por separado, RESULTS-ASTRA5.md)	SIN-C3		PENDIENTE-ENDIREH
+afirmacion	ASTRA5-U0-FIN-001	DINERO	ENIF	ENIF 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-002	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-003	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-004	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-005	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-006	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-007	DINERO	ENIF	ENIF 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-008	DINERO	ENIF	ENIF 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-009	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-010	DINERO	SIN-TOKEN	enif2024; enif_2015	SIN-CIFRA		MEDIDO:MATIZA-PARCIAL (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-FIN-011	DINERO	SIN-TOKEN	enif2024	ROMPE		CON-JUICIO-C3:ROMPE (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-013	DINERO	SIN-TOKEN	enif2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-018	CONFIANZA	SIN-TOKEN	encig2023 (y olas previas para serie)	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-FIN-023	DINERO	SIN-TOKEN	ensafi2023	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-FIN-028	DINERO	SIN-TOKEN	enif2024; enif_2015	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-FIN-031	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FIN-032	DINERO	ENIGH	enigh (ola por confirmar) + informe BBVA Research	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-FIN-034	DINERO	SIN-TOKEN	enif2024	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-GEN-001	GENERO	ENDIREH	ENDIREH 2021, Cuestionario A	SIN-C3		PENDIENTE-ENDIREH
+afirmacion	ASTRA5-U0-GEN-009	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-GEN-010	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-GEN-011	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-GEN-012	TRABAJO	ENUT	ENUT 2024 (microdatos + FD) para el 73% principal — en manifiesto (#1090); INEGI Cuenta Satelite del Trabajo No Remunera	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-GEN-017	GENERO	ENCUCI	Componente B: ENCUCI 2020 (Encuesta Nacional de Cultura Civica y Practicas Ciudadanas), variable AP7_4_5 — en manifiesto	SIN-C3		PENDIENTE-ENCUCI
+afirmacion	ASTRA5-U0-GEN-018	FAMILIA_CUIDADOS	ENUT	ENUT 2009 y 2024 (cuestionario, diseño muestral, FD) — en main por #1090	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-GEN-019	MIGRACION	ENADID	estudios mazahua/Guanajuato (no localizados); ENADID 2023 (variable jefe/jefa del hogar, migración internacional) y ENNV	SIN-C3		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-GEN-022	GENERO	LATINOBAROMETRO	Componente A: WVS7 Mexico 2018 (cuestionario + datos) — en manifiesto. Componente B: ninguno identificado tras el recorr	SIN-C3		PENDIENTE-LATINOBAROMETRO
+afirmacion	ASTRA5-U0-HUM-006	HUMOR	SIN-TOKEN	Latinobarómetro 2024, entrevistas cara a cara agosto-octubre 2024, 17 países	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-INTER-034	VIOLENCIA	ENSU	ENSU (Encuesta Nacional de Seguridad Publica Urbana), INEGI, ola marzo 2024.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-INTER-036	POLITICA	LAPOP	LAPOP/AmericasBarometer Mexico, olas 2004, 2006, 2019, 2021 (telefonica), 2023 — ninguna ola 2010 en manifiesto.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-JUV-001	JUVENTUD	EDER	EDER 2025 (INEGI)	SIN-C3		PENDIENTE-EDER
+afirmacion	ASTRA5-U0-JUV-002	JUVENTUD	EDER	EDER 2025 (INEGI)	SIN-C3		PENDIENTE-EDER
+afirmacion	ASTRA5-U0-JUV-007	TECNOLOGIA	ENDUTIH	ENDUTIH 2024 (INEGI)	SIN-C3		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-JUV-008	TECNOLOGIA	ENDUTIH	ENDUTIH 2024 (INEGI)	SIN-C3		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-JUV-009	SALUD_MENTAL	ENSANUT	ENSANUT 2022 (Borges et al. 2023, no en corpus); ENSANUT 2024 (en corpus, misma pregunta, otra ola)	SIN-C3		MEDIDO:MATIZA-PARCIAL (CALC-ENSANUT-PISOS-SALUD-0001)
+afirmacion	ASTRA5-U0-JUV-016	RELIGIOSIDAD	SIN-TOKEN	Censo de Población y Vivienda 2020 (en corpus); CPV2000/CPV2010 (no en corpus); Acta Sociológica 92 (2023), UNAM	SIN-C3		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-JUV-019	GENERO	ENDISEG	ENDISEG 2021 (INEGI) — no registrada en el manifiesto de este proyecto	SIN-C3		PENDIENTE-ENDISEG
+afirmacion	ASTRA5-U0-JUV-026	POLITICA	SIN-TOKEN	Latinobarómetro 2024 (en corpus, microdato Stata); ola de comparación previa (no confirmada en corpus)	SIN-C3		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-JUV-028	TRABAJO	ENOE	ENOE 2024T3 (INEGI, ya usado en RESULT-ENOE-PISOS-TABLA)	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-MER-004	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-MER-005	MOVILIDAD	ENIGH	ENIGH 2024 nueva serie, reporte de resultados 23/25 de 30-jul-2025	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-MER-006	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-MER-007	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	SIN-CIFRA		PENDIENTE-ENCIG
+afirmacion	ASTRA5-U0-MER-009	CONFIANZA	ENCIG	ENCIG 2025, captación 31-oct a 16-dic-2025	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-MER-038	GENERO	INEGI	INEGI ENIGH 2024 (nueva serie), Cuadro 9 del reporte de resultados; Buk 'Radiografia de las Mujeres en el Trabajo 2026' 	SIN-CIFRA		PENDIENTE-INEGI
+afirmacion	ASTRA5-U0-MIGR-006	MIGRACION	ENIGH	ENIGH 2024 Nueva Serie (INEGI)	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-MIGR-009	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla TMIGRANTE	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-MIGR-011	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla TMIGRANTE	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-MIGR-013	MIGRACION	ENADID	ENADID 2023 (INEGI), tabla THOGAR	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-PAREJA-003	PAREJA	ENOE	ENOE 2023 3er trimestre (INEGI)	SIN-CIFRA		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-PAREJA-010	PAREJA	ENDISEG	ENDISEG 2021 (INEGI, Encuesta Nacional sobre Diversidad Sexual y de Género)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-PAREJA-023	VIOLENCIA	ENDIREH	ENDIREH 2021 (INEGI), cuestionario A	SIN-CIFRA		PENDIENTE-ENDIREH
+afirmacion	ASTRA5-U0-PAREJA-032	PAREJA	ENADID	ENADID 2018 (INEGI)	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-PAREJA-041	MIGRACION	ENADID	ENADID 2023 (INEGI), sección IV migración internacional (THOGAR/TMIGRANTE)	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-POL-001	CONFIANZA	LAPOP	AmericasBarometer/LAPOP México 2023	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-002	VIOLENCIA	ENVIPE	ENVIPE 2025, módulo de victimización para delitos de 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-003	POLITICA	ENCIG	ENCIG 2025 (encig_2025_encig25_base_datos_dbf)	CONFIRMA;MEDIBLE-EN-CORPUS;SIN-CIFRA		PENDIENTE-ENCIG
+afirmacion	ASTRA5-U0-POL-004	POLITICA	ENCIG	ENCIG 2025 (encig_2025_encig25_base_datos_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-005	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-006	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-007	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-008	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-009	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	MATIZA;SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-POL-021	POLITICA	ENCIG	ENCIG 2023 (encig_2023_encig23_base_datos_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-022	POLITICA	ENCIG	ENCIG 2025 (encig_2025_encig25_base_datos_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-023	POLITICA	ENCIG	ENCIG 2023 y 2025	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-029	POLITICA	LATINOBAROMETRO	Latinobarometro 2023, Mexico	SIN-CIFRA		PENDIENTE-LATINOBAROMETRO
+afirmacion	ASTRA5-U0-POL-030	POLITICA	LATINOBAROMETRO	Latinobarometro 2024 (latinobarometro2024_bd_stata)	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-037	POLITICA	ENCIG	ENCIG 2023 (encig_2023_encig23_base_datos_dbf)	SIN-CIFRA		PENDIENTE-ENCIG
+afirmacion	ASTRA5-U0-POL-038	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-POL-041	POLITICA	ENVIPE	ENVIPE 2025 (envipe_2025_bd_envipe_2025_dbf)	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-RELIG-002	RELIGIOSIDAD	PEW	Pew Research Center, Global Attitudes Survey / informe 'Catholicism Has Declined in Latin America Over the Past Decade'	SIN-CIFRA		PENDIENTE-PEW
+afirmacion	ASTRA5-U0-RELIG-003	RELIGIOSIDAD	PEW	Pew Research Center, subpagina 'Religious affiliation and switching in Latin American countries'	SIN-CIFRA		PENDIENTE-PEW
+afirmacion	ASTRA5-U0-RELIG-006	RELIGIOSIDAD	INEGI	Censo de Poblacion y Vivienda 2020 (INEGI), ITER	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-RELIG-007	RELIGIOSIDAD	INEGI	Censo de Poblacion y Vivienda 2020 (INEGI), ITER	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-RURAL-002	RURAL_INDIGENA	ENUT	ENUT 2019 y ENUT 2024 (módulo TMODULO)	SIN-C3	P-ENUT2024	CITADO-E5:P-ENUT2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-RURAL-020	SALUD	ENDIREH	ENDIREH 2016	SIN-C3		PENDIENTE-ENDIREH
+afirmacion	ASTRA5-U0-RURAL-021	SALUD	ENSANUT	ENSANUT 2024 continua (cuestionario de utilizadores); ENIGH 2024 nueva serie (gasto)	SIN-C3		MEDIDO:NO-CONSTRUIBLE (ENSANUT2024-dictamenes.tsv)
+afirmacion	ASTRA5-U0-RURAL-026	RURAL_INDIGENA	CPV2020	CPV2020 (Censo de Población y Vivienda 2020), agregado ITER nacional	SIN-C3		PENDIENTE-CPV2020
+afirmacion	ASTRA5-U0-RURAL-027	RURAL_INDIGENA	CPV2020	CPV2020, agregado ITER nacional	SIN-C3		PENDIENTE-CPV2020
+afirmacion	ASTRA5-U0-RURAL-038	GENERO	ENUT	ENUT 2019/2024 (mismo módulo TMODULO que fila -002, cruzable por sexo del informante)	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-RURAL-041	RURAL_INDIGENA	ENASEM	ENASEM 2024; ENASIC 2022	SIN-C3		PENDIENTE-ENASEM
+afirmacion	ASTRA5-U0-SALMEN-009	SALUD_MENTAL	SIN-TOKEN	ENNVIH-1 (2002), ENNVIH-2 (2005-06), ENNVIH-3 (2009-12), modulo IIIb 'Salud Mental' (SM)	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-SALMEN-013	SALUD_MENTAL	ENSANUT	ENSANUT 2022 (Vazquez-Salas R et al., Salud Publica Mex)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALMEN-014	SALUD_MENTAL	ENSANUT	ENSANUT Continua 2023-2024 (rotulada 'ENSANUT2024-v2026-09-01' en el corpus)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALMEN-025	TECNOLOGIA	ENDUTIH	ENDUTIH (Encuesta Nacional sobre Disponibilidad y Uso de Tecnologias de la Informacion en los Hogares) -- ola no especif	SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-SALMEN-028	SALUD_MENTAL	ENIGH	ENIGH 2024 (Nueva Serie), cuestionario de gastos del hogar	SIN-CIFRA		PENDIENTE-ENIGH
+afirmacion	ASTRA5-U0-SALMEN-032	RURAL_INDIGENA	ENSANUT	ENSANUT 2024 Continua, cuestionario 'Utilizadores de servicios de salud'; ENIGH 2024 Nueva Serie	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENSANUT2024-0001)
+afirmacion	ASTRA5-U0-SALUD-006	SALUD	ENSANUT	ENSANUT 2024, cuestionario de Utilizadores, variable u0201 (institución/prestador de atención, 24 categorías, incluye ca	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALUD-009	SALUD	ENSANUT	ENSANUT 2024, cuestionario Hogar, Sección IV 'Situación de salud y utilización de servicios de salud', pregunta 4.1-4.2 	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALUD-012	SALUD	ENOE	ENOE — ola RESERVADA (2026T1) según reserva del lote; no se abre ni se deriva.	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALUD-024	SALUD	ENSANUT	ENSANUT 2024, módulo de Actividad Física para adultos (actividad_fisica_ensanut2024_w_adultos).	SIN-CIFRA		PENDIENTE-ENSANUT
+afirmacion	ASTRA5-U0-SALUD-028	CONSUMO	ENSANUT	ENSANUT 2024 (re-publicación 2026-09-01), módulo Etiquetado (ETI25) + NSE_Hogar (nseF/nse5F) + Integrantes (edad, para p	SIN-CIFRA		PENDIENTE-ENSANUT
+afirmacion	ASTRA5-U0-SALUD-029	CONSUMO	ENSANUT	ENSANUT 2024 (re-publicación 2026-09-01), módulo Etiquetado (ETI25) + NSE_Hogar (nseF/nse5F), unidos por FOLIO_I.	SIN-CIFRA		PENDIENTE-ENSANUT
+afirmacion	ASTRA5-U0-SALUD-030	SALUD	ENSANUT	ENSANUT 2024, cuestionario Utilizadores (u0201, institución/prestador; sección 2.2.a derechohabiencia) unido a Hogar (de	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALUD-031	SALUD	ENSANUT	ENSANUT 2024, Hogar sección IV (catálogo de motivo de necesidad) + Utilizadores u0201 (institución), unidos por FOLIO_I.	SIN-CIFRA		CITADO-E5:S6-L16 (linajes sin reconciliar; no se repite)
+afirmacion	ASTRA5-U0-SALUD-032	SALUD	ENSANUT	ENSANUT 2024, cuestionario Adultos, sección III 'Diabetes mellitus' (a0301 y preguntas de tratamiento/razones de no aten	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENSANUT2024-0001)
+afirmacion	ASTRA5-U0-SALUD-036	SALUD	ENSANUT	ENSANUT 2024, cuestionario Hogar, sección IV, H0405 (motivo de no búsqueda de atención) cruzado con ocupación/derechohab	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SALUD-037	SALUD	ENSANUT	ENSANUT 2024 adultos (a0823 '¿qué método anticonceptivo le proporcionaron?') y adolescentes (d0321n/d0329); ENADID 2023 	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SANC-007	SANCION_SOCIAL	ENSU	ENSU 2024 (1er trimestre) -- distinto de ENSU 2025 (unica ola registrada)	MATIZA	P-ENSU2024	CITADO-E5:P-ENSU2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-SANC-008	SANCION_SOCIAL	SIN-TOKEN	ENVE 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SANC-020	VIOLENCIA	ENVIPE	ENVIPE 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-SINT-013	TRABAJO	ENOE	ENOE 2025 (trimestres 1-4, microdatos INEGI, contrato ENOE-001), TIL1 calculada por entidad federativa segun formula p.3	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-001	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-002	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	ROMPE		CON-JUICIO-C3:ROMPE (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-003	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-004	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-005	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-006	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-007	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-008	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-TEC-009	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-010	RURAL_INDIGENA	ENADID	ENADID 2023	SIN-CIFRA	P-ENADID2023	CITADO-E5:P-ENADID2023 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-TEC-019	TECNOLOGIA	BANXICO	Banxico, Informe Anual sobre las Infraestructuras de los Mercados Financieros (IdMF) 2020/2021/2023/2024; SIE cuadros CF	SIN-CIFRA		PENDIENTE-BANXICO
+afirmacion	ASTRA5-U0-TEC-021	TECNOLOGIA	BANXICO	Banxico, Informe Anual IdMF 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TEC-031	TECNOLOGIA	ENDUTIH	ENDUTIH 2024	SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-TEC-033	TECNOLOGIA	ENDUTIH	ninguno oficial identificado para el 91%; el corpus SI tiene el reactivo de uso de WhatsApp en ENDUTIH (ver tecnologia-0	SIN-CIFRA		PENDIENTE-ENDUTIH
+afirmacion	ASTRA5-U0-TEC-036	CONFIANZA	LATINOBAROMETRO	Latinobarometro 2024	SIN-CIFRA		PENDIENTE-LATINOBAROMETRO
+afirmacion	ASTRA5-U0-TEC-041	CONFIANZA	WVS	WVS ola 7 Mexico 2018 (registrado en manifiesto) y Latinobarometro 2024 (registrado en manifiesto)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TIME-001	TIEMPO	ENIF	ENIF 2024	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-TIME-002	TIEMPO	ENUT	ENUT 2024	SIN-C3	P-ENUT2024	CITADO-E5:P-ENUT2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-TIME-006	DINERO	SIN-TOKEN	enif2024 / 2024	SIN-C3		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-TIME-008	TRABAJO	ENOE	enoe / 2024 (1T–4T)	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-TIME-009	TRABAJO	ENOE	enoe / 2025	SIN-C3		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-TIME-014	DINERO	SIN-TOKEN	enif2024 / 2024	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-TIME-020	TIEMPO	SIN-TOKEN	enut2024 / 2024	SIN-C3	P-ENUT2024	CITADO-E5:P-ENUT2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-TIME-027	JUVENTUD	CPV2020	cpv2020 / 2020	SIN-C3		PENDIENTE-CPV2020
+afirmacion	ASTRA5-U0-TIME-030	CONFIANZA	SIN-TOKEN	latinobarometro2024 / 2024	SIN-C3		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-TIME-032	DINERO	SIN-TOKEN	enif2024 / 2024	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-TIME-038	VIOLENCIA	SIN-TOKEN	envipe2021 (y olas subsecuentes no reservadas) / 2021+	SIN-C3		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-TRAB-006	CONFIANZA	WVS	WVS Wave 7 México 2018	SIN-CIFRA		PENDIENTE-WVS
+afirmacion	ASTRA5-U0-TRAB-022	JUVENTUD	ENOE	ENOE (variable EDA/EDA5C, grupo 15-24 años)	SIN-CIFRA		PENDIENTE-ENOE
+afirmacion	ASTRA5-U0-TRAB-024	GENERO	ENOE	ENOE (variable SEX cruzada con PEA/CLASE1) + serie OCDE de participación laboral femenina	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TRUST-001	CONFIANZA	SIN-TOKEN	World Values Survey ola 7, México enero-mayo 2018	ROMPE		CON-JUICIO-C3:ROMPE (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TRUST-002	CONFIANZA	SIN-TOKEN	World Values Survey ola 7, México enero-mayo 2018	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TRUST-005	CONFIANZA	ENCIG	ENCIG 2023 (INEGI), Sección XI Confianza en Instituciones	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TRUST-010	CONFIANZA	SIN-TOKEN	OECD Survey on Drivers of Trust in Public Institutions in LAC, recolección México oct-nov 2023, resultados publicados 20	ROMPE		CON-JUICIO-C3:ROMPE (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-TRUST-019	DINERO	ENIF	ENIF 2024 (INEGI/CNBV)	SIN-CIFRA		MEDIDO:MATIZA-PARCIAL (CALC-MC2-ENIF2024-0001)
+afirmacion	ASTRA5-U0-TRUST-026	CONFIANZA	ENVIPE	ENVIPE 2024 (INEGI), módulo de victimización, hechos de 2023	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-TRUST-030	CONFIANZA	ENCIG	ENCIG 2023 (INEGI), variable CVE_ENT (clave de entidad federativa)	SIN-CIFRA		PENDIENTE-ENCIG
+afirmacion	ASTRA5-U0-VEJEZ-002	FAMILIA_CUIDADOS	ENADID	ENADID 2023 (en corpus); ENADID 2018 (no identificado en el manifiesto)	SIN-CIFRA		PENDIENTE-ENADID
+afirmacion	ASTRA5-U0-VEJEZ-009	TIEMPO	ENUT	ENUT 2024 (Encuesta Nacional sobre Uso del Tiempo), Mexico, INEGI	SIN-CIFRA	P-ENUT2024	CITADO-E5:P-ENUT2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-VEJEZ-016	DINERO	ENASEM	Isalia Nava Bolanos, IIEc-UNAM, conferencia Seguridad economica de las mujeres en edades avanzadas (25-nov); instrumento	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VEJEZ-018	FAMILIA_CUIDADOS	SIN-TOKEN	Inmujeres, ONU Mujeres, El Colegio de Mexico -- Mapa de Cuidados de Mexico (MACU), 2023+	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-VEJEZ-019	SALUD_MENTAL	ENASEM	ENASEM 2021 (Estudio Nacional de Salud y Envejecimiento en Mexico / MHAS), INEGI-panel	SIN-CIFRA		PENDIENTE-ENASEM
+afirmacion	ASTRA5-U0-VEJEZ-020	SALUD_MENTAL	ENASEM	ENASEM 2021 (MHAS/INEGI-panel)	SIN-CIFRA		PENDIENTE-ENASEM
+afirmacion	ASTRA5-U0-VEJEZ-030	SALUD	ENASEM	ENASEM/MHAS 2018 (payload enasem2018_bd_csv_zip), 2021 (enasem2021_bd_csv_zip), 2024 (enasem2024_bd_csv_zip); variables 	SIN-CIFRA		PENDIENTE-ENASEM
+afirmacion	ASTRA5-U0-VEJEZ-032	RURAL_INDIGENA	ENUT	(a) ENUT 2024 (en corpus); (b) CONAPO, Proyecciones de la Poblacion de Mexico y las Entidades Federativas 2020-2070 (ide	SIN-CIFRA	P-ENUT2024	CITADO-E5:P-ENUT2024 (PISOS-DOMINIOS-Y-REGLAS-1)
+afirmacion	ASTRA5-U0-VEJEZ-037	FAMILIA_CUIDADOS	CPV2020	(a) CPV2020 (Censo de Poblacion y Vivienda 2020), cuestionario ampliado, variable PARENTESCO; candidato alternativo ENIG	SIN-CIFRA		PENDIENTE-CPV2020
+afirmacion	ASTRA5-U0-VIOL-001	VIOLENCIA	ENSU	ENSU 2025 T3 (comunicado de prensa, id ~140/25) y ENSU 2025 T4 (comunicado ~4/26)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VIOL-002	VIOLENCIA	ENVIPE	ENVIPE 2024 (comunicado 562/24, 19-sep-2024)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VIOL-003	VIOLENCIA	ENSU	ENSU 2025 T3	CONFIRMA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VIOL-007	VIOLENCIA	ENVIPE	ENVIPE 2025 (comunicado 127/25)	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-VIOL-014	GENERO	ENSU	ENSU 2025T3	CONFIRMA;MATIZA		CON-JUICIO-C3:CONFIRMA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VIOL-020	DINERO	ENVIPE	ENVIPE 2025	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-VIOL-032	VIOLENCIA	ENVIPE	ENVIPE 2024 (comunicado 562/24)	MATIZA;SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-VIOL-033	VIOLENCIA	ENVIPE	ENVIPE 2024	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-VIOL-034	GENERO	ENVIPE	ENVIPE 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
+afirmacion	ASTRA5-U0-VIOL-035	VIOLENCIA	ENSU	ENSU 2025T3	SIN-CIFRA		PENDIENTE-ENSU
+afirmacion	ASTRA5-U0-VIOL-037	CONFIANZA	SIN-TOKEN	Latinobarómetro (ola no especificada por el report; 2024 registrada en el corpus) y Parametría (no verificada)	SIN-CIFRA		PENDIENTE-SIN-TOKEN
+afirmacion	ASTRA5-U0-VIOL-038	CONFIANZA	ENSU	ENSU (ola no especificada por el report en este punto)	SIN-CIFRA		PENDIENTE-ENSU
+afirmacion	ASTRA5-U0-VIOL-043	VIOLENCIA	ENVIPE	ENVIPE 2024 y ENVIPE 2025 (INEGI), item 4.3 / variable AP4_3_3 (ambito ESTADO)	SIN-CIFRA		CONGELADO:CALC-MC2-ENVIPE2025-0001 (COMMIT-1; corre al liberarse cupo)
+afirmacion	ASTRA5-U0-VIOL-044	DINERO	INEGI	(a) ENVE 2024 (INEGI), modulo de delitos, items 1.30/1.31, y cuestionario principal (tipo de delito, incluye cobro de pi	SIN-CIFRA		PENDIENTE-INEGI
+regla	RG-9001d10bbb	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-f00751033a	CAPITAL_SOCIAL	INEGI	experimento de campo con garantía verificable (no hay reactivo INEGI)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-ba5fb55ef1	TECNOLOGIA	ENDUTIH	ENDUTIH (razones de no uso de internet) + ENIF (oferta/acceso)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-b924562014	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-e79a712c5a	TECNOLOGIA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-77b1cfad00	RELIGION	SIN-TOKEN	Ensayo de diseño en servicio (satisfacción/acceso); afiliación religiosa en Censo 2020 como marginal descriptivo	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-20941ee86e	RELIGION	INEGI	Conteo operativo validado con deduplicación (registro administrativo, no INEGI)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0ab323d2a1	RELIGION	ENBIARE	ENBIARE (bienestar) + reactivo de religiosidad/coping en misma persona; diseño prospectivo	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-95ff374039	VIOLENCIA_GENERO	ENDIREH	ENDIREH (pareja actual, últimos 12 meses) — spec del piso	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-ef9b850e7b	GENERO_CUIDADOS	ENUT	ENUT (horas de trabajo doméstico por sexo) + evaluación de intervención	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-c640ec5ced	VIOLENCIA_GENERO	ENDISEG	ENDISEG 2021 (reactivos de discriminación/agresión) cruzados con orientación/identidad	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a2e972d3ed	SEGURIDAD	ENSU	ENSU (percepción de inseguridad en transporte público) + ENVIPE hábitos (dejó de salir de noche) como marginal; eficacia	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-77ea2841bb	SEGURIDAD	ENVIPE	ENVIPE/ENSU cuestionarios (filtro No aplica en hábitos por temor)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d5f9cd6118	SEGURIDAD	ENSU	Validación local señal digital vs ENSU/encuesta de síntomas	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-107a5897d0	SALUD_MENTAL	ENBIARE	ENBIARE 2021 CESD-7 (ya en catálogo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-dbb87c4a86	SALUD_MENTAL	EDR	EDR (estadísticas de defunciones registradas) + CONAPO proyecciones como denominador	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-43562fc6ff	SALUD_MENTAL	ENBIARE	ENBIARE/ENSANUT (necesidad y atención) + CLUES/oferta; reactivo de barrera de costo	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-66d05a49f4	TRABAJO	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-4fc3bce5d1	TRABAJO	ENOE	ENOE (razón de no buscar trabajo por cuidado); ENUT (horas de cuidado)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8e2516482c	TRABAJO	SIN-TOKEN	NOM-035 / encuesta de centro de trabajo (no en corpus GEN2)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-50ceb57f85	MOVILIDAD	EMOVI	ESRU-EMOVI (matriz de transición por cohorte)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7f3c34b433	FAMILIA_CUIDADOS	ENUT	ENUT/ENASIC (oferta y uso de cuidados, horas)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-17f265a76a	MOVILIDAD	MMSI	MMSI 2016 educacion-superior eje TONO (descriptivo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a14e98486d	DINERO	ENIF	ENIF 2024 por NSE (liquidez/ahorro)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-040bd7c27e	CONSUMO	ENIF	ENIF (seguros: tenencia y razones de no tener)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-96a48f4369	DINERO	ENIF	ENIF 2024 tiene_ahorros / ahorra_* / horizonte	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-3630353425	DINERO	SIN-TOKEN	ensayo aleatorio (fuera del corpus de encuestas)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7ff18c789b	TECNOLOGIA	ENDUTIH	ENDUTIH (acceso y razones de no uso)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-82db1481fd	TECNOLOGIA	ENIF	ENIF (confianza y uso en misma persona)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-b23232bb0d	TRABAJO	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-aed3abb3c3	CONOCIMIENTO	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-01bde5c154	TRABAJO	ENOE	ENOE/ENIGH ingreso por escolaridad (asociación)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-f0bff5f022	TECNOLOGIA	ENDUTIH	ENDUTIH (uso) + reactivo de confianza por fuente	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d33e24d0a9	FAMILIA_CUIDADOS	ENASEM	ENASEM: dificultad ABVD/AIVD x ayuda recibida	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-9eb10ec629	FAMILIA_CUIDADOS	ENASEM	ENASEM: transferencias recibidas x necesidad de cuidado cubierta	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7cae748adc	MIGRACION	ENIGH	ENIGH (remesas por perceptor) / ENIF (recepción de remesas); unidad hogar	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-79af04d65a	MIGRACION	ENADID	EMIF/ENADID (hijos de migrantes) — sin reactivo de cuidado/comunicación	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-c909f32be8	MIGRACION	SIN-TOKEN	ninguno en el corpus mexicano (universo EE.UU.)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-76b3bbcba1	FAMILIA_CUIDADOS	EDER	EDER 2017 (historia de uniones) vs ENADID/ENOE (situación conyugal actual)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-62fab363e9	GENERO_VIOLENCIA	ENDIREH	ENDIREH (violencia en noviazgo, mujeres 15+)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0150076a4c	PAREJA_DIGITAL	ENDUTIH	ninguno (datos de plataforma propietarios); ENDUTIH solo acceso	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-2d49162bc7	IDENTIDAD_ETNIA	SIN-TOKEN	Censo/Intercensal (autoadscripción) para cualquier condicional concreta	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-42aebc68bc	TRABAJO	INEGI	encuesta laboral ad hoc (no existe reactivo INEGI)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-05cead6737	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-731148d394	CONFIANZA	ENCIG	ENCIG (trámites: uso de gestor/coyote si existiera reactivo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-00d80bd1cb	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-ca63b16745	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-c8c5b4f1f2	POLITICA	ENCUCI	ENCUCI (compra/coacción de voto)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-dd504e8baa	POLITICA	SIN-TOKEN	Registro Agrario Nacional + actas municipales	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-4c2161711c	CAPITAL_SOCIAL	SIN-TOKEN	panel comunitario (no existe en catálogo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-fee55f2e2f	POLITICA	SIN-TOKEN	catálogo IEEs de SNI	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-00aa785c45	SALUD	ENSANUT	ENSANUT 2021-2023 (necesidad declarada → búsqueda de atención, condicional)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1a39e1324d	SALUD	ENIGH	ENIGH (gasto en bebidas por hogar) + INPC precios; panel de compra	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7f3dd3b137	SALUD	ENSANUT	ENSANUT lugar de atención (marginal) + evaluación de servicio	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-379e125f23	JUVENTUD	ENOE	series repetidas por cohorte sintética (ENOE, ENIGH) con modelo APC	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8cfef06376	JUVENTUD	ENOE	ENOE: condición de actividad, búsqueda, quehaceres/cuidados; ENUT	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-788dcd89a0	JUVENTUD	ENDUTIH	ENDUTIH (acceso/uso por edad); destreza: sin reactivo en el corpus	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-427143b34b	JUVENTUD	ENOE	registros administrativos JCF + ENOE con diseño de comparación	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-31b23a57ef	DINERO	ENIF	ENIF 2024 horizonte_corto / ahorra_*	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-88a9c0e531	CAPITAL_SOCIAL	SIN-TOKEN	registro administrativo de asistencia a citas	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1d157d2ce7	DESAPARICION	SIN-TOKEN	RNPDNO (registro administrativo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-519d8837e4	DESAPARICION	SIN-TOKEN	Protocolo Homologado de Búsqueda; registros de inicio de búsqueda	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-960da0dcdc	DUELO	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0a5a80496a	DUELO	SIN-TOKEN	Estudio local con consentimiento; no hay encuesta nacional	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-f0604647f1	GENETICA	INEGI	cohortes biomédicas (MCPS, etc.), no encuestas INEGI	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-fbbb6a0d9c	GENETICA	SIN-TOKEN	ninguno (marco legal)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d5b675dd9e	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-518f87ad36	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8c503e0afe	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-53f8df5061	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-211b48afb9	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-5ab1ece3f4	CONFIANZA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-10b558615c	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8007c50d9e	VIOLENCIA	ENVIPE	ENVIPE (cambio de hábitos por inseguridad)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d59be1c99b	INTERACCION	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-800d1ed381	CONFIANZA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-e36683fb04	FAMILIA	ENASIC	ENASIC (carga de cuidado) / ENADID (redes de apoyo)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-b6791b1f51	TRABAJO	ENOE	ENOE (condición de informalidad + motivo de no búsqueda)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-65d961e803	SEGURIDAD	ENVIPE	ENVIPE (dejó de hacer actividades por inseguridad) / ENSU	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0776bd2108	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1d784bd64b	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8fca7eb836	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-82029ebb6e	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-e01ef423c5	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-58964056e6	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-49a8a891ed	GENETICA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d62dbe0b15	CONSUMO	ENIF	ENIF (aceptación de pago digital en comercios; razones de no uso)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1164cd0457	CONSUMO	SIN-TOKEN	NO-APLICA (panel comercial privado)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a9d0339376	CONSUMO	ENIF	ENIF (uso de crédito, sobreendeudamiento)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-12bfd17cb4	CONSUMO	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-38e595497c	FAMILIA	ENADID	ENADID / ENIGH (parentesco, tipo de hogar)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-2f7ee04996	FAMILIA	ENASIC	ENASIC (horas de cuidado por sexo del cuidador)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0e48f4d92c	FAMILIA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1b44cd81cc	CONSUMO	ENIF	ENIF (aceptación de pago digital en comercios; razones de no uso)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-13dd6b4123	CONSUMO	ENIGH	ENIGH (ENTIDAD, unidad hogar)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-2ba6ad4a98	CONSUMO	SIN-TOKEN	NO-APLICA (panel comercial privado)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8a16580c3c	CONSUMO	ENIF	ENIF (crédito); señal social NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-fd230aa7ac	FAMILIA	ENADID	ENADID / ENIGH (parentesco, tipo de hogar)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-9bd2b4587c	FAMILIA	ENASIC	ENASIC (horas de cuidado por sexo del cuidador)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-0fd87ab78b	FAMILIA	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-43fba4bafe	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-5175a7ffab	TRABAJO	ENUT	ENUT (horarios) no mide puntualidad; requiere registro de checador	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-c8ba29e079	CAPITAL_SOCIAL	SIN-TOKEN	ninguno en corpus	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-3b63acddbb	CAPITAL_SOCIAL	SIN-TOKEN	ninguno en corpus	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a35e65e1e6	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-34a21bc6a2	DINERO	ENIF	ENIF (ahorro informal: tanda) + reactivo de fraude	—		NO-CONSTRUIBLE (ENIF no pregunta el tipo de organizador de la tanda; spec MC2-ENIF2024 §3)
+regla	RG-7c6dd83a03	POLITICA	INE	INE cómputos distritales 2018/2024	—		INCOMPARABLE-v1.1 (banda fijada tras ver el dato; no se puede pre-registrar sobre dato visto)
+regla	RG-b723d6e18b	POLITICA	INE	INE cómputo elección judicial 2025	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-145b91d071	VIOLENCIA	ENVIPE	registro de grupos de autodefensa (CNDH) + ENVIPE confianza policía por municipio	—		NO-CONSTRUIBLE (unidad comunidad; registro de autodefensas no está en el corpus)
+regla	RG-41d71be87f	SALUD	ENSANUT	ENSANUT (lugar de atención × distancia/costo)	—		MEDIDO:MATIZA (CALC-MC2-ENSANUT2024-0001)
+regla	RG-efb825d504	MOVILIDAD	ENIGH	ENIGH/ENOE escolaridad de hijos × decil; ESRU-EMOVI	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-e1e839463e	TECNOLOGIA	ENDUTIH	ENDUTIH/encuesta de desinformación con reactivo de verificación	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1f65dd0fea	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-db45767348	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-d2ad7254ee	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-3c8e3af80d	SEGURIDAD	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-1905f182c8	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-9318b213d4	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-19938aaa16	GENETICA	SIN-TOKEN	ninguno (norma §3)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7e6aecc22e	GENETICA	SIN-TOKEN	ensayo clínico; ENCODAT solo prevalencia de tabaquismo, sin genotipo	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-909b92c671	GENETICA	SIN-TOKEN	ninguno (norma de reporte)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-485408ed80	SALUD	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-37e8859328	HUMOR	SIN-TOKEN	Encuesta probabilística con reactivo de frecuencia/función de humor (inexistente; cola de medición)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-29c577f1f3	HUMOR	SIN-TOKEN	Datos primarios EHV/ESSH (muestras no probabilísticas)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-6b3f86cac0	HUMOR	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-7589e0d7ee	INTERACCION	SIN-TOKEN	Prueba aleatoria en servicio	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-588b71590b	INTERACCION	SIN-TOKEN	Módulo nuevo (ENCUESTA laboral/clima) con reactivo de disenso por jerarquía	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-192242b257	FAMILIA_CUIDADOS	ENADID	ENADID (parentesco/composición del hogar)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-b57dbe6ebb	FAMILIA_CUIDADOS	ENASIC	ENASIC: cuidador principal x sexo x parentesco x carga	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-283352ce5f	SALUD_MENTAL	SIN-TOKEN	ninguno en catálogo; reactivo de apoyo/barrera familiar para atención psicológica no localizado	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-f15773fe22	EMOCIONES_MORALES	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-f1e2645bc9	EMOCIONES_MORALES	SIN-TOKEN	Encuesta futura con validación local (cola de medición)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-b55bf8e8fa	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-92ac2a8b10	NO-APLICA	SIN-TOKEN		—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-180510104c	CONSUMO	SIN-TOKEN	panel de hogares (Kantar/Nielsen; fuera del corpus GEN2)	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-546578bbc9	CONSUMO	SIN-TOKEN	ensayo / datos administrativos de mora	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-696f25c52b	CONSUMO	SIN-TOKEN	ensayo comparable de señal social vs técnica	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-53a31e0aa9	MIGRACION	SIN-TOKEN	ninguno	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a2acbecfa0	SANCION_SOCIAL	ENVIPE	ENVIPE (medidas de protección/ocultar bienes) como marginal; caso local	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-a1237c671f	SANCION_SOCIAL	SIN-TOKEN	NO-APLICA	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
+regla	RG-8d7c882d67	FAMILIA_CUIDADOS	SIN-TOKEN	ninguno	—		NO-CONSTRUIBLE-v1.1 (sin motivo nuevo en este acto)
