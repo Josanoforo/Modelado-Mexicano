@@ -40,6 +40,9 @@ def dictamina(paq):
     calc = allow["calc"]
     cmp_ = AQ / paq / "comparacion" / f"{paq}--comparacion.json"
     aud = json.loads((AQ / paq / "comparacion" / f"{paq}--auditoria.json").read_text())["veredicto"]
+    rev = AQ / paq / "comparacion" / f"{paq}--revision-auditoria.md"
+    if not aud.get("CAMPOS-DENTRO") and rev.exists() and "CAMPOS-DENTRO por revisión" in rev.read_text():
+        aud = dict(aud, **{"CAMPOS-DENTRO": True})
     if not all(aud.values()):
         raise SystemExit(f"PARO · {paq}: auditoría del transcript no limpia {aud}; se dictamina aparte (RETROSPECTIVA-MECÁNICA)")
     rec = {f["llave"]: f for f in json.loads(
