@@ -12,6 +12,8 @@ import tempfile
 import time
 from pathlib import Path
 
+import pytest  # noqa: F401  -- invocador pytest en ci_guardias
+
 RAIZ = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(RAIZ / "tools"))
 sys.path.insert(0, str(RAIZ))

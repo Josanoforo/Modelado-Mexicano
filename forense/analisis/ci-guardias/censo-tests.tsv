@@ -256,6 +256,7 @@ tests/test_t_cron.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.y
 tests/test_tablero_programa.py	script	NO	(ninguna)	NO	0.6	CORRE-EN-CI	exit 0 sin corpus
 tests/test_tendencia_serie.py	script	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_theta_esquema_e1.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
+tests/test_tuberia3.py	pytest	NO	(ninguna)	SI	5.9	CORRE-EN-CI	exit 0 sin corpus
 tests/test_tuberia_ids_union.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_union_estimando.py	script	NO	(ninguna)	NO	0.4	CORRE-EN-CI	exit 0 sin corpus
 tests/test_validacion_independiente_lote.py	script	NO	(ninguna)	NO	0.0	CORRE-EN-CI	exit 0 sin corpus
