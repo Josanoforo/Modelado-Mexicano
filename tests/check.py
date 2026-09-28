@@ -3021,6 +3021,18 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
+    # encargo verbatim (A.3) y su fragmento L0.
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01.md",
+    # GEN2-TRAMITE-HOJA-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # y `A1`…`I2`/`E2` son letras de la hoja NC-DECISIONES-1 (FP …f2e5-NN); encargo y adenda verbatim (A.3) y la hoja que los cita.
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md",
+    "forense/analisis/hoja-firmas-21/hoja-para-mesa-firmas-21.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-01.md",  # M09–M23 momentos; M5 = CSES Módulo 5
+    "forense/notas/nota-2026-09-28-gen2-tramite-hoja-firmas-21-1.md",
     # GEN2-ASTRA-CONTINUIDAD-C2-1 (28/sep/2026): encargo verbatim (A.3) cita B4/E3/E4 de la hoja NC-DECISIONES-1 (FP …f2e5-06/14/15).
     "forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1.md",
     # GEN2-TUBERIA-Y-CURACION-1 (28/sep/2026): encargo verbatim (A.3), §10 «no ejecuta
@@ -3044,6 +3056,11 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/analisis/mapa-instrumentos-alternos/lotes/AUDITORIA-LOTES.md",
     "forense/notas/2026-09-27-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-cierre.md",
     "canon/L0/ADR-260927-GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1-4b11-01.md",
+    # ACTO GEN2-DEMANDA-DICTAMEN-1, 28/sep/2026: `M01`…`M23` son momentos del catálogo
+    # milpa/catalogo-momentos-v0_1.tsv (dictamen P4 de la demanda), no rótulos de acto.
+    "forense/analisis/demanda-dictamen-1/hoja-para-mesa-demanda-dictamen-1.md",
+    "forense/notas/2026-09-28-GEN2-DEMANDA-DICTAMEN-1-nota.md",
+    "canon/L0/ADR-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01.md",
     # ACTO GEN2-OBTENCION-PREVIA-1, 28/sep/2026: `M05`/`M09`…`M23` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv y `M61` un reactivo de la solicitud al LM, no rótulos de acto.
     "canon/L0/ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01.md",
@@ -6040,6 +6057,11 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-REGLAS-Y-RESULT-1, 28/sep/2026: encargo archivado VERBATIM
+    # (A.3). Cita «R1.4…R10.3» solo para describir qué contiene
+    # milpa/catalogo-momentos-v0_1.tsv; el acto no clasifica, carga ni sella
+    # ninguna regla del motor (§7 b: el motor no se edita).
+    "forense/encargos/2026-09-28-GEN2-REGLAS-Y-RESULT-1.md",
     # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
     # VERBATIM (`PENDIENTES-PROGRAMA.md`). Cita `familia.union.libre_ejes_eder2017`
     # dentro de la fila NC-0411 §1.3 como parte del texto original de otro
