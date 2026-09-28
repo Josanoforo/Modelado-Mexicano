@@ -1,0 +1,134 @@
+{
+  "version": 2,
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad": [
+    "paquete",
+    "version_entrada",
+    "sha256_entrada"
+  ],
+  "alias": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion",
+      "proporcion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior",
+      "ic_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior",
+      "ic_superior"
+    ]
+  },
+  "estados": [
+    "RECONSTRUIDO",
+    "NO-EVALUADO",
+    "NO-RECALCULABLE-DESDE-SPEC",
+    "BLOQUEADO-POR-ACCESO"
+  ],
+  "campos_opcionales": [
+    "estado_ic",
+    "motivo",
+    "motivo_ic"
+  ],
+  "estados_ic": [
+    "SIN-IC",
+    "CALCULADO"
+  ],
+  "normalizacion": "Solo nombres; sin redondeo ni reescala; unidad declarada debe coincidir literalmente con referencia.",
+  "esquema": {
+    "documento": {
+      "required": [
+        "version",
+        "identidad",
+        "filas"
+      ],
+      "additionalProperties": false,
+      "version": {
+        "type": "integer",
+        "const": 2
+      },
+      "filas": {
+        "type": "array",
+        "minItems": 1
+      }
+    },
+    "identidad": {
+      "type": "object",
+      "required": [
+        "paquete",
+        "version_entrada",
+        "sha256_entrada"
+      ],
+      "additionalProperties": false,
+      "valores": {
+        "type": "string",
+        "minLength": 1
+      },
+      "sha256_entrada": {
+        "pattern": "^[0-9a-f]{64}$"
+      }
+    },
+    "fila": {
+      "type": "object",
+      "required": [
+        "llave",
+        "unidad",
+        "estado"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "llave": "string no vacio, unica en documento",
+        "unidad": "string no vacio, igualdad literal con referencia",
+        "estado": {
+          "type": "string",
+          "enum": [
+            "RECONSTRUIDO",
+            "NO-EVALUADO",
+            "NO-RECALCULABLE-DESDE-SPEC",
+            "BLOQUEADO-POR-ACCESO"
+          ]
+        },
+        "estado_ic": {
+          "type": "string",
+          "enum": [
+            "SIN-IC",
+            "CALCULADO"
+          ]
+        },
+        "motivo": "string no vacio",
+        "motivo_ic": "string no vacio",
+        "campos_numericos": "JSON number finito o string decimal estricto o null"
+      },
+      "reglas": [
+        "Un solo alias por campo; colision siempre rechazada",
+        "RECONSTRUIDO exige punto presente no null",
+        "SIN-IC exige ambos extremos ausentes",
+        "CALCULADO exige ambos extremos numericos",
+        "Extremos presentes ambos o ninguno; null ambos o ninguno; inferior <= superior"
+      ]
+    },
+    "tolerancia": {
+      "type": "object",
+      "required": [
+        "abs",
+        "rel"
+      ],
+      "additionalProperties": false,
+      "valores": "numero decimal finito no negativo"
+    },
+    "estados_de_campo": [
+      "AUSENTE",
+      "NULL",
+      "NUMERO"
+    ],
+    "lectura": "Rechaza nombres JSON duplicados, booleanos numericos, NaN e infinito; preserva bytes original y lexemas decimales"
+  }
+}

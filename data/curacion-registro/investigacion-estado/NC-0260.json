@@ -1,0 +1,28 @@
+{
+  "alternativa_requerida": false,
+  "alternativas": [],
+  "ciclos_sin_avance": 1,
+  "continuacion_pendiente": false,
+  "cursor_continuacion": "Reactivar al asignarse un acto con el censo, su derivador y el crosswalk residual en perímetro, o si mesa decide conservar el denominador.",
+  "estado": "barrera",
+  "evidencias": [
+    "forense/notas/2026-09-27-GEN2-38-investigacion-adq.md"
+  ],
+  "frontera_no_examinada": "Ninguna ruta pública plausible: la brecha exige re-derivar el censo desde el crosswalk interno ya acreditado.",
+  "necesidad_id": "NC-0260",
+  "proxima_revision": "",
+  "suficiencia": {
+    "conceptual": "PARCIAL",
+    "diseno": "NO_APLICA",
+    "identidad": "PARCIAL",
+    "identificacion": "NO_APLICA",
+    "poblacional": "NO_ACREDITADA",
+    "pregunta_original": "ABIERTA",
+    "seleccion_no_respuesta": "NO_APLICA",
+    "temporalidad": "NO_ACREDITADA",
+    "unidad": "NO_ACREDITADA",
+    "uso_habilitado": "INCOMPATIBLE"
+  },
+  "ultima_exploracion": "2026-09-27",
+  "version_pregunta": "AUTO-NC-v1-aac2d014bf36"
+}

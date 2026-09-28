@@ -1,0 +1,70 @@
+{
+  "corte_main": "9536e5e2cff760a1866d7c3395395d9dbdd8bbd1",
+  "acto_arranque": "a1e3ea6494578c48b63cafd87ad7e94528fa59e9",
+  "preparacion": "NO-CIEGA",
+  "historicos_preservados": true,
+  "paths_modificados": [
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-arranque.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-circuito-congelado.tar.gz",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-contrato-cerrado.json",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-contrato.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-decisiones.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-evidencia-circuito.json",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-frontera.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-nota-cierre.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/aislamiento-v2-recibo-para-claude.md",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/contador-inicial.txt",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/disposicion-por-paquete.json",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/entorno-arranque.txt",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/evidencia-sintetica-pruebas.json",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/evidencia-sintetica-pruebas.txt",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/fuente.cuerpo.sha256",
+    "forense/validacion-independiente/catalogo-1-aislamiento-v2/prueba-entorno.json",
+    "tools/validacion/astra6_aislamiento_v2/adaptador.py",
+    "tools/validacion/astra6_aislamiento_v2/aislamiento.py",
+    "tools/validacion/astra6_aislamiento_v2/circuito.py",
+    "tools/validacion/astra6_aislamiento_v2/contrato-v2.json",
+    "tools/validacion/astra6_aislamiento_v2/disposicion.py",
+    "tools/validacion/astra6_aislamiento_v2/fixtures/aliases.json",
+    "tools/validacion/astra6_aislamiento_v2/fixtures/entrada.csv",
+    "tools/validacion/astra6_aislamiento_v2/fixtures/reconstructor.py",
+    "tools/validacion/astra6_aislamiento_v2/fixtures/referencia.json",
+    "tools/validacion/astra6_aislamiento_v2/fixtures/tolerancia.json",
+    "tools/validacion/astra6_aislamiento_v2/test_producto.py",
+    "tools/validacion/astra6_aislamiento_v2/verifica_entrega.py"
+  ],
+  "comandos": [
+    {
+      "comando": "python3 tools/validacion/astra6_aislamiento_v2/test_producto.py -q",
+      "resultado": "PASS; 7 tests, subcasos aliases/errores/TAR/acceso/tamper"
+    },
+    {
+      "comando": "python3 tools/validacion/astra6_aislamiento_v2/aislamiento.py probe",
+      "resultado": "exit 2; NO-LANZAR-COMO-CIEGA; NETLINK_ROUTE Operation not permitted"
+    },
+    {
+      "comando": "python3 tools/validacion/astra6_aislamiento_v2/circuito.py --output DESTINO_NUEVO",
+      "resultado": "PASS PORTABLE-NO-CIEGO; COINCIDE/DISCREPA/unidad incompatible/tamper"
+    },
+    {
+      "comando": "python3 tests/check.py --rapido --baseline",
+      "resultado": "exit 0; LINEA BASE VERDE; 0 FAIL nuevos"
+    },
+    {
+      "comando": "git diff --cached --check",
+      "resultado": "exit 0"
+    }
+  ],
+  "no_ejecutado": [
+    "canarios internos aislados: el backend falla antes de lanzarlos",
+    "sesion nueva aislada: frontera no acreditada",
+    "paquetes reales #1203, lectura raw, apertura reservas"
+  ],
+  "warn_nuevos": "El gate rápido no enumeró WARN nuevos de este producto; no se declara suite integral VERDE.",
+  "contador": {
+    "estado": "IDENTICO",
+    "delta_autorizado": 0,
+    "comando": "python3 tools/corrida0.py status",
+    "sha256_inicial_y_final": "3166f74c5d6c7614ad161edea0245dab0e603e442795859b4857254f6b446c88"
+  }
+}
