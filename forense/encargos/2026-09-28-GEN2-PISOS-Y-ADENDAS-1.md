@@ -53,3 +53,7 @@ No adopta, no calcula HOLDOUT, no mide M05 (espera A1 (b)), no abre olas reserva
 | «fila en la vista (E.7)» de `CALC-ENCIG2023-CONFIANZA-PISOS-0001` y `CALC-PISO-PERSISTENCIA-ERROR-0002` (`…-fa42-04`) | FUERA-DE-PERÍMETRO — el registro de la vista lo hace el job `[deriva]` / `corrida0 registro --escribe` (vistas ajenas, §9); el asiento de replay sí se hizo (REPRODUCE/IDENTICO ×2) | CONTADOR: sellada en disco, no registrada, hasta el `[deriva]` posterior al merge | job `[deriva]` (`corrida0 registro --escribe`) |
 
 Cierre del acto: `forense/notas/2026-09-28-GEN2-PISOS-Y-ADENDAS-1/2026-09-28-GEN2-PISOS-Y-ADENDAS-1-cierre.md` · `ADR-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01`. Adendas de este encargo: ninguna recibida.
+
+## CONSUMIDO
+
+Ejecutado por `ACTO GEN2-PISOS-Y-ADENDAS-1`, PR **#1277** (rama `acto/gen2-pisos-y-adendas-1`, 0-bis `fa42a3c1`), 28/sep/2026. ADR `ADR-260928-GEN2-PISOS-Y-ADENDAS-1-fa42-01`. P1 `CALC-ENCIG2023-CONFIANZA-PISOS-0001` y P2 `CALC-PISO-PERSISTENCIA-ERROR-0002` sellados; P3 hecho; P4 PASA 3/3. Adopción de P1/P2: de mesa, en el merge.
