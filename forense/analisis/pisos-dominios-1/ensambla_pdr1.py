@@ -57,7 +57,19 @@ def main(escribe: bool) -> int:
                     errores.append(f"{r['id']}: {rid} no está en {calc}/spec.yaml")
                 if not sellado:
                     errores.append(f"{r['id']}: {calc} sin sello.json")
-    reglas_frag = {r["id"]: r for r in frag if r["clase"] == "regla"}
+    # Una regla puede traer varias filas (mitades): manda la contrastada (CONFIRMA/MATIZA/ROMPE);
+    # las demás se anexan a su `detalle` como alcance no contrastado.
+    reglas_frag = {}
+    for r in (x for x in frag if x["clase"] == "regla"):
+        prev = reglas_frag.get(r["id"])
+        if prev is None:
+            reglas_frag[r["id"]] = dict(r)
+            continue
+        fuerte = {"CONFIRMA", "MATIZA", "ROMPE"}
+        a, b = (r, prev) if r["dictamen"] in fuerte and prev["dictamen"] not in fuerte else (prev, r)
+        a = dict(a)
+        a["detalle"] = f"{a['detalle']} · ALCANCE NO CONTRASTADO ({b['dictamen']}): {b['detalle']}"
+        reglas_frag[r["id"]] = a
     with open(V10, newline="", encoding="utf-8") as s:
         texto = s.read()
     v10 = lee(V10)
