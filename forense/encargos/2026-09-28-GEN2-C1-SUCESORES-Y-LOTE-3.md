@@ -53,3 +53,7 @@ No adopta, no abre ENIF/ENUT/ENSANUT (lote 4 tras R13), no corre el CALC de reme
 | R33: CALC sucesor de remesas | DIFERIDO-A:GEN2-RELEVO-TRAMITE-CAJA-2 (el encargo: «solo spec») | los dos NO-PASA siguen formales | NC-…-2385-06 → GEN2-RELEVO-TRAMITE-CAJA-2 |
 
 Hoja RH de irreversibles: ninguna. La extensión de acceso a ENCUCI 2020 y ENIGH 2022 la firmó mesa en el chat del acto (verbatim en la nota). La única pregunta abierta, el margen de IC, es reversible y va en FP 2385-01.
+
+## CONSUMIDO
+
+PR #1304 (rama `acto/GEN2-C1-SUCESORES-Y-LOTE-3`), 28/sep/2026. ADR `ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01`.
