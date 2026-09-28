@@ -1,0 +1,43 @@
+# ENCARGO · ACTO GEN2-CORPUS-LICENCIAS-1 · Los 626 payloads del manifiesto sin licencia registrada (554 vacíos, 29 «no declarada por la fuente», el resto variantes) reciben su licencia leída de la página de términos del portal de origen, sellada con sha y citada por url — por lotes de portal, empezando por los tres que concentran la mitad (ENSANUT/INSP 149, Los Mexicanos/UNAM 119, IETAM 46) — y lo que no tenga términos publicados queda como NO-DETERMINABLE con universo, nunca como «sin licencia»
+
+> ENTORNO: **NUBE** — lee páginas de términos y las registra como documentación; no baja microdato ni abre nada. Hook imprime ENTORNO-DERIVADO; si dice CAJA, PARA (no hace falta el corpus: la licencia se lee del portal y se escribe en el manifiesto).
+
+CABECERA · SHA de redacción `3ac3ab7d` (re-deriva al abrir) · una sesión, rama propia (un PR por lote si prefieres, declarado) · MODELO: **Sonnet** para L1–L4 (receta: leer términos, mapear por dominio, escribir campo); **Opus** para L5 (los 58 sin portal determinable: juicio por payload); se puede subir · MODO: **ABIERTO**, cláusula v1.0 (`3fbc487684b77b7f`) · ids con raíz de acto (D-24) · D-21 aplica.
+CONTADOR: cero mediciones; no adopta. Mueve `payloads_sin_licencia` (o la clave que `status` use; si no existe, este acto **añade** la clave derivada del manifiesto, E.4) hacia abajo: declarado con antes/después.
+
+## 1 · OBJETIVO
+Requisito para ir públicos (transfer del 26/sep §5.5; letra I2 de la hoja de NC-DECISIONES-1): ningún payload en el corpus sin licencia verificada. Por lote de portal: (i) localizar la página de términos de uso del portal (una por portal, no por payload), bajarla y registrarla como documentación con sha (`/adquiere`); (ii) escribir en `licencia` de cada payload de ese portal el nombre corto de la licencia + url de la página de términos + fecha de lectura, con una regla declarada por portal («todo `url_origen` bajo `ensanut.insp.mx` → términos X, sha Y»); (iii) donde el portal no publique términos, `licencia: NO-DETERMINABLE (portal sin términos publicados; buscado en <urls>, <fecha>)` — vocabulario A.4, nunca vacío ni «sin licencia».
+Lotes: **L1** ENSANUT/INSP (149) · **L2** losmexicanos.unam.mx (119) · **L3** IETAM (46) + INEGI (28: los Términos de Libre Uso del INEGI ya cubren 5 134 entradas; usar la misma cadena exacta) · **L4** microdata.worldbank.org (24), dataverse.harvard.edu (22), vanderbilt.edu/LAPOP (17), GDELT (13), worldvaluessurvey.org (11), dgis.salud.gob.mx (10), datos.gob.mx (10) y el resto con dominio · **L5** los 54 «no determinada» y 4 sin `url_origen`: por payload, buscar el origen por id y `usado_para`, y dictaminar; si no hay forma de saber de dónde vino, `NO-DETERMINABLE (sin url_origen; id X)` y fila NC con sucesor `backfill de url_origen`.
+Además: unificar las dos grafías «Términos/Terminos de Libre Uso de la In…» (5 134 + 72) a una sola cadena, **sin tocar ningún otro campo** (D-21: es una línea que editan todos; hazlo con un comando declarado y test).
+
+«Hecho», por comando sobre el commit final con `origin/main` fusionado: `python3 -c` con lector YAML → payloads con `licencia` vacía: **0**; con «no declarada por la fuente» sin universo: **0**; toda `licencia` no-INEGI cita url de términos y fecha (regex declarada en el test) · las páginas de términos registradas en el manifiesto con sha (una por portal, conteo en la nota) · un test propio huérfano que falla si entra un payload nuevo con `licencia` vacía · `check.py --baseline` VERDE.
+
+## 2 · FIRMAS DE MESA — dadas
+- Letra **I2** de la hoja de NC-DECISIONES-1 (`FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-30`): pregunta **qué lote primero**; recomendación (a) «los tres dominios mayores». Mesa no la ha contestado. Este acto no la necesita para arrancar: procesa **todos** los lotes y el orden L1→L5 sigue la recomendación; si mesa firma otra letra antes del cierre, se reordena y se declara — el entregable no cambia. Si mesa firma «I2: a» durante el acto, el acto la asienta (A.12).
+- Reglas sin firma nueva: A.4, A.5 (portal caído: «NO OBTENIDO POR ESTE AGENTE EN N INTENTOS» + receta), A.7 (la página de términos es un artefacto con dos hashes), E.6 (nada se abre), D-21.
+
+## 3 · LO QUE DIRECCIÓN SABE
+- [EJECUTADO] `3ac3ab7d` · `data/manifiesto.yaml`: 7 049 entradas; `licencia`: «Términos de Libre Uso de la In…» 5 134 · «uso público; descarga directa…» 738 · vacío **554** · «Terminos de Libre Uso…» (sin acento) 72 · «no declarada por la fuente» 29 · otras. Sin licencia (vacío o «no declarada»): **626**. Por dominio de `url_origen`: ensanut.insp.mx 149 · losmexicanos.unam.mx 119 · «no determinada» 54 · ietam.org.mx 46 · inegi.org.mx 28 · microdata.worldbank.org 24 · dataverse.harvard.edu 22 · vanderbilt.edu 17 · data.gdeltproject.org 13 · worldvaluessurvey.org 11 · dgis.salud.gob.mx 10 · datos.gob.mx 10 · sin `url_origen` 4. (El transfer decía 588 y la hoja I2 «69 sin URL»: cifras viejas; las de arriba son de hoy y las re-derivas.)
+- [EXISTE] `tools/manifiesto.py` (registro, `verifica`), `/adquiere`, `tools/vista_cola_adquisicion.py`. Cómo escribe cada uno el campo `licencia` lo lees ahí antes de tocar 626 líneas.
+- [SUPUESTO] Que los portales de INSP, UNAM e IETAM publican términos de uso. No lo verifiqué: si alguno no los publica, es NO-DETERMINABLE con la búsqueda citada, no PARO.
+
+## 4 · YA HECHO / YA DECIDIDO — por objeto
+`git ls-tree -r --name-only origin/main forense/encargos | grep -c 'LICENCIA'` → 0. Homónimos: `GEN2-CORPUS-COMPLETO-1` (registró la barrera `licencia_o_barrera` por programa en `tabla-final-v1_0.tsv`: **cítala**, no la rehagas), `GEN2-CORPUS-INTEGRIDAD-Y-RESPALDO-1` (manifiesto por raíz, no licencias). En vuelo sobre el mismo archivo: **OBTENCION-EXTERNA-1** y **MAPA-INSTRUMENTOS-ALTERNOS-1** (caja; añaden entradas con licencia por `/adquiere`): tú editas el campo `licencia` de entradas **existentes** y ellos añaden entradas nuevas; `merge=union` por línea; rebasa antes de cerrar y re-corre el «hecho». Un payload que ellos registren sin licencia lo atrapa tu test, no tú.
+
+## 5 · PIEZAS
+L1 → L2 → L3 → L4 → L5, un PR por lote o dos lotes por PR (D-11). Por lote: página de términos con sha · regla por dominio · escritura por comando · conteo antes/después. Rama prevista: portal sin términos → NO-DETERMINABLE con urls buscadas; portal caído → A.5; términos que restrinjan redistribución → se registra tal cual y se abre NC `LICENCIA-RESTRINGE-REDISTRIBUCION` con sucesor «frente público: excluir o pedir permiso» (mesa decide; aquí no se borra nada).
+
+## 6 · LATITUD
+Nombre corto de cada licencia, formato del campo (con url y fecha), agrupación de lotes: tuyos, declarados. ≤ 10 líneas adyacentes en `manifiesto.py` si el campo no admite url. PREGUNTA A MESA: ninguna; los restrictivos van en NC a la hoja. NO DECIDES: nada de §7.
+
+## 7 · PAROS — lista cerrada (D-19 estricta)
+a) abrir dato · b) editar cualquier campo del manifiesto que no sea `licencia` (salvo el ≤ 10 líneas declarado en la herramienta), borrar entradas, tocar sellos · c) adoptar; inventar una licencia sin página de términos citada · d) no aplica · e) CAJA · f) objetivo inalcanzable.
+
+## 8 · COMPUERTAS
+«Ninguna licencia sin página de términos sellada y citada» protege **borrar/adoptar** (una licencia inventada es peor que vacía) · «Solo el campo `licencia` cambia» protege **borrar**.
+
+## 9 · PERÍMETRO Y CONCURRENCIA
+Propio: `data/manifiesto.yaml` (campo `licencia` de entradas existentes; entradas nuevas solo de páginas de términos), `data/raw/` en nube (páginas de términos, documentación), `tools/manifiesto.py` (≤ 10 líneas si hace falta), un test huérfano en `tests/`, `tools/corrida0.py` solo si añade la clave derivada, `forense/analisis/corpus-licencias-1/` (regla por portal, tabla), TSV de gobierno (append), L0, cascada. Ajeno: todo lo demás del manifiesto, `canon/`, `milpa/`, sellos. Concurrencia: EXTERNA-1 y MAPA-1 (caja) añaden entradas: rebase antes de cerrar. «Si te encuentras escribiendo fuera de esta lista, PARA.»
+
+## 10 · LO QUE NO HACE · SUCESORES · CIERRE
+No decide qué se publica y qué no (frente público, mesa), no borra payloads, no re-verifica sha de payloads (CORPUS-INTEGRIDAD), no pide permisos a portales (NC con receta si hace falta). Sucesores: `GEN2-CORPUS-LICENCIAS-2` (backfill de `url_origen` para los 58 y respuestas de portales) · el frente público (README/Pages) que cite el conteo derivado. Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-27-GEN2-CORPUS-LICENCIAS-1-ADENDA-N.md`, selladas al recibirse.
