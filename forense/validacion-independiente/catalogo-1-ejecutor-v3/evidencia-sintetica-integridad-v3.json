@@ -1,0 +1,173 @@
+{
+  "alteracion_posterior_al_sello_rechazada": true,
+  "ancla_exportacion_sha256": "b9cc9e201b01753f6601c439d1e43d1e5be777aa563bff19bfe53c810ac11751",
+  "archivo_no_listado_exportado": false,
+  "archivos_exportados": [
+    {
+      "bytes": 1328899,
+      "path": "auxiliar.tsv",
+      "sha256": "958dfa6e8b66c8b4374d1a39d94cb3f40a889cc5a1f5316deb3e9c0c8c6f69ab"
+    },
+    {
+      "bytes": 152,
+      "path": "canarios.json",
+      "sha256": "9cdefc25cd85f2ceb2e2d4c6d027737d0e5648cfe572f50c3128c0bd54e1528b"
+    },
+    {
+      "bytes": 3041,
+      "path": "codigo.py",
+      "sha256": "9ec4e4972a0358b931695ad6c9d157956ebe385bebd1c75cce5fb222b41ab789"
+    },
+    {
+      "bytes": 42,
+      "path": "diagnostico.json",
+      "sha256": "6f7de24b50badbbbe5ca1872a0f03dbca27af59e97bdbec0a55b05b962f143c4"
+    },
+    {
+      "bytes": 720,
+      "path": "resultado.json",
+      "sha256": "96a167d72dbe6b55c37936f1c0d8f4ca3133c1e7d25e1086e9ee31120fbc71e2"
+    },
+    {
+      "bytes": 0,
+      "path": "stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "auxiliar_bytes": 1328899,
+  "backend": "namespace",
+  "canarios_desde_proceso_aislado": {
+    "allowed_read": true,
+    "extra_output_written": true,
+    "input_write_denied": true,
+    "outside_secret_denied": true,
+    "tcp_denied": true,
+    "udp_denied": true
+  },
+  "comandos": [
+    "python3 tools/validacion/astra6_ejecutor_v3/runtime.py build --archive <synthetic.tar> --manifest <synthetic.json> --output <bundle>",
+    "python3 tools/validacion/astra6_ejecutor_v3/runtime.py run --bundle <bundle> --output <export> --backend namespace",
+    "python3 tools/validacion/astra6_ejecutor_v3/test_e2e.py --evidence <target>"
+  ],
+  "comparacion_componentes": [
+    {
+      "campos": {
+        "ic95_inf": {
+          "delta": "-1.1E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "ic95_sup": {
+          "delta": "0E-16",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        },
+        "punto": {
+          "delta": "0.00",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "CALCULADO",
+      "estado_ic_referencia": "CALCULADO",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "proporcion_A"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "DENOMINADOR-CERO",
+      "estado_ic_actual": null,
+      "estado_ic_referencia": null,
+      "estado_referencia": "DENOMINADOR-CERO",
+      "llave": "dominio_vacio"
+    },
+    {
+      "campos": {
+        "ic95_inf": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "ic95_sup": {
+          "dentro": true,
+          "estado_actual": "AUSENTE",
+          "estado_referencia": "AUSENTE"
+        },
+        "punto": {
+          "delta": "0.00",
+          "dentro": true,
+          "estado_actual": "NUMERO",
+          "estado_referencia": "NUMERO"
+        }
+      },
+      "causas": [],
+      "estado": "COINCIDE",
+      "estado_actual": "RECONSTRUIDO",
+      "estado_ic_actual": "NO-IDENTIFICADA",
+      "estado_ic_referencia": "NO-IDENTIFICADA",
+      "estado_referencia": "RECONSTRUIDO",
+      "llave": "punto_sin_ic"
+    }
+  ],
+  "comparacion_referencia_sintetica": "COINCIDE",
+  "congelacion_sha256": "46708510de079737b240c5ca3b5c6c22029053ca57a5434e763598ee52d3ab90",
+  "contrato_sha256": "183e6f0bda82d967da5f69fcb67a240543fec6297c1f69d6b093af12355cc886",
+  "export_manifest_sha256": "84c2f2cef85d29a4f121354a182d9f92c998275b4c20f3fddda4003b2e00922f",
+  "export_verificado_antes_de_referencia": true,
+  "input_manifest_sha256": "f2e8481df7883046795d98a90262afaef9b06d06c456f1b943528725c39b19c4",
+  "input_tar_sha256": "91c692ca3ba5f5fec1731f36e3b57d9c29ae2c09f2dcb5ec1a2c8b977b0307ca",
+  "referencia_sintetica_sha256": "8b131ba5027faa4b2e223c395e01774390e55c7b193525c7ec8fc8a2dd906bec",
+  "resultado": [
+    {
+      "estado": "RECONSTRUIDO",
+      "estado_ic": "CALCULADO",
+      "llave": "proporcion_A",
+      "punto": "0.75"
+    },
+    {
+      "estado": "DENOMINADOR-CERO",
+      "llave": "dominio_vacio"
+    },
+    {
+      "estado": "RECONSTRUIDO",
+      "estado_ic": "NO-IDENTIFICADA",
+      "llave": "punto_sin_ic",
+      "punto": "0.75"
+    }
+  ],
+  "resultado_original_validado_con_contrato_v3": true,
+  "run_id": "7428fdea119d5fe6",
+  "runtime_sha256": "5e90cb09e59ff1b3c36ad228554b1418cf7b0a2f7828774e39e43b29758e6583",
+  "tar_salida_truncado_rechazado": true,
+  "tipo": "EJECUTADO-SINTETICO",
+  "version_numpy": "2.3.5"
+}
