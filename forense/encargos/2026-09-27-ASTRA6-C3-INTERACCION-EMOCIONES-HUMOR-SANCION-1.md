@@ -188,3 +188,5 @@ Frecuencias nacionales de humor, emociones morales y sanción horizontal, y sus 
 ## CONSUMIDO
 
 Este encargo produjo cuatro homónimos v2 y su expediente local en `forense/analisis/reports-v2/interaccion-emociones-humor-sancion-1/`. El cuerpo anterior a este encabezado conserva los bytes recibidos; el sello `.cuerpo.sha256` cubre su normalización según D-a1. Estado, límites, conteos y recibo solicitado constan en `cierre.md` y `recibo-para-claude.md` del expediente. Nueve reglas se proponen sin adopción. Cero mediciones y cero celdas validadas añadidas.
+
+Producto publicado en PR #1243 (`codex/astra6-c3-interaccion-emociones-humor-sancion-1`); recibo técnico pendiente, sin fusión propia.

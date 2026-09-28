@@ -1,5 +1,7 @@
 # Recibo técnico solicitado a Claude · ASTRA6-C3-INTERACCION-EMOCIONES-HUMOR-SANCION-1
 
+**EJECUTADO.** Producto publicado en [PR #1243](https://github.com/Josanoforo/Modelado-Mexicano/pull/1243), rama `codex/astra6-c3-interaccion-emociones-humor-sancion-1`, commit de producto `b1a89c37c9ae43af2b1914eb7319baf4eccacc6b`. El PR queda para recibo y decisión de mesa; esta solicitud no es el recibo de Claude.
+
 **EJECUTADO.** Cuatro informes v2 completos, tablas de afirmaciones, fuentes dirigidas, productores y [verificador local](verifica_lote.py). [Índice](indice-local.md): 132 filas del mapa cubiertas por 148 registros editoriales, incluidas 16 cláusulas/materiales adicionales del v1. Cero mediciones, adopciones o cambios de motor. Las nueve reglas están en la [hoja para mesa](hoja-reglas-y-firma.md) como propuestas.
 
 | Objeto | SHA-256 del producto |

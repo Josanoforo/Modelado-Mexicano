@@ -26,3 +26,5 @@
 ## CONSUMIDO
 
 El encargo `ASTRA6-C3-INTERACCION-EMOCIONES-HUMOR-SANCION-1` se consume por este lote, sujeto al recibo de mesa. Se cita la firma existente de misión/adenda; no se duplica ni se usa para adoptar las nueve reglas.
+
+Producto publicado en [PR #1243](https://github.com/Josanoforo/Modelado-Mexicano/pull/1243) por la rama propia; sin fusión ni recibo independiente atribuidos a esta sesión.
