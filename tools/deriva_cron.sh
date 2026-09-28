@@ -30,8 +30,9 @@ CONSERVA_WORKTREE=0
 # ACTO GEN2-TUBERIA-3 · P1: worktrees y temporales en DISCO, nunca en el tmpfs del sistema (en RAM;
 # en RAM: 23 huerfanos y 7.8 GB de swap el 28/sep). Se cambian con la variable.
 WORKTREES_DIR="${DERIVA_WORKTREES_DIR:-$HOME/worktrees}"
-export TMPDIR="${DERIVA_TMPDIR:-$HOME/deriva-tmp}"
-mkdir -p "$WORKTREES_DIR" "$TMPDIR"
+TMPDIR_BASE="${DERIVA_TMPDIR:-$HOME/deriva-tmp}"
+export TMPDIR="$TMPDIR_BASE"  # con el lock adquirido pasa a run-<RUN_ID> (se borra al cerrar)
+mkdir -p "$WORKTREES_DIR" "$TMPDIR_BASE"
 T0="$(date +%s)"
 
 mkdir -p "$ESTADO_DIR"
@@ -147,19 +148,38 @@ poda_worktrees() {
 
 # Guarda lo no empujado (estado, parche y no versionados) en ESTADO_DIR y solo
 # entonces borra el worktree: se borra siempre, pero el trabajo no se pierde.
+# Best-effort a propósito: con el disco lleno o el log roto el cierre sigue y libera
+# el worktree (retenerlo con el disco lleno es el incidente); de ahí cada `|| true`.
 retira_worktree() {
-  local wt="$1" ev="$ESTADO_DIR/evidencia-${RUN_ID}"
+  local wt="$1" ev="$ESTADO_DIR/evidencia-${RUN_ID}${2:+-$2}" ok=1
   [ -n "$wt" ] && [ -d "$wt" ] || { poda_worktrees; return 0; }
   if [ "$CONSERVA_WORKTREE" -ne 0 ]; then
-    mkdir -p "$ev"
-    git -C "$wt" status --porcelain >"$ev/status.txt" 2>/dev/null || true
-    git -C "$wt" diff HEAD >"$ev/cambios.patch" 2>/dev/null || true
+    mkdir -p "$ev" || ok=0
+    git -C "$wt" status --porcelain >"$ev/status.txt" 2>/dev/null || ok=0
+    git -C "$wt" diff HEAD >"$ev/cambios.patch" 2>/dev/null || ok=0
     git -C "$wt" ls-files --others --exclude-standard -z 2>/dev/null \
-      | tar -C "$wt" --null -T - -czf "$ev/no-versionados.tgz" 2>/dev/null || true
-    log "evidencia guardada en ${ev} antes de borrar ${wt}."
+      | tar -C "$wt" --null -T - -czf "$ev/no-versionados.tgz" 2>/dev/null || ok=0
+    if [ "$ok" -eq 1 ]; then log "evidencia guardada en ${ev} antes de borrar ${wt}." || true
+    else log "AVISO: evidencia INCOMPLETA en ${ev}; se borra ${wt} igual." || true; fi
   fi
-  git -C "$SOURCE_REPO_DIR" worktree remove --force "$wt" >>"$LOGFILE" 2>&1 || rm -rf "$wt"
+  git -C "$SOURCE_REPO_DIR" worktree remove --force "$wt" >>"$LOGFILE" 2>&1 || rm -rf -- "$wt" || true
   poda_worktrees
+}
+
+# Con el lock tomado nada de una corrida anterior sigue vivo: lo que dejó un SIGKILL, un OOM o un
+# corte de energía es huérfano por construcción. Se recogen (worktrees modelado-deriva-* de ESTE repo,
+# con la misma evidencia que al cerrar; run-* de DERIVA_TMPDIR, que es del canal: un clon, un lock).
+recolecta_huerfanos() {
+  local wt base d
+  base="$(readlink -f "$WORKTREES_DIR")"
+  while IFS= read -r wt; do
+    case "$(readlink -f "$wt")" in
+      "$base"/modelado-deriva-*) CONSERVA_WORKTREE=1 retira_worktree "$wt" "huerfano-$(basename "$wt")" ;;
+    esac
+  done < <(git -C "$SOURCE_REPO_DIR" worktree list --porcelain 2>>"$LOGFILE" | sed -n 's/^worktree //p')
+  for d in "$TMPDIR_BASE"/run-*; do
+    if [ -d "$d" ]; then rm -rf -- "$d" || true; fi
+  done
 }
 
 prepara_worktree_aislado() {
@@ -223,7 +243,7 @@ ultimo_resumen_universo() {
 }
 
 deriva_universo() {
-  local scratch anterior salida rc
+  local scratch anterior salida rc ev="$ESTADO_DIR/evidencia-${RUN_ID}"
   scratch="$(mktemp -d)"
   set +e
   python3 tools/curador_registro/snapshot_universe.py \
@@ -232,7 +252,8 @@ deriva_universo() {
   rc=$?
   set -e
   if [ "$rc" -ne 0 ]; then
-    DELTA_UNIVERSO="PARO-UNIVERSO: snapshot_universe.py salió ${rc}; scratch=${scratch}."
+    mkdir -p "$ev"; mv -- "$scratch" "$ev/scratch-universo" >>"$LOGFILE" 2>&1 || true  # TMPDIR se borra al cerrar
+    DELTA_UNIVERSO="PARO-UNIVERSO: snapshot_universe.py salió ${rc}; scratch en ${ev}/scratch-universo."
     CONSERVA_WORKTREE=1
     return "$rc"
   fi
@@ -329,7 +350,8 @@ publica_cambios() {
 (c) registro: ${DELTA_REGISTRO}
 (d) suite: ${DELTA_SUITE}"
 
-  set +e; asegura_pr; pr_rc=$?; set -e
+  # sin `set -e` de vuelta: reactivarlo aquí abortaba el script en el `return` de abajo, antes de PARO-PUBLICACION
+  pr_rc=0; asegura_pr || pr_rc=$?
   if [ "$pr_rc" -eq 20 ]; then
     git restore --staged -- "$DERIVADOS_DIR" forense/tablero/TABLERO-PROGRAMA.md
     RESULTADO_PUBLICACION="CAMBIOS-DIFERIDOS-PR-DIARIO-YA-FUSIONADO"
@@ -345,7 +367,7 @@ publica_cambios() {
     log "PARO-PUSH: commit ${commit_sha} conservado en derivados-pendientes/${RUN_ID}; receta: git push origin derivados-pendientes/${RUN_ID}:refs/heads/${RAMA}."
     return 2
   fi
-  set +e; asegura_pr; pr_rc=$?; set -e
+  pr_rc=0; asegura_pr || pr_rc=$?
   if [ "$pr_rc" -ne 0 ]; then
     git -C "$SOURCE_REPO_DIR" branch "derivados-pendientes/${RUN_ID}" "$commit_sha" >>"$LOGFILE" 2>&1 || true
     log "PARO-PR: commit ${commit_sha} ya está en origin/${RAMA}; receta: gh pr create --base main --head ${RAMA}."
@@ -365,17 +387,22 @@ if ! flock -n 201; then
   exit 3
 fi
 SOY_DUENO_DEL_LOCK=1
+recolecta_huerfanos || true  # worktrees y temporales de corridas muertas (SIGKILL/OOM/corte), antes de crear los de esta
+# Temporales de ESTA corrida en su propio subdirectorio (se borra al cerrar).
+export TMPDIR="$TMPDIR_BASE/run-${RUN_ID}"; mkdir -p "$TMPDIR"
 
 finalizar() {
   local codigo=$? estado="TERMINADO"
+  set +e  # cierre best-effort: ningún fallo (disco lleno, log roto) impide liberar el worktree ni cambia el código de salida
   [ "$codigo" -eq 0 ] || estado="FAILED"
   if [ "$CIERRE_ESCRITO" -ne 1 ]; then
-    estado="INCOMPLETO"
+    estado="INCOMPLETO"; CONSERVA_WORKTREE=1  # sin huella (SIGTERM, aborto por set -e): puede haber trabajo sin empujar
     log "INCOMPLETO: salida en fase=${FASE} sin huella final."
   fi
   escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
   cd "$SOURCE_REPO_DIR"
   retira_worktree "$WORKTREE_TEMP"
+  if [ "$TMPDIR" != "$TMPDIR_BASE" ]; then rm -rf -- "$TMPDIR" 2>>"$LOGFILE" || true; fi
   log "=== deriva_cron.sh fin fase=${FASE} exit=${codigo} ==="
 }
 trap finalizar EXIT
