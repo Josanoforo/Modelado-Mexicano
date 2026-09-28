@@ -1,0 +1,7 @@
+# P3 · Advertencia hacia adelante para tanda 4 (defecto de ventana, NC-…-beee-09) — carril C1
+
+1. El lote 2 ejecutado (#1202) **repite el defecto**: los 11 paquetes que se lanzaron tenían `estimandos.tsv` sin columna `ventana`. Comando (E): recorrer los 11 `sha256_contenedor` de `forense/validacion-independiente/catalogo-1-ejecucion-lote2/p3/lote2-entregas.json`, casarlos con los tar de `catalogo-1-preparacion-lote2/entradas/` y leer la cabecera de `estimandos.tsv` → `ventana False` en 11/11. El único que tenía ventanas múltiples selladas era ENDIREH 2016, y sus 92 filas quedaron apartadas (`apartado_por_adenda` True = 92 en `lote2-tabla-estimadores.tsv`).
+2. Los 5 sucesores de #1203 (`catalogo-1-reempaqueta-ventana/entradas/*-ventana-v1.tar.gz`) sí traen `ventana` en 859/859 filas. Para tanda 4: **lanzar ENDIREH desde `-ventana-v1`, no desde `catalogo-1/paquetes/` ni desde `preparacion-lote2/…-v2`**, porque esos siguen sin columna.
+3. Hay un defecto nuevo del mismo tipo (preparador y lanzador): el lanzador no fijó las columnas de salida y el comparador congelado rechazó 9/11 paquetes (`p3/comparaciones/*.rechazo.json`: `ValueError: could not convert string to float: ''`). Si tanda 4 no congela antes de lanzar el adaptador con sus alias, se repite el `dictamen-v2` posterior a la revelación, que fue lo que produjo los 130 COINCIDE de ENBIARE/ENCIG.
+
+No se corrige nada aquí; solo se advierte.
