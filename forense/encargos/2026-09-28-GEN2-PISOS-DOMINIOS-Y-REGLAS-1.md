@@ -42,3 +42,18 @@ Propio: `forense/prereg-caja/` (specs nuevas), `data/corrida0/CALC-<llave>/`, `c
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No adopta, no toca momentos, no abre reservadas, no mide genética, no edita el mapa de dominios (lo hace el cierre semanal con lo adoptado). Sucesores: CIERRE-SEMANAL-3 (catálogo v1.4, informe v1.6 con dominios medidos y reglas con cifra), `PISOS-DOMINIOS-Y-REGLAS-2` con las olas que se abran. Módulo de auditoría v2.16 en cada spec (afirman sobre México): unidad, escala, RETROSPECTIVA, segmentación, ¿incentivo o psicología?, ¿clase media urbana?, ¿qué sería peligroso leído simplista? El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| P1/P2 · pieza LATINOBAROMETRO (HUM-006, AUTOR-026) | DIFERIDO-A:GEN2-PISOS-DOMINIOS-Y-REGLAS-2 · ola 2024 RESERVADA (E.6); abierta por defecto de la tabla de apertura (`motivo_reserva` no codifica E.6); PR #1292 cerrado sin fusionar; categoría declarada, sin contenido | HUMOR sin estimador; AUTOR-026 sin dictamen | GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-01) |
+| P1/P2 · pieza CPV2020-ITER (TIME-027, RURAL-026/027, FAM-037, AUTOR-021) | DIFERIDO-A:GEN2-PISOS-DOMINIOS-Y-REGLAS-2 · Censo 2020 RESERVADO; `-0001` leyó el payload y el conducto lo rechazó sin escribir ni imprimir; `-0002` congelado sin correr | JUVENTUD sin estimador | GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (…-7cd0-02) |
+| P1 · EDER 2025 (JUV-001, JUV-002) | DIFERIDO-A:GEN2-PISOS-DOMINIOS-Y-REGLAS-2 · ola reservada E.6, no abierta | JUVENTUD sin estimador | GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (…-7cd0-03) |
+| P1 · TIME-001, RURAL-041, SALMEN-032, TRAB-022, AUTOR-004 | DIFERIDO-A:GEN2-PISOS-DOMINIOS-Y-REGLAS-2 · ENIF 2024 R06; ENOE NO-LANZAR-TODAVÍA; WVS sin id de microdato; tope de sesión | 5 afirmaciones sin dictamen | GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (…-7cd0-04) |
+| P2 · CALC-PDR1-ENCUCI2020-0001 | SUSTITUIDO-POR:CALC-PDR1-ENCUCI2020-0002 · VALOR-LARGO; el sucesor absorbe todo; nada huérfano | ninguno | CALC-PDR1-ENCUCI2020-0002 (…-7cd0-05) |
+| P3 · RG-7c6dd83a03 | NO-VERIFICABLE-AQUÍ · banda B-bis fijada tras ver el dato citado | la regla sigue SIN-CIFRA | GEN2-PISOS-DOMINIOS-Y-REGLAS-2 (…-7cd0-06) |
+
+## CONSUMIDO
+
+Ejecutado por PR #1302 (rama `acto/gen2-pisos-dominios-y-reglas-1`, 0-bis `7cd0f8e2`, ADR `ADR-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-01`). Sin adendas.
