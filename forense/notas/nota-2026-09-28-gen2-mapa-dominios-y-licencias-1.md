@@ -1,0 +1,42 @@
+# Nota · ACTO GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1 · 28/sep/2026
+
+ADR-260928-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1-5024-01 · NUBE · AUTÓNOMO-AMPLIO · 0-bis `5024379f` · base `9d2550b9` (= SHA de redacción; 0 commits de diferencia).
+
+Contadores: **cero mediciones; no adopta.** Afirmaciones que citan CALC/RESULT en `gen2_existente` (regex del tablero): **76 → 178**. Clase: sin cambios (235 / 717 / 420 / 24). `payloads_sin_licencia`: **598 → 598**; campo `licencia` ausente: **554 → 554**; grafías puras INEGI: **22 → 0**. `mapa11_dominios_medidos`: NO-ENCONTRADO (`grep -rn mapa11 tools/ tests/` → 0 archivos); no se mueve.
+
+## Premisas
+- [EJECUTADO → sostiene] v1.1: 1 396 filas; `dictamen` 235 / 717 / 420 / 24; 611 `INSTRUMENTO-SIN-EQUIVALENCIA` (en `estado_corpus_v1_1`, no en `clase`: `clase` en v1.1 es el tipo de afirmación; la «clase» del encargo es la columna `dictamen`). Alternos: 64 pares.
+- [EJECUTADO → cayó, logística] «campo `reserva` del manifiesto con RESERV: 0 (antes 175)». El campo se llama `estado_reserva`: 222 entradas lo tienen, 177 empiezan por RESERV (173 `RESERVADA-NO-ABIERTA-…`, 4 `RESERVADA-ASTRA5-U1-…`). No cambió con TRAMITE-FIRMAS-21; la consulta miraba otro nombre. Se usa `estado_reserva` por id.
+- [LEÍDO → el «por qué» de P2] CORPUS-LICENCIAS-1 **sí escribió en `data/manifiesto.yaml`, campo `licencia`** (`nota-2026-09-28-gen2-corpus-licencias-1.md` L9, L13–L17): 28 INEGI + 72 grafías. Las 554 no tienen el campo (no está vacío: no existe) porque el proxy de nube rechazó 43 hosts (L20) y el acto decidió no escribir marcadores (L23). No hay escritura perdida ni lote sin aplicar: la vista ve exactamente lo que se escribió.
+- [EJECUTADO] la vista va atrasada respecto del disco: 365 CALC con `sello.json`, 205 con RESULT GEN2 SELLADA en `data/corrida0/resultados.tsv`; 119 sellados sin ninguna fila en la vista (entre ellos los CALC-ALT-* de esta semana y AMAI-NSE). El último `[deriva]` (#1268) declara «20 CALC, quedan 101»: es el canal por trozos, no un defecto.
+
+## P2 · Licencias
+1. Red (A.5, A.13): `curl https://<host>/` → `000` en 14 hosts (incluido www.inegi.org.mx; github.com 400); WebFetch → EGRESS_BLOCKED en ensanut.insp.mx y microdata.worldbank.org. **NO OBTENIDO POR ESTE AGENTE EN 1 INTENTO por host.** Receta de un minuto: en la configuración del entorno de nube (Edit → Network access), permitir los dominios de la tabla de abajo y correr una línea por portal en `REGLAS` de `forense/analisis/corpus-licencias-1/aplica_licencias.py --aplica`.
+2. Sin página de términos sellada no se escribe licencia (compuerta del encargo; PARO c «inventar una licencia»). Tampoco NO-DETERMINABLE: eso afirmaría «la fuente no tiene términos», y lo que hay es «no pude alcanzar la fuente» (§2). Las 598 quedan sin tocar, con la línea base y el test de LICENCIAS-1.
+3. Hecho: 22 grafías puras de la referencia INEGI (14 minúsculas, 3 sin URL, 3 con «:», 2 «Términos de uso INEGI»), todas con `url_origen` en inegi.org.mx → la cadena canónica sellada por LICENCIAS-1 (página sha256 `97e975…`). Las variantes con nota propia (254 «texto completo no verificado», 34 «leído por ADQ-F6», etc.) se conservan: la nota es dato. `python3 forense/analisis/mapa-dominios-1-2/licencias_grafias.py --aplica` verifica que antes y después solo difiere `licencia`; diff 22+/22−. Nueva guarda en `tests/test_corpus_licencias.py` (3 passed).
+4. Dominios pendientes (por `url_origen`, 598): ensanut.insp.mx 149 · www.losmexicanos.unam.mx 119 · sin url 73 · ietam.org.mx 46 · microdata.worldbank.org 24 · dataverse.harvard.edu 22 · www.vanderbilt.edu 17 · data.gdeltproject.org 13 · www.worldvaluessurvey.org 11 · dgis.salud.gob.mx 10 · datos.gob.mx 10 · 34 hosts más con ≤ 9.
+
+## P1 · Mapa v1.2
+`python3 forense/analisis/mapa-dominios-1-2/deriva_mapa_v1_2.py --escribe` (16 s). v1.1 intacta.
+- **`gen2_existente`**: 130 afirmaciones pasan a `VISTA: <n> RESULT GEN2 SELLADA en <k> CALC por instrumento×ola (…); ej. …; unión por objeto, no por pregunta` (102 no citaban ningún CALC/RESULT en v1.1). La unión usa el vocabulario y los patrones de `tools/tablero_carriles.py` sobre `instrumento_ola`+`programa_id` y los años de `instrumento_ola`+`ola_v1_1`, contra los mismos patrones y años sobre el id del CALC. Una afirmación sin año declarado no se une (conservador). 66 afirmaciones solo se unirían a CALC sellados en disco sin fila en la vista → `sellado en disco, no registrado (… no cuenta, E.7)`, sin id de CALC en el campo (para que el regex del tablero no los cuente).
+- **`estado_corpus_v1_2` / `reserva_v1_2`** (columnas nuevas; las `_v1_1` intactas porque el tablero lee `reserva_v1_1`): por id de manifiesto citado en `datos_id_estado`/`documento_id_hash_pagina`/`instrumento_ola` (A.15). 321 afirmaciones citan ids; 1 cae en `RESERVADA-ASTRA5-U1-ULTIMA-OLA…` (ASTRA5-U0-POL-016); 1 075 no citan id y conservan el estado v1.1 rotulado.
+- **`siguiente_operacion`** (valor v1.1 en `siguiente_operacion_v1_1`): NADA 444 · ADQUISICION 709 · CALC 129 · EDITORIAL 110 · FIRMA 3 (RESULT en vista con `cuenta_gen2` PENDIENTE-DE-MESA) · RESERVA 1.
+- **Clase / cruce de las 611**: universo 611 × 64 alternos + 611 × 162 reglas contrastadas, Jaccard de palabras ≥ 5 letras entre `texto_vigente`+`componente_contrastable` y el texto de pregunta / texto de regla; 10 candidatos ≥ 0.15, todos NO-PROMUEVE (`forense/analisis/mapa-dominios-1-2/cruce-611.tsv`). Los cuatro de alternos son la pensión de adultos mayores (conteo administrativo y monto 2026) contra el reactivo de ENIGH 2020/2022 «Programa para el Bienestar…» dictaminado EXISTE-SATISFACE-PARCIAL: otra unidad (derechohabientes administrativos frente a hogares perceptores estimados) y otra ola; compararlos pide función de enlace (§4). Los seis de reglas casan con reglas SIN-CIFRA-GEN2 extraídas del mismo report. **0 pasan a MEDIBLE-EN-CORPUS.**
+- `resultado_id` por afirmación: no. Con unión instrumento×ola, una afirmación de ENIF 2024 se une a 7 986 RESULT; una columna de RESULT sería ruido. Va `calc_vista` (lista de CALC).
+- Test `tests/test_mapa_dominios_v1_2.py` (3 passed): mismas 1 396 llaves y mismo orden, columnas no de estado idénticas (dominio y report incluidos), `VISTA:` si y solo si hay unión con la vista (faltantes 0, sobrantes 0). La segunda prueba se salta con VENCIDO EN ALCANCE si `resultados.tsv` cambió desde la derivación (blob en `vista-usada.txt`): cuando el canal registre los 101 CALC, v1.2 no rompe CI; lo recoge v1.3.
+- `tools/tablero_carriles.py`: F1 → v1.2 (2 líneas: fuente y docstring). `--actualiza` corre sin error (31 carriles · ROJO 7 · AMARILLO 21 · VERDE 0 · GRIS 3); md/html revertidos para que los publique el canal. Crosswalk: CASA.
+
+## P3 · Cierre
+- **Semáforos: ningún carril cambia** (derivación en memoria de v1.1 frente a v1.2). El semáforo lo deciden el núcleo con cifra del catálogo y las reglas, no el mapa. Cambia el conteo «citan un CALC/RESULT» en 23 carriles (p. ej. CARRIL-20 3 → 17, CARRIL-01 2 → 12, CARRIL-05 0 → 7).
+- Licencias resueltas 0 · NO-DETERMINABLE 0 · grafías unificadas 22.
+
+## Módulo de auditoría v2.16 (el mapa afirma qué del corpus es medible sobre México)
+- ¿Contadores movidos? Ninguno de medición. Se mueven derivados del mapa (76 → 178 afirmaciones con cita) y ninguno de licencias.
+- ¿Qué afirmación sobre el corpus se escribió a mano y no se derivó? Los valores v1.1 que se conservan en `estado_corpus_v1_1`, `dictamen` y `siguiente_operacion_v1_1` son de actos anteriores. En v1.2, todo lo nuevo sale del script. La frase «unión por objeto, no por pregunta» es un límite escrito a mano, y a propósito.
+- ¿En qué escala está cada cantidad? `VISTA:` cuenta RESULT (filas de la vista), no personas: 7 986 RESULT de ENIF 2024 no son 7 986 hallazgos sobre la afirmación.
+- ¿Riesgo de lectura simplista? Leer `VISTA:` como «la afirmación está medida». Solo dice que existe cifra GEN2 del mismo instrumento y ola. Si mide la afirmación lo dice la columna EDITORIAL de `siguiente_operacion`, y queda por hacer.
+- ¿PROSPECTIVA/RETROSPECTIVA mezcladas? El campo no las distingue. Los CALC de DUELO-ENVIPE2026 son emisiones selladas prospectivas y entran en la misma unión: el rótulo vive en la vista, no en el mapa.
+- ¿Sesgo clase media urbana / pobreza confundida con cultura? No aplica: no se re-dictaminó ningún contenido.
+
+## Sucesores
+Mapa v1.3 (con MEDICION-CARRILES-2 y los 101 CALC que el canal aún no registra: basta re-correr el script); licencias: NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01 sigue abierta con receta de red.

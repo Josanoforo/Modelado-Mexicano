@@ -1001,6 +1001,13 @@ Hueco confirmado por A.8(1) al abrir este acto: `grep -c "forense/tablero" data/
 | `canon/mapa-dominios-v1_1.tsv` | `python3 forense/analisis/dominios/redictamina_v1_1.py` (`--verifica` compara byte a byte) desde `canon/mapa-dominios-v1_0.tsv` (intacto) y `forense/analisis/corpus-completo/tabla-final-v1_0.tsv` | las 1 396 afirmaciones con dictamen v1.1 + `dictamen_v1_0`, `programa_id`, `ola_v1_1`, `variable_v1_1`, `texto_pregunta_v1_1`, `unidad_v1_1`, `estado_corpus_v1_1`, `reserva_v1_1` | unidades de medición por dominio; catálogo | MEDIBLE-EN-CORPUS nuevo sólo entra por `verificaciones-texto-v1_1.tsv` (texto casado con `data/inventario-*`, A.15); NO-CONSTRUIBLE sólo por `no-construibles-v1_1.tsv`. Esas dos son las únicas entradas a mano; nunca se edita el mapa |
 | `forense/analisis/dominios/{equivalencias-v1_1,cola-medicion-v1_0,cobertura-v1_1}.tsv` | el mismo derivador | instrumento → `programa_id` (NO-ENCONTRADO con texto); cola por (dominio, programa) con prioridad = afirmaciones FUERTE/MEDIA; cobertura por report con columnas v1.0 al lado | las unidades siguientes, en el orden de la cola | `estado_corpus_v1_1` = NO-VERIFICADO-AQUÍ no es un negativo (examinados=0) |
 
+## `canon/mapa-dominios-v1_2.tsv` y `forense/analisis/mapa-dominios-1-2/` — mapa v1.2, estado desde la vista y el manifiesto (`ACTO GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1`, 28/sep/2026)
+
+| tabla | cómo se produce | qué contiene | quién la consume | trampa |
+|---|---|---|---|---|
+| `canon/mapa-dominios-v1_2.tsv` | `python3 forense/analisis/mapa-dominios-1-2/deriva_mapa_v1_2.py --escribe` desde `canon/mapa-dominios-v1_1.tsv` (intacto), `data/corrida0/resultados.tsv`, `data/manifiesto.yaml`, alternos y reglas | las 35 columnas de v1.1 (cambian solo `dictamen`, `gen2_existente` y `siguiente_operacion`) + `gen2_existente_v1_1`, `siguiente_operacion_v1_1`, `calc_vista`, `estado_corpus_v1_2`, `reserva_v1_2`, `cambio_v1_2` | `tools/tablero_carriles.py` (F1); `tests/test_mapa_dominios_v1_2.py` | `VISTA:` es unión por instrumento×ola, no por pregunta; vence en alcance cuando cambia la vista (`vista-usada.txt`) |
+| `forense/analisis/mapa-dominios-1-2/cruce-611.tsv` | el mismo derivador | candidatos (Jaccard ≥ 0.15) de las 611 sin equivalencia contra alternos y reglas, con veredicto | la nota del acto | solo lista; nunca promueve |
+
 ## `forense/analisis/dinero-series/` y `data/corrida0/CALC-{BANXICO,CNBV}-SERIES-*` — series administrativas de dinero (`ACTO GEN2-DINERO-SERIES-CNBV-BANXICO-1`, 26/sep/2026)
 
 | tabla | se produce con | campos | consume | nota |
