@@ -52,3 +52,7 @@ No adopta, no abre reservadas, no propone retadores, no re-mide lo sellado. Suce
 | NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-07 | «M19 … ENVIPE 2024/2025 (2025 solo lo que su árbitro abrió)» — fila 57 del mapa (AP5_4_* por entidad) | DIFERIDO-A:GEN2-CALC-ALTERNOS-LOTE-2: AP5_4_* de ENVIPE 2025 no lo abrió ningún CALC sellado (fuera del árbitro, PARO a) | M19 sin covariable de enforcement por entidad de ENVIPE; ENCUCI usa AP5_3_3 | GEN2-CALC-ALTERNOS-LOTE-2 |
 | NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-08 | p17/p18 de CIDE-CSES 2015 dentro de CALC-ALT-M13-CIDECSES2015-0001 (peso percibido del voto por concurrencia) | DIFERIDO-A:GEN2-CALC-ALTERNOS-LOTE-2: las 1 200 filas del poselectoral nacional vienen vacías en p17 y p18 (columna existe, sin respuestas); NO-ESTIMABLE n=0 | M13 sólo mide participación; el peso percibido queda sin cifra | GEN2-CALC-ALTERNOS-LOTE-2 |
 | NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09 | «pago informal en trámites por unidad económica, tamaño y sector» — el cruce tamaño × sector | DIFERIDO-A:GEN2-OBTENCION-EXTERNA-2: no existe como tabulado; exige microdato TR_ENCRIGE2020 de Laboratorio | R03 sólo por tamaño y por sector, por separado | GEN2-OBTENCION-EXTERNA-2 |
+
+## CONSUMIDO
+
+Ejecutado por PR #1299 (`acto/gen2-calc-alternos-lote-1`), 28/sep/2026. ADR-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01. Adenda citada desde el cierre: `forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md` (respuesta de mesa: «Obedecer R08 (b) (Recommended)»). Nota: `forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md`.
