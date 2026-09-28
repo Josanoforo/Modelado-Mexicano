@@ -1,0 +1,13 @@
+# ENBIARE 2021 · contrato sucesor de edades · v1 propuesta
+
+Estado: CONTRATO-NUEVO-PROPUESTO / PROPUESTO-POR-EJECUTOR. Redacción 27/sep/2026 posterior al intento conocido. Requiere firma de contenido antes de cualquier recálculo; no es cláusula histórica restaurada. Leer junto a enbiare-metodo-base.md y enbiare-ventanas-restauradas.md. Abarca las 12 conductas y sus ejes.
+
+Universo adulto conocido: EDAD=18–96 o código 98, sujeto a los demás requisitos de la spec base. 97, 99, blanco y códigos fuera del FD quedan fuera y se cuentan por causa; 96 representa 96+ sin precisar edad. Mantener EDAD como código antes de decodificar. 98 confirma adultez, pero no permite asignar años ni tramo.
+
+Tramos de edad: 18–29, 30–44, 45–59 y 60+ (60–96). Código 98 queda fuera de todo tramo de edad; no imputar 60+ ni distribuirlo. Para conductas con corte independiente de edad conservar 98 en TOTAL, SEXO, ESCOLARIDAD y TLOC cuando el eje y la respuesta son válidos.
+
+CESD-7: exigir los siete ítems 0–3 completos; puntaje=sum(PD2_1..PD2_7) con PD2_6 sustituido por 3-PD2_6. Código 18–59 aplica ≥9, código 60–96 aplica ≥5. Código 98 queda fuera de CESD-7 en todos los ejes y se cuenta EDAD-NO-DETERMINA-CORTE; no aplicar un corte supuesto ni decidir inclusión por el puntaje observado. Este denominador es población adulta de edad conocida con escala completa. La regla es uniforme y auditable; pierde representatividad de adultos de edad desconocida y puede modificar puntos e IC respecto al histórico. No permite una afirmación automática de igualdad del estimando histórico.
+
+Cada celda estima Σ(w*y)/Σ(w) con w=FAC_ELE positivo, sobre su universo y respuestas válidas. No imputar NS/NR ni valores fuera de escala. Denominador cero se declara NO-ESTIMABLE. Publicar exclusiones no ponderadas y ponderadas por edad no clasificable y respuestas inválidas junto al n válido en diagnósticos auxiliares separados. La salida comparada sigue exclusivamente `esquema-salida-v2.md` del contenedor: `llave` y `unidad` literales de `esquema-identidades.tsv`, `punto` y estado; el IC, si se calcula, sigue el contrato P3. `entrada_id` identifica la spec y nunca sustituye la llave comparada. Identidad del contenedor y hash van en el documento de salida, no en cada fila.
+
+Elección motivada: exclusión uniforme de 98 en CESD-7 evita clasificar depresión con un umbral no identificado y evita un denominador condicionado al puntaje. Alternativa: clasificación parcial (puntajes <5 negativos, ≥9 positivos, 5–8 indeterminados); se descarta porque condiciona la respuesta válida a la intensidad de síntomas y exige otro estimando. Una imputación etaria cambiaría el estimando y requeriría un contrato específico.

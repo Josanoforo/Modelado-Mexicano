@@ -50,3 +50,13 @@ Propio: `forense/analisis/obtencion-previa-1/`, `data/manifiesto.yaml` (append p
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no cierra las cuatro letras, no levanta reservas, no presenta solicitudes (deja la receta), no toca E1 (EMOVI/WVS: mesa), no revisa el resto de la cola de adquisición (las 7 SOLICITUD-PREPARADA y 5 NO-ENCONTRADO van a un `-2` si mesa lo pide). Sucesores: FIRMAS-21 (resuelve A1/A2/D1/I1 con el dictamen); un CALC de caja si P1/P2 encuentran variable en corpus; `GEN2-OBTENCION-PREVIA-2` para la cola. Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-27-GEN2-OBTENCION-PREVIA-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- Registro en `data/manifiesto.yaml` de los 14 payloads nuevos · NO-VERIFICABLE-AQUÍ: `tests/manifiesto.py --registra` rechaza el registro por la validación de entradas ajenas (`enoe_2026_1t_*`), y el append directo quedó denegado por permisos de la sesión · impacto: no se cumple el criterio «verifica <id>» · sucesor: GEN2-TRAMITE-FIRMAS-21 (`NC-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01`).
+- Payloads bajados desde nube que no están en el corpus compartido · DIFERIDO-A:caja · impacto: ninguno hasta registrar · sucesor: caja (`…-8e6a-02`).
+- Portales externos (datos.gob.mx, gob.mx, Zenodo, Dataverse, Banxico, CONEVAL, cses.org), calendario, RNM y comunicados de D1 · NO-VERIFICABLE-AQUÍ: el proxy de nube los rechazó (A.5; recetas en las notas) · sucesor: GEN2-OBTENCION-PREVIA-2 (`…-8e6a-03`).
+
+## CONSUMIDO
+
+PR #1233 (Josanoforo/Modelado-Mexicano) · ADR-260928-GEN2-OBTENCION-PREVIA-1-8e6a-01 · nota `forense/notas/nota-2026-09-28-gen2-obtencion-previa-1.md`.

@@ -123183,3 +123183,213 @@
     (sólo sha, tamaño y directorio central).'
   entorno_descarga: Linux 6.18.33.2-microsoft-standard-WSL2 (x86_64) · Python 3.14.4
   raiz: data_raw
+- id: enaproce_2018_datos_abiertos_micro_2016_2018_csv
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/contenidos/programas/enaproce/2018/datosabiertos/enaproce_2016_2018_micro_csv.zip
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/enaproce_2016_2018_micro_csv.zip
+  sha256: 5e9bca097436a2f219ffa9e4ec9fc1d2e0163fb7247493590cca9b3e7ece4066
+  tamano_bytes: 32185
+  formato: zip (datos abiertos agregados, totales nacionales micro)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: inegi_rnm_330_download_19211_enaproce2015_documento_metodologico
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19211
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/inegi_rnm_330_download_19211_enaproce2015_documento_metodologico.pdf
+  sha256: e0274097c5958b1a8eddbb602b547b36f49d40beebf51a731f505c95dcd576a4
+  tamano_bytes: 691300
+  formato: pdf
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: inegi_rnm_330_download_19212_enaproce2015_nota_diseno_muestra
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/330/download/19212
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/inegi_rnm_330_download_19212_enaproce2015_nota_diseno_muestra.pdf
+  sha256: 2ecea26b40b9d5c3ab226289ef27c585c61b8c300ce559a61a1a80a78f39d38f
+  tamano_bytes: 90886
+  formato: pdf
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: inegi_rnm_518_download_19221_enaproce2018_nota_diseno_muestra
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/19221
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/inegi_rnm_518_download_19221_enaproce2018_nota_diseno_muestra.pdf
+  sha256: 48b72e4e62eec14608f3edb362cfc07ac5bd319114391892b0aab00c3eded481
+  tamano_bytes: 382409
+  formato: pdf
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: inegi_rnm_518_download_13695_enaproce2018_indicadores_precision
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/13695
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/inegi_rnm_518_download_13695_enaproce2018_indicadores_precision.xls
+  sha256: 691e65c2280c68bf01663e3ccf4f1db0f87c10082ebc7350da73725821dd305a
+  tamano_bytes: 40960
+  formato: xls
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: inegi_rnm_518_download_13696_enaproce2018_metadatos_precision
+  usado_para: GEN2-OBTENCION-PREVIA-1 P4 (I1, R03)
+  url_origen: https://www.inegi.org.mx/rnm/index.php/catalog/518/download/13696
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/enaproce/inegi_rnm_518_download_13696_enaproce2018_metadatos_precision.pdf
+  sha256: 334ca71b8fc7b2f2ef031ac2da26e9a3ed92514612420cd99eb565507d292510
+  tamano_bytes: 144475
+  formato: pdf
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_caas_2015
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/caas/2015/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_caas_2015.html
+  sha256: 2b825d4e45adb01201a31f8750f32b01d02bbfd1318eea301bfa800042fbb778
+  tamano_bytes: 2778
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_ccpv_2020
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/ccpv/2020/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_ccpv_2020.html
+  sha256: 98d08c294787502ce58923da38955543d9223cffc2455411d59815183cc09a69
+  tamano_bytes: 5163
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_cnge_2024
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/cnge/2024/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_cnge_2024.html
+  sha256: b21dacf4f3203f377723169e13f131b9d89892fd2744a10b3def26e67b6149cd
+  tamano_bytes: 2713
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_cngspspe_2011
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/cngspspe/2011/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_cngspspe_2011.html
+  sha256: 0b7b953225b892ad18fff2b6166bcaa5f63d6a501896815fb1b0f9a3c6a6a9cc
+  tamano_bytes: 3981
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_encrige_2016
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/encrige/2016/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_encrige_2016.html
+  sha256: bf155bed469c731c73c2f2c183b760bf9a6cb50cf493c2f676065ff79e7e7111
+  tamano_bytes: 4231
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_encrige_2020
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/encrige/2020/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_encrige_2020.html
+  sha256: 3f842d1c988a1dc8204f295ef7433cb62ada8ccb8442e0a032c176bc1b58c884
+  tamano_bytes: 2855
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_eng_2010
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/eng/2010/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_eng_2010.html
+  sha256: d2d85bbcb90069cb1e3e9c27380b012fea52b981752a06cda1801ceb73c13238
+  tamano_bytes: 4676
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
+- id: obtencion_previa_1_d1_programas_migracion_2002
+  usado_para: GEN2-OBTENCION-PREVIA-1 P3 (D1)
+  url_origen: https://www.inegi.org.mx/programas/migracion/2002/
+  fecha_descarga: '2026-09-28'
+  descargado_por: agente Claude en NUBE (milpa-inegi), curl directo del portal
+  archivo: obtencion-previa-1/d1/programas_migracion_2002.html
+  sha256: 42319f2f4e56b696ed137997aeff939cac012b8fc711024d8cc546ef08c2d62c
+  tamano_bytes: 2763
+  formato: html (página de programa INEGI)
+  licencia: Términos de libre uso de la información del INEGI
+  nota: 'registrado desde nube por append directo autorizado por mesa (28/sep): tests/manifiesto.py --registra
+    rechaza por validación de entradas ajenas (enoe_2026_1t_*); verificar en caja contra este sha (§6
+    ARRANQUE).'
+  entorno_descarga: Linux 6.18.44-fc-v37 · Python 3.11.15
+  raiz: data_raw
