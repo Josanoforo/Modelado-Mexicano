@@ -98,8 +98,14 @@ T_ACTO = "ESPERA-ACTO-NOMBRADO"
 T_SIN = "SIN-ASIGNAR"
 T_BANDEJA = "BANDEJA-TITULAR"
 T_NOCLAS = "NO-CLASIFICABLE"
-RE_DUENO = re.compile(r"^(MESA|CAJA|ADQUISICION|APERTURA|EN-CURSO) \([^)]+\)")
-DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
+# GEN2-PENDIENTES-4 (P3): «MESA» a secas escondía tres cosas distintas (una acción con identidad,
+# una decisión con opciones, un encargo que dirección revisa) y un canal automático. La lista
+# cerrada las separa para que el tablero no diga que el 72 % espera a mesa; `MESA` se conserva
+# sólo para clasificar filas históricas (la guardia estricta vive en tests/test_pendientes_4_duenos.py).
+RE_DUENO = re.compile(r"^(MESA-ACCION|MESA-DECISION|MESA|DIRECCION-ENCARGO|CANAL|CAJA|ADQUISICION|APERTURA|EN-CURSO) \([^)]+\)")
+DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "MESA-ACCION": "ESPERA-MESA-ACCION", "MESA-DECISION": "ESPERA-MESA-DECISION",
+                 "DIRECCION-ENCARGO": "ESPERA-DIRECCION-ENCARGO", "CANAL": "ESPERA-CANAL",
+                 "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
                  "ADQUISICION": "ESPERA-ADQUISICION", "APERTURA": "ESPERA-APERTURA"}
 
 
