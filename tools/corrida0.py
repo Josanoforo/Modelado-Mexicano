@@ -1378,10 +1378,18 @@ def cmd_demanda(args) -> int:
 
     payloads = sorted({f["payload_ids_legacy"] for f in filas
                        if _es_id_payload(f["payload_ids_legacy"])})
+    # ACTO GEN2-DEMANDA-DICTAMEN-1: la demanda baja SOLO por dictamen citado
+    # en la vista (nunca por borrado); sin vista, cuenta como antes.
+    vista = SALIDA / "demanda-dictamen-v1_0.tsv"
+    dic = {(d["corrida_id"], d["resultado_id"]): d["dictamen"].split(" ")[0] for d in csv.DictReader(
+        (l for l in vista.open(encoding="utf-8") if not l.startswith("#")), delimiter="\t")} if vista.exists() else {}
+    no_req = sum(1 for c in corridas if dic.get((c["corrida_id"], "CORRIDA")) == "CORRIDA-NO-REQUERIDA")
+    cerrados = sum(1 for f in filas if f["estado"] == "PENDIENTE" and dic.get((f["corrida_natural"], f["resultado_id"]), "").startswith(
+        ("YA-RELEVADO-GEN2", "NO-RELEVAR-", "SIN-ESTIMANDO-RECONSTRUIBLE", "DIFERIDO-A-FAMILIAS-2027")))
     print(f"N_resultados_activos = {len(filas)}")
-    print(f"N_corridas_requeridas = {len(corridas)}")
+    print(f"N_corridas_requeridas = {len(corridas) - no_req}  (de apertura {len(corridas)}; no requeridas por dictamen {no_req})")
     print(f"N_resultados_pendientes = "
-          f"{sum(1 for f in filas if f['estado'] == 'PENDIENTE')}")
+          f"{sum(1 for f in filas if f['estado'] == 'PENDIENTE') - cerrados}  (cerrados por dictamen {cerrados})")
     print(f"clausura_activa_de_payloads = {len(payloads)}")
     if decisiones:
         # ACTO GEN2-T9: `decisiones.tsv` dejo de ser la tabla de UNA firma

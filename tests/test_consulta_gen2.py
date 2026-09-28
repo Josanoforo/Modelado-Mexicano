@@ -1,5 +1,19 @@
 #!/usr/bin/env python3
-"""Pruebas dirigidas de la entrada operativa GEN2."""
+"""Pruebas dirigidas de la entrada operativa GEN2.
+
+DUEÑO de `forense/ejemplos/GEN2-*` (F1, hoja NC-DECISIONES-1 §F1, firma de
+mesa 28/sep/2026, opción a; FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-19):
+este archivo es la spec que gobierna esos ejemplos congelados -- quien lo
+toca es quien re-sella. Re-sello 28/sep/2026 (`ACTO
+GEN2-TUBERIA-Y-CURACION-1`) contra el índice de ese día:
+    python3 tools/consulta_gen2.py --lote <peticiones.json> \
+        --salida <respuestas.json> --sobrescribir
+Antes de re-sellar, diffear cada campo que cambia contra el archivo viejo
+(no solo comparar returncode): un `sha256`/línea de cita que se mueve por
+deriva de infraestructura es re-sello seguro; un `estado`/`valor.punto`/
+`aptitud.estado` que cambia NO lo es -- ese caso exige investigar la causa,
+no sobreescribir el dorado a ciegas.
+"""
 from __future__ import annotations
 
 import json

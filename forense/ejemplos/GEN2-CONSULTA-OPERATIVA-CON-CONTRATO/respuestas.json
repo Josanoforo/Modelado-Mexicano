@@ -11,19 +11,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -52,7 +52,7 @@
     "estimando": {
       "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
       "periodo": {
-        "cita": "milpa/tramite.yaml:646 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "cita": "milpa/tramite.yaml:649 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
         "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
       },
       "poblacion": "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31",
@@ -89,7 +89,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENVIPE-0001--06223f3dc02d",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENVIPE-0001)",
+      "fuente": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENVIPE-DEN-P-C2-U4",
       "origen_numerico": "NUEVO",
@@ -115,16 +115,16 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
       "guardia_suficiencia_efectiva": {
@@ -149,8 +149,8 @@
           "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
         },
         "integridad_evidencias": {
-          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+          "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
           "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
           "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -180,7 +180,7 @@
           "vinculo_alcance_menor": null
         }
       },
-      "sha256": "bab72cca66e304b4eef7b5e690accd5ca12afd6d7e6cec7860cb202417373d0c",
+      "sha256": "ac2ff2ef7d583911e26be65a5d2e2702a63e85c811edd9c4ee71f31f7659a5cc",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -201,7 +201,7 @@
     "estimando": {
       "evento": "P4_10∈{1,2}: sin ahorro suficiente para cubrir al menos un mes, incluidas personas sin ahorros",
       "periodo": {
-        "cita": "milpa/tramite.yaml:1135 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1313 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "poblacion": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
@@ -235,7 +235,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
+      "fuente": "VERIFY-NUEVO-EN-NUBE · ACTO GEN2-NUBE-PILOTO-1-bis · forense/replay-evidencia.tsv#CALC-ENIF-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
       "origen_numerico": "NUEVO",
@@ -265,8 +265,8 @@
         "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
       },
       "integridad_evidencias": {
-        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
         "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
         "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -309,19 +309,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -342,7 +342,7 @@
     "estimando": {
       "evento": "remesas>0 en ENIGH 2022",
       "periodo": {
-        "cita": "milpa/tramite.yaml:933 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
+        "cita": "milpa/tramite.yaml:936 -- ola_calibracion: \"ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)\"",
         "valor": "ENIGH 2022 (punto usado por estas dos conductas; las demás olas quedan como serie separada)"
       },
       "poblacion": "hogares -- universo completo de concentradohogar (folioviv+foliohog) de ENIGH 2022 Nueva Serie, sin filtro adicional (la regla no declara ninguno). Desenlace recibe_remesas = 1 si concentradohogar.remesas > 0, 0 si = 0. La rama NA de la dicotomizacion NO existe: `remesas` trae cero nulos en las 6 olas (verificado, no supuesto).",
@@ -375,7 +375,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-B-0001--098298ca327f",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-B-0001)",
+      "fuente": "VERIFY-ESTRUCTURADO · ACTO GEN2-CAJA-RESIDUAL-1 (NC-0181) · forense/replay-evidencia.tsv#CALC-B-0001",
       "generacion": "GEN2",
       "id": "RESULT-B-ENIGH-2022-P",
       "origen_numerico": "NUEVO",
@@ -401,19 +401,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -434,7 +434,7 @@
     "estimando": {
       "evento": "conducta=paga_mordida_encig2025",
       "periodo": {
-        "cita": "milpa/tramite.yaml:136 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
+        "cita": "milpa/tramite.yaml:139 -- ola_calibracion: \"ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)\"",
         "valor": "ENCIG 2025 (más reciente de 8 olas disponibles; las otras 7 van en serie_olas, NO promediadas)"
       },
       "poblacion": "sección VIII de ENCIG 2025 (encig2025_01_sec1_A_3_4_5_8_9_10.csv), variable P8_3_1 (y=1 si '1' Sí, y=0 si '2' No, 9 No-sabe y resto fuera); 40136 filas leídas, 94 fuera de universo, n_efectivo=40042.",
@@ -467,7 +467,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENCIG-0001--c3ae00e62e59",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENCIG-MOR-A-P-SOL1",
       "origen_numerico": "NUEVO",
@@ -493,19 +493,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -534,7 +534,7 @@
     "estimando": {
       "evento": "algún delito no denunciado en U1 con BP1_23 en {01,02,06,08}",
       "periodo": {
-        "cita": "milpa/tramite.yaml:646 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
+        "cita": "milpa/tramite.yaml:649 -- ola_calibracion: \"ENVIPE 2025 (unica ola disponible para este universo)\"",
         "valor": "ENVIPE 2025 (unica ola disponible para este universo)"
       },
       "poblacion": "personas 18+ victimas de AP7_3_XX=1 (XX en 05..15) que no denunciaron (BP1_20=2) -- procedencia.yaml:997, re-verificado contra microdato 2026-08-31",
@@ -572,7 +572,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENVIPE-0001--06223f3dc02d",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENVIPE-0001)",
+      "fuente": "VERIFY-ESTRUCTURADO · forense/replay-evidencia.tsv#CALC-ENVIPE-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENVIPE-DEN-P-C2-U4",
       "origen_numerico": "NUEVO",
@@ -593,19 +593,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -626,7 +626,7 @@
     "estimando": {
       "evento": "conducta=paga_mordida",
       "periodo": {
-        "cita": "milpa/tramite.yaml:100 -- fuente: [\"ENCIG2023\", ...]; fijada como ola_calibracion=ENCIG 2023 por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
+        "cita": "milpa/tramite.yaml:103 -- fuente: [\"ENCIG2023\", ...]; fijada como ola_calibracion=ENCIG 2023 por forense/notas/2026-08-31-marco-M-v1_1-spec.md §(a), confirmada por milpa/procedencia.yaml:782-786 (asignados_probabilidad, 'el 0.62 NO corresponde a ninguna categoria medida -- es ASIGNADO, confirmado')",
         "valor": "ENCIG 2023"
       },
       "poblacion": "NO-DECLARADO-EN-REGLA; consultar unidad del RESULT",
@@ -672,19 +672,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -782,7 +782,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-B-0001--098298ca327f",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-B-0001)",
+      "fuente": "VERIFY-ESTRUCTURADO · ACTO GEN2-CAJA-RESIDUAL-1 (NC-0181) · forense/replay-evidencia.tsv#CALC-B-0001",
       "generacion": "GEN2",
       "id": "RESULT-B-ENIGH-2020-P",
       "origen_numerico": "NUEVO",
@@ -800,19 +800,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "estado": "NO_COVERAGE",
@@ -859,19 +859,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -970,7 +970,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-B-0001--098298ca327f",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-B-0001)",
+      "fuente": "VERIFY-ESTRUCTURADO · ACTO GEN2-CAJA-RESIDUAL-1 (NC-0181) · forense/replay-evidencia.tsv#CALC-B-0001",
       "generacion": "GEN2",
       "id": "RESULT-B-ENIGH-2022-P",
       "origen_numerico": "NUEVO",
@@ -991,19 +991,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -1032,7 +1032,7 @@
     "estimando": {
       "evento": "AP5_17=2 y AP5_18=2 dentro del mismo recorte válido",
       "periodo": {
-        "cita": "milpa/tramite.yaml:118 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
+        "cita": "milpa/tramite.yaml:121 -- ola_calibracion: \"ENCUCI 2020 (unica ola)\"",
         "valor": "ENCUCI 2020 (unica ola)"
       },
       "poblacion": "SEC_4_5 con contacto declarado AP5_16_1..10>=1 -- procedencia.yaml:888-889 (n≈13435 de 21519), re-verificado contra microdato 2026-08-31, n exacto reproducido",
@@ -1068,7 +1068,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENCUCI-0001--18d21cdff449",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCUCI-0001)",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L100 · forense/replay-evidencia.tsv#CALC-ENCUCI-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENCUCI-A-P-CUALQUIERA",
       "origen_numerico": "NUEVO",
@@ -1094,19 +1094,19 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
-      "sha256": "6819198dc6198bcbbb924a6a11d711921c791d0d62bb39d2b3176e5db3ffca27",
+      "sha256": "c5fb2b0c96445388a0b9e358dc126ac55e625241066e8ccc83291c92055b8f35",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -1133,7 +1133,7 @@
     "estimando": {
       "evento": "conducta=paga_mordida_encig2025_digital_r2",
       "periodo": {
-        "cita": "milpa/tramite.yaml:239 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
+        "cita": "milpa/tramite.yaml:242 -- ola_calibracion: \"ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)\"",
         "valor": "ENCIG 2025 (recorrida sin deduplicar, ACTO MAESTRA35-L1)"
       },
       "poblacion": "eventos de trámite con P8_4 ∈ {0,1}, ENCIG 2025, SHA 57a365e",
@@ -1170,7 +1170,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENCIG-0001--c3ae00e62e59",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENCIG-0001)",
+      "fuente": "HEREDADO-DEL-REGISTRO-PUBLICADO · data/corrida0/corridas.tsv@5022d2d8147596250c70c348be0664c56f0b5aa9:L99 · forense/replay-evidencia.tsv#CALC-ENCIG-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENCIG-MOR-B-P-DIG-SD",
       "origen_numerico": "NUEVO",

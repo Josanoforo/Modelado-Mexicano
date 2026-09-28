@@ -306,10 +306,16 @@ def caso_B3():
 VIEJOS = ["FP-67", "FP-402", "FP-403"]
 NUEVOS = ["FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-01",
           "FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-02"]
+# H1-a (hoja NC-DECISIONES-1, 28/sep/2026, ejecutado por
+# `ACTO GEN2-TUBERIA-Y-CURACION-1`): D-24 nunca exigió `GEN2-` como primer
+# segmento del RÓTULO. Estos son ids REALES del tablero (no inventados:
+# `forense/firmas-pendientes.tsv` y `canon/gobernanza-v1_15.md`), la clase
+# que antes de este ensanche caía SIN-ASIGNAR por invisible al parser.
+NUEVOS_SIN_GEN2 = ["FP-260921-MOTOR-THETA-CONGELADA-1-e8fa-01",
+                   "FP-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01"]
 TERCERA_EPOCA_INVENTADA = [
     "FP-2609",                                    # fecha truncada: ni vieja ni nueva
     "FP-26092",                                   # idem
-    "FP-260921-TUBERIA-SUCESOR-1-6e60-01",        # sin `GEN2-`: E.1 no admite suponerla
     "FP-260921-GEN2-TUBERIA-SUCESOR-1-6E60-01",   # hex en mayúscula: no es un short hash
     "FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60-1",    # secuencia de un dígito
     "FP-260921-GEN2-TUBERIA-SUCESOR-1-6e60g-01",  # hex de cinco
@@ -327,6 +333,9 @@ def caso_C():
     ok("C2 acepta la época nueva (raíz de acto)",
        all(re.fullmatch(NPC.RE_FP, t) for t in NUEVOS),
        str([t for t in NUEVOS if not re.fullmatch(NPC.RE_FP, t)]))
+    ok("C2-bis acepta la época nueva SIN `GEN2-` (H1-a: ids reales del tablero)",
+       all(re.fullmatch(NPC.RE_FP, t) for t in NUEVOS_SIN_GEN2),
+       str([t for t in NUEVOS_SIN_GEN2 if not re.fullmatch(NPC.RE_FP, t)]))
     ok("C3 RECHAZA una tercera época inventada",
        not any(re.fullmatch(NPC.RE_FP, t) for t in TERCERA_EPOCA_INVENTADA),
        str([t for t in TERCERA_EPOCA_INVENTADA if re.fullmatch(NPC.RE_FP, t)]))
@@ -363,14 +372,25 @@ def caso_C4():
     ok("C4d control negativo: FP nueva FIRMADA ya no bloquea",
        t2 != NPC.T_FIRMA, f"{t2} · {d2}")
 
+    # H1-a: una FP nueva SIN `GEN2-` también se ve -> ESPERA-FIRMA (antes:
+    # invisible al parser, SIN-ASIGNAR).
+    fps3 = {NUEVOS_SIN_GEN2[0]: "ABIERTA"}
+    r_sin_gen2 = {"sucesor": NUEVOS_SIN_GEN2[0],
+                  "razon": f"DECISIÓN-DE-MESA-PENDIENTE: espera {NUEVOS_SIN_GEN2[0]}"}
+    t3, d3, _ = NPC.clasifica(r_sin_gen2, fps3, enc, notas)
+    ok("C4e la FP nueva SIN `GEN2-` se ve -> ESPERA-FIRMA",
+       t3 == NPC.T_FIRMA and NUEVOS_SIN_GEN2[0] in d3, f"{t3} · {d3}")
+
 
 ADR_VIEJOS = ["ADR-67", "ADR-402", "ADR-591"]
 ADR_NUEVOS = ["ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",
               "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-02"]
+# H1-a: mismo ensanche que `NUEVOS_SIN_GEN2` arriba, id REAL de
+# `canon/gobernanza-v1_15.md` (no inventado).
+ADR_NUEVOS_SIN_GEN2 = ["ADR-260923-ASTRA5-U1-TRABAJO-ENOE-e422-01"]
 ADR_TERCERA_EPOCA_INVENTADA = [
     "ADR-2609",
     "ADR-26092",
-    "ADR-260921-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-01",   # sin `GEN2-`
     "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707-1",  # NN de un dígito
     "ADR-260921-GEN2-TUBERIA-CIERRE-SIN-CHOQUE-1-2707g-01",  # hex de cinco
     "ADR-",
@@ -389,6 +409,9 @@ def caso_C_adr():
     ok("C-ADR2 acepta la época nueva (raíz de acto)",
        all(re.fullmatch(EC.RE_ADR, t) for t in ADR_NUEVOS),
        str([t for t in ADR_NUEVOS if not re.fullmatch(EC.RE_ADR, t)]))
+    ok("C-ADR2-bis acepta la época nueva SIN `GEN2-` (H1-a: id real de gobernanza)",
+       all(re.fullmatch(EC.RE_ADR, t) for t in ADR_NUEVOS_SIN_GEN2),
+       str([t for t in ADR_NUEVOS_SIN_GEN2 if not re.fullmatch(EC.RE_ADR, t)]))
     ok("C-ADR3 RECHAZA una tercera época inventada",
        not any(re.fullmatch(EC.RE_ADR, t) for t in ADR_TERCERA_EPOCA_INVENTADA),
        str([t for t in ADR_TERCERA_EPOCA_INVENTADA if re.fullmatch(EC.RE_ADR, t)]))
