@@ -126,3 +126,17 @@ Se conservan necesidad histórica, demoras y diferencias de síntomas; se corrig
 **Estado corpus a mano:** los conteos de cobertura/dictámenes se derivan en resumen.json; los juicios editoriales están escritos explícitamente, nunca heredados por rango. **Deuda caducada:** nuevos sellados EDR permiten conteos, no tasas; artículo primario de 2025 resuelve la procedencia de cifras agrupadas ENSANUT, no prevalencia clínica. **Contadores:** no se producen nuevas corridas. **Escala/unidad:** persona entrevistada en ENEP/ENSANUT, mediana condicional para demora, defunción en EDR; no se promedian. **Prospectiva/retrospectiva:** todas las cifras son descriptivas retrospectivas; ninguna prueba predicción futura.
 
 La revisión dirigida cotejó todas las ROMPE, cada cifra principal y los mecanismos de oferta, aguante, subreporte, migración y canales digitales. La prueba automática protege trazabilidad, cobertura y denominadores; no sustituye juicio humano ni revisión independiente. El recibo se solicita por la sesión responsable.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

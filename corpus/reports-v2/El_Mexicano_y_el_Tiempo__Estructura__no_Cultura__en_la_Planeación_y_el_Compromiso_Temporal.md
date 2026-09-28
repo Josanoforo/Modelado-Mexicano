@@ -72,3 +72,20 @@ El mito «mexicanos incapaces de planear» no está sustentado; tampoco lo está
 - **Riesgo de uso:** negar crédito o empleo por supuesta impuntualidad nacional, o atribuir falta de ahorro a moral, sería una extrapolación injustificada. También lo sería prometer que formalizar por sí solo alargará metas.
 
 **Fuentes y localizadores.** Original v1 completo (líneas 1–251); `canon/mapa-dominios-v1_1.tsv`, filas `ASTRA5-U0-TIME-*` y `ASTRA5-U0-ENOE-001`; `CALC-ENIF-0001` (cuatro RESULT citados, valores y denominadores); fuente primaria ENOE histórica y ensayo bancario enlazados en tabla. El identificador agregado `RESULT-ENOE-PISOS-TABLA` del report v2 de trabajo no resolvió como fila individual en `tools/consulta.py`; por ello la cifra ENOE se apoya solo en el tabulado público enlazado y no se presenta como RESULT propio. No se localizó estudio primario reciente y representativo que mida policronía o puntualidad social mexicana. Esta ausencia limita la tesis, sin refutarla.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (5 ids, 2 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENIF-0001` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+- `CALC-ENOE-PISOS-0003` → unidad: personas de universo con diseño válido
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

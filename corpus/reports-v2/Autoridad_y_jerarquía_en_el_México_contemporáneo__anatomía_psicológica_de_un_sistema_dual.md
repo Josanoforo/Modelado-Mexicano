@@ -99,3 +99,17 @@ Son **PROPUESTO-POR-EJECUTOR**; no se adoptan en catálogo ni motor. No se crea 
 - **[GLOBE04] (a para muestra mexicana; c como marco general).** GLOBE Project, [*Mexico Results*](https://globeproject.com/results/countries/MEX%3Fmenu=list.html), visualizaciones «Culture» y «Leadership» y definiciones «Power Distance», «Charismatic» y «Participative»; diseño [*2004, 2007 Studies*](https://globeproject.com/study_2004_2007.html), secciones «Societal Culture» y «Leadership». Consulta 27/sep/2026. Se inspeccionaron categorías, muestra de gerentes y alcance; la página textual no entrega tabla numérica que confirme los decimales del v1.
 - **[HOF] (c).** The Culture Factor, [*Country Comparison Tool*](https://www.theculturefactor.com/country-comparison-tool), apartado «Mexico / Power Distance». Consulta 27/sep/2026. El valor del índice se atribuye a su proveedor; inferencias sobre cada persona o causalidad colonial no proceden.
 - **[WVS-Q] (c con posible estimando mexicano a verificar).** World Values Survey, [cuestionarios y datos de la ola 7](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp); reactivo de cualidades infantiles, «obedience». Consulta 27/sep/2026. El report no reproduce el porcentaje v1 sin verificar variable, población, pesos y denominador en un RESULT compatible.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

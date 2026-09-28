@@ -8,6 +8,9 @@
 - Recibo: forense/analisis/<unidad>/recibo-para-claude.md, EJECUTADO/LEÍDO por frase.
 - Reservas: ola más reciente de todo programa con historia; ENVIPE 2026; ENCO; ENIGH 2024 salvo seis columnas AMAI (C7). ENCIG 2025 y ENVIPE 2025: abiertas.
 - Etapa de retadores: cerrada (seis evaluaciones; el piso no pierde). Regla 6: sin retadores, pilotos ni duelos sobre olas vistas. Frente prospectivo = familias 2027.
+- C3 (reports v2), continuidad Astra→Claude (GEN2-ASTRA-CONTINUIDAD-C3-1, 28/sep): cadena acordada Astra diseña/dictamina → ejecutores (Codex) → Claude recibe por SHA → mesa firma.
+- C3: 31/31 homónimos v2 en main = cobertura editorial, no cierre científico; ninguna regla SI-ENTONCES adoptada (hoja: forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv, todas PROPUESTA).
+- C1 sin reconstructor; ENOE: NO-LANZAR-TODAVÍA (REPORTADO: transfer de Astra 27/sep citado por el encargo; el zip no llegó a este acto, NC abierta).
 
 ## 2 · Herramientas (úsalas antes de abrir un archivo)
 - tools/consulta.py result|corrida|celda|payload|fp|nc <id> → una línea. tools/vista.py → vistas por referencia (valor_de). tools/benchmark.py → consulta de producto (cuando fusione).

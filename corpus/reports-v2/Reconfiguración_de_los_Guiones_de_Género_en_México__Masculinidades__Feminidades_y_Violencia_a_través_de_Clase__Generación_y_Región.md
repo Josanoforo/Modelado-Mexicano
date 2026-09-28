@@ -92,3 +92,20 @@ No hay base para tratar “el mexicano es machista” como parámetro homogéneo
 Dictámenes por cláusula editorial (con solapamiento documentado): CONFIRMA: 8, MATIZA: 16, ROMPE: 1, SIN-CIFRA: 93.
 
 Ejecutar `python3 forense/analisis/reports-v2/genero-violencia-salud-1/genero/verifica.py --check --self-test`. Decisiones explícitas en decisiones.json; fuentes leídas y límites en fuentes.json; tabla derivada en tabla-afirmaciones.tsv; evidencia y hashes en evidencia.json. Las cifras oficiales externas permanecen separadas de los RESULT. La regeneración verifica producto, cobertura e integridad; no reemplaza lectura editorial ni validación independiente.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (4 ids, 2 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENDIREH-PISOS-2021-PAREJA-FISICA-0004` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+- `CALC-ENDISEG-PISOS-2021-0001` → unidad: PERSONA
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

@@ -198,3 +198,17 @@ Cobertura derivada: 88 registros (42 filas mapa y 46 unidades de líneas materia
 | ASTRA5-U0-CAPSOC-042 (L91) | SIN-CIFRA: instrumento inadecuado | Los umbrales del v1 carecen de calibración y no identifican el driver aunque se crucen. Retirarlos: exigir comparabilidad temporal y contraste causal de mecanismos con observables previamente declarados. |
 
 Archivos de trabajo: [afirmaciones JSON](../../forense/analisis/reports-v2/social-1/capital-afirmaciones.json), [tabla TSV](../../forense/analisis/reports-v2/social-1/capital-afirmaciones.tsv), [cobertura](../../forense/analisis/reports-v2/social-1/capital-cobertura.json), [cifras](../../forense/analisis/reports-v2/social-1/capital-cifras.json), [fuentes](../../forense/analisis/reports-v2/social-1/capital-fuentes.json) y [reglas propuestas](../../forense/analisis/reports-v2/social-1/capital-reglas.json). Las fuentes contienen URL, fecha, población, método, tesis y grado real de lectura. Las cifras guardan el valor crudo y hash sellado; la transformación editorial está separada. No queda una afirmación material del texto base fuera de la cobertura declarada.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->
