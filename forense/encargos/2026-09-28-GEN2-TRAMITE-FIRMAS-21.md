@@ -42,3 +42,13 @@ Propio: `forense/firmas-pendientes.tsv`, `forense/no-corrido.tsv` (las 19 + cier
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta cifras, no ejecuta CALC ni C1 (los dos actos de caja), no envía solicitudes ni publica (mesa). Sucesores: CORPUS-LICENCIAS-2; FIRMAS-22 solo si queda algo irreversible. Sin módulo de auditoría. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2, «CAAS 2015, ENGPEE 2010, MSM 2002 → reserva levantada por escrito (R09)», en el manifiesto. **por qué:** PARO-ENTORNO. La firma quedó escrita, pero los payloads `cc1_inegi_*` viven en la raíz de custodia `reserva_respondentes`, donde el validador exige `estado_reserva`, y moverlos se hace en CAJA. **impacto:** el cargador y el descargador los siguen tratando como reservados; no se mueve ningún contador de medición. **sucesor:** GEN2-C1-SUCESORES-Y-LOTE-3 (`NC-260928-GEN2-TRAMITE-FIRMAS-21-8560-01`).
+- Premisa de logística que no se sostuvo (declarada, no es PARO): el encargo llama `reserva` al campo, pero en el manifiesto se llama `estado_reserva` y su vocabulario es cerrado; «abierta» es ausencia del campo. ENIF 2024 m7 sigue reservado a nivel de módulo en `tools/corpus_loader.py`, no en el payload. Detalle en la nota.
+- Para mañana (no se asientan, como dice la ADENDA-1): R46, R47, R49 y R51, en ABIERTA con `PLAZO 2026-09-29`.
+
+## CONSUMIDO
+
+Consumido por el PR #1289 (rama `claude/new-session-2tdylz`); ADR-260928-GEN2-TRAMITE-FIRMAS-21-8560-01; nota `forense/notas/2026-09-28-GEN2-TRAMITE-FIRMAS-21-nota.md`. Adendas: `2026-09-28-GEN2-TRAMITE-FIRMAS-21-ADENDA-1.md`.
