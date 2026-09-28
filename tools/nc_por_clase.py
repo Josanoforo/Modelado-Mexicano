@@ -98,6 +98,9 @@ T_ACTO = "ESPERA-ACTO-NOMBRADO"
 T_SIN = "SIN-ASIGNAR"
 T_BANDEJA = "BANDEJA-TITULAR"
 T_NOCLAS = "NO-CLASIFICABLE"
+RE_DUENO = re.compile(r"^(MESA|CAJA|ADQUISICION|APERTURA|EN-CURSO) \([^)]+\)")
+DUENO_A_CLASE = {"MESA": "ESPERA-MESA", "CAJA": T_ACTO, "EN-CURSO": "EN-CURSO",
+                 "ADQUISICION": "ESPERA-ADQUISICION", "APERTURA": "ESPERA-APERTURA"}
 
 
 # Verificación POR PRODUCTO hecha a mano en ACTO GEN2-SENAL-1 (P2), fila por fila.
@@ -217,6 +220,12 @@ def clasifica(r, fps, enc, notas):
     s = (r.get("sucesor") or "").strip()
     razon = (r.get("razon") or "").strip()
     texto = f"{s} {razon}"
+
+    # Dueño de la lista cerrada (GEN2-PENDIENTES-3, A.16: token por prefijo) manda
+    # sobre la prosa, incluida la `antes: …` que conserva el sucesor viejo.
+    m = RE_DUENO.match(s)
+    if m:
+        return DUENO_A_CLASE[m.group(1)], f"dueño {m.group(0)}", ""
 
     if re.search(r"bandeja|titular", texto, re.I):
         return T_BANDEJA, "la fila se enruta a una bandeja/titular", ""
