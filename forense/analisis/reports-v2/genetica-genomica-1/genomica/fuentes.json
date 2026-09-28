@@ -1,0 +1,82 @@
+[
+  {
+    "id": "MXB-2026",
+    "tier": "a",
+    "url": "https://www.nature.com/articles/s41591-025-04100-z.pdf",
+    "consulted": "article abstract, results and methods; prior repository physical-PDF ledger",
+    "use": "6,011 people, 898 localities, 32 states, 42,769 curated genotyped variants and narrower clinical subsets",
+    "limit": "frequency data; no prospective test utility"
+  },
+  {
+    "id": "MCPS-CH-2025",
+    "tier": "a/c comparison",
+    "url": "https://www.nature.com/articles/s41588-025-02085-6",
+    "consulted": "original publication and repository physical-PDF ledger",
+    "use": "selected exome cohort comparison of clonal hematopoiesis",
+    "limit": "not national prevalence or causal ancestry effect"
+  },
+  {
+    "id": "MCPS-FAMILY-2026",
+    "tier": "a",
+    "url": "https://www.nature.com/articles/s41586-026-11039-9",
+    "consulted": "original article abstract and study-design sections on 27 September 2026",
+    "use": "within-family versus unrelated association distinctions",
+    "limit": "social mediation remains possible; no behavioral segmentation"
+  },
+  {
+    "id": "MUC19-2025",
+    "tier": "b",
+    "url": "https://doi.org/10.1126/science.adl0882",
+    "consulted": "original article via existing repository physical-PDF ledger; public PMC access returned recaptcha on recheck",
+    "use": "MXL introgressed-tract result and evolutionary inference",
+    "limit": "supplementary carrier denominator and health function not established"
+  },
+  {
+    "id": "PRS-2019",
+    "tier": "c",
+    "url": "https://www.nature.com/articles/s41588-019-0379-x",
+    "consulted": "published study and repository ledger",
+    "use": "UKB ancestry-stratum benchmark for quantitative traits",
+    "limit": "not a Mexican clinical validation"
+  },
+  {
+    "id": "FDA-K260235",
+    "tier": "official authority",
+    "url": "https://www.accessdata.fda.gov/scripts/cdrh/cfdocs/cfpmn/pmn.cfm?ID=K260235",
+    "consulted": "FDA decision page and https://www.accessdata.fda.gov/cdrh_docs/reviews/K260235.pdf",
+    "use": "product, applicant, date and narrow indication",
+    "limit": "no therapy-specific prescription, survival benefit, Mexican authorization or reimbursement"
+  },
+  {
+    "id": "DOF-DATA-2025",
+    "tier": "official authority",
+    "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LFPDPPP.pdf",
+    "consulted": "current consolidated law (last reform 14 November 2025), articles 2.VI, 8, 9; original DOF publication 20 March 2025",
+    "use": "genetic information is explicitly sensitive personal data",
+    "limit": "application depends on controller and case"
+  },
+  {
+    "id": "LGS-GENOME",
+    "tier": "official authority",
+    "url": "https://www.diputados.gob.mx/LeyesBiblio/pdf/LGS.pdf",
+    "consulted": "official General Health Law Title Fifth Bis reference",
+    "use": "genome provisions are in general health law",
+    "limit": "sample/data transfer requires transaction-specific legal review"
+  },
+  {
+    "id": "DOF-DEVICES-2025",
+    "tier": "official authority",
+    "url": "https://www.dof.gob.mx/abrirPDF.php?anio=2025&archivo=18072025-MAT.pdf",
+    "consulted": "official July 2025 device reliance rules",
+    "use": "reference-authority eligibility and conditional pathway",
+    "limit": "not automatic Mexican registration or a universal 30-day decision"
+  },
+  {
+    "id": "IMARC-2026",
+    "tier": "commercial estimate",
+    "url": "https://www.imarcgroup.com/mexico-genomics-market",
+    "consulted": "current public edition and report ID SR112026A33842",
+    "use": "current dated vendor estimate and segmentation",
+    "limit": "historical v1 edition and detailed estimation method unavailable; not observed sales"
+  }
+]

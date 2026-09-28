@@ -1,0 +1,87 @@
+{
+  "alteracion_posterior_al_sello_rechazada": true,
+  "archivo_no_listado_exportado": false,
+  "archivos_exportados": [
+    {
+      "bytes": 1328899,
+      "path": "auxiliar.tsv",
+      "sha256": "958dfa6e8b66c8b4374d1a39d94cb3f40a889cc5a1f5316deb3e9c0c8c6f69ab"
+    },
+    {
+      "bytes": 152,
+      "path": "canarios.json",
+      "sha256": "9cdefc25cd85f2ceb2e2d4c6d027737d0e5648cfe572f50c3128c0bd54e1528b"
+    },
+    {
+      "bytes": 3041,
+      "path": "codigo.py",
+      "sha256": "5023ee90deb23b69185079bc8399b98e927a63e650bd1e9475726cfaeab5e335"
+    },
+    {
+      "bytes": 42,
+      "path": "diagnostico.json",
+      "sha256": "6f7de24b50badbbbe5ca1872a0f03dbca27af59e97bdbec0a55b05b962f143c4"
+    },
+    {
+      "bytes": 720,
+      "path": "resultado.json",
+      "sha256": "96a167d72dbe6b55c37936f1c0d8f4ca3133c1e7d25e1086e9ee31120fbc71e2"
+    },
+    {
+      "bytes": 0,
+      "path": "stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 0,
+      "path": "stdout.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "auxiliar_bytes": 1328899,
+  "backend": "namespace",
+  "canarios_desde_proceso_aislado": {
+    "allowed_read": true,
+    "extra_output_written": true,
+    "input_write_denied": true,
+    "outside_secret_denied": true,
+    "tcp_denied": true,
+    "udp_denied": true
+  },
+  "comandos": [
+    "python3 tools/validacion/astra6_ejecutor_v3/runtime.py build --archive <synthetic.tar> --manifest <synthetic.json> --output <bundle>",
+    "python3 tools/validacion/astra6_ejecutor_v3/runtime.py run --bundle <bundle> --output <export> --backend namespace",
+    "python3 tools/validacion/astra6_ejecutor_v3/test_e2e.py --evidence <target>"
+  ],
+  "comparacion_referencia_sintetica": "COINCIDE",
+  "contrato_sha256": "183e6f0bda82d967da5f69fcb67a240543fec6297c1f69d6b093af12355cc886",
+  "export_manifest_sha256": "ef5678c8a10dfaad93d0d2af4f2c2a38048efd77ba2b1380af3e38b27a6658fc",
+  "export_verificado_antes_de_referencia": true,
+  "input_manifest_sha256": "bf663be971d92d3712705d6318a0d5d548a23813c2914988547469b4cc75aaf6",
+  "input_tar_sha256": "b553397d60df6fcf3dfe19ff3a2c9047a970857f16a1004374fe1b3725aca4c1",
+  "referencia_sintetica_sha256": "bf01dd4516239f087448172a94a12b04b8fb91f64def2e8c4d6aa6b1eaac891c",
+  "resultado": [
+    {
+      "estado": "RECONSTRUIDO",
+      "estado_ic": "CALCULADO",
+      "llave": "proporcion_A",
+      "punto": "0.75"
+    },
+    {
+      "estado": "DENOMINADOR-CERO",
+      "llave": "dominio_vacio"
+    },
+    {
+      "estado": "RECONSTRUIDO",
+      "estado_ic": "NO-IDENTIFICADA",
+      "llave": "punto_sin_ic",
+      "punto": "0.75"
+    }
+  ],
+  "resultado_original_validado_con_contrato_v3": true,
+  "run_id": "d78b453b5d4b43bb",
+  "runtime_sha256": "92611d15c1ea0c0110372f8039804d69b2ab491841e76f1a7036a396ae388b5a",
+  "tar_salida_truncado_rechazado": true,
+  "tipo": "EJECUTADO-SINTETICO",
+  "version_numpy": "2.3.5"
+}
