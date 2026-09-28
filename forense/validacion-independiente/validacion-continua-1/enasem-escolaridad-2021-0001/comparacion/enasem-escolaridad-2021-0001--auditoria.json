@@ -1,0 +1,49 @@
+{
+  "columnas_reales_no_autorizadas_en_codigo": [],
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/vyc27-rec/enasem-escolaridad-2021-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 14,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "enasem-escolaridad-2021-0001",
+  "resultado": {
+    "duration_ms": 127879,
+    "is_error": false,
+    "num_turns": 15,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport pandas as pd\nx=pd.read_excel('paquete/docs/enasem_2021_fd.xlsx',sheet_name=None,header=None)\nprint(list(x))\nimport re\nfor s,df in x.items():\n    for i,r in df.iterrows():\n        t=' | '.join(str(v) for v in r.values if pd.notna(v))\n        if re.search(r'\\b(YRSCHOOL|SEX_21|AGE_21|FACTORI_21|EST_DIS_21|UPM_DIS_21)\\b',t):\n            print(s,i,t[:400])\n\"",
+          "description": "Search FD for relevant variables"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_01YajkKVfUTT3PsFtfdM1Xi1"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 0.6272162000000001
+  },
+  "rutas_fuera_del_cwd": [],
+  "session_id": "4aea8f8e-c8a4-4375-b915-dd35e415bc40",
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": true,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}
