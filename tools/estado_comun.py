@@ -200,7 +200,12 @@ def adr_max(raiz):
 # `RE_FP_NUEVA`/`RE_FP_VIEJA` de `tools/nc_por_clase.py`. La época nueva
 # va PRIMERO en la alternancia -- un id nuevo empieza por dígitos que la
 # rama vieja casaría como prefijo.
-RE_ADR_NUEVA = r"ADR-\d{6}-GEN2(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
+#
+# ENSANCHE (firma de mesa H1-a, hoja NC-DECISIONES-1, 28/sep/2026, ejecutado
+# por `ACTO GEN2-TUBERIA-Y-CURACION-1`): mismo retiro del literal `GEN2` que
+# `tools/nc_por_clase.py::RE_FP_NUEVA` -- D-24 no lo exige; el resto de la
+# gramática no cambia.
+RE_ADR_NUEVA = r"ADR-\d{6}(?:-[A-Z0-9]+)+-[0-9a-f]{4}-\d{2}"
 # Ancho `{1,3}`, derivado igual que en `tests/check.py::RE_ADR_VIEJA` (99 de
 # ancho 2, 492 de ancho 3, ninguno más ancho, 21/sep/2026) -- sin el tope,
 # un `ADR-2609` de 4 dígitos pasaba como numérico válido.
