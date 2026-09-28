@@ -41,3 +41,6 @@ decisiones P2 al frente: 6 (HOLDOUT + 5 olas) · estado de reserva por id coinci
 hoja existe: True
 ```
 `python3 tests/check.py --rapido`: 0 FAIL (tres T25 de rótulos M09/E2 citados se censaron en `_T25_ARCHIVOS_CONOCIDOS`). La suite completa la juzga el CI.
+
+## Actualización tras fusionar origin/main (28/sep)
+Main trajo `FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` (pegar v2.17 y plantilla v2.2 en el proyecto). Entra como renglón ACCION-CON-IDENTIDAD. Ahora: FP ABIERTA 66, ids sin renglón 0, 86 renglones (57 piden firma, 29 cubiertos), duplicados por objeto 0 (`arma_hoja.py --verifica`).

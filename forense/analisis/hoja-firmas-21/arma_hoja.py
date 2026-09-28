@@ -280,6 +280,11 @@ RENGLONES += [
       "PROPUESTO-POR-EJECUTOR: (a); CORPUS-LICENCIAS-1 ya lo nombró sucesor", "SI", "pendiente: NO OBTENIDO POR CORPUS-LICENCIAS-1 (43 hosts, proxy)",
       "«Licencias residuales: opción (__).»"),
 
+    R(["FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01"], "sello A.9 de instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude", "ACCION-CON-IDENTIDAD", "gobierno/PEGAR-EN-PROYECTO-v2_17.md",
+      "INSTRUCCIONES-V217-1 (fusionado después de redactar este encargo) dejó el bloque listo. Por A.9, v2.17 no está sellada hasta que esté en los dos lados; solo mesa puede pegarla en el proyecto.", "Pegar y contestar «pegado <fecha>».",
+      ["(a) pegar hoy v2.17 y la plantilla v2.2 y contestar «pegado <fecha>»", "(b) diferir: v2.16 sigue vigente y v2.17 queda sin sellar"],
+      "PROPUESTO-POR-EJECUTOR: (a); la fila no trae recomendación", "NO", "no aplica",
+      "«pegado ____ (fecha): instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude.»"),
     # ---------------- forma ----------------
     R(["FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-02"], "report de genómica en inglés (§3: todo en español)", "FORMA", C3,
       "El report entero está en inglés. Traducirlo ahora reescribe un report de Astra sin cifras nuevas.", "Aceptar en v2 o traducir.",

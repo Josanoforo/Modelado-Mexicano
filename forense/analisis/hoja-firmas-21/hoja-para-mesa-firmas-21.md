@@ -2,7 +2,7 @@
 
 ACTO GEN2-TRAMITE-HOJA-FIRMAS-21-1. Junta en una hoja todo lo que hoy espera firma. **Contadores movidos: cero.** No firma, no asienta, no adopta. La tabla que recorre TRAMITE-FIRMAS-21 es `decisiones-21.tsv` (misma fuente: `arma_hoja.py`).
 
-**En una línea.** 85 renglones: 6 decisiones nuevas al frente, 50 que piden firma y 29 ya cubiertas o firmadas en chat (no se vuelven a pedir).
+**En una línea.** 86 renglones: 6 decisiones nuevas al frente, 51 que piden firma y 29 ya cubiertas o firmadas en chat (no se vuelven a pedir).
 
 Cómo leer cada renglón: situación · qué se te pide · opciones con su costo · recomendación (y de quién es) · obtención previa · texto de firma listo. Llena el hueco `(__)` con la letra que elijas.
 
@@ -967,9 +967,27 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «Licencias residuales: opción (__).»
 
+### R51 · sello A.9 de instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude
+
+`FP-260928-GEN2-TRAMITE-INSTRUCCIONES-V217-1-3e59-01` · fuente: gobierno/PEGAR-EN-PROYECTO-v2_17.md
+
+**Situación.** INSTRUCCIONES-V217-1 (fusionado después de redactar este encargo) dejó el bloque listo. Por A.9, v2.17 no está sellada hasta que esté en los dos lados; solo mesa puede pegarla en el proyecto.
+
+**Qué se te pide.** Pegar y contestar «pegado <fecha>».
+
+**Opciones.**
+- (a) pegar hoy v2.17 y la plantilla v2.2 y contestar «pegado <fecha>»
+- (b) diferir: v2.16 sigue vigente y v2.17 queda sin sellar
+
+**Recomendación.** PROPUESTO-POR-EJECUTOR: (a); la fila no trae recomendación.
+
+**Antes de firmar.** Requiere obtención previa: NO (no aplica).
+
+**Texto de firma.** «pegado ____ (fecha): instrucciones v2.17 y PLANTILLA-ENCARGO v2.2 en el proyecto de Claude.»
+
 ## 2.5 · Forma (idioma, cifras editoriales, textos de trámite)
 
-### R51 · report de genómica en inglés (§3: todo en español)
+### R52 · report de genómica en inglés (§3: todo en español)
 
 `FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-02` · fuente: forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md
 
@@ -987,7 +1005,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «El report de genómica se acepta en inglés en v2, con nota en INDICE; se traduce en v3.»
 
-### R52 · cifra de cuerpos y CIE-11 en el report de duelo
+### R53 · cifra de cuerpos y CIE-11 en el report de duelo
 
 `FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-03` · fuente: forense/analisis/reports-v2/continuidad-c3-1/hoja-para-mesa.md
 
@@ -1005,7 +1023,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «Duelo: la cifra de L8 queda «pendiente de cotejo de fuente y corte»; los ROMPE clínicos llevan la reserva «una sola fuente»; el cotejo CIE-11 va a un acto con red.»
 
-### R53 · NC-260922-GEN2-ESTADO-V15-1-7e23-03: retirar la revisión manual de celdas_validadas (derivada por comando)
+### R54 · NC-260922-GEN2-ESTADO-V15-1-7e23-03: retirar la revisión manual de celdas_validadas (derivada por comando)
 
 `FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#10` · fuente: forense/analisis/pendientes-2/hoja-firmas-2026-09-28.md letra 10
 
@@ -1024,7 +1042,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «PENDIENTES-2 letra 10 (NC-260922-GEN2-ESTADO-V15-1-7e23-03): opción (__).»
 
-### R54 · NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-02: 14 encargos de cola vieja: CONSUMIDO o HISTÓRICO
+### R55 · NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-02: 14 encargos de cola vieja: CONSUMIDO o HISTÓRICO
 
 `FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#11` · fuente: forense/analisis/pendientes-2/hoja-firmas-2026-09-28.md letra 11
 
@@ -1043,7 +1061,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «PENDIENTES-2 letra 11 (NC-260922-GEN2-TRAMITE-COLA-VIEJA-1-0eca-02): opción (__).»
 
-### R55 · NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01: sustitución por COMMIT-D sin firma citada
+### R56 · NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01: sustitución por COMMIT-D sin firma citada
 
 `FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#17` · fuente: forense/analisis/pendientes-2/hoja-firmas-2026-09-28.md letra 17
 
@@ -1062,7 +1080,7 @@ Sin recomendación del acto: la añade dirección al recibir la hoja (encargo P2
 
 **Texto de firma.** «PENDIENTES-2 letra 17 (NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-01): opción (__).»
 
-### R56 · NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-02: ¿SIN-OBJETO por D-14?
+### R57 · NC-260927-GEN2-TUBERIA-CI-TIEMPO-1-c6d9-02: ¿SIN-OBJETO por D-14?
 
 `FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01#18` · fuente: forense/analisis/pendientes-2/hoja-firmas-2026-09-28.md letra 18
 
@@ -1087,35 +1105,35 @@ Firmadas en chat (ADENDA-1 de este acto, 28/sep), firmadas el 27/sep (ADENDA-1 d
 
 | renglón | ids | objeto | estado |
 |---|---|---|---|
-| R57 | FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-01 | lectura ciega nueva de ENDIREH 2021 (C1) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R58 | FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-02 | lectura ciega nueva de ENDIREH 2016 (C1) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R59 | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-02 | exposición documental a ENADID 2023 (pieza vejez) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R60 | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-01 | reports C3 de cuidado, migración y pareja | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R61 | FP-260926-ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1-9df0-01 | reglas del lote C3 dinero, tecnología y conocimiento | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R62 | FP-260926-GEN2-ASTRA6-C2-FRONTERA-1-71cf-01 | paquete «frontera» de C2 (ENSU-Campeche, ENOE-informalidad, ENSANUT-CESD, MOCIBA) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R63 | FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03 | regla de publicabilidad sellada (CV ≤ .30, ancho ≤ .20) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
-| R64 | FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-04 | recibo de Claude del PR #1194 | SUPERADA (ADR-260927-GEN2-RECIBO-ASTRA6-2-627e-01) |
-| R65 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-03 | 3 filas NC de RECIBO-ASTRA-1 con estructura rota y guardia T-NC-CAMPOS | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R66 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-07 | reescritura mecánica de filas desalineadas de no-corrido.tsv | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R67 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06 | tres firmas de forma de CIERRE-MATERIAL-1 para Astra C2 (control ENIF, identidad ENCIG, singleton ENVIPE) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R68 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14 | envoltura de control ENIF y reconocimiento de identidad ENCIG | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R69 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-15 | unidad de remuestreo ENVIPE («singleton contribuyente») | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R70 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-08 | caché de actions/cache en CI | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R71 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-09 | prueba del auto-merge de rutinas | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R72 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-11 | rótulo de ola de los 24 ids engasto_2012_* (son ENGASTO 2013) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R73 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-13 | recibo técnico de #1171 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R74 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-16 | recibo técnico de #1180 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R75 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-18 | recibo técnico de #1166 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R76 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-19 | ejemplos congelados del motor (forense/ejemplos/GEN2-*, 4 fallas de test_consulta_gen2) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R77 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-21 | cuatro ajustes del manifiesto del censo de integridad (raíz explícita, PDF MOCIBA, enco_*_reservado) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R78 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-22 | CALC-PISO-PERSISTENCIA-ERROR-0001 NO-EJECUTABLE contra libro vivo | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R79 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23 | resultados.tsv por encima de 100 MB en el canal [deriva] | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R80 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-24 | parser de ids FP/ADR (gramática D-24) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R81 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-25 | conteo de FP de la vista --mesa (líneas físicas vs registros) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R82 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-27 | piso ENCIG de confianza institucional | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R83 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-28 | docs/index.md en el git add del job de derivados | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R84 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-30 | licencias del corpus, primer lote | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
-| R85 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-04 · FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-05 · FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05 | alianza académica con laboratorio de microdatos (CIDE/ITAM), fecha 2026-10-15 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R58 | FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-01 | lectura ciega nueva de ENDIREH 2021 (C1) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R59 | FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-02 | lectura ciega nueva de ENDIREH 2016 (C1) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R60 | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-02 | exposición documental a ENADID 2023 (pieza vejez) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R61 | FP-260926-GEN2-ASTRA6-C3-CUIDADO-MIGRACION-PAREJA-1-13c5-01 | reports C3 de cuidado, migración y pareja | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R62 | FP-260926-ASTRA6-C3-DINERO-TECNOLOGIA-CONOCIMIENTO-1-9df0-01 | reglas del lote C3 dinero, tecnología y conocimiento | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R63 | FP-260926-GEN2-ASTRA6-C2-FRONTERA-1-71cf-01 | paquete «frontera» de C2 (ENSU-Campeche, ENOE-informalidad, ENSANUT-CESD, MOCIBA) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R64 | FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-03 | regla de publicabilidad sellada (CV ≤ .30, ancho ≤ .20) | YA-CUBIERTA-POR forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2-ADENDA-1.md |
+| R65 | FP-260926-GEN2-ASTRA6-C1-INCERTIDUMBRE-SPEC-1-157c-04 | recibo de Claude del PR #1194 | SUPERADA (ADR-260927-GEN2-RECIBO-ASTRA6-2-627e-01) |
+| R66 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-03 | 3 filas NC de RECIBO-ASTRA-1 con estructura rota y guardia T-NC-CAMPOS | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R67 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-07 | reescritura mecánica de filas desalineadas de no-corrido.tsv | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R68 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-06 | tres firmas de forma de CIERRE-MATERIAL-1 para Astra C2 (control ENIF, identidad ENCIG, singleton ENVIPE) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R69 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-14 | envoltura de control ENIF y reconocimiento de identidad ENCIG | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R70 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-15 | unidad de remuestreo ENVIPE («singleton contribuyente») | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R71 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-08 | caché de actions/cache en CI | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R72 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-09 | prueba del auto-merge de rutinas | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R73 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-11 | rótulo de ola de los 24 ids engasto_2012_* (son ENGASTO 2013) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R74 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-13 | recibo técnico de #1171 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R75 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-16 | recibo técnico de #1180 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R76 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-18 | recibo técnico de #1166 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R77 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-19 | ejemplos congelados del motor (forense/ejemplos/GEN2-*, 4 fallas de test_consulta_gen2) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R78 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-21 | cuatro ajustes del manifiesto del censo de integridad (raíz explícita, PDF MOCIBA, enco_*_reservado) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R79 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-22 | CALC-PISO-PERSISTENCIA-ERROR-0001 NO-EJECUTABLE contra libro vivo | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R80 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-23 | resultados.tsv por encima de 100 MB en el canal [deriva] | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R81 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-24 | parser de ids FP/ADR (gramática D-24) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R82 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-25 | conteo de FP de la vista --mesa (líneas físicas vs registros) | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R83 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-27 | piso ENCIG de confianza institucional | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R84 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-28 | docs/index.md en el git add del job de derivados | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R85 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-30 | licencias del corpus, primer lote | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
+| R86 | FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-04 · FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-05 · FP-260923-GEN2-TRAMITE-FIRMAS-12-c3fa-05 | alianza académica con laboratorio de microdatos (CIDE/ITAM), fecha 2026-10-15 | FIRMADA-EN-CHAT (ADENDA-1 de este acto, mesa 28/sep: «firmado») |
 
 ## 4 · Conteo por tipo
 
@@ -1124,6 +1142,6 @@ Firmadas en chat (ADENDA-1 de este acto, 28/sep), firmadas el 27/sep (ADENDA-1 d
 | APERTURA-DE-DATO | 16 | 3 | 19 |
 | ADOPCION-VETO | 14 | 5 | 19 |
 | CONTRATO-PROCEDIMIENTO | 15 | 20 | 35 |
-| ACCION-CON-IDENTIDAD | 5 | 1 | 6 |
+| ACCION-CON-IDENTIDAD | 6 | 1 | 7 |
 | FORMA | 6 | 0 | 6 |
-| total | 56 | 29 | 85 |
+| total | 57 | 29 | 86 |
