@@ -82,6 +82,7 @@ DOMINIO_POR_REGLA = {
     "civico": "POLITICA", "CIV": "POLITICA",
     "familia": "FAMILIA_CUIDADOS", "FAM": "FAMILIA_CUIDADOS",
     "salud": "SALUD",
+    "GOB": "CONFIANZA",  # v1.4: consumidores GOB.gobierno_digital (ENCIG 2025, relevo de la semana); PROPUESTO-POR-EJECUTOR
 }
 DOMINIO_POR_CALC = [
     ("CALC-ENOE-", "TRABAJO"),
@@ -793,7 +794,7 @@ SEMANA = (
      "PDR1: brecha de TEC-010; 19 % / 24.2 % del report no reproducen"),
     ("CALC-PDR1-ENIGH2022-0001", "CONOCIMIENTO", "ENIGH", "proporcion (hogar)", _RES, _P,
      "PDR1: colegiatura privada por decil; unidad HOGAR"),
-    ("CALC-PDR1-ENVIPE2025-0001", "CAPITAL_SOCIAL", "ENVIPE", "proporcion (persona; estrato del área)", _RES, _P,
+    ("CALC-PDR1-ENVIPE2025-0001", "CAPITAL_SOCIAL", "ENVIPE", "puntos porcentuales (diferencia en diferencias; persona, estrato del área)", _RES, _P,
      "PDR1: RG-b913 solo mitad observable; la mitad «crisis» es NO-CONSTRUIBLE"),
     ("CALC-ALT-M05-LAPOP2019-0001", "POLITICA", "LAPOP", "proporcion (persona)", _RES, _M,
      "ALT: el contraste cubre 0; no hace serie con 2021 (cambio de modo)"),
@@ -858,8 +859,9 @@ def _ref(data: dict, key: str):
 
 def _camina(nodo, ruta=()):
     if isinstance(nodo, dict):
-        num_ = nodo.get("diferencia") if "diferencia" in nodo else nodo.get("p")
-        if ("diferencia" in nodo or "p" in nodo) and not any(isinstance(x, dict) for x in nodo.values()):
+        clave = next((k for k in ("diferencia", "d_hat", "p") if k in nodo), None)
+        num_ = nodo.get(clave) if clave else None
+        if clave and not any(isinstance(x, dict) for x in nodo.values()):
             yield ruta, nodo, num_
             return
         for k, v in nodo.items():
@@ -917,7 +919,7 @@ def semana(rows: dict, fuera, get) -> None:
                     ic = nodo.get("ic95") or [nodo.get("ic95_lo"), nodo.get("ic95_hi")]
                     lo, hi = (ic + [None, None])[:2] if isinstance(ic, list) else (None, None)
                     rows[llave] = {**base, "llave": llave, "conducta": ruta[0].removeprefix("CONTRASTE:").lower(),
-                                   "eje": "CONTRASTE" if "diferencia" in nodo else (ruta[1] if len(ruta) > 2 else "NACIONAL"),
+                                   "eje": "CONTRASTE" if ("diferencia" in nodo or "d_hat" in nodo) else (ruta[1] if len(ruta) > 2 else "NACIONAL"),
                                    "segmento": "/".join(ruta[1:]) or "NACIONAL", "punto": num(val),
                                    "ic95_inf": num(lo) if _es_num(lo) else "", "ic95_sup": num(hi) if _es_num(hi) else "",
                                    "naturaleza_ic": "IC95-DE-SPEC" if _es_num(lo) else "SIN-IC-IDENTIFICADO",
@@ -1053,6 +1055,23 @@ def conteos(lista, excl, pend, cob) -> None:
     c["vc:filas"] = sum(1 for r in lista if r["validacion_ciega"])
     for v, n in Counter(r["validacion_ciega"].split(" ")[0] for r in lista if r["validacion_ciega"].startswith("ACOTADA")).items():
         c[f"vc:{v}"] = n
+    c["bloque:filas"] = sum(1 for r in lista if r["firma_fp"] == FIRMA_BLOQUE)
+    c["bloque:calcs"] = len({r["calc"] for r in lista if r["firma_fp"] == FIRMA_BLOQUE})
+    c["bloque:pisos"] = sum(1 for r in lista if r["firma_fp"] == FIRMA_BLOQUE and r["alcance"] == _P)
+    c["bloque:momentos"] = sum(1 for r in lista if r["firma_fp"] == FIRMA_BLOQUE and r["alcance"] == _M)
+    c["bloque:momentos_holdout_gastado"] = sum(1 for r in lista if r["holdout_gastado"] not in ("", "NINGUNO"))
+    for v, n in Counter(r["validacion_ciega_lote3"].split(":")[0].split(" ")[0] for r in lista if r["validacion_ciega_lote3"]).items():
+        c[f"vc3:{v}"] = n
+    c["vc3:filas"] = sum(1 for r in lista if r["validacion_ciega_lote3"])
+    c["vc3:lote3"] = sum(1 for r in lista if r["validacion_ciega_lote3"].startswith(("LOTE3:", "ACOTADA")))
+    for v, n in Counter(r["validacion_ciega_lote3"].split(":")[1] for r in lista if r["validacion_ciega_lote3"].startswith("LOTE3:")).items():
+        c[f"vc3:LOTE3:{v}"] = n
+    for v, n in Counter(r["validacion_ciega_lote3"].split(":")[2] for r in lista if r["validacion_ciega_lote3"].startswith("LOTE3:")).items():
+        c[f"vc3:{v}"] = n
+    c["mapa11_dominios"] = len({r["dominio"] for r in lee(ROOT / "canon/mapa-dominios-v1_1.tsv")})
+    c["mapa11_dominios_medidos"] = len({r["dominio"] for r in lee(ROOT / "canon/mapa-dominios-v1_1.tsv")} & {r["dominio"] for r in lista})
+    c["mapa11_dominios_medidos_v1_3"] = len({r["dominio"] for r in lee(ROOT / "canon/mapa-dominios-v1_1.tsv")}
+                                          & {r["dominio"] for r in lee(ROOT / "canon/catalogo-del-mexicano-v1_3.tsv")})
     c["firmas20:filas"] = sum(1 for r in lista if r["calc"] in {f[1] for f in FIRMAS20_PISOS})
     c["firmas20:calcs"] = len({r["calc"] for r in lista if r["calc"] in {f[1] for f in FIRMAS20_PISOS}})
     # donde-cambio (P4): dictámenes por comando sobre la tabla del acto emisor
@@ -1115,7 +1134,7 @@ def render() -> None:
     def tab(m: re.Match) -> str:
         return TABLAS[m.group(1)]()
 
-    out = re.sub(r"\{\{t:([a-z-]+)\}\}", tab, tpl)
+    out = re.sub(r"\{\{t:([a-z0-9-]+)\}\}", tab, tpl)
     out = re.sub(r"\{\{([cr]):([^}]+)\}\}", sub, out)
     MD.write_text(out)
 
@@ -1153,7 +1172,7 @@ def _tabla_pendientes() -> str:
 
 
 def _tabla_propuestas() -> str:
-    """FP FIRMADA que «EJECUTA: GEN2-CATALOGO-V1-3-1» y no son adopción: propuestas recibidas, no reglas del catálogo."""
+    """(v1.3) FP FIRMADA que «EJECUTA: GEN2-CATALOGO-V1-3-1» y no son adopción: propuestas recibidas, no reglas del catálogo."""
     out = ["| id | qué se recibe |", "|---|---|"]
     for r in lee(ROOT / "forense/firmas-pendientes.tsv"):
         if ("GEN2-CATALOGO-V1-3-1" in r["ejecutada_en"] and r["estado"].startswith("FIRMADA")
@@ -1171,7 +1190,26 @@ def _tabla_validacion() -> str:
     return "\n".join(out)
 
 
-TABLAS = {"cobertura": _tabla_cobertura, "dominios": _tabla_dominios, "pendientes": _tabla_pendientes,
+def _tabla_bloque() -> str:
+    out = ["| CALC | instrumento · ola | dominio | unidad | propuesta | alcance | holdout gastado | filas |",
+           "|---|---|---|---|---|---|---|---:|"]
+    for r in lee(BLOQUE):
+        out.append(f"| `{r['calc']}` | {r['instrumento']} {r['ola']} | `{r['dominio'] or '—'}` | {r['unidad'] or '—'} | "
+                   f"**{r['propuesta']}** | {r['alcance']} | {r['holdout_gastado'] or '—'} | {int(r['filas']):,} |".replace(",", " "))
+    return "\n".join(out)
+
+
+def _tabla_lote3() -> str:
+    rows = lee(TSV)
+    c = Counter((r["validacion_ciega_lote3"].split(" ")[0].rsplit(":ic=", 1)[0], r["estado_adopcion"])
+                for r in rows if r["validacion_ciega_lote3"])
+    out = ["| rótulo del lote 3 | estado de adopción | filas |", "|---|---|---:|"]
+    for (v, e), n in sorted(c.items()):
+        out.append(f"| `{v}` | `{e}` | {n:,} |".replace(",", " "))
+    return "\n".join(out)
+
+
+TABLAS = {"bloque": _tabla_bloque, "lote3": _tabla_lote3, "cobertura": _tabla_cobertura, "dominios": _tabla_dominios, "pendientes": _tabla_pendientes,
           "propuestas": _tabla_propuestas, "validacion": _tabla_validacion}
 
 
