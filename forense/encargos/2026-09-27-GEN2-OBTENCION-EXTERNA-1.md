@@ -61,3 +61,7 @@ No mide, no adopta, no abre nada, no envía solicitudes, no levanta reservas, no
 - **qué:** «ADJUNTOS: los mismos dos del encargo MAPA-INSTRUMENTOS-ALTERNOS-1» (informe de investigación del 27/sep y `REVISION-repo-y-fuentes-alternas-2026-09-27.md`) · **por qué:** NO-VERIFICABLE-AQUÍ -- no llegaron a `Descargas MX` ni a `Downloads`; §1 bastó para ejecutar · **impacto:** las cifras [REPORTADO] del informe no se contrastaron contra él · **sucesor:** GEN2-OBTENCION-EXTERNA-2.
 
 Filas: `NC-260928-GEN2-OBTENCION-EXTERNA-1-81e1-01` … `-09` en `forense/no-corrido.tsv` (PR #1259).
+
+## CONSUMIDO
+
+Ejecutado por el PR #1259 (rama `acto/gen2-obtencion-externa-1`, ADR `ADR-260928-GEN2-OBTENCION-EXTERNA-1-81e1-01`). Nota de cierre: `forense/notas/nota-2026-09-27-gen2-obtencion-externa-1.md`. Adendas recibidas: ninguna.
