@@ -1,7 +1,7 @@
 # ENCIG · reconocimiento de identidad antes del COMMIT-3 · v1.0
 
 Acto `GEN2-ASTRA6-C2-EJECUCION-1` · 28/sep/2026 · CAJA · 0-bis `e897d3df`.
-Familia: `ENCIG-SOLICITUD-MORDIDA`. `ENCIG-PAGO-DIGITAL` sigue SUSPENDIDA por `FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01` (FIRMADA): este reconocimiento no la reactiva. Cara mecánica: `enmienda-firmas-c2-v1_0.yaml`.
+Familia: `ENCIG-SOLICITUD-MORDIDA`. `ENCIG-PAGO-DIGITAL` sigue SUSPENDIDA por `FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01` (FIRMADA): este reconocimiento no la reactiva. Cara mecánica: `enmienda-firmas-c2-encig-v1_0.yaml`.
 
 **Contadores movidos: cero.** No modifica reglas, gates, sellos, `spec-v1_3.md/.yaml`, ni la enmienda de verificación. No autoriza apertura.
 

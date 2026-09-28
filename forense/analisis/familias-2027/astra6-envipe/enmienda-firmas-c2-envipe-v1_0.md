@@ -1,7 +1,7 @@
 # ENVIPE · precisión de la unidad de remuestreo antes de habilitar R · v1.0
 
 Acto `GEN2-ASTRA6-C2-EJECUCION-1` · 28/sep/2026 · CAJA · 0-bis `e897d3df`.
-Familias: `ENVIPE-DENUNCIA-U4` y `ENVIPE-EVASION-NORMA` (una sola apertura, un solo plan de réplicas). Cara mecánica: `enmienda-firmas-c2-v1_0.yaml`.
+Familias: `ENVIPE-DENUNCIA-U4` y `ENVIPE-EVASION-NORMA` (una sola apertura, un solo plan de réplicas). Cara mecánica: `enmienda-firmas-c2-envipe-v1_0.yaml`.
 
 **Contadores movidos: cero.** No modifica el código congelado (`tools/familias-2027/envipe/medidor.py`, commit `f59b1b90`), ni `spec-v1_3.md`, ni `spec.yaml`, ni `emision.json`, ni `sello.json`. Precisa el texto de la spec humana **hacia** lo que el código ya hace, por la opción firmada.
 
