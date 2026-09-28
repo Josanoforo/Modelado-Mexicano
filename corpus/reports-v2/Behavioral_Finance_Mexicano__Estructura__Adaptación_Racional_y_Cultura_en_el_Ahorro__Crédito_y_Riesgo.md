@@ -150,3 +150,20 @@ Cobertura derivada: 94 decisiones explícitas, 35 filas del mapa y 59 afirmacion
 Se revisaron manualmente todas las ROMPE: son inferencias invalidas, equivalencias de denominador o saltos de nivel; la ausencia de fuente no recibió ROMPE. Revisión de mecanismos centrales: resiliencia no es meta; oferta no es preferencia; confianza combinada no es rasgo; experimento empresarial no es ahorro doméstico. No se ha abierto microdato ni tabulado reservado. La reserva de crédito ENIF2024 y ENIGH2024 permanece; no se consume exposición nueva ni se pide revelarla.
 
 Dependencia #1184 comprobada por identidad, CALC y linaje: No hay intersección de estas llaves, CALC ni padre ENIF en efectos del lote ENDIREH. No acredita validación independiente de ENIF. Mantener adopción separada de validez y precisión; no retirar por extrapolación del diagnóstico. `dependencia-1184.json` conserva llaves, archivo y hash del cotejo. Veto/adopción se comprueba en catálogo y decisiones por objeto al regenerar; ningún valor vetado se usa como piso. La ausencia de precisión independiente puede cambiar un uso futuro: no se fija tolerancia ni parámetro predictivo con estas cifras.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (10 ids, 2 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENIF-0001` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+- `CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

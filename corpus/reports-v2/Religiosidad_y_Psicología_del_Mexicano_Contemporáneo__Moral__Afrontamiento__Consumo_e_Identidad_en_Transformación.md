@@ -229,3 +229,22 @@ Hash, transformación y firma explícita por fila: `forense/analisis/reports-v2/
 La tabla primaria INEGI publica población total por grupo religioso: católica 82.7% en 2010 [REL-E1] y 77.7% en 2020 [REL-E2]; sin religión 4.7% [REL-E3] y 8.1% [REL-E4]. Confirma descenso de afiliación católica y aumento de la categoría sin religión; no determina cuánto obedece a crisis institucional, conversión o cambio de clasificación. Se recuperó el cuadro indexado, no todo el PDF [REL-S10](https://operacapacita.inegi.org.mx/Documentos/Demografico/sesiones/doc_12021/2_censo2020_principales_resultados_ejecutiva_eum.pdf).
 
 Chiapas presenta 53.9% católico [REL-E5] y 32.4% protestante/cristiano evangélico [REL-E6] en población total censal. La misma presentación separa sin adscripción creyente de sin religión: esa distinción impide sumarlos o equipararlos automáticamente [REL-S11](https://www.inegi.org.mx/contenidos/programas/ccpv/2020/doc/cpv2020_pres_res_chis.pdf). Confirmar esos puntos no valida toda la lista de entidades ni la causalidad histórica v1. Fuentes externas y RESULT adultos se conservan separados.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (56 ids, 4 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-LAPOP-PISOS-CAPITAL-SOCIAL-0001` → unidad: PERSONA
+- `CALC-LATINOBAROMETRO-PISOS-2023-0001` → unidad: PERSONA
+- `CALC-PEW-PISOS-RELIGION-AUTORIDAD-0001` → unidad: PERSONA
+- `CALC-WVS-PISOS-2018-0001` → unidad: PERSONA
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

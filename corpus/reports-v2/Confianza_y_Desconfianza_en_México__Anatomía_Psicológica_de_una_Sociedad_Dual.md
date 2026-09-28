@@ -218,3 +218,17 @@ La siguiente tabla publica los pisos auxiliares para hacer explícitas todas las
 - **CONF-OECDLAC25 · (a)/(c).** OECD, resultados regionales de 2025: [método y marco](https://www.oecd.org/en/publications/oecd-survey-on-drivers-of-trust-in-public-institutions-in-latin-america-and-the-caribbean-2025-results_ea3385cf-en/full-report/overview_a7ba6ef6.html). Solo el componente mexicano tiene transporte directo a su muestra urbana.
 - **CONF-DIG25 · (c).** Daoudi, Gainous y colaboradores, 2025, *Digital information consumption, democratic context, perceived corruption and political trust*: [DOI y resumen editorial](https://doi.org/10.1108/OIR-06-2023-0296). Solo resumen recuperado; sin estimación mexicana verificada.
 - **CONF-CARBON24 · (a)/(c).** Davidovic, 2024, *Does corruption shape attitudes towards carbon taxes? Experimental evidence from Mexico and Sweden*: [DOI y resumen editorial](https://doi.org/10.1016/j.erss.2024.103493). Viñetas aleatorias; mediación posterior, texto completo no leído.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

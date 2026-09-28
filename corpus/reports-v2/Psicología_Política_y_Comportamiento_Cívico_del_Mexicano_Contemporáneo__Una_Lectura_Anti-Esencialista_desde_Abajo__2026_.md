@@ -81,3 +81,17 @@ Las reglas organizan decisiones analíticas y una prueba futura; no entran al ca
 Se conserva un programa de investigación «desde abajo»: preguntar por las condiciones del encuentro con instituciones antes de etiquetar al ciudadano. Cambian el alcance causal y la unidad de varias tesis. Queda pendiente vincular motivos individuales a actos y completar la comparación judicial por cargo/corte. La tabla editorial distingue **CONFIRMA, MATIZA, ROMPE y SIN-CIFRA**; una razón SIN-CIFRA señala adquisición, instrumento, comparabilidad, restricción o identificación, nunca refutación automática.
 
 **¿Qué parece cultura y puede ser estructura?** Denuncia, corrupción y participación dependen de accesos y costos medibles; hace falta contraste para atribuirles peso. **¿Qué parece adaptación racional sin medirla?** La abstención judicial y la confianza jerarquizada. **¿Dónde pesa sesgo urbano?** ENCIG y muestras de protesta visibles; ENVIPE no tiene la misma restricción urbana nacional. **¿Qué se importó indebidamente?** Magnitudes estadounidenses de distancia social y categorías honor/face; se dejan como marcos comparativos sin tasa mexicana. **¿Qué falta por género, edad y ruralidad?** La participación electoral tiene sexos/edades; composición de protesta y autoridad comunitaria no tiene denominador comparable aquí. **¿Qué evidencia puede cambiar la tesis?** Un panel electoral con motivos previos, un experimento de atención/resolución de denuncias, una comparación de inscripción a programas y un seguimiento de confianza comunitaria bajo violencia. **¿Qué decisión sería peligrosa?** Usar estas frecuencias para perfilado individual, para negar protección a denunciantes o para presumir que un beneficiario vota de cierta manera.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->
