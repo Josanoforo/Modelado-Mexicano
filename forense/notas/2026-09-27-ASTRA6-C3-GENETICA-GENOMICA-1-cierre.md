@@ -24,3 +24,5 @@
 ## CONSUMIDO
 
 El lote editorial queda entregado por la rama `codex/astra6-c3-genetica-genomica-1` para PR propio y recibo externo. Ninguna ola, dato individual, CALC, decisión de firewall, catálogo, motor, manifiesto o CI fue alterado. Cero celdas, mediciones y adopciones añadidas.
+
+Producto publicado en [PR #1251](https://github.com/Josanoforo/Modelado-Mexicano/pull/1251); el recibo de Claude permanece solicitado y no obtenido, y el PR sigue abierto para decisión de mesa. Commit editorial `7b3c7003`; última revisión local previa a la constancia del PR `86f22546`.

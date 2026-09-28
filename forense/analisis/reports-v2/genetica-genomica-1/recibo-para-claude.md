@@ -31,6 +31,8 @@ git diff --check                                                              �
 
 **EJECUTADO / integración.** El commit editorial inicial se creó sobre `3ac3ab7d`. Antes de publicar, se integró `origin/main` `591e8436` por merge sin conflictos. No había homónimos nuevos de estos dos reports; producto y tabla conservan los hashes impresos. Este recibo describe el estado de la rama posterior al merge.
 
+**EJECUTADO / publicación.** [PR #1251](https://github.com/Josanoforo/Modelado-Mexicano/pull/1251) abierto desde `codex/astra6-c3-genetica-genomica-1`; commit de producto `7b3c7003`, merge de integración y cierre documental previo `86f22546214fa65ab778e17cbcc5e5f1937be23f`. Solicitud de recibo en el cuerpo del PR. Al abrirse, los checks remotos estaban en curso; su resultado final se consulta por separado. Sin fusión propia.
+
 **PROPUESTO-POR-EJECUTOR.** Siete reglas para consideración de mesa en la [hoja](hoja-reglas-propuestas.md), con consumidor, tier y falsador. Recomendación: recibir los reports como revisión editorial con sus límites y conservar reglas en propuesta hasta decisión de contenido. Este documento solicita `GEN2-RECIBO-ASTRA-PRODUCTO-N`; no acredita un recibo independiente ni autorización de fusión.
 
 ## NO-VERIFICADO / sucesor

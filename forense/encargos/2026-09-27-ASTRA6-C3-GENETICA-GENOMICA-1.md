@@ -192,3 +192,5 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 ## CONSUMIDO
 
 Dos homónimos v2 y expediente propio en `forense/analisis/reports-v2/genetica-genomica-1/`; 71 afirmaciones de mapa y siete materiales adicionales dictaminadas. Cero RESULT genético, mediciones, celdas y adopciones. El cuerpo anterior a este cierre conserva los bytes del archivo recibido y el sidecar `.cuerpo.sha256` sella su normalización. Detalle en la nota de cierre y el recibo solicitado.
+
+Producto publicado en PR #1251 (`codex/astra6-c3-genetica-genomica-1`); recibo técnico pendiente, sin fusión propia.
