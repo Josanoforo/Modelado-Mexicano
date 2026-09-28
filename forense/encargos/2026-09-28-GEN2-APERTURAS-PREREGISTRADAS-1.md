@@ -44,3 +44,7 @@ No abre, no mide, no adopta, no pide firmas (la vista las muestra). Sucesores: c
 ## NO-CORRIDO / RESERVAS
 
 - Ninguno.
+
+## CONSUMIDO
+
+Consumido por PR #1313 (rama `claude/new-session-bhqoo8`) · ADR-260928-GEN2-APERTURAS-PREREGISTRADAS-1-68b3-01 · nota `forense/notas/2026-09-28-GEN2-APERTURAS-PREREGISTRADAS-1-cierre.md`.
