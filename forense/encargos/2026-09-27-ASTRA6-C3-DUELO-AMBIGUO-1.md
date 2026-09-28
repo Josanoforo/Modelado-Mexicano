@@ -1,76 +1,74 @@
-# ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1
+# ASTRA6-C3-DUELO-AMBIGUO-1
 
-ARCHIVO: 02-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1.md
-Fecha: 27/sep/2026 CDMX · tanda5.
-Corte de dirección: ffa1df15043befac6abdf0fdafdf2f86382f3186. No equivale al SHA de redacción del futuro acto.
-CONTADOR: sin incremento por preparación/editorial/diagnóstico.
+Fecha: 27/sep/2026 CDMX · tanda6.
+ARCHIVO: 04-ASTRA6-C3-DUELO-AMBIGUO-1.md
+Corte: eda5bb9f871a85613cfb4eda7d40dc741e55d0b5.
 
-## 1 · OBJETIVO Y HECHO
+## 1 · OBJETIVO
 
-Tres reports completos sobre autoridad, comportamiento cívico y ruralidad/comunalidad. Sustituir explicaciones nacionales generales por conclusiones con población, institución y alcance identificados. Hecho: tres homónimos v2 íntegros, tablas por afirmación, evidencia primaria y reglas propuestas defendibles.
+Entregar el report v2 completo de duelo y pérdida ambigua, con agencia, daño y respuesta institucional descritos sin patologizar ni idealizar. Sesión nueva documental CLI; puede correr en paralelo con todas las correcciones. Original exacto:
 
-Entorno: NUBE/CLI con documentos y literatura permitida; sin microdato. Originales exactos:
+- `corpus/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md` · blob `3158360ba0199af398a43f373ba48bccb40d6791`.
 
-- `corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md` · blob de referencia `ccc69a348f34fd6457b81797ee9e7fe7f36d6378`.
-- `corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md` · blob de referencia `487b1a8baf643851b82d4ef19eb37a5cd8b815cf`.
-- `corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md` · blob de referencia `24103b6ae61db38323506c4d4ba743b163400201`.
+## 2 · AUTORIDAD Y ARRANQUE
 
-## 2 · FIRMA, AUTONOMÍA Y ARRANQUE
+Concreción de MISION-ASTRA-6 y ADENDA-1 aceptadas por Jonás mediante «Acordado» el 26/sep/2026; ambas y la autonomía viajan íntegramente al final. La instrucción de mesa actual pide revisar nuestros PR y dar encargos completos. No se concede permiso adicional para reservas, ejecución real ciega, adopción ni fusión. Citar el asiento vigente de la firma, sin inventar otra.
 
-Jonás, 26/sep/2026, 12:07:56 America/Mexico_City: «Acordado», sobre misión y ADENDA-1 adjuntas. Esta tanda concreta el orden, agrupación y profundidad de la misión; no agrega adopciones ni permisos de reserva. Precedencia: instrucción más reciente de mesa, adenda, misión en lo no modificado e instrucciones vigentes. La cláusula de autonomía viaja íntegra. Citar el asiento existente de esa firma, sin duplicarla.
+Declarar worktree absoluto, rama, HEAD y estado. Leer AGENTS.md aplicable, canon/MEMORIA-OPERATIVA.md, este cuerpo íntegro y decisiones específicas del objeto. Verificar avances por identidad de encargo, PR, archivo y CONSUMIDO. Descontar lo ya resuelto en HEAD posterior; no repetir trabajo por inercia. Archivar este cuerpo como adenda/encargo nuevo conforme al régimen, preservando cuerpos anteriores; cierre solo al pie. Un responsable por rama. Subagentes por piezas según AGENTS, sin solapar escrituras.
 
-Arrancar desde main actual; declarar worktree absoluto, rama, HEAD y estado. Leer AGENTS.md aplicable, canon/MEMORIA-OPERATIVA.md y convención vigente. Buscar por identidad fuente/encargo/PR/CONSUMIDO y descontar avances posteriores. Archivar este cuerpo una sola vez conforme al régimen vigente, fijando el SHA real de redacción del acto. Conservar fuentes previas: cierre al pie, nunca edición del cuerpo inicial. Una sesión responsable, un worktree y un PR por encargo; delegar piezas según AGENTS, con escrituras separadas y ensamblado por la sesión responsable.
+## 3 · CORTE Y DEPENDENCIAS
 
-## 3 · CORTE Y PREMISAS COMUNES
+Corte consultado: main eda5bb9f871a85613cfb4eda7d40dc741e55d0b5. #1237 archiva tanda5; no la ejecuta. #1240, #1241, #1242 y #1243 están abiertos, no fusionados. Main contiene 17 homónimos v2 de 31 originales; los tres PR editoriales proponen otros diez. No afirmar 27/31 consolidados ni 31/31 por sumar archivos de ramas.
 
-[VERIFICADO] main observado ffa1df15043befac6abdf0fdafdf2f86382f3186. #1221, #1222 y #1229 ya fusionados. #1221 mantiene NO-LANZAR-COMO-CIEGA en su entorno. #1222 demuestra el bloqueo ENOE con 39 estratos singleton compartidos, no 78, y conserva NO-LANZAR-TODAVIA. #1229 materializa residuales-documentales-v2 compatibles con el adaptador v2; sus contratos de edad/IC siguen propuestos y el entorno ciego no queda acreditado por la fusión. No reabrir estos encargos ni rehacer sus productos.
+Los sucesores de corrección continúan la rama indicada; si ya fusionó, abrir sucesor desde main, preservar historial y citar el commit efectivamente corregido. Los nuevos editoriales arrancan desde main actual. Las ramas abiertas son propuestas: pueden leerse por SHA para coordinación, nunca importarse como adopciones.
 
-[VERIFICADO] corpus/reports contiene 31 originales y corpus/reports-v2 contiene 17 homónimos. Esta cifra es cobertura editorial por archivos, no recepción independiente ni número de tesis confirmadas. La tanda C3 propone diez homónimos adicionales; los cuatro restantes son duelo ambiguo, dos reports de genética/genómica y síntesis transcultural. No declarar C3 cerrado con 27/31.
+## 4 · HECHOS Y ALCANCE
 
-## 4 · YA HECHO Y ALCANCE ESPECÍFICO
-
-Estos homónimos v2 no existen al corte consultado. La lectura dirigida de los comienzos de los originales identifica los puntos que siguen; el ejecutor debe leerlos completos, no basarse en este extracto.
-
-Autoridad: el original usa Hofstede/GLOBE para caracterizar autoridad nacional. Separar agregados de país, muestras organizacionales, preferencias declaradas y conducta; no pasar de país a persona. No dar por probado que deferencia pública sea resistencia estratégica ni obediencia internalizada.
-
-Civismo: conservar la nota FP-57 sobre «ni broker» y su estado histórico. Confianza en instituciones, participación electoral y legitimidad no son el mismo estimando. Diferencias de participación entre elecciones no identifican por sí mismas motivos ni prueban que sean exactamente los mismos individuos. Revisar fechas, denominadores y alcance de inferencias de racionalidad.
-
-Comunalidad: rural, indígena, lengua, autoadscripción y sistema normativo no son equivalentes. Delimitar comunidad/municipio/periodo de etnografías y datos; no generalizar prácticas de Sierra Norte, Oaxaca o Cherán al conjunto nacional. Separar autoridad formal, participación efectiva y distribución por género/edad. No convertir resultados educativos o económicos en deficiencia psicológica ni idealizar la reciprocidad como ausencia de conflicto.
+No existe homónimo v2 al corte ni está incluido en #1240/#1242/#1243. El comienzo del v1 hace afirmaciones clínicas, legales y causales fuertes, compara muestras mexicanas y colombianas y usa conteos administrativos de 2025–2026. Esas afirmaciones requieren verificación primaria; no son premisas aceptadas de este encargo. El firewall «no medible» se aplica por afirmación, no prohíbe toda investigación del dominio.
 
 ## 5 · PIEZAS
 
-P1. Leer íntegros los originales en bloques y el mapa vigente por report. Cubrir cada afirmación material original, incluidas las que falten en el mapa. Separar cláusulas compuestas; asignar CONFIRMA/MATIZA/ROMPE/SIN-CIFRA con razón y evidencia específica. Falta de dato no refuta una tesis; un mecanismo compatible no queda identificado por una correlación. No copiar el dictamen del mapa como juicio automático ni decidir por rango de líneas. Preservar correcciones históricas ya incorporadas al original.
+P1. Leer íntegros el/los v1 por bloques y el mapa por identidad. Cubrir cada afirmación material, incluso ausentes del mapa; desdoblar inferencias de datos citados. Registrar CONFIRMA/MATIZA/ROMPE/SIN-CIFRA con razón y fuente específica. Preservar notas de corrección históricas: no atribuir al original un error que él mismo ya acotó.
 
-P2. Escribir cada report v2 completo con estructura Bloque B: resumen, evidencia por tier, patrones y segmentos, causas/estructura/adaptación, comparación internacional, implicaciones, mitos, síntesis, reglas SI–ENTONCES y auditoría final. Un report no medible también termina completo con narrativa fundada y límites; no usar SIN-CIFRA como excusa para entregar un cascarón. Mantener el idioma y nombres de salida coherentes con el original.
+P2. Redactar cada homónimo v2 completo: resumen de hallazgos sólidos/malinterpretados/útiles, marco, tier de frecuencia separado de mecanismo, patrones con evidencia a favor/en contra, segmentos, causas rivales, cultura/estructura/adaptación, comparación internacional, implicaciones, mitos, síntesis, reglas propuestas con consumidor y falsador y auditoría final de rigor. Ningún cascarón por SIN-CIFRA; producir explicación sustantiva y utilizable.
 
-P3. Toda cifra propia debe enlazar RESULT/CALC, fila/celda/hash, unidad, población, ola, denominador y adopción vigente. Consultar catálogo/decisiones/recibos por identidad; no inferir aceptación por estar en main. Aplicar suspensiones y acotaciones vigentes. Separar coincidencia puntual, reconstrucción de incertidumbre y validez inferencial. #1222 bloquea inferencia de esa candidata ENOE, no todas las cifras ENOE. #1229 prepara nuevos contratos, no valida los puntos históricos. No usar valores vetados ni suspendidos como piso firme; provisional permitido solo rotulado y con la reserva que le corresponde.
+P3. Cifras propias con RESULT/CALC, fila, hash, población, ola, unidad, denominador, incertidumbre y decisión vigente; sellado no adoptado solo como provisional explícito cuando esté permitido. Cifras externas con fuente primaria realmente leída, población, método y localizador, separadas de RESULT. No inventar IDs. No usar un número de un report como prueba independiente si remite al mismo estudio.
 
-P4. Leer literatura primaria pertinente a las tesis centrales y actualizar 2025–2026 cuando exista evidencia autorizada. Guardar URL/DOI, fecha, población, método y localizador verificable; un abstract o snippet no acredita contenido no leído. Etiquetar (a) evidencia mexicana, (b) diáspora, (c) marco importado. Antes de abrir una publicación con cifras de una ola, revisar reserva por instrumento/módulo/alcance: que sea pública no basta. No abrir ENADID2023/ENASEM2024/ENIGH2024/ENVIPE2026 u otra reserva para actualizar cifras sin permiso aplicable. Usar fuentes permitidas y declarar el límite puntual.
+P4. Literatura 2025–2026 dirigida a tesis y permitida; etiquetas (a) México residente, (b) diáspora, (c) marco importado y límites de transporte. Resolver reservas ANTES de búsquedas que puedan devolver extractos de olas. No abrir la última ola por ser pública. No atribuir lectura íntegra desde abstract/snippet. No convertir ausencia de fuente en refutación ni imponer una superioridad causal de estructura sobre cultura sin comparación identificada.
 
-P5. Productor de tablas e índice desde decisiones editoriales explícitas. Verificador dirigido a cobertura, denominadores, cifras sin respaldo, vetos y correspondencia prosa–tabla; no clasifica semántica con regex ni cuenta todos los dígitos como cifras de México. Revisar manualmente todas las ROMPE, comparaciones principales y mecanismos centrales. Entregar tabla de cambios de tesis y reglas propuestas con consumidor posible, condición y falsador; sin crear reglas para llenar cuota ni adoptarlas en motor.
+P5. Productor de tabla desde decisiones explícitas, verificador de cobertura e identidades, enlaces y trazas; revisión humana de ROMPE, comparaciones centrales y mecanismos. No juicio por rango de líneas ni regex. Regenerar tablas y hashes después de corregir la prosa. Entregar hoja de reglas propuestas sin adopción y recibo de Claude. No sumar celdas por este trabajo.
 
-P6. Cierre por report y por lote: cobertura real, fuente principal de cada conclusión, qué se sostiene, qué cambia y qué falta. Las cifras externas son evidencia externa, no RESULT propios. Conservar trazabilidad del original y no reemplazar párrafos por listas de cautelas. El lector debe poder usar el report para entender el dominio aunque ninguna regla nueva sea adoptable. C1 abierto no bloquea el producto editorial; si una decisión posterior afecta una tesis, corregir esa tesis por sucesor.
+P6. Revisión sustantiva obligatoria:
+
+- Distinguir persona desaparecida/no localizada, reporte, expediente, cuerpo/resto sin identificar, familia y persona buscadora. Todo conteo necesita fecha de corte, fuente y reglas de actualización; no sumar stocks de registros diferentes. Verificar citas CIDH/CED/RNPDNO y el estado exacto de cualquier actuación internacional en fuente oficial antes de describirla como consumada.
+- Separar testimonios locales, escalas de síntomas, diagnósticos y prevalencia. Revisar criterios DSM/CIE en fuentes primarias actuales y literatura clínica pertinente: no asumir por el nombre «post» que un contexto de amenaza continua excluye TEPT, ni equiparar DSM y CIE sin cotejar sus condiciones. El report no diagnostica personas ni prescribe tratamiento.
+- El estudio colombiano sobre esperanza/duelo exige diseño, selección, temporalidad e incertidumbre. Asociación/predicción estadística no demuestra que la esperanza cause daño ni justifica retirarla. Comparar ausencia y muerte confirmada no prueba equivalencia por un resultado no significativo. No transportar tasas colombianas a familias mexicanas.
+- Contrastar la frase de espera de 72 horas contra el protocolo legal vigente; distinguir obstáculo o práctica reportada de obligación jurídica. No reproducir una barrera indebida como instrucción a familiares. Toda afirmación legal actual debe ir a fuente oficial.
+- Conservar agencia y riesgos de búsqueda; no afirmar que buscar siempre sana, que encontrar restos siempre cierra el duelo, que todas las buscadoras comparten motivo o que la explicación estructural excluye cualquier variación personal/cultural. Formular medidas posibles de apoyo/daño/experiencia institucional como propuestas, sin nueva captación de datos sensibles.
+- Comparaciones Colombia/Argentina/Chile/Guatemala con periodo, institución y límite explícitos; no reducir países enteros a un solo perpetrador o régimen histórico.
 
 
-## 6 · LATITUD
+## 6 · AUTONOMÍA Y PAROS
 
-Resolver organización, nombres internos y obstáculos reversibles sin otra consulta de trámite. Corregir una premisa vencida con evidencia y continuar el objetivo. Auditoría/control alrededor del 20% salvo riesgo material; pruebas solo cuando protegen errores relevantes. Sin encargos de CI, tablero, derivados, sincronización general o inventarios que sustituyan el producto. Registrar una limitación concreta sin convertirla en veto a las piezas independientes.
+Resolver premisas vencidas y obstáculos reversibles con evidencia. No dedicar el encargo a CI, fetch/sync, derivados o inventarios generales. Auditoría alrededor del 20% salvo error material. Parar solo la pieza que exija reserva sin permiso, reescribir sello, adoptar sin firma de contenido, alterar procedimiento congelado o usar entorno no permitido. Completar piezas independientes. Una publicación, snippet o resultado de búsqueda público no levanta una reserva: resolver instrumento/ola/módulo y alcance antes de buscar cifras.
 
-## 7 · PAROS Y CONTINUIDAD
+No contactar terceros ni enviar mensajes externos. Cuenta/proveedor solo si ya disponible y autorizado; no solicitar ni imprimir claves. No sortear una denegación de aislamiento cambiando de canal o elevando privilegios.
 
-Parar únicamente la pieza que requiera reserva no autorizada, reescritura de sellos, adopción sin firma, contador manual o entorno indebido. Completar lo demás y presentar la decisión faltante sobre objetos concretos. Una fuente pública no levanta una reserva del proyecto. No solicitar de nuevo permisos ya acreditados, ni inferir permiso de ejecución desde fusión o recepción. No contactar terceros ni enviar mensajes externos.
+## 7 · VERIFICACIÓN
 
-## 8 · GATES MATERIALES
+Controles dirigidos a los defectos y criterios del encargo. Separar EJECUTADO, LEÍDO, PROPUESTO y NO-VERIFICADO. No presentar pruebas de transporte como medición científica, ni cobertura editorial como validación de tesis. Ejecutar el gate pertinente del repo, sin reparar fallos ajenos. Cero incremento de contadores por editorial, pruebas sintéticas o preparación.
 
-Comprobar el producto contra los criterios del encargo, las reservas vigentes y el perímetro. Ejecutar controles propios y gate pertinente del repo al cerrar; no ampliar pruebas para reparar problemas heredados ajenos. Separar resultados ejecutados de declaraciones de terceros. Derivar contador con herramienta vigente; editoriales, preparación y pruebas sintéticas no incrementan celdas adoptadas.
+## 8 · ENTREGA Y RECIBO
+
+Producto usable, cambios sustantivos explicados, nota de cierre y recibo-para-claude con objetos, hashes, comandos, resultados y límites. Preservar históricos. Hoja de decisión únicamente para decisiones materiales pendientes, con recomendación y objetos concretos. Commits, push y PR propios bajo la autorización de la misión; ninguna fusión propia. Claude recibe por GEN2-RECIBO-ASTRA-PRODUCTO-N y mesa decide fusión/adopción. No afirmar recibo obtenido por haberlo solicitado. Los registros comunes exigidos contienen solo asientos propios.
 
 ## 9 · PERÍMETRO
 
-Escribir únicamente los homónimos exactos de estos originales en `corpus/reports-v2/` y `forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/` (subdirectorio por report y cierre local). No editar v1, los 17 v2 existentes, otros lotes, mapa, índice global, catálogo, CALC, sellos, manifiesto, motor, CI o derivados. Los productores/editoriales viven en el expediente propio. Registros comunes de cierre solo por acto propio.
+Homónimo exacto en corpus/reports-v2/ y forense/analisis/reports-v2/duelo-ambiguo-1/. Encargo y registros propios. No cambiar v1, mapa, catálogo, reservas, índice global, motor o CI. Sin entrevistas ni contacto con familias.
 
-## 10 · CIERRE Y RECIBO
+## 10 · CRITERIO DE TERMINADO
 
-Entregar producto completo, nota de cierre y recibo-para-claude.md con identidad de objetos, hashes, comandos, alcance y límites. Rotular EJECUTADO/LEÍDO/PROPUESTO/NO-VERIFICADO sin confundirlos. Hoja de firma solo para decisiones materiales, con opción recomendada. La misión habilita commits, push y PR propio; recepción independiente por circuito de mesa/Claude, sin afirmar recibo obtenido. Sin fusión propia, autoaprobación ni adopción anticipada. Registros comunes exigidos: solo asientos propios, sin renumerar ni perder actos ajenos. Conservar históricos y cuerpos recibidos; adendas/sucesores para correcciones.
+Un report completo, tabla que cubre mapa y afirmaciones materiales, fuentes primarias con alcance, correcciones clínicas/legales sustentadas y propuestas de medición diferenciadas de resultados. No requiere abrir microdato ni esperar C1.
 
 ## Adjuntos embebidos · preservar bytes y verificar antes de usar
 
@@ -182,12 +180,11 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 
 ## NO-CORRIDO / RESERVAS
 
-| Pendiente | Razón | Impacto | Sucesor |
+| Qué | Por qué | Impacto | Sucesor |
 |---|---|---|---|
-| Recibo técnico independiente y decisión sobre reglas propuestas | DECISIÓN-DE-MESA-PENDIENTE | No se acredita recepción externa ni adopción por el ejecutor | `GEN2-RECIBO-ASTRA-PRODUCTO-N`; `FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01` |
-
-Las olas reservadas permanecieron sin abrir. Ninguna cifra o regla se adoptó por este cierre editorial.
+| Recibo técnico de Claude | Solicitado en `forense/analisis/reports-v2/duelo-ambiguo-1/recibo-para-claude.md`; no recibido por esta sesión | Revisión y fusión corresponden al circuito de mesa | GEN2-RECIBO-ASTRA-PRODUCTO-N |
+| Prevalencia mexicana y efectos causales de buscar/esperar | No existe RESULT pertinente en este carril y no se abre dato reservado ni se capta información sensible | Report presenta mecanismos como hipótesis, no tasas ni tratamientos | Hoja de reglas propuestas, decisión material sobre medición futura |
 
 ## CONSUMIDO
 
-EJECUTADO en el worktree `/home/pc0/mm-astra6-c3-autoridad-civismo-comunalidad-1`, raíz de archivo 0-bis `3a1f0be1`, producto `375d671d`, PR [#1240](https://github.com/Josanoforo/Modelado-Mexicano/pull/1240). Corte de entrada `7748208614570a50a97c1ba830aee72a972185f9`; integración posterior de `origin/main` `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5` sin conflicto en producto. Tres reports, tablas, índice local, hoja y recibo solicitado; no fusión ni autoaprobación. La firma de misión de Jonás sigue asentada en `forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md` §2 y no se duplica. El SHA-256 crudo del cuerpo recibido `8d84587787d00ba3fbeb479dcc749c6e83e47386f6afffa47ed3bb3bbe100124` permanece en el manifiesto de tanda5 y los bytes iniciales de este archivo son los de #1237.
+EJECUTADO en PR #1246 (`codex/astra6-c3-duelo-ambiguo-1`): report v2 completo, tabla de 55 afirmaciones (41 mapa + 14 adicionales), fuentes F01–F16, productor/verificador, hoja de propuestas, nota y solicitud de recibo. Recibo técnico y fusión pendientes; este asiento no los presume. Cero mediciones y cero adopciones nuevas. El cuerpo anterior a este pie se preserva literalmente en `forense/encargos/fuentes/ASTRA6-duelo-ambiguo-20260927/04-ASTRA6-C3-DUELO-AMBIGUO-1.md`.

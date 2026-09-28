@@ -1,0 +1,504 @@
+{
+  "corte": "eda5bb9f871a85613cfb4eda7d40dc741e55d0b5",
+  "original": "corpus/reports/Ausencia_sin_certeza__duelo_y_pérdida_ambigua_en_familias_de_personas_desaparecidas_en_México.md",
+  "original_sha256": "36eaeb28928c071d8d8b827d62a77ed4cf8f08407c4fa251f1ddc3de15c20879",
+  "mapa": "canon/mapa-dominios-v1_1.tsv",
+  "mapa_sha256": "1e3b06565ac399fccc81942ec33604f5994b2c4b6c91d132d2fbcb3499e4b1ec",
+  "decisiones": [
+    {
+      "id": "DUEL-001",
+      "mapa_id": "ASTRA5-U0-DUEL-001",
+      "localizador": "L18, componente abril-junio 2025",
+      "afirmacion": "El CED decidió pedir información a México en su 28º período y presentó la solicitud conforme al artículo 34 el 24 de junio de 2025.",
+      "dictamen": "MATIZA",
+      "razon": "El procedimiento de información comenzó en 2025; la solicitud se transmitió el 24/jun, sin equivaler aún a remisión a la Asamblea.",
+      "evidencia": "CED/C/MEX/A.34/D/1 §§33-34"
+    },
+    {
+      "id": "DUEL-002",
+      "mapa_id": "ASTRA5-U0-DUEL-002",
+      "localizador": "L18, componente marzo-abril 2026",
+      "afirmacion": "En decisión adoptada en marzo y distribuida el 17 de abril de 2026, el CED decidió llevar la situación de México a consideración de la Asamblea General y pidió transmitir la decisión.",
+      "dictamen": "CONFIRMA",
+      "razon": "La decisión de marzo de 2026 dispone remitir la situación a la Asamblea mediante el Secretario General; no documenta una decisión posterior de la Asamblea.",
+      "evidencia": "CED/C/MEX/A.34/D/1 §122"
+    },
+    {
+      "id": "DUEL-003",
+      "mapa_id": "ASTRA5-U0-DUEL-003",
+      "localizador": "L18, componente indicios y calificación",
+      "afirmacion": "El CED concluyó en el párr.121 que había indicios fundados de desapariciones forzadas en varios ataques generalizados o sistemáticos en México, con la calificación señalada en su decisión.",
+      "dictamen": "MATIZA",
+      "razon": "El CED halló indicios fundados de ataques generalizados o sistemáticos; es decisión de órgano de tratado, no sentencia penal ni atribución individual.",
+      "evidencia": "CED/C/MEX/A.34/D/1 §121"
+    },
+    {
+      "id": "DUEL-004",
+      "mapa_id": "ASTRA5-U0-DUEL-004",
+      "localizador": "L11-L12; comparación colombiana",
+      "afirmacion": "En la muestra colombiana de Heeke et al., 17 de 73 familiares de desaparecidos (23.29%) cumplieron criterios PG-13 de duelo prolongado.",
+      "dictamen": "MATIZA",
+      "razon": "17/73 cumplieron criterios PG-13 en muestra colombiana seleccionada por ONG; no es prevalencia mexicana ni diagnóstico DSM-5-TR.",
+      "evidencia": "Heeke et al. 2015, Tabla 10; mapa DUEL-004"
+    },
+    {
+      "id": "DUEL-005",
+      "mapa_id": "ASTRA5-U0-DUEL-005",
+      "localizador": "L11-L12; comparación colombiana",
+      "afirmacion": "En el grupo colombiano comparador de muerte ligada al conflicto, 70 de 222 (31.50%) cumplieron criterios PG-13; la diferencia con 23.29% no fue significativa en Tabla 10.",
+      "dictamen": "MATIZA",
+      "razon": "70/222 en grupo de muerte ligada al conflicto y contraste no significativo; ausencia de significación no demuestra equivalencia.",
+      "evidencia": "Heeke et al. 2015, Tabla 10; mapa DUEL-005"
+    },
+    {
+      "id": "DUEL-006",
+      "mapa_id": "ASTRA5-U0-DUEL-006",
+      "localizador": "L11; asociación esperanza y duelo",
+      "afirmacion": "Entre 73 familiares colombianos de desaparecidos, mayor esperanza declarada de que la persona siguiera viva se asoció con mayor severidad PG-13 (β estandarizada 0.41 en modelo final).",
+      "dictamen": "CONFIRMA",
+      "razon": "El mapa ya acotó la tesis a asociación ajustada en la muestra colombiana; se conserva esa corrección histórica. No acredita que esperar cause daño ni que retirar esperanza ayude; categorías altas muy pequeñas.",
+      "evidencia": "Heeke et al. 2015, Tablas 11-12; mapa DUEL-006"
+    },
+    {
+      "id": "DUEL-007",
+      "mapa_id": "ASTRA5-U0-DUEL-007",
+      "localizador": "L9; evidencia cualitativa Tamaulipas",
+      "afirmacion": "Almanza-Avendaño et al. analizaron entrevistas en profundidad a cinco madres de personas desaparecidas de Ciudad Victoria, contactadas por una asociación de familiares.",
+      "dictamen": "CONFIRMA",
+      "razon": "Estudio cualitativo de cinco madres de Ciudad Victoria; selección propositiva por asociación, sin inferencia poblacional.",
+      "evidencia": "Almanza-Avendaño et al. 2020, Método; mapa DUEL-007"
+    },
+    {
+      "id": "DUEL-008",
+      "mapa_id": "ASTRA5-U0-DUEL-008",
+      "localizador": "L9; evidencia cualitativa Tamaulipas",
+      "afirmacion": "En esas cinco entrevistas las autoras interpretaron la ausencia física del hijo/a junto con prácticas para mantener su presencia psicológica y la incertidumbre sobre su destino.",
+      "dictamen": "MATIZA",
+      "razon": "Prácticas de vínculo y presencia psicológica aparecen en cinco casos; no son respuesta universal ni medida de eficacia.",
+      "evidencia": "Almanza-Avendaño et al. 2020, Resultados; mapa DUEL-008"
+    },
+    {
+      "id": "DUEL-009",
+      "mapa_id": "ASTRA5-U0-DUEL-009",
+      "localizador": "L9,L27; tipología",
+      "afirmacion": "Boss y Carnes distinguen pérdida por desaparición física sin destino verificado de ausencia psicológica en una persona físicamente presente.",
+      "dictamen": "CONFIRMA",
+      "razon": "Tipología conceptual de Boss y Carnes; clasifica la incertidumbre, sin medir frecuencia o daño en México.",
+      "evidencia": "Boss y Carnes 2012 pp.456-457; mapa DUEL-009"
+    },
+    {
+      "id": "DUEL-010",
+      "mapa_id": "ASTRA5-U0-DUEL-010",
+      "localizador": "L10,L31; crítica de closure",
+      "afirmacion": "Boss y Carnes proponen en su ensayo sustituir la meta clínica de cierre definitivo por búsqueda de sentido y mayor tolerancia a la ambigüedad cuando el destino del ser querido sigue incierto.",
+      "dictamen": "MATIZA",
+      "razon": "La crítica de closure es argumento clínico y propuesta de sentido; «dañino» universal o eficacia terapéutica no se demuestran.",
+      "evidencia": "Boss y Carnes 2012 pp.463-467; mapa DUEL-010"
+    },
+    {
+      "id": "DUEL-011",
+      "mapa_id": "ASTRA5-U0-DUEL-011",
+      "localizador": "L16,L72-L79; experiencia institucional situada",
+      "afirmacion": "Una madre entrevistada en Ciudad Victoria describió papeleo de autoridades sin resultado de localización al momento de la entrevista.",
+      "dictamen": "CONFIRMA",
+      "razon": "Testimonio de una madre sobre papeleo sin resultado al entrevistarla; no implica una tasa nacional de omisión.",
+      "evidencia": "Almanza-Avendaño et al. 2020, Resultados caso 2; mapa DUEL-011"
+    },
+    {
+      "id": "DUEL-012",
+      "mapa_id": "ASTRA5-U0-DUEL-012",
+      "localizador": "L20,L90-L96; estigma y apoyo situados",
+      "afirmacion": "En las entrevistas de Almanza et al. aparecen alejamiento social y estigmatización por sospecha de vínculo de la víctima con el crimen, junto con relatos de solidaridad en algunos casos.",
+      "dictamen": "MATIZA",
+      "razon": "Se documentan estigma y alejamiento junto a solidaridad en casos de la muestra; no todos los entornos responden igual.",
+      "evidencia": "Almanza-Avendaño et al. 2020, Resultados; mapa DUEL-012"
+    },
+    {
+      "id": "DUEL-013",
+      "mapa_id": "ASTRA5-U0-DUEL-013",
+      "localizador": "L98-L102,L171-L178; estudio México n29",
+      "afirmacion": "Smid et al. entrevistaron a 29 familiares de personas desaparecidas en México durante octubre de 2016: cinco individualmente y 24 en cuatro grupos focales.",
+      "dictamen": "CONFIRMA",
+      "razon": "Smid entrevistó 29 familiares mediante cinco entrevistas y cuatro grupos focales; no es muestra probabilística.",
+      "evidencia": "Smid et al. 2020 pp.139,141; mapa DUEL-013"
+    },
+    {
+      "id": "DUEL-014",
+      "mapa_id": "ASTRA5-U0-DUEL-014",
+      "localizador": "L98-L102,L171-L178; estudio México n29",
+      "afirmacion": "En la muestra de 29 familiares entrevistados por Smid et al., todos reportaron y mostraron señales de distrés emocional severo según la valoración de los entrevistadores clínicos.",
+      "dictamen": "MATIZA",
+      "razon": "Valoración cualitativa de distrés severo en la muestra; «universal» solo dentro de los 29 participantes, sin prevalencia clínica.",
+      "evidencia": "Smid et al. 2020 pp.143,146-147; mapa DUEL-014"
+    },
+    {
+      "id": "DUEL-015",
+      "mapa_id": "ASTRA5-U0-DUEL-015",
+      "localizador": "L98-L102,L171-L178; estudio México n29",
+      "afirmacion": "En las entrevistas de Smid et al. se mencionaron ideación suicida, insomnio, ansiedad, cambios de apetito, recuerdos intrusivos, irritabilidad y afectación de funciones cotidianas.",
+      "dictamen": "MATIZA",
+      "razon": "Síntomas mencionados en entrevistas; no hay escala, diagnóstico individual ni conteo por síntoma.",
+      "evidencia": "Smid et al. 2020 pp.143,146-147; mapa DUEL-015"
+    },
+    {
+      "id": "DUEL-016",
+      "mapa_id": "ASTRA5-U0-DUEL-016",
+      "localizador": "L16,L72-L79; espera de 72 horas frente a obligación de búsqueda",
+      "afirmacion": "La ley mexicana exige iniciar la búsqueda de inmediato al recibir noticia o reporte; las 72 horas del protocolo no son un periodo legal de espera para comenzar a buscar.",
+      "dictamen": "CONFIRMA",
+      "razon": "El mapa ya corrigió la referencia a 72 horas: la ley exige búsqueda inmediata. Se conserva esa corrección histórica; una espera narrada se describe solo como práctica u obstáculo reportado.",
+      "evidencia": "Ley General en materia de Desaparición, arts.88-90; mapa DUEL-016"
+    },
+    {
+      "id": "DUEL-017",
+      "mapa_id": "ASTRA5-U0-DUEL-017",
+      "localizador": "L9",
+      "afirmacion": "El sufrimiento de las madres de Tamaulipas 'se origina y se desarrolla en el ámbito de lo social', condicionado por la impunidad y la ineficiencia institucional (generalización del report sobre Almanza et al. 2020).",
+      "dictamen": "MATIZA",
+      "razon": "La interpretación social de cinco entrevistas es plausible y situada; no identifica causalmente impunidad como fuente del sufrimiento de toda familia.",
+      "evidencia": "Almanza-Avendaño et al. 2020; mapa DUEL-017"
+    },
+    {
+      "id": "DUEL-018",
+      "mapa_id": "ASTRA5-U0-DUEL-018",
+      "localizador": "L13",
+      "afirmacion": "El diagnóstico de 'trastorno por duelo prolongado' (DSM-5-TR/CIE-11) es cuestionable en este contexto: impone un reloj (12 meses) y supuestos anglosajones; el TEPT tampoco encaja porque no hay evento 'post', el trauma es continuo.",
+      "dictamen": "ROMPE",
+      "razon": "PGD del DSM-5-TR exige muerte y tiempo; CIE-11 tiene criterios propios. El nombre «post» no excluye TEPT ante amenaza continua; se requiere evaluación individual.",
+      "evidencia": "APA actualización DSM-5-TR 2024 p.13 y PTSD oficial; mapa DUEL-018"
+    },
+    {
+      "id": "DUEL-019",
+      "mapa_id": "ASTRA5-U0-DUEL-019",
+      "localizador": "L14,L111,L113,L115-L116",
+      "afirmacion": "Los desaparecidos son mayoritariamente hombres jóvenes (pico 25-29 años); 0-19 años ~18%; crece la desaparición de niñas/mujeres (~49% en 5 estados); Jalisco/Edomex/Tamaulipas/Veracruz/NL concentran ~44% de los casos (RNPDNO, corte reciente).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "RNPDNO contiene sexo y edad, pero cortes, categorías y extracción verificable faltan para pico, 18% y 49%. Razón: adquisición pendiente.",
+      "evidencia": "RNPDNO, ficha del tablero; mapa DUEL-019"
+    },
+    {
+      "id": "DUEL-020",
+      "mapa_id": "ASTRA5-U0-DUEL-020",
+      "localizador": "L14,L116",
+      "afirmacion": "Las buscadoras son mayoritariamente madres, hermanas, esposas e hijas; en la segmentación, «la jefatura del hogar y el abandono paterno explican en parte su liderazgo».",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Mayoría femenina y explicación por jefatura/abandono no tienen denominador ni diseño identificador. Razón: instrumento inadecuado.",
+      "evidencia": "RNPDNO no mide causalidad del rol de búsqueda; mapa DUEL-020"
+    },
+    {
+      "id": "DUEL-021",
+      "mapa_id": "ASTRA5-U0-DUEL-021",
+      "localizador": "L14,L108",
+      "afirmacion": "El rol de búsqueda extiende el mandato de cuidado femenino (marianismo) al espacio público y de riesgo (report lo ubica como 'script cultural, peso menor, real pero secundario', L108).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Marianismo como causa del rol de búsqueda es hipótesis cultural sin comparación que lo separe de cuidados y exposición. Razón: instrumento inadecuado.",
+      "evidencia": "Mapa DUEL-021, límite inferencial"
+    },
+    {
+      "id": "DUEL-022",
+      "mapa_id": "ASTRA5-U0-DUEL-022",
+      "localizador": "L15,L52,L81-L88",
+      "afirmacion": "Salir a buscar restituye propósito y rompe el aislamiento (afrontamiento activo/agencia); las familias se vuelven buscadoras de campo, peritas de facto, gestoras de bancos de datos y de exhumaciones.",
+      "dictamen": "MATIZA",
+      "razon": "La búsqueda puede dar agencia y exponer a riesgo, pero no hay comparación pre/post para afirmar que restituye propósito en todas las personas.",
+      "evidencia": "Etnografías y mapa DUEL-022"
+    },
+    {
+      "id": "DUEL-023",
+      "mapa_id": "ASTRA5-U0-DUEL-023",
+      "localizador": "L15,L43",
+      "afirmacion": "Según el tablero de Artículo 19 (leído 2026-09-24, corte mayo 2026): 37 personas buscadoras asesinadas y 8 desaparecidas desde 2010 (total rotulado 45, con inconsistencia interna a 44 en el texto); gobierno AMLO 17 asesinadas+1 desaparecida, gobierno Sheinbaum 9 asesinadas+6 desaparecidas.",
+      "dictamen": "SIN-CIFRA",
+      "razon": "El tablero de Artículo 19 leído por el mapa actualizó el v1: 37 asesinadas y 8 desaparecidas a mayo/2026; cifras 35/25/21 requieren cohorte y desglose. Razón: adquisición pendiente.",
+      "evidencia": "Artículo 19, tablero buscadoras, corte mayo 2026; mapa DUEL-023"
+    },
+    {
+      "id": "DUEL-024",
+      "mapa_id": "ASTRA5-U0-DUEL-024",
+      "localizador": "L16,L72-L79",
+      "afirmacion": "La revictimización institucional es un segundo trauma documentado': peregrinaje institucional, 'mucho papeleo, resultado nulo', interrogar a las madres sobre lo que ELLAS han averiguado, como patrón generalizado (más allá de un testimonio).",
+      "dictamen": "MATIZA",
+      "razon": "La revictimización puede describirse como experiencia testimoniada; «segundo trauma» clínico y patrón nacional no salen de un caso.",
+      "evidencia": "Almanza-Avendaño et al. 2020 caso 2; mapa DUEL-024"
+    },
+    {
+      "id": "DUEL-025",
+      "mapa_id": "ASTRA5-U0-DUEL-025",
+      "localizador": "L17,L40,L106,L141",
+      "afirmacion": "Crisis forense: más de 70,000 cuerpos sin identificar' bajo custodia del Estado, informe de la CIDH presentado el 11 de mayo de 2026 por la relatora Andrea Pochak; 'para 2023 el país contaba únicamente con 32 peritos en antropología forense' (CIDH).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "No se verificó en el paquete el agregado exacto, unidad ni corte de cuerpos/restos sin identificar; tampoco los 32 peritos. Razón: adquisición pendiente.",
+      "evidencia": "CIDH Desapariciones en México 2026, PDF identificado; mapa DUEL-025"
+    },
+    {
+      "id": "DUEL-026",
+      "mapa_id": "ASTRA5-U0-DUEL-026",
+      "localizador": "L17",
+      "afirmacion": "la Plataforma Ciudadana de Fosas de la IBERO cifra 'más de 72 mil'' cuerpos sin identificar.",
+      "dictamen": "SIN-CIFRA",
+      "razon": "La cifra IBERO de más de 72 mil no pudo cotejarse con fuente primaria por acceso fallido. Razón: adquisición pendiente.",
+      "evidencia": "Plataforma Ciudadana de Fosas IBERO; mapa DUEL-026"
+    },
+    {
+      "id": "DUEL-027",
+      "mapa_id": "ASTRA5-U0-DUEL-027",
+      "localizador": "L18",
+      "afirmacion": "El 4 de abril de 2025... el presidente del CED, Olivier de Frouville, anunció la activación —por primera vez en la historia del organismo— del Artículo 34 respecto a México.'",
+      "dictamen": "SIN-CIFRA",
+      "razon": "El anuncio específico del 4/abr/2025 y «primera vez» carecen de acta/comunicado cotejado; el documento CED 2026 no prueba esa formulación. Razón: adquisición pendiente.",
+      "evidencia": "CED/C/MEX/A.34/D/1; mapa DUEL-027"
+    },
+    {
+      "id": "DUEL-028",
+      "mapa_id": "ASTRA5-U0-DUEL-028",
+      "localizador": "L19,L53,L119,L177",
+      "afirmacion": "Misas mensuales, peregrinaciones guadalupanas, lavatorio de pies en Catedral, 'ejes de iglesias' en las brigadas: la fe sostiene la esperanza y visibiliza, pero también choca a veces con instituciones religiosas que revictimizan.",
+      "dictamen": "MATIZA",
+      "razon": "Rituales religiosos pueden organizar sentido, pero frecuencia, efecto de esperanza y revictimización religiosa no se miden aquí.",
+      "evidencia": "Mapa DUEL-028; etnografías citadas en v1 L19"
+    },
+    {
+      "id": "DUEL-029",
+      "mapa_id": "ASTRA5-U0-DUEL-029",
+      "localizador": "L20,L94,L172",
+      "afirmacion": "El estigma ('en algo andaba') 'es funcional al Estado': la distinción víctimas inocentes/culpables/sospechosas 'desactiva el duelo social y libera al Estado de responsabilidad'; también sostiene la creencia en un 'mundo justo' de quienes no han sido afectados.",
+      "dictamen": "MATIZA",
+      "razon": "Estigma aparece en testimonios; función estatal y sesgo de mundo justo son mecanismos propuestos, sin prueba de intención o efecto poblacional.",
+      "evidencia": "Almanza-Avendaño et al. 2020; mapa DUEL-029"
+    },
+    {
+      "id": "DUEL-030",
+      "mapa_id": "ASTRA5-U0-DUEL-030",
+      "localizador": "L21,L33,L167",
+      "afirmacion": "Es duelo colectivo, no solo individual': el afrontamiento en colectivo crea significación y agencia que exceden lo individual; antimonumentos y memoriales disputan la memoria pública.",
+      "dictamen": "MATIZA",
+      "razon": "Colectivos y memoriales muestran acción pública; no hay contraste para atribuirles incremento de bienestar o agencia.",
+      "evidencia": "Mapa DUEL-030; v1 L21"
+    },
+    {
+      "id": "DUEL-031",
+      "mapa_id": "ASTRA5-U0-DUEL-031",
+      "localizador": "L83",
+      "afirmacion": "el Movimiento por Nuestros Desaparecidos en México (MNDM) agrupa decenas de colectivos' (Patrón 3, evidencia a favor).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "«Decenas» requiere directorio y corte del MNDM; no consta conteo primario verificado. Razón: adquisición pendiente.",
+      "evidencia": "MNDM/directorio pendiente; mapa DUEL-031"
+    },
+    {
+      "id": "DUEL-032",
+      "mapa_id": "ASTRA5-U0-DUEL-032",
+      "localizador": "L22,L107,L172",
+      "afirmacion": "la violencia y la omisión estatal destruyen la confianza en instituciones pero refuerzan la red personal/comunitaria (los colectivos) —no como rasgo cultural, sino como adaptación racional a un Estado que no responde' ('confianza radial').",
+      "dictamen": "SIN-CIFRA",
+      "razon": "ENCUCI transversal mide confianzas sin exposición familiar a desaparición: no estima que una red suba cuando otra baja. Razón: instrumento inadecuado.",
+      "evidencia": "ENCUCI 2020; mapa DUEL-032"
+    },
+    {
+      "id": "DUEL-033",
+      "mapa_id": "ASTRA5-U0-DUEL-033",
+      "localizador": "L23,L123-L131",
+      "afirmacion": "Colombia ofrece el modelo institucional (Unidad de Búsqueda humanitaria y extrajudicial), Guatemala la lección forense-psicosocial (FAFG + acompañamiento), Argentina el poder político-simbólico de las madres —pero ninguno replica la ausencia de transición mexicana.'",
+      "dictamen": "MATIZA",
+      "razon": "Modelos Colombia, Guatemala y Argentina son comparaciones institucionales plausibles, no prueba de transferibilidad o superioridad causal.",
+      "evidencia": "Mapa DUEL-033; v1 L123-131"
+    },
+    {
+      "id": "DUEL-034",
+      "mapa_id": "ASTRA5-U0-DUEL-034",
+      "localizador": "L4,L29,L40,L106",
+      "afirmacion": "135,445 personas desaparecidas al 30 de junio de 2026 (report, atribuido a informe CIDH); el propio report en L40 da también 'el RNPDNO reportaba ~134,000 al 22/10/2025'.",
+      "dictamen": "SIN-CIFRA",
+      "razon": "135,445 no procede del informe CIDH según corrección del mapa; RNPDNO requiere extracción con corte y categorías. Razón: adquisición pendiente.",
+      "evidencia": "RNPDNO tablero; CIDH comunicado 82/26; mapa DUEL-034"
+    },
+    {
+      "id": "DUEL-035",
+      "mapa_id": "ASTRA5-U0-DUEL-035",
+      "localizador": "L4,L29,L40,L74,L106",
+      "afirmacion": "impunidad del 99.6% en el delito de desaparición' (report); fuente: Impunidad Cero, 'Percepciones de Impunidad 2024' p.3, 1-141/35,669.",
+      "dictamen": "MATIZA",
+      "razon": "99.6% surge de razón agregada 141 sentencias/35,669 registros, no cohorte enlazada; no es probabilidad individual de impunidad.",
+      "evidencia": "Impunidad Cero, Percepciones de Impunidad 2024 p.3; mapa DUEL-035"
+    },
+    {
+      "id": "DUEL-036",
+      "mapa_id": "ASTRA5-U0-DUEL-036",
+      "localizador": "L4,L29",
+      "afirmacion": "el duelo no cierra porque el Estado no busca ni identifica, no porque 'así se duele en México''; 'la pérdida ambigua masiva en México es un producto ESTRUCTURAL... no un rasgo cultural del mexicano frente a la muerte'.",
+      "dictamen": "MATIZA",
+      "razon": "Tesis estructural plausible, pero exclusividad causal frente a cultura y la frase «el Estado no busca» exceden evidencia; comparar variación institucional y cultural.",
+      "evidencia": "Mapa DUEL-036; v1 L4,29"
+    },
+    {
+      "id": "DUEL-037",
+      "mapa_id": "ASTRA5-U0-DUEL-037",
+      "localizador": "L120,L128-L131",
+      "afirmacion": "el EAAF (Proyecto Frontera) registró 2,529 reportes de migrantes no localizados entre 2010 y 2026 e identificó 482 cuerpos (casi la mitad mexicanos), con 6,415 perfiles genéticos de familiares donantes'.",
+      "dictamen": "SIN-CIFRA",
+      "razon": "PDF EAAF identificado pero 2,529/482/6,415 y periodo 2010-2026 no cotejados; unidades no permiten tasa de éxito. Razón: adquisición pendiente.",
+      "evidencia": "EAAF Estadísticas Proyecto Frontera, PDF febrero 2025; mapa DUEL-037"
+    },
+    {
+      "id": "DUEL-038",
+      "mapa_id": "ASTRA5-U0-DUEL-038",
+      "localizador": "L98-L102,L171-L178",
+      "afirmacion": "síntomas físicos (baja de peso, hipertensión, caída de cabello, contracturas)' como componente somático del sufrimiento (Patrón 5); el módulo de auditoría reconoce 'falta un estudio de prevalencia robusto en México' (L174).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Relatos físicos no permiten prevalencia ni atribuir hipertensión a desaparición; falta instrumento específico. Razón: instrumento inadecuado.",
+      "evidencia": "Smid et al. 2020; mapa DUEL-038"
+    },
+    {
+      "id": "DUEL-039",
+      "mapa_id": "ASTRA5-U0-DUEL-039",
+      "localizador": "L133-L154",
+      "afirmacion": "Recomendaciones del report: ventanilla única con acompañamiento jurídico/psicosocial/económico; eliminar la barrera de las 72 horas; fortalecer el Centro Nacional de Identificación Humana y bases genéticas; reconocer a las buscadoras como defensoras de DDHH (CEDAW); financiar y proteger colectivos sin cooptarlos.",
+      "dictamen": "MATIZA",
+      "razon": "Ventanilla, protección y forense son propuestas; eficacia requiere desenlace definido. Corregir 72 horas como barrera de práctica, no de ley.",
+      "evidencia": "Ley General arts.88-90; mapa DUEL-039"
+    },
+    {
+      "id": "DUEL-040",
+      "mapa_id": "ASTRA5-U0-DUEL-040",
+      "localizador": "L54,L177",
+      "afirmacion": "Que la desaparición produce daño intergeneracional (por analogía con el Holocausto/Argentina; poco medido en México)' (Hipótesis razonable); el módulo de auditoría reitera: 'el daño intergeneracional (plausible pero poco medido en México)' (L177).",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Daño intergeneracional está rotulado hipótesis por analogía; no hay cohorte mexicana comparativa. Razón: falta de ejecución.",
+      "evidencia": "Mapa DUEL-040; v1 L54,177"
+    },
+    {
+      "id": "DUEL-041",
+      "mapa_id": "ASTRA5-U0-DUEL-041",
+      "localizador": "L43",
+      "afirmacion": "Asesinato de buscadoras (Artículo 19, Amnistía Internacional, Front Line Defenders, Fundación para la Justicia)' (Evidencia fuerte, L43) — fuentes distintas a Artículo 19 (ya tratado en duelo-023) no verificadas en este lote.",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Fuentes de Amnistía, FLD y Fundación no se verificaron como conteos independientes de Artículo 19; no sumar. Razón: adquisición pendiente.",
+      "evidencia": "Mapa DUEL-041; Artículo 19 tablero"
+    },
+    {
+      "id": "DUEL-X01",
+      "mapa_id": null,
+      "localizador": "L4,L28-31",
+      "afirmacion": "El Estado no busca ni identifica como explicación uniforme",
+      "dictamen": "MATIZA",
+      "razon": "Hay deber legal y variación institucional; omisión en casos no equivale a ausencia total nacional.",
+      "evidencia": "Ley General arts.88-90; CED/C/MEX/A.34/D/1"
+    },
+    {
+      "id": "DUEL-X02",
+      "mapa_id": null,
+      "localizador": "L5,L15,L81-85",
+      "afirmacion": "Buscadoras como peritas forenses de facto y sujetos políticos",
+      "dictamen": "MATIZA",
+      "razon": "Agencia política observada; «peritas» es metáfora para saber práctico, no acreditación profesional ni experiencia universal.",
+      "evidencia": "v1 L15,81-85; estudios cualitativos Almanza/Smid"
+    },
+    {
+      "id": "DUEL-X03",
+      "mapa_id": null,
+      "localizador": "L6,L123-131",
+      "afirmacion": "México sin posconflicto y victimario crimen organizado más Estado omiso/coludido",
+      "dictamen": "MATIZA",
+      "razon": "Tipología útil de contextos, pero perpetradores y grados de colusión varían; no reducir países comparados a un solo régimen.",
+      "evidencia": "CED/C/MEX/A.34/D/1; v1 L123-131"
+    },
+    {
+      "id": "DUEL-X04",
+      "mapa_id": null,
+      "localizador": "L12,L30",
+      "afirmacion": "PGD DSM y CIE presuponen muerte confirmada y 12 meses",
+      "dictamen": "ROMPE",
+      "razon": "DSM-5-TR tiene umbral adulto 12 meses tras muerte; no trasladar ese umbral sin cotejo a CIE-11.",
+      "evidencia": "APA DSM-5-TR actualización 2024 p.13; ICD-11 pendiente cotejo"
+    },
+    {
+      "id": "DUEL-X05",
+      "mapa_id": null,
+      "localizador": "L12,L30,L150",
+      "afirmacion": "TEPT imposible por trauma continuo",
+      "dictamen": "ROMPE",
+      "razon": "El criterio clínico no se deduce del prefijo post; DSM reconoce exposición a evento o serie de eventos. No diagnosticar ni excluir a nivel grupal.",
+      "evidencia": "APA PTSD página oficial; v1 L12,30"
+    },
+    {
+      "id": "DUEL-X06",
+      "mapa_id": null,
+      "localizador": "L42,L109-120",
+      "afirmacion": "Distribución regional: noreste un tercio, cinco entidades 44%",
+      "dictamen": "SIN-CIFRA",
+      "razon": "No hay extracción RNPDNO con corte, clasificación ni denominador; razón: adquisición pendiente.",
+      "evidencia": "RNPDNO tablero; v1 L109-120"
+    },
+    {
+      "id": "DUEL-X07",
+      "mapa_id": null,
+      "localizador": "L110-119",
+      "afirmacion": "Víctimas jóvenes de clases populares y clase media sobrerrepresentada en literatura",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Edad registral puede verificarse; clase social y sesgo de publicación no están medidos con denominador común. Razón: instrumento inadecuado.",
+      "evidencia": "RNPDNO variables disponibles; v1 L110-119"
+    },
+    {
+      "id": "DUEL-X08",
+      "mapa_id": null,
+      "localizador": "L111-119",
+      "afirmacion": "Sur definido por desplazamiento y rural/indígena por subregistro",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Comparación regional y subregistro requieren fuentes y marco de captura específicos; razón: adquisición pendiente.",
+      "evidencia": "v1 L111,117; RNPDNO no mide subregistro"
+    },
+    {
+      "id": "DUEL-X09",
+      "mapa_id": null,
+      "localizador": "L124-127",
+      "afirmacion": "Cifras Argentina, Chile, Guatemala y Colombia comparables",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Definiciones, periodos y fuentes distintos; cada conteo exige institución y corte antes de comparar. Razón: no comparabilidad.",
+      "evidencia": "v1 L124-127; mapa DUEL-033"
+    },
+    {
+      "id": "DUEL-X10",
+      "mapa_id": null,
+      "localizador": "L125-126",
+      "afirmacion": "FAFG pasó de ~10% a ~90% acompañamiento en exhumaciones",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Falta fuente primaria, denominador y periodos comparables. Razón: adquisición pendiente.",
+      "evidencia": "v1 L125-126; mapa DUEL-033"
+    },
+    {
+      "id": "DUEL-X11",
+      "mapa_id": null,
+      "localizador": "L56,L119",
+      "afirmacion": "No hay evidencia sólida de Santa Muerte como estructura de duelo buscador",
+      "dictamen": "MATIZA",
+      "razon": "V1 ya reconoce el límite; conservar como ausencia de evidencia revisada, nunca como prueba de ausencia.",
+      "evidencia": "v1 L56,L119"
+    },
+    {
+      "id": "DUEL-X12",
+      "mapa_id": null,
+      "localizador": "L62,L174",
+      "afirmacion": "Falta prevalencia robusta mexicana de duelo prolongado",
+      "dictamen": "CONFIRMA",
+      "razon": "El propio v1 acota alcance de estudios n=5 y n=29; no convertirlos en prevalencia nacional.",
+      "evidencia": "v1 L62,L174; Almanza 2020; Smid 2020"
+    },
+    {
+      "id": "DUEL-X13",
+      "mapa_id": null,
+      "localizador": "L132-153",
+      "afirmacion": "El v1 rechaza que identificar restos garantice cierre o que buscar siempre sane",
+      "dictamen": "CONFIRMA",
+      "razon": "El original ya presenta estas fórmulas como mitos; conservar su corrección histórica y no atribuirlas al autor como tesis propia.",
+      "evidencia": "v1 L57-59,L156-165"
+    },
+    {
+      "id": "DUEL-X14",
+      "mapa_id": null,
+      "localizador": "L20,L94-97",
+      "afirmacion": "Estigma causado por discurso oficial y miedo comunitario",
+      "dictamen": "SIN-CIFRA",
+      "razon": "Relatos de estigma no separan mecanismos causales ni estiman intensidad por región/clase. Razón: instrumento inadecuado.",
+      "evidencia": "Almanza 2020; mapa DUEL-029"
+    }
+  ]
+}
