@@ -23,6 +23,23 @@ from pathlib import Path
 def _sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
+def _ref(objeto, nombre="tabla.json"):
+    """COMMIT-1-bis (conducto D-22 COMMIT-C): la tabla va a `tablas/` de ESTE
+    CALC y el RESULT la cita por REF con su sha256. No cambia qué se mide."""
+    calc = Path(__file__).resolve().parent
+    carpeta = calc / "tablas"
+    if carpeta.is_symlink():
+        raise PermissionError("tablas no puede ser enlace")
+    carpeta.mkdir(exist_ok=True)
+    destino = carpeta / nombre
+    raw = (json.dumps(objeto, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+                      allow_nan=False) + "\n").encode("utf-8")
+    if destino.exists() and destino.read_bytes() != raw:
+        raise PermissionError("tabla existente discordante: no reescribir")
+    destino.write_bytes(raw)
+    return f"REF:data/corrida0/{calc.name}/tablas/{nombre}#sha256:{hashlib.sha256(raw).hexdigest()}"
+
+
 
 def _norm(s):
     s = unicodedata.normalize("NFKD", s)
@@ -87,7 +104,6 @@ def medir(inputs, contrato):
                                     "delta_formula": delta, "miembro": miembro}
     tabla["_max_delta_formula"] = max_delta
     tabla["_control_formula"] = "PASA" if max_delta <= float(par["tolerancia_formula"]) else "FALLA"
-    out[par["result_tabla"]] = json.dumps(tabla, ensure_ascii=False, sort_keys=True,
-                                          separators=(",", ":"), allow_nan=False)
+    out[par["result_tabla"]] = _ref(tabla)
     out[par["result_control"]] = tabla["_control_formula"]
     return out

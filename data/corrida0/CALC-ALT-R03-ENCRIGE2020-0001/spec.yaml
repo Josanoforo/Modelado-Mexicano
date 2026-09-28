@@ -82,7 +82,7 @@ dependencias_materiales: []
 resultados:
 - id: RESULT-ALT-R03-ENCRIGE2020-TABLA
   tipo: texto
-  unidad: 'JSON canónico: proporción por (tabla, dominio, indicador)'
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: proporción por (tabla, dominio, indicador)'
 - id: RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA
   tipo: texto
   unidad: PASA / FALLA

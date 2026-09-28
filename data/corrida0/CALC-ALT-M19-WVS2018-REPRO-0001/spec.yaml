@@ -117,7 +117,7 @@ resultados:
   unidad: REPRODUCE / NO-REPRODUCE
 - id: RESULT-ALT-M19-WVS2018-REPRO-TABLA
   tipo: texto
-  unidad: 'JSON canónico: eje 2, principal y secundaria, chequeos'
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: eje 2, principal y secundaria, chequeos'
 tolerancia:
   tipo: flotante
   abs: 1.0e-12

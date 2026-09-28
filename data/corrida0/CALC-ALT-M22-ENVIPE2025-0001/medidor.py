@@ -29,6 +29,23 @@ LOADER = RAIZ / "tools" / "corpus_loader.py"
 def _sha(p):
     return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 
+def _ref(objeto, nombre="tabla.json"):
+    """COMMIT-1-bis (conducto D-22 COMMIT-C): la tabla va a `tablas/` de ESTE
+    CALC y el RESULT la cita por REF con su sha256. No cambia qué se mide."""
+    calc = Path(__file__).resolve().parent
+    carpeta = calc / "tablas"
+    if carpeta.is_symlink():
+        raise PermissionError("tablas no puede ser enlace")
+    carpeta.mkdir(exist_ok=True)
+    destino = carpeta / nombre
+    raw = (json.dumps(objeto, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+                      allow_nan=False) + "\n").encode("utf-8")
+    if destino.exists() and destino.read_bytes() != raw:
+        raise PermissionError("tabla existente discordante: no reescribir")
+    destino.write_bytes(raw)
+    return f"REF:data/corrida0/{calc.name}/tablas/{nombre}#sha256:{hashlib.sha256(raw).hexdigest()}"
+
+
 
 def _loader(sha_esperado):
     if _sha(LOADER) != sha_esperado:
@@ -292,5 +309,4 @@ def medir(inputs, contrato):
             fila["estado"] = "ESTIMADA"
         tabla["CONTRASTE:" + con["clave"]] = fila
     return {par["result_filas"]: n_filas,
-            par["result_tabla"]: json.dumps(tabla, ensure_ascii=False, sort_keys=True,
-                                            separators=(",", ":"), allow_nan=False)}
+            par["result_tabla"]: _ref(tabla)}

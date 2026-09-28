@@ -74,7 +74,7 @@ dependencias_materiales: []
 resultados:
 - id: RESULT-ALT-R03-ENVE2024-TABLA
   tipo: texto
-  unidad: 'JSON canónico: proporción por (tabla, dominio, indicador)'
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: proporción por (tabla, dominio, indicador)'
 - id: RESULT-ALT-R03-ENVE2024-CONTROL-FORMULA
   tipo: texto
   unidad: PASA / FALLA

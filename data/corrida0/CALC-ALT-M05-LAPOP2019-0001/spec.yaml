@@ -135,7 +135,7 @@ resultados:
   unidad: filas del miembro leído
 - id: RESULT-ALT-M05-LAPOP2019-TABLA
   tipo: texto
-  unidad: 'JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
   permite_no_estimable: true
 tolerancia:
   tipo: flotante

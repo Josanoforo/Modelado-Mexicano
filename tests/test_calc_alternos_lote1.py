@@ -42,7 +42,33 @@ def _mod(calc):
     s = importlib.util.spec_from_file_location(calc.replace("-", "_"), C0 / calc / "medidor.py")
     m = importlib.util.module_from_spec(s)
     s.loader.exec_module(m)
+    m._ref_real = m._ref
+    m._ref = lambda objeto, nombre="tabla.json": json.dumps(objeto, sort_keys=True, allow_nan=False)
     return m
+
+
+def _sin_valor_largo(out, sp):
+    """Todo RESULT que no sea la tabla (que en la corrida real va por REF)
+    pasa la regla de valor largo del conducto (D-22 COMMIT-C)."""
+    rt = sp["parametros"]["result_tabla"]
+    return C._problemas_valor_largo({k: v for k, v in out.items() if k != rt}, None) == []
+
+
+@pytest.mark.parametrize("calc", GENERICOS[:1] + [WVS] + TABS[:1])
+def test_ref_escribe_en_tablas_del_propio_calc(calc, tmp_path):
+    d = tmp_path / "data" / "corrida0" / calc
+    d.mkdir(parents=True)
+    (d / "medidor.py").write_bytes((C0 / calc / "medidor.py").read_bytes())
+    s = importlib.util.spec_from_file_location("copia_" + calc.replace("-", "_"), d / "medidor.py")
+    m = importlib.util.module_from_spec(s)
+    s.loader.exec_module(m)
+    ref = m._ref({"a": 1})
+    rel, _, sha = ref[4:].partition("#sha256:")
+    assert ref.startswith("REF:data/corrida0/" + calc + "/tablas/tabla.json#sha256:")
+    assert hashlib.sha256((tmp_path / rel).read_bytes()).hexdigest() == sha
+    assert m._ref({"a": 1}) == ref
+    with pytest.raises(PermissionError):
+        m._ref({"a": 2})
 
 
 def _spec(calc):
@@ -133,6 +159,7 @@ def test_generico_salida_igual_a_resultados(calc):
     out, sp = _corre_generico(calc)
     assert set(out) == _ids(sp)
     assert C._valida_outputs(sp, out) == []
+    assert _sin_valor_largo(out, sp)
     t = json.loads(out[sp["parametros"]["result_tabla"]])
     primero = sp["parametros"]["items"][0]["clave"]
     assert t[primero]["NACIONAL"]["estado"] == "ESTIMADA"
