@@ -1,0 +1,25 @@
+paquete/esquema-identidades.tsv
+paquete/enigh-complemento-restaurado.md
+paquete/CONTRATO-v3.md
+paquete/FIRMAS-Y-ACCESO.md
+paquete/esquema-salida-v2.md
+paquete/residuales-p3-contrato-ic.md
+paquete/residuales-p3-modulos-ic.md
+paquete/spec-acceso-insumos.md
+paquete/datos/diccionario_datos_concentradohogar_enigh2022_ns.csv
+paquete/datos/concentradohogar_enigh2022_ns.csv
+paquete/cuestionario-enigh2022-hogares.pdf
+paquete/cuestionario-enigh2022-mayores.pdf
+paquete/descriptor-enigh2022-descriptor.pdf
+salida/codigo/reconstruye.py
+salida/resultado.json
+salida/diagnosticos-ic-v1.tsv
+salida/diagnostico.json
+salida/entorno.txt
+# Notas:
+# - Los tres PDF solo se abrieron como bytes para calcular su sha256 (sha256sum sobre paquete/*); no se leyó su contenido.
+# - concentradohogar_enigh2022_ns.csv: además de la lectura por el código (usecols = folioviv, foliohog, factor, remesas, est_dis, upm),
+#   se leyó la fila de encabezados (head -1), y el archivo completo se recorrió como bytes para sha256sum y wc -l (conteo de líneas);
+#   no se imprimió ni inspeccionó ninguna fila de datos.
+# - Del diccionario se leyeron las primeras 20 líneas y las entradas de folioviv, foliohog, est_dis, upm, factor, transfer, remesas.
+# - Los archivos de salida/ se abrieron para revisarlos tras generarlos.

@@ -1,0 +1,1360 @@
+{
+ "version": 3,
+ "identidad": {
+  "paquete": "enbiare-pisos-bienestar-0001",
+  "version_entrada": "residuales-documentales-v2",
+  "sha256_entrada": "fc75485a4e49118eacfca104070214c86fa4071b75550234cfc05ffb69c9fbfe"
+ },
+ "filas": [
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19471221905632893",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18317858537318427",
+   "ic95_sup": "0.2064305471249833"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19543501854637244",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18467904698134474",
+   "ic95_sup": "0.20639132148172165"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19154249626803166",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18046806119635375",
+   "ic95_sup": "0.203569430137537"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19015873800408561",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17601129007801913",
+   "ic95_sup": "0.20400294328362298"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.26123286547259267",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.2468016017992857",
+   "ic95_sup": "0.2755622955399815"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1738304131224842",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16215028953846758",
+   "ic95_sup": "0.18520842368983115"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18747016167030298",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1772951824741057",
+   "ic95_sup": "0.1975216128190399"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15569262628029926",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14368472768739707",
+   "ic95_sup": "0.16845051412588313"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.14989240911527166",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14223664273760922",
+   "ic95_sup": "0.15757376161222253"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.23228293791696006",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.22387535626458271",
+   "ic95_sup": "0.24090090311729306"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17427336097754295",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16487143438518853",
+   "ic95_sup": "0.18363618647819724"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20416696823784572",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19018858123123025",
+   "ic95_sup": "0.2193864414535723"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.20136522855903397",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18537860920799815",
+   "ic95_sup": "0.2179011687721737"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2234975357956959",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21077382059571312",
+   "ic95_sup": "0.23578399059833216"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.19344051367901569",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.18742201858304344",
+   "ic95_sup": "0.19948523728895834"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3367430480734299",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3210699980685964",
+   "ic95_sup": "0.35192424318652177"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4489277312617205",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.43555986548112297",
+   "ic95_sup": "0.4615797913681644"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5754877008633498",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5607399035133741",
+   "ic95_sup": "0.5902045550991486"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6518333701537671",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6331567629024307",
+   "ic95_sup": "0.6703368044251649"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6304658235144992",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.613630196290462",
+   "ic95_sup": "0.6467402503192786"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4106027803571951",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3937319986817701",
+   "ic95_sup": "0.42634598780717387"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5038460528723457",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4911430414067798",
+   "ic95_sup": "0.517061640101954"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.37919599030667656",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3627504767702047",
+   "ic95_sup": "0.3960427872140405"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4333985284371056",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4218688269332293",
+   "ic95_sup": "0.4446338074467102"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5232722711368439",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5125640652740716",
+   "ic95_sup": "0.5340471068008698"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4048982890816762",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.39306697705892735",
+   "ic95_sup": "0.4163050692974745"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.4903813296402046",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.4741324424037773",
+   "ic95_sup": "0.5078951940107127"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5546991554724618",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5295398812987532",
+   "ic95_sup": "0.5780032855517111"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.5951871344775941",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.5756714916378706",
+   "ic95_sup": "0.615097150716973"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.48090193934546027",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.47244413198876056",
+   "ic95_sup": "0.48910897940169457"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_02 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_01 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_11 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PB1_04 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7032107877727578",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6886648058603568",
+   "ic95_sup": "0.7168463894331386"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7285291617095787",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7163910003531334",
+   "ic95_sup": "0.7406206475097933"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.745595976281179",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7327268635567932",
+   "ic95_sup": "0.7586422421222746"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7081279433793065",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.68968332355538",
+   "ic95_sup": "0.7261549839742736"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.66151478111039",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6455614150793322",
+   "ic95_sup": "0.6769179422147625"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.731412054287724",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7156760875558186",
+   "ic95_sup": "0.745644340797447"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6862774970090115",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6732200716149993",
+   "ic95_sup": "0.6993058248605006"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8198569894787818",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8064314657073426",
+   "ic95_sup": "0.8328898459853362"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7356055261610079",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7252483635744787",
+   "ic95_sup": "0.7465302369324588"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7105533015392586",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.700482814161158",
+   "ic95_sup": "0.7203860123701628"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.745886301598911",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.734305473059443",
+   "ic95_sup": "0.757726915740237"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7273153550827823",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.709384855371221",
+   "ic95_sup": "0.7455206086633065"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7042472183572085",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6844047157495342",
+   "ic95_sup": "0.7228704836769988"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.6789332109832382",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.6645796101669118",
+   "ic95_sup": "0.6951416725455427"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7223639932657853",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7147360672307351",
+   "ic95_sup": "0.7298320160277814"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9655475651807554",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9610465699008369",
+   "ic95_sup": "0.9700306534753905"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9390611172541039",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9332892409839706",
+   "ic95_sup": "0.9446588568921207"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9355290678149207",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9284437429938103",
+   "ic95_sup": "0.942798532526604"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.95053916986111",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9429546096257773",
+   "ic95_sup": "0.9573514108828123"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.933541333776544",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9266850937727401",
+   "ic95_sup": "0.9400000701095585"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9522962780572571",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.945668811499955",
+   "ic95_sup": "0.9584065816671354"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9364101940545012",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9303570960126333",
+   "ic95_sup": "0.9421516167500357"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.971084502825497",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9661141900480171",
+   "ic95_sup": "0.9758462795474983"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9536371460835579",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9492742469840079",
+   "ic95_sup": "0.9576891214450267"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9421621964692263",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9375353954590082",
+   "ic95_sup": "0.9465131171650562"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9481016269659108",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9434446517429013",
+   "ic95_sup": "0.9529090219540453"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9460084038738817",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9376346543282594",
+   "ic95_sup": "0.9535123620692503"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.94442537047334",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.935845176038886",
+   "ic95_sup": "0.9521610379770554"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.949386434204303",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9429107807761006",
+   "ic95_sup": "0.955495564419463"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.9475719792138149",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9442994783835864",
+   "ic95_sup": "0.9505481123152765"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15168687954484084",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14097268683702638",
+   "ic95_sup": "0.1620208676727287"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1503261650473762",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14085066242793978",
+   "ic95_sup": "0.16023839827355657"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.15669802760421722",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14629148279315846",
+   "ic95_sup": "0.16791100315010885"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.3494225811868165",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.3321830051411376",
+   "ic95_sup": "0.36681319113943983"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.29142965258641723",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.27809687860446164",
+   "ic95_sup": "0.30476357138544613"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1531884969351269",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.14162299969151415",
+   "ic95_sup": "0.16506043684808666"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17614741946092838",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.1655641199308641",
+   "ic95_sup": "0.1869922384627441"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.12120268962589777",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.11084506781360322",
+   "ic95_sup": "0.13270890351835524"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.13582396033231584",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.12847497768452107",
+   "ic95_sup": "0.14351330039411503"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.22678903610315773",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.21778508100353963",
+   "ic95_sup": "0.23595847987125584"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.17691193571766764",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.166696216857353",
+   "ic95_sup": "0.18715110172966348"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18108591647684624",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16823825544821214",
+   "ic95_sup": "0.19417422264611578"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.18290115346558067",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.16776139093628312",
+   "ic95_sup": "0.1996344610913275"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.2016587771126039",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.19026186511692256",
+   "ic95_sup": "0.21276759496926564"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.1839025506099132",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.17779133685730222",
+   "ic95_sup": "0.19025560852851656"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA5 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "motivo": "El esquema fija unidad 'proporcion' para esta identidad, pero la spec humana (enbiare-metodo-base.md §4 y tabla; residuales-p3-modulos-ic.md 'Escalas0..10 medias') define PA1 0–10 solo como media; ninguna spec fija corte o categoría que convierta la escala en proporción, y copiar una media bajo unidad 'proporcion' convertiría escala."
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7300828596409533",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7156726510942829",
+   "ic95_sup": "0.7430756152045558"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8104036809673902",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7997612921989251",
+   "ic95_sup": "0.8203994514961197"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.867380712611788",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.85757520259936",
+   "ic95_sup": "0.8771329760911477"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.914944350126562",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.9042332945417669",
+   "ic95_sup": "0.9255274058628471"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8732882829339003",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8635956082629304",
+   "ic95_sup": "0.8831649971757034"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7891853751428382",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7760577264289281",
+   "ic95_sup": "0.8025467687613915"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8263712702457989",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8158936225136855",
+   "ic95_sup": "0.8363998365762827"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.785382785308222",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7706705196903827",
+   "ic95_sup": "0.8004064221825162"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7852508496089387",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7757178940841718",
+   "ic95_sup": "0.7940371839333441"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8477614982443002",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8393275404342586",
+   "ic95_sup": "0.8555454300912204"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.7828298999836946",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.7727992495414155",
+   "ic95_sup": "0.7926064821433052"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8336480245529089",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.820177337640552",
+   "ic95_sup": "0.8466176416814599"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8706433930079377",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8538505751027762",
+   "ic95_sup": "0.8863305062578357"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8533596922710581",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.8387616704707662",
+   "ic95_sup": "0.8671542061042368"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-P",
+   "unidad": "proporcion",
+   "estado": "RECONSTRUIDO",
+   "punto": "0.8182913010141298",
+   "estado_ic": "CALCULADO",
+   "ic95_inf": "0.81144291012111",
+   "ic95_sup": "0.8247233178741143"
+  }
+ ]
+}

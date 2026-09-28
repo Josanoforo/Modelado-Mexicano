@@ -1,0 +1,178 @@
+{
+ "corrida_id": "CALC-ALT-R03-ENCRIGE2020-0001--5d55583598d1",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {},
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CALC-ALTERNOS-LOTE-1",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "dominio": "tramite",
+  "fila_mapa": "R03-ENCRIGE",
+  "generacion": "GEN2",
+  "holdout_gastado": "NINGUNO",
+  "marca_temporal": "RETROSPECTIVA",
+  "ola": "2020",
+  "origen_numerico": "TABULADO-OFICIAL",
+  "regla": "R03+R08",
+  "retador": "NO",
+  "theta": "NO",
+  "tipo": "EXTRACCION-DESCRIPTIVA-TABULADOS-OFICIALES",
+  "unidad_transferencia": "UNIDAD-DISTINTA-NO-TRANSFERENCIA"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:59:10Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "5d55583598d1a171a877747c142d8b60a42cb28c",
+  "git_rama": "acto/gen2-calc-alternos-lote-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "5d55583598d1a171a877747c142d8b60a42cb28c",
+ "input_ids": [
+  "conjunto_de_datos_encrige_2020_csv",
+  "SPEC-HUMANA"
+ ],
+ "input_sha256": {
+  "SPEC-HUMANA": "f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6",
+  "conjunto_de_datos_encrige_2020_csv": "06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a"
+ },
+ "parametros": {
+  "encoding": "latin-1",
+  "hash_payload_sha256": "06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a",
+  "payload_id": "conjunto_de_datos_encrige_2020_csv",
+  "result_control": "RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA",
+  "result_tabla": "RESULT-ALT-R03-ENCRIGE2020-TABLA",
+  "tablas": [
+   {
+    "archivo": "t6_33.csv",
+    "clave": "t6_33",
+    "denominador": "Total de unidades económicas que realizaron al menos un trámite o fueron sujetas a una inspección",
+    "dominios": [
+     "Estados Unidos Mexicanos",
+     "Micro",
+     "Pequeña",
+     "Mediana",
+     "Grande"
+    ],
+    "indicadores": [
+     {
+      "clave": "PARTICIPACION",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Tasa de prevalencia3"
+     },
+     {
+      "clave": "CONOCIMIENTO-TERCEROS",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Tasa de prevalencia2"
+     },
+     {
+      "clave": "PERCEPCION",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Tasa de prevalencia1"
+     }
+    ]
+   },
+   {
+    "archivo": "t6_34.csv",
+    "clave": "t6_34",
+    "denominador": "Total de unidades económicas que realizaron al menos un trámite o fueron sujetas a una inspección",
+    "dominios": [
+     "Estados Unidos Mexicanos",
+     "Comercio",
+     "Industria",
+     "Servicios"
+    ],
+    "indicadores": [
+     {
+      "clave": "PARTICIPACION",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Participación en al menos un  acto de corrupción_Tasa de prevalencia3"
+     },
+     {
+      "clave": "CONOCIMIENTO-TERCEROS",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Conocimiento por terceros  de actos de corrupción_Tasa de prevalencia2"
+     },
+     {
+      "clave": "PERCEPCION",
+      "escala_publicado": 10000,
+      "numerador": "Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Absolutos",
+      "publicado": "Conocimiento y/o participación en actos de corrupción_Percepción de supuestos  actos de corrupción_Tasa de prevalencia1"
+     }
+    ]
+   }
+  ],
+  "tolerancia_formula": 5e-05
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA",
+  "RESULT-ALT-R03-ENCRIGE2020-TABLA"
+ ],
+ "script_blob_sha256": "56510da27b48091832e535c43070d5eec213aee4196255d57e2eabaab8d39c93",
+ "script_path": "data/corrida0/CALC-ALT-R03-ENCRIGE2020-0001/medidor.py",
+ "seed": {
+  "aplica": false,
+  "rng": "NO-APLICA",
+  "valor": null
+ },
+ "spec_id": "CALC-ALT-R03-ENCRIGE2020-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6",
+ "spec_yaml_sha256": "cbe809289948ad844d3175d2bf94f1d972ec0fcc93ad6d4dc35b1f795107c2fc",
+ "tolerancia": {
+  "abs": 1e-12,
+  "razon": "extracción determinista",
+  "tipo": "flotante"
+ }
+}

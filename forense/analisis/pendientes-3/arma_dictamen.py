@@ -105,6 +105,24 @@ CORRIGE = {
 RE_DERIVA = re.compile(r"derivados/|\[deriva\]", re.I)
 
 
+# NC nacidas en main DURANTE el barrido (actos en vuelo que fusionaron: PISOS-DOMINIOS,
+# CALC-ALTERNOS, TABLERO-CARRILES, C1-SUCESORES). Su sucesor no tiene encargo
+# archivado ni rama en vuelo (`cierre_acto.indice_actos`, 28/sep tras merge) -> MESA.
+NUEVAS_TRAS_MERGE = {
+    **{f"NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-0{i}": "GEN2-PISOS-DOMINIOS-Y-REGLAS-2" for i in (1, 2, 3, 4, 6)},
+    "NC-260928-GEN2-PISOS-DOMINIOS-Y-REGLAS-1-7cd0-05": "CALC-PDR1-ENCUCI2020-0002 (sustituto)",
+    **{f"NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-0{i}": "GEN2-CALC-ALTERNOS-LOTE-2" for i in range(1, 9)},
+    "NC-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-09": "GEN2-OBTENCION-EXTERNA-2",
+    "NC-260928-GEN2-TABLERO-CARRILES-1-e2eb-01": "GEN2-TABLERO-CARRILES-2 o /tramite",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01": "GEN2-ASTRA6-C1-LOTE-4",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-02": "GEN2-C1-SUCESORES-2011-2021-1",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-03": "GEN2-SPEC-ENBIARE-ESCALAS-1",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-04": "firma FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-05": "GEN2-CIERRE-SEMANAL-3",
+    "NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-06": "GEN2-RELEVO-TRAMITE-CAJA-2",
+}
+
+
 def _dueno_en_curso(texto):
     for acto, rama in EN_VUELO.items():
         if acto in texto:
@@ -193,6 +211,9 @@ def main():
                     val if acc == "CERRAR" else "", val if acc == "DUENO" else "", porque])
         if p["propuesta"] == "DECIDIR-REVERSIBLE":
             dele.append([p["id"], "CIERRA" if acc == "CERRAR" else "DUEÑO-MESA", limpia(p["nota"])[:600]])
+    for fid, suc in NUEVAS_TRAS_MERGE.items():
+        out.append([fid, "NUEVA-TRAS-MERGE", "DUENO", "", f"{MESA} · encargo por escribir: {suc}",
+                    "nacida durante el barrido; sucesor sin encargo archivado"])
     with open(os.path.join(AQUI, "dictamen-pendientes-3.tsv"), "w", encoding="utf-8") as fh:
         fh.write("id\tpropuesta_evidencia\taccion\tcerrado_por\tnuevo_sucesor\tporque\n")
         for r in out:

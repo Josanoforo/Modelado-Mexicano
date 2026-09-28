@@ -1,0 +1,59 @@
+# ENCARGO · ACTO GEN2-C1-SUCESORES-Y-LOTE-3 · Lo que C1-LOTE-3 dejó sin lanzar por falta de firma sale ahora que mesa firmó: contrato v3 por sha (R31), reconstructor de opción A (R32), reserva por paquete (R15) y acceso delimitado a ENBIARE 2021 y ENCODAT 2016-17 — las 312 residuales (ENBIARE 180, ENCODAT 130, ENCUCI 1, ENIGH 1, que contienen las 56 «no reconstruidas») se recalculan a ciegas; y en el mismo acto se ejecutan los seis contratos sucesores de C1 que los recibos -2/-3 dictaminaron y mesa firmó (R21–R26, R28, R33): dictámenes ENDIREH 2006/2016 y retiro de 15 llaves ENVIPE 2015, tolerancias ENDUTIH/MOCIBA, protocolo inferencial como contrato diagnóstico, transporte de ventana a 767 identidades, retiro temporal de identidades con defecto, contrato ENBIARE de edades/CESD-7, 130 COINCIDE no ciegas a CONCUERDA-NO-APROBADA, spec sucesora de remesas ENIGH 2020
+
+> ENTORNO: **CAJA** — dos sesiones como en C1-LOTE-3: receptora (esta rama) y reconstructora (sesión nueva de Claude Code, solo prompt + paquete + lista cerrada de herramientas; su Bash sin red, el proceso principal con la red que la reserva de aislamiento ya declaró). Hook imprime ENTORNO-DERIVADO en las dos; si una dice cloud_default o milpa-inegi, PARA.
+
+CABECERA · SHA de redacción `3c55bfc5` (re-deriva al abrir) · dos sesiones por diseño; PR por bloque (lote 3 · contratos sucesores) · MODELO: **Opus** en ambas · MODO: **RÍGIDO** (contrato v3 congelado por sha; tolerancias firmadas; primer resultado del reconstructor) · ids con raíz de acto · D-21 aplica.
+CONTADOR: cero cifras nuevas para el canon; mueve `resultados_con_validacion_independiente` por asientos con tolerancia citada; no adopta. **NC solo por D-19**: lo reversible se decide y se declara.
+
+## 1 · OBJETIVO
+(P1) **Lote 3 completo.** Gates por paquete (APTO-TECNICAMENTE · CONTEXTO-NUEVO-ACREDITADO · CONTRATO-FIRMADO (R31, sha `821a5ecb…94eb`) · ACCESO-AUTORIZADO (ENDIREH `ee49`; ENBIARE 2021 y ENCODAT 2016-17 por la firma de este chat, delimitados a módulos y campos del paquete; ENCODAT 2025 reservada: fuera)); paquetes con ventana desde `catalogo-1-lote3/` y `-entradas-residuales-lote2/`; reconstrucción; comparación con `compare_v3.py` (punto y ambos extremos del IC); dictamen por identidad y asiento con rótulo CIEGA-POR-CONTEXTO-NUEVO y la reserva de red declarada; lo no reconstruible desde la spec humana a `specs-insuficientes-v1_2.tsv`.
+(P2) **Contratos sucesores firmados.** R21: dictámenes ENDIREH 2006 (MD postseparación separado del anual) y 2016, y retiro de 15 llaves ENVIPE 2015 del universo de C1 con cita · R22: tolerancias por identidad ENDUTIH/MOCIBA fijadas en `CONTRATO-TOLERANCIAS.md` (proporciones abs 1e-8 rel 0; enteros exactos) · R23: protocolo inferencial como contrato DIAGNÓSTICO de reproducción de IC (no adjudica) · R24: transporte literal de la ventana del catálogo v1.2 a las 767 identidades sin ventana (sin recálculo) · R25: retiro temporal de identidades con defecto documental y denominador institucional en lo no cubierto por beee-02 · R26: contrato ENBIARE edades/CESD-7 con identidades sucesoras y receta de IC · R28: las 130 COINCIDE no ciegas del lote 2 (ENBIARE 126, ENCIG 4) a CONCUERDA-NO-APROBADA con rótulo NO-CIEGA · R33: NO-PASA formal de los dos RESULT de remesas ENIGH 2020 y spec sucesora (solo spec; el CALC lo corre RELEVO-TRAMITE-CAJA-2). Cada uno con su archivo en `validacion-independiente/` y la FP marcada FIRMADA con este PR.
+(P3) **Asiento y cierre.** `validaciones-independientes.tsv` (append), `specs-insuficientes-v1_2.tsv`, `dictamen-lote3-v1_1.tsv` (404 + 312), propuestas de suspensión/acotación para el catálogo v1.4 (CIERRE-SEMANAL-3), y una hoja RH solo si algo irreversible queda (lote 4 con ENIF/ENUT/ENSANUT tras R13).
+
+«Hecho», por comando sobre el commit final con `origin/main` fusionado: 312 identidades con dictamen en `dictamen-lote3-v1_1.tsv` (o `NO-LANZADO (gate X)` con evidencia, nunca por firma); numeros del reconstructor commiteados antes de la comparación (`git log`); transcript de la reconstructora archivado con lista de archivos leídos = paquete; los ocho contratos de P2 con archivo y FP FIRMADA; asientos con tolerancia citada; `check.py --baseline` VERDE.
+
+## 2 · FIRMAS DE MESA
+Mesa, 28/sep/2026, chat de dirección: **«firmado»** (INTERPRETACIÓN-DECLARADA en ADENDA-1 de TRAMITE-FIRMAS-21, que este acto cita): R15 (1) · R21 (2) · R22 (1) · R23 (2) · R24 (2) · R25 (1) · R26 (2) · R28 (1) · R31 contrato v3 por sha · R32 reconstructor A · R33 (1) · **acceso de C1 a ENBIARE 2021 y ENCODAT 2016-17, olas vistas, delimitado como `ee49`**. Previas: `ee49-01/02`, beee-01/02, 157c-03, ADENDA-1 de RECIBO-ASTRA6-2. Este acto asienta las suyas al ejecutarlas (A.12). Reglas: E.2, E.6, D-15, D-22, regla 6.
+
+## 3 · LO QUE DIRECCIÓN SABE
+- [LEÍDO] `2026-09-28-GEN2-ASTRA6-C1-LOTE-3.md` §NO-CORRIDO: P2 no lanzada por DECISIÓN-DE-MESA-PENDIENTE; residuales ENBIARE 180 / ENCODAT 130 / ENCUCI 1 / ENIGH 1; P3 asiento PASA de RESULT-ENDIREH2016-PF-TABLA (92 celdas) DIFERIDO-A `GEN2-METODO-COMPARACION-INFERENCIAL-1` (IC dentro 0/92 bajo tolerancia 1e-10: bootstrap con otro generador) — **R23 es ese método**: aquí se aplica como contrato diagnóstico y las 92 se dictaminan bajo él, no se dejan diferidas; aislamiento de red NO-VERIFICABLE-AQUÍ (se declara igual). [EJECUTADO] `catalogo-1-lote3/dictamen-lote3.tsv`: 404 filas.
+- [LEÍDO] Hojas de RECIBO-ASTRA6-2/-3 y de C1-1: textos de firma de R21–R33 (columna `texto_de_firma` de `decisiones-21.tsv`).
+- [EXISTE] `catalogo-1-ejecutor-v3/{CONTRATO-v3.md, LANZAMIENTO.md}`, `compare_v3.py`, adaptador v3 con prueba sintética, `tools/corpus_loader.py` (el reconstructor **no** lo usa: lee CSV como dice la spec humana).
+
+## 4 · YA HECHO / YA DECIDIDO — por objeto
+`git ls-tree -r --name-only origin/main forense/encargos | grep -c 'C1-SUCESORES\|C1-LOTE-3-EJEC\|C1-LOTE-4'` → 0. Consumidos y citados: C1-LOTE-3 (gates y 404 dictámenes: no se repiten), ASTRA-CONTINUIDAD-C1-1, RECIBO-ASTRA6-1/2/3, PISOS-Y-ADENDAS-1 (adendas de tres specs: cítalas en `specs-insuficientes`). En vuelo: TRAMITE-FIRMAS-21 (FP: no tocar las que él asienta; las tuyas las asientas tú), CALC-ALTERNOS-LOTE-1 (caja; ENBIARE no; disjunto).
+
+## 5 · PIEZAS
+P2 primero (contratos: son documentales y fijan tolerancias que P1 usa) → P1 por paquete (ENBIARE, ENCODAT, ENCUCI+ENIGH) → P3. Rama prevista: paquete con gate no cerrable por evidencia → `NO-LANZADO (gate)` con lo que falta, sin NC; lectura fuera del paquete en el transcript → pierde ceguera y se dictamina RETROSPECTIVA-MECÁNICA.
+
+## 6 · LATITUD — amplia
+Tamaño de paquetes, lista de herramientas, orden: tuyos, en LANZAMIENTO. Lo reversible se decide y se declara. PREGUNTA A MESA: solo la hoja de cierre si hay irreversibles. NO DECIDES: nada de §7.
+
+## 7 · PAROS — lista cerrada (D-19 estricta)
+a) abrir ENCODAT 2025 o cualquier reservada; salir del delimitado de la firma de acceso · b) editar sellados, contrato v3, paquetes tras el sha · c) adoptar; PASA sin tolerancia; código o sellados al reconstructor; «coinciden» donde dice DISCREPA · d) cambiar tolerancias tras P2 · e) NUBE · f) objetivo inalcanzable.
+
+## 8 · COMPUERTAS
+«Paquete con sha antes de entregar; números del reconstructor antes de abrir sellados» protege **adoptar** · «Acceso solo por firma delimitada» protege **abrir dato** · «Contrato v3 y tolerancias por sha» protege **congelar** · «Sellados intactos» protege **borrar**.
+
+## 9 · PERÍMETRO Y CONCURRENCIA
+Propio: `forense/validacion-independiente/catalogo-1-lote3/` y los expedientes de los ocho contratos, `data/corrida0/validaciones-independientes.tsv` (append), `firmas-pendientes.tsv` (marcar FIRMADA R15, R21–R26, R28, R31–R33 y la de acceso), `prereg-caja/` (solo la spec sucesora de remesas), nota, L0, cascada. Ajeno: sellos, catálogo, `milpa/`, manifiesto. «Si te encuentras escribiendo fuera de esta lista, PARA.»
+
+## 10 · LO QUE NO HACE · SUCESORES · CIERRE
+No adopta, no abre ENIF/ENUT/ENSANUT (lote 4 tras R13), no corre el CALC de remesas (RELEVO-TRAMITE-CAJA-2), no repara CI. Sucesores: C1-LOTE-4; CIERRE-SEMANAL-3 (catálogo v1.4). Módulo de auditoría v2.16 en la nota: unidad por instrumento (mujer, persona 18+, adolescente en ENCODAT); RETROSPECTIVA. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| R28: re-comparación ciega de las 4 ENCIG | DIFERIDO-A:GEN2-ASTRA6-C1-LOTE-4: el lote 3 no tiene paquete ENCIG ni acceso C1 a ENCIG firmado | 4 llaves siguen NO-CIEGA en la comparación del lote 2; su PASA de otra validación no cambia | NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 → GEN2-ASTRA6-C1-LOTE-4 |
+| R25: «ejecución de sucesores nuevos» (2011/2021) | FUERA-DE-PERÍMETRO: son CALC nuevos de ENDIREH 2011/2021, fuera de §9; acto dueño GEN2-C1-SUCESORES-2011-2021-1 | R25 firmado sin CALC ejecutado | NC-…-2385-02 → GEN2-C1-SUCESORES-2011-2021-1 |
+| P1: 90 llaves ENBIARE de seis escalas 0–10 | DIFERIDO-A:GEN2-SPEC-ENBIARE-ESCALAS-1: D-15 (el esquema dice proporcion; la spec dice media) | 66 de las 126 de R28 quedan NO-CIEGA-PENDIENTE; 24 sucesoras sin valor | NC-…-2385-03 → GEN2-SPEC-ENBIARE-ESCALAS-1 |
+| comparación «punto y ambos extremos del IC» (adjudicación de IC) | DECISIÓN-DE-MESA-PENDIENTE: R23 sin margen de equivalencia ni control simultáneo | ninguna fila PASA por IC; 215→215 | NC-…-2385-04 → FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 |
+| «propuestas de suspensión/acotación para el catálogo v1.4» | DIFERIDO-A:GEN2-CIERRE-SEMANAL-3: las propuestas están hechas (r21-envipe-15-llaves.tsv, dictamen-lote3-v1_1.tsv), el catálogo es ajeno (§9) | catálogo v1.3 sin esos rótulos | NC-…-2385-05 → GEN2-CIERRE-SEMANAL-3 |
+| R33: CALC sucesor de remesas | DIFERIDO-A:GEN2-RELEVO-TRAMITE-CAJA-2 (el encargo: «solo spec») | los dos NO-PASA siguen formales | NC-…-2385-06 → GEN2-RELEVO-TRAMITE-CAJA-2 |
+
+Hoja RH de irreversibles: ninguna. La extensión de acceso a ENCUCI 2020 y ENIGH 2022 la firmó mesa en el chat del acto (verbatim en la nota). La única pregunta abierta, el margen de IC, es reversible y va en FP 2385-01.
+
+## CONSUMIDO
+
+PR #1304 (rama `acto/GEN2-C1-SUCESORES-Y-LOTE-3`), 28/sep/2026. ADR `ADR-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01`.

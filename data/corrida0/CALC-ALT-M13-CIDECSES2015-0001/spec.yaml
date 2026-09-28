@@ -1,0 +1,189 @@
+# CALC-ALT-M13-CIDECSES2015-0001 -- cara mecánica de ALT-M13-CIDECSES2015-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M13-CIDECSES2015-0001
+spec_md: ../../../forense/prereg-caja/ALT-M13-CIDECSES2015-spec-v1_0.md
+spec_md_sha256: ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3
+script: data/corrida0/CALC-ALT-M13-CIDECSES2015-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO
+  dominio: politica
+  ola: '2015'
+  momento: M13
+  holdout_gastado: M13
+  fila_mapa: 32
+inputs:
+- id: cide_cses2015_nacional_poselectoral
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M13-CIDECSES2015-spec-v1_0.md
+  sha256: ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3
+variables:
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: p3
+  rol: 'desenlace: votó diputados 7/jun Sí 1 / No 2; 3,8,9 fuera'
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: p17
+  rol: 'desenlace: importa qué partido 1-5, evento 4-5'
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: p18
+  rol: 'desenlace: el voto influye 1-5, evento 4-5'
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: estado
+  rol: 'grupo: clasificador de concurrencia (spec)'
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: PONDFIN
+  rol: ponderador
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: dominio
+  rol: estrato
+- archivo: cide_cses2015_nacional_poselectoral.sav
+  variable: upmmn
+  rol: UPM
+universo: CIDE-CSES 2015 poselectoral nacional; personas con código sustantivo, PONDFIN>0 y diseño
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: PONDFIN
+transformacion: indicadoras; proporción ponderada por concurrencia; contrastes pareados
+estimando: p(votó), p(p17>=4), p(p18>=4) nacional y por concurrencia local; contrastes; RETROSPECTIVA, no causal
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: cide_cses2015_nacional_poselectoral
+  tabla: cide_cses2015_nacional_poselectoral
+  hash_payload_sha256: 1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: dominio
+    upm:
+    - upmmn
+    peso: PONDFIN
+  universo_filtros: []
+  items:
+  - clave: voto
+    variable: p3
+    validos:
+    - 1
+    - 2
+    evento:
+    - 1
+    faltantes:
+    - 3
+    - 8
+    - 9
+  - clave: partido_importa
+    variable: p17
+    validos:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    evento:
+    - 4
+    - 5
+    faltantes:
+    - 8
+    - 9
+  - clave: voto_influye
+    variable: p18
+    validos:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    evento:
+    - 4
+    - 5
+    faltantes:
+    - 8
+    - 9
+  grupos:
+  - clave: concurrencia
+    variable: estado
+    niveles:
+      CONCURRENTE:
+      - 3
+      - 4
+      - 6
+      - 9
+      - 11
+      - 12
+      - 14
+      - 15
+      - 16
+      - 17
+      - 19
+      - 22
+      - 24
+      - 26
+      - 27
+      - 31
+      NO-CONCURRENTE:
+      - 1
+      - 2
+      - 5
+      - 7
+      - 8
+      - 10
+      - 13
+      - 18
+      - 20
+      - 21
+      - 23
+      - 25
+      - 28
+      - 29
+      - 30
+      - 32
+  cruces: []
+  diferencias: []
+  contrastes:
+  - clave: voto_conc_menos_no
+    item: voto
+    celda_a: concurrencia=CONCURRENTE
+    celda_b: concurrencia=NO-CONCURRENTE
+  - clave: partido_importa_conc_menos_no
+    item: partido_importa
+    celda_a: concurrencia=CONCURRENTE
+    celda_b: concurrencia=NO-CONCURRENTE
+  - clave: voto_influye_conc_menos_no
+    item: voto_influye
+    celda_a: concurrencia=CONCURRENTE
+    celda_b: concurrencia=NO-CONCURRENTE
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M13-CIDECSES2015-FILAS
+  result_tabla: RESULT-ALT-M13-CIDECSES2015-TABLA
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M13-CIDECSES2015-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M13-CIDECSES2015-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo

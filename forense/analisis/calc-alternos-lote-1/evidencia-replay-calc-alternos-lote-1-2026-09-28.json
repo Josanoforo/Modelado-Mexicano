@@ -1,0 +1,336 @@
+[
+  {
+    "calc_id": "CALC-ALT-M05-LAPOP2019-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M05-LAPOP2019-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "3c8c8b6d669a9ebd1b8c5718ae5972b0fc53284592c33afd16fef3bf06c6bad9",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d,mexico_lapop_americasbarometer_2019_v1_0_w=c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M05-LAPOP2019-FILAS": null,
+        "RESULT-ALT-M05-LAPOP2019-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M05-LAPOP2019-FILAS\": null, \"RESULT-ALT-M05-LAPOP2019-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"3c8c8b6d669a9ebd1b8c5718ae5972b0fc53284592c33afd16fef3bf06c6bad9\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d,mexico_lapop_americasbarometer_2019_v1_0_w=c88f79ebb8e73c473cd78d894eb093261f172e736a35bd7bc677b4e8b1454a57\"}}\n\nAVISO corpus_loader: mexico_lapop_americasbarometer_2019_v1_0_w/Mexico_LAPOP_AmericasBarometer_2019_v1.0_W sin caché con constancia -> leo el original como TEXTO CRUDO\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M05-LAPOP2021-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M05-LAPOP2021-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "37c46274f8c7d3fdddac2b5c099c2105549909e29670e3f7aaa7a8607b73163f",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d,mex_2021_lapop_americasbarometer_v1_2_w=153fb0f81acfffb41bbe247b7fce81159350e1fdfcb342a14bb034bcb7d95566"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M05-LAPOP2021-FILAS": null,
+        "RESULT-ALT-M05-LAPOP2021-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M05-LAPOP2021-FILAS\": null, \"RESULT-ALT-M05-LAPOP2021-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"37c46274f8c7d3fdddac2b5c099c2105549909e29670e3f7aaa7a8607b73163f\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=c58ce5b697617654dd39056d799972e851fd78ae1e70dcec7c21c9e80bc0936d,mex_2021_lapop_americasbarometer_v1_2_w=153fb0f81acfffb41bbe247b7fce81159350e1fdfcb342a14bb034bcb7d95566\"}}\n\nAVISO corpus_loader: mex_2021_lapop_americasbarometer_v1_2_w/MEX_2021_LAPOP_AmericasBarometer_v1.2_w sin caché con constancia -> leo el original como TEXTO CRUDO\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M13-CIDECSES2015-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M13-CIDECSES2015-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "17908e8f8dceb1c93898f543b822b5e21f54165ee0a326ca3d4fd2b7664c4989",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3,cide_cses2015_nacional_poselectoral=1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M13-CIDECSES2015-FILAS": null,
+        "RESULT-ALT-M13-CIDECSES2015-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M13-CIDECSES2015-FILAS\": null, \"RESULT-ALT-M13-CIDECSES2015-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"17908e8f8dceb1c93898f543b822b5e21f54165ee0a326ca3d4fd2b7664c4989\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=ee5622fe023b9341637a7f173ae04922ca20bdf49e23c968806a8bddefef8be3,cide_cses2015_nacional_poselectoral=1ef01a17fe6ca10b73db9e988ac4dacac766a6b0759af43f1fd690d3f60d4d80\"}}\n\nAVISO corpus_loader: cide_cses2015_nacional_poselectoral/cide_cses2015_nacional_poselectoral sin caché con constancia -> leo el original como TEXTO CRUDO\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M19-ENCUCI2020-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M19-ENCUCI2020-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "0ebf9f6f48dd19a47be65f3a3fd57c5dfb2e4d48b2c761b9df5f3e1eb8bf89b2",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be,encuci2020_bd_dbf=0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M19-ENCUCI2020-FILAS": null,
+        "RESULT-ALT-M19-ENCUCI2020-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M19-ENCUCI2020-FILAS\": null, \"RESULT-ALT-M19-ENCUCI2020-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"0ebf9f6f48dd19a47be65f3a3fd57c5dfb2e4d48b2c761b9df5f3e1eb8bf89b2\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be,encuci2020_bd_dbf=0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283\"}}\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M19-WVS2018-REPRO-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M19-WVS2018-REPRO-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "c0acacf016320f01b46ecb2f4bf150f79719105cf73a0a3be97b123b95bc5d09",
+      "script_blob_sha256": "affac04414b111d149dcc3d80420a085f598eefdf7190165d7057e071f8003d1",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b,SVYSTAT=5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de,f00013084_wvs_wave_7_mexico_stata_v5_1=a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M19-WVS2018-REPRO-FILAS": null,
+        "RESULT-ALT-M19-WVS2018-REPRO-TABLA": null,
+        "RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-12,
+        "razon": "determinista, sin remuestreo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M19-WVS2018-REPRO-FILAS\": null, \"RESULT-ALT-M19-WVS2018-REPRO-TABLA\": null, \"RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-12, \"razon\": \"determinista, sin remuestreo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"c0acacf016320f01b46ecb2f4bf150f79719105cf73a0a3be97b123b95bc5d09\", \"script_blob_sha256\": \"affac04414b111d149dcc3d80420a085f598eefdf7190165d7057e071f8003d1\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b,SVYSTAT=5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de,f00013084_wvs_wave_7_mexico_stata_v5_1=a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4\"}}\n\nAVISO corpus_loader: f00013084_wvs_wave_7_mexico_stata_v5_1/WVS_Wave_7_Mexico_Stata_v5.1 sin caché con constancia -> leo el original como TEXTO CRUDO\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M22-ENVIPE2025-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M22-ENVIPE2025-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "21c07a14d9072317547f67c522754219abe0dd138f28d69869f7bb572595d1df",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=f0bdbe793be8bc8fb0f6fb25712b9fd35a8828a041e5ae1d5082ab4c57aa510e,envipe2025_csv=8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M22-ENVIPE2025-FILAS": null,
+        "RESULT-ALT-M22-ENVIPE2025-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M22-ENVIPE2025-FILAS\": null, \"RESULT-ALT-M22-ENVIPE2025-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"21c07a14d9072317547f67c522754219abe0dd138f28d69869f7bb572595d1df\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=f0bdbe793be8bc8fb0f6fb25712b9fd35a8828a041e5ae1d5082ab4c57aa510e,envipe2025_csv=8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa\"}}\n"
+  },
+  {
+    "calc_id": "CALC-ALT-M23-ENSAFI2023-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-M23-ENSAFI2023-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "ed6b6def6b5c73926681f52b8ab2c698eb10e99c1c88d29448ef3514a2f6ea83",
+      "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+      "input_sha256_efectivos": "CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce,ensafi2023_bd_csv_zip=c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-M23-ENSAFI2023-FILAS": null,
+        "RESULT-ALT-M23-ENSAFI2023-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-10,
+        "razon": "bootstrap fijado por semilla; sumas en orden fijo"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-M23-ENSAFI2023-FILAS\": null, \"RESULT-ALT-M23-ENSAFI2023-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-10, \"razon\": \"bootstrap fijado por semilla; sumas en orden fijo\"}}, \"identidad\": {\"spec_yaml_sha256\": \"ed6b6def6b5c73926681f52b8ab2c698eb10e99c1c88d29448ef3514a2f6ea83\", \"script_blob_sha256\": \"ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab\", \"input_sha256_efectivos\": \"CORPUS-LOADER=84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019,SPEC-HUMANA=a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce,ensafi2023_bd_csv_zip=c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd\"}}\n\nAVISO corpus_loader: ensafi2023_bd_csv_zip/TMODULO sin caché con constancia -> leo el original como TEXTO CRUDO\n"
+  },
+  {
+    "calc_id": "CALC-ALT-R03-ENCRIGE2020-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-R03-ENCRIGE2020-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "cbe809289948ad844d3175d2bf94f1d972ec0fcc93ad6d4dc35b1f795107c2fc",
+      "script_blob_sha256": "56510da27b48091832e535c43070d5eec213aee4196255d57e2eabaab8d39c93",
+      "input_sha256_efectivos": "SPEC-HUMANA=f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6,conjunto_de_datos_encrige_2020_csv=06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA": null,
+        "RESULT-ALT-R03-ENCRIGE2020-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-12,
+        "razon": "extracción determinista"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-R03-ENCRIGE2020-CONTROL-FORMULA\": null, \"RESULT-ALT-R03-ENCRIGE2020-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-12, \"razon\": \"extracción determinista\"}}, \"identidad\": {\"spec_yaml_sha256\": \"cbe809289948ad844d3175d2bf94f1d972ec0fcc93ad6d4dc35b1f795107c2fc\", \"script_blob_sha256\": \"56510da27b48091832e535c43070d5eec213aee4196255d57e2eabaab8d39c93\", \"input_sha256_efectivos\": \"SPEC-HUMANA=f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6,conjunto_de_datos_encrige_2020_csv=06864904426a6b2c18cdad63a8b7bcb995fd35333c44448ba3fb5a973b822c5a\"}}\n"
+  },
+  {
+    "calc_id": "CALC-ALT-R03-ENVE2024-0001",
+    "fecha_verificacion": "2026-09-28",
+    "proceso_aislado": true,
+    "comando": [
+      "/usr/bin/python3",
+      "-c",
+      "import json; import tools.corrida0 as c; e=json.load(open('data/corrida0/'+__import__('sys').argv[1]+'/ejecucion.json')); r=c.verify(__import__('sys').argv[1], imprime=False); i=c._identidad_replay(e); print(json.dumps({'verify':r,'identidad':{'spec_yaml_sha256':i[0],'script_blob_sha256':i[1],'input_sha256_efectivos':i[2]}},ensure_ascii=False))",
+      "CALC-ALT-R03-ENVE2024-0001"
+    ],
+    "exit_code": 0,
+    "resultado_replay": "REPRODUCE",
+    "contexto_replay": "IDENTICO",
+    "identidad": {
+      "spec_yaml_sha256": "abda0239c6dec6fec96d5c51a62e8619cce488e024296b30d765795a02f126de",
+      "script_blob_sha256": "56510da27b48091832e535c43070d5eec213aee4196255d57e2eabaab8d39c93",
+      "input_sha256_efectivos": "SPEC-HUMANA=f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6,conjunto_de_datos_enve_2024_csv=5b2c5efccd0dfc2e196c37c5004976a67b62248a0d159ca2384dbfb0f1b0cf33"
+    },
+    "detalle_verify": {
+      "veredicto": "REPRODUCE",
+      "contexto": "IDENTICO",
+      "resultado": "REPRODUCE",
+      "razones_contexto": [],
+      "deltas": {
+        "RESULT-ALT-R03-ENVE2024-CONTROL-FORMULA": null,
+        "RESULT-ALT-R03-ENVE2024-TABLA": null
+      },
+      "ids_faltantes": [],
+      "problemas_replay": [],
+      "tolerancia": {
+        "tipo": "flotante",
+        "abs": 1e-12,
+        "razon": "extracción determinista"
+      }
+    },
+    "salida_cruda": "{\"verify\": {\"veredicto\": \"REPRODUCE\", \"contexto\": \"IDENTICO\", \"resultado\": \"REPRODUCE\", \"razones_contexto\": [], \"deltas\": {\"RESULT-ALT-R03-ENVE2024-CONTROL-FORMULA\": null, \"RESULT-ALT-R03-ENVE2024-TABLA\": null}, \"ids_faltantes\": [], \"problemas_replay\": [], \"tolerancia\": {\"tipo\": \"flotante\", \"abs\": 1e-12, \"razon\": \"extracción determinista\"}}, \"identidad\": {\"spec_yaml_sha256\": \"abda0239c6dec6fec96d5c51a62e8619cce488e024296b30d765795a02f126de\", \"script_blob_sha256\": \"56510da27b48091832e535c43070d5eec213aee4196255d57e2eabaab8d39c93\", \"input_sha256_efectivos\": \"SPEC-HUMANA=f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6,conjunto_de_datos_enve_2024_csv=5b2c5efccd0dfc2e196c37c5004976a67b62248a0d159ca2384dbfb0f1b0cf33\"}}\n"
+  }
+]

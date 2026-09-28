@@ -1,0 +1,806 @@
+# CALC-PDR1-ENVIPE2025-0001 -- contrato ejecutable de forense/prereg-caja/PDR1-ENVIPE2025-spec-v1_0.md. COMMIT-1, antes de abrir microdato.
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-PDR1-ENVIPE2025-0001
+spec_md: ../../../forense/prereg-caja/PDR1-ENVIPE2025-spec-v1_0.md
+spec_md_sha256: 7ebef09ad5d2487763e4b1580547ff789dbc85bab179f96704debe3f4e3b41bb
+script: data/corrida0/CALC-PDR1-ENVIPE2025-0001/medidor.py
+dependencias_materiales:
+- numpy
+- pandas
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  cuenta_gen2_nota: propuesto por el encargo GEN2-PISOS-DOMINIOS-Y-REGLAS-1; no adopta
+  acto: GEN2-PISOS-DOMINIOS-Y-REGLAS-1
+  tipo: PISO-DESCRIPTIVO-RETROSPECTIVO
+  marca: RETROSPECTIVA
+  regla: RG-b91375cbd5
+  dominio: CAPITAL_SOCIAL
+inputs:
+- id: envipe2025_csv
+  origen: manifiesto
+  sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+  funcion: DATO
+  nota: ENVIPE 2025; sólo el miembro conjunto_de_datos_tper_vic1_envipe2025.csv, 12 columnas
+variables:
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: ID_PER
+  rol: 'llave de persona elegida'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: SEXO
+  rol: '1 Hombre 2 Mujer (FD p.17)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: EDAD
+  rol: 'años 18-96 (FD p.17)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: AP4_3_1
+  rol: '4.3 vivir en su colonia es seguro(1)/inseguro(2)/NS(9) (cuest. p.4, FD p.19)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: AP4_8_5
+  rol: '4.8 problemas de robos en su colonia 1/2/3/9 (cuest. p.5, FD p.24)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: AP4_9_5
+  rol: '4.9 se organizó la mayoría de vecinos para resolverlos 1/2/9/blanco (cuest. p.5, FD p.24)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: AP4_11_06
+  rol: '4.11 para protegerse de la delincuencia el hogar realizó acciones conjuntas con vecinos 1/2/9 (cuest. p.5, FD p.26)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: FAC_ELE
+  rol: 'ponderador persona elegida 18+ (FD p.43)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: DOMINIO
+  rol: 'U/C/R (FD p.43)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: ESTRATO
+  rol: 'estrato sociodemográfico 1 Bajo 2 Medio bajo 3 Medio alto 4 Alto (FD p.43-44)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: EST_DIS
+  rol: 'estrato de diseño (FD p.44)'
+- archivo: conjunto_de_datos_tper_vic1_envipe2025.csv
+  variable: UPM_DIS
+  rol: 'UPM de diseño (FD p.44)'
+universo: Persona elegida 18+ de tper_vic1 con FAC_ELE>0 (ENVIPE 2025, nacional).
+filtros: 'Y1 denominador AP4_11_06 en 1,2. Y2 denominador AP4_8_5=1 y AP4_9_5 en 1,2. NS/NR fuera.'
+ponderador: FAC_ELE sin normalizar
+transformacion: y=1{código 1}; razón de sumas ponderadas por celda Y x amenaza (AP4_3_1) x ESTRATO; contraste ALTO34 - E1 en pp.
+estimando: Proporción ponderada por celda con IC95 de diseño; dictamen B-bis sobre D34M1 de Y1 en colonia insegura, umbral 3 pp.
+parametros:
+  bootstrap_replicas: 2000
+  metodo_ic: bootstrap UPM_DIS con reposición dentro de EST_DIS; singleton se remuestrea a sí mismo; percentiles 2.5/97.5
+  umbral_confirma_pp: 3.0
+  ola: '2025 (referencia 2024)'
+seed:
+  aplica: true
+  valor: 42
+  rng: numpy.PCG64
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: misma semilla y sumas deterministas; enteros/textos exactos
+resultados:
+- id: RESULT-PDR1-ENVIPE2025-RGB913-N-FILAS
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-N-ESTRATOS
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-N-UPM
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-N-SINGLETON
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-METODO-IC
+  tipo: texto
+  unidad: texto
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-SEGURA-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-TOTAL-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-DID-INS-SEG-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-DID-INS-SEG-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-DID-INS-SEG-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-INSEGURA-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-SEGURA-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E1-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E1-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E1-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E1-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E2-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E2-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E2-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E2-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E3-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E3-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E3-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E3-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E4-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E4-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E4-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-E4-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-ALTO34-P
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-ALTO34-LO
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-ALTO34-HI
+  tipo: flotante
+  unidad: proporción 0-1
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-ALTO34-N
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-D34M1-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-D34M1-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-TOTAL-D34M1-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-DID-INS-SEG-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-DID-INS-SEG-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y2-DID-INS-SEG-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-H-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-H-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-H-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-H-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-H-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-M-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-M-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-M-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-M-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-SEXO-M-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-18A29-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-18A29-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-18A29-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-18A29-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-18A29-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-30A44-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-30A44-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-30A44-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-30A44-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-30A44-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-45A59-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-45A59-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-45A59-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-45A59-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-45A59-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-60MAS-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-60MAS-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-60MAS-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-60MAS-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-EDAD-60MAS-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-U-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-U-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-U-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-U-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-U-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-C-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-C-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-C-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-C-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-C-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-R-PP
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-R-LO
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-R-HI
+  tipo: flotante
+  unidad: pp
+  permite_no_estimable: true
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-R-NA
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-Y1-INSEGURA-D34M1-DOM-R-NB
+  tipo: entero
+  unidad: n sin ponderar
+- id: RESULT-PDR1-ENVIPE2025-RGB913-DICTAMEN
+  tipo: texto
+  unidad: texto

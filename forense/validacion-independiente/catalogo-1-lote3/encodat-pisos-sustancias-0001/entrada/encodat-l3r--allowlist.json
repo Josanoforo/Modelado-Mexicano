@@ -1,0 +1,136 @@
+{
+  "paquete": "encodat-pisos-sustancias-0001",
+  "identidad": {
+    "paquete": "encodat-pisos-sustancias-0001",
+    "version_entrada": "residuales-documentales-v2",
+    "sha256_entrada": "c8b50b5727b2317b589a970fabc1b678359afc49406748225044e0dedcbc0ec0"
+  },
+  "fuente_datos": {
+    "ENCODAT_2016_2017_Individual.dta": {
+      "zip": "data/raw/ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/02-Cuestionario individual/ENCODAT_2016_2017_Individual.stata.stata.zip",
+      "zip_sha256": "bb0c7d999e45bebcffb3a26da00bd2d5caa2d982de7d9e330211c11960153346"
+    },
+    "ENCODAT_2016_2017_Hogar.dta": {
+      "zip": "data/raw/ENCODAT/2016-2017/Bases de datos de ENCODAT 2016 2017/01-Cuestionario de Hogar/01-Información sobre el hogar/ENCODAT_2016_2017_Hogar.stata.stata.zip",
+      "zip_sha256": "716f58f817f3203ec2cba8d265d8812d3015bb9ffdb56a39ff50bd3ce1d0d781"
+    }
+  },
+  "campos_autorizados": {
+    "ENCODAT_2016_2017_Individual.dta": [
+      "id_pers",
+      "id_hogar",
+      "ds2",
+      "ds3",
+      "ds9",
+      "ponde_ss",
+      "al1",
+      "al4",
+      "al9",
+      "al11",
+      "tb02",
+      "tb05",
+      "tb50",
+      "di1a",
+      "di1b",
+      "di1c",
+      "di1d",
+      "di1e",
+      "di1f",
+      "di1g",
+      "di1h",
+      "di1i",
+      "dm1a",
+      "dm1b",
+      "dm1c",
+      "dm1d",
+      "tp1"
+    ],
+    "ENCODAT_2016_2017_Hogar.dta": [
+      "id_hogar",
+      "est_var",
+      "code_upm",
+      "estrato"
+    ]
+  },
+  "herramientas": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+  "autorizacion": [
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-03",
+    "FP-260927-GEN2-ASTRA6-C1-ENTRADAS-LOTE2-RESIDUALES-1-1653-01",
+    "acceso C1 firmado por mesa 28/sep (ver FIRMAS-Y-ACCESO.md)"
+  ],
+  "input_files": [
+    {
+      "path": "paquete/CONTRATO-v3.md",
+      "sha256": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb"
+    },
+    {
+      "path": "paquete/FIRMAS-Y-ACCESO.md",
+      "sha256": "071059b427a13a64fcba16bfa529fc95c06c708e03ad5022481422658116e42b"
+    },
+    {
+      "path": "paquete/cuestionario-encodat2016-hogar.pdf",
+      "sha256": "bc0175e2da0975a817cee8609a96089a0397bf9ec8c31f8603e3820de984ed7a"
+    },
+    {
+      "path": "paquete/cuestionario-encodat2016-individual.pdf",
+      "sha256": "6236d6f38a778b1c0bbdb8fe4f98bf6a042c1cd8a9cd0ca4c5efb9512b3c85a2"
+    },
+    {
+      "path": "paquete/datos/ENCODAT_2016_2017_Hogar.dta",
+      "sha256": "e44876452f274a9c779b187f2eadf3849d2ab38a7edee3e210663ee47e76c52e"
+    },
+    {
+      "path": "paquete/datos/ENCODAT_2016_2017_Individual.dta",
+      "sha256": "c2f2cee443ad049c3cbb1743ae48bf17200ae466cab88a542751ef9bfe81ac34"
+    },
+    {
+      "path": "paquete/esquema-identidades.tsv",
+      "sha256": "3fac92f541983be07769871150b6b045dcd2b6957fe4788ff85c48082368e3bd"
+    },
+    {
+      "path": "paquete/esquema-salida-v2.md",
+      "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4"
+    },
+    {
+      "path": "paquete/fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx",
+      "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e"
+    },
+    {
+      "path": "paquete/fd-encodat_2016_2017__encodat_2016_2017_individual_catalogo_xlsx.xlsx",
+      "sha256": "12afb670424e07f5833123a71bb0d4e4b42b4c3687a7879bd16718e2d9490b8b"
+    },
+    {
+      "path": "paquete/fd-encodat_2016_2017__encodat_2016_2017_integrantes_catalogo_xlsx.xlsx",
+      "sha256": "b7affa16021bfbc0bdd8ecb2e8fc363244b0bb625339fb64605ac108ff1fb5a0"
+    },
+    {
+      "path": "paquete/residuales-p3-contrato-ic.md",
+      "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb"
+    },
+    {
+      "path": "paquete/residuales-p3-modulos-ic.md",
+      "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98"
+    },
+    {
+      "path": "paquete/spec-acceso-insumos.md",
+      "sha256": "5083715b159f30fde3b2de0465c4bf6b85dfdbc0ee174786d20167640bcbd494"
+    },
+    {
+      "path": "paquete/spec-base-conductas.md",
+      "sha256": "5993fc17d9a537da9c1279ce691162fa05066d9582361098bb72007328bbeb6f"
+    },
+    {
+      "path": "paquete/spec-base-metodo.md",
+      "sha256": "5f0084a7a966223923bd048cebbd5ca32a3c466ab6e9c1d686386d24b63661de"
+    }
+  ]
+}

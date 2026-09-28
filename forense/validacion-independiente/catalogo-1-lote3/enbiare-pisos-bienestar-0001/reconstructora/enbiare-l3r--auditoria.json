@@ -1,0 +1,70 @@
+{
+  "comandos_con_red": [],
+  "init": {
+    "claude_code_version": "2.1.284",
+    "cwd": "/home/pc0/c1-sucesores-rec/enbiare-pisos-bienestar-0001",
+    "mcp_servers": [],
+    "model": "claude-opus-5-5",
+    "permissionMode": "acceptEdits",
+    "tools": [
+      "Bash",
+      "Edit",
+      "Glob",
+      "Grep",
+      "Read",
+      "Write"
+    ]
+  },
+  "llamadas": 23,
+  "modelos": [
+    "claude-opus-5-5"
+  ],
+  "paquete": "enbiare-pisos-bienestar-0001",
+  "por_herramienta": {
+    "Bash": 18,
+    "Write": 5
+  },
+  "resultado": {
+    "duration_ms": 347326,
+    "is_error": false,
+    "num_turns": 24,
+    "permission_denials": [
+      {
+        "tool_input": {
+          "command": "cd /home/pc0/c1-sucesores-rec/enbiare-pisos-bienestar-0001/paquete/datos && python3 -c \"\nfor f in ['TENBIARE.csv','TSDEM.csv']:\n    with open(f,'rb') as fh: h=fh.readline()\n    print(f, len(h.split(b',')), h[:3], h.decode('utf-8-sig').strip())\n\"; file TENBIARE.csv TSDEM.csv",
+          "description": "Read header rows of the CSV files"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_016rCH1vq8gtADGBVBeQQTRu"
+      },
+      {
+        "tool_input": {
+          "command": "python3 -c \"\nimport json,re,pandas as pd\ndef nodup(p):\n  d={}\n  for k,v in p:\n    assert k not in d; d[k]=v\n  return d\ndoc=json.load(open('salida/resultado.json'),object_pairs_hook=nodup)\nassert list(doc)==['version','identidad','filas'] and doc['version']==3\ns=pd.read_csv('paquete/esquema-identidades.tsv',sep='\\t',dtype=str,keep_default_na=False)\nassert [f['llave'] for f in doc['filas']]==s.llave.tolist() and [f['unidad'] for f in doc['filas']]==s.unidad.tolist()\ndec=re.compile(r'^-?\\d+(\\.\\d+)?([eE][-+]?\\d+)?$')\nfrom collections import Counter; c=Counter()\nfor f in doc['filas']:\n  if f['estado']=='RECONSTRUIDO':\n    assert dec.match(f['punto']); c[f['estado_ic']]+=1\n    if f['estado_ic']=='CALCULADO': assert float(f['ic95_inf'])<=float(f['punto'])<=float(f['ic95_sup'])\n  else: assert f.get('motivo') and not any(k in f for k in ('punto','ic95_inf','ic95_sup','estado_ic'))\nprint('OK',c)\nt=pd.read_csv('salida/diagnosticos-ic-v1.tsv',sep='\\t',dtype=str); print(t.shape, t.columns.tolist()[:3]); print(t.tipo_incertidumbre.value_counts().to_dict()); print(t.n_replicas_no_estimables.value_counts().to_dict())\nd=json.load(open('salida/diagnostico.json')); print(json.dumps(d['datos'],ensure_ascii=False))\nprint(Counter(l['publicabilidad'] for l in d['llaves']))\nx=[l for l in d['llaves'] if l['conducta']=='depresion-cesd7' and l['eje'] in('TOTAL','EDAD')][:2]; print(json.dumps(x,ensure_ascii=False))\n\"",
+          "description": "Validate output structure and summarize diagnostics"
+        },
+        "tool_name": "Bash",
+        "tool_use_id": "toolu_012yP6MfLHC8UJ2GpgVD3tDb"
+      }
+    ],
+    "subtype": "success",
+    "total_cost_usd": 1.6055274
+  },
+  "rutas_fuera_del_cwd": [
+    {
+      "id": "toolu_019u27muTRQHkmCTab4ZSUDG",
+      "ruta": "/g"
+    },
+    {
+      "id": "toolu_01GLp3w7bawNisnrcmPH8pTh",
+      "ruta": "/g"
+    }
+  ],
+  "session_id": "578cafdc-af24-40e8-870f-6efdf6e293a5",
+  "tokens_reactivo_no_autorizados": [],
+  "veredicto": {
+    "CAMPOS-DENTRO": true,
+    "CERO-LECTURAS-FUERA": false,
+    "SIN-RED": true,
+    "SOLO-OPUS": true
+  }
+}

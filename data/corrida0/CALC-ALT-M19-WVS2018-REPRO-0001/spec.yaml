@@ -1,0 +1,124 @@
+# CALC-ALT-M19-WVS2018-REPRO-0001 -- cara mecánica de ALT-M19-WVS2018-REPRO-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M19-WVS2018-REPRO-0001
+spec_md: ../../../forense/prereg-caja/ALT-M19-WVS2018-REPRO-spec-v1_0.md
+spec_md_sha256: b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b
+script: data/corrida0/CALC-ALT-M19-WVS2018-REPRO-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: REPRODUCCION-GEN1
+  dominio: confianza
+  ola: '2018'
+  momento: M19
+  holdout_gastado: M19
+  fila_mapa: 59
+  reproduce: RES-0194
+inputs:
+- id: f00013084_wvs_wave_7_mexico_stata_v5_1
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M19-WVS2018-REPRO-spec-v1_0.md
+  sha256: b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b
+- id: SVYSTAT
+  origen: repo
+  funcion: CODIGO
+  ruta: tests/svystat.py
+  sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+variables:
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: Q60
+  rol: 'puente: confía en conocidos 1-4'
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: Q61
+  rol: 'desenlace: confía en desconocidos 1-4'
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: Q70
+  rol: 'enforcement: confianza en tribunales 1-4'
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: N_REGION_ISO
+  rol: entidad
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: W_WEIGHT
+  rol: ponderador
+- archivo: WVS_Wave_7_Mexico_Stata_v5.1.dta
+  variable: I_PSU
+  rol: UPM (un solo estrato)
+universo: WVS 7 México 2018, 1741 filas; eje 2 sobre entidades con n>=30
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: W_WEIGHT
+transformacion: dicotomizaciones y eje 2 verbatim de hitoD-R8_3-especificacion §4; svystat.diff_ultimate_cluster
+estimando: d = p(confía|SIN PUENTE, ALTO) − p(confía|SIN PUENTE, BAJO); secundaria sin restringir; veredicto de reproducción
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: f00013084_wvs_wave_7_mexico_stata_v5_1
+  tabla: WVS_Wave_7_Mexico_Stata_v5.1
+  hash_payload_sha256: a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  svystat_sha256: 5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de
+  variables:
+    puente: Q60
+    desenlace: Q61
+    enforcement: Q70
+    peso: W_WEIGHT
+    entidad: N_REGION_ISO
+    upm: I_PSU
+  escala_4:
+  - 1
+  - 2
+  - 3
+  - 4
+  confia:
+  - 1
+  - 2
+  tiene_puente:
+  - 1
+  - 2
+  enforcement_alto:
+  - 1
+  - 2
+  n_minimo_entidad: 30
+  referencia_abridor:
+    entidades_elegibles: 19
+    mediana: 0.243483
+    p_alto: 0.04558
+    p_bajo: 0.050002
+    d: -0.004422
+  tolerancia_reproduccion: 5.0e-07
+  result_filas: RESULT-ALT-M19-WVS2018-REPRO-FILAS
+  result_veredicto: RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO
+  result_tabla: RESULT-ALT-M19-WVS2018-REPRO-TABLA
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M19-WVS2018-REPRO-FILAS
+  tipo: entero
+  unidad: filas del archivo
+- id: RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO
+  tipo: texto
+  unidad: REPRODUCE / NO-REPRODUCE
+- id: RESULT-ALT-M19-WVS2018-REPRO-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: eje 2, principal y secundaria, chequeos'
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: determinista, sin remuestreo

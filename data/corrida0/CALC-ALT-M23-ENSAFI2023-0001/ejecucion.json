@@ -1,0 +1,282 @@
+{
+ "corrida_id": "CALC-ALT-M23-ENSAFI2023-0001--0380cd1138c3",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyarrow": "25.0.1"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CALC-ALTERNOS-LOTE-1",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "dominio": "dinero",
+  "fila_mapa": 65,
+  "generacion": "GEN2",
+  "holdout_gastado": "M23",
+  "marca_temporal": "RETROSPECTIVA",
+  "momento": "M23",
+  "ola": "2023",
+  "origen_numerico": "MICRODATO",
+  "retador": "NO",
+  "theta": "NO",
+  "tipo": "PISO-DESCRIPTIVO-CONTRASTE"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:58:55Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "0380cd1138c3eea9a794f1e0dbb568f17a6daf60",
+  "git_rama": "acto/gen2-calc-alternos-lote-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "0380cd1138c3eea9a794f1e0dbb568f17a6daf60",
+ "input_ids": [
+  "ensafi2023_bd_csv_zip",
+  "CORPUS-LOADER",
+  "SPEC-HUMANA"
+ ],
+ "input_sha256": {
+  "CORPUS-LOADER": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "SPEC-HUMANA": "a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce",
+  "ensafi2023_bd_csv_zip": "c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "contrastes": [
+   {
+    "celda_a": "tloc=MENOS-2500",
+    "celda_b": "tloc=100MIL-Y-MAS",
+    "clave": "solo_informal_rural_menos_urbano",
+    "item": "solo_informal"
+   }
+  ],
+  "corpus_loader_sha256": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "cruces": [],
+  "derivadas": [
+   {
+    "no": [
+     2
+    ],
+    "nombre": "INFORMAL",
+    "si": [
+     1
+    ],
+    "tipo": "alguno",
+    "variables": [
+     "P6_1_1",
+     "P6_1_3",
+     "P6_1_4",
+     "P6_1_5",
+     "P6_1_6"
+    ]
+   },
+   {
+    "no": [
+     2
+    ],
+    "nombre": "TIENE_CUENTA",
+    "si": [
+     1
+    ],
+    "tipo": "alguno",
+    "variables": [
+     "P6_2_01",
+     "P6_2_02",
+     "P6_2_03",
+     "P6_2_04",
+     "P6_2_05",
+     "P6_2_06",
+     "P6_2_07",
+     "P6_2_08",
+     "P6_2_09",
+     "P6_2_10"
+    ]
+   },
+   {
+    "componentes": [
+     {
+      "falso": [
+       2
+      ],
+      "variable": "TIENE_CUENTA",
+      "verdad": [
+       1
+      ]
+     },
+     {
+      "falso": [
+       2
+      ],
+      "variable": "P6_3",
+      "verdad": [
+       1
+      ]
+     }
+    ],
+    "nombre": "FORMAL",
+    "tipo": "y"
+   },
+   {
+    "componentes": [
+     {
+      "falso": [
+       2
+      ],
+      "variable": "INFORMAL",
+      "verdad": [
+       1
+      ]
+     },
+     {
+      "falso": [
+       1
+      ],
+      "variable": "FORMAL",
+      "verdad": [
+       2
+      ]
+     }
+    ],
+    "nombre": "SOLO_INFORMAL",
+    "tipo": "y"
+   }
+  ],
+  "diferencias": [],
+  "diseno": {
+   "estrato": "EST_DIS",
+   "peso": "FAC_ELE",
+   "upm": [
+    "UPM_DIS"
+   ]
+  },
+  "grupos": [
+   {
+    "clave": "tloc",
+    "niveles": {
+     "100MIL-Y-MAS": [
+      1
+     ],
+     "15MIL-A-99MIL": [
+      2
+     ],
+     "2500-A-15MIL": [
+      3
+     ],
+     "MENOS-2500": [
+      4
+     ]
+    },
+    "variable": "TLOC"
+   }
+  ],
+  "hash_payload_sha256": "c0594079ddf4733d4f574d00f5e84290c62c5330eab0567dd867c26d42fafacd",
+  "items": [
+   {
+    "clave": "solo_informal",
+    "evento": [
+     1
+    ],
+    "validos": [
+     1,
+     2
+    ],
+    "variable": "SOLO_INFORMAL"
+   },
+   {
+    "clave": "informal",
+    "evento": [
+     1
+    ],
+    "validos": [
+     1,
+     2
+    ],
+    "variable": "INFORMAL"
+   },
+   {
+    "clave": "formal",
+    "evento": [
+     1
+    ],
+    "validos": [
+     1,
+     2
+    ],
+    "variable": "FORMAL"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "ensafi2023_bd_csv_zip",
+  "result_filas": "RESULT-ALT-M23-ENSAFI2023-FILAS",
+  "result_tabla": "RESULT-ALT-M23-ENSAFI2023-TABLA",
+  "tabla": "TMODULO",
+  "universo_filtros": []
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ALT-M23-ENSAFI2023-FILAS",
+  "RESULT-ALT-M23-ENSAFI2023-TABLA"
+ ],
+ "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+ "script_path": "data/corrida0/CALC-ALT-M23-ENSAFI2023-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260928
+ },
+ "spec_id": "CALC-ALT-M23-ENSAFI2023-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "a8dd96cffc27868b76e5d52d490c3002219aa18a46fac1076d7930d7c82f94ce",
+ "spec_yaml_sha256": "ed6b6def6b5c73926681f52b8ab2c698eb10e99c1c88d29448ef3514a2f6ea83",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "bootstrap fijado por semilla; sumas en orden fijo",
+  "tipo": "flotante"
+ }
+}

@@ -1,0 +1,36 @@
+{
+ "fragmentos": [
+  "ENADID2023-dictamenes.tsv",
+  "ENCUCI2020-dictamenes.tsv",
+  "ENIGH2022-dictamenes.tsv",
+  "ENSU2024-dictamenes.tsv",
+  "ENUT2024-dictamenes.tsv",
+  "ENVIPE2025-dictamenes.tsv",
+  "INE-dictamenes.tsv"
+ ],
+ "sin_cifra_v1_0": 145,
+ "sin_cifra_v1_1": 141,
+ "reglas_a_dictamen": 4,
+ "dictamen_reglas": {
+  "MATIZA": 1,
+  "CONFIRMA": 3,
+  "INCOMPARABLE": 1,
+  "NO-CONSTRUIBLE": 1
+ },
+ "dictamen_afirmaciones": {
+  "MATIZA": 8,
+  "CONFIRMA": 5
+ },
+ "dominios_con_piso_propuesto": [
+  "AUTORIDAD",
+  "RURAL_INDIGENA",
+  "SANCION_SOCIAL",
+  "TIEMPO"
+ ],
+ "n_dominios_con_piso_propuesto": 4,
+ "no_construible": [
+  "RG-b723d6e18b",
+  "RG-b91375cbd5"
+ ],
+ "errores": []
+}
