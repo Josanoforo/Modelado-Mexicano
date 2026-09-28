@@ -56,7 +56,7 @@ Lectura del estado (derivada; `python3 tools/tablero_carriles.py --json | jq '[.
 ## 4 · Defectos adyacentes arreglados (D-21, ≤ 10 líneas cada uno)
 
 - `tools/tablero_programa.py::DERIVADOS_DEL_CANAL` (+1 línea): el job derivados hace `git reset` tras cada trozo y deja en el árbol lo regenerado; sin la excepción, el guardián de `tablero_programa.py --actualiza` se negaría desde el segundo trozo por «árbol sucio». `python3 tests/test_tablero_programa.py` → 18 pruebas, 0 fallos.
-- `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` (+6 líneas): el tablero cita verbatim textos de firmas y NC; su primer rótulo pelado (`E1`) es letra de la hoja NC-DECISIONES-1. Censado por archivo porque el contenido cambia con cada `[deriva]`.
+- `tests/check.py::_T25_ARCHIVOS_CONOCIDOS` (+6 líneas): el tablero cita verbatim textos de firmas y NC; su primer rótulo pelado es una letra de la hoja NC-DECISIONES-1 (FP …f2e5-12). Censado por archivo porque el contenido cambia con cada `[deriva]`.
 - `.github/workflows/verify.yml` (+1 línea, la que el encargo pide): corre `--actualiza` tras `tablero_programa.py` y añade los dos archivos al árbol del trozo; si falla, avisa y no tumba la vista. Coordinación con TUBERIA-3: una sola línea, sin tocar las vecinas.
 
 ## 5 · Hallazgos (una línea en `forense/hallazgos.md` cada uno)
