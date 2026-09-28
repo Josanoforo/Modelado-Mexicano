@@ -4,6 +4,7 @@
 Uso:
     python3 forense/prereg-aperturas/inventario_aperturas.py            # imprime (no escribe; D-23)
     python3 forense/prereg-aperturas/inventario_aperturas.py --escribe  # escribe la vista y los expedientes mínimos
+    python3 forense/prereg-aperturas/inventario_aperturas.py --verifica # 0 si la vista casa con la derivación
 
 Universo (A.15, por id): `data/manifiesto.yaml`, entradas cuyo campo `estado_reserva`
 empieza por `RESERVADA` (vocabulario observado el 28/sep: `RESERVADA-NO-ABIERTA-NO-INDEXAR-L`,
@@ -16,6 +17,7 @@ Se añaden las olas que la reserva nombra por firma sin campo en el manifiesto (
 """
 from __future__ import annotations
 
+import functools
 import glob
 import os
 import re
@@ -53,9 +55,10 @@ FIRMA_SIN_CAMPO = {
 }
 
 
+@functools.lru_cache(maxsize=1)
 def _manifiesto():
     with open(os.path.join(RAIZ, "data", "manifiesto.yaml"), encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        return yaml.load(f, Loader=getattr(yaml, "CSafeLoader", yaml.SafeLoader))
 
 
 def _reservadas(m):
@@ -113,7 +116,8 @@ def filas():
         prog, ola = k
         es = g.get(k, [])
         ids = sorted(e["id"] for e in es) or extra.get(k, [])
-        vistos = sorted(c for c, t in specs.items() if any(re.search(rf"\b{re.escape(i)}\b", t) for i in ids))
+        pat = re.compile(r"\b(?:" + "|".join(map(re.escape, ids)) + r")\b") if ids else None
+        vistos = sorted(c for c, t in specs.items() if pat and pat.search(t))
         cont, fam, cita = CONTENDIENTES.get(k, ("NINGUNO", "NINGUNA", ""))
         estado = ";".join(sorted({str(e["estado_reserva"]) for e in es})) or FIRMA_SIN_CAMPO[k][1]
         nota = [cita] if cita else []
@@ -137,7 +141,9 @@ def filas():
 
 
 def _tsv(rows):
-    lin = ["# DERIVADO — NO EDITAR · python3 forense/prereg-aperturas/inventario_aperturas.py --escribe · ACTO GEN2-APERTURAS-PREREGISTRADAS-1",
+    # Cabecera de procedencia, no `# DERIVADO — NO EDITAR`: esa marca reserva el archivo al canal
+    # [deriva] (tools/derivados_protegidos.py); esta vista viaja versionada, como el crosswalk de carriles.
+    lin = [f"# {VISTA} · ACTO GEN2-APERTURAS-PREREGISTRADAS-1 · derivado por `python3 forense/prereg-aperturas/inventario_aperturas.py --escribe` (--verifica compara byte a byte). Nunca a mano.",
            "\t".join(COLUMNAS)]
     lin += ["\t".join(r[c].replace("\t", " ") for c in COLUMNAS) for r in rows]
     return "\n".join(lin) + "\n"
@@ -157,6 +163,11 @@ def _minimo(r):
 
 def main(argv):
     rows = filas()
+    if "--verifica" in argv:
+        with open(os.path.join(RAIZ, VISTA), encoding="utf-8") as f:
+            casa = f.read() == _tsv(rows)
+        print(f"{VISTA}: {'CASA' if casa else 'NO-CASA'}")
+        return 0 if casa else 1
     if "--escribe" not in argv:
         sys.stdout.write(_tsv(rows))
         return 0

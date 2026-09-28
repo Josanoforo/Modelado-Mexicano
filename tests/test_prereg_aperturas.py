@@ -175,6 +175,11 @@ def test_vista_cubre_toda_reservada():
     assert reservados and reservados - en_vista == set()
 
 
+def test_vista_casa_con_la_derivacion():
+    inv = _load("forense/prereg-aperturas/inventario_aperturas.py", "ap_inventario3")
+    assert inv.main(["--verifica"]) == 0
+
+
 def test_expediente_completo_donde_hay_contendiente():
     for fila in _vista():
         if fila["contendientes"] and fila["contendientes"] != "NINGUNO":
