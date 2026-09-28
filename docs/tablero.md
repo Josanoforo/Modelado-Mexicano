@@ -42,7 +42,7 @@ para qué hacer (y qué no hacer) con lo que sigue.
 - **Procedencia.** SHA `484d56cbe` · fecha del commit `2026-09-28` · ¿árbol == origin/main? `True`.
 - **Motor.** reglas totales `25` · reglas con dato (>=1 conducta MEDIDO*) `24` · reglas sin dato `1` · conductas MEDIDO* `58` · tiers `{'FUERTE': 20, 'MEDIA': 5}`.
 - **Marcador por segmento.** filas por estado: ADOPTADO-POR-FIRMA `52` · CONSUMIDA-SIN-PILOTO `1` · DIAGNOSTICO `8` · EVALUADA `57` · IDENTICO `89` · MEDIDA-POR-NSE `52` · MEDIDA-POR-NSE-APROXIMACION `24` · MEDIDA-POR-NSE-APROXIMACION-CIRCULAR `6` · NO-COMPARABLE `2` · RESERVADA `19` · SIN-PISO `15` · SUPRIMIDA-N `2` (total `327`) · cobertura de piso `111 / 327` · valor añadido / evaluadas `0 / 52` · celdas `emision = EMITIDA-SIN-EVALUAR` `13 / 327` · `veto_pisos_activo` `True`.
-- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 185 (selladas total `225`) · `PENDIENTE-DE-MESA`:
+- **Corridas selladas que no cuentan todavía.** por `cuenta_gen2`: `False` 1 · `NO` 18 · `NO-DERIVACION-CONTEXTUAL` 1 · `NO-SIN-FIRMA-DE-OBJETO` 1 · `PENDIENTE-DE-CASCADA-DIFERIDA` 2 · `PENDIENTE-DE-INTEGRACION-SERIAL` 2 · `PENDIENTE-DE-MESA` 15 · `SI` 205 (selladas total `245`) · `PENDIENTE-DE-MESA`:
   - `CALC-EDER2017-PRIMERA-UNION-SEXO-COHORTE-0002--18e3c08247d5`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0001--f22dc8014aec`: `NO-VERIFICADO`
   - `CALC-ENFIH2019-COBERTURA-SALDOS-CATPOS-0002--cd853c64a584`: `NO-VERIFICADO`
