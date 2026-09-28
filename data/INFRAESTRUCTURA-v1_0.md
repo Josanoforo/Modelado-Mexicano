@@ -1099,6 +1099,13 @@ Tablas propias en `forense/analisis/familias-2027-enoe-inferencia-1/diagnostico/
 
 Decisiones por afirmación y productores locales en `forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/{autoridad,civismo,comunalidad}/`. `verifica_lote.py` deriva índice y hashes de los resúmenes; cada verificador local coteja cobertura y referencias, sin clasificar juicios por regex. Consumidores: los tres homónimos en `corpus/reports-v2/`, recibo y hoja para mesa. No modifica mapa, catálogo, sellos, motor ni índice global. ADR-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01.
 
+## Pendientes 2 · dictamen por producto (`ACTO GEN2-TRAMITE-PENDIENTES-2`)
+
+| tabla | escritor | columnas | consumidor | nota |
+|---|---|---|---|---|
+| `forense/analisis/pendientes-2/vencidas-dictamen.tsv` | A MANO por el acto (lectores por lote, consolidado en el hilo principal) | `id, clase_p0, dictamen, ruta, comando, salida, fila_cerrada, nuevo_sucesor, token, nota` | criterio 1 del encargo; FIRMAS-21; próximo inventario | dictamen ∈ {CERRADA-POR-PRODUCTO, SUCESOR-SIN-PRODUCTO, SIN-OBJETO, NO-VERIFICABLE-AQUÍ}; universo = SUCESOR-YA-FUSIONADO de `nc_por_clase.py` a `a8c3e341`+P2, más §L |
+| `forense/analisis/pendientes-2/razones-normalizadas.tsv` | A MANO (script del acto) | `id, razon_antes, token, por_que` | auditoría de P3 | la prosa original sigue íntegra tras ` · ` en `no-corrido.tsv` |
+
 ## `canon/mapa-instrumentos-alternos-v1_0.tsv` y `forense/analisis/mapa-instrumentos-alternos/` — incógnita × instrumento × reactivo × acceso × ola (`ACTO GEN2-MAPA-INSTRUMENTOS-ALTERNOS-1`, 27/sep/2026)
 
 | tabla | cómo se produce | qué contiene | quién la consume | trampa |
