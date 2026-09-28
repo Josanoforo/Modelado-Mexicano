@@ -82,6 +82,7 @@ tests/test_consulta.py	pytest	NO	(ninguna)	NO	0.3	CORRE-EN-CI	exit 0 sin corpus
 tests/test_consulta_gen2.py	modulo	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEOUT>40s (con -m tests.test_consulta_gen2)
 tests/test_consumo_pisos_gen2.py	script	NO	numpy,pandas	NO	0.0	NECESITA-DEPENDENCIA(numpy)	ModuleNotFoundError: No module named 'numpy'
 tests/test_corpus.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
+tests/test_corpus_licencias.py	pytest	NO	(ninguna)	NO	8.5	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corpus_integridad_respaldo.py	script	NO	(ninguna)	SI	0.1	CORRE-EN-CI	exit 0 sin corpus
 tests/test_corredores_gen2.py	script	SI	(ninguna)	NO		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
 tests/test_corrida0.py	script	SI	(ninguna)	SI		CORRE-EN-CI	ya cableado en verify.yml y/o check.py
