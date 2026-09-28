@@ -40,3 +40,16 @@ Propio: `forense/validacion-independiente/catalogo-1-lote3/` y los expedientes d
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No adopta, no abre ENIF/ENUT/ENSANUT (lote 4 tras R13), no corre el CALC de remesas (RELEVO-TRAMITE-CAJA-2), no repara CI. Sucesores: C1-LOTE-4; CIERRE-SEMANAL-3 (catálogo v1.4). Módulo de auditoría v2.16 en la nota: unidad por instrumento (mujer, persona 18+, adolescente en ENCODAT); RETROSPECTIVA. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-C1-SUCESORES-Y-LOTE-3-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| R28: re-comparación ciega de las 4 ENCIG | DIFERIDO-A:GEN2-ASTRA6-C1-LOTE-4: el lote 3 no tiene paquete ENCIG ni acceso C1 a ENCIG firmado | 4 llaves siguen NO-CIEGA en la comparación del lote 2; su PASA de otra validación no cambia | NC-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 → GEN2-ASTRA6-C1-LOTE-4 |
+| R25: «ejecución de sucesores nuevos» (2011/2021) | FUERA-DE-PERÍMETRO: son CALC nuevos de ENDIREH 2011/2021, fuera de §9; acto dueño GEN2-C1-SUCESORES-2011-2021-1 | R25 firmado sin CALC ejecutado | NC-…-2385-02 → GEN2-C1-SUCESORES-2011-2021-1 |
+| P1: 90 llaves ENBIARE de seis escalas 0–10 | DIFERIDO-A:GEN2-SPEC-ENBIARE-ESCALAS-1: D-15 (el esquema dice proporcion; la spec dice media) | 66 de las 126 de R28 quedan NO-CIEGA-PENDIENTE; 24 sucesoras sin valor | NC-…-2385-03 → GEN2-SPEC-ENBIARE-ESCALAS-1 |
+| comparación «punto y ambos extremos del IC» (adjudicación de IC) | DECISIÓN-DE-MESA-PENDIENTE: R23 sin margen de equivalencia ni control simultáneo | ninguna fila PASA por IC; 215→215 | NC-…-2385-04 → FP-260928-GEN2-C1-SUCESORES-Y-LOTE-3-2385-01 |
+| «propuestas de suspensión/acotación para el catálogo v1.4» | DIFERIDO-A:GEN2-CIERRE-SEMANAL-3: las propuestas están hechas (r21-envipe-15-llaves.tsv, dictamen-lote3-v1_1.tsv), el catálogo es ajeno (§9) | catálogo v1.3 sin esos rótulos | NC-…-2385-05 → GEN2-CIERRE-SEMANAL-3 |
+| R33: CALC sucesor de remesas | DIFERIDO-A:GEN2-RELEVO-TRAMITE-CAJA-2 (el encargo: «solo spec») | los dos NO-PASA siguen formales | NC-…-2385-06 → GEN2-RELEVO-TRAMITE-CAJA-2 |
+
+Hoja RH de irreversibles: ninguna. La extensión de acceso a ENCUCI 2020 y ENIGH 2022 la firmó mesa en el chat del acto (verbatim en la nota). La única pregunta abierta, el margen de IC, es reversible y va en FP 2385-01.
