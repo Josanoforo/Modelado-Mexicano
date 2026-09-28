@@ -1,0 +1,84 @@
+# CALC-ALT-R03-ENVE2024-0001 -- cara mecánica de ALT-R03-TABULADOS-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-R03-ENVE2024-0001
+spec_md: ../../../forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md
+spec_md_sha256: f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6
+script: data/corrida0/CALC-ALT-R03-ENVE2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: TABULADO-OFICIAL
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: EXTRACCION-DESCRIPTIVA-TABULADOS-OFICIALES
+  unidad_transferencia: UNIDAD-DISTINTA-NO-TRANSFERENCIA
+  dominio: tramite
+  ola: '2024'
+  regla: R03+R08
+  holdout_gastado: NINGUNO
+  fila_mapa: R03-ENVE
+inputs:
+- id: conjunto_de_datos_enve_2024_csv
+  origen: manifiesto
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-R03-TABULADOS-spec-v1_0.md
+  sha256: f413ff1d623167207d5eb1021ecb114f2e3b283142a6af5b596934c3942cc7a6
+variables: []
+universo: 'ENVE 2024: unidades económicas, año de referencia 2023'
+filtros: filas de dominio declaradas en parametros.tablas
+ponderador: 'NO-REESTIMADO: estimaciones expandidas oficiales'
+transformacion: absolutos / denominador; control contra publicado
+estimando: proporción de unidades económicas por dominio e indicador; descriptivo, sin transferencia a persona
+precision: 'tabulados sin EE/CV/n: sin IC'
+seed:
+  aplica: false
+  valor: null
+  rng: NO-APLICA
+parametros:
+  payload_id: conjunto_de_datos_enve_2024_csv
+  hash_payload_sha256: 5b2c5efccd0dfc2e196c37c5004976a67b62248a0d159ca2384dbfb0f1b0cf33
+  encoding: utf-8
+  tablas:
+  - clave: t1_21
+    archivo: t1_21.csv
+    denominador: Unidades económicas
+    dominios:
+    - Estados Unidos Mexicanos
+    - Comercio
+    - Industria
+    - Servicios
+    indicadores: &id001
+    - clave: VICTIMA-CORRUPCION
+      numerador: Víctimas por corrupción_Sí_Absolutos
+      publicado: Víctimas por corrupción_Sí_Relativos
+      escala_publicado: 100
+  - clave: t1_22
+    archivo: t1_22.csv
+    denominador: Unidades económicas
+    dominios:
+    - Estados Unidos Mexicanos
+    - Micro
+    - Pequeña
+    - Mediana
+    - Grande
+    indicadores: *id001
+  tolerancia_formula: 5.0e-05
+  result_tabla: RESULT-ALT-R03-ENVE2024-TABLA
+  result_control: RESULT-ALT-R03-ENVE2024-CONTROL-FORMULA
+dependencias_materiales: []
+resultados:
+- id: RESULT-ALT-R03-ENVE2024-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: proporción por (tabla, dominio, indicador)'
+- id: RESULT-ALT-R03-ENVE2024-CONTROL-FORMULA
+  tipo: texto
+  unidad: PASA / FALLA
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-12
+  razon: extracción determinista

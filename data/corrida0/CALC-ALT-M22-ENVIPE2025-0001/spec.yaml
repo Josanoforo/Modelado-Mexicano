@@ -1,0 +1,209 @@
+# CALC-ALT-M22-ENVIPE2025-0001 -- cara mecánica de ALT-M22-ENVIPE2025-spec-v1_0.md (acto GEN2-CALC-ALTERNOS-LOTE-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-ALT-M22-ENVIPE2025-0001
+spec_md: ../../../forense/prereg-caja/ALT-M22-ENVIPE2025-spec-v1_0.md
+spec_md_sha256: f0bdbe793be8bc8fb0f6fb25712b9fd35a8828a041e5ae1d5082ab4c57aa510e
+script: data/corrida0/CALC-ALT-M22-ENVIPE2025-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  marca_temporal: RETROSPECTIVA
+  acto: GEN2-CALC-ALTERNOS-LOTE-1
+  retador: 'NO'
+  theta: 'NO'
+  tipo: PISO-DESCRIPTIVO
+  dominio: denuncia
+  ola: '2025'
+  momento: M22
+  holdout_gastado: M22
+  fila_mapa: 60
+inputs:
+- id: envipe2025_csv
+  origen: manifiesto
+- id: CORPUS-LOADER
+  origen: repo
+  funcion: CODIGO
+  ruta: tools/corpus_loader.py
+  sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/prereg-caja/ALT-M22-ENVIPE2025-spec-v1_0.md
+  sha256: f0bdbe793be8bc8fb0f6fb25712b9fd35a8828a041e5ae1d5082ab4c57aa510e
+variables:
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BPCOD
+  rol: 'filtro: delitos personales 05..15'
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_20
+  rol: 'filtro: no denunciado = 2'
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: BP1_23
+  rol: 'desenlace: razón principal 01..08; evento miedo {01,02}; 09/99/blanco fuera'
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: ID_PER
+  rol: llave a TPER_VIC2
+- archivo: conjunto_de_datos_tper_vic2_envipe2025.csv
+  variable: CVE_ENT
+  rol: 'grupo: entidad de residencia'
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: FAC_DEL
+  rol: ponderador del delito
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: EST_DIS
+  rol: estrato
+- archivo: conjunto_de_datos_tmod_vic_envipe2025.csv
+  variable: UPM_DIS
+  rol: UPM
+universo: ENVIPE 2025, delitos personales no denunciados con razón principal 01..08; unidad delito
+filtros: ver parametros.universo_filtros y spec humana
+ponderador: FAC_DEL
+transformacion: indicadora miedo {01,02}; proporción ponderada por entidad; IC bootstrap UPM en estrato
+estimando: p(no denuncia por miedo) nacional y por CVE_ENT de residencia; unidad delito; RETROSPECTIVA, descriptivo
+seed:
+  aplica: true
+  valor: 20260928
+  rng: numpy.PCG64
+parametros:
+  payload_id: envipe2025_csv
+  tabla: conjunto_de_datos_tmod_vic_envipe2025
+  hash_payload_sha256: 8a7a99fd90ce9d03229759ba0ad84db4fba98b5bb1f5c85eef7d718b007816fa
+  corpus_loader_sha256: 84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019
+  diseno:
+    estrato: EST_DIS
+    upm:
+    - UPM_DIS
+    peso: FAC_DEL
+  universo_filtros:
+  - variable: BPCOD
+    validos:
+    - 5
+    - 6
+    - 7
+    - 8
+    - 9
+    - 10
+    - 11
+    - 12
+    - 13
+    - 14
+    - 15
+  - variable: BP1_20
+    validos:
+    - 2
+  items:
+  - clave: no_denuncia_por_miedo
+    variable: BP1_23
+    validos:
+    - 1
+    - 2
+    - 3
+    - 4
+    - 5
+    - 6
+    - 7
+    - 8
+    evento:
+    - 1
+    - 2
+    faltantes:
+    - 9
+    - 99
+  grupos:
+  - clave: ent
+    variable: CVE_ENT
+    niveles:
+      '01':
+      - 1
+      '02':
+      - 2
+      '03':
+      - 3
+      '04':
+      - 4
+      '05':
+      - 5
+      '06':
+      - 6
+      '07':
+      - 7
+      08:
+      - 8
+      09:
+      - 9
+      '10':
+      - 10
+      '11':
+      - 11
+      '12':
+      - 12
+      '13':
+      - 13
+      '14':
+      - 14
+      '15':
+      - 15
+      '16':
+      - 16
+      '17':
+      - 17
+      '18':
+      - 18
+      '19':
+      - 19
+      '20':
+      - 20
+      '21':
+      - 21
+      '22':
+      - 22
+      '23':
+      - 23
+      '24':
+      - 24
+      '25':
+      - 25
+      '26':
+      - 26
+      '27':
+      - 27
+      '28':
+      - 28
+      '29':
+      - 29
+      '30':
+      - 30
+      '31':
+      - 31
+      '32':
+      - 32
+  cruces: []
+  diferencias: []
+  contrastes: []
+  bootstrap_replicas: 2000
+  n_minimo: 30
+  result_filas: RESULT-ALT-M22-ENVIPE2025-FILAS
+  result_tabla: RESULT-ALT-M22-ENVIPE2025-TABLA
+  union:
+    tabla: conjunto_de_datos_tper_vic2_envipe2025
+    llave: ID_PER
+    columnas:
+    - CVE_ENT
+dependencias_materiales:
+- numpy
+- pandas
+- pyarrow
+resultados:
+- id: RESULT-ALT-M22-ENVIPE2025-FILAS
+  tipo: entero
+  unidad: filas del miembro leído
+- id: RESULT-ALT-M22-ENVIPE2025-TABLA
+  tipo: texto
+  unidad: 'REF:tablas/tabla.json#sha256 -- JSON canónico: embudo, celdas (p, n, IC95), diferencias y contrastes'
+  permite_no_estimable: true
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por semilla; sumas en orden fijo

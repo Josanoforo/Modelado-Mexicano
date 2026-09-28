@@ -1,0 +1,159 @@
+{
+ "corrida_id": "CALC-ALT-M19-WVS2018-REPRO-0001--b1a2bd40a1f9",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyarrow": "25.0.1"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CALC-ALTERNOS-LOTE-1",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "dominio": "confianza",
+  "fila_mapa": 59,
+  "generacion": "GEN2",
+  "holdout_gastado": "M19",
+  "marca_temporal": "RETROSPECTIVA",
+  "momento": "M19",
+  "ola": "2018",
+  "origen_numerico": "MICRODATO",
+  "reproduce": "RES-0194",
+  "retador": "NO",
+  "theta": "NO",
+  "tipo": "REPRODUCCION-GEN1"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:59:45Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "b1a2bd40a1f9f8561a894f11e8f302f7a3b84dca",
+  "git_rama": "acto/gen2-calc-alternos-lote-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "b1a2bd40a1f9f8561a894f11e8f302f7a3b84dca",
+ "input_ids": [
+  "f00013084_wvs_wave_7_mexico_stata_v5_1",
+  "CORPUS-LOADER",
+  "SPEC-HUMANA",
+  "SVYSTAT"
+ ],
+ "input_sha256": {
+  "CORPUS-LOADER": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "SPEC-HUMANA": "b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b",
+  "SVYSTAT": "5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de",
+  "f00013084_wvs_wave_7_mexico_stata_v5_1": "a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4"
+ },
+ "parametros": {
+  "confia": [
+   1,
+   2
+  ],
+  "corpus_loader_sha256": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "enforcement_alto": [
+   1,
+   2
+  ],
+  "escala_4": [
+   1,
+   2,
+   3,
+   4
+  ],
+  "hash_payload_sha256": "a676a7601e25cb15a670828d8bf2990d8a73958c7367118c3a5293c6ae84d9a4",
+  "n_minimo_entidad": 30,
+  "payload_id": "f00013084_wvs_wave_7_mexico_stata_v5_1",
+  "referencia_abridor": {
+   "d": -0.004422,
+   "entidades_elegibles": 19,
+   "mediana": 0.243483,
+   "p_alto": 0.04558,
+   "p_bajo": 0.050002
+  },
+  "result_filas": "RESULT-ALT-M19-WVS2018-REPRO-FILAS",
+  "result_tabla": "RESULT-ALT-M19-WVS2018-REPRO-TABLA",
+  "result_veredicto": "RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO",
+  "svystat_sha256": "5d97b1362dbf31845bb2080f479ac3022921579546a7b327cbd7e1204e4959de",
+  "tabla": "WVS_Wave_7_Mexico_Stata_v5.1",
+  "tiene_puente": [
+   1,
+   2
+  ],
+  "tolerancia_reproduccion": 5e-07,
+  "variables": {
+   "desenlace": "Q61",
+   "enforcement": "Q70",
+   "entidad": "N_REGION_ISO",
+   "peso": "W_WEIGHT",
+   "puente": "Q60",
+   "upm": "I_PSU"
+  }
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ALT-M19-WVS2018-REPRO-FILAS",
+  "RESULT-ALT-M19-WVS2018-REPRO-TABLA",
+  "RESULT-ALT-M19-WVS2018-REPRO-VEREDICTO"
+ ],
+ "script_blob_sha256": "affac04414b111d149dcc3d80420a085f598eefdf7190165d7057e071f8003d1",
+ "script_path": "data/corrida0/CALC-ALT-M19-WVS2018-REPRO-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260928
+ },
+ "spec_id": "CALC-ALT-M19-WVS2018-REPRO-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "b988adbdb07e7aa16c0f81b7fbfe67c215d32f1beffd5eba1847e686540ef87b",
+ "spec_yaml_sha256": "c0acacf016320f01b46ecb2f4bf150f79719105cf73a0a3be97b123b95bc5d09",
+ "tolerancia": {
+  "abs": 1e-12,
+  "razon": "determinista, sin remuestreo",
+  "tipo": "flotante"
+ }
+}
