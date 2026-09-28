@@ -3023,6 +3023,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 _T25_ARCHIVOS_CONOCIDOS = {
     # GEN2-ASTRA-CONTINUIDAD-C2-1 (28/sep/2026): encargo verbatim (A.3) cita B4/E3/E4 de la hoja NC-DECISIONES-1 (FP …f2e5-06/14/15).
     "forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1.md",
+    # GEN2-TUBERIA-Y-CURACION-1 (28/sep/2026): encargo verbatim (A.3), §10 «no ejecuta
+    # B4/E3/E4 (C2) ni F3/F4/H4 (caja)» -- mismos rótulos pelados de la hoja NC-DECISIONES-1
+    # que ya censó GEN2-ASTRA-CONTINUIDAD-C2-1 arriba, citados aquí por otro acto que lee la
+    # misma hoja.
+    "forense/encargos/2026-09-28-GEN2-TUBERIA-Y-CURACION-1.md",
     # ACTO GEN2-OBTENCION-EXTERNA-1, 28/sep/2026: `M09`/`M10`/`M14`/`M21`/`M22` son momentos del catálogo
     # milpa/catalogo-momentos-v0_1.tsv (consumidores de cada solicitud); el encargo (verbatim, A.3) dice
     # además «son E1 de mesa» por los registros con identidad — rótulo de mesa, no de acto.
