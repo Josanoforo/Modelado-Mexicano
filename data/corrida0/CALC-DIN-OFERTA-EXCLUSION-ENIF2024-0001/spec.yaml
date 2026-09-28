@@ -1,0 +1,312 @@
+# CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001 -- cara mecánica de la spec humana (acto GEN2-ASTRA6-C2-EJECUCION-1).
+# El primer resultado que produzca este procedimiento es el que se reporta.
+calc_id: CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001
+spec_md: ../../../forense/analisis/familias-2027/astra6-enif/DIN-OFERTA-EXCLUSION-ENIF2024-spec-v1_0.md
+spec_md_sha256: 3d2d94f077c14cfac05293f7eef62cc4f58df9946209d0fc726ba4f10e106410
+script: data/corrida0/CALC-DIN-OFERTA-EXCLUSION-ENIF2024-0001/medidor.py
+etiquetas:
+  generacion: GEN2
+  cuenta_gen2: SI
+  adopta: 'NO'
+  origen_numerico: MICRODATO
+  tipo: DESCRIPCION-MOTIVOS-DECLARADOS
+  dominio: cuenta (al lado del marginal de ahorro formal)
+  ola: '2024'
+  marca_temporal: RETROSPECTIVA
+  exposicion_historica: CIEGO-A-VALORES-ESTRUCTURA-LEIDA
+  acto: GEN2-ASTRA6-C2-EJECUCION-1
+inputs:
+- id: enif_2024_enif_2024_bd_csv
+  origen: manifiesto
+- id: MEDIDOR-BASE
+  origen: repo
+  funcion: CODIGO
+  ruta: data/corrida0/CALC-ENIF-0001/medidor.py
+  sha256: 6ac67a014b0ea46ecf5966595a8ce0c0a9bf818ea8f809163c78fd3870208e02
+- id: SPEC-HUMANA
+  origen: repo
+  funcion: METADATO
+  ruta: forense/analisis/familias-2027/astra6-enif/DIN-OFERTA-EXCLUSION-ENIF2024-spec-v1_0.md
+  sha256: 3d2d94f077c14cfac05293f7eef62cc4f58df9946209d0fc726ba4f10e106410
+variables:
+- archivo: TMODULO.csv
+  variable: FAC_PER
+  rol: ponderador persona
+- archivo: TMODULO.csv
+  variable: EST_DIS
+  rol: estrato de diseño (cadena opaca)
+- archivo: TMODULO.csv
+  variable: UPM_DIS
+  rol: UPM de diseño (cadena opaca)
+- archivo: TMODULO.csv
+  variable: EDAD_V
+  rol: guardia de población 18…98 (no filtro)
+- archivo: TMODULO.csv
+  variable: P5_19
+  rol: '5.19 alguna vez tuvo cuenta: 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_20
+  rol: '5.20 razón principal de no tenencia (nunca usuario): 01…10'
+- archivo: TMODULO.csv
+  variable: P5_21
+  rol: '5.21 razón principal de dejar de tener (ex usuario): 1…9'
+- archivo: TMODULO.csv
+  variable: P5_4_1
+  rol: '5.4 inciso 1: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_2
+  rol: '5.4 inciso 2: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_3
+  rol: '5.4 inciso 3: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_4
+  rol: '5.4 inciso 4: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_5
+  rol: '5.4 inciso 5: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_6
+  rol: '5.4 inciso 6: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_7
+  rol: '5.4 inciso 7: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_8
+  rol: '5.4 inciso 8: tenencia de cuenta, 1 sí, 2 no'
+- archivo: TMODULO.csv
+  variable: P5_4_9
+  rol: '5.4 inciso 9: tenencia de cuenta, 1 sí, 2 no'
+universo: 'U_B: personas elegidas de TMODULO ENIF 2024 con FAC_PER finito >0; cohorte = no usuarios de cuenta (5.4.1–9 todas 2) con EST_DIS/UPM_DIS válidos'
+filtros: sin filtro de edad (EDAD_V es guardia, se cuenta); uso desconocido y sin diseño se cuentan y no entran
+ponderador: FAC_PER
+transformacion: clase de la razón principal por texto de opción (spec §2, regla de v1.0); partición OFERTA/PREFERENCIA/OTRO-NS; cobertura, pase estructural, no respuesta, submotivos
+estimando: proporciones nacionales entre no usuarios de cuenta en U_B; contexto SIN-CUENTA-UB; motivos declarados, sin atribución causal
+seed:
+  aplica: true
+  rng: numpy.PCG64 (default_rng)
+  valor: 20260909
+parametros:
+  ola: '2024'
+  bootstrap_replicas: 2000
+  metodo_ic: '_ic de CALC-ENIF-0001: UPM con reemplazo dentro de EST_DIS, percentiles 2.5/97.5; mismo plan por estimando'
+dependencias_materiales:
+- numpy
+resultados:
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OFERTA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OFERTA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OFERTA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PREFERENCIA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PREFERENCIA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PREFERENCIA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OTRO-NS-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OTRO-NS-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-OTRO-NS-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-COBERTURA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-COBERTURA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-COBERTURA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PASE-ESTRUCTURAL-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PASE-ESTRUCTURAL-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-PASE-ESTRUCTURAL-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-NO-RESPUESTA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-NO-RESPUESTA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-NO-RESPUESTA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONFIANZA-O-SERVICIO-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONFIANZA-O-SERVICIO-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONFIANZA-O-SERVICIO-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONOCIMIENTO-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONOCIMIENTO-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-DESCONOCIMIENTO-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-FRAUDE-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-FRAUDE-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-FRAUDE-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-IMPUESTOS-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-IMPUESTOS-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-IMPUESTOS-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-INGRESO-INSUFICIENTE-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-INGRESO-INSUFICIENTE-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-INGRESO-INSUFICIENTE-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-MALA-EXPERIENCIA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-MALA-EXPERIENCIA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-MALA-EXPERIENCIA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-OTRA-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-OTRA-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SUB-OTRA-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: no usuarios de cuenta en U_B con diseño válido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SIN-CUENTA-UB-P
+  tipo: proporcion
+  unidad: 'proporción ponderada FAC_PER; denominador: personas de U_B con diseño válido y uso conocido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SIN-CUENTA-UB-IC-LO
+  tipo: proporcion
+  unidad: 'límite inferior IC95 percentil bootstrap UPM en estrato; denominador: personas de U_B con diseño válido y uso conocido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-SIN-CUENTA-UB-IC-HI
+  tipo: proporcion
+  unidad: 'límite superior IC95 percentil bootstrap UPM en estrato; denominador: personas de U_B con diseño válido y uso conocido'
+  permite_no_estimable: true
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-FILAS
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-UB
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-PESO-INVALIDO
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-SIN-DISENO
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-USO-DESCONOCIDO
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-N-EDAD-FUERA
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-NO-USUARIOS-N
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-NUNCA-N
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-EX-USUARIOS-N
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-BATERIA-OBS-N
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-ESTRATOS-UPM-UNICA
+  tipo: entero
+  unidad: personas (filas TMODULO) / estratos, conteo de embudo
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-ESTADO
+  tipo: texto
+  unidad: estado / diagnóstico declarado en la spec
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-METODO-IC
+  tipo: texto
+  unidad: estado / diagnóstico declarado en la spec
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-ENCODING
+  tipo: texto
+  unidad: estado / diagnóstico declarado en la spec
+- id: RESULT-DIN-OFERTA-EXCLUSION-ENIF2024-CUENTA-UB-COLUMNAS-AUSENTES
+  tipo: texto
+  unidad: estado / diagnóstico declarado en la spec
+tolerancia:
+  tipo: flotante
+  abs: 1.0e-10
+  razon: bootstrap fijado por seed y sumas en orden fijo de fila; enteros y textos exactos
