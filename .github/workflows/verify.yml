@@ -59,6 +59,10 @@ jobs:
   suite:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 · P1: el resumen sale como output del job
+    # (sin actions de marketplace) y lo publica `resumen-suite`.
+    outputs:
+      resumen_b64: ${{ steps.resumen.outputs.resumen_b64 }}
     steps:
       - name: Checkout sin marketplace (repo público — cero descargas de action)
         run: |
@@ -90,7 +94,25 @@ jobs:
           python3 -m uv pip install --python "$RUNNER_TEMP/venv/bin/python" -r requirements.txt
 
       - name: Suite de verificación (modo línea base — verde = no empeoraste)
-        run: time python3 tests/check.py --baseline --parallel
+        # GEN2-TUBERIA-RESUMEN-SUITE-1 · P1: mismo comando, una sola corrida;
+        # el log y la duración quedan en RUNNER_TEMP para el resumen.
+        run: |
+          set -o pipefail
+          date +%s > "$RUNNER_TEMP/suite.t0"
+          time python3 tests/check.py --baseline --parallel 2>&1 | tee "$RUNNER_TEMP/suite.log"
+
+      - name: Resumen de la suite (solo nocturno o manual sobre main; no vuelve a correrla)
+        id: resumen
+        if: ${{ always() && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+        run: |
+          set -euo pipefail
+          [ -f "$RUNNER_TEMP/suite.log" ] || : > "$RUNNER_TEMP/suite.log"
+          T0="$(cat "$RUNNER_TEMP/suite.t0" 2>/dev/null || date +%s)"
+          python3 tools/resumen_suite.py construye --log "$RUNNER_TEMP/suite.log" \
+            --commit "$(git rev-parse HEAD)" --duracion-s "$(( $(date +%s) - T0 ))" \
+            --run-id "${{ github.run_id }}" > "$RUNNER_TEMP/suite-resumen.tsv"
+          cat "$RUNNER_TEMP/suite-resumen.tsv" | head -n 12
+          echo "resumen_b64=$(base64 -w0 "$RUNNER_TEMP/suite-resumen.tsv")" >> "$GITHUB_OUTPUT"
 
       - name: Transporte paralelo, compuerta y semántica del baseline (bloqueante)
         run: |
@@ -707,6 +729,61 @@ jobs:
               break
             fi
           done
+
+  # ACTO GEN2-TUBERIA-RESUMEN-SUITE-1 · P1 (27/sep/2026). Publica el resumen
+  # de la suite del nocturno (o de un workflow_dispatch sobre main) como
+  # `data/derivados/suite-resumen.tsv`, por su propio PR `[deriva]` (el
+  # auto-merge lo reconoce por el prefijo del commit). Job aparte y no en
+  # `derivados`: no suma tiempo al drenaje de trozos, no toca su rama
+  # (`derivados/auto-*`) ni cierra sus PR, y la suite no corre dos veces --
+  # lee el output de `suite`. Nunca empuja a main (D-23).
+  resumen-suite:
+    needs: [suite]
+    if: ${{ always() && needs.suite.outputs.resumen_b64 != '' && github.ref == 'refs/heads/main' && (github.event_name == 'schedule' || github.event_name == 'workflow_dispatch') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: resumen-suite-main
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RESUMEN_B64: ${{ needs.suite.outputs.resumen_b64 }}
+    steps:
+      - name: Publica el resumen por PR [deriva] (checkout sin marketplace)
+        run: |
+          set -euo pipefail
+          git init -q .
+          git remote add origin "https://github.com/${{ github.repository }}.git"
+          git config "http.https://github.com/.extraheader" "AUTHORIZATION: basic $(printf 'x-access-token:%s' "$GH_TOKEN" | base64 -w0)"
+          git -c protocol.version=2 fetch -q --depth=1 --no-tags origin +refs/heads/main:refs/remotes/origin/main
+          git checkout -q refs/remotes/origin/main
+          git config user.name "gen2-derivador"
+          git config user.email "gen2-derivador@users.noreply.github.com"
+          mkdir -p data/derivados
+          printf '%s' "$RESUMEN_B64" | base64 -d > data/derivados/suite-resumen.tsv
+          head -n 12 data/derivados/suite-resumen.tsv
+          git add -- data/derivados/suite-resumen.tsv
+          if git diff --cached --quiet; then echo "resumen idéntico al de main: nada que publicar"; exit 0; fi
+          EVAL="$(awk -F'\t' '$1=="commit"{print substr($2,1,8)}' data/derivados/suite-resumen.tsv)"
+          RES="$(awk -F'\t' '$1=="resultado"{print $2}' data/derivados/suite-resumen.tsv)"
+          BRANCH="derivados/suite-${{ github.run_id }}"
+          git commit -q -m "[deriva] resumen de suite: $RES @ $EVAL (run ${{ github.run_id }})"
+          git push -q origin "HEAD:refs/heads/$BRANCH"
+          PR="$(gh pr create --base main --head "$BRANCH" \
+            --title "[deriva] resumen de suite $RES @ $EVAL" \
+            --body "Derivado por tools/resumen_suite.py desde el log del job suite del run ${{ github.run_id }} (GEN2-TUBERIA-RESUMEN-SUITE-1). Un solo archivo: data/derivados/suite-resumen.tsv. Ninguna adjudicación cambia.")"
+          echo "PR: $PR"
+          # Un solo resumen vivo: los anteriores `derivados/suite-*` abiertos
+          # quedan superados por éste (sólo esta clase; nunca `derivados/auto-*`).
+          for N in $(gh pr list --state open --limit 50 --json number,headRefName \
+              --jq ".[] | select(.headRefName | startswith(\"derivados/suite-\")) | select(.headRefName != \"$BRANCH\") | .number"); do
+            gh pr close "$N" --delete-branch --comment "Superado por $PR (resumen de suite más reciente)." || echo "no se pudo cerrar #$N (no bloquea)"
+          done
+          gh workflow run verify.yml --ref "$BRANCH"
 
   # ACTO GEN2-TUBERIA-PREFLIGHT-CI-1 (21/sep/2026). `corrida0 preflight` sobre
   # los CALC SIN SELLO que este cambio añade o toca — y sólo sobre ésos.
