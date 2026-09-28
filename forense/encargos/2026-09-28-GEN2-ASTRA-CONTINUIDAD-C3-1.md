@@ -48,3 +48,6 @@ No adopta reglas, no mide, no relanza reports, no recibe PR abiertos después de
 - `…-26bb-02` · P2 «toda cifra sin RESULT citado se etiqueta (a)/(b)/(c)» · DIFERIDO-A:reports v3 — declarado por report, no por cifra · sin impacto en canon (cifra sin sellado no entra) · reports v3.
 - `…-26bb-03` · P3 columnas de la hoja de reglas sin normalizar · DIFERIDO-A:FIRMAS-21 · leer cada regla en su fuente · FIRMAS-21.
 - `…-26bb-04` · P1 recibo previo al merge · NO-VERIFICABLE-AQUÍ — ya fusionados; citas externas sin red · ninguno · mesa lo anota.
+
+## CONSUMIDO
+PR #1261 (rama claude/new-session-o1dw47), 28/sep/2026. ADR-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01.
