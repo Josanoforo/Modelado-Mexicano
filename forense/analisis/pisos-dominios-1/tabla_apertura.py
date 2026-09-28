@@ -41,24 +41,24 @@ AFIRMACIONES = {
     "ASTRA5-U0-AUTOR-030": ("P-ENCUCI2020", "encuci2020_bd_dbf", "MEDIR"),
     "ASTRA5-U0-AUTOR-031": ("P-ENCUCI2020", "encuci2020_bd_dbf", "MEDIR"),
     "ASTRA5-U0-AUTOR-004": ("—", "", "DIFERIDO: WVS ola 7 sin payload de microdato identificado por id en el manifiesto; PISOS-DOMINIOS-Y-REGLAS-2"),
-    "ASTRA5-U0-AUTOR-021": ("P-CPV2020-ITER", "cpv2020_iter_nal_csv", "MEDIR"),
-    "ASTRA5-U0-AUTOR-026": ("P-LATINOBAROMETRO", "latinobarometro2023_bd_stata_zip", "MEDIR"),
-    "ASTRA5-U0-HUM-006": ("P-LATINOBAROMETRO", "latinobarometro2024_bd_stata", "MEDIR"),
+    "ASTRA5-U0-AUTOR-021": ("—", "cpv2020_iter_nal_csv", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-AUTOR-026": ("—", "latinobarometro2023_bd_stata_zip", "DIFERIDO: su B-bis se congeló en la pieza retirada (#1292, no ciega); PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-HUM-006": ("—", "latinobarometro2024_bd_stata", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
     "ASTRA5-U0-TIME-001": ("—", "enif2024_csv", "DIFERIDO-A apertura: ENIF 2024 reservada por id (R06); pisos ENIF sellados se citan (E.5)"),
     "ASTRA5-U0-TIME-002": ("P-ENUT2024", "enut2024_bd_csv", "MEDIR"),
     "ASTRA5-U0-TIME-020": ("P-ENUT2024", "enut2024_bd_csv", "MEDIR (citar CALC-ENUT2024-* sellados donde coincida, E.5)"),
     "ASTRA5-U0-VEJEZ-009": ("P-ENUT2024", "enut2024_bd_csv", "MEDIR"),
     "ASTRA5-U0-VEJEZ-032": ("P-ENUT2024", "enut2024_bd_csv", "MEDIR (parte a); parte b CONAPO: NO-CONSTRUIBLE aquí"),
     "ASTRA5-U0-RURAL-002": ("P-ENUT2024", "enut2024_bd_csv", "MEDIR (ENUT 2024; ENUT 2019 como ola previa por eje)"),
-    "ASTRA5-U0-RURAL-026": ("P-CPV2020-ITER", "cpv2020_iter_nal_csv", "MEDIR"),
-    "ASTRA5-U0-RURAL-027": ("P-CPV2020-ITER", "cpv2020_iter_nal_csv", "MEDIR"),
-    "ASTRA5-U0-FAM-037": ("P-CPV2020-ITER", "cpv2020_iter_nal_csv", "MEDIR (parte indígena Oaxaca); pobreza CONEVAL: NO-CONSTRUIBLE aquí"),
+    "ASTRA5-U0-RURAL-026": ("—", "cpv2020_iter_nal_csv", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-RURAL-027": ("—", "cpv2020_iter_nal_csv", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-FAM-037": ("—", "cpv2020_iter_nal_csv", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
     "ASTRA5-U0-RURAL-041": ("—", "enasem2024_bd_csv_zip", "DIFERIDO: PISOS-DOMINIOS-Y-REGLAS-2 (tope de sesión CACHE-PARQUET-1)"),
     "ASTRA5-U0-SALMEN-032": ("—", "", "DIFERIDO: PISOS-DOMINIOS-Y-REGLAS-2 (tope de sesión)"),
     "ASTRA5-U0-TEC-010": ("P-ENADID2023", "enadid2023_base_datos_csv", "MEDIR"),
-    "ASTRA5-U0-TIME-027": ("P-CPV2020-ITER", "cpv2020_iter_nal_csv", "MEDIR"),
-    "ASTRA5-U0-JUV-001": ("P-EDER2025", "eder2025_bd_csv_zip", "MEDIR"),
-    "ASTRA5-U0-JUV-002": ("P-EDER2025", "eder2025_bd_csv_zip", "MEDIR"),
+    "ASTRA5-U0-TIME-027": ("—", "cpv2020_iter_nal_csv", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-JUV-001": ("—", "eder2025_bd_csv_zip", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
+    "ASTRA5-U0-JUV-002": ("—", "eder2025_bd_csv_zip", "DIFERIDO-A apertura: ola reservada E.6; PISOS-DOMINIOS-Y-REGLAS-2"),
     "ASTRA5-U0-TRAB-022": ("—", "", "DIFERIDO: ENOE NO-LANZAR-TODAVÍA (MEMORIA-OPERATIVA §1)"),
     "ASTRA5-U0-SANC-007": ("P-ENSU2024", "ensu2024_bd_csv_zip", "MEDIR"),
     "ASTRA5-U0-SANC-008": ("—", "", "NO-CONSTRUIBLE aquí: ENVE 2024 sólo como DDI en el manifiesto (enve2024_rnm1058_ddi), sin microdato"),
@@ -82,6 +82,20 @@ REGLAS = {
 }
 
 
+# Reservas E.6 que corpus_loader.motivo_reserva NO codifica (ola más reciente de programa con
+# historia; MEMORIA-OPERATIVA §1). Defecto real de este acto: la v1 de esta tabla las dio LIBRE y
+# dos piezas abrieron LB 2024 y CPV 2020 (ver NO-CORRIDO). Cita de cada una:
+RESERVA_E6 = {
+    "latinobarometro2024_bd_stata": "E.6: RESERVADA en COLA-/CONFIANZA-LATINOBAROMETRO-PISOS-spec-v1_0.md",
+    "cpv2020_iter_nal_csv": "E.6: Censo 2020 RESERVADO en COLA-EIC-HOGARES-spec-v1_0.md:108",
+    "eder2025_bd_csv_zip": "E.6: ola más reciente de EDER (historia 2011/2017), sin apertura escrita",
+}
+
+
+def reserva(pid, man):
+    return RESERVA_E6.get(pid) or corpus_loader.motivo_reserva(pid, man.get(pid)) or "LIBRE"
+
+
 def main(escribe: bool) -> int:
     mapa = lee("canon/mapa-dominios-v1_1.tsv")
     cat = {r["dominio"] for r in lee("canon/catalogo-del-mexicano-v1_3.tsv")}
@@ -98,7 +112,7 @@ def main(escribe: bool) -> int:
             "instrumento_ola": r["instrumento_ola"][:120], "payload_id": pid,
             "reactivo": (r["pregunta_textual_codigo_respuestas"] or r["texto_pregunta_v1_1"])[:200],
             "unidad": r["conducta_unidad_universo"][:120],
-            "reserva": (corpus_loader.motivo_reserva(pid, man.get(pid)) or "LIBRE") if pid else "NO-APLICA",
+            "reserva": reserva(pid, man) if pid else "NO-APLICA",
             "pieza": pieza, "decision": dec})
     reglas = lee("canon/reglas-contrastadas-v1_0.tsv")
     for r in reglas:
@@ -113,7 +127,7 @@ def main(escribe: bool) -> int:
             "instrumento_ola": ins[:120], "payload_id": pid,
             "reactivo": (r["segmento_si"] + " → " + r["conducta_entonces"])[:200],
             "unidad": r["unidad"] or "—",
-            "reserva": (corpus_loader.motivo_reserva(pid, man.get(pid)) or "LIBRE") if pid else "NO-APLICA",
+            "reserva": reserva(pid, man) if pid else "NO-APLICA",
             "pieza": pieza, "decision": dec})
     sin = [f["id"] for f in filas if f["decision"] == "SIN-ASIGNAR"]
     c = Counter((f["clase"], f["pieza"] != "—") for f in filas)
