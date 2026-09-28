@@ -1,0 +1,7 @@
+# Auditoría ejecutada del lector propuesto
+
+VERDE sobre sintéticos con pesos desiguales, NS/NR, blanco y una fila de otra ciudad con peso extremo. Seis mutaciones detectadas cambian numerador, denominador, área y ponderador. Rechazos dirigidos: código3, pesoNaN/0, sexo9, edad17, IDnulo/duplicado, UPMnula y campo faltante. Trampa de UPM presente solo en otro sexo conserva marco completo con residuo0; auditor AST rechaza agrupación compuesta y campo ajeno. Singleton conserva punto y bloquea SE. Auditoría AST confirma ausencia de importaciones requests/subprocess y esquema obligatorio exacto. Es revisión focalizada, no prueba formal de ausencia de toda fuga: inspección fuente adicional confirma agrupación exclusiva SEXO y CD constante01; EDAD solo guarda universo, EST_DIS/UPM solo varianza.
+
+El oro verificó el hash del payload entero antes de abrir diciembre2025 y solo midió CD01; no leyó2026 ni ola objetivo. p0/banda algorítmicos constaban antes de oro en ensu-spec.yaml/ensu-spec-humana.md y mensaje a potencia. Sin sello de tiempo externo ni COMMIT1/2; estado PROPUESTO.
+
+Reejecución sintética: `python3 ensu_prueba_sintetica.py`. Reejecución histórica: `python3 ensu_lector.py --oro /home/pc0/Modelado-Mexicano/data/raw/ensu2025/ensu_bd_2025_csv.zip --salida ensu-oro.json`. La ruta local solo identifica insumo abierto del manifiesto. La varianza omite FPC y no acredita comparabilidad futura; auditoría del diseño futuro es gate obligatorio.

@@ -1,0 +1,1178 @@
+{
+  "corte": "11602de8e375c10b90807d1b74e088f6b9e99c8b",
+  "original": "corpus/reports/Adopción_y_Resistencia_Tecnológica_en_México__La_Paradoja_de_la_Baja_Confianza_Institucional.md",
+  "original_sha256": "d47463c20b6ca69c5afbe49e2b69295c75c414f7c974c405b7987c880ff4d74b",
+  "autor": "Codex, juicio editorial explícito PROPUESTO-POR-EJECUTOR",
+  "afirmaciones": [
+    {
+      "id": "ASTRA5-U0-TEC-001",
+      "mapa_id": "ASTRA5-U0-TEC-001",
+      "afirmacion": "83.1% de la población de 6+ usó internet en 2024; del 16.9% que no usa, 9.5% ‘no sabe usarlo’; el report lo interpreta como barrera de alfabetización, no de actitud.",
+      "dictamen": "MATIZA",
+      "evidencia": "INEGI2025; ENDUTIH2024",
+      "razon": "Uso de internet confirmado; el motivo no saber tiene otro denominador y no identifica habilidad objetiva.",
+      "localizador": "L17; corrección de alcance L94"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-002",
+      "mapa_id": "ASTRA5-U0-TEC-002",
+      "afirmacion": "9.5% no sabe usar internet; el report lo expresa como parte del 16.9% que no usa internet.",
+      "dictamen": "ROMPE",
+      "evidencia": "INEGI2025",
+      "razon": "La gráfica publica puntos del total 6+, no porcentaje entre no usuarios; error material de denominador.",
+      "localizador": "L6 TL;DR; L17 hallazgo 3; L94 patrón 3"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-003",
+      "mapa_id": "ASTRA5-U0-TEC-003",
+      "afirmacion": "86.9% de personas urbanas y 68.5% rurales usaron internet en 2024.",
+      "dictamen": "CONFIRMA",
+      "evidencia": "INEGI2025",
+      "razon": "Comunicado p.1 reporta el corte urbano/rural; no confundirlo con extremos TLOC del RESULT.",
+      "localizador": "L17 hallazgo 3; L94 patrón 3; L120 segmentación"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-004",
+      "mapa_id": "ASTRA5-U0-TEC-004",
+      "afirmacion": "84.4% de hogares en Ciudad de México y Sonora tienen internet, frente a 50.7% en Chiapas en 2024.",
+      "dictamen": "CONFIRMA",
+      "evidencia": "INEGI2025",
+      "razon": "Comunicado p.1 mide hogares por entidad, no personas ni identidad indígena.",
+      "localizador": "L17 hallazgo 3; L94 patrón 3"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-005",
+      "mapa_id": "ASTRA5-U0-TEC-005",
+      "afirmacion": "2.8% de todas las personas de 6+ no usó internet y declaró como motivo principal «no le interesa o no lo necesita» (gráfica 1 del comunicado; report menciona la categoría).",
+      "dictamen": "CONFIRMA",
+      "evidencia": "INEGI2025",
+      "razon": "Categoría descriptiva sobre total 6+; sin interpretación de preferencia latente.",
+      "localizador": "L94 patrón 3; INEGI comunicado 57/25 p.2"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-006",
+      "mapa_id": "ASTRA5-U0-TEC-006",
+      "afirmacion": "1.8% de todas las personas de 6+ no usó internet y declaró como motivo principal «falta de recursos económicos» (gráfica 1 del comunicado; report menciona la categoría).",
+      "dictamen": "CONFIRMA",
+      "evidencia": "INEGI2025",
+      "razon": "Categoría descriptiva sobre total 6+; sin interpretación de restricción causal exclusiva.",
+      "localizador": "L94 patrón 3; INEGI comunicado 57/25 p.2"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-007",
+      "mapa_id": "ASTRA5-U0-TEC-007",
+      "afirmacion": "La brecha digital es un techo estructural de adopción; el report atribuye parte de la no utilización a falta de acceso y evita llamarla resistencia cultural.",
+      "dictamen": "MATIZA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "La brecha es descriptiva; techo causal y peso relativo estructura/actitud no identificados.",
+      "localizador": "L6 TL;DR; L17 hallazgo 3; L94 patrón 3"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-008",
+      "mapa_id": "ASTRA5-U0-TEC-008",
+      "afirmacion": "El uso de internet cae a 71% en 55-64 años y 42.1% en personas de 65 años o más.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No se leyó tabla primaria del corte etario exacto; grupos publicados no se sustituyen por bins del sello.",
+      "localizador": "L94 patrón 3; L120 segmentación explícita"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-009",
+      "mapa_id": "ASTRA5-U0-TEC-009",
+      "afirmacion": "En 2024 usaron internet 84.1% de hombres y 82.3% de mujeres; el report la califica como brecha leve.",
+      "dictamen": "CONFIRMA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "Celdas SEXO_1/2 internet reproducen porcentajes redondeados; leve es calificación dependiente del contexto.",
+      "localizador": "L121 segmentación explícita"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-010",
+      "mapa_id": "ASTRA5-U0-TEC-010",
+      "afirmacion": "El analfabetismo indígena es 19% frente a 2.8% de población no indígena y 24.2% entre mujeres indígenas, atribuido a ENADID 2023.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "ENADID no leído; alfabetización general no sustituye habilidad digital.",
+      "localizador": "L94 patrón 3; L121 segmentación"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-011",
+      "mapa_id": "ASTRA5-U0-TEC-011",
+      "afirmacion": "el gobierno es la unica institucion en desconfianza segun el Edelman Trust Barometer 2025 Mexico, con 47%; las empresas encabezan con 67%",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído informe y ficha nacional Edelman; no convertir encuesta privada en verdad nacional.",
+      "localizador": "L13,L5 TL;DR"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-012",
+      "mapa_id": "ASTRA5-U0-TEC-012",
+      "afirmacion": "Nu Mexico supero los 13 millones de clientes (16 de octubre de 2025)... 14% de la poblacion adulta y 23% de las personas bancarizadas... 78% vive fuera de las grandes ciudades y mas del 60% pertenece a hogares de ingresos bajos y medios-bajos",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Comunicado empresarial no leído; clientes, bancarizados y hogares tienen bases distintas.",
+      "localizador": "L13,L88 Patron 1"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-013",
+      "mapa_id": "ASTRA5-U0-TEC-013",
+      "afirmacion": "La desconfianza en el gobierno no impidio la adopcion de tecnologia financiera privada. Lo que movio la aguja fue utilidad + inclusion + diseno, no confianza institucional.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Coexistencia agregada no estima efecto individual de confianza; utilidad/inclusión/diseño son rivales no separados.",
+      "localizador": "L13"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-014",
+      "mapa_id": "ASTRA5-U0-TEC-014",
+      "afirmacion": "Los mexicanos distinguen entre confianza en el algoritmo y confianza en la institucion que lo despliega. Adoptan algoritmos de empresas privadas mientras resisten los del Estado. No es tecnofobia: es desconfianza dirigida a un actor especifico.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Comparar fintech e identidad cambia tarea, riesgo y mandato; no prueba selección por proveedor en las mismas personas.",
+      "localizador": "L15,L6 TL;DR"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-015",
+      "mapa_id": "ASTRA5-U0-TEC-015",
+      "afirmacion": "el 70% respondio estar emocionado, ubicandonos en la quinta posicion, detras de lideres como China (80%)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído cuestionario/ficha Ipsos de ola y ranking exactos.",
+      "localizador": "L19"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-016",
+      "mapa_id": "ASTRA5-U0-TEC-016",
+      "afirmacion": "el 66% ya usa herramientas de IA (Ipsos/Google 'Our Life with AI', datos 2025)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Uso de IA exige definición, periodo, muestra y herramienta; cifra no retenida sin ficha primaria.",
+      "localizador": "L19"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-017",
+      "mapa_id": "ASTRA5-U0-TEC-017",
+      "afirmacion": "coexiste con nerviosismo (52% en 2026)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído informe primario 2026; nerviosismo no es rechazo.",
+      "localizador": "L19"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-018",
+      "mapa_id": "ASTRA5-U0-TEC-018",
+      "afirmacion": "el entusiasmo declarado esta correlacionado con el optimismo economico regional... El 'entusiasmo mexicano por la IA' es un artefacto parcial de patron regional y de muestras online, no un rasgo distintivamente mexicano.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Muestras online requieren límites de transporte; correlación con optimismo y tamaño del artefacto no estimados.",
+      "localizador": "L19"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-019",
+      "mapa_id": "ASTRA5-U0-TEC-019",
+      "afirmacion": "21.8 millones de cuentas fueron registradas en CoDi hasta septiembre de 2025, pero la mayoria permanecen inactivas, con solo 17.8 millones de transacciones acumuladas en seis anos (promedio de 875 pesos por operacion)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Serie Banxico y definiciones no leídas; registros no equivalen a activos, transacciones no a personas.",
+      "localizador": "L21; también Apuestas_Conductuales_sobre_el_Consumidor_Mexica L105-L111 (ASTRA5-U0-APUEST-029 fusionada)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-020",
+      "mapa_id": "ASTRA5-U0-TEC-020",
+      "afirmacion": "Fracaso por friccion, miedo al SAT, informalidad y preferencia por efectivo/SPEI. No fue rechazo ideologico al Estado: fue desconfianza racional (miedo fiscal) + falta de utilidad marginal sobre SPEI.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Fricción, impuesto y sustitutos son hipótesis; agregados CoDi no identifican miedo fiscal.",
+      "localizador": "L21"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-021",
+      "mapa_id": "ASTRA5-U0-TEC-021",
+      "afirmacion": "SPEI, en cambio, es infraestructura estatal ampliamente adoptada. El contraste CoDi/SPEI dentro del mismo emisor (Banxico) prueba que confianza en el Estado no explica la adopcion; la explican la utilidad sin friccion y la ausencia de costo o riesgo percibido.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Comparación de dos infraestructuras del mismo emisor no aísla confianza ni descarta su efecto.",
+      "localizador": "L23"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-022",
+      "mapa_id": "ASTRA5-U0-TEC-022",
+      "afirmacion": "confianza en el Estado no explica la adopcion; la explican la utilidad sin friccion y la ausencia de costo o riesgo percibido",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Excluir confianza como causa requiere variación comparable y observación conjunta; no existe aquí.",
+      "localizador": "L23"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-023",
+      "mapa_id": "ASTRA5-U0-TEC-023",
+      "afirmacion": "Los mexicanos prefieren atencion humana en servicio al cliente (una encuesta de 2025 concluyo que 'el factor humano seguira siendo el mas confiable y deseado por los mexicanos'), pero aceptan algoritmos sin intermediario en tareas estructuradas (pagos, navegacion).",
+      "dictamen": "MATIZA",
+      "evidencia": "DIETVORST2015",
+      "razon": "Experimentos importados muestran respuesta a error; no prueban preferencia nacional por humano ni oposición estructurado/subjetivo.",
+      "localizador": "L25"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-024",
+      "mapa_id": "ASTRA5-U0-TEC-024",
+      "afirmacion": "El gobierno digital de identidad (Llave MX, CURP biometrica) gatillo resistencia organizada... decretos 2025",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No se verificó texto legal ni cronología primaria; no afirmar vigencia o judicialización actual.",
+      "localizador": "L27"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-025",
+      "mapa_id": "ASTRA5-U0-TEC-025",
+      "afirmacion": "el Poder Judicial (amparos; la SCJN admitio revisar la constitucionalidad de la reforma de 2025)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No se leyó expediente judicial; retirar admisión SCJN como hecho acreditado.",
+      "localizador": "L27"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-026",
+      "mapa_id": "ASTRA5-U0-TEC-026",
+      "afirmacion": "sociedad civil digital (R3D, Articulo 19)... se apoya en desconfianza racional: fugas de datos previas, miedo a vigilancia y exclusion",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leídas posiciones originales de organizaciones; motivo declarado no causalidad poblacional.",
+      "localizador": "L27"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-027",
+      "mapa_id": "ASTRA5-U0-TEC-027",
+      "afirmacion": "La filtracion de credenciales de Llave CDMX (mayo 2024) expuso a los 6.3 millones de usuarios registrados del sistema de la ADIP... el titular de la ADIP, Eduardo Clark, nego una vulneracion del sistema.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Alegación de filtración no verificada con primaria; registro total no prueba afectados.",
+      "localizador": "L27 (contexto ampliado Patron 2, L91)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-028",
+      "mapa_id": "ASTRA5-U0-TEC-028",
+      "afirmacion": "La resistencia se concentra en elites informadas y se apoya en desconfianza racional",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Organizaciones visibles no forman muestra de resistentes; élite informada carece de denominador y comparación.",
+      "localizador": "L27"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-029",
+      "mapa_id": "ASTRA5-U0-TEC-029",
+      "afirmacion": "18.9% de trabajadores mexicanos estan en alto riesgo de automatizacion (vs 12% promedio OCDE); la exposicion a IA generativa es de 32% urbano vs 21% rural; estados manufactureros mas expuestos (Coahuila 28.1%, Aguascalientes 23.7%, Yucatan 23.1%)",
+      "dictamen": "MATIZA",
+      "evidencia": "ILO2025",
+      "razon": "No conservar porcentajes OCDE sin informe leído; exposición de tareas no probabilidad de pérdida laboral.",
+      "localizador": "L29,L100 Patron 5"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-030",
+      "mapa_id": "ASTRA5-U0-TEC-030",
+      "afirmacion": "no hay evidencia fuerte de actitudes sistematicas de trabajadores o sindicatos mexicanos frente a la IA... el riesgo no es 'revuelta anti-IA' sino polarizacion silenciosa",
+      "dictamen": "MATIZA",
+      "evidencia": "ILO2025",
+      "razon": "Ausencia de actitudes sindicales no prueba poca resistencia ni polarización silenciosa; exposición no observado de conducta.",
+      "localizador": "L29,L100"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-031",
+      "mapa_id": "ASTRA5-U0-TEC-031",
+      "afirmacion": "WhatsApp es la capa de confianza y el canal transaccional dominante... comercio conversacional, el cobro con links de pago (Mercado Pago) y la atencion al cliente via WhatsApp Business API",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Mensajería no identifica marca, transacción ni confianza; no acreditar dominancia WhatsApp.",
+      "localizador": "L31"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-032",
+      "mapa_id": "ASTRA5-U0-TEC-032",
+      "afirmacion": "WhatsApp como 'capa de confianza' que reduce friccion de adopcion [HIPOTESIS RAZONABLE, plausible sin evidencia conductual directa mexicana]",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Mecanismo plausible de reducción de fricción; requiere comparación canal a oferta constante.",
+      "localizador": "L78 Mapa de evidencia (HIPOTESIS RAZONABLE); contradice tier SOLIDO usado en G-10 (L31/hallazgo 10)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-033",
+      "mapa_id": "ASTRA5-U0-TEC-033",
+      "afirmacion": "Cifra de penetracion de WhatsApp '91%' citada por blogs comerciales sin fuente primaria clara; La cifra de '91% de penetracion' proviene de blogs comerciales y debe tratarse como aproximacion no verificada.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Blogs sin primaria verificable no son aproximación publicable; cantidad retirada.",
+      "localizador": "L80-83 Mapa de evidencia (NARRATIVA POPULAR); L103 Patron 6"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-034",
+      "mapa_id": "ASTRA5-U0-TEC-034",
+      "afirmacion": "El mexicano es tecnofobo/desconfiado por cultura. / El entusiasmo mexicano por la IA refleja apertura cultural especial. [NARRATIVA POPULAR: circula pero debil o no verificada]",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Esencialismos sin evidencia; tampoco una negación universal queda demostrada por uso agregado.",
+      "localizador": "L80-82 Mapa de evidencia (NARRATIVA POPULAR); duplicado en Caveats Mitos 1 y 3 (L162, L164)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-035",
+      "mapa_id": "ASTRA5-U0-TEC-035",
+      "afirmacion": "70M+ usuarios fintech (Asociacion FinTech Mexico)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído estudio original y deduplicación; usuarios del sector pueden sumar personas repetidas.",
+      "localizador": "L62 Mapa de evidencia (EVIDENCIA FUERTE)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-036",
+      "mapa_id": "ASTRA5-U0-TEC-036",
+      "afirmacion": "confianza baja en instituciones democraticas (Latinobarometro 2024: fuerzas armadas 43%, policia 41%, presidente 37%, partidos 17%)",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída tabla/ficha Latinobarómetro exacta; retirar cantidades y no etiquetar todas sus muestras online.",
+      "localizador": "L66 Mapa de evidencia"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-037",
+      "mapa_id": "ASTRA5-U0-TEC-037",
+      "afirmacion": "Automatizacion empresarial (dato de una fuente: El Economista reporta 70% de empresas mexicanas automatizando con IA en 2026).",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Nota periodística sin estudio empresarial original leído; universo empresas y definición IA no disponibles.",
+      "localizador": "L74 Mapa de evidencia (EVIDENCIA MEDIA)"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-038",
+      "mapa_id": "ASTRA5-U0-TEC-038",
+      "afirmacion": "India (Aadhaar/UPI) y Brasil (Pix) lograron adopcion masiva de infraestructura digital publica en contextos de desigualdad, mediante diseno abierto, gratuidad, obligatoriedad de participacion de bancos y paciencia estrategica. Mexico ha carecido de esa combinacion en pagos (CoDi)...",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Comparadores inspiran diseño, no contrafactual mexicano; entorno, interoperabilidad y mandatos difieren.",
+      "localizador": "L33"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-039",
+      "mapa_id": "ASTRA5-U0-TEC-039",
+      "afirmacion": "El 50% de los medicos realizo teleconsultas en 2024 y el mercado de salud online alcanzo 1,600 millones de USD en 2024.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída encuesta médicos ni metodología de tamaño de mercado; denominadores incompatibles.",
+      "localizador": "L35"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-040",
+      "mapa_id": "ASTRA5-U0-TEC-040",
+      "afirmacion": "Es plausible -pero no probado con datos conductuales directos mexicanos- que la alta confianza en la red cercana funcione como mecanismo de difusion. Es hipotesis generadora, no hallazgo establecido.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Recomendación interpersonal conserva condición de hipótesis; no se acredita alta confianza ni efecto de difusión.",
+      "localizador": "L37"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-041",
+      "mapa_id": "ASTRA5-U0-TEC-041",
+      "afirmacion": "Latinoamerica es la region mas desconfiada del mundo segun el World Values Survey citado por Latinobarometro 2024... Atribuir la conducta tecnologica a una cultura mexicana especifica es un error; es adaptacion racional a instituciones que efectivamente fallan.",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "No leído ranking regional; desigualdad/instituciones plausibles no desplazan causalmente cultura con estos datos.",
+      "localizador": "L39"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-042",
+      "mapa_id": "ASTRA5-U0-TEC-042",
+      "afirmacion": "'Baja confianza institucional = rechazo a la IA' es falso. La evidencia conductual lo refuta. Confundir ambas cosas llevaria a estrategias de despliegue equivocadas.",
+      "dictamen": "ROMPE",
+      "evidencia": "diseño conceptual",
+      "razon": "La refutación anunciada usa adopción fintech como sustituto de aceptación IA y niveles agregados de confianza; inferencia no válida.",
+      "localizador": "L41"
+    },
+    {
+      "id": "ASTRA5-U0-TEC-043",
+      "mapa_id": "ASTRA5-U0-TEC-043",
+      "afirmacion": "Mercado Pago crece en paralelo: alcanzo 72 millones de usuarios activos mensuales de fintech (+29% interanual) en el 3T de 2025 -cifra agregada de Brasil, Mexico y Argentina... con mas de 1.5 millones de lineas de credito activas en Mexico.",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reporte corporativo; agregado multinacional no equivale México y crédito activo no equivale usuarios fintech.",
+      "localizador": "L88 Patron 1"
+    },
+    {
+      "id": "TEC-001-USO",
+      "mapa_id": "",
+      "afirmacion": "83.1% personas 6+ usó internet",
+      "dictamen": "CONFIRMA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "Uso P7_1, TOTAL; dato retrospectivo adoptado, no confianza.",
+      "localizador": "L7; L17; L63"
+    },
+    {
+      "id": "TEC-001-MOTIVO",
+      "mapa_id": "",
+      "afirmacion": "No saber internet demuestra alfabetización, no actitud",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Motivo principal autodeclarado no es prueba de habilidad ni elimina otras causas.",
+      "localizador": "L7; L17; L94; L112"
+    },
+    {
+      "id": "TEC-003-CAUSA",
+      "mapa_id": "",
+      "afirmacion": "Brecha urbana/rural representa efecto de estructura",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Confusión por edad, escolaridad, oferta e ingreso; asociación territorial no efecto.",
+      "localizador": "L123"
+    },
+    {
+      "id": "TEC-009-LEVE",
+      "mapa_id": "",
+      "afirmacion": "Brecha de sexo es leve",
+      "dictamen": "MATIZA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "Magnitud descriptiva pequeña no implica irrelevancia social ni causa de género.",
+      "localizador": "L121"
+    },
+    {
+      "id": "TEC-012-INCLUSION",
+      "mapa_id": "",
+      "afirmacion": "22% primera inclusión y 36% rechazado previamente",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído estudio corporativo y definición primera inclusión.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-LICENCIA",
+      "mapa_id": "",
+      "afirmacion": "CNBV otorgó licencia bancaria en 2025",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída autorización primaria; cantidad de clientes no depende de acreditar licencia.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-029-COMPARACION",
+      "mapa_id": "",
+      "afirmacion": "Porcentajes urbanos/rurales IA y estados expuestos",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ficha OCDE, índices no equivalen desempleo.",
+      "localizador": "L100"
+    },
+    {
+      "id": "TEC-038-BRASIL",
+      "mapa_id": "",
+      "afirmacion": "Pix usado por 76.4%; 46% más frecuente",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída encuesta BC Brasil ni denominador.",
+      "localizador": "L136"
+    },
+    {
+      "id": "TEC-038-INDIA",
+      "mapa_id": "",
+      "afirmacion": "UPI 84% de pagos digitales retail",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído RBI/NPCI; participación de transacciones no población.",
+      "localizador": "L137"
+    },
+    {
+      "id": "TEC-038-CHINA",
+      "mapa_id": "",
+      "afirmacion": "WeChat/Alipay 90–94% y adopción total por vigilancia",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída primaria, internautas no habitantes, coerción no identificada.",
+      "localizador": "L138"
+    },
+    {
+      "id": "TEC-038-CONTRAFACTUAL",
+      "mapa_id": "",
+      "afirmacion": "Pix es contrafáctico de CoDi",
+      "dictamen": "ROMPE",
+      "evidencia": "diseño conceptual",
+      "razon": "Países y paquetes institucionales distintos no constituyen contrafactual causal identificado.",
+      "localizador": "L136"
+    },
+    {
+      "id": "TEC-041-CAUSA",
+      "mapa_id": "",
+      "afirmacion": "Conducta mexicana es adaptación racional y no cultura",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Falso descarte causal: faltan comparación y variación de instituciones y normas.",
+      "localizador": "L57; L107; L133; L170"
+    },
+    {
+      "id": "TEC-X01",
+      "mapa_id": "",
+      "afirmacion": "Exclusión digital indígena específica y ENDUTIH no representativa indígena",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Población general y estado no identifican pertenencia indígena; no afirmar imposibilidad total de medición sin diseño.",
+      "localizador": "L7; L94; L149; L171; L173; L178"
+    },
+    {
+      "id": "TEC-X02",
+      "mapa_id": "",
+      "afirmacion": "Adopción más fuerte jóvenes pobres y menor mayores rurales",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Clientes corporativos no sustentan cruce nacional edad×ingreso×ruralidad.",
+      "localizador": "L88; L113; L120"
+    },
+    {
+      "id": "TEC-X03",
+      "mapa_id": "",
+      "afirmacion": "Misma persona fintech confía y biométricos Estado rechaza",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Ningún panel o medición conjunta identifica a la misma persona.",
+      "localizador": "L91"
+    },
+    {
+      "id": "TEC-X04",
+      "mapa_id": "",
+      "afirmacion": "Sedena 2022 y Consejería 2024, más de 200 GB",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída evidencia primaria de incidentes ni tamaño.",
+      "localizador": "L91"
+    },
+    {
+      "id": "TEC-X05",
+      "mapa_id": "",
+      "afirmacion": "Geolocalización sin orden y plataforma inteligencia",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído decreto; retirar hechos jurídicos no verificados.",
+      "localizador": "L91"
+    },
+    {
+      "id": "TEC-X06",
+      "mapa_id": "",
+      "afirmacion": "Jóvenes usan chatbots y empresas imponen por costo",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Uso internet no mide chatbot, sustitución laboral ni oferta de atención.",
+      "localizador": "L97"
+    },
+    {
+      "id": "TEC-X07",
+      "mapa_id": "",
+      "afirmacion": "IA voz cuesta 0.07–0.40 USD/min contra 3–6 USD/interacción",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Minuto e interacción no se comparan; faltan fuentes y costos completos.",
+      "localizador": "L97"
+    },
+    {
+      "id": "TEC-X08",
+      "mapa_id": "",
+      "afirmacion": "Nearshoring acelera automatización y perfiles técnicos",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "No observación longitudinal empresarial, ocupaciones ni identificación.",
+      "localizador": "L100"
+    },
+    {
+      "id": "TEC-X09",
+      "mapa_id": "",
+      "afirmacion": "BID 78000 millones región y México 45%",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído cálculo primario; potencial comercial no efecto observado.",
+      "localizador": "L100"
+    },
+    {
+      "id": "TEC-X10",
+      "mapa_id": "",
+      "afirmacion": "Informalidad amortigua automatización y sindicalización",
+      "dictamen": "MATIZA",
+      "evidencia": "ILO2025",
+      "razon": "Estatus informal no implica ausencia de tareas automatizables o de acción colectiva.",
+      "localizador": "L29; L99; L100"
+    },
+    {
+      "id": "TEC-X11",
+      "mapa_id": "",
+      "afirmacion": "Informalidad 54–56%; 54.4% marzo 2025",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída tabla ENOE para referencia exacta; no importar piso de otra ola.",
+      "localizador": "L29; L65; L100; L109; L131"
+    },
+    {
+      "id": "TEC-X12",
+      "mapa_id": "",
+      "afirmacion": "Informalidad crea efectivo y miedo fiscal como causa CoDi",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Acceso, transacciones, cumplimiento y preferencia no observados conjuntamente.",
+      "localizador": "L109; L174"
+    },
+    {
+      "id": "TEC-X13",
+      "mapa_id": "",
+      "afirmacion": "Violencia destruye selectivamente tejido institucional",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "No identificación ni dato de violencia y confianza vinculado a adopción.",
+      "localizador": "L110"
+    },
+    {
+      "id": "TEC-X14",
+      "mapa_id": "",
+      "afirmacion": "85% corrupción electoral 2020",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No fuente primaria leída ni reactivo exacto.",
+      "localizador": "L111"
+    },
+    {
+      "id": "TEC-X15",
+      "mapa_id": "",
+      "afirmacion": "Remesas/migración/nearshoring elevan adopción corredores",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Alianza comercial no efecto de remesas; selección migratoria no controlada.",
+      "localizador": "L114; L125"
+    },
+    {
+      "id": "TEC-X16",
+      "mapa_id": "",
+      "afirmacion": "Norte/centro más adopción por nearshoring; sur menor",
+      "dictamen": "MATIZA",
+      "evidencia": "INEGI2025",
+      "razon": "Entidad/hogar soporta desigualdad acceso, no causa nearshoring ni región universal.",
+      "localizador": "L118"
+    },
+    {
+      "id": "TEC-X17",
+      "mapa_id": "",
+      "afirmacion": "Clase media lidera privacidad, populares fintech y exclusión",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Falta muestra nacional conjunta de clase, conducta y protesta.",
+      "localizador": "L119; L171"
+    },
+    {
+      "id": "TEC-X18",
+      "mapa_id": "",
+      "afirmacion": "Escolaridad determinante fuerte del uso",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Asociación y mecanismo de capital humano requieren distinguir selección y oferta.",
+      "localizador": "L122"
+    },
+    {
+      "id": "TEC-X19",
+      "mapa_id": "",
+      "afirmacion": "Religiosidad sin evidencia de vínculo tecnológico",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Vacío en esta entrega no demuestra ausencia de relación.",
+      "localizador": "L124"
+    },
+    {
+      "id": "TEC-X20",
+      "mapa_id": "",
+      "afirmacion": "México segundo ecosistema fintech y miedo SAT distintivo",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "no comparabilidad",
+      "razon": "Sin índice primario comparable ni experimento multinacional no acreditar singularidad.",
+      "localizador": "L129"
+    },
+    {
+      "id": "TEC-X21",
+      "mapa_id": "",
+      "afirmacion": "Marcos anglosajones asumen instituciones confiables",
+      "dictamen": "ROMPE",
+      "evidencia": "DIETVORST2015",
+      "razon": "Experimentos manipulan desempeño de pronóstico, no presuponen ni miden confianza estatal basal.",
+      "localizador": "L140; L172"
+    },
+    {
+      "id": "TEC-X22",
+      "mapa_id": "",
+      "afirmacion": "Montar IA en WhatsApp y humano para emocional mejora adopción",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Propuesta evaluable, no beneficio probado; canal y apoyo deben variar separadamente.",
+      "localizador": "L145"
+    },
+    {
+      "id": "TEC-X23",
+      "mapa_id": "",
+      "afirmacion": "Productos crédito rechazados/ahorro sucursal motor adopción",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Inclusión no equivale solvencia, bienestar ni identificación de motivo.",
+      "localizador": "L145"
+    },
+    {
+      "id": "TEC-X24",
+      "mapa_id": "",
+      "afirmacion": "Coerción sin garantías provoca judicialización",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No expediente causal/legal leído; distinguir obligación, cumplimiento y aceptación.",
+      "localizador": "L146; L176"
+    },
+    {
+      "id": "TEC-X25",
+      "mapa_id": "",
+      "afirmacion": "Rutas offline, minimización y auditorías",
+      "dictamen": "MATIZA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "Propuesta de acceso justificada por no uso observado; eficacia privacidad no medida.",
+      "localizador": "L149"
+    },
+    {
+      "id": "TEC-X26",
+      "mapa_id": "",
+      "afirmacion": "80% exige transparencia IA",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No encuesta primaria leída; expectativa no conducta.",
+      "localizador": "L149"
+    },
+    {
+      "id": "TEC-X27",
+      "mapa_id": "",
+      "afirmacion": "Si no reduce fugas, política fracasará",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Predicción universal sin falsador operativo ni evaluación; riesgo no implica fracaso seguro.",
+      "localizador": "L149"
+    },
+    {
+      "id": "TEC-X28",
+      "mapa_id": "",
+      "afirmacion": "3 de 10 médicos receta software, farmacias rechazo",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No encuesta médica/farmacias primaria; no usar como prevalencia.",
+      "localizador": "L150"
+    },
+    {
+      "id": "TEC-X29",
+      "mapa_id": "",
+      "afirmacion": "Talento es cuello de botella, no resistencia",
+      "dictamen": "MATIZA",
+      "evidencia": "ILO2025",
+      "razon": "Son restricciones compatibles; exposición tareas no mide escasez de capacidades.",
+      "localizador": "L151"
+    },
+    {
+      "id": "TEC-X30",
+      "mapa_id": "",
+      "afirmacion": "Pagos 40% refutan necesidad coerción identidad",
+      "dictamen": "ROMPE",
+      "evidencia": "diseño conceptual",
+      "razon": "Resultados pagos no identifican requisito de política de identidad; objetivos distintos.",
+      "localizador": "L154"
+    },
+    {
+      "id": "TEC-X31",
+      "mapa_id": "",
+      "afirmacion": "Rural >85% eliminaría exclusión masiva",
+      "dictamen": "ROMPE",
+      "evidencia": "diseño conceptual",
+      "razon": "Umbral arbitrario de conectividad no garantiza habilidades, acceso efectivo ni derechos restantes.",
+      "localizador": "L155"
+    },
+    {
+      "id": "TEC-X32",
+      "mapa_id": "",
+      "afirmacion": "Movilización laboral cambiaría hipótesis polarización",
+      "dictamen": "MATIZA",
+      "evidencia": "ILO2025",
+      "razon": "Condición útil pero polarización y protesta pueden coexistir; registrar conducta directamente.",
+      "localizador": "L156"
+    },
+    {
+      "id": "TEC-X33",
+      "mapa_id": "",
+      "afirmacion": "SCJN inconstitucionalidad obligaría voluntariedad",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Condicional jurídico requiere sentencia y alcance; no presume estado actual.",
+      "localizador": "L157"
+    },
+    {
+      "id": "TEC-X34",
+      "mapa_id": "",
+      "afirmacion": "No existe dato oficial reciente Mercado Pago México",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Ausencia en fuentes consultadas no prueba inexistencia universal.",
+      "localizador": "L178"
+    },
+    {
+      "id": "TEC-X35",
+      "mapa_id": "",
+      "afirmacion": "Ipsos/Edelman/Latinobarómetro mayoritariamente online/urbanas",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Fichas distintas no leídas; no generalizar diseño de una encuesta a todas.",
+      "localizador": "L178"
+    },
+    {
+      "id": "TEC-X36",
+      "mapa_id": "",
+      "afirmacion": "Telemedicina creció por COVID/saturación y no confianza",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Necesidad compatible, descarte confianza no identificado y médico no paciente.",
+      "localizador": "L35"
+    },
+    {
+      "id": "TEC-X37",
+      "mapa_id": "",
+      "afirmacion": "Prefiere humano porque rinde cuentas y criterio",
+      "dictamen": "MATIZA",
+      "evidencia": "DIETVORST2015",
+      "razon": "Explicación alternativa; diseño de pronóstico no identifica rendición de cuentas clínica.",
+      "localizador": "L174"
+    },
+    {
+      "id": "TEC-X38",
+      "mapa_id": "",
+      "afirmacion": "Cultura radial y entusiasmo tratados como estructura",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Rotular estructura no identifica mecanismo; conservar rival cultural sin esencia.",
+      "localizador": "L49; L170"
+    },
+    {
+      "id": "TEC-X39",
+      "mapa_id": "",
+      "afirmacion": "Coerción/conveniencia/red generan adopción total china",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Descripción extranjera no estima contribuciones ni permite predicción México.",
+      "localizador": "L138; L176"
+    },
+    {
+      "id": "TEC-X40",
+      "mapa_id": "",
+      "afirmacion": "En rural indígena entusiasmo IA es irrelevante",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "No uso internet no prueba irrelevancia de actitudes en todas personas indígenas/rurales.",
+      "localizador": "L171; L173"
+    },
+    {
+      "id": "TEC-X41",
+      "mapa_id": "",
+      "afirmacion": "Los mexicanos adoptan sin fricción mapas/pagos/contenido",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "instrumento inadecuado",
+      "razon": "Uso reportado no mide fricción o aceptación algorítmica por tarea.",
+      "localizador": "L53; L97"
+    },
+    {
+      "id": "TEC-X42",
+      "mapa_id": "",
+      "afirmacion": "Fintech prueba que baja confianza no predice tecnología",
+      "dictamen": "ROMPE",
+      "evidencia": "diseño conceptual",
+      "razon": "Predicción no evaluada: agregados de distinto actor/producto no permiten medir poder predictivo.",
+      "localizador": "L5; L13"
+    },
+    {
+      "id": "TEC-X43",
+      "mapa_id": "",
+      "afirmacion": "Gobierno única institución en desconfianza",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "Requiere marco muestral, escala y conjunto de instituciones, no generalizar selección privada.",
+      "localizador": "L5; L13; L66"
+    },
+    {
+      "id": "TEC-X44",
+      "mapa_id": "",
+      "afirmacion": "No alternativa/obligatoriedad predicen mejor adopción",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Variables plausibles; no existe comparación de modelos ni efecto identificado.",
+      "localizador": "L5"
+    },
+    {
+      "id": "TEC-X45",
+      "mapa_id": "",
+      "afirmacion": "No-adopción es principalmente desconfianza racional y no tecnofobia",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "No razones representativas por producto; no atribuir racionalidad universal.",
+      "localizador": "L6; L54; L162; L174; L176"
+    },
+    {
+      "id": "TEC-X46",
+      "mapa_id": "",
+      "afirmacion": "Entusiasmo IA quinta posición es rasgo regional",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Orden de medias de muestras online no separa cultura, composición y optimismo.",
+      "localizador": "L19; L164"
+    },
+    {
+      "id": "TEC-X47",
+      "mapa_id": "",
+      "afirmacion": "En tecnología el par operador×tecnología es unidad correcta",
+      "dictamen": "MATIZA",
+      "evidencia": "diseño conceptual",
+      "razon": "Útil ampliar a tarea/riesgo/oferta/mandato; persona o hogar sigue unidad de observación.",
+      "localizador": "L51"
+    },
+    {
+      "id": "TEC-X48",
+      "mapa_id": "",
+      "afirmacion": "Datos ENDUTIH no permiten distinguir rechazo de acceso",
+      "dictamen": "CONFIRMA",
+      "evidencia": "ENDUTIH2024",
+      "razon": "P7_1 y motivo principal no miden confianza institucional ni evaluación IA.",
+      "localizador": "L178"
+    },
+    {
+      "id": "TEC-011-GOB",
+      "mapa_id": "",
+      "afirmacion": "Gobierno 47% confianza",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ficha Edelman; escala y muestra pendientes.",
+      "localizador": "L5; L13; L66"
+    },
+    {
+      "id": "TEC-011-EMP",
+      "mapa_id": "",
+      "afirmacion": "Empresas 67% confianza",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ficha Edelman; muestra no equivale usuarios fintech.",
+      "localizador": "L13; L66; L88"
+    },
+    {
+      "id": "TEC-012-CLIENTES",
+      "mapa_id": "",
+      "afirmacion": "Nu superó 13M clientes y sumó 1M trimestral",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído comunicado corporativo; cliente no usuario activo.",
+      "localizador": "L5; L62; L88"
+    },
+    {
+      "id": "TEC-012-ADULTO",
+      "mapa_id": "",
+      "afirmacion": "Nu 14% población adulta",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído método denominador y fecha de población.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-BANCARIZADO",
+      "mapa_id": "",
+      "afirmacion": "Nu 23% bancarizados",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No definición primaria de bancarización ni universo.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-RESIDENCIA",
+      "mapa_id": "",
+      "afirmacion": "78% Nu fuera grandes ciudades",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída encuesta clientes y definición ciudad.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-INGRESO",
+      "mapa_id": "",
+      "afirmacion": "Más de 60% Nu hogares bajos/medios bajos",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído ingreso y clasificación del hogar de clientes.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-PRIMERA",
+      "mapa_id": "",
+      "afirmacion": "22% Nu primera inclusión",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reactivo primera inclusión y denominador.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-012-RECHAZO",
+      "mapa_id": "",
+      "afirmacion": "36% Nu rechazado por otras instituciones",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reactivo y alcance crédito/inclusión.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-015-POSICION",
+      "mapa_id": "",
+      "afirmacion": "México quinto IA; China 80%",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída tabla Ipsos y países/muestras equivalentes.",
+      "localizador": "L19"
+    },
+    {
+      "id": "TEC-019-CUENTAS",
+      "mapa_id": "",
+      "afirmacion": "21.8M cuentas CoDi registradas",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída serie Banxico y fecha exacta.",
+      "localizador": "L21; L64"
+    },
+    {
+      "id": "TEC-019-INACTIVAS",
+      "mapa_id": "",
+      "afirmacion": "Mayoría cuentas CoDi inactivas",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No definición activos, periodo ni denominador cuentas.",
+      "localizador": "L21; L64"
+    },
+    {
+      "id": "TEC-019-TRANS",
+      "mapa_id": "",
+      "afirmacion": "17.8M transacciones CoDi acumuladas",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída serie primaria; acumulado no uso por persona.",
+      "localizador": "L21"
+    },
+    {
+      "id": "TEC-019-MONTO",
+      "mapa_id": "",
+      "afirmacion": "875 pesos operación CoDi",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No lectura serie ni inclusión transferencias/periodo.",
+      "localizador": "L21"
+    },
+    {
+      "id": "TEC-029-RIESGO",
+      "mapa_id": "",
+      "afirmacion": "18.9% México alto riesgo frente 12% OCDE",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído índice y promedio OCDE; no probabilidad desempleo.",
+      "localizador": "L29; L68; L100"
+    },
+    {
+      "id": "TEC-029-URBANORURAL",
+      "mapa_id": "",
+      "afirmacion": "32% urbano/21% rural IA",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído método y delimitación de exposición generativa.",
+      "localizador": "L29; L68"
+    },
+    {
+      "id": "TEC-029-ESTADOS",
+      "mapa_id": "",
+      "afirmacion": "Coahuila28.1/Aguascalientes23.7/Yucatán23.1 exposición",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído perfil OCDE; clasificación industrial no identifica efecto.",
+      "localizador": "L100"
+    },
+    {
+      "id": "TEC-039-MEDICOS",
+      "mapa_id": "",
+      "afirmacion": "50% médicos teleconsulta",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída muestra médica, encuesta y definición consulta.",
+      "localizador": "L35; L72"
+    },
+    {
+      "id": "TEC-039-MERCADO",
+      "mapa_id": "",
+      "afirmacion": "1600M USD salud digital",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída metodología tamaño de mercado; no prevalencia de pacientes.",
+      "localizador": "L35; L72"
+    },
+    {
+      "id": "TEC-043-MAU",
+      "mapa_id": "",
+      "afirmacion": "72M MAU fintech regional",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reporte empresarial; no atribuir cifra multinacional a México.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-043-CRECIMIENTO",
+      "mapa_id": "",
+      "afirmacion": "MAU fintech crece 29% interanual",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reporte y periodo; no estimar crecimiento nacional.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-043-CREDITO",
+      "mapa_id": "",
+      "afirmacion": "1.5M líneas crédito México",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leído reporte; línea no persona ni cliente activo.",
+      "localizador": "L88"
+    },
+    {
+      "id": "TEC-010-INDIGENA",
+      "mapa_id": "",
+      "afirmacion": "19% analfabetismo indígena",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ENADID; no habilidad digital.",
+      "localizador": "L94; L112"
+    },
+    {
+      "id": "TEC-010-NOINDIGENA",
+      "mapa_id": "",
+      "afirmacion": "2.8% analfabetismo no indígena",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ENADID ni definición pertenencia.",
+      "localizador": "L94"
+    },
+    {
+      "id": "TEC-010-MUJER",
+      "mapa_id": "",
+      "afirmacion": "24.2% mujeres indígenas analfabetas",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída ENADID ni universo edad.",
+      "localizador": "L94; L121"
+    },
+    {
+      "id": "TEC-008-55",
+      "mapa_id": "",
+      "afirmacion": "71% internet 55–64",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída tabla exacta y no sustitución con otro intervalo.",
+      "localizador": "L120"
+    },
+    {
+      "id": "TEC-008-65",
+      "mapa_id": "",
+      "afirmacion": "42.1% internet65+",
+      "dictamen": "SIN-CIFRA",
+      "evidencia": "adquisición pendiente",
+      "razon": "No leída tabla exacta; corte distinto de EDAD_55_MAS.",
+      "localizador": "L94; L120"
+    }
+  ]
+}

@@ -1,0 +1,180 @@
+[
+  {
+    "id": "Q1",
+    "fuente": "PISA-MEX-2022",
+    "denominador": "estudiante escolarizado elegible 15 años",
+    "escala": "puntos en escala PISA; medias por dominio",
+    "plantilla": "En PISA 2022 México, las medias fueron {media_matematicas} puntos en matemáticas, {media_lectura} en lectura y {media_ciencias} en ciencias.",
+    "hechos": [
+      "media_matematicas",
+      "media_lectura",
+      "media_ciencias"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "En PISA 2022 México, las medias fueron 395 puntos en matemáticas, 415 en lectura y 410 en ciencias.",
+    "valores": {
+      "media_matematicas": "395",
+      "media_lectura": "415",
+      "media_ciencias": "410"
+    },
+    "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/pisa-2022-results-volume-i-and-ii-country-notes_2fca04b9/mexico_515c0d35/519eaf88-en.pdf",
+    "localizador": "pp.1–3 (rendimiento/proficiencia), p.8 (muestra/universo)",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "4b8c42570aac93201bd2c69136c432faa2f6fc7085ad066ffa562e380e1e7a26"
+  },
+  {
+    "id": "Q2",
+    "fuente": "PISA-MEX-2022",
+    "denominador": "muestra escolar; población total 15 años para cobertura",
+    "escala": "n y porcentaje de cobertura, no porcentaje de bajo desempeño",
+    "plantilla": "Participaron {estudiantes_muestra} estudiantes de {escuelas} escuelas; la cobertura estimada fue {cobertura_cohorte} de la cohorte total de 15 años.",
+    "hechos": [
+      "estudiantes_muestra",
+      "escuelas",
+      "cobertura_cohorte"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "Participaron 6288 estudiantes de 280 escuelas; la cobertura estimada fue 64% de la cohorte total de 15 años.",
+    "valores": {
+      "estudiantes_muestra": "6288",
+      "escuelas": "280",
+      "cobertura_cohorte": "64%"
+    },
+    "url": "https://www.oecd.org/content/dam/oecd/en/publications/reports/2023/11/pisa-2022-results-volume-i-and-ii-country-notes_2fca04b9/mexico_515c0d35/519eaf88-en.pdf",
+    "localizador": "pp.1–3 (rendimiento/proficiencia), p.8 (muestra/universo)",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "4b8c42570aac93201bd2c69136c432faa2f6fc7085ad066ffa562e380e1e7a26"
+  },
+  {
+    "id": "Q3",
+    "fuente": "ENPECYT-2017",
+    "denominador": "persona de 18 años o más en localidades de 100000 habitantes o más",
+    "escala": "porcentaje de adultos urbanos; interés muy grande/grande/moderado",
+    "plantilla": "En adultos de 18 años o más de localidades de 100000 habitantes o más, {interes_al_menos_moderado} declaró interés al menos moderado en inventos, descubrimientos científicos o tecnología en ENPECYT 2017.",
+    "hechos": [
+      "interes_al_menos_moderado"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "En adultos de 18 años o más de localidades de 100000 habitantes o más, 75% declaró interés al menos moderado en inventos, descubrimientos científicos o tecnología en ENPECYT 2017.",
+    "valores": {
+      "interes_al_menos_moderado": "75%"
+    },
+    "url": "https://en.www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/OtrTemEcon/ENPECYT2018_06.pdf",
+    "localizador": "pp.1–3 (interés/diseño), p.8 (profesiones), pp.14,16 (fe/inversión)",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "26d5fdb59daa57a7e15aba5c12ec198ef96ffeba73d8d505cd1283edc885cd62"
+  },
+  {
+    "id": "Q4",
+    "fuente": "ENPECYT-2017",
+    "denominador": "adultos urbanos del diseño ENPECYT2017",
+    "escala": "porcentaje acuerdo/muy acuerdo; discrepancia documental explícita",
+    "plantilla": "El apoyo a mayor inversión pública figura como {inversion_texto} en el texto y {inversion_numeralia} en la numeralia del mismo boletín; la discrepancia interna impide fingir precisión única.",
+    "hechos": [
+      "inversion_texto",
+      "inversion_numeralia"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "El apoyo a mayor inversión pública figura como 92.2% en el texto y 92.3% en la numeralia del mismo boletín; la discrepancia interna impide fingir precisión única.",
+    "valores": {
+      "inversion_texto": "92.2%",
+      "inversion_numeralia": "92.3%"
+    },
+    "url": "https://en.www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/OtrTemEcon/ENPECYT2018_06.pdf",
+    "localizador": "pp.1–3 (interés/diseño), p.8 (profesiones), pp.14,16 (fe/inversión)",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "26d5fdb59daa57a7e15aba5c12ec198ef96ffeba73d8d505cd1283edc885cd62"
+  },
+  {
+    "id": "Q5",
+    "fuente": "ENPECYT-2017",
+    "denominador": "adultos urbanos de ENPECYT2017",
+    "escala": "porcentaje que califica con 10; no promedio ni mucha/algo confianza",
+    "plantilla": "La máxima calificación de respetabilidad para investigadores fue elegida por {investigador_respetabilidad10} de adultos urbanos; no es una estimación de toda la confianza en científicos.",
+    "hechos": [
+      "investigador_respetabilidad10"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "La máxima calificación de respetabilidad para investigadores fue elegida por 34.6% de adultos urbanos; no es una estimación de toda la confianza en científicos.",
+    "valores": {
+      "investigador_respetabilidad10": "34.6%"
+    },
+    "url": "https://en.www.inegi.org.mx/contenidos/saladeprensa/boletines/2018/OtrTemEcon/ENPECYT2018_06.pdf",
+    "localizador": "pp.1–3 (interés/diseño), p.8 (profesiones), pp.14,16 (fe/inversión)",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "26d5fdb59daa57a7e15aba5c12ec198ef96ffeba73d8d505cd1283edc885cd62"
+  },
+  {
+    "id": "Q6",
+    "fuente": "EAG-MEX-2025",
+    "denominador": "trabajadores de 25–64 años por logro; bachillerato como base",
+    "escala": "porcentaje prima salarial observada respecto base; comparador OCDE",
+    "plantilla": "La nota EAG 2025 informa una prima salarial observada de terciaria frente a bachillerato de {prima_terciaria_mexico} en México y {prima_terciaria_ocde} en el promedio OCDE entre trabajadores de 25–64 años; no identifica efecto causal.",
+    "hechos": [
+      "prima_terciaria_mexico",
+      "prima_terciaria_ocde"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "La nota EAG 2025 informa una prima salarial observada de terciaria frente a bachillerato de 56% en México y 54% en el promedio OCDE entre trabajadores de 25–64 años; no identifica efecto causal.",
+    "valores": {
+      "prima_terciaria_mexico": "56%",
+      "prima_terciaria_ocde": "54%"
+    },
+    "url": "https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/mexico_3b36a6f6-en.html",
+    "localizador": "The output of educational institutions and the impact of learning; salarios y figura 1/Tabla A3.5",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "a49a2919c108e66d305c43270fba130db0398640a79667dfd99d4128ad37083a"
+  },
+  {
+    "id": "Q7",
+    "fuente": "EAG-MEX-2025",
+    "denominador": "población económicamente activa 25–34 por logro; cada nivel su denominador",
+    "escala": "porcentajes desempleados entre activos; no toda cohorte",
+    "plantilla": "En activos de 25–34 años, la nota EAG 2025 registra desempleo de {desempleo_sin_bachillerato} sin bachillerato, {desempleo_bachillerato} con bachillerato/postsecundaria no terciaria y {desempleo_terciaria} con terciaria; son asociaciones, no calidad del empleo ni retorno individual.",
+    "hechos": [
+      "desempleo_sin_bachillerato",
+      "desempleo_bachillerato",
+      "desempleo_terciaria"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "En activos de 25–34 años, la nota EAG 2025 registra desempleo de 2.7% sin bachillerato, 3.6% con bachillerato/postsecundaria no terciaria y 4.3% con terciaria; son asociaciones, no calidad del empleo ni retorno individual.",
+    "valores": {
+      "desempleo_sin_bachillerato": "2.7%",
+      "desempleo_bachillerato": "3.6%",
+      "desempleo_terciaria": "4.3%"
+    },
+    "url": "https://www.oecd.org/en/publications/education-at-a-glance-2025_1a3543e2-en/mexico_3b36a6f6-en.html",
+    "localizador": "The output of educational institutions and the impact of learning; salarios y figura 1/Tabla A3.5",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "a49a2919c108e66d305c43270fba130db0398640a79667dfd99d4128ad37083a"
+  },
+  {
+    "id": "Q8",
+    "fuente": "DNR-MEX-2026",
+    "denominador": "respondente del panel online de noticias México; no todos habitantes",
+    "escala": "porcentaje confianza global; cambio en puntos porcentuales, no porcentaje relativo",
+    "plantilla": "En el panel online de noticias de México, DNR 2026 registra confianza global de {confianza_noticias}, con cambio interanual de {cambio_interanual}; no es una tasa entre toda la población mexicana.",
+    "hechos": [
+      "confianza_noticias",
+      "cambio_interanual"
+    ],
+    "tipo": "EXTERNA",
+    "marca": "RETROSPECTIVA",
+    "sentencia": "En el panel online de noticias de México, DNR 2026 registra confianza global de 31%, con cambio interanual de -5 pp; no es una tasa entre toda la población mexicana.",
+    "valores": {
+      "confianza_noticias": "31%",
+      "cambio_interanual": "-5 pp"
+    },
+    "url": "https://reutersinstitute.politics.ox.ac.uk/digital-news-report/2026/mexico",
+    "localizador": "Trust in news overall; Sources of news; párrafos perfil México",
+    "estado_adopcion": "EXTERNA-NO-RESULT-NO-ADOPTA",
+    "fuente_registro_sha256": "3f7f1fc7682f3443f79fd1bc72ed4b4318016c063b8a0cb25719a4c91b6ca692"
+  }
+]

@@ -1,0 +1,51 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-fam-m-01-v3",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-fam-m-01-v3/r-fam-m-01-v3-entradas-v2.tar.gz",
+  "sha256_original": "3d256453f1b7ace6d25f1f70e5a9cd3e0950de9b94d659b6978767196bd7a39c",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "enif2018_csv",
+      "archivo": "enif2018_csv.zip",
+      "sha256": "51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enif/2018/datosabiertos/conjunto_de_datos_enif_2018_csv.zip",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enif2018_cuestionario_pdf",
+      "archivo": "enif_2018_cuestionario.pdf",
+      "sha256": "cda9a0283a39514e404c53aacb1d0200b68b38f29d8e06b4cd2386a4b8b558e9",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enif/2018/doc/enif_2018_cuestionario.pdf",
+      "estado_acceso": "COINCIDE"
+    },
+    {
+      "id": "enif2018_fd_xlsx",
+      "archivo": "enif_2018_fd.xlsx",
+      "sha256": "dd8d5c92a7a031505d95da3ee6f00b670f90d5fd5cbd94c744393ffe81b4f6d7",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enif/2018/microdatos/enif_2018_fd.xlsx",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "enif2018_csv",
+  "tabla": "tmodulo2",
+  "variable": "p9_9_4",
+  "peso": "fac_per",
+  "estrato": "est_dis",
+  "upm": "upm_dis",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#FAM-M-01",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "persona seleccionada",
+  "universo": "tmodulo2 con p9_9_4 en1,2;fac_per>0 finito;sin otro filtro",
+  "y": "1 si p9_9_4=1;0 si2;9/blanco fuera",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_literal": "conjunto_de_datos_tmodulo2_enif_2018/conjunto_de_datos/conjunto_de_datos_tmodulo2_enif_2018.csv",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "51f33ec74ccd596dc74b695587310d02e651923467255520aadc4d9fe13461d5"
+}

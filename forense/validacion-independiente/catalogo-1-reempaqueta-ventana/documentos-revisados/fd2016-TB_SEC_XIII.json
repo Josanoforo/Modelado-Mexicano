@@ -1,0 +1,5191 @@
+[
+  [
+    "ESTRUCTURA DEL ARCHIVO DE EXPLOTACIÓN"
+  ],
+  [
+    "Encuesta Nacional Sobre la Dinámica de las Relaciones en los Hogares ENDIREH 2016"
+  ],
+  [
+    "ESTRUCTURA DEL ARCHIVO"
+  ],
+  [
+    "Consecutivo",
+    "Mnemónico",
+    "Tipo",
+    "Situación Conyugal",
+    "Descripción",
+    "Rango particular",
+    "Rango general",
+    "Long"
+  ],
+  [
+    "Control de Vivienda"
+  ],
+  [
+    1,
+    "ID_VIV",
+    "Caracter",
+    "Todas",
+    "Número de identificación de la vivienda",
+    "Concatenación de las variables UPM + VIV_SEL",
+    10
+  ],
+  [
+    2,
+    "ID_MUJ",
+    "Caracter",
+    "Todas",
+    "Número de identificación de la mujer elegida",
+    "Concatenación de las variables UPM + VIV_SEL+ HOGAR + REN_M_ELE",
+    16
+  ],
+  [
+    3,
+    "UPM",
+    "Caracter",
+    "Todas",
+    "Unidad Primaria de Muestreo",
+    "0100001…3299999",
+    7
+  ],
+  [
+    4,
+    "REN_M_ELE",
+    "Caracter",
+    "Todas",
+    "Número de renglón de la mujer elegida",
+    "1,…,30",
+    1
+  ],
+  [
+    5,
+    "VIV_SEL",
+    "Caracter",
+    "Todas",
+    "Número de vivienda seleccionada",
+    "01…99",
+    2
+  ],
+  [
+    6,
+    "PROG",
+    "Caracter",
+    "Todas",
+    "Progresivo de la vivienda",
+    "001, …, 999",
+    3
+  ],
+  [
+    7,
+    "HOGAR",
+    "Caracter",
+    "Todas",
+    "Número de hogar de la seleccionada",
+    "01 … 05",
+    2
+  ],
+  [
+    8,
+    "DOMINIO",
+    "Alfanumérico",
+    "Todas",
+    "Urbano",
+    "U",
+    1
+  ],
+  [
+    "Complemento Urbano",
+    "C"
+  ],
+  [
+    "Rural",
+    "R"
+  ],
+  [
+    9,
+    "CVE_ENT",
+    "Caracter",
+    "Todas",
+    "Clave de la entidad",
+    "01 … 32",
+    2
+  ],
+  [
+    10,
+    "NOM_ENT",
+    "Texto ",
+    "Todas",
+    "Nombre de la entidad",
+    "Catálogo de entidad",
+    255
+  ],
+  [
+    11,
+    "CVE_MUN",
+    "Caracter",
+    "Todas",
+    "Clave del municipio",
+    "001 … 565",
+    3
+  ],
+  [
+    12,
+    "NOM_MUN",
+    "Texto ",
+    "Todas",
+    "Nombre del municipio",
+    "Catálogo de municipio",
+    255
+  ],
+  [
+    13,
+    "COD_RES",
+    "Caracter",
+    "Todas",
+    "Código de resultado de la vivienda",
+    "01. Entrevista completa con mujer de 15 años o más",
+    2
+  ],
+  [
+    14,
+    "COD_RES_MU",
+    "Caracter",
+    "Todas",
+    "Código de resultado de la mujer seleccionada",
+    "1. Entrevista completa",
+    1
+  ],
+  [
+    15,
+    "T_INSTRUM",
+    "Caracter",
+    "Todas",
+    "Tipo de instrumento aplicado a la mujer seleccionada",
+    "A1. Mujer casada o unida con pareja residente\nA2. Mujer casada o unida con pareja ausente temporal\nB1. Mujer separada o divorciada\nB2. Mujer viuda\nC1. Mujer soltera con novio o pareja o exnovio o expareja\nC2. Mujer soltera que nunca ha tenido novio",
+    2
+  ],
+  [
+    "XIII. RELACIÓN ACTUAL O ÚLTIMA"
+  ],
+  [
+    "Cuestionario A: SECCIÓN XIII. RELACIÓN ACTUAL"
+  ],
+  [
+    "Cuestionario B: SECCIÓN XIII. ÚLTIMA RELACIÓN"
+  ],
+  [
+    "Cuestionario C: SECCIÓN XIII. RELACIÓN ACTUAL O ÚLTIMA"
+  ],
+  [
+    "Consecutivo",
+    "Mnemónico",
+    "Tipo",
+    "Situación Conyugal",
+    "Descripción",
+    "Rango particular",
+    "Rango general",
+    "Long"
+  ],
+  [
+    "13.1."
+  ],
+  [
+    "A1, A2",
+    "¿Desde que inició la relación con su esposo o pareja…"
+  ],
+  [
+    "B1, B2",
+    "¿Desde que inició la relación con su ex - esposo o ex - pareja …"
+  ],
+  [
+    "C1",
+    "¿Desde que inició la relación con su novio o pareja (ex - novio o ex - pareja)…"
+  ],
+  [
+    16,
+    "P13_1_1",
+    "Numérico",
+    "A1, A2, ",
+    "la ha empujado o le ha jalado el cabello",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la empujó o le jaló el cabello",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    17,
+    "P13_1_2",
+    "Numérico",
+    "A1, A2, ",
+    "la ha abofeteado o cacheteado",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la abofeteó o cacheteó",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    18,
+    "P13_1_3",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amarrado",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la amarró",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    19,
+    "P13_1_4",
+    "Numérico",
+    "A1, A2, ",
+    "la ha pateado",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la pateó",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    20,
+    "P13_1_5",
+    "Numérico",
+    "A1, A2, ",
+    "le ha aventado algún objeto",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le aventó algún objeto",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    21,
+    "P13_1_6",
+    "Numérico",
+    "A1, A2, ",
+    "la ha golpeado con el puño o con algún objeto",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la golpeó con el puño o con algún objeto",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    22,
+    "P13_1_7",
+    "Numérico",
+    "A1, A2, ",
+    "la ha tratado de ahorcar o asfixiar",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la trató de ahorcar o asfixiar",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    23,
+    "P13_1_8",
+    "Numérico",
+    "A1, A2, ",
+    "la ha agredido con cuchillo o navaja",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la agredió con cuchillo o navaja",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    24,
+    "P13_1_9",
+    "Numérico",
+    "A1, A2, ",
+    "le ha disparado con un arma de fuego",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le disparó con un arma de fuego",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    25,
+    "P13_1_10",
+    "Numérico",
+    "A1, A2, ",
+    "la ha avergonzado, ofendido, menospreciado o humillado (le ha dicho que es fea o la ha comparado con otras mujeres)",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la avergonzó, ofendió, menospreció o humilló (le decía que era fea o la comparaba con otras mujeres)",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    26,
+    "P13_1_11",
+    "Numérico",
+    "A1, A2",
+    "la ha ignorado, no la toma en cuenta o no le brinda cariño",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la ignoraba, no la tomaba en cuenta o no le brindaba cariño",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "la ha ignorado, no la toma en cuenta, o no le brinda cariño",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    27,
+    "P13_1_12",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dicho que usted lo engaña",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le decía que usted lo engañaba",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    28,
+    "P13_1_13",
+    "Numérico",
+    "A1, A2, ",
+    "le ha hecho sentir miedo",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le hizo sentir miedo",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    29,
+    "P13_1_14",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la amenazaba con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "la ha amenazado con dejarla/abandonarla, dañarla",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    30,
+    "P13_1_15",
+    "Numérico",
+    "A1, A2, ",
+    "la ha encerrado, le ha prohibido salir o que la visiten",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la encerraba, le prohibía salir o que la visitaran",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    31,
+    "P13_1_16",
+    "Numérico",
+    "A1, A2, ",
+    "la ha vigilado, espiado, la ha seguido cuando sale de su casa o se le aparece de manera sorpresiva",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la vigiló, espió, o la siguió cuando salía de su casa o se le aparecía de manera sorpresiva",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    32,
+    "P13_1_17",
+    "Numérico",
+    "A1, A2, ",
+    "la llama o le manda mensajes por teléfono todo el tiempo, para saber dónde y con quién está y qué está haciendo",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la llamaba o le mandaba mensajes por teléfono todo el tiempo, para saber dónde y con quién estaba y qué estaba haciendo",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    33,
+    "P13_1_18",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    34,
+    "P13_1_19",
+    "Numérico",
+    "A1, A2",
+    "la ha amenazado con matarla, matarse él o matar a los niños(as)",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con matarla, matarse él o matar a los niños(as)",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "la ha amenazado con matarla, matarse él",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    35,
+    "P13_1_20",
+    "Numérico",
+    "A1, A2",
+    "le ha destruido, tirado o escondido cosas de usted o del hogar",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "le destruyó, tiró o escondió cosas de usted o del hogar",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "le ha destruido, tirado o escondido cosas de usted",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    36,
+    "P13_1_21",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dejado de hablar",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le dejó de hablar",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    37,
+    "P13_1_22",
+    "Numérico",
+    "A1, A2, ",
+    "le revisa su correo o celular y le exige que le dé las contraseñas",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le revisaba su correo o celular o le exigía que le diera las contraseñas",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    38,
+    "P13_1_23AB",
+    "Numérico",
+    "A1, A2, ",
+    "ha hecho que los hijos(as) o parientes se pongan en su contra",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "hizo que los hijos(as) o parientes se pusieran en su contra",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    39,
+    "P13_1_24AB",
+    "Numérico",
+    "A1, A2",
+    "se ha enojado mucho porque no está listo el quehacer, porque la comida no está como él quiere o cree que usted no cumplió con sus obligaciones",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "se enojaba mucho porque no estaba listo el quehacer, porque la comida no estaba como él quería o creía que usted no cumplía con sus obligaciones",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    40,
+    "P13_1_25",
+    "Numérico",
+    "A1, A2, ",
+    "le ha exigido con amenazas o chantajes tener relaciones sexuales, aunque usted no quiera",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le exigía con amenazas o chantajes tener relaciones sexuales, aunque usted no quería",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    41,
+    "P13_1_26",
+    "Numérico",
+    "A1, A2, ",
+    "cuando tienen relaciones sexuales la ha obligado hacer cosas que a usted no le gustan",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "cuando tenían relaciones sexuales la obligaba hacer cosas que a usted no le gustaban",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    42,
+    "P13_1_27",
+    "Numérico",
+    "A1, A2, ",
+    "ha usado su fuerza física para obligarla a tener relaciones sexuales",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "usaba su fuerza física para obligarla a tener relaciones sexuales",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    43,
+    "P13_1_28",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    44,
+    "P13_1_29",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a tener relaciones sexuales sin protección",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a tener relaciones sexuales sin protección",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    45,
+    "P13_1_30",
+    "Numérico",
+    "A1, A2, ",
+    "le ha prohibido trabajar o estudiar",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le prohibió trabajar o estudiar",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    46,
+    "P13_1_31",
+    "Numérico",
+    "A1, A2, ",
+    "le ha quitado su dinero o lo ha usado sin su consentimiento",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le quitó su dinero o lo usó sin su consentimiento",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    47,
+    "P13_1_32",
+    "Numérico",
+    "A1, A2, ",
+    "se ha adueñado o le ha quitado bienes (terrenos, casas, departamentos, coches, etc.)",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "se adueñó o le quitó bienes (terrenos, casas, departamentos, coches, etc.)",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    48,
+    "P13_1_33AB",
+    "Numérico",
+    "A1, A2, ",
+    "se ha gastado el dinero que se necesita para la casa",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "se gastaba el dinero que se necesitaba para la casa",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    49,
+    "P13_1_34AB",
+    "Numérico",
+    "A1, A2, ",
+    "no ha cumplido con dar el gasto o ha amenazado con no darlo",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "no cumplió con dar el gasto o la amenazó con no darlo",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    50,
+    "P13_1_35AB",
+    "Numérico",
+    "A1, A2, ",
+    "aunque tenga dinero ha sido codo o tacaño con los gastos de la casa",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "aunque tenía dinero era codo o tacaño con los gastos de la casa",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    51,
+    "P13_1_36AB",
+    "Numérico",
+    "A1, A2, ",
+    "le ha reclamado por cómo gasta usted el dinero",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le reclamó por cómo gastaba usted el dinero",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    52,
+    "P13_2_1",
+    "Numérico",
+    "A1, A2, ",
+    "la ha empujado o le ha jalado el cabello",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la empujó o le jaló el cabello",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    53,
+    "P13_3_1",
+    "Numérico",
+    "A1, A2, ",
+    "la ha empujado o le ha jalado el cabello",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la empujó o le jaló el cabello",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    54,
+    "P13_2_2",
+    "Numérico",
+    "A1, A2, ",
+    "la ha abofeteado o cacheteado",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la abofeteó o cacheteó",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    55,
+    "P13_3_2",
+    "Numérico",
+    "A1, A2, ",
+    "la ha abofeteado o cacheteado",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la abofeteó o cacheteó",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    56,
+    "P13_2_3",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amarrado",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la amarró",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    57,
+    "P13_3_3",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amarrado",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la amarró",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    58,
+    "P13_2_4",
+    "Numérico",
+    "A1, A2, ",
+    "la ha pateado",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la pateó",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    59,
+    "P13_3_4",
+    "Numérico",
+    "A1, A2, ",
+    "la ha pateado",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la pateó",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    60,
+    "P13_2_5",
+    "Numérico",
+    "A1, A2, ",
+    "le ha aventado algún objeto",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "le aventó algún objeto",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    61,
+    "P13_3_5",
+    "Numérico",
+    "A1, A2, ",
+    "le ha aventado algún objeto",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le aventó algún objeto",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    62,
+    "P13_2_6",
+    "Numérico",
+    "A1, A2, ",
+    "la ha golpeado con el puño o con algún objeto",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la golpeó con el puño o con algún objeto",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    63,
+    "P13_3_6",
+    "Numérico",
+    "A1, A2, ",
+    "la ha golpeado con el puño o con algún objeto",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la golpeó con el puño o con algún objeto",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    64,
+    "P13_2_7",
+    "Numérico",
+    "A1, A2, ",
+    "la ha tratado de ahorcar o asfixiar",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la trató de ahorcar o asfixiar",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    65,
+    "P13_3_7",
+    "Numérico",
+    "A1, A2, ",
+    "la ha tratado de ahorcar o asfixiar",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la trató de ahorcar o asfixiar",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    66,
+    "P13_2_8",
+    "Numérico",
+    "A1, A2, ",
+    "la ha agredido con cuchillo o navaja",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la agredió con cuchillo o navaja",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    67,
+    "P13_3_8",
+    "Numérico",
+    "A1, A2, ",
+    "la ha agredido con cuchillo o navaja",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la agredió con cuchillo o navaja",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    68,
+    "P13_2_9",
+    "Numérico",
+    "A1, A2, ",
+    "le ha disparado con un arma de fuego",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le disparó con un arma de fuego",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    69,
+    "P13_3_9",
+    "Numérico",
+    "A1, A2, ",
+    "le ha disparado con un arma de fuego",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le disparó con un arma de fuego",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    70,
+    "P13_2_10",
+    "Numérico",
+    "A1, A2, ",
+    "la ha avergonzado, ofendido, menospreciado o humillado (le ha dicho que es fea o la ha comparado con otras mujeres)",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la avergonzó, ofendió, menospreció o humilló (le decía que era fea o la comparaba con otras mujeres)",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    71,
+    "P13_3_10",
+    "Numérico",
+    "A1, A2, ",
+    "la ha avergonzado, ofendido, menospreciado o humillado (le ha dicho que es fea o la ha comparado con otras mujeres)",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la avergonzó, ofendió, menospreció o humilló (le decía que era fea o la comparaba con otras mujeres)",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    72,
+    "P13_2_11",
+    "Numérico",
+    "A1, A2, ",
+    "la ha ignorado, no la toma en cuenta o no le brinda cariño",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la ignoraba, no la tomaba en cuenta o no le brindaba cariño",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "C1",
+    "la ha ignorado, no la toma en cuenta o no le brinda cariño"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    73,
+    "P13_3_11",
+    "Numérico",
+    "A1, A2, ",
+    "la ha ignorado, no la toma en cuenta o no le brinda cariño",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la ignoraba, no la tomaba en cuenta o no le brindaba cariño",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "la ha ignorado, no la toma en cuenta o no le brinda cariño",
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    74,
+    "P13_2_12",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dicho que usted lo engaña",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "le decía que usted lo engañaba",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    75,
+    "P13_3_12",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dicho que usted lo engaña",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le decía que usted lo engañaba",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    76,
+    "P13_2_13",
+    "Numérico",
+    "A1, A2, ",
+    "le ha hecho sentir miedo",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le hizo sentir miedo",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    77,
+    "P13_3_13",
+    "Numérico",
+    "A1, A2, ",
+    "le ha hecho sentir miedo",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le hizo sentir miedo",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    78,
+    "P13_2_14",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la amenazaba con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "C1",
+    "la ha amenazado con dejarla/abandonarla, dañarla",
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    79,
+    "P13_3_14",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la amenazaba con dejarla/abandonarla, dañarla, quitarle a los(as) hijos(as) o correrla de la casa",
+    "3 - una vez?"
+  ],
+  [
+    "4 - No ocurrió"
+  ],
+  [
+    "C1",
+    "la ha amenazado con dejarla/abandonarla, dañarla",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    80,
+    "P13_2_15",
+    "Numérico",
+    "A1, A2, ",
+    "la ha encerrado, le ha prohibido salir o que la visiten",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la encerraba, le prohibía salir o que la visitaran",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    81,
+    "P13_3_15",
+    "Numérico",
+    "A1, A2, ",
+    "la ha encerrado, le ha prohibido salir o que la visiten",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la encerraba, le prohibía salir o que la visitaran",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    82,
+    "P13_2_16",
+    "Numérico",
+    "A1, A2, ",
+    "la ha vigilado, espiado, la ha seguido cuando sale de su casa o se le aparece de manera sorpresiva",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "3 - sin importancia?"
+  ],
+  [
+    "B1, B2",
+    "la vigiló, espió, o la siguió cuando salía de su casa o se le aparecía de manera sorpresiva",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    83,
+    "P13_3_16",
+    "Numérico",
+    "A1, A2, ",
+    "la ha vigilado, espiado, la ha seguido cuando sale de su casa o se le aparece de manera sorpresiva",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la vigiló, espió, o la siguió cuando salía de su casa o se le aparecía de manera sorpresiva",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    84,
+    "P13_2_17",
+    "Numérico",
+    "A1, A2, ",
+    "la llama o le manda mensajes por teléfono todo el tiempo, para saber dónde y con quién está y qué está haciendo",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la llamaba o le mandaba mensajes por teléfono todo el tiempo, para saber dónde y con quién estaba y qué estaba haciendo",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    85,
+    "P13_3_17",
+    "Numérico",
+    "A1, A2, ",
+    "la llama o le manda mensajes por teléfono todo el tiempo, para saber dónde y con quién está y qué está haciendo",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la llamaba o le mandaba mensajes por teléfono todo el tiempo, para saber dónde y con quién estaba y qué estaba haciendo",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    86,
+    "P13_2_18",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    87,
+    "P13_3_18",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con algún arma (cuchillo, navaja, pistola o rifle) o con quemarla",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    88,
+    "P13_2_19",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con matarla, matarse él o matar a los niños(as)",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con matarla, matarse él o matar a los niños(as)",
+    "3 - sin importancia?"
+  ],
+  [
+    "C1",
+    "la ha amenazado con matarla, matarse él",
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    89,
+    "P13_3_19",
+    "Numérico",
+    "A1, A2, ",
+    "la ha amenazado con matarla, matarse él o matar a los niños(as)",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "la amenazó con matarla, matarse él o matar a los niños(as)",
+    "3 - una vez?"
+  ],
+  [
+    "C1",
+    "la ha amenazado con matarla, matarse él",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    90,
+    "P13_2_20",
+    "Numérico",
+    "A1, A2, ",
+    "le ha destruido, tirado o escondido cosas de usted o del hogar",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le destruyó, tiró o escondió cosas de usted o del hogar",
+    "3 - sin importancia?"
+  ],
+  [
+    "C1",
+    "le ha destruido, tirado o escondido cosas de usted o del hogar",
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    91,
+    "P13_3_20",
+    "Numérico",
+    "A1, A2, ",
+    "le ha destruido, tirado o escondido cosas de usted o del hogar",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "B1, B2",
+    "le destruyó, tiró o escondió cosas de usted o del hogar",
+    "3 - una vez?"
+  ],
+  [
+    "C1",
+    "le ha destruido, tirado o escondido cosas de usted o del hogar",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    92,
+    "P13_2_21",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dejado de hablar",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le dejó de hablar",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    93,
+    "P13_3_21",
+    "Numérico",
+    "A1, A2, ",
+    "le ha dejado de hablar",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le dejó de hablar",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    94,
+    "P13_2_22",
+    "Numérico",
+    "A1, A2, ",
+    "le revisa su correo o celular y le exige que le dé las contraseñas",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le revisó su correo o celular y le exigía que le diera las contraseñas",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    95,
+    "P13_3_22",
+    "Numérico",
+    "A1, A2, ",
+    "le revisa su correo o celular y le exige que le dé las contraseñas",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le revisó su correo o celular y le exigía que le diera las contraseñas",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    96,
+    "P13_2_23AB",
+    "Numérico",
+    "A1, A2, ",
+    "ha hecho que los hijos(as) o parientes se pongan en su contra",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "hizo que los hijos(as) o parientes se pusieran en su contra",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    97,
+    "P13_3_23AB",
+    "Numérico",
+    "A1, A2, ",
+    "ha hecho que los hijos(as) o parientes se pongan en su contra",
+    "1 - muchas veces?",
+    "1 … 4, , blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "hizo que los hijos(as) o parientes se pusieran en su contra",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    98,
+    "P13_2_24AB",
+    "Numérico",
+    "A1, A2, ",
+    "se ha enojado mucho porque no está listo el quehacer, porque la comida no está como él quiere o cree que usted no cumplió con sus obligaciones",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "se enojaba mucho porque no estaba listo el quehacer, porque la comida no estaba como él quería o creía que usted no cumplía con sus obligaciones",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    99,
+    "P13_3_24AB",
+    "Numérico",
+    "A1, A2, ",
+    "le revisa su correo o celular y le exige que le dé las contraseñas",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le revisó su correo o celular y le exigía que le diera las contraseñas",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    100,
+    "P13_2_25",
+    "Numérico",
+    "A1, A2, ",
+    "le ha exigido con amenazas o chantajes tener relaciones sexuales, aunque usted no quiera",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le exigía con amenazas o chantajes tener relaciones sexuales, aunque usted no quería",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    101,
+    "P13_3_25",
+    "Numérico",
+    "A1, A2, ",
+    "le ha exigido con amenazas o chantajes tener relaciones sexuales, aunque usted no quiera",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le exigía con amenazas o chantajes tener relaciones sexuales, aunque usted no quería",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    102,
+    "P13_2_26",
+    "Numérico",
+    "A1, A2, ",
+    "cuando tienen relaciones sexuales la ha obligado hacer cosas que a usted no le gustan",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "cuando tenían relaciones sexuales la obligaba hacer cosas que a usted no le gustaban",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    103,
+    "P13_3_26",
+    "Numérico",
+    "A1, A2, ",
+    "cuando tienen relaciones sexuales la ha obligado hacer cosas que a usted no le gustan",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "cuando tenían relaciones sexuales la obligaba hacer cosas que a usted no le gustaban",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    104,
+    "P13_2_27",
+    "Numérico",
+    "A1, A2, ",
+    "ha usado su fuerza física para obligarla a tener relaciones sexuales",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "usaba su fuerza física para obligarla a tener relaciones sexuales",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    105,
+    "P13_3_27",
+    "Numérico",
+    "A1, A2, ",
+    "ha usado su fuerza física para obligarla a tener relaciones sexuales",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "usaba su fuerza física para obligarla a tener relaciones sexuales",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    106,
+    "P13_2_28",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    107,
+    "P13_3_28",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a mirar escenas o actos sexuales o pornográficos (fotos, revistas, videos o películas pornográficas)",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    108,
+    "P13_2_29",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a tener relaciones sexuales sin protección",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a tener relaciones sexuales sin protección",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    109,
+    "P13_3_29",
+    "Numérico",
+    "A1, A2, ",
+    "la ha obligado a tener relaciones sexuales sin protección",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "la obligaba a tener relaciones sexuales sin protección",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    110,
+    "P13_2_30",
+    "Numérico",
+    "A1, A2, ",
+    "le ha prohibido trabajar o estudiar",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le prohibió trabajar o estudiar",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    111,
+    "P13_3_30",
+    "Numérico",
+    "A1, A2, ",
+    "le ha prohibido trabajar o estudiar",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le prohibió trabajar o estudiar",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    112,
+    "P13_2_31",
+    "Numérico",
+    "A1, A2, ",
+    "le ha quitado su dinero o lo ha usado sin su consentimiento",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le quitó su dinero o lo usó sin su consentimiento",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    113,
+    "P13_3_31",
+    "Numérico",
+    "A1, A2, ",
+    "le ha quitado su dinero o lo ha usado sin su consentimiento",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le quitó su dinero o lo usó sin su consentimiento",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    114,
+    "P13_2_32",
+    "Numérico",
+    "A1, A2, ",
+    "se ha adueñado o le ha quitado bienes (terrenos, casas, departamento, coche, etc.)",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "se adueñó o le quitó bienes (terrenos, casas, departamento, coche, etc.)",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    115,
+    "P13_3_32",
+    "Numérico",
+    "A1, A2, ",
+    "se ha adueñado o le ha quitado bienes (terrenos, casas, departamento, coche, etc.)",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "C1",
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "se adueñó o le quitó bienes (terrenos, casas, departamento, coche, etc.)",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    116,
+    "P13_2_33AB",
+    "Numérico",
+    "A1, A2, ",
+    "se ha gastado el dinero que se necesita para la casa",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "se gastaba el dinero que se necesitaba para la casa",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    117,
+    "P13_3_33AB",
+    "Numérico",
+    "A1, A2, ",
+    "se ha gastado el dinero que se necesita para la casa",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "se gastaba el dinero que se necesitaba para la casa",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    118,
+    "P13_2_34AB",
+    "Numérico",
+    "A1, A2, ",
+    "no ha cumplido con dar el gasto o ha amenazado con no darlo",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "no cumplió con dar el gasto o la amenazó con no darlo",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    119,
+    "P13_3_34AB",
+    "Numérico",
+    "A1, A2, ",
+    "no ha cumplido con dar el gasto o ha amenazado con no darlo",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "no cumplió con dar el gasto o la amenazó con no darlo",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    120,
+    "P13_2_35AB",
+    "Numérico",
+    "A1, A2, ",
+    "aunque tenga dinero ha sido codo o tacaño con los gastos de la casa",
+    "1 - muy grave?",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "aunque tenía dinero era codo o tacaño con los gastos de la casa",
+    "3 - sin importancia?"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    121,
+    "P13_3_35AB",
+    "Numérico",
+    "A1, A2, ",
+    "aunque tenga dinero ha sido codo o tacaño con los gastos de la casa",
+    "1 - muchas veces?",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "aunque tenía dinero era codo o tacaño con los gastos de la casa",
+    "4 - No ocurrió"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.2."
+  ],
+  [
+    "El que la (le) haya (SITUACIÓN EN 13.1) ¿le parece…"
+  ],
+  [
+    122,
+    "P13_2_36AB",
+    "Numérico",
+    "A1, A2, ",
+    "le ha reclamado por cómo gasta usted el dinero",
+    "1 - muy grave?",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "2 - grave?"
+  ],
+  [
+    "B1, B2",
+    "le reclamó por cómo gastaba usted el dinero",
+    "3 - sin importancia?"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.3."
+  ],
+  [
+    "De octubre de 2015 a la fecha, ¿esto ha ocurrido…"
+  ],
+  [
+    123,
+    "P13_3_36AB",
+    "Numérico",
+    "A1, A2, ",
+    "le ha reclamado por cómo gasta usted el dinero",
+    "1 - muchas veces?",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "2 - pocas veces?"
+  ],
+  [
+    "3 - una vez?"
+  ],
+  [
+    "B1, B2",
+    "le reclamó por cómo gastaba usted el dinero",
+    "4 - No ocurrió"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.4."
+  ],
+  [
+    124,
+    "P13_4",
+    "Numérico",
+    "A1, A2",
+    "¿Ya había usted hablado antes con alguien sobre los problemas que ha vivido con su pareja o esposo?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "¿Ya había usted hablado antes con alguien sobre los problemas que ha vivido con su ex - esposo o ex - pareja?",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "¿Había usted hablado antes con alguien sobre los problemas que ha vivido o vivió con su novio o pareja (ex - novio o ex - pareja)?",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.5."
+  ],
+  [
+    "¿Le contó lo ocurrido a…"
+  ],
+  [
+    125,
+    "P13_5_1",
+    "Numérico",
+    "A1, A2",
+    "algún familiar?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    126,
+    "P13_5_2",
+    "Numérico",
+    "A1, A2",
+    "amiga(o) o compañera(o)?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    127,
+    "P13_5_3",
+    "Numérico",
+    "A1, A2",
+    "vecina, conocida?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    128,
+    "P13_5_4",
+    "Numérico",
+    "A1, A2",
+    "psicóloga(o) o trabajador(a) social?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    129,
+    "P13_5_5",
+    "Numérico",
+    "A1, A2",
+    "abogada(o)?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    130,
+    "P13_5_6",
+    "Numérico",
+    "A1, A2",
+    "sacerdote, religiosa o ministro?",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    131,
+    "P13_5_7",
+    "Numérico",
+    "A1, A2",
+    "Otra persona",
+    "1 - Sí",
+    "1, 2, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "b - blanco"
+  ],
+  [
+    "13.6."
+  ],
+  [
+    132,
+    "P13_6",
+    "Numérico",
+    "A1, A2",
+    "Debido a las dificultades y problemas que ha vivido con su esposo o pareja, ¿sabe usted a dónde acudir para pedir apoyo o ayuda…",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "Debido a las dificultades y problemas que vivió con su ex - esposo o ex - pareja, ¿sabe usted a dónde acudir para pedir apoyo o ayuda?",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "Debido a las dificultades y problemas que ha vivido o vivió con su novio o pareja (ex - novio o ex - pareja), ¿sabe usted a dónde acudir para pedir apoyo o ayuda?",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.7."
+  ],
+  [
+    "A1, A2",
+    "Debido a lo que le ha ocurrido con su esposo o pareja…"
+  ],
+  [
+    "B1, B2",
+    "Debido a lo que le ha ocurrido con su ex-esposo o ex-pareja…"
+  ],
+  [
+    "C1",
+    "Debido a lo que le ha ocurrido con su novio o pareja (ex - novio o ex - pareja)…"
+  ],
+  [
+    133,
+    "P13_7_1",
+    "Numérico",
+    "A1, A2",
+    "¿Pidió apoyo, información o servicios en alguna dependencia pública o de gobierno, a un grupo o asociación o una institución privada?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    134,
+    "P13_7_2",
+    "Numérico",
+    "A1, A2",
+    "¿Usted o alguien de su familia, presentó una queja o denunció lo ocurrido con su esposo, ante alguna autoridad?",
+    "1 - Sí"
+  ],
+  [
+    "B1, B2",
+    "2 - No",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "C1",
+    "Usted o alguien de su familia, ¿presentó una queja o denunció lo ocurrido ante alguna autoridad?",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.8."
+  ],
+  [
+    "¿Usted pidió apoyo, información o servicios a…"
+  ],
+  [
+    135,
+    "P13_8_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto Nacional de las Mujeres?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    136,
+    "P13_8_2",
+    "Numérico",
+    "A1, A2",
+    "Instituto de las Mujeres del estado o municipio?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    137,
+    "P13_8_3",
+    "Numérico",
+    "A1, A2",
+    "alguna línea de atención telefónica?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    138,
+    "P13_8_4",
+    "Numérico",
+    "A1, A2",
+    "algún organismo o asociación civil?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    139,
+    "P13_8_5",
+    "Numérico",
+    "A1, A2",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    140,
+    "P13_8_6",
+    "Numérico",
+    "A1, A2",
+    "Centro de Justicia para las Mujeres?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    141,
+    "P13_8_7",
+    "Numérico",
+    "A1, A2",
+    "Defensoría Pública?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    142,
+    "P13_8_8",
+    "Numérico",
+    "A1, A2",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    143,
+    "P13_8_9",
+    "Numérico",
+    "A1, A2",
+    "consultorio médico, clínica u hospital privado?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    144,
+    "P13_8_10",
+    "Numérico",
+    "A1, A2",
+    "DIF?",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    145,
+    "P13_8_11",
+    "Numérico",
+    "A1, A2",
+    "Otra institución pública",
+    "1 - Sí",
+    "1, 2, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    146,
+    "P13_9_1_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto Nacional de las Mujeres?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    147,
+    "P13_9_1_2",
+    "Numérico",
+    "C1",
+    "Instituto Nacional de las Mujeres?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    148,
+    "P13_9_1_3",
+    "Numérico",
+    "Instituto Nacional de las Mujeres?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    149,
+    "P13_10_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto Nacional de las Mujeres?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    150,
+    "P13_11_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto Nacional de las Mujeres?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    151,
+    "P13_12_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto Nacional de las Mujeres?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    152,
+    "P13_9_2_1",
+    "Numérico",
+    "A1, A2",
+    "Instituto de las Mujeres del estado o municipio?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    153,
+    "P13_9_2_2",
+    "Numérico",
+    "C1",
+    "Instituto de las Mujeres del estado o municipio?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    154,
+    "P13_9_2_3",
+    "Numérico",
+    "Instituto de las Mujeres del estado o municipio?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    155,
+    "P13_10_2",
+    "Numérico",
+    "A1, A2",
+    "Instituto de las Mujeres del estado o municipio?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    156,
+    "P13_11_2",
+    "Numérico",
+    "A1, A2",
+    "Instituto de las Mujeres del estado o municipio?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    157,
+    "P13_12_2",
+    "Numérico",
+    "A1, A2",
+    "Instituto de las Mujeres del estado o municipio?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    158,
+    "P13_9_3_1",
+    "Numérico",
+    "A1, A2",
+    "alguna línea de atención telefónica?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    159,
+    "P13_9_3_2",
+    "Numérico",
+    "C1",
+    "alguna línea de atención telefónica?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    160,
+    "P13_9_3_3",
+    "Numérico",
+    "alguna línea de atención telefónica?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    161,
+    "P13_10_3",
+    "Numérico",
+    "A1, A2",
+    "alguna línea de atención telefónica?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    162,
+    "P13_11_3",
+    "Numérico",
+    "A1, A2",
+    "alguna línea de atención telefónica?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    163,
+    "P13_12_3",
+    "Numérico",
+    "A1, A2",
+    "alguna línea de atención telefónica?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    164,
+    "P13_9_4_1",
+    "Numérico",
+    "A1, A2",
+    "algún organismo o asociación civil?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    165,
+    "P13_9_4_2",
+    "Numérico",
+    "C1",
+    "algún organismo o asociación civil?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    166,
+    "P13_9_4_3",
+    "Numérico",
+    "algún organismo o asociación civil?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    167,
+    "P13_10_4",
+    "Numérico",
+    "A1, A2",
+    "algún organismo o asociación civil?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    168,
+    "P13_11_4",
+    "Numérico",
+    "A1, A2",
+    "algún organismo o asociación civil?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    169,
+    "P13_12_4",
+    "Numérico",
+    "A1, A2",
+    "algún organismo o asociación civil?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    170,
+    "P13_9_5_1",
+    "Numérico",
+    "A1, A2",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    171,
+    "P13_9_5_2",
+    "Numérico",
+    "C1",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    172,
+    "P13_9_5_3",
+    "Numérico",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    173,
+    "P13_10_5",
+    "Numérico",
+    "A1, A2",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    174,
+    "P13_11_5",
+    "Numérico",
+    "A1, A2",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    175,
+    "P13_12_5",
+    "Numérico",
+    "A1, A2",
+    "CAVI (Centro de Atención a la Violencia Intrafamiliar)?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    176,
+    "P13_9_6_1",
+    "Numérico",
+    "A1, A2",
+    "Centro de Justicia para las Mujeres?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    177,
+    "P13_9_6_2",
+    "Numérico",
+    "C1",
+    "Centro de Justicia para las Mujeres?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    178,
+    "P13_9_6_3",
+    "Numérico",
+    "Centro de Justicia para las Mujeres?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    179,
+    "P13_10_6",
+    "Numérico",
+    "A1, A2",
+    "Centro de Justicia para las Mujeres?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    180,
+    "P13_11_6",
+    "Numérico",
+    "A1, A2",
+    "Centro de Justicia para las Mujeres?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    181,
+    "P13_12_6",
+    "Numérico",
+    "A1, A2",
+    "Centro de Justicia para las Mujeres?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    182,
+    "P13_9_7_1",
+    "Numérico",
+    "A1, A2",
+    "Defensoría Pública?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    183,
+    "P13_9_7_2",
+    "Numérico",
+    "C1",
+    "Defensoría Pública?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    184,
+    "P13_9_7_3",
+    "Numérico",
+    "Defensoría Pública?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    185,
+    "P13_10_7",
+    "Numérico",
+    "A1, A2",
+    "Defensoría Pública?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    186,
+    "P13_11_7",
+    "Numérico",
+    "A1, A2",
+    "Defensoría Pública?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    187,
+    "P13_12_7",
+    "Numérico",
+    "A1, A2",
+    "Defensoría Pública?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    188,
+    "P13_9_8_1",
+    "Numérico",
+    "A1, A2",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    189,
+    "P13_9_8_2",
+    "Numérico",
+    "C1",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    190,
+    "P13_9_8_3",
+    "Numérico",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    191,
+    "P13_10_8",
+    "Numérico",
+    "A1, A2",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    192,
+    "P13_11_8",
+    "Numérico",
+    "A1, A2",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "1 - Sí",
+    "1 … 3, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.12."
+  ],
+  [
+    "Esa última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿cómo la atendieron?"
+  ],
+  [
+    193,
+    "P13_12_8",
+    "Numérico",
+    "A1, A2",
+    "clínica, centro de salud u hospital público (ISSSTE, IMSS, Servicios de salud del estado)?",
+    "1 - La trataron bien y con respeto",
+    "1 … 4, 9, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - La trataron mal, la humillaron"
+  ],
+  [
+    "C1",
+    "3 - No hicieron nada para ayudarla"
+  ],
+  [
+    "4 - No había nadie que la atendiera"
+  ],
+  [
+    "9 - No especificado"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.9."
+  ],
+  [
+    "En (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿usted solicitó…"
+  ],
+  [
+    194,
+    "P13_9_9_1",
+    "Numérico",
+    "A1, A2",
+    "consultorio médico, clínica u hospital privado?",
+    "1 - orientación e información?",
+    "1 … 5, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - apoyo legal?"
+  ],
+  [
+    195,
+    "P13_9_9_2",
+    "Numérico",
+    "C1",
+    "consultorio médico, clínica u hospital privado?",
+    "3 - apoyo psicológico?"
+  ],
+  [
+    "4 - atención médica?"
+  ],
+  [
+    196,
+    "P13_9_9_3",
+    "Numérico",
+    "consultorio médico, clínica u hospital privado?",
+    "5 - Otro"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.10."
+  ],
+  [
+    "¿Cuándo fue la última vez que pidió apoyo, orientación o servicios a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE)?"
+  ],
+  [
+    197,
+    "P13_10_9",
+    "Numérico",
+    "A1, A2",
+    "consultorio médico, clínica u hospital privado?",
+    "1 - Antes de 1994",
+    "1 … 6, 8, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - Entre 1994 y 1999"
+  ],
+  [
+    "C1",
+    "3 - Entre 2000 y 2006"
+  ],
+  [
+    "4 - Entre 2007 y 2012"
+  ],
+  [
+    "5 - Entre 2013 y 2014"
+  ],
+  [
+    "6 - Entre 2015 y 2016"
+  ],
+  [
+    "8 - No recuerda"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "13.11."
+  ],
+  [
+    "La última vez que acudió a, (MENCIONE LA INSTITUCIÓN CORRESPONDIENTE), ¿le dieron la información, apoyo o servicio que necesitaba?"
+  ],
+  [
+    198,
+    "P13_11_9",
+    "Numérico",
+    "A1, A2",
+    "consultorio médico, clínica u hospital privado?",
+    "1 - Sí",
+    "1 … 3, blanco",
+    1
+  ],
+  [
+    "B1, B2",
+    "2 - No"
+  ],
+  [
+    "C1",
+    "3 - La mandaron a otra dependencia para que le brindaran atención"
+  ],
+  [
+    "b - blanco"
+  ],
+  [
+    "Campos empleados para el diseño muestral"
+  ],
+  [
+    "Consecutivo",
+    "Mnemónico",
+    "Tipo",
+    "Situación Conyugal",
+    "Descripción",
+    "Rango particular",
+    "Rango general",
+    "Long"
+  ],
+  [
+    199,
+    "FAC_VIV",
+    "Numérico",
+    "Todas",
+    "Factor de la vivienda",
+    "00001 … 99999",
+    5
+  ],
+  [
+    200,
+    "FAC_MUJ",
+    "Numérico",
+    "Todas",
+    "Factor de la mujer",
+    "000001 … 999999",
+    6
+  ],
+  [
+    201,
+    "ESTRATO",
+    "Numérico",
+    "Todas",
+    "Estrato",
+    "1,…,4",
+    1
+  ],
+  [
+    202,
+    "UPM_DIS",
+    "Numérico",
+    "Todas",
+    "UPM de diseño",
+    "0000001 … 9999999",
+    7
+  ],
+  [
+    203,
+    "EST_DIS",
+    "Numérico",
+    "Todas",
+    "Estrato de diseño",
+    "001 … 500",
+    3
+  ]
+]

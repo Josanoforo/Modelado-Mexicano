@@ -1,0 +1,142 @@
+{
+  "paquete": "enfih-0001",
+  "manifiesto_sha256": "e534af31eb51017cb3a9067ab4491a4683b69e0c6d4a3d5fd259a21537604b9e",
+  "entradas_e_insumos": [
+    {
+      "ruta": "/entrada/cuestionario-enfih2019-cuestionario.pdf",
+      "bytes": 1262902,
+      "sha256": "3ff9b6f89cc47c995b86dfb831d6ea557448ff051c621adc2d6f20e9cfe33bd4"
+    },
+    {
+      "ruta": "/entrada/encargo.md",
+      "bytes": 380,
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+    },
+    {
+      "ruta": "/entrada/estimandos.tsv",
+      "bytes": 409,
+      "sha256": "0a330cc9764cb3e4535972590e8deef4ee89e9b854e6d14608793f0150385088"
+    },
+    {
+      "ruta": "/entrada/insumos.json",
+      "bytes": 638,
+      "sha256": "6b5d5c397d62c7b2bc2d2924be395cc35892500a7e965e0af50d2e41f77fe2bc"
+    },
+    {
+      "ruta": "/entrada/metodo.md",
+      "bytes": 2101,
+      "sha256": "865b8e8fe57dff15a443b47f249c51f751241b7c440cc44d3691992f8700be66"
+    },
+    {
+      "ruta": "/entrada/tolerancia.json",
+      "bytes": 41,
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    {
+      "ruta": "/raw/enfih2019_bd_csv_zip/enfih_2019_base_de_datos_csv.zip",
+      "archivo_declarado": "enfih2019/enfih_2019_base_de_datos_csv.zip",
+      "bytes": 4404049,
+      "sha256": "be372533d5043920892142e8bf792b7293a5f20ab466a6441bc89925b42ef4d5",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_base_de_datos_csv.zip"
+    },
+    {
+      "ruta": "/raw/enfih2019_fd_xlsx/enfih_2019_fd.xlsx",
+      "archivo_declarado": "enfih2019/enfih_2019_fd.xlsx",
+      "bytes": 202396,
+      "sha256": "326b68b342797de45a7a4eb3dbf04f3790d11035df2611d7f9153d1ae12a48e1",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enfih/2019/microdatos/enfih_2019_fd.xlsx"
+    }
+  ],
+  "miembros_zip": [
+    {
+      "nombre": "TPERSONAL.csv",
+      "bytes": 177731,
+      "crc32": "ab8d605b"
+    },
+    {
+      "nombre": "TPROPIEDAD.csv",
+      "bytes": 856699,
+      "crc32": "9fe3d961"
+    },
+    {
+      "nombre": "TSDEM.csv",
+      "bytes": 5084663,
+      "crc32": "474bc988"
+    },
+    {
+      "nombre": "TUNICO.csv",
+      "bytes": 553836,
+      "crc32": "c4472941"
+    },
+    {
+      "nombre": "TVIVIENDA.csv",
+      "bytes": 3319451,
+      "crc32": "ea0bd158"
+    },
+    {
+      "nombre": "TAUTO.csv",
+      "bytes": 140920,
+      "crc32": "1bd143ca"
+    },
+    {
+      "nombre": "TBANCA.csv",
+      "bytes": 469153,
+      "crc32": "33ea3343"
+    },
+    {
+      "nombre": "TCOMPARTE.csv",
+      "bytes": 52317,
+      "crc32": "eba6e5c3"
+    },
+    {
+      "nombre": "TCONCENTRADORA.csv",
+      "bytes": 7148838,
+      "crc32": "87f0ba80"
+    },
+    {
+      "nombre": "TDEPAR.csv",
+      "bytes": 665657,
+      "crc32": "8c1af42d"
+    },
+    {
+      "nombre": "TEDUCA.csv",
+      "bytes": 3427,
+      "crc32": "8d9e423c"
+    },
+    {
+      "nombre": "TGRUPAL.csv",
+      "bytes": 114069,
+      "crc32": "28fd5edd"
+    },
+    {
+      "nombre": "THOGAR.csv",
+      "bytes": 1095429,
+      "crc32": "51764cff"
+    },
+    {
+      "nombre": "TMODULO.csv",
+      "bytes": 30887421,
+      "crc32": "ffa92f69"
+    },
+    {
+      "nombre": "TMOTO.csv",
+      "bytes": 27744,
+      "crc32": "b96f072d"
+    },
+    {
+      "nombre": "TNOMINA.csv",
+      "bytes": 122405,
+      "crc32": "da88cfa7"
+    }
+  ],
+  "tabla_abierta": "TCONCENTRADORA.csv",
+  "tabla_sha256": "b699de34887e7f48cf8a9e018c51fb2436eb00796160c9640051eb3538abfabd",
+  "acceso_resultados_esperados": false,
+  "revelacion_solicitada": false,
+  "identidad": "Se conservan las llaves e identidades recibidas; celda vacía permanece vacía.",
+  "versiones": {
+    "python": "3.14.4",
+    "numpy": "2.3.5",
+    "pandas": "2.3.3"
+  }
+}

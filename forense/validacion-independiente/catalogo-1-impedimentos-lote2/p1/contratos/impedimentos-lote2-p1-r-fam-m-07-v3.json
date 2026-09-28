@@ -1,0 +1,37 @@
+{
+  "estado": "PROPUESTO-POR-EJECUTOR",
+  "identidad_historica": "r-fam-m-07-v3",
+  "fuente_contenedor": "forense/validacion-independiente/catalogo-1-preparacion-lote2/entradas/r-fam-m-07-v3/r-fam-m-07-v3-entradas-v2.tar.gz",
+  "sha256_original": "c7d2d434df4e48e2decbab3eb3e3435acd6201b7af986e521f31c03f9014bf48",
+  "estimadores_historicos": 1,
+  "firma_de_contenido_pendiente": true,
+  "validacion": "NO-EVALUADO",
+  "perimetro": "Otra cohorte; no sustituye04 ni modifica históricos",
+  "insumos_fuente": [
+    {
+      "id": "enigh2020_nc_csv",
+      "archivo": "enigh2020_nc_csv.zip",
+      "sha256": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4",
+      "url": "https://www.inegi.org.mx/contenidos/programas/enigh/nc/2020/datosabiertos/conjunto_de_datos_enigh_ns_2020_csv.zip",
+      "estado_acceso": "COINCIDE"
+    }
+  ],
+  "payload": "enigh2020_nc_csv",
+  "tabla": "conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv",
+  "variable": "remesas",
+  "peso": "factor",
+  "estrato": "est_dis",
+  "upm": "upm",
+  "fuente_codificacion": "forense/prereg-duelo-v2/codificacion-R-v1_2.tsv#FAM-M-07",
+  "fuente_sha256": "41f895061c82bc4eeecdacceafc4e472b83d3b9be2421df75c81f93aacb9f41e",
+  "unidad": "hogar",
+  "universo": "Concentradohogar completo; remesas finita>=0;factor finito>0",
+  "y": "1 si remesas>0;0 si==0;ausente/negativo fuera",
+  "miembro_literal": "conjunto_de_datos_concentradohogar_enigh_2020_ns/conjunto_de_datos/conjunto_de_datos_concentradohogar_enigh_2020_ns.csv",
+  "punto": "sum(w*y)/sum(w)",
+  "inferencia": "impedimentos-lote2-p1-r-taylor-propuesto.md",
+  "faltante_historico": "D15: algoritmo EE/IC no completamente humano; propuesta nueva no acredita histórico",
+  "accion": "Firmar contrato inferencial nuevo; completar revisión cuestionario/FD/miembro exacto antes recálculo",
+  "miembro_metadata_verificado": true,
+  "payload_sha256": "47417cac13da7dce3a710d86c5767564101086a51666ec674acf27740e0701d4"
+}

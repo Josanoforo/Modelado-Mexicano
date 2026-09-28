@@ -1,0 +1,7 @@
+{
+  "estado": "COMPARADOR-RECHAZADO",
+  "exit_code": 1,
+  "stderr": "Traceback (most recent call last):\n  File \"/home/pc0/mm-astra6-c1-validacion-lote2-1/tools/validacion/astra6_lote2/adaptador_comparador_v1.py\", line 119, in <module>\n    compare(args.reconstruccion, args.recibo, args.sha256_recibido, args.salida)\n    ~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/pc0/mm-astra6-c1-validacion-lote2-1/tools/validacion/astra6_lote2/adaptador_comparador_v1.py\", line 98, in compare\n    a, b = float(actual), float(target)\n           ~~~~~^^^^^^^^\nValueError: could not convert string to float: ''\n",
+  "stdout": "",
+  "revelacion_utc": "2026-09-27T05:14:39.358889+00:00"
+}

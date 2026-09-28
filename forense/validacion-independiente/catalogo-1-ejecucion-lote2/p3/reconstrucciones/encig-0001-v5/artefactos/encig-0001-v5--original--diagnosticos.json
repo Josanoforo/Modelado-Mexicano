@@ -1,0 +1,169 @@
+{
+  "guardias": {
+    "G-1-A": "PRESENTES",
+    "G-1-7": "PRESENTES",
+    "G-1-8": "PRESENTES",
+    "G-LLAVE-SEC7-DECLARADA-UNICA": "NO-UNICA:7430/18027",
+    "G-LLAVE-SEC7-IDTRA-NTTIPO-UNICA": "UNICA",
+    "G-LLAVE-SEC8-IDTRA-UNICA": "UNICA",
+    "JOIN": "EXACTO"
+  },
+  "conteos": {
+    "A-N-PESO-INVALIDO": 0,
+    "7-N-PESO-INVALIDO": 0,
+    "A-FRECUENCIAS-P8_3_1": {
+      "1": 3237,
+      "2": 36805,
+      "9": 94
+    },
+    "A-FRECUENCIAS-P8_3_2": {
+      "1": 1279,
+      "2": 38761,
+      "9": 96
+    },
+    "A-FRECUENCIAS-P8_3_3": {
+      "1": 1894,
+      "2": 38146,
+      "9": 96
+    },
+    "7-FRECUENCIAS-P7_3": {
+      "1": 67890,
+      "2": 8164,
+      "3": 7274,
+      "4": 21702,
+      "5": 9569,
+      "6": 2326,
+      "7": 32,
+      "8": 175,
+      "9": 1168,
+      "NA": 6014
+    },
+    "8-FRECUENCIAS-P8_4": {
+      "0": 16199,
+      "1": 4940,
+      "NA": 1062533
+    },
+    "A-N-P831-NSNR": 94,
+    "A-N-P831-BLANCO": 0,
+    "A-N-P831-OTRO": 0,
+    "A-P-SOL1-N": 40042,
+    "A-P-SOL1-N-SIN-DISENO": 0,
+    "A-P-SOL1-N-ESTRATOS-UPM-UNICA": 0,
+    "A-P-SOL1-N-ESTRATOS": 442,
+    "A-P-SOL1-N-UPM": 9172,
+    "A-N-SOLANY-PARCIAL": 18,
+    "A-N-SOLANY-EXCLUIDAS": 15,
+    "A-P-SOLANY-N": 40027,
+    "A-P-SOLANY-N-SIN-DISENO": 0,
+    "A-P-SOLANY-N-ESTRATOS-UPM-UNICA": 0,
+    "A-P-SOLANY-N-ESTRATOS": 442,
+    "A-P-SOLANY-N-UPM": 9172,
+    "B-N-EVENTOS-DESCARTADOS-POR-DEDUP": 10597,
+    "B-N-SEC7-FILAS": 124314,
+    "B-N-SEC8-FILAS": 1083672,
+    "B-SD-N-EMPAREJADAS": 124314,
+    "B-SD-N-SEC7-SIN-PAREJA": 0,
+    "B-SD-COBERTURA": 1.0,
+    "B-SD-N-P84-BLANCO": 0,
+    "B-SD-N-P84-FUERA": 99340,
+    "B-SD-N-RESIDUO-CANAL": 6588,
+    "B-SD-P-RESIDUO-CANAL": 0.2198182195929884,
+    "B-P-DIG-SD-N": 7219,
+    "B-P-DIG-SD-N-SIN-DISENO": 0,
+    "B-P-DIG-SD-N-ESTRATOS-UPM-UNICA": 78,
+    "B-P-DIG-SD-N-ESTRATOS": 362,
+    "B-P-DIG-SD-N-UPM": 2518,
+    "B-P-PRE-SD-N": 11167,
+    "B-P-PRE-SD-N-SIN-DISENO": 0,
+    "B-P-PRE-SD-N-ESTRATOS-UPM-UNICA": 71,
+    "B-P-PRE-SD-N-ESTRATOS": 381,
+    "B-P-PRE-SD-N-UPM": 2996,
+    "B-CD-N-EMPAREJADAS": 113717,
+    "B-CD-N-SEC7-SIN-PAREJA": 0,
+    "B-CD-COBERTURA": 1.0,
+    "B-CD-N-P84-BLANCO": 0,
+    "B-CD-N-P84-FUERA": 92578,
+    "B-CD-N-RESIDUO-CANAL": 4865,
+    "B-CD-P-RESIDUO-CANAL": 0.18380944679764868,
+    "B-P-DIG-CD-N": 6337,
+    "B-P-DIG-CD-N-SIN-DISENO": 0,
+    "B-P-DIG-CD-N-ESTRATOS-UPM-UNICA": 77,
+    "B-P-DIG-CD-N-ESTRATOS": 361,
+    "B-P-DIG-CD-N-UPM": 2514,
+    "B-P-PRE-CD-N": 9937,
+    "B-P-PRE-CD-N-SIN-DISENO": 0,
+    "B-P-PRE-CD-N-ESTRATOS-UPM-UNICA": 71,
+    "B-P-PRE-CD-N-ESTRATOS": 381,
+    "B-P-PRE-CD-N-UPM": 2992,
+    "B-N-EMPAREJADAS": 124314,
+    "B-N-SEC7-SIN-PAREJA": 0,
+    "B-COBERTURA": 1.0,
+    "B-N-RESIDUO-CANAL": 6588,
+    "B-P-RESIDUO-CANAL": 0.2198182195929884,
+    "C-N-RESIDUO": 189,
+    "C-P-RESIDUO": 0.011175751658793141,
+    "C-P-ADOPTA-N": 20203,
+    "C-P-ADOPTA-N-SIN-DISENO": 0,
+    "C-P-ADOPTA-N-ESTRATOS-UPM-UNICA": 8,
+    "C-P-ADOPTA-N-ESTRATOS": 441,
+    "C-P-ADOPTA-N-UPM": 8486
+  },
+  "estimaciones": {
+    "A-P-SOL1": {
+      "p": 0.08511814556534456,
+      "numerador": 5109784.0,
+      "denominador": 60031665.0,
+      "ic95_inf": 0.08088912730202157,
+      "ic95_sup": 0.08930277415251422,
+      "metodo_ic": "BOOTSTRAP-UPM-ESTRATIFICADO"
+    },
+    "A-P-SOLANY": {
+      "p": 0.11570181887100728,
+      "numerador": 6943562.0,
+      "denominador": 60012557.0,
+      "ic95_inf": 0.11091834551556287,
+      "ic95_sup": 0.12026938960804566,
+      "metodo_ic": "BOOTSTRAP-UPM-ESTRATIFICADO"
+    },
+    "B-P-DIG-SD": {
+      "p": 0.029867554626649372,
+      "numerador": 880119.0,
+      "denominador": 29467394.0,
+      "ic95_inf": 0.02138492406538897,
+      "ic95_sup": 0.04020550523113254,
+      "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+    },
+    "B-P-PRE-SD": {
+      "p": 0.1410407168724654,
+      "numerador": 4819595.0,
+      "denominador": 34171657.0,
+      "ic95_inf": 0.11772555140190068,
+      "ic95_sup": 0.17033813674641923,
+      "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+    },
+    "B-P-DIG-CD": {
+      "p": 0.02735817162913606,
+      "numerador": 759632.0,
+      "denominador": 27766183.0,
+      "ic95_inf": 0.018688940893832853,
+      "ic95_sup": 0.03828840923422989,
+      "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+    },
+    "B-P-PRE-CD": {
+      "p": 0.11599979486100397,
+      "numerador": 3512695.0,
+      "denominador": 30281907.0,
+      "ic95_inf": 0.10271670964755578,
+      "ic95_sup": 0.13033221158202038,
+      "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+    },
+    "C-P-ADOPTA": {
+      "p": 0.6733930340661712,
+      "numerador": 81107259.0,
+      "denominador": 120445646.0,
+      "ic95_inf": 0.662312371634168,
+      "ic95_sup": 0.6833985335328273,
+      "metodo_ic": "IC-CON-ESTRATOS-DE-UPM-UNICA"
+    }
+  }
+}

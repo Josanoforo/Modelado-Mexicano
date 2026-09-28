@@ -1,0 +1,152 @@
+[
+  {
+    "id": "INTERNET",
+    "calc": "CALC-ENDUTIH-PISOS-2024-0001",
+    "result": "RESULT-ENDUTIH-PISOS-2024-TABLA",
+    "llave": "RESULT-ENDUTIH-PISOS-2024-TABLA#46",
+    "selector": {
+      "medida": "internet",
+      "dominio": "TOTAL"
+    },
+    "denominador": "persona elegida 6+; P7_1 válido 1/2, FAC_PER>0, EST_DIS/UPM_DIS presentes; últimos tres meses; TOTAL",
+    "punto": 83.12233799456584,
+    "ic95": [
+      82.65662974029694,
+      83.58930236303969
+    ],
+    "n": 58080,
+    "unidad": "porcentaje ponderado de personas; n sin ponderar",
+    "ola": "2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO piso descriptivo; no validación independiente ni predicción",
+    "firma": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01",
+    "resultados_sha256": "4c0a3b05b6ecef3e9d7e760163cc6a6691ceaf384fa522e620bbe9b663088c25",
+    "sello_sha256": "17dd31ae136a795824b49d90515159e0f111be47550dbf86833ba775105aa5b8",
+    "firma_sha256": "9ed5118c2eeeeda73b64ec15b9986d005d65302abab7d280c3653533b7d68a67",
+    "veto": "No consume actividad_empleo original excluida; no nuevos usos"
+  },
+  {
+    "id": "HOMBRE",
+    "calc": "CALC-ENDUTIH-PISOS-2024-0001",
+    "result": "RESULT-ENDUTIH-PISOS-2024-TABLA",
+    "llave": "RESULT-ENDUTIH-PISOS-2024-TABLA#40",
+    "selector": {
+      "medida": "internet",
+      "dominio": "SEXO_1"
+    },
+    "denominador": "persona elegida 6+; P7_1 válido 1/2, FAC_PER>0, EST_DIS/UPM_DIS presentes; últimos tres meses; SEXO_1",
+    "punto": 84.06763634308786,
+    "ic95": [
+      83.47511846578904,
+      84.63745955934017
+    ],
+    "n": 27138,
+    "unidad": "porcentaje ponderado de personas; n sin ponderar",
+    "ola": "2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO piso descriptivo; no validación independiente ni predicción",
+    "firma": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01",
+    "resultados_sha256": "4c0a3b05b6ecef3e9d7e760163cc6a6691ceaf384fa522e620bbe9b663088c25",
+    "sello_sha256": "17dd31ae136a795824b49d90515159e0f111be47550dbf86833ba775105aa5b8",
+    "firma_sha256": "9ed5118c2eeeeda73b64ec15b9986d005d65302abab7d280c3653533b7d68a67",
+    "veto": "No consume actividad_empleo original excluida; no nuevos usos"
+  },
+  {
+    "id": "MUJER",
+    "calc": "CALC-ENDUTIH-PISOS-2024-0001",
+    "result": "RESULT-ENDUTIH-PISOS-2024-TABLA",
+    "llave": "RESULT-ENDUTIH-PISOS-2024-TABLA#41",
+    "selector": {
+      "medida": "internet",
+      "dominio": "SEXO_2"
+    },
+    "denominador": "persona elegida 6+; P7_1 válido 1/2, FAC_PER>0, EST_DIS/UPM_DIS presentes; últimos tres meses; SEXO_2",
+    "punto": 82.27668407378464,
+    "ic95": [
+      81.62085888213787,
+      82.98225913938155
+    ],
+    "n": 30942,
+    "unidad": "porcentaje ponderado de personas; n sin ponderar",
+    "ola": "2024",
+    "temporalidad": "RETROSPECTIVA",
+    "adopcion": "ADOPTADO piso descriptivo; no validación independiente ni predicción",
+    "firma": "FP-260923-ASTRA5-U4-TECNOLOGIA-1f30-01",
+    "resultados_sha256": "4c0a3b05b6ecef3e9d7e760163cc6a6691ceaf384fa522e620bbe9b663088c25",
+    "sello_sha256": "17dd31ae136a795824b49d90515159e0f111be47550dbf86833ba775105aa5b8",
+    "firma_sha256": "9ed5118c2eeeeda73b64ec15b9986d005d65302abab7d280c3653533b7d68a67",
+    "veto": "No consume actividad_empleo original excluida; no nuevos usos"
+  },
+  {
+    "id": "EXT_NOUSO",
+    "punto": 16.9,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ total",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_NOSABE",
+    "punto": 9.5,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ total",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_URBANO",
+    "punto": 86.9,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ dominio urbano",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_RURAL",
+    "punto": 68.5,
+    "unidad": "porcentaje",
+    "denominador": "personas 6+ dominio rural",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_HOG_ALTO",
+    "punto": 84.4,
+    "unidad": "porcentaje",
+    "denominador": "hogares por entidad",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  },
+  {
+    "id": "EXT_HOG_CHIAPAS",
+    "punto": 50.7,
+    "unidad": "porcentaje",
+    "denominador": "hogares por entidad",
+    "fuente": "INEGI2025",
+    "localizador": "pp.1–2, texto; gráfica 1 motivos",
+    "pdf_sha256": "e0c61aa10113b1ba15b261633615b9ba2661316729c8a36e237546a723966f81",
+    "adopcion": "EXTERNA PUBLICADA; no RESULT propio",
+    "temporalidad": "RETROSPECTIVA",
+    "extraccion": "regex sobre pdftotext -layout; revisada con comunicado primario"
+  }
+]

@@ -1,0 +1,147 @@
+{
+  "calc": "data/corrida0/CALC-ENASIC-CUIDADOS-VEJEZ-0001",
+  "cifras": [
+    {
+      "clave": "R-MUJER",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-MUJER-2022-TOTAL-TODOS-P",
+      "etiqueta": "Cuidador principal mujer",
+      "denominador": "Personas60+ con cuidador principal del hogar pareado y sexo válido",
+      "unidad": "persona receptora",
+      "conclusion": "Feminización condicionada"
+    },
+    {
+      "clave": "R-HIJA",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-HIJA-2022-TOTAL-TODOS-P",
+      "etiqueta": "Cuidador principal hija",
+      "denominador": "Personas60+ con cuidador principal del hogar y parentesco válido",
+      "unidad": "persona receptora",
+      "conclusion": "Parentesco específico hija"
+    },
+    {
+      "clave": "R-CONYUGE",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADOR-PRINCIPAL-CONYUGE-2022-TOTAL-TODOS-P",
+      "etiqueta": "Cuidador principal cónyuge/pareja",
+      "denominador": "Personas60+ con cuidador principal del hogar y parentesco válido",
+      "unidad": "persona receptora",
+      "conclusion": "Parentesco cónyuge"
+    },
+    {
+      "clave": "R-DENTRO",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-ALGUIEN-DEL-HOGAR-2022-TOTAL-TODOS-P",
+      "etiqueta": "Cuidado por alguien del hogar",
+      "denominador": "Personas60+ con P4_42=1/2; excluye hogar unipersonal/código3/blancos",
+      "unidad": "persona60+",
+      "conclusion": "Ayuda dentro no suficiencia"
+    },
+    {
+      "clave": "R-FUERA",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-AM60-CUIDADO-POR-PERSONA-DE-OTRO-HOGAR-2022-TOTAL-TODOS-P",
+      "etiqueta": "Cuidado por persona de otro hogar",
+      "denominador": "Personas60+ con P4_45=1/2; excluye blancos",
+      "unidad": "persona60+",
+      "conclusion": "Ayuda fuera distinta población elegible"
+    },
+    {
+      "clave": "R-HOGAR60",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-CON-60MAS-QUE-NECESITA-CUIDADOS-2022-TOTAL-TODOS-P",
+      "etiqueta": "Hogar con60+ que necesita cuidados",
+      "denominador": "Hogares con HN_C60MA=1/2 y diseño válido",
+      "unidad": "hogar",
+      "conclusion": "Unidad hogar no persona dependiente"
+    },
+    {
+      "clave": "R-HOGAR",
+      "result": "RESULT-ENASIC-CUIDADOS-VEJEZ-HOGAR-NECESITA-CUIDADOS-2022-TOTAL-TODOS-P",
+      "etiqueta": "Hogar que necesita cuidados",
+      "denominador": "Hogares con HN_C=1/2 y diseño válido",
+      "unidad": "hogar",
+      "conclusion": "Necesidad hogar incluye otras edades"
+    }
+  ],
+  "contrato_denominadores": {
+    "R-MUJER": "Personas60+ con cuidador principal del hogar pareado y sexo válido",
+    "R-HIJA": "Personas60+ con cuidador principal del hogar y parentesco válido",
+    "R-CONYUGE": "Personas60+ con cuidador principal del hogar y parentesco válido",
+    "R-DENTRO": "Personas60+ con P4_42=1/2; excluye hogar unipersonal/código3/blancos",
+    "R-FUERA": "Personas60+ con P4_45=1/2; excluye blancos",
+    "R-HOGAR60": "Hogares con HN_C60MA=1/2 y diseño válido",
+    "R-HOGAR": "Hogares con HN_C=1/2 y diseño válido"
+  },
+  "contrato_unidades": {
+    "R-MUJER": "persona receptora",
+    "R-HIJA": "persona receptora",
+    "R-CONYUGE": "persona receptora",
+    "R-DENTRO": "persona60+",
+    "R-FUERA": "persona60+",
+    "R-HOGAR60": "hogar",
+    "R-HOGAR": "hogar"
+  },
+  "hashes": {
+    "data/corrida0/CALC-ENASIC-CUIDADOS-VEJEZ-0001/resultados.json": "8a4d5820e1e451c1eb11db3fb0a5d76039f0a4bdca71e8301e76f837bf9c0115",
+    "data/corrida0/CALC-ENASIC-CUIDADOS-VEJEZ-0001/spec.yaml": "0a635e6ca82a5e045fb9cdf125e8dc2783d7dea8aa8ff429a251d8d00ed53551",
+    "data/corrida0/CALC-ENASIC-CUIDADOS-VEJEZ-0001/sello.json": "890c555ed2fdb742195e8c1b6ca6271eafc5fc360b30b7ab2e3e24a997074451",
+    "canon/mapa-dominios-v1_1.tsv": "1e3b06565ac399fccc81942ec33604f5994b2c4b6c91d132d2fbcb3499e4b1ec",
+    "canon/catalogo-del-mexicano-v1_2.tsv": "2592df41cd2b76e211a69ad4ed4fc760cca41e4989f653922ad501a8cf715d4c",
+    "forense/analisis/catalogo/v1_2/excluidos-v1_2.tsv": "9d21f4a4e38c311c0c357dc202cd30dc70003e96c616faf74439a81bafc24011",
+    "forense/analisis/familia-migracion/lista-cerrada-familia-migracion-P1.md": "668b1de464e4bced060a7a69430902613ffc2e0a733fa03a2177b3a4b9a3218d",
+    "forense/validacion-independiente/catalogo-1-ejecucion-lote1/dictamenes-publicabilidad.tsv": "f0f12de850fd99ee8acfffb06369f2192043aa58d22b1d80173853842a875005",
+    "forense/validacion-independiente/catalogo-1-ejecucion-lote1/efectos-discrepancias.tsv": "052b680ad6780afa3a9edbd2a1257245a9efd465cda9b558c1f4eba2ed9d08a4",
+    "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv": "aaa8c4b72a2152ce6683026acd19dc095ce14b6ffc346db2c677e0491ad0b30e"
+  },
+  "recibos_c1": [
+    "forense/validacion-independiente/catalogo-1-ejecucion-lote1/dictamenes-publicabilidad.tsv",
+    "forense/validacion-independiente/catalogo-1-ejecucion-lote1/efectos-discrepancias.tsv",
+    "forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1/2026-09-27-gen2-recibo-astra6-1--tabla-result-estado-efecto.tsv"
+  ],
+  "fuentes": [
+    {
+      "id": "A1",
+      "estado": "LEÍDA",
+      "fecha_lectura": "2026-09-27",
+      "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2023/ENASIC/ENASIC_23.pdf",
+      "localizador": "pp1–4,19–20,24–25,34–35; revisión del19feb2025",
+      "procedencia": "a",
+      "alcance": "Definiciones/denominadores y separación de cuidado recibido; cantidades de report salen del CALC."
+    },
+    {
+      "id": "VEJ-M1",
+      "estado": "LEÍDA",
+      "fecha_lectura": "2026-09-27",
+      "url": "https://www.frontiersin.org/journals/public-health/articles/10.3389/fpubh.2025.1610733/full",
+      "localizador": "Materials and methods, tabla1/2, Results, Limitations and future directions",
+      "procedencia": "a componente México; países comparadores fuera de México",
+      "alcance": "Primaria análisis original2025 de muestra electrónica conveniencia; PHQ9, transversal, sin transporte nacional ni causalidad."
+    },
+    {
+      "id": "VEJ-E1",
+      "estado": "LEÍDA",
+      "fecha_lectura": "2026-09-27",
+      "url": "https://mhasweb.org/resources/DOCUMENTS/Fact%20Sheet/Press%20Release/PRESS%20RELEASE%20July%202023%20-%20MHAS-ENASEM%20%26%20MEX-COG%202021.pdf",
+      "localizador": "pp1–7; población general53+; no localizado porcentaje soledad citado",
+      "procedencia": "a",
+      "alcance": "Boletín2021; no cantidad trasladada a60+."
+    },
+    {
+      "id": "ENADID2023-NO-CONSUMIDA",
+      "estado": "NO-CONSUMIDA-RESERVA",
+      "fecha_lectura": "2026-09-27",
+      "url": "https://www.inegi.org.mx/contenidos/saladeprensa/boletines/2024/ENADID/ENADID2023.pdf",
+      "localizador": "Resultado público localizado antes de revisar listaP1; no utilizado",
+      "procedencia": "a",
+      "alcance": "La conducta60+ está reservada; publicación no levanta reserva."
+    },
+    {
+      "id": "PMC8407372",
+      "estado": "INACCESIBLE",
+      "fecha_lectura": "2026-09-27",
+      "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC8407372/",
+      "localizador": "open devolvió recaptcha",
+      "procedencia": "a",
+      "alcance": "No usado como fuente leída."
+    }
+  ],
+  "consulta_atrasada": "consulta.py corrida CALC-ENASIC-CUIDADOS-VEJEZ-0001: NO-ENCONTRADO; resolución objeto sellado+catálogo+firma",
+  "firmas": [
+    "FP-260925-GEN2-FAMILIA-CUIDADOS-Y-MIGRACION-PISOS-1-2a0e-02"
+  ]
+}

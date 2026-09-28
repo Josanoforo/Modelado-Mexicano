@@ -318,7 +318,7 @@ def t02_duplicates():
         # El control por contenido sigue incluyendo todos los módulos.
         # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
-        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
+        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "forense/encargos/fuentes/ASTRA6-tanda4-20260927/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
             nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
@@ -356,7 +356,8 @@ HISTORICOS = {
     # `2026-09-09-PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES-astra.md`. El
     # contenido citado existe en ambos casos; solo el basename pelado no
     # coincide.
-    "tramite.md",
+    # (`tramite.md` salió de aquí: GEN2-TUBERIA-RESUMEN-SUITE-1 P2 indexa
+    # `.claude/`; la limitación descrita arriba ya no aplica.)
     "PROPUESTA-GOBIERNO-DECISIONES-PENDIENTES.md",
     # forense/curaduria-archivos.md §1 "SE VA"
     "estado-proyecto-psicologia-mexicano.md",
@@ -441,13 +442,8 @@ HISTORICOS = {
     # en texto que A.3 prohibe editar contra un nombre sin archivo real
     # detras, deliberadamente.
     "05-PANTALLAS-RUTINAS-CONFIGURACION.md",
-    # forense/encargos/2026-09-09-GEN2-REVISA-CALC.md (A.3, VERBATIM):
-    # cita "el bloque REVISA-CALC DENTRO DE `/revisa`" y "grep -n
-    # \"REVISA-CALC\" .claude/commands/revisa.md" -- `revisa.md` existe en
-    # `.claude/commands/revisa.md`, pero el glob recursivo de T03 no
-    # desciende a directorios ocultos como `.claude/` (mismo defecto de
-    # cobertura ya documentado arriba para `tramite.md`).
-    "revisa.md",
+    # (`revisa.md` salió de aquí por la misma razón que `tramite.md`:
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 P2.)
     # forense/notas/2026-09-09-PROPUESTA-FINAL-AUTOMATIZACIONES-
     # POSTCALCULOS-astra.md y forense/notas/2026-09-09-REVISION-
     # ADVERSARIAL-PR649-astra.md (ambos P0 de GEN2-REVISA-CALC, A.3):
@@ -588,6 +584,10 @@ def t03_dangling_refs():
     """Un documento que cita un archivo inexistente no obliga a nada."""
     existing = {os.path.basename(p) for p in
                 glob.glob(os.path.join(ROOT, "**", "*.*"), recursive=True)}
+    # GEN2-TUBERIA-RESUMEN-SUITE-1 · P2: `**` no desciende a ocultos; `.claude/`
+    # entra explícito al índice de existentes (no a los documentos escaneados).
+    existing |= {os.path.basename(p) for p in
+                 glob.glob(os.path.join(ROOT, ".claude", "**", "*.*"), recursive=True)}
     for p in glob.glob(os.path.join(ROOT, "**", "*.md"), recursive=True):
         if ".git" in p:
             continue
@@ -3014,6 +3014,9 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-RECIBO-ASTRA6-2, 27/sep/2026: `E2`/`E5`/`E7` son letras de la hoja de firmas de
+    # GEN2-TRAMITE-NC-DECISIONES-1, citadas en el encargo verbatim (A.3), no rótulos de acto.
+    "forense/encargos/2026-09-27-GEN2-RECIBO-ASTRA6-2.md",
     # ACTO GEN2-SEGURIDAD-ENSU-SERIE-1, 25/sep/2026: `E1`/`E2`/`E3` son las tres ERAS de
     # cuestionario ENSU (2013-15, 2016-20, 2021-25) de la lista cerrada y la spec sellada (COMMIT-1),
     # no rótulos de acto; los dos archivos están congelados y no se editan.
@@ -3036,6 +3039,12 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-25-GEN2-RELEVO-CONSUMIDORES-3.md",
     "forense/notas/2026-09-26-GEN2-RELEVO-CONSUMIDORES-3-nota.md",
     "canon/L0/ADR-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-01.md",
+    # ACTO GEN2-TRAMITE-NC-DECISIONES-1, 27/sep/2026: la hoja de firmas (P4)
+    # cita `M05` y `M23` del catálogo de momentos al redactar la decisión A1
+    # (NC-260926-GEN2-RELEVO-CONSUMIDORES-3-72d9-03) -- mismos ids de fila de
+    # `milpa/catalogo-momentos-v0_1.tsv` ya censados arriba, no un rótulo de
+    # acto nuevo.
+    "forense/analisis/nc-decisiones/hoja-2026-09-27.md",
     # ASTRA-2 cita la capa E1 existente del esquema theta; no acuña un
     # rótulo de acto. La spec fue congelada en c529cdf0 y conserva su texto.
     "forense/analisis/astra-theta/seleccion.md",

@@ -1,0 +1,444 @@
+[
+  {
+    "paquete": "endireh-pisos-2021-comunitaria-0001",
+    "historico_sha256": "9261eeb9b8ca7e95f66ee57b271f53e9fe6a08feff85377306126025a5e04d0b",
+    "miembros": [
+      {
+        "nombre": "encargo.md",
+        "sha256": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+        "bytes": 944,
+        "revision": "Instrucciones de cálculo, sin valores esperados."
+      },
+      {
+        "nombre": "estimandos.tsv",
+        "sha256": "3751155d83eb757b2c43a92047887e84152ad751ca1640a135343e0ea10e3050",
+        "bytes": 16945,
+        "columnas": [
+          "llave",
+          "calc",
+          "result_id",
+          "celda",
+          "instrumento",
+          "ola",
+          "conducta",
+          "eje",
+          "segmento",
+          "unidad",
+          "naturaleza_ic"
+        ],
+        "filas": 100,
+        "revision": "Identidades, unidades, ejes, segmentos y referencias; sin campos numéricos de resultados ni IC observados."
+      },
+      {
+        "nombre": "faltantes.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "bytes": 3,
+        "revision": "Lista de acceso, no resultados."
+      },
+      {
+        "nombre": "insumos.json",
+        "sha256": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+        "bytes": 2338,
+        "revision": "Metadatos de fuentes/hash, no permiso automático. Diseño íntegro2021 excluido de entrega futura."
+      },
+      {
+        "nombre": "manifiesto.json",
+        "sha256": "e8a13d0d4e8658525cf9b88fc02f976b7fac8fe44b1ad88f247dff63a4cf3f2b",
+        "bytes": 605,
+        "revision": "Identificación y hashes de miembros."
+      },
+      {
+        "nombre": "metodo.md",
+        "sha256": "c109c694216b5b8835b4915515a1afdd4e2f7d813ffc3cf5859cb3ee9baba937",
+        "bytes": 2898,
+        "revision": "Preguntas/codificación, universos, fórmula de unión, pesos, bootstrap y umbrales previos; no contiene cifras observadas. Bytes históricos se conservan."
+      },
+      {
+        "nombre": "tolerancia.json",
+        "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+        "bytes": 41,
+        "revision": "Umbral previo, no IC realizado."
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-escolar-0001",
+    "historico_sha256": "5e33677ef0904bcca544f450cdbbe6969f0884f86f606944cf3429ddd4d1be7a",
+    "miembros": [
+      {
+        "nombre": "encargo.md",
+        "sha256": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+        "bytes": 944,
+        "revision": "Instrucciones de cálculo, sin valores esperados."
+      },
+      {
+        "nombre": "estimandos.tsv",
+        "sha256": "cfad15a93ce70075affcabea55e0b4e6450e2e9a91b63e0526672d2782613cce",
+        "bytes": 15500,
+        "columnas": [
+          "llave",
+          "calc",
+          "result_id",
+          "celda",
+          "instrumento",
+          "ola",
+          "conducta",
+          "eje",
+          "segmento",
+          "unidad",
+          "naturaleza_ic"
+        ],
+        "filas": 96,
+        "revision": "Identidades, unidades, ejes, segmentos y referencias; sin campos numéricos de resultados ni IC observados."
+      },
+      {
+        "nombre": "faltantes.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "bytes": 3,
+        "revision": "Lista de acceso, no resultados."
+      },
+      {
+        "nombre": "insumos.json",
+        "sha256": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+        "bytes": 2338,
+        "revision": "Metadatos de fuentes/hash, no permiso automático. Diseño íntegro2021 excluido de entrega futura."
+      },
+      {
+        "nombre": "manifiesto.json",
+        "sha256": "74b50525814ef0647880e161862d332826abe91304e8a17661035b8eadec1472",
+        "bytes": 601,
+        "revision": "Identificación y hashes de miembros."
+      },
+      {
+        "nombre": "metodo.md",
+        "sha256": "cfffb33cde5f3a6a78a8ae3cf6a847013ea478da94f63e28b8f1afe1134947c6",
+        "bytes": 2384,
+        "revision": "Preguntas/codificación, universos, fórmula de unión, pesos, bootstrap y umbrales previos; no contiene cifras observadas. Bytes históricos se conservan."
+      },
+      {
+        "nombre": "tolerancia.json",
+        "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+        "bytes": 41,
+        "revision": "Umbral previo, no IC realizado."
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-laboral-0001",
+    "historico_sha256": "c56fd015b88af8659d19e8f771a20bc81839500d51e28d1c5efd08b2a9fa6c6f",
+    "miembros": [
+      {
+        "nombre": "encargo.md",
+        "sha256": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+        "bytes": 944,
+        "revision": "Instrucciones de cálculo, sin valores esperados."
+      },
+      {
+        "nombre": "estimandos.tsv",
+        "sha256": "49df7f05be614fc1a21142d3e181b90b09c3c2d9071f83f4e3f792a8943be1cc",
+        "bytes": 16145,
+        "columnas": [
+          "llave",
+          "calc",
+          "result_id",
+          "celda",
+          "instrumento",
+          "ola",
+          "conducta",
+          "eje",
+          "segmento",
+          "unidad",
+          "naturaleza_ic"
+        ],
+        "filas": 100,
+        "revision": "Identidades, unidades, ejes, segmentos y referencias; sin campos numéricos de resultados ni IC observados."
+      },
+      {
+        "nombre": "faltantes.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "bytes": 3,
+        "revision": "Lista de acceso, no resultados."
+      },
+      {
+        "nombre": "insumos.json",
+        "sha256": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+        "bytes": 2338,
+        "revision": "Metadatos de fuentes/hash, no permiso automático. Diseño íntegro2021 excluido de entrega futura."
+      },
+      {
+        "nombre": "manifiesto.json",
+        "sha256": "30d35e427a0adc5cb2d5025e3ad56bc5c399d80ad7eca9043f137b5811667559",
+        "bytes": 601,
+        "revision": "Identificación y hashes de miembros."
+      },
+      {
+        "nombre": "metodo.md",
+        "sha256": "b12f54937658b5537c0ec53b87b4fb5cd6eee162c0e7fedc3dcec051fa7708c2",
+        "bytes": 2597,
+        "revision": "Preguntas/codificación, universos, fórmula de unión, pesos, bootstrap y umbrales previos; no contiene cifras observadas. Bytes históricos se conservan."
+      },
+      {
+        "nombre": "tolerancia.json",
+        "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+        "bytes": 41,
+        "revision": "Umbral previo, no IC realizado."
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2021-nofisica-bc-0001",
+    "historico_sha256": "37e0d9f4c235d915557f635c2ac9409e9cbf87d97d115ff4362589641ba304d9",
+    "miembros": [
+      {
+        "nombre": "encargo.md",
+        "sha256": "885d75edd7c4879d7329c08c1f7feb741dcf30668cb9a8ef16db0b765a0416de",
+        "bytes": 944,
+        "revision": "Instrucciones de cálculo, sin valores esperados."
+      },
+      {
+        "nombre": "estimandos.tsv",
+        "sha256": "4b124cc1d7f820a44e9ea37b2675cc0e679aa82ade18e82297297b9977bd4c04",
+        "bytes": 104196,
+        "columnas": [
+          "llave",
+          "calc",
+          "result_id",
+          "celda",
+          "instrumento",
+          "ola",
+          "conducta",
+          "eje",
+          "segmento",
+          "unidad",
+          "naturaleza_ic"
+        ],
+        "filas": 590,
+        "revision": "Identidades, unidades, ejes, segmentos y referencias; sin campos numéricos de resultados ni IC observados."
+      },
+      {
+        "nombre": "faltantes.json",
+        "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+        "bytes": 3,
+        "revision": "Lista de acceso, no resultados."
+      },
+      {
+        "nombre": "insumos.json",
+        "sha256": "a740a8bdbf218fd21f621ee69dcada68a7929a879e03a38779fc0dd21c6eecde",
+        "bytes": 2338,
+        "revision": "Metadatos de fuentes/hash, no permiso automático. Diseño íntegro2021 excluido de entrega futura."
+      },
+      {
+        "nombre": "manifiesto.json",
+        "sha256": "bdb0b2ae1a01761795848a1fb8b69a002279622fe8a0b95f7a94992fe3c3dfc7",
+        "bytes": 605,
+        "revision": "Identificación y hashes de miembros."
+      },
+      {
+        "nombre": "metodo.md",
+        "sha256": "903d3c73a0438eed6176971150fde51fe2d11d77d34f23c30d623a439ff25268",
+        "bytes": 3398,
+        "revision": "Preguntas/codificación, universos, fórmula de unión, pesos, bootstrap y umbrales previos; no contiene cifras observadas. Bytes históricos se conservan."
+      },
+      {
+        "nombre": "tolerancia.json",
+        "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+        "bytes": 41,
+        "revision": "Umbral previo, no IC realizado."
+      }
+    ]
+  },
+  {
+    "paquete": "endireh-pisos-2016-pareja-fisica-0002",
+    "historico_sha256": "2a10840b5638e22bb733de9f57990e052fe7b5398ab98474a32ea0c64c1f56df",
+    "miembros": [
+      {
+        "nombre": "encargo.md",
+        "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+        "bytes": 380,
+        "revision": "Instrucciones de cálculo, sin valores esperados."
+      },
+      {
+        "nombre": "estimandos.tsv",
+        "sha256": "7f5567ca4defb7df39add9d2623988bf1f9198fddf667f2dd3fda86715b6b231",
+        "bytes": 15793,
+        "columnas": [
+          "llave",
+          "calc",
+          "result_id",
+          "celda",
+          "instrumento",
+          "ola",
+          "conducta",
+          "eje",
+          "segmento",
+          "unidad",
+          "naturaleza_ic"
+        ],
+        "filas": 92,
+        "revision": "Identidades, unidades, ejes, segmentos y referencias; sin campos numéricos de resultados ni IC observados."
+      },
+      {
+        "nombre": "fd-endireh2016.xlsx",
+        "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9",
+        "bytes": 853230,
+        "hojas": [
+          {
+            "nombre": "TVIV",
+            "filas": 115,
+            "columnas": 11
+          },
+          {
+            "nombre": "TSDem",
+            "filas": 187,
+            "columnas": 8
+          },
+          {
+            "nombre": "TB_SEC_III",
+            "filas": 106,
+            "columnas": 8
+          },
+          {
+            "nombre": "TB_SEC_IV",
+            "filas": 521,
+            "columnas": 11
+          },
+          {
+            "nombre": "TB_SEC_V",
+            "filas": 119,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_VI",
+            "filas": 885,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_VI_2",
+            "filas": 686,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_VII",
+            "filas": 857,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_VII_2",
+            "filas": 857,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_VIII",
+            "filas": 358,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_VIII_2",
+            "filas": 264,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_IX",
+            "filas": 213,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_X",
+            "filas": 358,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_X_2",
+            "filas": 239,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_XI",
+            "filas": 177,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_XII",
+            "filas": 349,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_XII.I",
+            "filas": 409,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_XIII",
+            "filas": 1131,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_XIII_2",
+            "filas": 2737,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_XIV",
+            "filas": 842,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_XV",
+            "filas": 434,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_XVI",
+            "filas": 225,
+            "columnas": 16384
+          },
+          {
+            "nombre": "TB_SEC_XVII",
+            "filas": 1087,
+            "columnas": 9
+          },
+          {
+            "nombre": "TB_SEC_XVIII",
+            "filas": 261,
+            "columnas": 8
+          },
+          {
+            "nombre": "TB_SEC_XIX",
+            "filas": 44,
+            "columnas": 10
+          },
+          {
+            "nombre": "TB_SEC_FIN_ENTREV",
+            "filas": 59,
+            "columnas": 9
+          }
+        ],
+        "revision": "Libro de estructura: nombres/longitudes/formatos/códigos de variable, no tabulados; se revisan hojas TSDem y TB_SEC_XIII y se barre texto de todas las hojas sin DEFF ni resultados realizados."
+      },
+      {
+        "nombre": "insumos.json",
+        "sha256": "08c06148e6150d184befe90254f330fd889d378d7867cbd7768becc09a8f4267",
+        "bytes": 1750,
+        "revision": "Metadatos de fuentes/hash, no permiso automático. Diseño íntegro2021 excluido de entrega futura."
+      },
+      {
+        "nombre": "manifiesto.json",
+        "sha256": "911a6cae94ec87b374c99f5049629d61528ce56dca3538f9c2e09e2079f62ccf",
+        "bytes": 636,
+        "revision": "Identificación y hashes de miembros."
+      },
+      {
+        "nombre": "metodo.md",
+        "sha256": "f56038a11a7c0388b634a5c44cf76453139bfb27828f231d627d32ebac50441b",
+        "bytes": 2293,
+        "revision": "Preguntas/codificación, universos, fórmula de unión, pesos, bootstrap y umbrales previos; no contiene cifras observadas. Bytes históricos se conservan."
+      },
+      {
+        "nombre": "tolerancia.json",
+        "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+        "bytes": 41,
+        "revision": "Umbral previo, no IC realizado."
+      }
+    ]
+  }
+]

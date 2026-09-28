@@ -1,0 +1,85 @@
+{
+  "archivos": [
+    {
+      "ruta": "/entrada/cuestionario-encuci2020-cuestionario.pdf",
+      "bytes": 1156397,
+      "sha256": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0",
+      "esperado": "79b6d2d662979d0ea995da8060646001b857330fd3c0a964c0beaedce205bfa0"
+    },
+    {
+      "ruta": "/entrada/encargo.md",
+      "bytes": 380,
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15",
+      "esperado": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+    },
+    {
+      "ruta": "/entrada/estimandos.tsv",
+      "bytes": 725,
+      "sha256": "dc958afc4e922d888e6f7b910c5ec28f8e2387c2058a2d6f54a3a776bac09b8d",
+      "esperado": "dc958afc4e922d888e6f7b910c5ec28f8e2387c2058a2d6f54a3a776bac09b8d"
+    },
+    {
+      "ruta": "/entrada/insumos.json",
+      "bytes": 511,
+      "sha256": "d56d791e511a564f8d1695767a1cf052ac0062024f9a04e2c2eaebdb5199ba34",
+      "esperado": "d56d791e511a564f8d1695767a1cf052ac0062024f9a04e2c2eaebdb5199ba34"
+    },
+    {
+      "ruta": "/entrada/manifiesto.json",
+      "bytes": 631,
+      "sha256": "f0c6820876e1d5e3341ffa0ce48175deff70f9f69c543d543b1caac173b89d55",
+      "esperado": null
+    },
+    {
+      "ruta": "/entrada/metodo.md",
+      "bytes": 3088,
+      "sha256": "0e57cabc03fd9704aa5c784328f32aee07abb5300ed7ad39e41463ba34fc2e73",
+      "esperado": "0e57cabc03fd9704aa5c784328f32aee07abb5300ed7ad39e41463ba34fc2e73"
+    },
+    {
+      "ruta": "/entrada/tolerancia.json",
+      "bytes": 41,
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b",
+      "esperado": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    },
+    {
+      "ruta": "/raw/encuci2020_bd_dbf/BD_ENCUCI2020_dbf.zip",
+      "bytes": 6913684,
+      "sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+      "esperado": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+    },
+    {
+      "ruta": "/raw/encuci2020_fd_pdf/FD_ENCUCI2020.pdf",
+      "bytes": 1758249,
+      "sha256": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638",
+      "esperado": "6cd6f7475a0b5db27a84cf0e047db5b7ed98f73c3480a9e64ea084bc7d475638"
+    }
+  ],
+  "entradas_zip": [
+    {
+      "entrada": "ENCUCI_2020_SD.dbf",
+      "bytes": 35115024,
+      "sha256": "aa8416b56a742bb95015d1356adffce18058653af31e51fd6be421a2bb1f2a0e"
+    },
+    {
+      "entrada": "ENCUCI_2020_SEC_4_5.dbf",
+      "bytes": 55524301,
+      "sha256": "3c2bc01cae13b48ccb061e51ed316f748777d960b7224638a267f64dccfcf1cb"
+    },
+    {
+      "entrada": "ENCUCI_2020_SEC_6_7_8.dbf",
+      "bytes": 36759477,
+      "sha256": "ad9b3d3031beada8b79deecb94eb81722f86232b5429e1f7ffd72f8d58419105"
+    },
+    {
+      "entrada": "ENCUCI_2020_SEC_9_10.dbf",
+      "bytes": 14763667,
+      "sha256": "e52bbab44b78619f9c771c2356b94907ffaf4ba995fa8f79ea78ae21e20fc4af"
+    },
+    {
+      "entrada": "ENCUCI_2020_VIV.dbf",
+      "bytes": 10222457,
+      "sha256": "b49cde2fb5401f30f8cc1adbb5490922a48db19d6743c2a2e2646d638eb7f5ce"
+    }
+  ]
+}

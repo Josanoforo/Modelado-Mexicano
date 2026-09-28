@@ -1,0 +1,38 @@
+{
+  "pr": 1184,
+  "archivo": "forense/validacion-independiente/catalogo-1-ejecucion-lote1/efectos-discrepancias.tsv",
+  "sha256": "052b680ad6780afa3a9edbd2a1257245a9efd465cda9b558c1f4eba2ed9d08a4",
+  "universo_examinado": 2569,
+  "calcs_uso": [
+    "CALC-ENIF-0001",
+    "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1"
+  ],
+  "linaje_examinado": [
+    "CALC-ENIF-0001",
+    "CALC-HORIZONTE-VIA-DERIVADOS-0001-v1_1",
+    "CORR-0009",
+    "CORR-0015",
+    "RES-0046",
+    "RES-0048",
+    "RES-0053",
+    "RES-0054",
+    "RES-0055",
+    "RES-0056",
+    "RES-0057",
+    "RES-0058",
+    "RES-0059",
+    "RES-0060",
+    "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
+    "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
+    "RESULT-ENIF-AHO-B-P-FORMAL-P",
+    "RESULT-ENIF-AHO-B-P-INFORMAL-P",
+    "RESULT-ENIF-AHO-C-P-DESCONFIA-CONOCE-P",
+    "RESULT-ENIF-AHO-C-P-DESCONFIA-NOCONOCE-P",
+    "RESULT-HVD-A-AMBAS-VIAS",
+    "RESULT-HVD-A-NO-AHORRA",
+    "RESULT-HVD-A-SOLO-FORMAL",
+    "RESULT-HVD-A-SOLO-INFORMAL"
+  ],
+  "intersecciones": [],
+  "conclusion": "No hay intersección de estas llaves, CALC ni padre ENIF en efectos del lote ENDIREH. No acredita validación independiente de ENIF. Mantener adopción separada de validez y precisión; no retirar por extrapolación del diagnóstico."
+}

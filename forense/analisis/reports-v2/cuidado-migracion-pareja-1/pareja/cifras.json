@@ -1,0 +1,23 @@
+[
+  {
+    "id": "R-EDER",
+    "result_id": "RESULT-EDER-UNION-A-P-LIBRE",
+    "calc": "CALC-EDER-0003",
+    "valor": 0.4809714298527631,
+    "resultado_path": "data/corrida0/CALC-EDER-0003/resultados.json",
+    "resultado_sha256": "cc26fc6225c6a2a177166ad4c1c261f28e37540e99329be3ab27baf7819dfb48",
+    "selector": [
+      "resultados",
+      "RESULT-EDER-UNION-A-P-LIBRE"
+    ],
+    "unidad": "proporción ponderada de personas",
+    "denominador": "personas de20–54 años del hogar, alguna vez unidas en EDER2017, primer código no-cero LIBRE/DIRECTO/37, factor_per positivo; primera unión por historia de vida",
+    "ola": "2017",
+    "estado": "ADOPTADO",
+    "firma": "FP-375 y firma de contenido19/sep/2026 en GEN2-FAM-UNION-ESTIMANDO-1",
+    "ic": "no se consume IC: catálogo v1.2 no lo identifica",
+    "c1": "NO-EVALUADO-EN-LOTE1; no llave/alias/linaje ENDIREH",
+    "limite": "primera unión retrospectiva; no prevalencia actual ni probabilidad futura; cohortes entrevistadas distintas de población15+ completa",
+    "alcance_spec": "universo spec.yaml52–60: edad20–54, código37 dentro del denominador y fuera de los dos numeradores; ponderaciónfactor_per"
+  }
+]

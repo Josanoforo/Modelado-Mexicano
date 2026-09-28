@@ -1,0 +1,110 @@
+[
+  {
+    "id": "E-NOV-TOTAL",
+    "fuente": "F-NOVIAZGO",
+    "valor": 20.2,
+    "unidad": "porcentaje",
+    "denominador": "solteras15–24 alguna vez con pareja, nunca cohabitantes",
+    "localizador": "tabla2 p72",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "Cualquier tipo de violencia\\s+([0-9.]+)\\s",
+    "archivo_consulta_sha256": "c39e9ab6c50698eed1bea88e69eedbc0bc1e9115a1edabc8695018e016ef2b25",
+    "captura_sha256": "8dc9cb82021d3d954e162e28d0b84b510386c58fe0f493515d075c97061b6de5"
+  },
+  {
+    "id": "E-NOV-EMOCIONAL",
+    "fuente": "F-NOVIAZGO",
+    "valor": 19.9,
+    "unidad": "porcentaje",
+    "denominador": "misma selección queE-NOV-TOTAL",
+    "localizador": "tabla2 p72",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "Violencia emocional\\s+([0-9.]+)\\s",
+    "archivo_consulta_sha256": "c39e9ab6c50698eed1bea88e69eedbc0bc1e9115a1edabc8695018e016ef2b25",
+    "captura_sha256": "7c9b2451071d9dd90c38d27818d3eb72539ac923a44b1548d0dad499b1b9b34c"
+  },
+  {
+    "id": "E-NOV-FISICA",
+    "fuente": "F-NOVIAZGO",
+    "valor": 2.7,
+    "unidad": "porcentaje",
+    "denominador": "misma selección queE-NOV-TOTAL",
+    "localizador": "tabla2 p72",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "Violencia física\\s+([0-9.]+)\\s",
+    "archivo_consulta_sha256": "c39e9ab6c50698eed1bea88e69eedbc0bc1e9115a1edabc8695018e016ef2b25",
+    "captura_sha256": "61bd9d99a8db8a3e2c0304da8d758a25d90daa446e13cc14742e50c7d8ddca8f"
+  },
+  {
+    "id": "E-NOV-SEXUAL",
+    "fuente": "F-NOVIAZGO",
+    "valor": 2.0,
+    "unidad": "porcentaje",
+    "denominador": "misma selección queE-NOV-TOTAL",
+    "localizador": "tabla2 p72",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "Violencia sexual\\s+([0-9.]+)\\s",
+    "archivo_consulta_sha256": "c39e9ab6c50698eed1bea88e69eedbc0bc1e9115a1edabc8695018e016ef2b25",
+    "captura_sha256": "b2446063b9d2124bdf57d1e017cea641be67afd9ca4efaec605aa3462232b737"
+  },
+  {
+    "id": "E-LGBT-P",
+    "fuente": "F-ENDISEG",
+    "valor": 5.1,
+    "unidad": "porcentaje",
+    "denominador": "personas15+ ENDISEG2021",
+    "localizador": "p4",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "asciende\\s+a\\s+([0-9.]+)\\s*%",
+    "archivo_consulta_sha256": "ff695e1de79bda91f0277dedf6b2bef667fbc24c7bba398dd15eb6abead0c259",
+    "captura_sha256": "f720f97f7a3349eb8872ad7b9751567274347b6e0ad9a26022b032fe15a56b4d"
+  },
+  {
+    "id": "E-LGBT-INDIGENA",
+    "fuente": "F-ENDISEG",
+    "valor": 11.0,
+    "unidad": "porcentaje",
+    "denominador": "poblaciónLGBTI+, no poblaciónindígena",
+    "localizador": "p7",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "El\\s+([0-9.]+)\\s*%\\s+se adscribió como persona indígena",
+    "archivo_consulta_sha256": "ff695e1de79bda91f0277dedf6b2bef667fbc24c7bba398dd15eb6abead0c259",
+    "captura_sha256": "06efcb6b578ae2b14386a967f5af05562d0de8f1f6d21e1b796eabfa4fef24d8"
+  },
+  {
+    "id": "E-LGBT-AFRO",
+    "fuente": "F-ENDISEG",
+    "valor": 3.9,
+    "unidad": "porcentaje",
+    "denominador": "poblaciónLGBTI+, no poblaciónafrodescendiente",
+    "localizador": "p7",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "persona indígena\\S* y\\s+([0-9.]+)\\s*%\\s+se",
+    "archivo_consulta_sha256": "ff695e1de79bda91f0277dedf6b2bef667fbc24c7bba398dd15eb6abead0c259",
+    "captura_sha256": "8b86517996f7f9982e95e19ebf69af32d0fdf220d944bb213b084049daf80d94"
+  },
+  {
+    "id": "E-EMAT-EVENTOS",
+    "fuente": "F-EMAT",
+    "valor": 6606.0,
+    "unidad": "eventos",
+    "denominador": "eventos de matrimonio registrado México2023",
+    "localizador": "p1",
+    "estado": "EXTERNA-PRIMARIA",
+    "selector_regex": "Se registraron\\s+([0-9 ]+) matrimonios entre personas del mismo sexo",
+    "archivo_consulta_sha256": "7175a456095ac6aeba6edb0896d2fc14dfbb1781e6392abc6f442ba5bc559015",
+    "captura_sha256": "57d77a99ee917042e1f52692e92213c1a46e08d748b7d3027f23403cf238c679"
+  },
+  {
+    "id": "E-CIU-ACTIVO",
+    "fuente": "F-APPS",
+    "valor": 22.3,
+    "unidad": "porcentaje",
+    "denominador": "personas alguna vez usuarias apps en estudio comercial2026",
+    "localizador": "Del swipe a la relación",
+    "estado": "EXTERNA-COMERCIAL-CON-RESERVA",
+    "selector_regex": "Actualmente,\\s*([0-9.]+)%\\s*de las personas que alguna vez han usado",
+    "archivo_consulta_sha256": "2e37465ef267cedda144ad5c2c119a6672606867f1ce56db2bebe6a3275d6817",
+    "captura_sha256": "b6e2871b07e73be86a6386ef475cb2f4bc342cbaa8dbd9c345117e8f7ce1c381"
+  }
+]

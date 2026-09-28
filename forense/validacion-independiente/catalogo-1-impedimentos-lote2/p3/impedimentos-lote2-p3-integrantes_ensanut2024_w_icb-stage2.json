@@ -1,0 +1,63 @@
+{
+  "schema": "custodia-proyeccion-v1",
+  "approved": false,
+  "status": "PROPUESTO-POR-EJECUTOR",
+  "code_sha256": "f9ecd196c087380e53d5cf2709272c44bdae20405049e550d750ca01bc02bae3",
+  "compiler_sha256": "94b9317bc1b2a74394a23a35a09780c6222406f3bf0800e30d1871ddec19790b",
+  "source_sha256": "20a9fae339da3fa3fc6ce20e81b6b1cf32375b40baf5a876d760a15f01ec6aa9",
+  "mode": "real",
+  "custodian_uid": null,
+  "analyst_uid": null,
+  "signer": "mesa humana: clave a aprovisionar fuera del contrato",
+  "signer_key_sha256": null,
+  "act": "ASTRA6-C1-IMPEDIMENTOS-LOTE2-P3-fb50",
+  "max_archive_bytes": 2147483648,
+  "max_member_bytes": 1073741824,
+  "publication_authorized": false,
+  "operation": "project",
+  "purpose": "C1 ENSANUT2024 tabla integrantes_ensanut2024_w_icb; conductas delimitadas NECESIDAD-SALUD-3M,BUSCO-ATENCION,FUE-ATENDIDO",
+  "table_proposals": [
+    {
+      "logical_table": "integrantes_ensanut2024_w_icb.dta",
+      "documented_filename": "integrantes_ensanut2024_w_icb.dta",
+      "filename_evidence": "Selector propuesto stem oficial + .dta; no acredita todavía nombre ZIP; compilador exige coincidencia exacta y única, sin adaptación",
+      "columns": [
+        "FOLIO_I",
+        "FOLIO_INT",
+        "ponde_f",
+        "est_sel",
+        "upm",
+        "estrato",
+        "h0302",
+        "h0303",
+        "h0317a",
+        "h0401",
+        "h0404",
+        "h0406"
+      ],
+      "purpose": "NECESIDAD-SALUD-3M,BUSCO-ATENCION,FUE-ATENDIDO",
+      "format": "dta",
+      "encoding": "latin-1",
+      "delimiter": ",",
+      "output": "integrantes_ensanut2024_w_icb.csv"
+    }
+  ],
+  "members": {},
+  "archive_inventory": [],
+  "inventory_document_sha256": null,
+  "inventory_contract_sha256": null,
+  "packages": [
+    "ensanut-0001",
+    "ensanut-pisos-salud-0001"
+  ],
+  "reservation_overrides": {},
+  "semantic_pending": [],
+  "human_signature": {
+    "reference": null,
+    "body_sha256": null,
+    "literal": null,
+    "scope": "project",
+    "verified_by_custodian": false,
+    "reservation_scopes": []
+  }
+}

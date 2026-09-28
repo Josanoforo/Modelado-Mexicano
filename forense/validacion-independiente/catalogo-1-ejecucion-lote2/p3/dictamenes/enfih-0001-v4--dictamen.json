@@ -1,0 +1,72 @@
+{
+  "paquete": "enfih-0001-v4",
+  "dictamen_utc": "2026-09-27T05:14:38.129637+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "f89246cab53fa44abd56730891339119a7109f42e91e960d0c77daf609ee80c2",
+  "commit_original": "caa59c0774d223a152d022fe405255ded018ee42",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENFIH-A-P",
+      "estado": "DISCREPA",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        },
+        "ic95_inf": {
+          "delta": -0.0002407648423421449,
+          "dentro": false,
+          "columna_original": "ic95_inf"
+        },
+        "ic95_sup": {
+          "delta": -0.00015779034769713984,
+          "dentro": false,
+          "columna_original": "ic95_sup"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    },
+    {
+      "llave": "RESULT-ENFIH-A-P-COMPLEMENTO",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "valor"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": []
+    }
+  ]
+}

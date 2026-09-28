@@ -1,0 +1,26 @@
+{
+  "report": "corpus/reports-v2/Behavioral_Finance_Mexicano__Estructura__Adaptación_Racional_y_Cultura_en_el_Ahorro__Crédito_y_Riesgo.md",
+  "mapa_filas": 35,
+  "afirmaciones": 94,
+  "dictamenes": {
+    "MATIZA": 24,
+    "SIN-CIFRA": 64,
+    "ROMPE": 5,
+    "CONFIRMA": 1
+  },
+  "cifras": 11,
+  "comando_generar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py"
+  ],
+  "comando_verificar": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py",
+    "--check"
+  ],
+  "comando_self_test": [
+    "python3",
+    "forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/dinero/producir.py",
+    "--self-test"
+  ]
+}

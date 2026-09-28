@@ -1,0 +1,28 @@
+{
+  "estado": "VERDE",
+  "pruebas": [
+    "ponderador",
+    "NSNR-en-denominador",
+    "blanco-fuera",
+    "ciudad-filtro",
+    "rechaza-BP1_1-3",
+    "rechaza-FAC_SEL-nan",
+    "rechaza-FAC_SEL-0",
+    "rechaza-SEXO-9",
+    "rechaza-EDAD-17",
+    "rechaza-ID_PER-",
+    "rechaza-UPM_DIS-",
+    "duplicado",
+    "falta-esquema",
+    "singleton-bloquea-inferencia",
+    "marco-UPM-ambos-sexos",
+    "mutacion-auditoria-eje-campo",
+    "mutacion-auditoria-eje-campo",
+    "mutacion-detectada-int(b)==2",
+    "mutacion-detectada-{'1','2','9'}",
+    "mutacion-detectada-r['CD'] != '01'",
+    "mutacion-detectada-w=float(r['FAC_SEL'])",
+    "auditoria-AST-esquema-sin-red"
+  ],
+  "fixture": "SINTETICO-NO-MEDICION"
+}

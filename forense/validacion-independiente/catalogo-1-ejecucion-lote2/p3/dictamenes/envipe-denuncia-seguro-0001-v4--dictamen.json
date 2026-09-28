@@ -1,0 +1,104 @@
+{
+  "paquete": "envipe-denuncia-seguro-0001-v4",
+  "dictamen_utc": "2026-09-27T05:21:38.563046+00:00",
+  "estado_comparador": "COMPARADOR-RECHAZADO",
+  "alcance": "Dictamen separado: alias de nombres sin modificación de valores, tolerancias originales; original congelado previo a revelación. No modifica adaptador ni salida ni adopta. IC sin referencia no acredita coincidencia.",
+  "alias_transporte": {
+    "punto": [
+      "punto",
+      "valor",
+      "p",
+      "estimacion"
+    ],
+    "ic95_inf": [
+      "ic95_inf",
+      "ic_025",
+      "ic95_inferior"
+    ],
+    "ic95_sup": [
+      "ic95_sup",
+      "ic_975",
+      "ic95_superior"
+    ]
+  },
+  "original_sha256": "d82c4e762ec6bd8e95077768d1fbf4ac9d724dcd56d143838077a55580c5e4ca",
+  "commit_original": "a6f15486f0970ffa08f4100e4fd6153e35862e96",
+  "tolerancia": {
+    "tipo": "flotante",
+    "abs": 1e-10
+  },
+  "resultados": [
+    {
+      "llave": "RESULT-ENVIPE-SEG-CON-P-DENUNCIA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    },
+    {
+      "llave": "RESULT-ENVIPE-SEG-CON-P-NO-DENUNCIA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    },
+    {
+      "llave": "RESULT-ENVIPE-SEG-SIN-P-DENUNCIA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    },
+    {
+      "llave": "RESULT-ENVIPE-SEG-SIN-P-NO-DENUNCIA",
+      "estado": "COINCIDE",
+      "campos": {
+        "punto": {
+          "delta": 0.0,
+          "dentro": true,
+          "columna_original": "estimacion"
+        }
+      },
+      "publicabilidad": "CIFRA-EMITIDA",
+      "spec": "SUFICIENTE-PARA-RECONSTRUCCION",
+      "motivo": "",
+      "notas": [
+        "ic95_inf: emitido independientemente sin referencia en catálogo",
+        "ic95_sup: emitido independientemente sin referencia en catálogo"
+      ]
+    }
+  ]
+}
