@@ -1,0 +1,17 @@
+{
+  "report": "corpus/reports-v2/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md",
+  "registros": 60,
+  "mapa_filas": 43,
+  "dictamenes": {
+    "CONFIRMA": 6,
+    "MATIZA": 16,
+    "ROMPE": 4,
+    "SIN-CIFRA": 34
+  },
+  "cifras": [
+    "RESULT-ENVIPE-SEG-CON-P-DENUNCIA",
+    "RESULT-ENVIPE-SEG-SIN-P-DENUNCIA"
+  ],
+  "generar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/civismo/producir.py",
+  "verificar": "python3 forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/civismo/verificar.py"
+}
