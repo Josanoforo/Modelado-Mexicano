@@ -17,16 +17,16 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
       "guardia_suficiencia_efectiva": {
@@ -63,8 +63,8 @@
           "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
         },
         "integridad_evidencias": {
-          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+          "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
           "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
           "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -103,7 +103,7 @@
           }
         }
       },
-      "sha256": "f1cea6d0d2f1c82730d5153770074a24b257cfa4f0e2eea11e4996a113dacdd6",
+      "sha256": "36915d64d18775eec86bc15813ad832e402369a12139993d212acbbb0a206202",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -124,7 +124,7 @@
     "estimando": {
       "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
       "periodo": {
-        "cita": "milpa/tramite.yaml:1135 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1313 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "poblacion": "18+ elegidas que trabajan ∧ P3_13=7 ∧ P4_10∈{1..5}; n=4 973; masa expandida=35 086 918 (37.2388% de toda la población 18+)",
@@ -157,7 +157,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
+      "fuente": "VERIFY-NUEVO-EN-NUBE · ACTO GEN2-NUBE-PILOTO-1-bis · forense/replay-evidencia.tsv#CALC-ENIF-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENIF-AHO-A-P-CORTO-SIN-P",
       "origen_numerico": "NUEVO",
@@ -199,8 +199,8 @@
         "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
       },
       "integridad_evidencias": {
-        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
         "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
         "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -263,16 +263,16 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
       "guardia_suficiencia_efectiva": {
@@ -309,8 +309,8 @@
           "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
         },
         "integridad_evidencias": {
-          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+          "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
           "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
           "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -349,7 +349,7 @@
           }
         }
       },
-      "sha256": "3d5cdc472fcaa9044757a5031f1d73ab0340dc16c8d5d9d7659a0d721d853ef2",
+      "sha256": "9e6e0813b3efba42fc1d84adc9a5273af22b7d1d6149640e1afcbfcebe98b1b8",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -370,7 +370,7 @@
     "estimando": {
       "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
       "periodo": {
-        "cita": "milpa/tramite.yaml:1180 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1360 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "poblacion": "18+ elegidas que trabajan ∧ P3_13∈{1,2,3,4} ∧ P4_10∈{1..5}; n=3 969; masa expandida=26 064 281 (27.6628% de toda la población 18+)",
@@ -403,7 +403,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENIF-0001--afbf3c76d71b",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0001)",
+      "fuente": "VERIFY-NUEVO-EN-NUBE · ACTO GEN2-NUBE-PILOTO-1-bis · forense/replay-evidencia.tsv#CALC-ENIF-0001",
       "generacion": "GEN2",
       "id": "RESULT-ENIF-AHO-A-P-CORTO-CON-P",
       "origen_numerico": "NUEVO",
@@ -445,8 +445,8 @@
         "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
       },
       "integridad_evidencias": {
-        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
         "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
         "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -509,16 +509,16 @@
     "contrato": {
       "archivos": {
         "data/adq-investigacion.yaml": "ad77ee415a48cdbfd82d003c8dade46b19780e2440c49f7da1c828fbcedc4a6f",
-        "data/corrida0/resultados.tsv": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/corrida0/usos.tsv": "bf3f577c45b212ca187917c9be5065e52924315e7a04e5a1d59d151db49979d2",
-        "milpa/src/emisor.py": "508dde5c830d074833efc82ea621d001ab062f477595599c1f2a886d376c2f43",
+        "data/corrida0/resultados.tsv": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/corrida0/usos.tsv": "4800d5a057d7ef5ddcd2651d8d5dd8112c58bfdb10fc53e4b607687a7c22b25c",
+        "milpa/src/emisor.py": "3cf44b41d3a3514d7416902433b535a5a876580b1033d5e37b5614abcb93b343",
         "milpa/src/linaje.py": "b29178b73e9cffabf4c218cd8bfc5b71066d045483cc49c2f1c7047d95882e98",
-        "milpa/tramite.yaml": "f8456b0af80fd028ed4fee2c3511b99f03291a39caf7637812bf15864d21d23b",
-        "tools/adq_investigacion.py": "559ce376984acd3bf95242383c57bfb34c3277fc43192283b4b9f270d9753daf",
+        "milpa/tramite.yaml": "8d470bf645328668087435b781bf96d1ffc9bf35d8359787f9fb78a9328dbace",
+        "tools/adq_investigacion.py": "d5e38e81f624660882b53bf67b14f5bf6f4a48c674911ee5554b53eac6e756de",
         "tools/adq_suficiencia.py": "9161399d1d6b203124763a94bf260793a67c88ee36f20ed2f7f143b2e3ad0db4",
         "tools/baseline_temporal.py": "83ff6a064cb0961af32178cbbbe4097358c85e5f59d7b67da138e096d3ea1b2a",
         "tools/consulta_gen2.py": "1b2fb011346990398aa631257542ac10bc55eda79435787084ce455b81d70661",
-        "tools/emite_m.py": "ce4ca087ca299b0c9f583017c97bc4e2ec67071d3c5b1ea76f5fece028b0dfd4",
+        "tools/emite_m.py": "e62aca48c099ff2c88d99e5ee580fa12c55fd99a1e0b015078adbc82f73763c9",
         "tools/snapshot_motor_gen2.py": "7c1f7b93200ccad1f9e5083cc973bdd1a18000db89cee41ed2d05865987fd366"
       },
       "guardia_suficiencia_efectiva": {
@@ -555,8 +555,8 @@
           "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
         },
         "integridad_evidencias": {
-          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-          "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+          "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+          "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
           "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
           "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
           "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
@@ -595,7 +595,7 @@
           }
         }
       },
-      "sha256": "e02caf192d222dfa9e1e54fcc7684df21eebc5dadda14295d02f1e1600eb1996",
+      "sha256": "1238e5b9ab01d9c77f5347f7ee6db8e418ad5bf8bb651b8764b3f44a31486e5a",
       "version": "CONSULTA-GEN2-v2"
     },
     "dependencia": {
@@ -616,7 +616,7 @@
     "estimando": {
       "evento": "P4_10 en {1,2}: no dispone de ahorros suficientes para cubrir al menos un mes de gastos, incluidas personas sin ahorros",
       "periodo": {
-        "cita": "milpa/tramite.yaml:1433 -- ola_calibracion: \"ENIF 2024\"",
+        "cita": "milpa/tramite.yaml:1615 -- ola_calibracion: \"ENIF 2024\"",
         "valor": "ENIF 2024"
       },
       "poblacion": "18+ elegidas que no trabajaron el mes anterior: P3_8=8 o P3_9=7; P4_10∈{1..5}; n=3 462; masa expandida=25 090 350 (26.6291% de toda la población 18+)",
@@ -649,7 +649,7 @@
     ],
     "resultado": {
       "corrida_id": "CALC-ENIF-0002--5f5469b5e95b",
-      "fuente": "VERIFY-EN-ESTA-SESION · verify(CALC-ENIF-0002)",
+      "fuente": "VERIFY-ESTRUCTURADO · ACTO GEN2-ENIF-POBLACION-Y-ADOPCION · forense/replay-evidencia.tsv#CALC-ENIF-0002",
       "generacion": "GEN2",
       "id": "RESULT-ENIF-POB-P-CORTO-NO-TRABAJA-P",
       "origen_numerico": "NUEVO",
@@ -691,8 +691,8 @@
         "sha256_observado": "46fab34285752b76cfa0efbbcb7b080276bd758018f84dcfc766fbdf370fe9d4"
       },
       "integridad_evidencias": {
-        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "1e194a9ef3673310bd70d12d093349e3963bd4cdf335cf9b5e47c803c93fc81d",
-        "data/manifiesto.yaml": "d3433b7366f5b0d6e60043137c82ee25daaad74f3fa04a0f8abb8ec6dd115d77",
+        "data/corrida0/resultados.tsv#RESULT-ENIF-AHO-A-P-CORTO-SIN-P": "bdb79c711e63de1974f929f5636090acf2deed3bfef3f2da9f067d75f785f432",
+        "data/manifiesto.yaml": "24ac4081e5ce0b8724163a3b0a12bc07bbb6acabb9e7cd4d3e270d1239d2097b",
         "forense/notas/2026-09-11-GEN2-38-NC-0126-IIEG-Jalisco.md": "caacb984673f5c553060de60293d708a9e0aa972b7cc536dcca7c1e4ef028214",
         "forense/notas/2026-09-11-GEN2-38-investigacion-continuacion-codex.md": "a0cca9edc107d6cca994dd20538986b6d4a09d461a7fa9dc2bdf3aaae8746666",
         "forense/notas/2026-09-15-GEN2-EVIDENCIA-HABILITACION-cierre.md": "fb95588ff5630bcd00e916f5e026523f04bae247cba7c03473a3ba919fd0e710"
