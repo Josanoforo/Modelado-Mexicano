@@ -40,3 +40,9 @@ Propio: `canon/mapa-dominios-v1_2.tsv` (+ test), `data/manifiesto.yaml` (solo `l
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no adopta, no descarga microdato, no cambia el semáforo del tablero (lo regenera el canal). Sucesores: mapa v1.3 con lo que MEDICION-CARRILES-2 selle; frente público cuando las licencias estén en cero. Módulo de auditoría v2.16: **sí** en la nota del mapa (afirma qué del corpus es medible sobre México): ¿qué afirmación sobre el corpus fue escrita a mano y no derivada? El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-MAPA-DOMINIOS-Y-LICENCIAS-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- **P2 · «licencia por portal con página de términos sellada … NO-DETERMINABLE con búsqueda citada»** (598 payloads) · NO-VERIFICABLE-AQUÍ — la red del entorno de nube deniega todos los portales (curl `000` en 14 hosts, incluido inegi.org.mx; WebFetch EGRESS_BLOCKED); sin página sellada no se escribe licencia (PARO c), y NO-DETERMINABLE afirmaría «la fuente no tiene términos» cuando lo que hay es «no pude alcanzar la fuente» (§2) · `payloads_sin_licencia` 598 → 598; «licencia vacía = 0» no se cumple · sin NC nueva: se reusa NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01, que sigue ABIERTA con la receta (red permitida o caja + una línea por portal en `aplica_licencias.py`).
+- **P1 · 66 afirmaciones que solo se unen a CALC sellados en disco sin fila en la vista** · reserva, no pieza omitida: rama prevista §5, rotuladas «sellado en disco, no registrado»; línea en `forense/hallazgos.md` · no cuentan como GEN2 existente (E.7) · sucesor: mapa v1.3, tras el registro del canal (`deriva_mapa_v1_2.py --escribe` re-corre tal cual).
+- **«`check.py --baseline` VERDE»** · NO-VERIFICABLE-AQUÍ — la sesión corre `--rapido` (0 FAIL · 467 WARN); la suite completa la juzga el CI del PR (P-A de /acto) · ninguno · CI del PR.
