@@ -46,6 +46,7 @@ No adopta, no mide, no edita reports ni motor, no valida prospectivamente. Suces
 ## NO-CORRIDO / RESERVAS
 - **qué:** P2 «CALC de caja para las SIN-CIFRA con instrumento identificado» (7 reglas) · **por qué:** FUERA-DE-PERÍMETRO: acto de caja sucesor (cero microdato en NUBE) · **impacto:** el bloque candidato no crece · **sucesor:** CALC de caja (§10) · NC-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.
 - **qué:** P2 «una regla con SI condicional se contrasta contra el cruce» (6 MATIZA-SIN-CRUCE) · **por qué:** DIFERIDO-A:GEN2-ADOPCION-REGLAS-BLOQUE-1 · **impacto:** 6 reglas fuera del bloque · **sucesor:** GEN2-ADOPCION-REGLAS-BLOQUE-1 · NC-…-a3cc-02.
+- **qué:** P4 «las reglas CONFIRMA … en formato de adopción por bloque» · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: criterio de CONFIRMA (conducta vs regla completa) · **impacto:** bloque = 1 regla o 0 · **sucesor:** GEN2-ADOPCION-REGLAS-BLOQUE-1 · NC-…-a3cc-03.
 
 ## CONSUMIDO
 PR #1272 (https://github.com/Josanoforo/Modelado-Mexicano/pull/1272) · ADR-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.

@@ -15,3 +15,10 @@ Procedencia por regla en columna; unidad por cifra (hogar en RG-afa48731c6, pers
 - 143 SIN-CIFRA son NO-CONSTRUIBLE por naturaleza prescriptiva o de mecanismo: el dictamen es de subagente con revisión por muestra del hilo principal, no fila a fila.
 - `milpa/catalogo-momentos` no consume ninguna de las 162 (grep por texto/id); los momentos R1.4…R10.3 son reglas del motor, no de reports.
 - Ajustes de guarda: fila FP para la hoja (T22) y exclusión T30 (la cita R1.4 del encargo es ilustrativa).
+
+## Revisión R2 (adversarial) y R3 (decisiones del usuario, 28/sep)
+- R2: cinco revisores fila por fila, con ≥3 términos de búsqueda por regla en el índice. Cambios: RG-21c3d453f6 y RG-b3349eadb3 → MATIZA-SIN-CRUCE; RG-709601ed63 y RG-160683e479 → CONFIRMA (solo SI; la primera pasada decía, en falso, que no había RESULT). Se corrigieron premisas de detalle en RG-7cae748adc, RG-8cfef06376, RG-192242b257 y RG-b57dbe6ebb (existían RESULT que la primera pasada daba por ausentes; los dictámenes se ratifican). G3: 8 de 30 reglas leídas completas, 22 juzgadas por resumen (reserva).
+- R3, respuesta verbatim del usuario: «Fundir en una fila (Recomendado)» · «MATIZA, fuera del bloque (Recomendado)» · «RG-55c7a10915 queda MATIZA,RG-df62e016a7 a MATIZA». RG-4fc3bce5d1 no se marcó: sigue SIN-CIFRA-GEN2.
+- Criterio de CONFIRMA: el usuario respondió «Dame el input para hacer web search, edge cases y best práctices para el manejo de estos resultados.» → `prompt-criterio-confirma.md`; decisión pendiente (NC-…-a3cc-03).
+- Conteo final: CONFIRMA 3 filas = 1 regla · MATIZA 6 · MATIZA-SIN-CRUCE 8 · ROMPE 0 · INCOMPARABLE 0 · SIN-CIFRA-GEN2 145. Tier: 21 declarados que no aguantan (`tier-declarado-vs-evidenciado-v1_0.tsv`), heurística de normalización del tier declarado (texto libre) declarada en la tabla.
+- Defecto de la llave P1: la llave por texto normalizado no funde paráfrasis (tres redacciones de la regla de alimentos); se fundieron a mano como VARIANTE-DE.
