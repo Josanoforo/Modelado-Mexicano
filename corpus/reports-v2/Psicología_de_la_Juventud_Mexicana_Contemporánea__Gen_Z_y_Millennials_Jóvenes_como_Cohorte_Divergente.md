@@ -148,3 +148,20 @@ No se incorporan estas reglas al motor. Las tres primeras disciplinan lenguaje y
 - (c) [OCDE, *Society at a Glance 2024*](https://www.oecd.org/en/publications/society-at-a-glance-2024_918d8db3-en.html), comparación internacional; ficha, sin cifra residencial trasladada. Deloitte, Berkeley y las «cuatro íes» se mencionan como fuentes o marcos originales pendientes de contraste mexicano, sin atribuirles una estimación de México.
 
 El [expediente local](../../forense/analisis/reports-v2/salud-juventud-tiempo-1/juventud/) conserva tabla, productor y revisión dirigida. **B)** evidencia de diáspora: ninguna usada. **C)** marcos importados: solo para formular hipótesis, sin parámetros mexicanos.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (2 ids, 2 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENDUTIH-PISOS-2024-0001` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+- `CALC-ENOE-PISOS-0003` → unidad: personas de universo con diseño válido
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

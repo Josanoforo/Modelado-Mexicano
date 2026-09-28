@@ -134,3 +134,19 @@ El avance consiste en conservar descripciones trazables y retirar conclusiones q
 - [ILO2025](https://www.ilo.org/publications/generative-ai-and-jobs-refined-global-index-occupational-exposure) · (c) marco global con tareas polacas; no estimación mexicana usada · publicación 2025-05-20; lectura 2026-09-26; Ficha primaria WP140, resumen metodológico párrafos 1–5. Ficha completa y resumen metodológico oficial leídos; no se declara lectura de todo el working paper. Límite: Índice de potencial de automatización de tareas; exposición no adopción, despido o resistencia.
 
 Las tablas completas de afirmaciones, correspondencias, cifras y revisión de ROMPE se regeneran desde decisiones editoriales explícitas. Código productor/verificador: `forense/analisis/reports-v2/dinero-tecnologia-conocimiento-1/tecnologia/producir.py`. El original permanece intacto. Una consulta de RESULT no encontró la tabla en la vista `resultados.tsv`; se resolvió directamente contra objeto sellado, firma y catálogo vigente, sin editar derivados.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Las cifras con `RESULT-` citado (1 ids, 1 CALC sellados) llevan la unidad que declara su spec:
+- `CALC-ENDUTIH-PISOS-2024-0001` → unidad: no declarada en su spec.yaml como persona/hogar/delito/trámite: se lee en el CALC
+Ninguna cantidad de unidad delito o trámite se promedia aquí con una de unidad persona u hogar.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

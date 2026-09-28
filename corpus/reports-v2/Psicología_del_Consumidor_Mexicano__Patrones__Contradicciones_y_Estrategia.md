@@ -156,3 +156,17 @@ Todas estas reglas son `PROPUESTO-POR-EJECUTOR`, para catálogo sucesor y firma 
 **Vigencia y riesgo de lectura simplista.** Las cinco cifras externas de RB2024, MK2012 y MK2023 se comprobaron en sus documentos primarios, con universo y periodo en el registro. La literatura se actualizó de forma dirigida hasta el corte y sus limitaciones de acceso se declaran. El riesgo mayor sería leer predominio de efectivo como exclusión bancaria inevitable, o la cuota digital histórica como techo actual. El resultado defendible permite segmentar y formular pruebas de acceso, calidad y aprendizaje; no permite prometer un consumidor mexicano único ni una receta universal de conversión.
 
 **Estado derivado y deuda:** el inventario local y sus conteos se obtienen de las tablas JSON, con el comando del índice del lote; no representan nuevas mediciones. La deuda de corregir la truncación de 0001 se resolvió con el sucesor 0002 y el veto firmado; no se vuelve a usar 0001. La disponibilidad por oferta no está observada en forma completa: acceso a conexión y tarjeta es información parcial, no medida integral de exclusión. Las poblaciones rurales y populares requieren esa observación antes de transportar hipótesis de muestras urbanas; el sistema indígena-comunal no se presume representado por una media nacional.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

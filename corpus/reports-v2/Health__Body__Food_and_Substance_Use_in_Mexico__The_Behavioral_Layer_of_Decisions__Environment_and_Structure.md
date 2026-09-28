@@ -115,3 +115,17 @@ Las reglas del v1 sobre madres con hijos, bajo ingreso ante sellos, informalidad
 **Evidencia débil y riesgo práctico.** Recompensa compensatoria, colorismo corporal, confianza radial, presión social de beber y «hombre aguantador» tienen intuición pero no medición conjunta adecuada. Una lectura simplista podría culpar a pacientes, atribuir todo cambio de vapeo a prohibición o equiparar narcotráfico con consumo. Las alternativas rivales están en §4. **PROSPECTIVA/RETROSPECTIVA:** este reporte revisa retrospectivamente afirmaciones ya publicadas con pisos descriptivos; no es prueba prospectiva, duelo ciego ni validación independiente. **Reservas:** no se abrieron microdatos ni tabulados de ENCODAT 2025, ENSANUT 2025 o ENIGH 2024 para este producto; tampoco se usa la nota del informe reservado de ENCODAT 2025. La evidencia 2025–2026 autorizada se leyó al nivel disponible de artículo o resumen primario, con método y alcance detallados en [fuentes.md](../../forense/analisis/reports-v2/salud-juventud-tiempo-1/salud/fuentes.md).
 
 **Estado del corpus y deuda.** El conteo de afirmaciones y dictámenes no se escribió a mano: lo produce [producir.py](../../forense/analisis/reports-v2/salud-juventud-tiempo-1/salud/producir.py) desde decisiones explícitas; no cuenta tesis independientes cuando una misma idea aparece en resumen y patrón. El trabajo mueve **cero contadores** y no agrega RESULT ni adopciones. La deuda antes tolerada de comparar ventanas o extraer causas de prevalencias caducó al usarse el report como insumo de modelo: esas frases se retiraron o acotaron. Si un falsador de §7 no refuta, la regla queda **corroborada solo dentro del universo y ventana ensayados** cuando el diseño tiene potencia y comparador; con IC ancho o medición indirecta queda **acotada por falsador débil**, nunca adoptada automáticamente.
+
+<!-- C3-V216:INICIO (GEN2-ASTRA-CONTINUIDAD-C3-1; generado por forense/analisis/reports-v2/continuidad-c3-1/bloque_v216.py) -->
+
+## Módulo de auditoría · preguntas [v2.16] y firewall genético (cierre editorial C3)
+
+**¿Qué cifra es PROSPECTIVA y cuál RETROSPECTIVA, y se mezclan en alguna frase?** Ninguna cifra de este report es PROSPECTIVA: ninguna fue emitida y sellada antes de existir la referencia contra la que se lee. Toda cifra aquí es RETROSPECTIVA (lectura de una ola ya vista o de una fuente publicada); ninguna frase mezcla las dos columnas.
+
+**¿Qué unidad tiene cada cifra y se promedia con otra?** Este report no cita ningún `RESULT-` sellado; sus cifras son externas y su unidad es la de la fuente citada (persona, hogar, delito o trámite según la encuesta). No se promedian cantidades de unidades distintas.
+
+**Procedencia de cifras sin RESULT.** Toda cifra de este report que no cite un `RESULT-` sellado es **cifra sin sellado: no entra al canon**; su procedencia se clasifica como (a) dato primario en México, (b) muestra mexicano-americana o de diáspora (no es evidencia sobre México) o (c) marco teórico importado en la tabla de afirmaciones del expediente, enlazada desde `corpus/reports-v2/INDICE.md`.
+
+**Firewall genético (§3).** Prohibida la inferencia ascendencia → conducta de grupo. Nada en este report autoriza segmentar por ascendencia, origen étnico o componente genético; la única vía admitida es individual, molecular y de efecto pequeño (p. ej. alcohol, nicotina), nunca como segmentación.
+
+<!-- C3-V216:FIN -->

@@ -16,8 +16,23 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[4]
 BASE = Path('forense/analisis/reports-v2')
-MAIN_REMOTE = 'a8c3e3416ba998066f617a8e8b8dfc928e03fdf9'
-PRS = {1242: '58bd0f7166ef73675f5ef1cfc15ef20eb31f6715'}
+MAIN_REMOTE = 'e584ee5fe0e3b782a048cc6bad2ce508563d6112'
+PRS = {}
+# Recibo de Claude por lote (GEN2-ASTRA-CONTINUIDAD-C3-1, P2): nota pr-N por PR fusionado.
+RECIBOS = {
+ 'social-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-2', 1171),
+ 'genero-violencia-salud-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-2', 1180),
+ 'dinero-tecnologia-conocimiento-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-2', 1196),
+ 'cuidado-migracion-pareja-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-2', 1197),
+ 'autoridad-civismo-comunalidad-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-3', 1240),
+ 'salud-juventud-tiempo-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-3', 1242),
+ 'interaccion-emociones-humor-sancion-1': ('2026-09-27-GEN2-RECIBO-ASTRA6-3', 1243),
+ 'duelo-ambiguo-1': ('2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1', 1246),
+ 'sintesis-transcultural-1': ('2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1', 1247),
+ 'genetica-genomica-1': ('2026-09-28-GEN2-ASTRA-CONTINUIDAD-C3-1', 1251),
+}
+# consumo-familia-2 y trabajo-movilidad-1 se recibieron en RECIBO-ASTRA6-1 (nota única).
+RECIBO_NOTA = {'consumo-familia-2': 'forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1', 'trabajo-movilidad-1': 'forense/notas/2026-09-27-GEN2-RECIBO-ASTRA6-1'}
 # Cada tupla: prefijo único de v1, tabla de decisiones, esquema, lote,
 # estado en el corte local o PR. JSON de juicios sustituye tablas heredadas.
 SOURCES = [
@@ -38,17 +53,20 @@ SOURCES = [
  ('Vejez_y_', 'cuidado-migracion-pareja-1/vejez/tabla-afirmaciones.tsv', 'tsv', 'cuidado-migracion-pareja-1', 0),
  ('Psychology_of_Mexico-', 'cuidado-migracion-pareja-1/migracion/afirmaciones.tsv', 'tsv', 'cuidado-migracion-pareja-1', 0),
  ('Elegir__', 'cuidado-migracion-pareja-1/pareja/afirmaciones.tsv', 'tsv', 'cuidado-migracion-pareja-1', 0),
- ('Humor_in_', 'interaccion-emociones-humor-sancion-1/humor/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 'remote'),
- ('La_arquitectura_', 'interaccion-emociones-humor-sancion-1/interaccion/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 'remote'),
- ('Moral_Emotions_', 'interaccion-emociones-humor-sancion-1/moral/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 'remote'),
- ('Sanción_Social_', 'interaccion-emociones-humor-sancion-1/sancion/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 'remote'),
+ ('Humor_in_', 'interaccion-emociones-humor-sancion-1/humor/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 0),
+ ('La_arquitectura_', 'interaccion-emociones-humor-sancion-1/interaccion/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 0),
+ ('Moral_Emotions_', 'interaccion-emociones-humor-sancion-1/moral/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 0),
+ ('Sanción_Social_', 'interaccion-emociones-humor-sancion-1/sancion/tabla-afirmaciones.tsv', 'tsv', 'interaccion-emociones-humor-sancion-1', 0),
  ('Autoridad_y_', 'autoridad-civismo-comunalidad-1/autoridad/afirmaciones.tsv', 'tsv', 'autoridad-civismo-comunalidad-1', 0),
  ('Psicología_Política_', 'autoridad-civismo-comunalidad-1/civismo/afirmaciones.tsv', 'tsv_juicio', 'autoridad-civismo-comunalidad-1', 0),
  ('El_México_Rural_', 'autoridad-civismo-comunalidad-1/comunalidad/tabla-afirmaciones.tsv', 'tsv_v2', 'autoridad-civismo-comunalidad-1', 0),
- ('Health__', 'salud-juventud-tiempo-1/salud/afirmaciones.tsv', 'tsv', 'salud-juventud-tiempo-1', 1242),
- ('Psicología_de_la_Juventud_', 'salud-juventud-tiempo-1/juventud/tabla.tsv', 'tsv_v2', 'salud-juventud-tiempo-1', 1242),
- ('El_Mexicano_y_el_Tiempo_', 'salud-juventud-tiempo-1/tiempo/afirmaciones.tsv', 'tsv_v2', 'salud-juventud-tiempo-1', 1242),
- ('Psicología__Conducta_y_', 'sintesis-transcultural-1/tabla-afirmaciones.tsv', 'tsv', 'sintesis-transcultural-1', 'own'),
+ ('Health__', 'salud-juventud-tiempo-1/salud/afirmaciones.tsv', 'tsv', 'salud-juventud-tiempo-1', 0),
+ ('Psicología_de_la_Juventud_', 'salud-juventud-tiempo-1/juventud/tabla.tsv', 'tsv_v2', 'salud-juventud-tiempo-1', 0),
+ ('El_Mexicano_y_el_Tiempo_', 'salud-juventud-tiempo-1/tiempo/afirmaciones.tsv', 'tsv_v2', 'salud-juventud-tiempo-1', 0),
+ ('Psicología__Conducta_y_', 'sintesis-transcultural-1/tabla-afirmaciones.tsv', 'tsv', 'sintesis-transcultural-1', 0),
+ ('Ausencia_sin_certeza_', 'duelo-ambiguo-1/tabla-afirmaciones.tsv', 'tsv', 'duelo-ambiguo-1', 0),
+ ('Genetica_y_Conducta_', 'genetica-genomica-1/tabla-afirmaciones.tsv', 'tsv_pieza:conducta', 'genetica-genomica-1', 0),
+ ('Mexican_Population_Genomics_', 'genetica-genomica-1/tabla-afirmaciones.tsv', 'tsv_pieza:genomica', 'genetica-genomica-1', 0),
 ]
 REPO = 'Josanoforo/Modelado-Mexicano'
 VERDICTS = ('CONFIRMA', 'MATIZA', 'ROMPE', 'SIN-CIFRA')
@@ -63,6 +81,9 @@ def remote(path, ref):
 def table_rows(raw, schema):
     if schema in ('tsv', 'tsv_v2', 'tsv_juicio'):
         return list(csv.DictReader(io.StringIO(raw.decode()), delimiter='\t'))
+    if schema.startswith('tsv_pieza:'):
+        pieza = schema.split(':', 1)[1]
+        return [r for r in csv.DictReader(io.StringIO(raw.decode()), delimiter='\t') if r['pieza'] == pieza]
     if schema == 'juicios':
         return json.loads(raw)['juicios']
     raise ValueError(schema)
@@ -83,23 +104,19 @@ def verify_local():
         relevant = [line for line in lines if f'](../reports/{original.name})' in line]
         assert len(relevant) == 1, original.name
         assert f'`{sha(original.read_bytes())}`' in relevant[0], original.name
-    assert sum('| EN-MAIN |' in line for line in lines) == 24
-    assert sum('EN-PR #' in line for line in lines) == 3
-    assert sum('| EN-PR-PROPIO [#1247](https://github.com/Josanoforo/Modelado-Mexicano/pull/1247) |' in line for line in lines) == 1
-    assert sum('| NO-ENTREGADO |' in line for line in lines) == 3
+    assert sum('| EN-MAIN |' in line for line in lines) == 31
+    assert not any('| — |' in line.split('| EN-MAIN |')[1][:6] for line in lines if '| EN-MAIN |' in line)
     own = next(line for line in lines if 'Psicología__Conducta_y_Sociedad' in line)
     own_table = ROOT / BASE / 'sintesis-transcultural-1/tabla-afirmaciones.tsv'
     rows = table_rows(own_table.read_bytes(), 'tsv')
     counts = [sum(row['dictamen'] == verdict for row in rows) for verdict in VERDICTS]
     assert counts == [2, 61, 22, 20], counts
     assert '28 / 77' in own and '2 / 61 / 22 / 20' in own
-    assert (ROOT / 'corpus/reports-v2' / next(p.name for p in originals
-            if p.name.startswith('Psicología__Conducta_y_'))).is_file()
     missing = [link for link in re.findall(r'\]\(([^)]+)\)', content)
                if not link.startswith('http') and not (out.parent / link).exists()]
     assert not missing, missing
-    print('VERDE local: 31 originales/hashes, 24 main, 3 PR ajenos, '
-          '1 propuesta propia, 3 pendientes; tabla propia 2/61/22/20; enlaces locales válidos')
+    print('VERDE local: 31 originales/hashes, 31 main, recibo por fila; '
+          'tabla síntesis 2/61/22/20; enlaces locales válidos')
 
 
 def main():
@@ -122,15 +139,13 @@ def main():
         matches = [p for p in originals if p.name.startswith(prefix)]
         assert len(matches) == 1, (prefix, matches)
         config[matches[0].name] = (table, schema, lot, ref)
-    assert len(config) == 28
+    assert len(config) == 31
     lines = [
         '# Índice de los 31 reports v1 y sus sucesores v2', '',
-        f'Corte consolidado de main: `{MAIN_REMOTE}` ({local_count} homónimos fusionados); '
-        '#1243 ya fusionó cuatro homónimos después del corte eda5bb9. '
-        '#1240 ya fusionó; #1242 sigue abierto por SHA y no es archivo consolidado. '
-        'El report general está propuesto en PR #1247. '
-        'Los estados se refieren al main remoto indicado; los enlaces por SHA '
-        'permiten consultar objetos ajenos a esta rama.', '',
+        f'Corte consolidado de main: `{MAIN_REMOTE}` ({local_count} homónimos fusionados). '
+        'Regenerado por GEN2-ASTRA-CONTINUIDAD-C3-1 (P2); la nota del corte anterior '
+        '(`a8c3e341`, 24 homónimos) no se reescribe: vive en la historia de este archivo. '
+        '31/31 homónimos fusionados es cobertura editorial, no cierre científico.', '',
         f'Fuente del cruce: [mapa v1.1](../../canon/mapa-dominios-v1_1.tsv), '
         f'SHA-256 `{sha(mapa_path.read_bytes())}`. La huella de cada original '
         'abajo es SHA-256 completo de sus bytes y coincide con `report_sha256` del mapa.', '',
@@ -171,7 +186,7 @@ def main():
                 status = 'EN-MAIN' if ref == 'remote' else 'EN-PR'
             rows = table_rows(raw, schema)
             key = {'tsv': 'dictamen', 'tsv_v2': 'dictamen_v2',
-                   'tsv_juicio': 'juicio_v2', 'juicios': 'dictamen'}[schema]
+                   'tsv_juicio': 'juicio_v2', 'juicios': 'dictamen'}.get(schema, 'dictamen')
             counts = {v: sum(row.get(key) == v for row in rows) for v in VERDICTS}
             assert sum(counts.values()) == len(rows), (name, counts, len(rows), list(rows[0]) if rows else [])
             audit = f'{len(map_ids)} / {max(0, len(rows)-len(map_ids))} [tabla]({table_link})'
@@ -179,14 +194,16 @@ def main():
             status_link = (status if status == 'EN-MAIN' else
                            f'EN-PR-PROPIO [#1247](https://github.com/{REPO}/pull/1247)' if ref == 'own' else
                            f'[EN-PR #{ref}](https://github.com/{REPO}/pull/{ref})')
-            receipt_link = ('Solicitado; no obtenido' if ref == 'own' else
-                            f'No verificado ([paquete]({receipt}))')
-            proposal = (f'[hoja](../../{BASE / lot / "hoja-reglas-propuestas.md"})' if ref == 'own' else
+            if lot in RECIBOS:
+                carpeta, pr = RECIBOS[lot]
+                receipt_link = f'[pr-{pr}](../../forense/notas/{carpeta}/pr-{pr}.md)'
+            else:
+                receipt_link = f'[RECIBO-ASTRA6-1](../../{RECIBO_NOTA[lot]}/)'
+            proposal = ('[hoja C3](../../forense/analisis/reports-v2/reglas-propuestas-v1_0.tsv)' if ref == 0 else
                         f'[lote](../../{BASE / lot}/)' if ref == 0 else
                         f'[lote](https://github.com/{REPO}/tree/{MAIN_REMOTE if ref == "remote" else PRS[ref]}/{BASE / lot})')
             reserve = f'{counts["SIN-CIFRA"]} registros SIN-CIFRA; ver razones y límites en tabla.'
-            if ref == 1242 and name.startswith(('El_Mexicano_y_el_Tiempo_', 'Psicología_de_la_Juventud_')):
-                reserve += ' Correcciones materiales del lote aún en PR.'
+            reserve += ' Módulo [v2.16] y firewall: bloque C3-V216 del report.'
         else:
             status = 'NO-ENTREGADO'
             v2_link = None
@@ -203,18 +220,15 @@ def main():
         lines.append(f'| [{p.stem.replace("_", " ")}]({rel1})<br>`{digest}` | '
                      f'{successor} | {audit} | {verdict} | {status_link} | '
                      f'{receipt_link} | {proposal} | No acreditada aquí | {reserve} |')
-    assert totals == {'EN-MAIN': 24, 'EN-PR': 3, 'EN-PR-PROPIO': 1,
-                      'NO-ENTREGADO': 3}, totals
+    assert totals == {'EN-MAIN': 31, 'EN-PR': 0, 'EN-PR-PROPIO': 0,
+                      'NO-ENTREGADO': 0}, totals
     lines += ['', '¹ El índice muestra filas del mapa por identidad de archivo, no una '
               'fracción de cobertura editorial comprobada. El exceso de registros '
               'sobre filas del mapa mezcla desdoblamientos, reiteraciones y '
               'afirmaciones adicionales; no debe sumarse como hallazgos nuevos.', '',
-              f'**Estado verificable:** {totals["EN-MAIN"]}/31 en main remoto '
-              f'al corte; {totals["EN-PR"]}/31 '
-              f'en PR ajenos abiertos; {totals["EN-PR-PROPIO"]}/31 propuesto '
-              f'en [PR #1247](https://github.com/{REPO}/pull/1247); {totals["NO-ENTREGADO"]}/31 sin entrega. '
-              'El recibo de Claude para esta rama está solicitado, no obtenido. '
-              'Los enlaces a paquetes de otros lotes no acreditan recepción. '
+              f'**Estado verificable:** {totals["EN-MAIN"]}/31 en main al corte; '
+              f'{totals["NO-ENTREGADO"]}/31 sin entrega. Cada fila enlaza el recibo de Claude '
+              'de su PR (post-merge en #1240, #1242, #1243, #1246, #1247, #1251). '
               'Ninguna regla editorial se declara adoptada por aparecer en una tabla '
               'o por fusionarse un report. C3 completo exige los 31 homónimos '
               'fusionados, recibidos y sus controles.', '',
