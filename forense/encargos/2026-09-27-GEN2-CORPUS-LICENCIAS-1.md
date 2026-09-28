@@ -41,3 +41,13 @@ Propio: `data/manifiesto.yaml` (campo `licencia` de entradas existentes; entrada
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No decide qué se publica y qué no (frente público, mesa), no borra payloads, no re-verifica sha de payloads (CORPUS-INTEGRIDAD), no pide permisos a portales (NC con receta si hace falta). Sucesores: `GEN2-CORPUS-LICENCIAS-2` (backfill de `url_origen` para los 58 y respuestas de portales) · el frente público (README/Pages) que cite el conteo derivado. Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-27-GEN2-CORPUS-LICENCIAS-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- **L1–L5** (página de términos + regla por portal, 598 payloads) · NO-VERIFICABLE-AQUÍ — el proxy de nube rechazó los 43 hosts; solo inegi.org.mx respondió (A.5) · sin licencia sigue en 598; «licencia vacía = 0» no se cumple · GEN2-CORPUS-LICENCIAS-2 · NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-01
+- **Registro de la página de términos INEGI** · NO-VERIFICABLE-AQUÍ — `--registra` aborta por un `estado_reserva` ajeno (NC-260924-GEN2-ASTRA5-U5-ADQUISICION-1-43d6-07) · páginas registradas: 0 · esa NC · NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-02
+- **Clave `payloads_sin_licencia` en status** · DIFERIDO-A:GEN2-CORPUS-LICENCIAS-2 · status no la muestra · GEN2-CORPUS-LICENCIAS-2 · NC-260928-GEN2-CORPUS-LICENCIAS-1-1997-03
+
+## CONSUMIDO
+
+Ejecutado por PR #1250 (ADR-260928-GEN2-CORPUS-LICENCIAS-1-1997-01), parcial: 626 → 598.
