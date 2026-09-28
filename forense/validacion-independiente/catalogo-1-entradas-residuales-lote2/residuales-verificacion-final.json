@@ -3,11 +3,12 @@
   "gate": {
     "comando": "python3 tests/check.py --rapido --baseline",
     "resultado": "VERDE: sin FAIL nuevos; 0 FAIL global",
-    "salida_sha256": "db20599d2a8b84a29ccfdf94b849f30006923bd5654081fcd3e37c1828f29ed3"
+    "salida_sha256": "eb14a8344dfbc61cec63f275ad8c183727fd2a96f1d68090f9e46dad54981c82"
   },
   "producto": {
     "p1": "PASS: 425 corte; 368 pares; union312; 56 puntos/312IC; diferencias2/8",
-    "p4": "PASS:4 contenedores/312identidades/40miembros; bytes reproducibles"
+    "p4": "PASS: 4 contenedores v2/312 identidades/40 miembros; bytes reproducibles; 12 circuitos sintéticos/936 filas frente a #1221 HEAD d8ef9f56",
+    "adaptador": "PASS: paquete→congelación→comparación, punto SIN-IC, IC CALCULADO, no recalculable desde spec; extras rechazados"
   },
   "git_diff_check": "PASS",
   "recalculos": 0,

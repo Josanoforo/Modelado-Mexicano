@@ -23,3 +23,9 @@ Revisión solicitada: comprobar separación de contenidos, precedencia de defini
 EJECUTADO: `python3 tools/validacion/astra6_entradas_residuales/p1.py` PASS (368 pares, unión312); `python3 tools/validacion/astra6_entradas_residuales/p4.py --verifica` PASS (4 contenedores,312identidades,40miembros, bytes reproducibles); `git diff --cached --check` PASS; `python3 tests/check.py --rapido --baseline` VERDE, sin FAIL nuevos y 0 FAIL global. Gate documental, no evidencia científica. Detalle en `residuales-verificacion-final.json`.
 
 PR propio publicado: https://github.com/Josanoforo/Modelado-Mexicano/pull/1229. Recibo técnico solicitado en el cuerpo del PR, aún no obtenido; merge y firma de contratos pendientes.
+
+## Corrección de salida del PR #1229 · 27/sep/2026
+
+EJECUTADO: los cuatro contenedores vigentes son `residuales-documentales-v2`; las copias v1 se preservan byte a byte en `p4/retirados/` y no se entregan. `esquema-identidades.tsv` ahora lleva la `llave` comparada explícita y `esquema-salida-v2.md` define exactamente `version/identidad/filas` de #1221. P2 y P3 remiten al mismo contrato; los diagnósticos auxiliares se separan del JSON comparado y se sellan antes de revelar referencias. La correspondencia exhaustiva y la limitación de estados están en `p4/residuales-p4-correspondencia-adaptador-v2.md`.
+
+EJECUTADO: prueba sintética contra #1221 HEAD `d8ef9f56ef80ec1cd7867779489beb0ce7e4cfe9` con 12 circuitos paquete → congelación verificada → comparación (936 filas sintéticas: cuatro cohortes por punto sin IC, IC calculado y no recalculable por spec); los campos auxiliares antiguos se rechazan. Evidencia en `p4/residuales-p4-prueba-salida-v2.json`. Cero datos reales, cero recálculos, cero referencia histórica revelada; no se reinterpreta ninguna salida posterior. El adaptador #1221 sigue propuesto y una versión diferente exige nueva prueba antes de un intento real.

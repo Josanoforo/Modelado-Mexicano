@@ -10,4 +10,4 @@ Unir `SEC_6_7_8` con `SEC_4_5` por `ID_PER`, con llaves únicas; sin pareja qued
 
 Numerador Σ(FAC_SEL · 1[AP7_3_5=1]); denominador Σ(FAC_SEL) en la misma celda válida. AP7_3_5=2 aporta cero al numerador. Denominador cero produce NO-ESTIMABLE-UNIVERSO-VACIO. No usar el recorte de contacto de la familia mordida para protesta.
 
-Esquema de salida: llave, celda, unidad=PERSONA, segmento=agravio_rural, estimacion, n_valido, peso_denominador, exclusiones_por_causa; IC95 y metodo solo bajo contrato de incertidumbre separado. No contiene valores de referencia ni tolerancias nuevas.
+Salida comparada: documento y filas exactamente según `esquema-salida-v2.md` del contenedor; `llave` y `unidad` se copian literalmente de `esquema-identidades.tsv`, `punto` contiene la proporción reconstruida y `estado_ic=SIN-IC` si no se calcula intervalo. Celda B-P-RUR-AGR, segmento agravio_rural, unidad de observación PERSONA, n válido, peso denominador y exclusiones son metadatos auxiliares separados de la salida comparada. IC solo bajo contrato P3. No contiene referencias ni tolerancias nuevas.

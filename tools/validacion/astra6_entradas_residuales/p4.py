@@ -19,7 +19,7 @@ COHORTES = {
     'ENCUCI': 'encuci-0001',
     'ENIGH': 'enigh-0001',
 }
-FIELDS = ['entrada_id', 'instrumento', 'ola', 'conducta', 'eje', 'segmento', 'unidad', 'celda']
+FIELDS = ['entrada_id', 'llave', 'instrumento', 'ola', 'conducta', 'eje', 'segmento', 'unidad', 'celda']
 
 
 def sha(data):
@@ -50,7 +50,7 @@ def main():
         original_hash = sha(original_path.read_bytes())
         selected = {r['llave'] for r in affected if r['instrumento'] == inst}
         members, schemas = {}, []
-        successor = original_id + '-residuales-documentales-v1'
+        successor = original_id + '-residuales-documentales-v2'
         with tarfile.open(original_path) as source:
             estimandos = list(csv.DictReader(io.StringIO(source.extractfile('estimandos.tsv').read().decode()), delimiter='\t'))
             for row in estimandos:
@@ -59,6 +59,7 @@ def main():
                 entry_id = row['llave'].replace('RESULT-', 'ENTRADA-RESIDUALES-', 1)
                 clean = {k: row.get(k, '') for k in FIELDS}
                 clean['entrada_id'] = entry_id
+                clean['llave'] = row['llave']
                 if inst == 'ENCUCI':
                     clean.update(celda='B-P-RUR-AGR', segmento='agravio_rural', unidad='PERSONA')
                 elif inst == 'ENIGH':
@@ -90,12 +91,29 @@ def main():
                     members['spec-base-' + name] = source.extractfile(name).read()
         assert len(schemas) == len(selected), (inst, len(schemas), len(selected))
         members['esquema-identidades.tsv'] = tsv(schemas, FIELDS)
-        members['esquema-salida.md'] = (
-            '# Esquema de salida documental\n\n'
-            'Una fila por entrada_id del esquema-identidades.tsv. Campos: entrada_id, conducta, eje, '
-            'segmento, unidad, estimacion, n_valido, peso_denominador, exclusiones_por_causa; '
-            'IC95_inf, IC95_sup y metodo_IC solo bajo contrato de incertidumbre adjunto. '
-            'No contiene valores de referencia. No ejecutar contratos propuestos sin firma de contenido.\n'
+        members['esquema-salida-v2.md'] = (
+            '# Salida comparada v2 · contrato del adaptador #1221\n\n'
+            'Emitir UN JSON original de reconstrucción con exactamente `version`, `identidad` y `filas`. '
+            '`version` es el entero 2. `identidad` contiene exactamente `paquete` (nombre del contenedor '
+            'sin .tar.gz), `version_entrada` (`residuales-documentales-v2`) y `sha256_entrada` '
+            '(SHA-256 hexadecimal de los bytes del .tar.gz entregado, calculado por el orquestador). '
+            'El SHA no se inscribe dentro del propio contenedor porque sería circular. El adaptador comprueba '
+            'que coincide con la entrada congelada.\n\n'
+            'Cada fila corresponde a una fila de `esquema-identidades.tsv` y contiene `llave`, `unidad`, '
+            '`estado` y solo los campos opcionales admitidos por el contrato #1221. `llave` y `unidad` '
+            'se copian literalmente de esas columnas del esquema, sin usar `entrada_id` como llave de '
+            'comparación ni convertir escala. `entrada_id` sirve únicamente para localizar la spec. '
+            '`estado=RECONSTRUIDO` exige `punto` numérico. Para un punto sin IC, declarar '
+            '`estado_ic=SIN-IC` y omitir ambos extremos. Para un IC calculado, declarar '
+            '`estado_ic=CALCULADO`, `ic95_inf` e `ic95_sup` numéricos y ordenados. Para una '
+            'identidad no recalculable por insuficiencia de spec/diseño, usar '
+            '`estado=NO-RECALCULABLE-DESDE-SPEC` y `motivo` concreto; '
+            'omitir punto y extremos, con `estado_ic=SIN-IC` si se dictaminó explícitamente. '
+            'Otros estados válidos son `NO-EVALUADO` y `BLOQUEADO-POR-ACCESO`, con su motivo.\n\n'
+            'No incluir `entrada_id`, conducta, eje, segmento, tamaños, pesos, SE, réplicas, método, '
+            'semilla ni hashes por fila en el JSON comparado. Los diagnósticos se escriben aparte según '
+            '`residuales-p3-contrato-ic.md`, se sellan antes de revelar referencias y nunca se usan '
+            'para reinterpretar la salida comparada. No ejecutar contratos propuestos sin firma de contenido.\n'
         ).encode()
         for item in group['archivos']:
             path = ROOT / item['ruta']

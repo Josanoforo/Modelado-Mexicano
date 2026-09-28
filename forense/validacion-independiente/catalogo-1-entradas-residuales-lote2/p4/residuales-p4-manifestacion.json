@@ -1,9 +1,9 @@
 [
   {
     "instrumento": "ENBIARE",
-    "sucesor": "enbiare-pisos-bienestar-0001-residuales-documentales-v1",
-    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/enbiare-pisos-bienestar-0001-residuales-documentales-v1.tar.gz",
-    "sha256": "e13a158ae39bed00dc0a02220e086745af67c01574c0dbb373cff14286966aac",
+    "sucesor": "enbiare-pisos-bienestar-0001-residuales-documentales-v2",
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/enbiare-pisos-bienestar-0001-residuales-documentales-v2.tar.gz",
+    "sha256": "fc75485a4e49118eacfca104070214c86fa4071b75550234cfc05ffb69c9fbfe",
     "decision": "CONTRATO-NUEVO-PROPUESTO",
     "estado": "DOCUMENTAL-COMPLETO-PENDIENTE-FIRMA-DE-CONTENIDO",
     "pendientes": [
@@ -21,8 +21,8 @@
         "bytes": 997663
       },
       "enbiare-edades-propuesta.md": {
-        "sha256": "0ea93c554d13797d792b744a7a0843492fe0fe8668349ff64e3640b01f92868a",
-        "bytes": 2653
+        "sha256": "95f614a43f0cc01ea3caaeb59b1ecc59ca4328d351a6b91b2c6fb09c604dd67d",
+        "bytes": 2754
       },
       "enbiare-metodo-base.md": {
         "sha256": "9e642c6e16ffddae011b9afc03f0d6a66e4c78026d82aca17642a2cf34f36e09",
@@ -33,16 +33,16 @@
         "bytes": 1435
       },
       "esquema-identidades.tsv": {
-        "sha256": "0a21152b4865fcddc4c2e9f15d144bfe0d7812b502115084a20667d794ac0b5a",
-        "bytes": 26774
+        "sha256": "d78259f5a37a432c0156367cd490954e92080775ea2233a732aa8d7c08f7db8f",
+        "bytes": 40226
       },
-      "esquema-salida.md": {
-        "sha256": "9120c52e8fc4c3ac4f9aa3c9a07556782f169e8007b9ca9e33a1fc2bb18677a7",
-        "bytes": 369
+      "esquema-salida-v2.md": {
+        "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4",
+        "bytes": 1797
       },
       "residuales-p3-contrato-ic.md": {
-        "sha256": "0f82d5be21c27e4e1aaf812d765d584d8d3473769fb0f0783f67d2feebab5a6e",
-        "bytes": 5659
+        "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+        "bytes": 6731
       },
       "residuales-p3-modulos-ic.md": {
         "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
@@ -60,9 +60,9 @@
   },
   {
     "instrumento": "ENCODAT",
-    "sucesor": "encodat-pisos-sustancias-0001-residuales-documentales-v1",
-    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/encodat-pisos-sustancias-0001-residuales-documentales-v1.tar.gz",
-    "sha256": "8a477f155a2c3e42f3e23051e8ba8ae779b1112912388278dacb0cc3e0825dcf",
+    "sucesor": "encodat-pisos-sustancias-0001-residuales-documentales-v2",
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/encodat-pisos-sustancias-0001-residuales-documentales-v2.tar.gz",
+    "sha256": "c8b50b5727b2317b589a970fabc1b678359afc49406748225044e0dedcbc0ec0",
     "decision": "CONTRATO-NUEVO-PROPUESTO",
     "estado": "DOCUMENTAL-COMPLETO-PENDIENTE-FIRMA-DE-CONTENIDO",
     "pendientes": [
@@ -79,12 +79,12 @@
         "bytes": 3285514
       },
       "esquema-identidades.tsv": {
-        "sha256": "82a1fec52b1a3c21a55d3f70cd6dc2f94179bb98ed4ef8091358325a85427e53",
-        "bytes": 20314
+        "sha256": "3fac92f541983be07769871150b6b045dcd2b6957fe4788ff85c48082368e3bd",
+        "bytes": 30576
       },
-      "esquema-salida.md": {
-        "sha256": "9120c52e8fc4c3ac4f9aa3c9a07556782f169e8007b9ca9e33a1fc2bb18677a7",
-        "bytes": 369
+      "esquema-salida-v2.md": {
+        "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4",
+        "bytes": 1797
       },
       "fd-encodat_2016_2017__encodat_2016_2017_hogar_catalogo_xlsx.xlsx": {
         "sha256": "c125d639a5766ce0861dbfe73b16ea6259c01ee64d4d2e652c67ebc8582db81e",
@@ -99,8 +99,8 @@
         "bytes": 626208
       },
       "residuales-p3-contrato-ic.md": {
-        "sha256": "0f82d5be21c27e4e1aaf812d765d584d8d3473769fb0f0783f67d2feebab5a6e",
-        "bytes": 5659
+        "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+        "bytes": 6731
       },
       "residuales-p3-modulos-ic.md": {
         "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
@@ -122,9 +122,9 @@
   },
   {
     "instrumento": "ENCUCI",
-    "sucesor": "encuci-0001-residuales-documentales-v1",
-    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/encuci-0001-residuales-documentales-v1.tar.gz",
-    "sha256": "146d928e16289fbeabaa11186756441839781efecffa185d93900e716191f19f",
+    "sucesor": "encuci-0001-residuales-documentales-v2",
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/encuci-0001-residuales-documentales-v2.tar.gz",
+    "sha256": "1b7e98c5a2360cfa4f415340ba957227136fa15687d6ee4d5d28ed42fb278ce6",
     "decision": "CONTRATO-NUEVO-PROPUESTO",
     "estado": "DOCUMENTAL-COMPLETO-PENDIENTE-FIRMA-DE-CONTENIDO",
     "pendientes": [
@@ -141,20 +141,20 @@
         "bytes": 1758249
       },
       "encuci-rural-restaurado.md": {
-        "sha256": "e08373b78a4c649ace6a5c9e34536b41315136385ea1d73b3863f773caa3a0f3",
-        "bytes": 1470
+        "sha256": "8e7422ab4e1b84a83baf36a3ec2e22e23225ea9f083af8e7f272cc439c12cd4a",
+        "bytes": 1726
       },
       "esquema-identidades.tsv": {
-        "sha256": "b9de919616eaf26164d0f4fb467dc4aeb24d34709e6daf45feed1b402d44d30a",
-        "bytes": 201
+        "sha256": "27e9d99d306ecf153d8c37d1b34e92084b36679f0fb50af59f7f128610bc1ddf",
+        "bytes": 233
       },
-      "esquema-salida.md": {
-        "sha256": "9120c52e8fc4c3ac4f9aa3c9a07556782f169e8007b9ca9e33a1fc2bb18677a7",
-        "bytes": 369
+      "esquema-salida-v2.md": {
+        "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4",
+        "bytes": 1797
       },
       "residuales-p3-contrato-ic.md": {
-        "sha256": "0f82d5be21c27e4e1aaf812d765d584d8d3473769fb0f0783f67d2feebab5a6e",
-        "bytes": 5659
+        "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+        "bytes": 6731
       },
       "residuales-p3-modulos-ic.md": {
         "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
@@ -168,9 +168,9 @@
   },
   {
     "instrumento": "ENIGH",
-    "sucesor": "enigh-0001-residuales-documentales-v1",
-    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/enigh-0001-residuales-documentales-v1.tar.gz",
-    "sha256": "f68f550f6a5503c04c6c281815e4128196769f4b95d055d2c18335398aaea1e2",
+    "sucesor": "enigh-0001-residuales-documentales-v2",
+    "archivo": "forense/validacion-independiente/catalogo-1-entradas-residuales-lote2/p4/enigh-0001-residuales-documentales-v2.tar.gz",
+    "sha256": "b03e4c59c8a8a88b76d4021f189fca9073ce4cc9057d66ec1fbecbc3d5236c13",
     "decision": "CONTRATO-NUEVO-PROPUESTO",
     "estado": "DOCUMENTAL-COMPLETO-PENDIENTE-FIRMA-DE-CONTENIDO",
     "pendientes": [
@@ -191,20 +191,20 @@
         "bytes": 2906552
       },
       "enigh-complemento-restaurado.md": {
-        "sha256": "640fc7b646f2031daeb5bd4a538deed1f571417490575b4e680f3b16e4b0716d",
-        "bytes": 1402
+        "sha256": "262831b29fdfce808e1deaa27075cebe341c4fe5c097d86a1a67e2fdba1ab9c2",
+        "bytes": 1662
       },
       "esquema-identidades.tsv": {
-        "sha256": "ecdbc453d95f431c6b77f3509ad87b86deb7a8e9c55e1400cd8652b4e9bb4754",
-        "bytes": 166
+        "sha256": "72f8843e742f278957aae4ad5c764ca50be1f30f7a036cad6a5a484967be5064",
+        "bytes": 201
       },
-      "esquema-salida.md": {
-        "sha256": "9120c52e8fc4c3ac4f9aa3c9a07556782f169e8007b9ca9e33a1fc2bb18677a7",
-        "bytes": 369
+      "esquema-salida-v2.md": {
+        "sha256": "80c287e2d9b176c367e35f23ce13ff91f38422f675e215d32f622d8d000d26e4",
+        "bytes": 1797
       },
       "residuales-p3-contrato-ic.md": {
-        "sha256": "0f82d5be21c27e4e1aaf812d765d584d8d3473769fb0f0783f67d2feebab5a6e",
-        "bytes": 5659
+        "sha256": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+        "bytes": 6731
       },
       "residuales-p3-modulos-ic.md": {
         "sha256": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
