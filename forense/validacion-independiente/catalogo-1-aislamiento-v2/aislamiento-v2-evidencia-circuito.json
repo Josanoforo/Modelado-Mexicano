@@ -1,0 +1,154 @@
+{
+  "tipo": "SINTETICO-PORTABLE-NO-CIEGO",
+  "pasos": [
+    {
+      "paso": "materializar",
+      "estado": "EJECUTADO",
+      "manifest": {
+        "root": "/tmp/astra6-sintetico-sco4n83w/entrada",
+        "files": [
+          {
+            "path": "entrada.csv",
+            "sha256": "58d32dc49a789a8054bd6da67ab691ed07e8ef07e2f6cb8683135a49c2569097"
+          },
+          {
+            "path": "reconstructor.py",
+            "sha256": "dbdaea939521543225aefd9a085272b7ec47f06a577a77ab2ccd7cdc00f6b2ac"
+          },
+          {
+            "path": "tolerancia.json",
+            "sha256": "02ee24bc57b2c8a5b6c0f9f0f36609ea897087a084db624fcf5f72dabf0e0e98"
+          }
+        ]
+      }
+    },
+    {
+      "paso": "reconstruir",
+      "estado": "EJECUTADO-PORTABLE-NO-CIEGO"
+    },
+    {
+      "paso": "congelar",
+      "estado": "EJECUTADO",
+      "sha256": "2a238ad3a0bb52d3ecf558153f683f7c0acc3c58fa60a5fe9e16d90aba6be236"
+    },
+    {
+      "paso": "verificar",
+      "estado": "EJECUTADO"
+    },
+    {
+      "paso": "revelar",
+      "estado": "EJECUTADO",
+      "sha256": "e2c7dc5ac193e4823612d7cba2f77e52b46bf5441f8e965c7d40d315ef4b505f"
+    },
+    {
+      "paso": "comparar",
+      "estado": "EJECUTADO"
+    },
+    {
+      "paso": "tamper",
+      "estado": "RECHAZADO"
+    }
+  ],
+  "entorno": {
+    "status": "NO-LANZAR-COMO-CIEGA",
+    "backend": "bubblewrap",
+    "canaries": {},
+    "reason": "bwrap: loopback: Failed to create NETLINK_ROUTE socket: Operation not permitted",
+    "estado": "NO-LANZAR-COMO-CIEGA"
+  },
+  "sesion_nueva": {
+    "estado": "NO-CORRIDO",
+    "razon": "TUI create_thread hereda cwd; no acredita control FS/red. No se inicia sin lanzador aislado acreditado."
+  },
+  "manifest_sha256": "2a238ad3a0bb52d3ecf558153f683f7c0acc3c58fa60a5fe9e16d90aba6be236",
+  "comparacion": {
+    "version": 2,
+    "identidad": {
+      "paquete": "SINTETICO-1",
+      "version_entrada": "1",
+      "sha256_entrada": "58d32dc49a789a8054bd6da67ab691ed07e8ef07e2f6cb8683135a49c2569097"
+    },
+    "congelacion_sha256": "2a238ad3a0bb52d3ecf558153f683f7c0acc3c58fa60a5fe9e16d90aba6be236",
+    "referencia_sha256": "e2c7dc5ac193e4823612d7cba2f77e52b46bf5441f8e965c7d40d315ef4b505f",
+    "contrato_sha256": "78a44e2ab1b8cb07c8374e3e3ef265fa827d0b3af291f0cf06089a4402c6f19d",
+    "comparador_sha256": "228d2897b0e2a85f3a64c107e4f0691ef26ff44086fbb87f9e03a92d14593fd2",
+    "tolerancia_sha256": "02ee24bc57b2c8a5b6c0f9f0f36609ea897087a084db624fcf5f72dabf0e0e98",
+    "tolerancia": {
+      "abs": 0,
+      "rel": 0
+    },
+    "resultados": [
+      {
+        "llave": "media",
+        "estado": "COINCIDE",
+        "campos": {
+          "punto": {
+            "estado_actual": "NUMERO",
+            "estado_referencia": "NUMERO",
+            "dentro": true,
+            "delta": "0.00"
+          },
+          "ic95_inf": {
+            "estado_actual": "AUSENTE",
+            "estado_referencia": "AUSENTE",
+            "dentro": true
+          },
+          "ic95_sup": {
+            "estado_actual": "AUSENTE",
+            "estado_referencia": "AUSENTE",
+            "dentro": true
+          }
+        }
+      }
+    ]
+  },
+  "comparacion_discrepante": {
+    "version": 2,
+    "identidad": {
+      "paquete": "SINTETICO-1",
+      "version_entrada": "1",
+      "sha256_entrada": "58d32dc49a789a8054bd6da67ab691ed07e8ef07e2f6cb8683135a49c2569097"
+    },
+    "congelacion_sha256": "2a238ad3a0bb52d3ecf558153f683f7c0acc3c58fa60a5fe9e16d90aba6be236",
+    "referencia_sha256": "0afd8d08b9aba5644d182135245454c22d065dfba2932ba41c0ad1f6e4138fe8",
+    "contrato_sha256": "78a44e2ab1b8cb07c8374e3e3ef265fa827d0b3af291f0cf06089a4402c6f19d",
+    "comparador_sha256": "228d2897b0e2a85f3a64c107e4f0691ef26ff44086fbb87f9e03a92d14593fd2",
+    "tolerancia_sha256": "02ee24bc57b2c8a5b6c0f9f0f36609ea897087a084db624fcf5f72dabf0e0e98",
+    "tolerancia": {
+      "abs": 0,
+      "rel": 0
+    },
+    "resultados": [
+      {
+        "llave": "media",
+        "estado": "DISCREPA",
+        "campos": {
+          "punto": {
+            "estado_actual": "NUMERO",
+            "estado_referencia": "NUMERO",
+            "dentro": false,
+            "delta": "-0.01"
+          },
+          "ic95_inf": {
+            "estado_actual": "AUSENTE",
+            "estado_referencia": "AUSENTE",
+            "dentro": true
+          },
+          "ic95_sup": {
+            "estado_actual": "AUSENTE",
+            "estado_referencia": "AUSENTE",
+            "dentro": true
+          }
+        }
+      }
+    ]
+  },
+  "unidades_incompatibles": {
+    "estado": "RECHAZADO",
+    "error": "Unidad incompatible"
+  },
+  "tamper": {
+    "estado": "RECHAZADO",
+    "error": "Artefacto alterado: original.json"
+  }
+}
