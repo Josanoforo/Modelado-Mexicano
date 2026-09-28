@@ -6042,6 +6042,11 @@ _T_YAMEDIDO_ID_RE = re.compile(
 _T_YAMEDIDO_RN_RE = re.compile(r"\bR\d+\.\d+\b")
 _T_YAMEDIDO_SALIDA_RE = re.compile(r"NUNCA-MEDIDA|MEDIDA-EN:")
 _T_YAMEDIDO_ARCHIVOS_CONOCIDOS = {
+    # ACTO GEN2-REGLAS-Y-RESULT-1, 28/sep/2026: encargo archivado VERBATIM
+    # (A.3). Cita «R1.4…R10.3» solo para describir qué contiene
+    # milpa/catalogo-momentos-v0_1.tsv; el acto no clasifica, carga ni sella
+    # ninguna regla del motor (§7 b: el motor no se edita).
+    "forense/encargos/2026-09-28-GEN2-REGLAS-Y-RESULT-1.md",
     # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
     # VERBATIM (`PENDIENTES-PROGRAMA.md`). Cita `familia.union.libre_ejes_eder2017`
     # dentro de la fila NC-0411 §1.3 como parte del texto original de otro
