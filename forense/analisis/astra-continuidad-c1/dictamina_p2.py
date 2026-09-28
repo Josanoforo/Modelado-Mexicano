@@ -44,7 +44,7 @@ D = {  # sufijo -> (carril, dictamen, cita/razón)
  "627e-04": ("C1", "SIGUE-ABIERTA", "DIFERIDO-A:lote 3 de validación ciega — las 685 siguen sin validación ciega"),
  "627e-05": ("C1", "SIGUE-ABIERTA", "DIFERIDO-A:SIN-ASIGNAR — ADR de ADJUDICACION-PUNTOS-1 en canon/L0: 0 archivos (ls canon/L0 | grep -ic ADJUDICACION-PUNTOS → 0); RECIBO-ASTRA6-3 no lo cerró"),
  "627e-06": ("C1", "SIGUE-ABIERTA", "DIFERIDO-A:Astra — verifica.py sigue exigiendo diff limpio"),
- "627e-07": ("C1", "DECISIÓN", "130 COINCIDE ENBIARE/ENCIG no ciegas: asentadas CONCUERDA-NO-APROBADA con rótulo NO-CIEGA-PENDIENTE (P1); mesa decide re-comparar o rotular → hoja P4 §c"),
+ "627e-07": ("C1", "DECISIÓN", "126 COINCIDE ENBIARE no ciegas (las 4 ENCIG ya tenían PASA de otra validación): asentadas CONCUERDA-NO-APROBADA con rótulo NO-CIEGA-PENDIENTE (P1); mesa decide re-comparar o rotular → hoja P4 §c"),
  "627e-08": ("C1", "DECISIÓN", "2 NO-PASA ENIGH2020 remesas bajo tol 0.0 → hoja P4 §c"),
  "627e-09": ("C1", "SIGUE-ABIERTA", "DIFERIDO-A:lote 3 de validación ciega — 119 NF fuera de -ventana-v1"),
  "8c5c-01": ("C1", "SIGUE-ABIERTA", "NO-VERIFICABLE-AQUÍ — suite v3 fijada a Python 3.14.4/NumPy 2.3.5; nube 3.11.15 sin numpy (tools/entorno.py)"),
