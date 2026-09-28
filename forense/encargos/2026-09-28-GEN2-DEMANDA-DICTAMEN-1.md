@@ -42,3 +42,14 @@ Propio: `data/corrida0/demanda-dictamen-v1_0.tsv` (nueva, registrada en INFRAEST
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no releva, no adopta, no abre reservas, no decide HOLDOUT. Sucesores: `RELEVO-TRAMITE-CAJA-2` y `CALC-ALTERNOS-LOTE-1` (consumen la vista), FIRMAS-21/22 (hoja). Sin módulo de auditoría (no afirma sobre México). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-DEMANDA-DICTAMEN-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01 · qué: «cítalas como EN-CURSO» (RELEVO-TRAMITE-CAJA-1) · por qué: NO-VERIFICABLE-AQUÍ -- el acto no está en origin/main ni en las 7 ramas remotas; ninguna fila de orden 1 quedó pendiente · impacto: ninguno · sucesor: RELEVO-TRAMITE-CAJA-2
+- NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-02 · qué: que `corrida0 demanda` derive el estado por sí misma · por qué: DIFERIDO-A:GEN2-DEMANDA-DICTAMEN-2 · impacto: fila nueva sin dictamen cuenta como requerida hasta regenerar la vista · sucesor: GEN2-DEMANDA-DICTAMEN-2
+- NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-03 · qué: `corrida0 status` no lee la vista · por qué: FUERA-DE-PERÍMETRO: GEN2-TUBERIA-Y-CURACION-1 · impacto: el tablero puede seguir mostrando 105 · sucesor: GEN2-TUBERIA-Y-CURACION-1
+- NC-260928-GEN2-DEMANDA-DICTAMEN-1-c133-04 · qué: 63 RESULT que siguen pendientes · por qué: DECISIÓN-DE-MESA-PENDIENTE: A1/A2 (f2e5-01/-02), B1/B2 (c133-01/-02); pins de RELEVO-CONSUMIDORES-4 · impacto: N_resultados_pendientes = 63 · sucesor: GEN2-TRAMITE-FIRMAS-21
+
+## CONSUMIDO
+
+PR #1275 (rama `claude/new-session-vt6kqd`), ADR-260928-GEN2-DEMANDA-DICTAMEN-1-c133-01. Sin adendas.
