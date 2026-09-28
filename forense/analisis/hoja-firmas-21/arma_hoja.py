@@ -60,19 +60,24 @@ RENGLONES = [
        "(b) gastar solo los que ninguna familia 2027 vaya a usar como R. Hoy son los 14 (expediente C2: 0 menciones en 181 archivos), así que equivale a (a) salvo que C2 reclame alguno antes. Cuesta: igual que (a) en el estado actual; protege solo lo que C2 reclame",
        "(c) no gastar ninguno y medir con instrumentos que no son el momento («combinable» del mapa). Gana: la prueba sigue intacta. Cuesta: las respuestas quedan acotadas o indirectas",
        "(d) convertir cada momento en familia 2027 con emisión sellada antes de la ola. Gana: la prueba se vuelve PROSPECTIVA. Cuesta: un expediente por momento y esperar a 2027"],
-      "ninguna del acto (el encargo la reserva a dirección). Nota de ejecutor: A1 (b) y A2 (b) del mapa presuponen (a) o (b) para M05, M13, M19, M22 y M23",
+      "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): (b) — gastar solo los que ninguna familia 2027 vaya a usar como R. Es la misma política que A1/A2 ya aplican de facto (R07/R08: M05, M13, M19, M22, M23), no cierra ninguna puerta que C2 no haya cerrado ya sola (hoy 0 menciones en 181 archivos), y cada spec que gaste un momento restante vuelve a correr el censo de C2 antes de hacerlo, por si cambió",
       "SI", f"hecha: {MAPA} (64 pares) y OBTENCION-PREVIA-1",
       "«Sobre el papel HOLDOUT de M09–M23 firmo la opción (__). Toda spec que consuma un HOLDOUT lo declara en su COMMIT-1; lo consumido se rotula RETROSPECTIVA y no vuelve a servir como prueba.»"),
 ]
 
 OLAS = [
-    ("ENCRIGE 2020", "conjunto_de_datos_encrige_2020_csv, encrige2020_cuestionario, gen2_encrige2020_diseno_muestral, obtencion_previa_1_d1_programas_encrige_2020, encrige2020_rnm691_ddi", "R03 (I1) y R08; sus tabulados ya los usó #826", "La ola 2016 la preserva F5 R08; la 2020 es la más reciente y ya se vio en tabulados."),
-    ("ENVE 2024", "conjunto_de_datos_enve_2024_csv, cuestionario_principal_enve2024, modulo_delitos_enve2024, enve2024_rnm1058_ddi, oe1_enve_2024_rnm_1058_catalogo_html", "R03 (apoyo) y M22", "Es la más reciente (2020 y 2022 no están en el corpus); F5 la declara EXPUESTA."),
-    ("CSES Módulo 5", "cses5_modulo5_2016_2021_csv, cses5_modulo5_2016_2021_codebook, cses5_modulo5_2016_2021_cuestionario", "M13 y M14", "Es el módulo más reciente del corpus."),
-    ("ENDUTIH 2025", "endutih_2025_endutih2025_bd_dbf, endutih_2025_fd_endutih2025", "M12 (y contratos de tolerancia de fb50-04)", "Es la más reciente; el recibo -2 la da como «sigue reservada» en fb50-04."),
-    ("ENIF 2024 módulo 7 (pagos)", "enif2024_csv, enif2024_fd_xlsx, enif2024_cuestionario_pdf, enif_2024_enif_2024_bd_csv, enif_2024_enif_2024_modelo_logico_pdf, enif2024_diseno_muestral_pdf", "M12; M23 ya consumió ENIF 2024 en otro módulo", "Hay reservas por módulo vigentes sobre ENIF 2024; el m7 no trae campo propio."),
+    ("ENCRIGE 2020", "conjunto_de_datos_encrige_2020_csv, encrige2020_cuestionario, gen2_encrige2020_diseno_muestral, obtencion_previa_1_d1_programas_encrige_2020, encrige2020_rnm691_ddi", "R03 (I1) y R08; sus tabulados ya los usó #826", "La ola 2016 la preserva F5 R08; la 2020 es la más reciente y ya se vio en tabulados.",
+     "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): ABIERTA-COMO-VISTA. Sus tabulados ya los usó #826 y R03/I1 (renglón propio) ya la plantea como apoyo descriptivo, no como R; declararla RESERVADA ahora fingiría una pureza que el propio corpus ya rompió"),
+    ("ENVE 2024", "conjunto_de_datos_enve_2024_csv, cuestionario_principal_enve2024, modulo_delitos_enve2024, enve2024_rnm1058_ddi, oe1_enve_2024_rnm_1058_catalogo_html", "R03 (apoyo) y M22", "Es la más reciente (2020 y 2022 no están en el corpus); F5 la declara EXPUESTA.",
+     "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): ABIERTA-COMO-VISTA. F5 ya la declaró EXPUESTA; tratarla como no vista contradiría esa declaración. Sirve de apoyo a R03/M22, nunca como R"),
+    ("CSES Módulo 5", "cses5_modulo5_2016_2021_csv, cses5_modulo5_2016_2021_codebook, cses5_modulo5_2016_2021_cuestionario", "M13 y M14", "Es el módulo más reciente del corpus.",
+     "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA. A diferencia de ENCRIGE 2020/ENVE 2024, nada indica que ya se haya visto o usado; M13 ya tiene vía alterna recomendada (CIDE-CSES 2015, A2/R08). Se abre solo si una spec concreta la necesita y no hay sustituto"),
+    ("ENDUTIH 2025", "endutih_2025_endutih2025_bd_dbf, endutih_2025_fd_endutih2025", "M12 (y contratos de tolerancia de fb50-04)", "Es la más reciente; el recibo -2 la da como «sigue reservada» en fb50-04.",
+     "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA. Sin exposición ni uso previo declarado; M12 queda «documentado sin fecha» en A2/R08. El recibo -2 (fb50-04) ya la trata como reservada — mismo criterio"),
+    ("ENIF 2024 módulo 7 (pagos)", "enif2024_csv, enif2024_fd_xlsx, enif2024_cuestionario_pdf, enif_2024_enif_2024_bd_csv, enif_2024_enif_2024_modelo_logico_pdf, enif2024_diseno_muestral_pdf", "M12; M23 ya consumió ENIF 2024 en otro módulo", "Hay reservas por módulo vigentes sobre ENIF 2024; el m7 no trae campo propio.",
+     "PROPUESTO-POR-EJECUTOR (dirección, 28/sep/2026): RESERVADA, con el mismo criterio que las seis columnas AMAI de ENIGH 2024 (memoria operativa §1): se abre por módulo/columna solo cuando una spec concreta lo necesite, no en bloque. M12 no tiene fecha todavía en A2/R08"),
 ]
-for ola, ids_m, calc, porque in OLAS:
+for ola, ids_m, calc, porque, rec_ola in OLAS:
     n = len(ids_m.split(", "))
     RENGLONES.append(R(
         [f"(sin FP) RESERVA {ola}"], f"estado de reserva de la ola {ola} (manifiesto)", "APERTURA-DE-DATO", f"{MAPA} §«Antes de firmar» aviso 2",
@@ -81,7 +86,7 @@ for ola, ids_m, calc, porque in OLAS:
         ["RESERVADA: solo la abre el código congelado de una prueba pre-registrada. Cuesta: los CALC descriptivos que la usan esperan a un pre-registro",
          "ABIERTA-COMO-VISTA: mesa por escrito; sirve para describir y calibrar, nunca como R. Cuesta: la ola ya no puede ser prueba prospectiva",
          "ABIERTA-PARCIAL: solo columnas nombradas (como las seis AMAI de ENIGH 2024). Cuesta: una lista de columnas por firmar y un guardia por columna"],
-        "ninguna del acto (el encargo la reserva a dirección)", "SI", f"hecha: manifiesto leído por id en este acto ({n} ids, 0 con campo); {MAPA}",
+        rec_ola, "SI", f"hecha: manifiesto leído por id en este acto ({n} ids, 0 con campo); {MAPA}",
         f"«La ola {ola} queda ________ (RESERVADA · ABIERTA-COMO-VISTA · ABIERTA-PARCIAL: columnas ____). El acto que la use registra el estado en el campo estado_reserva del manifiesto, citando esta firma.»"))
 
 RENGLONES += [
