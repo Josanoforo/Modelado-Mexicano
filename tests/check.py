@@ -3021,6 +3021,19 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-CALC-ALTERNOS-LOTE-1 (28/sep/2026): `M05`, `M12`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # (id_momento del catálogo, no rótulos de un espacio nuevo); el encargo y su adenda los citan verbatim (A.3) y
+    # la nota y el L0 los repiten para declarar holdout_gastado.
+    "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1.md",
+    "forense/encargos/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-ADENDA-1.md",
+    "forense/notas/2026-09-28-GEN2-CALC-ALTERNOS-LOTE-1-cierre.md",
+    "canon/L0/ADR-260928-GEN2-CALC-ALTERNOS-LOTE-1-795b-01.md",
+    "forense/prereg-caja/ALT-M05-LAPOP-spec-v1_0.md",
+    "forense/prereg-caja/ALT-M13-CIDECSES2015-spec-v1_0.md",
+    "forense/prereg-caja/ALT-M19-ENCUCI2020-spec-v1_0.md",
+    "forense/prereg-caja/ALT-M19-WVS2018-REPRO-spec-v1_0.md",
+    "forense/prereg-caja/ALT-M22-ENVIPE2025-spec-v1_0.md",
+    "forense/prereg-caja/ALT-M23-ENSAFI2023-spec-v1_0.md",
     # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
     # encargo verbatim (A.3) y su fragmento L0.
