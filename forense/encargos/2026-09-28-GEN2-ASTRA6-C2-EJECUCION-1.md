@@ -41,3 +41,12 @@ Propio: `forense/analisis/familias-2027/` (expediente v1.1, hoja, specs por fami
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No abre olas 2027 ni reservadas, no adopta, no reactiva PAGO-DIGITAL, no firma contratos de ENOE/ENSU, no deriva R. Sucesores: SELLO-EXTERNO-2 (`.ots`, mesa); apertura por familia cuando llegue su ola (COMMIT-3); FIRMAS-22. Módulo de auditoría v2.16 en cada spec (afirma qué predice el programa): PROSPECTIVA; unidad; oferta antes que preferencia en ENIF. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-ASTRA6-C2-EJECUCION-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+| qué | por qué | impacto | sucesor |
+|---|---|---|---|
+| «(P2) COMMIT-1 por familia desbloqueada …» y «(P3) COMMIT-2: emisiones selladas desde las olas vistas …» | SUSTITUIDO-POR:ASTRA6-C2-ENIF-1+ASTRA6-C2-ENCIG-1+ASTRA6-C2-ENVIPE-1 — ya sellados el 26/09. **Absorbe:** COMMIT-1 (spec v1_3 + spec.yaml) y COMMIT-2 (emisión sellada) de las cinco familias. **Huérfano:** nada; verificado aquí (sellos 5/5 COINCIDE, guardias y mutación verdes). Mesa 28/sep: «YA-HECHO: verificar». | ningún contador; no se sella contendiente nuevo (regla 6) | COMMIT-3 por familia cuando llegue su ola |
+| «Hecho: … `corrida0 preflight` VERDE» por familia | NO-VERIFICABLE-AQUÍ — los cinco CALC ya están sellados: preflight BLOQUEADO por `CALC-INMUTABLE-YA-SELLADO`, y los dos de ENVIPE no siguen el esquema corrida0 (NC …ba6c-02). En su lugar: SELLO_COINCIDE 5/5. El único COMMIT-1 nuevo (oferta ENIF 2024) sí dio preflight VERDE. | ninguno | COMMIT-3 por familia (CALC nuevo con su propio preflight) |
+| medida de exclusión por oferta junto al marginal de **canal** (ENCIG-PAGO-DIGITAL) | DIFERIDO-A:reactivación de ENCIG-PAGO-DIGITAL — la familia está SUSPENDIDA; la de ahorro (ENIF) sí se midió | el marginal de canal no se publica mientras esté suspendida | FP-260926-GEN2-ASTRA6-C2-ENCIG-1-fde0-01 |
+| `tests/test_din_oferta_enif2024.py` en CI | NO-VERIFICABLE-AQUÍ — corre en CAJA (14 passed); en CI se salta por NECESITA-DEPENDENCIA(numpy), fila copiada de `test_astra6_encig.py` | la guardia de mutación del CALC de oferta no la juzga el runner | FP-398 (dependencias del runner; FIRMADA, ejecución pendiente) |
