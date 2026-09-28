@@ -1,6 +1,6 @@
 # Solicitud de recibo · GEN2-RECIBO-ASTRA-PRODUCTO-N
 
-**EJECUTADO.** PR propio de `codex/astra6-c3-duelo-ambiguo-1`, sin fusión ni adopción. Corte de main `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5`. Objeto: report v2 de duelo y pérdida ambigua, tabla de 55 dictámenes, 16 fuentes, productor/verificador, nota y hoja de reglas propuestas. No se solicita considerar un recibo ya concedido.
+**EJECUTADO.** PR #1246 de `codex/astra6-c3-duelo-ambiguo-1`, sin fusión ni adopción. Corte de main `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5`. Objeto: report v2 de duelo y pérdida ambigua, tabla de 55 dictámenes, 16 fuentes, productor/verificador, nota y hoja de reglas propuestas. No se solicita considerar un recibo ya concedido.
 
 | Objeto | SHA-256 |
 |---|---|

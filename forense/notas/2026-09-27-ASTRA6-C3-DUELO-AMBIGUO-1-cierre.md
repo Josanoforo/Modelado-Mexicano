@@ -8,7 +8,7 @@
 
 **PROPUESTO.** Cuatro reglas editoriales y de evaluación en el report; tres decisiones materiales agrupadas en [hoja para mesa](../analisis/reports-v2/duelo-ambiguo-1/hoja-reglas-propuestas.md). Ninguna se incorpora al catálogo en esta rama.
 
-**NO-VERIFICADO / RESERVAS.** No se comprobó el número vivo del RNPDNO ni una prevalencia mexicana de duelo o riesgo entre familias; el report no los publica. La literatura de 2025–26 consultada por resumen o ficha no recibe atribuciones de texto íntegro. Los 20 SIN-CIFRA mantienen razones diferenciadas en decisiones.json. No se atribuyen tasas de Colombia a México. La revisión clínica es editorial; no evalúa personas. Recibo técnico de Claude y decisión de fusión pendientes.
+**NO-VERIFICADO / RESERVAS.** No se comprobó el número vivo del RNPDNO ni una prevalencia mexicana de duelo o riesgo entre familias; el report no los publica. La literatura de 2025–26 consultada por resumen o ficha no recibe atribuciones de texto íntegro. Los 20 SIN-CIFRA mantienen razones diferenciadas en decisiones.json. No se atribuyen tasas de Colombia a México. La revisión clínica es editorial; no evalúa personas. PR #1246 abierto; recibo técnico de Claude y decisión de fusión pendientes.
 
 **Controles.** `python3 forense/analisis/reports-v2/duelo-ambiguo-1/tabla.py --check` → OK: 41 mapa, 14 extras, tabla verificada. `python3 tests/check.py --rapido` → 0 FAIL, 622 WARN heredados; no se repararon hallazgos ajenos. `git diff --cached --check` detecta una línea vacía final en el adjunto original preservado byte por byte; al excluir solo ese adjunto, no hay avisos. El verificador comprueba identidades, cobertura, fuentes y enlaces; no valida tesis científicas por regex.
 

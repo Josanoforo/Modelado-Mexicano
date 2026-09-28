@@ -187,4 +187,4 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 
 ## CONSUMIDO
 
-EJECUTADO en `codex/astra6-c3-duelo-ambiguo-1`: report v2 completo, tabla de 55 afirmaciones (41 mapa + 14 adicionales), fuentes F01–F16, productor/verificador, hoja de propuestas, nota y solicitud de recibo. PR, recibo y fusión se registran por su identidad efectiva; ninguno se presume aquí. Cero mediciones y cero adopciones nuevas. El cuerpo anterior a este pie se preserva literalmente en `forense/encargos/fuentes/ASTRA6-duelo-ambiguo-20260927/04-ASTRA6-C3-DUELO-AMBIGUO-1.md`.
+EJECUTADO en PR #1246 (`codex/astra6-c3-duelo-ambiguo-1`): report v2 completo, tabla de 55 afirmaciones (41 mapa + 14 adicionales), fuentes F01–F16, productor/verificador, hoja de propuestas, nota y solicitud de recibo. Recibo técnico y fusión pendientes; este asiento no los presume. Cero mediciones y cero adopciones nuevas. El cuerpo anterior a este pie se preserva literalmente en `forense/encargos/fuentes/ASTRA6-duelo-ambiguo-20260927/04-ASTRA6-C3-DUELO-AMBIGUO-1.md`.
