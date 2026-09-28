@@ -1327,6 +1327,23 @@ def _construye_filas_demanda(asigna=None):
     return filas, ambiguas, crudo_tramite, crudo_proc
 
 
+def _reduccion_por_dictamen(corridas_ids: list, pendientes: list) -> tuple[int, int]:
+    """ACTO GEN2-TUBERIA-3 · P3. UNICA fuente de la reduccion de la demanda por
+    dictamen (DEMANDA-DICTAMEN-1): la leen `demanda` y `status`, para que no
+    diverjan. Devuelve (corridas no requeridas, resultados pendientes cerrados).
+    Sin vista, cuenta como antes: (0, 0). Baja por dictamen citado, nunca por borrado."""
+    vista = SALIDA / "demanda-dictamen-v1_0.tsv"
+    if not vista.exists():
+        return 0, 0
+    with vista.open(encoding="utf-8") as fh:
+        dic = {(d["corrida_id"], d["resultado_id"]): d["dictamen"].split(" ")[0]
+               for d in csv.DictReader((l for l in fh if not l.startswith("#")), delimiter="\t")}
+    no_req = sum(1 for cid in corridas_ids if dic.get((cid, "CORRIDA")) == "CORRIDA-NO-REQUERIDA")
+    cerrados = sum(1 for par in pendientes if dic.get(par, "").startswith(
+        ("YA-RELEVADO-GEN2", "NO-RELEVAR-", "SIN-ESTIMANDO-RECONSTRUIBLE", "DIFERIDO-A-FAMILIAS-2027")))
+    return no_req, cerrados
+
+
 def cmd_demanda(args) -> int:
     filas, ambiguas, crudo_tramite, crudo_proc = _construye_filas_demanda()
     decisiones = _lee_decisiones()
@@ -1380,12 +1397,9 @@ def cmd_demanda(args) -> int:
                        if _es_id_payload(f["payload_ids_legacy"])})
     # ACTO GEN2-DEMANDA-DICTAMEN-1: la demanda baja SOLO por dictamen citado
     # en la vista (nunca por borrado); sin vista, cuenta como antes.
-    vista = SALIDA / "demanda-dictamen-v1_0.tsv"
-    dic = {(d["corrida_id"], d["resultado_id"]): d["dictamen"].split(" ")[0] for d in csv.DictReader(
-        (l for l in vista.open(encoding="utf-8") if not l.startswith("#")), delimiter="\t")} if vista.exists() else {}
-    no_req = sum(1 for c in corridas if dic.get((c["corrida_id"], "CORRIDA")) == "CORRIDA-NO-REQUERIDA")
-    cerrados = sum(1 for f in filas if f["estado"] == "PENDIENTE" and dic.get((f["corrida_natural"], f["resultado_id"]), "").startswith(
-        ("YA-RELEVADO-GEN2", "NO-RELEVAR-", "SIN-ESTIMANDO-RECONSTRUIBLE", "DIFERIDO-A-FAMILIAS-2027")))
+    no_req, cerrados = _reduccion_por_dictamen(
+        [c["corrida_id"] for c in corridas],
+        [(f["corrida_natural"], f["resultado_id"]) for f in filas if f["estado"] == "PENDIENTE"])
     print(f"N_resultados_activos = {len(filas)}")
     print(f"N_corridas_requeridas = {len(corridas) - no_req}  (de apertura {len(corridas)}; no requeridas por dictamen {no_req})")
     print(f"N_resultados_pendientes = "
@@ -5379,14 +5393,18 @@ def status(imprime: bool = True) -> dict:
     ids_vetados &= ids_sellados_gen2
     ids_pendientes -= ids_vetados
 
+    # ACTO GEN2-TUBERIA-3 · P3: misma reduccion por dictamen que `demanda`.
+    _no_req, _cerrados = _reduccion_por_dictamen(
+        [f["corrida_id"] for f in corridas if f["origen"] == "DEMANDA"],
+        [(f["corrida_id"], f["resultado_id"]) for f in activos if f["estado"] == "PENDIENTE"])
     c = {
-        "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA"),
+        "N_corridas_requeridas": sum(1 for f in corridas if f["origen"] == "DEMANDA") - _no_req,
         "N_corridas_selladas": sum(1 for f in gen2(corridas)
                                    if f["origen"] == "OFERTA" and sellada(f)),
         "N_resultados_activos": len(activos),
         "N_resultados_sellados": sum(1 for f in gen2(resultados)
                                      if f["origen"] == "OFERTA" and sellada(f)),
-        "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE"),
+        "N_resultados_pendientes": sum(1 for f in activos if f["estado"] == "PENDIENTE") - _cerrados,
         "dependencias_numericas_legacy_activas": sum(
             1 for u in usos_activos if u["generacion_leida"] == GENERACION_LEGADO),
         # ACTO GEN2-RELEVO-RECONCILIA-1 · P4. Desglose ADITIVO del contador

@@ -1,0 +1,6 @@
+# ENCARGO · PLANTILLA GEN2-RECIBO-ASTRA6-N v2 (sucede a v1 de 2026-09-26; ACTO GEN2-TUBERIA-3, P5) · Recibo de un PR de MISION-ASTRA-6 (C1 validación ciega · C2 familias 2027 · C3 reports v2): lo que cada carril prometió en la ADENDA-1 se verifica por comando, y mesa recibe FUSIONAR / FUSIONAR-CON-NC / DEVOLVER con la razón
+
+> ENTORNO: **NUBE** — lee la rama del PR, RESULT sellados, paquetes archivados; cero microdato. Hook imprime ENTORNO-DERIVADO; si dice CAJA, PARA.
+> Plantilla v2: una instancia por PR (N consecutivo; la v1 llegó a N=6, la siguiente instancia usa esta v2). Cambio v1→v2: criterio común **K7 (lista de lecturas)**, abajo, en «Criterios comunes nuevos». Sustituir `<PR>`, `<carril>`, `<rama>`; SHA de la rama fijado al abrir. Hereda de `GEN2-RECIBO-ASTRA-PRODUCTO-N` (`6773bbcdf2ada478`) los seis criterios comunes (cifras con RESULT, etiquetas y sellos, perímetro, olas, §3 México, recomendación) y añade los propios de cada carril.
+
+CABECERA · SHA de redacción `4f125e70` (re-deriva al abrir) · una sesión, rama propia (la que fije la plataforma; se declara) · MODELO: Opus (C1 y C2); Sonnet (C3) · MODO: **AUTÓNOMO** (cláusula v1.0) · ids con raíz de acto (D-24) · D-21 aplica · cierre por /acto: `

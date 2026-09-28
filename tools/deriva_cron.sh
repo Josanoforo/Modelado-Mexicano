@@ -27,6 +27,11 @@ SOY_DUENO_DEL_LOCK=0
 CIERRE_ESCRITO=0
 WORKTREE_TEMP=""
 CONSERVA_WORKTREE=0
+# ACTO GEN2-TUBERIA-3 · P1: worktrees y temporales en DISCO, nunca en el tmpfs del sistema (en RAM;
+# en RAM: 23 huerfanos y 7.8 GB de swap el 28/sep). Se cambian con la variable.
+WORKTREES_DIR="${DERIVA_WORKTREES_DIR:-$HOME/worktrees}"
+export TMPDIR="${DERIVA_TMPDIR:-$HOME/deriva-tmp}"
+mkdir -p "$WORKTREES_DIR" "$TMPDIR"
 T0="$(date +%s)"
 
 mkdir -p "$ESTADO_DIR"
@@ -136,6 +141,27 @@ sincroniza_rama_diaria() {
   RAMA_REMOTA_EXISTE="$([ "$existe_rc" -eq 0 ] && echo si || echo no)"
 }
 
+poda_worktrees() {
+  git -C "$SOURCE_REPO_DIR" worktree prune >>"$LOGFILE" 2>&1 || true
+}
+
+# Guarda lo no empujado (estado, parche y no versionados) en ESTADO_DIR y solo
+# entonces borra el worktree: se borra siempre, pero el trabajo no se pierde.
+retira_worktree() {
+  local wt="$1" ev="$ESTADO_DIR/evidencia-${RUN_ID}"
+  [ -n "$wt" ] && [ -d "$wt" ] || { poda_worktrees; return 0; }
+  if [ "$CONSERVA_WORKTREE" -ne 0 ]; then
+    mkdir -p "$ev"
+    git -C "$wt" status --porcelain >"$ev/status.txt" 2>/dev/null || true
+    git -C "$wt" diff HEAD >"$ev/cambios.patch" 2>/dev/null || true
+    git -C "$wt" ls-files --others --exclude-standard -z 2>/dev/null \
+      | tar -C "$wt" --null -T - -czf "$ev/no-versionados.tgz" 2>/dev/null || true
+    log "evidencia guardada en ${ev} antes de borrar ${wt}."
+  fi
+  git -C "$SOURCE_REPO_DIR" worktree remove --force "$wt" >>"$LOGFILE" 2>&1 || rm -rf "$wt"
+  poda_worktrees
+}
+
 prepara_worktree_aislado() {
   local corpus objetivo
   transicion "SINCRONIZA"
@@ -159,7 +185,8 @@ prepara_worktree_aislado() {
     return 10
   fi
 
-  WORKTREE_TEMP="$(mktemp -d "/tmp/modelado-deriva-${FECHA}-XXXXXX")"
+  poda_worktrees
+  WORKTREE_TEMP="$(mktemp -d "${WORKTREES_DIR}/modelado-deriva-${FECHA}-XXXXXX")"
   git -C "$SOURCE_REPO_DIR" worktree add --detach "$WORKTREE_TEMP" "$objetivo" >>"$LOGFILE" 2>&1 || return 1
   REPO_DIR="$WORKTREE_TEMP"
   ln -s "$corpus" "$REPO_DIR/data/raw"
@@ -167,7 +194,7 @@ prepara_worktree_aislado() {
 
   if ! sincroniza_rama_diaria "$objetivo" origin/main; then
     CONSERVA_WORKTREE=1
-    log "PARO-SINCRONIZACION: no se pudo combinar ${RAMA} con ${objetivo}; worktree conservado en ${WORKTREE_TEMP}."
+    log "PARO-SINCRONIZACION: no se pudo combinar ${RAMA} con ${objetivo}."
     return 1
   fi
   SHA_EFECTIVO="$(git rev-parse HEAD)"
@@ -347,12 +374,8 @@ finalizar() {
     log "INCOMPLETO: salida en fase=${FASE} sin huella final."
   fi
   escribe_heartbeat "$estado" "$codigo" 2>>"$LOGFILE" || true
-  if [ -n "$WORKTREE_TEMP" ] && [ "$CONSERVA_WORKTREE" -eq 0 ]; then
-    cd "$SOURCE_REPO_DIR"
-    git -C "$SOURCE_REPO_DIR" worktree remove --force "$WORKTREE_TEMP" >>"$LOGFILE" 2>&1 || true
-  elif [ -n "$WORKTREE_TEMP" ]; then
-    log "evidencia local conservada en ${WORKTREE_TEMP}."
-  fi
+  cd "$SOURCE_REPO_DIR"
+  retira_worktree "$WORKTREE_TEMP"
   log "=== deriva_cron.sh fin fase=${FASE} exit=${codigo} ==="
 }
 trap finalizar EXIT
