@@ -29,19 +29,19 @@
 
 ## 4 · Decisiones activas por objeto ⟲ (FIRMADA del último corte, id → una línea)
 <!-- T-MEM:INICIO -->
-- Corte 2026-09-28 · 173 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
+- Corte 2026-09-28 · 183 FIRMADA en 14 días · se muestran 12 · todas: `python3 tools/memoria_operativa.py --lista`
 - FP-260928-GEN2-TRAMITE-PENDIENTES-2-3fc6-01 · cierre de las NC listadas en la hoja · 28/09
 - FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-02 · Sucesor GEN2-CORPUS-LICENCIAS-2 registrado, no ejecutado aquí · 28/09
 - FP-260928-GEN2-TRAMITE-FIRMAS-21-8560-01 · El acuse de cada solicitud entra por adenda (GEN2-OBTENCION-EXTERNA-2) · 28/09
+- FP-260928-GEN2-ASTRA6-C1-LOTE-3-0c1f-02 · Gate ACCESO-AUTORIZADO de las 312 en GEN2-ASTRA6-C1-LOTE-4 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-03 · FIRMAS-21 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-02 · FIRMAS-21 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C3-1-26bb-01 · FIRMAS-21 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C2-1-ba6c-01 · universo del tablero C2 y rótulo de ENSU 2025T4 como oro; no abre ni … · 28/09
+- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-05 · Una fila NO-PASA de la vista; ninguna cifra cambia · 28/09
+- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-04 · Que esas 130 dejen de ser CONCUERDA-NO-APROBADA con rótulo NO-CIEGA-P… · 28/09
+- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-03 · Gate ACCESO-AUTORIZADO del lote 3 · 28/09
 - FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02 · Gate CONTEXTO-NUEVO-ACREDITADO del lote 3 · 28/09
-- FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01 · Gate CONTRATO-FIRMADO del lote 3 · 28/09
-- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-29 · Si (a): mesa designa titular; un acto sucesor registra la respuesta d… · 28/09
-- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-28 · Un acto de tubería (posible pieza de GEN2-TUBERIA-CI-TIEMPO-2, que ya… · 28/09
-- FP-260927-GEN2-TRAMITE-NC-DECISIONES-1-f2e5-27 · Dirección da de alta el encargo GEN2-ENCIG-CONFIANZA-PISOS-1 (o lo ag… · 28/09
 <!-- T-MEM:FIN -->
 
 ## 5 · Dónde está cada cosa

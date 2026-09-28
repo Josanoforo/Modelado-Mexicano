@@ -1,0 +1,4356 @@
+{
+ "identidad": {
+  "paquete": "encodat-pisos-sustancias-0001",
+  "version_entrada": "residuales-documentales-v2",
+  "sha256_entrada": "c8b50b5727b2317b589a970fabc1b678359afc49406748225044e0dedcbc0ec0"
+ },
+ "hashes_documentos": {
+  "residuales-p3-contrato-ic.md": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+  "residuales-p3-modulos-ic.md": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
+  "CONTRATO-v3.md": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb",
+  "spec-base-metodo.md": "5f0084a7a966223923bd048cebbd5ca32a3c466ab6e9c1d686386d24b63661de",
+  "spec-base-conductas.md": "5993fc17d9a537da9c1279ce691162fa05066d9582361098bb72007328bbeb6f",
+  "esquema-identidades.tsv": "3fac92f541983be07769871150b6b045dcd2b6957fe4788ff85c48082368e3bd"
+ },
+ "global": {
+  "G-FILAS-INDIVIDUAL": 56877,
+  "G-FUERA-EDAD-12-65": 0,
+  "G-PESO-NO-POSITIVO-O-NO-FINITO": 0,
+  "G-HOGAR-ID-DUPLICADO-FILAS": 0,
+  "G-JOIN-AMBIGUO": 0,
+  "G-JOIN-SIN-HOGAR": 0,
+  "G-DISENO-INCOMPLETO": 0,
+  "G-FILAS-DISENO-VALIDO": 56877,
+  "G-PESO-EXCLUIDO-POR-DISENO": "0.0",
+  "G-PARES-MARCO": 1940,
+  "G-ESTRATOS-MARCO": 188,
+  "G-ESTRATOS-SINGLETON": 0
+ },
+ "decisiones": [
+  {
+   "id": "D1-RECETA-IC",
+   "frase": "spec-base-metodo.md §4: «bootstrap de UPM dentro de `est_var`, certeza para UPM única, `PCG64(20260924)` ... con la receta común por sha256» vs residuales-p3-modulos-ic.md: «Semilla común20260923 y marco completo son elecciones NUEVAS del contrato diagnóstico; no restauran semillas históricas20260924»",
+   "decision": "El IC sigue la receta firmada RESIDUALES-P3-IC-v1 (semilla 20260923, marco completo, singleton se sortea a sí mismo). La «receta común por sha256» es código productor no incluido (lo dice el propio documento de módulos) y no se usa."
+  },
+  {
+   "id": "D2-SINGLETON-ESTADO-IC",
+   "frase": "residuales-p3-contrato-ic.md: «Singleton: se sortea a sí mismo ... Registrar cantidad y marcar IC-CON-UPM-UNICA-VARIANZA-NO-IDENTIFICADA»",
+   "decision": "Si hubiera estratos singleton, el IC se calcularía igual (CALCULADO) y la marca iría en tipo_incertidumbre del TSV. En este dato el marco no tiene estratos singleton, así que no aplica."
+  },
+  {
+   "id": "D3-CADENA-ESTRATO",
+   "frase": "«Orden de pares: lexicográfico por cadena opaca de estrato y UPM; conservar bytes y ceros iniciales, no convertir a enteros»",
+   "decision": "est_var viene como double en el .dta (no hay cadena original). Se escribe como entero decimal sin ceros («12»), igual que lo muestra su formato %12.0g, y el orden es lexicográfico sobre esa cadena («10» < «2»). code_upm (str) se usa tal cual lo devuelve pandas.read_stata."
+  },
+  {
+   "id": "D4-PRECEDENCIA-SALTOS",
+   "frase": "spec-base-conductas.md: «1 → 1; 2 → 0; al1 = 2 (nunca) → 0» y análogas para ALCOHOL-30D, ALCOHOL-EXCESIVO-12M y FUMA-ACTUAL",
+   "decision": "La respuesta directa válida rige; la regla de salto solo asigna 0 cuando la variable directa no trae código válido. Así una respuesta directa válida nunca se sobrescribe."
+  },
+  {
+   "id": "D5-EXCESIVO-RESTO",
+   "frase": "«hombres 5+ copas (códigos 1–4), mujeres 4+ (1–5) → 1; resto → 0; no bebió 12 m → 0; 9 fuera»",
+   "decision": "«resto» = los demás códigos sustantivos 1–6 de al11 que no alcanzan el umbral. Un bebedor de 12 m sin al11 (nulo) queda fuera (no se imputa cero). Sin ds2 ∈ {1,2} no hay umbral: fuera."
+  },
+  {
+   "id": "D6-FUMA-SIN-DATO",
+   "frase": "«1, 2 → 1; 3 → 0; sin dato y tb05 = 2 (nunca) → 0» y «No imputar NS/NR ni negativos a cero»",
+   "decision": "«sin dato» = tb02 nulo (no preguntado). tb02 = 7 (No sabe) o 9 (No responde) queda fuera aunque tb05 = 2."
+  },
+  {
+   "id": "D7-ALGUNA-VEZ",
+   "frase": "«Alguna vez» de drogas: 1 si algún ítem = 1; 0 si todos = 2; si no, fuera.»",
+   "decision": "Se aplica literal a di1a–di1i y dm1a–dm1d: un 1 en cualquier ítem basta aunque otros sean 9 o nulos; 0 exige los nueve (o cuatro) ítems = 2."
+  },
+  {
+   "id": "D8-ESCOLARIDAD",
+   "frase": "«ESCOLARIDAD (`ds9`, sólo 18+) ... 99 fuera» y módulos: «marco conjunto base12..65, no reducido a mayores18 para eje educativo»",
+   "decision": "El dominio exige ds3 ≥ 18 y ds9 en el segmento; el marco de UPM es el de toda la base 12–65. Códigos de ds9 fuera de 1–9 (99, nulo) quedan fuera del eje."
+  },
+  {
+   "id": "D9-ESTRATO-EJE",
+   "frase": "«El diseño vive en Hogar: ... estrato rural/urbano/metropolitano `estrato`» y «ESTRATO (1 RURAL, 2 URBANO, 3 METROPOLITANO)»",
+   "decision": "El eje ESTRATO usa `estrato` de Hogar unido por id_pers[:20] = id_hogar; los estratos de varianza son `est_var`."
+  },
+  {
+   "id": "D10-JOIN",
+   "frase": "«Sólo se usan `id_hogar` únicos; los no pareados se cuentan (`G-JOIN-SIN-HOGAR`)» y «Join ambiguo ... es NO-ESTIMABLE-DISENO»",
+   "decision": "Los id_hogar duplicados en Hogar se descartan por completo y sus personas se cuentan como join ambiguo, fuera del diseño válido. En este dato no hay duplicados ni personas sin hogar."
+  },
+  {
+   "id": "D11-DENOMINADOR-CERO",
+   "frase": "residuales: «Y=0 es NO-ESTIMABLE, nunca cero»; CONTRATO-v3: «DENOMINADOR-CERO | ... dominio observado con denominador cero»",
+   "decision": "Si Y=0 en el punto, el estado es DENOMINADOR-CERO (el estado específico de v3), con motivo."
+  },
+  {
+   "id": "D12-SUMAS",
+   "frase": "«sumas float64, totales por par en ese orden y acumulación de pares ordenados»",
+   "decision": "Los totales X_hu, Y_hu se acumulan con np.add.at en orden físico de Individual; el punto y cada réplica acumulan M_rhu·X_hu par por par en orden lexicográfico (sin BLAS ni Kahan). El punto es X/Y con esas mismas sumas por par."
+  },
+  {
+   "id": "D13-PUBLICABILIDAD",
+   "frase": "«n_conocidos>=100,UPM con conocidos>=5,ancho<=.20,CV<=.30 para punto>0; punto0 se reporta separado sin división; cualquier réplica no estimable impide publicación»",
+   "decision": "UPM con conocidos = pares del marco con al menos una persona en D·K; ancho = ic95_sup − ic95_inf; CV = SE/punto. Solo es diagnóstico: no se suprime ninguna celda de resultado.json."
+  },
+  {
+   "id": "D14-HASH-CONTRATO",
+   "frase": "columnas «hash_contrato, hash_entrada, hash_entorno»",
+   "decision": "hash_contrato = sha256 de residuales-p3-contrato-ic.md; hash_entrada = sha256_entrada de la identidad; hash_entorno = sha256 de los bytes de salida/entorno.txt."
+  },
+  {
+   "id": "D15-M-POR-IDENTIDAD",
+   "frase": "«una instancia nueva por identidad, sin saltos ni compartir estado entre conductas»",
+   "decision": "Se crea un Generator nuevo por identidad y se recalcula la matriz de multiplicidades (misma secuencia para todas, pues el marco es común)."
+  }
+ ],
+ "llaves": [
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-12-17-P",
+   "conducta": "alcohol-12m",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 12436,
+   "n_valido_ponderado": "14335079.099409863",
+   "n_positivos": 3038,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12436,
+    "n_upm_conocidos": 1895,
+    "ancho": "0.024874248430437312",
+    "cv": "0.02565939011979815",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-18-34-P",
+   "conducta": "alcohol-12m",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17531,
+   "n_valido_ponderado": "34025390.90595123",
+   "n_positivos": 9532,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17531,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.02705949632360105",
+    "cv": "0.011538926024372785",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-EDAD-35-65-P",
+   "conducta": "alcohol-12m",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26910,
+   "n_valido_ponderado": "36901587.77971445",
+   "n_positivos": 11655,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26910,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.02239345405926091",
+    "cv": "0.01255394901913361",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 12033,
+   "n_valido_ponderado": "16192456.09890959",
+   "n_positivos": 4372,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12033,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.03275697228651381",
+    "cv": "0.02088364560211036",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9794,
+   "n_valido_ponderado": "18755832.054569915",
+   "n_positivos": 5371,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9794,
+    "n_upm_conocidos": 1867,
+    "ancho": "0.04046779075037277",
+    "cv": "0.0175089652978906",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14969,
+   "n_valido_ponderado": "21996964.23466298",
+   "n_positivos": 7132,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14969,
+    "n_upm_conocidos": 1910,
+    "ancho": "0.02676320796864151",
+    "cv": "0.013509859177158492",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 6088,
+   "n_valido_ponderado": "11981638.933339199",
+   "n_positivos": 3888,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6088,
+    "n_upm_conocidos": 1571,
+    "ancho": "0.045833817886496764",
+    "cv": "0.017907678593020847",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 28278,
+   "n_valido_ponderado": "50261668.103076115",
+   "n_positivos": 13211,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 28278,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.025528692136442266",
+    "cv": "0.012566704585635542",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-RURAL-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15783,
+   "n_valido_ponderado": "19012998.828607686",
+   "n_positivos": 5604,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15783,
+    "n_upm_conocidos": 478,
+    "ancho": "0.030486168832437988",
+    "cv": "0.019680969646078832",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-ESTRATO-URBANO-P",
+   "conducta": "alcohol-12m",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12816,
+   "n_valido_ponderado": "15987390.853391748",
+   "n_positivos": 5410,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12816,
+    "n_upm_conocidos": 407,
+    "ancho": "0.026156070702784806",
+    "cv": "0.014319075625952192",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-HOMBRE-P",
+   "conducta": "alcohol-12m",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23820,
+   "n_valido_ponderado": "41168616.58062079",
+   "n_positivos": 12888,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23820,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.02473483267685017",
+    "cv": "0.010684967453752862",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-SEXO-MUJER-P",
+   "conducta": "alcohol-12m",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 33057,
+   "n_valido_ponderado": "44093441.204454765",
+   "n_positivos": 11337,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 33057,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.018759340671194502",
+    "cv": "0.012726959257996698",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-12M-2016-TOTAL-TODOS-P",
+   "conducta": "alcohol-12m",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 56877,
+   "n_valido_ponderado": "85262057.78507555",
+   "n_positivos": 24225,
+   "exclusiones_en_base": {},
+   "publicabilidad": {
+    "n_conocidos": 56877,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.016655333660011318",
+    "cv": "0.008957770541989131",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-12-17-P",
+   "conducta": "alcohol-30d",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 12436,
+   "n_valido_ponderado": "14335079.099409863",
+   "n_positivos": 1643,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12436,
+    "n_upm_conocidos": 1895,
+    "ancho": "0.020681518370674654",
+    "cv": "0.03930963510668467",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-18-34-P",
+   "conducta": "alcohol-30d",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17531,
+   "n_valido_ponderado": "34025390.90595123",
+   "n_positivos": 6424,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17531,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.02758174625057419",
+    "cv": "0.017086016289545137",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-EDAD-35-65-P",
+   "conducta": "alcohol-30d",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26910,
+   "n_valido_ponderado": "36901587.77971445",
+   "n_positivos": 7567,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26910,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.01973027130757099",
+    "cv": "0.016749245087044402",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 12033,
+   "n_valido_ponderado": "16192456.09890959",
+   "n_positivos": 2761,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12033,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.029798463856898327",
+    "cv": "0.029826879819788148",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9794,
+   "n_valido_ponderado": "18755832.054569915",
+   "n_positivos": 3608,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9794,
+    "n_upm_conocidos": 1867,
+    "ancho": "0.04081102036341694",
+    "cv": "0.025204314953612684",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14969,
+   "n_valido_ponderado": "21996964.23466298",
+   "n_positivos": 4645,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14969,
+    "n_upm_conocidos": 1910,
+    "ancho": "0.024388284948594574",
+    "cv": "0.01865072010558184",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 6088,
+   "n_valido_ponderado": "11981638.933339199",
+   "n_positivos": 2708,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6088,
+    "n_upm_conocidos": 1571,
+    "ancho": "0.046338365316096974",
+    "cv": "0.0263138644769738",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 28278,
+   "n_valido_ponderado": "50261668.103076115",
+   "n_positivos": 8813,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 28278,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.02487059663726271",
+    "cv": "0.01766423012658942",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-RURAL-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15783,
+   "n_valido_ponderado": "19012998.828607686",
+   "n_positivos": 3428,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15783,
+    "n_upm_conocidos": 478,
+    "ancho": "0.02592811117628785",
+    "cv": "0.026677215197752187",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-ESTRATO-URBANO-P",
+   "conducta": "alcohol-30d",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12816,
+   "n_valido_ponderado": "15987390.853391748",
+   "n_positivos": 3393,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12816,
+    "n_upm_conocidos": 407,
+    "ancho": "0.026013183496015002",
+    "cv": "0.022051115981530128",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-HOMBRE-P",
+   "conducta": "alcohol-30d",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23820,
+   "n_valido_ponderado": "41168616.58062079",
+   "n_positivos": 9424,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23820,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.025248484773768676",
+    "cv": "0.014973533398236726",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-SEXO-MUJER-P",
+   "conducta": "alcohol-30d",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 33057,
+   "n_valido_ponderado": "44093441.204454765",
+   "n_positivos": 6210,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 33057,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.016940589900875547",
+    "cv": "0.01998330241942017",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-30D-2016-TOTAL-TODOS-P",
+   "conducta": "alcohol-30d",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 56877,
+   "n_valido_ponderado": "85262057.78507555",
+   "n_positivos": 15634,
+   "exclusiones_en_base": {},
+   "publicabilidad": {
+    "n_conocidos": 56877,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.015825277236616087",
+    "cv": "0.012634576510287574",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-12-17-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 11951,
+   "n_valido_ponderado": "13761631.499583164",
+   "n_positivos": 811,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 485,
+     "ponderado": "573447.5998267002"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11951,
+    "n_upm_conocidos": 1892,
+    "ancho": "0.01728822330654977",
+    "cv": "0.06526957755937339",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-18-34-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17180,
+   "n_valido_ponderado": "33390644.19082295",
+   "n_positivos": 4789,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 351,
+     "ponderado": "634746.7151282846"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17180,
+    "n_upm_conocidos": 1922,
+    "ancho": "0.02556298589309708",
+    "cv": "0.020824571849242794",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-EDAD-35-65-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26553,
+   "n_valido_ponderado": "36331077.60876177",
+   "n_positivos": 4871,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 357,
+     "ponderado": "570510.1709526696"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26553,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.019850431203731783",
+    "cv": "0.02627659957753056",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 11877,
+   "n_valido_ponderado": "15961552.449644217",
+   "n_positivos": 1948,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 156,
+     "ponderado": "230903.6492653725"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11877,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.02968369826751535",
+    "cv": "0.03986516523061068",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9603,
+   "n_valido_ponderado": "18410181.025978655",
+   "n_positivos": 2482,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 191,
+     "ponderado": "345651.0285912648"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9603,
+    "n_upm_conocidos": 1864,
+    "ancho": "0.031808281561421736",
+    "cv": "0.029156397380488766",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14721,
+   "n_valido_ponderado": "21619052.276053786",
+   "n_positivos": 3356,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 248,
+     "ponderado": "377911.9586091886"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14721,
+    "n_upm_conocidos": 1908,
+    "ancho": "0.024618156495904348",
+    "cv": "0.025248684627663845",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 5991,
+   "n_valido_ponderado": "11759421.430517077",
+   "n_positivos": 1692,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 97,
+     "ponderado": "222217.50282212222"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 5991,
+    "n_upm_conocidos": 1564,
+    "ancho": "0.04290609441258986",
+    "cv": "0.03586458054083211",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 27657,
+   "n_valido_ponderado": "49218999.02230467",
+   "n_positivos": 5689,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 621,
+     "ponderado": "1042669.0807714364"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 27657,
+    "n_upm_conocidos": 1054,
+    "ancho": "0.02159120901803621",
+    "cv": "0.023166758581862783",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-RURAL-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15473,
+   "n_valido_ponderado": "18630612.948881447",
+   "n_positivos": 2361,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 310,
+     "ponderado": "382385.87972623395"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15473,
+    "n_upm_conocidos": 478,
+    "ancho": "0.02135366980752504",
+    "cv": "0.03228059757710241",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-ESTRATO-URBANO-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12554,
+   "n_valido_ponderado": "15633741.327981764",
+   "n_positivos": 2421,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 262,
+     "ponderado": "353649.52540998405"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12554,
+    "n_upm_conocidos": 407,
+    "ancho": "0.023019325919493183",
+    "cv": "0.0269147008571616",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-HOMBRE-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23317,
+   "n_valido_ponderado": "40360848.85761085",
+   "n_positivos": 6895,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 503,
+     "ponderado": "807767.7230099388"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23317,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.023722291485430425",
+    "cv": "0.019228242966744274",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-SEXO-MUJER-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 32367,
+   "n_valido_ponderado": "43122504.44155704",
+   "n_positivos": 3576,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 690,
+     "ponderado": "970936.7628977157"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 32367,
+    "n_upm_conocidos": 1937,
+    "ancho": "0.013669415205164057",
+    "cv": "0.027310276452546463",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-ALCOHOL-EXCESIVO-12M-2016-TOTAL-TODOS-P",
+   "conducta": "alcohol-excesivo-12m",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 55684,
+   "n_valido_ponderado": "83483353.2991679",
+   "n_positivos": 10471,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:al11-CODIGO-9": {
+     "n": 1193,
+     "ponderado": "1778704.4859076543"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 55684,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.014459282254767697",
+    "cv": "0.016806606907540225",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-12-17-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 5437,
+   "n_valido_ponderado": "6344189.172691964",
+   "n_positivos": 669,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 6999,
+     "ponderado": "7990889.9267179"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 5437,
+    "n_upm_conocidos": 1672,
+    "ancho": "0.03371016004397308",
+    "cv": "0.06888105151617747",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-18-34-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 7092,
+   "n_valido_ponderado": "15230730.55271905",
+   "n_positivos": 1082,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 1,
+     "ponderado": "7577.3634420459"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 10438,
+     "ponderado": "18787082.98979014"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 7092,
+    "n_upm_conocidos": 1754,
+    "ancho": "0.03126273259610651",
+    "cv": "0.044974832677798136",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-EDAD-35-65-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 7377,
+   "n_valido_ponderado": "11030365.425146801",
+   "n_positivos": 415,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 4,
+     "ponderado": "5391.6567185294025"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 19529,
+     "ponderado": "25865830.697849113"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 7377,
+    "n_upm_conocidos": 1687,
+    "ancho": "0.021033958788961887",
+    "cv": "0.08274434569501075",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 1911,
+   "n_valido_ponderado": "2782050.8697504504",
+   "n_positivos": 100,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 10122,
+     "ponderado": "13410405.22915914"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 1911,
+    "n_upm_conocidos": 1033,
+    "ancho": "0.03352024166524462",
+    "cv": "0.14182412119510046",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 4547,
+   "n_valido_ponderado": "9295635.557375891",
+   "n_positivos": 571,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 2,
+     "ponderado": "2731.939367471533"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 5245,
+     "ponderado": "9457464.557826554"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 4547,
+    "n_upm_conocidos": 1537,
+    "ancho": "0.03545158814188712",
+    "cv": "0.05923886572242767",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 4438,
+   "n_valido_ponderado": "7144800.657231709",
+   "n_positivos": 402,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 2,
+     "ponderado": "2659.71735105787"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 10529,
+     "ponderado": "14849503.860080209"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 4438,
+    "n_upm_conocidos": 1494,
+    "ancho": "0.02994229469911079",
+    "cv": "0.06996421382762698",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 3446,
+   "n_valido_ponderado": "6842254.767839039",
+   "n_positivos": 418,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 1,
+     "ponderado": "7577.3634420459"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 2641,
+     "ponderado": "5131806.802058114"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 3446,
+    "n_upm_conocidos": 1275,
+    "ancho": "0.04166987658932117",
+    "cv": "0.07093141311201981",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 12865,
+   "n_valido_ponderado": "23585729.584970124",
+   "n_positivos": 1496,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 2,
+     "ponderado": "3397.29967040119"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 15411,
+     "ponderado": "26672541.21843558"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12865,
+    "n_upm_conocidos": 1048,
+    "ancho": "0.022011501847795822",
+    "cv": "0.04123486696580453",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 2993,
+   "n_valido_ponderado": "3874866.964377133",
+   "n_positivos": 266,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 12790,
+     "ponderado": "15138131.86423055"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 2993,
+    "n_upm_conocidos": 453,
+    "ancho": "0.04694386897052147",
+    "cv": "0.11680246356596308",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 4048,
+   "n_valido_ponderado": "5144688.601210551",
+   "n_positivos": 404,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 3,
+     "ponderado": "9571.720490174113"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 8765,
+     "ponderado": "10833130.531691022"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 4048,
+    "n_upm_conocidos": 400,
+    "ancho": "0.0301583867350476",
+    "cv": "0.06685056259426396",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 10058,
+   "n_valido_ponderado": "17990365.47060212",
+   "n_positivos": 1392,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 2,
+     "ponderado": "3701.37053859938"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 13760,
+     "ponderado": "23174549.739480063"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 10058,
+    "n_upm_conocidos": 1831,
+    "ancho": "0.026089289981711672",
+    "cv": "0.042802831469387605",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 9848,
+   "n_valido_ponderado": "14614919.679955691",
+   "n_positivos": 774,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 3,
+     "ponderado": "9267.649621975923"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 23206,
+     "ponderado": "29469253.87487709"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9848,
+    "n_upm_conocidos": 1801,
+    "ancho": "0.021774321917760006",
+    "cv": "0.05600582747209349",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CIGARRO-ELECTRONICO-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+   "conducta": "cigarro-electronico-alguna-vez",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 19906,
+   "n_valido_ponderado": "32605285.15055781",
+   "n_positivos": 2166,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:tb50-CODIGO-9": {
+     "n": 5,
+     "ponderado": "12969.020160575303"
+    },
+    "RESPUESTA-NO-VALIDA:tb50-SIN-DATO": {
+     "n": 36966,
+     "ponderado": "52643803.61435716"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 19906,
+    "n_upm_conocidos": 1901,
+    "ancho": "0.017672927670125002",
+    "cv": "0.03470100152670609",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-12-17-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 1576,
+   "n_valido_ponderado": "1845656.423661437",
+   "n_positivos": 84,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 6,
+     "ponderado": "2257.712134426179"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 10854,
+     "ponderado": "12487164.963614002"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 1576,
+    "n_upm_conocidos": 1008,
+    "ancho": "0.02738206459452583",
+    "cv": "0.15546325707256842",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-18-34-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 7248,
+   "n_valido_ponderado": "15411363.038240703",
+   "n_positivos": 237,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 6,
+     "ponderado": "7527.704854727996"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 10277,
+     "ponderado": "18606500.162855804"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 7248,
+    "n_upm_conocidos": 1819,
+    "ancho": "0.013554200142691892",
+    "cv": "0.10016897164501216",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-EDAD-35-65-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 8930,
+   "n_valido_ponderado": "13113334.243094098",
+   "n_positivos": 417,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 9,
+     "ponderado": "10112.448068721325"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 17971,
+     "ponderado": "23778141.088551626"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 8930,
+    "n_upm_conocidos": 1873,
+    "ancho": "0.01348938821066449",
+    "cv": "0.07869311614111837",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 3674,
+   "n_valido_ponderado": "5545902.138478445",
+   "n_positivos": 160,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 2,
+     "ponderado": "3539.71991631107"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 8357,
+     "ponderado": "10643014.240514833"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 3674,
+    "n_upm_conocidos": 1431,
+    "ancho": "0.03155543024215843",
+    "cv": "0.15108688029319498",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 3916,
+   "n_valido_ponderado": "7939589.989550104",
+   "n_positivos": 166,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 5,
+     "ponderado": "4294.637272193737"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 5873,
+     "ponderado": "10811947.427747618"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 3916,
+    "n_upm_conocidos": 1557,
+    "ancho": "0.017310085915899717",
+    "cv": "0.11885739441100625",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 5512,
+   "n_valido_ponderado": "8766349.921769466",
+   "n_positivos": 232,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 6,
+     "ponderado": "5552.752811332852"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 9451,
+     "ponderado": "13225061.560082177"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 5512,
+    "n_upm_conocidos": 1685,
+    "ancho": "0.014342699152862556",
+    "cv": "0.0936290025405984",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 2649,
+   "n_valido_ponderado": "5636972.589926701",
+   "n_positivos": 72,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 2,
+     "ponderado": "4253.0429236116615"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 3437,
+     "ponderado": "6340413.3004888855"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 2649,
+    "n_upm_conocidos": 1174,
+    "ancho": "0.01565252013758646",
+    "cv": "0.19326630726941843",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 9652,
+   "n_valido_ponderado": "19259601.37829128",
+   "n_positivos": 411,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 12,
+     "ponderado": "8326.527995825594"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 18614,
+     "ponderado": "30993740.196789008"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9652,
+    "n_upm_conocidos": 1046,
+    "ancho": "0.012899864484302248",
+    "cv": "0.08395254923565286",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-RURAL-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 4059,
+   "n_valido_ponderado": "5592339.914672485",
+   "n_positivos": 147,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 4,
+     "ponderado": "1783.7565927967612"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 11720,
+     "ponderado": "13418875.1573424"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 4059,
+    "n_upm_conocidos": 472,
+    "ancho": "0.014585883733113609",
+    "cv": "0.10561683314434038",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-ESTRATO-URBANO-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 4043,
+   "n_valido_ponderado": "5518412.412032472",
+   "n_positivos": 180,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 5,
+     "ponderado": "9787.580469253144"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 8768,
+     "ponderado": "10459190.860890023"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 4043,
+    "n_upm_conocidos": 406,
+    "ancho": "0.01890643622599946",
+    "cv": "0.11151288071792823",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-HOMBRE-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 11420,
+   "n_valido_ponderado": "20902261.506702594",
+   "n_positivos": 552,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 12,
+     "ponderado": "12107.49604880853"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 12388,
+     "ponderado": "20254247.577869385"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11420,
+    "n_upm_conocidos": 1900,
+    "ancho": "0.011693010407460097",
+    "cv": "0.06773031642062916",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-SEXO-MUJER-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 6334,
+   "n_valido_ponderado": "9468092.198293645",
+   "n_positivos": 186,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 9,
+     "ponderado": "7790.36900906697"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 26714,
+     "ponderado": "34617558.637152046"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6334,
+    "n_upm_conocidos": 1745,
+    "ancho": "0.010913484318577544",
+    "cv": "0.11204935842452403",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-CONSULTO-PROFESIONAL-POR-CONSUMO-2016-TOTAL-TODOS-P",
+   "conducta": "consulto-profesional-por-consumo",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 17754,
+   "n_valido_ponderado": "30370353.704996236",
+   "n_positivos": 738,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:tp1-CODIGO-9": {
+     "n": 21,
+     "ponderado": "19897.8650578755"
+    },
+    "RESPUESTA-NO-VALIDA:tp1-SIN-DATO": {
+     "n": 39102,
+     "ponderado": "54871806.21502143"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17754,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.008843033279026642",
+    "cv": "0.05926560828805021",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-12-17-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 12160,
+   "n_valido_ponderado": "14039441.79332119",
+   "n_positivos": 781,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 276,
+     "ponderado": "295637.3060886733"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12160,
+    "n_upm_conocidos": 1895,
+    "ancho": "0.01892540028933512",
+    "cv": "0.07547996989096341",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-18-34-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17413,
+   "n_valido_ponderado": "33827250.180333644",
+   "n_positivos": 2231,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 118,
+     "ponderado": "198140.72561759528"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17413,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.018974275598367868",
+    "cv": "0.03333904293302904",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-EDAD-35-65-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26812,
+   "n_valido_ponderado": "36781205.31924845",
+   "n_positivos": 1878,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 98,
+     "ponderado": "120382.46046599717"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26812,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.012030356088065769",
+    "cv": "0.041789156749349604",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 11993,
+   "n_valido_ponderado": "16126899.034342727",
+   "n_positivos": 870,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 40,
+     "ponderado": "65557.06456686239"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11993,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.021617170757068357",
+    "cv": "0.06337507734656976",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9737,
+   "n_valido_ponderado": "18659432.537783496",
+   "n_positivos": 1072,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 57,
+     "ponderado": "96399.5167864189"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9737,
+    "n_upm_conocidos": 1866,
+    "ancho": "0.022116920504769724",
+    "cv": "0.04842540493645768",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14885,
+   "n_valido_ponderado": "21882325.73690542",
+   "n_positivos": 1462,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 84,
+     "ponderado": "114638.49775755606"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14885,
+    "n_upm_conocidos": 1910,
+    "ancho": "0.019643011766504806",
+    "cv": "0.04402829936056991",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 6062,
+   "n_valido_ponderado": "11946110.404170357",
+   "n_positivos": 632,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 26,
+     "ponderado": "35528.52916884143"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6062,
+    "n_upm_conocidos": 1570,
+    "ancho": "0.029411720639114375",
+    "cv": "0.06226963695992944",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 28078,
+   "n_valido_ponderado": "49990200.504862174",
+   "n_positivos": 2968,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 200,
+     "ponderado": "271467.59821393533"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 28078,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.015174620887665358",
+    "cv": "0.032729941846554714",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15606,
+   "n_valido_ponderado": "18801814.932501756",
+   "n_positivos": 937,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 177,
+     "ponderado": "211183.89610592695"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15606,
+    "n_upm_conocidos": 478,
+    "ancho": "0.013089821488682832",
+    "cv": "0.04942216496149432",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12701,
+   "n_valido_ponderado": "15855881.855539344",
+   "n_positivos": 985,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 115,
+     "ponderado": "131508.99785240347"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12701,
+    "n_upm_conocidos": 407,
+    "ancho": "0.015511294772602269",
+    "cv": "0.04569271332939571",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23581,
+   "n_valido_ponderado": "40869326.46497205",
+   "n_positivos": 3683,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 239,
+     "ponderado": "299290.1156487387"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23581,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.01759155398425058",
+    "cv": "0.02793220316439434",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 32804,
+   "n_valido_ponderado": "43778570.82793123",
+   "n_positivos": 1207,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 253,
+     "ponderado": "314870.37652352714"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 32804,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.008309854213856584",
+    "cv": "0.047740365523388235",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-ILEGAL-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+   "conducta": "droga-ilegal-alguna-vez",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 56385,
+   "n_valido_ponderado": "84647897.29290327",
+   "n_positivos": 4890,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:di1a-i-SIN-1-CON-NSNR": {
+     "n": 492,
+     "ponderado": "614160.4921722657"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 56385,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.010189191151649846",
+    "cv": "0.025062825855491234",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 11154,
+   "n_valido_ponderado": "12969093.760327412",
+   "n_positivos": 336,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 1282,
+     "ponderado": "1365985.3390824515"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11154,
+    "n_upm_conocidos": 1890,
+    "ancho": "0.010841790387657368",
+    "cv": "0.09402640172293368",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 16856,
+   "n_valido_ponderado": "32691253.508982524",
+   "n_positivos": 1020,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 675,
+     "ponderado": "1334137.396968711"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 16856,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.014629450897520602",
+    "cv": "0.05664812059276854",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26518,
+   "n_valido_ponderado": "36377127.631546915",
+   "n_positivos": 2384,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 392,
+     "ponderado": "524460.1481675245"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26518,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.012283924055063372",
+    "cv": "0.038106691454344754",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 11877,
+   "n_valido_ponderado": "15977430.756107833",
+   "n_positivos": 849,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 156,
+     "ponderado": "215025.34280175646"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11877,
+    "n_upm_conocidos": 1816,
+    "ancho": "0.015776156699915826",
+    "cv": "0.06045823851820619",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9469,
+   "n_valido_ponderado": "18069953.69956948",
+   "n_positivos": 787,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 325,
+     "ponderado": "685878.3550004421"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9469,
+    "n_upm_conocidos": 1860,
+    "ancho": "0.021404330922191336",
+    "cv": "0.06660978783003127",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14565,
+   "n_valido_ponderado": "21366229.865823336",
+   "n_positivos": 1047,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 404,
+     "ponderado": "630734.3688396361"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14565,
+    "n_upm_conocidos": 1909,
+    "ancho": "0.014341638787054849",
+    "cv": "0.05517007696735995",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 5926,
+   "n_valido_ponderado": "11683434.65594",
+   "n_positivos": 618,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 162,
+     "ponderado": "298204.27739919815"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 5926,
+    "n_upm_conocidos": 1562,
+    "ancho": "0.022819891484689048",
+    "cv": "0.061785643383921104",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 27187,
+   "n_valido_ponderado": "48623648.74425058",
+   "n_positivos": 2253,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 1091,
+     "ponderado": "1638019.3588255283"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 27187,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.01203995133558644",
+    "cv": "0.03984517030740255",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15060,
+   "n_valido_ponderado": "18161130.5008445",
+   "n_positivos": 690,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 723,
+     "ponderado": "851868.3277631828"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15060,
+    "n_upm_conocidos": 478,
+    "ancho": "0.00982754961083699",
+    "cv": "0.058299465169438305",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12281,
+   "n_valido_ponderado": "15252695.655761775",
+   "n_positivos": 797,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 535,
+     "ponderado": "734695.1976299759"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12281,
+    "n_upm_conocidos": 407,
+    "ancho": "0.014190435229917135",
+    "cv": "0.05659829418399378",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 22692,
+   "n_valido_ponderado": "39534673.32202441",
+   "n_positivos": 1404,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 1128,
+     "ponderado": "1633943.2585963742"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 22692,
+    "n_upm_conocidos": 1932,
+    "ancho": "0.010482995270969367",
+    "cv": "0.042331347456428615",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 31836,
+   "n_valido_ponderado": "42502801.57883245",
+   "n_positivos": 2336,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 1221,
+     "ponderado": "1590639.6256223128"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 31836,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.011239354518854883",
+    "cv": "0.03986626238178921",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-DROGA-MEDICA-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+   "conducta": "droga-medica-sin-receta-alguna-vez",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 54528,
+   "n_valido_ponderado": "82037474.90085685",
+   "n_positivos": 3740,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:dm1a-d-SIN-1-CON-NSNR": {
+     "n": 2349,
+     "ponderado": "3224582.884218687"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 54528,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.008008289540205174",
+    "cv": "0.02978414528250998",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-12-17-P",
+   "conducta": "fuma-actual",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 12121,
+   "n_valido_ponderado": "14026764.181257164",
+   "n_positivos": 618,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 151,
+     "ponderado": "144469.18343029608"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 164,
+     "ponderado": "163845.7347224034"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12121,
+    "n_upm_conocidos": 1894,
+    "ancho": "0.01127773323544451",
+    "cv": "0.05937522960358077",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-18-34-P",
+   "conducta": "fuma-actual",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17483,
+   "n_valido_ponderado": "33930662.30073037",
+   "n_positivos": 3264,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 30,
+     "ponderado": "53783.38304276042"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 18,
+     "ponderado": "40945.22217810726"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17483,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.022149981587629375",
+    "cv": "0.02450884797695761",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-EDAD-35-65-P",
+   "conducta": "fuma-actual",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26859,
+   "n_valido_ponderado": "36844506.71517046",
+   "n_positivos": 4091,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 38,
+     "ponderado": "41828.66163771348"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 13,
+     "ponderado": "15252.402906274976"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26859,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.018418099683927908",
+    "cv": "0.027049256432914327",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "fuma-actual",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 12007,
+   "n_valido_ponderado": "16170785.855254626",
+   "n_positivos": 1701,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 18,
+     "ponderado": "15009.964619180066"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 8,
+     "ponderado": "6660.279035782525"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12007,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.022703107261801386",
+    "cv": "0.03617749529244878",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "fuma-actual",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9765,
+   "n_valido_ponderado": "18692262.704075918",
+   "n_positivos": 1794,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 20,
+     "ponderado": "37419.7161740027"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 9,
+     "ponderado": "26149.634319994046"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9765,
+    "n_upm_conocidos": 1867,
+    "ancho": "0.028497665271377592",
+    "cv": "0.033349557886529074",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "fuma-actual",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14939,
+   "n_valido_ponderado": "21962068.07597949",
+   "n_positivos": 2614,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 19,
+     "ponderado": "19619.839515050677"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 11,
+     "ponderado": "15276.319168436676"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14939,
+    "n_upm_conocidos": 1910,
+    "ancho": "0.02335435251839782",
+    "cv": "0.02849710883060803",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "fuma-actual",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 6078,
+   "n_valido_ponderado": "11955837.085399918",
+   "n_positivos": 1064,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 7,
+     "ponderado": "17690.455379111376"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 3,
+     "ponderado": "8111.392560168976"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6078,
+    "n_upm_conocidos": 1571,
+    "ancho": "0.044564382340686604",
+    "cv": "0.051352347624590164",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "fuma-actual",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 28099,
+   "n_valido_ponderado": "50031250.471260756",
+   "n_positivos": 4897,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 84,
+     "ponderado": "112399.84251312992"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 95,
+     "ponderado": "118017.78930222949"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 28099,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.02041925484175372",
+    "cv": "0.024286519895961377",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-RURAL-P",
+   "conducta": "fuma-actual",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15629,
+   "n_valido_ponderado": "18875220.67259835",
+   "n_positivos": 1487,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 89,
+     "ponderado": "80681.86279261638"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 65,
+     "ponderado": "57096.29321671766"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15629,
+    "n_upm_conocidos": 478,
+    "ancho": "0.018396393335459005",
+    "cv": "0.04095544070062416",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-ESTRATO-URBANO-P",
+   "conducta": "fuma-actual",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12735,
+   "n_valido_ponderado": "15895462.053298887",
+   "n_positivos": 1589,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 46,
+     "ponderado": "46999.522805023655"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 35,
+     "ponderado": "44929.277287838464"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12735,
+    "n_upm_conocidos": 407,
+    "ancho": "0.018599433852898972",
+    "cv": "0.03348258483775184",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-HOMBRE-P",
+   "conducta": "fuma-actual",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23643,
+   "n_valido_ponderado": "40955075.62878999",
+   "n_positivos": 5601,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 89,
+     "ponderado": "107232.07688187608"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 88,
+     "ponderado": "106308.87494892305"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23643,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.020743773811735478",
+    "cv": "0.019957415220792456",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-SEXO-MUJER-P",
+   "conducta": "fuma-actual",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 32820,
+   "n_valido_ponderado": "43846857.568368",
+   "n_positivos": 2372,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 130,
+     "ponderado": "132849.15122889387"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 107,
+     "ponderado": "113734.48485786255"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 32820,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.011879521950611996",
+    "cv": "0.03443003731505655",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-FUMA-ACTUAL-2016-TOTAL-TODOS-P",
+   "conducta": "fuma-actual",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 56463,
+   "n_valido_ponderado": "84801933.197158",
+   "n_positivos": 7973,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-7": {
+     "n": 219,
+     "ponderado": "240081.22811076997"
+    },
+    "RESPUESTA-NO-VALIDA:tb02-CODIGO-9": {
+     "n": 195,
+     "ponderado": "220043.35980678562"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 56463,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.01295556242073262",
+    "cv": "0.018884360362656668",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 12333,
+   "n_valido_ponderado": "14213477.087351542",
+   "n_positivos": 660,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 103,
+     "ponderado": "121602.01205832108"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12333,
+    "n_upm_conocidos": 1895,
+    "ancho": "0.014861121119819548",
+    "cv": "0.06900235222227795",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 17457,
+   "n_valido_ponderado": "33905358.432359666",
+   "n_positivos": 1962,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 74,
+     "ponderado": "120032.47359156505"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 17457,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.017692155790708",
+    "cv": "0.0355009819222915",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26844,
+   "n_valido_ponderado": "36832211.00559756",
+   "n_positivos": 1595,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 66,
+     "ponderado": "69376.77411688553"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26844,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.012099205082029399",
+    "cv": "0.04728995920208723",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 12009,
+   "n_valido_ponderado": "16159480.472515576",
+   "n_positivos": 747,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 24,
+     "ponderado": "32975.62639401439"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12009,
+    "n_upm_conocidos": 1817,
+    "ancho": "0.017521134636853133",
+    "cv": "0.06366988909756903",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9759,
+   "n_valido_ponderado": "18705207.59560202",
+   "n_positivos": 931,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 35,
+     "ponderado": "50624.4589678971"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9759,
+    "n_upm_conocidos": 1865,
+    "ancho": "0.020934476777916045",
+    "cv": "0.05228266198895269",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14908,
+   "n_valido_ponderado": "21915518.853931993",
+   "n_positivos": 1243,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 61,
+     "ponderado": "81445.38073098354"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14908,
+    "n_upm_conocidos": 1910,
+    "ancho": "0.01862703776715703",
+    "cv": "0.04720585361739065",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 6072,
+   "n_valido_ponderado": "11959760.378773298",
+   "n_positivos": 570,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 16,
+     "ponderado": "21878.5545658986"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 6072,
+    "n_upm_conocidos": 1571,
+    "ancho": "0.028973503019554064",
+    "cv": "0.06614649597485911",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 28176,
+   "n_valido_ponderado": "50121650.51885703",
+   "n_positivos": 2598,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 102,
+     "ponderado": "140017.58421908648"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 28176,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.014292429048721522",
+    "cv": "0.03439421652411182",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15695,
+   "n_valido_ponderado": "18904433.863540027",
+   "n_positivos": 781,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 88,
+     "ponderado": "108564.9650676577"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15695,
+    "n_upm_conocidos": 478,
+    "ancho": "0.010939908565665277",
+    "cv": "0.050270604166832406",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12763,
+   "n_valido_ponderado": "15924962.142911721",
+   "n_positivos": 838,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 53,
+     "ponderado": "62428.710480027556"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12763,
+    "n_upm_conocidos": 407,
+    "ancho": "0.014194500138727667",
+    "cv": "0.048264049875560974",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 23707,
+   "n_valido_ponderado": "41030395.68703626",
+   "n_positivos": 3210,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 113,
+     "ponderado": "138220.89358452777"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 23707,
+    "n_upm_conocidos": 1933,
+    "ancho": "0.016554499332577133",
+    "cv": "0.02990383168952049",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 32927,
+   "n_valido_ponderado": "43920650.83827251",
+   "n_positivos": 1007,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 130,
+     "ponderado": "172790.36618224392"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 32927,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.007645215464582918",
+    "cv": "0.05244243159365654",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-MARIGUANA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+   "conducta": "mariguana-alguna-vez",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 56634,
+   "n_valido_ponderado": "84951046.52530877",
+   "n_positivos": 4217,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:di1a-CODIGO-9": {
+     "n": 243,
+     "ponderado": "311011.2597667717"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 56634,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.009209842702213547",
+    "cv": "0.026698424900706643",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-12-17-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "12-17",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12436,
+   "n_valido": 11336,
+   "n_valido_ponderado": "13121744.048852097",
+   "n_positivos": 138,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44441,
+     "ponderado": "70926978.68566568"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 1100,
+     "ponderado": "1213335.050557766"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11336,
+    "n_upm_conocidos": 1891,
+    "ancho": "0.0067164575870733295",
+    "cv": "0.13342382965685703",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-18-34-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "18-34",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 17531,
+   "n_valido": 16935,
+   "n_valido_ponderado": "32897656.859088987",
+   "n_positivos": 290,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 39346,
+     "ponderado": "51236666.879124306"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 596,
+     "ponderado": "1127734.0468622511"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 16935,
+    "n_upm_conocidos": 1924,
+    "ancho": "0.007876242000157366",
+    "cv": "0.09930361104143212",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-EDAD-35-65-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "EDAD",
+   "segmento": "35-65",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 26910,
+   "n_valido": 26564,
+   "n_valido_ponderado": "36451413.5541745",
+   "n_positivos": 589,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 29967,
+     "ponderado": "48360470.005361095"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 346,
+     "ponderado": "450174.22553994216"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 26564,
+    "n_upm_conocidos": 1939,
+    "ancho": "0.007244779842725764",
+    "cv": "0.08299826331825591",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12033,
+   "n_valido": 11894,
+   "n_valido_ponderado": "16009142.674710644",
+   "n_positivos": 215,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 30851,
+     "ponderado": "52734435.22257209"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 139,
+     "ponderado": "183313.4241989458"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 11894,
+    "n_upm_conocidos": 1816,
+    "ancho": "0.008859322912050912",
+    "cv": "0.11860168021130671",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 9794,
+   "n_valido": 9506,
+   "n_valido_ponderado": "18205561.23875896",
+   "n_positivos": 212,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 33090,
+     "ponderado": "50171059.26691176"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 288,
+     "ponderado": "550270.8158109573"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 9506,
+    "n_upm_conocidos": 1860,
+    "ancho": "0.011615802493067217",
+    "cv": "0.12611447419615765",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 14969,
+   "n_valido": 14622,
+   "n_valido_ponderado": "21462172.992556654",
+   "n_positivos": 236,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 27915,
+     "ponderado": "46929927.0868187"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 347,
+     "ponderado": "534791.2421063206"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 14622,
+    "n_upm_conocidos": 1909,
+    "ancho": "0.010161141284909797",
+    "cv": "0.15129700953795913",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 6088,
+   "n_valido": 5938,
+   "n_valido_ponderado": "11699314.635078613",
+   "n_positivos": 190,
+   "exclusiones_en_base": {
+    "FUERA-DE-EJE:MENOR-DE-18": {
+     "n": 12436,
+     "ponderado": "14335079.099409863"
+    },
+    "FUERA-DE-EJE:ds9-99-NO-CONTESTA": {
+     "n": 101,
+     "ponderado": "125470.70679077966"
+    },
+    "FUERA-DE-EJE:ds9-SIN-DATO": {
+     "n": 1456,
+     "ponderado": "1874616.6573932203"
+    },
+    "FUERA-DE-SEGMENTO": {
+     "n": 36796,
+     "ponderado": "56945252.38814248"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 150,
+     "ponderado": "282324.2982605854"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 5938,
+    "n_upm_conocidos": 1561,
+    "ancho": "0.013612461789503597",
+    "cv": "0.11339172114393233",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-METROPOLITANO-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "METROPOLITANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 28278,
+   "n_valido": 27305,
+   "n_valido_ponderado": "48797450.550029136",
+   "n_positivos": 599,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 28599,
+     "ponderado": "35000389.68199943"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 973,
+     "ponderado": "1464217.5530469758"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 27305,
+    "n_upm_conocidos": 1055,
+    "ancho": "0.007213179941883592",
+    "cv": "0.07848411023383048",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-RURAL-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "RURAL",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 15783,
+   "n_valido": 15171,
+   "n_valido_ponderado": "18283872.51985606",
+   "n_positivos": 216,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 41094,
+     "ponderado": "66249058.95646786"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 612,
+     "ponderado": "729126.308751622"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 15171,
+    "n_upm_conocidos": 478,
+    "ancho": "0.00599559606054635",
+    "cv": "0.10935504086976557",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-ESTRATO-URBANO-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "ESTRATO",
+   "segmento": "URBANO",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 12816,
+   "n_valido": 12359,
+   "n_valido_ponderado": "15389491.392230386",
+   "n_positivos": 202,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 44061,
+     "ponderado": "69274666.9316838"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 457,
+     "ponderado": "597899.4611613617"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 12359,
+    "n_upm_conocidos": 407,
+    "ancho": "0.0063132744545120745",
+    "cv": "0.09681235024992932",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-HOMBRE-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 23820,
+   "n_valido": 22847,
+   "n_valido_ponderado": "39736331.69214495",
+   "n_positivos": 422,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 33057,
+     "ponderado": "44093441.204454765"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 973,
+     "ponderado": "1432284.8884758386"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 22847,
+    "n_upm_conocidos": 1932,
+    "ancho": "0.006009217006907958",
+    "cv": "0.0784097226526629",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-SEXO-MUJER-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 33057,
+   "n_valido": 31988,
+   "n_valido_ponderado": "42734482.76997063",
+   "n_positivos": 595,
+   "exclusiones_en_base": {
+    "FUERA-DE-SEGMENTO": {
+     "n": 23820,
+     "ponderado": "41168616.58062079"
+    },
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 1069,
+     "ponderado": "1358958.4344841207"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 31988,
+    "n_upm_conocidos": 1938,
+    "ancho": "0.006963525461354668",
+    "cv": "0.08580522317941558",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  },
+  {
+   "llave": "RESULT-ENCODAT-PISOS-SUSTANCIAS-OPIACEOS-SIN-RECETA-ALGUNA-VEZ-2016-TOTAL-TODOS-P",
+   "conducta": "opiaceos-sin-receta-alguna-vez",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "universo_base_diseno_valido": 56877,
+   "n_dominio": 56877,
+   "n_valido": 54835,
+   "n_valido_ponderado": "82470814.46211559",
+   "n_positivos": 1017,
+   "exclusiones_en_base": {
+    "RESPUESTA-NO-VALIDA:dm1a-CODIGO-9": {
+     "n": 2042,
+     "ponderado": "2791243.3229599595"
+    }
+   },
+   "publicabilidad": {
+    "n_conocidos": 54835,
+    "n_upm_conocidos": 1940,
+    "ancho": "0.004645455965463931",
+    "cv": "0.05882744319229075",
+    "estado": "PUBLICABLE",
+    "razones": []
+   }
+  }
+ ]
+}

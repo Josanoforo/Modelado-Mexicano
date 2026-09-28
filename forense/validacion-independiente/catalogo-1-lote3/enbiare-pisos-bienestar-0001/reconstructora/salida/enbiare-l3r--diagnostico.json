@@ -1,0 +1,3851 @@
+{
+ "identidad": {
+  "paquete": "enbiare-pisos-bienestar-0001",
+  "version_entrada": "residuales-documentales-v2",
+  "sha256_entrada": "fc75485a4e49118eacfca104070214c86fa4071b75550234cfc05ffb69c9fbfe"
+ },
+ "firmas_verificadas": {
+  "enbiare-edades-propuesta.md": {
+   "sha256_registrado": "95f614a43f0cc01ea3caaeb59b1ecc59ca4328d351a6b91b2c6fb09c604dd67d",
+   "sha256_observado": "95f614a43f0cc01ea3caaeb59b1ecc59ca4328d351a6b91b2c6fb09c604dd67d",
+   "coincide": true
+  },
+  "residuales-p3-contrato-ic.md": {
+   "sha256_registrado": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+   "sha256_observado": "f09ffd47ee2bfbb80d210b4af0d2c29c1b0e7515f92ca85a051d3654ab9338bb",
+   "coincide": true
+  },
+  "residuales-p3-modulos-ic.md": {
+   "sha256_registrado": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
+   "sha256_observado": "d360280cd34b7067ef35af8a42091c3c03a352910faba4be33659a41d0006c98",
+   "coincide": true
+  },
+  "CONTRATO-v3.md": {
+   "sha256_registrado": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb",
+   "sha256_observado": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb",
+   "coincide": true
+  }
+ },
+ "sha256_codigo_reconstruye_py": "c09d074791e9934285a4d741a60ef29915ce14169cf91b694d71ee39eb9d3289",
+ "sha256_entorno_txt": "4acb0545b30b1537c50d404a99f96f0e4293e4b786f732fe2dfb90b4c04840cf",
+ "datos": {
+  "n_tenbiare": 31166,
+  "n_tsdem": 109922,
+  "n_tsdem_llaves_duplicadas": 0,
+  "n_tenbiare_llaves_duplicadas": 0,
+  "n_universo_base": 31166,
+  "n_upm_marco": 4704,
+  "n_estratos_marco": 472,
+  "n_singleton": 0,
+  "n_codigo_edad_98_en_universo": 7,
+  "exclusiones_universo": {},
+  "rng_instancia_fresca_reproduce_multiplicidades": true
+ },
+ "decisiones_implementacion": [
+  {
+   "id": "D01-ESCALAS-UNIDAD-PROPORCION",
+   "decision": "Las 90 llaves de las 6 conductas de escala 0–10 (PA1, PA5, PB1_01, PB1_02, PB1_04, PB1_11) se declaran NO-RECALCULABLE-DESDE-SPEC: el esquema les asigna unidad 'proporcion' y sufijo -P, pero la spec solo define una media 0–10, sin corte que dé una proporción. No se emite la media bajo una unidad de proporción.",
+   "frases": [
+    "enbiare-metodo-base.md: «Escalas 0–10 (PA1, PA5, PB1_01, PB1_02, PB1_04, PB1_11) se publican como **media**»",
+    "residuales-p3-modulos-ic.md: «Escalas0..10 medias; demás conductas proporciones»",
+    "residuales-p3-contrato-ic.md: «Las medias conservan escala original; proporciones están en0..1»",
+    "esquema-salida-v2.md: «`llave` y `unidad` se copian literalmente de esas columnas del esquema, sin usar `entrada_id` como llave de comparación ni convertir escala»",
+    "Encargo: «Si falta método, acceso o un dato, informa el faltante sin adivinar (`NO-RECALCULABLE-DESDE-SPEC` con `motivo`)»"
+   ]
+  },
+  {
+   "id": "D02-UNIVERSO-EDAD",
+   "decision": "Universo = persona elegida de TENBIARE con diseño válido, pareada en TSDEM por llave única y EDAD con código 18–96 o 98. Prevalece el contrato de edades firmado sobre «EDAD ≥ 18» de la base.",
+   "frases": [
+    "enbiare-edades-propuesta.md (firmado R26a): «Universo adulto conocido: EDAD=18–96 o código 98 […] 97, 99, blanco y códigos fuera del FD quedan fuera y se cuentan por causa»",
+    "FIRMAS-Y-ACCESO.md: «EDAD=98 queda fuera de tramos y de CESD-7»"
+   ]
+  },
+  {
+   "id": "D03-EDAD-98-EN-EJES",
+   "decision": "El código 98 queda fuera de los cuatro tramos del eje EDAD y se conserva en TOTAL, SEXO, ESCOLARIDAD y TLOC para las conductas con corte independiente de la edad; para CESD-7 queda fuera en todos los ejes y se cuenta como EDAD-NO-DETERMINA-CORTE (también en el eje EDAD, donde se registra con esa causa y no como EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO).",
+   "frases": [
+    "enbiare-edades-propuesta.md: «Código 98 queda fuera de todo tramo de edad; no imputar 60+ ni distribuirlo. Para conductas con corte independiente de edad conservar 98 en TOTAL, SEXO, ESCOLARIDAD y TLOC»",
+    "enbiare-edades-propuesta.md: «Código 98 queda fuera de CESD-7 en todos los ejes y se cuenta EDAD-NO-DETERMINA-CORTE»"
+   ]
+  },
+  {
+   "id": "D04-TIENE-RELIGION",
+   "decision": "TIENE-RELIGION: PG6=1 → 1, PG6=2 → 0; otros códigos se tratan como inválidos. La tabla solo dice «1 / 2»; se lee como 1=Sí es el evento, por el FD (1 Sí, 2 No) y por la forma de las demás conductas binarias.",
+   "frases": [
+    "spec-conductas-base.md: «| TIENE-RELIGION | PG6 «¿Usted tiene una religión?» | 1 / 2 |»"
+   ]
+  },
+  {
+   "id": "D05-ASISTE-DENOMINADOR",
+   "decision": "ASISTE-SERVICIO-RELIGIOSO: el denominador son todos los adultos del dominio con PG6 válido; PG6=1 y PG7∈{1,2} → PG7 (1→1, 2→0); PG6=2 con PG7 en blanco → 0. Cualquier otra combinación es inválida (se observaron 0 casos).",
+   "frases": [
+    "enbiare-metodo-base.md: «ASISTE-SERVICIO-RELIGIOSO: PG7 1/2, y PG6 = 2 → 0 (blanco por secuencia)»"
+   ]
+  },
+  {
+   "id": "D06-PB2-CODIGO-3",
+   "decision": "PB2_1 y PB2_2: 1→1; 2 y 3→0 en ambas (la tabla dice «ídem» para amistades; el FD también lista 3 para PB2_2, sin casos observados).",
+   "frases": [
+    "spec-conductas-base.md: «CUENTA-APOYO-AMISTADES | PB2_2 | ídem»"
+   ]
+  },
+  {
+   "id": "D07-SEMILLA",
+   "decision": "El IC usa PCG64(20260923) —semilla del contrato P3 firmado— y no PCG64(20260924), que es la de la base histórica. Tampoco se aplica la «certeza para UPM única» de la base.",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «Referencia de RNG: numpy.random.Generator(numpy.random.PCG64(20260923)); una instancia nueva por identidad»",
+    "residuales-p3-modulos-ic.md: «Semilla común20260923 y marco completo son elecciones NUEVAS del contrato diagnóstico; no restauran semillas históricas20260924»",
+    "residuales-p3-contrato-ic.md: «No llamar certeza por tener n_h=1»"
+   ]
+  },
+  {
+   "id": "D08-RNG-MEMORIZADO",
+   "decision": "Cada identidad usa lógicamente una instancia nueva de PCG64(20260923) sobre el mismo marco, así que las multiplicidades M_rhu son idénticas entre identidades. Se generan una vez y se memorizan por (semilla, marco); al final se regeneran con una instancia fresca y se verifica que son iguales (campo datos.rng_instancia_fresca_reproduce_multiplicidades).",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «una instancia nueva por identidad, sin saltos ni compartir estado entre conductas. Iteración réplica→estrato lexicográfico; por estrato usar rng.choice(indices_ordenados,n_h,replace=True)»"
+   ]
+  },
+  {
+   "id": "D09-MARCO",
+   "decision": "Marco = todos los pares distintos (EST_DIS, UPM_DIS) del universo base (después del filtro de edad D02, antes del filtro de eje, dominio y respuesta), ordenados por cadena opaca y puntos Unicode. Ninguna persona elegida tiene código 97/99 ni menos de 18, así que el marco coincide con el de todas las personas elegidas con diseño válido.",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «Marco: todos los pares distintos (estrato,UPM) del universo base con ponderador finito positivo y diseño válido, antes de filtrar dominio o respuesta de una conducta»",
+    "residuales-p3-modulos-ic.md: «marco persona elegida18+ previo al filtro de conducta/eje»"
+   ]
+  },
+  {
+   "id": "D10-SINGLETON-A-ESTADO-IC",
+   "decision": "Si hubiera estratos con UPM única en el marco, el IC se declararía estado_ic=NO-IDENTIFICADA con motivo_ic IC-CON-UPM-UNICA-VARIANZA-NO-IDENTIFICADA. En este marco hay 0 singletons, así que la regla no se activó.",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «Singleton: […] contribución de varianza no identificable salvo evidencia de certeza. Registrar cantidad y marcar IC-CON-UPM-UNICA-VARIANZA-NO-IDENTIFICADA»",
+    "CONTRATO-v3.md: «Un bloqueo de inferencia se representa con `NO-IDENTIFICADA` y su causa concreta en `motivo_ic`»"
+   ]
+  },
+  {
+   "id": "D11-DENOMINADOR-CERO",
+   "decision": "Un dominio con Y=0 se emitiría como estado DENOMINADOR-CERO, estado de CONTRATO-v3 firmado, en lugar de NO-ESTIMABLE; no ocurrió.",
+   "frases": [
+    "CONTRATO-v3.md: «`DENOMINADOR-CERO` | Sin campos numéricos; `motivo` | Spec suficiente; dominio observado con denominador cero»",
+    "enbiare-edades-propuesta.md: «Denominador cero se declara NO-ESTIMABLE»"
+   ]
+  },
+  {
+   "id": "D12-ORDEN-DE-SUMA",
+   "decision": "Los totales por par se acumulan en float64, secuencialmente y en el orden físico de TENBIARE. El punto y las réplicas se acumulan secuencialmente sobre los pares ordenados. El punto se calcula como (Σ_pares X_hu)/(Σ_pares Y_hu).",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «sumas float64, totales por par en ese orden y acumulación de pares ordenados»"
+   ]
+  },
+  {
+   "id": "D13-EXCLUSIONES-JERARQUIA",
+   "decision": "Las exclusiones se cuentan en tres niveles: universo (diseño, join y edad; comunes a todas las llaves), eje (universo no clasificable en el eje, p. ej. NIVEL 99/blanco o EDAD 98) y segmento (dentro del dominio: respuesta inválida o EDAD-NO-DETERMINA-CORTE). El conteo ponderado suma FAC_ELE solo cuando el peso es finito y positivo.",
+   "frases": [
+    "enbiare-edades-propuesta.md: «Publicar exclusiones no ponderadas y ponderadas por edad no clasificable y respuestas inválidas junto al n válido en diagnósticos auxiliares separados»"
+   ]
+  },
+  {
+   "id": "D14-PUBLICABILIDAD",
+   "decision": "Publicabilidad de proporciones: n_conocidos = n no ponderado con D·K=1; UPM con conocidos = pares del marco con al menos un conocido; ancho = ic95_sup−ic95_inf; CV = SE/punto. Solo es diagnóstica y no suprime ninguna fila.",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «n_conocidos>=100,UPM con conocidos>=5,ancho<=.20,CV<=.30 para punto>0; punto0 se reporta separado sin división; cualquier réplica no estimable impide publicación»"
+   ]
+  },
+  {
+   "id": "D15-HASH-CONTRATO",
+   "decision": "La columna hash_contrato de diagnosticos-ic-v1.tsv lleva el sha256 de residuales-p3-contrato-ic.md. hash_entrada es el sha256_entrada de identidad y hash_entorno es el sha256 de salida/entorno.txt.",
+   "frases": [
+    "residuales-p3-contrato-ic.md: «columnas […] `hash_contrato`, `hash_entrada`, `hash_entorno`»"
+   ]
+  },
+  {
+   "id": "D16-NIVEL-Y-SEXO-DE-TSDEM-TLOC-DE-TENBIARE",
+   "decision": "SEXO, EDAD y NIVEL salen de TSDEM, unida por la llave única FOLIO+VIV_SEL+HOGAR+N_REN; TLOC sale de TENBIARE, que es la tabla base y además la columna autorizada.",
+   "frases": [
+    "enbiare-metodo-base.md: «SEXO, EDAD, NIVEL de TSDEM por llave `FOLIO`+`VIV_SEL`+`HOGAR`+ `N_REN` (sólo llaves únicas en TSDEM; no pareados en `G-JOIN-SIN-SOCIODEMOGRAFICO`)»"
+   ]
+  }
+ ],
+ "llaves": [
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-18-29-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.023251961751799027",
+   "cv": "0.030147565947376633"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-30-44-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02171227450037691",
+   "cv": "0.029083318645672027"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-45-59-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.023101368941183253",
+   "cv": "0.031258237849202335"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-EDAD-60-MAS-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.027991653205603845",
+   "cv": "0.03767685606837528"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.028760693740695814",
+   "cv": "0.028004418947444272"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02305813415136357",
+   "cv": "0.034355495141786895"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02022643034493421",
+   "cv": "0.02769039218795854"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.024765786438486065",
+   "cv": "0.040764363872076846"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-HOMBRE-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01533711887461331",
+   "cv": "0.02611510348889336"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-SEXO-MUJER-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01702554685271035",
+   "cv": "0.019182037975105332"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-100MIL-MAS-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.018764752093008708",
+   "cv": "0.026999692073339524"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.029197860222342054",
+   "cv": "0.03657361833486387"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-2500-14999-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.032522559564175546",
+   "cv": "0.04098575773641314"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TLOC-MENOS-2500-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.025010170002619042",
+   "cv": "0.029101222794497037"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ANSIEDAD-GAD2-2021-TOTAL-TODOS-P",
+   "conducta": "ansiedad-gad2",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.012063218705914897",
+   "cv": "0.01631713929850275"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-18-29-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.030854245117925394",
+   "cv": "0.02349778944179692"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-30-44-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02601992588704144",
+   "cv": "0.014916171308271158"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-45-59-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.029464651585774493",
+   "cv": "0.013071386743865725"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-EDAD-60-MAS-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03718004152273413",
+   "cv": "0.014280854557051166"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.033110054028816616",
+   "cv": "0.013425663547194364"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03261398912540375",
+   "cv": "0.020707463797663733"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02591859869517421",
+   "cv": "0.013448727784505433"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03329231044383579",
+   "cv": "0.02232751385977502"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-HOMBRE-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.022764980513480915",
+   "cv": "0.013252234958146092"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-SEXO-MUJER-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02148304152679814",
+   "cv": "0.01045382155859438"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-100MIL-MAS-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02323809223854717",
+   "cv": "0.01462333186201013"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.033762751606935426",
+   "cv": "0.017872104652243894"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-2500-14999-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.04846340425295792",
+   "cv": "0.022820224644396807"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TLOC-MENOS-2500-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03942565907910245",
+   "cv": "0.016939957571145838"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ASISTE-SERVICIO-RELIGIOSO-2021-TOTAL-TODOS-P",
+   "conducta": "asiste-servicio-religioso",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.016664847412934003",
+   "cv": "0.008775154540011073"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-18-29-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-30-44-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-45-59-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-EDAD-60-MAS-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-HOMBRE-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-SEXO-MUJER-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-100MIL-MAS-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-2500-14999-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TLOC-MENOS-2500-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-GENTE-CONOCIDA-2021-TOTAL-TODOS-P",
+   "conducta": "confianza-gente-conocida",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-18-29-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-30-44-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-45-59-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-EDAD-60-MAS-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-HOMBRE-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-SEXO-MUJER-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-100MIL-MAS-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-2500-14999-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TLOC-MENOS-2500-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-MAYORIA-GENTE-2021-TOTAL-TODOS-P",
+   "conducta": "confianza-mayoria-gente",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-18-29-P",
+   "conducta": "confianza-partidos",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-30-44-P",
+   "conducta": "confianza-partidos",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-45-59-P",
+   "conducta": "confianza-partidos",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-EDAD-60-MAS-P",
+   "conducta": "confianza-partidos",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "confianza-partidos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "confianza-partidos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "confianza-partidos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "confianza-partidos",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-HOMBRE-P",
+   "conducta": "confianza-partidos",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-SEXO-MUJER-P",
+   "conducta": "confianza-partidos",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-100MIL-MAS-P",
+   "conducta": "confianza-partidos",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "confianza-partidos",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-2500-14999-P",
+   "conducta": "confianza-partidos",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TLOC-MENOS-2500-P",
+   "conducta": "confianza-partidos",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-PARTIDOS-2021-TOTAL-TODOS-P",
+   "conducta": "confianza-partidos",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-18-29-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-30-44-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-45-59-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-EDAD-60-MAS-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-HOMBRE-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-SEXO-MUJER-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-100MIL-MAS-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-2500-14999-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TLOC-MENOS-2500-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CONFIANZA-POLICIA-MUNICIPAL-2021-TOTAL-TODOS-P",
+   "conducta": "confianza-policia-municipal",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-18-29-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.028181583572781777",
+   "cv": "0.010459134653782037"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-30-44-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.024229647156659873",
+   "cv": "0.008507803571570433"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-45-59-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02591537856548143",
+   "cv": "0.009046998762852119"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-EDAD-60-MAS-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.0364716604188936",
+   "cv": "0.013316930004623473"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.031356527135430357",
+   "cv": "0.01202735407337264"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02996825324162844",
+   "cv": "0.010499639130789254"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02608575324550133",
+   "cv": "0.009506551328983709"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02645838027799363",
+   "cv": "0.008270900057454523"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-HOMBRE-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02128187335798004",
+   "cv": "0.007500863792680412"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-SEXO-MUJER-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01990319820900477",
+   "cv": "0.007286037287416069"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-100MIL-MAS-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.023421442680793936",
+   "cv": "0.008035564789265474"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.036135753292085515",
+   "cv": "0.012573422395666273"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-2500-14999-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03846576792746459",
+   "cv": "0.01393294943251301"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TLOC-MENOS-2500-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.030562062378630905",
+   "cv": "0.011372961244223857"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-AMISTADES-2021-TOTAL-TODOS-P",
+   "conducta": "cuenta-apoyo-amistades",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.015095948797046232",
+   "cv": "0.005431351218488997"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-18-29-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.008984083574553603",
+   "cv": "0.0024754770444306556"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-30-44-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01136961590815011",
+   "cv": "0.0030778023692980038"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-45-59-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.014354789532793677",
+   "cv": "0.003902059493857138"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-EDAD-60-MAS-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.014396801257035019",
+   "cv": "0.003919116756593122"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01331497633681844",
+   "cv": "0.00371282984567609"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.012737770167180473",
+   "cv": "0.0035572046343073744"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.011794520737402392",
+   "cv": "0.0032424033950643"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.009732089499481122",
+   "cv": "0.0025647503047897973"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-HOMBRE-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.00841487446101885",
+   "cv": "0.0022558935368947393"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-SEXO-MUJER-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.008977721706047936",
+   "cv": "0.0024193946757256803"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-100MIL-MAS-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.009464370211143991",
+   "cv": "0.002560746891740589"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.015877707740990843",
+   "cv": "0.004198542969320149"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-2500-14999-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.016315861938169474",
+   "cv": "0.004353233110452219"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TLOC-MENOS-2500-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.012584783643362463",
+   "cv": "0.0033510195047286658"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-CUENTA-APOYO-FAMILIA-2021-TOTAL-TODOS-P",
+   "conducta": "cuenta-apoyo-familia",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.006248633931690062",
+   "cv": "0.0017052096831541884"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-18-29-P",
+   "conducta": "depresion-cesd7",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.021048180835702313",
+   "cv": "0.035094393918788144"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-30-44-P",
+   "conducta": "depresion-cesd7",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.019387735845616788",
+   "cv": "0.03310936159254461"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-45-59-P",
+   "conducta": "depresion-cesd7",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02161952035695039",
+   "cv": "0.03533374377134124"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-EDAD-60-MAS-P",
+   "conducta": "depresion-cesd7",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.034630185998302254",
+   "cv": "0.025192878471205774"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "depresion-cesd7",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7656,
+   "ponderado_valido": "19006079.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 2,
+      "ponderado": "6701.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02666669278098449",
+   "cv": "0.023282362538567195"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "depresion-cesd7",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7091,
+   "ponderado_valido": "20613741.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 1,
+      "ponderado": "1380.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02343743715657251",
+   "cv": "0.03877034150491539"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "depresion-cesd7",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9534,
+   "ponderado_valido": "25325503.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 1,
+      "ponderado": "4752.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.021428118531880008",
+   "cv": "0.03164080106528398"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "depresion-cesd7",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6817,
+   "ponderado_valido": "19348267.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 3,
+      "ponderado": "4435.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02186383570475202",
+   "cv": "0.04597705527361272"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-HOMBRE-P",
+   "conducta": "depresion-cesd7",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14253,
+   "ponderado_valido": "39806710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 2,
+      "ponderado": "6607.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01503832270959396",
+   "cv": "0.028115369440676986"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-SEXO-MUJER-P",
+   "conducta": "depresion-cesd7",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16906,
+   "ponderado_valido": "44625958.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 5,
+      "ponderado": "10661.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01817339886771621",
+   "cv": "0.02116534816557097"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-100MIL-MAS-P",
+   "conducta": "depresion-cesd7",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14090,
+   "ponderado_valido": "41432473.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 5,
+      "ponderado": "7670.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02045488487231048",
+   "cv": "0.02943794063053839"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "depresion-cesd7",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.025935967197903642",
+   "cv": "0.03657780991976273"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-2500-14999-P",
+   "conducta": "depresion-cesd7",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4924,
+   "ponderado_valido": "11776771.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 1,
+      "ponderado": "4846.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03187307015504437",
+   "cv": "0.044012496624020875"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TLOC-MENOS-2500-P",
+   "conducta": "depresion-cesd7",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7352,
+   "ponderado_valido": "18926714.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 1,
+      "ponderado": "4752.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.022505729852343087",
+   "cv": "0.028685736450373846"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-DEPRESION-CESD7-2021-TOTAL-TODOS-P",
+   "conducta": "depresion-cesd7",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31159,
+   "ponderado_valido": "84432668.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {
+     "EDAD-NO-DETERMINA-CORTE": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    }
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.012464271671214333",
+   "cv": "0.017665440774413274"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-18-29-P",
+   "conducta": "escalera-cantril",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-30-44-P",
+   "conducta": "escalera-cantril",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-45-59-P",
+   "conducta": "escalera-cantril",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-EDAD-60-MAS-P",
+   "conducta": "escalera-cantril",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "escalera-cantril",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "escalera-cantril",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "escalera-cantril",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "escalera-cantril",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-HOMBRE-P",
+   "conducta": "escalera-cantril",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-SEXO-MUJER-P",
+   "conducta": "escalera-cantril",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-100MIL-MAS-P",
+   "conducta": "escalera-cantril",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "escalera-cantril",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-2500-14999-P",
+   "conducta": "escalera-cantril",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TLOC-MENOS-2500-P",
+   "conducta": "escalera-cantril",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-ESCALERA-CANTRIL-2021-TOTAL-TODOS-P",
+   "conducta": "escalera-cantril",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-18-29-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-30-44-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-45-59-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-EDAD-60-MAS-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-HOMBRE-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-SEXO-MUJER-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-100MIL-MAS-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-2500-14999-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TLOC-MENOS-2500-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-SATISFACCION-VIDA-2021-TOTAL-TODOS-P",
+   "conducta": "satisfaccion-vida",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "NO-RECALCULABLE-DESDE-SPEC",
+   "nota_n_valido": "n_valido y exclusiones calculados bajo la validez 0–10 de la spec de media; no hay punto",
+   "publicabilidad": "NO-APLICA-SIN-PUNTO (medias 0..10: SIN-REGLA-PUBLICABILIDAD-ADOPTADA)"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-18-29-P",
+   "conducta": "tiene-religion",
+   "eje": "EDAD",
+   "segmento": "18-29",
+   "n_dominio": 7723,
+   "n_valido": 7723,
+   "ponderado_valido": "24126945.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.027402964110272876",
+   "cv": "0.009806413458806352"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-30-44-P",
+   "conducta": "tiene-religion",
+   "eje": "EDAD",
+   "segmento": "30-44",
+   "n_dominio": 10087,
+   "n_valido": 10087,
+   "ponderado_valido": "25654343.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02063815929719459",
+   "cv": "0.006521158382172957"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-45-59-P",
+   "conducta": "tiene-religion",
+   "eje": "EDAD",
+   "segmento": "45-59",
+   "n_dominio": 7726,
+   "n_valido": 7726,
+   "ponderado_valido": "21257549.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.019557773491787667",
+   "cv": "0.005859788985469281"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-EDAD-60-MAS-P",
+   "conducta": "tiene-religion",
+   "eje": "EDAD",
+   "segmento": "60-MAS",
+   "n_dominio": 5623,
+   "n_valido": 5623,
+   "ponderado_valido": "13393831.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-EDAD-CODIGO-98-FUERA-DE-TRAMO": {
+      "n": 7,
+      "ponderado": "17268.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.021294111321080167",
+   "cv": "0.005917006825310897"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-HASTA-PRIMARIA-P",
+   "conducta": "tiene-religion",
+   "eje": "ESCOLARIDAD",
+   "segmento": "HASTA-PRIMARIA",
+   "n_dominio": 7658,
+   "n_valido": 7658,
+   "ponderado_valido": "19012780.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.019569388912773045",
+   "cv": "0.00592775291402607"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-MEDIA-SUPERIOR-P",
+   "conducta": "tiene-religion",
+   "eje": "ESCOLARIDAD",
+   "segmento": "MEDIA-SUPERIOR",
+   "n_dominio": 7092,
+   "n_valido": 7092,
+   "ponderado_valido": "20615121.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02648904233246341",
+   "cv": "0.008625278128589648"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SECUNDARIA-P",
+   "conducta": "tiene-religion",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SECUNDARIA",
+   "n_dominio": 9535,
+   "n_valido": 9535,
+   "ponderado_valido": "25330255.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.020506214062597228",
+   "cv": "0.006371379854551519"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-ESCOLARIDAD-SUPERIOR-P",
+   "conducta": "tiene-religion",
+   "eje": "ESCOLARIDAD",
+   "segmento": "SUPERIOR",
+   "n_dominio": 6820,
+   "n_valido": 6820,
+   "ponderado_valido": "19352702.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {
+     "EJE-NIVEL-NO-CLASIFICABLE-CODIGO-99": {
+      "n": 61,
+      "ponderado": "139078.0"
+     }
+    },
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.029735902492133537",
+   "cv": "0.00940703458461823"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-HOMBRE-P",
+   "conducta": "tiene-religion",
+   "eje": "SEXO",
+   "segmento": "HOMBRE",
+   "n_dominio": 14255,
+   "n_valido": 14255,
+   "ponderado_valido": "39813317.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.018319289849172304",
+   "cv": "0.006064806181343875"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-SEXO-MUJER-P",
+   "conducta": "tiene-religion",
+   "eje": "SEXO",
+   "segmento": "MUJER",
+   "n_dominio": 16911,
+   "n_valido": 16911,
+   "ponderado_valido": "44636619.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.016217889656961804",
+   "cv": "0.004883605110813708"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-100MIL-MAS-P",
+   "conducta": "tiene-religion",
+   "eje": "TLOC",
+   "segmento": "100MIL-MAS",
+   "n_dominio": 14095,
+   "n_valido": 14095,
+   "ponderado_valido": "41440143.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.019807232601889657",
+   "cv": "0.006354818312198898"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-15MIL-99MIL-P",
+   "conducta": "tiene-religion",
+   "eje": "TLOC",
+   "segmento": "15MIL-99MIL",
+   "n_dominio": 4793,
+   "n_valido": 4793,
+   "ponderado_valido": "12296710.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.026440304040907914",
+   "cv": "0.008108912743805128"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-2500-14999-P",
+   "conducta": "tiene-religion",
+   "eje": "TLOC",
+   "segmento": "2500-14999",
+   "n_dominio": 4925,
+   "n_valido": 4925,
+   "ponderado_valido": "11781617.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.03247993115505954",
+   "cv": "0.009776988194505142"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TLOC-MENOS-2500-P",
+   "conducta": "tiene-religion",
+   "eje": "TLOC",
+   "segmento": "MENOS-2500",
+   "n_dominio": 7353,
+   "n_valido": 7353,
+   "ponderado_valido": "18931466.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.02839253563347055",
+   "cv": "0.008618083272849634"
+  },
+  {
+   "llave": "RESULT-ENBIARE-PISOS-BIENESTAR-TIENE-RELIGION-2021-TOTAL-TODOS-P",
+   "conducta": "tiene-religion",
+   "eje": "TOTAL",
+   "segmento": "TODOS",
+   "n_dominio": 31166,
+   "n_valido": 31166,
+   "ponderado_valido": "84449936.0",
+   "exclusiones": {
+    "universo": {},
+    "eje": {},
+    "segmento": {}
+   },
+   "estado": "RECONSTRUIDO",
+   "publicabilidad": "PUBLICABLE",
+   "ancho_ic": "0.01328040775300432",
+   "cv": "0.004035968872118771"
+  }
+ ]
+}
