@@ -1,0 +1,232 @@
+{
+ "corrida_id": "CALC-ALT-M19-ENCUCI2020-0001--28ae5b96ddbc",
+ "dependencias_materiales": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyreadstat": "1.3.6",
+  "scipy": "1.16.3",
+  "yaml": "6.0.3"
+ },
+ "dependencias_materiales_calc": {
+  "numpy": "2.3.5",
+  "pandas": "2.3.3",
+  "pyarrow": "25.0.1"
+ },
+ "error": null,
+ "etiquetas": {
+  "acto": "GEN2-CALC-ALTERNOS-LOTE-1",
+  "adopta": "NO",
+  "cuenta_gen2": "SI",
+  "dominio": "confianza",
+  "fila_mapa": 53,
+  "generacion": "GEN2",
+  "holdout_gastado": "M19",
+  "marca_temporal": "RETROSPECTIVA",
+  "momento": "M19",
+  "ola": "2020",
+  "origen_numerico": "MICRODATO",
+  "retador": "NO",
+  "theta": "NO",
+  "tipo": "PISO-DESCRIPTIVO"
+ },
+ "exit_code": 0,
+ "fecha": "2026-09-28T19:58:47Z",
+ "firma_entorno": {
+  "acceso_corpus": {
+   "archivos_examinados": 515,
+   "montado": "SI",
+   "primera_entrada": ".claude"
+  },
+  "dependencias_materiales": {
+   "numpy": "2.3.5",
+   "pandas": "2.3.3",
+   "pyreadstat": "1.3.6",
+   "scipy": "1.16.3",
+   "yaml": "6.0.3"
+  },
+  "git_commit": "28ae5b96ddbc9a709e11a6af5443f2572612181a",
+  "git_rama": "acto/gen2-calc-alternos-lote-1",
+  "git_status": "SUCIO",
+  "git_status_lineas": 1,
+  "plataforma": "Linux-6.18.33.2-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+  "python": "3.14.4",
+  "python_implementacion": "CPython",
+  "raices_logicas": [
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "data_raw"
+   },
+   {
+    "config_sha256": "86286af969a9589add0c449f597efe82516a36ea00a910114fdde59dd6167686",
+    "configurada": "SI",
+    "raiz_logica": "descargas_mx"
+   }
+  ],
+  "sonda_red": {
+   "ejecutada": "NO",
+   "nota": "sonda opt-in (--sonda-red): no se prueba red que nadie pidio"
+  },
+  "variables_entorno": {
+   "CHECK_SELFCHECK_CHILD": "sin_variable",
+   "CLAUDE_CODE_REMOTE_ENVIRONMENT_TYPE": "sin_variable",
+   "MODELADO_RAICES": "sin_variable",
+   "PYTHONHASHSEED": "sin_variable",
+   "TZ": "sin_variable"
+  }
+ },
+ "git_commit": "28ae5b96ddbc9a709e11a6af5443f2572612181a",
+ "input_ids": [
+  "encuci2020_bd_dbf",
+  "CORPUS-LOADER",
+  "SPEC-HUMANA"
+ ],
+ "input_sha256": {
+  "CORPUS-LOADER": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "SPEC-HUMANA": "f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be",
+  "encuci2020_bd_dbf": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283"
+ },
+ "parametros": {
+  "bootstrap_replicas": 2000,
+  "contrastes": [
+   {
+    "celda_a": "policia=CONFIA-POLICIA",
+    "celda_b": "policia=NO-CONFIA-POLICIA",
+    "clave": "sin_puente_policia_confia_menos_no",
+    "item": "confia_mayoria_sin_puente"
+   }
+  ],
+  "corpus_loader_sha256": "84ec626c947450bad98618ab1a4e5a2041016f2c9229023dde86eb3cd55b0019",
+  "cruces": [
+   [
+    "policia",
+    "dominio"
+   ]
+  ],
+  "diferencias": [
+   {
+    "a": "confia_conocidos_con_puente",
+    "b": "confia_mayoria_sin_puente",
+    "clave": "puente_menos_sin_puente"
+   }
+  ],
+  "diseno": {
+   "estrato": "EST_DIS",
+   "peso": "FAC_SEL",
+   "upm": [
+    "UPM_DIS"
+   ]
+  },
+  "grupos": [
+   {
+    "clave": "policia",
+    "niveles": {
+     "CONFIA-POLICIA": [
+      1,
+      2
+     ],
+     "NO-CONFIA-POLICIA": [
+      3,
+      4
+     ]
+    },
+    "variable": "AP5_3_3"
+   },
+   {
+    "clave": "dominio",
+    "niveles": {
+     "COMPLEMENTO-URBANO": [
+      "C"
+     ],
+     "RURAL": [
+      "R"
+     ],
+     "URBANO": [
+      "U"
+     ]
+    },
+    "variable": "DOMINIO"
+   }
+  ],
+  "hash_payload_sha256": "0414fd59e2afcc36294530687c721e8e86bd04e76ad95bfce4b7b2e70853f283",
+  "items": [
+   {
+    "clave": "confia_mayoria_sin_puente",
+    "evento": [
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     99
+    ],
+    "validos": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "AP5_1_1"
+   },
+   {
+    "clave": "confia_conocidos_con_puente",
+    "evento": [
+     8,
+     9,
+     10
+    ],
+    "faltantes": [
+     99
+    ],
+    "validos": [
+     0,
+     1,
+     2,
+     3,
+     4,
+     5,
+     6,
+     7,
+     8,
+     9,
+     10
+    ],
+    "variable": "AP5_1_2"
+   }
+  ],
+  "n_minimo": 30,
+  "payload_id": "encuci2020_bd_dbf",
+  "result_filas": "RESULT-ALT-M19-ENCUCI2020-FILAS",
+  "result_tabla": "RESULT-ALT-M19-ENCUCI2020-TABLA",
+  "tabla": "ENCUCI_2020_SEC_4_5",
+  "universo_filtros": []
+ },
+ "python_version": "3.14.4",
+ "resultado_ids": [
+  "RESULT-ALT-M19-ENCUCI2020-FILAS",
+  "RESULT-ALT-M19-ENCUCI2020-TABLA"
+ ],
+ "script_blob_sha256": "ce29f509600449352271d1d42f841fe9c1045ac851f51889ce8fafc3dff86cab",
+ "script_path": "data/corrida0/CALC-ALT-M19-ENCUCI2020-0001/medidor.py",
+ "seed": {
+  "aplica": true,
+  "rng": "numpy.PCG64",
+  "valor": 20260928
+ },
+ "spec_id": "CALC-ALT-M19-ENCUCI2020-0001",
+ "spec_md_estado": "NO-EN-MAIN",
+ "spec_md_sha256": "f9d345c3ca9adbd39e9b88402a3e6cc53c22bcd5a1c3bed4e2147d1470f805be",
+ "spec_yaml_sha256": "0ebf9f6f48dd19a47be65f3a3fd57c5dfb2e4d48b2c761b9df5f3e1eb8bf89b2",
+ "tolerancia": {
+  "abs": 1e-10,
+  "razon": "bootstrap fijado por semilla; sumas en orden fijo",
+  "tipo": "flotante"
+ }
+}
