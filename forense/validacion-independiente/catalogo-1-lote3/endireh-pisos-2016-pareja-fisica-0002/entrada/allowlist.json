@@ -1,0 +1,125 @@
+{
+  "autorizacion": [
+    "FP-260926-ASTRA6-C1-REEMPAQUETA-VENTANA-1-ee49-02",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-02",
+    "FP-260928-GEN2-ASTRA-CONTINUIDAD-C1-1-26a2-01"
+  ],
+  "fuente_datos": {
+    "miembros": [
+      "TB_SEC_XIII.csv",
+      "TSDem.csv"
+    ],
+    "zip": "endireh2016/bd_mujeres_endireh2016_sitioinegi_csv.zip",
+    "zip_sha256": "02c06ab73a53942ddb575e3e35d8c1dd775406277b74e0605735e3eced4e6f10"
+  },
+  "herramientas": [
+    "Bash",
+    "Read",
+    "Write",
+    "Edit",
+    "Glob",
+    "Grep"
+  ],
+  "input_files": [
+    {
+      "path": "paquete/CONTRATO-v3.md",
+      "sha256": "821a5ecb762eff1f563964a72f1e794b2899e57f66c1f62a28aae008552194eb"
+    },
+    {
+      "path": "paquete/datos/TB_SEC_XIII.csv",
+      "sha256": "99af735c4a49aca1c86ae05e2e54196588fe4e4292d71857f4ddcca266005e66"
+    },
+    {
+      "path": "paquete/datos/TSDem.csv",
+      "sha256": "48837318a76897e6fce33c11613f74fb7b2e049c0818a8692b8e0ed36cb4e84c"
+    },
+    {
+      "path": "paquete/encargo.md",
+      "sha256": "6506e954bc53edcafe0f7b05fd1c4068fd2b7b5277d21da559d6685741189a15"
+    },
+    {
+      "path": "paquete/endireh2016_cuestionario_a_pdf-semantica.json",
+      "sha256": "4d9357f8310a986c151a6467f592a554bc27aec3853b8313e371815022ef5cbe"
+    },
+    {
+      "path": "paquete/endireh2016_cuestionario_b_pdf-semantica.json",
+      "sha256": "4caeff6d0349b30220e3076161325a44e78e364fecf4f3182f9400d58adf4873"
+    },
+    {
+      "path": "paquete/endireh2016_cuestionario_c_pdf-semantica.json",
+      "sha256": "e24b7933a4a79785481d859ca9a42bb0a79e76e755adbca3f33d40eeca6e63e8"
+    },
+    {
+      "path": "paquete/esquema.json",
+      "sha256": "bab9a0edda055a9657cfdd4fe37bd4ef9f987b8368c5c0d5a92aa606a655ef66"
+    },
+    {
+      "path": "paquete/estimandos.tsv",
+      "sha256": "093926545b1b3700be11f1aec689e86318342a2944f14b604f2bb170c36822bb"
+    },
+    {
+      "path": "paquete/fd-endireh2016.xlsx",
+      "sha256": "b4b2359806d50922403d50ebc764a1f54b8265c864c37df92e0a6e631dbd35e9"
+    },
+    {
+      "path": "paquete/fd2016-TB_SEC_XIII.json",
+      "sha256": "0a146e68e8d7d7cfa1ab8c1ca13748d13e4b55fb0dea4ac011719b4a1f4102ec"
+    },
+    {
+      "path": "paquete/fd2016-TSDem.json",
+      "sha256": "4e88f393ac26981a0c92bc75f241673103cc89f90fd3d29ed7a94af8bccdd570"
+    },
+    {
+      "path": "paquete/insumos.json",
+      "sha256": "e9003d6961c0d7ae5874e93b6e9821344748f82360782a42f74fe0a7d6871e48"
+    },
+    {
+      "path": "paquete/manifiesto.json",
+      "sha256": "fd3320e4ee3d0845da955a3df133bd3baae41e45879c3894076f1437064bf265"
+    },
+    {
+      "path": "paquete/metodo.md",
+      "sha256": "f56038a11a7c0388b634a5c44cf76453139bfb27828f231d627d32ebac50441b"
+    },
+    {
+      "path": "paquete/tolerancia.json",
+      "sha256": "ad9a5df3160815e6746ca546a14554b24756c8e544621b9d1f0b284c3d0cd58b"
+    }
+  ],
+  "lanzador_sha256": "63a588afdaae62f08d309e9ff978ec9935a0011c9e098cf421c9a831f2c35350",
+  "max_total_output_bytes": 33554432,
+  "modelo": "claude-opus-5-5",
+  "output_files": [
+    {
+      "max_bytes": 4194304,
+      "path": "resultado.json"
+    },
+    {
+      "max_bytes": 8388608,
+      "path": "diagnostico.json"
+    },
+    {
+      "max_bytes": 1048576,
+      "path": "codigo/reconstruye.py"
+    },
+    {
+      "max_bytes": 65536,
+      "path": "entorno.txt"
+    },
+    {
+      "max_bytes": 65536,
+      "path": "archivos-leidos.txt"
+    },
+    {
+      "max_bytes": 1048576,
+      "path": "insuficiencias.md"
+    },
+    {
+      "max_bytes": 65536,
+      "path": "SELLO.txt"
+    }
+  ],
+  "prompt_sha256": "783a1b76da4039701ecaf2bbe6cd2a4a4411fb031f6607733933a05cad87cfe3",
+  "settings_sha256": "07cf8a751a9adcfb415d4c141983905eaff70a1d05e9c43421482a096962ffad",
+  "version": 1
+}
