@@ -1,19 +1,15 @@
-# ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1
+# ASTRA6-C1-EJECUTOR-AISLADO-3
 
-ARCHIVO: 02-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1.md
+ARCHIVO: 01-ASTRA6-C1-EJECUTOR-AISLADO-3.md
 Fecha: 27/sep/2026 CDMX · tanda5.
 Corte de dirección: ffa1df15043befac6abdf0fdafdf2f86382f3186. No equivale al SHA de redacción del futuro acto.
 CONTADOR: sin incremento por preparación/editorial/diagnóstico.
 
 ## 1 · OBJETIVO Y HECHO
 
-Tres reports completos sobre autoridad, comportamiento cívico y ruralidad/comunalidad. Sustituir explicaciones nacionales generales por conclusiones con población, institución y alcance identificados. Hecho: tres homónimos v2 íntegros, tablas por afirmación, evidencia primaria y reglas propuestas defendibles.
+Completar el trayecto que #1221 deja sin acreditar: entorno de ejecución real, contexto nuevo y runtime científico, con exportación íntegra de artefactos y contrato de estados suficiente. Entregar un ejecutor utilizable y demostrar el circuito completo con datos sintéticos. No iniciar todavía reconstrucciones del catálogo.
 
-Entorno: NUBE/CLI con documentos y literatura permitida; sin microdato. Originales exactos:
-
-- `corpus/reports/Autoridad_y_jerarquía_en_el_México_contemporáneo__anatomía_psicológica_de_un_sistema_dual.md` · blob de referencia `ccc69a348f34fd6457b81797ee9e7fe7f36d6378`.
-- `corpus/reports/El_México_Rural_e_Indígena_en_sus_Propios_Términos__Comunalidad__Autoridad_y_Reciprocidad_como_Sistemas_con_Lógica_Propia.md` · blob de referencia `487b1a8baf643851b82d4ef19eb37a5cd8b815cf`.
-- `corpus/reports/Psicología_Política_y_Comportamiento_Cívico_del_Mexicano_Contemporáneo__Una_Lectura_Anti-Esencialista_desde_Abajo__2026_.md` · blob de referencia `24103b6ae61db38323506c4d4ba743b163400201`.
+Entorno: CAJA/CLI, con capacidades de aislamiento ya autorizadas. Hecho: proceso y sesión nuevos que solo reciben entrada permitida, canarios efectivos desde ese proceso, salida propia congelada antes de comparación y diagnósticos exportados sin truncamiento; versión de contrato fijada antes de pruebas finales. No basta volver a ejecutar el mismo probe bloqueado ni añadir un README de instrucciones.
 
 ## 2 · FIRMA, AUTONOMÍA Y ARRANQUE
 
@@ -29,28 +25,23 @@ Arrancar desde main actual; declarar worktree absoluto, rama, HEAD y estado. Lee
 
 ## 4 · YA HECHO Y ALCANCE ESPECÍFICO
 
-Estos homónimos v2 no existen al corte consultado. La lectura dirigida de los comienzos de los originales identifica los puntos que siguen; el ejecutor debe leerlos completos, no basarse en este extracto.
+#1221 aporta materialización por allowlist y un adaptador estructural, no un agente remoto aislado. Su frontera admite solo biblioteca estándar de Python, no NumPy; /salida es efímero y la exportación es stdout/stderr. En la caja probada bubblewrap falla al crear NETLINK_ROUTE. La conexión de sesión remota y su memoria requieren implementación y evidencia propias.
 
-Autoridad: el original usa Hofstede/GLOBE para caracterizar autoridad nacional. Separar agregados de país, muestras organizacionales, preferencias declaradas y conducta; no pasar de país a persona. No dar por probado que deferencia pública sea resistencia estratégica ni obediencia internalizada.
-
-Civismo: conservar la nota FP-57 sobre «ni broker» y su estado histórico. Confianza en instituciones, participación electoral y legitimidad no son el mismo estimando. Diferencias de participación entre elecciones no identifican por sí mismas motivos ni prueban que sean exactamente los mismos individuos. Revisar fechas, denominadores y alcance de inferencias de racionalidad.
-
-Comunalidad: rural, indígena, lengua, autoadscripción y sistema normativo no son equivalentes. Delimitar comunidad/municipio/periodo de etnografías y datos; no generalizar prácticas de Sierra Norte, Oaxaca o Cherán al conjunto nacional. Separar autoridad formal, participación efectiva y distribución por género/edad. No convertir resultados educativos o económicos en deficiencia psicológica ni idealizar la reciprocidad como ausencia de conflicto.
+#1229 ya corrigió los alias y separó diagnósticos. Sus pruebas fijan por hash el adaptador 228d2897b0e2a85f3a64c107e4f0691ef26ff44086fbb87f9e03a92d14593fd2 y contrato 78a44e2ab1b8cb07c8374e3e3ef265fa827d0b3af291f0cf06089a4402c6f19d. No deshacerlos. Falta representar con veracidad denominador cero bajo spec suficiente y otros resultados no estimables; no usar insuficiencia de spec para todo. Las 859 ventanas y 312 residuales siguen con permisos/contratos propios. No sumar estos conjuntos ni declararlos listos.
 
 ## 5 · PIEZAS
 
-P1. Leer íntegros los originales en bloques y el mapa vigente por report. Cubrir cada afirmación material original, incluidas las que falten en el mapa. Separar cláusulas compuestas; asignar CONFIRMA/MATIZA/ROMPE/SIN-CIFRA con razón y evidencia específica. Falta de dato no refuta una tesis; un mecanismo compatible no queda identificado por una correlación. No copiar el dictamen del mapa como juicio automático ni decidir por rango de líneas. Preservar correcciones históricas ya incorporadas al original.
+P1. Diagnosticar una vez el impedimento real del entorno y seleccionar una ruta autorizada que pueda cumplir la separación: namespaces disponibles, contenedor o VM dedicada. Una denegación de sandbox no autoriza sortearla por otro canal, elevar privilegios ni modificar seguridad global del host. Si falta capacidad administrativa, terminar el paquete portable y la especificación exacta de provisión; solicitar solo esa acción concreta al cierre. No repetir el mismo fallo como si fuera un producto nuevo. Instalar dependencias solo dentro del entorno propio permitido.
 
-P2. Escribir cada report v2 completo con estructura Bloque B: resumen, evidencia por tier, patrones y segmentos, causas/estructura/adaptación, comparación internacional, implicaciones, mitos, síntesis, reglas SI–ENTONCES y auditoría final. Un report no medible también termina completo con narrativa fundada y límites; no usar SIN-CIFRA como excusa para entregar un cascarón. Mantener el idioma y nombres de salida coherentes con el original.
+P2. Implementar runtime con versiones y hashes fijados para NumPy y las bibliotecas necesarias para los contratos previstos. Permitir únicamente código/runtime inspeccionado y entrada explícita; nada de HOME, credenciales, git, corpus amplio o resultados históricos. El orquestador conserva las credenciales y transporta al proveedor únicamente el prompt y archivos autorizados. La sesión nueva no hereda esta conversación, memoria, documentos de dirección ni referencias. Registrar configuración verificable del contexto y herramientas; un subprocess nuevo no demuestra por sí solo una conversación nueva. Utilizar únicamente una cuenta/proveedor ya disponible y autorizado; no inventar acceso ni pedir claves en texto.
 
-P3. Toda cifra propia debe enlazar RESULT/CALC, fila/celda/hash, unidad, población, ola, denominador y adopción vigente. Consultar catálogo/decisiones/recibos por identidad; no inferir aceptación por estar en main. Aplicar suspensiones y acotaciones vigentes. Separar coincidencia puntual, reconstrucción de incertidumbre y validez inferencial. #1222 bloquea inferencia de esa candidata ENOE, no todas las cifras ENOE. #1229 prepara nuevos contratos, no valida los puntos históricos. No usar valores vetados ni suspendidos como piso firme; provisional permitido solo rotulado y con la reserva que le corresponde.
+P3. Completar salida de archivos: exportar JSON comparado, código y diagnósticos con nombres seguros, límites explícitos, hashes y comprobación de integridad. /salida no persistente de v2 no sirve para entregar TSV extensos. No montar el clon para resolverlo. Diseñar el canal de extracción controlada para que el orquestador reciba bytes, sin conceder lecturas adicionales al reconstructor. Rechazar salidas incompletas/truncadas y congelar todos los objetos antes de referencia.
 
-P4. Leer literatura primaria pertinente a las tesis centrales y actualizar 2025–2026 cuando exista evidencia autorizada. Guardar URL/DOI, fecha, población, método y localizador verificable; un abstract o snippet no acredita contenido no leído. Etiquetar (a) evidencia mexicana, (b) diáspora, (c) marco importado. Antes de abrir una publicación con cifras de una ola, revisar reserva por instrumento/módulo/alcance: que sea pública no basta. No abrir ENADID2023/ENASEM2024/ENIGH2024/ENVIPE2026 u otra reserva para actualizar cifras sin permiso aplicable. Usar fuentes permitidas y declarar el límite puntual.
+P4. Contrato sucesor v3 mínimo para estados genuinos: distinguir insuficiencia humana, acceso bloqueado, denominador cero con spec suficiente, estimación puntual sin inferencia identificada e IC calculado. Conservar punto útil cuando solo IC está bloqueado. No convertir null en cero o AUSENTE; no atribuir una causa que no ocurrió. Si v2 ya puede expresar un caso sin mentir, reutilizarlo. Entregar mapa v2→v3 sin cambios numéricos/tolerancias, guardas de ambigüedad y una spec de salida única. v2 y los contenedores sellados quedan intactos; entregar delta de integración, no reescribirlos. La versión se fija antes de cualquier intento real posterior.
 
-P5. Productor de tablas e índice desde decisiones editoriales explícitas. Verificador dirigido a cobertura, denominadores, cifras sin respaldo, vetos y correspondencia prosa–tabla; no clasifica semántica con regex ni cuenta todos los dígitos como cifras de México. Revisar manualmente todas las ROMPE, comparaciones principales y mecanismos centrales. Entregar tabla de cambios de tesis y reglas propuestas con consumidor posible, condición y falsador; sin crear reglas para llenar cuota ni adoptarlas en motor.
+P5. Prueba completa en una sesión nueva con sintéticos: media/proporción, IC con NumPy, dominio vacío, punto con incertidumbre no identificada y artefacto auxiliar extenso. Canarios desde la frontera real: lectura permitida, escritura de entrada denegada, secreto ficticio externo inaccesible, TCP/UDP ajenos denegados y permisos de exportación limitados. Pruebas TAR con allowlist válida para que rechazo de traversal/enlaces/duplicados no se deba trivialmente a lista vacía. Inyectar alteración posterior al sello y truncamiento; ambos deben rechazarse. Probar compatibilidad con los formatos v2 de las cuatro cohortes usando exclusivamente referencias sintéticas.
 
-P6. Cierre por report y por lote: cobertura real, fuente principal de cada conclusión, qué se sostiene, qué cambia y qué falta. Las cifras externas son evidencia externa, no RESULT propios. Conservar trazabilidad del original y no reemplazar párrafos por listas de cautelas. El lector debe poder usar el report para entender el dominio aunque ninguna regla nueva sea adoptable. C1 abierto no bloquea el producto editorial; si una decisión posterior afecta una tesis, corregir esa tesis por sucesor.
-
+P6. Entregar una orden de lanzamiento futura completamente parametrizada y una matriz de gates por cohorte: APTO-TECNICAMENTE, CONTEXTO-NUEVO-ACREDITADO, CONTRATO-FIRMADO y ACCESO-AUTORIZADO, por separado. Si falta infraestructura, marcar exactamente lo no ejecutado y dejar bundle invocable para esa capacidad; no declarar completada la demostración real. No abrir microdato ni hacer un intento de C1 real en este encargo. No reasignar retrospectivamente ceguera al lote2.
 
 ## 6 · LATITUD
 
@@ -66,7 +57,7 @@ Comprobar el producto contra los criterios del encargo, las reservas vigentes y 
 
 ## 9 · PERÍMETRO
 
-Escribir únicamente los homónimos exactos de estos originales en `corpus/reports-v2/` y `forense/analisis/reports-v2/autoridad-civismo-comunalidad-1/` (subdirectorio por report y cierre local). No editar v1, los 17 v2 existentes, otros lotes, mapa, índice global, catálogo, CALC, sellos, manifiesto, motor, CI o derivados. Los productores/editoriales viven en el expediente propio. Registros comunes de cierre solo por acto propio.
+tools/validacion/astra6_ejecutor_v3/ y forense/validacion-independiente/catalogo-1-ejecutor-v3/. Escritura de entorno efímero propio, sin cambios globales del host. Lectura dirigida de #1221/#1229 y contratos. No editar aislamiento_v2/, entradas residuales v2, intentos anteriores, resultados, sellos, permisos, CI, catálogo o motor.
 
 ## 10 · CIERRE Y RECIBO
 
@@ -182,12 +173,10 @@ La tabla de responsabilidades y secuencia de la propuesta (§6) se adopta tal cu
 
 ## NO-CORRIDO / RESERVAS
 
-| Pendiente | Razón | Impacto | Sucesor |
-|---|---|---|---|
-| Recibo técnico independiente y decisión sobre reglas propuestas | DECISIÓN-DE-MESA-PENDIENTE | No se acredita recepción externa ni adopción por el ejecutor | `GEN2-RECIBO-ASTRA-PRODUCTO-N`; `FP-260927-ASTRA6-C3-AUTORIDAD-CIVISMO-COMUNALIDAD-1-3a1f-01` |
-
-Las olas reservadas permanecieron sin abrir. Ninguna cifra o regla se adoptó por este cierre editorial.
+| Qué | Razón | Sucesor |
+|---|---|---|
+| Sesión nueva de proveedor y C1 real | No existe broker de proveedor acreditado en esta caja; el cliente y su protocolo pasaron solo prueba sintética. Tampoco hay autorización de acceso por paquete ni firma material de v3. | Provisionar broker de la cuenta ya disponible, acreditar contexto/herramientas/entrada por recibo, firmar contrato y autorizar acceso por cohorte/paquete antes de un lanzamiento real. |
 
 ## CONSUMIDO
 
-EJECUTADO en el worktree `/home/pc0/mm-astra6-c3-autoridad-civismo-comunalidad-1`, raíz de archivo 0-bis `3a1f0be1`, producto `375d671d`, PR [#1240](https://github.com/Josanoforo/Modelado-Mexicano/pull/1240). Corte de entrada `7748208614570a50a97c1ba830aee72a972185f9`; integración posterior de `origin/main` `eda5bb9f871a85613cfb4eda7d40dc741e55d0b5` sin conflicto en producto. Tres reports, tablas, índice local, hoja y recibo solicitado; no fusión ni autoaprobación. La firma de misión de Jonás sigue asentada en `forense/encargos/2026-09-26-ASTRA6-C3-SOCIAL-1.md` §2 y no se duplica. El SHA-256 crudo del cuerpo recibido `8d84587787d00ba3fbeb479dcc749c6e83e47386f6afffa47ed3bb3bbe100124` permanece en el manifiesto de tanda5 y los bytes iniciales de este archivo son los de #1237.
+Producto técnico y prueba sintética ejecutados en rama `codex/astra6-c1-ejecutor-v3-1`, base real de redacción `7748208614570a50a97c1ba830aee72a972185f9`, contrato fijado en `ea302f89`. PR #1241 abierto. La recepción independiente queda pendiente; no hubo fusión propia, microdato, validación ciega real ni incremento de contador.
