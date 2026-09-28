@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""arma_dictamen.py -- ACTO GEN2-PENDIENTES-3: arma `dictamen.tsv` y
+"""arma_dictamen.py -- ACTO GEN2-PENDIENTES-3: arma `dictamen-pendientes-3.tsv` y
 `decididas-por-delegacion.tsv` a partir de la evidencia por fila
 (`evidencia/prop-A*.tsv`, recolectada por ejecutores de lectura) y de la
 ADJUDICACIÓN del auditor, que vive aquí como código: reglas por propuesta más
@@ -193,7 +193,7 @@ def main():
                     val if acc == "CERRAR" else "", val if acc == "DUENO" else "", porque])
         if p["propuesta"] == "DECIDIR-REVERSIBLE":
             dele.append([p["id"], "CIERRA" if acc == "CERRAR" else "DUEÑO-MESA", limpia(p["nota"])[:600]])
-    with open(os.path.join(AQUI, "dictamen.tsv"), "w", encoding="utf-8") as fh:
+    with open(os.path.join(AQUI, "dictamen-pendientes-3.tsv"), "w", encoding="utf-8") as fh:
         fh.write("id\tpropuesta_evidencia\taccion\tcerrado_por\tnuevo_sucesor\tporque\n")
         for r in out:
             fh.write("\t".join(r) + "\n")

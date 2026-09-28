@@ -1,6 +1,6 @@
 # Hoja para mesa · GEN2-PENDIENTES-3 · 28/sep/2026
 
-Derivada de `dictamen.tsv` y `evidencia/prop-A*.tsv`. Todo lo reversible ya se decidió por delegación (`decididas-por-delegacion.tsv`); aquí sólo queda lo irreversible (D-19) y lo que exige identidad real. Todas estas filas siguen ABIERTAS con dueño `MESA (2026-10-05)`.
+Derivada de `dictamen-pendientes-3.tsv` y `evidencia/prop-A*.tsv`. Todo lo reversible ya se decidió por delegación (`decididas-por-delegacion.tsv`); aquí sólo queda lo irreversible (D-19) y lo que exige identidad real. Todas estas filas siguen ABIERTAS con dueño `MESA (2026-10-05)`.
 
 ## 1 · Irreversibles, con opciones (13)
 

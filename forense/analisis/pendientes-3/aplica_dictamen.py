@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""aplica_dictamen.py -- ACTO GEN2-PENDIENTES-3: aplica `dictamen.tsv` sobre
+"""aplica_dictamen.py -- ACTO GEN2-PENDIENTES-3: aplica `dictamen-pendientes-3.tsv` sobre
 `forense/no-corrido.tsv`, POR LÍNEA (el módulo csv corrompe filas ajenas al
 reescribir: ver hallazgos de FP29-RECONCILIA y CAJA-REACTIVOS-FD-1).
 
@@ -19,7 +19,7 @@ import sys
 
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 NC = os.path.join(RAIZ, "forense", "no-corrido.tsv")
-DICT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dictamen.tsv")
+DICT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dictamen-pendientes-3.tsv")
 FECHA = "2026-09-28"
 
 
