@@ -763,6 +763,8 @@ def cobertura(lista: list[dict], get: Calcs) -> list[dict]:
         s = d / "spec.yaml"
         if not (s.exists() and (d / "sello.json").exists()):
             continue
+        if d.name.startswith("CALC-ALT-"):  # serie de GEN2-CALC-ALTERNOS-LOTE-1, posterior al corte publicado
+            continue
         txt = s.read_text()
         if re.search(r"cuenta_gen2:\s*['\"]?SI\b", txt):
             gen2.append(d.name)
