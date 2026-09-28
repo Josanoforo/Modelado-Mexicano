@@ -41,3 +41,13 @@ Propio: `data/cache/` (nuevo), `data/cache/constancias.tsv` (registrado en INFRA
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no toca sellados, no convierte reservadas, no cambia el tope (mesa con P4). Sucesores: los lotes de caja adoptan el cargador en sus specs nuevas; `CACHE-PARQUET-2` para olas que mesa abra. Sin módulo de auditoría. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-CORPUS-CACHE-PARQUET-1-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+- **qué:** P2 · ENIF 2024 (`enif2024_csv`, `enif_2024_enif_2024_bd_csv`) · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: la hoja consolidada (`mapa-instrumentos-alternos`:22-31) lista ENIF 2024 módulo 7 como reserva sin decidir; convertir el CSV lee el módulo 7 · **impacto:** ENIF 2024 (14 CALC sellados, 2 familias 2027) sigue cargándose del CSV; ningún contador se mueve · **sucesor:** GEN2-CORPUS-CACHE-PARQUET-2 (`NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01`)
+- **qué:** P2 · olas reservadas (`envipe2026_csv`, `enigh2024_nc_csv`, `conjunto_de_datos_encrige_2020_csv`, `endutih_2025_endutih2025_bd_dbf`) · **por qué:** DIFERIDO-A:GEN2-CORPUS-CACHE-PARQUET-2 -- se convierten cuando su código congelado o mesa las abra · **impacto:** sus CALC leen el original; ningún medidor abierto afectado · **sucesor:** GEN2-CORPUS-CACHE-PARQUET-2 (`NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-02`)
+- **qué:** test en CI (`tests/test_corpus_loader.py`, job guardias) · **por qué:** DIFERIDO-A:ejecución de FP-398 (a) «librerías en CI» -- pyarrow y zipfile-deflate64 no están en `requirements.txt` (fuera del perímetro); en CI el módulo se salta, en CAJA 9 passed · **impacto:** la CI no ejerce los 7 casos sintéticos · **sucesor:** FP-398 (`NC-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-03`)
+
+## CONSUMIDO
+
+Ejecutado por PR #1284 (rama `acto/gen2-corpus-cache-parquet-1`), ADR `ADR-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01`, nota `forense/notas/2026-09-28-GEN2-CORPUS-CACHE-PARQUET-1-cierre.md`. Pregunta a mesa: `FP-260928-GEN2-CORPUS-CACHE-PARQUET-1-01aa-01`. Sin adendas.
