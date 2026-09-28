@@ -3026,6 +3026,8 @@ _T25_ARCHIVOS_CONOCIDOS = {
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1-ADENDA-1.md",
     "forense/analisis/hoja-firmas-21/hoja-para-mesa-firmas-21.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-HOJA-FIRMAS-21-1-9739-01.md",  # M09–M23 momentos; M5 = CSES Módulo 5
+    "forense/notas/nota-2026-09-28-gen2-tramite-hoja-firmas-21-1.md",
     # GEN2-ASTRA-CONTINUIDAD-C2-1 (28/sep/2026): encargo verbatim (A.3) cita B4/E3/E4 de la hoja NC-DECISIONES-1 (FP …f2e5-06/14/15).
     "forense/encargos/2026-09-28-GEN2-ASTRA-CONTINUIDAD-C2-1.md",
     # ACTO GEN2-OBTENCION-EXTERNA-1, 28/sep/2026: `M09`/`M10`/`M14`/`M21`/`M22` son momentos del catálogo
