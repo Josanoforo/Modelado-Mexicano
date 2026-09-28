@@ -41,3 +41,6 @@ Propio: `forense/firmas-pendientes.tsv` (solo las 22 filas nombradas) · `forens
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No firma nada que mesa no haya firmado ya. No toca las 9 letras de ejecución ajena (B4,D2,E3,E4,G1,H1,H2,H4,H5): sucesores propios (C2, tubería, curación, ENCIG) las asientan al ejecutar. No decide HOLDOUT ni las cinco reservas (P2 es recomendación; la firma de mesa sobre R01–R06 queda `PIDE-FIRMA` en la hoja). El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto.
+
+## NO-CORRIDO / RESERVAS
+- Ninguno.

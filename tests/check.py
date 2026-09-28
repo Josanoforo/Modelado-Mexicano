@@ -3021,6 +3021,11 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-TRAMITE-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
+    # (HOLDOUT, encargo P1) y `E2` es letra de la hoja NC-DECISIONES-1 (FP …f2e5-13, ya asentada);
+    # encargo verbatim (A.3) y su fragmento L0.
+    "forense/encargos/2026-09-28-GEN2-TRAMITE-FIRMAS-21-1.md",
+    "canon/L0/ADR-260928-GEN2-TRAMITE-FIRMAS-21-1-ce13-01.md",
     # GEN2-TRAMITE-HOJA-FIRMAS-21-1 (28/sep/2026): `M09`–`M23` son momentos de milpa/catalogo-momentos-v0_1.tsv
     # y `A1`…`I2`/`E2` son letras de la hoja NC-DECISIONES-1 (FP …f2e5-NN); encargo y adenda verbatim (A.3) y la hoja que los cita.
     "forense/encargos/2026-09-28-GEN2-TRAMITE-HOJA-FIRMAS-21-1.md",
