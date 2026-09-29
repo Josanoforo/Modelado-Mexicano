@@ -1,0 +1,3 @@
+# Páginas selladas: bytes tal como las devolvió el servidor (el sha256 del índice es el de esos bytes).
+# Sin esto, `* text=auto eol=lf` del .gitattributes raíz convierte CRLF→LF y el sha256 deja de coincidir en un checkout limpio.
+paginas/* -text
