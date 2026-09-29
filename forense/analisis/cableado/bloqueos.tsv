@@ -23,3 +23,4 @@ fecha	sesion	herramienta	decision	motivo	comando
 2026-09-28T16:39:49Z	2f7d551f-a8d8-5c7f-9098-4432115021ba	Bash	BLOQUEO	(a) lectura completa de tools/sella_sha256.py (373 líneas > 200)	find forense/encargos -iname "2026-09-28-GEN2-TRAMITE-INSTRUCCIONES-V217-1-ADENDA-*" 2>/dev/null; echo "---"; cat tools/sella_sha256.py | head -5 2>&1 | wc -l
 2026-09-28T19:57:55Z	c8fc68f4-7d82-5c38-b408-1fbf1502fb23	Read	BLOQUEO	(a) lectura completa de /tmp/claude-0/desk.png (909 líneas > 200)	Read /tmp/claude-0/desk.png
 2026-09-28T19:57:56Z	c8fc68f4-7d82-5c38-b408-1fbf1502fb23	Read	BLOQUEO	(a) lectura completa de /tmp/claude-0/mob.png (501 líneas > 200)	Read /tmp/claude-0/mob.png
+2026-09-29T00:03:47Z	f849c466-cad7-5ccc-8f05-1e3acf7d326f	Bash	BLOQUEO	(d) pytest sin -q	(python3 -m pip --version; which uv; python3 -c "import yaml, olefile" 2>&1 | tail -n 1; rg -n "pytest" requirements.txt .github/workflows/verify.yml 2>/dev/nul
