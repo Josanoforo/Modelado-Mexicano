@@ -184,6 +184,11 @@ def t02_duplicates():
                    "forense/analisis/catalogo/v1_3/pendientes-de-firma-v1_3.tsv"}),
         frozenset({"forense/analisis/catalogo/v1_2/adoptados-activos-v1_2.tsv",
                    "forense/analisis/catalogo/v1_3/adoptados-activos-v1_3.tsv"}),
+        # ACTO GEN2-CIERRE-Y-PRODUCTO-3 (28/sep/2026): v1.4 hereda los pendientes en solo cabecera (cero FP de adopción ABIERTAS).
+        frozenset({"forense/analisis/catalogo/v1_1/pendientes-de-firma.tsv",
+                   "forense/analisis/catalogo/v1_2/pendientes-de-firma-v1_2.tsv",
+                   "forense/analisis/catalogo/v1_3/pendientes-de-firma-v1_3.tsv",
+                   "forense/analisis/catalogo/v1_4/pendientes-de-firma-v1_4.tsv"}),
         # PR #1182: replay independiente con salida idéntica; comando, corte y hashes
         # constan en replay-ejecutado.json. Excepción por par exacto, sin excluir directorios.
         frozenset({'forense/analisis/familias-2027/astra6-cierre-material-1/logs/verify-CALC-FAMILIA-2027-ENIF-ORO-0002.txt', 'forense/analisis/familias-2027/astra6-enif/replay-oro.txt'}),
@@ -325,7 +330,7 @@ def t02_duplicates():
         # El control por contenido sigue incluyendo todos los módulos.
         # ASTRA6-C2-ENVIPE-1: paquete congelado con identidad por ruta.
         nombre_indice = rel(p) if rel(p).startswith(("tools/astra/", "tools/dominios/", "tools/curador_registro/", "tools/familias-2027/envipe/")) and p.endswith(".py") else os.path.basename(p)
-        if rel(p).startswith(("corpus/reports-v2/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "forense/encargos/fuentes/ASTRA6-tanda4-20260927/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
+        if rel(p).startswith(("corpus/reports-v2/", "corpus/reports-v3/", "forense/analisis/reports-v2/", "forense/encargos/fuentes/ASTRA6-tanda3-20260926/", "forense/encargos/fuentes/ASTRA6-tanda4-20260927/")):  # ASTRA6-C3 y archivo de fuentes por lote: identidad por ruta.
             nombre_indice = rel(p)
         by_name[norm(nombre_indice)].append(rel(p))
         by_hash[hashlib.md5(io.open(p, "rb").read()).hexdigest()].append(rel(p))
@@ -1644,6 +1649,9 @@ _T22_MARCADOR_PENDIENTE = re.compile(
 # cualquiera de los dos marcadores es exactamente el defecto que (b)
 # existe para atrapar.
 _T22_ARCHIVOS_CONOCIDOS = {
+    # GEN2-CIERRE-Y-PRODUCTO-3 (28/sep/2026): destino derivado de las 162 reglas; la única ranura de mesa
+    # que menciona (criterio de CONFIRMA) ya tiene su fila, FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.
+    "forense/analisis/reglas-bloque-1/destino-reglas-v1_0.tsv",
     # ACTO GEN2-PENDIENTES-RECONCILIA-1, 22/sep/2026: adjunto A.3 archivado
     # VERBATIM (`PENDIENTES-PROGRAMA.md`, sha256 citado en la cabecera del
     # encargo). El inventario cita, entre 806 líneas, la prosa de otros
@@ -3021,6 +3029,13 @@ _T25_ROTULO_BARE = re.compile(r"(?<![A-Za-z0-9_-])(M|E)-?(\d{1,2})(?![A-Za-z0-9_
 # Un archivo NUEVO que no esté aquí y traiga el patrón es exactamente el
 # defecto que este test existe para atrapar.
 _T25_ARCHIVOS_CONOCIDOS = {
+    # GEN2-CIERRE-Y-PRODUCTO-3 (28/sep/2026): `M05`, `M13`, `M19`, `M22`, `M23` son los momentos de
+    # milpa/catalogo-momentos-v0_1.tsv cuyo holdout declaran los CALC-ALT (columna `holdout_gastado`), mismos
+    # habitantes que censó GEN2-CALC-ALTERNOS-LOTE-1. Ninguno es rótulo de un espacio nuevo.
+    "canon/informe-programa-v1_6.md",
+    "canon/catalogo-del-mexicano-v1_4.md",
+    "forense/analisis/catalogo/v1_4/plantilla-v1_4.md",
+    "forense/notas/2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3-cierre.md",
     # GEN2-MEDICION-CARRILES-2 (28/sep/2026): `M5` del encargo es «CSES M5» (módulo 5 de CSES, cita verbatim de la
     # firma R04, A.3); `M23` en la spec y cierre de la hija ENIF 2024 es el id_momento de milpa/catalogo-momentos-v0_1.tsv
     # (holdout GASTABLE-COMO-PISO declarado); `E1` de la copia de apertura del tablero es la letra de la hoja
