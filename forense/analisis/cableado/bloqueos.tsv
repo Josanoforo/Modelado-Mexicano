@@ -24,3 +24,4 @@ fecha	sesion	herramienta	decision	motivo	comando
 2026-09-28T19:57:55Z	c8fc68f4-7d82-5c38-b408-1fbf1502fb23	Read	BLOQUEO	(a) lectura completa de /tmp/claude-0/desk.png (909 líneas > 200)	Read /tmp/claude-0/desk.png
 2026-09-28T19:57:56Z	c8fc68f4-7d82-5c38-b408-1fbf1502fb23	Read	BLOQUEO	(a) lectura completa de /tmp/claude-0/mob.png (501 líneas > 200)	Read /tmp/claude-0/mob.png
 2026-09-28T23:57:21Z	e568443f-c796-5919-8f88-fb4fcd78b0ac	Bash	BLOQUEO	(d) pytest sin -q	python3 -c "import yaml, sys; print('yaml', yaml.__version__)" 2>&1 | tail -n 1; python3 -m pip install -q pytest pytest-xdist 2>&1 | tail -n 4; python3 -m pyte
+2026-09-29T00:03:47Z	f849c466-cad7-5ccc-8f05-1e3acf7d326f	Bash	BLOQUEO	(d) pytest sin -q	(python3 -m pip --version; which uv; python3 -c "import yaml, olefile" 2>&1 | tail -n 1; rg -n "pytest" requirements.txt .github/workflows/verify.yml 2>/dev/nul

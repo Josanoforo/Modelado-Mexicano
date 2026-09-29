@@ -46,5 +46,5 @@
 
 ## 5 · Dónde está cada cosa
 - Encargos y adendas: forense/encargos/ (CONSUMIDO al pie). Notas de cierre: forense/notas/. ADR: canon/L0/. Firmas: forense/firmas-pendientes.tsv. Deuda: forense/no-corrido.tsv (razón A.14).
-- Producto: canon/catalogo-del-mexicano-v1_N, canon/informe-programa-v1_N, canon/tabla-de-piso-v1_N, docs/ (Pages). Tablero: canon/TABLERO-PROGRAMA.md (solo el bloque derivado; árbol == origin/main True o inválido).
+- Producto: canon/catalogo-del-mexicano-v1_N, canon/informe-programa-v1_N, canon/tabla-de-piso-v1_N, docs/ (Pages). Tablero: forense/tablero/TABLERO-PROGRAMA.md (solo el bloque derivado; árbol == origin/main True o inválido) y forense/tablero/TABLERO-CARRILES.md.
 - Sellos: data/corrida0/CALC-*/sello.json; manifiesto de sellos: forense/sellos/. Corpus: data/manifiesto.yaml (por id; nunca cat).
