@@ -1,0 +1,6 @@
+Python 3.14.4
+numpy 2.3.5
+pandas 2.3.3
+openpyxl 3.1.5 (lector de .xlsx vía pandas.read_excel, sólo para docs/endiseg_2021_fd.xlsx)
+pyreadstat, dbfread: no usados (no hay .sav/.dbf en el paquete)
+Linux FF-5563 6.18.33.2-microsoft-standard-WSL2 #1 SMP PREEMPT_DYNAMIC Thu Jun 18 21:54:43 UTC 2026 x86_64 GNU/Linux
