@@ -351,7 +351,22 @@ def libro():
     return 1 if mal else 0
 
 
+def plantilla_cli(args):
+    """`--plantilla <archivo.md> [NC-id ...]`: comprobaciones mecánicas de PLANTILLA v2.2 sobre un borrador."""
+    if not args:
+        print("uso: --plantilla <archivo.md> [NC-id ...]")
+        return 2
+    texto = open(args[0], encoding="utf-8").read()
+    fallas = plantilla_fallas(texto, tuple(args[1:]))
+    for f in fallas:
+        print("FALLA:", f)
+    print(f"plantilla v2.2 · {args[0]} · {len(fallas)} falla(s) · NC exigidas {len(args) - 1}")
+    return 1 if fallas else 0
+
+
 def main():
+    if "--plantilla" in sys.argv:
+        return plantilla_cli(sys.argv[sys.argv.index("--plantilla") + 1:])
     if "--libro" in sys.argv:
         return libro()
     caso_a()

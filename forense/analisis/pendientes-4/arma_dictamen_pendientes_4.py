@@ -11,10 +11,12 @@ Regla de adjudicación (la fija el acto, antes de mirar los resultados):
     a mesa) y la ADENDA-1 ordena decidir y declarar lo reversible.
   * NO-CONCLUYENTE pasa a la segunda pasada.
   * ABSORBER, HOJA-RECETA, CANAL y MANTENER-DUENO son finales de la ronda que los emite.
+  * un lote con cierres cuya verificación no terminó queda EN-VERIFICACION: no se adjudica nada
+    de él hasta que las dos lentes hayan escrito.
 El estado final de una fila es el de su última ronda (ronda 2 = lotes R-*).
 
     python3 arma_dictamen_pendientes_4.py --pools <dir-res>                    # agrega y reporta
-    python3 arma_dictamen_pendientes_4.py --reruta <dir-res> <dir-batches>     # escribe lotes R-n de la 2ª pasada
+    python3 arma_dictamen_pendientes_4.py --reruta <dir-res> <dir-batches> <ola>  # escribe lotes R-<ola>-n (2ª pasada)
 """
 import glob
 import json
@@ -50,8 +52,13 @@ def estado_final(datos):
         for key, lote in datos.items():
             if key.startswith("R-") != prefijo:
                 continue
+            pendiente = (any(f["verdict"].startswith("CERRAR") for f in lote["rows"].values())
+                         and not all(l in lote["ver"] for l in ("reproduce", "suficiencia")))
             for i, f in lote["rows"].items():
                 v = f["verdict"]
+                if pendiente:
+                    fin[i] = {"ronda": ronda, "key": key, "fila": f, "estado": "EN-VERIFICACION", "objeciones": []}
+                    continue
                 if v.startswith("CERRAR"):
                     if confirmado(lote, i):
                         est = "CERRAR"
@@ -84,8 +91,13 @@ def main():
                 print(f"\n## {est}: {sum(1 for f in fin.values() if f['estado'] == est)}")
             return 0
         bdir = sys.argv[sys.argv.index(modo) + 2]
+        ola = sys.argv[sys.argv.index(modo) + 3]
+        ya = set()
+        for p in glob.glob(os.path.join(bdir, "R-*.json")):
+            ya |= {x["row"]["id"] for x in json.load(open(p, encoding="utf-8"))}
         pend = [(i, f) for i, f in fin.items()
-                if f["estado"] in ("REFUTADO", "NO-CONCLUYENTE", "DECISION-A-CLASIFICAR") and f["ronda"] == 1]
+                if f["estado"] in ("REFUTADO", "NO-CONCLUYENTE", "DECISION-A-CLASIFICAR") and f["ronda"] == 1
+                and i not in ya]
         # el libro trae la fila completa en el lote original
         libro = {}
         for p in glob.glob(os.path.join(bdir, "*.json")):
@@ -97,7 +109,7 @@ def main():
         lotes = defaultdict(list)
         n = 0
         for k, (i, f) in enumerate(pend):
-            lotes[f"R-{k // 9 + 1}"].append({
+            lotes[f"R-{ola}-{k // 9 + 1}"].append({
                 "motivo": {"REFUTADO": "REFUTADO", "NO-CONCLUYENTE": "NO-CONCLUYENTE",
                            "DECISION-A-CLASIFICAR": "DECISION-A-CLASIFICAR"}[f["estado"]],
                 "row": libro[i], "prior": f["fila"], "objeciones": f["objeciones"]})
