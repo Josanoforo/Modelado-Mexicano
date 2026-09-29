@@ -163,7 +163,7 @@ Unidad: los 31 reports de `corpus/reports/` (el conteo de «dominios» de la ADE
 | Confianza y Desconfianza en México  Anatomía Psicológica de una Socied | `CONFIANZA` | **MEDIDO** | 826 | 0 | 59 (22 / 19 / 15) |
 | El Clasemediero Mexicano  Identidad  Ansiedad de Estatus y el Miedo Ra | `MOVILIDAD` | **MEDIDO** | 172 | 7 | 56 (5 / 37 / 11) |
 | El Efecto Ambiental de la Violencia Crónica en México  Cómo el Miedo R | `VIOLENCIA` | **MEDIDO** | 12772 | 0 | 56 (17 / 30 / 9) |
-| El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el | `TIEMPO` | **EN-MEDICIÓN** | 0 | 5 | 20 (4 / 6 / 10) |
+| El Mexicano y el Tiempo  Estructura  no Cultura  en la Planeación y el | `TIEMPO` | **EN-MEDICIÓN** | 0 | 6 | 20 (4 / 6 / 10) |
 | El México Rural e Indígena en sus Propios Términos  Comunalidad  Autor | `RURAL_INDIGENA` | **MEDIBLE-EN-CORPUS-SIN-CALC** | 0 | 0 | 56 (8 / 28 / 19) |
 | Elegir  Cortejar y Amar en el México de Hoy  Díada de Pareja  Apps de  | `PAREJA` | **MEDIDO** | 3304 | 0 | 32 (3 / 16 / 13) |
 | Genetica y Conducta del Mexicano Contemporaneo  Canal Individual vs  E | `GENETICA` | **MEDIBLE-CON-ADQUISICIÓN** | 0 | 0 | 38 (0 / 35 / 3) |

@@ -23,7 +23,7 @@ afirmacion	ASTRA5-U0-CAPSOC-004	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	MATIZA		CON-JU
 afirmacion	ASTRA5-U0-CAPSOC-005	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	SIN-CIFRA		PENDIENTE-ENCUCI
 afirmacion	ASTRA5-U0-CAPSOC-006	CAPITAL_SOCIAL	ENCUCI	ENCUCI 2020	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-CAPSOC-008	CONFIANZA	PEW	Pew Global Attitudes Survey, Spring 2025	SIN-CIFRA		PENDIENTE-PEW
-afirmacion	ASTRA5-U0-CAPSOC-012	CAPITAL_SOCIAL	ENUT	ENUT 2019 y ENUT 2024	SIN-CIFRA		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-CAPSOC-012	CAPITAL_SOCIAL	ENUT	ENUT 2019 y ENUT 2024	SIN-CIFRA		MEDIDO:PISO-SIN-DICTAMEN (CALC-PDR1-ENUT2024-0001)
 afirmacion	ASTRA5-U0-CAPSOC-016	CAPITAL_SOCIAL	ENVIPE	ENVIPE 2019/2021/2023 (referencia al año anterior)	SIN-CIFRA		CITADO-E5:CALC-PDR1-ENVIPE2025-0001 (AP4_11_06)
 afirmacion	ASTRA5-U0-CAPSOC-017	VIOLENCIA	ENVIPE	ENVIPE 2023 (microdato/FD registrados en corpus, TMod_Vic)	SIN-CIFRA		MEDIDO:MATIZA (CALC-MC2-ENVIPE2025-0001)
 afirmacion	ASTRA5-U0-CAPSOC-018	VIOLENCIA	ENVIPE	ENVIPE 2024 (microdato/FD registrados en corpus, TPer_Vic1)	SIN-CIFRA		MEDIDO:CONFIRMA (CALC-MC2-ENVIPE2025-0001)
@@ -63,13 +63,13 @@ afirmacion	ASTRA5-U0-EMOC-029	RELIGIOSIDAD	ENCUCI	Encuesta Nacional de Cultura C
 afirmacion	ASTRA5-U0-ENOE-001	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	SIN-C3		CITADO-E5:CALC-ENOE-PISOS-0003 (dictaminada en resultado-por-afirmacion-v1_0.tsv)
 afirmacion	ASTRA5-U0-ENOE-002	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-ENOE-003	TRABAJO	ENOE	ENOE 2024 T3, cuestionario básico v7	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
-afirmacion	ASTRA5-U0-FAM-007	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
-afirmacion	ASTRA5-U0-FAM-008	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-FAM-007	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENUT2024-0001)
+afirmacion	ASTRA5-U0-FAM-008	FAMILIA_CUIDADOS	ENUT	ENUT 2024	SIN-C3		MEDIDO:ROMPE (CALC-MC2-ENUT2024-0001)
 afirmacion	ASTRA5-U0-FAM-017	DINERO	ENIF	ENIF 2012/2015/2018/2021/2024 (participacion en tanda y tenencia de cuenta, presentes en todas las olas revisadas)	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENIF2024-0001)
 afirmacion	ASTRA5-U0-FAM-034	DINERO	ENIGH	ENIGH 2024 (nueva serie) u olas previas; en manifiesto con cuestionarios de hogares/gastos/negocios	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
 afirmacion	ASTRA5-U0-FAM-036	DINERO	ENIGH	ENIGH (multiples olas en manifiesto, incl. 2024)	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENIGH2022-0001)
 afirmacion	ASTRA5-U0-FAM-037	RURAL_INDIGENA	INEGI	candidato: INEGI Censo 2020 (poblacion indigena) + CONEVAL (medicion de pobreza)	SIN-C3		PENDIENTE-INEGI
-afirmacion	ASTRA5-U0-FAM-039	GENERO	ENUT	ENUT 2024 (mismo instrumento que familia-007/008, modulo de cuidado + condicion de actividad + deseo de trabajar)	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-FAM-039	GENERO	ENUT	ENUT 2024 (mismo instrumento que familia-007/008, modulo de cuidado + condicion de actividad + deseo de trabajar)	SIN-C3		MEDIDO:NO-CONSTRUIBLE (MC2-ENUT2024-dictamenes.tsv)
 afirmacion	ASTRA5-U0-FAM-040	VIOLENCIA	ENDIREH	ENDIREH 2021 (componentes fisica 15.60% y no-fisica 38.27% ya medidos por separado, RESULTS-ASTRA5.md)	SIN-C3		PENDIENTE-ENDIREH
 afirmacion	ASTRA5-U0-FIN-001	DINERO	ENIF	ENIF 2024	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
 afirmacion	ASTRA5-U0-FIN-002	DINERO	ENIF	ENIF 2024	SIN-CIFRA		MEDIDO:CONFIRMA (CALC-MC2-ENIF2024-0001)
@@ -93,9 +93,9 @@ afirmacion	ASTRA5-U0-GEN-001	GENERO	ENDIREH	ENDIREH 2021, Cuestionario A	SIN-C3	
 afirmacion	ASTRA5-U0-GEN-009	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		MEDIDO:MATIZA-PARCIAL (CALC-MC2-ENOE-0001)
 afirmacion	ASTRA5-U0-GEN-010	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		MEDIDO:MATIZA (CALC-ENOE-PISOS-0003)
 afirmacion	ASTRA5-U0-GEN-011	TRABAJO	ENOE	ENOE 2024T3 (microdatos + FD 'Estructura de la base de datos ENOE 2024') — en manifiesto	SIN-C3		MEDIDO:MATIZA (CALC-MC2-ENOE-0001)
-afirmacion	ASTRA5-U0-GEN-012	TRABAJO	ENUT	ENUT 2024 (microdatos + FD) para el 73% principal — en manifiesto (#1090); INEGI Cuenta Satelite del Trabajo No Remunera	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-GEN-012	TRABAJO	ENUT	ENUT 2024 (microdatos + FD) para el 73% principal — en manifiesto (#1090); INEGI Cuenta Satelite del Trabajo No Remunera	SIN-C3		MEDIDO:MATIZA-PARCIAL (CALC-MC2-ENUT2024-0001)
 afirmacion	ASTRA5-U0-GEN-017	GENERO	ENCUCI	Componente B: ENCUCI 2020 (Encuesta Nacional de Cultura Civica y Practicas Ciudadanas), variable AP7_4_5 — en manifiesto	SIN-C3		PENDIENTE-ENCUCI
-afirmacion	ASTRA5-U0-GEN-018	FAMILIA_CUIDADOS	ENUT	ENUT 2009 y 2024 (cuestionario, diseño muestral, FD) — en main por #1090	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-GEN-018	FAMILIA_CUIDADOS	ENUT	ENUT 2009 y 2024 (cuestionario, diseño muestral, FD) — en main por #1090	SIN-C3		MEDIDO:ROMPE-PARCIAL (CALC-MC2-ENUT2024-0001)
 afirmacion	ASTRA5-U0-GEN-019	MIGRACION	ENADID	estudios mazahua/Guanajuato (no localizados); ENADID 2023 (variable jefe/jefa del hogar, migración internacional) y ENNV	SIN-C3		PENDIENTE-ENADID
 afirmacion	ASTRA5-U0-GEN-022	GENERO	LATINOBAROMETRO	Componente A: WVS7 Mexico 2018 (cuestionario + datos) — en manifiesto. Componente B: ninguno identificado tras el recorr	SIN-C3		PENDIENTE-LATINOBAROMETRO
 afirmacion	ASTRA5-U0-HUM-006	HUMOR	SIN-TOKEN	Latinobarómetro 2024, entrevistas cara a cara agosto-octubre 2024, 17 países	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
@@ -151,7 +151,7 @@ afirmacion	ASTRA5-U0-RURAL-020	SALUD	ENDIREH	ENDIREH 2016	SIN-C3		PENDIENTE-ENDI
 afirmacion	ASTRA5-U0-RURAL-021	SALUD	ENSANUT	ENSANUT 2024 continua (cuestionario de utilizadores); ENIGH 2024 nueva serie (gasto)	SIN-C3		MEDIDO:NO-CONSTRUIBLE (ENSANUT2024-dictamenes.tsv)
 afirmacion	ASTRA5-U0-RURAL-026	RURAL_INDIGENA	CPV2020	CPV2020 (Censo de Población y Vivienda 2020), agregado ITER nacional	SIN-C3		PENDIENTE-CPV2020
 afirmacion	ASTRA5-U0-RURAL-027	RURAL_INDIGENA	CPV2020	CPV2020, agregado ITER nacional	SIN-C3		PENDIENTE-CPV2020
-afirmacion	ASTRA5-U0-RURAL-038	GENERO	ENUT	ENUT 2019/2024 (mismo módulo TMODULO que fila -002, cruzable por sexo del informante)	SIN-C3		PENDIENTE-ENUT
+afirmacion	ASTRA5-U0-RURAL-038	GENERO	ENUT	ENUT 2019/2024 (mismo módulo TMODULO que fila -002, cruzable por sexo del informante)	SIN-C3		MEDIDO:ROMPE (CALC-MC2-ENUT2024-0001)
 afirmacion	ASTRA5-U0-RURAL-041	RURAL_INDIGENA	ENASEM	ENASEM 2024; ENASIC 2022	SIN-C3		PENDIENTE-ENASEM
 afirmacion	ASTRA5-U0-SALMEN-009	SALUD_MENTAL	SIN-TOKEN	ENNVIH-1 (2002), ENNVIH-2 (2005-06), ENNVIH-3 (2009-12), modulo IIIb 'Salud Mental' (SM)	SIN-CIFRA		PENDIENTE-SIN-TOKEN
 afirmacion	ASTRA5-U0-SALMEN-013	SALUD_MENTAL	ENSANUT	ENSANUT 2022 (Vazquez-Salas R et al., Salud Publica Mex)	MATIZA		CON-JUICIO-C3:MATIZA (sin RESULT propio verificado)
