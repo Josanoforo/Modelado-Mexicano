@@ -62,13 +62,13 @@ inputs:
 - id: guardia_apertura
   origen: repo
   ruta: forense/prereg-aperturas/guardia_apertura.py
-  sha256: b9fee881070a00c46ad3238d9ee65f6d3cfd3028594b29ee055727f9501771c0
+  sha256: b9002a494f3d2468909fb4c5c16d3067b0eacd201027498f1b9ff04297ce7c5e
   funcion: CODIGO
   nota: auditoría AST, agregador de una variable, adjudicación
 - id: expediente_apertura
   origen: repo
   ruta: forense/prereg-aperturas/expediente_apertura.py
-  sha256: db003b18b9bc8213d0aba9bed900a9b7f5620ebc4e9a2173727f53356c7ef9f7
+  sha256: 7e7d711a2751c98fe27367c490ee6566874e26418ef9c2315ec27d1ad884ea29
   funcion: CODIGO
   nota: esquema, salida y contrato comunes
 variables:
