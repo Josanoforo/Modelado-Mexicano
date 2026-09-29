@@ -35,8 +35,7 @@ def mide():
     with open(NC, encoding="utf-8", newline="") as f:
         rows = list(csv.DictReader(f, delimiter="\t"))
     ab = [r for r in rows if r["estado"] == "ABIERTA"]
-    hoy = [r for r in rows if r["estado"].startswith("CERRADA") and r["fecha_cierre"] == "2026-09-28"
-           and "GEN2-PENDIENTES-4" in (r["cerrado_por"] or "")]
+    hoy = [r for r in rows if r["estado"].startswith("CERRADA") and "GEN2-PENDIENTES-4" in (r["cerrado_por"] or "")]
     d = NPC.derivar()
     return {
         "filas": len(rows),

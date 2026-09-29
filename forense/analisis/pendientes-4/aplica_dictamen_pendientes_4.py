@@ -23,7 +23,7 @@ import sys
 RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 NC = os.path.join(RAIZ, "forense", "no-corrido.tsv")
 DICT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "dictamen-pendientes-4.tsv")
-FECHA = "2026-09-28"
+FECHA = "2026-09-29"   # fecha real del cierre (el acto arrancó el 28/sep y cierra el 29)
 FRASES = (r"encargo por escribir", r"cierre por dise[ñn]o propuesto")
 
 
