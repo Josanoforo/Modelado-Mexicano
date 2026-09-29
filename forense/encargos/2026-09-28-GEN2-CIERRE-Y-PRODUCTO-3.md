@@ -41,3 +41,11 @@ Propio: `canon/{catalogo-del-mexicano-v1_4.*, tabla-de-piso-v1_3.tsv, informe-pr
 
 ## 10 · LO QUE NO HACE · SUCESORES · CIERRE
 No mide, no publica release ni DOI, no toca reports sin cifra nueva, no abre reservas. Sucesores: cierre siguiente; reports v3 restantes cuando MEDICION-CARRILES-2 selle. Módulo de auditoría v2.16 en catálogo, informe y cada report v3. El cuerpo no lleva campos para rellenar; `## NO-CORRIDO / RESERVAS` («Ninguno.» obligatorio) y `## CONSUMIDO` las añade /acto. Adendas: `2026-09-28-GEN2-CIERRE-Y-PRODUCTO-3-ADENDA-N.md`, selladas al recibirse.
+
+## NO-CORRIDO / RESERVAS
+
+Sin filas NC nuevas: el encargo (cabecera) dice «NC solo por D-19» y ninguna fila de abajo es un PARO de la lista cerrada. Cada fila deja rastro en `forense/hallazgos.md` o en su FP.
+
+- **qué:** P2 «si mesa fusiona, entran a `milpa/tramite.yaml` como reglas vivas con su RESULT» · **por qué:** DECISIÓN-DE-MESA-PENDIENTE: el bloque de reglas 1 depende del criterio de CONFIRMA (`FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01`, ABIERTA), y `tools/escribe_relevo_consumo.py` no tiene modo para crear reglas desde `reglas-contrastadas` (hallazgo 28/sep) · **impacto:** 0 reglas vivas nuevas en `milpa/tramite.yaml`; el bloque existe en `canon/reglas-bloque-adopcion-1.*` · **sucesor:** FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01.
+- **qué:** P4 «el tablero de carriles regenerado» con la cifra de v1.4 · **por qué:** FUERA-DE-PERÍMETRO: la fuente `F2` del tablero es `canon/crosswalk-carriles-v1_0.tsv`, de GEN2-TABLERO-CARRILES-1, y apuntarla a v1.4 lo reescribe en su sitio; el tablero se regeneró con su fuente vigente (v1.3) · **impacto:** el semáforo del tablero no ve los cuatro dominios nuevos · **sucesor:** SIN-ASIGNAR (hallazgo 28/sep).
+- **qué:** «Hecho»: `check.py --baseline` VERDE · **por qué:** NO-VERIFICABLE-AQUÍ: el juez es el CI del push (P-A). En local, `check.py --rapido` 0 FAIL; `test_informe_derivado` (138 comandos), `test_estado_derivado` (57), `test_readme_derivado`, `test_tablero_carriles` y `verifica_sidecars` en verde; la batería unittest de catálogo, reports v3 y frente público dio 1 error que la sesión no llegó a aislar antes de la interrupción del operador · **impacto:** ninguno sobre cifras; el PR no se declara listo hasta que el CI lo juzgue · **sucesor:** CI del PR #1337.
