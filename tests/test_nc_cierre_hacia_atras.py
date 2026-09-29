@@ -45,6 +45,7 @@ RE_DUENO = re.compile(
     r"|CAJA \((forense/encargos/[^)\s]+\.md)\)"
     r"|ADQUISICION \([^)]+\)"
     r"|APERTURA \([^)]+\)"
+    r"|DIRECCION \([^)]+\)"
     r"|EN-CURSO \([^)]+ · rama [^)\s]+\))")
 
 
