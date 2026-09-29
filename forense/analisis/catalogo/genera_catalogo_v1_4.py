@@ -537,7 +537,7 @@ def main() -> None:
     for a in (2016, 2018, 2020):
         for tipo in ("PERFIL-ESTRUCTURAL", "REMESAS-CONTEXTO"):
             fuera(f"CALC-ENIGH{a}-{tipo}-0001", f"CALC-ENIGH{a}-{tipo}-0001", "ADOPTADO-TABLA-NO-DESAGREGADA",
-                  "tabla JSON adoptada por Firma M; su desagregación por celda no entra en v1.4 (NC-260927-GEN2-CIERRE-SEMANAL-2-facd-01, re-diferida por GEN2-CIERRE-Y-PRODUCTO-3)", f"decisiones.tsv:CALC-ENIGH{a}-{tipo}-0001")
+                  "tabla JSON adoptada por Firma M; su desagregación por celda no se desagrega: estado estable ADOPTADO-TABLA-NO-DESAGREGADA (NC-260927-GEN2-CIERRE-SEMANAL-2-facd-01 cerrada por delegación de mesa, GEN2-PENDIENTES-3)", f"decisiones.tsv:CALC-ENIGH{a}-{tipo}-0001")
     fuera("CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001", "CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001", "EVALUACION-NO-ESTIMADOR",
           "mide error de candidatos (MAE, cobertura), no una conducta", "decisiones.tsv:CALC-ENIGH-DUELO-ORIGEN-MOVIL-0001")
 

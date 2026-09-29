@@ -285,3 +285,5 @@ tests/test_pdr1_enut2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	G
 tests/test_pdr1_envipe2025.py	pytest	NO	numpy,pytest	NO	0.0	NECESITA-DEPENDENCIA(pytest)	GEN2-PISOS-DOMINIOS-Y-REGLAS-1: prueba sintética del CALC PDR1 (fila añadida por línea)
 tests/test_mc2_enif2024.py	script	NO	numpy	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENIF2024 (fila añadida por línea)
 tests/test_mc2_ensanut2024.py	script	NO	numpy,pyreadstat	NO	0.0	NECESITA-DEPENDENCIA(numpy)	GEN2-MEDICION-CARRILES-2: prueba sintética del CALC MC2-ENSANUT2024 (fila añadida por línea)
+tests/test_catalogo_v1_4.py	script	NO	(ninguna)	NO	40.1	FALLA-DE-VERDAD	TIMEOUT>40s
+tests/test_reports_v3.py	script	NO	(ninguna)	NO	2.3	CORRE-EN-CI	exit 0 sin corpus

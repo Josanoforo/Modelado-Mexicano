@@ -94,7 +94,7 @@ Ninguna frase de este informe suma una columna con la otra. `celdas_validadas` =
 
 - **Mesa**: el merge de este PR adopta el bloque de cifras v1.4 (por instrumento; veto pidiendo retiro antes del merge); el criterio de CONFIRMA decide el bloque de reglas; `0c1f-01` decide el rótulo 60+ de ENDIREH 2016; `fa42-01` ratifica la evaluación del piso de persistencia.
 - **Release y DOI**: receta lista en la nota del acto; `origin` tiene **0** tags <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py tags -->; publicar es de mesa (R49).
-- **Siguiente cierre**: lo que selle `MEDICION-CARRILES-2` y `VALIDACION-Y-2027-1` (en vuelo), sus reports v3, y la desagregación de las tablas ENIGH de Firma M (re-diferida).
+- **Siguiente cierre**: lo que selle `MEDICION-CARRILES-2` y `VALIDACION-Y-2027-1` (en vuelo), sus reports v3, — la desagregación de las tablas ENIGH de Firma M ya no es pendiente: mesa aceptó por delegación el estado estable `ADOPTADO-TABLA-NO-DESAGREGADA`.
 
 ## I · Módulo de auditoría de rigor extremo, adenda v1.6
 
