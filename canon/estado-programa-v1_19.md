@@ -1,4 +1,20 @@
 # ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
+### `estado` · **v1.19** · 28 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
+
+> **Enmienda (28/sep/2026, `ACTO GEN2-CIERRE-Y-PRODUCTO-3`, P3).** Es el cierre del 27–28/sep. Son nuevas la cabecera y la **§19**. La cabecera v1.18, §0–§18 y las 96 anotaciones L0 se heredan **verbatim** de `v1.18`. `v1.18` sale del árbol por `T01` (fuente única) sin editarse, igual que en los cierres anteriores.
+>
+> | | |
+> |---|---|
+> | **ARCHIVO** | `estado-programa-v1_19.md` |
+> | **REEMPLAZA A** | `estado-programa-v1_18.md`, retirada del árbol por T01 |
+> | **VERIFICAS ASÍ** | §19 ata cada cifra a un comentario `comando:` que `tests/test_estado_derivado.py` re-ejecuta |
+> | **NOMBRE ESTABLE** | **`estado`** — cítalo así, nunca por nombre de archivo |
+
+---
+
+*Cabecera y cuerpo heredados de v1.18, sin editar:*
+
+# ESTADO DEL PROGRAMA · Psicología del Mexicano Contemporáneo
 ### `estado` · **v1.18** · 27 de septiembre de 2026 · **ÚNICA FUENTE DE ESTADO** · **PROPUESTA — se sella con el merge de mesa**
 
 > **Enmienda (27/sep/2026, `ACTO GEN2-CIERRE-SEMANAL-2`, P4).** Es el cierre del 27/sep. Son nuevas la cabecera y la **§18**. La cabecera v1.17, §0–§17 y las 96 anotaciones L0 se heredan **verbatim** de `v1.17`. `v1.17` sale del árbol por `T01` (fuente única) sin editarse, igual que en los cinco precedentes (`v1.12`–`v1.16`). Su historia se recupera por el SHA del commit de este acto que la retira.
@@ -1128,3 +1144,15 @@ celdas_emitidas_sin_r=16
 - VETO de Intercensal 2015 (FIRMAS-20 A6): 809 filas `adopcion=VETADA-POR-DECISION` <!-- comando: python3 forense/analisis/informe-v1_5/cifra_v1_5.py vetados_eic -->.
 
 **Régimen operativo sin cambio respecto a §17.** Canal por PR. Cláusula de autonomía v1.0. Recibo de Codex obligatorio.
+
+## 19 · GEN2 · 27–28 de septiembre — el cierre como producto: catálogo v1.4 por bloque, cuatro dominios nuevos, reglas con bloque condicional
+
+*Acto `GEN2-CIERRE-Y-PRODUCTO-3`. Cero mediciones; la adopción de cifras y reglas es el merge de mesa del PR (E.2).*
+
+- **Catálogo v1.4**: **65 480** estimadores <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat:estimadores -->; bloque de la semana **1 722** filas de **16** CALC <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat:bloque:filas && python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat:bloque:calcs -->, propuestas por instrumento en `forense/analisis/catalogo/v1_4/bloque-adopcion-cifras-v1_4.tsv`. Tabla de piso v1.3 derivada (`python3 tools/genera_tabla_piso_v1_3.py --verifica`); los contrastes de momento no son línea a vencer.
+- **`mapa11_dominios_medidos`**: **21** de **28** <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py mapa11_dominios_medidos && python3 forense/analisis/informe-v1_6/cifra_v1_6.py mapa11_dominios -->, desde **17** en v1.3 <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py mapa11_dominios_medidos_v1_3 -->: entran AUTORIDAD, SANCION_SOCIAL, TIEMPO y RURAL_INDIGENA.
+- **Validación ciega, tercer lote**: **404** identidades rotuladas <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py lote3_filas -->; **22** filas suspendidas por firma en el catálogo <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py cat_estado:SUSPENDIDA-POR-FIRMA --> (las 7 del primer lote y las 15 ENVIPE 2024 de R21).
+- **Reglas**: bloque de adopción 1 con **1** regla <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py reglas_bloque -->, condicional al criterio de CONFIRMA (`FP-260928-GEN2-REGLAS-Y-RESULT-1-a3cc-01`).
+- **Reports v3**: **10** <!-- comando: python3 forense/analisis/informe-v1_6/cifra_v1_6.py reports_v3 -->, solo carriles con cifra nueva.
+- **`status` en el commit final**: `celdas_validadas` **219** <!-- comando: python3 tools/corrida0.py status | grep -E "^celdas_validadas=" -->, `N_resultados_gen2_adoptados_activos` **128** <!-- comando: python3 tools/corrida0.py status | grep -E "^N_resultados_gen2_adoptados_activos=" --> y `dependencias_numericas_legacy_activas` **67** <!-- comando: python3 tools/corrida0.py status | grep -E "^dependencias_numericas_legacy_activas=" -->, sin cambio por este acto. La vista publicada va atrasada del disco (el `[deriva]` publica por trozos); el informe v1.6 §A nota ¹ explica el «138» de dirección.
+- **Release**: receta en la nota del acto; sin publicar (mesa, R49).

@@ -5,7 +5,7 @@ Solo lee artefactos del árbol; no escribe. Sucesor de
 `forense/analisis/informe-v1_5/cifra_v1_5.py` (intacto, E.1): las claves `cat:` leen el
 catálogo v1.4. Claves nuevas: mapa11_dominios_medidos_v1_3 · lote3:<dictamen> ·
 lote3_punto:<DENTRO|FUERA|NO-COMPARADO> · lote3_filas · reglas:<dictamen> · reglas_bloque ·
-reglas_destino:<destino> · demanda:<clave de corrida0 demanda> · familias2027_estado:<estado> ·
+reglas_destino:<destino> · demanda_dictamen:<prefijo de dictamen> · familias2027_estado:<estado> ·
 reports_v3 (reports v3 publicados) · tags (tags en origin). Uso:
     python3 forense/analisis/informe-v1_6/cifra_v1_6.py <clave>
 Claves: cat:<clave de conteos-v1_3.json> · cat_origen:<origen_piso> ·
@@ -87,10 +87,9 @@ def main(clave: str) -> int:
         v = len(lee("canon/reglas-bloque-adopcion-1.tsv"))
     elif tipo == "reglas_destino":
         v = sum(r["destino"].startswith(arg) for r in lee("forense/analisis/reglas-bloque-1/destino-reglas-v1_0.tsv"))
-    elif tipo == "demanda":
-        out = subprocess.run([sys.executable, "tools/corrida0.py", "demanda"], cwd=ROOT, capture_output=True,
-                             text=True, check=True).stdout
-        v = re.search(rf"^{re.escape(arg)}\s*=\s*(\S+)", out, re.M).group(1)
+    elif tipo == "demanda_dictamen":
+        # lee el dictamen asentado; NO corre `corrida0 demanda`, que reescribe demanda-*.tsv (D-23)
+        v = sum(r.get("dictamen", "").startswith(arg) for r in lee("data/corrida0/demanda-dictamen-v1_0.tsv"))
     elif tipo == "familias2027_estado":
         v = sum(r["estado"].startswith(arg) for r in lee("forense/analisis/familias-2027/familias-2027-estado-v1_0.tsv"))
     elif tipo == "reports_v3":
